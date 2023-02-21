@@ -18,19 +18,20 @@
 
 if (!jeeFrontEnd.plan) {
   jeeFrontEnd.plan = {
-    deviceInfo: null,
     contextMenu: null,
     planHeaderContextMenu: {},
     resizeObservers: [],
     cssStyleString: '',
+    draggables: [],
+    isFullScreen: false,
     clickedOpen: false,
     init: function() {
       window.jeeP = this
-      this.deviceInfo = getDeviceType()
       this.pageContainer = document.getElementById('div_pageContainer')
       this.planContainer = document.querySelector('.div_displayObject')
       this.planHeaderContextMenu = {}
-      if (typeof jeeFrontEnd.planEditOption === 'undefined' || this.deviceInfo.type != 'desktop') {
+      jeedomUtils.userDevice = getDeviceType()
+      if (typeof jeeFrontEnd.planEditOption === 'undefined' || jeedomUtils.userDevice.type != 'desktop') {
         jeeFrontEnd.planEditOption = {
           state: false,
           snap: false,
@@ -52,7 +53,7 @@ if (!jeeFrontEnd.plan) {
       }
 
       //Shortcuts:
-      if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+      if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         document.registerEvent('keydown', function(event) {
           if (jeedomUtils.getOpenedModal()) return
 
@@ -104,8 +105,10 @@ if (!jeeFrontEnd.plan) {
       _mode = getBool(_mode)
       if (_mode) {
         document.body.addClass('fullscreen')
+        jeeFrontEnd.plan.isFullScreen = true
       } else {
         document.body.removeClass('fullscreen')
+        jeeFrontEnd.plan.isFullScreen = false
       }
     },
     addObject: function(_plan) {
@@ -121,6 +124,7 @@ if (!jeeFrontEnd.plan) {
         },
         success: function(data) {
           jeeP.displayObject(data.plan, data.html, false)
+          jeeFrontEnd.modifyWithoutSave = true
         }
       })
     },
@@ -196,14 +200,11 @@ if (!jeeFrontEnd.plan) {
           document.getElementById('div_grid').style.width = jeeFrontEnd.plan.planContainer.offsetWidth + 'px'
           document.getElementById('div_grid').style.height = jeeFrontEnd.plan.planContainer.offsetHeight + 'px'
 
-          if (jeeP.deviceInfo.type != 'desktop') {
-            document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + domDisplayObject.offsetWidth + 'px, height=' + domDisplayObject.offsetHeight + 'px')
+          if (jeedomUtils.userDevice.type != 'desktop') {
+            document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + jeeFrontEnd.plan.planContainer.offsetWidth + 'px, height=' + jeeFrontEnd.plan.planContainer.offsetHeight + 'px')
             jeeP.fullScreen(true)
-            $(window).on("navigate", function(event, data) {
-              var direction = data.state.direction
-              if (direction == 'back') {
-                window.location.href = 'index.php?v=m'
-              }
+            window.registerEvent('popstate', function(event) {
+              window.location.href = 'index.php?v=m'
             })
           }
 
@@ -211,6 +212,7 @@ if (!jeeFrontEnd.plan) {
           var selector = '.eqLogic-widget, .div_displayObject > .cmd-widget, .scenario-widget'
           selector += ',.plan-link-widget, .view-link-widget, .graph-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
           document.querySelectorAll(selector).remove()
+          jeeFrontEnd.modifyWithoutSave = false
           jeedom.plan.byPlanHeader({
             id: jeephp2js.planHeader_id,
             error: function(error) {
@@ -239,6 +241,7 @@ if (!jeeFrontEnd.plan) {
               jeedomUtils.initReportMode()
               window.scrollTo({top: 0, behavior: "smooth"})
               jeeFrontEnd.plan.setGraphResizes()
+              jeeFrontEnd.modifyWithoutSave = false
             }
           })
         },
@@ -257,13 +260,13 @@ if (!jeeFrontEnd.plan) {
       //get css selector:
       if (['eqLogic', 'scenario', 'text', 'image', 'zone', 'summary'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-widget[data-' + _plan.link_type + '_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (['view', 'plan'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-link-widget[data-id="' + _plan.id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (_plan.link_type == 'cmd') {
         css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (_plan.link_type == 'graph') {
         if (jeedom.history.chart['div_designGraph' + _plan.link_id]) {
           delete jeedom.history.chart['div_designGraph' + _plan.link_id]
@@ -274,8 +277,7 @@ if (!jeeFrontEnd.plan) {
           _html = _html.replace('class="graph-widget"', 'class="graph-widget transparent"')
         }
       }
-
-      var node = domUtils.parseHTML(_html).childNodes[0]
+      var node = domUtils.DOMparseHTML(_html)
       node.setAttribute('data-plan_id', _plan.id)
       node.setAttribute('data-zoom', init(_plan.css.zoom, 1))
       node.addClass('jeedomAlreadyPosition', 'noResize')
@@ -287,7 +289,7 @@ if (!jeeFrontEnd.plan) {
       style['top'] = init(_plan.position.top, '10') + 'px'
       style['left'] = init(_plan.position.left, '10') + 'px'
       if (init(_plan.css.zoom, 1) != 1) {
-        style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')'
+        style['scale'] = init(_plan.css.zoom, 1)
       }
       style['transform-origin'] = '0 0'
 
@@ -526,75 +528,11 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.plan.resizeObservers.push(obs)
       })
     },
-    //Constrain dragging inside design area, supporting zoom:
-    dragClick: {
-      x: 0,
-      y: 0
-    },
-    dragStartPos: {
-      top: 0,
-      left: 0
-    },
-    dragStep: false,
-    minLeft: 0,
-    maxLeft: 0,
-    maxTop: 0,
-    isDragLocked: false,
-    zoomScale: 1,
-    draggableStartFix: function(event, ui) {
-      jeeP.isDragLocked = false
-      if (event.target.hasClass('locked')) {
-        jeeP.isDragLocked = true
-        document.body.style.cursor = "default"
-        return false
-      }
-      jeeP.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-      if (jeeFrontEnd.planEditOption.grid == 1) {
-        jeeP.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
-      } else {
-        jeeP.dragStep = false
-      }
-
-      jeeP.dragClick.x = event.clientX
-      jeeP.dragClick.y = event.clientY
-      jeeP.dragStartPos = ui.originalPosition
-
-      var containerWidth = jeeFrontEnd.plan.planContainer.offsetWidth
-      var containerHeight = jeeFrontEnd.plan.planContainer.offsetHeight
-
-      var clientWidth = ui.helper[0].offsetWidth
-      var clientHeight = ui.helper[0].offsetHeight
-
-      jeeP.maxLeft = containerWidth + jeeP.minLeft - (clientWidth * jeeP.zoomScale)
-      jeeP.maxTop = containerHeight - (clientHeight * jeeP.zoomScale)
-    },
-    draggableDragFix: function(event, ui) {
-      if (jeeP.isDragLocked == true) return false
-      var newLeft = event.clientX - jeeP.dragClick.x + jeeP.dragStartPos.left
-      var newTop = event.clientY - jeeP.dragClick.y + jeeP.dragStartPos.top
-
-      if (newLeft < jeeP.minLeft) newLeft = jeeP.minLeft
-      if (newLeft > jeeP.maxLeft) newLeft = jeeP.maxLeft
-
-      if (newTop < 0) newTop = 0
-      if (newTop > jeeP.maxTop) newTop = jeeP.maxTop
-
-      if (jeeP.dragStep) {
-        newLeft = (Math.round(newLeft / jeeP.dragStep) * jeeP.dragStep)
-        newTop = (Math.round(newTop / jeeP.dragStep) * jeeP.dragStep)
-      }
-
-      ui.position = {
-        left: newLeft,
-        top: newTop
-      }
-    },
     //Edit mode:
     initEditOption: function(_state) {
       var editSelector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget'
       editSelector += ', .div_displayObject > .cmd-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget,.summary-widget'
       var editItems = document.querySelectorAll(editSelector)
-      var $editItems = $(editSelector) //jQuery plugins!
 
       if (_state) { //Enter Edit mode
         jeeFrontEnd.planEditOption.state = true
@@ -608,16 +546,92 @@ if (!jeeFrontEnd.plan) {
         this.planContainer.addClass('editingMode')
         jeedom.cmd.disableExecute = true
 
-        //drag item:
-        $editItems.draggable({
-          cancel: '.locked',
-          containment: 'parent',
-          cursor: 'move',
-          start: this.draggableStartFix,
-          drag: this.draggableDragFix,
-          stop: function(event, ui) {
-            jeeP.savePlan(false, false)
-          }
+        //Set draggies:
+        editItems.forEach(item => {
+          var draggie = new Draggabilly(item, {
+            containment: 'div.div_displayObject',
+          })
+          jeeFrontEnd.plan.draggables.push(draggie)
+
+          draggie.on('dragStart', function(event, pointer) {
+
+            //Is locked:
+            if (this.element.hasClass('locked')) this.dragEnd()
+
+            //Handle zoom:
+            this.containementBrect = document.querySelector('div.div_displayObject').getBoundingClientRect()
+            this.zoomScale = parseFloat(this.element.getAttribute('data-zoom'))
+            if (this.zoomScale != 1) {
+              this.options.containment = false
+            }
+
+            //Handle grid snap
+            if (jeeFrontEnd.planEditOption.grid == 1) {
+              this.dragStep = jeeFrontEnd.planEditOption.gridSize[0] / this.zoomScale
+              this.element.style.left = getNearestMultiple(this.element.offsetLeft, this.dragStep) + 'px'
+              this.element.style.top = getNearestMultiple(this.element.offsetTop, this.dragStep) + 'px'
+              this.options.grid = [this.dragStep, this.dragStep]
+            } else {
+              this.dragStep = false
+              this.options.grid = undefined
+            }
+          })
+
+          draggie.on('dragMove', function(event, pointer, moveVector) {
+            //Handle zoom move / containement:
+            if (this.zoomScale != 1) {
+
+              //Fix zoomed move:
+              this.dragPoint.x = moveVector.x / this.zoomScale
+              this.dragPoint.y = moveVector.y / this.zoomScale
+
+              //Check zoomed containement:
+              /*Doesn't work
+              var eRect = this.element.getBoundingClientRect()
+              console.log('eRect:',eRect)
+
+              console.log('position:', this.position)
+              console.log(this.dragPoint)
+
+              if (eRect.left < this.containementBrect.left) {
+                console.log('>>>>>>> OUT LEFT')
+                this.setPosition(this.position.x + this.dragPoint.x, this.position.y + this.dragPoint.y)
+                this.pointerDone()
+                this.dragEnd()
+              }
+              */
+            }
+
+            /*
+            if (this.zoomScale != 1) {
+              var matrix = window.getComputedStyle(this.element).getPropertyValue('transform')
+              var matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
+              var tx = matrixValues[4]
+              var ty = matrixValues[5]
+              var txFactor = tx * this.zoomScale
+              var tyFactor = ty * this.zoomScale
+              var deltaX = this.element.offsetLeft - (tx * this.zoomScale)
+              if ((this.element.offsetLeft + txFactor) < 0) this.dragEnd()
+              if ((this.element.offsetTop + tyFactor) < 0) this.dragEnd()
+
+              var realWidth = this.element.clientWidth * this.zoomScale
+              var realRight = this.element.getBoundingClientRect().left + realWidth
+
+              console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
+
+              //Test ok, not solution--
+              if (realRight >= this.containementBrect.right) {
+                this.dragEnd()
+              }
+            }
+            */
+
+          })
+
+          draggie.on('dragEnd', function(event, pointer) {
+            jeeFrontEnd.modifyWithoutSave = true
+            //jeeP.savePlan(false, false)
+          })
         })
 
         if (jeeFrontEnd.planEditOption.highlight) {
@@ -632,16 +646,21 @@ if (!jeeFrontEnd.plan) {
           document.getElementById('div_grid').unseen()
         }
 
-        //resize item:
-        $('.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget').resizable({
-          cancel: '.locked',
-          handles: 'n,e,s,w,se,sw,nw,ne',
-          containment: $('.div_displayObject'),
-          start: function(event, ui) {
-            if (this.getAttribute('data-zoom') != '1') {
-              $(this).resizable("option", "containment", null)
+        //Set Resizing:
+        let selector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
+        new jeeResize(selector, {
+          cancel: 'locked',
+          containment: document.querySelector('.div_displayObject'),
+          start: function(event, element) {
+            this.zoomScale = parseFloat(element.getAttribute('data-zoom'))
+
+            if (this.zoomScale != 1) {
+              element._jeeResize.options.containment = false
+            } else {
+              element._jeeResize.options.containment = document.querySelector('.div_displayObject')
             }
-            this.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+
+            //Handle snap:
             if (jeeFrontEnd.planEditOption.grid == 1) {
               this.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
               this.dragStep = this.dragStep / this.zoomScale
@@ -649,34 +668,56 @@ if (!jeeFrontEnd.plan) {
               this.dragStep = false
             }
           },
-          resize: function(event, ui) {
-            if (this.dragStep) {
-              var newWidth = (Math.round(ui.size.width / this.dragStep) * this.dragStep)
-              var newHeight = (Math.round(ui.size.height / this.dragStep) * this.dragStep)
-              ui.element.width(newWidth)
-              ui.element.height(newHeight)
+          resize: function(event, element) {
+            if (this.zoomScale != 1) {
+              if (!jeeFrontEnd.plan.isFullScreen && this.hasClass('top')) {
+                element.style.top = element.offsetTop - 50 + 'px'
+              }
+              if (this.hasClass('left')) {
+                element.style.left = element.offsetLeft - jeeFrontEnd.plan.planContainer.getBoundingClientRect().left + 'px'
+              }
             }
-            ui.element.find('.camera').trigger('resize')
+            //Handle snap:
+            if (this.dragStep) {
+              element.style.width = getNearestMultiple(element.offsetWidth,  this.dragStep) + 'px'
+              element.style.height = getNearestMultiple(element.offsetHeight,  this.dragStep) + 'px'
+              element.style.top = getNearestMultiple(element.offsetTop,  this.dragStep) + 'px'
+              element.style.left = getNearestMultiple(element.offsetLeft,  this.dragStep) + 'px'
+            }
+
+            element.querySelector('.camera')?.triggerEvent('resize')
           },
           stop: function(event, ui) {
-            jeeP.savePlan(false, false)
+            jeeFrontEnd.modifyWithoutSave = true
+            //jeeP.savePlan(false, false)
           },
         })
 
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
-        jeeP.elementContexMenu.disable()
+        jeeP.savePlan(false, false)
+        if (jeeP.elementContexMenu) {
+          jeeP.elementContexMenu.disable()
+        }
         jeeFrontEnd.planEditOption.state = false
         jeeP.pageContainer.dataset.planEditState = false
         jeedom.cmd.disableExecute = false
         this.planContainer.removeClass('editingMode')
         editItems.forEach(item => {
           item.removeAttribute('data-lock')
+          item.removeClass('editingMode')
+          if (item._jeeResize) item._jeeResize.destroy()
         })
+        jeeFrontEnd.plan.draggables.forEach(draggie => {
+          let left = draggie.element.style.left
+          let top = draggie.element.style.top
+          draggie.destroy()
+          draggie.element.style.left = left
+          draggie.element.style.top = top
+        })
+        jeeFrontEnd.plan.draggables = []
         try {
           jeedomUtils.enableTooltips()
-          $editItems.draggable('destroy').removeClass('editingMode')
-          $('.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget').resizable("destroy")
         } catch (e) {}
         document.getElementById('div_grid').unseen()
       }
@@ -732,6 +773,7 @@ if (!jeeFrontEnd.plan) {
             jeeP.displayPlan()
           }
           domUtils.hideLoading()
+          jeeFrontEnd.modifyWithoutSave = false
         },
       })
     },
@@ -745,7 +787,7 @@ jeeFrontEnd.plan.displayPlan()
 jeeFrontEnd.plan.postInit()
 
 //Context menu:
-if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
+if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
   //Object context menu
 
   jeeP.elementContexMenu = new jeeCtxMenu({
@@ -801,14 +843,8 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
                   className: 'success',
                   callback: {
                     click: function(event) {
-                      var options = []
-                      document.querySelectorAll('#table_addViewData tbody tr').forEach(_tr => {
-                        if (_tr.querySelector('.enable').checked == true) {
-                          var graphData = _tr.getJeeValues('.graphDataOption')[0]
-                          graphData.link_id = _tr.getAttribute('data-link_id')
-                          options.push(graphData)
-                        }
-                      })
+                      var options = jeeFrontEnd.md_cmdGraphSelect.getOptions()
+
                       dom_el.querySelector('.graphOptions').empty().append(JSON.stringify(options))
                       jeeP.savePlan(true)
                       jeeFrontEnd.plan.setGraphResizes()
@@ -830,11 +866,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               callback: function() {
                 document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false})
                 var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
-                for (var i in options) {
-                  var tr = document.querySelector('#table_addViewData tbody tr[data-link_id="' + options[i].link_id + '"]')
-                  tr.querySelector('.enable').jeeValue(1)
-                  tr.setJeeValues(options[i], '.graphDataOption')
-                }
+                jeeFrontEnd.md_cmdGraphSelect.displayOptions(options)
               }
             })
           } else {
@@ -875,7 +907,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         callback: function(key, opt) {
           var info = jeeP.getElementInfo(this)
           jeedom.plan.copy({
-            id: $(this).attr('data-plan_id'),
+            id: this.getAttribute('data-plan_id'),
             version: 'dashboard',
             error: function(error) {
               jeedomUtils.showAlert({
@@ -939,16 +971,18 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Plein écran}}",
         icon: 'fas fa-desktop',
         callback: function(key, opt) {
-          if (this.getAttribute('data-fullscreen') == null) {
-            this.setAttribute('data-fullscreen', 1)
+          if (this.getAttribute('data-fullscreen') == null || this.getAttribute('data-fullscreen') == 'false') {
+            this.setAttribute('data-fullscreen', 'true')
+            jeeP.fullScreen(true)
+          } else {
+            this.setAttribute('data-fullscreen', 'false')
+            jeeP.fullScreen(false)
           }
-          jeeP.fullScreen(this.getAttribute('data-fullscreen'))
-          this.setAttribute('data-fullscreen', !this.getAttribute('data-fullscreen'))
         }
       },
       sep1: "---------",
       addGraph: {
-        name: "{{Ajouter Graphique}}",
+        name: "{{Ajouter un Graphique}}",
         icon: 'fas fa-chart-line',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -961,7 +995,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addText: {
-        name: "{{Ajouter texte/html}}",
+        name: "{{Ajouter du texte/html}}",
         icon: 'fas fa-align-center',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -977,7 +1011,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addScenario: {
-        name: "{{Ajouter scénario}}",
+        name: "{{Ajouter un scénario}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1033,7 +1067,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addEqLogic: {
-        name: "{{Ajouter équipement}}",
+        name: "{{Ajouter un équipement}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1048,7 +1082,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addCommand: {
-        name: "{{Ajouter commande}}",
+        name: "{{Ajouter une commande}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1221,7 +1255,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addPlan: {
-        name: "{{Creer un design}}",
+        name: "{{Créer un design}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
@@ -1237,7 +1271,16 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
-          jeeDialog.prompt("{{Nom la copie du design ?}}", function(result) {
+          let name = "";
+          for(let i in jeephp2js.planHeader){
+            if(jeephp2js.planHeader[i].id == jeephp2js.planHeader_id){
+              name = jeephp2js.planHeader[i].name+ " copie";
+            }
+          }
+          jeeDialog.prompt({
+            title : "{{Nom de la copie du design ?}}",
+            value : name,
+          }, function(result) {
             if (result !== null) {
               jeeP.savePlan(false, false)
               jeedom.plan.copyHeader({
@@ -1303,7 +1346,17 @@ document.body.registerEvent('click', function (event) {
 })
 
 //div_pageContainer events delegation:
+document.getElementById('div_pageContainer').addEventListener('mousedown', function(event) {
+  if (jeeFrontEnd.planEditOption.state === true && event.target.closest('div.jeeCtxMenu') == null) {
+    event.preventDefault()
+    return
+  }
+})
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  if (jeeFrontEnd.planEditOption.state === true && event.target.closest('div.jeeCtxMenu') == null) {
+    event.preventDefault()
+    return
+  }
   var _target = null
   if (_target = event.target.closest('#bt_createNewDesign')) {
     jeeP.createNewDesign()
@@ -1391,9 +1444,12 @@ document.querySelector('.div_displayObject').addEventListener('mouseenter', func
         version: 'dashboard',
         global: false,
         success: function(data) {
-          var html = $(data.html).css('position', 'absolute')
-          html.attr("style", html.attr("style") + "; " + el.getAttribute('data-position'))
-          $(el).empty().append(html)
+          el.html(data.html, true)
+          let inserted = el.childNodes[0]
+          let dPos = el.style.position
+          let dStyle = el.style
+          inserted.style = dStyle
+          inserted.style.position = 'absolute'
           jeedomUtils.positionEqLogic(el.getAttribute('data-eqLogic_id'), false)
         }
       })
@@ -1415,7 +1471,7 @@ document.querySelector('.div_displayObject').addEventListener('mouseleave', func
 
 
 //back to mobile home with three fingers on mobile:
-if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {
+if (user_isAdmin == 1 && jeedomUtils.userDevice.type == 'mobile') {
   document.body.registerEvent('touchstart', function (event) {
     if (event.touches.length == 3) {
       event.preventDefault()

@@ -3,7 +3,6 @@
 ?>
 
 <div id="wrap">
-	<div style="display: none;width : 100%" id="div_alert"></div>
 	<div class="bodyLogin">
 		<div class="veen animated zoomIn">
 			<div class="login-btn splits">
@@ -127,7 +126,6 @@
 	}
 
 	include_file('3rdparty', 'animate/animate', 'css');
-	include_file('3rdparty', 'animate/animate', 'js');
 	include_file('desktop', 'connection', 'css');
 	include_file('desktop', 'connection', 'js');
 ?>

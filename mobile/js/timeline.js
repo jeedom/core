@@ -2,8 +2,6 @@
 
 $('body').attr('data-page', 'timeline')
 
-// dates are sorted on desktop by tablesorter. Mobile sort them with 3rdparty momentJs
-
 function initTimeline() {
   window.loadStart = 0
   window.loadOffset = 35

@@ -67,7 +67,9 @@ if (!jeeFrontEnd.administration) {
             })
             return
           }
-          document.getElementById('table_objectSummary').tBodies[0].empty()
+          var tbody = document.getElementById('table_objectSummary').tBodies[0]
+          if (Sortable.get(tbody)) Sortable.get(tbody).destroy()
+          tbody.empty()
           for (var i in data.result) {
             if (isset(data.result[i].key) && data.result[i].key == '') continue
             if (!isset(data.result[i].name)) continue
@@ -76,6 +78,19 @@ if (!jeeFrontEnd.administration) {
             }
             jeeP.addObjectSummary(data.result[i], false)
           }
+          //Set sortable:
+          Sortable.create(document.getElementById('table_objectSummary').tBodies[0], {
+            delay: 100,
+            delayOnTouchOnly: true,
+            draggable: 'tr.objectSummary',
+            filter: 'a, input, textarea',
+            preventOnFilter: false,
+            direction: 'vertical',
+            removeCloneOnHide: true,
+            onEnd: function(event) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
+          })
           jeeFrontEnd.modifyWithoutSave = false
         }
       })
@@ -318,7 +333,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          $('#span_cacheObject').html(data.count)
+          document.getElementById('span_cacheObject').innerHTML = data.count
         }
       })
     },
@@ -963,18 +978,6 @@ document.getElementById('logtab').addEventListener('focusout', function(event) {
 
 
 /**************************SUMMARIES***********************************/
-//Set sortable:
-if (typeof jQuery === 'function') {
-  $(document.getElementById('table_objectSummary')).sortable({
-    axis: "y",
-    cursor: "move",
-    items: ".objectSummary",
-    placeholder: "ui-state-highlight",
-    tolerance: "intersect",
-    forcePlaceholderSize: true
-  })
-}
-
 /*Events delegations
 */
 document.getElementById('summarytab').addEventListener('click', function(event) {

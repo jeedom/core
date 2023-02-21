@@ -96,7 +96,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
                 <label class="col-sm-2 control-label">{{Hauteur}}</label>
                 <div class="col-sm-4">
-                  <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+                  <input type="number" class="eqLogicAttr form-control input-sm ispin" min="0" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
                 </div>
               </div>
 
@@ -117,7 +117,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) {
           ?>
             <label><i class="fas fa-pencil-ruler"></i> {{Paramètres du template}}</label>
-            <table class="table table-bordered table-condensed">
+            <table class="table table-condensed">
               <thead>
                 <tr>
                   <th></th>
@@ -194,7 +194,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           ?>
             <label><i class="fas fa-code"></i> {{Paramètres optionnels}}</label>
             <a class="btn btn-success btn-xs pull-right" id="bt_addTileParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-            <table class="table table-bordered table-condensed" id="table_widgetParameters">
+            <table class="table table-condensed" id="table_widgetParameters">
               <thead>
                 <tr>
                   <th>{{Nom}}</th>
@@ -264,11 +264,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 <div class="form-group">
                   <label class="col-sm-2 control-label">{{Lignes}}</label>
                   <div class="col-sm-4">
-                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
+                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
                   </div>
                   <label class="col-sm-2 control-label">{{Colonnes}}</label>
                   <div class="col-sm-4">
-                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
+                    <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
                     <a class="btn btn-success btn-xs" id="bt_eqLogicLayoutApply"><i class="fas fa-sync-alt"></i></i> {{Appliquer}}</a>
                   </div>
                 </div>
@@ -292,7 +292,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             <div class="widget_layout table" style="display: none;">
               <label><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</label>
               <div class="table-responsive">
-                <table class="table table-bordered table-condensed table-responsive" id="tableCmdLayoutConfiguration">
+                <table class="table table-condensed table-responsive" id="tableCmdLayoutConfiguration">
                   <tbody>
                     <?php
                     $table = array();
@@ -362,7 +362,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               }
 
               $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
-              $display .= '<table class="table table-bordered table-condensed">';
+              $display .= '<table class="table table-condensed">';
 
               //Editable name:
               $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
@@ -513,24 +513,27 @@ if (!jeeFrontEnd.md_eqlogicDashEdit) {
       })
     },
     setCmdsSortable: function() {
-      $("#div_eqLogicCmds").sortable({
-        axis: "y",
-        cursor: "move",
-        items: "div.cmdConfig",
-        zIndex: 0,
-        tolerance: "pointer",
-        forceHelperSize: true,
-        forcePlaceholderSize: true,
-        placeholder: "sortable-cmd-placeholder",
-        start: function(event, ui) {
-          ui.placeholder[0].style.setProperty('height', ui.item[0].innerHeight, 'important')
-        }
+      Sortable.create(document.getElementById('div_eqLogicCmds'), {
+        delay: 100,
+        delayOnTouchOnly: true,
+        draggable: 'div.cmdConfig',
+        filter: 'a, input, textarea',
+        preventOnFilter: false,
+        direction: 'vertical',
+        removeCloneOnHide: true,
       })
     },
     setTableLayoutSortable: function() {
-      $('#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
-        connectWith: '#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
-        items: ".cmdLayout"
+      let containers = document.querySelectorAll('#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
+      containers.forEach(_container => {
+        new Sortable(_container, {
+          delay: 100,
+          delayOnTouchOnly: true,
+          group: 'cmdLayoutContainer',
+          draggable: '.cmdLayout',
+          filter: 'a, input, textarea',
+          preventOnFilter: false,
+        })
       })
     },
     getNewLayoutTd: function(row, col) {
@@ -552,7 +555,7 @@ if (!jeeFrontEnd.md_eqlogicDashEdit) {
       if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
         //build new table:
         var newTableLayout = document.createElement('table')
-        newTableLayout.addClass('table table-bordered table-condensed')
+        newTableLayout.addClass('table table-condensed')
         newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
         newTableLayout.appendChild(document.createElement('tbody'))
 

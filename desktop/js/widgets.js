@@ -236,35 +236,22 @@ if (!jeeFrontEnd.widgets) {
     applyToCmd: function() {
       //store usedBy:
       var checkedId = []
-      document.querySelectorAll('div_usedBy .cmdAdvanceConfigure').forEach(_cmd => {
+      document.querySelectorAll('#div_usedBy .cmdAdvanceConfigure').forEach(_cmd => {
         checkedId.push(_cmd.getAttribute('data-cmd_id'))
       })
-
       let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
       let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
       jeeDialog.dialog({
-        id: 'jee_modal',
+        id: 'md_cmdConfigureSelectMultiple',
         title: "{{Appliquer ce widget à}}",
         contentUrl: 'index.php?v=d&modal=cmd.selectMultiple&type=' + type + '&subtype=' + subtype,
         callback: function() {
-          jeedomUtils.initTableSorter()
-
           document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
             if (checkedId.includes(_tr.getAttribute('data-cmd_id'))) {
-              _tr.querySelector('.selectMultipleApplyCmd').checked = true
+              _tr.querySelector('input.selectMultipleApplyCmd').checked = true
             }
           })
-
-          document.getElementById('bt_cmdConfigureSelectMultipleAlertToogle').addEventListener('click', function(event) {
-            document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd').forEach(_input => {
-              if (_input.isVisible()) {
-                _input.checked = !_input.checked
-                _input.setAttribute('data-state', '1')
-              }
-            })
-          })
-
-          document.getElementById('bt_cmdConfigureSelectMultipleAlertApply').addEventListener('click', function(event) {
+          document.getElementById('bt_cmdSelectMultipleApply').addEventListener('click', function(event) {
             var widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
             widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
             jeedom.widgets.save({
@@ -307,6 +294,7 @@ if (!jeeFrontEnd.widgets) {
                       cmd: cmd,
                       error: function(error) {
                         jeedomUtils.showAlert({
+                          attachTo: jeeDialog.get('#md_cmdConfigureSelectMultiple', 'dialog'),
                           message: error.message,
                           level: 'danger'
                         })
@@ -321,6 +309,7 @@ if (!jeeFrontEnd.widgets) {
                         cmd: cmdDefault,
                         error: function(error) {
                           jeedomUtils.showAlert({
+                            attachTo: jeeDialog.get('#md_cmdConfigureSelectMultiple', 'dialog'),
                             message: error.message,
                             level: 'danger'
                           })

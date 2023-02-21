@@ -107,7 +107,7 @@ class timeline {
     return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
   }
 
-  public static function cleaning($_all = false) {
+  public static function clean($_all = false) {
     //reset:
     if ($_all) {
       $sql = 'DELETE FROM timeline';

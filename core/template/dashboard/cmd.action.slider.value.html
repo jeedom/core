@@ -3,7 +3,7 @@
     <div class="cmdName">#name_display#</div>
   </div>
   <div class="content">
-    <input type="number" min="#minValue#" max="#maxValue#" id="sliderInput#id#">
+    <input id="sliderInput#id#" type="number" min="#minValue#" max="#maxValue#">
     <div id="widget_slider#id#" class="slider"></div>
   </div>
   <div class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></div>
@@ -18,15 +18,21 @@
     var step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 1
     document.querySelector('.cmd[data-cmd_uid="#uid#"] #sliderInput#id#').setAttribute('step', step)
 
-    $('#sliderInput#id#').spinner({
-      icons: { down: "ui-icon-triangle-1-s", up: "ui-icon-triangle-1-n" },
-      stop: function(event, ui) {
-        if (event.currentTarget.id != 'sliderInput#id#') {
-          clearTimeout(window['spinTimer#id#'])
-          window['spinTimer#id#'] = setTimeout(function() {
-            document.querySelector('.cmd[data-cmd_uid="#uid#"] #sliderInput#id#').blur()
-          }, 1000)
-        }
+    new ISpin(document.getElementById('sliderInput#id#'), {
+      wrapperClass: 'ispin-wrapper',
+      buttonsClass: 'ispin-button',
+      step: step,
+      min: #minValue# || undefined,
+      max: #maxValue# || undefined,
+      disabled: false,
+      repeatInterval: 200,
+      wrapOverflow: false,
+      parse: Number,
+      onChange: function(value) {
+        clearTimeout(window['spinTimer#id#'])
+        window['spinTimer#id#'] = setTimeout(function() {
+          document.querySelector('.cmd[data-cmd_uid="#uid#"] #sliderInput#id#').blur()
+        }, 1000)
       }
     })
 
@@ -61,7 +67,7 @@
 
     document.querySelector('.cmd[data-cmd_uid="#uid#"] #sliderInput#id#').addEventListener('blur', function(event) {
       clearTimeout(window['spinTimer#id#'])
-      if (this.getAttribute('value') != this.getAttribute('aria-valuenow')) {
+      if (this.getAttribute('value') != this.value) {
         jeedom.cmd.execute({ id: '#id#', value: { slider: parseFloat(this.value) } })
       }
     })

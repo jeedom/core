@@ -30,15 +30,13 @@ if (!jeeFrontEnd.overview) {
       window.jeeP = this
     },
     postInit: function() {
-      //this.$summaryContainer = $('#summaryEqlogics')
       this.modal = document.getElementById('md_overviewSummary')
       this.modalContent = this.modal.querySelector('div.jeeDialogContent')
       this.checkResumeEmpty()
       this.createSummaryObserver()
       domUtils.hideLoading()
-      self = this
       this.modal._jeeDialog.options.onResize = function(event) {
-        Packery.data(self.modalContent).layout()
+        Packery.data(jeeFrontEnd.overview.modalContent).layout()
       }
     },
     createSummaryObserver: function() {
@@ -78,7 +76,7 @@ if (!jeeFrontEnd.overview) {
         if (visibles.length == 0) {
           button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
           element.querySelector('.bt_config')?.remove()
-          element.querySelector('.topPreview').insertAdjacentHTML('beforeend', button)
+          element.querySelector('.topPreview')?.insertAdjacentHTML('beforeend', button)
         }
       })
     },
@@ -133,10 +131,7 @@ if (!jeeFrontEnd.overview) {
                 //is last ajax:
                 if (nbEqs == 0) {
                   //adapt modal size:
-                  var brwSize = {
-                    width: window.innerWidth || document.body.clientWidth,
-                    height: window.innerHeight || document.body.clientHeight
-                  }
+                  let bRect = document.body.getBoundingClientRect()
                   var fullWidth = 0
                   var fullHeight = 0
                   var thisWidth = 0
@@ -146,7 +141,7 @@ if (!jeeFrontEnd.overview) {
                     thisWidth = element.offsetWidth
                     thisHeight = element.offsetHeight
                     if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
-                    if ((fullWidth + thisWidth + 150) < brwSize.width) {
+                    if ((fullWidth + thisWidth + 150) < bRect.width) {
                       fullWidth += thisWidth + 7
                     } else {
                       fullHeight += thisHeight + 5
@@ -160,21 +155,19 @@ if (!jeeFrontEnd.overview) {
 
                   fullWidth += 26
                   fullHeight += 51
-                  jeeP.modal.style.width = fullWidth + 'px'
-                  jeeP.modal.style.height = fullHeight + 'px'
-                  let bRect = document.body.getBoundingClientRect()
-                  let mRect = jeeP.modal.getBoundingClientRect()
-                  jeeP.modal.style.left = (bRect.width / 2) - (mRect.width / 2) + "px"
+                  self.modal.style.width = fullWidth + 'px'
+                  self.modal.style.height = fullHeight + 'px'
 
                   new Packery(self.modalContent, {
                     gutter: parseInt(jeedom.theme['widget::margin']) * 2,
-                    isLayoutInstant: true
+                    isLayoutInstant: true,
+                    transitionDuration: 0,
                   })
 
                   //check is inside screen:
                   var modalLeft = self.modal.offsetLeft
-                  if (modalLeft + fullWidth + 26 > brwSize.width || modalLeft < 5) {
-                    modal.style.left = brwSize.width - fullWidth - 50 + 'px'
+                  if (modalLeft + fullWidth + 26 > bRect.width || modalLeft < 5) {
+                    self.modal.style.left = bRect.width - fullWidth - 50 + 'px'
                   }
 
                   jeedomUtils.initTooltips(document.getElementById('md_overviewSummary'))
@@ -242,7 +235,6 @@ jeeP.modalContent.addEventListener('click', function(event) {
     } else {
       var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
-    jeeFrontEnd.overview.modalContent.empty()
     jeeDialog.dialog({
       id: 'md_cmdHistory',
       title: '{{Historique}}',

@@ -136,7 +136,7 @@ if (!jeeFrontEnd.dashboard) {
         })
 
         document.querySelectorAll('.editingMode').forEach(_edit => {
-          _edit.removeClass('editingMode').removeAttribute('data-editId')
+          _edit.removeClass('editingMode').removeAttribute('data-editid')
           if (_edit._jeeResize) _edit._jeeResize.destroy()
         })
         document.querySelectorAll('.cmd.editOptions').remove()
@@ -183,9 +183,13 @@ if (!jeeFrontEnd.dashboard) {
               var draggie = new Draggabilly(itemElem)
               jeeFrontEnd.dashboard.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
+
+              draggie.on('dragStart', function(event, draggedItem) {
+                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editid')
+              })
+
               draggie.on('dragEnd', function(event, draggedItem) {
                 jeeFrontEnd.modifyWithoutSave = true
-                jeedomUI.draggingId = draggedItem.target.closest('.editingMode').getAttribute('data-editId')
                 jeedomUI.orderItems(pckry)
               })
             })
@@ -210,7 +214,7 @@ if (!jeeFrontEnd.dashboard) {
         //set unique id whatever we have:
         document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element, index) {
           element.addClass('editingMode')
-          element.setAttribute('data-editId', index)
+          element.setAttribute('data-editid', index)
           element.insertAdjacentHTML('beforeend', '<span class="cmd editOptions cursor"></span>')
         })
 
@@ -275,7 +279,7 @@ if (!jeeFrontEnd.dashboard) {
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
                   domUtils.hideLoading()
-                  new Packery(dom_divDisplayEq, {isLayoutInstant: true})
+                  new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
                   if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
@@ -326,7 +330,7 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          new Packery(dom_divDisplayEq, {})
+          new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
           //synch category filter:
           if (self.url_category != 'all') {
@@ -449,29 +453,29 @@ document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', fu
   document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
 })
 
-//Manage events outside parents delegations:
-document.getElementById('bt_editDashboardWidgetOrder')?.addEventListener('click', function(event) {
-  if (event.target.getAttribute('data-mode') == 1) {
-    event.target.setAttribute('data-mode', 0)
-    jeedomUtils.hideAlert()
-    jeeFrontEnd.modifyWithoutSave = false
-    jeedomUtils.enableTooltips()
-    document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
-    document.querySelectorAll('.counterReorderJeedom').remove()
-    jeeP.editWidgetMode(0)
-    document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
-  } else {
-    event.target.setAttribute('data-mode', 1)
-    jeedomUtils.disableTooltips()
-    document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
-    jeeP.editWidgetMode(1)
-  }
-})
-
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   var _target = null
+  if (_target = event.target.closest('#bt_editDashboardWidgetOrder')) {
+    if (_target.getAttribute('data-mode') == 1) {
+        _target.setAttribute('data-mode', 0)
+        jeedomUtils.hideAlert()
+        jeeFrontEnd.modifyWithoutSave = false
+        jeedomUtils.enableTooltips()
+        document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
+        document.querySelectorAll('.counterReorderJeedom').remove()
+        jeeP.editWidgetMode(0)
+        document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
+      } else {
+        _target.setAttribute('data-mode', 1)
+        jeedomUtils.disableTooltips()
+        document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
+        jeeP.editWidgetMode(1)
+      }
+    return
+  }
+
   if (_target = event.target.closest('.editOptions')) { //Edit mode tile icon
     var eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
     jeeDialog.dialog({

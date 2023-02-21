@@ -46,32 +46,27 @@ if ($selectPlugin != '') {
     </span>
   </div>
 
-  <table class="table table-condensed table-bordered tablesorter" id="table_message" style="margin-top: 5px;">
+  <table class="table table-condensed dataTable" id="table_message" style="margin-top: 5px;">
     <thead>
       <tr>
-        <th data-sorter="false" data-filter="false"></th>
-        <th>{{Date et heure}}</th>
-        <th>{{Source}}</th>
-        <th data-sorter="false" data-filter="false">{{Description}}</th>
-        <th data-sorter="false" data-filter="false">{{Action}}</th>
-        <th>{{Occurrences}}</th>
+        <th data-sortable="false" data-filter="false" style="width:30px;"></th>
+        <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:150px;">{{Date et heure}}</th>
+        <th style="width:20%;">{{Source}}</th>
+        <th data-sortable="false" data-filter="false">{{Description}}</th>
+        <th style="min-width:130px; width:10%;" data-sortable="false" data-filter="false">{{Action}}</th>
+        <th style="width:105px;">{{Occurrences}}</th>
       </tr>
     </thead>
     <tbody>
       <?php
       $trs = '';
-      $allowedTags = '<i><a>';
       foreach ($listMessage as $message) {
         $trs .= '<tr data-message_id="' . $message->getId() . '">';
         $trs .= '<td><div class="center"><i class="far fa-trash-alt cursor removeMessage"></i></div></td>';
         $trs .= '<td class="datetime">' . $message->getDate() . '</td>';
         $trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
-        $display = html_entity_decode($message->getMessage());
-        $display = strip_tags($display, $allowedTags);
-        $trs .= '<td class="message">' . $display . '</td>';
-        $display = html_entity_decode($message->getAction());
-        $display = strip_tags($display, $allowedTags);
-        $trs .= '<td class="message_action">' . $display . '</td>';
+        $trs .= '<td class="message">' . $message->getMessage(true) . '</td>';
+        $trs .= '<td class="message_action">' . $message->getAction(true) . '</td>';
         $trs .= '<td class="occurrences" style="text-align: center">' . $message->getOccurrences() . '</td>';
         $trs .= '</tr>';
       }
@@ -85,14 +80,10 @@ if ($selectPlugin != '') {
 (function() {// Self Isolation!
 
   jeedomUtils.hideAlert()
-  jeedomUtils.initTableSorter()
+  jeedomUtils.initDataTables('#md_messageDisplay', false, false)
 
   let table = document.querySelector('#md_messageDisplay #table_message')
-
-  table.config.widgetOptions.resizable_widths = ['50px', '140px', '20%', '', '90px', '120px']
-  table.triggerEvent('applyWidgets')
-  table.triggerEvent('resizableReset')
-  table.triggerEvent('update')
+  let msgDataTable = table._dataTable
 
   /*Events delegations
   */
@@ -103,7 +94,7 @@ if ($selectPlugin != '') {
         plugin: document.getElementById('sel_plugin').jeeValue(),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_messageDisplay', 'content'),
+            attachTo: jeeDialog.get('#md_messageDisplay', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -133,7 +124,7 @@ if ($selectPlugin != '') {
         id: _target.closest('tr').getAttribute('data-message_id'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_messageDisplay', 'content'),
+            attachTo: jeeDialog.get('#md_messageDisplay', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -141,6 +132,7 @@ if ($selectPlugin != '') {
         success: function() {
           _target.closest('tr').remove()
           document.getElementById("table_message").triggerEvent('update')
+          msgDataTable.refresh()
           jeedom.refreshMessageNumber()
         }
       })
@@ -161,9 +153,5 @@ if ($selectPlugin != '') {
       return
     }
   })
-
-  jeeDialog.get('#table_message').options.onResize = function(event) {
-    document.querySelector('#md_messageDisplay #table_message').triggerEvent("update")
-  }
 })()
 </script>

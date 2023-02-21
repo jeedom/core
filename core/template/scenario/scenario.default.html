@@ -1,21 +1,20 @@
-<div data-template="scenario">
-  <div class="input-group input-group-sm" style="width: 100%">
-    <span class="input-group-addon roundedLeft">{{Scénario}}</span>
-    <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
-    <span class="input-group-addon">{{Action}}</span>
-    <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="action" data-cmd_id="#id#" data-uid="#uid#">
-      <option value="start">{{Démarrer}}</option>
-      <option value="startsync">{{Démarrer (sync)}}</option>
-      <option value="stop">{{Arrêter}}</option>
-      <option value="activate">{{Activer}}</option>
-      <option value="deactivate">{{Désactiver}}</option>
-      <option value="resetRepeatIfStatus">{{Remise à zéro des SI}}</option>
-    </select>
-  </div>
-  <div class="input-group input-group-sm" style="width: 100%">
-    <span class="input-group-addon roundedLeft" style="width: 100px">{{Tags}}</span>
-    <textarea class="tags expressionAttr form-control ta_autosize roundedRight" data-l1key="options" data-l2key="tags" rows="1" data-cmd_id="#id#" data-uid="#uid#" style="resize:vertical;" placeholder="{{Tags}}">#tags#</textarea>
-  </div>
+<!--template/scenario/scenario.default-->
+<div class="input-group input-group-sm" style="width: 100%">
+  <span class="input-group-addon roundedLeft">{{Scénario}}</span>
+  <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+  <span class="input-group-addon">{{Action}}</span>
+  <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="action" data-cmd_id="#id#" data-uid="#uid#">
+    <option value="start">{{Démarrer}}</option>
+    <option value="startsync">{{Démarrer (sync)}}</option>
+    <option value="stop">{{Arrêter}}</option>
+    <option value="activate">{{Activer}}</option>
+    <option value="deactivate">{{Désactiver}}</option>
+    <option value="resetRepeatIfStatus">{{Remise à zéro des SI}}</option>
+  </select>
+</div>
+<div class="input-group input-group-sm" style="width: 100%">
+  <span class="input-group-addon roundedLeft" style="width: 100px">{{Tags}}</span>
+  <textarea class="tags expressionAttr form-control ta_autosize roundedRight" data-l1key="options" data-l2key="tags" rows="1" data-cmd_id="#id#" data-uid="#uid#" style="resize:vertical;" placeholder="{{Tags}}">#tags#</textarea>
 </div>
 <script>
   if ('#action#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"] option[value="#action#"]')?.innerHTML != '') {

@@ -368,7 +368,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto. Gentil : cmd, eqLogic ou objeto.
 
-- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
+- ``lastCommunication(equipment,[format])`` : Retorna a data do último retorno de informação do equipamento informado no parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado. A data da última informação é calculada em relação ao tipo de informação pedido e sua data de coleta.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 
@@ -454,6 +454,11 @@ E exemplos práticos :
 | ``convertDuration(3600)``             | Retorna 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Retorna o tempo de ignição em Dias / Horas / minutos do tempo de transição para o estado 1 do módulo desde o 1º dia do mês |
 
+
+### Funções diversas
+
+- ``sun(elevation)`` : Dá em ° a elevação do sol (cuidado, você deve ter inserido suas coordenadas geográficas na configuração do jeedom)
+- ``sun(azimuth)`` : Dá em ° o azimute do sol (cuidado, você deve ter inserido suas coordenadas geográficas na configuração do jeedom)
 
 ### Pedidos específicos
 

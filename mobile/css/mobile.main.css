@@ -414,6 +414,7 @@
   }
   .eqLogic.eqLogic-widget,
   .scenario.scenario-widget  {
+    position: relative;
     border: none !important;
     font-size: 14px !important;
   }

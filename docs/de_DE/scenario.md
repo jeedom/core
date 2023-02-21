@@ -368,7 +368,7 @@ Für das Gerät stehen verschiedene Funktionen zur Verfügung :
 
 - ``name(type,commande)`` : Wird verwendet, um den Namen der Bestellung, Ausrüstung oder des Objekts abzurufen. Nett : cmd, eqLogic oder Objekt.
 
-- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Kommunikation für das als Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (Details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann.
+- ``lastCommunication(equipment,[format])`` : Gibt das Datum der letzten Informationsrückmeldung für das im Parameter angegebene Gerät zurück, der 2. optionale Parameter dient zur Angabe des Rückgabeformats (details [hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php)). Eine Rückgabe von -1 bedeutet, dass das Gerät nicht gefunden werden kann. Das Datum der letzten Auskunft errechnet sich aus der Auskunftsart Bestellung und deren Erhebungsdatum.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Gibt eine relativ zu einem Wert im Intervall color_start / color_end berechnete Farbe zurück. Der Wert muss zwischen min_value und max_value liegen.
 
@@ -454,6 +454,11 @@ Und praktische Beispiele :
 | ``convertDuration(3600)``             | Gibt 1h 0min 0s zurück                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Gibt die Zündzeit in Tagen / Stunden / Minuten der Übergangszeit auf Zustand 1 des Moduls seit dem 1. Tag des Monats zurück |
 
+
+### Diverse Funktionen
+
+- ``sun(elevation)`` : Gibt in ° die Höhe der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
+- ``sun(azimuth)`` : Gibt in ° den Azimut der Sonne an (Achtung, Sie müssen Ihre geografischen Koordinaten in der Konfiguration von jeedom eingegeben haben)
 
 ### Spezifische Bestellungen
 

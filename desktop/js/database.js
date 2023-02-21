@@ -52,7 +52,7 @@ if (!jeeFrontEnd.database) {
       })
     },
     dbGenerateTableFromResponse: function(_response) {
-      var result = '<table class="table table-condensed table-bordered">'
+      var result = '<table class="table table-condensed">'
       result += '<thead>'
       result += '<tr>'
       for (var i in _response[0]) {

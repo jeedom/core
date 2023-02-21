@@ -109,13 +109,6 @@ if (!jeeFrontEnd.interact) {
               jeeFrontEnd.modifyWithoutSave = false
             }
           })
-
-          $('#div_pageContainer').off('change', '.interactAttr').on('change', '.interactAttr:visible', function() {
-            jeeFrontEnd.modifyWithoutSave = true
-          })
-          $('#div_pageContainer').off('mousedown', 'select option.interactAttr').on('mousedown', 'select option.interactAttr:visible', function() {
-            jeeFrontEnd.modifyWithoutSave = true
-          })
           jeeFrontEnd.modifyWithoutSave = false
         }
       })
@@ -349,14 +342,16 @@ document.getElementById('bt_closeAll')?.addEventListener('click', function(event
 
 
 //Set sortable:
-$(document.getElementById('div_action')).sortable({
-  axis: "y",
-  cursor: "move",
-  items: ".action",
-  placeholder: "ui-state-highlight",
-  tolerance: "intersect",
-  forcePlaceholderSize: true
+Sortable.create(document.getElementById('div_action'), {
+  delay: 100,
+  delayOnTouchOnly: true,
+  draggable: '.action',
+  filter: 'a, input, textarea',
+  preventOnFilter: false,
+  direction: 'vertical',
+  removeCloneOnHide: true,
 })
+
 
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
@@ -372,6 +367,14 @@ document.registerEvent('keydown', function(event) {
 
 /*Events delegations
 */
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.interactAttr')) {
+    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
 //ThumbnailDisplay
 document.getElementById('interactThumbnailDisplay').addEventListener('click', function(event) {
   var _target = null
@@ -535,7 +538,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   if (_target = event.target.closest('#bt_removeInteract')) {
     jeedomUtils.hideAlert()
     let name = document.querySelector('input[data-l1key="name"]').value
-    let id = document.querySelector('.input[data-l1key="id"]').value
+    let id = document.querySelector('input[data-l1key="id"]').value
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'interaction}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
       if (result) {
         jeedom.interact.remove({
@@ -660,3 +663,4 @@ document.getElementById('div_conf').addEventListener('focusout', function(event)
     return
   }
 })
+

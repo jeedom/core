@@ -25,7 +25,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
 
 ?>
 
-<table id="table_mod_insertGenericType" class="table table-condensed table-bordered">
+<table id="table_mod_insertGenericType" class="table table-condensed">
   <thead>
     <tr>
       <th>{{Type Générique}} <?php if ($typeFilter != 'all') { echo "($typeFilter)"; } ?></th>
@@ -110,12 +110,12 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
     }
     var genericObject = document.querySelector('#table_mod_insertGenericType tbody td.mod_insertGenericType_object select')?.selectedOptions
     if (!genericObject || genericObject.length == 0) {
-      return 'genericType(' + genericType[0].text + ')'
+      return 'genericType(' + genericType[0].value + ')'
     }
     if (genericObject[0].text == '-1') {
-      return 'genericType(' + genericType[0].text + ')'
+      return 'genericType(' + genericType[0].value + ')'
     }
-    return 'genericType(' + genericType[0].text + ',#[' + genericObject[0].text + ']#)'
+    return 'genericType(' + genericType[0].value + ',#[' + genericObject[0].text + ']#)'
   }
 
   mod_insertGenericType.getId = function() {

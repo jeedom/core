@@ -18,21 +18,19 @@
 
 if (!jeeFrontEnd.cron) {
   jeeFrontEnd.cron = {
+    cronDataTable: null,
     init: function() {
       window.jeeP = this
       this.tableCron = document.getElementById('table_cron')
+      this.tableListener = document.getElementById('table_listener')
       this.printCron()
       this.printListener()
-      jeedomUtils.initTableSorter(false)
-      this.tableCron.config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
-      this.tableCron.triggerEvent('applyWidgets')
-      this.tableCron.triggerEvent('resizableReset')
-
       this.getDeamonState()
 
-      domUtils(function() {
-        jeeFrontEnd.cron.tableCron.querySelector('thead tr').children[0].triggerEvent('sort')
+      //Global cron state:
+      this.switchState()
 
+      domUtils(function() {
         if (document.getElementById('tab_tableCron').hasClass('active')) {
           document.querySelector('div.floatingbar').seen()
         } else {
@@ -41,6 +39,19 @@ if (!jeeFrontEnd.cron) {
       })
     },
     //-> Cron
+    switchState: function(state) {
+      if (!isset(state)) state = document.getElementById('bt_changeCronState').getAttribute('data-state')
+      let button = document.getElementById('bt_changeCronState')
+      if (state == '0') {
+        button.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
+        button.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
+        document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').addClass('warning')
+      } else {
+        button.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
+        button.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
+        document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').removeClass('warning')
+      }
+    },
     printCron: function() {
       jeedom.cron.all({
         success: function(data) {
@@ -53,7 +64,7 @@ if (!jeeFrontEnd.cron) {
             newRow.setJeeValues(data[i], '.cronAttr')
             table.appendChild(newRow)
           }
-          jeeP.tableCron.triggerEvent("update")
+          jeeFrontEnd.cron.setCronTable()
           jeeFrontEnd.modifyWithoutSave = false
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
@@ -96,7 +107,7 @@ if (!jeeFrontEnd.cron) {
       tr += '<td>'
       tr += init(_cron.lastRun)
       tr += '</td>'
-      tr += '<td>'
+      tr += '<td data-sorton="' + init(_cron.runtime, '0') + '">'
       tr += init(_cron.runtime, '0') + 's'
       tr += '</td>'
       tr += '<td>'
@@ -133,10 +144,22 @@ if (!jeeFrontEnd.cron) {
           tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>'
         }
       }
-      tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>'
+      tr += ' <a class="remove btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a>'
       tr += '</td>'
       tr += '</tr>'
       return tr
+    },
+    setCronTable: function() {
+      if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.destroy()
+
+      jeeFrontEnd.cron.cronDataTable = new DataTable(jeeFrontEnd.cron.tableCron, {
+        columns: [
+          { select: 0, sort: "asc" },
+          { select: 12, sortable: false }
+        ],
+        searchable: false,
+        paging: false,
+      })
     },
     //-> Listeners
     printListener: function() {
@@ -260,8 +283,9 @@ document.getElementById('bt_addCron')?.addEventListener('click', function(event)
   let newRow = document.createElement("tr")
   newRow.innerHTML = jeeP.addCron({})
   newRow.setJeeValues({}, '.cronAttr')
-  table.appendChild(newRow)
-  jeeP.tableCron.triggerEvent("update")
+  table.insertBefore(newRow, table.firstChild)
+  //table.appendChild(newRow)
+  if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.refresh()
   jeeFrontEnd.modifyWithoutSave = true
 })
 
@@ -282,13 +306,7 @@ document.getElementById('bt_changeCronState')?.addEventListener('click', functio
       })
     },
     success: function() {
-      if (_target.getAttribute('data-state') == '1') {
-        _target.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
-        _target.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
-      } else {
-        _target.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
-        _target.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
-      }
+      jeeP.switchState()
     }
   })
 })
@@ -330,9 +348,11 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 
 //Table cron
 document.getElementById('table_cron')?.tBodies[0].addEventListener('click', function(event) {
+  console.log('click:', event.target)
   var _target = null
   if (_target = event.target.closest('.remove')) {
     _target.closest('tr').remove()
+    if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.refresh()
     return
   }
 

@@ -58,7 +58,14 @@ document.getElementById('accordionHealth').addEventListener('click', event => {
   }
 
   if (_target = event.target.closest('.panel-title')) {
-    _target.querySelector('a.accordion-toggle').click()
+    _target.querySelector(':scope > a').click()
+    if (typeof(bootbox) === 'undefined') requestAnimationFrame(() => { document.getElementById('health_jeedom').addClass('in') })
     return
   }
+
+  if (_target = event.target.closest('.panel-title')) {
+    if (typeof(bootbox) === 'undefined') requestAnimationFrame(() => { document.getElementById('health_jeedom').addClass('in') })
+    return
+  }
+
 })

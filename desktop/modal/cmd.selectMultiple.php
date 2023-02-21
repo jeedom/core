@@ -31,15 +31,15 @@ if (!is_array($listeCmds) || count($listeCmds) == 0) {
 
 <div id="md_cmdConfigureSelectMultiple" data-modalType="md_cmdConfigureSelectMultiple">
   <div class="input-group pull-right">
-    <a class="btn btn-default roundedLeft" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
-    </a><a class="btn btn-success roundedRight" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
+    <a class="btn btn-default roundedLeft" id="bt_cmdSelectMultipleInvert" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
+    </a><a class="btn btn-success roundedRight" id="bt_cmdSelectMultipleApply"><i class="fas fa-check"></i> {{Valider}}</a>
   </div>
   <br />
-  <table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple" style="width:100% !important;">
+  <table id="table_cmdConfigureSelectMultiple" class="table table-condensed dataTable" style="width:100% !important;">
     <thead>
       <tr>
-        <th data-sorter="false" data-filter="false"></th>
-        <th>{{Objet}}</th>
+        <th data-type="checkbox" data-filter="false" style="width:30px;">#</th>
+        <th style="width:200px;">{{Objet}}</th>
         <th>{{Plugin}}</th>
         <th>{{Equipement}}</th>
         <th>{{Nom}}</th>
@@ -89,7 +89,34 @@ if (!is_array($listeCmds) || count($listeCmds) == 0) {
 </div>
 
 <script>
-  jeeDialog.get('#md_cmdConfigureSelectMultipleAlert').options.onResize = function(event) {
-    document.getElementById('table_cmdConfigureSelectMultiple').triggerEvent("update")
+if (!jeeFrontEnd.md_cmdConfigureSelectMultiple) {
+  jeeFrontEnd.md_cmdConfigureSelectMultiple = {
+    tableSelectMulti: null,
+    vDataTable: null,
+    init: function() {
+      this.tableSelectMulti = document.getElementById('table_cmdConfigureSelectMultiple')
+      this.vDataTable = new DataTable(this.tableSelectMulti, {
+        columns: [
+          { select: 1, sort: "asc" }
+        ],
+        searching: true,
+        paging: false,
+      })
+    },
   }
+}
+
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_cmdConfigureSelectMultiple
+  jeeM.init()
+
+  document.getElementById('bt_cmdSelectMultipleInvert').addEventListener('click', function(event) {
+    document.querySelectorAll('#md_cmdConfigureSelectMultiple #table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd').forEach(_input => {
+      if (_input.isVisible()) {
+        _input.checked = !_input.checked
+        _input.setAttribute('data-state', '1')
+      }
+    })
+  })
+})()
 </script>

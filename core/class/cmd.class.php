@@ -1220,7 +1220,8 @@ class cmd {
 				$eqLogic->setStatus('numberTryWithoutSuccess', $numberTryWithoutSuccess);
 				if ($numberTryWithoutSuccess >= config::byKey('numberOfTryBeforeEqLogicDisable')) {
 					$message = __('Désactivation de', __FILE__) . ' <a href="' . $eqLogic->getLinkToConfiguration() . '"> ' . $eqLogic->getName() . '</a> ' . __('car il n\'a pas répondu ou mal répondu lors des 3 derniers essais', __FILE__);
-					message::add($type, $message);
+					$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+					message::add($type, $message, $action);
 					$eqLogic->setIsEnable(0);
 					$eqLogic->save();
 				}
@@ -1395,6 +1396,8 @@ class cmd {
 			} else {
 				$replace = array();
 			}
+
+
 			$replace['#test#'] = '';
 			if (isset($template_conf['test']) && is_array($template_conf['test']) && count($template_conf['test']) > 0) {
 				$i = 0;
@@ -1415,12 +1418,14 @@ class cmd {
 
 					//ltrim avoid js variable starting with # error
 					if ($_version == 'dashboard') {
+						$replace['#test#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
 						$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
-						$replace['#test#'] .= 'cmd.setAttribute("data-state", ' . $i . ')' . "\n";
+						$replace['#test#'] .= 'cmdjs.setAttribute("data-state", ' . $i . ')' . "\n";
 						$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#test#'] .= "}\n";
 
-						$replace['#change_theme#'] .= 'if (cmd.getAttribute("data-state") == ' . $i . ') {' . "\n";
+						$replace['#change_theme#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
+						$replace['#change_theme#'] .= 'if (cmdjs.getAttribute("data-state") == ' . $i . ') {' . "\n";
 						$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#change_theme#'] .= "}\n";
 					} else {  //Deprecated, keep for mobile during transition
@@ -1445,6 +1450,7 @@ class cmd {
 				if (config::byKey('active', 'widget') == 1) {
 					$template = getTemplate('core', $_version, $template_name, 'widget');
 				}
+				$template = getTemplate('core', $_version, $template_name, $this->getEqType());
 				if ($template == '') {
 					foreach (plugin::listPlugin(true) as $plugin) {
 						$template = getTemplate('core', $_version, $template_name, $plugin->getId());
@@ -2008,7 +2014,8 @@ class cmd {
 			log::add('event', 'info', $message);
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
-				message::add($eqLogic->getEqType_name(), $message, '', '', true, 'alerting');
+				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+				message::add($eqLogic->getEqType_name(), $message, $action, '', true, 'alerting');
 			}
 			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
 			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
@@ -2029,7 +2036,8 @@ class cmd {
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
-			message::add($this->getEqLogic()->getEqType_name(), $message, '', '', true, 'alertingReturnBack');
+			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+			message::add($this->getEqLogic()->getEqType_name(), $message, $action, '', true, 'alertingReturnBack');
 		}
 
 		if ($prevAlert != $maxAlert) {

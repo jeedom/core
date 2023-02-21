@@ -26,7 +26,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 					</span>
 				</div>
 			</legend>
-			<table class="table table-condensed table-bordered" id="table_user">
+			<table class="table table-condensed" id="table_user">
 				<thead>
 					<th style="min-width: 120px;">{{Utilisateur}}</th>
 					<th style="width: 250px;">{{Actif}}</th>
@@ -44,7 +44,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 
 <form class="form-horizontal">
 	<legend>{{Session(s) active(s)}}</legend>
-	<table id="tableSessions" class="table table-condensed table-bordered">
+	<table id="tableSessions" class="table table-condensed">
 		<thead>
 			<tr>
 				<th>{{ID}}</th>
@@ -87,14 +87,14 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 
 <form id="div_Devices" class="form-horizontal">
 	<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-	<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
+	<table id="tableDevices" class="table table-condensed dataTable">
 		<thead>
 			<tr>
-				<th>{{ID}}</th>
+				<th style="width:220px;">{{ID}}</th>
 				<th>{{Utilisateur}}</th>
-				<th>{{IP}}</th>
-				<th>{{Date}}</th>
-				<th data-sorter="false" data-filter="false">{{Action}}</th>
+				<th style="width:180px;">{{IP}}</th>
+				<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:180px;">{{Date}}</th>
+				<th data-sortable="false" data-filter="false" style="width:100px;">{{Action}}</th>
 			</tr>
 		</thead>
 		<tbody>

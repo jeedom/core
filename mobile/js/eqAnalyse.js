@@ -3,7 +3,6 @@
 $('body').attr('data-page', 'eqAnalyse')
 
 function initEqanalyse() {
-  deviceInfo = getDeviceType()
   jeedom.eqLogic.htmlAlert({
     version : 'mobile',
     error: function(error) {
@@ -39,7 +38,8 @@ function initEqanalyse() {
   })
 
   $('body').on('orientationChanged', function(event, _orientation) {
+    jeedomUtils.userDevice = getDeviceType()
     jeedomUtils.setTileSize('.eqLogic')
-    $('#div_displayAlert').packery({gutter : 0})
+    document.querySelectorAll('#div_displayAlert').forEach(_div => { Packery.data(_div).layout() })
   })
 }

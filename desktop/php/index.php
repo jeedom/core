@@ -1,5 +1,4 @@
 <?php
-$loadJquery = true;
 if (init('rescue', 0) == 1 && !in_array(init('p'), array('custom', 'backup', 'cron', 'connection', 'log', 'database', 'editor', 'system'))) {
 	$_GET['p'] = 'system';
 }
@@ -146,7 +145,10 @@ function setTheme() {
 	}
 }
 
+$loadJquery = true;
+if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 ?>
+
 <!DOCTYPE html>
 <html lang="en-US" translate="no" class="notranslate">
 
@@ -162,8 +164,8 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<?php
-	include_file('core', 'dom.utils', 'dom');
-	include_file('core', 'dom.ui', 'dom');
+	include_file('coreDOM', 'dom.utils', 'js');
+	include_file('coreDOM', 'dom.ui', 'js');
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
@@ -212,11 +214,13 @@ function setTheme() {
 		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
 		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
 		include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-		//Cron helper:
-		include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-		include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
 
-		include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
+		//Cron helper:
+		//include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+		//include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+
+		//Deprecated Core css
+		include_file('desktop', 'deprecated.main', 'css');
     }
 
 	//jQuery less libs:
@@ -247,6 +251,12 @@ function setTheme() {
 	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
 
 	//New $less libs
+	include_file('coreDOM', 'jeeCron/jeeCron', 'js');
+	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'css');
+	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'js');
+	include_file('3rdparty', 'isPin/ispin', 'css');
+	include_file('3rdparty', 'isPin/ispin', 'js');
+	include_file('3rdparty', 'sortable/sortable', 'js');
 	include_file('3rdparty', 'popper/popper.min', 'js');
 	include_file('3rdparty', 'tippy/tippy.min', 'js');
 	include_file('3rdparty', 'flatpickr/flatpickr.min', 'css');
@@ -280,7 +290,7 @@ function setTheme() {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 
-<body>
+<body data-uimode="desktop">
 	<div id="backgroundforJeedom">
 		<div id="top"></div>
 		<div id="bottom"></div>
@@ -311,7 +321,7 @@ function setTheme() {
 		}
 	?>
 		<?php if (init('rescue', 0) == 0) { ?>
-			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden">
+			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden shadowed">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="domUtils.showLoading()" height="30px"></a>
@@ -486,9 +496,6 @@ function setTheme() {
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
-												<?php if (jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true) {
-													echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
-												} ?>
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 												<li class="divider"></li>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
@@ -524,7 +531,7 @@ function setTheme() {
 									<?php }
 									} ?>
 									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-									<li><a><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+									<li class="nocursor"><a class="disabled"><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 									<?php
 									if ($mbState == 0) { ?>
 										<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>

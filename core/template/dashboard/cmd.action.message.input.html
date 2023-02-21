@@ -29,11 +29,8 @@
 
     if (domUtils.issetWidgetOptParam('#title_possibility_list#', 'title_possibility_list')) {
       let mylist = '#title_possibility_list#'
-      $('.cmd[data-cmd_uid=#uid#] .title').autocomplete({
-        source: mylist.split(',').map(str => str.trim()),
-        close: function(event, ui) {
-          $(this).trigger('focusout')
-        }
+      document.querySelector('.cmd[data-cmd_uid=#uid#] .title').jeeComplete({
+        source: mylist.split(',').map(str => str.trim())
       })
     }
   </script>

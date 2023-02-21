@@ -20,6 +20,8 @@ if (!jeeFrontEnd.update) {
   jeeFrontEnd.update = {
     replaceLogLines: ['OK', '. OK', '.OK', 'OK .', 'OK.'],
     regExLogProgress: /\[PROGRESS\]\[(\d.*)]/gm,
+    updtDataTable: null,
+    osDataTable: null,
     init: function() {
       window.jeeP = this
       this.hasUpdate = false
@@ -133,24 +135,20 @@ if (!jeeFrontEnd.update) {
               tr_updates.push(jeeP.addUpdate(data[i]))
             }
           }
+          if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
 
           for (var tr of tr_updates) {
             tbody.appendChild(tr)
           }
-          tbody.triggerEvent('update')
 
-          if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
+          jeedomUtils.initDataTables()
 
-          $('#table_update').on('sortEnd', function(e, t) {
+          jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
+
+          jeeFrontEnd.update.updtDataTable.on('columns.sort', function(column, direction) {
             tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
           })
-
-          let table = document.getElementById('table_update')
-          table.config.widgetOptions.resizable_widths = ['95px', '', '', '', '', '', '']
-          table.triggerEvent('applyWidgets')
-          setTimeout(() => {
-            table.querySelector('thead tr').children[0].triggerEvent('sort').triggerEvent('sort')
-          }, 200)
+          jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
 
           //create a second <pre> for cleaned text to avoid change event infinite loop:
           document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)
@@ -159,7 +157,6 @@ if (!jeeFrontEnd.update) {
           jeeP._pre_updateInfo_clean.seen()
           jeeP.createUpdateObserver()
           jeedomUtils.setCheckContextMenu()
-          jeedomUtils.initTooltips()
         }
       })
 
@@ -196,7 +193,7 @@ if (!jeeFrontEnd.update) {
       var tr = '<tr>'
       tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
-      tr += '<span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : <span class="updateAttr label label-info" data-l1key="name"></span>'
+      tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span><span class="updateAttr label label-info" data-l1key="name"></span>'
       tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
       if (_update.configuration && _update.configuration.version) {
           var updClass;
@@ -211,7 +208,7 @@ if (!jeeFrontEnd.update) {
               default:
                   updClass = 'label-danger';
           }
-          tr += ' <span class="label ' + updClass + '">' + _update.configuration.version + '</span>'
+          tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
       }
 
       if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0, 16) + '...'
@@ -226,8 +223,8 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
       if (_update.type != 'core') {
-        tr += '<input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'
-        tr += '<label class="cursor fontweightnormal hidden-1280" for="' + _update.name + '">{{Ne pas mettre à jour}}</label>'
+        tr += '<i class="fas fa-pencil-ruler" title="{{Ne pas mettre à jour}}"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'
+        tr += '<label class="cursor fontweightnormal hidden-1280" for="' + _update.name + '"></label>'
       }
       tr += '</td>'
       tr += '<td>'
@@ -456,7 +453,15 @@ if (!jeeFrontEnd.update) {
           for (var tr of tr_updates) {
             tbody.appendChild(tr)
           }
-          $('#table_osUpdate tbody').trigger('update')
+          var osTable = document.getElementById('table_osUpdate')
+          jeeFrontEnd.update.osDataTable = new DataTable(osTable, {
+            columns: [
+              { select: 0, sort: "asc" },
+              { select: 4, sortable: false }
+            ],
+            paging: false,
+            searchable: true,
+          })
         }
       })
     },
@@ -485,8 +490,8 @@ if (!jeeFrontEnd.update) {
       jeeDialog.dialog({
         id: 'md_update',
         title: "{{Options de mise à jour}}",
-        width: window.innerWidth > 500 ? 480 : window.innerWidth,
-        height: window.innerHeight > 500 ? 460 : window.innerHeight - 30,
+        width: window.innerWidth > 600 ? 580 : window.innerWidth,
+        height: window.innerHeight > 500 ? 400 : window.innerHeight - 30,
         top: window.innerHeight > 500 ? 120 : 0,
         callback: function() {
           var contentEl = jeeDialog.get('#md_update', 'content')
@@ -494,6 +499,11 @@ if (!jeeFrontEnd.update) {
             var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
             newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
+            newContent.querySelectorAll('[data-title]').forEach(_tooltip => {
+              _tooltip.setAttribute('title', _tooltip.getAttribute('data-title'))
+              _tooltip.removeAttribute('data-title')
+            })
+            jeedomUtils.initTooltips(document.getElementById('md_update'))
           }
 
           contentEl.querySelector('input[data-l1key="force"]').addEventListener('click', function(event) {
@@ -508,6 +518,22 @@ if (!jeeFrontEnd.update) {
               check_backupBefore.removeAttribute('disabled')
             }
           })
+
+          contentEl.querySelector('.bt_changelogCore').addEventListener('click', function(event) {
+            jeedom.getDocumentationUrl({
+              page: 'changelog',
+              theme: document.body.getAttribute('data-theme'),
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(url) {
+                window.open(url, '_blank')
+              }
+            })
+        })
         },
         onShown: function() {
           jeeDialog.get('#md_update', 'content').querySelector('#md_specifyUpdate').removeClass('hidden')
@@ -666,23 +692,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       },
       success: function(data) {
         jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
-      }
-    })
-    return
-  }
-
-  if (_target = event.target.closest('#bt_changelogCore')) {
-    jeedom.getDocumentationUrl({
-      page: 'changelog',
-      theme: document.body.getAttribute('data-theme'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(url) {
-        window.open(url, '_blank')
       }
     })
     return

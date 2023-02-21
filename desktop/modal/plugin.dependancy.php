@@ -27,7 +27,7 @@ $plugin = plugin::byId($plugin_id);
 $dependancy_info = $plugin->dependancy_info();
 ?>
 <div id="md_pluginDependancy" data-modalType="md_pluginDependancy">
-  <table class="table table-bordered">
+  <table class="table table-condensed">
     <thead>
       <tr>
         <th>{{Nom}}</th>
@@ -66,13 +66,13 @@ $dependancy_info = $plugin->dependancy_info();
           ?>
         </td>
         <td>
-          <a class="btn btn-warning btn-sm launchInstallPluginDependancy" style="position:relative;top:-5px;"><i class="fas fa-bicycle"></i> {{Relancer}}</a>
+          <a class="btn btn-warning btn-xs launchInstallPluginDependancy"><i class="fas fa-bicycle"></i> {{Relancer}}</a>
         </td>
         <td>
           <?php if ($dependancy_info['auto'] == 1) { ?>
-            <a class="btn btn-danger btn-sm bt_changeAutoModeDependancy" data-mode="0" style="position:relative;top:-5px;"><i class="fas fa-times"></i> {{Désactiver}}</a>
+            <a class="btn btn-danger btn-xs bt_changeAutoModeDependancy" data-mode="0"><i class="fas fa-times"></i> {{Désactiver}}</a>
           <?php } else { ?>
-            <a class="btn btn-success btn-sm bt_changeAutoModeDependancy" data-mode="1" style="position:relative;top:-5px;"><i class="fas fa-magic"></i> {{Activer}}</a>
+            <a class="btn btn-success btn-xs bt_changeAutoModeDependancy" data-mode="1"><i class="fas fa-magic"></i> {{Activer}}</a>
           <?php }
           ?>
         </td>
@@ -159,7 +159,7 @@ if (!jeeFrontEnd.md_pluginDependancy) {
         id: plugin_id,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_pluginDependancy', 'content'),
+            attachTo: jeeDialog.get('#md_pluginDependancy', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -179,7 +179,7 @@ if (!jeeFrontEnd.md_pluginDependancy) {
         mode: mode,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_pluginDependancy', 'content'),
+            attachTo: jeeDialog.get('#md_pluginDependancy', 'dialog'),
             message: error.message,
             level: 'danger'
           })

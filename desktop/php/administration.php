@@ -422,13 +422,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="140" step="10" max="300" class="configKey form-control ui-spinner" data-l1key="widget::step::height" data-reload="1" />
+								<input type="number" min="140" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="90" step="10" max="300" class="configKey form-control ui-spinner" data-l1key="widget::step::width" data-reload="1" />
+								<input type="number" min="90" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -436,7 +436,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" class="configKey form-control ui-spinner" data-l1key="widget::margin" data-reload="1" />
+								<input type="number" min="0" class="configKey form-control ispin" data-l1key="widget::margin" data-reload="1" />
 							</div>
 
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes sur écran large/moyen/petit}}
@@ -490,7 +490,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" max="20" class="configKey form-control ui-spinner" data-l1key="css::objectBackgroundBlur" data-reload="1" />
+								<input type="number" min="0" max="20" step="0.25" class="configKey form-control ispin" data-l1key="css::objectBackgroundBlur" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -531,13 +531,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ui-spinner" data-l1key="interface::background::opacitylight" data-reload="1" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitylight" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ui-spinner" data-l1key="interface::background::opacitydark" data-reload="1" />
+								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitydark" data-reload="1" />
 							</div>
 						</div>
 
@@ -565,7 +565,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="30" step="1" class="configKey form-control ui-spinner" data-l1key="interface::toast::duration" data-reload="1" />
+								<input type="number" min="0" max="30" step="1" class="configKey form-control ispin" data-l1key="interface::toast::duration" data-reload="1" />
 							</div>
 						</div>
 
@@ -616,7 +616,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ui-spinner" data-l1key="css::background-opacity" data-reload="1" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ispin" data-l1key="css::background-opacity" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -624,7 +624,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ui-spinner" data-l1key="css::border-radius" data-reload="1" />
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ispin" data-l1key="css::border-radius" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -694,7 +694,7 @@ user::isBan();
 					<div class="col-sm-6">
 						<fieldset>
 							<legend>{{Gestion avancée}}</legend>
-							<table id="networkInterfacesTable" class="table table-condensed table-bordered">
+							<table id="networkInterfacesTable" class="table table-condensed">
 								<thead>
 									<tr>
 										<th>{{Interface}}</th>
@@ -1015,7 +1015,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<a id="bt_addObjectSummary" class="btn btn-sm btn-success pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter un type de résumé}}</a>
-						<table class="table table-condensed table-bordered" id="table_objectSummary">
+						<table class="table table-condensed" id="table_objectSummary">
 							<thead>
 								<tr>
 									<th>{{Clé}}</th>
@@ -1240,19 +1240,6 @@ user::isBan();
 					</fieldset>
 				</form>
 
-				<legend>{{Expressions}}</legend>
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
-								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
-							</div>
-						</div>
-					</fieldset>
-				</form>
 				<legend>{{Régorganisation automatique des tuiles}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1272,6 +1259,28 @@ user::isBan();
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historique}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" class="configKey form-control" data-l1key="autoreorder::weight_history">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
+				<legend>{{Spécial}}</legend>
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Core js (dev)}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery / Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)}}."></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="core::jqueryless">
 							</div>
 						</div>
 					</fieldset>
@@ -1511,7 +1520,7 @@ user::isBan();
 
 						<legend>{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></legend>
 
-						<table class="table table-condensed table-bordered" id="table_convertColor">
+						<table class="table table-condensed" id="table_convertColor">
 							<thead>
 								<tr>
 									<th>{{Nom}}</th>
@@ -1735,7 +1744,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{IPs bannies}} <a class="btn btn-danger btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</a></legend>
-						<table class="table table-condensed table-bordered">
+						<table class="table table-condensed">
 							<thead>
 								<tr>
 									<th>{{IP}}</th>
@@ -1872,7 +1881,7 @@ user::isBan();
 													$div .= '<input class="configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													break;
 												case 'number':
-													$div .= '<input type="number" class="configKey form-control ui-spinner" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+													$div .= '<input type="number" class="configKey form-control ispin" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													break;
 												case 'password':
 													$div .= '<div class="input-group">';
@@ -2201,65 +2210,74 @@ user::isBan();
 						</div>
 
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
-						<div class="alert alert-danger">
-							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
-							{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
-						</div>
-
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
-								<span class="small italic"> (Shift click)</span>
-							</div>
-						</div>
+						    <div class="row">
+						    	<div class="col-md-3 col-xs-12">
+						        	<div class="alert alert-danger">
+										{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
+										{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
+									</div>
+						        </div>
 
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Administration Système}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
-								<span class="small italic"> (Ctrl click)</span>
-							</div>
-						</div>
+						        <div class="col-md-9 col-xs-12">
+						            <div class="form-group">
+										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
+										<div class="col-md-5 col-xs-6">
+											<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
+											<span class="small italic"> (Shift click)</span>
+										</div>
+									</div>
 
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Edition multiples de paramètres d'équipements, commandes, ...}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>
-								<span class="small italic"> (Ctrl Alt click)</span>
-							</div>
-						</div>
+						            <div class="form-group">
+										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Administration Système}}
+											<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
+										</label>
+										<div class="col-md-5 col-xs-6">
+											<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
+											<span class="small italic"> (Ctrl click)</span>
+										</div>
+									</div>
 
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label"><i class="fas fa-database"></i> {{Administration Base de données}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</a>
-								<span class="small italic"> (Alt click)</span>
-							</div>
-						</div>
+						            <div class="form-group">
+										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
+											<sup><i class="fas fa-question-circle" tooltip="{{Edition multiples de paramètres d'équipements, commandes, ...}}"></i></sup>
+										</label>
+										<div class="col-md-5 col-xs-6">
+											<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>
+											<span class="small italic"> (Ctrl Alt click)</span>
+										</div>
+									</div>
 
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-6 control-label">
-								<i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}
-							</label>
-							<span class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<?php
-								global $CONFIG;
-								echo $CONFIG['db']['username'];
-								?>
-								<div class="input-group">
-									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />
-									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
-									</span>
-								</div>
-							</span>
+									<div class="form-group">
+										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-database"></i> {{Administration Base de données}}
+											<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
+										</label>
+										<div class="col-md-5 col-xs-6">
+											<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</a>
+											<span class="small italic"> (Alt click)</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-4 col-xs-6 control-label">
+											<i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}
+										</label>
+										<div class="col-md-5 col-xs-6">
+											<?php
+												global $CONFIG;
+												echo $CONFIG['db']['username'];
+											?>
+											<div class="input-group">
+												<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />
+												<span class="input-group-btn">
+													<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+												</span>
+											</div>
+										</span>
+									</div>
+
+						        </div>
+						    </div>
 						</div>
 					</fieldset>
 					<br />

@@ -18,7 +18,7 @@ if (is_array($scenarioListGroup)) {
 //get all scenarios without group:
 $scenarioNoGroup = scenario::all(null);
 if (count($scenarioNoGroup) > 0) {
-	$scenarios['{{Aucun}}'] = scenario::all(null);
+	$scenarios['{{Aucun}}'] = $scenarioNoGroup;
 	$hasScenario = true;
 }
 
@@ -85,7 +85,8 @@ foreach ($objectList as $parent) {
 sendVarToJS([
 	'jeephp2js.initSearch' => init('search', 0),
 	'jeephp2js.scenarioListGroup' => $scenarioListGroup,
-	'jeephp2js.objectList' => $parentList
+	'jeephp2js.objectList' => $parentList,
+	'jeephp2js.globalActiveState' => config::byKey('enableScenario')
 ]);
 
 ?>
@@ -98,6 +99,10 @@ sendVarToJS([
 				<div class="center"><i class="fas fa-plus-circle"></i></div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
+				<div class="center"><i class="fas fa-list"></i></div>
+				<span class="txtColor">{{Vue d'ensemble}}</span>
+			</div>
 			<div class="cursor warning" id="bt_clearAllLogs">
 				<div class="center"><i class="far fa-trash-alt"></i></div>
 				<span class="txtColor">{{Supprimer les logs}}</span>
@@ -105,18 +110,14 @@ sendVarToJS([
 			<?php if (config::byKey('enableScenario') == 0) { ?>
 				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<div class="center"><i class="fas fa-check"></i></div>
-					<span class="txtColor">{{Activer scénarios}}</span>
+					<span class="txtColor">{{Activer moteur de scénarios}}</span>
 				</div>
 			<?php } else { ?>
 				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<div class="center"><i class="fas fa-times"></i></div>
-					<span class="txtColor">{{Désactiver scénarios}}</span>
+					<span class="txtColor">{{Désactiver moteur de scénarios}}</span>
 				</div>
 			<?php } ?>
-			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
-				<div class="center"><i class="fas fa-list"></i></div>
-				<span class="txtColor">{{Vue d'ensemble}}</span>
-			</div>
 		</div>
 
 		<legend><i class="icon jeedom-clap_cinema"></i> {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>

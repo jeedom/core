@@ -24,13 +24,13 @@ if (!jeedomUI) {
     /*
     @dashboard
     @view
-    draggable call to reorder/insert drag
+    draggabilly call to reorder/insert drag
     */
     orderItems: function(_pckryInstance, _orderAttr='data-order') {
       var _draggingOrder = parseInt(jeedomUI.orders[jeedomUI.draggingId])
       var _newOrders = {}
       _pckryInstance.items.forEach(function(itemElem, i) {
-        _newOrders[itemElem.element.getAttribute('data-editId')] = i + 1
+        _newOrders[itemElem.element.getAttribute('data-editid')] = i + 1
       })
 
       var _draggingNewOrder = _newOrders[jeedomUI.draggingId]
@@ -46,7 +46,7 @@ if (!jeedomUI) {
       //set dom positions:
       var arrKeys = Object.keys(_finalOrder)
       var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-      var firstEl = _pckryInstance.element.querySelector('.editingMode[data-editId="' + firstElId + '"]')
+      var firstEl = _pckryInstance.element.querySelector('.editingMode[data-editid="' + firstElId + '"]')
       if (firstEl != null) {
         firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
       }
@@ -54,9 +54,9 @@ if (!jeedomUI) {
       var thisId, prevId, thisEl, prevEl
       for (var i = 2; i < arrKeys.length + 1; i++) {
         thisId = arrKeys.find(key => _finalOrder[key] === i)
-        thisEl = document.querySelector('.editingMode[data-editId="' + thisId + '"]')
+        thisEl = document.querySelector('.editingMode[data-editid="' + thisId + '"]')
         prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-        prevEl =  document.querySelector('.editingMode[data-editId="' + prevId + '"]')
+        prevEl =  document.querySelector('.editingMode[data-editid="' + prevId + '"]')
         if (thisEl && prevEl) prevEl.parentNode.insertBefore(thisEl, prevEl.nextSibling)
       }
 
@@ -68,7 +68,9 @@ if (!jeedomUI) {
           itemElem.setAttribute(_orderAttr, i + 1)
           itemElem.style.transform = null
           if (jeedomUI.isEditing) {
+            try { //In case template isn't contained in a single div !
             itemElem.querySelector('.counterReorderJeedom').textContent = (i + 1).toString()
+            } catch(error) { }
           } else {
             itemElem.insertAdjacentHTML('afterbegin', '<span class="counterReorderJeedom pull-left">' + (i + 1).toString() + '</span>')
           }
@@ -256,6 +258,7 @@ if (!jeedomUI) {
       document.getElementById('div_pageContainer').unRegisterEvent('click', 'historyModalHandler')
       document.getElementById('div_pageContainer').registerEvent('click', function historyModalHandler(event) {
         if (jeedomUI.isEditing) return false
+          if (document.body.getAttribute('data-page') == 'plan' && jeeFrontEnd.planEditOption.state) return false
         if (event.target.closest('.history[data-cmd_id]') == null) return false
         event.stopImmediatePropagation()
         event.stopPropagation()

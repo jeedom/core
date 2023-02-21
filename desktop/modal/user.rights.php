@@ -48,11 +48,11 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
           <option value="rx">{{Visualisation et exécution}}</option>
         </select>
       </div>
-      <table class='table table-condensed table-bordered tablesorter'>
+      <table class='table table-condensed dataTable'>
         <thead>
           <tr>
             <th>{{Equipement}}</th>
-            <th data-sorter="select-text">{{Droits}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
           </tr>
         </thead>
         <tbody>
@@ -85,11 +85,11 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
           <option value="rx">{{Visualisation et exécution}}</option>
         </select>
       </div>
-      <table class='table table-condensed table-bordered tablesorter'>
+      <table class='table table-condensed dataTable'>
         <thead>
           <tr>
             <th>{{Scénario}}</th>
-            <th data-sorter="select-text">{{Droits}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
           </tr>
         </thead>
         <tbody>
@@ -121,11 +121,11 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
           <option value="r">{{Visualisation}}</option>
         </select>
       </div>
-      <table class='table table-condensed table-bordered tablesorter'>
+      <table class='table table-condensed dataTable'>
         <thead>
           <tr>
             <th>{{Objets}}</th>
-            <th data-sorter="select-text">{{Droits}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
           </tr>
         </thead>
         <tbody>
@@ -156,11 +156,11 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
           <option value="r">{{Visualisation}}</option>
         </select>
       </div>
-      <table class='table table-condensed table-bordered tablesorter'>
+      <table class='table table-condensed dataTable'>
         <thead>
           <tr>
             <th>{{Vues}}</th>
-            <th data-sorter="select-text">{{Droits}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
           </tr>
         </thead>
         <tbody>
@@ -191,11 +191,11 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
           <option value="r">{{Visualisation}}</option>
         </select>
       </div>
-      <table class='table table-condensed table-bordered tablesorter'>
+      <table class='table table-condensed dataTable'>
         <thead>
           <tr>
             <th>{{Design}}</th>
-            <th data-sorter="select-text">{{Droits}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
           </tr>
         </thead>
         <tbody>
@@ -226,11 +226,11 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
           <option value="r">{{Visualisation}}</option>
         </select>
       </div>
-      <table class='table table-condensed table-bordered tablesorter'>
+      <table class='table table-condensed dataTable'>
         <thead>
           <tr>
             <th>{{Design}}</th>
-            <th data-sorter="select-text">{{Droits}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
           </tr>
         </thead>
         <tbody>
@@ -260,21 +260,21 @@ if (!jeeFrontEnd.md_userRights) {
   jeeFrontEnd.md_userRights = {
     init: function() {
       document.getElementById('div_tabUserRights').setJeeValues(jeephp2js.md_userRights_rights, '.userAttr')
-      jeedomUtils.initTableSorter()
+      jeedomUtils.initDataTables('#md_userRights', false, true)
     },
     save: function() {
       jeedom.user.save({
         users: document.getElementById('div_tabUserRights').getJeeValues('.userAttr'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_userRights', 'content'),
+            attachTo: jeeDialog.get('#md_userRights', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_userRights', 'content'),
+            attachTo: jeeDialog.get('#md_userRights', 'dialog'),
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })

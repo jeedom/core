@@ -11,7 +11,8 @@
     "league/flysystem-webdav": "*",
     "league/oauth2-client": "*",
     "matthiasmullie/minify": "*",
-    "pragmarx/google2fa-qrcode": "^1.0"
+    "pragmarx/google2fa-qrcode": "^1.0",
+    "abbadon1334/sun-position-spa-php": "^1.0"
   },
   "license": "GPL",
   "config": {

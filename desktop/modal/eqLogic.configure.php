@@ -123,7 +123,7 @@ sendVarToJS([
           </div>
 
           <legend><i class="fas fa-list-alt"></i> {{Commandes}}</legend>
-          <table class="table table-bordered table-condensed">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th class="hidden-xs">{{ID}}</th>
@@ -207,7 +207,7 @@ sendVarToJS([
 
                 <label class="col-sm-2 control-label">{{Hauteur}} <sub>px</sub></label>
                 <div class="col-sm-3">
-                  <input type="number" class="eqLogicAttr form-control input-sm ui-spinner" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
+                  <input type="number" class="eqLogicAttr form-control input-sm ispin" min="0" value="" data-l1key="display" data-l2key="backGraph::height" placeholder="{{Automatique}}">
                 </div>
               </div>
 
@@ -226,7 +226,7 @@ sendVarToJS([
           <?php }
           if ($eqLogic->getDisplay('widgetTmpl', 1) == 1 && is_array($eqLogic->widgetPossibility('parameters')) && count($eqLogic->widgetPossibility('parameters')) > 0) { ?>
             <legend><i class="fas fa-pencil-ruler"></i> {{Paramètres du template}}</legend>
-            <table class="table table-bordered table-condensed">
+            <table class="table table-condensed">
               <thead>
                 <tr>
                   <th></th>
@@ -300,7 +300,7 @@ sendVarToJS([
           if ($eqLogic->widgetPossibility('custom::optionalParameters')) {
           ?>
             <legend><i class="fas fa-code"></i> {{Paramètres optionnels}} <a class="btn btn-success btn-xs pull-right" id="bt_addWidgetParameters"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></legend>
-            <table class="table table-bordered table-condensed" id="table_widgetParameters">
+            <table class="table table-condensed" id="table_widgetParameters">
               <thead>
                 <tr>
                   <th>{{Nom}}</th>
@@ -360,11 +360,11 @@ sendVarToJS([
               <div class="form-group">
                 <label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
                 <div class="col-sm-3">
-                  <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
+                  <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
                 </div>
                 <label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
                 <div class="col-sm-3">
-                  <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ui-spinner" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
+                  <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
                 </div>
                 <a class="btn btn-success btn-xs" id="bt_eqLogicLayoutApply"><i class="fas fa-sync-alt"></i></i> {{Appliquer}}</a>
               </div>
@@ -388,7 +388,7 @@ sendVarToJS([
           <div class="widget_layout table" style="display: none;">
             <legend><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</legend>
             <div class="table-responsive">
-              <table class="table table-bordered table-condensed" id="tableCmdLayoutConfiguration">
+              <table class="table table-condensed" id="tableCmdLayoutConfiguration">
                 <tbody>
                   <?php
                   $table = array();
@@ -536,9 +536,16 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
       document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
     },
     setTableLayoutSortable: function() {
-      $('#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer').sortable({
-        connectWith: '#tableCmdLayoutConfiguration tbody td .cmdLayoutContainer',
-        items: ".cmdLayout"
+      let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
+      containers.forEach(_container => {
+        new Sortable(_container, {
+          delay: 100,
+          delayOnTouchOnly: true,
+          group: 'cmdLayoutContainer',
+          draggable: '.cmdLayout',
+          filter: 'a, input, textarea',
+          preventOnFilter: false,
+        })
       })
     },
     getNewLayoutTd: function(row, col) {
@@ -560,7 +567,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
       if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
         //build new table:
         var newTableLayout = document.createElement('table')
-        newTableLayout.addClass('table table-bordered table-condensed')
+        newTableLayout.addClass('table table-condensed')
         newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
         newTableLayout.appendChild(document.createElement('tbody'))
 
@@ -620,7 +627,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
         type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -647,7 +654,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
             cmds: cmds,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -666,7 +673,7 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
                   callback: function() {
                     document.querySelector('#eqLogicConfigureTab > li > a[href="' + tab + '"]')?.click()
                     jeedomUtils.showAlert({
-                      attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                      attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                       message: '{{Sauvegarde réussie}}',
                       level: 'success'
                     })
@@ -718,14 +725,14 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
           type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
               message: error.message,
               level: 'danger'
             })
           },
           success: function(data) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
               message: '{{Equipement supprimé avec succès}}',
               level: 'success'
             })
@@ -847,14 +854,14 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
             eqLogic: eqLogic,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
                 message: '{{Le remplacement des piles a été enregistré}}',
                 level: 'success'
               })

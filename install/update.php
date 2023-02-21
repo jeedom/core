@@ -285,7 +285,7 @@ try {
 			require_once __DIR__ . '/consistency.php';
 			echo "OK\n";
 		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 		try {
 			echo "Check update...";
@@ -293,7 +293,7 @@ try {
 			config::save('version', jeedom::version());
 			echo "OK\n";
 		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 		echo "***************Jeedom is up to date in " . jeedom::version() . "***************\n";
 	}
@@ -310,13 +310,13 @@ try {
 		update::checkAllUpdate();
 		echo "OK\n";
 	} catch (Exception $ex) {
-		echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		echo "***ERROR*** " . $ex->getMessage() . "\n";
 	}
 	echo "[PROGRESS][95]\n";
 	try {
 		jeedom::start();
 	} catch (Exception $ex) {
-		echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		echo "***ERROR*** " . $ex->getMessage() . "\n";
 	}
 	config::save('version', jeedom::version());
 	echo "[PROGRESS][100]\n";

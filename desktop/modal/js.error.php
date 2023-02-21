@@ -26,7 +26,7 @@ if (!isConnect()) {
       <a class="btn btn-default btn-sm" id="bt_refreshJSError"><i class="fas fa-sync icon-white"></i> {{Rafraichir}}</a><a class="btn btn-danger roundedRight btn-sm" id="bt_clearJSError"><i class="far fa-trash-alt icon-white"></i> {{Vider}}</a>
     </span>
   </div>
-  <table class="table table-condensed table-bordered tablesorter" id="table_jsError" style="margin-top: 5px;">
+  <table class="table table-condensed" id="table_jsError" style="margin-top: 5px;">
     <thead>
       <tr>
         <th>{{Fichier}}</th>
@@ -66,7 +66,7 @@ if (!jeeFrontEnd.md_jsError) {
         tr += '</td>'
         tr += '</tr>'
       }
-      document.getElementById('table_jsError tbody').empty().insertAdjacentHTML('beforeend', tr)
+      document.getElementById('table_jsError').tBodies[0].empty().insertAdjacentHTML('beforeend', tr)
     },
   }
 }

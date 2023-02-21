@@ -70,18 +70,18 @@ if (!jeeFrontEnd.md_scenarioLog) {
       id: jeephp2js.md_scenarioLog_scId,
       error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioLog', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioLog', 'dialog'),
           message: error.message,
           level: 'danger'
         })
       },
       success: function() {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioLog', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioLog', 'dialog'),
           message: '{{Log vidé avec succès}}',
           level: 'success'
         })
-        document.emptyById('pre_logScenarioDisplay')
+        document.getElementById('pre_scenariolog').empty()
       }
     })
   })

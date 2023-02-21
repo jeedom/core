@@ -22,19 +22,19 @@ if (!isConnect()) {
 
 <div id="md_objectSummary" data-modalType="md_objectSummary">
   <a class="btn btn-success pull-right btn-sm" id="bt_saveSummaryObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-  <table id="table_ObjectSummary" class="table table-bordered table-condensed tablesorter stickyHead">
+  <table id="table_ObjectSummary" class="table table-condensed stickyHead">
     <thead>
       <tr>
-        <th>{{ID}}</th>
+        <th style="width:50px;">{{ID}}</th>
         <th>{{Objet}}</th>
         <th>{{Parent}}</th>
-        <th data-sorter="false" data-filter="false">{{Visible}}</th>
-        <th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur le Dashboard}}</th>
-        <th data-sorter="false" data-filter="false">{{Masquer}}<br>{{sur la Synthèse}}</th>
-        <th data-sorter="false" data-filter="false">{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="{{Si grisé, alors il n'est pas remonté en résumé global}}"></i></sup></th>
-        <th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Dashboard masqué}}</th>
-        <th data-sorter="false" data-filter="false">{{Résumé}}<br>{{Mobile masqué}}</th>
-        <th data-sorter="false" data-filter="false">{{Options}}</th>
+        <th style="width:80px;">{{Visible}}</th>
+        <th style="width:80px;">{{Masquer}}<br>{{sur le Dashboard}}</th>
+        <th style="width:80px;">{{Masquer}}<br>{{sur la Synthèse}}</th>
+        <th>{{Résumé Défini}} <sup><i class="fas fa-question-circle tooltips" title="{{Si grisé, alors il n'est pas remonté en résumé global}}"></i></sup></th>
+        <th>{{Résumé}}<br>{{Dashboard masqué}}</th>
+        <th>{{Résumé}}<br>{{Mobile masqué}}</th>
+        <th style="width:50px;">{{Options}}</th>
       </tr>
     </thead>
     <tbody>
@@ -122,44 +122,7 @@ if (!isConnect()) {
 </div>
 
 <script>
-if (!jeeFrontEnd.md_objectSummary) {
-  jeeFrontEnd.md_objectSummary = {
-    init: function() {
-      jeedomUtils.initTableSorter()
-      this.setTableSortable()
-    },
-    setTableSortable: function() {
-      $("#table_ObjectSummary").sortable({
-        axis: "y",
-        cursor: "move",
-        items: ".tr_object",
-        placeholder: "ui-state-highlight",
-        tolerance: "intersect",
-        forcePlaceholderSize: true,
-        stop: function(event, ui) {
-          var objects = []
-          document.querySelectorAll('#table_ObjectSummary .tr_object').forEach(_tr => {
-            objects.push(_tr.getAttribute('data-object_id'))
-          });
-          jeedom.object.setOrder({
-            objects: objects,
-            error: function(error) {
-              jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_objectSummary', 'content'),
-                message: error.message,
-                level: 'danger'
-              })
-            }
-          })
-        }
-      })
-    },
-  }
-}
 (function() {// Self Isolation!
-  var jeeM = jeeFrontEnd.md_objectSummary
-  jeeM.init()
-
   /*Events delegations
   */
   document.getElementById('md_objectSummary').addEventListener('click', function(event) {
@@ -174,7 +137,7 @@ if (!jeeFrontEnd.md_objectSummary) {
             id: id,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+                attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -195,14 +158,14 @@ if (!jeeFrontEnd.md_objectSummary) {
         objects: document.querySelector('#table_ObjectSummary .tr_object').getJeeValues('.objectAttr'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+            attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success : function(data) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_objectSummary', 'content'),
+            attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
             message: '{{Modification sauvegardée avec succès}}',
             level: 'success'
           })

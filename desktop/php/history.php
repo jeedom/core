@@ -7,8 +7,6 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 ?>
-<div id="div_alertHistory"></div>
-
 <div id="div_historyOptions" class="row">
 	<br>
 	<div class="col-lg-3 col-sm-4 col-xs-12">
@@ -23,7 +21,7 @@ $date = array(
 
 	<div class="col-lg-8 col-sm-10 col-xs-12 pull-right">
 		<div class="input-group input-group-sm" style="float: right;">
-			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;" disabled="">
+			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;">
 				<option value="">{{Aucun groupement}}</option>
 				<option value="sum::hour">{{Somme par heure}}</option>
 				<option value="average::hour">{{Moyenne par heure}}</option>
@@ -47,14 +45,14 @@ $date = array(
 				<option value="high::year">{{Maximum par année}}</option>
 			</select>
 
-			<select class="fullCorner input-sm" id="sel_chartType" style="width: 100px;" disabled="">
+			<select class="fullCorner input-sm" id="sel_chartType" style="width: 100px;">
 				<option value="line">{{Ligne}}</option>
 				<option value="area">{{Aire}}</option>
 				<option value="column">{{Barre}}</option>
 			</select>
 
-			<span>{{Variation}} <input type="checkbox" id="cb_derive" disabled="" /></span>
-			<span>{{Escalier}} <input type="checkbox" id="cb_step" disabled="" /></span>
+			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
+			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 			<a id="bt_compare" class="btn btn-sm btn-success disabled roundedLeft"><i class="fas fa-greater-than-equal"></i> {{Comparer}}
 			</a><a id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}" >
 				<i class="fas fa-times"></i> {{Affichage}}

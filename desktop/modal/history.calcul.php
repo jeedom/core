@@ -27,7 +27,7 @@ if (!isConnect()) {
 	</span>
 	</div>
 	<br/><br/>
-	<table class="table table-bordered" id="table_calculHisotry">
+	<table class="table table-condensed" id="table_calculHisotry">
 		<thead>
 			<tr>
 				<th style="width : 150px;">{{Nom}}</th>
@@ -49,7 +49,7 @@ if (!isConnect()) {
 		convertToHumanReadable : true,
 		error: function(error) {
 			jeedomUtils.showAlert({
-				attachTo: jeeDialog.get('#md_historyCalcul', 'content'),
+				attachTo: jeeDialog.get('#md_historyCalcul', 'dialog'),
 				message: error.message,
 				level: 'danger'
 			})
@@ -74,14 +74,14 @@ if (!isConnect()) {
 			configuration: {'calculHistory' : calculHistory},
 			error: function(error) {
 				jeedomUtils.showAlert({
-					attachTo: jeeDialog.get('#md_historyCalcul', 'content'),
+					attachTo: jeeDialog.get('#md_historyCalcul', 'dialog'),
 					message: error.message,
 					level: 'danger'
 				})
 			},
 			success: function() {
 				jeedomUtils.showAlert({
-					attachTo: jeeDialog.get('#md_historyCalcul', 'content'),
+					attachTo: jeeDialog.get('#md_historyCalcul', 'dialog'),
 					message: '{{Sauvegarde effectuée}}',
 					level: 'success'
 				})

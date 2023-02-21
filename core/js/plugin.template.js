@@ -18,6 +18,7 @@ document.body.setAttribute('data-type', 'plugin')
 
 if (!jeeFrontEnd.pluginTemplate) {
   jeeFrontEnd.pluginTemplate = {
+    cmdSortable: null,
     init: function() {
       window.jeeP = this
       window.addCmdToTableDefault = this.addCmdToTableDefault
@@ -77,7 +78,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         document.querySelectorAll('.eqLogic').seen()
       }
       document.querySelectorAll('.eqLogicDisplayCard.active').removeClass('active')
-      document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + _eqlogicId + '"]').addClass('active')
+      document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + _eqlogicId + '"]')?.addClass('active')
 
       domUtils.showLoading()
       jeedom.eqLogic.print({
@@ -101,7 +102,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           if (!isset(data.category.opening)) try { document.querySelector('input[data-l2key="opening"]').checked = false } catch (e) { }
 
           if (typeof printEqLogic === 'function') {
-            setTimeout(() => { printEqLogic(data) })
+            printEqLogic(data)
           }
           document.querySelectorAll('.cmd').remove()
           for (var i in data.cmd) {
@@ -245,7 +246,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         id: document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue(),
         filter: {type: 'info'},
         error: function (error) {
-          $('#div_alert').showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({message: error.message, level: 'danger'})
         },
         success: function (result) {
           newRow.querySelector('.cmdAttr[data-l1key="value"]').insertAdjacentHTML('beforeend', result)
@@ -353,7 +354,7 @@ if (!jeeFrontEnd.pluginTemplate) {
       var id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
       if (id != undefined && id != '') {
         jeeDialog.prompt({
-          value: name,
+          value: name + ' {{copie}}',
           title: '{{Nom de la copie de l\'équipement ?}}',
           callback: function(result) {
             if (result !== null) {
@@ -475,7 +476,7 @@ domUtils(function() {
   try {
     if (typeof Core_noEqContextMenu !== 'undefined') return false
     if (document.querySelector('.nav.nav-tabs') == null) return false
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
+
     var pluginId = document.body.getAttribute('data-page') || getUrlVars('p')
     jeedom.eqLogic.byType({
       type: pluginId,
@@ -572,91 +573,26 @@ domUtils(function() {
 
 //sortable
 domUtils(function() {
-  if ($("#table_cmd").sortable("instance")) {
-    $("#table_cmd").sortable({
-      delay: 350,
-      distance: 20,
-      cursor: "move",
-      axis: 'y',
-      items: "tr.cmd",
-      appendTo: $("#table_cmd tbody"),
-      zIndex: 0,
-      forceHelperSize: true,
-      forcePlaceholderSize: true,
-      placeholder: "sortable-placeholder",
-      start: function(event, ui) {
-        ui.placeholder[0].style.setProperty('height', event.target.querySelector('tbody tr').clientHeight + 20 + 'px', 'important')
-      },
-      stop: function(event, ui) {
-        jeeFrontEnd.modifyWithoutSave = true
-      }
-    })
+  if (typeof jQuery === 'function' && $("#table_cmd").sortable("instance")) {
+    $("#table_cmd").sortable("destroy")
   }
-})
 
-/* Let's see if it break ?
-$("img.lazy").lazyload({
-  event: "sporty"
+  var tableCmd = document.getElementById('table_cmd')
+  if (!tableCmd) return
+  jeeFrontEnd.pluginTemplate.cmdSortable = Sortable.create(tableCmd.tBodies[0], {
+    delay: 100,
+    delayOnTouchOnly: true,
+    touchStartThreshold: 20,
+    draggable: 'tr.cmd',
+    filter: 'a, input, textarea',
+    preventOnFilter: false,
+    direction: 'vertical',
+    onEnd: function (event) {
+      jeeFrontEnd.modifyWithoutSave = true
+    },
+  })
+  tableCmd._sortable = jeeFrontEnd.pluginTemplate.cmdSortable
 })
-
-$("img.lazy").each(function() {
-  var el = $(this)
-  if (el.attr('data-original2') != undefined) {
-    $("<img>", {
-      src: el.attr('data-original'),
-      error: function() {
-        $("<img>", {
-          src: el.attr('data-original2'),
-          error: function() {
-            if (el.attr('data-original3') != undefined) {
-              $("<img>", {
-                src: el.attr('data-original3'),
-                error: function() {
-                  el.lazyload({
-                    event: "sporty"
-                  });
-                  el.trigger("sporty")
-                },
-                load: function() {
-                  el.attr("data-original", el.attr('data-original3'))
-                  el.lazyload({
-                    event: "sporty"
-                  });
-                  el.trigger("sporty")
-                }
-              });
-            } else {
-              el.lazyload({
-                event: "sporty"
-              });
-              el.trigger("sporty")
-            }
-          },
-          load: function() {
-            el.attr("data-original", el.attr('data-original2'))
-            el.lazyload({
-              event: "sporty"
-            });
-            el.trigger("sporty")
-          }
-        });
-      },
-      load: function() {
-        el.lazyload({
-          event: "sporty"
-        });
-        el.trigger("sporty")
-      }
-    });
-  } else {
-    el.lazyload({
-      event: "sporty"
-    });
-    el.trigger("sporty")
-  }
-})
-*/
-
 
 
 //Register events on top of page container:

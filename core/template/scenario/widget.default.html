@@ -1,13 +1,12 @@
-<div data-template="widget">
-  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="eqLogic" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;" value="#eqLogic#"/>
-  <a class="btn btn-default btn-sm listCmdInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fas fa-list-alt"></i></a>
-  <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;">
-    <option value="show">{{Visible}}</option>
-    <option value="hide">{{Masquer}}</option>
-    <option value="activate">{{Activer}}</option>
-    <option value="deactivate">{{Désactiver}}</option>
-  </select>
-</div>
+<!--template/scenario/widget.default-->
+<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="eqLogic" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;" value="#eqLogic#"/>
+<a class="btn btn-default btn-sm listCmdInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fas fa-list-alt"></i></a>
+<select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;">
+  <option value="show">{{Visible}}</option>
+  <option value="hide">{{Masquer}}</option>
+  <option value="activate">{{Activer}}</option>
+  <option value="deactivate">{{Désactiver}}</option>
+</select>
 <script>
   if (document.querySelector('.expressionAttr[data-option_id=#id#][data-uid="#uid#"][data-l1key="options"][data-l2key="action"] option[value="#action#"]')?.innerHTML != '') {
     document.querySelector('.expressionAttr[data-option_id=#id#][data-uid="#uid#"][data-l1key="options"][data-l2key="action"]').value = '#action#'

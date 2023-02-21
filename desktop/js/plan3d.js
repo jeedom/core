@@ -19,20 +19,20 @@ window.registerEvent('click', function(event) {
   }
 })
 if (getUrlVars('fullscreen') == '1') {
-  $('#div_colPlan3d').removeClass('col-lg-10').addClass('col-lg-12')
-  $('#div_colMenu').remove()
-  $('header').hide()
-  $('footer').hide()
-  $('#div_mainContainer').css('margin-top', '-50px')
-  $('#wrap').css('margin-bottom', '0px')
-  $('#div_colPlan3d').height($('html').height())
+  document.getElementById('div_colPlan3d').classList.remove('col-lg-10');
+  document.getElementById('div_colPlan3d').classList.add('col-lg-12');
+  document.getElementById('div_colMenu').style.display='none';
+  document.querySelectorAll('header')[0].hidden = true
+  document.getElementById('div_mainContainer').style.marginTop = '-50px'
+  document.getElementById('wrap').style.marginBottom = '0px'
+  document.getElementById('div_colPlan3d').style.width = window.innerHeight
 } else {
-  $('#div_colPlan3d').height($('html').height() - 50)
+  document.getElementById('div_colPlan3d').style.width = window.innerHeight - 50
 }
 
 var container, scene, camera, renderer, controls
-var SCREEN_WIDTH = $('#div_display3d').width()
-var SCREEN_HEIGHT = $('#div_display3d').height()
+var SCREEN_WIDTH = document.getElementById('div_display3d').style.width
+var SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
 var JEEDOM_OBJECT = []
 var CMDS = {}
 var raycaster = new THREE.Raycaster()
@@ -41,47 +41,51 @@ var EDIT_MODE = 0
 
 display3d(plan3dHeader_id)
 
-$('#bt_editMode').on('click', function() {
+document.getElementById('bt_editMode').addEventListener('click', function(event) {
+  let _target = event.target.closest('#bt_editMode')
   EDIT_MODE = (EDIT_MODE == 0) ? 1 : 0
   if (EDIT_MODE) {
-    $(this).removeClass('btn-default').addClass('btn-success')
-    $('#div_btEdit').show()
+    _target.classList.remove('btn-default')
+    _target.classList.add('btn-success')
+    document.getElementById('div_btEdit').hidden = false
   } else {
-    $(this).removeClass('btn-success').addClass('btn-default')
-    $('#div_btEdit').hide()
+    _target.classList.remove('btn-success')
+    _target.classList.add('btn-default')
+    document.getElementById('div_btEdit').hidden = true
     refresh3dObject()
   }
-})
+  return
+});
 
-$('#bt_showAllObject').on('click', function() {
-  jeedom.plan3d.byplan3dHeader({
-    plan3dHeader_id: plan3dHeader_id,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      for (var i in data) {
-        var object = scene.getObjectByName(data[i].name)
-        if (object) {
-          object.visible = true
+document.getElementById('bt_showAllObject').addEventListener('click', function(event) {
+    jeedom.plan3d.byplan3dHeader({
+      plan3dHeader_id: plan3dHeader_id,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        for (let i in data) {
+          let object = scene.getObjectByName(data[i].name)
+          if (object) {
+            object.visible = true
+          }
         }
       }
-    }
-  })
-})
+    })
+});
 
-$('#bt_plan3dHeaderConfigure').on('click', function() {
+document.getElementById('bt_plan3dHeaderConfigure').addEventListener('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration du plan 3D}}",
     contentUrl: 'index.php?v=d&modal=plan3dHeader.configure&plan3dHeader_id=' + plan3dHeader_id
   })
-})
+});
 
-$('#bt_plan3dHeaderAdd').on('click', function() {
+document.getElementById('bt_plan3dHeaderAdd').addEventListener('click', function(event) {
   jeeDialog.prompt("{{Nom du design 3D ?}}", function(result) {
     if (result !== null) {
       jeedom.plan3d.saveHeader({
@@ -100,11 +104,11 @@ $('#bt_plan3dHeaderAdd').on('click', function() {
       })
     }
   })
-})
+});
 
-$('#bt_plan3dHeaderFullScreen').on('click', function() {
+document.getElementById('bt_plan3dHeaderFullScreen').addEventListener('click', function(event) {
   window.location.href = 'index.php?v=d&fullscreen=1&p=plan3d&plan3d_id=' + plan3dHeader_id
-})
+});
 
 document.body.registerEvent('cmd::update', function(_event) {
   if (EDIT_MODE) {
@@ -125,12 +129,12 @@ document.body.registerEvent('cmd::update', function(_event) {
 
 window.registerEvent('resize', function() {
   if (getUrlVars('fullscreen') == '1') {
-    $('#div_colPlan3d').height($('html').height())
+    document.getElementById('div_colPlan3d').style.width = window.innerHeight
   } else {
-    $('#div_colPlan3d').style('height', '')
+    document.getElementById('div_colPlan3d').style.width = 'auto'
   }
-  SCREEN_WIDTH = $('#div_display3d').width()
-  SCREEN_HEIGHT = $('#div_display3d').height()
+  SCREEN_WIDTH = document.getElementById('div_display3d').style.width
+  SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
   try {
     camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT
     camera.updateProjectionMatrix()
@@ -138,14 +142,12 @@ window.registerEvent('resize', function() {
   } catch (error) { }
 }, false)
 
-window.registerEvent('dblclick', function() {
-  if (!isset(event.path)) return
-  if (!EDIT_MODE || event.path[0].nodeName != 'CANVAS') {
+window.registerEvent('dblclick', function(event) {
+  if (!EDIT_MODE || event.target.tagName != 'CANVAS') {
     return
   }
-  offset = $('#div_display3d').offset()
-  mouse.x = ((event.clientX - offset.left) / SCREEN_WIDTH) * 2 - 1
-  mouse.y = -((event.clientY - offset.top) / SCREEN_HEIGHT) * 2 + 1
+  mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / SCREEN_WIDTH) * 2 - 1
+  mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / SCREEN_HEIGHT) * 2 + 1
   raycaster.setFromCamera(mouse, camera)
   var intersects = raycaster.intersectObjects(scene.children, true)
   if (intersects.length > 0 && intersects[0].object.name != '') {
@@ -161,14 +163,12 @@ window.registerEvent('click', handleClick3d, false)
 window.registerEvent('touchend', handleClick3d, false)
 
 function handleClick3d(event) {
-  if (!isset(event.path)) return
-  if (!event.path[0] || event.path[0].nodeName != 'CANVAS') {
+  if (event.target.tagName != 'CANVAS') {
     return
   }
-  $('#md_plan3dWidget').empty()
-  offset = $('#div_display3d').offset()
-  mouse.x = ((event.clientX - offset.left) / SCREEN_WIDTH) * 2 - 1
-  mouse.y = -((event.clientY - offset.top) / SCREEN_HEIGHT) * 2 + 1
+  document.getElementById('md_plan3dWidget').empty()
+  mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / SCREEN_WIDTH) * 2 - 1
+  mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / SCREEN_HEIGHT) * 2 + 1
   raycaster.setFromCamera(mouse, camera)
   var intersects = raycaster.intersectObjects(scene.children, true)
   if (intersects.length > 0) {
@@ -184,7 +184,8 @@ function handleClick3d(event) {
       },
       success: function(data) {
         if (data.html) {
-          $('#md_plan3dWidget').empty().append(data.html)
+          document.getElementById('md_plan3dWidget').empty()
+          document.getElementById('md_plan3dWidget').insertAdjacentHTML('beforeend', data.html)
           jeedomUtils.positionEqLogic()
         }
       }
@@ -244,7 +245,7 @@ function display3d(_id) {
           var objLoader = new THREE.OBJLoader()
           objLoader.setMaterials(materials)
           objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
-            $('#span_loadPercent3dPlan').remove()
+            document.getElementById('span_loadPercent3dPlan')?.remove()
             var bBox = new THREE.Box3().setFromObject(object)
             camera.position.set(bBox.max.x * 1.3, bBox.max.y * 1.3, bBox.max.z * 1.3)
             object.position.x = -(bBox.max.x - bBox.min.x) / 2
@@ -255,14 +256,14 @@ function display3d(_id) {
             add3dObjects(_id)
             domUtils.hideLoading()
           }, function(progress) {
-            $('#span_loadPercent3dPlan').remove()
-            $('body').append('<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">2/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+            document.getElementById('span_loadPercent3dPlan')?.remove()
+            document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">2/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
           }, function(error) {
             console.log(error)
           })
         }, function(progress) {
-          $('#span_loadPercent3dPlan').remove()
-          $('body').append('<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">1/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+          document.getElementById('span_loadPercent3dPlan')?.remove()
+          document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">1/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
         }, function(error) {
           console.log(error)
         })
@@ -270,7 +271,7 @@ function display3d(_id) {
         domUtils.showLoading()
         var objLoader = new THREE.OBJLoader()
         objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
-          $('#span_loadPercent3dPlan').remove()
+          document.getElementById('span_loadPercent3dPlan')?.remove()
           var bBox = new THREE.Box3().setFromObject(object)
           camera.position.set(bBox.max.x * 1.3, bBox.max.y * 1.3, bBox.max.z * 1.3)
           object.position.x = -(bBox.max.x - bBox.min.x) / 2
@@ -281,8 +282,8 @@ function display3d(_id) {
           add3dObjects(_id)
           domUtils.hideLoading()
         }, function(progress) {
-          $('#span_loadPercent3dPlan').remove()
-          $('body').append('<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 51%;">' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+          document.getElementById('span_loadPercent3dPlan')?.remove()
+          document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 51%;">' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
         }, function(error) {
           console.log(error)
         })

@@ -14,19 +14,19 @@
     </center>
   </div>
   <script>
-    $('.scenario[data-scenario_id=#id#] .changeScenarioState').on('click', function() {
-      document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').empty().innerHTML = '<i class="fa fa-spinner fa-spin"></i>'
+    document.querySelector('.scenario[data-scenario_id="#id#"] .changeScenarioState').addEventListener('click', function(event) {
+      document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').innerHTML = '<i class="fa fa-spinner fa-spin"></i>'
       jeedom.scenario.changeState({
         id: this.closest('.scenario').getAttribute('data-scenario_id'),
         state: this.getAttribute('data-state'),
         error: function (error) {
           jeedomUtils.showAlert({message: error.message, level: 'danger'})
-          document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').empty().innerHTML = '<i class="fa fa-times"></i>'
+          document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').innerHTML = '<i class="fa fa-times"></i>'
         }
       })
     })
 
-    $('.scenario[data-scenario_id=#id#] .scenario_ViewLog').off('click').on('click', function (event) {
+    document.querySelector('.scenario[data-scenario_id="#id#"] .scenario_ViewLog').addEventListener('click', function (event) {
       jeeDialog.dialog({
         id: 'jee_modal2',
         title: "{{Log d'exécution du scénario}}",
@@ -35,14 +35,15 @@
     })
 
     jeedom.scenario.update['#id#'] = function(_options) {
+      var scEl = document.querySelector('.scenario[data-scenario_id="#id#"]')
       if (isset(_options.name)) {
-        $('.scenario[data-scenario_id=#id#] .widget-name a').empty().append(_options.name)
+        scEl.querySelector('.widget-name a').innerHTML = _options.name
       }
 
       if (typeof _options.icon != 'undefined' && _options.icon != '') {
-        $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append(_options.icon)
+        scEl.querySelector('.iconCmd').innerHTML = _options.icon
       }
-      $('.scenario[data-scenario_id=#id#] .changeScenarioState').hide()
+      scEl.querySelector('.changeScenarioState').unseen()
       if (!isset(_options.isActive)) {
         _options.isActive = '#isActive#'
       }
@@ -50,22 +51,22 @@
         _options.state = '#state#'
       }
       if (typeof _options.isActive == 'undefined' || _options.isActive == '1') {
-        $('.scenario[data-scenario_id=#id#]').removeClass('inactive')
+        scEl.removeClass('inactive')
         if (_options.state == 'in progress' || _options.state == 'starting') {
-          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('<i class="fa fa-spinner fa-spin"></i>')
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=stop]').show()
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show()
+          scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '<i class="fa fa-spinner fa-spin"></i>')
+          scEl.querySelector('.changeScenarioState[data-state=stop]').seen()
+          scEl.querySelector('.changeScenarioState[data-state=deactivate]').seen()
         } else {
-          $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#')
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=start]').show()
-          $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=deactivate]').show()
+          scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '#icon#')
+          scEl.querySelector('.changeScenarioState[data-state=start]').seen()
+          scEl.querySelector('.changeScenarioState[data-state=deactivate]').seen()
         }
       } else {
-        $('.scenario[data-scenario_id=#id#] .iconCmd').empty().append('#icon#')
-        $('.scenario[data-scenario_id=#id#] .changeScenarioState[data-state=activate]').show()
-        $('.scenario[data-scenario_id=#id#]').addClass('inactive')
+        scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '#icon#')
+        scEl.querySelector('.changeScenarioState[data-state=activate]').seen()
+        scEl.addClass('inactive')
       }
-      $('#lastLaunch#id#').html(_options.lastLaunch)
+      document.getElementById('lastLaunch#id#').innerHTML = _options.lastLaunch
     }
     jeedom.scenario.update['#id#']({isActive: '#isActive#', state: '#state#', lastLaunch: '#lastLaunch#', icon: '#icon#', name: '#name#'})
   </script>

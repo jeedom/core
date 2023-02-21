@@ -48,7 +48,7 @@ try {
   
   if (init('action') == 'deleteAll') {
     unautorizedInDemo();
-    ajax::success(timeline::cleaning(true));
+    ajax::success(timeline::clean(true));
   }
   
   if (init('action') == 'listFolder') {

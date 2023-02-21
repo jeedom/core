@@ -20,7 +20,7 @@
 */
 var domUtils = function() {
   if (typeof arguments[0] == 'function') {
-    if (domUtils._ajaxCalling <= 0 && domUtils._DOMloading <= 0) {
+    if (domUtils._DOMloading <= 0) {
       arguments[0].apply(this)
       return
     }
@@ -29,8 +29,8 @@ var domUtils = function() {
 }
 Object.assign(domUtils, {
   __description: 'DOM related Jeedom functions.',
-  ajaxCalling: 1,
-  DOMloading: 1,
+  DOMloading: 0,
+  _DOMloading: 0,
   loadingTimeout: null,
   ajaxSettings: {
     async: true,
@@ -51,30 +51,18 @@ domUtils.DOMReady = function() {
     try {
       f.apply(this)
     } catch(e) { }
-
   }
 }
 
-Object.defineProperty(domUtils, 'ajaxCalling', {
-  enumerable: true,
-  get: function() {
-    return this._ajaxCalling
-  },
-  set: function(number) {
-    this._ajaxCalling = number < 0 ? 0 : number
-    if (number <= 0 && domUtils._DOMloading <= 0) {
-      domUtils.DOMReady()
-    }
-  }
-})
 Object.defineProperty(domUtils, 'DOMloading', {
   enumerable: true,
   get: function() {
     return this._DOMloading
   },
   set: function(number) {
+    if (number === 1) domUtils.showLoading()
     this._DOMloading = number < 0 ? 0 : number
-    if (number <= 0 && domUtils._ajaxCalling <= 0) {
+    if (this._DOMloading <= 0) {
       domUtils.DOMReady()
     }
   }
@@ -83,8 +71,7 @@ Object.defineProperty(domUtils, 'DOMloading', {
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() { //document.readyState still interactive
     domUtils.DOMloading = domUtils._DOMloading || 0
-    domUtils.ajaxCalling = domUtils._ajaxCalling || 0
-  }, 100)
+  }, 200)
 })
 
 /* Extension Functions
@@ -340,8 +327,8 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
     }
     return
   }
-  let script = document.createElement('script')
-  script.type = (_scripts[_idx].type) ? _scripts[_idx].type : "text/javascript"
+  var script = document.createElement('script')
+  script.type = _scripts[_idx].type || "text/javascript"
   Array.prototype.forEach.call(_scripts[_idx].attributes, function(attr) {
     script.setAttribute(attr.nodeName, attr.nodeValue)
   })
@@ -353,12 +340,12 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
         _scripts[_idx].remove()
         domUtils.loadScript(_scripts, _idx + 1, _callback)
       } else {
+        domUtils.headInjexted.push(_scripts[_idx].src)
+        _scripts[_idx].remove()
         script.onload = function() {
           domUtils.loadScript(_scripts, _idx + 1, _callback)
         }
-        _scripts[_idx].remove()
-        document.head.appendChild(script)
-        domUtils.headInjexted.push(_scripts[_idx].src)
+        document.head.append(script)
       }
     } else {
       script.onload = function() {
@@ -369,8 +356,32 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
   } else {
     script.text = _scripts[_idx].text
     _scripts[_idx].replaceWith(script)
-    domUtils.loadScript(_scripts,_idx + 1, _callback)
+    domUtils.loadScript(_scripts, _idx + 1, _callback)
   }
+}
+
+
+//Use new html document to load scripts synch/ordered
+domUtils.DOMparseHTML = function(_htmlString) {
+  var frag = document.createRange().createContextualFragment(_htmlString)
+  var node = null
+  var nodeChilds = []
+  frag.childNodes.forEach(_child => {
+    if (!node && _child.tagName != undefined && _child.tagName !== 'SCRIPT') {
+      node = _child
+    } else {
+      nodeChilds.push(_child)
+    }
+  })
+  if (!node) {
+    return null
+  }
+
+  if (nodeChilds.length > 0) {
+    node.append(...nodeChilds)
+  }
+
+  return node
 }
 
 //Scripts with src won't load until inserted in DOM
@@ -378,12 +389,14 @@ domUtils.parseHTML = function(_htmlString) {
   let newEl = document.createElement('template')
   newEl.innerHTML = _htmlString
 
+  domUtils.DOMloading += 1
   newEl.content.querySelectorAll('script').forEach(function(element) {
     let script = document.createElement('script')
     script.setAttribute('injext', '1')
     element.src != '' ? script.src = element.src : script.text = element.text
     element.replaceWith(script)
   })
+  domUtils.DOMloading -= 1
 
   return newEl.content
 }
@@ -391,7 +404,7 @@ domUtils.parseHTML = function(_htmlString) {
 Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_htmlString)) return this.innerHTML
   if (!isset(_append) || _append === false) this.empty()
-  domUtils.DOMloading ++
+  domUtils.DOMloading += 1
   let template = document.createElement('template')
   template.innerHTML = _htmlString
 
@@ -407,23 +420,31 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
       }
     }
   })
-  this.appendChild(template.content)
+  this.append(template.content)
 
   let self = this
-  domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
-    domUtils.DOMloading --
+  if (this.querySelectorAll('script').length > 0) {
+    domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
+      domUtils.DOMloading -= 1
+      if (typeof _callback === 'function') {
+        return _callback.apply(self)
+      } else {
+        return self
+      }
+    }, document.head)
+  } else {
+    domUtils.DOMloading -= 1
     if (typeof _callback === 'function') {
       return _callback.apply(self)
     } else {
       return self
     }
-  }, document.head)
-  return self
+  }
 }
 
 Element.prototype.load = function(_path, _callback) {
   let self = this
-  domUtils.DOMloading ++
+  domUtils.DOMloading += 1
   domUtils.ajax({
     url: _path,
     async: domUtils.ajaxSettings.async,
@@ -438,7 +459,7 @@ Element.prototype.load = function(_path, _callback) {
     },
     success: function(rawHtml) {
       self.html(rawHtml, false, function() {
-        domUtils.DOMloading --
+        domUtils.DOMloading -= 1
         if (typeof _callback === 'function') {
           _callback(self)
         }
@@ -468,16 +489,6 @@ domUtils.handleAjaxError = function(_request, _status, _error, _params) {
 domUtils.ajaxSetup = function(_params) {
   for (const key in _params) {
     domUtils.ajaxSettings[key] = _params[key]
-  }
-}
-
-domUtils.countAjax = function(_type, _global) {
-  if (_global === false) return
-  if (_type == 0) {
-    domUtils.ajaxCalling ++
-    if (domUtils.ajaxCalling == 1) domUtils.showLoading()
-  } else {
-    domUtils.ajaxCalling --
   }
 }
 
@@ -523,7 +534,7 @@ domUtils.ajax = function(_params) {
   _params.timeoutRetry = isset(_params.timeoutRetry) ? _params.timeoutRetry : 0
   _params.processData = isset(_params.processData) ? _params.processData : true
 
-  domUtils.countAjax(0, _params.global)
+  if (_params.global) domUtils.DOMloading += 1
 
   let isGet = _params.type.toLowerCase() == 'get' ? true : false
   let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
@@ -541,10 +552,10 @@ domUtils.ajax = function(_params) {
     request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))
     if (request.status === 200) { //Answer ok
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       domUtils.handleAjaxError(response, response.status, response.statusText)
       if (_params.onError) _params.onError(error)
       _params.onError('', '', error)
@@ -568,7 +579,7 @@ domUtils.ajax = function(_params) {
     })
     .then( response => {
       if (!response.ok) {
-        domUtils.countAjax(1, _params.global)
+        if (_params.global) domUtils.DOMloading -= 1
         throw response
       }
       if (isJson) {
@@ -581,12 +592,12 @@ domUtils.ajax = function(_params) {
     .then( obj => {
       return _params.success(obj)
     }).then(async function() {
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       _params.complete()
       return
     })
     .catch( error => {
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       if (typeof error.text === 'function') { //Catched from fetch return
         error.text().then(errorMessage => {
           if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error
@@ -607,7 +618,12 @@ domUtils.ajax = function(_params) {
       } else { //Catched from fetch error
         if (error.code == 20) return //NetworkError when attempting to fetch resource.
         if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
-
+        if (error.name == 'TypeError'){
+          console.warn('Error JS > TypeError > ',error)
+        }
+        if (error.name == 'ReferenceError'){
+          console.warn('Error Reference > ReferenceError > '+ error)
+        }
         if (!_params.noDisplayError) {
           domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
           if (_params.onError) {
@@ -853,7 +869,14 @@ function json_encode(a) {
   }
 }
 
-
+function isInWindow(_el) {
+  var { top, bottom } = _el.getBoundingClientRect()
+  var vHeight = (window.innerHeight || document.documentElement.clientHeight)
+  return (
+    (top > 0 || bottom > 0) &&
+    top < vHeight
+  )
+}
 
 function getBool(val) {
   if (val === undefined) return false

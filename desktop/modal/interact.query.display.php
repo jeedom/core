@@ -28,7 +28,7 @@ if (count($interactQueries) == 0) {
 ?>
 
 <div id="md_displayInteractQuery" data-modalType="md_displayInteractQuery">
-  <table class="table table-bordered table-condensed" id="table_interactQuery" style="width:100%">
+  <table id="table_interactQuery" class="table table-condensed" style="width:100%">
     <thead>
       <tr>
         <th>{{Phrase}}</th>
@@ -46,7 +46,3 @@ if (count($interactQueries) == 0) {
     </tbody>
   </table>
 </div>
-
-<script>
-  jeedomUtils.initTableSorter()
-</script>

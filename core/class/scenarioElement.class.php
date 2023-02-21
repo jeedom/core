@@ -150,7 +150,10 @@ class scenarioElement {
 						$expresssion_str = $expression->getExpression();
 					}
 				}
-				message::add('scenario', __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName() . __(', résultat : ', __FILE__) . $result, '', 'invalidExprScenarioElement::' . $this->getId());
+				$message = __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName() . __(', résultat : ', __FILE__) . $result;
+				$action = '<a href="/' . $_scenario->getLinkToConfiguration() . '">' . __('Scenario', __FILE__) . '</a>';
+				$logicalId = 'invalidExprScenarioElement::' . $this->getId();
+				message::add('scenario', $message, $action, $logicalId);
 				return;
 			}
 			if ($result) {

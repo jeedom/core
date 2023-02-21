@@ -89,7 +89,7 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#span_plugin_installation').closest('.panel').unseen()
           } else {
             self.dom_container.querySelector('#span_plugin_installation').innerHTML = data.installation
-            self.dom_container.closest('.panel').seen()
+            self.dom_container.querySelector('#span_plugin_installation').closest('.panel').seen()
           }
 
           if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.version)) {
@@ -161,7 +161,7 @@ if (!jeeFrontEnd.plugin) {
 
           //top right buttons:
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
-          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i> {{Rafraichir}}</a>')
+          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
           if(jeedom.theme.mbState == 0) {
           if (data.update.configuration && data.update.configuration.version == 'beta') {
             if (isset(data.documentation_beta) && data.documentation_beta != '') {
@@ -245,8 +245,8 @@ if (!jeeFrontEnd.plugin) {
           if (data.checkVersion != -1) {
             var html = '<form class="form-horizontal"><fieldset>'
             html += '<div class="form-group">'
-            html += '<label class="col-sm-2 control-label">{{Statut}}</label>'
-            html += '<div class="col-sm-4">'
+            html += '<label class="col-sm-2 col-xs-6 control-label">{{Statut}}</label>'
+            html += '<div class="col-sm-4 col-xs-6">'
             if (data.activate == 1) {
               self.dom_container.querySelector('#div_plugin_toggleState').closest('.panel').removeClass('panel-default', 'panel-danger').addClass('panel-success')
               html += '<span class="label label-success">{{Actif}}</span>'
@@ -255,8 +255,8 @@ if (!jeeFrontEnd.plugin) {
               html += '<span class="label label-danger">{{Inactif}}</span>'
             }
             html += '</div>'
-            html += '<label class="col-sm-2 control-label">{{Action}}</label>'
-            html += '<div class="col-sm-4">'
+            html += '<label class="col-sm-2 col-xs-6 control-label">{{Action}}</label>'
+            html += '<div class="col-sm-4 col-xs-6">'
             if (data.activate == 1) {
               html += '<a class="btn btn-danger btn-xs togglePlugin" data-state="0" data-plugin_id="' + data.id + '" style="position:relative;top:-2px;"><i class="fas fa-times"></i> {{Désactiver}}</a>'
             } else {
@@ -288,7 +288,7 @@ if (!jeeFrontEnd.plugin) {
             log_conf += '<label class="col-sm-3 control-label">{{Logs}}</label>'
             log_conf += '<div class="col-sm-9">'
             for (var j in data.logs[i].log) {
-              log_conf += '<a class="btn btn-info bt_plugin_conf_view_log" data-slaveId="' + data.logs[i].id + '" data-log="' + data.logs[i].log[j] + '"><i class="fas fa-paperclip"></i>  ' + data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1) + '</a> '
+              log_conf += '<a class="btn btn-info btn-sm bt_plugin_conf_view_log" data-slaveId="' + data.logs[i].id + '" data-log="' + data.logs[i].log[j] + '"><i class="fas fa-paperclip"></i>  ' + data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1) + '</a> '
             }
             log_conf += '</div>'
             log_conf += '</div>'
@@ -299,7 +299,7 @@ if (!jeeFrontEnd.plugin) {
           log_conf += '<div class="form-group">'
           log_conf += '<label class="col-sm-3 control-label">{{Heartbeat (min)}}</label>'
           log_conf += '<div class="col-sm-2">'
-          log_conf += '<input class="configKey form-control" data-l1key="heartbeat::delay::' + data.id + '" />'
+          log_conf += '<input class="configKey form-control input-sm" data-l1key="heartbeat::delay::' + data.id + '" />'
           log_conf += '</div>'
           if (data.hasOwnDeamon) {
             log_conf += '<label class="col-sm-3 control-label">{{Redémarrer démon}}</label>'
@@ -311,22 +311,20 @@ if (!jeeFrontEnd.plugin) {
           log_conf += '</form>'
 
           self.dom_container.querySelector('#div_plugin_log').empty().insertAdjacentHTML('beforeend', log_conf)
-
-          var divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
           var dom_divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
-          divPluginConfiguration.empty()
+          dom_divPluginConfiguration.empty()
           if (data.checkVersion != -1) {
-            if (data.configurationPath != '' && data.activate == 1) {
-              divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
-                if (divPluginConfiguration.innerHTML.trim() == '') {
-                  divPluginConfiguration.closest('.panel').unseen()
+            if (data.configurationPath != '' && data.activate == '1') {
+              dom_divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
+                if (dom_divPluginConfiguration.innerHTML.trim() == '') {
+                  dom_divPluginConfiguration.closest('.panel').unseen()
                   return
                 } else {
-                  divPluginConfiguration.closest('.panel').seen()
+                  dom_divPluginConfiguration.closest('.panel').seen()
                 }
                 jeedom.config.load({
                   configuration: dom_divPluginConfiguration.getJeeValues('.configKey')[0],
-                  plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
+                  plugin: data.id,
                   error: function(error) {
                     jeedomUtils.showAlert({
                       message: error.message,
@@ -343,9 +341,10 @@ if (!jeeFrontEnd.plugin) {
             } else {
               dom_divPluginConfiguration.closest('.panel').unseen()
             }
+
             jeedom.config.load({
               configuration: self.dom_container.querySelector('#div_plugin_panel').getJeeValues('.configKey')[0],
-              plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
+              plugin: data.id,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -357,9 +356,10 @@ if (!jeeFrontEnd.plugin) {
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
+
             jeedom.config.load({
               configuration: self.dom_container.querySelector('#div_plugin_functionality').getJeeValues('.configKey')[0],
-              plugin: self.dom_container.querySelector('#span_plugin_id').innerHTML,
+              plugin: data.id,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -371,6 +371,7 @@ if (!jeeFrontEnd.plugin) {
                 jeeFrontEnd.modifyWithoutSave = false
               }
             })
+
             jeedom.config.load({
               configuration: self.dom_container.querySelector('#div_plugin_log').getJeeValues('.configKey')[0],
               error: function(error) {
@@ -613,7 +614,7 @@ document.getElementById('div_confPlugin')?.addEventListener('click', function(ev
       if (result) {
         jeedomUtils.hideAlert()
         jeedom.update.remove({
-          id: event.getAttribute('data-market_logicalId'),
+          id: _target.getAttribute('data-market_logicalId'),
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,

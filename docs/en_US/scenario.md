@@ -368,7 +368,7 @@ Several functions are available for the equipment :
 
 - ``name(type,commande)`` : Used to retrieve the name of the command, equipment or object. Kind : cmd, eqLogic or object.
 
-- ``lastCommunication(equipment,[format])`` : Returns the date of the last communication for the device given as a parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)). A return of -1 means that the equipment cannot be found.
+- ``lastCommunication(equipment,[format])`` : Returns the date of the last information feedback for the equipment given in parameter, the 2nd optional parameter is used to specify the return format (details [here](https://www.php.net/manual/fr/datetime.format.php)). A return of -1 means that the equipment cannot be found. The date of last information is calculated in relation to the information type order and their date of collection.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Returns a color calculated relative to a value in the interval color_start / color_end. The value must be between min_value and max_value.
 
@@ -454,6 +454,11 @@ And practical examples :
 | ``convertDuration(3600)``             | Returns 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Returns the ignition time in Days / Hours / minutes of the time of transition to state 1 of the module since the 1st day of the month |
 
+
+### Miscellaneous functions
+
+- ``sun(elevation)`` : Gives in ° the elevation of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
+- ``sun(azimuth)`` : Gives in ° the azimuth of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
 
 ### Specific commands
 

@@ -174,6 +174,14 @@ div.jeeDialogContent div[id^="md_"] {
   width: 100%;
   height: 100%;
 }
+div.jeeDialogContent div[id^="md_"] > .input-group {
+  max-width: calc(100% - 7px); /*Chrome fix*/
+}
+div.jeeDialogContent .form-group { /*Chrome fix*/
+  margin-left: 0;
+  margin-right: 0;
+}
+
 div.jeeDialog.jeeDialogAlert > div.jeeDialogContent,
 div.jeeDialog.jeeDialogConfirm > div.jeeDialogContent,
 div.jeeDialog.jeeDialogPrompt > div.jeeDialogContent {
@@ -267,24 +275,28 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
   top: 4px;
   right: 10px;
 }
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  background: transparent;
+  background-image: url('../../core/img/win_icons.png');
+  background-size: 72px 18px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  padding: 0;
+}
 [data-theme*="Light"] div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
   filter: invert(1);
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btClose {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0px;
-  background-size: 72px 18px;
+  background-position: -55px 0px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -36px 0px;
-  background-size: 72px 18px;
+  background-position: -36px 0px;
 }
 div.jeeDialog.jeeDialogMain[data-maximize="1"] > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -18px 0px;
-  background-size: 72px 18px;
+  background-position: -18px 0px;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.minimize {
-  background: url('../../core/img/win_icons.png') no-repeat scroll 0 0;
-  background-size: 72px 18px;
+  background-position: 0 0;
 }
 div.jeeDialog.jeeDialogMain[data-maximize="1"] {
   height: calc(100% - 50px) !important;
@@ -334,6 +346,9 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
   padding: 15px 0;
   overflow: auto;
 }
+div.jeeDialog.jeeDialogMain.hasfooter > div.jeeDialogContent {
+  height: calc(100% - 80px);
+}
 div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
   right: 40px;
   top: 10px;
@@ -368,7 +383,7 @@ div.jeeresizer.top {
   left: 0;
   width: 100%;
   height: 7px;
-  cursor: n-resize;
+  cursor: n-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.top-right,
 div.jeeresizer.top-right {
@@ -376,7 +391,7 @@ div.jeeresizer.top-right {
   right: 0;
   width: 7px;
   height: 7px;
-  cursor: ne-resize;
+  cursor: ne-resize !important;
   z-index: 260;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.right,
@@ -385,7 +400,7 @@ div.jeeresizer.right {
   right: 0;
   width: 7px;
   height: 100%;
-  cursor: e-resize;
+  cursor: e-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.bottom-right,
 div.jeeresizer.bottom-right {
@@ -393,7 +408,7 @@ div.jeeresizer.bottom-right {
   right: 0;
   width: 7px;
   height: 7px;
-  cursor: se-resize;
+  cursor: se-resize !important;
   z-index: 260;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.bottom,
@@ -402,7 +417,7 @@ div.jeeresizer.bottom {
   left: 0;
   width: 100%;
   height: 7px;
-  cursor: s-resize;
+  cursor: s-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.bottom-left,
 div.jeeresizer.bottom-left {
@@ -410,7 +425,7 @@ div.jeeresizer.bottom-left {
   left: 0;
   width: 7px;
   height: 7px;
-  cursor: sw-resize;
+  cursor: sw-resize !important;
   z-index: 260;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.left,
@@ -419,7 +434,7 @@ div.jeeresizer.left {
   left: 0;
   width: 7px;
   height: 100%;
-  cursor: w-resize;
+  cursor: w-resize !important;
 }
 div.jeeDialog.jeeDialogMain > div.resizer.top-left,
 div.jeeresizer.top-left {
@@ -427,8 +442,20 @@ div.jeeresizer.top-left {
   left: 0;
   width: 7px;
   height: 7px;
-  cursor: nw-resize;
+  cursor: nw-resize !important;
   z-index: 260;
+}
+
+div.jeeDialogMain table.dataTable {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width:100% !important;
+}
+
+table.stickyHead > thead {
+  position: sticky;
+  top: -15px;
+  z-index: 5;
 }
 
 /* _________________jeeCtxMenu*/
@@ -516,6 +543,56 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
   display: inline-flex;
   padding: 5px;
 }
+
+/* _________________3rdparty ispin*/
+div.ispin-wrapper {
+  padding-right: 30px;
+  background: var(--form-bg-color);
+}
+div.ispin-wrapper button.ispin-button {
+  width: 20px !important;
+}
+div.ispin-wrapper button.ispin-button::before {
+  border-bottom-color: var(--txt-color) !important;
+  border-top-color: var(--txt-color) !important;
+  -webkit-transform: translateY(-200%) !important;
+  transform: translateY(-200%) !important;
+}
+div.ispin-wrapper button.ispin-button-inc::before {
+  --top: -5px !important;
+}
+div.ispin-wrapper button.ispin-button-dec::before {
+  --top: 8px !important;
+}
+
+
+/* _________________3rdparty tree.js */
+div.tj_container span.tj_description.selected {
+  background: var(--btn-default-color) !important;
+}
+div.tj_container .tj_description.selected .tj_icon > i.cursor,
+div.tj_container .tj_description.selected .tj_mod_icon > i.cursor {
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container .tj_container span.tj_description.selected {
+  background: var(--btn-default-color) !important;
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container .tj_description {
+  cursor: pointer !important;
+}
+div.tj_container span.tj_description:hover {
+  background: var(--placeholder-color) !important;
+}
+div.tj_container span.tj_description:hover,
+div.tj_container span.tj_description:hover i {
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container li span.tj_description.tj_leaf {
+  margin-left: 0;
+}
+
+
 
 /* ________________________________________MEDIA QUERIES */
 @media screen and (max-width: 768px) {

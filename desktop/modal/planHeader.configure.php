@@ -84,12 +84,12 @@ sendVarToJS([
             <div class="form-group">
               <label class="col-lg-4 control-label">{{Image}}</label>
               <div class="col-lg-8">
-                <span class="btn btn-default btn-file" style="position:absolute;">
+                <span class="btn btn-default btn-file btn-sm" style="position:absolute;">
                   <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
                 </span>
                 <span class="objectImg">
                   <a class="btn btn-sm btn-danger" id="bt_removeBackgroundImage" style="position:absolute;bottom:0;"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-                  <img src="" height="160px" />
+                  <img src="" height="160px" style="min-height: 60px;"/>
                 </span>
               </div>
             </div>
@@ -113,7 +113,7 @@ sendVarToJS([
     <div role="tabpanel" class="tab-pane" id="components">
       <form class="form-horizontal">
         <fieldset>
-          <table class="table table-condensed table-bordered">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th>{{ID}}</th>
@@ -179,8 +179,9 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
       this.setUploadFile()
     },
     displayBackground: function(_path, _update) {
+      var isObject = Object.prototype.toString.call(jeephp2js.md_planHeaderConfigure_planHeader.image) === '[object Object]'
       if (!isset(_path)) {
-        if (isset(jeephp2js.md_planHeaderConfigure_planHeader.image) && jeephp2js.md_planHeaderConfigure_planHeader.image.sha512 != '') {
+        if (isObject && jeephp2js.md_planHeaderConfigure_planHeader.image.sha512 != '') {
           var _path = '../../data/plan/planHeader' + jeephp2js.md_planHeaderConfigure_Id + '-' + jeephp2js.md_planHeaderConfigure_planHeader.image.sha512 + '.' + jeephp2js.md_planHeaderConfigure_planHeader.image.type
         } else {
           document.querySelector('#md_planHeaderConfigure .objectImg').unseen()
@@ -222,7 +223,7 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         done: function(e, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
@@ -246,17 +247,17 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
     if (_target = event.target.closest('.bt_removePlanComposant')) {
       var tr = _target.closest('tr')
       jeedom.plan.remove({
-        id : tr.attr('data-id'),
+        id : tr.getAttribute('data-id'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: '{{Composant supprimée}}',
             level: 'success'
           })
@@ -293,14 +294,14 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         planHeader_id: jeephp2js.md_planHeaderConfigure_Id,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           });
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: '{{Image supprimée}}',
             level: 'success'
           })
@@ -316,18 +317,17 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         planHeader: document.getElementById('div_planHeaderConfigure').getJeeValues('.planHeaderAttr')[0],
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
             message: '{{Design sauvegardé}}',
             level: 'success'
           })
-          $('#div_pageContainer').data('editOption.state', false)
           jeedomUtils.loadPage('index.php?v=d&p=plan&plan_id=' + jeephp2js.md_planHeaderConfigure_Id)
         }
       })

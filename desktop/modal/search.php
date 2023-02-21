@@ -111,12 +111,12 @@ if (!isConnect()) {
   <div class="form-horizontal">
     <legend><i class="fas fa-search"></i> {{Résultats}}</legend>
     <div>
-      <table id="table_ScenarioSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_ScenarioSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="fas fa-cogs"></i> {{Scénario}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -125,12 +125,12 @@ if (!isConnect()) {
       </table>
     </div>
     <div>
-      <table id="table_DesignSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_DesignSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="fas fa-paint-brush"></i> {{Design}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -139,12 +139,12 @@ if (!isConnect()) {
       </table>
     </div>
     <div>
-      <table id="table_ViewSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_ViewSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="far fa-image"></i> {{Vue}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -153,12 +153,12 @@ if (!isConnect()) {
       </table>
     </div>
     <div>
-      <table id="table_InteractSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_InteractSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="far fa-comments"></i> {{Interaction}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -167,12 +167,12 @@ if (!isConnect()) {
       </table>
     </div>
     <div>
-      <table id="table_EqlogicSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_EqlogicSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="icon divers-svg"></i></i> {{Equipement}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -181,12 +181,12 @@ if (!isConnect()) {
       </table>
     </div>
     <div>
-      <table id="table_CmdSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_CmdSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="fas fa-terminal"></i></i> {{Commande}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -196,12 +196,12 @@ if (!isConnect()) {
     </div>
 
     <div style="display:none;">
-      <table id="table_NoteSearch" class="table table-condensed table-bordered tablesorter shadowed" style="width:100%; min-width:100%;">
+      <table id="table_NoteSearch" class="table table-condensed dataTable shadowed" style="width:100%; min-width:100%;">
         <thead>
           <tr>
             <th><i class="fas fa-sticky-note"></i></i> {{Note}}</th>
-            <th>{{ID}}</th>
-            <th data-sorter="false" data-filter="false">{{Actions}}</th>
+            <th style="width:250px;">{{ID}}</th>
+            <th data-sortable="false" style="width:120px;">{{Actions}}</th>
           </tr>
         </thead>
         <tbody>
@@ -234,27 +234,15 @@ if (!jeeFrontEnd.md_search) {
         this.tableNoteSearch
       ]
 
-      jeedomUtils.initTableSorter()
-      this.tableStore.forEach(_table => {
-        _table.config.widgetOptions.resizable_widths = ['', '100px', '100px']
-        _table.triggerEvent('applyWidgets')
-        _table.triggerEvent('resizableReset')
-        _table.querySelector('thead tr').children[0].triggerEvent('sort')
-      })
+      jeedomUtils.initDataTables('#md_search', false, false)
       this.modalOptions = jeeDialog.get('#table_ScenarioSearch')
 
-      if (this.modalOptions) {
-        this.modalOptions.options.onResize = function(event) {
-          self.updateTableSorters()
-        }
-      }
-
       jeedomUtils.initTooltips()
-      this.updateTableSorters()
     },
     emptyResultTables: function() {
       this.tableStore.forEach(_table => {
         _table.tBodies[0].empty()
+        _table._dataTable.refresh()
       })
     },
     searchFor: function() {
@@ -264,11 +252,6 @@ if (!jeeFrontEnd.md_search) {
       if (thisSearch != '') {
         this['searchFor_' + searchType](thisSearch)
       }
-    },
-    updateTableSorters: function() {
-      document.querySelectorAll('table.tablesorter').forEach(_table => {
-        _table.triggerEvent('update')
-      })
     },
     /* ------            Searching            -------*/
     searchFor_variable: function(_searchFor) {
@@ -280,7 +263,7 @@ if (!jeeFrontEnd.md_search) {
         usedBy: 1,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -317,7 +300,7 @@ if (!jeeFrontEnd.md_search) {
         type: _searchFor,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -331,7 +314,7 @@ if (!jeeFrontEnd.md_search) {
     },
     searchFor_equipment: function(_searchFor, _byId=false) {
       if (!_byId) {
-        var eQiD = $('#in_searchFor_equipment').attr('data-id')
+        var eQiD = document.getElementById('in_searchFor_equipment').getAttribute('data-id')
       } else {
         var eQiD = _byId
       }
@@ -341,7 +324,7 @@ if (!jeeFrontEnd.md_search) {
         id: eQiD,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -369,7 +352,7 @@ if (!jeeFrontEnd.md_search) {
             id: eQiD,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_search', 'content'),
+                attachTo: jeeDialog.get('#md_search', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -385,7 +368,7 @@ if (!jeeFrontEnd.md_search) {
     },
     searchFor_command: function(_searchFor, _byId=false) {
       if (!_byId) {
-        var cmdId = $('#in_searchFor_command').attr('data-id')
+        var cmdId = document.getElementById('in_searchFor_command').getAttribute('data-id')
       } else {
         var cmdId = _byId
       }
@@ -395,7 +378,7 @@ if (!jeeFrontEnd.md_search) {
         id: cmdId,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -428,7 +411,7 @@ if (!jeeFrontEnd.md_search) {
         search: _searchFor,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -458,7 +441,7 @@ if (!jeeFrontEnd.md_search) {
         search: _searchFor,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_search', 'content'),
+            attachTo: jeeDialog.get('#md_search', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -510,7 +493,8 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tableScSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tableScSearch.triggerEvent("update")
+        //this.tableScSearch._dataTable.refresh()
+        this.tableScSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tableScSearch)
       }
     },
@@ -534,7 +518,7 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tablePlanSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tablePlanSearch.triggerEvent("update")
+        this.tablePlanSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tablePlanSearch)
       }
     },
@@ -558,7 +542,7 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tableViewSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tableViewSearch.triggerEvent("update")
+        this.tableViewSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tableViewSearch)
       }
     },
@@ -582,7 +566,7 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tableInteractSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tableInteractSearch.triggerEvent("update")
+        this.tableInteractSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tableInteractSearch)
       }
     },
@@ -607,7 +591,7 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tableEqlogicSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tableEqlogicSearch.triggerEvent("update")
+        this.tableEqlogicSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tableEqlogicSearch)
       }
     },
@@ -631,7 +615,7 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tableCmdSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tableCmdSearch.triggerEvent("update")
+        this.tableCmdSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tableCmdSearch)
       }
     },
@@ -655,7 +639,7 @@ if (!jeeFrontEnd.md_search) {
 
         tr += '</tr>'
         this.tableNoteSearch.tBodies[0].insertAdjacentHTML('beforeend', tr)
-        this.tableNoteSearch.triggerEvent("update")
+        this.tableNoteSearch._dataTable.refresh()
         jeedomUtils.initTooltips(this.tableNoteSearch)
       }
     },
@@ -774,7 +758,7 @@ if (!jeeFrontEnd.md_search) {
         theme: document.body.getAttribute('data-theme'),
         error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_search', 'content'),
+          attachTo: jeeDialog.get('#md_search', 'dialog'),
           message: error.message,
           level: 'danger'
         })

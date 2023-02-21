@@ -1,21 +1,20 @@
-<div data-template="alert">
-  <div class="input-group input-group-sm" style="width: 100%">
-    <span class="input-group-addon roundedLeft" style="width: 100px">{{Niveau}}</span>
-    <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="level" data-option_id="#id#" data-uid="#uid#">
-      <option value="success">{{Succès}}</option>
-      <option value="warning">{{Avertissement}}</option>
-      <option value="danger">{{Important}}</option>
-      <option value="info">{{Information}}</option>
-    </select>
-  </div>
+<!--template/scenario/alert.default-->
+<div class="input-group input-group-sm" style="width: 100%">
+  <span class="input-group-addon roundedLeft" style="width: 100px">{{Niveau}}</span>
+  <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="level" data-option_id="#id#" data-uid="#uid#">
+    <option value="success">{{Succès}}</option>
+    <option value="warning">{{Avertissement}}</option>
+    <option value="danger">{{Important}}</option>
+    <option value="info">{{Information}}</option>
+  </select>
+</div>
 
-  <div class="input-group input-group-sm" style="width: 100%;padding-top: 1px">
-    <span class="input-group-addon roundedLeft" style="width: 100px">{{Message}}</span>
-    <textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;" placeholder="{{Message}}" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
-    <span class="input-group-addon hasBtn roundedRight">
-      <button class="btn btn-default roundedRight listCmdInfo" type="button" tooltip="{{Sélectionner la commande}}" data-cmd_id="#id#"  data-uid="#uid#"><i class="fas fa-list-alt"></i></button>
-    </span>
-  </div>
+<div class="input-group input-group-sm" style="width: 100%;padding-top: 1px">
+  <span class="input-group-addon roundedLeft" style="width: 100px">{{Message}}</span>
+  <textarea class="message expressionAttr form-control " data-l1key="options" data-l2key="message" rows="1" style="resize:vertical;" placeholder="{{Message}}" data-cmd_id="#id#" data-uid="#uid#">#message#</textarea>
+  <span class="input-group-addon hasBtn roundedRight">
+    <button class="btn btn-default roundedRight listCmdInfo" type="button" tooltip="{{Sélectionner la commande}}" data-cmd_id="#id#"  data-uid="#uid#"><i class="fas fa-list-alt"></i></button>
+  </span>
 </div>
 
 <script>
@@ -27,5 +26,5 @@
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="message"]').insertAtCursor(result.human)
     })
   })
-  autosize($('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="message"]'))
+  jeedomUtils.taAutosize(document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="message"]'))
 </script>

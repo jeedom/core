@@ -34,8 +34,12 @@ if (!jeeFrontEnd.eqAnalyse) {
         document.querySelector('a[data-target="#alertEqlogic"] > i').addClass('warning')
       }
 
-      jeedomUtils.initTableSorter()
-      new Packery(document.querySelector('div.alertListContainer'), { itemSelector: "#alertEqlogic .eqLogic-widget" }).layout()
+      jeedomUtils.initDataTables()
+      new Packery(document.querySelector('div.alertListContainer'), {
+        itemSelector: "#alertEqlogic .eqLogic-widget",
+        isLayoutInstant: true,
+        transitionDuration: 0,
+        }).layout()
       this.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
     },
     getRemoveCmd: function(_id) {
@@ -85,13 +89,7 @@ if (!jeeFrontEnd.eqAnalyse) {
           }
           let tableDeadCmd = document.getElementById('table_deadCmd')
           tableDeadCmd.tBodies[0].empty().insertAdjacentHTML('beforeend', tr)
-          tableDeadCmd.config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
-          tableDeadCmd.triggerEvent('update')
-          tableDeadCmd.triggerEvent('applyWidgets')
-          tableDeadCmd.triggerEvent('resizableReset')
-          setTimeout(() => {
-            tableDeadCmd.querySelector('thead tr').children[0].triggerEvent('sort')
-          }, 200)
+          if (tableDeadCmd._dataTable) tableDeadCmd._dataTable.refresh()
         }
       })
     },
@@ -145,10 +143,11 @@ window.registerEvent("resize", function eqAnalyse(event) {
 
 //Manage events outside parents delegations:
 document.getElementById('bt_massConfigureEqLogic')?.addEventListener('click', function(event) {
+  var field = "{{Alertes Communications}}"
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration en masse}}",
-    contentUrl: 'index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications'
+    contentUrl: 'index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,' + field
   })
 })
 

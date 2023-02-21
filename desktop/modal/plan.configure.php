@@ -20,7 +20,7 @@ if (!isConnect('admin')) {
 }
 $plan = plan::byId(init('id'));
 if (!is_object($plan)) {
-  throw new Exception('Impossible de trouver le design');
+  throw new Exception('{{Impossible de trouver le design}}');
 }
 $link = $plan->getLink();
 sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
@@ -92,10 +92,10 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
           </span>
         </div>
       </div>
-      <div class="form-group link_type link_image">
+      <div class="form-group link_type link_image display_mode display_mode_image">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 planImg">
-          <img src="" width="240px" height="auto" />
+          <img src="core/img/no_image.gif" width="240px" height="auto"/>
         </div>
       </div>
       <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
@@ -300,7 +300,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         if ($plan->getLink_type() == 'eqLogic') {
           $eQs = '';
           $eQs .= '<legend>{{Commandes}}</legend>';
-          $eQs .= '<table class="table  table-condensed table-bordered">';
+          $eQs .= '<table class="table  table-condensed">';
           $eQs .= '<thead>';
           $eQs .= '<tr>';
           $eQs .= '<th>';
@@ -464,7 +464,7 @@ if (!jeeFrontEnd.md_planConfigure) {
           id: jeephp2js.md_planConfigure_Id,
           error: function(error) {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
               message: error.message,
               level: 'danger'
             })
@@ -488,8 +488,8 @@ if (!jeeFrontEnd.md_planConfigure) {
                 jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_other[i], 'other')
               }
             }
-            if (plan.plan.link_type == 'image') {
-              document.querySelector('#fd_planConfigure .planImg img').setAttribute('src', plan.plan.display.path).seen()
+            if (plan.plan.link_type == 'image' && plan.plan.display.path != undefined) {
+              document.querySelector('#fd_planConfigure .planImg img').seen().setAttribute('src', plan.plan.display.path)
             }
             if (plan.plan.link_type == 'text') {
               var code = document.querySelector('.planAttr[data-l1key="display"][data-l2key="text"]')
@@ -522,7 +522,7 @@ if (!jeeFrontEnd.md_planConfigure) {
         done: function(e, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
@@ -531,9 +531,9 @@ if (!jeeFrontEnd.md_planConfigure) {
           if (isset(data.result.result.filepath)) {
             var filePath = data.result.result.filepath
             filePath = '/data/plan/' + filePath.split('/data/plan/')[1]
-            $('.planImg img').attr('src', filePath).show()
+            document.querySelector('.planImg img').seen().setAttribute('src', filePath)
           } else {
-            $('.planImg img').hide()
+            document.querySelector('.planImg img').unseen()
           }
         }
       })
@@ -624,14 +624,14 @@ if (!jeeFrontEnd.md_planConfigure) {
         plans: plans,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+            attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
             message: '{{Design sauvegardé}}',
             level: 'success'
           })
@@ -639,7 +639,7 @@ if (!jeeFrontEnd.md_planConfigure) {
             id: plans[0].id,
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_planConfigure', 'content'),
+                attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -773,7 +773,7 @@ if (!jeeFrontEnd.md_planConfigure) {
 
     if (_target = event.target.closest('.planAttr[data-l1key="configuration"][data-l2key="display_mode"]')) {
       document.querySelectorAll('.display_mode').unseen()
-      document.querySelectorAll('display_mode.display_mode_' + _target.jeeValue()).seen()
+      document.querySelectorAll('.display_mode.display_mode_' + _target.jeeValue()).seen()
       return
     }
   })

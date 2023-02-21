@@ -2,38 +2,35 @@
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$rootObjects = jeeObject::rootObject(true);
 
-function buildJsTree($_object) {
-  $childs = $_object->getChild();
-  if (count($childs) == 0) {
-    return;
+$objectTree = buildTreeRecursively();
+function buildTreeRecursively($_return = null){
+  if($_return == null){
+    $_return = utils::o2a(jeeObject::rootObject(true));
+  } foreach($_return as &$value){
+          $object = jeeObject::byId($value['id']);
+      if(!is_object($object)){
+        continue;
+      }
+      $childs = $object->getChild();
+      if(count($childs) == 0){
+        continue;
+      }
+      $value['childs'] = buildTreeRecursively(utils::o2a($childs));
   }
-  echo '<ul>';
-  foreach ($childs as $object) {
-    echo '<li class="jstree-open"><a data-object_id="' . $object->getId() . '" data-name="'  . $object->getName() . '">' . $object->getName() . '</a>';
-    buildJsTree($object);
-    echo '</li>';
-  }
-  echo '</ul>';
+  return $_return;
 }
+
+sendVarToJS([
+  'jeephp2js.object_Struct' => $objectTree,
+]);
+
 ?>
 <div class="row row-overflow">
   <div class="col-lg-2 col-md-3 col-sm-4">
     <div class="bs-sidebar">
-      <ul class="nav nav-list bs-sidenav">
-        <li style="margin-bottom: 5px;"><input id='in_searchObject' class="filter form-control" placeholder="{{Rechercher}}" style="width: 100%" /></li>
-      </ul>
+      <br>
       <div id="div_treeObject">
-        <ul>
-          <?php
-          foreach ($rootObjects as $object) {
-            echo '<li class="jstree-open"><a data-object_id="' . $object->getId() . '" data-name="'  . $object->getName() . '" >'  . $object->getName() . '</a>';
-            buildJsTree($object);
-            echo '</li>';
-          }
-          ?>
-        </ul>
       </div>
     </div>
   </div>
@@ -44,7 +41,7 @@ function buildJsTree($_object) {
 </div>
 
 <?php
-include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-include_file('3rdparty', 'jquery.tree/jstree.min', 'js');
-include_file('desktop', 'dashboardit', 'js');
+  include_file('3rdparty', 'tree/treejs', 'css');
+  include_file('3rdparty', 'tree/tree', 'js');
+  include_file('desktop', 'dashboardit', 'js');
 ?>

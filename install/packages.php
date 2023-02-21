@@ -26,7 +26,7 @@ echo "[START CHECK AND FIX PACKAGES]\n";
 try {
   system::checkAndInstall(json_decode(file_get_contents(__DIR__.'/packages.json'),true),true,true);
 } catch (\Exception $e) {
-  echo "***ERREUR*** " . $e->getMessage() . "\n";
+  echo "***ERROR*** " . $e->getMessage() . "\n";
 }
 echo "[END CHECK AND FIX PACKAGES]\n";
 ?>

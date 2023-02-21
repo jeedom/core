@@ -84,7 +84,7 @@ if (!jeeFrontEnd.md_scenarioJsonEdit) {
     jeedomUtils.hideAlert()
     if (jeeFrontEnd.md_scenarioJsonEdit.fileEditor == undefined) {
       jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'content'),
+        attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
         message: '{{Erreur editeur non défini}}',
         level: 'danger'
       })
@@ -94,7 +94,7 @@ if (!jeeFrontEnd.md_scenarioJsonEdit) {
       JSON.parse(jeeFrontEnd.md_scenarioJsonEdit.fileEditor.getValue())
     } catch(e) {
       jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'content'),
+        attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
         message: '{{Champs json invalide}}',
         level: 'danger'
       })
@@ -108,14 +108,14 @@ if (!jeeFrontEnd.md_scenarioJsonEdit) {
       scenario: scenario,
       error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
           message: error.message,
           level: 'danger'
         })
       },
       success: function(data) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
           message: '{{Sauvegarde réussie}}',
           level: 'success'
         })

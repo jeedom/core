@@ -1,57 +1,56 @@
-<div data-template="report">
-  <div class="input-group input-group-sm" style="width: calc(100% - 3px)">
-    <span class="input-group-addon roundedLeft" style="width:100px;">{{Exporter}}</span>
-    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" data-cmd_id="#id#" data-uid="#uid#">
-      <option value="view">{{Vue}}</option>
-      <option value="plan">{{Design}}</option>
-      <option value="plugin">{{Plugin}}</option>
-      <option value="eqAnalyse">{{Batteries}}</option>
-      <option value="eqAnalyseAlert">{{Alerte Equipements}}</option>
-      <option value="health">{{Santé}}</option>
-      <option value="timeline">{{Timeline}}</option>
-      <option value="url">{{URL}}</option>
-    </select>
-    <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
-    <select class="expressionAttr form-control input-sm type view roundedRight" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+<!--template/scenario/report.default-->
+<div class="input-group input-group-sm" style="width: calc(100% - 3px)">
+  <span class="input-group-addon roundedLeft" style="width:100px;">{{Exporter}}</span>
+  <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" data-cmd_id="#id#" data-uid="#uid#">
+    <option value="view">{{Vue}}</option>
+    <option value="plan">{{Design}}</option>
+    <option value="plugin">{{Plugin}}</option>
+    <option value="eqAnalyse">{{Batteries}}</option>
+    <option value="eqAnalyseAlert">{{Alerte Equipements}}</option>
+    <option value="health">{{Santé}}</option>
+    <option value="timeline">{{Timeline}}</option>
+    <option value="url">{{URL}}</option>
+  </select>
+  <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
+  <select class="expressionAttr form-control input-sm type view roundedRight" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
 
-    <span class="input-group-addon type plan" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Design}}</span>
-    <select class="expressionAttr form-control input-sm type plan roundedRight" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+  <span class="input-group-addon type plan" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Design}}</span>
+  <select class="expressionAttr form-control input-sm type plan roundedRight" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
 
-    <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
-    <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+  <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
+  <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
 
-    <span class="input-group-addon type timeline" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Timeline}}</span>
-    <select class="expressionAttr form-control input-sm type timeline roundedRight" data-l1key="options" data-l2key="timeline" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+  <span class="input-group-addon type timeline" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Timeline}}</span>
+  <select class="expressionAttr form-control input-sm type timeline roundedRight" data-l1key="options" data-l2key="timeline" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
 
-    <span class="input-group-addon type url" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{URL}}</span>
-    <input class="expressionAttr form-control input-sm type url roundedRight" data-l1key="options" data-l2key="url" data-cmd_id="#id#" data-uid="#uid#" style="display:none;" />
-  </div>
-  <div class="input-group input-group-sm">
-    <span class="input-group-addon roundedLeft" style="width:100px;">{{Exporter en}}</span>
-    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="export_type" data-cmd_id="#id#" data-uid="#uid#">
-      <option value="png">{{PNG}}</option>
-      <option value="pdf">{{PDF}}</option>
-    </select>
-    <span class="input-group-addon" style="width:100px;">{{Commandes}}</span>
-    <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="{{Commandes}}" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
-    <span class="input-group-btn">
-      <button class="btn btn-default listCmdMessage roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fas fa-list-alt"></i></button>
-    </span>
-  </div>
-  <div class="input-group input-group-sm" style="width: calc(100% - 3px)">
-    <span class="input-group-addon roundedLeft" style="width:100px;">{{Largeur (px)}}</span>
-    <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="width" placeholder="1280" value="#width#" data-cmd_id="#id#" data-uid="#uid#"/>
-    <span class="input-group-addon" style="width:100px;">{{Hauteur (px)}}</span>
-    <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="height" placeholder="720" value="#height#" data-cmd_id="#id#" data-uid="#uid#"/>
-    <span class="input-group-addon" style="width:100px;">{{Délai}}</span>
-    <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="delay" placeholder="1000" value="#delay#" data-cmd_id="#id#" data-uid="#uid#"/>
-  <span class="input-group-addon roundedLeft" style="width:100px;">{{Thèmes}}</span>
-    <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="theme" data-cmd_id="#id#" data-uid="#uid#">
-      <option value="">{{Défaut}}</option>
-      <option value="Light">{{Clair}}</option>
-      <option value="Dark">{{Sombre}}</option>
-    </select>
-  </div>
+  <span class="input-group-addon type url" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{URL}}</span>
+  <input class="expressionAttr form-control input-sm type url roundedRight" data-l1key="options" data-l2key="url" data-cmd_id="#id#" data-uid="#uid#" style="display:none;" />
+</div>
+<div class="input-group input-group-sm">
+  <span class="input-group-addon roundedLeft" style="width:100px;">{{Exporter en}}</span>
+  <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="export_type" data-cmd_id="#id#" data-uid="#uid#">
+    <option value="png">{{PNG}}</option>
+    <option value="pdf">{{PDF}}</option>
+  </select>
+  <span class="input-group-addon" style="width:100px;">{{Commandes}}</span>
+  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd" placeholder="{{Commandes}}" value="#cmd#" data-cmd_id="#id#" data-uid="#uid#"/>
+  <span class="input-group-btn">
+    <button class="btn btn-default listCmdMessage roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fas fa-list-alt"></i></button>
+  </span>
+</div>
+<div class="input-group input-group-sm" style="width: calc(100% - 3px)">
+  <span class="input-group-addon roundedLeft" style="width:100px;">{{Largeur (px)}}</span>
+  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="width" placeholder="1280" value="#width#" data-cmd_id="#id#" data-uid="#uid#"/>
+  <span class="input-group-addon" style="width:100px;">{{Hauteur (px)}}</span>
+  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="height" placeholder="720" value="#height#" data-cmd_id="#id#" data-uid="#uid#"/>
+  <span class="input-group-addon" style="width:100px;">{{Délai}}</span>
+  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="delay" placeholder="1000" value="#delay#" data-cmd_id="#id#" data-uid="#uid#"/>
+<span class="input-group-addon roundedLeft" style="width:100px;">{{Thèmes}}</span>
+  <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="theme" data-cmd_id="#id#" data-uid="#uid#">
+    <option value="">{{Défaut}}</option>
+    <option value="Light">{{Clair}}</option>
+    <option value="Dark">{{Sombre}}</option>
+  </select>
 </div>
 <script>
   jeedom.view.all({

@@ -18,19 +18,20 @@
 
 if (!jeeFrontEnd.user) {
   jeeFrontEnd.user = {
+    tableDevices: null,
+    deviceDataTable: null,
     init: function() {
       window.jeeP = this
+      this.tableDevices = document.getElementById('tableDevices')
+      this.deviceDataTable = new DataTable(this.tableDevices, {
+        columns: [
+          { select: 3, sort: "desc" }
+        ],
+        paging: false,
+        searchable: true,
+      })
+
       jeeP.printUsers()
-
-      jeedomUtils.initTableSorter()
-      var tableDevices = document.getElementById('tableDevices')
-
-      tableDevices.config.widgetOptions.resizable_widths = ['', '250px', '180px', '180px', '80px']
-      tableDevices.triggerEvent('resizableReset')
-      setTimeout(() => {
-        tableDevices.querySelector('thead tr').children[3].triggerEvent('sort').triggerEvent('sort')
-      }, 200)
-
       jeeFrontEnd.modifyWithoutSave = false
       domUtils.hideLoading()
     },
@@ -138,6 +139,7 @@ if (!jeeFrontEnd.user) {
             newRow.setJeeValues(data[i], '.userAttr')
           }
 
+          jeeFrontEnd.user.deviceDataTable.refresh()
           jeeFrontEnd.modifyWithoutSave = false
         }
       })

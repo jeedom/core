@@ -115,13 +115,6 @@ if (!jeeFrontEnd.object) {
 
             document.querySelectorAll('.objectAttr[data-l1key=display][data-l2key=tagColor]').jeeValue(objectBkgdColor)
             document.querySelectorAll('.objectAttr[data-l1key=display][data-l2key=tagTextColor]').jeeValue(objectTxtColor)
-
-            $('.objectAttr[data-l1key="display"][data-l2key="tagColor"]').click(function() {
-              document.querySelector('input[data-l2key="useCustomColor"').checked = true
-            })
-            $('.objectAttr[data-l1key="display"][data-l2key="tagTextColor"]').click(function() {
-              document.querySelector('input[data-l2key="useCustomColor"').checked = true
-            })
           }
 
           document.querySelector('.objectAttr[data-l1key="father_id"] option[value="' + data.id + '"]').unseen()
@@ -249,7 +242,7 @@ if (!jeeFrontEnd.object) {
               humanName = '#[' + _objName + '][' + thisEqName + '][' + thisEq.cmds[j].name + ']#'
               panel += '<form class="form-horizontal">'
               panel += '<div class="form-group" data-cmdname="' + humanName + '">'
-              panel += '<label class="col-sm-5 col-xs-6 control-label">' + humanName + '</label>'
+              panel += '<label class="col-sm-5 col-xs-5 control-label">' + humanName + '</label>'
               panel += '<div class="col-sm-2 col-xs-4">'
               panel += summarySelect
               panel += '</div>'
@@ -261,7 +254,7 @@ if (!jeeFrontEnd.object) {
             panel += '</div>'
             panel += '</div>'
 
-            if (ndCmdsInfo > 0) $('#eqLogicsCmds').append(panel)
+            if (ndCmdsInfo > 0) document.getElementById('eqLogicsCmds').insertAdjacentHTML('beforeend', panel)
           }
 
           //set select values:
@@ -349,11 +342,10 @@ if (!jeeFrontEnd.object) {
           })
 
           if (_reorder) {
-            var $objectContainer = $('#objectPanel .objectListContainer')
-            data.forEach(function(object) {
-              decay = parseInt(jeeFrontEnd.object.objectList.filter(x => x.id == object.id)[0].parentNumber)
-              $objectContainer.find('.objectDisplayCard[data-object_id="' + object.id + '"] .name .hiddenAsCard').text('\u00A0\u00A0\u00A0'.repeat(decay))
-              $objectContainer.append($objectContainer.find('.objectDisplayCard[data-object_id="' + object.id + '"]'))
+            var objectContainer = document.querySelector('#objectPanel .objectListContainer')
+            data.forEach(_object => {
+              decay = parseInt(jeeFrontEnd.object.objectList.filter(x => x.id == _object.id)[0].parentNumber)
+              objectContainer.querySelector('.objectDisplayCard[data-object_id="' + _object.id + '"] .name .hiddenAsCard').textContent = '\u00A0\u00A0\u00A0'.repeat(decay)
             })
           }
         }
@@ -408,7 +400,7 @@ try {
     selector: '.nav.nav-tabs',
     appendTo: 'div#div_pageContainer',
     build: function(trigger) {
-      var thisObjectId = $('span.objectAttr[data-l1key="id"]').text()
+      var thisObjectId = document.querySelector('span.objectAttr[data-l1key="id"]').textContent
       var contextmenuitems = {}
       var idx = 0
       for (var object of jeeP.objectList) {
@@ -529,10 +521,10 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                var $object = $('.objectDisplayCard[data-object_id="' + data.id + '"]')
+                var dispCard = document.querySelector('.objectDisplayCard[data-object_id="' + data.id + '"]')
                 var span = '<span class="hiddenAsCard">' + '&nbsp;&nbsp;&nbsp;'.repeat(data.configuration.parentNumber) + '</span>' + data.name
-                $object.find('.name').empty().append(span)
-                $object.attr('data-father_id', objectId)
+                dispCard.querySelector('.name').empty().insertAdjacentHTML('beforeend', span)
+                dispCard.setAttribute('data-father_id', objectId)
                 jeeP.getObjectList(true)
               }
             })
@@ -543,13 +535,15 @@ try {
             var objectId = options.commands[key].jId
 
             //move them so we can store them in right order and setOrder()
-            var afterPosition = $('.objectDisplayCard[data-object_id="' + objectId + '"]').attr('data-position')
-            $('.objectDisplayCard[data-position="' + afterPosition + '"]').after($('.objectDisplayCard[data-object_id="' + thisObjectId + '"]'))
+            let dispCard = document.querySelector('.objectDisplayCard[data-object_id="' + objectId + '"]')
+            let afterPosition = dispCard.getAttribute('data-position')
+
+            document.querySelector('.objectDisplayCard[data-position="' + afterPosition + '"]').after(document.querySelector('.objectDisplayCard[data-object_id="' + thisObjectId + '"]'))
              jeeP.reOrderChilds(thisObjectId)
 
             var objects = []
-            $('div.objectDisplayCard').each(function() {
-              objects.push($(this).attr('data-object_id'))
+            document.querySelectorAll('div.objectDisplayCard').forEach(_card => {
+              objects.push(_card.getAttribute('data-object_id'))
             })
 
             jeedom.object.setOrder({
@@ -575,7 +569,7 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                $('.objectDisplayCard[data-object_id="' + data.id + '"]').addClass('inactive')
+                document.querySelector('.objectDisplayCard[data-object_id="' + data.id + '"]').addClass('inactive')
               }
             })
             return true
@@ -592,7 +586,7 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                $('.objectDisplayCard[data-object_id="' + data.id + '"]').removeClass('inactive')
+                document.querySelector('.objectDisplayCard[data-object_id="' + data.id + '"]').removeClass('inactive')
               }
             })
             return true
@@ -760,7 +754,7 @@ document.getElementById('div_resumeObjectList').addEventListener('click', functi
 
   if (_target = event.target.closest('.objectDisplayCard')) {
     if (_target.closest('.objectSummaryParent') != null) return
-    if (event.ctrlKey || event.metaKey) {
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var url = '/index.php?v=d&p=object&id=' + _target.getAttribute('data-object_id')
       window.open(url).focus()
     } else {
@@ -793,15 +787,13 @@ document.getElementById('div_resumeObjectList').addEventListener('mousedown', fu
   }
 })
 
-document.getElementById('div_resumeObjectList').addEventListener('click', function(event) {
+document.getElementById('div_resumeObjectList').addEventListener('mouseup', function(event) {
   var _target = null
   if (_target = event.target.closest('.objectDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
       var id = _target.getAttribute('data-object_id')
-      $('.objectDisplayCard[data-object_id="' + id + '"]').trigger(jQuery.Event('click', {
-        ctrlKey: true
-      }))
+      document.querySelector('.objectDisplayCard[data-object_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return
   }
@@ -880,11 +872,14 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 
   if (_target = event.target.closest('#bt_libraryBackgroundImage')) {
     jeedomUtils.chooseIcon(function(_icon) {
-      document.querySelector('.objectImg').seen().querySelector('img').replaceWith(_icon)
-      document.querySelector('.objectImg img').setAttribute('width', '240px')
+      let objectImg = document.querySelector('#objecttab .objectImg')
+      if (!objectImg) return
+      objectImg.seen().querySelector('img').remove()
+      objectImg.insertAdjacentHTML('beforeend', _icon)
+      objectImg.querySelector('img')?.setAttribute('width', '240px')
       jeedom.object.uploadImage({
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML,
-        file: document.querySelector('.objectImg img').getAttribute('data-filename'),
+        file: objectImg.querySelector('img').getAttribute('data-filename'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -948,6 +943,16 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
         })
       }
     })
+    return
+  }
+
+  if (_target = event.target.closest('input.objectAttr[data-l2key="tagColor"]')) {
+    document.querySelector('input[data-l2key="useCustomColor"').checked = true
+    return
+  }
+
+  if (_target = event.target.closest('input.objectAttr[data-l2key="tagTextColor"]')) {
+    document.querySelector('input[data-l2key="useCustomColor"').checked = true
     return
   }
 

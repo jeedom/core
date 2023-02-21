@@ -77,7 +77,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
       jeedom.scenario.getTemplate({
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -102,16 +102,14 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         done: function(e, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
-              attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+              attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
             return;
           }
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: '{{Template ajouté avec succès}}',
             level: 'success'
           })
@@ -135,7 +133,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         template: document.getElementById('in_newTemplateName').value + '.json',
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -143,7 +141,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         success: function(data) {
           jeeFrontEnd.md_scenarioTemplate.refreshScenarioTemplateList();
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: '{{Création du template réussie}}',
             level: 'success'
           })
@@ -155,7 +153,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     if (_target = event.target.closest('#bt_scenarioTemplateRemove')) {
       if (document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template') == undefined) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
           message: '{{Vous devez d\'abord sélectionner un template}}',
           level: 'danger'
         })
@@ -165,7 +163,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         template: document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template'),
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -173,7 +171,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         success: function(data) {
           jeeFrontEnd.md_scenarioTemplate.refreshScenarioTemplateList()
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: '{{Suppression du template réussie}}',
             level: 'success'
           })
@@ -192,7 +190,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
             convert: json_encode(convert),
             error: function(error) {
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+                attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
@@ -200,7 +198,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
             success: function(data) {
               jeeFrontEnd.scenario.printScenario(jeephp2js.md_scenarioTemplate_scId)
               jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+                attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
                 message: '{{Template appliqué avec succès.}}',
                 level: 'success'
               })
@@ -221,7 +219,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         id: jeephp2js.md_scenarioTemplate_scId,
         error: function(error) {
           jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
             message: error.message,
             level: 'danger'
           })
@@ -252,7 +250,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     if (_target = event.target.closest('#bt_scenarioTemplateDownload')) {
       if (document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template') == undefined) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_scenarioTemplate', 'content'),
+          attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
           message: '{{Vous devez d\'abord sélectionner un template}}',
           level: 'danger'
         })

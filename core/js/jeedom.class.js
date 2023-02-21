@@ -86,7 +86,11 @@ jeedom.changes = function() {
           if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
             document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           } else {
-            $('body').trigger(data.result[i].name, data.result[i].option)
+            if (typeof jQuery === 'function') {
+              $('body').trigger(data.result[i].name, data.result[i].option)
+            } else {
+              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+            }
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
@@ -129,10 +133,8 @@ jeedom.changes = function() {
 
 jeedom.init = function() {
   jeedom.datetime = jeeFrontEnd.serverDatetime
-  jeedom.display.version = 'desktop'
-  if (typeof jQuery === 'function' && $.mobile) {
-    jeedom.display.version = 'mobile'
-  }
+  jeedom.display.version = document.body.dataset.uimode
+
   var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
     accessibility: {
@@ -179,7 +181,7 @@ jeedom.init = function() {
 
   document.body.addEventListener('ui::update', function(_event) {
     if (isset(_event.detail.page) && _event.detail.page != '') {
-      if ($.mobile) {
+      if (jeedom.display.version == 'mobile') {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
           return
         }
@@ -205,7 +207,7 @@ jeedom.init = function() {
   document.body.addEventListener('jeedom::alert', function(_event) {
     if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
-        if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
+        if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           jeedomUtils.hideAlert()
         }
       } else {
@@ -220,7 +222,7 @@ jeedom.init = function() {
         if (_event.detail.ttl) {
           options.ttl = _event.detail.ttl
         }
-        if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
+        if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           jeedomUtils.showAlert(options)
         }
       } else {
@@ -250,11 +252,7 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('checkThemechange', function(_event) {
-    if ($.mobile) {
-      document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
-    } else {
-      document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
-    }
+    document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
 
     if (isset(_event.detail.theme_start_day_hour)) {
       jeedom.theme.theme_start_day_hour = _event.detail.theme_start_day_hour
@@ -291,9 +289,8 @@ jeedom.getPageType = function(_modal) {
         }
       })
     }
-    return modalType
+    if (modalType != undefined) return modalType
   }
-
   return document.body.getAttribute('data-page')
 }
 

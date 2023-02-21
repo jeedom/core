@@ -92,7 +92,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       theme: document.body.getAttribute('data-theme'),
       error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_about', 'content'),
+          attachTo: jeeDialog.get('#md_about', 'dialog'),
           message: error.message,
           level: 'danger'
         })
@@ -109,7 +109,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       theme: document.body.getAttribute('data-theme'),
       error: function(error) {
         jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_about', 'content'),
+          attachTo: jeeDialog.get('#md_about', 'dialog'),
           message: error.message,
           level: 'danger'
         })

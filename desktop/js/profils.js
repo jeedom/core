@@ -19,19 +19,20 @@
 if (!jeeFrontEnd.profils) {
   jeeFrontEnd.profils = {
     tableDevices: null,
+    deviceDataTable: null,
     init: function() {
       /* Not used, also loaded as modal!
       window.jeeP = this
       */
-      this.tableDevices = document.querySelector('#securitytab #tableDevices')
+      this.tableDevices = document.getElementById('securitytab')?.querySelector('#tableDevices')
       if (this.tableDevices != null) { //Not modal!
-        jeedomUtils.initTableSorter()
-        this.tableDevices.config.widgetOptions.resizable_widths = ['', '180px', '180px', '80px']
-        this.tableDevices.triggerEvent('applyWidgets')
-        this.tableDevices.triggerEvent('resizableReset')
-        setTimeout(() => {
-          jeeFrontEnd.profils.tableDevices.querySelector('thead tr').children[2].triggerEvent('sort').triggerEvent('sort')
-        }, 200)
+        this.deviceDataTable = new DataTable(this.tableDevices, {
+          columns: [
+            { select: 2, sort: "desc" }
+          ],
+          paging: false,
+          searchable: true,
+        })
       }
     },
     removeRegisterDevice: function(_key, _userId) {
@@ -239,7 +240,10 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       return
     }
   }
+})
 
+document.getElementById('interfacetab').addEventListener('click', function(event) {
+  var _target = null
   if (_target = event.target.closest('.bt_selectWarnMeCmd')) {
     jeedom.cmd.getSelectModal({
       cmd: {
@@ -248,6 +252,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       }
     }, function(result) {
       document.querySelector('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').jeeValue(result.human)
+      jeeFrontEnd.modifyWithoutSave = true
     })
     return
   }
