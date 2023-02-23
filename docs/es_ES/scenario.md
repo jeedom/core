@@ -368,7 +368,7 @@ Hay varias funciones disponibles para el equipo :
 
 - ``name(type,commande)`` : Se utiliza para recuperar el nombre del pedido, equipo u objeto. Tipo : cmd, eqLogic u objeto.
 
-- ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última comunicación para el dispositivo dada como parámetro, el segundo parámetro opcional se usa para especificar el formato de retorno (detalles [aquí](https:/ // /www.php.net/ /manual/ /fr/ /datetime.format.php)). Un retorno de -1 significa que no se puede encontrar el equipo.
+- ``lastCommunication(equipment,[format])`` : Devuelve la fecha de la última retroalimentación de información para el equipo dada en el parámetro, el segundo parámetro opcional se usa para especificar el formato de devolución (detalles [aquí](https:/ // /www.php.net/ /manual/ /fr/ /datetime.format.php)). Un retorno de -1 significa que no se puede encontrar el equipo. La fecha de última información se calcula en relación con el tipo de información orden y su fecha de recogida.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado en relación con un valor en el intervalo color_start / color_end. El valor debe estar entre min_value y max_value.
 

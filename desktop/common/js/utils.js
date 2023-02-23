@@ -1047,7 +1047,7 @@ jeedomUtils.initTooltips = function(_el) {
   if (!isset(_el)) {
     items = document.querySelectorAll(selector)
   } else {
-    if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, J plugins
+    if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, keep for plugins
     items = _el.querySelectorAll(selector)
   }
 
@@ -1131,10 +1131,11 @@ jeedomUtils.initTableSorter = function(filter) {
   }).css('width', '')
 }
 
-jeedomUtils.initDataTables = function(_paging, _searching) {
+jeedomUtils.initDataTables = function(_selector, _paging, _searching) {
+  if (!isset(_selector)) _selector = 'body'
   if (!_paging) _paging = false
   if (!_searching) _searching = false
-  document.querySelectorAll('table.dataTable').forEach(_table => {
+  document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
     if (_table._dataTable) {
       _table._dataTable.destroy()
     }

@@ -50,16 +50,16 @@ if (!jeeFrontEnd.md_history) {
     loadIds: null,
     init: function(_cmdIds) {
       self = this
-      document.getElementById('div_modalGraph').style.position = 'relative'
-      document.getElementById('div_modalGraph').style.width = '100%'
+      document.getElementById(this.__el__).style.position = 'relative'
+      document.getElementById(this.__el__).style.width = '100%'
       delete jeedom.history.chart[this.__el__]
       document.getElementById(this.__el__).empty()
 
-      this.modal = document.getElementById('div_modalGraph').closest('div.jeeDialogMain')
+      this.modal = document.getElementById(this.__el__).closest('div.jeeDialogMain')
       this.modalContent = this.modal.querySelector('div.jeeDialogContent')
       this.modalContent.style.overflow = 'hidden'
       jeeDialog.get(this.modal).options.onResize = function(event) {
-        self.resizeHighChartModal()
+        jeeFrontEnd.md_history.resizeHighChartModal()
       }
 
       _cmdIds = [... new Set(_cmdIds.split('-'))]

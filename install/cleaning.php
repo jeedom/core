@@ -27,6 +27,7 @@ echo "[START CLEANING]\n";
 try {
   require_once __DIR__ . '/../core/php/core.inc.php';
   
+  // commands:
   $cmdClean = array(
     'display' => array(
       'showOnmobile',
@@ -81,6 +82,7 @@ try {
     $cmd->save(true);
   }
 
+  // eqLogics:
   $eqLogicClean = array(
     'display' => array(
       'showObjectNameOnview',
@@ -185,10 +187,13 @@ try {
         continue;
       }
     }
+    if ($eqLogic->getObject_id() == -1) {
+      $eqLogic->setObject_id(null);
+    }
     $eqLogic->save(true);
   }
-  
-  
+
+  // history:
   $sql = 'select cmd_id from history group by cmd_id';
   $results1 = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
   $sql = 'select cmd_id from historyArch group by cmd_id';
@@ -207,6 +212,7 @@ try {
     DB::Prepare($sql,$values, DB::FETCH_TYPE_ROW);
   }
 
+  // users:
   $userClean = array(
     'expertMode',
     'bootstrap_theme',
@@ -223,12 +229,21 @@ try {
     }
   }
 
+  // config:
   $configCoreClean = array(
     'update::updating'
   );
   foreach ($configCoreClean as $key) {
     echo 'Cleaning config : Core ' . $key."\n";
     config::remove($key, 'core');
+  }
+
+  // scenarios:
+  $negScenarios = scenario::byObjectId(-1);
+  foreach ($negScenarios as &$sc) {
+    echo 'Cleaning Object_id for scenario  : '.$sc->getName()."\n";
+    $sc->setObject_id(null);
+    $sc->save();
   }
   
 } catch (Exception $e) {

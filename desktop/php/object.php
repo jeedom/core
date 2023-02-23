@@ -280,7 +280,7 @@ $synthToActions = array(
 									<span class="btn btn-default btn-file">
 										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImage" type="file" name="file" accept="image/*">
 									</span>
-									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliotheque d'image}}</a>
+									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliothèque d'image}}</a>
 								</div>
 							</div>
 							<div class="form-group">

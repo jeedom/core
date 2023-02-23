@@ -80,7 +80,7 @@ if ($selectPlugin != '') {
 (function() {// Self Isolation!
 
   jeedomUtils.hideAlert()
-  jeedomUtils.initDataTables()
+  jeedomUtils.initDataTables('#md_messageDisplay', false, false)
 
   let table = document.querySelector('#md_messageDisplay #table_message')
   let msgDataTable = table._dataTable

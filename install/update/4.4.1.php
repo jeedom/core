@@ -28,3 +28,10 @@ if (config::byKey('default_bootstrap_theme_night', 'core', 0) != 0) {
     $value = config::byKey('default_bootstrap_theme_night', 'core');
     config::save('jeedom_theme_alternate', $value, 'core');
 }
+
+//Previous bug alpha:
+$negScenarios = scenario::byObjectId(-1);
+foreach ($negScenarios as &$sc) {
+    $sc->setObject_id(null);
+    $sc->save();
+}
