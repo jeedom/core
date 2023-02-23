@@ -221,11 +221,11 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 
 		//Deprecated Core css
 		include_file('desktop', 'deprecated.main', 'css');
-    }
+	}
 
 	//jQuery less libs:
-    include_file('3rdparty', 'packery/packery.pkgd', 'js');
-    include_file('3rdparty', 'packery/draggabilly.pkgd', 'js');
+	include_file('3rdparty', 'packery/packery.pkgd', 'js');
+	include_file('3rdparty', 'packery/draggabilly.pkgd', 'js');
 
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
@@ -631,10 +631,14 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 						include_file('desktop', $page, 'php');
 					}
 				} catch (Exception $e) {
-					ob_end_clean();
-					echo '<div class="alert alert-danger div_alert">';
-					echo displayException($e);
-					echo '</div>';
+					if ($_GET['m'] == 'mobile' && $_GET['p'] == 'panelMenuCustom') {
+						echo "Aucun menu custom";
+					} else {
+						ob_end_clean();
+						echo '<div class="alert alert-danger div_alert">';
+						echo displayException($e);
+						echo '</div>';
+					}
 				} catch (Error $e) {
 					ob_end_clean();
 					echo '<div class="alert alert-danger div_alert">';
