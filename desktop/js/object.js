@@ -725,6 +725,7 @@ document.getElementById('div_resumeObjectList').addEventListener('click', functi
         jeedom.object.save({
           object: {
             name: result,
+            position: parseInt(jeephp2js.objectNum) + 1,
             isVisible: 1
           },
           error: function(error) {

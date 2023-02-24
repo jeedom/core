@@ -7,7 +7,8 @@ $config_objSummary = config::byKey('object:summary');
 
 sendVarToJS([
 	'jeephp2js.selectId' => init('id', '-1'),
-	'jeephp2js.configObjSummary' => $config_objSummary
+	'jeephp2js.configObjSummary' => $config_objSummary,
+	'jeephp2js.objectNum' => count($allObject),
 ]);
 
 $synthToActions = array(
