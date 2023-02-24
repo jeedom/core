@@ -832,11 +832,11 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   if (_target = event.target.closest('#bt_removeObject')) {
     jeedomUtils.hideAlert()
     let name = document.querySelector('input[data-l1key="name"]').value.trim()
+    let id = document.querySelector('span.objectAttr[data-l1key="id"]').textContent
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer l\'objet}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
       if (result) {
-        var removeId = _target.getAttribute('data-object_id')
         jeedom.object.remove({
-          id: removeId,
+          id: id,
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
