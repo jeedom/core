@@ -450,7 +450,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
                 object_div.html(result[i].html, true)
               }
               jeedomUtils.positionEqLogic(result[i].id)
-              Packery.data(object_div).destroy()
+              var packer = Packery.data(object_div)
+              if (packer != undefined) packer.destroy()
               new Packery(object_div, {isLayoutInstant: true, transitionDuration: 0})
 
               document.querySelectorAll('div.eqLogic-widget').forEach(function(element, idx) {
@@ -470,7 +471,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
             eqLogic.remove()
             if (document.querySelector('.alertListContainer')?.querySelectorAll('.eqLogic').length > 0) {
               let container = document.querySelector('.alertListContainer')
-              Packery.data(container).layout()
+              var packer = Packery.data(container)
+              if (packer != undefined) packer.destroy()
             }
             continue
           }
