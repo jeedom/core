@@ -246,8 +246,9 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
     var _target = null
     if (_target = event.target.closest('.bt_removePlanComposant')) {
       var tr = _target.closest('tr')
+      var dataPlanId = tr.getAttribute('data-id')
       jeedom.plan.remove({
-        id : tr.getAttribute('data-id'),
+        id: dataPlanId,
         error: function(error) {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
@@ -262,6 +263,7 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
             level: 'success'
           })
           tr.remove()
+          document.querySelector('div.div_backgroundPlan [data-plan_id="' + dataPlanId + '"]')?.remove()
         }
       })
       return
