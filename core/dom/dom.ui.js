@@ -907,11 +907,20 @@ var jeeDialog = (function()
         }
 
         var buttonEL = exports.addButton(button, dialogFooter)
-        if (buttonEL.getAttribute('data-type') == 'confirm') {
-          _container.addEventListener('keypress', function(event) {
-            if (event.which != 13) return
-            if (event.target.getAttribute('data-type') == 'confirm') return //Avoid double call with button focused
-            buttonEL.click()
+        if (buttonEL.getAttribute('data-type') === 'confirm') {
+          _container.addEventListener('keyup', function(event) {
+            if (event.key !== 'Enter') return
+            if (event.target.getAttribute('data-type') === 'confirm') return //Avoid double call with button focused
+            event.preventDefault()
+            event.target.closest('div.jeeDialog').querySelector('button[data-type="confirm"]')?.click()
+          })
+        }
+        if (buttonEL.getAttribute('data-type') === 'cancel') {
+          _container.addEventListener('keyup', function(event) {
+            if (event.key !== 'Escape') return
+            if (event.target.getAttribute('data-type') === 'cancel') return //Avoid double call with button focused
+            event.preventDefault()
+            event.target.closest('div.jeeDialog').querySelector('button[data-type="cancel"]')?.click()
           })
         }
 
