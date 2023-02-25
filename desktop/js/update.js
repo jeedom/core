@@ -141,7 +141,7 @@ if (!jeeFrontEnd.update) {
             tbody.appendChild(tr)
           }
 
-          jeedomUtils.initDataTables()
+          jeedomUtils.initDataTables('#coreplugin')
 
           jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
 

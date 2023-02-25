@@ -258,7 +258,7 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
         success: function() {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_planHeaderConfigure', 'dialog'),
-            message: '{{Composant supprimée}}',
+            message: '{{Composant supprimé}}',
             level: 'success'
           })
           tr.remove()

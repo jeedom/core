@@ -145,7 +145,7 @@ $('.bt_removePlan3dComposant').off('click').on('click', function() {
       $('#div_alertplan3dHeaderConfigure').showAlert({message: error.message, level: 'danger'})
     },
     success: function() {
-      $('#div_alertplan3dHeaderConfigure').showAlert({message: '{{Composant supprimée}}', level: 'success'})
+      $('#div_alertplan3dHeaderConfigure').showAlert({message: '{{Composant supprimé}}', level: 'success'})
       tr.remove()
     }
   })
