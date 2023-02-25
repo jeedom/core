@@ -248,7 +248,7 @@
         "Lien mort ou absent": "Dead or missing link",
         "Supprimer": "Remove",
         "Configuration": "Configuration",
-        "Composant supprimée": "Component removed",
+        "Composant supprimé": "Component removed",
         "Configuration du composant": "Component configuration",
         "Image supprimée": "Picture deleted",
         "Design sauvegardé": "Saved design"
@@ -1096,7 +1096,7 @@
         "ID du lien": "Link ID",
         "Action": "Action",
         "Configuration": "Configuration",
-        "Composant supprimée": "Component removed",
+        "Composant supprimé": "Component removed",
         "Configuration du composant": "Component configuration",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Loading successful, please reload the page to see the result"
     },
@@ -2969,7 +2969,7 @@
         "Vers une vue": "Towards a view",
         "Vers un design": "Towards a design",
         "Ajouter un équipement": "Add Equipment",
-        "Ajouter une commande": "Add an order",
+        "Ajouter une commande": "Add a command",
         "Ajouter une image\/caméra": "Add image \/ camera",
         "Ajouter une zone": "Add zone",
         "Ajouter un résumé": "Add summary",

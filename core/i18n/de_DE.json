@@ -248,7 +248,7 @@
         "Lien mort ou absent": "Totes oder fehlendes Glied",
         "Supprimer": "Entfernen",
         "Configuration": "Konfiguration",
-        "Composant supprimée": "Komponente entfernt",
+        "Composant supprimé": "Komponente entfernt",
         "Configuration du composant": "Komponentenkonfiguration",
         "Image supprimée": "Bild gelöscht",
         "Design sauvegardé": "Gespeichertes Design"
@@ -1096,7 +1096,7 @@
         "ID du lien": "Link-ID",
         "Action": "Aktion",
         "Configuration": "Konfiguration",
-        "Composant supprimée": "Komponente entfernt",
+        "Composant supprimé": "Komponente entfernt",
         "Configuration du composant": "Komponentenkonfiguration",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Laden Sie die Seite erfolgreich, um das Ergebnis zu sehen"
     },

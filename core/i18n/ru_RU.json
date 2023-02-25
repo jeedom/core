@@ -248,7 +248,7 @@
         "Lien mort ou absent": "Мертвая или отсутствующая ссылка",
         "Supprimer": "удаление",
         "Configuration": "Конфигурация",
-        "Composant supprimée": "Компонент удален",
+        "Composant supprimé": "Composant supprimé",
         "Configuration du composant": "Конфигурация компонента",
         "Image supprimée": "Удаленное изображение",
         "Design sauvegardé": "Сохраненный дизайн"
@@ -1096,7 +1096,7 @@
         "ID du lien": "Идентификатор ссылки",
         "Action": "Действие",
         "Configuration": "Конфигурация",
-        "Composant supprimée": "Компонент удален",
+        "Composant supprimé": "Composant supprimé",
         "Configuration du composant": "Конфигурация компонента",
         "Chargement réussi merci de recharger la page pour voir le résultat": "Загрузка прошла успешно, перезагрузите страницу, чтобы увидеть результат"
     },
