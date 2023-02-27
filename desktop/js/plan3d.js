@@ -13,38 +13,239 @@
  * You should have received a copy of the GNU General Public License
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
+
+if (!jeeFrontEnd.plan3d) {
+  jeeFrontEnd.plan3d = {
+    SCREEN_WIDTH: null,
+    SCREEN_HEIGHT: null,
+    raycaster: null,
+    mouse: null,
+    EDIT_MODE : 0,
+    CMDS : {},
+    JEEDOM_OBJECT : [],
+    container: null, 
+    scene: null,
+    camera: null,
+    renderer: null,
+    controls: null,
+    init: function() {
+      window.jeeP = this
+      this.SCREEN_WIDTH = document.getElementById('div_display3d').style.widt
+      this.SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
+      this.raycaster = new THREE.Raycaster()
+      this.mouse = new THREE.Vector2()
+      
+      if (getUrlVars('fullscreen') == '1') {
+        document.getElementById('div_colPlan3d').classList.remove('col-lg-10');
+        document.getElementById('div_colPlan3d').classList.add('col-lg-12');
+        document.getElementById('div_colMenu').style.display='none';
+        document.querySelectorAll('header')[0].hidden = true
+        document.getElementById('div_mainContainer').style.marginTop = '-50px'
+        document.getElementById('wrap').style.marginBottom = '0px'
+        document.getElementById('div_colPlan3d').style.width = window.innerHeight
+      } else {
+        document.getElementById('div_colPlan3d').style.width = window.innerHeight - 50
+      }
+      jeeFrontEnd.plan3d.display3d(plan3dHeader_id)
+    },
+    handleClick3d: function(event) {
+      if (event.target.tagName != 'CANVAS') {
+        return
+      }
+      document.getElementById('md_plan3dWidget').empty()
+      jeeFrontEnd.plan3d.mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / jeeFrontEnd.plan3d.SCREEN_WIDTH) * 2 - 1
+      jeeFrontEnd.plan3d.mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / jeeFrontEnd.plan3d.SCREEN_HEIGHT) * 2 + 1
+      jeeFrontEnd.plan3d.raycaster.setFromCamera(jeeFrontEnd.plan3d.mouse, jeeFrontEnd.plan3d.camera)
+      var intersects = jeeFrontEnd.plan3d.raycaster.intersectObjects(jeeFrontEnd.plan3d.scene.children, true)
+      if (intersects.length > 0) {
+        jeedom.plan3d.byName({
+          global: false,
+          name: intersects[0].object.name,
+          plan3dHeader_id: plan3dHeader_id,
+          error: function(request, status, error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            if (data.html) {
+              document.getElementById('md_plan3dWidget').empty()
+              document.getElementById('md_plan3dWidget').insertAdjacentHTML('beforeend', data.html)
+              jeedomUtils.positionEqLogic()
+            }
+          }
+        })
+      }
+    },
+    render: function() {
+      jeeFrontEnd.plan3d.renderer.render(jeeFrontEnd.plan3d.scene, jeeFrontEnd.plan3d.camera)
+    },
+    animate: function() {
+      //requestAnimationFrame(animate)
+      jeeFrontEnd.plan3d.render()
+      jeeFrontEnd.plan3d.controls.update()
+    },
+    refresh3dObject: function() {
+      jeeFrontEnd.plan3d.CMDS = {}
+      for (var i in jeeFrontEnd.plan3d.JEEDOM_OBJECT) {
+        var object = jeeFrontEnd.plan3d.scene.getObjectByProperty('uuid', jeeFrontEnd.plan3d.JEEDOM_OBJECT[i])
+        if (object) {
+          jeeFrontEnd.plan3d.scene.remove(object)
+        }
+      }
+      jeeFrontEnd.plan3d.JEEDOM_OBJECT = []
+      jeeFrontEnd.plan3d.add3dObjects(plan3dHeader_id)
+    },
+    add3dObject: function(_info) {
+      if (!_info.configuration || !_info.configuration['3d::widget'] || _info.configuration['3d::widget'] == '') {
+        return
+      }
+      var object = jeeFrontEnd.plan3d.scene.getObjectByName(_info.name)
+      if (!object) {
+        return
+      }
+      if (jeedom3d[_info.configuration['3d::widget']]) {
+        if (jeedom3d[_info.configuration['3d::widget']].reset) {
+          jeedom3d[_info.configuration['3d::widget']].reset(_info, object)
+        }
+        jeedom3d[_info.configuration['3d::widget']].create(_info, object)
+      }
+    },
+    add3dObjects: function(_id) {
+      jeedom.plan3d.byplan3dHeader({
+        plan3dHeader_id: _id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          for (var i in data) {
+            jeeFrontEnd.plan3d.add3dObject(data[i])
+          }
+          
+        }
+      })
+    },
+    display3d: function(_id) {
+      if (_id == -1) {
+        return
+      }
+      jeedom.plan3d.getHeader({
+        id: _id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          if (!data.configuration || !data.configuration.path || !data.configuration.objfile) {
+            return
+          }
+          domUtils.showLoading()
+          projector = new THREE.Projector()
+          jeeFrontEnd.plan3d.mouseVector = new THREE.Vector3()
+          THREE.Vector3.Zero = new THREE.Vector3(0, 0, 0)
+          THREE.Vector3.XAxis = new THREE.Vector3(1, 0, 0)
+          jeeFrontEnd.plan3d.container = document.getElementById("div_display3d")
+          jeeFrontEnd.plan3d.scene = new THREE.Scene()
+          if (data.configuration.backgroundColor && data.configuration.backgroundColor != '#000000') {
+            jeeFrontEnd.plan3d.scene.background = new THREE.Color(data.configuration.backgroundColor)
+          } else {
+            jeeFrontEnd.plan3d.scene.background = new THREE.Color(0xaaaaaa)
+          }
+          jeeFrontEnd.plan3d.camera = new THREE.PerspectiveCamera(45, jeeFrontEnd.plan3d.SCREEN_WIDTH / jeeFrontEnd.plan3d.SCREEN_HEIGHT, 0.1, 99999999)
+          jeeFrontEnd.plan3d.scene.add(jeeFrontEnd.plan3d.camera)
+          if (data.configuration.globalLightPower) {
+            var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, data.configuration.globalLightPower)
+          } else {
+            var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.3)
+          }
+          jeeFrontEnd.plan3d.scene.add(hemiLight)
+          jeeFrontEnd.plan3d.renderer  = new THREE.WebGLRenderer({
+            antialias: true
+          })
+          jeeFrontEnd.plan3d.renderer.setSize(jeeFrontEnd.plan3d.SCREEN_WIDTH, jeeFrontEnd.plan3d.SCREEN_HEIGHT)
+          jeeFrontEnd.plan3d.container.appendChild(jeeFrontEnd.plan3d.renderer .domElement)
+          if (data.configuration.mtlfile && data.configuration.mtlfile != '') {
+            domUtils.showLoading()
+            var mtlLoader = new THREE.MTLLoader()
+            mtlLoader.setPath(data.configuration.path)
+            mtlLoader.load(data.configuration.mtlfile, function(materials) {
+              domUtils.showLoading()
+              materials.lights = false
+              materials.preload()
+              var objLoader = new THREE.OBJLoader()
+              objLoader.setMaterials(materials)
+              objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
+                document.getElementById('span_loadPercent3dPlan')?.remove()
+                var bBox = new THREE.Box3().setFromObject(object)
+                jeeFrontEnd.plan3d.camera.position.set(bBox.max.x * 1.3, bBox.max.y * 1.3, bBox.max.z * 1.3)
+                object.position.x = -(bBox.max.x - bBox.min.x) / 2
+                object.position.y = -bBox.min.y
+                object.position.z = -(bBox.max.z - bBox.min.z) / 2
+                jeeFrontEnd.plan3d.scene.add(object)
+                jeeFrontEnd.plan3d.camera.lookAt(object.position)
+                jeeFrontEnd.plan3d.add3dObjects(_id)
+                domUtils.hideLoading()
+              }, function(progress) {
+                document.getElementById('span_loadPercent3dPlan')?.remove()
+                document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">2/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+              }, function(error) {
+                console.log(error)
+              })
+            }, function(progress) {
+              document.getElementById('span_loadPercent3dPlan')?.remove()
+              document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">1/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+            }, function(error) {
+              console.log(error)
+            })
+          } else {
+            domUtils.showLoading()
+            var objLoader = new THREE.OBJLoader()
+            objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
+              document.getElementById('span_loadPercent3dPlan')?.remove()
+              var bBox = new THREE.Box3().setFromObject(object)
+              jeeFrontEnd.plan3d.camera.position.set(bBox.max.x * 1.3, bBox.max.y * 1.3, bBox.max.z * 1.3)
+              object.position.x = -(bBox.max.x - bBox.min.x) / 2
+              object.position.y = -bBox.min.y
+              object.position.z = -(bBox.max.z - bBox.min.z) / 2
+              jeeFrontEnd.plan3d.scene.add(object)
+              jeeFrontEnd.plan3d.camera.lookAt(object.position)
+              jeeFrontEnd.plan3d.add3dObjects(_id)
+              domUtils.hideLoading()
+            }, function(progress) {
+              document.getElementById('span_loadPercent3dPlan')?.remove()
+              document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 51%;">' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+            }, function(error) {
+              console.log(error)
+            })
+          }
+          jeeFrontEnd.plan3d.controls = new THREE.OrbitControls(jeeFrontEnd.plan3d.camera, jeeFrontEnd.plan3d.camera.domElement)
+          jeeFrontEnd.plan3d.controls.maxPolarAngle = 0.9 * Math.PI / 2
+          //jeeFrontEnd.plan3d.controls.addEventListener('change', render)
+          jeeFrontEnd.plan3d.scene.add(new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5))
+          jeeFrontEnd.plan3d.renderer.render(jeeFrontEnd.plan3d.scene, jeeFrontEnd.plan3d.camera)
+          jeeFrontEnd.plan3d.animate()
+        }
+      })
+    }
+  }
+}
+
 window.registerEvent('click', function(event) {
   if (!event.path) {
     return
   }
 })
-if (getUrlVars('fullscreen') == '1') {
-  document.getElementById('div_colPlan3d').classList.remove('col-lg-10');
-  document.getElementById('div_colPlan3d').classList.add('col-lg-12');
-  document.getElementById('div_colMenu').style.display='none';
-  document.querySelectorAll('header')[0].hidden = true
-  document.getElementById('div_mainContainer').style.marginTop = '-50px'
-  document.getElementById('wrap').style.marginBottom = '0px'
-  document.getElementById('div_colPlan3d').style.width = window.innerHeight
-} else {
-  document.getElementById('div_colPlan3d').style.width = window.innerHeight - 50
-}
-
-var container, scene, camera, renderer, controls
-var SCREEN_WIDTH = document.getElementById('div_display3d').style.width
-var SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
-var JEEDOM_OBJECT = []
-var CMDS = {}
-var raycaster = new THREE.Raycaster()
-var mouse = new THREE.Vector2()
-var EDIT_MODE = 0
-
-display3d(plan3dHeader_id)
 
 document.getElementById('bt_editMode').addEventListener('click', function(event) {
   let _target = event.target.closest('#bt_editMode')
-  EDIT_MODE = (EDIT_MODE == 0) ? 1 : 0
-  if (EDIT_MODE) {
+  jeeFrontEnd.plan3d.EDIT_MODE = (jeeFrontEnd.plan3d.EDIT_MODE == 0) ? 1 : 0
+  if (jeeFrontEnd.plan3d.EDIT_MODE) {
     _target.classList.remove('btn-default')
     _target.classList.add('btn-success')
     document.getElementById('div_btEdit').hidden = false
@@ -52,7 +253,7 @@ document.getElementById('bt_editMode').addEventListener('click', function(event)
     _target.classList.remove('btn-success')
     _target.classList.add('btn-default')
     document.getElementById('div_btEdit').hidden = true
-    refresh3dObject()
+    jeeFrontEnd.plan3d.refresh3dObject()
   }
   return
 });
@@ -68,7 +269,7 @@ document.getElementById('bt_showAllObject').addEventListener('click', function(e
       },
       success: function(data) {
         for (let i in data) {
-          let object = scene.getObjectByName(data[i].name)
+          let object = jeeFrontEnd.plan3d.scene.getObjectByName(data[i].name)
           if (object) {
             object.visible = true
           }
@@ -111,12 +312,12 @@ document.getElementById('bt_plan3dHeaderFullScreen').addEventListener('click', f
 });
 
 document.body.registerEvent('cmd::update', function(_event) {
-  if (EDIT_MODE) {
+  if (jeeFrontEnd.plan3d.EDIT_MODE) {
     return
   }
   for (var i in _event.detail) {
-    if (CMDS[_event.detail[i].cmd_id]) {
-      for (var j in CMDS[_event.detail[i].cmd_id]) {
+    if (jeeFrontEnd.plan3d.CMDS[_event.detail[i].cmd_id]) {
+      for (var j in jeeFrontEnd.plan3d.CMDS[_event.detail[i].cmd_id]) {
         try {
           jeedom3d[j].update(_event.detail[i])
         } catch (e) {
@@ -133,23 +334,23 @@ window.registerEvent('resize', function() {
   } else {
     document.getElementById('div_colPlan3d').style.width = 'auto'
   }
-  SCREEN_WIDTH = document.getElementById('div_display3d').style.width
-  SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
+  jeeFrontEnd.plan3d.SCREEN_WIDTH = document.getElementById('div_display3d').style.width
+  jeeFrontEnd.plan3d.SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
   try {
-    camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT
-    camera.updateProjectionMatrix()
-    renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT)
+    jeeFrontEnd.plan3d.camera.aspect = jeeFrontEnd.plan3d.SCREEN_WIDTH / jeeFrontEnd.plan3d.SCREEN_HEIGHT
+    jeeFrontEnd.plan3d.camera.updateProjectionMatrix()
+    jeeFrontEnd.plan3d.camera.setSize(jeeFrontEnd.plan3d.SCREEN_WIDTH, jeeFrontEnd.plan3d.SCREEN_HEIGHT)
   } catch (error) { }
 }, false)
 
 window.registerEvent('dblclick', function(event) {
-  if (!EDIT_MODE || event.target.tagName != 'CANVAS') {
+  if (!jeeFrontEnd.plan3d.EDIT_MODE || event.target.tagName != 'CANVAS') {
     return
   }
-  mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / SCREEN_WIDTH) * 2 - 1
-  mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / SCREEN_HEIGHT) * 2 + 1
-  raycaster.setFromCamera(mouse, camera)
-  var intersects = raycaster.intersectObjects(scene.children, true)
+  jeeFrontEnd.plan3d.mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / jeeFrontEnd.plan3d.SCREEN_WIDTH) * 2 - 1
+  jeeFrontEnd.plan3d.mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / jeeFrontEnd.plan3d.SCREEN_HEIGHT) * 2 + 1
+  jeeFrontEnd.plan3d.raycaster.setFromCamera(jeeFrontEnd.plan3d.mouse, jeeFrontEnd.plan3d.camera)
+  var intersects = jeeFrontEnd.plan3d.raycaster.intersectObjects(jeeFrontEnd.plan3d.scene.children, true)
   if (intersects.length > 0 && intersects[0].object.name != '') {
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -159,199 +360,8 @@ window.registerEvent('dblclick', function(event) {
   }
 }, false)
 
-window.registerEvent('click', handleClick3d, false)
-window.registerEvent('touchend', handleClick3d, false)
-
-function handleClick3d(event) {
-  if (event.target.tagName != 'CANVAS') {
-    return
-  }
-  document.getElementById('md_plan3dWidget').empty()
-  mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / SCREEN_WIDTH) * 2 - 1
-  mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / SCREEN_HEIGHT) * 2 + 1
-  raycaster.setFromCamera(mouse, camera)
-  var intersects = raycaster.intersectObjects(scene.children, true)
-  if (intersects.length > 0) {
-    jeedom.plan3d.byName({
-      global: false,
-      name: intersects[0].object.name,
-      plan3dHeader_id: plan3dHeader_id,
-      error: function(request, status, error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        if (data.html) {
-          document.getElementById('md_plan3dWidget').empty()
-          document.getElementById('md_plan3dWidget').insertAdjacentHTML('beforeend', data.html)
-          jeedomUtils.positionEqLogic()
-        }
-      }
-    })
-  }
-}
-
-function display3d(_id) {
-  if (_id == -1) {
-    return
-  }
-  jeedom.plan3d.getHeader({
-    id: _id,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      if (!data.configuration || !data.configuration.path || !data.configuration.objfile) {
-        return
-      }
-      domUtils.showLoading()
-      projector = new THREE.Projector()
-      mouseVector = new THREE.Vector3()
-      THREE.Vector3.Zero = new THREE.Vector3(0, 0, 0)
-      THREE.Vector3.XAxis = new THREE.Vector3(1, 0, 0)
-      container = document.getElementById("div_display3d")
-      scene = new THREE.Scene()
-      if (data.configuration.backgroundColor && data.configuration.backgroundColor != '#000000') {
-        scene.background = new THREE.Color(data.configuration.backgroundColor)
-      } else {
-        scene.background = new THREE.Color(0xaaaaaa)
-      }
-      camera = new THREE.PerspectiveCamera(45, SCREEN_WIDTH / SCREEN_HEIGHT, 0.1, 99999999)
-      scene.add(camera)
-      if (data.configuration.globalLightPower) {
-        var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, data.configuration.globalLightPower)
-      } else {
-        var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.3)
-      }
-      scene.add(hemiLight)
-      renderer = new THREE.WebGLRenderer({
-        antialias: true
-      })
-      renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT)
-      container.appendChild(renderer.domElement)
-      if (data.configuration.mtlfile && data.configuration.mtlfile != '') {
-        domUtils.showLoading()
-        var mtlLoader = new THREE.MTLLoader()
-        mtlLoader.setPath(data.configuration.path)
-        mtlLoader.load(data.configuration.mtlfile, function(materials) {
-          domUtils.showLoading()
-          materials.lights = false
-          materials.preload()
-          var objLoader = new THREE.OBJLoader()
-          objLoader.setMaterials(materials)
-          objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
-            document.getElementById('span_loadPercent3dPlan')?.remove()
-            var bBox = new THREE.Box3().setFromObject(object)
-            camera.position.set(bBox.max.x * 1.3, bBox.max.y * 1.3, bBox.max.z * 1.3)
-            object.position.x = -(bBox.max.x - bBox.min.x) / 2
-            object.position.y = -bBox.min.y
-            object.position.z = -(bBox.max.z - bBox.min.z) / 2
-            scene.add(object)
-            camera.lookAt(object.position)
-            add3dObjects(_id)
-            domUtils.hideLoading()
-          }, function(progress) {
-            document.getElementById('span_loadPercent3dPlan')?.remove()
-            document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">2/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
-          }, function(error) {
-            console.log(error)
-          })
-        }, function(progress) {
-          document.getElementById('span_loadPercent3dPlan')?.remove()
-          document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">1/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
-        }, function(error) {
-          console.log(error)
-        })
-      } else {
-        domUtils.showLoading()
-        var objLoader = new THREE.OBJLoader()
-        objLoader.load(data.configuration.path + data.configuration.objfile, function(object) {
-          document.getElementById('span_loadPercent3dPlan')?.remove()
-          var bBox = new THREE.Box3().setFromObject(object)
-          camera.position.set(bBox.max.x * 1.3, bBox.max.y * 1.3, bBox.max.z * 1.3)
-          object.position.x = -(bBox.max.x - bBox.min.x) / 2
-          object.position.y = -bBox.min.y
-          object.position.z = -(bBox.max.z - bBox.min.z) / 2
-          scene.add(object)
-          camera.lookAt(object.position)
-          add3dObjects(_id)
-          domUtils.hideLoading()
-        }, function(progress) {
-          document.getElementById('span_loadPercent3dPlan')?.remove()
-          document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 51%;">' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
-        }, function(error) {
-          console.log(error)
-        })
-      }
-      controls = new THREE.OrbitControls(camera, renderer.domElement)
-      controls.maxPolarAngle = 0.9 * Math.PI / 2
-      controls.addEventListener('change', render)
-      scene.add(new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5))
-      renderer.render(scene, camera)
-      animate()
-    }
-  })
-}
-
-function animate() {
-  requestAnimationFrame(animate)
-  render()
-  controls.update()
-}
-
-function render() {
-  renderer.render(scene, camera)
-}
-
-function refresh3dObject() {
-  CMDS = {}
-  for (var i in JEEDOM_OBJECT) {
-    var object = scene.getObjectByProperty('uuid', JEEDOM_OBJECT[i])
-    if (object) {
-      scene.remove(object)
-    }
-  }
-  JEEDOM_OBJECT = []
-  add3dObjects(plan3dHeader_id)
-}
-
-function add3dObjects(_id) {
-  jeedom.plan3d.byplan3dHeader({
-    plan3dHeader_id: _id,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      for (var i in data) {
-        add3dObject(data[i])
-      }
-    }
-  })
-}
-
-function add3dObject(_info) {
-  if (!_info.configuration || !_info.configuration['3d::widget'] || _info.configuration['3d::widget'] == '') {
-    return
-  }
-  var object = scene.getObjectByName(_info.name)
-  if (!object) {
-    return
-  }
-  if (jeedom3d[_info.configuration['3d::widget']]) {
-    if (jeedom3d[_info.configuration['3d::widget']].reset) {
-      jeedom3d[_info.configuration['3d::widget']].reset(_info, object)
-    }
-    jeedom3d[_info.configuration['3d::widget']].create(_info, object)
-  }
-}
+window.registerEvent('click', jeeFrontEnd.plan3d.handleClick3d, false)
+window.registerEvent('touchend', jeeFrontEnd.plan3d.handleClick3d, false)
 
 /***************************************JEEDOM 3D OBJECT***************************/
 
@@ -366,19 +376,19 @@ jeedom3d.light.create = function(_info, _object) {
   light = new THREE.PointLight(new THREE.Color('#ffffff'), 0, 300, 2)
   light.position.set((bBox.max.x - bBox.min.x) / 2 + bBox.min.x, (bBox.max.y - bBox.min.y) / 2 + bBox.min.y, (bBox.max.z - bBox.min.z) / 2 + bBox.min.z)
   light.castShadow = true
-  JEEDOM_OBJECT.push(light.uuid)
-  scene.add(light)
+  jeeFrontEnd.plan3d.JEEDOM_OBJECT.push(light.uuid)
+  jeeFrontEnd.plan3d.scene.add(light)
   if (!_info.additionalData.cmd_id) {
     return
   }
-  if (!CMDS[_info.additionalData.cmd_id]) {
-    CMDS[_info.additionalData.cmd_id] = {
+  if (!jeeFrontEnd.plan3d.CMDS[_info.additionalData.cmd_id]) {
+    jeeFrontEnd.plan3d.CMDS[_info.additionalData.cmd_id] = {
       'light': []
     }
-  } else if (!CMDS[_info.additionalData.cmd_id]['light']) {
-    CMDS[_info.additionalData.cmd_id]['light'] = []
+  } else if (!jeeFrontEnd.plan3d.CMDS[_info.additionalData.cmd_id]['light']) {
+    jeeFrontEnd.plan3d.CMDS[_info.additionalData.cmd_id]['light'] = []
   }
-  CMDS[_info.additionalData.cmd_id]['light'].push({
+  jeeFrontEnd.plan3d.CMDS[_info.additionalData.cmd_id]['light'].push({
     object: light,
     info: _info
   })
@@ -389,7 +399,7 @@ jeedom3d.light.create = function(_info, _object) {
 }
 
 jeedom3d.light.update = function(_options) {
-  var lights = CMDS[_options.cmd_id]['light']
+  var lights = jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['light']
   for (var i in lights) {
     var max = lights[i].info.configuration['3d::widget::light::power'] || 6
     var intensity = 0
@@ -420,28 +430,28 @@ jeedom3d.text.reset = function(_info, _object) {
   if (!jeedom3d.text.data[_object.uuid]) {
     return
   }
-  for (var j in scene.children) {
-    if (scene.children[j].uuid == jeedom3d.text.data[_object.uuid]) {
-      scene.remove(scene.children[j])
+  for (var j in jeeFrontEnd.plan3d.scene.children) {
+    if (jeeFrontEnd.plan3d.scene.children[j].uuid == jeedom3d.text.data[_object.uuid]) {
+      jeeFrontEnd.plan3d.scene.remove(jeeFrontEnd.plan3d.scene.children[j])
     }
   }
 }
 
 jeedom3d.text.create = function(_info, _object) {
   var text = jeedom3d.text.generate(_info, _object, _info.additionalData.text)
-  scene.add(text)
+  jeeFrontEnd.plan3d.scene.add(text)
   jeedom3d.text.data[_object.uuid] = text.uuid
   if (_info.additionalData.cmds) {
     for (var i in _info.additionalData.cmds) {
       cmd_id = _info.additionalData.cmds[i]
-      if (!CMDS[cmd_id]) {
-        CMDS[cmd_id] = {
+      if (!jeeFrontEnd.plan3d.CMDS[cmd_id]) {
+        jeeFrontEnd.plan3d.CMDS[cmd_id] = {
           'text': []
         }
-      } else if (!CMDS[cmd_id]['text']) {
-        CMDS[cmd_id]['text'] = []
+      } else if (!jeeFrontEnd.plan3d.CMDS[cmd_id]['text']) {
+        jeeFrontEnd.plan3d.CMDS[cmd_id]['text'] = []
       }
-      CMDS[cmd_id]['text'].push({
+      jeeFrontEnd.plan3d.CMDS[cmd_id]['text'].push({
         text: text,
         info: _info,
         object: _object
@@ -451,20 +461,20 @@ jeedom3d.text.create = function(_info, _object) {
 }
 
 jeedom3d.text.update = function(_options) {
-  var texts = CMDS[_options.cmd_id]['text']
+  var texts = jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['text']
   for (var i in texts) {
     if (_options.object && _options.object != texts[i].object) {
       continue
     }
     if (_options.text) {
       var text = jeedom3d.text.generate(texts[i].info, texts[i].object, data.additionalData.text)
-      for (var j in scene.children) {
-        if (scene.children[j].uuid == texts[i].text.uuid) {
-          scene.remove(scene.children[j])
+      for (var j in jeeFrontEnd.plan3d.scene.children) {
+        if (jeeFrontEnd.plan3d.scene.children[j].uuid == texts[i].text.uuid) {
+          jeeFrontEnd.plan3d.scene.remove(jeeFrontEnd.plan3d.scene.children[j])
         }
       }
-      scene.add(text)
-      CMDS[_options.cmd_id]['text'][i].text = text
+      jeeFrontEnd.plan3d.scene.add(text)
+      jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['text'][i].text = text
     } else {
       jeedom.plan3d.byId({
         id: texts[i].info.id,
@@ -472,14 +482,14 @@ jeedom3d.text.update = function(_options) {
         async: false,
         success: function(data) {
           var text = jeedom3d.text.generate(texts[i].info, texts[i].object, data.additionalData.text)
-          for (var j in scene.children) {
-            if (scene.children[j].uuid == texts[i].text.uuid) {
-              scene.remove(scene.children[j])
+          for (var j in jeeFrontEnd.plan3d.scene.children) {
+            if (jeeFrontEnd.plan3d.scene.children[j].uuid == texts[i].text.uuid) {
+              jeeFrontEnd.plan3d.scene.remove(jeeFrontEnd.plan3d.scene.children[j])
             }
           }
-          JEEDOM_OBJECT.push(text.uuid)
-          scene.add(text)
-          CMDS[_options.cmd_id]['text'][i].text = text
+          jeeFrontEnd.plan3d.JEEDOM_OBJECT.push(text.uuid)
+          jeeFrontEnd.plan3d.scene.add(text)
+          jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['text'][i].text = text
         }
       })
     }
@@ -602,14 +612,14 @@ jeedom3d.door.create = function(_info, _object) {
       continue
     }
     cmd_id = _info.additionalData.cmds[i]
-    if (!CMDS[cmd_id]) {
-      CMDS[cmd_id] = {
+    if (!jeeFrontEnd.plan3d.CMDS[cmd_id]) {
+      jeeFrontEnd.plan3d.CMDS[cmd_id] = {
         'door': []
       }
-    } else if (!CMDS[cmd_id]['door']) {
-      CMDS[cmd_id]['door'] = []
+    } else if (!jeeFrontEnd.plan3d.CMDS[cmd_id]['door']) {
+      jeeFrontEnd.plan3d.CMDS[cmd_id]['door'] = []
     }
-    CMDS[cmd_id]['door'].push({
+    jeeFrontEnd.plan3d.CMDS[cmd_id]['door'].push({
       object: _object,
       info: _info
     })
@@ -622,20 +632,20 @@ jeedom3d.door.create = function(_info, _object) {
 }
 
 jeedom3d.door.update = function(_options) {
-  var doors = CMDS[_options.cmd_id]['door']
+  var doors = jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['door']
   for (var i in doors) {
     if (_options.object && _options.object != doors[i].object) {
       continue
     }
     if (_options.state) {
-      CMDS[_options.cmd_id]['door'][i].info.lastPosition = jeedom3d.door.doUpdate(_options.state, doors[i])
+      jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['door'][i].info.lastPosition = jeedom3d.door.doUpdate(_options.state, doors[i])
     } else {
       jeedom.plan3d.byId({
         id: doors[i].info.id,
         global: false,
         async: false,
         success: function(data) {
-          CMDS[_options.cmd_id]['door'][i].info.lastPosition = jeedom3d.door.doUpdate(data.additionalData.state, doors[i])
+          jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['door'][i].info.lastPosition = jeedom3d.door.doUpdate(data.additionalData.state, doors[i])
         }
       })
     }
@@ -815,14 +825,14 @@ jeedom3d.conditionalColor.create = function(_info, _object) {
   _object.material = _object.material.clone()
   for (var i in _info.additionalData.cmds) {
     cmd_id = _info.additionalData.cmds[i]
-    if (!CMDS[cmd_id]) {
-      CMDS[cmd_id] = {
+    if (!jeeFrontEnd.plan3d.CMDS[cmd_id]) {
+      jeeFrontEnd.plan3d.CMDS[cmd_id] = {
         'conditionalColor': []
       }
-    } else if (!CMDS[cmd_id]['conditionalColor']) {
-      CMDS[cmd_id]['conditionalColor'] = []
+    } else if (!jeeFrontEnd.plan3d.CMDS[cmd_id]['conditionalColor']) {
+      jeeFrontEnd.plan3d.CMDS[cmd_id]['conditionalColor'] = []
     }
-    CMDS[cmd_id]['conditionalColor'].push({
+    jeeFrontEnd.plan3d.CMDS[cmd_id]['conditionalColor'].push({
       object: _object,
       info: _info
     })
@@ -835,7 +845,7 @@ jeedom3d.conditionalColor.create = function(_info, _object) {
 }
 
 jeedom3d.conditionalColor.update = function(_options) {
-  var conditionalColor = CMDS[_options.cmd_id]['conditionalColor']
+  var conditionalColor = jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['conditionalColor']
   for (var i in conditionalColor) {
     if (_options.object && _options.object != conditionalColor[i].object) {
       continue
@@ -883,14 +893,14 @@ jeedom3d.conditionalShow.reset = function(_info, _object) {
 jeedom3d.conditionalShow.create = function(_info, _object) {
   for (var i in _info.additionalData.cmds) {
     cmd_id = _info.additionalData.cmds[i]
-    if (!CMDS[cmd_id]) {
-      CMDS[cmd_id] = {
+    if (!jeeFrontEnd.plan3d.CMDS[cmd_id]) {
+      jeeFrontEnd.plan3d.CMDS[cmd_id] = {
         'conditionalShow': []
       }
-    } else if (!CMDS[cmd_id]['conditionalShow']) {
-      CMDS[cmd_id]['conditionalShow'] = []
+    } else if (!jeeFrontEnd.plan3d.CMDS[cmd_id]['conditionalShow']) {
+      jeeFrontEnd.plan3d.CMDS[cmd_id]['conditionalShow'] = []
     }
-    CMDS[cmd_id]['conditionalShow'].push({
+    jeeFrontEnd.plan3d.CMDS[cmd_id]['conditionalShow'].push({
       object: _object,
       info: _info
     })
@@ -903,7 +913,7 @@ jeedom3d.conditionalShow.create = function(_info, _object) {
 }
 
 jeedom3d.conditionalShow.update = function(_options) {
-  var conditionalShow = CMDS[_options.cmd_id]['conditionalShow']
+  var conditionalShow = jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['conditionalShow']
   for (var i in conditionalShow) {
     if (_options.object && _options.object != conditionalShow[i].object) {
       continue
@@ -925,3 +935,5 @@ jeedom3d.conditionalShow.update = function(_options) {
     }
   }
 }
+
+jeeFrontEnd.plan3d.init()
