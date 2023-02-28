@@ -24,8 +24,9 @@ jobs:
 
       - name: BRANCH name
         # adding infos in the $GITHUB_ENV file and summary
+        # secret DOCKER_HUB_REPO is optional (default=jeedom)
         run: |
-          export DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_USERNAME }}
+          export DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_REPO }}
           bash install/OS_specific/Docker/init_workflow.sh
 
       - name: Set up QEMU
@@ -88,7 +89,7 @@ jobs:
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=buster"
           tags: |
-            "${{ secrets.DOCKER_HUB_USERNAME }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
+            "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
