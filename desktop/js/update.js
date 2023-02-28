@@ -436,8 +436,8 @@ if (!jeeFrontEnd.update) {
           })
         },
         success: function(data) {
-          let tbody = document.querySelector('#table_osUpdate tbody')
-          tbody.empty()
+          var osTable = document.getElementById('table_osUpdate')
+          osTable.tBodies[0].empty()
 
           var tr_updates = []
           document.querySelectorAll('.bt_OsPackageUpdate').addClass('disabled')
@@ -450,18 +450,20 @@ if (!jeeFrontEnd.update) {
             }
           }
 
-          for (var tr of tr_updates) {
-            tbody.appendChild(tr)
+          osTable.tBodies[0].append(tr_updates)
+
+          if (osTable._dataTable) {
+            osTable._dataTable.refresh()
+          } else {
+            jeeFrontEnd.update.osDataTable = new DataTable(osTable, {
+              columns: [
+                { select: 0, sort: "asc" },
+                { select: 4, sortable: false }
+              ],
+              paging: false,
+              searchable: true,
+            })
           }
-          var osTable = document.getElementById('table_osUpdate')
-          jeeFrontEnd.update.osDataTable = new DataTable(osTable, {
-            columns: [
-              { select: 0, sort: "asc" },
-              { select: 4, sortable: false }
-            ],
-            paging: false,
-            searchable: true,
-          })
         }
       })
     },
