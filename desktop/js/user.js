@@ -378,9 +378,10 @@ document.getElementById('div_administration').addEventListener('click', function
   }
 
   if (_target = event.target.closest('#table_user .bt_manage_profils')) {
+    let login = _target.closest('tr').querySelector('input[data-l1key="login"]')?.value
     jeeDialog.dialog({
       id: 'jee_modal',
-      title: "{{Gestion du profils}}",
+      title: '{{Gestion du profil}} (' + login + ')',
       contentUrl: 'index.php?v=d&p=profils&ajax=1&user_id=' + _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
     })
     return
