@@ -286,8 +286,12 @@ sendVarToJS('market_display_info', $market_array);
     document.getElementById('md_marketDisplayRepo').setJeeValues(market_display_info, '.marketAttr')
     let modal = jeeDialog.get('#md_marketDisplayRepo', 'dialog')
     modal.querySelector('.title').textContent = 'Market - ' + market_display_info_category
-    modal.querySelector('.marketAttr[data-l1key="description"]')?.innerHTML = jeedomUtils.linkify(market_display_info.description)
-    modal.querySelector('.marketAttr[data-l1key="utilization"]')?.innerHTML = jeedomUtils.linkify(market_display_info.utilization)
+    if (modal.querySelector('.marketAttr[data-l1key="description"]')) {
+      modal.querySelector('.marketAttr[data-l1key="description"]').innerHTML = jeedomUtils.linkify(market_display_info.description)
+    }
+    if (modal.querySelector('.marketAttr[data-l1key="utilization"]')) {
+      modal.querySelector('.marketAttr[data-l1key="utilization"]')?.innerHTML = jeedomUtils.linkify(market_display_info.utilization)
+    }
 
     document.getElementById('md_marketDisplayRepo').addEventListener('click', function(event) {
       var _target = null
