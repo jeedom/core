@@ -285,9 +285,6 @@ class repo_market {
 			$response = $filesystem->writeStream('/webdav/' . config::byKey('market::username') . '/' . rawurldecode(config::byKey('market::cloud::backup::name')) . '/' . basename($_path) . '.gpg', $stream);
 			unlink($_path . '.gpg');
 			rrmdir('/tmp/jeedom_gnupg');
-			if (!$response) {
-				throw new \Exception(__('Impossible d\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long', __FILE__));
-			}
 		} catch (\Exception $e) {
 			unlink($_path . '.gpg');
 			rrmdir('/tmp/jeedom_gnupg');
