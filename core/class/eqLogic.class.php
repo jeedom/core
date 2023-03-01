@@ -828,7 +828,7 @@ class eqLogic {
 			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"></div><script>jeedom.eqLogic.initGraphInfo("' . $uid . '", ' . $doNotHighlightGraphCmd . ')</script>';
 			$height = $this->getDisplay('backGraph::height', '0');
 			if ($height != '0') {
-				$replace['#isVerticalAlign#'] = 0;
+				//$replace['#isVerticalAlign#'] = 0;
 				$replace['#divGraphInfo#'] = str_replace('data-cmdid=', 'style="height:' . $height . 'px;" data-cmdid=', $replace['#divGraphInfo#']);
 				$replace['#divGraphInfo#'] = str_replace('eqlogicbackgraph', 'eqlogicbackgraph fixedbackgraph', $replace['#divGraphInfo#']);
 			}

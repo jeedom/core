@@ -1,0 +1,394 @@
+
+@font-face {
+    font-family: 'mdi';
+    src: url('fonts/mdi.woff2') format('woff2'),
+         url('fonts/mdi.woff') format('woff'),
+         url('fonts/mdi.ttf') format('ttf'),
+         url('fonts/mdi.eot') format('eot');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  [class^="mdi-"], [class*=" mdi-"] {
+      font-family: 'mdi';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .mdi-account-badge::before {
+    content: "\F1B0A";
+  }
+
+  .mdi-account-badge-outline::before {
+    content: "\F1B0B";
+  }
+
+  .mdi-account-network-off::before {
+    content: "\F1AF1";
+  }
+
+  .mdi-desk-lamp-on::before {
+    content: "\F1B20";
+  }
+  .mdi-desk-lamp-off::before {
+    content: "\F1B1F";
+  }
+  
+  .mdi-card-account-mail-outline::before {
+    content: "\F0E98";
+  }
+
+  .mdi-access-point::before {
+    content: "\F0003";
+  }
+
+  .mdi-access-point-check::before {
+    content: "\F1538";
+  }
+
+  .mdi-access-point-network::before {
+    content: "\F0002";
+  }
+  .mdi-access-point-network-off::before {
+    content: "\F0BE1";
+  }
+  .mdi-zigbee::before {
+    content: "\F0D41";
+  }
+  .mdi-z-wave::before {
+    content: "\F0AEA";
+  }
+
+  .mdi-share-circle::before {
+    content: "\F11AD";
+  }
+
+  .mdi-mapbox::before {
+    content: "\F0BAA";
+  }
+  .mdi-equalizer::before {
+    content: "\F0EA2";
+  }
+  .mdi-equalizer-outline::before {
+    content: "\F0EA3";
+  }
+  .mdi-alarm-light::before {
+    content: "\F078F";
+  }
+
+  .mdi-alarm-light-off::before {
+    content: "\F171E";
+  }
+
+  .mdi-chart-gantt::before {
+    content: "\F066C";
+  }
+  .mdi-chart-donut::before {
+    content: "\F07AF";
+  }
+  .mdi-home-thermometer-outline::before {
+    content: "\F0F55";
+  }
+  .mdi-home-thermometer::before {
+    content: "\F0F54";
+  }
+
+  .mdi-home-variant-outline::before {
+    content: "\F0BA7";
+  }
+
+  .mdi-home-variant::before {
+    content: "\F02DE";
+  }
+  .mdi-home-switch::before {
+    content: "\F1794";
+  }
+
+  .mdi-window-close::before {
+    content: "\F05AD";
+  }
+  .mdi-window-closed::before {
+    content: "\F05AE";
+  }
+
+  .mdi-window-closed-variant::before {
+    content: "\F11DB";
+  }
+  .mdi-window-maximize::before {
+    content: "\F05AF";
+  }
+
+  .mdi-window-open-variant::before {
+    content: "\F11DC";
+  }
+  .mdi-window-shutter::before {
+    content: "\F111C";
+  }
+
+  .mdi-window-shutter-alert::before {
+    content: "\F111D";
+  }
+  .mdi-window-shutter-open::before {
+    content: "\F111E";
+  }
+
+  .mdi-window-shutter-settings::before {
+    content: "\F1A8B";
+  }
+  .mdi-windsock::before {
+    content: "\F15FA";
+  }
+  .mdi-wrench::before {
+    content: "\F05B7";
+  }
+
+  .mdi-wrench-clock::before {
+    content: "\F19A3";
+  }
+  .mdi-wrench-outline::before {
+    content: "\F0BE0";
+  }
+
+  .mdi-xamarin::before {
+    content: "\F0845";
+  }
+  .mdi-xml::before {
+    content: "\F05C0";
+  }
+
+  .mdi-shield-account::before {
+    content: "\F088F";
+  }
+
+  .mdi-shield-account-outline::before {
+    content: "\F0A12";
+  }
+
+  .mdi-power-plug::before {
+    content: "\F06A5";
+  }
+
+  .mdi-power-plug-off::before {
+    content: "\F06A6";
+  }
+  .mdi-power-plug-off-outline::before {
+    content: "\F1424";
+  }
+  .mdi-power-plug-outline::before {
+    content: "\F1425";
+  }
+
+  .mdi-power-settings::before {
+    content: "\F0426";
+  }
+  .mdi-power-sleep::before {
+    content: "\F0904";
+  }
+
+  .mdi-power-socket::before {
+    content: "\F0427";
+  }
+
+  .mdi-power-standby::before {
+    content: "\F0906";
+  }
+
+  .mdi-desktop-classic::before {
+    content: "\F07C0";
+  }
+
+  .mdi-desktop-mac-dashboard::before {
+    content: "\F09E8";
+  }
+
+  .mdi-desktop-tower::before {
+    content: "\F01C5";
+  }
+  .mdi-desktop-tower-monitor::before {
+    content: "\F0AAB";
+  }
+
+  .mdi-marker::before {
+    content: "\F0652";
+  }
+
+  .mdi-marker-cancel::before {
+    content: "\F0DD9";
+  }
+
+  .mdi-marker-check::before {
+    content: "\F0355";
+  }
+  .mdi-math-log::before {
+    content: "\F1085";
+  }
+
+  .mdi-harddisk::before {
+    content: "\F02CA";
+  }
+
+  .mdi-harddisk-plus::before {
+    content: "\F104B";
+  }
+
+  .mdi-harddisk-remove::before {
+    content: "\F104C";
+  }
+  .mdi-pencil-outline::before {
+    content: "\F0CB6";
+  }
+  .mdi-pencil-plus::before {
+    content: "\F0DEB";
+  }
+
+  .mdi-pencil-ruler::before {
+    content: "\F1353";
+  }
+
+  .mdi-fan::before {
+    content: "\F0210";
+  }
+  .mdi-fan-alert::before {
+    content: "\F146C";
+  }
+
+  .mdi-fan-off::before {
+    content: "\F081D";
+  }
+
+  .mdi-calendar-minus::before {
+    content: "\F0D5C";
+  }
+  .mdi-calendar-month::before {
+    content: "\F0E17";
+  }
+
+  .mdi-calendar-refresh::before {
+    content: "\F01E1";
+  }
+
+  .mdi-weather-cloudy::before {
+    content: "\F0590";
+  }
+  .mdi-weather-cloudy-alert::before {
+    content: "\F0F2F";
+  }
+
+  .mdi-weather-cloudy-arrow-right::before {
+    content: "\F0E6E";   
+  }
+  .mdi-weather-cloudy-clock::before {
+    content: "\F18F6";
+  }
+  .mdi-weather-fog::before {
+    content: "\F0591";
+  }
+
+  .mdi-weather-hail::before {
+    content: "\F0592"; 
+  }
+  .mdi-weather-hazy::before {
+    content: "\F0F30";
+  }
+  .mdi-weather-hurricane::before {
+    content: "\F0898";
+  }
+
+  .mdi-weather-lightning::before {
+    content: "\F0593";   
+  }
+
+  .mdi-weather-night::before {
+    content: "\F0594";
+  }
+
+  .mdi-weather-night-partly-cloudy::before {
+    content: "\F0F31";   
+  }
+
+  .mdi-weather-partly-cloudy::before {
+    content: "\F0595";
+  }
+
+
+  .mdi-weather-sunny::before {
+    content: "\F0599";
+  }
+
+  .mdi-weather-sunny-alert::before {
+    content: "\F0F37"; 
+  }
+
+  .mdi-camera-timer::before {
+    content: "\F0109";
+  }
+
+  .mdi-camera-wireless::before {
+    content: "\F0DB6";
+  }
+
+  .mdi-camera-wireless-outline::before {
+    content: "\F0DB7"; 
+  }
+
+  .mdi-camera-front::before {
+    content: "\F0102";
+  }
+
+  .mdi-camera-front-variant::before {
+    content: "\F0103";
+  }
+
+  .mdi-camera-image::before {
+    content: "\F08CC"; 
+  }
+
+
+
+
+
+
+
+  .mdi-location-enter::before {
+    content: "\F0102";
+  }
+
+  .mdi-location-exit::before {
+    content: "\F0103";
+  }
+
+  .mdi-lock::before {
+    content: "\F033E"; 
+  }
+  .mdi-lock-alert::before {
+    content: "\F08EE";
+  }
+
+  .mdi-lock-alert-outline::before {
+    content: "\F15D1";
+  }
+
+  .mdi-lock-clock::before {
+    content: "\F097F"; 
+  }
+
+  .mdi-key::before {
+    content: "\F0306"; 
+  }
+  .mdi-key-chain::before {
+    content: "\F1574";
+  }
+
+  .mdi-key-chain-variant::before {
+    content: "\F1575";
+  }
+
+  .mdi-key-outline::before {
+    content: "\F0DD6"; 
+  }

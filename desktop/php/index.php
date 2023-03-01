@@ -455,7 +455,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 										<li><a href="index.php?v=d&p=types"><i class="fas fa-puzzle-piece"></i> {{Types d'équipement}}</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
-										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur expression}}</a></li>
+										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur d'expressions}}</a></li>
 										<li><a id="bt_showDatastoreVariable"><i class="fas fa-eye"></i> {{Variables}}</a></li>
 										<li><a id="bt_showSearching"><i class="fas fa-search"></i> {{Recherche}}</a></li>
 										<li><a href="index.php?v=d&p=replace"><i class="fas fa-random warning"></i> {{Remplacer}}</a></li>
