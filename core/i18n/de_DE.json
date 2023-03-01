@@ -4032,7 +4032,6 @@
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Das Backup-Cloud-Passwort stimmt nicht mit der Bestätigung überein",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Kein Backup-Server definiert. Haben Sie ein Backup-Cloud-Abonnement?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Sie müssen ein Kennwort für die Cloud-Sicherung haben (gehen Sie zu Einstellungen -> System -> Konfiguration und dann zu Update \/ Market)",
-        "Impossible d\\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long": "Backup kann nicht an die Cloud gesendet werden. Das Problem ist sicherlich auf ein zu großes Backup oder eine zu lange Übertragungszeit zurückzuführen",
         "Besoin de faire de la place sur le stockage distant": "Sie müssen Platz auf dem Remote-Speicher schaffen",
         "Pas assez de place et aucun backup à supprimer": "Nicht genügend Speicherplatz und kein Backup zum Löschen",
         "Supression du backup cloud :": "Löschen von Cloud-Backups:",

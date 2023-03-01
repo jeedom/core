@@ -4032,7 +4032,6 @@
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "La contraseña de la nube de respaldo no es la misma que la confirmación",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "No se ha definido ningún servidor de respaldo. ¿Tiene una suscripción de respaldo en la nube?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Debe tener una contraseña para la copia de seguridad en la nube (vaya a Configuración -> Sistema -> Configuración y luego a la pestaña Actualizar \/ Market)",
-        "Impossible d\\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long": "No se puede enviar la copia de seguridad a la nube. El problema se debe seguramente a una copia de seguridad demasiado grande o a un tiempo de transferencia demasiado largo",
         "Besoin de faire de la place sur le stockage distant": "Necesita hacer espacio en el almacenamiento remoto",
         "Pas assez de place et aucun backup à supprimer": "No hay suficiente espacio y no hay copia de seguridad para eliminar",
         "Supression du backup cloud :": "Eliminación de la copia de seguridad en la nube:",

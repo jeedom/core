@@ -4032,7 +4032,6 @@
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "The backup cloud password is not the same as the confirmation",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "No backup server defined. Do you have a backup cloud subscription?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "You must have a password for the cloud backup (go to Settings -> System -> Configuration then tab Update \/ Market)",
-        "Impossible d\\'envoyer le backup au cloud. Le soucis est surement du à un backup trop gros ou à un temps de transfert trop long": "Unable to send backup to cloud. The problem is surely due to a too big backup or to a too long transfer time",
         "Besoin de faire de la place sur le stockage distant": "Need to make room on remote storage",
         "Pas assez de place et aucun backup à supprimer": "Not enough space and no backup to delete",
         "Supression du backup cloud :": "Cloud backup deletion:",
