@@ -290,7 +290,7 @@ sendVarToJS('market_display_info', $market_array);
       modal.querySelector('.marketAttr[data-l1key="description"]').innerHTML = jeedomUtils.linkify(market_display_info.description)
     }
     if (modal.querySelector('.marketAttr[data-l1key="utilization"]')) {
-      modal.querySelector('.marketAttr[data-l1key="utilization"]')?.innerHTML = jeedomUtils.linkify(market_display_info.utilization)
+      modal.querySelector('.marketAttr[data-l1key="utilization"]').innerHTML = jeedomUtils.linkify(market_display_info.utilization)
     }
 
     document.getElementById('md_marketDisplayRepo').addEventListener('click', function(event) {
