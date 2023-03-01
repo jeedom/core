@@ -1,24 +1,24 @@
 <?php
-  if (!isConnect('admin')) {
-    throw new Exception('{{401 - Accès non autorisé}}');
-  }
+if (!isConnect('admin')) {
+  throw new Exception('{{401 - Accès non autorisé}}');
+}
 
-  if (init('id') != '') {
-    $market = repo_market::byId(init('id'));
-  }
-  if (init('logicalId') != '' && init('type') != '') {
-    $market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));
-  }
-  if (!isset($market)) {
-    throw new Exception('404 not found');
-  }
+if (init('id') != '') {
+  $market = repo_market::byId(init('id'));
+}
+if (init('logicalId') != '' && init('type') != '') {
+  $market = repo_market::byLogicalIdAndType(init('logicalId'), init('type'));
+}
+if (!isset($market)) {
+  throw new Exception('404 not found');
+}
 
-  include_file('3rdparty', 'fslightbox/fslightbox', 'js');
+include_file('3rdparty', 'fslightbox/fslightbox', 'js');
 
-  $market_array = utils::o2a($market);
-  $market_array['rating'] = $market->getRating();
-  $update = update::byLogicalId($market->getLogicalId());
-  sendVarToJS('market_display_info', $market_array);
+$market_array = utils::o2a($market);
+$market_array['rating'] = $market->getRating();
+$update = update::byLogicalId($market->getLogicalId());
+sendVarToJS('market_display_info', $market_array);
 ?>
 
 <div id="md_marketDisplayRepo" data-modalType="md_marketDisplayRepo">
@@ -142,240 +142,240 @@
   ?>
 
   <?php
-    $mbState = config::byKey('mbState');
-    if ($mbState == 0) {
+  $mbState = config::byKey('mbState');
+  if ($mbState == 0) {
     if (count($market->getImg('screenshot')) > 0) {
   ?>
-  <section class="slider-wrapper">
-    <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
-    <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
-    <ul class="slides-container" id="slides-container">
-      <?php
-      foreach ($market->getImg('screenshot') as $screenshot) {
-        $scrsht = '<li class="slide" >';
-        $scrsht .= '<a class="cursor" data-type="image" data-fslightbox="gallery" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
-        $scrsht .= '<img src="' . config::byKey('market::address') . '/' . $screenshot . '"/>';
-        $scrsht .= '</a>';
-        $scrsht .= '</li>';
-        echo $scrsht;
-      }
+      <section class="slider-wrapper">
+        <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
+        <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
+        <ul class="slides-container" id="slides-container">
+          <?php
+          foreach ($market->getImg('screenshot') as $screenshot) {
+            $scrsht = '<li class="slide" >';
+            $scrsht .= '<a class="cursor" data-type="image" data-fslightbox="gallery" href="' . config::byKey('market::address') . '/' . $screenshot . '" rel="group" >';
+            $scrsht .= '<img src="' . config::byKey('market::address') . '/' . $screenshot . '"/>';
+            $scrsht .= '</a>';
+            $scrsht .= '</li>';
+            echo $scrsht;
+          }
+          ?>
+        </ul>
+      </section>
+
+    <?php }
     ?>
-    </ul>
-  </section>
 
-  <?php }
-  ?>
+    <div class='row row-overflow'>
+      <div class='col-sm-6'>
+        <legend>{{Description}}
+          <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $market->getDoc()) ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
+          <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $market->getChangelog()) ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
+          <br />
+        </legend>
+        <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;"></span>
+      </div>
+      <div class='col-sm-6'>
+        <legend>{{Compatibilité plateforme}}</legend>
+        <?php
+        if ($market->getHardwareCompatibility('v4') == 1) {
+          echo '<img src="core/img/logo_market_v4.png" style="width:60px;height:60px;" />';
+        }
+        if ($market->getHardwareCompatibility('diy') == 1) {
+          echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
+        }
+        if ($market->getHardwareCompatibility('rpi') == 1) {
+          echo '<img src="core/img/logo_rpi12.png" style="width:60px;height:60px;" />';
+        }
+        if ($market->getHardwareCompatibility('docker') == 1) {
+          echo '<img src="core/img/logo_docker.png" style="width:60px;height:60px;" />';
+        }
+        if ($market->getHardwareCompatibility('miniplus') == 1) {
+          echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
+        }
+        ?>
+      </div>
+    </div>
+    <br />
+    <div class='row row-overflow'>
+      <div class='col-sm-6'>
+        <legend>Avis</legend>
+        <div class='row'>
+          <div class='col-sm-6'>
+            <center>
+              <span class="marketAttr" data-l1key="rating" style="font-size: 4em;"></span>/5
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class='col-sm-6'>
+        <legend>{{Utilisation}}</legend>
+        <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;"></span>
+      </div>
+    </div>
+    <br />
 
-  <div class='row row-overflow'>
-    <div class='col-sm-6'>
-      <legend>{{Description}}
-        <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $market->getDoc()) ?>"><i class="fas fa-book"></i> {{Documentation}}</a>
-        <a class="btn btn-default btn-xs pull-right" target="_blank" href="<?php echo str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $market->getChangelog()) ?>"><i class="fas fa-book"></i> {{Changelog}}</a>
-        <br />
-      </legend>
-      <span class="marketAttr" data-l1key="description" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;"></span>
-    </div>
-    <div class='col-sm-6'>
-      <legend>{{Compatibilité plateforme}}</legend>
-      <?php
-      if ($market->getHardwareCompatibility('v4') == 1) {
-        echo '<img src="core/img/logo_market_v4.png" style="width:60px;height:60px;" />';
-      }
-      if ($market->getHardwareCompatibility('diy') == 1) {
-        echo '<img src="core/img/logo_diy.png" style="width:60px;height:60px;" />';
-      }
-      if ($market->getHardwareCompatibility('rpi') == 1) {
-        echo '<img src="core/img/logo_rpi12.png" style="width:60px;height:60px;" />';
-      }
-      if ($market->getHardwareCompatibility('docker') == 1) {
-        echo '<img src="core/img/logo_docker.png" style="width:60px;height:60px;" />';
-      }
-      if ($market->getHardwareCompatibility('miniplus') == 1) {
-        echo '<img src="core/img/logo_jeedomboard.png" style="width:60px;height:60px;" />';
-      }
-      ?>
-    </div>
-  </div>
-  <br />
-  <div class='row row-overflow'>
-    <div class='col-sm-6'>
-      <legend>Avis</legend>
-      <div class='row'>
-        <div class='col-sm-6'>
-          <center>
-            <span class="marketAttr" data-l1key="rating" style="font-size: 4em;"></span>/5
-          </center>
+    <div class='row row-overflow'>
+      <div class="col-sm-12">
+        <legend>{{Informations complementaires}}</legend>
+
+        <div class='col-sm-2'>
+          <label class="control-label">{{Taille}}</label><br />
+          <span><?php echo $market->getParameters('size'); ?></span>
+        </div>
+        <div class='col-sm-2'>
+          <label class="control-label">{{Lien}}</label><br />
+          <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') { ?>
+            <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br />
+          <?php }
+          ?>
+          <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
+            <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br />
+          <?php }
+          ?>
+        </div>
+        <div class='col-sm-2'>
+          <label class="control-label">{{Installation}}</label>
+          <span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
+        </div>
+
+        <div class='col-sm-1'>
+          <label class="control-label">{{Type}}</label><br />
+          <span class="marketAttr" data-l1key="type"></span>
+        </div>
+        <div class='col-sm-2'>
+          <label class="control-label">{{Langue disponible}}</label><br />
+          <?php
+          echo '<img src="core/img/langFlags/francais.png" width="30" />';
+          if ($market->getLanguage('en_US') == 1) {
+            echo '<img src="core/img/langFlags/anglais.png" width="30" />';
+          }
+          if ($market->getLanguage('de_DE') == 1) {
+            echo '<img src="core/img/langFlags/allemand.png" width="30" />';
+          }
+          if ($market->getLanguage('es_ES') == 1) {
+            echo '<img src="core/img/langFlags/espagnol.png" width="30" />';
+          }
+          if ($market->getLanguage('it_IT') == 1) {
+            echo '<img src="core/img/langFlags/italien.png" width="30" />';
+          }
+          ?>
+        </div>
+        <div class='col-sm-3'>
+          <label class="control-label">{{Dernière mise à jour le}}</label><br />
+          <?php echo $market->getDatetime('stable') ?>
         </div>
       </div>
     </div>
-    <div class='col-sm-6'>
-      <legend>{{Utilisation}}</legend>
-      <span class="marketAttr" data-l1key="utilization" style="word-wrap: break-word;white-space: -moz-pre-wrap;white-space: pre-wrap;"></span>
-    </div>
-  </div>
-  <br />
-
-  <div class='row row-overflow'>
-    <div class="col-sm-12">
-      <legend>{{Informations complementaires}}</legend>
-
-      <div class='col-sm-2'>
-        <label class="control-label">{{Taille}}</label><br />
-        <span><?php echo $market->getParameters('size'); ?></span>
-      </div>
-      <div class='col-sm-2'>
-        <label class="control-label">{{Lien}}</label><br />
-        <?php if ($market->getLink('video') != '' && $market->getLink('video') != 'null') { ?>
-          <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('video'); ?>"><i class="fas fa-youtube"></i> Video</a><br />
-        <?php }
-        ?>
-        <?php if ($market->getLink('forum') != '' && $market->getLink('forum') != 'null') { ?>
-          <a class="btn btn-default btn-xs" target="_blank" href="<?php echo $market->getLink('forum'); ?>"><i class="fas fa-users"></i> Forum</a><br />
-        <?php }
-        ?>
-      </div>
-      <div class='col-sm-2'>
-        <label class="control-label">{{Installation}}</label>
-        <span class="marketAttr"><?php echo $market->getNbInstall() ?></span>
-      </div>
-
-      <div class='col-sm-1'>
-        <label class="control-label">{{Type}}</label><br />
-        <span class="marketAttr" data-l1key="type"></span>
-      </div>
-      <div class='col-sm-2'>
-        <label class="control-label">{{Langue disponible}}</label><br />
-        <?php
-        echo '<img src="core/img/langFlags/francais.png" width="30" />';
-        if ($market->getLanguage('en_US') == 1) {
-          echo '<img src="core/img/langFlags/anglais.png" width="30" />';
-        }
-        if ($market->getLanguage('de_DE') == 1) {
-          echo '<img src="core/img/langFlags/allemand.png" width="30" />';
-        }
-        if ($market->getLanguage('es_ES') == 1) {
-          echo '<img src="core/img/langFlags/espagnol.png" width="30" />';
-        }
-        if ($market->getLanguage('it_IT') == 1) {
-          echo '<img src="core/img/langFlags/italien.png" width="30" />';
-        }
-        ?>
-      </div>
-      <div class='col-sm-3'>
-        <label class="control-label">{{Dernière mise à jour le}}</label><br />
-        <?php echo $market->getDatetime('stable') ?>
-      </div>
-    </div>
-  </div>
   <?php } ?>
 </div>
 
 <script>
-(function() { // Self Isolation!
+  (function() { // Self Isolation!
 
-  //Slide screenshot:
-  if (document.querySelector(".slide")) {
-    document.getElementById("slide-arrow-next")?.addEventListener("click", (event) => {
-      document.getElementById("slides-container").scrollLeft += document.querySelector(".slide").clientWidth
-    })
-    document.getElementById("slide-arrow-prev")?.addEventListener("click", (event) => {
-      document.getElementById("slides-container").scrollLeft -= document.querySelector(".slide").clientWidth
-    })
-  }
-
-  document.getElementById('md_marketDisplayRepo').setJeeValues(market_display_info, '.marketAttr')
-  let modal = jeeDialog.get('#md_marketDisplayRepo', 'dialog')
-  modal.querySelector('.title').textContent = 'Market - ' + market_display_info_category
-  modal.querySelector('.marketAttr[data-l1key="description"]').innerHTML = jeedomUtils.linkify(market_display_info.description)
-  modal.querySelector('.marketAttr[data-l1key="utilization"]').innerHTML = jeedomUtils.linkify(market_display_info.utilization)
-
-  document.getElementById('md_marketDisplayRepo').addEventListener('click', function(event) {
-    var _target = null
-    if (_target = event.target.closest('#bt_paypalClick')) {
-      _target.unseen()
-      return
+    //Slide screenshot:
+    if (document.querySelector(".slide")) {
+      document.getElementById("slide-arrow-next")?.addEventListener("click", (event) => {
+        document.getElementById("slides-container").scrollLeft += document.querySelector(".slide").clientWidth
+      })
+      document.getElementById("slide-arrow-prev")?.addEventListener("click", (event) => {
+        document.getElementById("slides-container").scrollLeft -= document.querySelector(".slide").clientWidth
+      })
     }
 
-    if (_target = event.target.closest('.bt_installFromMarket')) {
-      var id = _target.getAttribute('data-market_id')
-      var logicalId = _target.getAttribute('data-market_logicalId')
-      jeedom.repo.install({
-        id: id,
-        repo: 'market',
-        version: _target.getAttribute('data-version'),
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          if (market_display_info.type == 'plugin') {
-            jeeDialog.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
-              if (result) {
-                jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId)
-              }
+    document.getElementById('md_marketDisplayRepo').setJeeValues(market_display_info, '.marketAttr')
+    let modal = jeeDialog.get('#md_marketDisplayRepo', 'dialog')
+    modal.querySelector('.title').textContent = 'Market - ' + market_display_info_category
+    modal.querySelector('.marketAttr[data-l1key="description"]')?.innerHTML = jeedomUtils.linkify(market_display_info.description)
+    modal.querySelector('.marketAttr[data-l1key="utilization"]')?.innerHTML = jeedomUtils.linkify(market_display_info.utilization)
+
+    document.getElementById('md_marketDisplayRepo').addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#bt_paypalClick')) {
+        _target.unseen()
+        return
+      }
+
+      if (_target = event.target.closest('.bt_installFromMarket')) {
+        var id = _target.getAttribute('data-market_id')
+        var logicalId = _target.getAttribute('data-market_logicalId')
+        jeedom.repo.install({
+          id: id,
+          repo: 'market',
+          version: _target.getAttribute('data-version'),
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            if (market_display_info.type == 'plugin') {
+              jeeDialog.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
+                if (result) {
+                  jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId)
+                }
+              })
+            }
+            if (typeof refreshListAfterMarketObjectInstall == 'function') {
+              refreshListAfterMarketObjectInstall()
+            }
+            jeedomUtils.showAlert({
+              message: '{{Objet installé avec succès}}',
+              level: 'success'
             })
           }
-          if (typeof refreshListAfterMarketObjectInstall == 'function') {
-            refreshListAfterMarketObjectInstall()
-          }
-          jeedomUtils.showAlert({
-            message: '{{Objet installé avec succès}}',
-            level: 'success'
-          })
-        }
-      })
-      return
-    }
-
-    if (_target = event.target.closest('#bt_removeFromMarket')) {
-      var id = _target.getAttribute('data-market_id')
-      jeedom.repo.remove({
-        id: id,
-        repo: 'market',
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          domUtils.showLoading();
-          window.location.reload();
-        }
-      })
-      return
-    }
-
-    if (_target = event.target.closest('.span_author')) {
-      jeeDialog.dialog({
-            id: 'jee_modal',
-            title: "{{Market}}",
-            contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI(_target.getAttribute('data-author'))
         })
-      return
-    }
-  })
+        return
+      }
 
-  document.getElementById('md_marketDisplayRepo').addEventListener('change', function(event) {
-    var _target = null
-    if (_target = event.target.closest('#in_myRating')) {
-      var id = document.querySelector('#md_marketDisplayRepo .marketAttr[data-l1key="id"]').jeeValue()
-      jeedom.repo.setRating({
-        id: id,
-        repo: 'market',
-        rating: _target.value,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        }
-      })
-      return
-    }
-  })
+      if (_target = event.target.closest('#bt_removeFromMarket')) {
+        var id = _target.getAttribute('data-market_id')
+        jeedom.repo.remove({
+          id: id,
+          repo: 'market',
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            domUtils.showLoading();
+            window.location.reload();
+          }
+        })
+        return
+      }
 
-})()
+      if (_target = event.target.closest('.span_author')) {
+        jeeDialog.dialog({
+          id: 'jee_modal',
+          title: "{{Market}}",
+          contentUrl: 'index.php?v=d&modal=update.list&type=plugin&repo=market&author=' + encodeURI(_target.getAttribute('data-author'))
+        })
+        return
+      }
+    })
+
+    document.getElementById('md_marketDisplayRepo').addEventListener('change', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#in_myRating')) {
+        var id = document.querySelector('#md_marketDisplayRepo .marketAttr[data-l1key="id"]').jeeValue()
+        jeedom.repo.setRating({
+          id: id,
+          repo: 'market',
+          rating: _target.value,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          }
+        })
+        return
+      }
+    })
+
+  })()
 </script>
