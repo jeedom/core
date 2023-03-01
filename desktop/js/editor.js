@@ -25,7 +25,7 @@ if (!jeeFrontEnd.editor) {
       this._elfInstance = null
     },
     setCommandCreatewidget: function(options) {
-      document.getElementById('bt_getHelpPage').setAttribute('data-page', 'widgets')
+      document.getElementById('bt_getHelpPage')?.setAttribute('data-page', 'widgets')
 
       //new custom command in elfinder:
       elFinder.prototype._options.commands.push('jee_createWidget')

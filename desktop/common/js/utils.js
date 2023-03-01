@@ -191,8 +191,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   domUtils.DOMloading += 1
   document.getElementById('div_pageContainer').load(url, function() {
     document.body.setAttribute('data-page', getUrlVars('p') || '')
-    document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
-    document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m') || '')
+    document.getElementById('bt_getHelpPage')?.setAttribute('data-page', getUrlVars('p'))
+    document.getElementById('bt_getHelpPage')?.setAttribute('data-plugin', getUrlVars('m') || '')
     jeedomUtils.initPage()
 
     domUtils.syncJeeCompletes()
