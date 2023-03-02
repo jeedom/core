@@ -29,5 +29,5 @@ echo "JEEDOM_REPO=$REPO" >> $GITHUB_ENV
 # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary
 echo "### The Current Branch is: ${GITHUB_REF_NAME} :rocket:" >> $GITHUB_STEP_SUMMARY
 echo "# Jeedom Version is: $JEEDOM_VERSION" >> $GITHUB_STEP_SUMMARY
-echo "# Short Version is: $JEEDOM_SHORT_VERSION" >> $GITHUB_STEP_SUMMARY
-echo "# Jeedom Tags: $JEEDOM_TAGS" >> $GITHUB_STEP_SUMMARY
+echo "### Short Version is: $JEEDOM_SHORT_VERSION" >> $GITHUB_STEP_SUMMARY
+echo "### generated Docker tags:\n$JEEDOM_TAGS" >> $GITHUB_STEP_SUMMARY
