@@ -2282,9 +2282,14 @@ var jeeResize = function(_selector, _options) {
     document.body.addEventListener('touchmove', resizing, false)
   }
   function resizing(event) {
-    var clientX = event.clientX || event.targetTouches[0].pageX
-    var clientY = event.clientY || event.targetTouches[0].pageY
-    var element = currentRszr.rszElement.parentNode
+    try {
+      var clientX = event.clientX || event.targetTouches[0].pageX
+      var clientY = event.clientY || event.targetTouches[0].pageY
+      var element = currentRszr.rszElement.parentNode
+    } catch (error) {
+      return
+    }
+    if (element == null) return
 
     if (currentRszr.resizer.includes('left')) {
       let minLeft = currentRszr.containmentRect.left
