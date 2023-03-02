@@ -440,10 +440,10 @@ if (!jeeFrontEnd.update) {
           osTable.tBodies[0].empty()
 
           var tr_updates = []
-          document.querySelectorAll('.bt_OsPackageUpdate').addClass('disabled')
+          document.querySelectorAll('#os .bt_OsPackageUpdate').addClass('disabled')
           for (var i in data) {
             if (Object.keys(data[i]).length > 0) {
-              document.querySelector('.bt_OsPackageUpdate[data-type=' + i + ']').removeClass('disabled')
+              document.querySelector('#os .bt_OsPackageUpdate[data-type="' + i + '"]').removeClass('disabled')
               for (var j in data[i]) {
                 tr_updates.push(jeeFrontEnd.update.addOsUpdate(data[i][j]))
               }
