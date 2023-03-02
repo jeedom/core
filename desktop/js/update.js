@@ -436,11 +436,11 @@ if (!jeeFrontEnd.update) {
           })
         },
         success: function(data) {
+          document.querySelectorAll('#os .bt_OsPackageUpdate').addClass('disabled')
+
           var osTable = document.getElementById('table_osUpdate')
           osTable.tBodies[0].empty()
-
           var tr_updates = []
-          document.querySelectorAll('#os .bt_OsPackageUpdate').addClass('disabled')
           for (var i in data) {
             if (Object.keys(data[i]).length > 0) {
               document.querySelector('#os .bt_OsPackageUpdate[data-type="' + i + '"]').removeClass('disabled')

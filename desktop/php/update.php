@@ -105,9 +105,9 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<div class="input-group pull-right" style="display:inline-flex">
 					<span class="input-group-btn">
 						<a class="bt_refreshOsPackageUpdate btn btn-success roundedLeft" data-forceRefresh="1"><i class="fas fa-sync"></i> {{Mettre à jour la liste}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning roundedRight" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning roundedRight disabled" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
 					</span>
 				</div>
 
