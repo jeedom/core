@@ -436,7 +436,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" class="configKey form-control ispin" data-l1key="widget::margin" data-reload="1" />
+								<input type="number" min="0" step="1" max="50" class="configKey form-control ispin" data-l1key="widget::margin" data-reload="1" />
 							</div>
 
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes sur écran large/moyen/petit}}
@@ -490,7 +490,7 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0" max="20" step="0.25" class="configKey form-control ispin" data-l1key="css::objectBackgroundBlur" data-reload="1" />
+								<input type="number" min="0" step="0.25" max="20" class="configKey form-control ispin" data-l1key="css::objectBackgroundBlur" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -1246,19 +1246,19 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions humaine}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="number" class="configKey form-control" data-l1key="autoreorder::weight_human_action">
+								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_human_action">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions automatique}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="number" class="configKey form-control" data-l1key="autoreorder::weight_automation_action">
+								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_automation_action">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historique}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="number" class="configKey form-control" data-l1key="autoreorder::weight_history">
+								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_history">
 							</div>
 						</div>
 					</fieldset>
