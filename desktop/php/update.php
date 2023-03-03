@@ -118,7 +118,6 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 							<th>{{Nom}}</th>
 							<th>{{Version installée}}</th>
 							<th>{{Dernière version}}</th>
-							<th data-sorter="false" data-filter="false" style="width:120px">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>

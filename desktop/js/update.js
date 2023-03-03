@@ -440,25 +440,29 @@ if (!jeeFrontEnd.update) {
 
           var osTable = document.getElementById('table_osUpdate')
           osTable.tBodies[0].empty()
+
           var tr_updates = []
-          for (var i in data) {
-            if (Object.keys(data[i]).length > 0) {
-              document.querySelector('#os .bt_OsPackageUpdate[data-type="' + i + '"]').removeClass('disabled')
-              for (var j in data[i]) {
-                tr_updates.push(jeeFrontEnd.update.addOsUpdate(data[i][j]))
+          for (var type of Object.keys(data)) { //apt pip2 pip3
+            var OSPackages = Object.keys(data[type])
+            if (OSPackages.length > 0) {
+              document.querySelector('#os .bt_OsPackageUpdate[data-type="' + type + '"]').removeClass('disabled')
+              for (var OSPackage of OSPackages) {
+                tr_updates.push(jeeFrontEnd.update.addOsUpdate(data[type][OSPackage]))
               }
             }
+
           }
 
-          osTable.tBodies[0].append(tr_updates)
+          for (var tr of tr_updates) {
+            osTable.tBodies[0].appendChild(tr)
+          }
 
           if (osTable._dataTable) {
             osTable._dataTable.refresh()
           } else {
             jeeFrontEnd.update.osDataTable = new DataTable(osTable, {
               columns: [
-                { select: 0, sort: "asc" },
-                { select: 4, sortable: false }
+                { select: 0, sort: "asc" }
               ],
               paging: false,
               searchable: true,
@@ -477,8 +481,6 @@ if (!jeeFrontEnd.update) {
       tr += '</td>'
       tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">' + _update.current_version + '</span></td>'
       tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">' + _update.new_version + '</span></td>'
-      tr += '<td>'
-      tr += '</td>'
       tr += '</tr>'
       let newRow = document.createElement('tr')
       newRow.innerHTML = tr
