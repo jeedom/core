@@ -26,7 +26,7 @@ jobs:
         # adding infos in the $GITHUB_ENV file and summary
         # secret DOCKER_HUB_REPO is optional (default=jeedom)
         run: |
-          export DOCKER_HUB_USERNAME=${{ secrets.DOCKER_HUB_REPO }}
+          export DOCKER_HUB_REPO=${{ secrets.DOCKER_HUB_REPO }}
           bash install/OS_specific/Docker/init_workflow.sh
 
       - name: Set up QEMU
@@ -71,8 +71,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           build-args: "VERSION=${{ env.GITHUB_BRANCH }}"
-          tags: |
-            "${{ env.JEEDOM_TAGS }}"
+          tags: "${{ env.JEEDOM_TAGS }}"
 
       - name: Build and push Jeedom on Debian:Buster
         # https://github.com/marketplace/actions/build-and-push-docker-images
@@ -88,8 +87,7 @@ jobs:
           build-args: |
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=buster"
-          tags: |
-            "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
+          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
