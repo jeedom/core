@@ -66,7 +66,7 @@ $select['mobile'] = implode('',$selm);
   <form class="form-horizontal">
     <fieldset>
       <div class="form-group">
-        <label class="col-lg-3 control-label">{{Je veux remplacer}}</label>
+        <label class="col-lg-3 control-label">{{Remplacer le widget}}</label>
         <div class="col-lg-8">
           <select class="form-control widgetReplaceAttrdashboard" data-l1key="replace">
             <?php echo $select['dashboard']; ?>
@@ -93,7 +93,7 @@ $select['mobile'] = implode('',$selm);
   <form class="form-horizontal">
     <fieldset>
       <div class="form-group">
-        <label class="col-lg-3 control-label">{{Je veux remplacer}}</label>
+        <label class="col-lg-3 control-label">{{Remplacer le widget}}</label>
         <div class="col-lg-8">
           <select class="form-control widgetReplaceAttrmobile" data-l1key="replace">
             <?php echo $select['mobile']; ?>
