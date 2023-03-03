@@ -1480,6 +1480,13 @@ document.getElementById('div_pageContainer').addEventListener('change', function
     return
   }
 })
+document.getElementById('div_pageContainer').addEventListener('mousedown', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.ispin-wrapper')) {
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
 
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
