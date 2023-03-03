@@ -1224,12 +1224,12 @@ jeedomUtils.initSpinners = function() {
     new ISpin(_spin, {
       wrapperClass: 'ispin-wrapper',
       buttonsClass: 'ispin-button',
-      step: _spin.getAttribute('step') || 1,
-      min: _spin.getAttribute('min') || undefined,
-      max: _spin.getAttribute('max') || undefined,
+      step: parseInt(_spin.getAttribute('step')) || 1,
+      min: parseInt(_spin.getAttribute('min')) || undefined,
+      max: parseInt(_spin.getAttribute('max')) || undefined,
       disabled: false,
       repeatInterval: 200,
-      wrapOverflow: false,
+      wrapOverflow: true,
       parse: Number
     })
   })
