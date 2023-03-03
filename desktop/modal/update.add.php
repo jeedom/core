@@ -86,17 +86,17 @@ $repos = update::listRepo();
           $default = (isset($parameter['default'])) ? $parameter['default'] : '';
           switch ($parameter['type']) {
             case 'input':
-            $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
-            break;
+              $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
+              break;
             case 'number':
-            $div .= '<input type="number" class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
-            break;
+              $div .= '<input type="number" class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
+              break;
             case 'file':
-            $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" style="display:none;" />';
-            $div .= '<span class="btn btn-default btn-file">';
-            $div .= '<i class="fas fa-cloud-upload-alt"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" style="display : inline-block;">';
-            $div .= '</span>';
-            break;
+              $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" style="display:none;" />';
+              $div .= '<span class="btn btn-default btn-file">';
+              $div .= '<i class="fas fa-cloud-upload-alt"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" style="display : inline-block;">';
+              $div .= '</span>';
+              break;
           }
           $div .= '</div>';
           $div .= '</div>';
@@ -112,48 +112,54 @@ $repos = update::listRepo();
 </div>
 
 <script>
-//Manage events outside parents delegations:
-document.getElementById('bt_repoAddSaveUpdate')?.addEventListener('click', function() {
-  var source = document.querySelector('.updateAttr[data-l1key="source"]').jeeValue()
-  var update = document.querySelectorAll('.repoSource.repo_' + source).getJeeValues('.updateAttr')[0]
-  update.source = source
-  jeedom.update.save({
-    update : update,
-    error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      jeedomUtils.showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
-    }
+  //Manage events outside parents delegations:
+  document.getElementById('bt_repoAddSaveUpdate')?.addEventListener('click', function() {
+    var source = document.querySelector('.updateAttr[data-l1key="source"]').jeeValue()
+    var update = document.querySelectorAll('.repoSource.repo_' + source).getJeeValues('.updateAttr')[0]
+    update.source = source
+    jeedom.update.save({
+      update: update,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.showAlert({
+          message: '{{Sauvegarde réussie}}',
+          level: 'success'
+        })
+      }
+    })
   })
-})
 
-/*Events delegations
-*/
-document.getElementById('md_updateAdd')?.addEventListener('click', function(event) {
-  var _target = null
-  if (_target = event.target.closest('.updateAttr[data-l1key="source"]')) {
-    document.querySelectorAll('#md_updateAdd .repoSource').unseen()
-    document.querySelector('#md_updateAdd .repoSource.repo_' + _target.value)?.seen()
-    return
-  }
-})
-
-new jeeFileUploader({
-  fileInput: document.getElementById('bt_uploadPlugin'),
-  dataType: 'json',
-  replaceFileInput: false,
-  url: 'core/ajax/update.ajax.php?action=preUploadFile',
-  done: function(e, data) {
-    if (data.result.state != 'ok') {
-      jeedomUtils.showAlert({
-        attachTo: jeeDialog.get('#md_updateAdd', 'dialog'),
-        message: data.result.result,
-        level: 'danger'
-      })
+  /*Events delegations
+   */
+  document.getElementById('md_updateAdd')?.addEventListener('change', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.updateAttr[data-l1key="source"]')) {
+      document.querySelectorAll('#md_updateAdd .repoSource').unseen()
+      document.querySelector('#md_updateAdd .repoSource.repo_' + _target.value)?.seen()
       return
     }
-    document.querySelector('.updateAttr[data-l1key="configuration"][data-l2key="' + document.getElementById('bt_uploadPlugin').getAttribute('data-key') + '"]').jeeValue(data.result.result)
-  }
-})
+  })
+
+  new jeeFileUploader({
+    fileInput: document.getElementById('bt_uploadPlugin'),
+    dataType: 'json',
+    replaceFileInput: false,
+    url: 'core/ajax/update.ajax.php?action=preUploadFile',
+    done: function(e, data) {
+      if (data.result.state != 'ok') {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_updateAdd', 'dialog'),
+          message: data.result.result,
+          level: 'danger'
+        })
+        return
+      }
+      document.querySelector('.updateAttr[data-l1key="configuration"][data-l2key="' + document.getElementById('bt_uploadPlugin').getAttribute('data-key') + '"]').jeeValue(data.result.result)
+    }
+  })
 </script>
