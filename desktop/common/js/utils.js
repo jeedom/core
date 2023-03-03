@@ -1221,12 +1221,15 @@ jeedomUtils.initSpinners = function() {
   }
 
   document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
+    var step = _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1
+    var min = _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1
+    var max = _spin.getAttribute('max') != undefined ? parseFloat(_spin.getAttribute('max')) : 1
     new ISpin(_spin, {
       wrapperClass: 'ispin-wrapper',
       buttonsClass: 'ispin-button',
-      step: parseInt(_spin.getAttribute('step')) || 1,
-      min: parseInt(_spin.getAttribute('min')) || undefined,
-      max: parseInt(_spin.getAttribute('max')) || undefined,
+      step: step,
+      min: min,
+      max: max,
       disabled: false,
       repeatInterval: 200,
       wrapOverflow: true,
