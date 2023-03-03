@@ -484,7 +484,7 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="showBackgroundImg" />
+								<input type="checkbox" class="configKey" data-l1key="showBackgroundImg" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Flou des fonds des objets}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
