@@ -1451,7 +1451,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Découper une interaction en 2 si elle contient}}</label>
+							<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Découper une interaction en deux si elle contient}}</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
 								<input class="configKey form-control" data-l1key="interact::contextual::splitword" />
 							</div>
@@ -1715,7 +1715,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Configurer Entête HTTP}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Champ à utiliser comme déterminer l'entête HTTP contenant l'identifiant utilisateur (e.g HTTP_REMOTE_USER)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Champ à utiliser pour déterminer l'entête HTTP contenant l'identifiant utilisateur (e.g HTTP_REMOTE_USER)}}"></i></sup>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="sso:remoteUserHeader" />
@@ -2170,7 +2170,7 @@ user::isBan();
 						<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name') . ' '; ?>{{.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name')?>."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
