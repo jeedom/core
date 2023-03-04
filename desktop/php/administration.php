@@ -783,7 +783,7 @@ user::isBan();
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Addresse proxy}}</label>
+									<label class="col-xs-4 control-label">{{Addresse du proxy}}</label>
 									<div class="col-xs-4">
 										<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 									</div>
@@ -923,7 +923,7 @@ user::isBan();
 									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Moteur de log}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 										<select class="form-control configKey" data-l1key="log::engine">
-											<option value="StreamHandler">{{Defaut}}</option>
+											<option value="StreamHandler">{{Défaut}}</option>
 											<option value="SyslogHandler">{{Syslog}}</option>
 											<option value="SyslogUdp">{{SyslogUdp}}</option>
 										</select>
@@ -950,7 +950,7 @@ user::isBan();
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre de lignes maximum dans un fichier de log}}</label>
+									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Nombre maximal de lignes dans un fichier de log}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 										<input type="text" class="configKey form-control" data-l1key="maxLineLog" />
 									</div>
@@ -1244,19 +1244,19 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions humaine}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions humaines}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_human_action">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions automatique}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions automatiques}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_automation_action">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historique}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historiques}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_history">
 							</div>
@@ -1268,7 +1268,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Quote automatique}}
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemet automatique}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
