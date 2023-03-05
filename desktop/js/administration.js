@@ -221,6 +221,7 @@ if (!jeeFrontEnd.administration) {
                   document.getElementById(data[i].id).html(data[i].html.html)
                 }
                 jeedomUtils.taAutosize()
+                jeedomUtils.initTooltips()
               }
             })
           }
