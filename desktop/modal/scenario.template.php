@@ -31,7 +31,7 @@ sendVarToJS('jeephp2js.md_scenarioTemplate_scId', init('scenario_id'));
       <div class="bs-sidebar nav nav-list bs-sidenav">
         <div class="form-group">
           <span class="btn btn-default btn-file" style="width:100%;">
-            <i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" style="display : inline-block;width:100%;">
+            <i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" style="display: inline-block; width:100%;">
           </span>
         </div>
         <div class="form-group">
@@ -72,6 +72,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
   jeeFrontEnd.md_scenarioTemplate = {
     init: function() {
       this.refreshScenarioTemplateList()
+      this.setFileUpload()
     },
     refreshScenarioTemplateList: function() {
       jeedom.scenario.getTemplate({
@@ -99,14 +100,14 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         dataType: 'json',
         replaceFileInput: false,
         url: 'core/ajax/scenario.ajax.php?action=templateupload',
-        done: function(e, data) {
+        done: function(event, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
               attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
-            return;
+            return
           }
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
