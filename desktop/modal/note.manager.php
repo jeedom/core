@@ -116,7 +116,7 @@ if (!jeeFrontEnd.md_noteManager) {
     var _target = null
     if (_target = event.target.closest('#bt_noteManagerAdd')) {
       document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
-      document.querySelector('#ul_noteList li.active').removeClass('active')
+      document.querySelector('#ul_noteList li.active')?.removeClass('active')
       return
     }
 
@@ -151,28 +151,29 @@ if (!jeeFrontEnd.md_noteManager) {
 
     if (_target = event.target.closest('#bt_noteManagerRemove')) {
       var note = document.getElementById('div_noteManagerDisplay').getJeeValues('.noteAttr')[0]
-      var r = confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?')
-      if (r == true) {
-        jeedom.note.remove({
-          id : note.id,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(notes) {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
-              message: '{{Note supprimée avec succès}}',
-              level: 'success'
-            })
-            document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
-            jeeM.updateNoteList()
-          }
-        })
-      }
+      jeeDialog.confirm('{{Voulez-vous vraiment supprimer la note :}}' + ' ' + note.name + ' ?', function(result) {
+        if (result) {
+          jeedom.note.remove({
+            id : note.id,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(notes) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_noteManager', 'dialog'),
+                message: '{{Note supprimée avec succès}}',
+                level: 'success'
+              })
+              document.querySelectorAll('#div_noteManagerDisplay .noteAttr').jeeValue('')
+              jeeM.updateNoteList()
+            }
+          })
+        }
+      })
       return
     }
   })

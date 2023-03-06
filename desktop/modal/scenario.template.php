@@ -31,7 +31,7 @@ sendVarToJS('jeephp2js.md_scenarioTemplate_scId', init('scenario_id'));
       <div class="bs-sidebar nav nav-list bs-sidenav">
         <div class="form-group">
           <span class="btn btn-default btn-file" style="width:100%;">
-            <i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" style="display : inline-block;width:100%;">
+            <i class="fas fa-file-download"></i> {{Charger un template}}<input id="bt_uploadScenarioTemplate" type="file" name="file" style="display: inline-block; width:100%;">
           </span>
         </div>
         <div class="form-group">
@@ -72,6 +72,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
   jeeFrontEnd.md_scenarioTemplate = {
     init: function() {
       this.refreshScenarioTemplateList()
+      this.setFileUpload()
     },
     refreshScenarioTemplateList: function() {
       jeedom.scenario.getTemplate({
@@ -96,17 +97,37 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     setFileUpload: function() {
       new jeeFileUploader({
         fileInput: document.getElementById('bt_uploadScenarioTemplate'),
-        dataType: 'json',
-        replaceFileInput: false,
         url: 'core/ajax/scenario.ajax.php?action=templateupload',
-        done: function(e, data) {
+        add: function(event, options) {
+          //Is already there ?
+          var newTemplate
+          for (var file of options.data.entries()) {
+            newTemplate = file[1].name
+          }
+          var templateList = Array.from(document.getElementById('div_listScenario').querySelectorAll('li.li_scenarioTemplate')).map(t => t.getAttribute('data-template'))
+          if (templateList.includes(newTemplate)) {
+            jeeDialog.confirm({
+              title: '<i class="fas fa-exclamation-circle icon_red"></i> {{Attention}}',
+              message: '{{Voulez vous écraser le template existant}} : ' + newTemplate,
+            },
+            function(result) {
+              if (result) {
+                options.submit()
+              }
+            })
+            return
+          } else {
+            options.submit()
+          }
+        },
+        done: function(event, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
               attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
               message: data.result.result,
               level: 'danger'
             })
-            return;
+            return
           }
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
@@ -151,7 +172,9 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     }
 
     if (_target = event.target.closest('#bt_scenarioTemplateRemove')) {
-      if (document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template') == undefined) {
+      let selected = document.querySelector('#ul_scenarioTemplateList li.active')
+
+      if (selected == null || selected.getAttribute('data-template') == undefined) {
         jeedomUtils.showAlert({
           attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
           message: '{{Vous devez d\'abord sélectionner un template}}',
@@ -159,8 +182,10 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         })
         return
       }
+
+      let template = selected.getAttribute('data-template')
       jeedom.scenario.removeTemplate({
-        template: document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template'),
+        template: template,
         error: function(error) {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
@@ -212,7 +237,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     if (_target = event.target.closest('#ul_scenarioTemplateList .li_scenarioTemplate')) {
       document.getElementById('div_listScenarioTemplate').seen()
       document.getElementById('div_marketScenarioTemplate').unseen()
-      document.querySelector('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
+      document.querySelectorAll('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
       _target.addClass('active')
       jeedom.scenario.loadTemplateDiff({
         template: _target.getAttribute('data-template'),

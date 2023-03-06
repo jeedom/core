@@ -375,7 +375,12 @@ if (!jeeFrontEnd.scenario) {
           document.getElementById('div_scenarioElement').empty()
           document.querySelectorAll('.provokeMode').empty()
           document.querySelectorAll('.scheduleMode').empty()
+
+          if (data.trigger[0] == null) {
+            document.querySelector('.scenarioAttr[data-l1key="mode"]').selectedIndex = 0
+          }
           document.querySelector('.scenarioAttr[data-l1key="mode"]').triggerEvent('change')
+
 
           jeedom.scenario.update[_id](data)
           if (data.isActive != 1) {

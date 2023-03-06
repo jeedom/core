@@ -653,10 +653,10 @@ if (!jeeFrontEnd.md_iconSelector) {
 
   new jeeFileUploader({
     fileInput: document.getElementById('bt_uploadImg'),
-    add: function(event, data) {
+    add: function(event, options) {
       let currentPath = document.getElementById('bt_uploadImg').getAttribute('data-path')
-      data.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
-      data.submit()
+      options.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
+      options.submit()
     },
     done: function(event, data) {
       if (data.result.state != 'ok') {
