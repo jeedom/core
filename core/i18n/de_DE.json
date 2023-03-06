@@ -1178,6 +1178,8 @@
         "Télécharger": "Download",
         "Paramètres du scénario": "Szenarioeinstellungen",
         "Appliquer": "Anwenden",
+        "Attention": "Aufmerksamkeit",
+        "Voulez vous écraser le template existant": "Möchten Sie die vorhandene Vorlage überschreiben?",
         "Template ajouté avec succès": "Vorlage erfolgreich hinzugefügt",
         "Création du template réussie": "Erfolgreiche Vorlagenerstellung",
         "Vous devez d\\'abord sélectionner un template": "Sie müssen zunächst eine Vorlage auswählen",
@@ -4411,7 +4413,7 @@
         "Design 3d :": "3D-Design:"
     },
     "core\/class\/eqLogic.class.php": {
-        "Attention": "Achtung",
+        "Attention": "Aufmerksamkeit",
         "n\\'a pas envoyé de message depuis plus de": "hat seit mehr als keine Nachricht gesendet",
         "min (vérifiez les piles)": "min (Batterien prüfen)",
         "Equipement": "Gerät",
