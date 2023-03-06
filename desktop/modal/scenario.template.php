@@ -97,9 +97,29 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     setFileUpload: function() {
       new jeeFileUploader({
         fileInput: document.getElementById('bt_uploadScenarioTemplate'),
-        dataType: 'json',
-        replaceFileInput: false,
         url: 'core/ajax/scenario.ajax.php?action=templateupload',
+        add: function(event, options) {
+          //Is already there ?
+          var newTemplate
+          for (var file of options.data.entries()) {
+            newTemplate = file[1].name
+          }
+          var templateList = Array.from(document.getElementById('div_listScenario').querySelectorAll('li.li_scenarioTemplate')).map(t => t.getAttribute('data-template'))
+          if (templateList.includes(newTemplate)) {
+            jeeDialog.confirm({
+              title: '<i class="fas fa-exclamation-circle icon_red"></i> {{Attention}}',
+              message: '{{Voulez vous écraser le template existant}} : ' + newTemplate,
+            },
+            function(result) {
+              if (result) {
+                options.submit()
+              }
+            })
+            return
+          } else {
+            options.submit()
+          }
+        },
         done: function(event, data) {
           if (data.result.state != 'ok') {
             jeedomUtils.showAlert({

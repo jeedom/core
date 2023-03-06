@@ -2137,7 +2137,8 @@ var jeeFileUploader = function(_options) {
 
       data.append('file', event.target.files[0])
       if (typeof _options.add === 'function') {
-        _options.add.apply(_options.fileInput, [event, data])
+        _options.data = data
+        _options.add.apply(_options.fileInput, [event, _options])
       }
     } else {
       let files = event.target.files
