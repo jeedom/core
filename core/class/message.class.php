@@ -211,8 +211,10 @@ class message {
 					if (isset($action['options'])) {
 						$options = $action['options'];
 					}
-					foreach ($options as &$value) {
-						$value = str_replace(array_keys($params), $params, $value);
+					if (count($options) > 0) {
+						foreach ($options as &$value) {
+							$value = str_replace(array_keys($params), $params, $value);
+						}
 					}
 					scenarioExpression::createAndExec('action', $action['cmd'], $options);
 				}
@@ -248,18 +250,18 @@ class message {
 		return $this->plugin;
 	}
 
-	public function getMessage($display=false) {
+	public function getMessage($display = false) {
 		if ($display === true) {
 			$display = html_entity_decode($this->message);
-        	return strip_tags($display, '<i><a>');
+			return strip_tags($display, '<i><a>');
 		}
 		return $this->message;
 	}
 
-	public function getAction($display=false) {
+	public function getAction($display = false) {
 		if ($display === true) {
 			$display = html_entity_decode($this->action);
-        	return strip_tags($display, '<i><a>');
+			return strip_tags($display, '<i><a>');
 		}
 		return $this->action;
 	}
