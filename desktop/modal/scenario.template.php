@@ -152,7 +152,9 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     }
 
     if (_target = event.target.closest('#bt_scenarioTemplateRemove')) {
-      if (document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template') == undefined) {
+      let selected = document.querySelector('#ul_scenarioTemplateList li.active')
+
+      if (selected == null || selected.getAttribute('data-template') == undefined) {
         jeedomUtils.showAlert({
           attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
           message: '{{Vous devez d\'abord sélectionner un template}}',
@@ -160,8 +162,10 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         })
         return
       }
+
+      let template = selected.getAttribute('data-template')
       jeedom.scenario.removeTemplate({
-        template: document.querySelector('#ul_scenarioTemplateList li.active').getAttribute('data-template'),
+        template: template,
         error: function(error) {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
@@ -213,7 +217,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     if (_target = event.target.closest('#ul_scenarioTemplateList .li_scenarioTemplate')) {
       document.getElementById('div_listScenarioTemplate').seen()
       document.getElementById('div_marketScenarioTemplate').unseen()
-      document.querySelector('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
+      document.querySelectorAll('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
       _target.addClass('active')
       jeedom.scenario.loadTemplateDiff({
         template: _target.getAttribute('data-template'),
