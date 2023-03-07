@@ -183,26 +183,32 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
         return
       }
 
-      let template = selected.getAttribute('data-template')
-      jeedom.scenario.removeTemplate({
-        template: template,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
-            message: error.message,
-            level: 'danger'
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer ce template ?}} ' + selected.querySelector('a').textContent, function(result) {
+        if (result) {
+          let template = selected.getAttribute('data-template')
+          jeedom.scenario.removeTemplate({
+            template: template,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              document.getElementById('div_scenarioTemplateParametreConfiguration').unseen()
+              document.getElementById('div_marketScenarioTemplate').unseen()
+              jeeFrontEnd.md_scenarioTemplate.refreshScenarioTemplateList()
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
+                message: '{{Suppression du template réussie}}',
+                level: 'success'
+              })
+            }
           })
-        },
-        success: function(data) {
-          jeeFrontEnd.md_scenarioTemplate.refreshScenarioTemplateList()
-          jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
-            message: '{{Suppression du template réussie}}',
-            level: 'success'
-          })
+          return
         }
       })
-      return
     }
 
     if (_target = event.target.closest('#bt_scenarioTemplateApply')) {
