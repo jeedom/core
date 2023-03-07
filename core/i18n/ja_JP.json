@@ -1183,6 +1183,7 @@
         "Template ajouté avec succès": "テンプレートが正常に追加されました",
         "Création du template réussie": "Création du template réussie",
         "Vous devez d\\'abord sélectionner un template": "Vous devez d\\'abord sélectionner un template",
+        "Êtes-vous sûr de vouloir supprimer ce template ?": "Êtes-vous sûr de vouloir supprimer ce template ?",
         "Suppression du template réussie": "Suppression du template réussie",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel",
         "Template appliqué avec succès.": "Template appliqué avec succès"

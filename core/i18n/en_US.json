@@ -1183,6 +1183,7 @@
         "Template ajouté avec succès": "Template successfully added",
         "Création du template réussie": "Successful template creation",
         "Vous devez d\\'abord sélectionner un template": "You must first select a template",
+        "Êtes-vous sûr de vouloir supprimer ce template ?": "Are you sure you want to delete this template?",
         "Suppression du template réussie": "Template deletion successful",
         "Êtes-vous sûr de vouloir appliquer ce template ? Cela écrasera votre scénario actuel.": "Are you sure you want to apply this template? This will overwrite your current scenario",
         "Template appliqué avec succès.": "Template successfully applied"
