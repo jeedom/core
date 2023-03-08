@@ -3767,6 +3767,7 @@
         "Vous n\\'avez pas le droit de modifier cette vue": "Você não tem o direito de modificar esta visualização",
         "Vue non trouvée. Vérifiez l\\'ID": "Vista não encontrada. Verifique o ID",
         "Vous n\\'avez pas le droit de voir cette vue": "Você não tem o direito de ver esta visualização",
+        "Erreur dans le decodage json veuiller réessaye : ": "Erro na decodificação do json, tente novamente:",
         "Vue inconnu. Vérifiez l\\'ID": "Vista desconhecida. Verifique o ID",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconhecido. Verifique a ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nenhum arquivo encontrado. Verifique a configuração do PHP (post size limit)",

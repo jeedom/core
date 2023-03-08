@@ -3767,6 +3767,7 @@
         "Vous n\\'avez pas le droit de modifier cette vue": "You do not have the right to modify this view",
         "Vue non trouvée. Vérifiez l\\'ID": "View not found. Check the iD",
         "Vous n\\'avez pas le droit de voir cette vue": "You do not have the right to see this view",
+        "Erreur dans le decodage json veuiller réessaye : ": "Error in json decoding please try again:",
         "Vue inconnu. Vérifiez l\\'ID": "Unknown view. Check the ID",
         "Objet inconnu. Vérifiez l\\'ID": "Unknown object. Check the ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No files found. Check the PHP setting (post size limit)",

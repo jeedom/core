@@ -3767,6 +3767,7 @@
         "Vous n\\'avez pas le droit de modifier cette vue": "Vous n\\'avez pas le droit de modifier cette vue",
         "Vue non trouvée. Vérifiez l\\'ID": "Visualizza non trovato. Controlla l'iD",
         "Vous n\\'avez pas le droit de voir cette vue": "Vous n\\'avez pas le droit de voir cette vue",
+        "Erreur dans le decodage json veuiller réessaye : ": "Erreur dans le decodage json veuiller réessaye :",
         "Vue inconnu. Vérifiez l\\'ID": "Vista sconosciuta Controlla l'ID",
         "Objet inconnu. Vérifiez l\\'ID": "Oggetto sconosciuto. Controlla l'ID",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "Nessun file trovato. Controlla l'impostazione PHP (limite dimensione post)",
