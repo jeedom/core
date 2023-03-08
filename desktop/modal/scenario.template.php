@@ -63,7 +63,6 @@ sendVarToJS('jeephp2js.md_scenarioTemplate_scId', init('scenario_id'));
         </div>
       </form>
     </div>
-    <div class="col-lg-10 col-md-9 col-sm-7" id="div_marketScenarioTemplate" style="display:none;"></div>
   </div>
 </div>
 
@@ -196,8 +195,8 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
               })
             },
             success: function(data) {
-              document.getElementById('div_scenarioTemplateParametreConfiguration').unseen()
-              document.getElementById('div_marketScenarioTemplate').unseen()
+              document.getElementById('div_listScenarioTemplate').unseen()
+              document.getElementById('div_scenarioTemplateParametreConfiguration').empty()
               jeeFrontEnd.md_scenarioTemplate.refreshScenarioTemplateList()
               jeedomUtils.showAlert({
                 attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
@@ -242,7 +241,6 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
 
     if (_target = event.target.closest('#ul_scenarioTemplateList .li_scenarioTemplate')) {
       document.getElementById('div_listScenarioTemplate').seen()
-      document.getElementById('div_marketScenarioTemplate').unseen()
       document.querySelectorAll('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
       _target.addClass('active')
       jeedom.scenario.loadTemplateDiff({
