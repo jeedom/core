@@ -559,10 +559,21 @@ jeedom.history.drawChart = function(_params) {
             credits: { enabled: false },
             exporting: {
               enabled: _params.enableExport || (jeedom.display.version == 'mobile') ? false : true,
+              libURL: '/3rdparty/highstock/lib/',
               csv: {
                   dateFormat: '%Y-%m-%d'
               },
             },
+            lang: {
+					    downloadCSV: '{{Téléchargement CSV}}',
+					    downloadJPEG: '{{Téléchargement JPEG}}',
+					    downloadPDF: '{{Téléchargement PDF}}',
+					    downloadPNG: '{{Téléchargement PNG}}',
+					    downloadSVG: '{{Téléchargement SVG}}',
+					    downloadXLS: '{{Téléchargement XLS}}',
+					    printChart: '{{Imprimer}}',
+					    viewFullscreen: '{{Plein écran}}',
+				    },
             tooltip: {
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
               valueDecimals: _params.round,
@@ -814,10 +825,21 @@ jeedom.history.drawChart = function(_params) {
             },
             exporting: {
               enabled: _params.enableExport || (jeedom.display.version == 'mobile') ? false : true,
+              libURL: '/3rdparty/highstock/lib/',
               csv: {
                   dateFormat: '%Y-%m-%d'
               },
             },
+            lang: {
+					    downloadCSV: '{{Téléchargement CSV}}',
+					    downloadJPEG: '{{Téléchargement JPEG}}',
+					    downloadPDF: '{{Téléchargement PDF}}',
+					    downloadPNG: '{{Téléchargement PNG}}',
+					    downloadSVG: '{{Téléchargement SVG}}',
+					    downloadXLS: '{{Téléchargement XLS}}',
+					    printChart: '{{Imprimer}}',
+					    viewFullscreen: '{{Plein écran}}',
+				    },
             rangeSelector: {
               allButtonsEnabled: true,
               buttonTheme: { // styles for the buttons
