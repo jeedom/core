@@ -3124,7 +3124,7 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 55px;
     right: 15px;
     text-align: right;
-    z-index: 100;
+    z-index: 89;
   }
   .row-overflow .floatingbar {
     top: 15px;

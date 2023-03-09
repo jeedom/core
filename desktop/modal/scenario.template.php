@@ -196,7 +196,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
             },
             success: function(data) {
               document.getElementById('div_listScenarioTemplate').unseen()
-              document.getElementById('div_scenarioTemplateParametreConfiguration').empty()
+              document.getElementById('div_scenarioTemplateParametreList').empty()
               jeeFrontEnd.md_scenarioTemplate.refreshScenarioTemplateList()
               jeedomUtils.showAlert({
                 attachTo: jeeDialog.get('#md_scenarioTemplate', 'dialog'),
@@ -243,6 +243,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
       document.getElementById('div_listScenarioTemplate').seen()
       document.querySelectorAll('#ul_scenarioTemplateList .li_scenarioTemplate').removeClass('active')
       _target.addClass('active')
+
       jeedom.scenario.loadTemplateDiff({
         template: _target.getAttribute('data-template'),
         id: jeephp2js.md_scenarioTemplate_scId,
