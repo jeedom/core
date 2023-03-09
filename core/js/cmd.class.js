@@ -814,7 +814,6 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _params.error(error)
     },
     success: function(subType) {
-
       for (var i in subType) {
         newOption = document.createElement('option')
         newOption.text = subType[i].name
@@ -824,9 +823,12 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _cmd.querySelector('.subType')?.empty()
       _cmd.querySelector('.subType')?.appendChild(selSubType)
 
-      if (isset(_subType)) {
-        _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')?.jeeValue(_subType)
+      if (isset(_subType) && _subType != '') {
+        _cmd.querySelector('.cmdAttr[data-l1key="subType"]')?.jeeValue(_subType)
         modifyWithoutSave = false
+      } else {
+        _cmd.querySelector('.cmdAttr[data-l1key="subType"]').selectedIndex = 0
+        modifyWithoutSave = true
       }
       jeedom.cmd.changeSubType(_cmd)
     }
@@ -837,7 +839,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
-  if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null || (subtype = _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')) === null) {
+  if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null || (subtype = _cmd.querySelector('.cmdAttr[data-l1key="subType"]')) === null) {
     return
   }
   jeedom.getConfiguration({
