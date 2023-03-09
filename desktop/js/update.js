@@ -127,6 +127,7 @@ if (!jeeFrontEnd.update) {
         success: function(data) {
           let tbody = document.querySelector('#table_update tbody')
           tbody.empty()
+          if (isset(jeeFrontEnd.update.updtDataTable)) jeeFrontEnd.update.updtDataTable.refresh()
 
           var tr_updates = []
           for (var i in data) {
@@ -135,28 +136,36 @@ if (!jeeFrontEnd.update) {
               tr_updates.push(jeeP.addUpdate(data[i]))
             }
           }
-          if (jeeP.hasUpdate) document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
-
           for (var tr of tr_updates) {
             tbody.appendChild(tr)
           }
+          if (isset(jeeFrontEnd.update.updtDataTable)) jeeFrontEnd.update.updtDataTable.refresh()
 
           jeedomUtils.initDataTables('#coreplugin')
-
           jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
 
           jeeFrontEnd.update.updtDataTable.on('columns.sort', function(column, direction) {
+            let tbody = document.querySelector('#table_update tbody')
             tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
           })
           jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
 
+
+          if (jeeP.hasUpdate) {
+            document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
+          } else {
+            document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-info-color)'
+          }
+
           //create a second <pre> for cleaned text to avoid change event infinite loop:
-          document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)
-          document.getElementById('pre_updateInfo').addClass('hidden')
-          jeeP._pre_updateInfo_clean = document.getElementById('pre_updateInfo_clean')
-          jeeP._pre_updateInfo_clean.seen()
-          jeeP.createUpdateObserver()
-          jeedomUtils.setCheckContextMenu()
+          if (document.getElementById('pre_updateInfo_clean') == null) {
+            document.getElementById('div_log').insertAdjacentHTML('beforeend', jeeP.newLogClean)
+            document.getElementById('pre_updateInfo').addClass('hidden')
+            jeeP._pre_updateInfo_clean = document.getElementById('pre_updateInfo_clean')
+            jeeP._pre_updateInfo_clean.seen()
+            jeeP.createUpdateObserver()
+            jeedomUtils.setCheckContextMenu()
+          }
         }
       })
 
