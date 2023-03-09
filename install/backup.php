@@ -30,7 +30,7 @@ try {
 	
 	try {
 		echo "Send begin backup event...";
-		jeedom::event('Begin_backup', true);
+		jeedom::event('begin_backup', true);
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERROR*** ' . $e->getMessage();
