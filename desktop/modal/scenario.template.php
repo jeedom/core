@@ -96,6 +96,7 @@ if (!jeeFrontEnd.md_scenarioTemplate) {
     setFileUpload: function() {
       new jeeFileUploader({
         fileInput: document.getElementById('bt_uploadScenarioTemplate'),
+        accept: '.json',
         url: 'core/ajax/scenario.ajax.php?action=templateupload',
         add: function(event, options) {
           //Is already there ?

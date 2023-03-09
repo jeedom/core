@@ -2092,6 +2092,7 @@ var jeeFileUploader = function(_options) {
     singleFileUploads: true,
     limitMultiFileUploads: undefined,
     limitUploadFileSize: undefined,
+    accept: undefined,
     url: '',
     dataType: 'json',
     add: false,
@@ -2114,6 +2115,8 @@ var jeeFileUploader = function(_options) {
       _options.url = dataurl
     }
   }
+
+  if (_options.accept) _options.fileInput.setAttribute('accept', _options.accept)
 
   var displayLimit = null
   if (_options.limitUploadFileSize != undefined) {
