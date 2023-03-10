@@ -1427,7 +1427,7 @@
         "Afficher tous les objets du design 3D": "Mostrar todos os objetos de design 3D",
         "Informations": "Informação",
         "Edition": "Editar",
-        "Plein écran": "Ecrã completo"
+        "Plein écran": "Tela cheia"
     },
     "desktop\/php\/index.php": {
         "Toggle navigation": "Alternar navegação",
@@ -2962,7 +2962,7 @@
         "Verrouiller": "Trancar",
         "Designs": "Desenhos",
         "Edition": "Edição",
-        "Plein écran": "Ecrã completo",
+        "Plein écran": "Tela cheia",
         "Ajouter un Graphique": "Adicionar um gráfico",
         "Ajouter du texte\/html": "Adicionar texto\/html",
         "Ajouter un scénario": "Adicionar um cenário",
@@ -3462,6 +3462,14 @@
         "Jeudi": "Quinta",
         "Vendredi": "Sexta",
         "Samedi": "Sábado",
+        "Téléchargement CSV": "Baixar CSV",
+        "Téléchargement JPEG": "Baixar JPEG",
+        "Téléchargement PDF": "Baixar PDF",
+        "Téléchargement PNG": "Baixar PNG",
+        "Téléchargement SVG": "Baixar SVG",
+        "Téléchargement XLS": "Baixar XLS",
+        "Imprimer": "Imprimir",
+        "Plein écran": "Tela cheia",
         "Centre de Messages": "Central de mensagens",
         "Assistant cron": "Assistente de cron",
         "Valider": "Confirmar",
