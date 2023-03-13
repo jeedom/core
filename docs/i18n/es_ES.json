@@ -8210,6 +8210,7 @@
         "Permet d'exporter une vue au format (PDF,PNG, JPEG ou SVG) et de l'envoyer par le biais d'une commande de type message": "Le permite exportar una vista en formato (PDF, PNG, JPEG o SVG) y enviarla utilizando un comando de tipo mensaje",
         "Attention, si votre accès Internet est en HTTPS non-signé, cette fonctionnalité ne fonctionnera pas": "Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esta funcionalidad no funcionará",
         "Il faut du HTTP ou HTTPS signé": "Se requiere HTTP o HTTPS firmado",
+        "Le \"delai\" est en milli-seconde (ms": "El \"retraso\" está en milisegundos (ms",
         "Supprimer bloc DANS\/A programmé": "Eliminar bloque IN \/ A programado",
         "remove_inat": "eliminar_inat",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Le permite eliminar la programación de todos los bloques IN y A del escenario",

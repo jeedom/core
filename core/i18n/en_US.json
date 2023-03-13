@@ -4856,7 +4856,7 @@
         "Sélectionner la commande": "Select command",
         "Largeur (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
-        "Délai": "Delay",
+        "Délai (ms)": "Delay (ms)",
         "Thèmes": "Themes",
         "Défaut": "Fault",
         "Clair": "Clear",

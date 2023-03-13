@@ -4856,7 +4856,7 @@
         "Sélectionner la commande": "コマンドを選択",
         "Largeur (px)": "幅（ピクセル）",
         "Hauteur (px)": "高さ（px）",
-        "Délai": "お知らせ",
+        "Délai (ms)": "Délai (ms)",
         "Thèmes": "Thèmes",
         "Défaut": "Défaut",
         "Clair": "Clair",

@@ -4670,6 +4670,7 @@
         "Permet d'exporter une vue au format (PDF,PNG, JPEG ou SVG) et de l'envoyer par le biais d'une commande de type message": "Permet d'exporter une vue au format (PDF,PNG, JPEG ou SVG) et de l'envoyer par le biais d'une commande de type message",
         "Attention, si votre accès Internet est en HTTPS non-signé, cette fonctionnalité ne fonctionnera pas": "Attention, si votre accès Internet est en HTTPS non-signé, cette fonctionnalité ne fonctionnera pas",
         "Il faut du HTTP ou HTTPS signé": "Il faut du HTTP ou HTTPS signé",
+        "Le \"delai\" est en milli-seconde (ms": "Le \"delai\" est en milli-seconde (ms",
         "Supprimer bloc DANS\/A programmé": "Supprimer bloc DANS\/A programmé",
         "remove_inat": "remove_inat",
         "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permet de supprimer la programmation de tous les blocs DANS et A du scénario",

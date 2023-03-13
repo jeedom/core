@@ -4856,7 +4856,7 @@
         "Sélectionner la commande": "Befehl auswählen",
         "Largeur (px)": "Breite (px)",
         "Hauteur (px)": "Höhe (px)",
-        "Délai": "Bekanntmachung",
+        "Délai (ms)": "Verzögerung (ms)",
         "Thèmes": "Themen",
         "Défaut": "Fehler",
         "Clair": "Klar",
