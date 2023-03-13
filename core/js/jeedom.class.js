@@ -147,7 +147,15 @@ jeedom.init = function() {
     lang: {
       months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
       shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
-      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
+      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}'],
+      downloadCSV: '{{Téléchargement CSV}}',
+      downloadJPEG: '{{Téléchargement JPEG}}',
+      downloadPDF: '{{Téléchargement PDF}}',
+      downloadPNG: '{{Téléchargement PNG}}',
+      downloadSVG: '{{Téléchargement SVG}}',
+      downloadXLS: '{{Téléchargement XLS}}',
+      printChart: '{{Imprimer}}',
+      viewFullscreen: '{{Plein écran}}',
     },
     colors: [
       cssComputedStyle.getPropertyValue('--al-info-color'),

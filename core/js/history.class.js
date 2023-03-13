@@ -559,6 +559,7 @@ jeedom.history.drawChart = function(_params) {
             credits: { enabled: false },
             exporting: {
               enabled: _params.enableExport || (jeedom.display.version == 'mobile') ? false : true,
+              libURL: '3rdparty/highstock/lib/',
               csv: {
                   dateFormat: '%Y-%m-%d'
               },
@@ -814,6 +815,7 @@ jeedom.history.drawChart = function(_params) {
             },
             exporting: {
               enabled: _params.enableExport || (jeedom.display.version == 'mobile') ? false : true,
+              libURL: '3rdparty/highstock/lib/',
               csv: {
                   dateFormat: '%Y-%m-%d'
               },

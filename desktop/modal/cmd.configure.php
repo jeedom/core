@@ -863,7 +863,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           })
         })
 
-        jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(document.querySelector('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]').value)
+        var cmdTemplate = document.querySelector('#cmd_display select[data-l1key="template"][data-l2key="dashboard"]')
+        if (cmdTemplate != null) {
+          jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(cmdTemplate.value)
+        }
       },
       postInit: function() {
         this.setInputsDefault()
