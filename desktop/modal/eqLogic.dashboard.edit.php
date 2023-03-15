@@ -33,7 +33,8 @@ foreach ($cmds as $cmd) {
 //eqLogic setter:
 sendVarToJS([
   'jeephp2js.md_eqLogicDashEdit_eqInfo' => utils::o2a($eqLogic),
-  'jeephp2js.md_eqLogicDashEdit_eqWidgetPossibility' => $eqLogic->widgetPossibility('custom::optionalParameters'),
+  'jeephp2js.md_eqLogicDashEdit_customOptParams' => $eqLogic->widgetPossibility('custom::optionalParameters'),
+  'jeephp2js.md_eqLogicDashEdit_customLayout' => $eqLogic->widgetPossibility('custom::layout'),
   'jeephp2js.md_eqLogicDashEdit_allCmdsInfo' => $allCmds
 ]);
 
@@ -457,11 +458,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       },
       postInit: function() {
         //layout default or table for cmd order:
-        if (document.querySelector('select[data-l2key="layout::dashboard"]')?.value == 'default') {
-          document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = '1'
-          document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = '1'
+        if (jeephp2js.md_eqLogicDashEdit_customLayout != '') {
+          if (document.querySelector('select[data-l2key="layout::dashboard"]')?.value == 'default') {
+            document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = '1'
+            document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = '1'
+          }
+          document.querySelector('select[data-l2key="layout::dashboard"]').triggerEvent('change')
         }
-        document.querySelector('select[data-l2key="layout::dashboard"]').triggerEvent('change')
 
         document.querySelectorAll('#commands select[data-l1key="template"][data-l2key="dashboard"]').forEach(_tmplt => {
           jeeFrontEnd.md_eqlogicDashEdit.displayWidgetHelp(_tmplt.value, _tmplt.closest('.cmdConfig').getAttribute('data-id'))
@@ -524,6 +527,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         })
       },
       setTableLayoutSortable: function() {
+        if (jeephp2js.md_eqLogicDashEdit_customLayout == '') return
         let containers = document.querySelectorAll('#md_eqlogicDashEdit #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
         containers.forEach(_container => {
           new Sortable(_container, {
@@ -537,6 +541,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         })
       },
       getNewLayoutTd: function(row, col) {
+        if (jeephp2js.md_eqLogicDashEdit_customLayout == '') return
         var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
         newTd += '<center class="cmdLayoutContainer"></center>'
         newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la cellule}}">'
@@ -545,6 +550,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         return newTd
       },
       applyTableLayout: function() {
+        if (jeephp2js.md_eqLogicDashEdit_customLayout == '') return
         var nbColumn = document.querySelector('#md_eqlogicDashEdit input[data-l2key="layout::dashboard::table::nbColumn"]').value
         var nbRow = document.querySelector('#md_eqlogicDashEdit input[data-l2key="layout::dashboard::table::nbLine"]').value
 
@@ -641,7 +647,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             //save commands order, dependings on default/table setting:
             var cmds = []
             var order = 1
-            if (document.querySelector('select[data-l2key="layout::dashboard"]').value != 'default') {
+            if (jeephp2js.md_eqLogicDashEdit_customLayout != '' && document.querySelector('select[data-l2key="layout::dashboard"]').value != 'default') {
               document.querySelectorAll('#tableCmdLayoutConfiguration tbody td .cmdLayout').forEach(_lay => {
                 cmd = {}
                 cmd.id = _lay.getAttribute('data-cmd_id')
