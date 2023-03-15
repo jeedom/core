@@ -433,6 +433,7 @@ if (!jeeFrontEnd.pluginTemplate) {
                       }
                     }
                     jeeFrontEnd.modifyWithoutSave = false
+                    modifyWithoutSave = false
                     url += 'removeSuccessFull=1'
                     jeedomUtils.loadPage(url)
                   }
