@@ -172,8 +172,10 @@ document.getElementById('bt_validateSpecificCommand')?.addEventListener('click',
 })
 
 document.getElementById('in_specificCommand')?.addEventListener('keypress', function(event) {
-  var command = document.getElementById('in_specificCommand').value
-  jeeP.dbExecuteCommand(command, true)
+  if (event.key === "Enter") {
+    var command = document.getElementById('in_specificCommand').value
+    jeeP.dbExecuteCommand(command, true)
+  }
 })
 
 //SQL constructor
