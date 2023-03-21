@@ -2037,7 +2037,10 @@ user::isBan();
 										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fas fa-sync"></i></a>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
 									</span>
 								</div>
 							</div>
@@ -2059,7 +2062,10 @@ user::isBan();
 										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apitts"><i class="fas fa-sync"></i></a>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
 									</span>
 								</div>
 							</div>
@@ -2084,7 +2090,10 @@ user::isBan();
 										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apipro"><i class="fas fa-sync"></i></a>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
 									</span>
 								</div>
 							</div>
@@ -2107,7 +2116,10 @@ user::isBan();
 										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+									</span>
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
 									</span>
 								</div>
 							</div>
@@ -2133,7 +2145,10 @@ user::isBan();
 								$div .= '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
 								$div .= '</span>';
 								$div .= '<span class="input-group-btn">';
-								$div .= '<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>';
+								$div .= '<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>';
+								$div .= '</span>';
+								$div .= '<span class="input-group-btn">';
+								$div .= '<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>';
 								$div .= '</span>';
 								$div .= '</div>';
 								$div .= '</div>';
@@ -2170,7 +2185,7 @@ user::isBan();
 						<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name')?>."></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name') ?>."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
@@ -2211,16 +2226,16 @@ user::isBan();
 
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="form-group">
-						    <div class="row">
-						    	<div class="col-md-3 col-xs-12">
-						        	<div class="alert alert-danger">
+							<div class="row">
+								<div class="col-md-3 col-xs-12">
+									<div class="alert alert-danger">
 										{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
 										{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 									</div>
-						        </div>
+								</div>
 
-						        <div class="col-md-9 col-xs-12">
-						            <div class="form-group">
+								<div class="col-md-9 col-xs-12">
+									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 										<div class="col-md-5 col-xs-6">
 											<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
@@ -2228,7 +2243,7 @@ user::isBan();
 										</div>
 									</div>
 
-						            <div class="form-group">
+									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-terminal"></i> {{Administration Système}}
 											<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
 										</label>
@@ -2238,7 +2253,7 @@ user::isBan();
 										</div>
 									</div>
 
-						            <div class="form-group">
+									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
 											<sup><i class="fas fa-question-circle" tooltip="{{Edition multiples de paramètres d'équipements, commandes, ...}}"></i></sup>
 										</label>
@@ -2264,8 +2279,8 @@ user::isBan();
 										</label>
 										<div class="col-md-5 col-xs-6">
 											<?php
-												global $CONFIG;
-												echo $CONFIG['db']['username'];
+											global $CONFIG;
+											echo $CONFIG['db']['username'];
 											?>
 											<div class="input-group">
 												<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />
@@ -2273,12 +2288,12 @@ user::isBan();
 													<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
 												</span>
 											</div>
-										</span>
-									</div>
+											</span>
+										</div>
 
-						        </div>
-						    </div>
-						</div>
+									</div>
+								</div>
+							</div>
 					</fieldset>
 					<br />
 				</form>
