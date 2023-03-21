@@ -7,8 +7,6 @@ $date = array(
   'end' => init('endDate', date('Y-m-d')),
 );
 ?>
-<div id="div_alertHistory"></div>
-
 <div id="div_historyOptions" class="row">
 	<br>
 	<div class="col-lg-3 col-sm-4 col-xs-12">
@@ -23,7 +21,7 @@ $date = array(
 
 	<div class="col-lg-8 col-sm-10 col-xs-12 pull-right">
 		<div class="input-group input-group-sm" style="float: right;">
-			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;" disabled="">
+			<select class="fullCorner input-sm" id="sel_groupingType" style="width: 180px;">
 				<option value="">{{Aucun groupement}}</option>
 				<option value="sum::hour">{{Somme par heure}}</option>
 				<option value="average::hour">{{Moyenne par heure}}</option>
@@ -47,14 +45,14 @@ $date = array(
 				<option value="high::year">{{Maximum par année}}</option>
 			</select>
 
-			<select class="fullCorner input-sm" id="sel_chartType" style="width: 100px;" disabled="">
+			<select class="fullCorner input-sm" id="sel_chartType" style="width: 100px;">
 				<option value="line">{{Ligne}}</option>
 				<option value="area">{{Aire}}</option>
 				<option value="column">{{Barre}}</option>
 			</select>
 
-			<span>{{Variation}} <input type="checkbox" id="cb_derive" disabled="" /></span>
-			<span>{{Escalier}} <input type="checkbox" id="cb_step" disabled="" /></span>
+			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
+			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 			<a id="bt_compare" class="btn btn-sm btn-success disabled roundedLeft"><i class="fas fa-greater-than-equal"></i> {{Comparer}}
 			</a><a id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}" >
 				<i class="fas fa-times"></i> {{Affichage}}
@@ -64,7 +62,7 @@ $date = array(
 </div>
 
 <div id="pageContainer" class="row row-overflow">
-	<div class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
+	<div id="sidebar" class="col-lg-3 col-md-4 col-sm-5 bs-sidebar" style="height: calc(100vh - 110px);">
 		<ul class="nav nav-list bs-sidenav">
 			<li>
 				<i class="fas fa-square-root-alt"></i> {{Historique calculé}}
@@ -144,7 +142,7 @@ $date = array(
 </div>
 
 <!--Compare Modal -->
-<div id="md_getCompareRange" class="cleanableModal hidden" style="overflow-x: hidden;">
+<div id="md_getCompareRange-template" class="hidden" style="overflow-x: hidden;">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group">
@@ -201,7 +199,6 @@ $date = array(
 		</fieldset>
 	</form>
 	<br>
-	<a class="btn btn-success pull-right" id="bt_doCompare"><i class="fas fa-check"></i> {{Comparer}}</a>
 </div>
 <?php
 include_file("desktop", "history", "js");

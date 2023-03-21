@@ -25,65 +25,83 @@ if (!is_object($scenario)) {
 sendVarToJs('jeephp2js.md_scenarioLog_scId', init('scenario_id'));
 ?>
 
-<div style="display: none;width : 100%" id="div_alertScenarioLog" data-modalType="md_scenarioLog"></div>
-<?php echo '<span style="font-weight: bold;">' . $scenario->getHumanName(true, false, true) . '</span>'; ?>
-<div class="input-group pull-right">
-  <span class="input-group-btn" style="display: inline;">
-    <span class="label-sm">{{Log brut}}</span>
-    <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
-    <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
-    <input class="input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
-    <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
-    </a><a class="btn btn-warning btn-sm" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
-    </a><a class="btn btn-success btn-sm" id="bt_scenarioLogDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
-    </a><a class="btn btn-warning btn-sm roundedRight" id="bt_scenarioLogEmpty"><i class="fas fa-trash"></i> {{Vider}}</a>
-  </span>
+<div id="md_scenarioLog" data-modalType="md_scenarioLog">
+  <?php echo '<span style="font-weight: bold;">' . $scenario->getHumanName(true, false, true) . '</span>'; ?>
+  <div class="input-group pull-right">
+    <span class="input-group-btn" style="display: inline;">
+      <span class="label-sm">{{Log brut}}</span>
+      <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
+      <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
+      <input class="input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
+      <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
+      </a><a class="btn btn-warning btn-sm" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
+      </a><a class="btn btn-success btn-sm" id="bt_scenarioLogDownload"><i class="fas fa-cloud-download-alt"></i> {{Télécharger}}
+      </a><a class="btn btn-warning btn-sm roundedRight" id="bt_scenarioLogEmpty"><i class="fas fa-trash"></i> {{Vider}}</a>
+    </span>
+  </div>
+  <br/><br/>
+  <pre id='pre_scenariolog'></pre>
 </div>
-<br/><br/>
-<pre id='pre_scenariolog' style='overflow: auto; height: calc(100% - 70px);width:100%;'></pre>
 
 <script>
-var $rawLogCheck = $('#brutlogcheck')
-$rawLogCheck.on('click').on('click', function () {
-  $rawLogCheck.attr('autoswitch', 0)
-
-  var scroll = $('#pre_scenariolog').scrollTop()
-  jeedom.log.autoupdate({
-    log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
-    display: document.getElementById('pre_scenariolog'),
-    search: document.getElementById('in_scenarioLogSearch'),
-    control: document.getElementById('bt_scenarioLogStopStart'),
-    once: 1
-  })
-  $('#pre_scenariolog').scrollTop(scroll)
-})
-
-
-jeedom.log.autoupdate({
-  log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
-  display: document.getElementById('pre_scenariolog'),
-  search: document.getElementById('in_scenarioLogSearch'),
-  control: document.getElementById('bt_scenarioLogStopStart')
-})
-
-$('#bt_resetScenarioLogSearch').on('click', function () {
-  document.getElementById('in_scenarioLogSearch').value = ''
-})
-
-$('#bt_scenarioLogEmpty').on('click', function() {
-  jeedom.scenario.emptyLog({
-    id: jeephp2js.md_scenarioLog_scId,
-    error: function(error) {
-      $('#div_alertScenarioLog').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alertScenarioLog').showAlert({message: '{{Log vidé avec succès}}', level: 'success'})
-      document.emptyById('pre_logScenarioDisplay')
+if (!jeeFrontEnd.md_scenarioLog) {
+  jeeFrontEnd.md_scenarioLog = {
+    init: function() {
+      jeedom.log.autoupdate({
+        log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
+        display: document.getElementById('pre_scenariolog'),
+        search: document.getElementById('in_scenarioLogSearch'),
+        control: document.getElementById('bt_scenarioLogStopStart')
+      })
     }
-  })
-})
+  }
+}
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_scenarioLog
+  jeeM.init()
 
-$('#bt_scenarioLogDownload').click(function() {
-  window.open('core/php/downloadFile.php?pathfile=log/scenarioLog/scenario<?php echo init('scenario_id') ?>.log', "_blank", null)
-})
+  //Manage events outside parents delegations:
+  document.getElementById('bt_resetScenarioLogSearch').addEventListener('click', function(event) {
+    document.getElementById('in_scenarioLogSearch').value = ''
+  })
+
+  document.getElementById('bt_scenarioLogEmpty').addEventListener('click', function(event) {
+    jeedom.scenario.emptyLog({
+      id: jeephp2js.md_scenarioLog_scId,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_scenarioLog', 'dialog'),
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_scenarioLog', 'dialog'),
+          message: '{{Log vidé avec succès}}',
+          level: 'success'
+        })
+        document.getElementById('pre_scenariolog').empty()
+      }
+    })
+  })
+
+  document.getElementById('bt_scenarioLogDownload').addEventListener('click', function(event) {
+    window.open('core/php/downloadFile.php?pathfile=log/scenarioLog/scenario<?php echo init('scenario_id') ?>.log', "_blank", null)
+  })
+
+  document.getElementById('brutlogcheck').addEventListener('click', function(event) {
+    event.target.setAttribute('autoswitch', 0)
+    var scroll = document.getElementById('pre_scenariolog').scrollTop
+    jeedom.log.autoupdate({
+      log: jeephp2js.md_logDislay_Name,
+      display: document.getElementById('pre_scenariolog'),
+      search: document.getElementById('in_scenarioLogSearch'),
+      control: document.getElementById('bt_scenarioLogStopStart'),
+      once: 1
+    })
+    document.getElementById('pre_scenariolog').scrollTop = scroll
+  })
+
+})()
 </script>

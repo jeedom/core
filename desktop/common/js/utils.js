@@ -28,34 +28,37 @@ jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(val
 
 /*Hijack jQuery ready function, still used in plugins
 */
-jeedomUtils.$readyFn = jQuery.fn.ready
-jQuery.fn.ready = function() {
-  if (domUtils._DOMloading <= 0) {
-    jeedomUtils.$readyFn.apply(this, arguments)
-  } else {
-    setTimeout(function() {
-      jQuery.fn.ready.apply(this, arguments[1])
-    }, 100, this, arguments)
+if (typeof jQuery === 'function') {
+  jeedomUtils.$readyFn = jQuery.fn.ready
+  jQuery.fn.ready = function() {
+    if (domUtils._DOMloading <= 0) {
+      jeedomUtils.$readyFn.apply(this, arguments)
+    } else {
+      setTimeout(function() {
+        jQuery.fn.ready.apply(this, arguments[1])
+      }, 250, this, arguments)
+    }
   }
 }
 //Deprecated, keep for plugins using jQuery ajax call
 document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
-  $(document)
-    .ajaxStart(function() {
-      domUtils.showLoading()
-    })
-    .ajaxStop(function() {
-      domUtils.hideLoading()
-    })
+  if (typeof jQuery === 'function') {
+    $(document)
+      .ajaxStart(function() {
+        domUtils.showLoading()
+      })
+      .ajaxStop(function() {
+        domUtils.hideLoading()
+      })
+  }
 })
 
 //js error in ! ui:
 jeedomUtils.JS_ERROR = []
 window.addEventListener('error', function(event) {
-  if (event.filename.indexOf('3rdparty/') != -1) {
-    return
-  }
+  if (event.filename.indexOf('3rdparty/') != -1) return
+  if (event.message.includes('ResizeObserver loop')) return
   jeedomUtils.JS_ERROR.push(event)
   document.getElementById('bt_jsErrorModal')?.seen()
   domUtils.hideLoading()
@@ -106,6 +109,8 @@ jeedomUtils.checkPageModified = function() {
 var prePrintEqLogic = undefined
 var printEqLogic = undefined
 var addCmdToTable = undefined
+jeedomUtils.userDevice = getDeviceType()
+
 //OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
@@ -116,12 +121,17 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   }
 
   jeedomUtils.closeJeedomMenu()
-  window.toastr.clear()
+  jeeDialog.clearToasts()
+  jeedomUtils.closeJeeDialogs()
   jeedom.cmd.resetUpdateFunction()
 
-  $.contextMenu('destroy')
+  //Deprecated jQuery contextMenu
+  if (typeof jQuery === 'function' && typeof $.contextMenu === 'function') $.contextMenu('destroy')
   document.querySelectorAll('.context-menu-root').remove()
 
+  jeedomUtils.jeeCtxMenuDestroy()
+
+  //Deprecated jQuery UI dialogs
   try {
     $(".ui-dialog-content").dialog("close")
   } catch (e) { }
@@ -136,11 +146,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
         window.history.pushState('', '', _url)
         jeeFrontEnd.PREVIOUS_PAGE = _url
       }
-    document.body.setAttribute('data-page', getUrlVars('p') || '')
+      document.body.setAttribute('data-page', getUrlVars('p') || '')
     } catch (e) { }
   }
 
-  if (isset(bootbox)) bootbox.hideAll()
+  if (typeof jQuery === 'function' && typeof bootbox === 'object') bootbox.hideAll()
   jeedomUtils.hideAlert()
   jeedomUtils.datePickerDestroy()
   jeedomUtils.autocompleteDestroy()
@@ -150,8 +160,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeephp2js = {}
   delete window.jeeP
   prePrintEqLogic = printEqLogic = addCmdToTable = undefined
-  if (jeedomUtils.OBSERVER !== null) jeedomUtils.OBSERVER.disconnect()
-  $('body').off('changeThemeEvent')
+  if (typeof jQuery === 'function') $('body').off('changeThemeEvent')
 
   if (_url.indexOf('#') == -1) {
     var url = _url + '&ajax=1'
@@ -170,19 +179,23 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 
   //Deprecated: Migrate to registerEvent() and delete:
   document.onkeydown = null
-  $('body').off('mouseenter mouseleave')
-  $(window).off('resize')
+  if (typeof jQuery === 'function') {
+    $('body').off('mouseenter mouseleave')
+    $(window).off('resize')
+  }
 
   document.getElementById('div_mainContainer').querySelectorAll('script')?.remove()
-  document.querySelectorAll('script[injext]')?.remove()
+  document.body.querySelectorAll('script[injext]')?.remove()
 
   //AJAX LOAD URL INTO PAGE CONTAINER:
+  domUtils.DOMloading += 1
   document.getElementById('div_pageContainer').load(url, function() {
     document.body.setAttribute('data-page', getUrlVars('p') || '')
-    document.getElementById('bt_getHelpPage').setAttribute('data-page', getUrlVars('p'))
-    document.getElementById('bt_getHelpPage').setAttribute('data-plugin', getUrlVars('m') || '')
+    document.getElementById('bt_getHelpPage')?.setAttribute('data-page', getUrlVars('p'))
+    document.getElementById('bt_getHelpPage')?.setAttribute('data-plugin', getUrlVars('m') || '')
     jeedomUtils.initPage()
 
+    domUtils.syncJeeCompletes()
     document.body.triggerEvent('jeedom_page_load')
 
     //dashboard page on object will set its own background:
@@ -195,8 +208,11 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
     }
 
     setTimeout(function() {
-      if (window.location.hash != '' && document.querySelector('ul.nav-tabs a[data-target="' + window.location.hash + '"]') != null) {
-        document.querySelector('ul.nav-tabs a[data-target="' + window.location.hash + '"]').triggerEvent('click')
+      if (window.location.hash != '') {
+        var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+        if (tab != null) {
+          tab.click()
+        }
       }
     }, 150) //let time for plugin page!
 
@@ -204,19 +220,8 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
       modifyWithoutSave = false
       jeeFrontEnd.modifyWithoutSave = false
     }, 250)
+    domUtils.DOMloading -= 1
   })
-
-  setTimeout(function() {
-    //scenarios uses special tooltips not requiring destroy.
-    if (document.body.getAttribute('data-page') != 'scenario') {
-      if (jeedomUtils.OBSERVER !== null) {
-        var targetNode = document.getElementById('div_mainContainer')
-        if (targetNode) jeedomUtils.OBSERVER.observe(targetNode, jeedomUtils.observerConfig)
-      } else {
-        jeedomUtils.createObserver()
-      }
-    }
-  }, 500)
 
   return
 }
@@ -225,8 +230,7 @@ jeedomUtils.loadPage = function(_url, _noPushHistory) {
 */
 document.addEventListener('DOMContentLoaded', function() {
   jeedom.init()
-  if (getDeviceType()['type'] == 'desktop') jeedomUtils.userDeviceType = 'desktop'
-  document.body.setAttribute('data-device', jeedomUtils.userDeviceType)
+  document.body.setAttribute('data-device', jeedomUtils.userDevice.type)
   document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
@@ -249,42 +253,48 @@ document.addEventListener('DOMContentLoaded', function() {
   if (tab == null) {
     tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
   }
-
   if (window.location.hash != '' && tab != null) {
-    tab.triggerEvent('click')
+    tab.click()
   }
 
   //browser history:
 
   //custom jQuery event can't use pur js event listener
-  $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
-    if (event.target.getAttribute('data-target') == '') {
-      return
-    }
-    if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) {
-      return
-    }
-    if (jeeFrontEnd.PREVIOUS_PAGE == null) {
-      window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
-      jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
-    }
-    window.location.hash = event.target.getAttribute('data-target')
-  })
+  if (typeof jQuery === 'function') {
+    $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
+      if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+      if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) return
+      if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) return
+
+      if (jeeFrontEnd.PREVIOUS_PAGE == null) {
+        window.history.replaceState('', '', 'index.php?' + window.location.href.split("index.php?")[1])
+        jeeFrontEnd.PREVIOUS_PAGE = 'index.php?' + window.location.href.split("index.php?")[1]
+      }
+      var hash = event.target.getAttribute('data-target') || event.target.getAttribute('href')
+      if (hash) {
+        window.location.hash = hash
+      } else {
+        history.replaceState(null, null, ' ')
+      }
+    })
+  }
+
   window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
     setTimeout(function() {
       jeeFrontEnd.NO_POPSTAT = false
     }, 200)
   })
+
   window.addEventListener('popstate', function(event) {
     if (event.state === null) {
       if (jeeFrontEnd.NO_POPSTAT) {
         jeeFrontEnd.NO_POPSTAT = false
         return
       }
-      var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+      var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
       if (window.location.hash != '' && tab != null) {
-        tab.triggerEvent('click')
+        tab.click()
       } else if (jeeFrontEnd.PREVIOUS_PAGE !== null && jeeFrontEnd.PREVIOUS_PAGE.includes('#') && jeeFrontEnd.PREVIOUS_PAGE.split('#')[0] != 'index.php?' + window.location.href.split("index.php?")[1].split('#')[0]) {
         if (jeedomUtils.checkPageModified()) return
         jeedomUtils.loadPage('index.php?' + window.location.href.split("index.php?")[1], true)
@@ -300,7 +310,6 @@ document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils.setJeedomTheme()
   jeedomUtils.changeJeedomThemeAuto()
 
-  jeedomUtils.setJeedomMenu()
   jeedomUtils.initJeedomModals()
   jeedomUtils.setJeedomGlobalUI()
 
@@ -313,9 +322,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
-    jeedomUtils.createObserver()
     document.body.triggerEvent('jeedom_page_load')
   })
+
+  jeedomUtils.setJeedomMenu()
 
   /*Move and register common scripts/css to not reload them:
     Managed on loadPage() by domUtils.loadScript() and domUtils.html()
@@ -333,94 +343,40 @@ document.addEventListener('DOMContentLoaded', function() {
       document.head.appendChild(stylesheet)
     }
   })
+
+  //flatpickr theme:
+  var flatpickrDarkCss = document.querySelector('head > link[rel="stylesheet"][href*="3rdparty/flatpickr/flatpickr.dark.css"]')
+  if (flatpickrDarkCss) {
+    if (document.body.getAttribute('data-theme').endsWith('Dark')) {
+      flatpickrDarkCss.disabled = false
+    } else {
+      flatpickrDarkCss.disabled = true
+    }
+  }
 })
 
-
-/*Toastr____________ options for jeedom.notify() toastr, need jeedom.theme set!
-jQuery dependant, will have to migrate to pure js!
-*/
-toastr.options = {
-  "newestOnTop": true,
-  "closeButton": true,
-  "debug": false,
-  "positionClass": jeedom.theme['interface::toast::position'],
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-  "extendedTimeOut": "1500",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "progressBar": true,
-  "onclick": function() {
-    window.toastr.clear()
-    $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
-  }
-}
-jeedomUtils.toastrUIoptions = {
-  "newestOnTop": true,
-  "closeButton": true,
-  "tapToDismiss": false,
-  "debug": false,
-  "positionClass": jeedom.theme['interface::toast::position'],
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": parseInt(jeedom.theme['interface::toast::duration']) * 1000,
-  "extendedTimeOut": "1500",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut",
-  "progressBar": true,
-  "onclick": function(event) {
-    event.clickToClose = true
-  }
-}
-
 jeedomUtils.showAlert = function(_options) {
+  //if (getUrlVars('report') == 1) return
   var options = init(_options, {})
+  options.title = init(options.title, '')
   options.message = init(options.message, '')
   options.level = init(options.level, '')
   options.emptyBefore = init(options.emptyBefore, false)
-  options.show = init(options.show, true)
-  options.attach = init(options.attach, false)
-  if (!options.ttl) {
-    if (options.level == 'danger') {
-      options.ttl = 0
-    } else {
-      options.ttl = 5000
-    }
+  options.timeOut = init(options.timeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+  options.extendedTimeOut = init(options.extendedTimeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+  if (options.level == 'danger') {
+    options.timeOut = 0
   }
-  if (options.level == 'danger') options.level = 'error'
-  if (options.emptyBefore == true) {
-    window.toastr.clear()
-  }
-  let options_toastr = jeedomUtils.toastrUIoptions
-  options_toastr.timeOut = options.ttl
+  options.attachTo = init(_options.attachTo, false)
+  if (!options.attachTo) options.attachTo = init(_options.attach, false) //Deprecated, old toastr param
 
-  toastr[options.level](options.message, ' ', options_toastr)
-
-  var toastContainer = document.getElementById('toast-container')
-  if (options.attach) {
-    try {
-      var attachTo = document.querySelector(options.attach)
-      if (attachTo != null) {
-        attachTo.appendChild(toastContainer)
-        toastContainer.style.position = 'absolute'
-      }
-    } catch (error) {
-      console.error('jeedomUtils.showAlert: ' + error)
-    }
-  } else {
-    toastContainer.style.position = ''
-  }
+  jeeDialog.toast(options)
 }
 
 jeedomUtils.hideAlert = function() {
-  window.toastr.clear()
+  jeeDialog.clearToasts()
 
-  //Deprecated, old div_alert may be used on plugins:
+  //Deprecated, old div_alert may be used by plugins:
   document.querySelectorAll('.jqAlert').forEach(function(element) {
     element.innerHTML = ''
     element.unseen()
@@ -460,9 +416,10 @@ jeedomUtils.setJeedomTheme = function() {
     var themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/shadows.css'
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
-    document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 1)
+    var cssTag = document.getElementById('jeedom_theme_currentcss')
+    cssTag.setAttribute('data-nochange', 1)
 
-    if (document.getElementById('jeedom_theme_currentcss').getAttribute('href').split('?md5')[0] == theme) {
+    if (cssTag.attributes.href.value.split('?md5')[0] == theme) {
       document.body.setAttribute('data-theme', jeedom.theme.jeedom_theme_main)
       theme = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
       themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/shadows.css'
@@ -472,8 +429,8 @@ jeedomUtils.setJeedomTheme = function() {
       document.body.setAttribute('data-theme', jeedom.theme.jeedom_theme_alternate)
     }
     setCookie('currentTheme', themeCook, 30)
-    document.getElementById('jeedom_theme_currentcss').setAttribute('href', theme)
-    document.getElementById('bt_switchTheme').html(themeButton)
+    cssTag.setAttribute('href', theme)
+    document.getElementById('bt_switchTheme').innerHTML = themeButton
     if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').href = themeShadows
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage
@@ -521,7 +478,13 @@ jeedomUtils.checkThemechange = function() {
   var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
   var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
 
-  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
+  //if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
+  if (
+    (parseInt(jeedom.theme.theme_start_day_hour.replace(':','')) < currentTime
+    && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) > currentTime)
+    || typeof jeedom.theme.theme_changeAccordingTime == 'undefined'
+    || jeedom.theme.theme_changeAccordingTime == 0
+  ) {
     theme = jeedom.theme.jeedom_theme_main
     themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
   }
@@ -557,6 +520,14 @@ jeedomUtils.triggerThemechange = function() {
     } else {
       document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Light' } }) //Legacy theme is a light one
     }
+  }
+
+  //Switch flatpickr theme:
+  var flatpickrDarkCss = document.querySelector('head > link[rel="stylesheet"][href*="3rdparty/flatpickr/flatpickr.dark.css"]')
+  if (currentTheme.endsWith('Dark')) {
+    flatpickrDarkCss.disabled = false
+  } else {
+    flatpickrDarkCss.disabled= true
   }
 }
 
@@ -638,9 +609,13 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
 
 
 //Jeedom UI__
-jeedomUtils.initJeedomModals = function() {
+jeedomUtils.initJeedomModals = function() { //Deprecated jQuery UI dilaog/bootbox
+  if (typeof jQuery !== 'function') return
+  if (typeof $.fn.modal !== 'function') return
+
   $.fn.modal.Constructor.prototype.enforceFocus = function() { }
 
+  //Deprecated bootbox, keep for plugins
   if (isset(jeeFrontEnd.language)) {
     var lang = jeeFrontEnd.language.substr(0, 2)
     var supportedLangs = ['fr', 'de', 'es']
@@ -652,41 +627,19 @@ jeedomUtils.initJeedomModals = function() {
     }
   }
 
+  //Deprecated bootbox, keep for plugins
   $('body').on('show', '.modal', function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   })
-
   $('body').on('focusin', '.bootbox-input', function(event) {
     event.stopPropagation()
   })
-
   $('.bootbox.modal').on('shown.bs.modal', function() {
     $(this).find(".bootbox-accept").focus()
   })
 
-  $('#md_reportBug').dialog({
-    autoOpen: false,
-    modal: true,
-    closeText: '',
-    height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
-    width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
-    position: { my: 'center center-10', at: 'center center', of: window },
-    open: function() {
-      document.body.style.overflow = 'hidden'
-      this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
-      $(this).dialog({
-        height: ((window.innerHeight - 100) < 700) ? window.innerHeight - 100 : 700,
-        width: ((window.innerWidth - 100) < 900) ? (window.innerWidth - 100) : 900,
-        position: { my: 'center center-10', at: 'center center', of: window }
-      })
-      setTimeout(function() { jeedomUtils.initTooltips($('#md_reportBug')) }, 500)
-    },
-    beforeClose: function(event, ui) {
-      emptyModal('md_reportBug')
-    }
-  })
-
+  //Deprecated jQuery UI dialog, keep for plugins
   $('#md_modal').dialog({
     autoOpen: false,
     modal: true,
@@ -764,7 +717,7 @@ jeedomUtils.initJeedomModals = function() {
   }
 }
 
-jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#md_modal', _open = true) {
+jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = 'jee_modal', _open = true) {
   if (document.getElementById(_buttonId) === null) {
     return
   }
@@ -779,9 +732,11 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#
       var url = '/index.php?v=d&p=modaldisplay&loadmodal=' + _uri + '&title=' + title
       window.open(url).focus()
     } else {
-      $(_modal).dialog('close')
-      $(_modal).dialog({ title: _title }).load('index.php?v=d&modal=' + _uri)
-      if (_open) $(_modal).dialog('open')
+      jeeDialog.dialog({
+        id: _modal,
+        title: _title,
+        contentUrl: 'index.php?v=d&modal=' + _uri
+      })
     }
   })
 
@@ -795,7 +750,17 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = '#
 
 jeedomUtils.setJeedomGlobalUI = function() {
   if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-    $('#md_modal').dialog({ title: "{{Bienvenue dans Jeedom}}" }).load('index.php?v=d&modal=first.use').dialog('open')
+    jeeDialog.dialog({
+      id: 'md_firstUse',
+      title: "{{Bienvenue dans Jeedom}}",
+      width: window.innerWidth > 800 ? 720 : '80vw',
+      height: window.innerHeight > 600 ? 400 : '80vw',
+      zIndex: 1040,
+      onClose: function() {
+        jeeDialog.get('#md_firstUse').destroy()
+      },
+      contentUrl: 'index.php?v=d&modal=first.use'
+    })
   }
 
   window.addEventListener('beforeunload', function(event) {
@@ -806,15 +771,19 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
   })
 
-  jeedomUtils.setButtonCtrlHandler('bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('bt_showNoteManager', '{{Notes}}', 'note.manager', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', '#md_modal')
-  jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', '#md_modal', false)
-  jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', '#md_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showEventInRealTime', '{{Evénements en temps réel}}', 'log.display&log=event', 'jee_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showNoteManager', '{{Notes}}', 'note.manager', 'jee_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showExpressionTesting', "{{Testeur d'expression}}", 'expression.test', 'jee_modal')
+  jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', 'jee_modal', false)
+  jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', 'jee_modal')
 
   document.getElementById('bt_gotoDashboard')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
+      return
+    }
+    if (event.altKey) {
+      jeedomUtils.loadPage('index.php?v=d&p=dashboardit')
       return
     }
     jeedomUtils.loadPage('index.php?v=d&p=dashboard')
@@ -846,7 +815,13 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.getElementById('bt_jeedomAbout')?.addEventListener('click', function(event) {
     jeedomUtils.closeJeedomMenu()
-    $('#md_modal').dialog({ title: "{{A propos}}" }).load('index.php?v=d&modal=about').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal3',
+      title: '{{A propos}}',
+      width: window.innerWidth > 850 ? 800 : '80vw',
+      height: window.innerHeight > 750 ? 700 : '80vw',
+      contentUrl: 'index.php?v=d&modal=about'
+    })
   })
 
   document.getElementById('bt_getHelpPage')?.addEventListener('click', function(event) {
@@ -869,17 +844,28 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
     jeedomUtils.closeJeedomMenu()
-    $('#md_reportBug').load('index.php?v=d&modal=report.bug').dialog('open')
+    jeeDialog.dialog({
+      id: 'md_reportBug',
+      title: '<i class="fas fa-ticket-alt"></i> {{Demande de support}}',
+      width: '60%',
+      contentUrl: 'index.php?v=d&modal=report.bug'
+    })
   })
 
   document.getElementById('bt_messageModal')?.addEventListener('click', function(event) {
-    jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({ title: "{{Centre de Messages}}" }).load('index.php?v=d&modal=message.display').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Centre de Messages}}",
+      contentUrl: 'index.php?v=d&modal=message.display'
+    })
   })
 
   document.getElementById('bt_jsErrorModal')?.addEventListener('click', function(event) {
-    jeedomUtils.closeModal('md_modal')
-    $('#md_modal').dialog({ title: "{{Erreur Javascript}}" }).load('index.php?v=d&modal=js.error').dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Erreur Javascript}}",
+      contentUrl: 'index.php?v=d&modal=js.error'
+    })
   })
 
   document.body.addEventListener('keydown', function(event) {
@@ -913,25 +899,29 @@ jeedomUtils.setJeedomGlobalUI = function() {
     //Summary action:
     if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
       event.stopPropagation()
-      jeedomUtils.mouseX = event.clientX
-      jeedomUtils.mouseY = event.clientY
       jeedomUtils.closeModal()
+      jeedomUtils.closeJeeDialogs()
 
       var _el = event.target.matches('.objectSummaryAction') ? event.target : event.target.parentNode
       var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
-      $('#md_modal').dialog({ title: "{{Action sur résumé}}" }).load(url)
+      url += '&coords=' + event.clientX + '::' + event.clientY
+      jeeDialog.dialog({
+        id: 'md_summaryAction',
+        setTitle: false,
+        contentUrl: url
+      })
       return
     }
 
-    //close all modales on outside click
+    //close all modales on outside click - deprecated 4.4
     if (event.target.matches('.ui-widget-overlay')) {
       event.stopPropagation()
-      $('.ui-dialog-content').dialog("close")
+      if (typeof jQuery === 'function') $('.ui-dialog-content').dialog("close")
       return
     }
 
     //display cron modal construction:
-    if (event.target.parentNode != null && (event.target.parentNode.matches('.jeeHelper[data-helper=cron]') || event.target.matches('.jeeHelper[data-helper=cron]'))) {
+    if (event.target.parentNode != null && (event.target.parentNode.matches('.jeeHelper[data-helper="cron"]') || event.target.matches('.jeeHelper[data-helper="cron"]'))) {
       event.stopPropagation()
       var input = event.target.closest('div').querySelector('input')
       if (input) {
@@ -962,9 +952,22 @@ jeedomUtils.setJeedomGlobalUI = function() {
 jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
-  $.initTableFilter()
+  if (typeof jQuery === 'function' && typeof $.initTableFilter === 'function') $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
+
+  if (getUrlVars('theme') !== false) {
+    jeedomUtils.changeTheme(getUrlVars('theme'))
+  }
+
+  /*
+  $('.nav-tabs a').on('click', function(event) {
+    if (event.delegateTarget.getAttribute('data-action') == 'returnToThumbnailDisplay') {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  })
+  */
 
   setTimeout(function() {
     jeedomUtils.initTooltips()
@@ -1016,70 +1019,70 @@ jeedomUtils.initDisplayAsTable = function() {
 }
 
 
-jeedomUtils.OBSERVER = null
-jeedomUtils.observerConfig = {
-  attributes: false,
-  childList: true,
-  characterData: false,
-  subtree: true
-}
-jeedomUtils.createObserver = function() {
-  var mainContent = document.getElementById('div_mainContainer')
-  if (mainContent) {
-    jeedomUtils.OBSERVER = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        if (mutation.type == 'childList') {
-          if (mutation.addedNodes.length >= 1) {
-            if (mutation.addedNodes[0].nodeName != '#text') {
-              jeedomUtils.initTooltips($(mutation.target))
-            }
-          }
-        } else if (mutation.type == 'attributes') {
-          if (mutation.attributeName == 'title') jeedomUtils.initTooltips($(mutation.target))
-        }
-      })
-    })
-    jeedomUtils.OBSERVER.observe(mainContent, jeedomUtils.observerConfig)
-  }
-}
-
 jeedomUtils.TOOLTIPSOPTIONS = {
-  arrow: false,
-  delay: 650,
-  interactive: false,
-  contentAsHTML: true,
-  debug: false
+  onTrigger: (instance, event) => {
+    if (instance.reference.getAttribute('title') != null) {
+      instance.reference.setAttribute('data-title', instance.reference.getAttribute('title'))
+      instance.reference.removeAttribute('title')
+    }
+    if (instance.reference.getAttribute('data-title') == '') return false
+    instance.setContent(instance.reference.getAttribute('data-title'))
+    return true
+  },
+  lazy: false,
+  onCreate: (instance) => {
+    instance.reference.addClass('tippied')
+  },
+  arrow: true,
+  allowHTML: true,
+  distance: 10,
+  delay: [50, 0],
+  //trigger: 'click',
+  //hideOnClick: false
 }
 jeedomUtils.initTooltips = function(_el) {
-  if (!_el) {
-    try {
-      $('.tooltips:not(.tooltipstered), [title]:not(.ui-button)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    } catch (e) { }
+  var selector = '[tooltip]:not(.tippied), [title]:not(.tippied):not(.ui-button)'
+  var items = null
+
+  if (!isset(_el)) {
+    items = document.querySelectorAll(selector)
   } else {
-    //cmd update:
-    if (_el.parents('.cmd-widget[title]').length) {
-      var me = _el.closest('.cmd-widget[title]')
-      if (me.hasClass('tooltipstered')) me.tooltipster('destroy')
-      me.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-      return
-    }
-
-    if (_el.hasClass('tooltips') && !_el.hasClass('tooltipstered') || _el.is('[title]')) {
-      if (_el.is('[title]') && _el.hasClass('tooltipstered')) {
-        _el.tooltipster('destroy')
-      }
-      _el.tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    }
-
-    _el.find('.tooltipstered[title]').tooltipster('destroy')
-    _el.find('.tooltips:not(.tooltipstered), [title]').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+    if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, keep for plugins
+    items = _el.querySelectorAll(selector)
   }
+
+  items.forEach(_tip => {
+    if (_tip.getAttribute('title') != null) {
+      _tip.setAttribute('data-title', _tip.getAttribute('title'))
+      _tip.removeAttribute('title')
+    }
+    if (_tip.getAttribute('tooltip') != null) {
+      _tip.setAttribute('data-title', _tip.getAttribute('tooltip'))
+      _tip.removeAttribute('tooltip')
+    }
+  })
+
+  tippy(items , jeedomUtils.TOOLTIPSOPTIONS)
+}
+
+
+jeedomUtils.disableTooltips = function() {
+  document.querySelectorAll('.tippied').forEach(_tip => {
+    if (_tip._tippy) _tip._tippy.disable()
+  })
+}
+jeedomUtils.enableTooltips = function() {
+  document.querySelectorAll('.tippied').forEach(_tip => {
+    if (_tip._tippy) _tip._tippy.enable()
+  })
 }
 
 jeedomUtils.initTextArea = function() {
-  $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
-    $(this).height(0).height(this.scrollHeight)
-  })
+  if (typeof jQuery === 'function') {
+    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
+      $(this).height(0).height(this.scrollHeight)
+    })
+  }
 }
 
 jeedomUtils.initReportMode = function() {
@@ -1096,6 +1099,8 @@ jeedomUtils.initReportMode = function() {
 }
 
 jeedomUtils.initTableSorter = function(filter) {
+  if (typeof jQuery !== 'function') return
+  if (typeof $.tablesorter !== 'function') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
@@ -1103,6 +1108,7 @@ jeedomUtils.initTableSorter = function(filter) {
   if (filter !== false) {
     widgets.push('filter')
   }
+
   $('table.tablesorter').tablesorter({
     dateFormat: "yyyy-mm-dd",
     theme: "bootstrap",
@@ -1125,6 +1131,25 @@ jeedomUtils.initTableSorter = function(filter) {
   }).css('width', '')
 }
 
+jeedomUtils.initDataTables = function(_selector, _paging, _searching) {
+  if (!isset(_selector)) _selector = 'body'
+  if (!_paging) _paging = false
+  if (!_searching) _searching = false
+  document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
+    if (_table._dataTable) {
+      _table._dataTable.destroy()
+    }
+    new DataTable(_table, {
+      columns: [
+        { select: 0, sort: "asc" }
+      ],
+      paging: _paging,
+      searchable: _searching,
+    })
+  })
+}
+
+
 jeedomUtils.initHelp = function() {
   document.querySelectorAll('.help').forEach(element => {
     if (element.getAttribute('data-help') != undefined) {
@@ -1133,51 +1158,94 @@ jeedomUtils.initHelp = function() {
   })
 }
 
+//Deprecated, plugins may use, old jQuery ui autocomplete
 jeedomUtils.autocompleteDestroy = function() {
   document.querySelectorAll('ul.ui-autocomplete, div.ui-helper-hidden-accessible')?.remove()
 }
 
-jeedomUtils.datePickerInit = function() {
-  var datePickerRegion = jeeFrontEnd.language.substring(0, 2)
-  if (isset($.datepicker.regional[datePickerRegion])) {
-    var datePickerRegional = $.datepicker.regional[datePickerRegion]
-  } else {
-    var datePickerRegional = $.datepicker.regional['en']
-  }
-  datePickerRegional.dateFormat = "yy-mm-dd"
-  $('.in_datepicker').datepicker(datePickerRegional)
-}
+jeedomUtils.datePickerInit = function(_format, _selector) {
+  if (!isset(_format)) _format = 'Y-m-d'
+  let _enableTime = _format.includes(' ') ? true : false
 
-jeedomUtils.dateTimePickerInit = function(_step) {
-  $('input.isdatepicker').datetimepicker('destroy')
-  $('.xdsoft_datetimepicker').remove()
-  if (!isset(_step)) _step = 10
-  $('input.isdatepicker').datetimepicker({
-    datepicker: false,
-    format: 'H:i',
-    step: _step
+  if (!isset(_selector)) _selector = 'input.in_datepicker'
+
+  //Default us
+  let lang = jeeFrontEnd.language.substring(0, 2)
+  if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
+  if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
+
+  document.querySelectorAll(_selector).forEach(_input => {
+    flatpickr(_input, {
+      enableTime: _enableTime,
+      dateFormat: _format,
+      time_24hr: true,
+    })
   })
 }
 
-jeedomUtils.initSpinners = function() {
-  $('input[type="number"].ui-spinner').spinner({
-    icons: {
-      down: "ui-icon-triangle-1-s",
-      up: "ui-icon-triangle-1-n"
-    }
+jeedomUtils.dateTimePickerInit = function(_step) {
+  if (!isset(_step)) _step = 5
+  let lang = jeeFrontEnd.language.substring(0, 2)
+  if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
+  if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
+
+  // .isdatepicker deprecated 4.4
+  document.querySelectorAll('input.in_timepicker, input.isdatepicker').forEach(_input => {
+    flatpickr(_input, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: "H:i",
+      time_24hr: true,
+      minuteIncrement: _step
+    })
   })
 }
 
 jeedomUtils.datePickerDestroy = function() {
-  $('.in_datepicker').datepicker("destroy")
-  document.querySelectorAll('.in_datepicker')?.forEach(element => {
-    element.removeClass('hasDatepicker').removeAttribute('id')
+  document.querySelectorAll('input.isdatepicker, input.in_datepicker').forEach(_input => {
+    if (isset(_input._flatpickr)) _input._flatpickr.destroy()
   })
-  document.getElementById('ui-datepicker-div')?.remove()
+  document.querySelectorAll('body > div.flatpickr-calendar').forEach(_div => {
+    _div.remove()
+  })
+}
 
-  //datetime:
-  $('input.isdatepicker').datetimepicker('destroy')
-  document.querySelectorAll('.xdsoft_datetimepicker')?.remove()
+jeedomUtils.initSpinners = function() {
+  if (typeof jQuery === 'function') {
+    $('input[type="number"].ui-spinner').spinner({
+      icons: {
+        down: "ui-icon-triangle-1-s",
+        up: "ui-icon-triangle-1-n"
+      }
+    })
+  }
+
+  document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
+    var step = _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1
+    var min = _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1
+    var max = _spin.getAttribute('max') != undefined ? parseFloat(_spin.getAttribute('max')) : 1
+    new ISpin(_spin, {
+      wrapperClass: 'ispin-wrapper',
+      buttonsClass: 'ispin-button',
+      step: step,
+      min: min,
+      max: max,
+      disabled: false,
+      repeatInterval: 200,
+      wrapOverflow: true,
+      parse: Number
+    })
+  })
+}
+
+jeedomUtils.jeeCtxMenuDestroy = function() {
+  document.querySelectorAll('div.jeeCtxMenu').forEach(_ctx =>  {
+    if (isset(_ctx._jeeCtxMenu)) {
+      _ctx._jeeCtxMenu.destroy()
+    } else {
+      _ctx.remove()
+    }
+  })
 }
 
 //General functions__
@@ -1225,10 +1293,15 @@ jeedomUtils.uniqId = function(_prefix) {
   return result
 }
 
-jeedomUtils.taAutosize = function() {
+jeedomUtils.taAutosize = function(_el) {
   //http://www.jacklmoore.com/autosize/
-  autosize(document.querySelectorAll('.ta_autosize'))
-  autosize.update(document.querySelectorAll('.ta_autosize'))
+  if (isset(_el)) {
+    var doOn = _el
+  } else {
+    var doOn = document.querySelectorAll('.ta_autosize')
+  }
+  autosize(doOn)
+  autosize.update(doOn)
 }
 
 jeedomUtils.hexToRgb = function(hex) {
@@ -1246,7 +1319,7 @@ jeedomUtils.componentToHex = function(c) {
 }
 
 jeedomUtils.rgbToHex = function(r, g, b) {
-  if ($.type(r) === 'string' && !g) {
+  if (typeof r === 'string' && !g) {
     r = r.trim()
     if (r.startsWith('rgb')) {
       r = r.replace('rgb', '')
@@ -1296,40 +1369,26 @@ jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
 }
 
 //Global UI functions__
-jeedomUtils.userDeviceType = 'mobile'
 jeedomUtils.setJeedomMenu = function() {
-  $('body').on('click', 'a', function(event) {
-    if (this.hasClass('noOnePageLoad')) {
-      return
-    }
-    if (this.hasClass('fancybox-nav')) {
-      return
-    }
-    if (this.getAttribute('href') == undefined || this.getAttribute('href') == '' || this.getAttribute('href') == '#') {
-      return
-    }
-    if (this.getAttribute('href').match("^data:")) {
-      return
-    }
-    if (this.getAttribute('href').match("^http")) {
-      return
-    }
-    if (this.getAttribute('href').match("^#")) {
-      return
-    }
-    if (this.getAttribute('target') == '_blank') {
-      return
+  //Listener on body to catch Jeedom links for loadpage() instead of reloading url
+  document.body.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('a')) {
+      if (_target.hasClass('noOnePageLoad')) return
+      if (_target.getAttribute('href') == undefined || _target.getAttribute('href') == '' || _target.getAttribute('href') == '#') return
+      if (_target.getAttribute('href').match("^data:")) return
+      if (_target.getAttribute('href').match("^http")) return
+      if (_target.getAttribute('href').match("^#")) return
+      if (_target.getAttribute('target') == '_blank') return
+
+      if (!_target.hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
+
+      event.preventDefault()
+      event.stopPropagation()
+      jeedomUtils.loadPage(_target.getAttribute('href'))
     }
 
-    if (!this.hasClass('navbar-brand')) jeedomUtils.closeJeedomMenu()
-
-    event.preventDefault()
-    event.stopPropagation()
-    jeedomUtils.loadPage(this.getAttribute('href'))
-  })
-
-  //one submenu opened at a time in mobile:
-  document.getElementById('jeedomMenuBar')?.addEventListener('click', event => {
+    //one submenu opened at a time in mobile:
     if (event.target.matches('.navbar-nav > li > input')) {
       var checked = event.target.checked
       document.querySelectorAll('#jeedomMenuBar .navbar-nav li > input').forEach(input => {
@@ -1430,6 +1489,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
       height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
       margin: margin
     })
+    tile.classList.add('jeedomAlreadyPosition')
   } else {
     var width, height, idx, element
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
@@ -1447,7 +1507,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
         height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
         margin: margin
       })
-      tile.classList.add("jeedomAlreadyPosition")
+      tile.classList.add('jeedomAlreadyPosition')
     }
   }
 }
@@ -1457,42 +1517,41 @@ jeedomUtils.getClosestInArray = function(_num, _refAr) {
   })
 }
 
+//Deprecated 4.4, obsolete 4.6
 jeedomUtils.showHelpModal = function(_name, _plugin) {
+  var url_helpWebsite
+  var url_helpSpe
   if (init(_plugin) != '' && _plugin != undefined) {
-    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary', function() {
-      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $('#div_helpWebsite').text().trim() == '') {
-        $('a[href="#div_helpSpe"]').click()
-        $('a[href="#div_helpWebsite"]').hide()
-      } else {
-        $('a[href="#div_helpWebsite"]').show().click()
-      }
-    })
-    $('#div_helpSpe').load('index.php?v=d&plugin=' + _plugin + '&modal=help.' + init(_name))
+    url_helpWebsite = 'index.php?v=d&modal=help.website&page=doc_plugin_' + _plugin + '.php #primary'
+    url_helpSpe = 'index.php?v=d&plugin=' + _plugin + '&modal=help.' + init(_name)
   } else {
-    $('#div_helpWebsite').load('index.php?v=d&modal=help.website&page=doc_' + init(_name) + '.php #primary', function() {
-      if ($('#div_helpWebsite').find('.alert.alert-danger').length > 0 || $('#div_helpWebsite').text().trim() == '') {
-        $('a[href="#div_helpSpe"]').click()
-        $('a[href="#div_helpWebsite"]').hide()
-      } else {
-        $('a[href="#div_helpWebsite"]').show().click()
-      }
-    })
-    $('#div_helpSpe').load('index.php?v=d&modal=help.' + init(_name))
+    url_helpWebsite = 'index.php?v=d&modal=help.website&page=doc_' + init(_name) + '.php #primary'
+    url_helpSpe = 'index.php?v=d&modal=help.' + init(_name)
   }
+
+  document.getElementById('div_helpWebsite').load(url_helpWebsite, function() {
+    if (document.getElementById('div_helpWebsite').querySelectorAll('.alert.alert-danger').length > 0 || document.getElementById('div_helpWebsite').textContent.trim() == '') {
+      document.querySelector('a[href="#div_helpSpe"]').click()
+      document.querySelector('a[href="#div_helpWebsite"]').unseen()
+    } else {
+      document.querySelector('a[href="#div_helpWebsite"]').seen().click()
+    }
+  })
+  document.getElementById('div_helpSpe').load(url_helpSpe)
 }
 
 jeedomUtils.reloadPagePrompt = function(_title) {
-  bootbox.confirm({
-    title: '<h4><i class="success fas fa-check-circle"></i> ' + _title + '</h4>',
+  jeeDialog.confirm({
+    title: '<i class="success fas fa-check-circle"></i> ' + _title,
     message: '{{Voulez vous recharger la page maintenant ?}}',
     buttons: {
       confirm: {
         label: '{{Recharger}}',
-        className: 'btn-success'
+        className: 'success'
       },
       cancel: {
         label: '{{Rester sur la page}}',
-        className: 'btn-info'
+        className: 'info'
       }
     },
     callback: function(result) {
@@ -1504,27 +1563,6 @@ jeedomUtils.reloadPagePrompt = function(_title) {
 }
 
 jeedomUtils.chooseIcon = function(_callback, _params) {
-  if ($("#mod_selectIcon").length == 0) {
-    $('#div_pageContainer').append('<div id="mod_selectIcon"></div>')
-    $("#mod_selectIcon").dialog({
-      title: '{{Choisir une illustration}}',
-      closeText: '',
-      autoOpen: false,
-      modal: true,
-      height: (window.innerHeight - 150),
-      width: 1500,
-      open: function() {
-        if ((window.innerWidth - 50) < 1500) {
-          $('#mod_selectIcon').dialog({ width: window.innerWidth - 50 })
-        }
-        document.body.style.overflow = 'hidden'
-        setTimeout(function() { jeedomUtils.initTooltips($("#mod_selectIcon")) }, 500)
-      },
-      beforeClose: function(event, ui) {
-        $('body').css({ overflow: 'inherit' })
-      }
-    })
-  }
   var url = 'index.php?v=d&modal=icon.selector'
   if (_params && _params.img && _params.img === true) {
     url += '&showimg=1'
@@ -1550,39 +1588,61 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
   if (_params && _params.path) {
     url += '&path=' + encodeURIComponent(_params.path)
   }
-  $('#mod_selectIcon').empty().load(url, function() {
-    $("#mod_selectIcon").dialog('option', 'buttons', {
-      "{{Annuler}}": function() {
-        $(this).dialog("close")
-      },
-      "{{Valider}}": function() {
-        var icon = $('.iconSelected .iconSel').html()
-        if (icon == undefined) {
-          icon = ''
+  jeeDialog.dialog({
+    id: 'mod_selectIcon',
+    title: '{{Choisir une illustration}}',
+    width: (window.innerWidth - 50) < 1500 ? window.innerWidth - 50 : window.innerHeight - 150,
+    height: window.innerHeight - 150,
+    buttons: {
+      confirm: {
+        label: '{{Appliquer}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
+            if (icon == undefined) {
+              icon = ''
+            }
+            icon = icon.replace(/"/g, "'")
+            _callback(icon)
+            jeeDialog.get('#mod_selectIcon').close()
+          }
         }
-        icon = icon.replace(/"/g, "'")
-        _callback(icon)
-        $(this).dialog('close')
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            jeeDialog.get('#mod_selectIcon').close()
+          }
+        }
       }
-    })
-    $('#mod_selectIcon').dialog('open')
+    },
+    onClose: function() {
+      jeeDialog.get('#mod_selectIcon').destroy() //No twice footer select/search
+    },
+    contentUrl: url
   })
 }
 
 jeedomUtils.getOpenedModal = function() {
   var _return = false
-  var modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
-  modals.forEach(function(_modal) {
-    if ($('.ui-dialog[aria-describedby="' + _modal + '"]').is(':visible') == true) {
-      _return = _modal
-    }
+  document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
+    if (_dialog.isVisible()) _return = true
+  })
+  //Deprecated 4.4:
+  document.querySelectorAll('div.ui-dialog.ui-widget').forEach(_dialog => {
+    if (_dialog.isVisible()) _return = true
   })
   return _return
 }
 
+//Deprecated 4.4 keep for plugins
 jeedomUtils.closeModal = function(_modals = '') {
+  if (typeof jQuery != 'function') return
   if (_modals == '') {
-    _modals = ['md_reportBug', 'md_modal', 'md_modal2', 'md_modal3', 'ui-id-5']
+    _modals = ['md_modal', 'md_modal2', 'md_modal3']
   }
   if (!Array.isArray(_modals)) {
     _modals = [_modals]
@@ -1595,6 +1655,14 @@ jeedomUtils.closeModal = function(_modals = '') {
   })
 }
 
+jeedomUtils.closeJeeDialogs = function() {
+  document.querySelectorAll('div.jeeDialog').forEach( _dialog => {
+    //uninitialized modal doesn't have _jeeDialog
+    if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
+  })
+}
+
+//Deprecated jQuery UI ui-dialog
 jeedomUtils.cleanModals = function(_modals = '') {
   document.querySelectorAll('.ui-dialog .cleanableModal')?.forEach(function(element) {
     element.closest('.ui-dialog')?.remove()
@@ -1639,37 +1707,39 @@ jeedomUtils.getElementType = function(_el) {
       thisType += '[data-l2key="' + _el.getAttribute("data-l2key") + '"]'
     }
   }
-
   return thisType
 }
 jeedomUtils.setCheckContextMenu = function(_callback) {
   let ctxSelector = 'input[type="checkbox"].checkContext, input[type="radio"].checkContext'
-  $.contextMenu('destroy', ctxSelector)
-  document.querySelector('.contextmenu-checkbox')?.remove()
-  jeedomUtils.checkContextMenu = $.contextMenu({
+  try {
+    document.querySelector('.contextmenu-checkbox')._jeeCtxMenu.destroy()
+    document.querySelector('.contextmenu-checkbox')?.remove()
+  } catch(e) { }
+
+  jeedomUtils.checkContextMenu = new jeeCtxMenu({
     selector: ctxSelector,
-    appendTo: 'div#div_pageContainer',
+    appendTo: 'body',
     className: 'contextmenu-checkbox',
     zIndex: 9999,
     items: {
       all: {
         name: "{{Sélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.$trigger[0])
+          let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, 1, _callback)
         }
       },
       none: {
         name: "{{Désélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.$trigger[0])
+          let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, 0, _callback)
         }
       },
       invert: {
         name: "{{Inverser la sélection}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.$trigger[0])
+          let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, -1, _callback)
         }
       }
@@ -1678,27 +1748,28 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
 }
 
 //Need jQuery and jQuery UI plugin loaded:
-jQuery.fn.setCursorPosition = function(position) {
-  if (this.lengh == 0) return this
-  return $(this).setSelection(position, position)
-}
-jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
-  if (this.lengh == 0) return this
-  input = this[0]
-  if (input.createTextRange) {
-    var range = input.createTextRange()
-    range.collapse(true)
-    range.moveEnd('character', selectionEnd)
-    range.moveStart('character', selectionStart)
-    range.select()
-  } else if (input.setSelectionRange) {
-    input.focus()
-    input.setSelectionRange(selectionStart, selectionEnd)
+if (typeof jQuery === 'function') {
+  jQuery.fn.setCursorPosition = function(position) {
+    if (this.lengh == 0) return this
+    return $(this).setSelection(position, position)
   }
-  return this
+  jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
+    if (this.lengh == 0) return this
+    input = this[0]
+    if (input.createTextRange) {
+      var range = input.createTextRange()
+      range.collapse(true)
+      range.moveEnd('character', selectionEnd)
+      range.moveStart('character', selectionStart)
+      range.select()
+    } else if (input.setSelectionRange) {
+      input.focus()
+      input.setSelectionRange(selectionStart, selectionEnd)
+    }
+    return this
+  }
+  $.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
 }
-$.ui.dialog.prototype._focusTabbable = $.noop //avoid ui-dialog focus on inputs when opening
-
 //Deprecated functions:
 /**
  * Send message to alert about deprecated function.
@@ -1821,8 +1892,3 @@ function getOpenedModal() {
 //Introduced in v4.3 -> obsolete 4.5 ?
 var jeedom_langage = jeeFrontEnd.language
 var userProfils = jeeFrontEnd.userProfils
-
-
-/*Migration purpose
-*/
-//var jq2 = jQuery.noConflict()

@@ -52,126 +52,133 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 }
 ?>
 
-<div style="display: none;" id="div_packageCheckAlert" data-modalType="md_packageCheck"></div>
-<div class="input-group pull-right" style="display:inline-flex">
-  <span class="input-group-btn">
-    <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}
-    </a><a class="btn btn-sm btn-warning bt_correctPackage roundedRight" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
-  </span>
-</div>
-<br /><br />
-<table id="table_packages" class="table table-condensed">
-  <thead>
-    <tr>
-      <th>{{Package}}</th>
-      <th>{{Type}}</th>
-      <th>{{Status}}</th>
-      <th>{{Obligatoire}}</th>
-      <th>{{Voulu par}}</th>
-      <th>{{Version}}</th>
-      <th>{{Remarque}}</th>
-      <th>{{Commande}}</th>
-      <th>{{Action}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    foreach ($datas as $package => $info) {
-      $_echo = '';
-      $_echo .= '<tr>';
-      $_echo .= '<td>';
-      $_echo .= $info['name'];
-      $_echo .= '</td>';
-      $_echo .= '<td>';
-      $_echo .= $info['type'];
-      $_echo .= '</td>';
+<div id="md_packageCheck" data-modalType="md_packageCheck">
+  <div class="input-group pull-right" style="display:inline-flex">
+    <span class="input-group-btn">
+      <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}
+      </a><a class="btn btn-sm btn-warning bt_correctPackage roundedRight" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
+    </span>
+  </div>
+  <br /><br />
+  <table id="table_packages" class="table table-condensed">
+    <thead>
+      <tr>
+        <th>{{Package}}</th>
+        <th>{{Type}}</th>
+        <th>{{Status}}</th>
+        <th>{{Obligatoire}}</th>
+        <th>{{Voulu par}}</th>
+        <th>{{Version}}</th>
+        <th>{{Remarque}}</th>
+        <th>{{Commande}}</th>
+        <th>{{Action}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach ($datas as $package => $info) {
+        $_echo = '';
+        $_echo .= '<tr>';
+        $_echo .= '<td>';
+        $_echo .= $info['name'];
+        $_echo .= '</td>';
+        $_echo .= '<td>';
+        $_echo .= $info['type'];
+        $_echo .= '</td>';
 
-      if ($info['status'] == 1) {
-        $_echo .= '<td class="alert-success">OK</td>';
-      } elseif ($info['status'] == 2) {
-        $_echo .= '<td class="alert-success">OK (' . $info['alternative_found'] . ')</td>';
-      } elseif ($info['status'] == 3) {
-        $_echo .= '<td class="alert-warning">{{Incompatible avec l\'OS}}</td>';
-      } else {
-        if ($info['needUpdate']) {
-          $_echo .= '<td class="alert-warning">{{Mise à jour}}</td>';
+        if ($info['status'] == 1) {
+          $_echo .= '<td class="alert-success">OK</td>';
+        } elseif ($info['status'] == 2) {
+          $_echo .= '<td class="alert-success">OK (' . $info['alternative_found'] . ')</td>';
+        } elseif ($info['status'] == 3) {
+          $_echo .= '<td class="alert-warning">{{Incompatible avec l\'OS}}</td>';
         } else {
-          $_echo .= '<td class="alert-danger">NOK</td>';
+          if ($info['needUpdate']) {
+            $_echo .= '<td class="alert-warning">{{Mise à jour}}</td>';
+          } else {
+            $_echo .= '<td class="alert-danger">NOK</td>';
+          }
         }
-      }
 
-      $_echo .= '<td>';
-      if ($info['optional'] == 0) {
-        $_echo .= '<span class="label label-warning">{{oui}}</span>';
-      } else {
-        $_echo .= '<span class="label label-info">{{non}}</span>';
-      }
-      $_echo .= '</td>';
+        $_echo .= '<td>';
+        if ($info['optional'] == 0) {
+          $_echo .= '<span class="label label-warning">{{oui}}</span>';
+        } else {
+          $_echo .= '<span class="label label-info">{{non}}</span>';
+        }
+        $_echo .= '</td>';
 
-      $_echo .= '<td>';
-      foreach ($info['needBy'] as $value) {
-        $_echo .= '<span class="label label-primary" style="display:inline-block;">' . $value . '</span> ';
-      }
-      $_echo .= '</td>';
+        $_echo .= '<td>';
+        foreach ($info['needBy'] as $value) {
+          $_echo .= '<span class="label label-primary" style="display:inline-block;">' . $value . '</span> ';
+        }
+        $_echo .= '</td>';
 
-      $_echo .= '<td>';
-      $_echo .= $info['version'];
-      if ($info['needUpdate']) {
-        $_echo .= '/' . $info['needVersion'];
-      }
-      $_echo .= '</td>';
+        $_echo .= '<td>';
+        $_echo .= $info['version'];
+        if ($info['needUpdate']) {
+          $_echo .= '/' . $info['needVersion'];
+        }
+        $_echo .= '</td>';
 
-      $_echo .= '<td>';
-      $_echo .= $info['remark'];
-      $_echo .= '</td>';
+        $_echo .= '<td>';
+        $_echo .= $info['remark'];
+        $_echo .= '</td>';
 
-      $_echo .= '<td>';
-      $_echo .= $info['fix'];
-      $_echo .= '</td>';
-      $_echo .= '<td>';
-      if (!$info['status']) {
-        $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="' . $package . '"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
+        $_echo .= '<td>';
+        $_echo .= $info['fix'];
+        $_echo .= '</td>';
+        $_echo .= '<td>';
+        if (!$info['status']) {
+          $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="' . $package . '"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
+        }
+        $_echo .= '</td>';
+        $_echo .= '</tr>';
+        echo $_echo;
       }
-      $_echo .= '</td>';
-      $_echo .= '</tr>';
-      echo $_echo;
-    }
-    ?>
-  </tbody>
-</table>
+      ?>
+    </tbody>
+  </table>
+</div>
 
 <script>
-  $('#bt_refreshPackage').off('click').on('click', function() {
-    $('#md_modal').dialog({
-      title: "{{Vérification des packages}}"
-    }).load('index.php?v=d&modal=package.check').dialog('open')
+  document.querySelector('#md_packageCheck #bt_refreshPackage').addEventListener('click', function(event) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Vérification des packages}}",
+      contentUrl: 'index.php?v=d&modal=package.check'
+    })
   })
 
-  $('.bt_correctPackage').off('click').on('click', function() {
-    var el = $(this)
-    if (el.data('package') == 'all') {
+  document.querySelector('#md_packageCheck .bt_correctPackage').addEventListener('click', function(event) {
+    var el = event.target.closest('.bt_correctPackage')
+    if (el.dataset.package == 'all') {
       var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
     } else {
-      var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.data('package') + ' ?'
+      var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.dataset.package + ' ?'
     }
-    bootbox.confirm(text, function(result) {
+    jeeDialog.confirm(text, function(result) {
       if (result) {
         jeedom.systemCorrectPackage({
-          package: el.data('package'),
+          package: el.dataset.package,
           error: function(error) {
-            $('#div_packageCheckAlert').showAlert({
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
               message: error.message,
               level: 'danger'
             })
           },
           success: function() {
-            $('#div_packageCheckAlert').showAlert({
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
               message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
               level: 'success'
             })
-            $('#md_modal2').dialog({
-              title: "{{Installation des packages}}"
-            }).load('index.php?v=d&modal=log.display&log=packages').dialog('open')
+            jeeDialog.dialog({
+              id: 'jee_modal2',
+              title: "{{Vérification des packages}}",
+              contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+            })
           }
         })
       }

@@ -172,6 +172,23 @@ class scenarioExpression {
 	}
 
 	/*     * ********************Fonctions utilisées dans le calcul des conditions********************************* */
+
+	public static function sun($_name) {
+		$SD = new SolarData\SolarData();
+		$SD->setObserverPosition(config::byKey('info::latitude'), config::byKey('info::longitude'), config::byKey('info::altitude'));
+		$SD->setObserverDate(date('Y'), date('n'), date('j'));
+		$SD->setObserverTime(date('G'), date('i'), date('s'));
+		$SD->setDeltaTime(67);
+		$SD->setObserverTimezone(date('Z') / 3600);
+		$SunPosition = $SD->calculate();
+		if ($_name == 'elevation') {
+			return round($SunPosition->e0°, 2);
+		}
+		if ($_name == 'azimuth') {
+			return round($SunPosition->Φ°, 2);
+		}
+	}
+
 	public static function getDatesFromPeriod($_period = '1 hour') {
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -951,10 +968,7 @@ class scenarioExpression {
 
 	public static function triggerValue(&$_scenario = null) {
 		if ($_scenario !== null) {
-			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
-			if (is_object($cmd)) {
-				return $cmd->execCmd();
-			}
+			return $_scenario->getRealTriggerValue();
 		}
 		return false;
 	}
@@ -1466,6 +1480,8 @@ class scenarioExpression {
 					$source = 'scenario';
 					if (isset($options['source']) && is_string($options['source'])) {
 						$source = $options['source'];
+					} elseif ($scenario !== null) {
+						$source = 'Scenario ' . $scenario->getHumanName();
 					}
 					message::add($source, $options['message']);
 					$this->setLog($scenario, __('Ajout du message suivant dans le centre de message :', __FILE__) . ' ' . $options['message']);
@@ -1532,8 +1548,7 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tValue = trim($value);
-									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags($tValue, $scenario), '"');
+									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario), '"');
 								}
 								$actionScenario->setTags($tags);
 							}
@@ -1552,8 +1567,7 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tValue = trim($value);
-									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags($tValue, $scenario), '"');
+									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario), '"');
 								}
 								$actionScenario->setTags($tags);
 							}
@@ -1692,6 +1706,7 @@ class scenarioExpression {
 						$dataStore->setValue($value);
 						$dataStore->save();
 					}
+					event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
@@ -1799,6 +1814,9 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyse':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
 							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' . ' ' . __('Rapport équipement du', __FILE__) . ' ' . date('Y-m-d H:i:s');
@@ -1806,6 +1824,9 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyseAlert':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$options['tab'] = 'alertEqlogic';
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
@@ -1814,6 +1835,9 @@ class scenarioExpression {
 							break;
 						case 'health':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=health&report=1';
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'health', $options['export_type'], $options));
 							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' . ' ' . __('Rapport équipement du', __FILE__) . ' ' . date('Y-m-d H:i:s');
@@ -1821,6 +1845,9 @@ class scenarioExpression {
 							break;
 						case 'timeline':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline=' . $options['timeline'];
+							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
+								$url .= '&theme=' . $_parameters['theme'];
+							}
 							$this->setLog($scenario, __('Génération du rapport timeline', __FILE__) . ' ' . $options['timeline']);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'timeline', $options['export_type'], $options));
 							$cmd_parameters['title'] = '[' . config::byKey('name') . ']' . ' ' . __('Rapport', __FILE__) . ' ' . $options['timeline'] . ' ' . __('du', __FILE__) . ' ' . date('Y-m-d H:i:s');
@@ -1924,6 +1951,10 @@ class scenarioExpression {
 		} catch (Error $e) {
 			$this->setLog($scenario, $message . $e->getMessage());
 		}
+	}
+
+	public function refresh() {
+		DB::refresh($this);
 	}
 
 	public function save() {

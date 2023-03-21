@@ -7,7 +7,8 @@ $config_objSummary = config::byKey('object:summary');
 
 sendVarToJS([
 	'jeephp2js.selectId' => init('id', '-1'),
-	'jeephp2js.configObjSummary' => $config_objSummary
+	'jeephp2js.configObjSummary' => $config_objSummary,
+	'jeephp2js.objectNum' => count($allObject),
 ]);
 
 $synthToActions = array(
@@ -23,13 +24,13 @@ $synthToActions = array(
 	<div id="div_resumeObjectList" class="col-xs-12">
 		<legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
 		<div class="objectListContainer <?php echo (jeedom::getThemeConfig()['theme_displayAsTable'] == 1) ? ' containerAsTable' : ''; ?>">
-			<div class="cursor logoPrimary" id="bt_addObject2">
+			<div id="bt_addObject" class="cursor logoPrimary">
 				<div class="center">
 					<i class="fas fa-plus-circle"></i>
 				</div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
-			<div class="cursor bt_showObjectSummary logoSecondary">
+			<div id="bt_showObjectSummary" class="cursor logoSecondary">
 				<div class="center">
 					<i class="fas fa-list"></i>
 				</div>
@@ -85,7 +86,7 @@ $synthToActions = array(
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
 			<li role="presentation" class="active"><a data-target="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}} (ID : <span class="objectAttr" data-l1key="id"></span>)</a></a></li>
 			<li role="presentation"><a data-target="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
-			<li role="presentation"><a data-target="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé par équipements}}</a></li>
+			<li role="presentation"><a data-target="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-th-list"></i></i> {{Résumé par équipements}}</a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -278,9 +279,9 @@ $synthToActions = array(
 							<div class="form-group">
 								<div class="col-sm-7 col-sm-offset-3">
 									<span class="btn btn-default btn-file">
-										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImage" type="file" name="file" style="display: inline-block;">
+										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImage" type="file" name="file" accept="image/*">
 									</span>
-									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliotheque d'image}}</a>
+									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliothèque d'image}}</a>
 								</div>
 							</div>
 							<div class="form-group">
@@ -383,7 +384,7 @@ $synthToActions = array(
 								$active = 'active';
 								$echo = '';
 								foreach ($config_objSummary as $key => $value) {
-									$echo .= '<li class="' . $active . '"><a data-target="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' ' . $value['name'] . '</i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
+									$echo .= '<li class="' . $active . '"><a data-target="#summarytab' . $key . '" role="tab" data-toggle="tab">' . $value['icon'] . ' <span class="hidden-768">' . $value['name'] . '</span></i>  <span class="tabnumber summarytabnumber' . $key . '"></span></a></li>';
 									$active = '';
 								}
 								echo $echo;

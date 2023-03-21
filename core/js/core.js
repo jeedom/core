@@ -43,18 +43,21 @@ function getTemplate(_folder, _version, _filename, _replace) {
 }
 
 //deprecated, use domeUtils.handleAjaxError()
-function handleAjaxError(_request, _status, _error, _div_alert) {
+function handleAjaxError(_request, _status, _error, _attachTo) {
+  if (!isset(_attachTo)) _attachTo = false
   domUtils.hideLoading()
   if (_request.status != '0') {
     if (init(_request.responseText, '') != '') {
       jeedomUtils.showAlert({
         message: _request.responseText,
-        level: 'danger'
+        level: 'danger',
+        attachTo: _attachTo
       })
     } else {
       jeedomUtils.showAlert({
         message: _request.status + ' : ' + _error,
-        level: 'danger'
+        level: 'danger',
+        attachTo: _attachTo
       })
     }
   }

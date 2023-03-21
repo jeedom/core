@@ -738,6 +738,10 @@ class jeeObject {
 		}
 	}
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save($_direct = false) {
 		//force refresh all summaries:
 		$events = array();

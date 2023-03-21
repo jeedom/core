@@ -1,9 +1,10 @@
+<!--template/scenario/exportHistory.default-->
 <div class="input-group input-group-sm" style="width: 100%; padding-top: 1px">
-  <span class="input-group-addon roundedLeft" style="width: 100px">{{Historique à exporter}}</span>
-  <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd_export" placeholder="{{Commandes}}" value="#cmd_export#" data-cmd_id="#id#" data-uid="#uid#"/>
-  <span class="input-group-btn">
-    <button class="btn btn-default listCmdInfo roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fas fa-list-alt"></i></button>
-  </span>
+<span class="input-group-addon roundedLeft" style="width: 100px">{{Historique à exporter}}</span>
+<input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="cmd_export" placeholder="{{Commandes}}" value="#cmd_export#" data-cmd_id="#id#" data-uid="#uid#"/>
+<span class="input-group-btn">
+  <button class="btn btn-default listCmdInfo roundedRight" type="button" tooltip="{{Sélectionner la commande}}" data-uid="#uid#" data-cmd_id="#id#"><i class="fas fa-list-alt"></i></button>
+</span>
 </div>
 <div class="input-group input-group-sm">
   <span class="input-group-addon roundedLeft" style="width:100px;">{{De}}</span>
@@ -25,12 +26,12 @@
   </span>
 </div>
 <script>
-  $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function() {
+  document.querySelector('.listCmdInfo[data-uid="#uid#"]').addEventListener('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'info', isHistorized : true}}, function(result) {
       document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
     })
   })
-  $('.listCmdAction[data-uid="#uid#"]').off('click').on('click', function() {
+  document.querySelector('.listCmdAction[data-uid="#uid#"]').addEventListener('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action', subType : 'message'}}, function(result) {
       document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
     })

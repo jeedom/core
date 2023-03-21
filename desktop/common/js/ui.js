@@ -24,15 +24,15 @@ if (!jeedomUI) {
     /*
     @dashboard
     @view
-    draggable call to reorder/insert drag
+    draggabilly call to reorder/insert drag
     */
-    orderItems: function(_container, _orderAttr='data-order') {
-      var itemElems = _container.packery('getItemElements')
-      var _draggingOrder = jeedomUI.orders[jeedomUI.draggingId]
+    orderItems: function(_pckryInstance, _orderAttr='data-order') {
+      var _draggingOrder = parseInt(jeedomUI.orders[jeedomUI.draggingId])
       var _newOrders = {}
-      itemElems.forEach(function(itemElem, i) {
-        _newOrders[itemElem.getAttribute('data-editId')] = i + 1
+      _pckryInstance.items.forEach(function(itemElem, i) {
+        _newOrders[itemElem.element.getAttribute('data-editid')] = i + 1
       })
+
       var _draggingNewOrder = _newOrders[jeedomUI.draggingId]
       //----->moved jeedomUI.draggingId from _draggingOrder to _draggingNewOrder
 
@@ -46,31 +46,42 @@ if (!jeedomUI) {
       //set dom positions:
       var arrKeys = Object.keys(_finalOrder)
       var firstElId = arrKeys.find(key => _finalOrder[key] === 1)
-      var firstEl = document.querySelector('.ui-draggable[data-editId="'+firstElId+'"]')
-      firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
+      var firstEl = _pckryInstance.element.querySelector('.editingMode[data-editid="' + firstElId + '"]')
+      if (firstEl != null) {
+        firstEl.parentNode.insertBefore(firstEl, firstEl.parentNode.firstChild)
+      }
 
       var thisId, prevId, thisEl, prevEl
       for (var i = 2; i < arrKeys.length + 1; i++) {
         thisId = arrKeys.find(key => _finalOrder[key] === i)
-        thisEl = document.querySelector('.ui-draggable[data-editId="'+thisId+'"]')
+        thisEl = document.querySelector('.editingMode[data-editid="' + thisId + '"]')
         prevId = arrKeys.find(key => _finalOrder[key] === i-1)
-        prevEl =  document.querySelector('.ui-draggable[data-editId="'+prevId+'"]')
+        prevEl =  document.querySelector('.editingMode[data-editid="' + prevId + '"]')
         if (thisEl && prevEl) prevEl.parentNode.insertBefore(thisEl, prevEl.nextSibling)
       }
 
-      //reload from dom positions:
-      _container.packery('reloadItems').packery()
-
-      itemElems = _container.packery('getItemElements')
+      _pckryInstance.reloadItems()
+      var itemElems = _pckryInstance.getItemElements()
 
       itemElems.forEach(function(itemElem, i) {
-        itemElem.setAttribute(_orderAttr, i + 1)
-        if (jeedomUI.isEditing) {
-          itemElem.querySelector('.counterReorderJeedom').textContent = (i + 1).toString()
-        } else {
-          itemElem.insertAdjacentHTML('afterbegin', '<span class="counterReorderJeedom pull-left">'+(i + 1).toString()+'</span>')
+        if (!itemElem.hasClass('packery-drop-placeholder')) {
+          itemElem.setAttribute(_orderAttr, i + 1)
+          itemElem.style.transform = null
+          if (jeedomUI.isEditing) {
+            try { //In case template isn't contained in a single div !
+            itemElem.querySelector('.counterReorderJeedom').textContent = (i + 1).toString()
+            } catch(error) { }
+          } else {
+            itemElem.insertAdjacentHTML('afterbegin', '<span class="counterReorderJeedom pull-left">' + (i + 1).toString() + '</span>')
+          }
         }
       })
+      _pckryInstance.layout()
+
+      document.querySelectorAll('.packery-drop-placeholder').remove()
+      setTimeout(() => {
+        _pckryInstance.layout()
+      }, 500)
     },
 
     /*
@@ -247,6 +258,7 @@ if (!jeedomUI) {
       document.getElementById('div_pageContainer').unRegisterEvent('click', 'historyModalHandler')
       document.getElementById('div_pageContainer').registerEvent('click', function historyModalHandler(event) {
         if (jeedomUI.isEditing) return false
+          if (document.body.getAttribute('data-page') == 'plan' && jeeFrontEnd.planEditOption.state) return false
         if (event.target.closest('.history[data-cmd_id]') == null) return false
         event.stopImmediatePropagation()
         event.stopPropagation()
@@ -261,7 +273,11 @@ if (!jeedomUI) {
         } else {
           var cmdIds = event.target.closest('.history[data-cmd_id]').dataset.cmd_id
         }
-        $('#md_modal2').dialog({title: "{{Historique}}"}).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+        jeeDialog.dialog({
+          id: 'md_cmdHistory',
+          title: '{{Historique}}',
+          contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
+        })
       }, {capture: false})
     },
   }

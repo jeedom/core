@@ -18,16 +18,20 @@
 
 if (!jeeFrontEnd.plan) {
   jeeFrontEnd.plan = {
-    deviceInfo: null,
-    $pageContainer: null,
     contextMenu: null,
     planHeaderContextMenu: {},
+    resizeObservers: [],
+    cssStyleString: '',
+    draggables: [],
+    isFullScreen: false,
+    clickedOpen: false,
     init: function() {
       window.jeeP = this
-      this.deviceInfo = getDeviceType()
-      this.$pageContainer = $('#div_pageContainer')
+      this.pageContainer = document.getElementById('div_pageContainer')
+      this.planContainer = document.querySelector('.div_displayObject')
       this.planHeaderContextMenu = {}
-      if (typeof jeeFrontEnd.planEditOption === 'undefined' || this.deviceInfo.type != 'desktop') {
+      jeedomUtils.userDevice = getDeviceType()
+      if (typeof jeeFrontEnd.planEditOption === 'undefined' || jeedomUtils.userDevice.type != 'desktop') {
         jeeFrontEnd.planEditOption = {
           state: false,
           snap: false,
@@ -37,8 +41,48 @@ if (!jeeFrontEnd.plan) {
         }
       }
     },
+    postInit: function() {
+      for (var i in jeephp2js.planHeader) {
+        jeeP.planHeaderContextMenu[jeephp2js.planHeader[i].id] = {
+          name: jeephp2js.planHeader[i].name,
+          callback: function(key, opt) {
+            jeephp2js.planHeader_id = key
+            jeeP.displayPlan()
+          }
+        }
+      }
+
+      //Shortcuts:
+      if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
+        document.registerEvent('keydown', function(event) {
+          if (jeedomUtils.getOpenedModal()) return
+
+          if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+            event.preventDefault()
+            jeeP.savePlan()
+            return
+          }
+
+          if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 69) { //e
+            event.preventDefault()
+            jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
+            jeeP.pageContainer.dataset.planEditState = jeeFrontEnd.planEditOption.state
+            jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
+          }
+        })
+      } else {
+        document.registerEvent('keydown', function(event) {
+          if (jeedomUtils.getOpenedModal()) return
+
+          if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+            event.preventDefault()
+            jeeP.savePlan()
+          }
+        })
+      }
+    },
     createNewDesign: function() {
-      bootbox.prompt("{{Nom du design ?}}", function(result) {
+      jeeDialog.prompt("{{Nom du design ?}}", function(result) {
         if (result !== null) {
           jeedom.plan.saveHeader({
             planHeader: {
@@ -57,15 +101,14 @@ if (!jeeFrontEnd.plan) {
         }
       })
     },
-    setColorSelect: function(_select) {
-      if (_select.tagName != 'SELECT') return
-      _select.style.backgroundColor = _select.selectedOptions[0].text.trim()
-    },
     fullScreen: function(_mode) {
+      _mode = getBool(_mode)
       if (_mode) {
-        $('body').addClass('fullscreen')
+        document.body.addClass('fullscreen')
+        jeeFrontEnd.plan.isFullScreen = true
       } else {
-        $('body').removeClass('fullscreen')
+        document.body.removeClass('fullscreen')
+        jeeFrontEnd.plan.isFullScreen = false
       }
     },
     addObject: function(_plan) {
@@ -80,13 +123,13 @@ if (!jeeFrontEnd.plan) {
           })
         },
         success: function(data) {
-          jeeP.displayObject(data.plan, data.html)
+          jeeP.displayObject(data.plan, data.html, false)
+          jeeFrontEnd.modifyWithoutSave = true
         }
       })
     },
     displayPlan: function(_code) {
       if (jeephp2js.planHeader_id == -1) return
-
       if (typeof _code == "undefined") {
         _code = null
       }
@@ -116,52 +159,60 @@ if (!jeeFrontEnd.plan) {
           }
         },
         success: function(data) {
-          var $divDisplayObject = $('.div_displayObject')
-          $divDisplayObject.empty()
-            .append('<div id="div_grid" class="container-fluid" style="display:none;"></div>')
-            .height('auto').width('auto')
+          jeeFrontEnd.plan.planContainer.empty().insertAdjacentHTML('beforeend', '<div id="div_grid" class="container-fluid" style="display:none;"></div>')
+          Object.assign(jeeFrontEnd.plan.planContainer.style, {height:"auto", width:"auto"})
           //general design configuration:
           if (isset(data.image)) {
-            $divDisplayObject.append(data.image)
+            jeeFrontEnd.plan.planContainer.insertAdjacentHTML('beforeend', data.image)
           }
           if (isset(data.configuration.backgroundTransparent) && data.configuration.backgroundTransparent == 1) {
-            $divDisplayObject.css('background-color', 'transparent')
+            jeeFrontEnd.plan.planContainer.style.backgroundColor = 'transparent'
           } else if (isset(data.configuration.backgroundColor)) {
-            $divDisplayObject.css('background-color', data.configuration.backgroundColor)
+            jeeFrontEnd.plan.planContainer.style.backgroundColor = data.configuration.backgroundColor
           } else {
-            $divDisplayObject.css('background-color', '#ffffff')
+            jeeFrontEnd.plan.planContainer.style.backgroundColor = 'rgb(--bg-color)'
           }
           if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
-            $divDisplayObject.height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX)
-            $('.div_displayObject img').height(data.configuration.desktopSizeY).width(data.configuration.desktopSizeX)
+            var style = {
+              height: data.configuration.desktopSizeY + 'px',
+              width: data.configuration.desktopSizeX + 'px'
+            }
+            Object.assign(jeeFrontEnd.plan.planContainer.style, style)
+            var img = document.querySelector('.div_displayObject img') ? Object.assign(img.style, style) : null
           } else {
-            $divDisplayObject.width($('.div_displayObject img').attr('data-sixe_x')).height($('.div_displayObject img').attr('data-sixe_y'))
-            $('.div_displayObject img').css({
-              'height': ($('.div_displayObject img').attr('data-sixe_y')) + 'px',
-              'width': ($('.div_displayObject img').attr('data-sixe_x')) + 'px'
-            })
-          }
-
-          if ($('body').height() > $divDisplayObject.height()) {
-            $('.div_backgroundPlan').height($('body').height())
-          } else {
-            $('.div_backgroundPlan').height($divDisplayObject.height())
-          }
-
-          $('#div_grid').width($divDisplayObject.width()).height($divDisplayObject.height())
-          if (jeeP.deviceInfo.type != 'desktop') {
-            $('meta[name="viewport"]').prop('content', 'width=' + $divDisplayObject.width() + ',height=' + $divDisplayObject.height())
-            jeeP.fullScreen(true)
-            $(window).on("navigate", function(event, data) {
-              var direction = data.state.direction
-              if (direction == 'back') {
-                window.location.href = 'index.php?v=m'
+            var img = document.querySelector('.div_displayObject img')
+            if (img != null) {
+              var style = {
+                height: img.getAttribute('data-sixe_x') + 'px',
+                width: img.getAttribute('data-sixe_x') + 'px'
               }
+              Object.assign(jeeFrontEnd.plan.planContainer.style, style)
+              Object.assign(img.style, style)
+            }
+          }
+
+          if (window.offsetHeight > jeeFrontEnd.plan.planContainer.offsetHeight) {
+            document.querySelector('.div_backgroundPlan').style = window.offsetHeight
+          } else {
+            document.querySelector('.div_backgroundPlan').style = jeeFrontEnd.plan.planContainer.offsetHeight
+          }
+
+          document.getElementById('div_grid').style.width = jeeFrontEnd.plan.planContainer.offsetWidth + 'px'
+          document.getElementById('div_grid').style.height = jeeFrontEnd.plan.planContainer.offsetHeight + 'px'
+
+          if (jeedomUtils.userDevice.type != 'desktop') {
+            document.querySelector('meta[name="viewport"]').setAttribute("content", 'width=' + jeeFrontEnd.plan.planContainer.offsetWidth + 'px, height=' + jeeFrontEnd.plan.planContainer.offsetHeight + 'px')
+            jeeP.fullScreen(true)
+            window.registerEvent('popstate', function(event) {
+              window.location.href = 'index.php?v=m'
             })
           }
 
           //display design components:
-          $divDisplayObject.find('.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').remove()
+          var selector = '.eqLogic-widget, .div_displayObject > .cmd-widget, .scenario-widget'
+          selector += ',.plan-link-widget, .view-link-widget, .graph-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
+          document.querySelectorAll(selector).remove()
+          jeeFrontEnd.modifyWithoutSave = false
           jeedom.plan.byPlanHeader({
             id: jeephp2js.planHeader_id,
             error: function(error) {
@@ -171,138 +222,35 @@ if (!jeeFrontEnd.plan) {
               })
             },
             success: function(plans) {
-              var objects = []
-              for (var i in plans) {
-                objects.push(jeeP.displayObject(plans[i].plan, plans[i].html, true))
-              }
               try {
-                $divDisplayObject.append(objects)
-              } catch (e) {}
-              try {
-                jeeP.$pageContainer.append(style_css)
-                style_css = ''
-              } catch (e) {}
+                var object
+                for (var i in plans) {
+                  object = jeeP.displayObject(plans[i].plan, plans[i].html, true)
+                  if (object != undefined) {
+                    jeeFrontEnd.plan.planContainer.appendChild(object)
+                    if (jeeFrontEnd.plan.cssStyleString != '') {
+                      jeeFrontEnd.plan.pageContainer.insertAdjacentHTML('beforeend', jeeFrontEnd.plan.cssStyleString)
+                      jeeFrontEnd.plan.cssStyleString = ''
+                    }
+                  }
+                }
+              } catch (e) { console.error(e) }
+
               jeedomUtils.addOrUpdateUrl('plan_id', jeephp2js.planHeader_id, data.name + ' - ' + JEEDOM_PRODUCT_NAME)
               jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
               jeedomUtils.initReportMode()
-              $(window).scrollTop(0)
+              window.scrollTo({top: 0, behavior: "smooth"})
+              jeeFrontEnd.plan.setGraphResizes()
+              jeeFrontEnd.modifyWithoutSave = false
             }
           })
         },
       })
     },
-    getElementInfo: function(_element) {
-      if (_element.length) _element = _element[0]
-      if (_element.hasClass('eqLogic-widget')) {
-        return {
-          type: 'eqLogic',
-          id: _element.getAttribute('data-eqLogic_id')
-        }
-      }
-      if (_element.hasClass('cmd-widget')) {
-        return {
-          type: 'cmd',
-          id: _element.getAttribute('data-cmd_id')
-        }
-      }
-      if (_element.hasClass('scenario-widget')) {
-        return {
-          type: 'scenario',
-          id: _element.getAttribute('data-scenario_id')
-        }
-      }
-      if (_element.hasClass('plan-link-widget')) {
-        return {
-          type: 'plan',
-          id: _element.getAttribute('data-link_id')
-        }
-      }
-      if (_element.hasClass('view-link-widget')) {
-        return {
-          type: 'view',
-          id: _element.getAttribute('data-link_id')
-        }
-      }
-      if (_element.hasClass('graph-widget')) {
-        return {
-          type: 'graph',
-          id: _element.getAttribute('data-graph_id')
-        }
-      }
-      if (_element.hasClass('text-widget')) {
-        return {
-          type: 'text',
-          id: _element.getAttribute('data-text_id')
-        }
-      }
-      if (_element.hasClass('image-widget')) {
-        return {
-          type: 'image',
-          id: _element.getAttribute('data-image_id')
-        }
-      }
-      if (_element.hasClass('zone-widget')) {
-        return {
-          type: 'zone',
-          id: _element.getAttribute('data-zone_id')
-        }
-      }
-      if (_element.hasClass('summary-widget')) {
-        return {
-          type: 'summary',
-          id: _element.getAttribute('data-summary_id')
-        }
-      }
-    },
-    savePlan: function(_refreshDisplay, _async) {
-      if (jeephp2js.planHeader_id == -1) return
+    displayObject: function(_plan, _html, _noRender) { //Construct element node and seperated inline style to inject in dom (_noRender bool)
+      //Deleted or inactive equipment
+      if (_html == '') return
 
-      domUtils.showLoading()
-      var plans = []
-      var info, plan, position
-      $('.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.view-link-widget,.graph-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').each(function() {
-        info = jeeP.getElementInfo(this)
-        plan = {}
-        plan.position = {}
-        plan.display = {}
-        plan.id = $(this).attr('data-plan_id')
-        plan.link_type = info.type
-        plan.link_id = info.id
-        plan.planHeader_id = jeeP.planHeader_id
-        plan.display.height = $(this).outerHeight()
-        plan.display.width = $(this).outerWidth()
-        if (info.type == 'graph') {
-          plan.display.graph = json_decode(this.querySelector('.graphOptions').jeeValue())
-        }
-        if (!$(this).is(':visible')) {
-          position = $(this).show().position()
-          $(this).hide()
-        } else {
-          position = $(this).position()
-        }
-        plan.position.top = position.top
-        plan.position.left = position.left
-        plans.push(plan)
-      })
-      jeedom.plan.save({
-        plans: plans,
-        async: _async || true,
-        global: false,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          if (init(_refreshDisplay, false)) {
-            jeeP.displayPlan()
-          }
-          domUtils.hideLoading()
-        },
-      })
-    },
-    displayObject: function(_plan, _html, _noRender) {
       _plan = init(_plan, {})
       _plan.position = init(_plan.position, {})
       _plan.css = init(_plan.css, {})
@@ -310,31 +258,29 @@ if (!jeeFrontEnd.plan) {
       var another_css = ''
 
       //get css selector:
-      if (_plan.link_type == 'eqLogic' || _plan.link_type == 'scenario' || _plan.link_type == 'text' || _plan.link_type == 'image' || _plan.link_type == 'zone' || _plan.link_type == 'summary') {
+      if (['eqLogic', 'scenario', 'text', 'image', 'zone', 'summary'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-widget[data-' + _plan.link_type + '_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
-      } else if (_plan.link_type == 'view' || _plan.link_type == 'plan') {
+        document.querySelector(css_selector)?.remove()
+      } else if (['view', 'plan'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-link-widget[data-id="' + _plan.id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (_plan.link_type == 'cmd') {
         css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
       } else if (_plan.link_type == 'graph') {
         if (jeedom.history.chart['div_designGraph' + _plan.link_id]) {
           delete jeedom.history.chart['div_designGraph' + _plan.link_id]
         }
         css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]'
-        $(css_selector).remove()
+        document.querySelector(css_selector)?.remove()
         if (init(_plan.display.transparentBackground, false)) {
           _html = _html.replace('class="graph-widget"', 'class="graph-widget transparent"')
         }
       }
-
-      var html = $(_html)
-      html.attr('data-plan_id', _plan.id)
-        .addClass('jeedomAlreadyPosition')
-        .attr('data-zoom', init(_plan.css.zoom, 1))
-        .addClass('noResize')
+      var node = domUtils.DOMparseHTML(_html)
+      node.setAttribute('data-plan_id', _plan.id)
+      node.setAttribute('data-zoom', init(_plan.css.zoom, 1))
+      node.addClass('jeedomAlreadyPosition', 'noResize')
 
       //set widget style:
       var style = {}
@@ -343,18 +289,18 @@ if (!jeeFrontEnd.plan) {
       style['top'] = init(_plan.position.top, '10') + 'px'
       style['left'] = init(_plan.position.left, '10') + 'px'
       if (init(_plan.css.zoom, 1) != 1) {
-        style['transform'] = 'scale(' + init(_plan.css.zoom, 1) + ')'
+        style['scale'] = init(_plan.css.zoom, 1)
       }
       style['transform-origin'] = '0 0'
 
       if (_plan.link_type != 'cmd') {
         if (isset(_plan.display) && isset(_plan.display.width)) {
           style['width'] = init(_plan.display.width, 50) + 'px'
-          html.width(init(_plan.display.width, 50))
+          node.style.width = style['width']
         }
         if (isset(_plan.display) && isset(_plan.display.height)) {
           style['height'] = init(_plan.display.height, 50) + 'px'
-          html.height(init(_plan.display.height, 50))
+          node.style.height = style['height']
         }
       }
 
@@ -414,11 +360,11 @@ if (!jeeFrontEnd.plan) {
 
       if (_plan.link_type == 'eqLogic') {
         if (isset(_plan.display.hideName) && _plan.display.hideName == 1) {
-          html.addClass('hideEqLogicName')
+          node.addClass('hideEqLogicName')
           another_css += css_selector + ' .verticalAlign{top: 50% !important;\n}'
         }
         if (isset(_plan.display.showObjectName) && _plan.display.showObjectName == 1) {
-          html.addClass('displayObjectName')
+          node.addClass('displayObjectName')
         }
         if (isset(_plan.display.cmdHide)) {
           for (var i in _plan.display.cmdHide) {
@@ -456,29 +402,31 @@ if (!jeeFrontEnd.plan) {
         another_css += 'min-height:0px !important;'
         another_css += '\n}'
       }
+
       if (_plan.link_type == 'cmd') {
-        var insideHtml = html.html()
-        html = html.empty().append('<center>' + insideHtml + '</center>')
+        var center = document.createElement('center')
+        center.append(...node.childNodes)
+        node.appendChild(center)
+
         delete style['height']
         style['min-height'] = '0px'
         delete style['width']
         style['min-width'] = '0px'
-        html.css({
-          'width': '',
-          'height': '',
-        })
+        node.style.width = ''
+        node.style.height = ''
         if (isset(_plan.display.hideName) && _plan.display.hideName == 1) {
           another_css += css_selector + ' .cmdName{\ndisplay : none !important;\n}'
           another_css += css_selector + ' .title{\ndisplay : none !important;\n}'
         }
       }
+
       if (_plan.link_type == 'image') {
         if (isset(_plan.display.allowZoom) && _plan.display.allowZoom == 1) {
-          html.find('.directDisplay').addClass('zoom cursor')
+          node.querySelector('.directDisplay')?.addClass('zoom cursor')
         }
       }
 
-      $('#style_' + _plan.link_type + '_' + _plan.link_id).remove()
+      document.querySelector('#style_' + _plan.link_type + '_' + _plan.link_id)?.remove()
       var style_el = '<style id="style_' + _plan.link_type + '_' + _plan.link_id + '">'
       if (_plan.display.css && _plan.display.css != '') {
         if (_plan.display.cssApplyOn && _plan.display.cssApplyOn != '') {
@@ -494,19 +442,17 @@ if (!jeeFrontEnd.plan) {
 
 
       for (var i in style) {
-        if (['left', 'top', 'bottom', 'right', 'height', 'width', 'box-shadow'].indexOf(i) !== -1) {
+        if (['left', 'top', 'bottom', 'right', 'height', 'width', 'box-shadow'].includes(i)) {
           style_el += i + ':' + style[i] + ';'
         } else {
           style_el += i + ':' + style[i] + ' !important;'
         }
       }
-      style_el += '}\n'
-      style_el += another_css
-      style_el += '</style>'
+      style_el += '}\n' + another_css + '</style>'
 
       if (_plan.link_type == 'graph') {
-        this.$pageContainer.append(style_el)
-        $('.div_displayObject').append(html)
+        jeeFrontEnd.plan.pageContainer.insertAdjacentHTML('beforeend', style_el)
+        jeeFrontEnd.plan.planContainer.appendChild(node)
         if (isset(_plan.display) && isset(_plan.display.graph)) {
           var done = 0
           for (var i in _plan.display.graph) {
@@ -529,10 +475,10 @@ if (!jeeFrontEnd.plan) {
                 success: function() {
                   done -= 1
                   if (done == 0) {
-                      if (init(_plan.display.transparentBackground, false)) {
-                        $('#div_designGraph' + _plan.link_id).find('.highcharts-background').style('fill-opacity', '0', 'important')
-                      }
+                    if (init(_plan.display.transparentBackground, false)) {
+                      document.getElementById('div_designGraph' + _plan.link_id).querySelector('.highcharts-background').style.fillOpacity = '0 !important'
                     }
+                  }
                 }
               })
             }
@@ -543,129 +489,178 @@ if (!jeeFrontEnd.plan) {
       }
 
       if (init(_noRender, false)) {
-        style_css += style_el
-        return html
+        this.cssStyleString += style_el
+        return node
       }
-      this.$pageContainer.append(style_el)
-      $('.div_displayObject').append(html)
+
+      this.pageContainer.insertAdjacentHTML('beforeend', style_el)
+      this.planContainer.appendChild(node)
+
       this.initEditOption(jeeFrontEnd.planEditOption.state)
     },
-    //Constrain dragging inside design area, supporting zoom:
-    dragClick: {
-      x: 0,
-      y: 0
+    getElementInfo: function(_element) {
+      if (_element.length) _element = _element[0]
+      if (_element.hasClass('eqLogic-widget')) { return {type: 'eqLogic', id: _element.getAttribute('data-eqLogic_id')} }
+      if (_element.hasClass('cmd-widget')) { return {type: 'cmd', id: _element.getAttribute('data-cmd_id')} }
+      if (_element.hasClass('scenario-widget')) { return {type: 'scenario', id: _element.getAttribute('data-scenario_id')} }
+      if (_element.hasClass('plan-link-widget')) { return {type: 'plan', id: _element.getAttribute('data-link_id')} }
+      if (_element.hasClass('view-link-widget')) { return {type: 'view', id: _element.getAttribute('data-link_id')} }
+      if (_element.hasClass('graph-widget')) { return {type: 'graph', id: _element.getAttribute('data-graph_id')} }
+      if (_element.hasClass('text-widget')) { return {type: 'text', id: _element.getAttribute('data-text_id')} }
+      if (_element.hasClass('image-widget')) { return {type: 'image', id: _element.getAttribute('data-image_id')} }
+      if (_element.hasClass('zone-widget')) { return {type: 'zone', id: _element.getAttribute('data-zone_id')} }
+      if (_element.hasClass('summary-widget')) { return {type: 'summary', id: _element.getAttribute('data-summary_id')} }
     },
-    dragStartPos: {
-      top: 0,
-      left: 0
+    //Events setter
+    setGraphResizes: function () {
+      for (var obs of this.resizeObservers) {
+        obs.disconnect()
+      }
+      this.resizeObservers = []
+      document.querySelectorAll('.graph-widget').forEach(function(_graph) {
+        var obs = new ResizeObserver(entries => {
+          var graphWidget = entries[0].target
+          if (isset(jeedom.history.chart['div_designGraph' + graphWidget.getAttribute('data-graph_id')])) {
+            jeedom.history.chart['div_designGraph' + graphWidget.getAttribute('data-graph_id')].chart.reflow()
+          }
+        })
+        obs.observe(_graph)
+        jeeFrontEnd.plan.resizeObservers.push(obs)
+      })
     },
-    dragStep: false,
-    minLeft: 0,
-    maxLeft: 0,
-    maxTop: 0,
-    isDragLocked: false,
-    zoomScale: 1,
-    draggableStartFix: function(event, ui) {
-      jeeP.isDragLocked = false
-      if ($(event.target).hasClass('locked')) {
-        jeeP.isDragLocked = true
-        document.body.style.cursor = "default"
-        return false
-      }
-      jeeP.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
-      if (jeeFrontEnd.planEditOption.grid == 1) {
-        jeeP.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
-      } else {
-        jeeP.dragStep = false
-      }
-
-      jeeP.dragClick.x = event.clientX
-      jeeP.dragClick.y = event.clientY
-      jeeP.dragStartPos = ui.originalPosition
-
-      var $container = $('.div_displayObject')
-      var containerWidth = $container.width()
-      var containerHeight = $container.height()
-
-      var clientWidth = $(ui.helper[0]).width()
-      var clientHeight = $(ui.helper[0]).height()
-
-      var marginLeft = $(ui.helper[0]).css('margin-left')
-      var marginLeft = parseFloat(marginLeft.replace('px', ''))
-
-      jeeP.minLeft = 0 - marginLeft
-
-      jeeP.maxLeft = containerWidth + jeeP.minLeft - (clientWidth * jeeP.zoomScale)
-      jeeP.maxTop = containerHeight - (clientHeight * jeeP.zoomScale)
-    },
-    draggableDragFix: function(event, ui) {
-      if (jeeP.isDragLocked == true) return false
-      var newLeft = event.clientX - jeeP.dragClick.x + jeeP.dragStartPos.left
-      var newTop = event.clientY - jeeP.dragClick.y + jeeP.dragStartPos.top
-
-      if (newLeft < jeeP.minLeft) newLeft = jeeP.minLeft
-      if (newLeft > jeeP.maxLeft) newLeft = jeeP.maxLeft
-
-      if (newTop < 0) newTop = 0
-      if (newTop > jeeP.maxTop) newTop = jeeP.maxTop
-
-      if (jeeP.dragStep) {
-        newLeft = (Math.round(newLeft / jeeP.dragStep) * jeeP.dragStep)
-        newTop = (Math.round(newTop / jeeP.dragStep) * jeeP.dragStep)
-      }
-
-      ui.position = {
-        left: newLeft,
-        top: newTop
-      }
-    },
+    //Edit mode:
     initEditOption: function(_state) {
-      var $container = $('.container-fluid.div_displayObject')
-      var $editItems = $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget')
+      var editSelector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget'
+      editSelector += ', .div_displayObject > .cmd-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget,.summary-widget'
+      var editItems = document.querySelectorAll(editSelector)
 
-      if (_state) {
-        if (!this.$pageContainer.data('jeeFrontEnd.planEditOption.state')) {
-          this.$pageContainer.data('jeeFrontEnd.planEditOption.state', true)
-        }
+      if (_state) { //Enter Edit mode
         jeeFrontEnd.planEditOption.state = true
-        $('.tooltipstered').tooltipster('disable')
-        $('.div_displayObject').addClass('editingMode')
+        jeeP.pageContainer.dataset.planEditState = true
+
+        editItems.forEach(item => {
+          item.setAttribute('data-lock', '0')
+        })
+
+        jeedomUtils.disableTooltips()
+        this.planContainer.addClass('editingMode')
         jeedom.cmd.disableExecute = true
 
-        //drag item:
-        $editItems.draggable({
-          cancel: '.locked',
-          containment: 'parent',
-          cursor: 'move',
-          start: this.draggableStartFix,
-          drag: this.draggableDragFix,
-          stop: function(event, ui) {
-            jeeP.savePlan(false, false)
-          }
+        //Set draggies:
+        editItems.forEach(item => {
+          var draggie = new Draggabilly(item, {
+            containment: 'div.div_displayObject',
+          })
+          jeeFrontEnd.plan.draggables.push(draggie)
+
+          draggie.on('dragStart', function(event, pointer) {
+
+            //Is locked:
+            if (this.element.hasClass('locked')) this.dragEnd()
+
+            //Handle zoom:
+            this.containementBrect = document.querySelector('div.div_displayObject').getBoundingClientRect()
+            this.zoomScale = parseFloat(this.element.getAttribute('data-zoom'))
+            if (this.zoomScale != 1) {
+              this.options.containment = false
+            }
+
+            //Handle grid snap
+            if (jeeFrontEnd.planEditOption.grid == 1) {
+              this.dragStep = jeeFrontEnd.planEditOption.gridSize[0] / this.zoomScale
+              this.element.style.left = getNearestMultiple(this.element.offsetLeft, this.dragStep) + 'px'
+              this.element.style.top = getNearestMultiple(this.element.offsetTop, this.dragStep) + 'px'
+              this.options.grid = [this.dragStep, this.dragStep]
+            } else {
+              this.dragStep = false
+              this.options.grid = undefined
+            }
+          })
+
+          draggie.on('dragMove', function(event, pointer, moveVector) {
+            //Handle zoom move / containement:
+            if (this.zoomScale != 1) {
+
+              //Fix zoomed move:
+              this.dragPoint.x = moveVector.x / this.zoomScale
+              this.dragPoint.y = moveVector.y / this.zoomScale
+
+              //Check zoomed containement:
+              /*Doesn't work
+              var eRect = this.element.getBoundingClientRect()
+              console.log('eRect:',eRect)
+
+              console.log('position:', this.position)
+              console.log(this.dragPoint)
+
+              if (eRect.left < this.containementBrect.left) {
+                console.log('>>>>>>> OUT LEFT')
+                this.setPosition(this.position.x + this.dragPoint.x, this.position.y + this.dragPoint.y)
+                this.pointerDone()
+                this.dragEnd()
+              }
+              */
+            }
+
+            /*
+            if (this.zoomScale != 1) {
+              var matrix = window.getComputedStyle(this.element).getPropertyValue('transform')
+              var matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
+              var tx = matrixValues[4]
+              var ty = matrixValues[5]
+              var txFactor = tx * this.zoomScale
+              var tyFactor = ty * this.zoomScale
+              var deltaX = this.element.offsetLeft - (tx * this.zoomScale)
+              if ((this.element.offsetLeft + txFactor) < 0) this.dragEnd()
+              if ((this.element.offsetTop + tyFactor) < 0) this.dragEnd()
+
+              var realWidth = this.element.clientWidth * this.zoomScale
+              var realRight = this.element.getBoundingClientRect().left + realWidth
+
+              console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
+
+              //Test ok, not solution--
+              if (realRight >= this.containementBrect.right) {
+                this.dragEnd()
+              }
+            }
+            */
+
+          })
+
+          draggie.on('dragEnd', function(event, pointer) {
+            jeeFrontEnd.modifyWithoutSave = true
+            //jeeP.savePlan(false, false)
+          })
         })
 
         if (jeeFrontEnd.planEditOption.highlight) {
-          $editItems.addClass('editingMode')
+          editItems.addClass('editingMode')
         } else {
-          $editItems.removeClass('editingMode contextMenu_select')
+          editItems.removeClass('editingMode', 'contextMenu_select')
         }
 
         if (jeeFrontEnd.planEditOption.gridSize) {
-          $('#div_grid').show().css('background-size', jeeFrontEnd.planEditOption.gridSize[0] + 'px ' + jeeFrontEnd.planEditOption.gridSize[1] + 'px')
+          document.getElementById('div_grid').seen().style.backgroundSize = jeeFrontEnd.planEditOption.gridSize[0] + 'px ' + jeeFrontEnd.planEditOption.gridSize[1] + 'px'
         } else {
-          $('#div_grid').hide()
+          document.getElementById('div_grid').unseen()
         }
 
-        //resize item:
-        $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable({
-          cancel: '.locked',
-          handles: 'n,e,s,w,se,sw,nw,ne',
-          containment: $('.div_displayObject'),
-          start: function(event, ui) {
-            if ($(this).attr('data-zoom') != '1') {
-              $(this).resizable("option", "containment", null)
+        //Set Resizing:
+        let selector = '.plan-link-widget, .view-link-widget, .graph-widget, .div_displayObject >.eqLogic-widget, .scenario-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
+        new jeeResize(selector, {
+          cancel: 'locked',
+          containment: document.querySelector('.div_displayObject'),
+          start: function(event, element) {
+            this.zoomScale = parseFloat(element.getAttribute('data-zoom'))
+
+            if (this.zoomScale != 1) {
+              element._jeeResize.options.containment = false
+            } else {
+              element._jeeResize.options.containment = document.querySelector('.div_displayObject')
             }
-            this.zoomScale = parseFloat($(ui.helper).attr('data-zoom'))
+
+            //Handle snap:
             if (jeeFrontEnd.planEditOption.grid == 1) {
               this.dragStep = jeeFrontEnd.planEditOption.gridSize[0]
               this.dragStep = this.dragStep / this.zoomScale
@@ -673,113 +668,288 @@ if (!jeeFrontEnd.plan) {
               this.dragStep = false
             }
           },
-          resize: function(event, ui) {
-            if (this.dragStep) {
-              var newWidth = (Math.round(ui.size.width / this.dragStep) * this.dragStep)
-              var newHeight = (Math.round(ui.size.height / this.dragStep) * this.dragStep)
-              ui.element.width(newWidth)
-              ui.element.height(newHeight)
+          resize: function(event, element) {
+            if (this.zoomScale != 1) {
+              if (!jeeFrontEnd.plan.isFullScreen && this.hasClass('top')) {
+                element.style.top = element.offsetTop - 50 + 'px'
+              }
+              if (this.hasClass('left')) {
+                element.style.left = element.offsetLeft - jeeFrontEnd.plan.planContainer.getBoundingClientRect().left + 'px'
+              }
             }
-            ui.element.find('.camera').trigger('resize')
+            //Handle snap:
+            if (this.dragStep) {
+              element.style.width = getNearestMultiple(element.offsetWidth,  this.dragStep) + 'px'
+              element.style.height = getNearestMultiple(element.offsetHeight,  this.dragStep) + 'px'
+              element.style.top = getNearestMultiple(element.offsetTop,  this.dragStep) + 'px'
+              element.style.left = getNearestMultiple(element.offsetLeft,  this.dragStep) + 'px'
+            }
+
+            element.querySelector('.camera')?.triggerEvent('resize')
           },
           stop: function(event, ui) {
-            jeeP.savePlan(false, false)
+            jeeFrontEnd.modifyWithoutSave = true
+            //jeeP.savePlan(false, false)
           },
         })
 
-        $('.div_displayObject a').each(function() {
-          if ($(this).attr('href') != '#') {
-            $(this).attr('data-href', $(this).attr('href')).removeAttr('href')
-          }
-        })
-
-        try {
-          $editItems.contextMenu(true)
-        } catch (e) {}
-      } else {
-        if (this.$pageContainer.data('jeeFrontEnd.planEditOption.state')) {
-          this.$pageContainer.data('jeeFrontEnd.planEditOption.state', false)
+        jeeP.elementContexMenu.enable()
+      } else { //Leave Edit mode
+        jeeP.savePlan(false, false)
+        if (jeeP.elementContexMenu) {
+          jeeP.elementContexMenu.disable()
         }
         jeeFrontEnd.planEditOption.state = false
+        jeeP.pageContainer.dataset.planEditState = false
         jeedom.cmd.disableExecute = false
-        $('.div_displayObject').removeClass('editingMode')
+        this.planContainer.removeClass('editingMode')
+        editItems.forEach(item => {
+          item.removeAttribute('data-lock')
+          item.removeClass('editingMode')
+          if (item._jeeResize) item._jeeResize.destroy()
+        })
+        jeeFrontEnd.plan.draggables.forEach(draggie => {
+          let left = draggie.element.style.left
+          let top = draggie.element.style.top
+          draggie.destroy()
+          draggie.element.style.left = left
+          draggie.element.style.top = top
+        })
+        jeeFrontEnd.plan.draggables = []
         try {
-          $('.tooltipstered').tooltipster('enable')
-          $editItems.draggable('destroy').removeClass('editingMode')
-          $('.plan-link-widget,.view-link-widget,.graph-widget,.div_displayObject >.eqLogic-widget,.scenario-widget,.text-widget,.image-widget,.zone-widget,.summary-widget').resizable("destroy")
-          $('.div_displayObject a').each(function() {
-            $(this).attr('href', $(this).attr('data-href'))
-          })
+          jeedomUtils.enableTooltips()
         } catch (e) {}
-        $('#div_grid').hide()
-        try {
-          $editItems.contextMenu(false)
-        } catch (e) {}
+        document.getElementById('div_grid').unseen()
       }
+    },
+    //save
+    savePlan: function(_refreshDisplay, _async) {
+      if (jeephp2js.planHeader_id == -1) return
+      domUtils.showLoading()
+      var plans = []
+      var info, plan, position
+
+      var selector = '.div_displayObject >.eqLogic-widget, .div_displayObject > .cmd-widget, .scenario-widget'
+      selector += ', .plan-link-widget, .view-link-widget, .graph-widget, .text-widget, .image-widget, .zone-widget, .summary-widget'
+      document.querySelectorAll(selector).forEach(function(_element) {
+        info = jeeP.getElementInfo(_element)
+        plan = {}
+        plan.position = {}
+        plan.display = {}
+        plan.id = _element.getAttribute('data-plan_id')
+        plan.link_type = info.type
+        plan.link_id = info.id
+        plan.planHeader_id = jeeP.planHeader_id
+        plan.display.height = _element.offsetHeight
+        plan.display.width = _element.offsetWidth
+        if (info.type == 'graph') {
+          plan.display.graph = json_decode(_element.querySelector('.graphOptions').jeeValue())
+        }
+
+        if (!_element.isVisible()) {
+          _element.seen()
+          plan.position.top = _element.offsetTop
+          plan.position.left = _element.offsetLeft
+          _element.unseen()
+        } else {
+          plan.position.top = _element.offsetTop
+          plan.position.left = _element.offsetLeft
+        }
+
+        plans.push(plan)
+      })
+      jeedom.plan.save({
+        plans: plans,
+        async: _async || true,
+        global: false,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          if (init(_refreshDisplay, false)) {
+            jeeP.displayPlan()
+          }
+          domUtils.hideLoading()
+          jeeFrontEnd.modifyWithoutSave = false
+        },
+      })
     },
   }
 }
 
 jeeFrontEnd.plan.init()
 
-var clickedOpen = false
-var style_css = ''
-for (var i in jeephp2js.planHeader) {
-  jeeP.planHeaderContextMenu[jeephp2js.planHeader[i].id] = {
-    name: jeephp2js.planHeader[i].name,
-    callback: function(key, opt) {
-      jeephp2js.planHeader_id = key
-      jeeP.displayPlan()
-    }
-  }
-}
+jeeFrontEnd.plan.displayPlan()
 
-if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
-  document.registerEvent('keydown', function(event) {
-    if (jeedomUtils.getOpenedModal()) return
+jeeFrontEnd.plan.postInit()
 
-    if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-      event.preventDefault()
-      jeeP.savePlan()
-      return
-    }
+//Context menu:
+if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
+  //Object context menu
 
-    if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 69) { //e
-      event.preventDefault()
-      jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
-      jeeP.$pageContainer.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
-      jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
+  jeeP.elementContexMenu = new jeeCtxMenu({
+    selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
+    zIndex: 9999,
+    appendTo: 'div#div_pageContainer',
+    isDisable: true,
+    events: {
+      show: function(opt) {
+        opt.setInputValues(opt.realTrigger, opt.realTrigger.dataset)
+        if (jeeFrontEnd.planEditOption.highlight) {
+          this.ctxMenu.removeClass('editingMode').addClass('contextMenu_select')
+        }
+      },
+      hide: function(opt) {
+        opt.getInputValues(opt.realTrigger, opt.realTrigger.dataset)
+        if (jeeFrontEnd.planEditOption.highlight) {
+          this.ctxMenu.removeClass('contextMenu_select').addClass('editingMode')
+        }
+      }
+    },
+    items: {
+      parameter: {
+        name: '{{Paramètres d\'affichage}}',
+        icon: 'fas fa-cogs',
+        callback: function(key, opt) {
+          jeeP.savePlan(false, false)
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: '{{Configuration du composant}}',
+            contentUrl: 'index.php?v=d&modal=plan.configure&id=' + this.getAttribute('data-plan_id')
+          })
+        }
+      },
+      configuration: {
+        name: '{{Configuration avancée}}',
+        icon: 'fas fa-cog',
+        disabled: function(key, opt) {
+          var info = jeeP.getElementInfo(this)
+          return !(info.type == 'eqLogic' || info.type == 'cmd' || info.type == 'graph')
+        },
+        callback: function(key, opt) {
+          var info = jeeP.getElementInfo(this)
+          if (info.type == 'graph') {
+            var dom_el = this
+            if (dom_el.length) dom_el = dom_el[0]
+            jeeDialog.dialog({
+              id: 'jee_modalGraph',
+              title: '{{Configuration avancée}}',
+              buttons: {
+                confirm: {
+                  label: '{{Valider}}',
+                  className: 'success',
+                  callback: {
+                    click: function(event) {
+                      var options = jeeFrontEnd.md_cmdGraphSelect.getOptions()
+
+                      dom_el.querySelector('.graphOptions').empty().append(JSON.stringify(options))
+                      jeeP.savePlan(true)
+                      jeeFrontEnd.plan.setGraphResizes()
+                      event.target.closest('#jee_modalGraph')._jeeDialog.destroy()
+                    }
+                  }
+                },
+                cancel: {
+                  label: '{{Annuler}}',
+                  className: 'warning',
+                  callback: {
+                    click: function(event) {
+                      event.target.closest('#jee_modalGraph')._jeeDialog.destroy()
+                    }
+                  }
+                }
+              },
+              contentUrl: 'index.php?v=d&modal=cmd.graph.select',
+              callback: function() {
+                document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false})
+                var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
+                jeeFrontEnd.md_cmdGraphSelect.displayOptions(options)
+              }
+            })
+          } else {
+            jeeDialog.dialog({
+              id: 'jee_modal',
+              title: '{{Configuration avancée}}',
+              contentUrl: 'index.php?v=d&modal=' + info.type + '.configure&' + info.type + '_id=' + info.id
+            })
+          }
+        }
+      },
+      remove: {
+        name: '{{Supprimer}}',
+        icon: 'fas fa-trash',
+        callback: function(key, opt) {
+          jeeP.savePlan(false, false)
+          jeedom.plan.remove({
+            id: this.getAttribute('data-plan_id'),
+            error: function(error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function() {
+              jeeP.displayPlan()
+            },
+          })
+        }
+      },
+      duplicate: {
+        name: '{{Dupliquer}}',
+        icon: 'far fa-copy',
+        disabled: function(key, opt) {
+          var info = jeeP.getElementInfo(this)
+          return !(info.type == 'text' || info.type == 'graph' || info.type == 'zone')
+        },
+        callback: function(key, opt) {
+          var info = jeeP.getElementInfo(this)
+          jeedom.plan.copy({
+            id: this.getAttribute('data-plan_id'),
+            version: 'dashboard',
+            error: function(error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              jeeP.displayObject(data.plan, data.html)
+            }
+          })
+        }
+      },
+      lock: {
+        name: "{{Verrouiller}}",
+        type: 'checkbox',
+        events: {
+          click: function(key, opt) {
+            if (this.jeeValue() == 1) {
+              opt.realTrigger.addClass('locked')
+            } else {
+              opt.realTrigger.removeClass('locked')
+            }
+            return true
+          }
+        }
+      },
     }
   })
-} else {
-  document.registerEvent('keydown', function(event) {
-    if (jeedomUtils.getOpenedModal()) return
 
-    if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-      event.preventDefault()
-      jeeP.savePlan()
-    }
-  })
-}
 
-if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
-  //Handle auto hide context menu
-  $('#div_pageContainer').on({
-    'mouseleave': function(event) {
-      $(this).fadeOut().trigger('contextmenu:hide')
-    }
-  }, '.context-menu-root')
-
-  jeeP.contextMenu = $.contextMenu({
+  //Global context menu
+  jeeP.globalContextMenu = new jeeCtxMenu({
     selector: '#div_pageContainer',
     appendTo: 'div#div_pageContainer',
     zIndex: 9999,
     events: {
       show: function(opt) {
-        $.contextMenu.setInputValues(opt, this.data())
+        opt.setInputValues(opt.ctxMenu, this.ctxMenu.dataset)
       },
       hide: function(opt) {
-        $.contextMenu.getInputValues(opt, this.data())
+        opt.getInputValues(opt.ctxMenu, this.ctxMenu.dataset)
       }
     },
     items: {
@@ -793,7 +963,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         icon: 'fas fa-pencil-alt',
         callback: function(key, opt) {
           jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
-          this.data('jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
+          this.setAttribute('data-jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
           jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
         }
       },
@@ -801,19 +971,21 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Plein écran}}",
         icon: 'fas fa-desktop',
         callback: function(key, opt) {
-          if (this.data('fullscreen') == undefined) {
-            this.data('fullscreen', 1)
+          if (this.getAttribute('data-fullscreen') == null || this.getAttribute('data-fullscreen') == 'false') {
+            this.setAttribute('data-fullscreen', 'true')
+            jeeP.fullScreen(true)
+          } else {
+            this.setAttribute('data-fullscreen', 'false')
+            jeeP.fullScreen(false)
           }
-          jeeP.fullScreen(this.data('fullscreen'))
-          this.data('fullscreen', !this.data('fullscreen'))
         }
       },
       sep1: "---------",
       addGraph: {
-        name: "{{Ajouter Graphique}}",
+        name: "{{Ajouter un Graphique}}",
         icon: 'fas fa-chart-line',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.addObject({
@@ -823,10 +995,10 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addText: {
-        name: "{{Ajouter texte/html}}",
+        name: "{{Ajouter du texte/html}}",
         icon: 'fas fa-align-center',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.addObject({
@@ -839,10 +1011,10 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addScenario: {
-        name: "{{Ajouter scénario}}",
+        name: "{{Ajouter un scénario}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeedom.scenario.getSelectModal({}, function(data) {
@@ -857,14 +1029,14 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter un lien}}",
         icon: 'fas fa-link',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         items: {
           addViewLink: {
             name: "{{Vers une vue}}",
             icon: 'fas fa-link',
             disabled: function(key, opt) {
-              return !this.data('jeeFrontEnd.planEditOption.state')
+              return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
             },
             callback: function(key, opt) {
               jeeP.addObject({
@@ -880,7 +1052,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
             name: "{{Vers un design}}",
             icon: 'fas fa-link',
             disabled: function(key, opt) {
-              return !this.data('jeeFrontEnd.planEditOption.state')
+              return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
             },
             callback: function(key, opt) {
               jeeP.addObject({
@@ -895,10 +1067,10 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addEqLogic: {
-        name: "{{Ajouter équipement}}",
+        name: "{{Ajouter un équipement}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeedom.eqLogic.getSelectModal({}, function(data) {
@@ -910,10 +1082,10 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addCommand: {
-        name: "{{Ajouter commande}}",
+        name: "{{Ajouter une commande}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeedom.cmd.getSelectModal({}, function(data) {
@@ -928,7 +1100,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter une image/caméra}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.addObject({
@@ -941,7 +1113,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter une zone}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.addObject({
@@ -954,7 +1126,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Ajouter un résumé}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.addObject({
@@ -968,11 +1140,11 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Affichage}}",
         icon: 'fas fa-th',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         items: {
           grid_none: {
-            name: "Aucune",
+            name: "{{Aucune}}",
             type: 'radio',
             radio: 'radio',
             value: '0',
@@ -981,6 +1153,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = false
                 jeeP.initEditOption(1)
+                return false
               }
             }
           },
@@ -993,6 +1166,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [10, 10]
                 jeeP.initEditOption(1)
+                return false
               }
             }
           },
@@ -1005,6 +1179,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [15, 15]
                 jeeP.initEditOption(1)
+                return false
               }
             }
           },
@@ -1017,6 +1192,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [20, 20]
                 jeeP.initEditOption(1)
+                return false
               }
             }
           },
@@ -1030,6 +1206,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               click: function(e) {
                 jeeFrontEnd.planEditOption.grid = this.jeeValue()
                 jeeP.initEditOption(1)
+                return false
               }
             }
           },
@@ -1042,6 +1219,7 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
               click: function(e) {
                 jeeFrontEnd.planEditOption.highlight = (this.jeeValue() == 1) ? false : true
                 jeeP.initEditOption(1)
+                return false
               }
             }
           },
@@ -1051,10 +1229,10 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Supprimer le design}}",
         icon: 'fas fa-trash',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
-          bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
+          jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer ce design ?}}', function(result) {
             if (result) {
               jeedom.plan.removeHeader({
                 id: jeephp2js.planHeader_id,
@@ -1077,10 +1255,10 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         }
       },
       addPlan: {
-        name: "{{Creer un design}}",
+        name: "{{Créer un design}}",
         icon: 'fas fa-plus-circle',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.createNewDesign()
@@ -1090,10 +1268,19 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Dupliquer le design}}",
         icon: 'far fa-copy',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
-          bootbox.prompt("{{Nom la copie du design ?}}", function(result) {
+          let name = "";
+          for(let i in jeephp2js.planHeader){
+            if(jeephp2js.planHeader[i].id == jeephp2js.planHeader_id){
+              name = jeephp2js.planHeader[i].name+ " copie";
+            }
+          }
+          jeeDialog.prompt({
+            title : "{{Nom de la copie du design ?}}",
+            value : name,
+          }, function(result) {
             if (result !== null) {
               jeeP.savePlan(false, false)
               jeedom.plan.copyHeader({
@@ -1118,13 +1305,15 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Configurer le design}}",
         icon: 'fas fa-cogs',
         disabled: function(key, opt) {
-          return !this.data('jeeFrontEnd.planEditOption.state')
+          return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
           jeeP.savePlan(false, false)
-          $('#md_modal').dialog({
-            title: "{{Configuration du design}}"
-          }).load('index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id).dialog('open')
+          jeeDialog.dialog({
+            id: 'jee_modal',
+            title: '{{Configuration du design}}',
+            contentUrl: 'index.php?v=d&modal=planHeader.configure&planHeader_id=' + jeephp2js.planHeader_id
+          })
         }
       },
       sep3: "---------",
@@ -1137,294 +1326,154 @@ if (jeeP.deviceInfo.type == 'desktop' && user_isAdmin == 1) {
       },
     }
   })
-
-  $.contextMenu({
-    selector: '.div_displayObject > .eqLogic-widget,.div_displayObject > .cmd-widget,.scenario-widget,.plan-link-widget,.text-widget,.view-link-widget,.graph-widget,.image-widget,.zone-widget,.summary-widget',
-    zIndex: 9999,
-    appendTo: 'div#div_pageContainer',
-    events: {
-      show: function(opt) {
-        $.contextMenu.setInputValues(opt, this.data())
-        if (jeeFrontEnd.planEditOption.highlight) {
-          $(this).removeClass('editingMode').addClass('contextMenu_select')
-        }
-      },
-      hide: function(opt) {
-        $.contextMenu.getInputValues(opt, this.data())
-        if (jeeFrontEnd.planEditOption.highlight) {
-          $(this).removeClass('contextMenu_select').addClass('editingMode')
-        }
-      }
-    },
-    items: {
-      parameter: {
-        name: '{{Paramètres d\'affichage}}',
-        icon: 'fas fa-cogs',
-        callback: function(key, opt) {
-          jeeP.savePlan(false, false)
-          $('#md_modal').dialog({
-            title: "{{Configuration du composant}}"
-          }).load('index.php?v=d&modal=plan.configure&id=' + $(this).attr('data-plan_id')).dialog('open')
-        }
-      },
-      configuration: {
-        name: '{{Configuration avancée}}',
-        icon: 'fas fa-cog',
-        disabled: function(key, opt) {
-          var info = jeeP.getElementInfo(this)
-          return !(info.type == 'eqLogic' || info.type == 'cmd' || info.type == 'graph')
-        },
-        callback: function(key, opt) {
-          var info = jeeP.getElementInfo(this)
-          if (info.type == 'graph') {
-            var el = $(this)
-            var dom_el = this
-            if (dom_el.length) dom_el = dom_el[0]
-
-            $('#md_modal').load('index.php?v=d&modal=cmd.graph.select', function() {
-              $('#table_addViewData tbody tr .enable').prop('checked', false)
-              var options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
-              for (var i in options) {
-                var tr = document.querySelector('#table_addViewData tbody tr[data-link_id="' + options[i].link_id + '"]')
-                tr.querySelector('.enable').jeeValue(1)
-                tr.setJeeValues(options[i], '.graphDataOption')
-                jeeP.setColorSelect(tr.querySelector('.graphDataOption[data-l1key="configuration"][data-l2key="graphColor"]'))
-              }
-
-              //set modal options:
-              $('#md_modal').dialog({
-                title: "{{Configuration avancée}}"
-              })
-              var buttons = {}
-              var closeButtonText = "{{Annuler}}"
-              var validateButtonText = "{{Valider}}"
-              buttons[closeButtonText] = function() {
-                $(this).dialog("close")
-              }
-              buttons[validateButtonText] = function() {
-                var tr = document.querySelector('#table_addViewData tbody tr')
-                var options = []
-                while (tr.getAttribute('data-link_id') != undefined) {
-                  if (tr.querySelector('.enable').checked == true) {
-                    var graphData = tr.getJeeValues('.graphDataOption')[0]
-                    graphData.link_id = tr.getAttribute('data-link_id')
-                    options.push(graphData)
-                  }
-                  tr = tr.next()
-                }
-                el.find('.graphOptions').empty().append(JSON.stringify(options))
-                jeeP.savePlan(true)
-                $(this).dialog('close')
-              }
-              $('#md_modal').dialog({
-                buttons: buttons
-              })
-
-              $('#md_modal').on("dialogclose", function(event, ui) {
-                $(this).parent('div.ui-dialog').find('div.ui-dialog-buttonpane').remove()
-              })
-              $('#md_modal').dialog('open')
-            })
-          } else {
-            $('#md_modal').load('index.php?v=d&modal=' + info.type + '.configure&' + info.type + '_id=' + info.id).dialog('open')
-          }
-        }
-      },
-      remove: {
-        name: '{{Supprimer}}',
-        icon: 'fas fa-trash',
-        callback: function(key, opt) {
-          jeeP.savePlan(false, false)
-          jeedom.plan.remove({
-            id: $(this).attr('data-plan_id'),
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function() {
-              jeeP.displayPlan()
-            },
-          })
-        }
-      },
-      duplicate: {
-        name: '{{Dupliquer}}',
-        icon: 'far fa-copy',
-        disabled: function(key, opt) {
-          var info = jeeP.getElementInfo(this)
-          return !(info.type == 'text' || info.type == 'graph' || info.type == 'zone')
-        },
-        callback: function(key, opt) {
-          var info = jeeP.getElementInfo(this)
-          jeedom.plan.copy({
-            id: $(this).attr('data-plan_id'),
-            version: 'dashboard',
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              jeeP.displayObject(data.plan, data.html)
-            }
-          })
-        }
-      },
-      lock: {
-        name: "{{Verrouiller}}",
-        type: 'checkbox',
-        events: {
-          click: function(opt) {
-            if (this.jeeValue() == 1) {
-              opt.handleObj.data.$trigger.addClass('locked')
-            } else {
-              opt.handleObj.data.$trigger.removeClass('locked')
-            }
-            $('.context-menu-root').hide()
-          }
-        }
-      },
-    }
-  })
 }
 
-/**************************************init*********************************************/
-jeeP.displayPlan()
+jeedomUI.setEqSignals()
+jeedomUI.setHistoryModalHandler()
 
-$('#bt_createNewDesign').on('click', function() {
-  jeeP.createNewDesign()
-})
-
-jeeP.$pageContainer.off('click', '.plan-link-widget').on('click', '.plan-link-widget', function() {
+//Handle zones:
+document.body.registerEvent('click', function (event) {
   if (!jeeFrontEnd.planEditOption.state) {
-    if ($(this).attr('data-link_id') == undefined) {
-      return
-    }
-    jeephp2js.planHeader_id = $(this).attr('data-link_id')
-    jeeFrontEnd.planEditOption = {
-      state: false,
-      snap: false,
-      grid: false,
-      gridSize: jeeFrontEnd.planEditOption.gridSize,
-      highlight: true
-    }
-    jeeP.displayPlan()
-  }
-})
-
-jeeP.$pageContainer.on('click', '.zone-widget:not(.zoneEqLogic)', function() {
-  var el = $(this)
-  if (!jeeFrontEnd.planEditOption.state) {
-    el.append('<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
-    jeedom.plan.execute({
-      id: el.attr('data-plan_id'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-        el.empty().append('<center class="loading"><i class="fas fa-times fa-4x"></i></center>')
-        setTimeout(function() {
-          el.empty()
-          clickedOpen = false
-        }, 3000)
-      },
-      success: function() {
-        el.empty()
-        clickedOpen = false
-      },
-    })
-  }
-})
-
-jeeP.$pageContainer.on('mouseenter', '.zone-widget.zoneEqLogic.zoneEqLogicOnFly', function() {
-  if (!jeeFrontEnd.planEditOption.state) {
-    clickedOpen = true
-    var el = $(this)
-    jeedom.eqLogic.toHtml({
-      id: el.attr('data-eqLogic_id'),
-      version: 'dashboard',
-      global: false,
-      success: function(data) {
-        var html = $(data.html).css('position', 'absolute')
-        html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
-        el.empty().append(html)
-        jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'), false)
-        if (jeeP.deviceInfo.type == 'desktop') {
-          el.off('mouseleave').on('mouseleave', function() {
-            el.empty()
-            clickedOpen = false
-          })
-        }
-      }
-    })
-  }
-})
-
-jeeP.$pageContainer.on('click', '.zone-widget.zoneEqLogic.zoneEqLogicOnClic', function() {
-  if (!jeeFrontEnd.planEditOption.state && !clickedOpen) {
-    clickedOpen = true
-    var el = $(this)
-    jeedom.eqLogic.toHtml({
-      id: el.attr('data-eqLogic_id'),
-      version: 'dashboard',
-      global: false,
-      success: function(data) {
-        let html = $(data.html).css('position', 'absolute')
-        html.attr("style", html.attr("style") + "; " + el.attr('data-position'))
-        el.empty().append(html)
-        jeedomUtils.positionEqLogic(el.attr('data-eqLogic_id'), false)
-        if (jeeP.deviceInfo.type == 'desktop' && el.hasClass('zoneEqLogicOnFly')) {
-          el.off('mouseleave').on('mouseleave', function() {
-            el.empty()
-            clickedOpen = false
-          })
-        }
-      }
-    })
-  }
-})
-
-$(document).click(function(event) {
-  if (!jeeFrontEnd.planEditOption.state) {
-    if ((!$(event.target).hasClass('.zone-widget.zoneEqLogic') && $(event.target).closest('.zone-widget.zoneEqLogic').html() == undefined) && (!$(event.target).hasClass('.zone-widget.zoneEqLogicOnFly') && $(event.target).closest('.zone-widget.zoneEqLogicOnFly').html() == undefined)) {
-      $('.zone-widget.zoneEqLogic').each(function() {
-        if ($(this).hasClass('zoneEqLogicOnClic') || $(this).hasClass('zoneEqLogicOnFly')) {
-          $(this).empty()
-          clickedOpen = false
+    if ((!event.target.hasClass('.zone-widget.zoneEqLogic') && event.target.closest('.zone-widget.zoneEqLogic') == null) && (!event.target.hasClass('.zone-widget.zoneEqLogicOnFly') && event.target.closest('.zone-widget.zoneEqLogicOnFly') == null)) {
+      document.querySelectorAll('.zone-widget.zoneEqLogic').forEach(function(_zone) {
+        if (_zone.hasClass('zoneEqLogicOnClic') || _zone.hasClass('zoneEqLogicOnFly')) {
+          _zone.empty()
+          jeeP.clickedOpen = false
         }
       })
     }
   }
 })
 
-$('.view-link-widget').off('click').on('click', function() {
-  if (!jeeFrontEnd.planEditOption.state) {
-    $(this).find('a').click()
+//div_pageContainer events delegation:
+document.getElementById('div_pageContainer').addEventListener('mousedown', function(event) {
+  if (jeeFrontEnd.planEditOption.state === true && event.target.closest('div.jeeCtxMenu') == null) {
+    event.preventDefault()
+    return
   }
 })
-
-$('.div_displayObject').off('resize', '.graph-widget').on('resize', '.graph-widget', function() {
-  if (isset(jeedom.history.chart['div_designGraph' + $(this).attr('data-graph_id')])) {
-    jeedom.history.chart['div_designGraph' + $(this).attr('data-graph_id')].chart.reflow()
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  if (jeeFrontEnd.planEditOption.state === true && event.target.closest('div.jeeCtxMenu') == null) {
+    event.preventDefault()
+    return
   }
-})
+  var _target = null
+  if (_target = event.target.closest('#bt_createNewDesign')) {
+    jeeP.createNewDesign()
+    return
+  }
 
-$('.graphDataOption[data-l1key=configuration][data-l2key=graphColor]').off('change').on('change', function() {
-  jeeP.setColorSelect(this.closest('select'))
-})
+  if (_target = event.target.closest('.view-link-widget')) {
+    var link = _target.querySelector('a')
+    link.click()
+    return
+  }
 
-jeedomUI.setEqSignals()
-jeedomUI.setHistoryModalHandler()
+  if (_target = event.target.closest('.plan-link-widget')) {
+    if (!jeeFrontEnd.planEditOption.state) {
+      var linkId = _target.getAttribute('data-link_id')
+      if (linkId == undefined) return
+      jeephp2js.planHeader_id = linkId
+      jeeFrontEnd.planEditOption = {
+        state: false,
+        snap: false,
+        grid: false,
+        gridSize: jeeFrontEnd.planEditOption.gridSize,
+        highlight: true
+      }
+      jeeP.displayPlan()
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.zone-widget:not(.zoneEqLogic)')) {
+    if (!jeeFrontEnd.planEditOption.state) {
+      _target.insertAdjacentHTML('beforeend', '<center class="loading"><i class="fas fa-spinner fa-spin fa-4x"></i></center>')
+      jeedom.plan.execute({
+        id: _target.getAttribute('data-plan_id'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+          _target.empty().insertAdjacentHTML('beforeend', '<center class="loading"><i class="fas fa-times fa-4x"></i></center>')
+          setTimeout(function() {
+            _target.empty()
+            jeeP.clickedOpen = false
+          }, 3000)
+        },
+        success: function() {
+          _target.empty()
+          jeeP.clickedOpen = false
+        },
+      })
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.zone-widget.zoneEqLogic.zoneEqLogicOnClic')) {
+    if (!jeeFrontEnd.planEditOption.state && !jeeP.clickedOpen) {
+    jeeP.clickedOpen = true
+    jeedom.eqLogic.toHtml({
+      id: _target.getAttribute('data-eqLogic_id'),
+      version: 'dashboard',
+      global: false,
+      success: function(data) {
+        var newEq = document.createElement('div')
+        newEq.html(data.html)
+        _target.empty().appendChild(newEq.childNodes[0])
+        newEq = _target.querySelector('div[data-eqlogic_id="' + data.id + '"]')
+        newEq.style = _target.getAttribute('data-position')
+        newEq.style.position = 'absolute'
+        jeedomUtils.positionEqLogic(_target.getAttribute('data-eqLogic_id'), false)
+      }
+    })
+  }
+  }
+
+}, {buble: true})
+
+document.querySelector('.div_displayObject').addEventListener('mouseenter', function(event) {
+  if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnFly')) {
+    if (!jeeFrontEnd.planEditOption.state && event.target.getAttribute('data-flying') != '1') {
+      event.target.setAttribute('data-flying', '1')
+      jeeP.clickedOpen = true
+      var el = event.target
+      jeedom.eqLogic.toHtml({
+        id: el.getAttribute('data-eqLogic_id'),
+        version: 'dashboard',
+        global: false,
+        success: function(data) {
+          el.html(data.html, true)
+          let inserted = el.childNodes[0]
+          let dPos = el.style.position
+          let dStyle = el.style
+          inserted.style = dStyle
+          inserted.style.position = 'absolute'
+          jeedomUtils.positionEqLogic(el.getAttribute('data-eqLogic_id'), false)
+        }
+      })
+    }
+    return
+  }
+}, {capture: true})
+
+document.querySelector('.div_displayObject').addEventListener('mouseleave', function(event) {
+  if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnFly')) {
+    if (event.target.getAttribute('data-flying') == '1') {
+      event.target.setAttribute('data-flying', '0')
+      event.target.empty()
+      jeeP.clickedOpen = false
+    }
+    return
+  }
+}, {capture: true})
+
 
 //back to mobile home with three fingers on mobile:
-if (user_isAdmin == 1 && $('body').attr('data-device') == 'mobile') {
-  $('body').on('touchstart', function(event) {
+if (user_isAdmin == 1 && jeedomUtils.userDevice.type == 'mobile') {
+  document.body.registerEvent('touchstart', function (event) {
     if (event.touches.length == 3) {
-      $('body').off('touchstart')
       event.preventDefault()
       event.stopPropagation()
       window.location.href = 'index.php?v=m'

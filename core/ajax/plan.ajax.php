@@ -246,7 +246,7 @@ try {
 			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
 		}
 		$planHeader->save();
-		ajax::success();
+		ajax::success(array('filepath' => $filepath));
 	}
 
 	if (init('action') == 'uploadImagePlan') {

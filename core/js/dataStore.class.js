@@ -88,33 +88,42 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
         _options = {};
     }
     document.getElementById('mod_insertDataStoreValue')?.remove()
-    document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertDataStoreValue" title="{{Sélectionner une variable}}" ></div>')
-    $("#mod_insertDataStoreValue").dialog({
-        closeText: '',
-        autoOpen: false,
-        modal: true,
+    document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertDataStoreValue"></div>')
+    jeeDialog.dialog({
+        id: 'mod_insertDataStoreValue',
+        title: '{{Sélectionner une variable}}',
         height: 250,
-        width: 800
-    })
-    domUtils.ajaxSetup({async: false})
-    document.getElementById('mod_insertDataStoreValue').load('index.php?v=d&modal=dataStore.human.insert')
-    domUtils.ajaxSetup({async: true})
-    mod_insertDataStore.setOptions(_options)
-    $("#mod_insertDataStoreValue").dialog('option', 'buttons', {
-        "{{Annuler}}": function() {
-            $(this).dialog("close");
-        },
-        "{{Valider}}": function() {
-            var retour = {};
-            retour.human = mod_insertDataStore.getValue();
-            retour.id = mod_insertDataStore.getId();
-            if (retour.human.trim() != '') {
-                callback(retour);
+        width: 800,
+        top: '20vh',
+        contentUrl: 'index.php?v=d&modal=dataStore.human.insert',
+        callback: function() { mod_insertDataStore.setOptions(_options) },
+        buttons: {
+          confirm: {
+            label: '{{Valider}}',
+            className: 'success',
+            callback: {
+              click: function(event) {
+                var args = {}
+                args.human = mod_insertDataStore.getValue()
+                args.id = mod_insertDataStore.getId()
+                if (args.human.trim() != '') {
+                    callback(args)
+                }
+                document.getElementById('mod_insertDataStoreValue')._jeeDialog.destroy()
+              }
             }
-            $(this).dialog('close');
+          },
+          cancel: {
+            label: '{{Annuler}}',
+            className: 'warning',
+            callback: {
+              click: function(event) {
+                document.getElementById('mod_insertDataStoreValue')._jeeDialog.destroy()
+              }
+            }
+          }
         }
-    });
-    $('#mod_insertDataStoreValue').dialog('open');
+    })
 }
 
 jeedom.dataStore.remove = function(_params) {

@@ -121,7 +121,7 @@ jeedom.scenario.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/scenario.ajax.php';
   paramsAJAX.data = {
     action: 'toHtml',
-    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
+    id: (Array.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version
   };
   domUtils.ajax(paramsAJAX);
@@ -274,7 +274,7 @@ jeedom.scenario.refreshValue = function(_params) {
       }
       var tile = domUtils.parseHTML(result)
       sc.empty().appendChild(result.childNodes)
-      if (jeedomUtils.userDeviceType == undefined) {
+      if (jeedomUtils.userDevice.type == undefined) {
         sc.triggerEvent('create')
         jeedomUtils.setTileSize('.scenario');
       }
@@ -438,40 +438,45 @@ jeedom.scenario.emptyLog = function(_params) {
 
 jeedom.scenario.getSelectModal = function(_options, callback) {
   if (!isset(_options)) {
-    _options = {};
+    _options = {}
   }
-  if (document.getElementById('mod_insertScenarioValue') != null) {
-    document.getElementById('mod_insertScenarioValue').remove()
-  }
-
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertScenarioValue" title="{{Sélectionner le scénario}}" ></div>')
-  $("#mod_insertScenarioValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.getElementById('mod_insertScenarioValue')?.remove()
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertScenarioValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertScenarioValue',
+    title: '{{Sélectionner le scénario}}',
     height: 250,
-    width: 800
-  })
-  domUtils.ajaxSetup({async: false})
-  document.getElementById('mod_insertScenarioValue').load('index.php?v=d&modal=scenario.human.insert')
-  domUtils.ajaxSetup({async: true})
-
-  mod_insertScenario.setOptions(_options);
-  $("#mod_insertScenarioValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close");
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.human = mod_insertScenario.getValue()
-      retour.id = mod_insertScenario.getId()
-      if (retour.human.trim() != '') {
-        callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=scenario.human.insert',
+    callback: function() { mod_insertScenario.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.human = mod_insertScenario.getValue()
+            args.id = mod_insertScenario.getId()
+            if (args.human.trim() != '') {
+              callback(args)
+            }
+            document.getElementById('mod_insertScenarioValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertScenarioValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertScenarioValue').dialog('open')
 }
 
 jeedom.scenario.testExpression = function(_params) {
@@ -587,61 +592,67 @@ jeedom.scenario.autoCompleteActionScOnly = [
 jeedom.scenario.setAutoComplete = function(_params) {
   if (!isset(_params)) {
     _params = {}
-    _params.parent = $('#div_scenarioElement')
+    _params.parent = document.getElementById('div_scenarioElement')
     _params.type = 'expression'
   }
 
-  _params.parent.find('.expression').each(function() {
-    if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'condition') {
-      $(this).find('.expressionAttr[data-l1key="' + _params.type + '"]').autocomplete({
-        minLength: 1,
-        source: function(request, response) {
-          //return last term after last space:
-          var values = request.term.split(' ')
-          var term = values[values.length - 1]
-          if (term == '') return false //only space entered
-          response(
-            $.ui.autocomplete.filter(jeedom.scenario.autoCompleteCondition, term)
-          )
-        },
-        response: function(event, ui) {
-          //remove leading # from all values:
-          $.each(ui.content, function(index, _obj) {
-            _obj.label = _obj.label.substr(1)
-            _obj.value = _obj.label
-          })
-        },
-        focus: function() {
-          event.preventDefault()
-          return false
-        },
-        select: function(event, ui) {
-          //update input value:
-          if (this.value.substr(-1) == '#') {
-            this.value = this.value.slice(0, -1) + ui.item.value
-          } else {
-            var values = this.value.split(' ')
+  if (isElement_jQuery(_params.parent)) _params.parent = _params.parent[0]
+
+
+  _params.parent.querySelectorAll('.expression').forEach(_expr => {
+    //Empty Action block ?
+    var attrType = _expr.querySelector('.expressionAttr[data-l1key="type"]')
+    if (attrType) {
+      if (attrType.value == 'condition') {
+        _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
+          id: 'scenarioConditionAutocomplete',
+          minLength: 1,
+          source: function(request, response) {
+            //return last term after last space:
+            var values = request.term.split(' ')
             var term = values[values.length - 1]
-            this.value = this.value.slice(0, -term.length) + ui.item.value
+            if (term == '') return false //only space entered
+            response(
+              jeedom.scenario.autoCompleteCondition.filter(item => item.includes(term))
+            )
+          },
+          response: function(event, data) {
+            //remove leading # from all values:
+            data.content.forEach(_content => {
+              _content.text = _content.text.substr(1)
+              _content.value = _content.value.substr(1)
+            })
+          },
+          focus: function(event) {
+            event.preventDefault()
+            return false
+          },
+          select: function(event, data) {
+            if (data.value.substr(-1) == '#') {
+              data.value = data.value.slice(0, -1) + data.value
+            } else {
+              var values = data.value.split(' ')
+              var term = values[values.length - 1]
+              data.value = data.value.slice(0, -term.length) + data.value
+            }
           }
-          return false
-        }
-      })
+        })
+      }
+
+      if (attrType.value == 'action') {
+          if (document.body.getAttribute('data-page') == 'scenario') {
+            jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
+          } else {
+            jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
+          }
+
+          _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
+            source: jeedom.scenario.autoCompleteActionContext,
+            id: 'scenarioActionAutocomplete',
+            forceSingle: true
+          })
+      }
     }
 
-    if (this.querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
-        if (document.body.getAttribute('data-page') == 'scenario') {
-          jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
-        } else {
-          jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction
-        }
-
-      $(this).find('.expressionAttr[data-l1key="' + _params.type + '"]').autocomplete({
-        source: jeedom.scenario.autoCompleteActionContext,
-        close: function(event, ui) {
-          this.blur()
-        }
-      })
-    }
   })
 }

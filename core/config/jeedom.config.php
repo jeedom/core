@@ -63,7 +63,8 @@ $JEEDOM_INTERNAL_CONFIG = array(
 		),
 	),
 	'messageChannel' => array(
-		'alerting' => array('name' => __('Alerte des commandes', __FILE__), 'icon' => '<i class="far fa-bell"></i>')
+		'alerting' => array('name' => __('Alerte des commandes', __FILE__), 'icon' => '<i class="far fa-bell"></i>'),
+		'alertingReturnBack' => array('name' => __('Retour à l\'état normal des commandes', __FILE__), 'icon' => '<i class="fas fa-check"></i>')
 	),
 	'alerts' => array(
 		'timeout' => array('name' => __('Timeout', __FILE__), 'icon' => 'far fa-clock', 'level' => 6, 'check' => false, 'color' => 'var(--al-danger-color)'),
@@ -103,7 +104,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'info' => array(
 				'binary' => array(
-					'default' => array('template' => 'tmplicon', 'replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>', '#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
+					'icon' => array('template' => 'tmplicon', 'replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>', '#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
 					'line' => array('template' => 'tmpliconline', 'replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>', '#_icon_off_#' => '<i class=\'icon_red fas fa-times\'></i>')),
 					'alert' => array('template' => 'tmplicon', 'replace' => array('#_icon_on_#' => '<i class=\'icon_green fas fa-check\'></i>', '#_icon_off_#' => '<i class=\'icon_red icon jeedom-alerte2\'></i>')),
 					'door' => array('template' => 'tmplicon', 'replace' => array('#_icon_on_#' => '<i class=\'icon_green icon jeedom-porte-ferme\'></i>', '#_icon_off_#' => '<i class=\'icon_red icon jeedom-porte-ouverte\'></i>')),
@@ -366,14 +367,26 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'name' => __('Thermostat humidité ambiante', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
-			'HUMIDITY_SET_SETPOINT' => array(
-				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+			'THERMOSTAT_SET_MAX_TEMP' => array(
+				'name' => __('Thermostat maximum consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
 				'type' => 'Action', 'subtype' => array('slider')
+			),
+			'THERMOSTAT_SET_MIN_TEMP' => array(
+				'name' => __('Thermostat minimum consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+				'type' => 'Action', 'subtype' => array('slider')
+			),
+			'THERMOSTAT_HUMIDITY' => array(
+				'name' => __('Thermostat humidité ambiante', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
 			),
 			'HUMIDITY_SETPOINT' => array(
 				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
 				'type' => 'Info', 'subtype' => array('slider')
 			),
+			'HUMIDITY_SET_SETPOINT' => array(
+ 				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+ 				'type' => 'Action', 'subtype' => array('slider')
+ 			),
 			'CAMERA_UP' => array(
 				'name' => __('Mouvement caméra vers le haut', __FILE__), 'familyid' => 'Camera', 'family' => __('Caméra', __FILE__),
 				'type' => 'Action', 'subtype' => array('other')

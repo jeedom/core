@@ -32,7 +32,7 @@ try {
 	require_once __DIR__ . '/../core/class/DB.class.php';
 	require_once __DIR__ . '/../core/class/system.class.php';
 	if (count(system::ps('install/install.php', 'sudo')) > 1) {
-		echo "Une mise à jour/installation est déjà en cours. Vous devez attendre qu'elle soit finie avant d'en relancer une\n";
+		echo "An update/installation is already in progress. You must wait for it to finish before restarting another one.\n";
 		print_r(system::ps('install/install.php', 'sudo'));
 		echo "[END INSTALL]\n";
 		die();
@@ -42,19 +42,19 @@ try {
 	if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 		throw new Exception('Jeedom nécessite PHP 5.6 ou plus (actuellement : ' . PHP_VERSION . ')');
 	}
-	echo "\nInstallation de Jeedom\n";
-	echo "Installation de la base de données...";
+	echo "\nInstallation of Jeedom\n";
+	echo "Installating database...";
 	try {
 		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true));
 	} catch (\Exception $e) {
-		echo "***ERREUR*** " . $e->getMessage() . "\n";
+		echo "***ERROR*** " . $e->getMessage() . "\n";
 	}
 	echo "OK\n";
 	require_once __DIR__ . '/../core/php/core.inc.php';
-	echo "Post installation...\n";
+	echo "Post install...\n";
 	config::save('api', config::genKey());
 	require_once __DIR__ . '/consistency.php';
-	echo "Ajout de l'utilisateur (admin,admin)\n";
+	echo "Creating user (admin,admin)\n";
 	try{
 		$user = new user();
 		$user->setLogin('admin');
@@ -62,17 +62,17 @@ try {
 		$user->setProfils('admin');
 		$user->save();
 	}catch (\Exception $e) {
-		echo "***ERREUR*** " . $e->getMessage() . "\n";
+		echo "***ERROR*** " . $e->getMessage() . "\n";
 	}
 	config::save('log::level', 400);
 	echo "OK\n";
 	config::save('version', jeedom::version());
 } catch (Exception $e) {
-	echo 'Erreur durant l\'installation : ' . $e->getMessage();
-	echo 'Détails : ' . print_r($e->getTrace(), true);
+	echo 'Error during install : ' . $e->getMessage();
+	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END INSTALL ERROR]\n";
 	throw $e;
 }
 
-echo "Temps d'installation : " . (strtotime('now') - $starttime) . "s\n";
+echo "Install duration : " . (strtotime('now') - $starttime) . "s\n";
 echo "[END INSTALL SUCCESS]\n";

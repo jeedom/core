@@ -10,48 +10,48 @@ echo "|    JEEDOM SICK SCRIPT " . date('Y-m-d H:i:s') . "    |";
 echo "\n==================================================\n";
 
 echo "\n**************************************************\n";
-echo "*                 VARIABLES                      *";
+echo "*                   VARIABLES                    *";
 echo "\n**************************************************\n";
 $install_dir = __DIR__;
 $processUser = posix_getpwuid(posix_geteuid());
-echo "Dossier d'installation : " . $install_dir . "\n";
+echo "Install folder : " . $install_dir . "\n";
 echo "User : " . $processUser['name'] . "\n";
 if (trim(exec('sudo cat /etc/sudoers')) != "") {
-	echo "Sudo : OUI\n";
+	echo "Sudo : YES\n";
 } else {
-	echo "Sudo : NON\n";
+	echo "Sudo : NO\n";
 }
 
 echo "\n**************************************************\n";
-echo "*               DOSSIERS                         *";
+echo "*                    FOLDERS                     *";
 echo "\n**************************************************\n";
-echo "Charge l'environnement de Jeedom...";
+echo "Load Jeedom environment...";
 try {
 	require_once __DIR__ . "/core/php/core.inc.php";
 	echo "OK\n";
 } catch (Exeption $e) {
-	echo "ERREUR\n";
-	echo "Impossible de charger l'environnement de Jeedom : " . $e->getMessage();
+	echo "ERROR\n";
+	echo "Cannot load Jeedom environment : " . $e->getMessage();
 	echo "\n";
 	die();
 }
 
 /* Check log dir */
-echo "Vérifie si les log sont en écriture...";
+echo "Checl write mode on log files ...";
 if (!file_exists($install_dir . '/log')) {
-	echo "introuvable\n";
-	echo "Faites : mkdir " . $install_dir . "/log\n";
+	echo "unfound /log folder\n";
+	echo "Required command : mkdir " . $install_dir . "/log\n";
 	die();
 }
 if (!is_writable($install_dir . '/log')) {
-	echo "Impossible d'écrire\n";
-	echo "Faites : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/log\n";
+	echo "Cannot write\n";
+	echo "Required command : chown  -R " . $processUser['name'] . ' ' . $install_dir . "/log\n";
 	die();
 }
 echo "OK\n";
 
 echo "\n**************************************************\n";
-echo "*              UTILISATEURS                      *";
+echo "*                     USERS                      *";
 echo "\n**************************************************\n";
 try {
 	$foundAdmin = false;
@@ -67,7 +67,7 @@ try {
 	}
 
 	if (!$foundAdmin) {
-		echo "Aucun utilisateur admin trouvé, veuillez en créer un...";
+		echo "No admin user found, creating one...";
 		$user = (new \user())
 			->setLogin('admin')
 			->setPassword(sha512('admin'))
@@ -76,29 +76,29 @@ try {
 		echo "OK (admin/admin)\n";
 	}
 } catch (Exeption $e) {
-	echo "ERREUR\n";
+	echo "ERROR\n";
 	echo "Description : " . $e->getMessage();
 	echo "\n";
 	die();
 }
 
 echo "\n**************************************************\n";
-echo "*                 CRON                           *";
+echo "*                     CRON                       *";
 echo "\n**************************************************\n";
-echo "Vérifie si cron est actif...";
+echo "Check active cron engine ...";
 if (config::byKey('enableCron', 'core', 1, true) == 0) {
 	echo "NOK\n";
 } else {
 	echo "OK\n";
 }
-echo "Vérifie si scénario est actif...";
+echo "Check active scenario engine ...";
 if (config::byKey('enableScenario') == 0) {
 	echo "NOK\n";
 } else {
 	echo "OK\n";
 }
 echo "\n";
-echo "NAME | STATE | SCHEDULE | DEAMON | ONCE | LAST RUN\n";
+echo "NAME | STATE | SCHEDULE | DAEMON | ONCE | LAST RUN\n";
 foreach (cron::all() as $cron) {
 	echo $cron->getName();
 	echo " | ";
@@ -115,9 +115,9 @@ foreach (cron::all() as $cron) {
 }
 
 echo "\n**************************************************\n";
-echo "*                 DATE                           *";
+echo "*                     DATE                       *";
 echo "\n**************************************************\n";
-echo "Vérifie si la date de Jeedom est correcte...";
+echo "Check Jeedom correct date ...";
 if (jeedom::isDateOk()) {
 	echo "OK";
 } else {
@@ -127,7 +127,7 @@ $cache = cache::byKey('jeedom::lastDate');
 echo " (" . $cache->getValue() . ")\n";
 
 echo "\n**************************************************\n";
-echo "*                 MESSAGE                        *";
+echo "*                    MESSAGE                     *";
 echo "\n**************************************************\n";
 echo "DATE | PLUGIN | LOGICALID | MESSAGE\n";
 foreach (message::all() as $message) {
@@ -142,7 +142,7 @@ foreach (message::all() as $message) {
 }
 
 echo "\n**************************************************\n";
-echo "*                 PLUGIN                         *";
+echo "*                      PLUGIN                    *";
 echo "\n**************************************************\n";
 echo "ID | NAME | STATE\n";
 foreach (plugin::listPlugin() as $plugin) {
@@ -166,5 +166,5 @@ foreach (plugin::listPlugin() as $plugin) {
 
 echo "\n\n";
 echo "\n==================================================\n";
-echo "|         TOUTES LES VERIFICATIONS SONT FAITES    |";
+echo "|                   All check done                |";
 echo "\n==================================================\n";

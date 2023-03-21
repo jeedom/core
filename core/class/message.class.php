@@ -211,13 +211,15 @@ class message {
 					if (isset($action['options'])) {
 						$options = $action['options'];
 					}
-					foreach ($options as &$value) {
-						$value = str_replace(array_keys($params), $params, $value);
+					if (count($options) > 0) {
+						foreach ($options as &$value) {
+							$value = str_replace(array_keys($params), $params, $value);
+						}
 					}
 					scenarioExpression::createAndExec('action', $action['cmd'], $options);
 				}
 			}
-			event::add('notify', array('title' => __('Message de', __FILE__) . ' ' . ' ' . $this->getPlugin(), 'message' => $this->getMessage(), 'category' => 'message'));
+			event::add('notify', array('title' => __('Message de', __FILE__) . ' ' . ' ' . $this->getPlugin(), 'message' => $this->getMessage(true), 'category' => 'message'));
 			event::add('message::refreshMessageNumber');
 		}
 		return true;
@@ -229,6 +231,12 @@ class message {
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		$return['message'] = $this->getMessage(true);
+		$return['action'] = $this->getAction(true);
+		return $return;
+	}
 
 	public function getId() {
 		return $this->id;
@@ -242,11 +250,19 @@ class message {
 		return $this->plugin;
 	}
 
-	public function getMessage() {
+	public function getMessage($display = false) {
+		if ($display === true) {
+			$display = html_entity_decode($this->message);
+			return strip_tags($display, '<i><a>');
+		}
 		return $this->message;
 	}
 
-	public function getAction() {
+	public function getAction($display = false) {
+		if ($display === true) {
+			$display = html_entity_decode($this->action);
+			return strip_tags($display, '<i><a>');
+		}
 		return $this->action;
 	}
 

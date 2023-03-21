@@ -1,3 +1,4 @@
+<!--template/scenario/cmd.action.slider.default-->
 <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft" style="width: 100px">#slider_placeholder#</span>
   <input value="#slider#" class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="slider" data-cmd_id="#id#" data-uid="#uid#" />
@@ -7,7 +8,7 @@
 </div>
 
 <script>
-  $('.listCmdInfo[data-uid="#uid#"]').off('click').on('click', function() {
+  document.querySelector('.listCmdInfo[data-uid="#uid#"]').addEventListener('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
       document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="slider"][data-uid="#uid#"]').insertAtCursor(result.human)
     })

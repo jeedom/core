@@ -360,10 +360,11 @@ class eqLogic {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= ' ' . __('n\'a pas envoyé de message depuis plus de', __FILE__) . ' ' . $noReponseTimeLimit . ' ' . __('min (vérifiez les piles)', __FILE__);
+						$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
-							message::add('core', $message, '', $logicalId);
+							message::add('core', $message, $action, $logicalId);
 						}
 						$cmds = explode(('&&'), config::byKey('alert::timeoutCmd'));
 						if (count($cmds) > 0 && trim(config::byKey('alert::timeoutCmd')) != '' && $prevStatus == 0) {
@@ -590,7 +591,7 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="' . $this->getId() . '">';
+		$html .= '<div class="eqLogic eqLogic-widget text-center ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="' . $this->getId() . '">';
 
 		$eqName = $this->getName();
 		if ($_version == 'mobile') {
@@ -598,11 +599,12 @@ class eqLogic {
 		} else {
 			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><span>' . $object_name . '</span></div>';
 		}
-		$html .= '<center class="jeedom-batterie">';
+		$html .= '<div class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
 		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
-		$html .= '</center>';
-		$html .= '<center>' . __('Le', __FILE__) . ' ' . date("Y-m-d H:i:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</center>';
+		$html .= '</div>';
+		$html .= '<div>' . __('Le', __FILE__) . ' ' . date("Y-m-d H:i:s", strtotime($this->getStatus('batteryDatetime', __('inconnue', __FILE__)))) . '</div>';
+		$html .= '<br>';
 		$html .= '<span class="pull-left pluginName">' . ucfirst($this->getEqType_name()) . '</span>';
 		if ($_version == 'mobile') {
 			$html .= '<span class="pull-left batteryTime">';
@@ -715,6 +717,7 @@ class eqLogic {
 		}
 		$translate_category = trim($translate_category, ',');
 		$name_display = $this->getName();
+		$uid = 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER;
 		$replace = array(
 			'#id#' => $this->getId(),
 			'#name#' => $this->getName(),
@@ -727,7 +730,7 @@ class eqLogic {
 			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun', __FILE__),
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
-			'#uid#' => 'eqLogic' . $this->getId() . self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER,
+			'#uid#' => $uid,
 			'#refresh_id#' => '',
 			'#version#' => $_version,
 			'#alert_name#' => '',
@@ -822,10 +825,10 @@ class eqLogic {
 		//History graph:
 		if ($this->getDisplay('backGraph::info', 0) != 0 && is_object(cmd::byId($this->getDisplay('backGraph::info')))) {
 			$doNotHighlightGraphCmd = (config::byKey('interface::advance::doNotHighlightGraphCmd') == 1) ? 'true' : 'false';
-			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"></div><script>jeedom.eqLogic.initGraphInfo(' . $this->getId() . ',' . $doNotHighlightGraphCmd . ')</script>';
+			$replace['#divGraphInfo#'] = '<div class="eqlogicbackgraph" data-cmdid="' . $this->getDisplay('backGraph::info') . '" data-format="' . $this->getDisplay('backGraph::format', 'day') . '" data-type="' . $this->getDisplay('backGraph::type', 'areaspline') . '" data-color="' . $this->getDisplay('backGraph::color', '#4572A7') . '"></div><script>jeedom.eqLogic.initGraphInfo("' . $uid . '", ' . $doNotHighlightGraphCmd . ')</script>';
 			$height = $this->getDisplay('backGraph::height', '0');
 			if ($height != '0') {
-				$replace['#isVerticalAlign#'] = 0;
+				//$replace['#isVerticalAlign#'] = 0;
 				$replace['#divGraphInfo#'] = str_replace('data-cmdid=', 'style="height:' . $height . 'px;" data-cmdid=', $replace['#divGraphInfo#']);
 				$replace['#divGraphInfo#'] = str_replace('eqlogicbackgraph', 'eqlogicbackgraph fixedbackgraph', $replace['#divGraphInfo#']);
 			}
@@ -1126,15 +1129,16 @@ class eqLogic {
 				return;
 			}
 			$prevStatus = $this->getStatus('batterydanger', 0);
-			$logicalId = 'lowBattery' . $this->getId();
 			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
+			$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+			$logicalId = 'lowBattery' . $this->getId();
 			$this->setStatus('batterydanger', 1);
 			if ($prevStatus == 0) {
 				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
-					message::add($this->getEqType_name(), $message, '', $logicalId);
+					message::add($this->getEqType_name(), $message, $action, $logicalId);
 				}
 				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
 				if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
@@ -1154,16 +1158,17 @@ class eqLogic {
 				return;
 			}
 			$prevStatus = $this->getStatus('batterywarning', 0);
-			$logicalId = 'warningBattery' . $this->getId();
 			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
+			$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+			$logicalId = 'warningBattery' . $this->getId();
 			$this->setStatus('batterywarning', 1);
 			$this->setStatus('batterydanger', 0);
 			if ($prevStatus == 0) {
 				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
-					message::add($this->getEqType_name(), $message, '', $logicalId);
+					message::add($this->getEqType_name(), $message, $action, $logicalId);
 				}
 				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
 				if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {

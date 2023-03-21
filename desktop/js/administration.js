@@ -21,27 +21,28 @@ if (!jeeFrontEnd.administration) {
     configReload: null,
     init: function() {
       this.actionOptions = []
-      this.$divConfig = $('#config')
       window.jeeP = this
+      domUtils.showLoading()
 
-      //Back to tab:
-      var _url = window.location.href
-      if (_url.match('#') && _url.split('#')[1] != '' && $('.nav-tabs a[data-target="#' + _url.split('#')[1] + '"]').html() != undefined) {
-        $('.nav-tabs a[data-target="#' + _url.split('#')[1] + '"]').trigger('click')
-      }
-    },
-    updateTooltips: function() {
-      //management of tooltip with search engine. In scenarios, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
-      $('[tooltip]:not(.tooltipstered)').each(function() {
-        $(this).attr('title', $(this).attr('tooltip'))
-      })
-      $('[tooltip]:not(.tooltipstered)').tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
+      this.loadConfig()
+      this.printObjectSummary()
+      this.printConvertColor()
+
+      jeedomUtils.dateTimePickerInit()
+      jeedomUtils.initSpinners()
+      jeedomUtils.setCheckContextMenu()
+      setTimeout(function() {
+        jeedomUtils.initTooltips()
+        jeeFrontEnd.modifyWithoutSave = false
+      }, 500)
     },
     initSearchLinks: function() {
-      $('#searchResult a[role="searchTabLink"]').on('click', function() {
-        var tabId = $(this).attr('href')
-        $('#bt_resetConfigSearch').trigger('click')
-        $('ul.nav-primary > li > a[href="' + tabId + '"]').trigger('click')
+      document.querySelectorAll('#searchResult a[role="searchTabLink"]').forEach(_search => {
+        _search.addEventListener('click', function(event) {
+          let tabId = event.target.closest('a').getAttribute('data-target')
+          document.getElementById('in_searchConfig').jeeValue('').triggerEvent('keyup')
+          document.querySelector('a[data-target="' + tabId + '"]')?.triggerEvent('click')
+        })
       })
     },
     //-> summary
@@ -66,25 +67,36 @@ if (!jeeFrontEnd.administration) {
             })
             return
           }
-          $('#table_objectSummary tbody').empty()
+          var tbody = document.getElementById('table_objectSummary').tBodies[0]
+          if (Sortable.get(tbody)) Sortable.get(tbody).destroy()
+          tbody.empty()
           for (var i in data.result) {
-            if (isset(data.result[i].key) && data.result[i].key == '') {
-              continue
-            }
-            if (!isset(data.result[i].name)) {
-              continue
-            }
+            if (isset(data.result[i].key) && data.result[i].key == '') continue
+            if (!isset(data.result[i].name)) continue
             if (!isset(data.result[i].key)) {
               data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
             }
-            jeeP.addObjectSummary(data.result[i])
+            jeeP.addObjectSummary(data.result[i], false)
           }
+          //Set sortable:
+          Sortable.create(document.getElementById('table_objectSummary').tBodies[0], {
+            delay: 100,
+            delayOnTouchOnly: true,
+            draggable: 'tr.objectSummary',
+            filter: 'a, input, textarea',
+            preventOnFilter: false,
+            direction: 'vertical',
+            removeCloneOnHide: true,
+            onEnd: function(event) {
+              jeeFrontEnd.modifyWithoutSave = true
+            },
+          })
           jeeFrontEnd.modifyWithoutSave = false
         }
       })
     },
-    addObjectSummary: function(_summary) {
-      var tr = '<tr class="objectSummary">'
+    addObjectSummary: function(_summary, _change) {
+      let tr = '<tr>'
       tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="key" /></td>'
 
       tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="name" /></td>'
@@ -96,10 +108,10 @@ if (!jeeFrontEnd.administration) {
       tr += '</select></td>'
 
       tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
-      tr += '<span class="objectSummaryAttr" data-l1key="icon"></span></td>'
+      tr += '<span class="objectSummaryAttr summIconContainer" data-l1key="icon"></span></td>'
 
       tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
-      tr += '<span class="objectSummaryAttr" data-l1key="iconnul"></span></td>'
+      tr += '<span class="objectSummaryAttr summIconContainer" data-l1key="iconnul"></span></td>'
 
       tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
 
@@ -125,18 +137,22 @@ if (!jeeFrontEnd.administration) {
       tr += '<td><a class="objectSummaryAction cursor" data-l1key="remove"><i class="fas fa-minus-circle"></i></a></td>'
 
       tr += '</tr>'
-      document.querySelector('#table_objectSummary tbody').insertAdjacentHTML('beforeend', tr)
+
+      let newTr = document.createElement('tr')
+      newTr.innerHTML = tr
+      newTr.addClass('objectSummary')
       if (isset(_summary)) {
-        document.querySelectorAll('#table_objectSummary tbody tr').last().setJeeValues(_summary, '.objectSummaryAttr')
+        newTr.setJeeValues(_summary, '.objectSummaryAttr')
       }
       if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
-        $('#table_objectSummary tbody tr:last .objectSummaryAttr[data-l1key=key]').attr('disabled', 'disabled')
+        newTr.querySelector('.objectSummaryAttr[data-l1key="key"]').disabled = true
       }
-      jeeFrontEnd.modifyWithoutSave = true
+      document.getElementById('table_objectSummary').tBodies[0].appendChild(newTr)
+      if (!isset(_change) || _change === true) jeeFrontEnd.modifyWithoutSave = true
     },
     saveObjectSummary: function() {
       var summary = {}
-      var temp = document.querySelectorAll('#table_objectSummary tbody tr').getJeeValues('.objectSummaryAttr')
+      var temp = document.getElementById('table_objectSummary').tBodies[0].childNodes.getJeeValues('.objectSummaryAttr')
       for (var i in temp) {
         if (temp[i].key == '') {
           temp[i].key = temp[i].name
@@ -155,9 +171,12 @@ if (!jeeFrontEnd.administration) {
           value: JSON.stringify(value)
         },
         dataType: 'json',
-        global: false,
-        error: function(request, status, error) {
-          handleAjaxError(request, status, error)
+        noDisplayError: true,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
         },
         success: function(data) {
           if (data.state != 'ok') {
@@ -165,20 +184,17 @@ if (!jeeFrontEnd.administration) {
               message: data.result,
               level: 'danger'
             })
-            return
           }
-          jeeP.printObjectSummary()
-          jeeFrontEnd.modifyWithoutSave = false
         }
       })
     },
     //-> action on message
     loadActionOnMessage: function() {
-      $('.bt_addActionOnMessage').each(function(){
-        let channel = $(this).attr('data-channel');
-        $('#div_actionOnMessage'+channel).empty()
+      document.querySelectorAll('.bt_addActionOnMessage').forEach(_button => {
+        let channel = _button.getAttribute('data-channel')
+        document.getElementById('div_actionOnMessage' + channel).empty()
         jeedom.config.load({
-          configuration: 'actionOnMessage'+channel,
+          configuration: 'actionOnMessage' + channel,
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
@@ -202,32 +218,29 @@ if (!jeeFrontEnd.administration) {
               },
               success: function(data) {
                 for (var i in data) {
-                  $('#' + data[i].id).append(data[i].html.html)
+                  document.getElementById(data[i].id).html(data[i].html.html)
                 }
                 jeedomUtils.taAutosize()
+                jeedomUtils.initTooltips()
               }
             })
           }
         })
       });
     },
-    addActionOnMessage: function(_action,_channel) {
-      if (!isset(_channel)) {
-        _channel = ''
-      }
-      if (!isset(_action)) {
-        _action = {}
-      }
-      if (!isset(_action.options)) {
-        _action.options = {}
-      }
-      var div = '<div class="expression actionOnMessage">'
+    addActionOnMessage: function(_action, _channel) {
+      if (!isset(_channel)) _channel = ''
+      if (!isset(_action)) _action = {}
+      if (!isset(_action.options)) _action.options = {}
+
+      let actionOption_id = jeedomUtils.uniqId()
+      let div = '<div class="expression actionOnMessage">'
       div += '<input class="expressionAttr" data-l1key="type" style="display : none;" value="action">'
       div += '<div class="form-group ">'
       div += '<label class="col-sm-2 control-label">Action</label>'
       div += '<div class="col-sm-1">'
-      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour desactiver l\'action}}" />'
-      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parrallele des autres actions}}" />'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'action}}" />'
+      div += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" title="{{Cocher pour que la commande s\'éxecute en parallèle des autres actions}}" />'
       div += '</div>'
       div += '<div class="col-sm-4">'
       div += '<div class="input-group">'
@@ -241,11 +254,13 @@ if (!jeeFrontEnd.administration) {
       div += '</span>'
       div += '</div>'
       div += '</div>'
-      var actionOption_id = jeedomUtils.uniqId()
       div += '<div class="col-sm-5 actionOptions" id="' + actionOption_id + '"></div>'
       div += '</div>'
-      document.querySelector('#div_actionOnMessage'+_channel).insertAdjacentHTML('beforeend', div)
-      document.querySelectorAll('#div_actionOnMessage'+_channel+' .actionOnMessage').last().setJeeValues(_action, '.expressionAttr')
+
+      let newDiv = document.createElement('div')
+      newDiv.innerHTML = div
+      newDiv.setJeeValues(_action, '.expressionAttr')
+      document.getElementById('div_actionOnMessage'+_channel).appendChild(newDiv.childNodes[0])
 
       jeeP.actionOptions.push({
         expression: init(_action.cmd, ''),
@@ -254,7 +269,7 @@ if (!jeeFrontEnd.administration) {
       })
 
       jeedom.scenario.setAutoComplete({
-        parent: $('#div_actionOnMessage'+_channel),
+        parent: document.getElementById('div_actionOnMessage'+_channel),
         type: 'cmd'
       })
     },
@@ -319,7 +334,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          $('#span_cacheObject').html(data.count)
+          document.getElementById('span_cacheObject').innerHTML = data.count
         }
       })
     },
@@ -345,16 +360,15 @@ if (!jeeFrontEnd.administration) {
             })
             return
           }
-          $('#table_convertColor tbody').empty()
+          document.getElementById('table_convertColor').tBodies[0].empty()
           for (var color in data.result) {
-            jeeP.addConvertColor(color, data.result[color])
+            jeeP.addConvertColor(color, data.result[color], false)
           }
-          jeeFrontEnd.modifyWithoutSave = false
         }
       })
     },
-    addConvertColor: function(_color, _html) {
-      var tr = '<tr>'
+    addConvertColor: function(_color, _html, _change) {
+      let tr = '<tr>'
       tr += '<td>'
       tr += '<input class="color form-control input-sm" value="' + init(_color) + '"/>'
       tr += '</td>'
@@ -365,8 +379,8 @@ if (!jeeFrontEnd.administration) {
       tr += '<i class="fas fa-minus-circle removeConvertColor cursor"></i>'
       tr += '</td>'
       tr += '</tr>'
-      $('#table_convertColor tbody').append(tr)
-      jeeFrontEnd.modifyWithoutSave = true
+      document.getElementById('table_convertColor').tBodies[0].insertAdjacentHTML('beforeend', tr)
+      if (!isset(_change) || _change === true) jeeFrontEnd.modifyWithoutSave = true
     },
     saveConvertColor: function() {
       var value = {}
@@ -399,297 +413,285 @@ if (!jeeFrontEnd.administration) {
         }
       })
     },
-  }
-}
-
-jeeFrontEnd.administration.init()
-
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    $("#bt_saveGeneraleConfig").click()
-    return
-  }
-})
-
-domUtils.showLoading()
-if (getUrlVars('panel') != false) {
-  $('a[href="#' + getUrlVars('panel') + '"]').click()
-}
-
-jeedomUtils.dateTimePickerInit()
-jeedomUtils.initSpinners()
-jeedomUtils.setCheckContextMenu()
-jeeP.printConvertColor()
-setTimeout(function() {
-  jeeP.updateTooltips()
-  jeeFrontEnd.modifyWithoutSave = false
-}, 500)
-
-//searching
-$('#in_searchConfig').keyup(function() {
-  var search = this.value
-
-  //place back found els with random numbered span to place them back to right place. Avoid cloning els for better saving.
-  $('span[searchId]').each(function() {
-    el = $('#searchResult [searchId="' + $(this).attr('searchId') + '"]')
-    el.removeAttr('searchId')
-    $(this).replaceWith(el)
-  })
-
-  document.emptyById('searchResult')
-  if (search == '') {
-    $('.nav-tabs.nav-primary, .tab-content').show()
-    jeedomUtils.dateTimePickerInit()
-    jeeP.updateTooltips()
-    return
-  }
-  if (search.length < 3) return
-  $('.nav-tabs.nav-primary, .tab-content').hide()
-
-  search = jeedomUtils.normTextLower(search)
-  var text, tooltip, tabId, tabName, el, searchId
-  var tabsArr = []
-  var thisTabLink
-  $('.form-group > .control-label').each(function() {
-    thisTabLink = false
-    text = jeedomUtils.normTextLower($(this).text())
-    tooltip = $(this).find('sup i').attr('tooltip')
-    if (tooltip) {
-      tooltip = jeedomUtils.normTextLower(tooltip)
-    } else {
-      tooltip = ''
-    }
-    if (text.indexOf(search) >= 0 || tooltip.indexOf(search) >= 0) {
-      //get element tab to create link to:
-      tabId = $(this).closest('div[role="tabpanel"]').attr('id')
-      if (!tabsArr.includes(tabId)) {
-        tabName = $('ul.nav-primary a[href="#' + tabId + '"]').html()
-        if (tabName != undefined) {
-          $('#searchResult').append('<div><a role="searchTabLink" href="#' + tabId + '">' + tabName + '</a></div>')
-          tabsArr.push(tabId)
-        }
-      }
-      thisTabLink = $('#searchResult a[role="searchTabLink"][href="#' + tabId + '"]').parent()
-
-      el = $(this).closest('.form-group')
-      //Is this form-group not in result yet:
-      if (el.attr('searchId') == undefined) {
-        searchId = Math.random()
-        el.attr('searchId', searchId)
-        el.replaceWith('<span searchId=' + searchId + '></span>')
-        el.find('.tooltipstered').each(function() {
-          $(this).removeClass('tooltipstered')
-        })
-        thisTabLink.append(el)
-      }
-    }
-  })
-  jeedomUtils.dateTimePickerInit()
-  jeeP.initSearchLinks()
-  jeeP.updateTooltips()
-})
-
-$('#bt_resetConfigSearch').on('click', function() {
-  $('#in_searchConfig').val('').keyup()
-  jeedomUtils.dateTimePickerInit()
-})
-
-//load configuration settings
-jeedom.config.load({
-  configuration: document.querySelectorAll('#config').getJeeValues('.configKey:not(.noSet)')[0],
-  error: function(error) {
-    jeedomUtils.showAlert({
-      message: error.message,
-      level: 'danger'
-    })
-  },
-  success: function(data) {
-    document.querySelector('#config').setJeeValues(data, '.configKey')
-    $('.configKey[data-l1key="market::allowDNS"]').trigger('change')
-    $('.configKey[data-l1key="ldap:enable"]').trigger('change')
-    jeeP.loadActionOnMessage()
-
-    if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') $('a.bt_removeBackgroundImage[data-page=dashboard]').addClass('disabled')
-    if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') $('a.bt_removeBackgroundImage[data-page=analysis]').addClass('disabled')
-    if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') $('a.bt_removeBackgroundImage[data-page=tools]').addClass('disabled')
-    jeeFrontEnd.modifyWithoutSave = false
-
-    jeeP.configReload = document.querySelectorAll('#config').getJeeValues('.configKey[data-reload="1"]')[0]
-  }
-})
-
-$("#bt_saveGeneraleConfig").off('click').on('click', function(event) {
-  jeedomUtils.hideAlert()
-  jeeP.saveConvertColor()
-  jeeP.saveObjectSummary()
-  var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
-  $('.bt_addActionOnMessage').each(function(){
-    let channel = $(this).attr('data-channel');
-    config['actionOnMessage'+channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage'+channel+' .actionOnMessage').getJeeValues('.expressionAttr'))
-  })
-  jeedom.config.save({
-    configuration: config,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
+    //Global:
+    loadConfig: function() {
       jeedom.config.load({
-        configuration: document.querySelectorAll('#config').getJeeValues('.configKey:not(.noSet)')[0],
+      configuration: document.getElementById('config').getJeeValues('.configKey:not(.noSet)')[0],
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        document.getElementById('config').setJeeValues(data, '.configKey')
+        //document.querySelector('.configKey[data-l1key="market::allowDNS"]').triggerEvent('change')
+        //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
+        jeeP.loadActionOnMessage()
+
+        if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
+        if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
+        if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
+        jeeFrontEnd.modifyWithoutSave = false
+
+        jeeP.configReload = document.getElementById('config').getJeeValues('.configKey[data-reload="1"]')[0]
+      }
+    })
+    },
+    saveConfig: function() {
+      jeedomUtils.hideAlert()
+      jeeP.saveConvertColor()
+      jeeP.saveObjectSummary()
+      var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
+      document.querySelectorAll('.bt_addActionOnMessage').forEach(_bt => {
+        let channel = _bt.getAttribute('data-channel')
+        config['actionOnMessage' + channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage' + channel + ' .actionOnMessage').getJeeValues('.expressionAttr'))
+      })
+
+      jeedom.config.save({
+        configuration: config,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
-          var reloadPage = false
-          try {
-            for (var key in jeeP.configReload) {
-              if (jeeP.configReload[key] != data[key]) {
+        success: function() {
+          jeedom.config.load({
+            configuration: document.getElementById('config').getJeeValues('.configKey:not(.noSet)')[0],
+            error: function(error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              var reloadPage = false
+              try {
+                for (var key in jeeP.configReload) {
+                  if (jeeP.configReload[key] != data[key]) {
+                    reloadPage = true
+                    break
+                  }
+                }
+              } catch (error) {
                 reloadPage = true
-                break
+              }
+              if (reloadPage) {
+                jeeFrontEnd.modifyWithoutSave = false
+                var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
+                window.history.pushState({}, document.title, url)
+                window.location.reload(true)
+              } else {
+                document.getElementById('config').setJeeValues(data, '.configKey')
+                jeeP.loadActionOnMessage()
+                jeeFrontEnd.modifyWithoutSave = false
+                setTimeout(function() {
+                  jeeFrontEnd.modifyWithoutSave = false
+                }, 1000)
+                jeedomUtils.showAlert({
+                  message: '{{Sauvegarde réussie}}',
+                  level: 'success'
+                })
+                jeeP.configReload = document.getElementById('config').getJeeValues('.configKey[data-reload="1"]')[0]
               }
             }
-          } catch (error) {
-            reloadPage = true
-          }
-          if (reloadPage) {
-            var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
-            if (window.location.hash != '') {
-              url += window.location.hash
-            }
-            window.history.pushState({}, document.title, url)
-            window.location.reload(true)
-          } else {
-            document.querySelector('#config').setJeeValues(data, '.configKey')
-            jeeP.loadActionOnMessage()
-            jeeFrontEnd.modifyWithoutSave = false
-            setTimeout(function() {
-              jeeFrontEnd.modifyWithoutSave = false
-            }, 1000)
-            jeedomUtils.showAlert({
-              message: '{{Sauvegarde réussie}}',
-              level: 'success'
-            })
-            jeeP.configReload = document.querySelectorAll('#config').getJeeValues('.configKey[data-reload="1"]')[0]
-          }
+          })
         }
       })
+    },
+  }
+}
+
+jeeFrontEnd.administration.init()
+
+
+//searching
+document.getElementById('in_searchConfig').addEventListener('keyup', function(event) {
+  var search = this.value
+  var resultDiv = document.getElementById('searchResult')
+
+  //place back found els with unique span id to place them back to right place. Avoid cloning els to not break saveConfig().
+  document.querySelectorAll('span[searchId]').forEach(_span => {
+    el = document.querySelector('#searchResult [searchId="' + _span.getAttribute('searchId') + '"]')
+    if (el != null) {
+      el.removeAttribute('searchId')
+      _span.replaceWith(el)
     }
   })
+
+  resultDiv.empty()
+  if (search == '') {
+    document.querySelectorAll('#config .nav-tabs, #config .tab-content').seen()
+    jeedomUtils.dateTimePickerInit()
+    jeedomUtils.initTooltips()
+    return
+  }
+  if (search.length < 3) return
+  document.querySelectorAll('#config .nav-tabs, #config .tab-content').unseen()
+
+  search = jeedomUtils.normTextLower(search)
+  var text, tooltip, tabId, tabName, newTabLink, el, searchId
+  var tabsArr = []
+  var thisTabLink
+
+  //Search in all labels and their tooltip:
+  document.querySelectorAll('.form-group > .control-label').forEach(_label => {
+    text = jeedomUtils.normTextLower(_label.textContent)
+    tooltip = _label.querySelector('sup i')?.getAttribute('data-title')
+    if (tooltip != null) {
+      tooltip = jeedomUtils.normTextLower(tooltip)
+    } else {
+      tooltip = ''
+    }
+    if (text.includes(search) || (tooltip != '' && tooltip.includes(search))) {
+      //get element tab to create link to:
+      thisTabLink = false
+      newTabLink = false
+      tabId = _label.closest('div[role="tabpanel"]')?.getAttribute('id')
+      if (tabId == undefined) return
+      //Create new tablink ?
+      if (!tabsArr.includes(tabId)) {
+        tabName = document.querySelector('a[data-target="#' + tabId + '"]').innerHTML
+        if (tabName != null) {
+          var newTabLink = document.createElement('div')
+          newTabLink.innerHTML = '<a role="searchTabLink" data-target="#' + tabId + '">' + tabName + '</a>'
+          resultDiv.appendChild(newTabLink)
+          tabsArr.push(tabId)
+        }
+      }
+      thisTabLink = resultDiv.querySelector('a[role="searchTabLink"][data-target="#' + tabId + '"]').parentNode
+      el = _label.closest('.form-group')
+      //Is this form-group not in result yet:
+      if (el.getAttribute('searchId') == null) {
+        searchId = domUtils.uniqueId('search-')
+        el.setAttribute('searchId', searchId)
+        var newRefSpan = document.createElement('span')
+        newRefSpan.setAttribute('searchId', searchId)
+        el.replaceWith(newRefSpan)
+        thisTabLink.appendChild(el)
+      }
+    }
+  })
+  jeedomUtils.dateTimePickerInit()
+  jeeP.initSearchLinks()
+  jeedomUtils.initTooltips()
+})
+document.getElementById('bt_resetConfigSearch').addEventListener('click', function(event) {
+  document.getElementById('in_searchConfig').jeeValue('').triggerEvent('keyup')
+  jeedomUtils.dateTimePickerInit()
 })
 
-jeeP.$divConfig.off('change', '.configKey').on('change', '.configKey:visible', function() {
-  jeeFrontEnd.modifyWithoutSave = true
-})
 
 /**************************GENERAL***********************************/
-$('#bt_forceSyncHour').on('click', function() {
-  jeedomUtils.hideAlert()
-  jeedom.forceSyncHour({
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeedomUtils.showAlert({
-        message: '{{Commande réalisée avec succès}}',
-        level: 'success'
-      })
-    }
-  })
-})
-
-$('#bt_resetHour').on('click', function() {
-  domUtils.ajax({
-    type: "POST",
-    url: "core/ajax/jeedom.ajax.php",
-    data: {
-      action: "resetHour"
-    },
-    dataType: 'json',
-    global: false,
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
+/*Events delegations
+*/
+document.getElementById('generaltab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_forceSyncHour')) {
+    jeedomUtils.hideAlert()
+    jeedom.forceSyncHour({
+      error: function(error) {
         jeedomUtils.showAlert({
-          message: data.result,
+          message: error.message,
           level: 'danger'
         })
-        return
-      }
-      jeedomUtils.loadPage('index.php?v=d&p=administration')
-    }
-  })
-})
-
-$('#bt_resetHwKey').on('click', function() {
-  domUtils.ajax({
-    type: "POST",
-    url: "core/ajax/jeedom.ajax.php",
-    data: {
-      action: "resetHwKey"
-    },
-    dataType: 'json',
-    global: false,
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error)
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
+      },
+      success: function(data) {
         jeedomUtils.showAlert({
-          message: data.result,
+          message: '{{Commande réalisée avec succès}}',
+          level: 'success'
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_resetHour')) {
+    domUtils.ajax({
+      type: "POST",
+      url: "core/ajax/jeedom.ajax.php",
+      data: {
+        action: "resetHour"
+      },
+      dataType: 'json',
+      global: false,
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error)
+      },
+      success: function(data) {
+        if (data.state != 'ok') {
+          jeedomUtils.showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+          return
+        }
+        jeedomUtils.loadPage('index.php?v=d&p=administration')
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_resetHwKey')) {
+    domUtils.ajax({
+      type: "POST",
+      url: "core/ajax/jeedom.ajax.php",
+      data: {
+        action: "resetHwKey"
+      },
+      dataType: 'json',
+      global: false,
+      error: function(request, status, error) {
+        handleAjaxError(request, status, error)
+      },
+      success: function(data) {
+        if (data.state != 'ok') {
+          jeedomUtils.showAlert({
+            message: data.result,
+            level: 'danger'
+          })
+          return
+        }
+        jeedomUtils.loadPage('index.php?v=d&p=administration')
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_resetHardwareType')) {
+    jeedom.config.save({
+      configuration: {
+        hardware_name: ''
+      },
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
           level: 'danger'
         })
-        return
+      },
+      success: function() {
+        jeedomUtils.loadPage('index.php?v=d&p=administration')
       }
-      jeedomUtils.loadPage('index.php?v=d&p=administration')
-    }
-  })
+    })
+    return
+  }
 })
 
-$('#bt_resetHardwareType').on('click', function() {
-  jeedom.config.save({
-    configuration: {
-      hardware_name: ''
-    },
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedomUtils.loadPage('index.php?v=d&p=administration')
-    }
-  })
-})
 
 /**************************INTERFACE***********************************/
-$("#bt_resetThemeCookie").on('click', function(event) {
-  setCookie('currentTheme', '', -1)
-  jeedomUtils.showAlert({
-    message: '{{Cookie de thème supprimé}}',
-    level: 'success'
-  })
-})
-
-$('.bt_uploadImage').each(function() {
-  $(this).fileupload({
-    replaceFileInput: false,
-    url: 'core/ajax/config.ajax.php?action=uploadImage&id=' + $(this).attr('data-page'),
+//Init file upload buttons:
+document.querySelectorAll('input.bt_uploadImage').forEach(_button => {
+  var dataPage = _button.getAttribute('data-page')
+  new jeeFileUploader({
+    fileInput: _button,
+    url: 'core/ajax/config.ajax.php?action=uploadImage&id=' + dataPage,
     dataType: 'json',
-    done: function(e, data) {
+    limitUploadFileSize: 204800, //200Ko
+    done: function(event, data) {
       if (data.result.state != 'ok') {
         jeedomUtils.showAlert({
           message: data.result.result,
@@ -697,7 +699,7 @@ $('.bt_uploadImage').each(function() {
         })
         return
       }
-      $('a.bt_removeBackgroundImage[data-page=' + $(this).attr('data-page') + ']').removeClass('disabled')
+      document.querySelector('a.bt_removeBackgroundImage[data-page="' + dataPage + '"]').removeClass('disabled')
       jeeP.configReload['imageChanged'] = 1
       jeedomUtils.showAlert({
         message: '{{Image enregistrée et configurée}}',
@@ -707,10 +709,22 @@ $('.bt_uploadImage').each(function() {
   })
 })
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    var dataPage = $(this).attr('data-page')
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
+/*Events delegations
+*/
+document.getElementById('interfacetab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_resetThemeCookie')) {
+    setCookie('currentTheme', '', -1)
+    jeedomUtils.showAlert({
+      message: '{{Cookie de thème supprimé}}',
+      level: 'success'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_removeBackgroundImage')) {
+    var dataPage = _target.getAttribute('data-page')
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
       if (result) {
         jeedom.config.removeImage({
           id: dataPage,
@@ -721,7 +735,7 @@ jeeP.$divConfig.on({
             })
           },
           success: function() {
-            $('a.bt_removeBackgroundImage[data-page=' + dataPage + ']').addClass('disabled')
+            document.querySelector('a.bt_removeBackgroundImage[data-page="' + dataPage + '"]').addClass('disabled')
             jeeP.configReload['imageChanged'] = 1
             jeedomUtils.showAlert({
               message: '{{Image supprimée}}',
@@ -731,23 +745,113 @@ jeeP.$divConfig.on({
         })
       }
     })
+    return
   }
-}, '.bt_removeBackgroundImage')
+})
+
 
 /**************************NETWORK***********************************/
-jeeP.$divConfig.on({
-  'change': function(event) {
+/*Events delegations
+*/
+document.getElementById('networktab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_networkTab')) {
+    var tableBody = document.getElementById('networkInterfacesTable').tBodies[0]
+    if (tableBody.children.length == 0) {
+      jeedom.network.getInterfacesInfo({
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(_interfaces) {
+          var div = ''
+          for (var i in _interfaces) {
+            div += '<tr>'
+            div += '<td>' + _interfaces[i].ifname + '</td>'
+            div += '<td>' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
+            div += '<td>' + (_interfaces[i].address ? _interfaces[i].address : '') + '</td>'
+            div += '</tr>'
+          }
+          tableBody.empty().insertAdjacentHTML('beforeend', div)
+        }
+      })
+    }
+    return
+  }
+
+  if (_target = event.target.closest('#bt_restartDns')) {
+    jeedomUtils.hideAlert()
+    jeedom.config.save({
+      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedom.network.restartDns({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=administration#networktab')
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_haltDns')) {
+    jeedomUtils.hideAlert()
+    jeedom.config.save({
+      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedom.network.stopDns({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedomUtils.loadPage('index.php?v=d&p=administration#networktab')
+          }
+        })
+      }
+    })
+    return
+  }
+})
+
+document.getElementById('networktab').addEventListener('change', function(event) {
+  var _target = null
+  if ((_target = event.target.closest('.configKey[data-l1key="market::allowDNS"]')) || (_target = event.target.closest('.configKey[data-l1key="network::disableMangement"]'))) {
     let externalAddr = document.querySelector('.configKey[data-l1key="externalAddr"]')
     let externalPort = document.querySelector('.configKey[data-l1key="externalPort"]')
     let externalComplement = document.querySelector('.configKey[data-l1key="externalComplement"]')
     setTimeout(function() {
       if (document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]')?.jeeValue() == 0) {
-        document.querySelector('.configKey[data-l1key="externalProtocol"]').setAttribute('disabled', '')
-        externalAddr.setAttribute('disabled', '')
+        document.querySelector('.configKey[data-l1key="externalProtocol"]').removeAttribute('disabled')
+        externalAddr.removeAttribute('disabled')
         externalAddr.jeeValue('')
-        externalPort.setAttribute('disabled', '')
+        externalPort.removeAttribute('disabled')
         externalPort.jeeValue('')
-        externalComplement.setAttribute('disabled', '')
+        externalComplement.removeAttribute('disabled')
         externalComplement.jeeValue('')
       } else {
         externalAddr.removeAttribute('disabled')
@@ -755,144 +859,48 @@ jeeP.$divConfig.on({
         externalComplement.removeAttribute('disabled')
       }
     }, 100)
+    return
   }
-}, '.configKey[data-l1key="market::allowDNS"], .configKey[data-l1key="network::disableMangement"]')
+})
 
-$('#bt_networkTab').on('click', function() {
-  var tableBody = $('#networkInterfacesTable tbody')
-  if (tableBody.children().length == 0) {
-    jeedom.network.getInterfacesInfo({
+/**************************LOGS***********************************/
+/*Events delegations
+*/
+document.getElementById('logtab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_removeTimelineEvent')) {
+    jeedom.timeline.deleteAll({
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function(_interfaces) {
-        var div = ''
-        for (var i in _interfaces) {
-          div += '<tr>'
-          div += '<td>' + _interfaces[i].ifname + '</td>'
-          div += '<td>' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
-          div += '<td>' + (_interfaces[i].address ? _interfaces[i].address : '') + '</td>'
-          div += '</tr>'
-        }
-        tableBody.empty().append(div)
+      success: function(data) {
+        var cmd = (cmd = document.getElementById('timelineEvents')) ? cmd.innerHTML = 0 : null
+        jeedomUtils.showAlert({
+          message: '{{Evènements de la timeline supprimés avec succès}}',
+          level: 'success'
+        })
       }
     })
+    return
   }
-})
 
-$('#bt_restartDns').on('click', function() {
-  jeedomUtils.hideAlert()
-  jeedom.config.save({
-    configuration: document.querySelectorAll('#config').getJeeValues('.configKey')[0],
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedom.network.restartDns({
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=administration&panel=config_network')
-        }
-      })
-    }
-  })
-})
-
-$('#bt_haltDns').on('click', function() {
-  jeedomUtils.hideAlert();
-  jeedom.config.save({
-    configuration: document.querySelectorAll('#config').getJeeValues('.configKey')[0],
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedom.network.stopDns({
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedomUtils.loadPage('index.php?v=d&p=administration&panel=config_network')
-        }
-      })
-    }
-  })
-})
-
-/**************************LOGS***********************************/
-$('#bt_removeTimelineEvent').on('click', function() {
-  jeedom.timeline.deleteAll({
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      var cmd = (cmd = document.getElementById('timelineEvents')) ? cmd.innerHTML = 0 : null
-      jeedomUtils.showAlert({
-        message: '{{Evènements de la timeline supprimés avec succès}}',
-        level: 'success'
-      })
-    }
-  })
-})
-
-jeeP.$divConfig.on({
-  'change': function(event) {
-    document.querySelectorAll('.logEngine').unseen()
-    if (this.value == '') return
-    let element = document.querySelector('.logEngine.' + this.value)
-    if (element !== null) element.seen()
-  }
-}, '.configKey[data-l1key="log::engine"]')
-
-$('.bt_addActionOnMessage').on('click', function() {
-  jeeP.addActionOnMessage({},$(this).attr('data-channel'))
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-jeeP.$divConfig.on({
-  'click': function(event) {
-    $(this).closest('.actionOnMessage').remove()
+  if (_target = event.target.closest('.bt_addActionOnMessage')) {
+    jeeP.addActionOnMessage({}, _target.getAttribute('data-channel'))
     jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-}, '.bt_removeAction')
 
-jeeP.$divConfig.on({
-  'focusout': function(event) {
-    var expression = this.closest('.actionOnMessage').getJeeValues('.expressionAttr')
-    var el = this
-    if (expression[0] && expression[0].options) {
-      jeedom.cmd.displayActionOption(this.value, init(expression[0].options), function(html) {
-        el.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
-        jeedomUtils.taAutosize()
-      })
-    }
+  if (_target = event.target.closest('.bt_removeAction')) {
+    _target.closest('.actionOnMessage').remove()
+    jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-}, '.cmdAction.expressionAttr[data-l1key=cmd]')
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    var el = this.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key=cmd]')
+  if (_target = event.target.closest('.listCmdAction')) {
+    var el = _target.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
@@ -904,12 +912,11 @@ jeeP.$divConfig.on({
         jeedomUtils.taAutosize()
       })
     })
+    return
   }
-}, '.listCmdAction')
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    var el = this.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key=cmd]')
+  if (_target = event.target.closest('.listAction')) {
+    var el = _target.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.getSelectActionModal({}, function(result) {
       el.jeeValue(result.human)
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
@@ -917,97 +924,108 @@ jeeP.$divConfig.on({
         jeedomUtils.taAutosize()
       })
     })
+    return
   }
-}, '.listAction')
 
-$('.bt_selectAlertCmd').on('click', function() {
-  var type = $(this).attr('data-type')
-  jeedom.cmd.getSelectModal({
-    cmd: {
-      type: 'action',
-      subType: 'message'
-    }
-  }, function(result) {
-    document.querySelector('.configKey[data-l1key="alert::' + type + 'Cmd"]').insertAtCursor(result.human)
-  })
+  if (_target = event.target.closest('.bt_selectAlertCmd')) {
+    var type = _target.getAttribute('data-type')
+    jeedom.cmd.getSelectModal({
+      cmd: {
+        type: 'action',
+        subType: 'message'
+      }
+    }, function(result) {
+      document.querySelector('.configKey[data-l1key="alert::' + type + 'Cmd"]').insertAtCursor(result.human)
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_selectWarnMeCmd')) {
+    jeedom.cmd.getSelectModal({
+      cmd: {
+        type: 'action',
+        subType: 'message'
+      }
+    }, function(result) {
+      document.querySelectorAll('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').jeeValue(result.human)
+    })
+    return
+  }
 })
 
-$('.bt_selectWarnMeCmd').on('click', function() {
-  jeedom.cmd.getSelectModal({
-    cmd: {
-      type: 'action',
-      subType: 'message'
-    }
-  }, function(result) {
-    document.querySelectorAll('.configKey[data-l1key="interact::warnme::defaultreturncmd"]').jeeValue(result.human)
-  })
+document.getElementById('logtab').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.configKey[data-l1key="log::engine"]')) {
+    if (_target.value == '') return
+    let element = document.querySelector('.logEngine.' + _target.value)
+    if (element != null) element.seen()
+    return
+  }
 })
+
+document.getElementById('logtab').addEventListener('focusout', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
+    var expression = _target.closest('.actionOnMessage').getJeeValues('.expressionAttr')
+    if (expression[0] && expression[0].options) {
+      jeedom.cmd.displayActionOption(_target.value, init(expression[0].options), function(html) {
+        _target.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
+        jeedomUtils.taAutosize()
+      })
+    }
+    return
+  }
+})
+
 
 /**************************SUMMARIES***********************************/
-$('#bt_addObjectSummary').on('click', function() {
-  jeeP.addObjectSummary()
-})
+/*Events delegations
+*/
+document.getElementById('summarytab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_addObjectSummary')) {
+    jeeP.addObjectSummary()
+    return
+  }
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    var objectSummary = $(this).closest('.objectSummary')
-    var _icon = false
-    var icon = false
-    var color = false
-    if ($(this).parent().find('.objectSummaryAttr > i').length) {
-      var color = ''
-      var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
-      class_icon = class_icon.replace(' ', '.').split(' ')
-      var icon = '.' + class_icon[0]
-      if (class_icon[1]) {
-        color = class_icon[1]
-      }
+  if (_target = event.target.closest('.objectSummaryAction[data-l1key="chooseIcon"]')) {
+    var objectSummary = _target.closest('.objectSummary')
+    var icon = objectSummary.querySelector('span[data-l1key="icon"] > i')
+    if (icon != null) {
+      icon = icon.getAttribute('class')
+    } else {
+      icon = false
     }
     jeedomUtils.chooseIcon(function(_icon) {
-      objectSummary.find('.objectSummaryAttr[data-l1key=icon]').empty().append(_icon)
-    }, {
-      icon: icon,
-      color: color
-    })
-    jeeFrontEnd.modifyWithoutSave = true
+      objectSummary.querySelector('span[data-l1key="icon"]').innerHTML = _icon
+      jeeFrontEnd.modifyWithoutSave = true
+    }, {icon: icon})
+    return
   }
-}, '.objectSummary .objectSummaryAction[data-l1key=chooseIcon]')
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    var objectSummary = $(this).closest('.objectSummary')
-    var _icon = false
-    var icon = false
-    var color = false
-    if ($(this).parent().find('.objectSummaryAttr > i').length) {
-      var color = ''
-      var class_icon = $(this).parent().find('.objectSummaryAttr > i').attr('class')
-      class_icon = class_icon.replace(' ', '.').split(' ')
-      var icon = '.' + class_icon[0]
-      if (class_icon[1]) {
-        color = class_icon[1]
-      }
+  if (_target = event.target.closest('.objectSummaryAction[data-l1key="chooseIconNul"]')) {
+    var objectSummary = _target.closest('.objectSummary')
+    var icon = objectSummary.querySelector('span[data-l1key="iconnul"] > i')
+    if (icon != null) {
+      icon = icon.getAttribute('class')
+    } else {
+      icon = false
     }
     jeedomUtils.chooseIcon(function(_icon) {
-      objectSummary.find('.objectSummaryAttr[data-l1key=iconnul]').empty().append(_icon)
-    }, {
-      icon: icon,
-      color: color
-    })
-    jeeFrontEnd.modifyWithoutSave = true
+      objectSummary.querySelector('span[data-l1key="iconnul"]').innerHTML = _icon
+      jeeFrontEnd.modifyWithoutSave = true
+    }, {icon: icon})
+    return
   }
-}, '.objectSummary .objectSummaryAction[data-l1key=chooseIconNul]')
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    $(this).closest('.objectSummary').remove()
+  if (_target = event.target.closest('.objectSummaryAction[data-l1key="remove"]')) {
+    _target.closest('.objectSummary').remove()
     jeeFrontEnd.modifyWithoutSave = true
+    return
   }
-}, '.objectSummary .objectSummaryAction[data-l1key=remove]')
 
-jeeP.$divConfig.on({
-  'click': function(event) {
-    var objectSummary = this.closest('.objectSummary').querySelectorAll('.objectSummaryAttr[data-l1key=key]').jeeValue()
+  if (_target = event.target.closest('.objectSummaryAction[data-l1key="createVirtual"]')) {
+    var objectSummary = _target.closest('.objectSummary').querySelector('.objectSummaryAttr[data-l1key="key"]').jeeValue()
     domUtils.ajax({
       type: "POST",
       url: "core/ajax/object.ajax.php",
@@ -1033,354 +1051,456 @@ jeeP.$divConfig.on({
         })
       }
     })
+    return
   }
-}, '.objectSummary .objectSummaryAction[data-l1key=createVirtual]')
-
-jeeP.$divConfig.on({
-  'dblclick': function(event) {
-    this.innerHTML = ''
-  }
-}, '.objectSummary .objectSummaryAttr[data-l1key=icon], .objectSummary .objectSummaryAttr[data-l1key=iconnul]')
-
-$("#table_objectSummary").sortable({
-  axis: "y",
-  cursor: "move",
-  items: ".objectSummary",
-  placeholder: "ui-state-highlight",
-  tolerance: "intersect",
-  forcePlaceholderSize: true
 })
 
-jeeP.printObjectSummary()
-
-jeeP.$divConfig.on({
-  'change': function(event) {
-    jeeFrontEnd.modifyWithoutSave = true
+document.getElementById('summarytab').addEventListener('dblclick', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.summIconContainer')) {
+    _target.closest('.objectSummaryAttr').innerHTML = ''
+    return
   }
-}, '.objectSummaryAttr')
+})
+
+document.getElementById('summarytab').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.objectSummaryAttr')) {
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+
 
 /**************************EQUIPMENT***********************************/
-$('#bt_influxDelete').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
-    if (result) {
-      jeedom.cmd.dropDatabaseInflux({
-        error: function(error) {
-          $('#md_displayCmdConfigure').showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          $('#md_displayCmdConfigure').showAlert({
-            message: '{{Action envoyée avec succés}}',
-            level: 'success'
-          })
-        }
-      })
-    }
-  })
+/*Events delegations
+*/
+document.getElementById('eqlogictab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_influxDelete')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
+      if (result) {
+        jeedom.cmd.dropDatabaseInflux({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.showAlert({
+              message: '{{Action envoyée avec succés}}',
+              level: 'success'
+            })
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_influxHistory')) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.}}', function(result) {
+      if (result) {
+        jeedom.cmd.historyInfluxAll({
+          error: function(error) {
+            jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(data) {
+            jeedomUtils.showAlert({
+              message: '{{Programmation envoyée avec succés}}',
+              level: 'success'
+            })
+          }
+        })
+      }
+    })
+    return
+  }
 })
 
-$('#bt_influxHistory').off('click').on('click', function() {
-  bootbox.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.}}', function(result) {
-    if (result) {
-      jeedom.cmd.historyInfluxAll({
-        error: function(error) {
-          $('#md_displayCmdConfigure').showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          $('#md_displayCmdConfigure').showAlert({
-            message: '{{Programmation envoyée avec succés}}',
-            level: 'success'
-          })
-        }
-      })
-    }
-  })
-})
 
+/**************************REPORTS************************************/
+/***************************LINKS*************************************/
 /**************************INTERACT***********************************/
-$('#bt_addColorConvert').on('click', function() {
-  jeeP.addConvertColor()
+/*Events delegations
+*/
+document.getElementById('interacttab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_addColorConvert')) {
+    jeeP.addConvertColor()
+    return
+  }
+
+  if (_target = event.target.closest('.removeConvertColor')) {
+    _target.closest('tr').remove()
+    return
+  }
+
+  if (_target = event.target.closest('.bt_resetColor')) {
+    var key = _target.getAttribute('data-l1key')
+    jeedom.getConfiguration({
+      key: key,
+      default: 1,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        document.querySelectorAll('.configKey[data-l1key="' + key + '"]').jeeValue(data)
+      }
+    })
+    return
+  }
 })
+
 
 /**************************SECURITY***********************************/
-jeeP.$divConfig.on({
-  'change': function(event) {
-    if (this.checked) {
+/*Events delegations
+*/
+document.getElementById('securitytab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_testLdapConnection')) {
+    jeedom.config.save({
+      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeeFrontEnd.modifyWithoutSave = false
+        domUtils.ajax({
+          type: 'POST',
+          url: 'core/ajax/user.ajax.php',
+          data: {
+            action: 'testLdapConnection',
+          },
+          dataType: 'json',
+          error: function(request, status, error) {
+            handleAjaxError(request, status, error)
+          },
+          success: function(data) {
+            if (data.state != 'ok') {
+              jeedomUtils.showAlert({
+                message: '{{Connexion échouée :}} ' + data.result,
+                level: 'danger'
+              })
+              return
+            }
+            jeedomUtils.showAlert({
+              message: '{{Connexion réussie}}',
+              level: 'success'
+            })
+          }
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_removeBanIp')) {
+    jeedom.user.removeBanIp({
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        window.location.reload()
+      }
+    })
+    return
+  }
+})
+
+document.getElementById('securitytab').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.configKey[data-l1key="ldap:enable"]')) {
+    if (_target.checked) {
       document.getElementById('div_config_ldap').seen()
     } else {
       document.getElementById('div_config_ldap').unseen()
     }
+    return
   }
-}, '.configKey[data-l1key="ldap:enable"]')
-
-$("#bt_testLdapConnection").on('click', function(event) {
-  jeedom.config.save({
-    configuration: document.querySelectorAll('#config').getJeeValues('.configKey')[0],
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeeFrontEnd.modifyWithoutSave = false
-      domUtils.ajax({
-        type: 'POST',
-        url: 'core/ajax/user.ajax.php',
-        data: {
-          action: 'testLdapConnection',
-        },
-        dataType: 'json',
-        error: function(request, status, error) {
-          handleAjaxError(request, status, error)
-        },
-        success: function(data) {
-          if (data.state != 'ok') {
-            jeedomUtils.showAlert({
-              message: '{{Connexion échouée :}} ' + data.result,
-              level: 'danger'
-            })
-            return
-          }
-          jeedomUtils.showAlert({
-            message: '{{Connexion réussie}}',
-            level: 'success'
-          })
-        }
-      })
-    }
-  })
-  return false
 })
 
-$('#bt_removeBanIp').on('click', function() {
-  jeedom.user.removeBanIp({
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      window.location.reload()
-    }
-  })
-})
 
 /**************************UPDATES / MARKET***********************************/
-jeeP.$divConfig.off('change', '.enableRepository').on('change', '.enableRepository', function() {
-  if (this.checked) {
-    document.querySelectorAll('.repositoryConfiguration' + this.getAttribute('data-repo')).seen()
-  } else {
-    document.querySelectorAll('.repositoryConfiguration' + this.getAttribute('data-repo')).unseen()
-  }
-})
-
-$('.testRepoConnection').on('click', function() {
-  var repo = $(this).attr('data-repo')
-  jeedom.config.save({
-    configuration: document.querySelectorAll('#config').getJeeValues('.configKey')[0],
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeedom.config.load({
-        configuration: document.querySelectorAll('#config').getJeeValues('.configKey:not(.noSet)')[0],
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          document.querySelector('#config').setJeeValues(data, '.configKey')
-          jeeFrontEnd.modifyWithoutSave = false
-          jeedom.repo.test({
-            repo: repo,
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              jeedomUtils.showAlert({
-                message: '{{Test réussi}}',
-                level: 'success'
-              })
-            }
-          })
-        }
-      })
-    }
-  })
-})
-
-/**************************CACHE***********************************/
-jeeP.$divConfig.on({
-  'change': function(event) {
-    document.querySelectorAll('.cacheEngine').unseen()
-    if (this.value == '') return
-    let element = document.querySelector('.cacheEngine.' + this.value)
-    if (element !== null) element.seen()
-  }
-}, '.configKey[data-l1key="cache::engine"]')
-
-$("#bt_cleanCache").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  jeeP.cleanCache()
-})
-
-$("#bt_flushCache").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  bootbox.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
-    if (result) {
-      jeeP.flushCache()
-    }
-  })
-})
-
-$("#bt_flushWidgetCache").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  jeeP.flushWidgetCache()
-})
-
-/**************************API***********************************/
-$(".bt_regenerate_api").on('click', function(event) {
-  jeedomUtils.hideAlert()
-  var el = this
-  bootbox.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + el.attr('data-plugin') + ' ?', function(result) {
-    if (result) {
-      domUtils.ajax({
-        type: "POST",
-        url: "core/ajax/config.ajax.php",
-        data: {
-          action: "genApiKey",
-          plugin: el.attr('data-plugin'),
-        },
-        dataType: 'json',
-        error: function(request, status, error) {
-          handleAjaxError(request, status, error)
-        },
-        success: function(data) {
-          if (data.state != 'ok') {
+/*Events delegations
+*/
+document.getElementById('updatetab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.testRepoConnection')) {
+    var repo = _target.getAttribute('data-repo')
+    jeedom.config.save({
+      configuration: document.getElementById('config').getJeeValues('.configKey')[0],
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        jeedom.config.load({
+          configuration: document.querySelectorAll('#config').getJeeValues('.configKey:not(.noSet)')[0],
+          error: function(error) {
             jeedomUtils.showAlert({
-              message: data.result,
+              message: error.message,
               level: 'danger'
             })
-            return
+          },
+          success: function(data) {
+            document.querySelector('#config').setJeeValues(data, '.configKey')
+            jeeFrontEnd.modifyWithoutSave = false
+            jeedom.repo.test({
+              repo: repo,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                jeedomUtils.showAlert({
+                  message: '{{Test réussi}}',
+                  level: 'success'
+                })
+              }
+            })
           }
-          el.closest('.input-group').querySelectorAll('.span_apikey').jeeValue(data.result)
-        }
-      })
-    }
-  })
+        })
+      }
+    })
+    return
+  }
+
 })
+
+document.getElementById('updatetab').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.enableRepository')) {
+    if (_target.checked) {
+      document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).seen()
+    } else {
+      document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).unseen()
+    }
+    return
+  }
+})
+
+
+/**************************CACHE***********************************/
+/*Events delegations
+*/
+document.getElementById('cachetab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_cleanCache')) {
+    jeedomUtils.hideAlert()
+    jeeP.cleanCache()
+    return
+  }
+
+  if (_target = event.target.closest('#bt_flushCache')) {
+    jeedomUtils.hideAlert()
+    jeeDialog.confirm('{{Attention ceci est une opération risquée (vidage du cache), Confirmez vous vouloir la faire ?}}', function(result) {
+      if (result) {
+        jeeP.flushCache()
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_flushWidgetCache')) {
+    jeedomUtils.hideAlert()
+    jeeP.flushWidgetCache()
+    return
+  }
+})
+
+document.getElementById('cachetab').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.configKey[data-l1key="cache::engine"]')) {
+    document.querySelectorAll('.cacheEngine').unseen()
+    if (_target.value == '') return
+    let element = document.querySelector('.cacheEngine.' + _target.value)
+    if (element != null) element.seen()
+    return
+  }
+})
+
+
+/**************************API***********************************/
+/*Events delegations
+*/
+document.getElementById('apitab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_regenerate_api')) {
+    jeedomUtils.hideAlert()
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + _target.getAttribute('data-plugin') + ' ?', function(result) {
+      if (result) {
+        domUtils.ajax({
+          type: "POST",
+          url: "core/ajax/config.ajax.php",
+          data: {
+            action: "genApiKey",
+            plugin: _target.getAttribute('data-plugin'),
+          },
+          dataType: 'json',
+          error: function(request, status, error) {
+            handleAjaxError(request, status, error)
+          },
+          success: function(data) {
+            if (data.state != 'ok') {
+              jeedomUtils.showAlert({
+                message: data.result,
+                level: 'danger'
+              })
+              return
+            }
+            _target.closest('.input-group').querySelectorAll('.span_apikey').jeeValue(data.result)
+          }
+        })
+      }
+    })
+    return
+  }
+  if (_target = event.target.closest('.bt_copyPass')) {
+    navigator.clipboard.writeText(_target.closest('.input-group').querySelector('.span_apikey').jeeValue()).then(function() {
+      /* clipboard successfully set */
+    }, function() {
+      /* clipboard write failed */
+    });
+  }
+})
+
 
 /**************************OSDB***********************************/
-$('#bt_accessSystemAdministration').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Administration système}}"
-  }).load('index.php?v=d&modal=system.action').dialog('open')
+/*Events delegations
+*/
+document.getElementById('ostab').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_cleanFileSystemRight')) {
+    jeedom.cleanFileSystemRight({
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeedomUtils.showAlert({
+          message: '{{Rétablissement des droits d\'accès effectué avec succès}}',
+          level: 'success'
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_consistency')) {
+    jeedom.consistency({
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeeDialog.dialog({
+          id: 'jee_modal2',
+          title: "{{Log consistency}}",
+          contentUrl: 'index.php?v=d&modal=log.display&log=consistency'
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_logConsistency')) {
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Log consistency}}",
+      contentUrl: 'index.php?v=d&modal=log.display&log=consistency'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_checkDatabase')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Vérification base de données}}",
+      contentUrl: 'index.php?v=d&modal=db.check'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_checkPackage')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Vérification des packages}}",
+      contentUrl: 'index.php?v=d&modal=package.check'
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_cleanDatabase')) {
+    jeedom.cleanDatabase({
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeedomUtils.showAlert({
+          message: '{{Nettoyage lancé avec succès. Pour suivre l\'avancement merci de regarder le log cleaningdb}}',
+          level: 'success'
+        })
+      }
+    })
+    return
+  }
 })
 
-$('#bt_cleanFileSystemRight').off('click').on('click', function() {
-  jeedom.cleanFileSystemRight({
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeedomUtils.showAlert({
-        message: '{{Rétablissement des droits d\'accès effectué avec succès}}',
-        level: 'success'
-      })
-    }
-  })
+
+/**************************--GLOBAL--***********************************/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#bt_saveGeneraleConfig')) {
+    jeeP.saveConfig()
+    return
+  }
 })
 
-$('#bt_consistency').off('click').on('click', function() {
-  jeedom.consistency({
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      $('#md_modal2').dialog({
-        title: "{{Log consistency}}"
-      }).load('index.php?v=d&modal=log.display&log=consistency').dialog('open')
-    }
-  })
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.configKey')) {
+    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
+})
+document.getElementById('div_pageContainer').addEventListener('mousedown', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.ispin-wrapper')) {
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
 })
 
-$('#bt_logConsistency').off('click').on('click', function() {
-  $('#md_modal2').dialog({
-    title: "{{Log consistency}}"
-  }).load('index.php?v=d&modal=log.display&log=consistency').dialog('open')
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    jeeP.saveConfig()
+    return
+  }
 })
-
-$('#bt_checkDatabase').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Vérification base de données}}"
-  }).load('index.php?v=d&modal=db.check').dialog('open')
-})
-
-$('#bt_checkPackage').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Vérification des packages}}"
-  }).load('index.php?v=d&modal=package.check').dialog('open')
-})
-
-$('#bt_cleanDatabase').off('click').on('click', function() {
-  jeedom.cleanDatabase({
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      jeedomUtils.showAlert({
-        message: '{{Nettoyage lancé avec succès. Pour suivre l\'avancement merci de regarder le log cleaningdb}}',
-        level: 'success'
-      })
-    }
-  })
-})
-
-/********************Convertion************************/
-$('#table_convertColor tbody').off('click', '.removeConvertColor').on('click', '.removeConvertColor', function() {
-  $(this).closest('tr').remove()
-})
-
-//CMD color
-$('.bt_resetColor').on('click', function() {
-  var el = this
-  jeedom.getConfiguration({
-    key: el.getAttribute('data-l1key'),
-    default: 1,
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function(data) {
-      document.querySelectorAll('.configKey[data-l1key="' + el.getAttribute('data-l1key') + '"]').jeeValue(data)
-    }
-  })
-})
-
-jeeFrontEnd.modifyWithoutSave = false

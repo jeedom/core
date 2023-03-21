@@ -32,8 +32,8 @@ shadows Legacy
  z-index: 5;
 }
 
-.tooltipster-sidetip .tooltipster-box {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+.tippy-box {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
 .panel {

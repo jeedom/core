@@ -37,65 +37,94 @@ include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'js');
 include_file('3rdparty', 'codemirror/addon/fold/foldgutter', 'css');
 ?>
 
-<div id="div_alertScenarioJsonEdit" data-modalType="md_scenarioJsonEdit"></div>
-<a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
-<br/><br/>
-<textarea id="ta_scenarioJsonEdit_scenario">
-  <?php
-  $json = array();
-  foreach (($scenario->getElement()) as $element) {
-    $json[] = $element->getAjaxElement();
-  }
-  echo json_encode($json, JSON_PRETTY_PRINT);
-  ?>
-</textarea>
-
-<script type="text/javascript">
-fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_scenarioJsonEdit_scenario"), {
-  lineNumbers: true,
-  mode: 'application/json',
-  styleActiveLine: true,
-  lineNumbers: true,
-  lineWrapping: true,
-  matchBrackets: true,
-  autoRefresh: true,
-  foldGutter: true,
-  gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
-})
-fileEditor.setOption("extraKeys", {
-  "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
-  "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
-})
-fileEditor.getWrapperElement().style.height = ($('#ta_scenarioJsonEdit_scenario').closest('.ui-dialog-content').height() - 90) + 'px'
-fileEditor.refresh()
-
-$('#bt_saveSummaryScenario').on('click', function() {
-  jeedomUtils.hideAlert()
-  if (fileEditor == undefined) {
-    $('#div_alertScenarioJsonEdit').showAlert({message: '{{Erreur editeur non défini}}', level: 'danger'})
-    return
-  }
-  try {
-    JSON.parse(fileEditor.getValue())
-  } catch(e) {
-    $('#div_alertScenarioJsonEdit').showAlert({message: '{{Champs json invalide}}', level: 'danger'})
-    return
-  }
-  var scenario = {
-    id : jeephp2js.md_scenarioJsonEdit_scId,
-    elements : json_decode(fileEditor.getValue())
-  };
-  jeedom.scenario.save({
-    scenario: scenario,
-    error: function(error) {
-      $('#div_alertScenarioJsonEdit').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      $('#div_alertScenarioJsonEdit').showAlert({message: '{{Sauvegarde réussie}}', level: 'success'})
-      if (typeof jeeFrontEnd.scenario.printScenario === "function") {
-        jeeFrontEnd.scenario.printScenario(jeephp2js.md_scenarioJsonEdit_scId)
-      }
+<div id="md_scenarioJsonEdit" data-modalType="md_scenarioJsonEdit">
+  <a class="btn btn-success btn-sm pull-right" id="bt_saveSummaryScenario"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+  <br/><br/>
+  <textarea id="ta_scenarioJsonEdit_scenario">
+    <?php
+    $json = array();
+    foreach (($scenario->getElement()) as $element) {
+      $json[] = $element->getAjaxElement();
     }
+    echo json_encode($json, JSON_PRETTY_PRINT);
+    ?>
+  </textarea>
+</div>
+
+<script>
+if (!jeeFrontEnd.md_scenarioJsonEdit) {
+  jeeFrontEnd.md_scenarioJsonEdit = {
+    fileEditor: null,
+    init: function() {
+      this.fileEditor = CodeMirror.fromTextArea(document.getElementById("ta_scenarioJsonEdit_scenario"), {
+      lineNumbers: true,
+      mode: 'application/json',
+      styleActiveLine: true,
+      lineNumbers: true,
+      lineWrapping: true,
+      matchBrackets: true,
+      autoRefresh: true,
+      foldGutter: true,
+      gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+    })
+    this.fileEditor.setOption("extraKeys", {
+      "Ctrl-Y": cm => CodeMirror.commands.foldAll(cm),
+      "Ctrl-I": cm => CodeMirror.commands.unfoldAll(cm)
+    })
+    this.fileEditor.getWrapperElement().style.height = (document.getElementById('ta_scenarioJsonEdit_scenario').closest('.jeeDialog').style.height - 90) + 'px'
+    this.fileEditor.refresh()
+    },
+  }
+}
+
+(function() {// Self Isolation!
+  jeeFrontEnd.md_scenarioJsonEdit.init()
+
+  document.getElementById('bt_saveSummaryScenario').addEventListener('click', function() {
+    jeedomUtils.hideAlert()
+    if (jeeFrontEnd.md_scenarioJsonEdit.fileEditor == undefined) {
+      jeedomUtils.showAlert({
+        attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
+        message: '{{Erreur editeur non défini}}',
+        level: 'danger'
+      })
+      return
+    }
+    try {
+      JSON.parse(jeeFrontEnd.md_scenarioJsonEdit.fileEditor.getValue())
+    } catch(e) {
+      jeedomUtils.showAlert({
+        attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
+        message: '{{Champs json invalide}}',
+        level: 'danger'
+      })
+      return
+    }
+    var scenario = {
+      id : jeephp2js.md_scenarioJsonEdit_scId,
+      elements : json_decode(jeeFrontEnd.md_scenarioJsonEdit.fileEditor.getValue())
+    };
+    jeedom.scenario.save({
+      scenario: scenario,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_scenarioJsonEdit', 'dialog'),
+          message: '{{Sauvegarde réussie}}',
+          level: 'success'
+        })
+        if (document.body.getAttribute('data-page') == 'scenario') {
+          jeeFrontEnd.scenario.printScenario(jeephp2js.md_scenarioJsonEdit_scId)
+        }
+      }
+    })
   })
-})
+
+})()
 </script>

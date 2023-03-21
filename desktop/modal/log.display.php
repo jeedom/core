@@ -48,54 +48,54 @@ if(init('log','event') == 'event'){
     </span>
   </div>
   <br/><br/>
-</div>
 <pre id='pre_eventlog' style='overflow: auto; height: calc(100% - 110px); width:100%;'></pre>
+</div>
 
 <script>
-var $rawLogCheck = $('#brutlogcheck')
-$rawLogCheck.on('click').on('click', function () {
-  $rawLogCheck.attr('autoswitch', 0)
+(function() {// Self Isolation!
+  document.getElementById('brutlogcheck').addEventListener('click', function(event) {
+    event.target.setAttribute('autoswitch', 0)
+    var scroll = document.getElementById('pre_eventlog').scrollTop
+    jeedom.log.autoupdate({
+      log: jeephp2js.md_logDislay_Name,
+      display: document.getElementById('pre_eventlog'),
+      search: document.getElementById('in_eventLogSearch'),
+      control: document.getElementById('bt_eventLogStopStart'),
+      once: 1
+    })
+    document.getElementById('pre_eventlog').scrollTop = scroll
+  })
 
-  var scroll =document.getElementById('pre_eventlog').scrollTop
   jeedom.log.autoupdate({
     log: jeephp2js.md_logDislay_Name,
+    default_search: jeephp2js.md_logDislay_defaultSearch,
     display: document.getElementById('pre_eventlog'),
     search: document.getElementById('in_eventLogSearch'),
-    control: document.getElementById('bt_eventLogStopStart'),
-    once: 1
+    control: document.getElementById('bt_eventLogStopStart')
   })
-  document.getElementById('pre_eventlog').scrollTop = scroll
-})
 
-jeedom.log.autoupdate({
-  log: jeephp2js.md_logDislay_Name,
-  default_search: jeephp2js.md_logDislay_defaultSearch,
-  display: document.getElementById('pre_eventlog'),
-  search: document.getElementById('in_eventLogSearch'),
-  control: document.getElementById('bt_eventLogStopStart')
-})
-
-$('#bt_resetLogSearch').on('click', function () {
-  $('#in_eventLogSearch').val('').keyup()
-})
-
-$("#bt_logdisplayclearLog").on('click', function(event) {
-  jeedom.log.clear({
-    log: jeephp2js.md_logDislay_Name
+  document.getElementById('bt_resetLogSearch').addEventListener('click', function (event) {
+    document.getElementById('in_eventLogSearch').jeeValue('')
   })
-})
 
-$("#bt_logdisplayremoveLog").on('click', function(event) {
-  jeedom.log.remove({
-    log: jeephp2js.md_logDislay_Name
+  document.getElementById("bt_logdisplayclearLog").addEventListener('click', function(event) {
+    jeedom.log.clear({
+      log: jeephp2js.md_logDislay_Name
+    })
   })
-})
 
-$('#bt_logdisplaydownloadLog').click(function() {
-  if ($('#pre_eventlog').text() == '') {
-    bootbox.alert('{{Le log est vide.}}')
-    return false
-  }
-  window.open('core/php/downloadFile.php?pathfile=log/' + jeephp2js.md_logDislay_Name, "_blank", null)
-})
+  document.getElementById("bt_logdisplayremoveLog").addEventListener('click', function(event) {
+    jeedom.log.remove({
+      log: jeephp2js.md_logDislay_Name
+    })
+  })
+
+  document.getElementById('bt_logdisplaydownloadLog').addEventListener('click', function(event) {
+    if (document.getElementById('pre_eventlog').textContent == '') {
+      jeeDialog.alert('{{Le log est vide.}}')
+      return false
+    }
+    window.open('core/php/downloadFile.php?pathfile=log/' + jeephp2js.md_logDislay_Name, "_blank", null)
+  })
+})()
 </script>

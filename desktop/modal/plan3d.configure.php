@@ -448,10 +448,9 @@ $('#bt_saveConfigurePlan3d').on('click', function() {
   jeedom.plan3d.save({
     plan3ds: plan3ds,
     error: function(error) {
-      $('#div_alertPlan3dConfigure').showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function() {
-      $('#fd_plan3dConfigure').closest("div.ui-dialog-content").dialog("close")
       if (typeof refresh3dObject == 'function') {
         refresh3dObject()
       }
@@ -467,10 +466,9 @@ $('#bt_removeConfigurePlan3d').on('click', function() {
   jeedom.plan3d.remove({
     id: plan3ds[0].id,
     error: function(error) {
-      $('#div_alertPlan3dConfigure').showAlert({message: error.message, level: 'danger'})
+      jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function() {
-      $('#fd_plan3dConfigure').closest("div.ui-dialog-content").dialog("close")
       if (typeof refresh3dObject == 'function') {
         refresh3dObject()
       }
@@ -492,7 +490,7 @@ if (isset(jeephp2js.md_plan3dConfigure_Id) && jeephp2js.md_plan3dConfigure_Id !=
     },
     success: function(data) {
       if (data.state != 'ok') {
-        $('#div_alertPlan3dConfigure').showAlert({message: data.result, level: 'danger'})
+        jeedomUtils.showAlert({message: data.result, level: 'danger'})
         return
       }
       document.getElementById('fd_plan3dConfigure').setJeeValues(data.result, '.plan3dAttr')

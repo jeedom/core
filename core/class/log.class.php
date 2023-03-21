@@ -113,10 +113,11 @@ class log {
 			$logger->$action($_message);
 			try {
 				$level = Logger::toMonologLevel($_type);
+				$action = '<a href="/index.php?v=d&p=log&logfile=' . $_log . '">' . __('Log', __FILE__) . ' ' . $_log . '</a>';
 				if ($level == Logger::ERROR && self::getConfig('addMessageForErrorLog') == 1) {
-					@message::add($_log, $_message, '', $_logicalId);
+					@message::add($_log, $_message, $action, $_logicalId);
 				} elseif ($level > Logger::ALERT) {
-					@message::add($_log, $_message, '', $_logicalId);
+					@message::add($_log, $_message, $action, $_logicalId);
 				}
 			} catch (Exception $e) {
 			}

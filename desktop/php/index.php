@@ -145,12 +145,16 @@ function setTheme() {
 	}
 }
 
+$loadJquery = true;
+if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 ?>
+
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" translate="no" class="notranslate">
 
 <head>
 	<meta charset="utf-8">
+	<meta name="google" content="notranslate" />
 	<title><?php echo $title; ?></title>
 	<link rel="shortcut icon" href="<?php echo $configs['product_icon'] ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -160,15 +164,15 @@ function setTheme() {
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 	<?php
-	include_file('core', 'dom.utils', 'dom');
+	include_file('coreDOM', 'dom.utils', 'js');
+	include_file('coreDOM', 'dom.ui', 'js');
 	include_file('core', 'icon.inc', 'php');
 	include_file('3rdparty', 'roboto/roboto', 'css');
 	include_file('3rdparty', 'camingocode/camingocode', 'css');
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'css');
-	include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
-	include_file('3rdparty', 'jquery/jquery.min', 'js');
-	include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+
+	if ($loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
+	if ($loadJquery) include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
 
 	include_file('core', 'jeedom', 'class.js');
 	?>
@@ -187,28 +191,42 @@ function setTheme() {
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	include_file('3rdparty', 'nouislider/nouislider', 'js');
-	include_file('3rdparty', 'nouislider/nouislider', 'css');
-	include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
-	include_file('3rdparty', 'jquery.ui/jquery.ui.datepicker.fr', 'js');
-	include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
-	include_file('3rdparty', 'jquery.toastr/jquery.toastr.min', 'js');
-	include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+	include_file('desktop', 'bootstrap', 'css');
+	if ($loadJquery) {
+		include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 
-	include_file('3rdparty', 'highstock/highstock', 'js');
-	include_file('3rdparty', 'highstock/highcharts-more', 'js');
-	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
-	include_file('3rdparty', 'highstock/modules/exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+		//ui-dialog replaced by jeeDialog, still sortable and resizable
+		include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+		include_file('3rdparty', 'jquery.ui/jquery-ui-bootstrap/jquery-ui', 'css');
+		include_file('3rdparty', 'jquery.ui-touch-punch/jquery.ui.touch-punch.min', 'js');
 
-	include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
-	include_file('3rdparty', 'jwerty/jwerty', 'js');
-	include_file('3rdparty', 'jquery.packery/jquery.packery', 'js');
-	include_file('3rdparty', 'jquery.lazyload/jquery.lazyload', 'js');
-	include_file('3rdparty', 'jquery.tooltipster/js/tooltipster.bundle.min', 'js');
-	include_file('3rdparty', 'jquery.tooltipster/css/tooltipster.bundle.min', 'css');
+		//Deprecated 4.4, keep for plugins
+		include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
+		include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
+		include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+		include_file('3rdparty', 'jquery.at.caret/jquery.at.caret.min', 'js');
+
+		//Table column sorter:
+		include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
+		include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
+
+		//Cron helper:
+		//include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
+		//include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
+
+		//Deprecated Core css
+		include_file('desktop', 'deprecated.main', 'css');
+	}
+
+	//jQuery less libs:
+	include_file('3rdparty', 'packery/packery.pkgd', 'js');
+	include_file('3rdparty', 'packery/draggabilly.pkgd', 'js');
+
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
 	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
@@ -219,25 +237,35 @@ function setTheme() {
 	include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
 	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
 	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
-	include_file('3rdparty', 'jquery.tree/themes/default/style.min', 'css');
-	include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
-	include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/theme.bootstrap.min', 'css');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/jquery.tablesorter.widgets.min', 'js');
-	include_file('3rdparty', 'jquery.tablesorter/parsers/parser-input-select.min', 'js');
-	include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js');
-	include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css');
-	include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
-	include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'css');
-	include_file('3rdparty', 'jquery.contextMenu/jquery.contextMenu.min', 'js');
+
+	include_file('3rdparty', 'highstock/highstock', 'js');
+	include_file('3rdparty', 'highstock/highcharts-more', 'js');
+	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
+	include_file('3rdparty', 'highstock/modules/exporting', 'js');
+	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
+	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+
+	include_file('3rdparty', 'nouislider/nouislider', 'js');
+	include_file('3rdparty', 'nouislider/nouislider', 'css');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
 
+	//New $less libs
+	include_file('coreDOM', 'jeeCron/jeeCron', 'js');
+	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'css');
+	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'js');
+	include_file('3rdparty', 'isPin/ispin', 'css');
+	include_file('3rdparty', 'isPin/ispin', 'js');
+	include_file('3rdparty', 'sortable/sortable', 'js');
+	include_file('3rdparty', 'popper/popper.min', 'js');
+	include_file('3rdparty', 'tippy/tippy.min', 'js');
+	include_file('3rdparty', 'flatpickr/flatpickr.min', 'css');
+	include_file('3rdparty', 'flatpickr/flatpickr.dark', 'css');
+	include_file('3rdparty', 'flatpickr/flatpickr.min', 'js');
+	include_file('3rdparty', 'flatpickr/l10n/fr', 'js');
+	include_file('3rdparty', 'flatpickr/l10n/es', 'js');
+
 	//set theme before loading utils:
-	include_file('desktop', 'bootstrap', 'css');
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 	setTheme();
@@ -262,7 +290,7 @@ function setTheme() {
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 
-<body>
+<body data-uimode="desktop">
 	<div id="backgroundforJeedom">
 		<div id="top"></div>
 		<div id="bottom"></div>
@@ -278,7 +306,7 @@ function setTheme() {
 		sendVarToJS([
 			'jeeFrontEnd.userProfils' => $_SESSION['user']->getOptions(),
 			'user_id' => $_SESSION['user']->getId(),
- 			'user_isAdmin' => isConnect('admin'),
+			'user_isAdmin' => isConnect('admin'),
 			'user_login' => $_SESSION['user']->getLogin(),
 			'jeeFrontEnd.jeedom_firstUse' => $configs['jeedom::firstUse']
 		]);
@@ -293,7 +321,7 @@ function setTheme() {
 		}
 	?>
 		<?php if (init('rescue', 0) == 0) { ?>
-			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden">
+			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden shadowed">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="domUtils.showLoading()" height="30px"></a>
@@ -335,9 +363,9 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu';?>">
+										<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu'; ?>">
 											<i class="far fa-image"></i> {{Vue}}
-											<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
+											<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
 										</a>
 										<input type="checkbox" id="drop-view">
 										<?php
@@ -352,9 +380,9 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu';?>">
+										<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu'; ?>">
 											<i class="fas fa-paint-brush"></i> {{Design}}
-											<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
+											<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
 										</a>
 										<input type="checkbox" id="drop-design">
 										<?php
@@ -369,9 +397,9 @@ function setTheme() {
 									</li>
 
 									<li>
-										<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu';?>">
+										<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu'; ?>">
 											<i class="fas fa-cubes"></i> {{Design 3D}}
-											<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>';?>
+											<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
 										</a>
 										<input type="checkbox" id="drop-design3d">
 										<?php
@@ -427,7 +455,7 @@ function setTheme() {
 										<li><a href="index.php?v=d&p=types"><i class="fas fa-puzzle-piece"></i> {{Types d'équipement}}</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a id="bt_showNoteManager"><i class="fas fa-sticky-note"></i> {{Notes}}</a></li>
-										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur expression}}</a></li>
+										<li><a id="bt_showExpressionTesting"><i class="fas fa-check"></i> {{Testeur d'expressions}}</a></li>
 										<li><a id="bt_showDatastoreVariable"><i class="fas fa-eye"></i> {{Variables}}</a></li>
 										<li><a id="bt_showSearching"><i class="fas fa-search"></i> {{Recherche}}</a></li>
 										<li><a href="index.php?v=d&p=replace"><i class="fas fa-random warning"></i> {{Remplacer}}</a></li>
@@ -468,9 +496,6 @@ function setTheme() {
 												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
-												<?php if (jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true) {
-													echo '<li><a href="index.php?v=d&p=migrate"><i class="fas fa-hdd"></i> {{Restauration Image}}</a></li>';
-												} ?>
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
 												<li class="divider"></li>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
@@ -494,18 +519,19 @@ function setTheme() {
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li class="divider"></li>
 									<?php if (isConnect('admin')) { ?>
-									<?php $mbState = config::byKey('mbState');
-											if ($mbState == 0) { ?>
-										<li>
-											<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
-												<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
-											<?php } else { ?>
-												<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
-											<?php } ?>
-										</li>
-									<?php }} ?>
+										<?php $mbState = config::byKey('mbState');
+										if ($mbState == 0) { ?>
+											<li>
+												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
+													<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
+												<?php } else { ?>
+													<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
+												<?php } ?>
+											</li>
+									<?php }
+									} ?>
 									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-									<li><a><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+									<li class="nocursor"><a class="disabled"><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 									<?php
 									if ($mbState == 0) { ?>
 										<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
@@ -550,11 +576,12 @@ function setTheme() {
 							<?php
 							$mbState = config::byKey('mbState');
 							if ($mbState == 0) {
-							if (config::byKey('doc::base_url', 'core') != '') { ?>
-								<li class="hidden-sm">
-									<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle"></i></a>
-								</li>
-							<?php }} ?>
+								if (config::byKey('doc::base_url', 'core') != '') { ?>
+									<li class="hidden-sm">
+										<a id="bt_getHelpPage" class="cursor" data-plugin="<?php echo init('m'); ?>" data-page="<?php echo init('p'); ?>" title="{{Aide sur la page en cours}}"><i class="fas fa-question-circle"></i></a>
+									</li>
+							<?php }
+							} ?>
 						</ul>
 					</nav>
 					<div id="summaryGlobalMain"><?php echo jeeObject::getGlobalHtmlSummary(); ?></div>
@@ -604,10 +631,14 @@ function setTheme() {
 						include_file('desktop', $page, 'php');
 					}
 				} catch (Exception $e) {
-					ob_end_clean();
-					echo '<div class="alert alert-danger div_alert">';
-					echo displayException($e);
-					echo '</div>';
+					if ($_GET['m'] == 'mobile' && $_GET['p'] == 'panelMenuCustom') {
+						echo "Aucun menu custom";
+					} else {
+						ob_end_clean();
+						echo '<div class="alert alert-danger div_alert">';
+						echo displayException($e);
+						echo '</div>';
+					}
 				} catch (Error $e) {
 					ob_end_clean();
 					echo '<div class="alert alert-danger div_alert">';
@@ -616,10 +647,6 @@ function setTheme() {
 				}
 				?>
 			</div>
-			<div id="md_modal"></div>
-			<div id="md_modal2"></div>
-			<div id="md_modal3"></div>
-			<div id="md_reportBug" title="{{Demande de support}}"></div>
 		</main>
 	<?php
 	}
@@ -627,6 +654,11 @@ function setTheme() {
 	<?php if (init('report') == 1 && init('delay', -1) != -1 && is_numeric(init('delay'))) { ?>
 		<iframe src='/core/php/sleep.php?delay=<?php echo init('delay') ?>' width=0 height=0></iframe>
 	<?php } ?>
+
+	<div id="md_modal"></div>
+	<div id="md_modal2"></div>
+	<div id="md_modal3"></div>
+
 </body>
 
 </html>

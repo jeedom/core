@@ -18,7 +18,6 @@
 
 if (!jeeFrontEnd.scenario) {
   jeeFrontEnd.scenario = {
-    $divScenario: null,
     dom_divScenario: null,
     tab: null,
     dataDefinedAction: null,
@@ -45,14 +44,36 @@ if (!jeeFrontEnd.scenario) {
       this.undoStack = []
       this.bt_undo = document.getElementById('bt_undo')
       this.bt_redo = document.getElementById('bt_redo')
-      this.$divScenario = $('#div_editScenario')
       this.dom_divScenario= document.getElementById('div_editScenario')
       window.jeeP = this
+
+      jeeP.loadId = getUrlVars('id')
+      if (is_numeric(jeeP.loadId)) {
+        this.printScenario(jeeP.loadId, function() {
+          if (jeephp2js.initSearch != 0) {
+            document.getElementById('bt_scenarioTab').click()
+            document.getElementById('bt_resetInsideScenarioSearch').click()
+            setTimeout(function() {
+              document.getElementById('in_searchInsideScenario').jeeValue(jeephp2js.initSearch).triggerEvent('keyup').focus()
+            }, 200)
+          }
+        })
+      }
+
+      //Global scenario state:
+      if (jeephp2js.globalActiveState == '0') {
+        document.getElementById('bt_runScenario').addClass('disabled')
+        document.getElementById('generaltab').querySelector('input[data-l1key="isActive"]').addClass('warning')
+        document.getElementById('scenarioThumbnailDisplay').querySelector('div.scenarioListContainer').addClass('warning')
+        document.getElementById('div_editScenario').querySelectorAll('ul[role="tablist"] > li').addClass('warning')
+      }
     },
     postInit: function() {
+      //autocomplete timeline input:
       jeedom.timeline.autocompleteFolder()
-      $('.scenarioAttr[data-l1key="group"]').autocomplete({
-        source: function(request, response, url) {
+      //autocomplete group input:
+      document.querySelector('.scenarioAttr[data-l1key="group"]')?.jeeComplete({
+          source: function(request, response, url) {
           domUtils.ajax({
             type: 'POST',
             url: 'core/ajax/scenario.ajax.php',
@@ -82,17 +103,6 @@ if (!jeeFrontEnd.scenario) {
 
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
       this.setSortables()
-
-      if (jeephp2js.initSearch != 0) {
-        setTimeout(function() {
-          document.getElementById('bt_scenarioTab').triggerEvent('click')
-          document.getElementById('bt_resetInsideScenarioSearch').triggerEvent('click')
-          setTimeout(function() {
-            document.getElementById('in_searchInsideScenario').value = jeephp2js.initSearch
-            document.getElementById('in_searchInsideScenario').keyup().blur().focus()
-          }, 500)
-        }, 200)
-      }
     },
     checkNoTriggeringMode: function() {
       if (document.querySelectorAll('div.scheduleDisplay .schedule').length > 0 ||
@@ -102,77 +112,6 @@ if (!jeeFrontEnd.scenario) {
       } else {
         document.getElementById('emptyModeWarning').seen()
       }
-    },
-    getSelectCmdExpressionMessage: function(subType, cmdHumanName) {
-      if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
-
-      var message = '<div class="row">'
-      message += '<div class="col-md-12">'
-      message += '<form class="form-horizontal" onsubmit="return false;">'
-      message += '<div class="form-group">'
-      message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
-
-      if (subType == 'numeric') {
-        message += '<div class="col-xs-3">'
-        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égal}}</option>'
-        message += '    <option value=">">{{supérieur}}</option>'
-        message += '    <option value="<">{{inférieur}}</option>'
-        message += '    <option value="!=">{{différent}}</option>'
-        message += '  </select>'
-        message += '</div>'
-        message += '<div class="col-xs-4">'
-        message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
-        message += '  <button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
-        message += '</div>'
-        message += '</div>'
-      }
-
-      if (subType == 'string') {
-        message += '<div class="col-xs-2">'
-        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égale}}</option>'
-        message += '    <option value="matches">{{contient}}</option>'
-        message += '    <option value="!=">{{différent}}</option>'
-        message += '  </select>'
-        message += '</div>'
-        message += '<div class="col-xs-4">'
-        message += '  <input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
-        message += '  <button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal"><i class="fas fa-list-alt"></i></button>'
-        message += '</div>'
-        message += '</div>'
-      }
-
-      if (subType == 'binary') {
-        message += '<div class="col-xs-7">'
-        message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
-        message += '  <select class="conditionAttr form-control" data-l1key="operande">'
-        message += '    <option value="1">{{Ouvert}}</option>'
-        message += '    <option value="0">{{Fermé}}</option>'
-        message += '    <option value="1">{{Allumé}}</option>'
-        message += '    <option value="0">{{Eteint}}</option>'
-        message += '    <option value="1">{{Déclenché}}</option>'
-        message += '    <option value="0">{{Au repos}}</option>'
-        message += '  </select>'
-        message += '</div>'
-        message += '</div>'
-      }
-
-      message += '<div class="form-group">'
-      message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
-      message += '<div class="col-xs-3">'
-      message += '  <select class="conditionAttr form-control" data-l1key="next">'
-      message += '    <option value="">{{rien}}</option>'
-      message += '    <option value="&&">&& (AND)</option>'
-      message += '    <option value="||">|| (OR)</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
-      message += '  </select>'
-      message += '</div>'
-      message += '</div>'
-      message += '</div></div>'
-      message += '</form></div></div>'
-      return message
     },
     //Copy / Paste
     removeObjectProp: function(obj, propToDelete) {
@@ -188,125 +127,101 @@ if (!jeeFrontEnd.scenario) {
         }
       }
     },
-    //Scenario loading
     setSortables: function() {
-      $("#div_scenarioElement").sortable({
-        handle: '.bt_sortable',
-        cursor: 'move',
-        grid: [5, 15],
-        items: '.sortable',
-        appendTo: $('#div_scenarioElement'),
-        zIndex: 0,
-        opacity: 0.5,
-        forcePlaceholderSize: true,
-        placeholder: 'sortable-placeholder',
-        start: function(event, ui) {
-          $('.dropdown.open').removeClass('open')
-          if (ui.placeholder.parents('.expressions').find('.sortable').length < 3) {
-            ui.placeholder.parents('.expressions').find('.sortable.empty').show()
-          }
-        },
-        change: function(event, ui) {
-          if (ui.placeholder.next().length == 0) {
-            ui.placeholder.addClass('sortable-placeholderLast')
-          } else {
-            ui.placeholder.removeClass('sortable-placeholderLast')
-          }
+      var selector = '.subElementACTION > .expressions, .subElementDO > .expressions, .subElementTHEN > .expressions, .subElementELSE > .expressions'
+      var containers = document.getElementById('div_scenarioElement').querySelectorAll(selector)
+      var commonOptions = {
+          group: {
+            name: 'expressionSorting',
+          },
+          delay: 250,
+          delayOnTouchOnly: true,
+          animation: 100,
+          draggable: '.sortable',
+          handle: '.bt_sortable',
+          direction: 'vertical',
+          swapThreshold: 0.07,
+          removeCloneOnHide: true,
+          onStart: function(event) {
+            jeeFrontEnd.scenario.setUndoStack()
+            document.querySelectorAll('.dropdown.open').removeClass('open')
+            document.querySelectorAll('.subElementCODE .expressions .expression').addClass('disabled') //Prevent paste dragged element into code
+            setTimeout(() => {
+              document.querySelectorAll('div[data-tippy-root]').remove()
+            }, 100)
+          },
+          onMove: function(event, originalEvent) { //Prevent actions on root
+            if (event.dragged.hasClass('expressionACTION') && event.to.getAttribute('id') == 'root') {
+              return false
+            }
+          },
+          onEnd: function(event) {
+            document.querySelectorAll('.subElementCODE .expressions .expression').removeClass('disabled')
 
-          var getClass = true
-          if (ui.placeholder.parent().hasClass('subElement')) {
-            getClass = false
-          }
-          if (ui.helper.hasClass('expressionACTION') && ui.placeholder.parent().attr('id') == 'div_scenarioElement') {
-            getClass = false
-          }
-          var thisSub = ui.placeholder.parents('.expressions').parents('.subElement')
-          if (thisSub.hasClass('subElementCOMMENT') || thisSub.hasClass('subElementCODE')) {
-            getClass = false
-          }
-
-          if (getClass) {
-            ui.placeholder.addClass('sortable-placeholder')
-          } else {
-            ui.placeholder.removeClass('sortable-placeholder')
-          }
-        },
-        update: function(event, ui) {
-          if (ui.item.closest('.subElement').hasClass('subElementCOMMENT')) {
-            $("#div_scenarioElement").sortable('cancel')
-          }
-          if (ui.item.findAtDepth('.element', 2).length == 1 && ui.item.parent().attr('id') == 'div_scenarioElement') {
-            ui.item.replaceWith(ui.item.findAtDepth('.element', 2))
-          }
-
-          if (ui.item.hasClass('element') && ui.item.parent().attr('id') != 'div_scenarioElement') {
-            ui.item.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-              var value = this.jeeValue()
-              if (value != undefined && value != '') {
-                $(this).attr('data-tmp-value', value)
+            if (event.from.getAttribute('id') == 'root') {
+              if (event.to.getAttribute('id') != 'root') {
+                event.item.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element"/>')
               }
-            })
-            var el = $(jeeP.addExpression({
-              type: 'element',
-              element: {
-                html: ui.item.wrapAll("<div/>").parent().html()
+            }
+            if (event.to.getAttribute('id') == 'root') {
+              if (event.from.getAttribute('id') != 'root') {
+                event.item.querySelector(':scope > input[data-l1key="type"]')?.remove()
               }
-            }))
-            var value
-            el.find('.expressionAttr,.subElementAttr,.elementAttr').each(function() {
-              value = $(this).attr('data-tmp-value')
-              if (value != undefined && value != '') {
-                this.jeeValue(value)
-              }
-              $(this).removeAttr('data-tmp-value')
-            })
-            ui.item.parent().replaceWith(el)
-          }
+            }
 
-          if (ui.item.hasClass('expression') && ui.item.parent().attr('id') == 'div_scenarioElement') {
-            $("#div_scenarioElement").sortable("cancel")
-          }
-          if (ui.item.closest('.subElement').hasClass('noSortable')) {
-            $("#div_scenarioElement").sortable("cancel")
-          }
-
-          jeeP.updateTooltips()
-          jeeP.updateSortable()
-        },
-        stop: function(event, ui) {
-          ui.item.attr('style', '')
-          jeeP.setUndoStack()
-          jeeFrontEnd.modifyWithoutSave = true
-        }
+            jeeFrontEnd.modifyWithoutSave = true
+          },
+      }
+      containers.forEach(_Sortcontainer => {
+        if (Sortable.get(_Sortcontainer)) Sortable.get(_Sortcontainer).destroy()
+        new Sortable(_Sortcontainer, commonOptions)
       })
-      $("#div_scenarioElement").sortable("enable")
+      var root = document.getElementById('root')
+      if (root) {
+        if (Sortable.get(root)) Sortable.get(root).destroy()
+        new Sortable(root, commonOptions)
+      }
     },
-    updateSortable: function() {
-      document.querySelectorAll('.element').removeClass('sortable')
-      document.querySelectorAll('#div_scenarioElement > .element').addClass('sortable')
-      document.querySelectorAll('.subElement .expressions').forEach(function(exp) {
-        if (exp.querySelectorAll(':scope > .sortable:not(.empty)').length > 0) {
-          exp.querySelectorAll(':scope > .sortable.empty')?.unseen()
-        } else {
-          exp.querySelectorAll(':scope > .sortable.empty')?.seen()
-        }
-      })
+    setRootElements: function() {
+      /*
+      Create same hierarchie for root elements to manage sortables:
+      //root -> expressions -> expression -> col-xs-12 -> element
+      */
+      var root = document.querySelector('#div_scenarioElement #root')
+      if (!root) {
+        document.getElementById('div_scenarioElement').insertAdjacentHTML('afterbegin', '<div id="root" class="expressions"></div>')
+        root = document.querySelector('#div_scenarioElement #root')
+      }
+      var rootElements = document.querySelectorAll('#div_scenarioElement > div.element')
+      if (rootElements.length > 0) {
+        rootElements.forEach(_element => {
+          var exp = document.createElement('div')
+          exp.addClass('expression sortable col-xs-12')
+          exp.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="id" style="display : none;" value=""/>')
+          exp.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="scenarioSubElement_id" style="display : none;" value=""/>')
+
+          exp.innerHTML = '<div class="col-xs-12 "></div>'
+          exp.childNodes[0].appendChild(_element)
+          root.appendChild(exp)
+        })
+        jeeP.setSortables()
+      }
     },
     updateElseToggle: function() {
       document.querySelectorAll('.subElementELSE').forEach(function(elElse) {
         if (!elElse.closest('.element').querySelector(':scope > .subElementTHEN')?.querySelector('.bt_showElse i')?.hasClass('fa-sort-down')) {
           if (elElse.querySelector(':scope > .expressions')?.querySelectorAll(':scope > .expression').length == 0) {
-            elElse.closest('.element').querySelector(':scope > .subElementTHEN').querySelector('.bt_showElse').triggerEvent('click')
+            elElse.closest('.element').querySelector(':scope > .subElementTHEN').querySelector('.bt_showElse').click()
           }
         }
       })
     },
-    updateElementCollpase: function() {
-      document.querySelectorAll('.bt_collapse').forEach(function(bt) {
-        if (bt.jeeValue() == 0) {
-          bt.closest('.element').removeClass('elementCollapse')
+    updateElementCollapse: function() {
+      document.querySelectorAll('a.bt_collapse').forEach( _bt => {
+        if (_bt.getAttribute('value') == '0') {
+          _bt.closest('.element').removeClass('elementCollapse')
         } else {
-          bt.closest('.element').addClass('elementCollapse')
+          _bt.closest('.element').addClass('elementCollapse')
         }
       })
     },
@@ -404,9 +319,11 @@ if (!jeeFrontEnd.scenario) {
       }
       document.querySelector('.defined_actions').insertAdjacentHTML('beforeend', htmlActions)
     },
-    printScenario: function(_id) {
+    //Load / Save:
+    printScenario: function(_id, _callback) {
       jeedomUtils.hideAlert()
       domUtils.showLoading()
+      document.getElementById('scenarioThumbnailDisplay').unseen()
       document.getElementById('emptyModeWarning').unseen()
       jeedom.scenario.update[_id] = function(_options) {
         if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
@@ -458,7 +375,12 @@ if (!jeeFrontEnd.scenario) {
           document.getElementById('div_scenarioElement').empty()
           document.querySelectorAll('.provokeMode').empty()
           document.querySelectorAll('.scheduleMode').empty()
+
+          if (data.trigger[0] == null) {
+            document.querySelector('.scenarioAttr[data-l1key="mode"]').selectedIndex = 0
+          }
           document.querySelector('.scenarioAttr[data-l1key="mode"]').triggerEvent('change')
+
 
           jeedom.scenario.update[_id](data)
           if (data.isActive != 1) {
@@ -478,7 +400,7 @@ if (!jeeFrontEnd.scenario) {
             }
           }
 
-          if ($.isArray(data.schedule)) {
+          if (Array.isArray(data.schedule)) {
             for (var i in data.schedule) {
               if (data.schedule[i] != '' && data.schedule[i] != null) {
                 jeeP.addSchedule(data.schedule[i])
@@ -528,17 +450,20 @@ if (!jeeFrontEnd.scenario) {
           }
 
           jeeP.actionOptions = []
+
+
           var elements = ''
           for (var i in data.elements) {
             elements += jeeP.addElement(data.elements[i])
           }
           document.getElementById('div_scenarioElement').insertAdjacentHTML('beforeend', elements)
+          jeeFrontEnd.scenario.setRootElements()
+
           document.querySelectorAll('.subElementAttr[data-l1key="options"][data-l2key="enable"], .expressionAttr[data-l1key="options"][data-l2key="enable"]').triggerEvent('change')
           jeeP.setScenarioActionsOptions()
           document.getElementById('div_editScenario').seen()
-          jeeP.updateSortable()
           jeedom.scenario.setAutoComplete()
-          jeeP.updateElementCollpase()
+          jeeP.updateElementCollapse()
           jeeP.updateElseToggle()
           jeedomUtils.taAutosize()
           var title = ''
@@ -554,27 +479,15 @@ if (!jeeFrontEnd.scenario) {
           domUtils(function() {
             jeeP.setEditors()
             jeeP.checkNoTriggeringMode()
-            jeeP.updateTooltips()
+            jeedomUtils.initTooltips()
             jeedom.scenario.setAutoComplete()
             jeeP.resetUndo()
             jeeFrontEnd.modifyWithoutSave = false
+
+            if (isset(_callback) && typeof _callback === 'function') {
+              _callback()
+            }
           })
-
-          /*
-          setTimeout(function() {
-            jeeP.setEditors()
-          }, 100)
-          jeeFrontEnd.modifyWithoutSave = false
-          jeeP.resetUndo()
-          setTimeout(function() {
-            jeeFrontEnd.modifyWithoutSave = false
-          }, 1000)
-          setTimeout(function() {
-            jeeP.checkNoTriggeringMode()
-            jeeP.updateTooltips()
-          }, 500)
-          */
-
 
           document.getElementById('humanNameTag').innerHTML = data.humanNameTag
         }
@@ -582,17 +495,17 @@ if (!jeeFrontEnd.scenario) {
     },
     saveScenario: function(_callback) {
       jeedomUtils.hideAlert()
+      //Get scenarios settings:
       var scenario = this.dom_divScenario.getJeeValues('.scenarioAttr')[0]
-      if (typeof scenario.trigger == 'undefined') {
-        scenario.trigger = ''
-      }
-      if (typeof scenario.schedule == 'undefined') {
-        scenario.schedule = ''
-      }
+      if (typeof scenario.trigger == 'undefined') scenario.trigger = ''
+      if (typeof scenario.schedule == 'undefined') scenario.schedule = ''
+
+      //Get scenario elements:
       var elements = []
-      document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').forEach(function(_el) {
-        elements.push(jeeP.getElement(_el))
+      document.getElementById('root').querySelectorAll(':scope > .expression').forEach(_exp => {
+        elements.push(jeeP.getElement(_exp.querySelector('div.element')))
       })
+
       scenario.elements = elements
       jeedom.scenario.save({
         scenario: scenario,
@@ -616,6 +529,7 @@ if (!jeeFrontEnd.scenario) {
         }
       })
     },
+    //Adding:
     addTrigger: function(_trigger) {
       var div = '<div class="form-group trigger">'
       div += '<label class="col-xs-3 control-label">{{Evénement}}</label>'
@@ -623,9 +537,9 @@ if (!jeeFrontEnd.scenario) {
       div += '<div class="input-group">'
       div += '<input class="scenarioAttr input-sm form-control roundedLeft" data-l1key="trigger" value="' + _trigger.replace(/"/g, '&quot;') + '" >'
       div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" tooltip="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
-      div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" tooltip="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
-      div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" tooltip="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectTrigger" title="{{Choisir une commande}}"><i class="fas fa-list-alt"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectGenericTrigger" title="{{Choisir un Type Générique}}"><i class="fas fa-puzzle-piece"></i></a>'
+      div += '<a class="btn btn-default btn-sm cursor bt_selectDataStoreTrigger" title="{{Choisir une variable}}"><i class="fas fa-calculator"></i></a>'
       div += '<a class="btn btn-default btn-sm cursor bt_removeTrigger roundedRight"><i class="fas fa-minus-circle"></i></a>'
       div += '</span>'
       div += '</div>'
@@ -649,9 +563,7 @@ if (!jeeFrontEnd.scenario) {
       document.querySelector('.scheduleMode').insertAdjacentHTML('beforeend', div)
     },
     addExpression: function(_expression) {
-      if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') {
-        return ''
-      }
+      if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') return ''
       var sortable = 'sortable'
       if (_expression.type == 'condition' || _expression.type == 'code') {
         sortable = 'noSortable'
@@ -672,10 +584,10 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div class="input-group input-group-sm" >'
           retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />'
           retour += '<span class="input-group-btn">'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" tooltip="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" tooltip="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
-          retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  tooltip="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectCmdExpression" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectGenericExpression" title="{{Rechercher un type générique}}"><i class="fas fa-puzzle-piece"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectScenarioExpression" title="{{Rechercher un scénario}}"><i class="fas fa-history"></i></button>'
+          retour += '<button type="button" class="btn btn-default cursor bt_selectEqLogicExpression roundedRight"  title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>'
           retour += '</span>'
           retour += '</div>'
           break
@@ -696,14 +608,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div class="col-xs-1" >'
           retour += '<i class="fas fa-arrows-alt-v cursor bt_sortable" ></i>'
           if (!isset(_expression.options) || !isset(_expression.options.enable) || _expression.options.enable == 1) {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  tooltip="{{Décocher pour désactiver l\'action}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable" checked  title="{{Décocher pour désactiver l\'action}}"/>'
           } else {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  tooltip="{{Décocher pour désactiver l\'action}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="enable"  title="{{Décocher pour désactiver l\'action}}"/>'
           }
           if (!isset(_expression.options) || !isset(_expression.options.background) || _expression.options.background == 0) {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background"  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
           } else {
-            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  tooltip="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
+            retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
           }
           var expression_txt = init(_expression.expression)
           if (typeof expression_txt != 'string') {
@@ -712,12 +624,12 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
           retour += '<div class="col-xs-4" ><div class="input-group input-group-sm">'
           retour += '<span class="input-group-btn">'
-          retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" tooltip="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
+          retour += '<button class="btn btn-default bt_removeExpression roundedLeft" type="button" title="{{Supprimer l\'action}}"><i class="fas fa-minus-circle"></i></button>'
           retour += '</span>'
           retour += '<input class="expressionAttr form-control" data-l1key="expression" prevalue="' + init(_expression.expression) + '" value="' + expression_txt.replace(/"/g, '&quot;') + '"/>'
           retour += '<span class="input-group-btn">'
-          retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" tooltip="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
-          retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" tooltip="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
+          retour += '<button class="btn btn-default bt_selectOtherActionExpression" type="button" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></button>'
+          retour += '<button class="btn btn-default bt_selectCmdExpression roundedRight" type="button" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></button>'
           retour += '</span>'
           retour += '</div></div>'
           var actionOption_id = jeedomUtils.uniqId()
@@ -742,12 +654,8 @@ if (!jeeFrontEnd.scenario) {
       return retour
     },
     addSubElement: function(_subElement) {
-      if (!isset(_subElement.type) || _subElement.type == '') {
-        return ''
-      }
-      if (!isset(_subElement.options)) {
-        _subElement.options = {}
-      }
+      if (!isset(_subElement.type) || _subElement.type == '') return ''
+      if (!isset(_subElement.options)) _subElement.options = {}
       var noSortable = ''
       if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
         noSortable = 'noSortable'
@@ -797,23 +705,23 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor" ></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div><legend >{{SI}}</legend></div>'
 
           retour += '<div >'
           if (!isset(_subElement.options) || !isset(_subElement.options.allowRepeatCondition) || _subElement.options.allowRepeatCondition == 0) {
-            retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
+            retour += '<a class="bt_repeat cursor subElementAttr" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="0"><span><i class="fas fa-sync"></i></span></a>'
           } else {
-            retour += '<a class="bt_repeat cursor subElementAttr" tooltip="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
+            retour += '<a class="bt_repeat cursor subElementAttr" title="{{Autoriser ou non la répétition des actions si l\'évaluation de la condition est la même que la précédente}}" data-l1key="options" data-l2key="allowRepeatCondition" value="1"><span><i class="fas fa-ban text-danger"></i></span></a>'
           }
           retour += '</div>'
 
@@ -836,7 +744,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type,true)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -852,7 +759,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -866,14 +772,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
@@ -896,18 +802,18 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
-          retour += '<legend tooltip="{{Action DANS x minutes}}">{{DANS}}</legend>'
+          retour += '<legend title="{{Action DANS x minutes}}">{{DANS}}</legend>'
           retour += '</div>'
           retour += '<div class="expressions" >'
           var expression = {
@@ -926,14 +832,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
@@ -958,7 +864,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -972,14 +877,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '</div>'
           retour += '<div>'
@@ -1005,9 +910,9 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           retour += '</div>'
           retour += '<div>'
@@ -1038,14 +943,14 @@ if (!jeeFrontEnd.scenario) {
           retour += '<div>'
           retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
           if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
           } else {
-            retour += '<a class="bt_collapse cursor subElementAttr" tooltip="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
           }
           if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
           } else {
-            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" tooltip="{{Décocher pour désactiver l\'élément}}" />'
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
           }
           retour += '<legend class="legendHidden">{{ACTION}}</legend>'
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1053,7 +958,7 @@ if (!jeeFrontEnd.scenario) {
             if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
               retour += '<div class="blocPreview">' + expression.element.subElements[0].expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
             } else {
-              retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
+              try { retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'} catch(e) { }
             }
           } else {
             retour += '<div class="blocPreview"></div>'
@@ -1064,7 +969,6 @@ if (!jeeFrontEnd.scenario) {
           retour += this.getAddButton(_subElement.type)
           retour += '</div>'
           retour += '<div class="expressions">'
-          retour += '<div class="sortable empty" ></div>'
           if (isset(_subElement.expressions)) {
             for (var k in _subElement.expressions) {
               retour += this.addExpression(_subElement.expressions[k])
@@ -1078,18 +982,14 @@ if (!jeeFrontEnd.scenario) {
       return retour
     },
     addElButtons: function(_retour) {
-      _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" tooltip="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
-      _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" tooltip="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
-      _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" tooltip="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-minus-circle pull-right cursor bt_removeElement" title="{{Supprimer ce bloc.<br>Ctrl+Click: Supprimer sans confirmation.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-copy pull-right cursor bt_copyElement" title="{{Copier ce bloc.<br>Ctrl+Click: Couper ce bloc.}}"></i></div>'
+      _retour += '  <div><i class="fas fa-paste pull-right cursor bt_pasteElement" title="{{Coller un bloc après celui-ci.<br>Ctrl+Click: remplacer ce bloc par le bloc copié.}}"></i></div>'
       return _retour
     },
     addElement: function(_element) {
-      if (!isset(_element)) {
-        return
-      }
-      if (!isset(_element.type) || _element.type == '') {
-        return ''
-      }
+      if (!isset(_element)) return
+      if (!isset(_element.type) || _element.type == '') return ''
 
       var elementClass = ''
       switch (_element.type) {
@@ -1218,9 +1118,7 @@ if (!jeeFrontEnd.scenario) {
     },
     getElement: function(dom_element) {
       var element = dom_element.getJeeValues('.elementAttr', 1)
-      if (element.length == 0) {
-        return
-      }
+      if (element.length == 0) return
       element = element[0]
       element.subElements = []
 
@@ -1259,20 +1157,12 @@ if (!jeeFrontEnd.scenario) {
       })
       return element
     },
-    updateTooltips: function() {
-      //in scenarios, for faster undo/redo, tooltips are specially created with tooltip attribute and copied as title to keep track of it!
-      var toTips = document.querySelectorAll('[tooltip]:not(.tooltipstered)')
-      toTips.forEach(function(_tooltip) {
-        _tooltip.setAttribute('title', _tooltip.getAttribute('tooltip'))
-      })
-      $(toTips).tooltipster(jeedomUtils.TOOLTIPSOPTIONS)
-    },
     getAddButton: function(_type,_caret) {
       if (!isset(_caret)) _caret = false
       var retour = ''
       if (_caret) {
         retour += '<div class="input-group">'
-        retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" tooltip="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
+        retour += '<button class="bt_showElse btn btn-xs btn-default roundedLeft" type="button" data-toggle="dropdown" title="{{Afficher/masquer le bloc Sinon}}" aria-haspopup="true" aria-expanded="true">'
         retour += '<i class="fas fa-sort-up"></i>'
         retour += '</button>'
         retour += '<span class="input-group-btn">'
@@ -1316,8 +1206,79 @@ if (!jeeFrontEnd.scenario) {
       })
     },
     //misc
+    getSelectCmdExpressionMessage: function(subType, cmdHumanName) {
+      if (!['numeric', 'string', 'binary'].includes(subType)) return '{{Aucun choix possible}}'
+
+      var message = '<div class="row">'
+      message += '<div class="col-md-12">'
+      message += '<form class="form-horizontal" onsubmit="return false;">'
+      message += '<div class="form-group">'
+      message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
+
+      if (subType == 'numeric') {
+        message += '<div class="col-xs-3">'
+        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+        message += '    <option value="==">{{égal}}</option>'
+        message += '    <option value=">">{{supérieur}}</option>'
+        message += '    <option value="<">{{inférieur}}</option>'
+        message += '    <option value="!=">{{différent}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '<div class="col-xs-4">'
+        message += '<input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+        message += '<button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal" style="margin-top: -5px;"><i class="fas fa-list-alt"></i></button>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      if (subType == 'string') {
+        message += '<div class="col-xs-2">'
+        message += '  <select class="conditionAttr form-control" data-l1key="operator">'
+        message += '    <option value="==">{{égale}}</option>'
+        message += '    <option value="matches">{{contient}}</option>'
+        message += '    <option value="!=">{{différent}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '<div class="col-xs-4">'
+        message += '<input class="conditionAttr form-control radio-inline" data-l1key="operande" style="width: calc(100% - 45px);" />'
+        message += '<button onclick="jeeFrontEnd.scenario.selectCmdFromModal(event)" type="button" class="btn btn-default cursor bt_selectCmdFromModal" style="margin-top: -5px;"><i class="fas fa-list-alt"></i></button>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      if (subType == 'binary') {
+        message += '<div class="col-xs-3">'
+        message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
+        message += '  <select class="conditionAttr form-control" data-l1key="operande">'
+        message += '    <option value="1">{{Ouvert}}</option>'
+        message += '    <option value="0">{{Fermé}}</option>'
+        message += '    <option value="1">{{Allumé}}</option>'
+        message += '    <option value="0">{{Eteint}}</option>'
+        message += '    <option value="1">{{Déclenché}}</option>'
+        message += '    <option value="0">{{Au repos}}</option>'
+        message += '  </select>'
+        message += '</div>'
+        message += '</div>'
+      }
+
+      message += '<div class="form-group">'
+      message += '<label class="col-xs-5 control-label" >{{Ensuite}}</label>'
+      message += '<div class="col-xs-3">'
+      message += '  <select class="conditionAttr form-control" data-l1key="next">'
+      message += '    <option value="">{{rien}}</option>'
+      message += '    <option value="&&">&& (AND)</option>'
+      message += '    <option value="||">|| (OR)</option>'
+      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
+      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
+      message += '  </select>'
+      message += '</div>'
+      message += '</div>'
+      message += '</div></div>'
+      message += '</form></div></div>'
+      return message
+    },
     selectCmdFromModal: function(event) { //Condition chaining modals outside page_container, called from bt_selectCmdFromModal onclick()
-      var modal = event.target.closest('.bootbox.modal')
+      var modal = event.target.closest('.jeeDialogPrompt')
       modal.style.display = 'none'
       jeedom.cmd.getSelectModal({
         cmd: {
@@ -1338,12 +1299,7 @@ if (!jeeFrontEnd.scenario) {
         elements += this.addElement(loadStack[i])
       }
       document.getElementById('div_scenarioElement').empty().html(elements, true)
-      //Synch collapsed elements:
-      /*
-      document.querySelectorAll('i.fa-eye-slash').forEach(eye => {
-        eye.closest(.element).addClass('elementCollapse')
-      })
-      */
+      this.setRootElements()
       this.updateElseToggle()
       this.setScenarioActionsOptions()
     },
@@ -1351,10 +1307,10 @@ if (!jeeFrontEnd.scenario) {
       this.syncEditors()
       this.bt_undo.removeClass('disabled')
       this.bt_redo.addClass('disabled')
-      var newStack = []
 
-      document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').forEach(element => {
-        newStack.push(jeeP.getElement(element))
+      var newStack = []
+      document.getElementById('root').querySelectorAll(':scope > .expression').forEach(_exp => {
+        newStack.push(jeeP.getElement(_exp.querySelector('div.element')))
       })
 
       if (newStack == this.undoStack[state - 1]) return
@@ -1382,9 +1338,12 @@ if (!jeeFrontEnd.scenario) {
         if (this.undoState < this.firstState) this.bt_undo.addClass('disabled')
         this.bt_redo.removeClass('disabled')
       } catch (error) {
-        console.log('undo ERROR:', error)
+        console.warn('undo ERROR:', error)
       }
-      setTimeout(function() { jeeP.updateTooltips() }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips() }, 500)
+      this.updateElementCollapse()
+      this.setRootElements()
+      this.setSortables()
       jeedom.scenario.setAutoComplete()
       this.resetEditors()
     },
@@ -1401,9 +1360,12 @@ if (!jeeFrontEnd.scenario) {
 
         if (this.undoState < this.firstState - 1 || this.undoState + 2 >= this.undoStack.length) this.bt_redo.addClass('disabled')
       } catch (error) {
-        console.log('redo ERROR:', error)
+        console.warn('redo ERROR:', error)
       }
-      setTimeout(function() { jeeP.updateTooltips() }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips() }, 500)
+      this.updateElementCollapse()
+      this.setRootElements()
+      this.setSortables()
       jeedom.scenario.setAutoComplete()
       this.resetEditors()
     },
@@ -1446,10 +1408,11 @@ if (!jeeFrontEnd.scenario) {
     resetEditors: function() {
       this.editors = []
       var expression, code
-      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach(function(elCode) {
+      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach( elCode => {
         expression = elCode.closest('.expression')
         code = expression.querySelector('.expressionAttr[data-l1key="expression"]')
-        code. removeAttribute('id').show()
+        code.removeAttribute('id')
+        code.seen()
         expression.querySelectorAll('.CodeMirror.CodeMirror-wrap').remove()
       })
       this.setEditors()
@@ -1483,9 +1446,11 @@ document.registerEvent('keydown', function(event) {
 
   if ((event.ctrlKey || event.metaKey) && event.which == 76) { //l
     event.preventDefault()
-    $('#md_modal').dialog({
-      title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key=id]').jeeValue()).dialog('open')
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key=id]').jeeValue()
+    })
     return
   }
 
@@ -1506,7 +1471,7 @@ document.registerEvent('keydown', function(event) {
 
 //Manage events outside parents delegations:
 document.getElementById('bt_addScenario').addEventListener('click', function(event) {
-  bootbox.prompt("{{Nom du scénario}} ?", function(result) {
+  jeeDialog.prompt("{{Nom du scénario}} ?", function(result) {
     if (result !== null) {
       jeedom.scenario.save({
         scenario: {
@@ -1537,17 +1502,18 @@ document.getElementById('bt_addScenario').addEventListener('click', function(eve
 })
 
 document.getElementById('bt_changeAllScenarioState').addEventListener('click', function(event) {
-  if (event.target.getAttribute('data-state') == 0) {
+  var _target = event.target.closest('#bt_changeAllScenarioState')
+  if (_target.getAttribute('data-state') == '0') {
     var msg = '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
   } else {
     var msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
   }
 
-  bootbox.confirm(msg, function(result) {
+  jeeDialog.confirm(msg, function(result) {
     if (result) {
       jeedom.config.save({
         configuration: {
-          enableScenario: event.target.getAttribute('data-state')
+          enableScenario: _target.getAttribute('data-state')
         },
         error: function(error) {
           jeedomUtils.showAlert({
@@ -1564,7 +1530,7 @@ document.getElementById('bt_changeAllScenarioState').addEventListener('click', f
 })
 
 document.getElementById('bt_clearAllLogs').addEventListener('click', function(event) {
-  bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?}}", function(result) {
+  jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?}}", function(result) {
     if (result) {
       jeedom.scenario.clearAllLogs({
         error: function(error) {
@@ -1585,9 +1551,11 @@ document.getElementById('bt_clearAllLogs').addEventListener('click', function(ev
 })
 
 document.getElementById('bt_showScenarioSummary').addEventListener('click', function(event) {
-  $('#md_modal').dialog({
-    title: "{{Vue d'ensemble des scénarios}}"
-  }).load('index.php?v=d&modal=scenario.summary').dialog('open')
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Vue d'ensemble des scénarios}}",
+    contentUrl:'index.php?v=d&modal=scenario.summary'
+  })
 })
 
 document.getElementById('bt_scenarioThumbnailDisplay').addEventListener('click', function(event) {
@@ -1662,7 +1630,7 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
     try {
       cmEditor = _code.querySelector('div.CodeMirror.CodeMirror-wrap').CodeMirror
       code = jeedomUtils.normTextLower(cmEditor.getValue())
-      if (code.indexOf(search) >= 0) {
+      if (code.includes(search)) {
         _code.removeClass('elementCollapse')
         cursor = cmEditor.getSearchCursor(search, CodeMirror.Pos(cmEditor.firstLine(), 0), {
           caseFold: true,
@@ -1681,35 +1649,24 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
   var text
   document.querySelectorAll('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').forEach( _expr => {
     text = jeedomUtils.normTextLower(_expr.value)
-    if (text.indexOf(search) >= 0) {
+    if (text.includes(search)) {
       _expr.addClass('insideSearch')
-      _expr.closest('.element').removeClass('elementCollapse')
+      _expr.closestAll('.element').forEach( _parent => {
+        _parent.removeClass('elementCollapse')
+      })
     }
   })
 })
 
 
-
-
 /*Events delegations
 */
-document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
-  if (event.target.matches('.context-menu-root')) { //Handle auto hide context menu
-    setTimeout(function() {
-      event.target.triggerEvent('contextmenu:hide')
-    }, 250)
-    return
-  }
-}, {capture: true})
-
 
 //_________________Root page events:
 document.getElementById('in_searchScenario').addEventListener('keyup', function(event) {
   var search = this.value
   if (search == '') {
-    document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(function(accordion) {
-      accordion.click()
-    })
+    document.querySelectorAll('.panel-collapse.in').removeClass('in')
     document.querySelectorAll('.scenarioDisplayCard').seen()
     return
   }
@@ -1736,46 +1693,45 @@ document.getElementById('in_searchScenario').addEventListener('keyup', function(
     }
 
   })
-  $('.panel-collapse[data-show=1]').collapse('show')
-  $('.panel-collapse[data-show=0]').collapse('hide')
+  document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
+  document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('click', function(event) {
+  var _target = null
   if (!event.target.matches('a.accordion-toggle')) {
     event.preventDefault()
     event.stopImmediatePropagation()
     event.stopPropagation()
   }
 
-  if (event.target.matches('#bt_openAll, #bt_openAll i')) {
-    document.querySelectorAll('.accordion-toggle[aria-expanded="false"]').forEach(function(accordion) {
-      accordion.click()
-    })
+  if (_target = event.target.closest('#bt_openAll')) {
+    document.querySelectorAll('#accordionScenario .panel-collapse').forEach(_panel => { _panel.addClass('in') })
     return
   }
 
-  if (event.target.matches('#bt_closeAll, #bt_closeAll i')) {
-    document.querySelectorAll('.accordion-toggle[aria-expanded="true"]').forEach(function(accordion) {
-      accordion.click()
-    })
+  if (_target = event.target.closest('#bt_closeAll')) {
+    document.querySelectorAll('#accordionScenario .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
     return
   }
 
-  if (event.target.matches('#bt_resetScenarioSearch, #bt_resetScenarioSearch i')) {
+  if (_target = event.target.closest('#bt_resetScenarioSearch')) {
     document.getElementById('in_searchScenario').jeeValue('').triggerEvent('keyup')
     return
   }
 
-  if (event.target.matches('#accordionScenario .bt_ViewLog, #accordionScenario .bt_ViewLog i')) {
-    var id = event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
-    $('#md_modal2').dialog({
-      title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + id).dialog('open')
+  if (_target = event.target.closest('#accordionScenario .bt_ViewLog')) {
+    var id = _target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + id
+    })
     return
   }
 
-  if (event.target.matches('#accordionScenario .scenarioDisplayCard') || event.target.closest('.scenarioDisplayCard') != null) {
-    var id = event.target.getAttribute('data-scenario_id') || event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
+  if (_target = event.target.closest('.scenarioDisplayCard')) {
+    var id = _target.getAttribute('data-scenario_id')
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var url = '/index.php?v=d&p=scenario&id=' + id
       window.open(url).focus()
@@ -1788,10 +1744,11 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', function(event) {
-  if (event.target.matches('#accordionScenario .scenarioDisplayCard') || event.target.closest('.scenarioDisplayCard') != null) {
+  var _target = null
+  if (_target = event.target.closest('.scenarioDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = event.target.getAttribute('data-scenario_id') || event.target.closest('.scenarioDisplayCard').getAttribute('data-scenario_id')
+      var id = _target.getAttribute('data-scenario_id')
       document.querySelector('.scenarioDisplayCard[data-scenario_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
     }
   return
@@ -1799,19 +1756,23 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', 
 })
 
 
-
-
 //_________________Floating bar events:
 document.getElementById('div_editScenario').querySelector('div.floatingbar').addEventListener('click', function(event) {
-  if (event.target.matches('#bt_logScenario, #bt_logScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Log d'exécution du scénario}}"
-    }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+  var _target = null
+  if (_target = event.target.closest('#bt_logScenario')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
-  if (event.target.matches('#bt_copyScenario, #bt_copyScenario *')) {
-    bootbox.prompt("{{Nom du scénario}} ?", function(result) {
+  if (_target = event.target.closest('#bt_copyScenario')) {
+    jeeDialog.prompt({
+      title : "{{Nom du scénario}} ?",
+      value : document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + ' {{copie}}'
+    }, function(result) {
       if (result !== null) {
         jeedom.scenario.copy({
           id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
@@ -1831,38 +1792,46 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_graphScenario, #bt_graphScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Graphique de lien(s)}}"
-    }).load('index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+  if (_target = event.target.closest('#bt_graphScenario')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Graphique de lien(s)}}",
+      contentUrl: 'index.php?v=d&modal=graph.link&filter_type=scenario&filter_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
-  if (event.target.matches('#bt_editJsonScenario, #bt_editJsonScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Edition texte scénarios}}"
-    }).load('index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+  if (_target = event.target.closest('#bt_editJsonScenario')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Edition texte scénarios}}",
+      contentUrl: 'index.php?v=d&modal=scenario.jsonEdit&id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
-  if (event.target.matches('#bt_exportScenario, #bt_exportScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Export du scénario}}"
-    }).load('index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+  if (_target = event.target.closest('#bt_exportScenario')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Export du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.export&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
-  if (event.target.matches('#bt_templateScenario, #bt_templateScenario *')) {
-    $('#md_modal').dialog({
-      title: "{{Template de scénario}}"
-    }).load('index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()).dialog('open')
+  if (_target = event.target.closest('#bt_templateScenario')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Template de scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.template&scenario_id=' + document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
+    })
     return
   }
 
-  if (event.target.matches('#bt_runScenario, #bt_runScenario *')) {
+  if (_target = event.target.closest('#bt_runScenario')) {
     jeedomUtils.hideAlert()
     var scenario_id = document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue()
-    var logmode = $('button[data-l2key="logmode"]').attr('value')
+    var logmode = document.querySelector('select[data-l2key="logmode"]').jeeValue()
     if (event.ctrlKey || event.metaKey) {
       jeeP.saveScenario(function() {
         jeedom.scenario.changeState({
@@ -1880,11 +1849,11 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
               level: 'success'
             })
             if (logmode != 'none') {
-              $('#md_modal').dialog({
-                  title: "{{Log d'exécution du scénario}}"
-                })
-                .load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id)
-                .dialog('open')
+              jeeDialog.dialog({
+                id: 'jee_modal',
+                title: "{{Log d'exécution du scénario}}",
+                contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + scenario_id
+              })
             }
           }
         })
@@ -1910,7 +1879,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_stopScenario, #bt_stopScenario *')) {
+  if (_target = event.target.closest('#bt_stopScenario')) {
     jeedom.scenario.changeState({
       id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
       state: 'stop',
@@ -1930,15 +1899,15 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_saveScenario, #bt_saveScenario *')) {
+  if (_target = event.target.closest('#bt_saveScenario')) {
     jeeP.saveScenario()
     jeeP.clipboard = null
     return
   }
 
-  if (event.target.matches('#bt_delScenario, #bt_delScenario *')) {
+  if (_target = event.target.closest('#bt_delScenario')) {
     jeedomUtils.hideAlert()
-    bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le scénario}} <span style="font-weight: bold ;">' + document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + '</span> ?', function(result) {
       if (result) {
         jeedom.scenario.remove({
           id: document.querySelector('.scenarioAttr[data-l1key="id"]').jeeValue(),
@@ -1959,45 +1928,43 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
     return
   }
 
-  if (event.target.matches('#bt_addScenarioElement, #bt_addScenarioElement *')) {
-    if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').triggerEvent('click')
+  if (_target = event.target.closest('#bt_addScenarioElement')) {
+    if (!window.location.href.includes('#scenariotab')) document.getElementById('bt_scenarioTab').click()
+
     jeeP.addElementSave = {
       expression: false,
       insertAfter: false,
       elementDiv: null
     }
-
     //is scenario empty:
-    if (document.getElementById('div_scenarioElement').querySelectorAll(':scope > .element').length == 0) {
+    if (document.getElementById('root').querySelectorAll(':scope > .expression').length == 0) {
       jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
-      jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement').remove()
+      jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement')?.remove()
     } else {
       //had focus ?
       if (jeeP.PREV_FOCUS != null && jeeP.PREV_FOCUS.closest('div.element') != null) {
         jeeP.addElementSave.insertAfter = true
         jeeP.addElementSave.elementDiv = jeeP.PREV_FOCUS.closest('div.element')
         if (jeeP.addElementSave.elementDiv.parentNode.getAttribute('id') != 'div_scenarioElement') {
-          jeeP.addElementSave.elementDiv = elementDiv.closest('.expression')
+          jeeP.addElementSave.elementDiv = jeeP.addElementSave.elementDiv.closest('.expression')
           jeeP.addElementSave.expression = true
         }
       } else {
         jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
       }
     }
-
-    $('#md_addElement').modal('show') //=> #bt_addElementSave
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.show() //=> #bt_addElementSave
     return
   }
 
-  if (event.target.matches('#bt_resetInsideScenarioSearch, #bt_resetInsideScenarioSearch *')) {
-    var btn = document.getElementById('bt_resetInsideScenarioSearch')
-    if (btn.hasClass('disabled')) return
+  if (_target = event.target.closest('#bt_resetInsideScenarioSearch')) {
+    if (_target.hasClass('disabled')) return
     var searchField = document.getElementById('in_searchInsideScenario')
-    if (btn.getAttribute('data-state') == '0') {
+    if (_target.getAttribute('data-state') == '0') {
       //show search:
       searchField.seen()
-      btn.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
-      btn.setAttribute('data-state', '1')
+      _target.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
+      _target.setAttribute('data-state', '1')
       //open code blocks for later search:
       document.querySelectorAll('#div_scenarioElement div.elementCODE.elementCollapse').forEach(_code =>  {
         _code.removeClass('elementCollapse')
@@ -2011,25 +1978,25 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
           _bt.closest('.element').addClass('elementCollapse')
         })
-        btn.querySelector('i').removeClass('fa-times').addClass('fa-search')
+        _target.querySelector('i').removeClass('fa-times').addClass('fa-search')
         searchField.unseen()
-        btn.setAttribute('data-state', '0')
+        _target.setAttribute('data-state', '0')
       } else {
-        searchField.value = ''
-        searchField.triggerEvent('keyup')
+        searchField.jeeValue('').triggerEvent('keyup')
       }
     }
     return
   }
 
-  if (event.target.matches('#bt_undo, #bt_undo i')) {
+  if (_target = event.target.closest('#bt_undo')) {
     if (!jeedomUtils.getOpenedModal()) {
       jeeP.undo()
       jeeP.PREV_FOCUS = null
     }
     return
   }
-  if (event.target.matches('#bt_redo, #bt_redo i')) {
+
+  if (_target = event.target.closest('#bt_redo')) {
     if (!jeedomUtils.getOpenedModal()) {
       jeeP.redo()
       jeeP.PREV_FOCUS = null
@@ -2039,12 +2006,11 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
 })
 
 
-
-
 //_________________General tab events:
 document.getElementById('generaltab').addEventListener('click', function(event) {
-  if (event.target.matches('.scenarioAttr[data-l2key="timeline::enable"]')) {
-    if (event.target.checked) {
+  var _target = null
+  if (_target = event.target.closest('.scenarioAttr[data-l2key="timeline::enable"]')) {
+    if (_target.checked) {
       document.querySelector('.scenarioAttr[data-l2key="timeline::folder"]').seen()
     } else {
       document.querySelector('.scenarioAttr[data-l2key="timeline::folder"]').unseen()
@@ -2052,25 +2018,29 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     return
   }
 
-  if (event.target.matches('.scenario_link')) {
+  if (_target = event.target.closest('.scenario_link')) {
     jeedomUtils.hideAlert()
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var url = '/index.php?v=d&p=scenario&id=' + event.target.getAttribute('data-scenario_id')
       window.open(url).focus()
     } else {
       document.getElementById('scenarioThumbnailDisplay').unseen()
-      jeeP.printScenario(event.target.getAttribute('data-scenario_id'))
+      jeeP.printScenario(_target.getAttribute('data-scenario_id'))
     }
   }
 
-  if (event.target.matches('.action_link')) {
+  if (_target = event.target.closest('.action_link')) {
     jeedomUtils.hideAlert()
-    var cmdId = event.target.getAttribute('data-cmd_id')
-    $('#md_modal').dialog().load('index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId).dialog('open')
+    var cmdId = _target.getAttribute('data-cmd_id')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + cmdId
+    })
     return
   }
 
-  if (event.target.matches('#bt_chooseIcon, #bt_chooseIcon i')) {
+  if (_target = event.target.closest('#bt_chooseIcon')) {
     jeedomUtils.hideAlert()
     var _icon = false
     if (document.querySelector('div[data-l2key="icon"] > i') != null) {
@@ -2086,61 +2056,60 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     return
   }
 
-  if (event.target.matches('#bt_addTrigger, #bt_addTrigger i')) {
+  if (_target = event.target.closest('#bt_addTrigger')) {
     jeeP.addTrigger('')
     jeeP.checkNoTriggeringMode()
+    jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('#bt_addSchedule, #bt_addSchedule i')) {
+  if (_target = event.target.closest('#bt_addSchedule')) {
     jeeP.addSchedule('')
     jeeP.checkNoTriggeringMode()
+    jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('.bt_removeTrigger, .bt_removeTrigger i')) {
-    event.target.closest('.trigger').remove()
+  if (_target = event.target.closest('.bt_removeTrigger')) {
+    _target.closest('.trigger').remove()
     jeeP.checkNoTriggeringMode()
     return
   }
 
-  if (event.target.matches('.bt_removeSchedule, .bt_removeSchedule i')) {
-    event.target.closest('.schedule').remove()
+  if (_target = event.target.closest('.bt_removeSchedule')) {
+    _target.closest('.schedule').remove()
     jeeP.checkNoTriggeringMode()
     return
   }
 
-  if (event.target.matches('.bt_selectTrigger, .bt_selectTrigger i')) {
-    var el = event.target
+  if (_target = event.target.closest('.bt_selectTrigger')) {
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'info'
       }
     }, function(result) {
-      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
+      _target.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_selectDataStoreTrigger, .bt_selectDataStoreTrigger i')) {
-    var el = event.target
+  if (_target = event.target.closest('.bt_selectDataStoreTrigger')) {
     jeedom.dataStore.getSelectModal({
       cmd: {
         type: 'info'
       }
     }, function(result) {
-      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
+      _target.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_selectGenericTrigger, .bt_selectGenericTrigger i')) {
-    var el = event.target
+  if (_target = event.target.closest('.bt_selectGenericTrigger')) {
     jeedom.config.getGenericTypeModal({
       type: 'info',
       object: true
     }, function(result) {
-      el.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
+      _target.closest('.trigger').querySelector('.scenarioAttr[data-l1key="trigger"]').jeeValue('#' + result.human + '#')
     })
     return
   }
@@ -2165,10 +2134,10 @@ document.getElementById('generaltab').addEventListener('dblclick', function(even
 })
 
 
-
 //_________________Scenario tab events:
 document.getElementById('scenariotab').addEventListener('click', function(event) {
-  if (event.target.matches('#bt_addElementSave, #bt_addElementSave *')) { //Ok button from new block modal
+  var _target = null
+  if (_target = event.target.closest('#bt_addElementSave')) { //Ok button from new block modal
     jeeP.setUndoStack()
     jeeFrontEnd.modifyWithoutSave = true
     if (jeeP.addElementSave.expression) {
@@ -2191,16 +2160,18 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     } else {
       newEL = jeeP.addElementSave.elementDiv.appendChild(newEL.childNodes[0])
     }
+
+    jeeP.setRootElements()
     newEL.addClass('disableElement')
 
     jeeP.setEditors()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeeP.updateElseToggle()
-    $('#md_addElement').modal('hide')
-    setTimeout(function() {
-      newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
+    setTimeout(() => {
+      if (!isInWindow(newEL)) newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
     }, 250)
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
       newEL.removeClass('disableElement')
@@ -2208,22 +2179,28 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
-    jeeP.PREV_FOCUS = event.target //Place new block next
+  if (_target = event.target.closest('#bt_cancelElementSave')) {
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
+  }
+
+  if (_target = event.target.closest('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
+    jeeP.PREV_FOCUS = _target //Place new block next
     if (event.ctrlKey) {
-      var $thisInput = $(event.target)
-      var selfInput = event.target
-      var button = '<button class="btn btn-default bt_selectBootboxCmdExpression" type="button"><i class="fas fa-list-alt"></i></button>'
-      bootbox.prompt({
+      var selfInput = _target
+      jeeDialog.prompt({
         title: '{{Edition}}',
-        size: 'large',
+        width: '80%',
         inputType: "textarea",
-        container: $('#scenariotab'),
+        value: selfInput.value,
+        container: document.getElementById('scenariotab'),
         backdrop: false,
-        onShown: function(event) {
-          event.target.addClass('bootboxScInput')
-          event.target.querySelector('.bootbox-input-textarea').addClass('expression').insertAdjacentHTML('afterend', button)
-          event.target.querySelector('.bootbox-input-textarea').value = selfInput.value
+        onShown: function(dialog) {
+          let button = document.createElement('button')
+          button.setAttribute('type', 'button')
+          button.innerHTML = '<i class="fas fa-list-alt"></i>'
+          button.classList = 'button bt_selectJeeDialogCmdExpression'
+          let footer = dialog.querySelector('.jeeDialogFooter')
+          footer.insertBefore(button, footer.firstChild)
         },
         callback: function(result) {
           if (result != null) {
@@ -2235,54 +2212,54 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     }
   }
 
-  if (event.target.matches('button.bt_selectBootboxCmdExpression, button.bt_selectBootboxCmdExpression i')) { //ctrl-click input popup getSelectModal
-    var expression = event.target.closest('.bootbox-form').querySelector('.expression')
+  if (_target = event.target.closest('button.bt_selectJeeDialogCmdExpression')) { //ctrl-click input popup getSelectModal
+    var expression = _target.closest('.jeeDialogPrompt').querySelector('.promptAttr')
     jeedom.cmd.getSelectModal({}, function(result) {
       expression.insertAtCursor(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_removeElement, .bt_removeElement *')) {
-    var button = event.target
+  if (_target = event.target.closest('.bt_removeElement')) {
     if (event.ctrlKey || event.metaKey) {
-      if (button.closest('.expression') != null) {
+      if (_target.closest('.expression') != null) {
         jeeP.setUndoStack()
-        button.closest('.expression').remove()
+        _target.closest('.expression').remove()
       } else {
         jeeP.setUndoStack()
-        button.closest('.element').remove()
+        _target.closest('.element').remove()
       }
     } else {
-      bootbox.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
+      jeeDialog.confirm("{{Êtes-vous sûr de vouloir supprimer ce bloc ?}}", function(result) {
         if (result) {
-          if (button.closest('.expression') != null) {
+          if (_target.closest('.expression') != null) {
             jeeP.setUndoStack()
-            button.closest('.expression').remove()
+            _target.closest('.expression').remove()
           } else {
             jeeP.setUndoStack()
-            button.closest('.element').remove()
+            _target.closest('.element').remove()
           }
         }
       })
     }
     jeeFrontEnd.modifyWithoutSave = true
     jeeP.PREV_FOCUS = null
+    domUtils.syncJeeCompletes()
     return
   }
 
-  if (event.target.matches('.bt_addAction, .bt_addAction *')) {
+  if (_target = event.target.closest('.bt_addAction')) {
     jeeP.setUndoStack()
-    event.target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
+    _target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
     jeedom.scenario.setAutoComplete()
-    jeeP.updateSortable()
-    jeeP.updateTooltips()
+    jeeP.setSortables()
+    jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('.bt_showElse, .bt_showElse *')) {
-    let icon = event.target.querySelector(':scope > i') || event.target
-    let elElse = event.target.closest('.element').querySelector(':scope > .subElementELSE')
+  if (_target = event.target.closest('.bt_showElse')) {
+    let icon = _target.querySelector(':scope > i') || event.target
+    let elElse = _target.closest('.element').querySelector(':scope > .subElementELSE')
     if (icon == null) return
     if (icon.hasClass('fa-sort-down')) {
       icon.removeClass('fa-sort-down').addClass('fa-sort-up')
@@ -2301,26 +2278,25 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_collapse, .bt_collapse *')) {
-    var changeThis = event.target.closest('.bt_collapse') || event.target
-    var open = changeThis.querySelector(':scope > i').hasClass('fa-eye') ? true : false
+  if (_target = event.target.closest('.bt_collapse')) {
+    var open = _target.querySelector(':scope > i').hasClass('fa-eye') ? true : false
 
     if (event.ctrlKey || event.metaKey) {
-      changeThese = changeThis.closest('.expressions')?.querySelectorAll('.bt_collapse') || document.querySelectorAll('.bt_collapse')
+      changeThese = _target.closest('.expressions')?.querySelectorAll('.bt_collapse') || document.querySelectorAll('.bt_collapse')
     } else {
-      var changeThese = [changeThis]
+      var changeThese = [_target]
     }
 
-    for (changeThis of changeThese) {
-      var icon = changeThis.querySelector(':scope > i')
+    for (_target of changeThese) {
+      var icon = _target.querySelector(':scope > i')
       if (open) { // -> Collapse!
         icon.removeClass('fa-eye').addClass('fa-eye-slash')
-        changeThis.closest('.element').addClass('elementCollapse')
-        changeThis.setAttribute('value', 1)
-        changeThis.setAttribute('tooltip', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
+        _target.closest('.element').addClass('elementCollapse')
+        _target.setAttribute('value', 1)
+        _target.setAttribute('title', "{{Afficher ce bloc.<br>Ctrl+click: tous.}}")
         //update action, comment and code blocPreview:
         var txt, _el, id
-        changeThis.closest('.element').querySelectorAll('.blocPreview').forEach(function(_blocPreview) {
+        _target.closest('.element').querySelectorAll('.blocPreview').forEach(function(_blocPreview) {
           txt = '<i>Unfound</i>'
           _el = _blocPreview.closest('.element')
           if (_el.hasClass('elementACTION')) {
@@ -2342,26 +2318,25 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         })
       } else { // -> Uncollapse!
         icon.addClass('fa-eye').removeClass('fa-eye-slash')
-        changeThis.closest('.element').removeClass('elementCollapse')
-        changeThis.setAttribute('value', 0)
-        changeThis.setAttribute('tooltip', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
+        _target.closest('.element').removeClass('elementCollapse')
+        _target.setAttribute('value', 0)
+        _target.setAttribute('title', "{{Masquer ce bloc.<br>Ctrl+click: tous.}}")
         jeeP.setEditors()
       }
     }
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     return
   }
 
-  if (event.target.matches('.bt_removeExpression, .bt_removeExpression *')) {
+  if (_target = event.target.closest('.bt_removeExpression')) {
     jeeP.setUndoStack()
-    event.target.closest('.expression').remove()
-    jeeP.updateSortable()
+    _target.closest('.expression').remove()
+    jeeP.setSortables()
     return
   }
 
-  if (event.target.matches('.bt_selectCmdExpression, .bt_selectCmdExpression *')) {
-    var el = event.target.closest('.bt_selectCmdExpression') || event.target
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectCmdExpression')) {
+    var expression = _target.closest('.expression')
     var type = 'info'
     if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
       type = 'action'
@@ -2376,53 +2351,61 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         jeeP.setUndoStack()
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
         jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
-          $(expression).find('.expressionOptions').html(html)
+          expression.querySelector('.expressionOptions').html(html)
           jeedomUtils.taAutosize()
-          jeeP.updateTooltips()
+          jeedomUtils.initTooltips()
         })
       }
 
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
-        var condType = el.closest('.subElement')
+        var condType = _target.closest('.subElement')
         if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
           expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
           return
         }
 
         var message = jeeP.getSelectCmdExpressionMessage(result.cmd.subType, result.human)
-        bootbox.dialog({
+        jeeDialog.prompt({
           title: "{{Ajout d'une nouvelle condition}}",
+          inputType: false,
           message: message,
-          size: 'large',
+          width: '70%',
           buttons: {
-            "{{Ne rien mettre}}": {
-              className: "btn-default",
-              callback: function() {
-                expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+            cancel: {
+              label: "{{Ne rien mettre}}",
+              className: "",
+              callback: {
+                click: function(event) {
+                  expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
+                  event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
+                }
               }
             },
-            success: {
+            confirm: {
               label: "{{Valider}}",
-              className: "btn-primary",
-              callback: function() {
-                jeeP.setUndoStack()
-                jeeFrontEnd.modifyWithoutSave = true
-                var condition = result.human
-                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
-                if (result.cmd.subType == 'string') {
-                  if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
-                    condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
+              className: "info",
+              callback: {
+                click: function(event) {
+                  jeeP.setUndoStack()
+                  jeeFrontEnd.modifyWithoutSave = true
+                  var condition = result.human
+                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
+                  if (result.cmd.subType == 'string') {
+                    if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
+                      condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
+                    } else {
+                      condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
+                    }
                   } else {
-                    condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
+                    condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
                   }
-                } else {
-                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue()
-                }
-                condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
-                expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
+                  condition += ' ' + document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() + ' '
+                  expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(condition)
 
-                if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
-                  el.triggerEvent('click')
+                  if (document.querySelector('.conditionAttr[data-l1key="next"]').jeeValue() != '') {
+                    _target.click()
+                  }
+                  event.target.closest('.jeeDialogPrompt')._jeeDialog.close()
                 }
               }
             },
@@ -2433,8 +2416,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_selectOtherActionExpression, .bt_selectOtherActionExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectOtherActionExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.getSelectActionModal({
       scenario: true
     }, function(result) {
@@ -2448,8 +2431,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_selectScenarioExpression, .bt_selectScenarioExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectScenarioExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.scenario.getSelectModal({}, function(result) {
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
@@ -2461,16 +2444,16 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.bt_selectGenericExpression, .bt_selectGenericExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectGenericExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
       expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
     })
     return
   }
 
-  if (event.target.matches('.bt_selectEqLogicExpression, .bt_selectEqLogicExpression *')) {
-    var expression = event.target.closest('.expression')
+  if (_target = event.target.closest('.bt_selectEqLogicExpression')) {
+    var expression = _target.closest('.expression')
     jeedom.eqLogic.getSelectModal({}, function(result) {
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
@@ -2482,37 +2465,35 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('.subElementAttr[data-l2key="allowRepeatCondition"], .subElementAttr[data-l2key="allowRepeatCondition"] *')) {
-    var el = event.target.closest('.subElementAttr') || event.target
-    if (el.getAttribute('value') == '0') {
-      el.setAttribute('value', '1')
-      el.html('<span><i class="fas fa-ban text-danger"></i></span>')
+  if (_target = event.target.closest('.subElementAttr[data-l2key="allowRepeatCondition"]')) {
+    if (_target.getAttribute('value') == '0') {
+      _target.setAttribute('value', '1')
+      _target.html('<span><i class="fas fa-ban text-danger"></i></span>')
     } else {
-      el.setAttribute('value', '0')
-      el.html('<span><i class="fas fa-sync"></span>')
+      _target.setAttribute('value', '0')
+      _target.html('<span><i class="fas fa-sync"></span>')
     }
     return
   }
 
-  if (event.target.matches('.fromSubElement, .fromSubElement *')) {
-    var el = event.target.closest('.fromSubElement') || event.target
+  if (_target = event.target.closest('.fromSubElement')) {
     jeeP.setUndoStack()
 
-    var elementDiv = el.closest('.subElement').querySelector('.expressions')
+    var elementDiv = _target.closest('.subElement').querySelector('.expressions')
     var newEL = domUtils.parseHTML(jeeP.addExpression({
       type: 'element',
       element: {
-        type: el.getAttribute('data-type')
+        type: _target.getAttribute('data-type')
       }
     }))
     elementDiv.appendChild(newEL)
     elementDiv.lastChild.addClass('disableElement')
 
     jeeP.setEditors()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeeP.updateElseToggle()
     jeeFrontEnd.modifyWithoutSave = true
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
     jeedom.scenario.setAutoComplete()
     setTimeout(function() {
       elementDiv.lastChild.removeClass('disableElement')
@@ -2521,9 +2502,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   }
 
   //COPY - PASTE
-  if (event.target.matches('i.bt_copyElement')) {
-    var clickedBloc = event.target.closest('.element')
-
+  if (_target = event.target.closest('i.bt_copyElement')) {
+    var clickedBloc = _target.closest('.element')
     jeeP.clipboard = jeeP.getElement(clickedBloc)
 
     //delete all id in properties to make it unique later:
@@ -2540,13 +2520,13 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (event.target.matches('i.bt_pasteElement')) {
+  if (_target = event.target.closest('i.bt_pasteElement')) {
     if (localStorage.getItem('jeedomScCopy')) {
       jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
     } else {
       return false
     }
-    var clickedBloc = event.target.closest('.element')
+    var clickedBloc = _target.closest('.element')
 
     jeeP.setUndoStack()
     jeeP.actionOptions = []
@@ -2583,14 +2563,14 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
       clickedBloc.remove()
     }
 
-    jeeP.updateElementCollpase()
+    jeeP.updateElementCollapse()
     jeeP.setScenarioActionsOptions()
-    jeeP.updateSortable()
+    jeeP.setSortables()
     jeedom.scenario.setAutoComplete()
     jeeP.setEditors()
-    jeeP.updateTooltips()
+    jeedomUtils.initTooltips()
 
-    setTimeout(function() { jeeP.updateTooltips() }, 500)
+    setTimeout(function() { jeedomUtils.initTooltips() }, 500)
 
     jeeFrontEnd.modifyWithoutSave = true
     return
@@ -2628,17 +2608,19 @@ document.getElementById('scenariotab').addEventListener('change', function(event
 })
 
 document.getElementById('scenariotab').addEventListener('mouseenter', function(event) {
-  if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
+  var _target = null
+  if (_target = event.target.closest('button.dropdown-toggle')) {
     if (event.clientY > window.innerHeight - 220) {
-      event.target.closest('div.dropdown').addClass('dropup')
+      _target.closest('div.dropdown').addClass('dropup')
     } else {
-      event.target.closest('div.dropdown').removeClass('dropup')
+      _target.closest('div.dropdown').removeClass('dropup')
     }
   }
 }, {capture: true})
 
 document.getElementById('scenariotab').addEventListener('mouseout', function(event) {
-  if (event.target.matches('button.dropdown-toggle, button.dropdown-toggle *')) {
+  var _target = null
+  if (_target = event.target.closest('button.dropdown-toggle')) {
     if (event.clientY > window.innerHeight - 220) {
       event.target.closest('div.dropdown').addClass('dropup')
     } else {
@@ -2648,39 +2630,29 @@ document.getElementById('scenariotab').addEventListener('mouseout', function(eve
 })
 
 document.getElementById('scenariotab').addEventListener('focusout', function(event) {
-  if (event.target.matches('.expression .expressionAttr[data-l1key="expression"]')) {
-    if (event.target.getAttribute('prevalue') == event.target.value) return
-    var el = event.target
-    if (el.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
-      var expression = el.closest('.expression').getJeeValues('.expressionAttr')
-      jeedom.cmd.displayActionOption(el.value, init(expression[0].options), function(html) {
-        $(el).closest('.expression').find('.expressionOptions').html(html)
+  var _target = null
+  if (_target = event.target.closest('.expression .expressionAttr[data-l1key="expression"]')) {
+    if (_target.getAttribute('prevalue') == _target.value) return
+    if (_target.closest('.expression').querySelector('.expressionAttr[data-l1key="type"]').value == 'action') {
+      var expression = _target.closest('.expression').getJeeValues('.expressionAttr')
+      jeedom.cmd.displayActionOption(_target.value, init(expression[0].options), function(html) {
+        _target.closest('.expression').querySelector('.expressionOptions').html(html)
         jeedomUtils.taAutosize()
-        jeeP.updateTooltips()
-        el.setAttribute('prevalue', el.value)
+        jeedomUtils.initTooltips()
+        _target.setAttribute('prevalue', _target.value)
       })
     }
   }
 })
 
 
-
-//modifyWithoutSave
-document.getElementById('div_editScenario').addEventListener('change', function(event) {
-  jeeFrontEnd.modifyWithoutSave = true
+domUtils(function() {
+  jeeFrontEnd.scenario.postInit()
 })
 
-//
-jeeP.loadId = getUrlVars('id')
-if (is_numeric(jeeP.loadId)) {
-  document.querySelector('.scenarioDisplayCard[data-scenario_id="' + jeeP.loadId + '"]')?.triggerEvent('click')
-}
-
-jeeFrontEnd.scenario.postInit()
 
 //tabs context menu
 try {
-    $.contextMenu('destroy', $('.nav.nav-tabs'))
     jeedom.scenario.allOrderedByGroupObjectName({
       asGroup: 1,
       error: function(error) {
@@ -2713,14 +2685,14 @@ try {
         }
 
         if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          $.contextMenu({
+          new jeeCtxMenu({
             selector: '.nav.nav-tabs li',
             appendTo: 'div#div_pageContainer',
             zIndex: 9999,
             className: 'scenarioTab-context-menu',
             callback: function(key, options, event) {
               if (!jeedomUtils.checkPageModified()) {
-                if (event.ctrlKey || event.metaKey || event.originalEvent.which == 2) {
+                if (event.ctrlKey || event.metaKey || event.which == 2) {
                   var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
                   if (window.location.hash != '') {
                     url += window.location.hash
@@ -2741,21 +2713,22 @@ try {
 
 //general context menu
 try {
-    $.contextMenu({
+  new jeeCtxMenu({
     selector: "#accordionScenario .scenarioDisplayCard",
     appendTo: 'div#div_pageContainer',
     className: 'scenario-context-menu',
-    build: function($trigger) {
+    build: function(trigger) {
       var scGroups = []
       Object.keys(jeephp2js.scenarioListGroup).forEach(function(key) {
         scGroups.push(jeephp2js.scenarioListGroup[key].group)
       })
 
-      var scId = $trigger.attr('data-scenario_id')
-      var isActive = !$trigger.hasClass('inactive')
+      var scId = trigger.getAttribute('data-scenario_id')
+      var scName = trigger.querySelector('.name strong').innerHTML
+      var isActive = !trigger.hasClass('inactive')
 
       var contextmenuitems = {}
-      contextmenuitems['scId'] = {'name': 'id: ' + scId, 'id': 'scId', 'disabled': true}
+      contextmenuitems['scId'] = {'name': scName + '(id: ' + scId + ')', 'id': 'scId', 'disabled': true}
       if (isActive) {
         contextmenuitems['disable'] = {'name': '{{Rendre inactif}}', 'id': 'disable', 'icon': 'fas fa-toggle-on'}
       } else {
@@ -2826,7 +2799,7 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').appendTo($('div.scenarioListContainer[data-groupName="' + key + '"]'))
+                document.querySelector('div.scenarioListContainer[data-groupName="' + key + '"]').appendChild(document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]'))
                 jeeP.updateAccordionName()
               }
             })
@@ -2849,8 +2822,10 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').find('.name .label').replaceWith(humanName)
-                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').find('.name .label i').remove()
+                let dispCard = document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]')
+                dispCard.querySelector('.name > .label')?.remove()
+                dispCard.querySelector('.name').insertAdjacentHTML('afterbegin', humanName)
+                dispCard.querySelector('.name > .label i')?.remove()
               }
             })
             return true
@@ -2867,7 +2842,7 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').addClass('inactive')
+                document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').addClass('inactive')
               }
             })
             return true
@@ -2884,7 +2859,7 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                $('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').removeClass('inactive')
+                document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').removeClass('inactive')
               }
             })
             return true

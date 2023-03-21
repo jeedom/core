@@ -18,7 +18,7 @@ if (is_array($scenarioListGroup)) {
 //get all scenarios without group:
 $scenarioNoGroup = scenario::all(null);
 if (count($scenarioNoGroup) > 0) {
-	$scenarios['{{Aucun}}'] = scenario::all(null);
+	$scenarios['{{Aucun}}'] = $scenarioNoGroup;
 	$hasScenario = true;
 }
 
@@ -85,7 +85,8 @@ foreach ($objectList as $parent) {
 sendVarToJS([
 	'jeephp2js.initSearch' => init('search', 0),
 	'jeephp2js.scenarioListGroup' => $scenarioListGroup,
-	'jeephp2js.objectList' => $parentList
+	'jeephp2js.objectList' => $parentList,
+	'jeephp2js.globalActiveState' => config::byKey('enableScenario')
 ]);
 
 ?>
@@ -98,6 +99,10 @@ sendVarToJS([
 				<div class="center"><i class="fas fa-plus-circle"></i></div>
 				<span class="txtColor">{{Ajouter}}</span>
 			</div>
+			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
+				<div class="center"><i class="fas fa-list"></i></div>
+				<span class="txtColor">{{Vue d'ensemble}}</span>
+			</div>
 			<div class="cursor warning" id="bt_clearAllLogs">
 				<div class="center"><i class="far fa-trash-alt"></i></div>
 				<span class="txtColor">{{Supprimer les logs}}</span>
@@ -105,18 +110,14 @@ sendVarToJS([
 			<?php if (config::byKey('enableScenario') == 0) { ?>
 				<div class="cursor success" id="bt_changeAllScenarioState" data-state="1">
 					<div class="center"><i class="fas fa-check"></i></div>
-					<span class="txtColor">{{Activer scénarios}}</span>
+					<span class="txtColor">{{Activer moteur de scénarios}}</span>
 				</div>
 			<?php } else { ?>
 				<div class="cursor danger" id="bt_changeAllScenarioState" data-state="0">
 					<div class="center"><i class="fas fa-times"></i></div>
-					<span class="txtColor">{{Désactiver scénarios}}</span>
+					<span class="txtColor">{{Désactiver moteur de scénarios}}</span>
 				</div>
 			<?php } ?>
-			<div class="cursor logoSecondary" id="bt_showScenarioSummary">
-				<div class="center"><i class="fas fa-list"></i></div>
-				<span class="txtColor">{{Vue d'ensemble}}</span>
-			</div>
 		</div>
 
 		<legend><i class="icon jeedom-clap_cinema"></i> {{Mes scénarios}} <sub class="itemsNumber"></sub></legend>
@@ -368,64 +369,59 @@ sendVarToJS([
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
 				<div id="div_scenarioElement" class="element"></div>
 
-				<div class="modal fade" id="md_addElement">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button class="close" data-dismiss="modal">×</button>
-								<h4>{{Ajouter un bloc}}</h4>
-							</div>
-							<div class="modal-body">
-								<select id="in_addElementType" class="form-control">
-									<option value="if">{{Si/Alors/Sinon}}</option>
-									<option value="action">{{Action}}</option>
-									<option value="for">{{Boucle}}</option>
-									<option value="in">{{Dans}}</option>
-									<option value="at">{{A}}</option>
-									<option value="code">{{Code}}</option>
-									<option value="comment">{{Commentaire}}</option>
-								</select>
-								<br />
-								<div class="alert alert-info addElementTypeDescription if">
-									Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.
-								</div>
+				<div id="md_addElement" class="jeeDialog jeeDialogPrompt" style="display:none;">
+					<div class="jeeDialogTitle">
+						<span class="title">{{Ajouter un bloc}}</span><button class="btClose" type="button">×</button>
+					</div>
+					<br />
+					<div class="jeeDialogContent">
+						<select id="in_addElementType" class="form-control">
+							<option value="if">{{Si/Alors/Sinon}}</option>
+							<option value="action">{{Action}}</option>
+							<option value="for">{{Boucle}}</option>
+							<option value="in">{{Dans}}</option>
+							<option value="at">{{A}}</option>
+							<option value="code">{{Code}}</option>
+							<option value="comment">{{Commentaire}}</option>
+						</select>
+						<br />
+						<div class="alert alert-info addElementTypeDescription if">
+							{{Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.}}
+						</div>
 
-								<div class="alert alert-info addElementTypeDescription action" style="display:none;">
-									Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.
-								</div>
+						<div class="alert alert-info addElementTypeDescription action" style="display:none;">
+							{{Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.}}
+						</div>
 
-								<div class="alert alert-info addElementTypeDescription for" style="display:none;">
-									Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.
-								</div>
+						<div class="alert alert-info addElementTypeDescription for" style="display:none;">
+							{{Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.}}
+						</div>
 
-								<div class="alert alert-info addElementTypeDescription in" style="display:none;">
-									Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.
-								</div>
+						<div class="alert alert-info addElementTypeDescription in" style="display:none;">
+							{{Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.}}
+						</div>
 
-								<div class="alert alert-info addElementTypeDescription at" style="display:none;">
-									A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.
-								</div>
+						<div class="alert alert-info addElementTypeDescription at" style="display:none;">
+							{{A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.}}
+						</div>
 
-								<div class="alert alert-info addElementTypeDescription code" style="display:none;">
-									Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.
-								</div>
+						<div class="alert alert-info addElementTypeDescription code" style="display:none;">
+							{{Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.}}
+						</div>
 
-								<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
-									Permet de commenter votre scénario.
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<a class="btn btn-danger" data-dismiss="modal"><i class="fas fa-minus-circle"></i> {{Annuler}}</a>
-								<a class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
-							</div>
+						<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
+							{{Permet de commenter votre scénario.}}
 						</div>
 					</div>
+
+					<div class="jeeDialogFooter">
+						<button type="button" data-type="cancel" class="button warning" id="bt_cancelElementSave"><i class="fas fa-minus-circle"></i> {{Annuler}}</button>
+						<button type="button" data-type="confirm" class="button success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</button>
+					</div>
 				</div>
+
 			</div>
-
 		</div>
-
 	</div>
 </div>
 

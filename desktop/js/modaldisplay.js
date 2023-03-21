@@ -44,17 +44,18 @@ if (!jeeFrontEnd.modaldisplay) {
 jeeFrontEnd.modaldisplay.init()
 
 document.title = decodeURI(jeeP.title)
-$('#modalTitle').html('<i class="far fa-window-maximize"></i> ' + decodeURI(jeeP.title))
-$('#modalDisplay').empty().load(jeeP.url, function(data) {
-  $('body').attr('data-page', getUrlVars('p'))
-  $('#bt_getHelpPage').attr('data-page', getUrlVars('p')).attr('data-plugin', getUrlVars('m'))
+document.getElementById('modalTitle').innerHTML = '<i class="far fa-window-maximize"></i> ' + decodeURI(jeeP.title)
+document.getElementById('modalDisplay').load(jeeP.url, function(data) {
+  document.body.setAttribute('data-page', getUrlVars('p'))
+  document.getElementById('bt_getHelpPage')?.setAttribute('data-page', getUrlVars('p'))
+  document.getElementById('bt_getHelpPage')?.setAttribute('data-plugin', getUrlVars('m'))
   jeedomUtils.initPage()
-  $('body').trigger('jeedom_page_load')
-  var tab = $('.nav-tabs a[href="' + window.location.hash + '"]')
-  if($('.nav-tabs a[href="' + window.location.hash + '"]').length == 0){
-    tab = $('.nav-tabs a[data-target="' + window.location.hash + '"]')
+  document.body.triggerEvent('jeedom_page_load')
+  var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+  if (tab == null) {
+    tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]')
   }
-  if (window.location.hash != '' && tab.length != 0) {
+  if (window.location.hash != '' && tab != null) {
     tab.click()
   }
 })

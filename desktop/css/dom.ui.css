@@ -1,0 +1,606 @@
+/*/*
+dom UI @Jeedom 2023
+Desktop
+*/
+
+/* _________________jeeComplete */
+ul.jeeComplete {
+  position: absolute;
+  list-style-type: none;
+  color: var(--txt-color);
+  background-color: var(--form-bg-color);
+  padding: 5px 10px;
+  z-index: 5000;
+}
+ul.jeeComplete > li.jeeCompleteItem {
+  cursor: pointer;
+}
+ul.jeeComplete > li.jeeCompleteItem:hover,
+ul.jeeComplete > li.jeeCompleteItem:focus,
+ul.jeeComplete > li.jeeCompleteItem.active {
+  cursor: pointer;
+  color: var(--linkHoverLight-color);
+  background-color: var(--sc-formTxt-color);
+}
+
+/* _________________jeeToast */
+#jeeToastContainer, div.jeeToastContainer {
+  position: absolute;
+  width: 30%;
+  overflow: hidden;
+  z-index: 9999;
+}
+div.jeeToastContainer > div.jeeToast {
+  opacity: 0.9;
+}
+div.jeeToastContainer > div.jeeToast:hover {
+  cursor: pointer;
+  opacity: 1;
+  padding-bottom: 6px;
+}
+div.jeeToastContainer > div.jeeToast:hover div.toastProgress {
+  display: none;
+}
+
+div.jeeToastContainer > div.jeeToast {
+  width: auto !important;
+  color: var(--linkHoverLight-color);
+  margin-top: 7px;
+}
+div.jeeToastContainer div.jeeToast.toastTitle {
+  font-weight: 500;
+  padding: 2px 5px;
+  margin-top: 12px;
+}
+div.jeeToastContainer div.jeeToast.toastMessage {
+  padding: 8px 5px;
+}
+div.jeeToastContainer > div.jeeToast div.toastProgress {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  height: 6px;
+  background-color: var(--sc-formTxt-color);
+  opacity: 1;
+}
+div.jeeToastContainer.toast-top-left,
+div.jeeToastContainer.toast-top-center,
+div.jeeToastContainer.toast-top-right {
+  top: 60px;
+}
+div.jeeToastContainer.toast-top-center {
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+div.jeeToastContainer.toast-top-left {
+ top:12px;
+ left:12px
+}
+div.jeeToastContainer.toast-top-right {
+ top:12px;
+ right:12px
+}
+div.jeeToastContainer.toast-bottom-right {
+ right:12px;
+ bottom:12px
+}
+div.jeeToastContainer.toast-bottom-left {
+ bottom:12px;
+ left:12px
+}
+div.jeeToastContainer > div.jeeToast.toast-info {
+  background-color: var(--al-info-color);
+}
+div.jeeToastContainer > div.jeeToast.toast-success {
+  background-color: var(--al-success-color);
+}
+div.jeeToastContainer > div.jeeToast.toast-warning {
+  background-color: var(--al-warning-color);
+}
+div.jeeToastContainer > div.jeeToast.toast-danger {
+  background-color: var(--al-danger-color);
+}
+
+
+/* _________________jeeDialog */
+#jeeDialogBackdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  background: var(--el-defaultColor);
+  opacity: 0.6;
+  backdrop-filter: blur(5px) !important;
+  --backdrop-filter: blur(3px) brightness(80%) !important;
+}
+ div.jeeDialog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3px;
+  transform: translate(0,0);
+  z-index: 1500;
+  background-color: rgb(var(--panel-bg-color));
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 2px;
+}
+div.jeeDialog.jeeDialogAlert,
+div.jeeDialog.jeeDialogConfirm,
+div.jeeDialog.jeeDialogPrompt {
+  width: 600px;
+  z-index: 1200;
+}
+div.jeeDialogTitle {
+  min-height: 20px;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+}
+div.jeeDialogTitle span.title {
+  display: inline-block;
+  max-width: calc(100% - 120px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+div.jeeDialog > div.jeeDialogTitle button {
+  float: right;
+  line-height: 18px;
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  background-size: 72px 18px;
+  border: none;
+  opacity: 0.7
+}
+[data-theme*="Dark"] div.jeeDialog:not(.jeeDialogMain) > div.jeeDialogTitle > button {
+  filter: invert(1);
+}
+div.jeeDialog:not(.jeeDialogMain) > div.jeeDialogTitle > button.btClose {
+  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0px;
+  background-size: 72px 18px;
+}
+div.jeeDialogContent {
+  min-height: 20px;
+  margin: 5px;
+  font-size: 13px;
+}
+div.jeeDialogContent div[id^="md_"] {
+  width: 100%;
+  height: 100%;
+}
+div.jeeDialogContent div[id^="md_"] > .input-group {
+  max-width: calc(100% - 7px); /*Chrome fix*/
+}
+div.jeeDialogContent .form-group { /*Chrome fix*/
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div.jeeDialog.jeeDialogAlert > div.jeeDialogContent,
+div.jeeDialog.jeeDialogConfirm > div.jeeDialogContent,
+div.jeeDialog.jeeDialogPrompt > div.jeeDialogContent {
+  padding: 20px 0;
+}
+div.jeeDialogContent legend,
+div.jeeDialogContent .form-horizontal {
+  width: calc(100% - 15px);
+}
+
+div.jeeDialogPrompt div.jeeDialogContent input,
+div.jeeDialogPrompt div.jeeDialogContent textarea{
+  width: 100%;
+  padding: 4px !important;
+  margin-bottom: 5px !important;
+}
+div.jeeDialogFooter {
+  text-align: right;
+  min-height: 20px;
+  margin: 5px;
+}
+div.jeeDialog button:focus,
+div.jeeDialog button:hover {
+  opacity: .8;
+}
+div.jeeDialog > div.jeeDialogTitle button:focus,
+div.jeeDialog > div.jeeDialogTitle button:hover {
+  opacity: .5;
+}
+div.jeeDialogFooter button {
+  font-size: 12px;
+  border: none;
+  padding: 7px 8px;
+  margin-left: 5px;
+  height: 32px;
+  line-height: 18px;
+  cursor: pointer;
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color);
+}
+div.jeeDialogFooter button > i {
+  color: var(--linkHoverLight-color) !important;
+}
+div.jeeDialogFooter button.info {
+  background-color: var(--al-info-color)!important;
+}
+div.jeeDialogFooter button.success {
+  background-color: var(--al-success-color)!important;
+}
+div.jeeDialogFooter button.warning {
+  background-color: var(--al-warning-color)!important;
+}
+div.jeeDialogFooter button.danger {
+  background-color: var(--al-danger-color)!important;
+}
+
+div.jeeDialog.jeeDialogMain {
+  margin: 0;
+  overflow: hidden;
+  max-height: calc(100vh - 60px);
+  max-width: calc(100vw - 10px);
+}
+div.jeeDialog[id^='mod_insert'] {
+  z-index: 1030 !important;
+}
+
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title:before {
+  content: '\f105\00a0\00a0';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
+  margin: -3px;
+  padding: 5px;
+  height: 30px;
+  color: rgb(var(--bg-color));
+  background-color: rgb(var(--contrast-color));
+  font-size: 16px;
+  font-weight: 400;
+  cursor: move;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title {
+  cursor: move !important;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
+  font-size: 26px !important;
+  color: rgb(var(--bg-color));
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  background: transparent;
+  background-image: url('../../core/img/win_icons.png');
+  background-size: 72px 18px;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  padding: 0;
+}
+[data-theme*="Light"] div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
+  filter: invert(1);
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btClose {
+  background-position: -55px 0px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
+  background-position: -36px 0px;
+}
+div.jeeDialog.jeeDialogMain[data-maximize="1"] > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
+  background-position: -18px 0px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.minimize {
+  background-position: 0 0;
+}
+div.jeeDialog.jeeDialogMain[data-maximize="1"] {
+  height: calc(100% - 50px) !important;
+  width: 100% !important;
+  top: 50px !important;
+  left:0 !important;
+  z-index: 1100 !important;
+  max-height: unset;
+  max-width: unset;
+}
+
+div.jeeDialog.jeeDialogMain.active {
+  z-index: 1110 !important;
+}
+
+#jeeMinimizeTray {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 2px;
+  max-width: 100%;
+  opacity: 0.85;
+  z-index: 1050;
+}
+#jeeMinimizeTray > div.jeeDialog > div:not(.jeeDialogTitle) {
+  display: none;
+}
+#jeeMinimizeTray > div.jeeDialog div.jeeDialogTitle  > span.title {
+  max-width: calc(100% - 70px) !important;
+}
+#jeeMinimizeTray > div.jeeDialog {
+  overFlow: hidden;
+  position: relative !important;
+  float: left;
+  cursor: pointer;
+  width: 300px !important;
+  height: 30px !important;
+  top: unset !important;
+  left: unset !important;
+  margin: 5px;
+}
+
+div.jeeDialog.jeeDialogMain > div.jeeDialogContent {
+  position: relative;
+  height: calc(100% - 35px);
+  width: calc(100% - 10px);
+  padding: 15px 0;
+  overflow: auto;
+}
+div.jeeDialog.jeeDialogMain.hasfooter > div.jeeDialogContent {
+  height: calc(100% - 80px);
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogContent .floatingbar {
+  right: 40px;
+  top: 10px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogContent .row.row-overflow { /* Compensate .row margins -15px */
+  margin-left: 2px;
+  margin-right: 2px;
+}
+div.jeeDialog.jeeDialogMain > div.jeeDialogFooter {
+  position: absolute;
+  width: calc(100% - 10px);
+  padding: 6px;
+  bottom: 0;
+  background-color: rgb(var(--panel-bg-color));
+}
+
+div.jeeDialog {
+  border-radius: var(--border-radius) !important;
+  z-index: 1020;
+}
+
+div.jeeDialog.jeeDialogMain > div.resizer,
+div.jeeresizer {
+  display: block;
+  position: absolute;
+  background: transparent;
+  z-index: 250;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.top,
+div.jeeresizer.top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  cursor: n-resize !important;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.top-right,
+div.jeeresizer.top-right {
+  top: 0;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  cursor: ne-resize !important;
+  z-index: 260;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.right,
+div.jeeresizer.right {
+  top: 0;
+  right: 0;
+  width: 7px;
+  height: 100%;
+  cursor: e-resize !important;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.bottom-right,
+div.jeeresizer.bottom-right {
+  bottom: 0;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  cursor: se-resize !important;
+  z-index: 260;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.bottom,
+div.jeeresizer.bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  cursor: s-resize !important;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.bottom-left,
+div.jeeresizer.bottom-left {
+  bottom: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  cursor: sw-resize !important;
+  z-index: 260;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.left,
+div.jeeresizer.left {
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 100%;
+  cursor: w-resize !important;
+}
+div.jeeDialog.jeeDialogMain > div.resizer.top-left,
+div.jeeresizer.top-left {
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  cursor: nw-resize !important;
+  z-index: 260;
+}
+
+div.jeeDialogMain table.dataTable {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width:100% !important;
+}
+
+table.stickyHead > thead {
+  position: sticky;
+  top: -15px;
+  z-index: 5;
+}
+
+/* _________________jeeCtxMenu*/
+div.jeeCtxMenu,
+div.jeeCtxMenu div.ctxSubMenuContainer {
+  position: fixed;
+  min-height: 20px;
+  min-width: 100px;
+  color: var(--txt-color);
+  background-color: var(--bg-modal-color);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 2px;
+  color: var(--linkHoverLight-color);
+  z-index: 12000 !important;
+  border-radius: var(--border-radius);
+  padding: 5px 0;
+  overflow: visible;
+  overflow-y: auto;
+}
+div.jeeCtxMenu:hover {
+ box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+div.jeeCtxMenu div.ctxItem {
+  position: relative;
+  color: var(--txt-color);
+  padding: 2px 35px 2px 15px;
+  cursor: pointer !important;
+}
+div.jeeCtxMenu div.ctxItem * {
+  cursor: pointer !important;
+}
+div.jeeCtxMenu div.ctxItem:hover {
+  background: var(--btnEq-default-color)
+}
+div.jeeCtxMenu div.ctxItem.disabled {
+  color: var(--placeholder-color);
+  cursor: default;
+  font-style: italic;
+}
+div.jeeCtxMenu div.ctxSubMenu::after {
+  border-left-color: var(--txt-color) !important;
+  font-size: 22px !important;
+  position: absolute;
+  top: 50%;
+  right: .5em;
+  z-index: 1;
+  content: '';
+  border-color: transparent transparent transparent var(--linkHoverLight-color);
+  border-style: solid;
+  border-width: .25em 0 .25em .25em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+div.jeeCtxMenu div.ctxSubMenu > div.ctxItem:hover {
+  background: var(--btnEq-default-color)
+}
+div.jeeCtxMenu div.ctxSeparator {
+  padding:0;
+  margin:.35em 0;
+}
+div.jeeCtxMenu div.ctxInput > label > * {
+ vertical-align: top;
+  font-weight: 400;
+}
+div.jeeCtxMenu div.ctxInput > label > input[type=checkbox],
+div.jeeCtxMenu div.ctxInput > label > input[type=radio] {
+ position: relative;
+ top: .12em;
+ margin-right: .4em;
+}
+div.jeeCtxMenu div.ctxInput > label {
+ margin: 0;
+}
+div.jeeCtxMenu div.ctxInput > label,
+div.jeeCtxMenu div.ctxInput > label > input[type=text],
+div.jeeCtxMenu div.ctxInput > label > select,
+div.jeeCtxMenu div.ctxInput > label > textarea {
+ display: block;
+ width: 100%;
+ box-sizing: border-box;
+}
+
+div.jeeCtxMenu div.ctxItem.inlineItem {
+  display: inline-flex;
+  padding: 5px;
+}
+
+/* _________________3rdparty ispin*/
+div.ispin-wrapper {
+  padding-right: 30px;
+  background: var(--form-bg-color);
+}
+div.ispin-wrapper button.ispin-button {
+  width: 20px !important;
+}
+div.ispin-wrapper button.ispin-button::before {
+  border-bottom-color: var(--txt-color) !important;
+  border-top-color: var(--txt-color) !important;
+  -webkit-transform: translateY(-200%) !important;
+  transform: translateY(-200%) !important;
+}
+div.ispin-wrapper button.ispin-button-inc::before {
+  --top: -5px !important;
+}
+div.ispin-wrapper button.ispin-button-dec::before {
+  --top: 8px !important;
+}
+
+
+/* _________________3rdparty tree.js */
+div.tj_container span.tj_description.selected {
+  background: var(--btn-default-color) !important;
+}
+div.tj_container .tj_description.selected .tj_icon > i.cursor,
+div.tj_container .tj_description.selected .tj_mod_icon > i.cursor {
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container .tj_container span.tj_description.selected {
+  background: var(--btn-default-color) !important;
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container .tj_description {
+  cursor: pointer !important;
+}
+div.tj_container span.tj_description:hover {
+  background: var(--placeholder-color) !important;
+}
+div.tj_container span.tj_description:hover,
+div.tj_container span.tj_description:hover i {
+  color: var(--linkHoverLight-color) !important;
+}
+div.tj_container li span.tj_description.tj_leaf {
+  margin-left: 0;
+}
+
+
+
+/* ________________________________________MEDIA QUERIES */
+@media screen and (max-width: 768px) {
+
+  div.jeeDialog.jeeDialogAlert,
+  div.jeeDialog.jeeDialogConfirm,
+  div.jeeDialog.jeeDialogPrompt {
+    width: 90%;
+  }
+
+}

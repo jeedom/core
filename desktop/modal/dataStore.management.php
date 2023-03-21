@@ -24,38 +24,35 @@ sendVarToJS([
 ]);
 ?>
 
-<div style="display: none;" id="div_dataStoreManagementAlert" data-modalType="md_datastore"></div>
-
-<div class="input-group">
-  <div class="input-group-btn">
-    <a id="bt_dataStoreManagementAdd" class="btn btn-sm btn-success roundedRight pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
-    <a id="bt_dataStoreManagementRefresh" class="btn btn-sm roundedLeft pull-right"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
+<div id="md_datastore" data-modalType="md_datastore">
+  <div class="input-group">
+    <div class="input-group-btn">
+      <a id="bt_dataStoreManagementAdd" class="btn btn-sm btn-success roundedRight pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+      <a id="bt_dataStoreManagementRefresh" class="btn btn-sm roundedLeft pull-right"><i class="fas fa-sync-alt"></i> {{Rafraichir}}</a>
+    </div>
   </div>
+
+  <table id="table_dataStore" class="table table-condensed stickyHead">
+    <thead>
+      <tr>
+        <th data-type="input">{{Nom}}</th>
+        <th data-type="input">{{Valeur}}</th>
+        <th>{{Utilisée dans}}</th>
+        <th data-filter="false" style="width:100px;">{{Action}}</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
 </div>
 
-<table id="table_dataStore" class="table table-condensed table-bordered tablesorter stickyHead" style="width:100%; min-width:100%">
-  <thead>
-    <tr>
-      <th data-sorter="input">{{Nom}}</th>
-      <th data-sorter="input">{{Valeur}}</th>
-      <th>{{Utilisée dans}}</th>
-      <th data-sorter="false" data-filter="false">{{Action}}</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-
 <script>
-"use strict"
-
 if (!jeeFrontEnd.md_datastore) {
   jeeFrontEnd.md_datastore = {
+    vDataTable: null,
     init: function() {
-      this.$tableDataStore = $('#table_dataStore')
-      this.$modal = $('#md_modal')
-      this.refreshCount = 0
+      this.tableDataStore = document.getElementById('table_dataStore')
+      this.modal = this.tableDataStore.closest('div.jeeDialogMain')
     },
     getDatastoreTr: function (_datastore = false) {
       var thisTr = ''
@@ -107,76 +104,81 @@ if (!jeeFrontEnd.md_datastore) {
       return thisTr
     },
     refreshDataStoreMangementTable: function() {
-      self = this
       jeedom.dataStore.all({
         type: jeephp2js.md_dataStoreManagement_type,
         usedBy: 1,
         error: function(error) {
-          $('#div_dataStoreManagementAlert').showAlert({
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function(data) {
-          self.$tableDataStore.find('tbody').empty()
+          if (jeeFrontEnd.md_datastore.vDataTable) jeeFrontEnd.md_datastore.vDataTable.destroy()
+          jeeFrontEnd.md_datastore.tableDataStore.tBodies[0].empty()
           var tr = ''
           for (var i in data) {
-            tr += self.getDatastoreTr(data[i])
+            tr += jeeFrontEnd.md_datastore.getDatastoreTr(data[i])
           }
-          if (self.refreshCount == 0 && jeedom.getPageType() != 'modaldisplay') {
-            var varHeight = data.length * 31 + 220
-            self.$modal.dialog('open')
-            if (varHeight < self.$modal.height()) {
-              self.$modal.dialog({
-                height: varHeight
-              })
-            }
-          }
+          jeeFrontEnd.md_datastore.tableDataStore.tBodies[0].innerHTML = tr
 
-          self.$tableDataStore.find('tbody').append(tr)
-          self.$tableDataStore.trigger("update")
-          self.refreshCount += 1
+          jeeFrontEnd.md_datastore.vDataTable = new DataTable(jeeFrontEnd.md_datastore.tableDataStore, {
+            columns: [
+              { select: 0, sort: "asc" },
+              { select: [2,3], sortable: false }
+            ],
+            paging: false,
+            searchable: true,
+          })
         }
       })
     },
   }
 }
 
-(function() {
+(function() {// Self Isolation!
   jeedomUtils.hideAlert()
   var jeeM = jeeFrontEnd.md_datastore
   jeeM.init()
 
-  jeedomUtils.initTableSorter()
   jeeM.refreshDataStoreMangementTable()
-  jeeM.$tableDataStore[0].config.widgetOptions.resizable_widths = ['150px', '150px', '', '90px']
-  jeeM.$tableDataStore.trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('sorton', [
-      [
-        [0, 0]
-      ]
-    ])
 
-  jeeM.$tableDataStore.on({
-    'click': function(event) {
-      var tr = this.closest('tr')
+  //Manage events outside parents delegations:
+  document.getElementById('bt_dataStoreManagementAdd')?.addEventListener('click', function(event) {
+    var tr = jeeM.getDatastoreTr()
+    jeeM.tableDataStore.tBodies[0].insertAdjacentHTML('afterbegin', tr)
+    if (jeeFrontEnd.md_datastore.vDataTable) jeeFrontEnd.md_datastore.vDataTable.refresh()
+  })
+
+  document.getElementById('bt_dataStoreManagementRefresh')?.addEventListener('click', function(event) {
+    jeeM.refreshDataStoreMangementTable()
+  })
+  /*Events delegations
+  */
+  document.getElementById('table_dataStore')?.addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_removeDataStore')) {
+      var tr = _target.closest('tr')
       if (tr.getAttribute('data-datastore_id') == '') {
         tr.remove()
+        if (jeeFrontEnd.md_datastore.vDataTable) jeeFrontEnd.md_datastore.vDataTable.refresh()
         return
       }
-      bootbox.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.querySelector('.key').value + '</span> ?', function(result) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la variable}}' + ' : <span style="font-weight: bold ;">' + tr.querySelector('.key').value + '</span> ?', function(result) {
         if (result) {
           jeedom.dataStore.remove({
             id: tr.getAttribute('data-dataStore_id'),
             error: function(error) {
-              $('#div_dataStoreManagementAlert').showAlert({
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_datastore', 'dialog'),
                 message: error.message,
                 level: 'danger'
               })
             },
             success: function(data) {
-              $('#div_dataStoreManagementAlert').showAlert({
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_datastore', 'dialog'),
                 message: '{{Dépôt de données supprimé}}',
                 level: 'success'
               })
@@ -185,12 +187,11 @@ if (!jeeFrontEnd.md_datastore) {
           })
         }
       })
+      return
     }
-  }, '.bt_removeDataStore')
 
-  jeeM.$tableDataStore.on({
-    'click': function(event) {
-      var tr = this.closest('tr');
+    if (_target = event.target.closest('.bt_saveDataStore')) {
+      var tr = _target.closest('tr');
       jeedom.dataStore.save({
         id: tr.getAttribute('data-dataStore_id'),
         value: tr.querySelector('.value').value,
@@ -198,39 +199,34 @@ if (!jeeFrontEnd.md_datastore) {
         key: tr.querySelector('.key').value,
         link_id: jeephp2js.md_dataStoreManagement_linkId,
         error: function(error) {
-          $('#div_dataStoreManagementAlert').showAlert({
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: error.message,
-            level: 'danger'
+            level: 'danger',
+            ttl: 1000
           })
         },
         success: function(data) {
-          $('#div_dataStoreManagementAlert').showAlert({
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_datastore', 'dialog'),
             message: '{{Dépôt de données sauvegardé}}',
             level: 'success'
           })
           jeeM.refreshDataStoreMangementTable()
         }
       })
+      return
     }
-  }, '.bt_saveDataStore')
 
-  jeeM.$tableDataStore.on({
-    'click': function(event) {
-      var tr = $(this).closest('tr')
-      $('#md_modal2').dialog({
-        title: "{{Graphique de lien(s)}}"
-      }).load('index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id=' + tr.attr('data-dataStore_id')).dialog('open')
+    if (_target = event.target.closest('.bt_graphDataStore')) {
+      var trId = _target.closest('tr').getAttribute('data-dataStore_id')
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: '{{Graphique de lien(s)}}',
+        contentUrl: 'index.php?v=d&modal=graph.link&filter_type=dataStore&filter_id=' + trId
+      })
+      return
     }
-  }, '.bt_graphDataStore')
-
-  $('#bt_dataStoreManagementAdd').on('click', function() {
-    var tr = jeeM.getDatastoreTr()
-    jeeM.$tableDataStore.find('tbody').prepend(tr)
-    jeeM.$tableDataStore.trigger("update")
-  })
-
-  $('#bt_dataStoreManagementRefresh').off('click').on('click', function() {
-    jeeM.refreshDataStoreMangementTable();
   })
 })()
 </script>

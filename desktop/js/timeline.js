@@ -26,6 +26,7 @@ if (!jeeFrontEnd.timeline) {
         document.querySelector('.bt_configureCmd')?.remove()
         document.querySelector('.bt_gotoScenario')?.remove()
       }
+      jeeP.displayTimeline()
     },
     displayTimeline: function() {
       document.querySelector('#timelineContainer #events').empty()
@@ -160,7 +161,6 @@ if (!jeeFrontEnd.timeline) {
             isFirstOfDay = isLastOfDay = false
           }
           document.querySelector('#timelineContainer #events').insertAdjacentHTML('beforeend', content)
-          //$('#timelineContainer ul').empty().append(content)
 
           jeeP.isScrolling = false
           document.getElementById('timelineBottom').seen()
@@ -189,10 +189,10 @@ if (!jeeFrontEnd.timeline) {
 jeeFrontEnd.timeline.init()
 
 //searching
-$('#in_searchTimeline').keyup(function() {
-  var search = this.value
+document.getElementById('in_searchTimeline')?.addEventListener('keyup', function(event) {
+  var search = event.target.value
   if (search == '') {
-    $('#timelineContainer > ul > li').show()
+    document.querySelectorAll('#events > li.event').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -200,40 +200,38 @@ $('#in_searchTimeline').keyup(function() {
   if (not) {
     search = search.replace(':not(', '')
   }
-  $('#timelineContainer > ul > li').hide()
+  document.querySelectorAll('#events > li.event').unseen()
   var match, text
-  $('#timelineContainer > ul > li').each(function() {
+  document.querySelectorAll('#events > li.event').forEach(_li => {
     match = false
-    text = jeedomUtils.normTextLower($(this).find('.tml-cmd').text())
+    text = jeedomUtils.normTextLower(_li.querySelector('.tml-cmd').textContent)
     if (text.includes(search)) {
       match = true
     }
-    text = jeedomUtils.normTextLower($(this).find('.type').text())
+    text = jeedomUtils.normTextLower(_li.querySelector('.type').textContent)
     if (text.includes(search)) {
       match = true
     }
 
     if (not) match = !match
     if (match) {
-      $(this).show()
+      _li.seen()
     }
   })
 })
-$('#bt_resetTimelineSearch').on('click', function() {
-  $('#in_searchTimeline').val('').keyup()
+
+//Manage events outside parents delegations:
+document.getElementById('bt_resetTimelineSearch').addEventListener('click', function(event) {
+  document.getElementById('in_searchTimeline').jeeValue('').triggerEvent('keyup')
 })
 
-$('#bt_openCmdHistoryConfigure').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'historique des commandes}}"
-  }).load('index.php?v=d&modal=cmd.configureHistory').dialog('open')
-})
-
-$('#sel_timelineFolder').off('change').on('change', function() {
+document.getElementById('bt_refreshTimeline').addEventListener('click', function(event) {
+  jeeP.loadStart = 0
+  jeeP.loadOffset = 35
   jeeP.displayTimeline()
 })
 
-$('#bt_removeTimelineEvent').on('click', function() {
+document.getElementById('bt_removeTimelineEvent').addEventListener('click', function(event) {
   jeedom.timeline.deleteAll({
     error: function(error) {
       jeedomUtils.showAlert({
@@ -251,47 +249,20 @@ $('#bt_removeTimelineEvent').on('click', function() {
   })
 })
 
-$('#bt_tabTimeline').on('click', function() {
-  jeedomUtils.hideAlert()
+document.getElementById('bt_openCmdHistoryConfigure').addEventListener('click', function(event) {
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration de l'historique des commandes}}",
+    contentUrl: 'index.php?v=d&modal=cmd.configureHistory'
+  })
+})
+
+document.getElementById('sel_timelineFolder').addEventListener('change', function(event) {
   jeeP.displayTimeline()
 })
 
-$('#timelineContainer ul').on('click', '.bt_scenarioLog', function() {
-  $('#md_modal').dialog({
-    title: "{{Log d'exécution du scénario}}"
-  }).load('index.php?v=d&modal=scenario.log.execution&scenario_id=' + $(this).closest('.tml-scenario').attr('data-id')).dialog('open')
-})
-
-$('#timelineContainer ul').on('click', '.bt_gotoScenario', function() {
-  jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + $(this).closest('.tml-scenario').attr('data-id'))
-})
-
-$('#timelineContainer ul').on('click', '.bt_historicCmd', function() {
-  $('#md_modal2').dialog({
-    title: "{{Historique}}"
-  }).load('index.php?v=d&modal=cmd.history&id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
-})
-
-$('#timelineContainer ul').on('click', '.bt_configureCmd', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de la commande}}"
-  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).closest('.tml-cmd').attr('data-id')).dialog('open')
-})
-
-$('#bt_refreshTimeline').on('click', function() {
-  jeeP.loadStart = 0
-  jeeP.loadOffset = 35
-  jeeP.displayTimeline()
-})
-
-$('#timelineBottom a.bt_loadMore').on('click', function() {
-  var more = parseInt($(this).attr('data-load'))
-  jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
-  jeeP.loadOffset = more
-  jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
-})
-
-document.getElementById('div_mainContainer').registerEvent('scroll', function (event) {
+//Specials
+document.getElementById('div_mainContainer').registerEvent('scroll', function(event) {
   if (jeeP == undefined || jeeP.isScrolling) return
   let container = document.getElementById('div_mainContainer')
   if (container.scrollTop >= container.scrollHeight - window.innerHeight) {
@@ -302,4 +273,50 @@ document.getElementById('div_mainContainer').registerEvent('scroll', function (e
   }
 })
 
-jeeP.displayTimeline()
+/*Events delegations
+*/
+document.getElementById('events').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_scenarioLog')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Log d'exécution du scénario}}",
+      contentUrl: 'index.php?v=d&modal=scenario.log.execution&scenario_id=' + _target.closest('.tml-scenario').getAttribute('data-id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_gotoScenario')) {
+    jeedomUtils.loadPage('index.php?v=d&p=scenario&id=' + _target.closest('.tml-scenario').getAttribute('data-id'))
+    return
+  }
+
+  if (_target = event.target.closest('.bt_historicCmd')) {
+    jeeDialog.dialog({
+      id: 'md_cmdHistory',
+      title: "{{Historique}}",
+      contentUrl: 'index.php?v=d&modal=cmd.history&id=' + _target.closest('.tml-cmd').getAttribute('data-id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.bt_configureCmd')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.closest('.tml-cmd').getAttribute('data-id')
+    })
+    return
+  }
+})
+
+document.getElementById('timelineBottom').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('a.bt_loadMore')) {
+    var more = parseInt(_target.getAttribute('data-load'))
+    jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
+    jeeP.loadOffset = more
+    jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
+    return
+  }
+})

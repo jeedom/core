@@ -350,41 +350,43 @@ jeedom.eqLogic.buildSelectCmd = function(_params) {
 }
 
 jeedom.eqLogic.getSelectModal = function(_options, callback) {
-  if (!isset(_options)) {
-    _options = {}
-  }
-
   document.getElementById('mod_insertEqLogicValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue" title="{{Sélectionner un équipement}}" ></div>')
-
-  $("#mod_insertEqLogicValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertEqLogicValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertEqLogicValue',
+    title: '{{Sélectionner un équipement}}',
     height: 250,
-    width: 800
-  })
-
-  domUtils.ajaxSetup({ async: false })
-  document.getElementById('mod_insertEqLogicValue').load('index.php?v=d&modal=eqLogic.human.insert')
-  domUtils.ajaxSetup({ async: true })
-
-  mod_insertEqLogic.setOptions(_options)
-  $("#mod_insertEqLogicValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.human = mod_insertEqLogic.getValue()
-      retour.id = mod_insertEqLogic.getId()
-      if (retour.human.trim() != '') {
-        callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=eqLogic.human.insert',
+    callback: function() { if (_options) mod_insertEqLogic.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.human = mod_insertEqLogic.getValue()
+            args.id = mod_insertEqLogic.getId()
+            if (args.human.trim() != '') {
+                callback(args)
+            }
+            document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertEqLogicValue').dialog('open')
 }
 
 jeedom.eqLogic.refreshValue = function(_params) {
@@ -393,21 +395,24 @@ jeedom.eqLogic.refreshValue = function(_params) {
   var sends = {}
   var eqLogic = null
   var page = document.body.getAttribute('data-page')
+
   for (var i in _params) {
     eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]')
     if (eqLogic != null) {
-      if (_params[i].visible == 0 && page == 'dashboard' || _params[i].enable == 0) {
+      if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') { //Remove it
         let parent = eqLogic.parentNode
         eqLogic.remove()
         if (parent.querySelectorAll('.eqLogic').length == 0) {
           if (page == 'dashboard') {
             parent.parentNode.remove()
           }
-        } else if (page != 'plan') {
-          $(parent).packery()
+        } else if (Packery.data(parent) != undefined) {
+          Packery.data(parent).layout()
         }
         continue
       }
+    } else {
+      if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') continue
     }
 
     eqLogics[_params[i].eqLogic_id] = {
@@ -417,6 +422,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
       version: ((version = eqLogic?.getAttribute('data-version')) != undefined) ? version : 'dashboard'
     }
   }
+
   if (Object.keys(eqLogics).length == 0) {
     return
   }
@@ -436,29 +442,37 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (eqLogic == null) {
           if (page == 'dashboard') {
             if ((object_div = document.getElementById('div_ob' + result[i].object_id)) != null) {
-              if ((previousEqLogic = object_div.querySelector('.eqLogic[data-order="' + (result[i].order - 1) + '"]')) != null) {
+              if (object_div.querySelector('.eqLogic')?.getAttribute('data-order') >= result[i].order) {
+                object_div.querySelector('.eqLogic').before(tile)
+              } else if ((previousEqLogic = object_div.querySelector('.eqLogic[data-order="' + (result[i].order - 1) + '"]')) != null) {
                 previousEqLogic.after(tile)
               } else {
                 object_div.html(result[i].html, true)
               }
               jeedomUtils.positionEqLogic(result[i].id)
-              let pckryContainer = $(object_div).packery('destroy').packery({ isLayoutInstant: true })
-              pckryContainer.packery('bindUIDraggableEvents', pckryContainer.find('div.eqLogic-widget'))
+              var packer = Packery.data(object_div)
+              if (packer != undefined) packer.destroy()
+              new Packery(object_div, {isLayoutInstant: true, transitionDuration: 0})
 
               document.querySelectorAll('div.eqLogic-widget').forEach(function(element, idx) {
                 element.setAttribute('data-order', idx + 1)
               })
             }
-          } else if (page == 'eqAnalyse' && tile.childNodes[0].querySelector('.widget-name>span>i').hasClass('fas')) {
+          } else if (page == 'eqAnalyse' && result[i].alert != '') {
             document.querySelector('.alertListContainer').html(result[i].html, true)
             jeedomUtils.positionEqLogic(result[i].id, false)
-            $('.alertListContainer').packery('destroy').packery({ itemSelector: "#alertEqlogic .eqLogic-widget" })
+            jeedomUtils.initTooltips()
+            let container = document.querySelector('.alertListContainer')
+            Packery.data(container).destroy()
+            new Packery(container, { itemSelector: "#alertEqlogic .eqLogic-widget", isLayoutInstant: true, transitionDuration: 0 })
           }
         } else {
-          if (page == 'eqAnalyse' && !tile.childNodes[0].querySelector('.widget-name>span>i').hasClass('fas')) {
+          if (page == 'eqAnalyse' && result[i].alert == '') {
             eqLogic.remove()
-            if (document.querySelector('.alertListContainer').querySelectorAll('.eqLogic').length > 0) {
-              $('.alertListContainer').packery()
+            if (document.querySelector('.alertListContainer')?.querySelectorAll('.eqLogic').length > 0) {
+              let container = document.querySelector('.alertListContainer')
+              var packer = Packery.data(container)
+              if (packer != undefined) packer.destroy()
             }
             continue
           }
@@ -482,9 +496,10 @@ jeedom.eqLogic.refreshValue = function(_params) {
             console.error(error)
           }
           eqLogic.triggerEvent('change')
+          jeedomUtils.initTooltips()
         }
 
-        if (jeedomUtils.userDeviceType == undefined) {
+        if (jeedomUtils.userDevice.type == undefined) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
         } else if (jeeFrontEnd.dashboard && jeeFrontEnd.dashboard.editWidgetMode && typeof jeeFrontEnd.dashboard.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
@@ -509,19 +524,19 @@ jeedom.eqLogic.refreshValue = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.eqLogic.initGraphInfo = function(_eqLogicId, _doNotHighlightGraphCmd) {
-  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"] div.eqlogicbackgraph')
+jeedom.eqLogic.initGraphInfo = function(_eqLogicUid, _doNotHighlightGraphCmd) {
+  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"]:not(.zone-widget) div.eqlogicbackgraph')
   if (divGraph != null) {
     var cmdId = divGraph.dataset.cmdid
     if (!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false) {
-      document.querySelector('div.eqLogic[data-eqlogic_id="' + _eqLogicId + '"] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName')?.insertAdjacentHTML('afterbegin', '<span class="graphInfoCmd">• </span>')
+      document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName')?.insertAdjacentHTML('afterbegin', '<span class="graphInfoCmd">• </span>')
     }
-    jeedom.eqLogic.drawGraphInfo(cmdId)
+    jeedom.eqLogic.drawGraphInfo(_eqLogicUid, cmdId)
   }
 }
 
-jeedom.eqLogic.drawGraphInfo = function(_cmdId) {
-  var drawEqEl = document.querySelector('.eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
+jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
+  var drawEqEl = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] .eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
   if (drawEqEl == null) return
   drawEqEl.empty()
   if (drawEqEl.length == 0) return false

@@ -1,0 +1,490 @@
+/*/*
+Deprecated CSS for plugins @Jeedom 2023
+Desktop
+*/
+
+/* jQuery autocomplete */
+  .ui-autocomplete .ui-menu-item-wrapper,
+  .ui-autocomplete .ui-menu-item-wrapper .ui-state-active {
+    cursor: pointer;
+    color: var(--txt-color);
+    background-color: var(--form-bg-color);
+    padding: 2px 5px;
+    border: none;
+  }
+  .ui-autocomplete .ui-menu-item-wrapper:hover {
+    color: var(--linkHoverLight-color);
+    background-color: var(--sc-formTxt-color);
+    border: none;
+  }
+  .ui-autocomplete.ui-front {
+    z-index: 5000;
+  }
+
+/* bootbox */
+  .bootbox.modal {
+    z-index: 9000;
+  }
+  .bootbox.modal.bootboxScInput {
+    z-index: 1010;
+  }
+
+/* boostrap modal */
+  .modal-footer .btn.bootbox-accept,
+  .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    color: var(--linkHoverLight-color) !important;
+    background-color: var(--al-success-color)!important;
+    border: none!important;
+  }
+  .modal-footer .btn.bootbox-cancel {
+    background-color: var(--al-warning-color)!important;
+  }
+
+  .modal-header {
+    border-bottom-width: 0 !important;
+  }
+  .modal-dialog {
+    top: 80px;
+    background-color: rgb(var(--panel-bg-color)) !important;
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+  }
+  .modal-content {
+    background: transparent;
+  }
+  .modal-footer {
+    border-top-color: rgb(var(--bg-color))!important
+  }
+  .modal-footer .btn-default {
+    height: 32px;
+  }
+  .modal-footer button[data-bb-handler=cancel],
+  .modal-footer a.btn[data-dismiss] {
+    background-color: var(--al-warning-color)!important;
+  }
+  .modal-footer button[data-bb-handler=confirm] {
+    background-color: var(--al-success-color)!important;
+  }
+  h4.modal-title {
+    font-size: 14px;
+  }
+
+  .close {
+    color: var(--link-color) !important;
+    opacity: 1;
+    border: none;
+  }
+  .close:hover {
+    opacity: 0.75;
+  }
+
+  .modal-backdrop {
+    z-index: 90 !important;
+    background: var(--el-defaultColor) !important;
+    opacity: 0.6 !important;
+    backdrop-filter: blur(2px);
+  }
+
+  .bootbox.modal, .modal-dialog, .modal-content, .modal-body, .modal-footer {
+    border-radius: var(--border-radius) !important;
+  }
+
+/* Old ui-dialog overview summary */
+  div.ui-dialog[aria-describedby="md_overviewSummary"] {
+    box-shadow: none !important;
+    border: 1px solid rgba(var(--contrast-color), 0.15) !important;
+  }
+  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
+    line-height: 12px;
+    background: rgba(var(--defaultBkg-color), 0.95) !important;
+  }
+  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--link-color) !important;
+  }
+  div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title:before {
+    content: '';
+  }
+  .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close {
+    margin-top: -27px;
+    margin-right: -5px;
+  }
+  .ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar-close:before {
+    color: var(--link-color) !important;
+  }
+  #md_overviewSummary {
+    background: rgba(var(--defaultBkg-color), 0.8) !important;
+  }
+
+/* Old jQuery UI dialog */
+
+  .ui-dialog #div_graph {
+    height: unset;
+  }
+
+  #md_modal {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: calc(100% - 30px) !important;
+  }
+  #div_confPlugin {
+    height: auto !important;
+  }
+
+  .ui-widget {
+    font-size: 14px;
+  }
+
+  .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    color: var(--linkHoverLight-color) !important;
+    background-color: var(--al-success-color)!important;
+    border: none!important;
+  }
+  .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:first-child {
+    background-color: var(--al-warning-color)!important;
+  }
+
+  .ui-dialog {
+    background-color: rgb(var(--defaultBkg-color));
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
+  }
+  .ui-dialog .ui-dialog-titlebar {
+    border-bottom: none !important;
+    background-color: rgb(var(--contrast-color)) !important;
+    padding: 0 5px;
+  }
+  .ui-dialog .ui-dialog-title {
+    color: rgb(var(--bg-color)) !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-size: 16px;
+    font-weight: normal;
+    cursor: move !important;
+  }
+  .ui-dialog .ui-dialog-title:before {
+    content: '\f105\00a0\00a0';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+  }
+
+  .ui-dialog, .ui-dialog-content {
+    box-sizing: content-box !important;
+  }
+
+  .ui-state-active .ui-icon,
+  .ui-widget-header .ui-icon {
+    background-image: var(--url-iconsDark)!important;
+  }
+  .ui-dialog-content {
+    padding: 13px !important;
+    padding-right: 13px !important;
+  }
+  .ui-dialog-content > div:not(.alert):not(.jqAlert) {
+    background: transparent !important;
+  }
+  .ui-widget-content:not(.slider){
+    color: var(--txt-color) !important;
+    background: transparent !important;
+    border: none!important;
+    padding: 0em;
+  }
+  .jqAlert {
+    padding: 5px 30px;
+    margin-bottom: 5px;
+  }
+
+  .ui-dialog .ui-dialog-buttonpane {
+    margin: 0;
+  }
+  .ui-dialog .ui-dialog-content,
+  .ui-dialog .ui-dialog-buttonpane {
+    background-color: var(--bg-modal-color) !important;
+  }
+
+  .ui-resizable-handle.ui-icon {
+    background-image: none !important;
+    background-color: transparent !important;
+  }
+  .ui-button:hover {
+    opacity: 0.65;
+  }
+
+  button.ui-dialog-titlebar-close::before {
+    font-family: "Font Awesome 5 Free";
+    font-size: 16px !important;
+    font-weight: 700;
+    content: "\f00d";
+    color: rgb(var(--bg-color)) !important;
+    padding-right: 12px;
+    line-height: 10px;
+    vertical-align: top;
+  }
+  button.ui-dialog-titlebar-close {
+    position: absolute;
+    top: 30px !important;
+    font-size: 14px !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+  button.ui-dialog-titlebar-close:hover {
+    opacity: 0.75 !important;
+  }
+  .ui-dialog:not(.elfinder-dialog) .ui-icon-closethick {
+    display:none !important;
+  }
+
+  .ui-dialog {
+    border-radius: var(--border-radius) !important;
+  }
+  .ui-dialog-titlebar {
+    border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+  }
+
+/* Old jQuery contextmenu */
+  .context-menu-root,
+  .context-menu-list {
+    z-index: 9999 !important;
+    box-shadow: none;
+  }
+  .context-menu-root .context-menu-layer {
+    z-index: 5000 !important;
+  }
+  .context-menu-list {
+    z-index: 12000 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: var(--bg-modal-color) !important;
+  }
+  .context-menu-root .context-menu-separator {
+    border-bottom: 1px solid rgb(var(--bg-color)) !important;
+  }
+  .context-menu-root .context-menu-item {
+    color: var(--txt-color) !important;
+    background: var(--bg-modal-color) !important;
+  }
+  .context-menu-root .context-menu-item i {
+    color: var(--txt-color) !important;
+    top: 7px;
+  }
+  .context-menu-root .context-menu-item span {
+    font-weight: normal !important;
+  }
+  .context-menu-root .context-menu-disabled {
+    color: var(--placeholder-color) !important;
+    cursor: default !important;
+  }
+  .context-menu-root .context-menu-item:not(.context-menu-disabled) span,
+  .context-menu-root .context-menu-disabled.cursor {
+    cursor: pointer !important;
+  }
+  .context-menu-root .context-menu-item:not(.context-menu-disabled)::before {
+    color: var(--txt-color) !important;
+  }
+  .context-menu-root .context-menu-submenu::after {
+    border-left-color: var(--txt-color) !important;
+    font-size: 22px !important;
+  }
+  .context-menu-root .context-menu-item:not(.context-menu-disabled):hover {
+    background: var(--btnEq-default-color) !important;
+  }
+  .context-menu-root .context-menu-disabled,
+  .context-menu-root .context-menu-disabled::before {
+    color: var(--placeholder-color) !important;
+    font-style: italic;
+  }
+  .context-menu-root .context-menu-disabled::after {
+    border-left-color: var(--el-defaultColor) !important;
+  }
+  .context-menu-root .context-menu-item.inlineItem {
+    display: inline-flex;
+    padding: 5px;
+  }
+
+  /* ui spinner */
+  .ui-spinner a.ui-spinner-button {
+    border: none;
+    opacity: 0.6;
+  }
+  .ui-spinner a.ui-spinner-button:hover {
+    opacity: 1;
+    background: var(--logo-primary-color);
+  }
+
+  /* tablesorter */
+  #div_mainContainer table.tablesorter > thead {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  table.tablesorter.stickyHead > thead {
+    position: sticky;
+    top: -14px;
+    z-index: 5;
+  }
+
+  div.cmdListContainer .tablesorter i {
+    font-size: 14px !important;
+  }
+  .tablesorter-header-inner {
+    padding: 0 0 0 0!important;
+  }
+
+  #md_modal table.tablesorter {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width:100% !important;
+  }
+  i.tablesorter-icon {
+    background-image: none !important;
+  }
+  th.tablesorter-header[data-sorter=false] {
+    cursor: default;
+  }
+  th.tablesorter-header select + i.tablesorter-icon {
+    top: 32px !important;
+  }
+  th.tablesorter-header select {
+    height: 22px;
+    padding: 1px 5px !important;
+    line-height: 1.5;
+  }
+  i.tablesorter-icon.glyphicon-chevron-up::before {
+    content: "\25bc" !important;
+  }
+  i.tablesorter-icon.glyphicon-chevron-down::before {
+    content: "\25b2" !important;
+  }
+  i.tablesorter-icon.bootstrap-icon-unsorted::before {
+    content: "-" !important;
+  }
+  .tablesorter-bootstrap tfoot td,
+  .tablesorter-bootstrap tfoot th,
+  .tablesorter-bootstrap thead td,
+  .tablesorter-bootstrap thead th,
+  .tablesorter-bootstrap>tbody>tr.even>td,
+  .tablesorter-bootstrap>tbody>tr.odd>td,
+  .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.even:hover~tr.tablesorter-hasChildRow.even~.tablesorter-childRow.even>td,
+  .tablesorter-bootstrap>tbody>tr.tablesorter-hasChildRow.odd:hover~tr.tablesorter-hasChildRow.odd~.tablesorter-childRow.odd>td {
+    background-color: transparent!important;
+    transition-duration: 250ms;
+    transition-property: background-color;
+    transition-delay: 20ms;
+  }
+  .tablesorter-resizable-handle {
+    z-index: 8!important;
+    margin-left: -5px;
+  }
+  table.tablesorter th:not([data-resizable]) .tablesorter-header-inner {
+    border-right: 1px dotted var(--txt-color) !important;
+  }
+  table.tablesorter th:not([data-resizable]):last-of-type .tablesorter-header-inner {
+    border-right: none !important;
+  }
+  table.tablesorter .tablesorter-header:focus {
+    outline:none;
+  }
+  table.tablesorter thead .tablesorter-filter-row input {
+    height: 20px;
+  }
+
+  .tablesorter-filter-row {
+    background-color: var(--btn-default-color)!important;
+    transition-duration: 500ms;
+    transition-property: background-color;
+  }
+  table.tablesorter .tablesorter-pager {
+    margin: 5px 0;
+  }
+  table.tablesorter .tablesorter-pager .current {
+    color: var(--al-info-color) !important;
+  }
+  input.tablesorter-filter {
+    background-color: rgb(var(--defaultBkg-color));
+    color: var(--link-color);
+    opacity: 0.85 !important;
+  }
+  input.tablesorter-filter.disabled {
+    display: none;
+  }
+
+  /* jstree */
+  body[data-theme="core2019_Dark"] i.jstree-icon {
+    filter: invert(1);
+  }
+
+  .jstree-anchor:hover {
+    box-shadow: none;
+  }
+  .jstree-default .jstree-clicked {
+    background-color: transparent !important;
+    border-right: 2.5px solid var(--logo-primary-color);
+    box-shadow: none;
+    font-weight: bold;
+  }
+  .jstree li a {
+    width: 90% !important;
+  }
+  .jstree li a:hover {
+    background-color: var(--form-bg-color);
+  }
+  .vakata-context {
+    background: var(--form-bg-color) !important;
+    box-shadow: unset !important;
+    z-index: 9999;
+    border: none !important;
+  }
+  .vakata-context > li > a {
+    color: var(--txt-color) !important;
+    text-shadow: unset !important;
+  }
+  .vakata-context-hover > a {
+    background: var(--btnEq-default-color) !important;
+    box-shadow: unset !important;
+  }
+  .vakata-contextmenu-sep, .vakata-context-separator > a {
+    background: rgb(var(--bg-color)) !important;
+    border-color: rgb(var(--bg-color)) !important;
+  }
+
+/* ________________________________________TABLE REFLOW FLEX */
+@media ( max-width: 768px ) {
+  div.ui-dialog {
+    max-width: 90vw !important;
+    left: calc(10vw / 2) !important;
+  }
+  div.ui-dialog .ui-dialog-content{
+    max-width: calc(90vw - 25px) !important;
+  }
+
+  div.ui-dialog table[id*=mod_insert].table tbody {
+    width: 100% !important;
+    display: flex;
+  }
+  div.ui-dialog table[id*=mod_insert].table,
+  div.ui-dialog table[id*=mod_insert].table td,
+  div.ui-dialog table[id*=mod_insert].table tr,
+  div.ui-dialog table[id*=mod_insert].table th {
+    display: block;
+    text-align: left;
+  }
+  div.ui-dialog table[id*=mod_insert].table.table-condensed tbody th,
+  div.ui-dialog table[id*=mod_insert].table.table-condensed tbody tr,
+  div.ui-dialog table[id*=mod_insert].table.table-condensed tbody td {
+    margin: 0;
+    height: 30px !important;
+    margin-bottom: 7px !important;
+    width: 100%;
+  }
+  div.ui-dialog table[id*=mod_insert] thead {
+    display: none;
+  }
+
+
+  th.tablesorter-header {
+    margin: 0 !important;
+  }
+  .tablesorter-filter-row {
+    display: none;
+  }
+}

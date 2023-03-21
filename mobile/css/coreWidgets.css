@@ -146,9 +146,6 @@ Mobile WebApp
   .gauge.cursor{ height: 85px !important; }
   .container-fluid.cmd-widget { min-height: 85px !important; }
 
-  h4.modal-title {
-    font-size: 14px;
-  }
   .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
     font-weight: normal !important;
   }

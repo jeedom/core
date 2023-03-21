@@ -144,7 +144,7 @@ jeedom.config.load = function(_params) {
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'getKey',
-        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? JSON.stringify(_params.configuration) : _params.configuration,
+        key: (Array.isArray(_params.configuration) || isPlainObject(_params.configuration)) ? JSON.stringify(_params.configuration) : _params.configuration,
         plugin: _params.plugin || 'core',
         convertToHumanReadable: _params.convertToHumanReadable || false
     };
@@ -165,7 +165,7 @@ jeedom.config.remove = function(_params) {
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'removeKey',
-        key: ($.isArray(_params.configuration) || $.isPlainObject(_params.configuration)) ? JSON.stringify(_params.configuration) : _params.configuration,
+        key: (Array.isArray(_params.configuration) || isPlainObject(_params.configuration)) ? JSON.stringify(_params.configuration) : _params.configuration,
         plugin: _params.plugin || 'core'
     };
     domUtils.ajax(paramsAJAX);
@@ -192,41 +192,49 @@ jeedom.config.removeImage = function(_params) {
 
 jeedom.config.getGenericTypeModal = function(_options, callback) {
     if (!isset(_options)) {
-        _options = {};
+        _options = {}
     }
     if (!isset(_options.type)) {
-        _options.type = 'info';
+        _options.type = 'info'
     }
-    document.getElementById('mod_insertGenericType')?.remove()
-    document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertGenericType" title="{{Sélectionner un type générique}}" ></div>')
-    $("#mod_insertGenericType").dialog({
-        closeText: '',
-        autoOpen: false,
-        modal: true,
-        height: 250,
-        width: 800
-    })
-
     var url = 'index.php?v=d&modal=genericType.human.insert&type=' + _options.type
     if (_options.object) url += '&object=' + _options.object
-    domUtils.ajaxSetup({async: false})
-    document.getElementById('mod_insertGenericType').load(url)
-    domUtils.ajaxSetup({async: true})
 
-    mod_insertGenericType.setOptions(_options);
-    $("#mod_insertGenericType").dialog('option', 'buttons', {
-        "{{Annuler}}": function() {
-            $(this).dialog("close");
-        },
-        "{{Valider}}": function() {
-            var retour = {};
-            retour.human = mod_insertGenericType.getValue();
-            retour.id = mod_insertGenericType.getId();
-            if (retour.human.trim() != '') {
-                callback(retour);
+    document.getElementById('mod_insertGenericType')?.remove()
+    document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertGenericType"></div>')
+    jeeDialog.dialog({
+        id: 'mod_insertGenericType',
+        title: '{{Sélectionner un type générique}}',
+        height: 250,
+        width: 800,
+        top: '20vh',
+        contentUrl: url,
+        callback: function() { mod_insertGenericType.setOptions(_options) },
+        buttons: {
+          confirm: {
+            label: '{{Valider}}',
+            className: 'success',
+            callback: {
+              click: function(event) {
+                var args = {}
+                args.human = mod_insertGenericType.getValue()
+                args.id = mod_insertGenericType.getId()
+                if (args.human.trim() != '') {
+                    callback(args)
+                }
+                document.getElementById('mod_insertGenericType')._jeeDialog.destroy()
+              }
             }
-            $(this).dialog('close');
+          },
+          cancel: {
+            label: '{{Annuler}}',
+            className: 'warning',
+            callback: {
+              click: function(event) {
+                document.getElementById('mod_insertGenericType')._jeeDialog.destroy()
+              }
+            }
+          }
         }
-    });
-    $('#mod_insertGenericType').dialog('open');
+    })
 }

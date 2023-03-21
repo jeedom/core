@@ -1,3 +1,4 @@
+<!--template/scenario/changetheme.default-->
 <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft" style="width: 100px">{{theme}}</span>
   <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="theme" value="#theme#" data-uid="#uid#">
@@ -7,5 +8,5 @@
   </select>
 </div>
 <script>
-  $('select[data-uid="#uid#"]').val("#theme#");
+  document.querySelector('select[data-uid="#uid#"]').value = "#theme#"
 </script>

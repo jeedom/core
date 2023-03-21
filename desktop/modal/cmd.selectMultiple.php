@@ -29,60 +29,94 @@ if (!is_array($listeCmds) || count($listeCmds) == 0) {
 }
 ?>
 
-<div style="display: none;" id="md_cmdConfigureSelectMultipleAlert" data-modalType="md_cmdConfigureSelectMultiple"></div>
-<div class="input-group pull-right">
-  <a class="btn btn-default roundedLeft" id="bt_cmdConfigureSelectMultipleAlertToogle" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
-  </a><a class="btn btn-success roundedRight" id="bt_cmdConfigureSelectMultipleAlertApply"><i class="fas fa-check"></i> {{Valider}}</a>
+<div id="md_cmdConfigureSelectMultiple" data-modalType="md_cmdConfigureSelectMultiple">
+  <div class="input-group pull-right">
+    <a class="btn btn-default roundedLeft" id="bt_cmdSelectMultipleInvert" data-state="0"><i class="far fa-circle"></i> {{Inverser}}
+    </a><a class="btn btn-success roundedRight" id="bt_cmdSelectMultipleApply"><i class="fas fa-check"></i> {{Valider}}</a>
+  </div>
+  <br />
+  <table id="table_cmdConfigureSelectMultiple" class="table table-condensed dataTable" style="width:100% !important;">
+    <thead>
+      <tr>
+        <th data-type="checkbox" data-filter="false" style="width:30px;">#</th>
+        <th style="width:200px;">{{Objet}}</th>
+        <th>{{Plugin}}</th>
+        <th>{{Equipement}}</th>
+        <th>{{Nom}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach ($listeCmds as $listCmd) {
+        $eqLogic = $listCmd->getEqLogic();
+        $object = null;
+        if (is_object($eqLogic)) {
+          $object = $eqLogic->getObject();
+        }
+        $tr = '';
+        $tr .= '<tr data-cmd_id="' . $listCmd->getId() . '">';
+        $tr .= '<td>';
+        if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
+          $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
+        } else {
+          $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" />';
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        if (is_object($object)) {
+          $tr .= $object->getName();
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        if (is_object($eqLogic)) {
+          $tr .= $eqLogic->getEqType_name();
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        if (is_object($eqLogic)) {
+          $tr .= $eqLogic->getName();
+        }
+        $tr .= '</td>';
+        $tr .= '<td>';
+        $tr .= $listCmd->getName();
+        $tr .= '</td>';
+        $tr .= '</tr>';
+        echo $tr;
+      }
+      ?>
+    </tbody>
+  </table>
 </div>
-<br />
-<table class="table table-bordered table-condensed tablesorter" id="table_cmdConfigureSelectMultiple" style="width:100% !important;">
-  <thead>
-    <tr>
-      <th data-sorter="false" data-filter="false"></th>
-      <th>{{Objet}}</th>
-      <th>{{Plugin}}</th>
-      <th>{{Equipement}}</th>
-      <th>{{Nom}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    foreach ($listeCmds as $listCmd) {
-      $eqLogic = $listCmd->getEqLogic();
-      $object = null;
-      if (is_object($eqLogic)) {
-        $object = $eqLogic->getObject();
+
+<script>
+if (!jeeFrontEnd.md_cmdConfigureSelectMultiple) {
+  jeeFrontEnd.md_cmdConfigureSelectMultiple = {
+    tableSelectMulti: null,
+    vDataTable: null,
+    init: function() {
+      this.tableSelectMulti = document.getElementById('table_cmdConfigureSelectMultiple')
+      this.vDataTable = new DataTable(this.tableSelectMulti, {
+        columns: [
+          { select: 1, sort: "asc" }
+        ],
+        searching: true,
+        paging: false,
+      })
+    },
+  }
+}
+
+(function() {// Self Isolation!
+  var jeeM = jeeFrontEnd.md_cmdConfigureSelectMultiple
+  jeeM.init()
+
+  document.getElementById('bt_cmdSelectMultipleInvert').addEventListener('click', function(event) {
+    document.querySelectorAll('#md_cmdConfigureSelectMultiple #table_cmdConfigureSelectMultiple tbody tr input.selectMultipleApplyCmd').forEach(_input => {
+      if (_input.isVisible()) {
+        _input.checked = !_input.checked
+        _input.setAttribute('data-state', '1')
       }
-      $tr = '';
-      $tr .= '<tr data-cmd_id="' . $listCmd->getId() . '">';
-      $tr .= '<td>';
-      if (is_object($cmd) && $listCmd->getId() == $cmd->getId()) {
-        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" checked/>';
-      } else {
-        $tr .= '<input type="checkbox" class="selectMultipleApplyCmd" />';
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      if (is_object($object)) {
-        $tr .= $object->getName();
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      if (is_object($eqLogic)) {
-        $tr .= $eqLogic->getEqType_name();
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      if (is_object($eqLogic)) {
-        $tr .= $eqLogic->getName();
-      }
-      $tr .= '</td>';
-      $tr .= '<td>';
-      $tr .= $listCmd->getName();
-      $tr .= '</td>';
-      $tr .= '</tr>';
-      echo $tr;
-    }
-    ?>
-  </tbody>
-</table>
+    })
+  })
+})()
+</script>

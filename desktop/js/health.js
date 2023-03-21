@@ -26,32 +26,46 @@ if (!jeeFrontEnd.health) {
 
 jeeFrontEnd.health.init()
 
+/*Events delegations
+*/
 document.getElementById('accordionHealth').addEventListener('click', event => {
-  if (event.target.matches('.bt_configurationPlugin')) {
-    $('#md_modal').dialog({
-      title: "{{Configuration du plugin}}"
-    }).load('index.php?v=d&p=plugin&ajax=1&id=' + event.target.getAttribute('data-pluginid')).dialog('open')
+  var _target = null
+  if (_target = event.target.closest('.bt_configurationPlugin')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration du plugin}}",
+      contentUrl: 'index.php?v=d&p=plugin&ajax=1&id=' + _target.getAttribute('data-pluginid')
+    })
     return
   }
 
-  if (event.target.matches('.bt_healthSpecific')) {
-    $('#md_modal').dialog({
-      title: "{{Santé}} " + event.target.getAttribute('data-pluginname')
-    }).load('index.php?v=d&plugin=' + event.target.getAttribute('data-pluginid') + '&modal=health').dialog('open')
+  if (_target = event.target.closest('.bt_healthSpecific')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Santé}} " + _target.getAttribute('data-pluginname'),
+      contentUrl: 'index.php?v=d&plugin=' + _target.getAttribute('data-pluginid') + '&modal=health'
+    })
     return
   }
 
-  if (event.target.matches('#bt_benchmarkJeedom')) {
-    $('#md_modal').dialog({
-      title: "{{Jeedom benchmark}}"
-    }).load('index.php?v=d&modal=jeedom.benchmark').dialog('open')
+  if (_target = event.target.closest('#bt_benchmarkJeedom')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Jeedom benchmark}}",
+      contentUrl: 'index.php?v=d&modal=jeedom.benchmark'
+    })
     return
   }
 
-  if (event.target.matches('.panel-title')) {
-    if (!event.target.matches('a.accordion-toggle') && !event.target.hasClass('pull-right')) {
-      event.target.querySelector('a.accordion-toggle').triggerEvent('click')
-    }
+  if (_target = event.target.closest('.panel-title')) {
+    _target.querySelector(':scope > a').click()
+    if (typeof(bootbox) === 'undefined') requestAnimationFrame(() => { document.getElementById('health_jeedom').addClass('in') })
     return
   }
+
+  if (_target = event.target.closest('.panel-title')) {
+    if (typeof(bootbox) === 'undefined') requestAnimationFrame(() => { document.getElementById('health_jeedom').addClass('in') })
+    return
+  }
+
 })

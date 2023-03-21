@@ -11,8 +11,6 @@ sendVarToJS([
 $plugins_list = plugin::listPlugin(false, true);
 ?>
 
-<div id='div_alertPluginConfiguration'></div>
-
 <div class="row row-overflow">
   <div class="col-xs-12" id="div_resumePluginList" <?php if (init('id', '-1') != -1) echo 'style="display:none;"'?>>
     <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
@@ -115,45 +113,45 @@ $plugins_list = plugin::listPlugin(false, true);
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <a class="btn btn-info btn-xs pull-right openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</a></h3>
+            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <a class="btn btn-info btn-xs pull-right bt_openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</a></h3>
           </div>
           <div class="panel-body">
             <div id="div_plugin_toggleState"></div>
             <form class="form-horizontal">
               <fieldset>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">{{Catégorie}}</label>
-                  <div class="col-sm-4">
+                  <label class="col-sm-2 col-xs-6 control-label">{{Catégorie}}</label>
+                  <div class="col-sm-4 col-xs-6">
                     <span id="span_plugin_category"></span>
                   </div>
-                  <label class="col-sm-2 control-label">{{Source}}</label>
-                  <div class="col-sm-4">
+                  <label class="col-sm-2 col-xs-6 control-label">{{Source}}</label>
+                  <div class="col-sm-4 col-xs-6">
                     <span id="span_plugin_source"></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">{{Auteur}}</label>
-                  <div class="col-sm-4">
+                  <label class="col-sm-2 col-xs-6 control-label">{{Auteur}}</label>
+                  <div class="col-sm-4 col-xs-6">
                     <span id="span_plugin_author"></span>
                   </div>
-                  <label class="col-sm-2 control-label">{{Version}}
+                  <label class="col-sm-2 col-xs-6 control-label">{{Version}}
                     <sup><i class="fas fa-question-circle" title="{{Version installée du plugin.}}"></i></sup>
                   </label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 col-xs-6">
                     <span id="span_plugin_install_date"></span>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">{{License}}</label>
-                  <div class="col-sm-4">
+                  <label class="col-sm-2 col-xs-6 control-label">{{License}}</label>
+                  <div class="col-sm-4 col-xs-6">
                     <span id="span_plugin_license"></span>
                   </div>
-                  <label class="col-sm-2 control-label">{{Prérequis}}
+                  <label class="col-sm-2 col-xs-6 control-label">{{Prérequis}}
                     <sup><i class="fas fa-question-circle" title="{{Version minimale du Core supportée par le plugin.}}"></i></sup>
                   </label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-4 col-xs-6">
                     <span id="span_plugin_require"></span>
                   </div>
                 </div>

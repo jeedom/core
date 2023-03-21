@@ -547,6 +547,12 @@ class user {
 	}
 
 	public function setOptions($_key, $_value) {
+		if ($_key == 'registerDevice' && is_array($_value) &&  count($_value) > 20) {
+			uasort($_value, function ($a, $b) {
+				return strtotime($b['datetime']) - strtotime($a['datetime']);
+			});
+			$_value = array_slice($_value, 0, 20, true);
+		}
 		$options = utils::setJsonAttr($this->options, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->options, $options);
 		$this->options = $options;

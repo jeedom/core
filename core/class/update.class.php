@@ -414,10 +414,9 @@ class update {
 	public function preInstallUpdate() {
 		if (!file_exists(__DIR__ . '/../../plugins')) {
 			mkdir(__DIR__ . '/../../plugins');
-			@chown(__DIR__ . '/../../plugins', system::get('www-uid'));
-			@chgrp(__DIR__ . '/../../plugins', system::get('www-gid'));
-			@chmod(__DIR__ . '/../../plugins', 0775);
 		}
+		shell_exec(system::getCmdSudo() . ' chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../plugins');
+		@chmod(__DIR__ . '/../../plugins', 0775);
 		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
 		log::add('update', 'alert', __('Début de la mise à jour de :', __FILE__) . ' ' . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {

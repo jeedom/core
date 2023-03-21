@@ -80,7 +80,7 @@ jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
 jeedom.private.getParamsAJAX = function(_params) {
   // Special case parameter type
   var typeInData = false;
-  if ($.inArray(_params.type, ['POST', 'GET']) === -1) {
+  if (!['POST', 'GET'].includes(_params.type)) {
     typeInData = true;
     _params.data = _params.data || {};
     _params._type = _params.type; //Get initial type

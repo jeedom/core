@@ -57,12 +57,8 @@ $allObject = jeeObject::buildTree(null, true);
     ?>
   </div>
 </div>
-<div id="md_overviewSummary" class="cleanableModal" style="overflow-x: hidden;">
-  <div id="summaryEqlogics"></div>
-</div>
-
 
 <?php
-include_file('desktop/common', 'ui', 'js');
-include_file('desktop', 'overview', 'js');
+  include_file('desktop/common', 'ui', 'js');
+  include_file('desktop', 'overview', 'js');
 ?>

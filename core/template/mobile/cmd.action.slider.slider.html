@@ -1,0 +1,32 @@
+<div class="cmd cmd-widget" data-type="action" data-subtype="slider" data-template="default" data-version="#version#" data-eqLogic_id="#eqLogic_id#" data-cmd_id="#id#" data-cmd_uid="#uid#">
+  <div id="widget_slider#id#" class="slider full-width-slider"></div>
+  <script>
+    var step#id# = 1
+    if ($.issetWidgetOptParam('#step#', 'step')) {
+      step#id# = parseFloat('#step#')
+    }
+    var mySlider#id# = $.createWidgetSlider({
+      sliderDiv: document.getElementById('widget_slider#id#'),
+      state: ('#state#' == '') ? #minValue# : '#state#',
+      min: #minValue#,
+      max: #maxValue#,
+      step: step#id#,
+      tooltips: true,
+      format: true,
+      unite: '#unite#'
+    })
+
+    if ($.issetWidgetOptParam('#color#', 'color')) {
+      $(mySlider#id#.target).find('.noUi-handle').style('background', '#color#', 'important')
+      $(mySlider#id#.target).find('.noUi-connect').style('background', '#color#', 'important')
+    }
+
+    mySlider#id#.on('change', function(values, handle) {
+      jeedom.cmd.execute({id: '#id#', value: {slider: values[handle].replace('#unite#', '').trim()}})
+    })
+
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      mySlider#id#.set(_options.value)
+    });
+  </script>
+</div>

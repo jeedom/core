@@ -1,3 +1,4 @@
+<!--template/scenario/report.default-->
 <div class="input-group input-group-sm" style="width: calc(100% - 3px)">
   <span class="input-group-addon roundedLeft" style="width:100px;">{{Exporter}}</span>
   <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="type" data-cmd_id="#id#" data-uid="#uid#">
@@ -42,10 +43,14 @@
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="width" placeholder="1280" value="#width#" data-cmd_id="#id#" data-uid="#uid#"/>
   <span class="input-group-addon" style="width:100px;">{{Hauteur (px)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="height" placeholder="720" value="#height#" data-cmd_id="#id#" data-uid="#uid#"/>
-  <span class="input-group-addon" style="width:100px;">{{Délai}}</span>
+  <span class="input-group-addon" style="width:100px;">{{Délai (ms)}}</span>
   <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="delay" placeholder="1000" value="#delay#" data-cmd_id="#id#" data-uid="#uid#"/>
-  <span class="input-group-addon" style="width:90px;">{{Option(s)}}</span>
-  <input class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="arg" value="#arg#" data-cmd_id="#id#" data-uid="#uid#"/>
+<span class="input-group-addon roundedLeft" style="width:100px;">{{Thèmes}}</span>
+  <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="theme" data-cmd_id="#id#" data-uid="#uid#">
+    <option value="">{{Défaut}}</option>
+    <option value="Light">{{Clair}}</option>
+    <option value="Dark">{{Sombre}}</option>
+  </select>
 </div>
 <script>
   jeedom.view.all({
@@ -143,7 +148,7 @@
     }
   })
 
-  $('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').change(function() {
+  document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').addEventListener('change', function() {
     this.closest('select').removeClass('roundedRight')
     document.querySelectorAll('.type[data-uid="#uid#"]').unseen()
     try { document.querySelector('span.' + this.value + '[data-uid="#uid#"]').style.display = 'table-cell'} catch (e) { }
@@ -153,7 +158,7 @@
     }
   })
 
-  $('.listCmdMessage[data-uid="#uid#"]').off('click').on('click', function() {
+  document.querySelector('.listCmdMessage[data-uid="#uid#"]').addEventListener('click', function() {
     jeedom.cmd.getSelectModal({cmd: {type: 'action',subType : 'message'}}, function(result) {
       document.querySelector('.expressionAttr[data-l1key="options"][data-l2key="cmd"][data-uid="#uid#"]').insertAtCursor(result.human)
     })

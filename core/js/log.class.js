@@ -17,7 +17,7 @@
 jeedom.log = function() {};
 jeedom.log.timeout = null
 jeedom.log.currentAutoupdate = []
-jeedom.log.coloredThreshold = 200000
+jeedom.log.coloredThreshold = 300000
 
 jeedom.log.list = function(_params) {
   var paramsRequired = [];
@@ -154,20 +154,10 @@ jeedom.log.clear = function(_params) {
 }
 
 jeedom.log.autoupdate = function(_params) {
-  if (!isset(_params.once)) {
-    _params['once'] = 0
-  }
-  if (!isset(_params.callNumber)) {
-    _params.callNumber = 0
-  }
-  if (!isset(_params.log)) {
-    console.log('[jeedom.log.autoupdate] No logfile')
-    return
-  }
-  if (!isset(_params.display)) {
-    console.log('[jeedom.log.autoupdate] No display')
-    return
-  }
+  if (!isset(_params.once)) _params['once'] = 0
+  if (!isset(_params.callNumber)) _params.callNumber = 0
+  if (!isset(_params.log)) return
+  if (!isset(_params.display)) return
 
   //Deprecated use with jQuery objects by plugins:
   if (_params.callNumber == 0) {
@@ -199,10 +189,10 @@ jeedom.log.autoupdate = function(_params) {
       if (this.getAttribute('data-state') == 1) {
         this.setAttribute('data-state', 0)
         this.removeClass('btn-warning').addClass('btn-success')
-        this.html('<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>')
+        this.innerHTML = '<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>'
       } else {
         this.removeClass('btn-success').addClass('btn-warning')
-        this.html('<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
+        this.innerHTML = '<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>'
         this.setAttribute('data-state', 1)
         _params.display.scrollTop = _params.display.offsetHeight + 200000
         _params.once = 0
@@ -225,7 +215,7 @@ jeedom.log.autoupdate = function(_params) {
 
   if (_params.callNumber > 0 && (_params.display.scrollTop + _params.display.offsetHeight + 1) < _params.display.scrollHeight) {
     if (_params.control.getAttribute('data-state') == 1) {
-      _params.control.triggerEvent('click')
+      _params.control.click()
     }
     return
   }
@@ -284,9 +274,9 @@ jeedom.log.autoupdate = function(_params) {
         } else {
           log = jeedom.log.stringColorReplace(log)
         }
-        _params.display.html(log)
-      } else {
         _params.display.innerHTML = log
+      } else {
+        _params.display.textContent = log
       }
 
       if (_params.once != 1) {
@@ -296,36 +286,39 @@ jeedom.log.autoupdate = function(_params) {
         }
         jeedom.log.timeout = setTimeout(function() {
           jeedom.log.autoupdate(_params)
-        }, 1000)
+        }, dom_brutlogcheck.checked ? 1000 : 2000)
       }
     },
     error: function() {
       if (jeedom.log.timeout !== null) {
-        clearTimeout(jeedom.log.timeout);
+        clearTimeout(jeedom.log.timeout)
       }
       jeedom.log.timeout = setTimeout(function() {
         jeedom.log.autoupdate(_params)
-      }, 1000);
+      }, 1000)
     },
   });
 }
 
 //Standard log replacement:
 jeedom.log.colorReplacement = {
-  'WARNING:': '<span class="warning">WARNING</span>:',
-  'Erreur': '<span class="danger">Erreur</span>',
-  'OK': '<strong>OK</strong>',
-  '[INFO]': '<span class="label label-xs label-info">INFO</span>',
-  '[DEBUG]': '<span class="label label-xs label-success">DEBUG</span>',
-  '[WARNING]': '<span class="label label-xs label-warning">WARNING</span>',
-  '[ALERT]': '<span class="label label-xs label-warning">ALERT</span>',
-  '[ERROR]': '<span class="label label-xs label-danger">ERROR</span>',
-
+  'WARNING:': '--startTg--span class="warning"--endTg--WARNING--startTg--/span--endTg--:',
+  'Erreur': '--startTg--span class="danger"--endTg--Erreur--startTg--/span--endTg--',
+  'OK': '--startTg--strong--endTg--OK--startTg--/strong--endTg--',
+  '[INFO]': '--startTg--span class="label label-xs label-info"--endTg--INFO--startTg--/span--endTg--',
+  '[DEBUG]': '--startTg--span class="label label-xs label-success"--endTg--DEBUG--startTg--/span--endTg--',
+  '[WARNING]': '--startTg--span class="label label-xs label-warning"--endTg--WARNING--startTg--/span--endTg--',
+  '[ALERT]': '--startTg--span class="label label-xs label-warning"--endTg--ALERT--startTg--/span--endTg--',
+  '[ERROR]': '--startTg--span class="label label-xs label-danger"--endTg--ERROR--startTg--/span--endTg--',
 }
 jeedom.log.stringColorReplace = function(_str) {
   for (var re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
   }
+  //Avoid html code:
+  _str = _str.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  //Set back replaced badges to html:
+  _str = _str.replace(/--endTg--/g, ">").replace(/--startTg--/g, "<")
   return _str
 }
 
@@ -356,3 +349,4 @@ jeedom.log.scenarioColorReplace = function(_str) {
   }
   return _str
 }
+

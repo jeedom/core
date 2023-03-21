@@ -18,7 +18,6 @@
 
 if (!jeeFrontEnd.overview) {
   jeeFrontEnd.overview = {
-    $summaryContainer: null,
     summaryObjEqs: [],
     _SummaryObserver_: null,
     observerConfig: {
@@ -31,12 +30,14 @@ if (!jeeFrontEnd.overview) {
       window.jeeP = this
     },
     postInit: function() {
-      this.$summaryContainer = $('#summaryEqlogics')
-      this.modal = this.$summaryContainer.parents('.ui-dialog.ui-resizable')
-      this.modalContent = this.modal.find('.ui-dialog-content.ui-widget-content')
+      this.modal = document.getElementById('md_overviewSummary')
+      this.modalContent = this.modal.querySelector('div.jeeDialogContent')
       this.checkResumeEmpty()
       this.createSummaryObserver()
       domUtils.hideLoading()
+      this.modal._jeeDialog.options.onResize = function(event) {
+        Packery.data(jeeFrontEnd.overview.modalContent).layout()
+      }
     },
     createSummaryObserver: function() {
       this._SummaryObserver_ = new MutationObserver(function(mutations) {
@@ -75,7 +76,7 @@ if (!jeeFrontEnd.overview) {
         if (visibles.length == 0) {
           button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
           element.querySelector('.bt_config')?.remove()
-          element.querySelector('.topPreview').insertAdjacentHTML('beforeend', button)
+          element.querySelector('.topPreview')?.insertAdjacentHTML('beforeend', button)
         }
       })
     },
@@ -95,13 +96,14 @@ if (!jeeFrontEnd.overview) {
           })
         },
         success: function(data) {
+          self.modalContent.empty()
           try {
-            self.$summaryContainer.empty().packery('destroy')
+            Packery.data(self.modalContent).destroy()
           } catch (e) {}
 
-          _title = $.parseHTML('<span>' + _title + '</span>')
-          jeeP.$modal.parent('.ui-dialog').find('span.ui-dialog-title').empty().append(_title)
-          jeeP.$modal.dialog('open')
+
+          jeeP.modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = _title
+          jeeP.modal._jeeDialog.show()
 
           var nbEqs = data.length
           for (var i = 0; i < nbEqs; i++) {
@@ -122,17 +124,14 @@ if (!jeeFrontEnd.overview) {
               },
               success: function(html) {
                 if (html.html != '') {
-                  self.$summaryContainer.append(html.html)
+                  self.modalContent.html(html.html, true)
                 }
                 nbEqs--
 
                 //is last ajax:
                 if (nbEqs == 0) {
                   //adapt modal size:
-                  var brwSize = {
-                    width: window.innerWidth || document.body.clientWidth,
-                    height: window.innerHeight || document.body.clientHeight
-                  }
+                  let bRect = document.body.getBoundingClientRect()
                   var fullWidth = 0
                   var fullHeight = 0
                   var thisWidth = 0
@@ -142,7 +141,7 @@ if (!jeeFrontEnd.overview) {
                     thisWidth = element.offsetWidth
                     thisHeight = element.offsetHeight
                     if (fullHeight == 0 || fullHeight < thisHeight + 5) fullHeight = thisHeight + 5
-                    if ((fullWidth + thisWidth + 150) < brwSize.width) {
+                    if ((fullWidth + thisWidth + 150) < bRect.width) {
                       fullWidth += thisWidth + 7
                     } else {
                       fullHeight += thisHeight + 5
@@ -156,24 +155,22 @@ if (!jeeFrontEnd.overview) {
 
                   fullWidth += 26
                   fullHeight += 51
-                  jeeP.$modal.dialog({
-                    width: fullWidth,
-                    height: fullHeight
-                  })
+                  self.modal.style.width = fullWidth + 'px'
+                  self.modal.style.height = fullHeight + 'px'
 
-                  self.$summaryContainer.packery({
+                  new Packery(self.modalContent, {
                     gutter: parseInt(jeedom.theme['widget::margin']) * 2,
-                    isLayoutInstant: true
+                    isLayoutInstant: true,
+                    transitionDuration: 0,
                   })
 
                   //check is inside screen:
-                  var modal = self.$modal[0].parentNode
-                  var modalLeft = modal.offsetLeft
-                  if (modalLeft + fullWidth + 26 > brwSize.width || modalLeft < 5) {
-                    modal.style.left = brwSize.width - fullWidth - 50 + 'px'
+                  var modalLeft = self.modal.offsetLeft
+                  if (modalLeft + fullWidth + 26 > bRect.width || modalLeft < 5) {
+                    self.modal.style.left = bRect.width - fullWidth - 50 + 'px'
                   }
 
-                  jeedomUtils.initTooltips($('#md_overviewSummary'))
+                  jeedomUtils.initTooltips(document.getElementById('md_overviewSummary'))
                 }
               }
             })
@@ -183,6 +180,16 @@ if (!jeeFrontEnd.overview) {
     },
   }
 }
+
+//Set summary dialog:
+jeeDialog.dialog({
+  id: 'md_overviewSummary',
+  show: false,
+  backdrop: false,
+  width: 500,
+  height: 200,
+  retainPosition: true,
+})
 
 jeeFrontEnd.overview.init()
 
@@ -198,48 +205,21 @@ document.querySelectorAll('.objectPreview').forEach(function(element) {
   }
 })
 
-//Dialog summary opening:
-jeeP.$modal = $("#md_overviewSummary")
-jeeP.$modal.dialog({
-  closeText: '',
-  autoOpen: false,
-  modal: true,
-  width: 500,
-  height: 200,
-  position: {
-    my: 'center top',
-    at: 'center center-100',
-    of: $('#div_pageContainer')
-  },
-  open: function() {
-    document.querySelectorAll('.ui-widget-overlay.ui-front').forEach(dialog => { dialog.style.display = 'none'})
-    //catch infos updates by main mutationobserver (jeedomUtils.loadPage disconnect/reconnect it):
-    if (jeedomUtils.OBSERVER) {
-      var summaryModal = document.getElementById('summaryEqlogics')
-      jeedomUtils.OBSERVER.observe(summaryModal, jeedomUtils.observerConfig)
-    }
-  },
-  beforeClose: function(event, ui) {
-    document.querySelectorAll('.ui-widget-overlay.ui-front').forEach(dialog => { dialog.style.display = null})
-  }
-})
-
 //infos/actions tile signals:
 jeedomUI.isEditing = false
 jeedomUI.setEqSignals()
 
 document.querySelectorAll('.resume')?.seen()
+
 jeeFrontEnd.overview.postInit()
 
-//summary modal events:
-jeeP.$summaryContainer.packery()
-jeeP.modal.resize(function() {
-  jeeP.$summaryContainer.packery()
-})
+//Init Packery:
+new Packery(jeeP.modalContent)
 
-jeeP.modalContent[0].addEventListener('click', function(event) {
+//summary modal events:
+jeeP.modalContent.addEventListener('click', function(event) {
   if (event.target.closest('div.eqLogic-widget') == null) { //modal background click
-    jeeP.$modal.dialog('close')
+    jeeP.modal._jeeDialog.close()
     return
   }
 
@@ -255,17 +235,20 @@ jeeP.modalContent[0].addEventListener('click', function(event) {
     } else {
       var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
-    $('#md_modal2').dialog({
-      title: "{{Historique}}"
-    }).load('index.php?v=d&modal=cmd.history&id=' + cmdIds).dialog('open')
+    jeeDialog.dialog({
+      id: 'md_cmdHistory',
+      title: '{{Historique}}',
+      contentUrl: 'index.php?v=d&modal=cmd.history&id=' + cmdIds
+    })
   }
 }, {capture: false})
 
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  if (event.target.matches('.objectPreview .name')) {
-    var url = 'index.php?v=d&p=dashboard&object_id=' + event.target.closest('.objectPreview').getAttribute('data-object_id')
+  var _target = null
+  if (_target = event.target.closest('.objectPreview .name')) {
+    var url = 'index.php?v=d&p=dashboard&object_id=' + _target.closest('.objectPreview').getAttribute('data-object_id') + '&btover=1'
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -274,45 +257,46 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
-    var url = event.target.getAttribute('data-url') || event.target.closest('.objectPreview').getAttribute('data-url')
-    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-      window.open(url).focus()
-    } else {
-      jeedomUtils.loadPage(url)
-    }
-    return
-  }
-
-  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
+  if (_target = event.target.closest('.objectSummaryParent')) {
     //action summary:
     if (event.ctrlKey) return
 
     event.stopPropagation()
     event.preventDefault()
     var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
-    var summaryType = event.target.closest('.objectSummaryParent').getAttribute('data-summary')
-    var icon = event.target.closest('.objectSummaryParent').querySelector('i')?.outerHTML
+    var summaryType = _target.getAttribute('data-summary')
+
+    var icon = _target.querySelector('i') //?.outerHTML
     if (icon) {
-      var title = icon + ' ' +  event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      var title = icon.outerHTML + ' ' +  _target.closest('.objectPreview').querySelector('.topPreview .name').textContent
     } else {
-      var title = event.target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      var title = _target.closest('.objectPreview').querySelector('.name').textContent
     }
     jeeP.getSummaryHtml(objectId, summaryType, title)
     return
   }
 
-  if (event.target.matches('.objectPreview .bt_config, .objectPreview .bt_config i')) {
+  if (_target = event.target.closest('.objectPreview')) {
+    var url = _target.getAttribute('data-url')
+    if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
+      window.open(url).focus()
+    } else {
+      jeedomUtils.loadPage(url)
+    }
+    return
+  }
+
+  if (_target = event.target.closest('.objectPreview .bt_config')) {
     var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
     var url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
     jeedomUtils.loadPage(url)
     return
   }
-
 })
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  if (event.target.matches('.objectPreview .name')) {
+  var _target = null
+  if (_target = event.target.closest('.objectPreview .name')) {
     if (event.which == 2) {
       event.preventDefault()
       var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
@@ -321,7 +305,16 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     return
   }
 
-  if (event.target.matches('.objectPreview') || event.target.parentNode.hasClass('resume')) {
+  if (_target = event.target.closest('.objectSummaryParent')) {
+    if (event.which == 2) {
+      var id = _target.getAttribute('data-object_id')
+      var url = 'index.php?v=d&p=dashboard&summary=' + _target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
+      window.open(url).focus()
+      return
+    }
+  }
+
+  if (_target = event.target.closest('.objectPreview')) {
     if (event.which == 2) {
       if (event.target.hasClass('topPreview') || event.target.hasClass('name')) return
       event.preventDefault()
@@ -330,15 +323,4 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     }
     return
   }
-
-  if (event.target.matches('.objectSummaryParent > i, .objectSummaryParent > sup, .objectSummaryParent > sup > span')) {
-    if (event.which == 2) {
-      var target = event.target.closest('.objectSummaryParent')
-      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
-      var url = 'index.php?v=d&p=dashboard&summary=' + target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
-      window.open(url).focus()
-      return
-    }
-  }
 })
-

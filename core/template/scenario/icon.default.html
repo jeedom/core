@@ -1,15 +1,14 @@
-<div style="height: 20px;">
-	<a class="btn btn-default bt_chooseIcon cursor btn-sm" data-cmd_id="#id#" data-uid="#uid#"><i class="fa fa-flag"></i> {{Rechercher icône}}</a>
-	<span class="expressionAttr" data-l1key="options" data-l2key="icon" data-cmd_id="#id#" data-uid="#uid#" style="width: 20px;font-size: 1.3em;margin-left : 10px;position: relative; top: 4px;">#icon#</span>
-	<script>
-		if ('#icon#' != '') {
-			$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append('#icon#'.replaceAll('&quot;', '"'))
-		}
+<!--template/scenario/icon.default-->
+<a class="btn btn-default bt_chooseIcon cursor btn-sm" data-cmd_id="#id#" data-uid="#uid#"><i class="fa fa-flag"></i> {{Rechercher icône}}</a>
+<span class="expressionAttr" data-l1key="options" data-l2key="icon" data-cmd_id="#id#" data-uid="#uid#" style="width: 20px;font-size: 1.3em;margin-left : 10px;position: relative; top: 4px;">#icon#</span>
+<script>
+	if ('#icon#' != '') {
+		document.querySelector('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').innerHTML = '#icon#'.replaceAll('&quot;', '"')
+	}
 
-		$('.bt_chooseIcon[data-uid=#uid#]').off().on('click', function() {
-			jeedomUtils.chooseIcon(function(_icon) {
-				$('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').empty().append(_icon)
-			})
+	document.querySelector('.bt_chooseIcon[data-uid=#uid#]').addEventListener('click', function(event) {
+		jeedomUtils.chooseIcon(function(_icon) {
+			document.querySelector('.expressionAttr[data-uid=#uid#][data-l1key=options][data-l2key=icon]').innerHTML = _icon
 		})
-	</script>
-</div>
+	})
+</script>

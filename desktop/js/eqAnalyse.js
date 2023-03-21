@@ -20,9 +20,27 @@ if (!jeeFrontEnd.eqAnalyse) {
   jeeFrontEnd.eqAnalyse = {
     init: function() {
       window.jeeP = this
-      this.$batteryContainer = $('div.batteryListContainer')
-      this.$alertListContainer = $('div.alertListContainer')
-      this.$tableDeadCmd = $('#table_deadCmd')
+      document.querySelectorAll('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
+      //tabs icons colors:
+      if (document.querySelectorAll('div.batteryListContainer div.eqLogic-widget.critical').length) {
+        document.querySelector('a[data-target="#battery"] > i').addClass('danger')
+      } else if (document.querySelectorAll('div.batteryListContainer div.eqLogic-widget.warning').length) {
+        document.querySelector('a[data-target="#battery"] > i').addClass('warning')
+      } else {
+        document.querySelector('a[data-target="#battery"] > i').addClass('success')
+      }
+
+      if (document.querySelectorAll('div.alertListContainer div.eqLogic-widget').length) {
+        document.querySelector('a[data-target="#alertEqlogic"] > i').addClass('warning')
+      }
+
+      jeedomUtils.initDataTables()
+      new Packery(document.querySelector('div.alertListContainer'), {
+        itemSelector: "#alertEqlogic .eqLogic-widget",
+        isLayoutInstant: true,
+        transitionDuration: 0,
+        }).layout()
+      this.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
     },
     getRemoveCmd: function(_id) {
       for (var i in jeephp2js.removeHistory) {
@@ -69,16 +87,9 @@ if (!jeeFrontEnd.eqAnalyse) {
               tr += '</tr>'
             }
           }
-          jeeFrontEnd.eqAnalyse.$tableDeadCmd.find('tbody').empty().append(tr)
-          jeeFrontEnd.eqAnalyse.$tableDeadCmd[0].config.widgetOptions.resizable_widths = ['180px', '', '', '180px']
-          jeeFrontEnd.eqAnalyse.$tableDeadCmd.trigger('update')
-            .trigger('applyWidgets')
-            .trigger('resizableReset')
-            .trigger('sorton', [
-              [
-                [0, 0]
-              ]
-            ])
+          let tableDeadCmd = document.getElementById('table_deadCmd')
+          tableDeadCmd.tBodies[0].empty().insertAdjacentHTML('beforeend', tr)
+          if (tableDeadCmd._dataTable) tableDeadCmd._dataTable.refresh()
         }
       })
     },
@@ -87,70 +98,14 @@ if (!jeeFrontEnd.eqAnalyse) {
 
 jeeFrontEnd.eqAnalyse.init()
 
-$('.alertListContainer .jeedomAlreadyPosition').removeClass('jeedomAlreadyPosition')
-
-//tabs icons colors:
-if ($('div.batteryListContainer div.eqLogic-widget.critical').length) {
-  $('a[href="#battery"] > i').addClass('danger')
-} else if ($('div.batteryListContainer div.eqLogic-widget.warning').length) {
-  $('a[href="#battery"] > i').addClass('warning')
-} else {
-  $('a[href="#battery"] > i').addClass('success')
-}
-
-if ($('div.alertListContainer div.eqLogic-widget').length) {
-  $('a[href="#alertEqlogic"] > i').addClass('warning')
-}
-
-jeedomUtils.initTableSorter()
-window.registerEvent("resize", function eqAnalyse(event) {
-  if (document.querySelector('#ul_tabBatteryAlert li.alerts').hasClass('active')) {
-    jeedomUtils.positionEqLogic()
-  }
-})
-
-//update tablesorter on tab click:
-$("#tab_actionCmd").off("click").on("click", function() {
-  $('#table_Action').trigger('update')
-})
-$("#tab_alertCmd").off("click").on("click", function() {
-  $('#table_Alert').trigger('update')
-})
-$("#tab_pushCmd").off("click").on("click", function() {
-  $('#table_Push').trigger('update')
-})
-$("#tab_deadCmd").off("click").on("click", function() {
-  jeeP.displayDeadCmd()
-})
-
-jeeP.$alertListContainer.packery({
-  itemSelector: "#alertEqlogic .eqLogic-widget"
-})
-
-$('.alerts, .batteries').on('click', function() {
-  setTimeout(function() {
-    jeedomUtils.positionEqLogic()
-    jeeP.$alertListContainer.packery({
-      itemSelector: "#alertEqlogic .eqLogic-widget"
-    })
-  }, 10)
-})
-
-$('.cmdAction[data-action=configure]').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration commande}}"
-  }).load('index.php?v=d&modal=cmd.configure&cmd_id=' + $(this).attr('data-cmd_id')).dialog('open')
-})
-
 //searching
-jeeP.$eqlogics = jeeP.$batteryContainer.find('.eqLogic-widget')
-$('#in_search').off('keyup').on('keyup', function() {
-  if (jeeP.$eqlogics.length == 0) {
+document.getElementById('in_search')?.addEventListener('keyup', function(event) {
+  if (jeeP.eqlogicsEls.length == 0) {
     return
   }
-  var search = this.value
+  var search = event.target.closest('#in_search').value
   if (search == '') {
-    jeeP.$eqlogics.show()
+    jeeP.eqlogicsEls.seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
@@ -160,31 +115,86 @@ $('#in_search').off('keyup').on('keyup', function() {
   }
 
   var match, text
-  jeeP.$eqlogics.each(function() {
+  jeeP.eqlogicsEls.forEach(_el => {
     match = false
-    text = jeedomUtils.normTextLower($(this).find('.widget-name').text())
+    text = jeedomUtils.normTextLower(_el.querySelector('.widget-name').textContent)
     if (text.includes(search)) match = true
 
     if (not) match = !match
     if (match) {
-      $(this).show()
+      _el.seen()
     } else {
-      $(this).hide()
+      _el.unseen()
     }
   })
 })
-$('#bt_resetSearch').on('click', function() {
-  $('#in_search').val('').keyup()
+document.getElementById('bt_resetSearch')?.addEventListener('click', function(event) {
+  document.getElementById('in_search').jeeValue('').triggerEvent('keyup')
 })
 
-$('.batteryTime').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration de l'équipement}}"
-  }).load('index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + $(this).closest('.eqLogic').attr('data-eqlogic_id')).dialog('open')
+
+//Register events on top of page container:
+window.registerEvent("resize", function eqAnalyse(event) {
+  if (document.getElementById('tab_alerts').hasClass('active')) {
+    jeedomUtils.positionEqLogic()
+  }
 })
 
-$('#bt_massConfigureEqLogic').off('click').on('click', function() {
-  $('#md_modal').dialog({
-    title: "{{Configuration en masse}}"
-  }).load('index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,Alertes%20Communications').dialog('open')
+
+//Manage events outside parents delegations:
+document.getElementById('bt_massConfigureEqLogic')?.addEventListener('click', function(event) {
+  var field = "{{Alertes Communications}}"
+  jeeDialog.dialog({
+    id: 'jee_modal',
+    title: "{{Configuration en masse}}",
+    contentUrl: 'index.php?v=d&modal=object.massEdit&type=eqLogic&fields=timeout,' + field
+  })
+})
+
+
+/*Events delegations
+*/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('#tab_alerts')) {
+    setTimeout(function() {
+      jeedomUtils.positionEqLogic()
+      Packery.data(document.querySelector('div.alertListContainer')).layout()
+    }, 10)
+    return
+  }
+  if (_target = event.target.closest('#tab_actionCmd')) {
+    document.getElementById('table_Action').triggerEvent('update')
+    return
+  }
+  if (_target = event.target.closest('#tab_alertCmd')) {
+    document.getElementById('table_Alert').triggerEvent('update')
+    return
+  }
+  if (_target = event.target.closest('#tab_pushCmd')) {
+    document.getElementById('table_Push').triggerEvent('update')
+    return
+  }
+  if (_target = event.target.closest('#tab_deadCmd')) {
+    jeeP.displayDeadCmd()
+    return
+  }
+
+  if (_target = event.target.closest('.cmdAction[data-action="configure"]')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: '{{Configuration de la commande}}',
+      contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-cmd_id')
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.batteryTime')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Configuration de l'équipement}}",
+      contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + _target.closest('div.eqLogic').getAttribute('data-eqlogic_id')
+    })
+    return
+  }
 })

@@ -225,33 +225,39 @@ Im Codemodus haben Sie Zugriff auf verschiedene Tags für Bestellungen. Hier ist
 Wenn ein neuer Wert Jeedom auf der Seite sucht, wenn der Befehl vorhanden ist, und in Jeedom.cmd.Update, wenn eine Update-Funktion vorhanden ist. Wenn ja, wird es mit einem einzelnen Argument aufgerufen, das ein Objekt im Formular ist :
 
 `` ''
-{Anzeigewert:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'}
+{Anzeigewert: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'}
 `` ''
 
 Hier ist ein einfaches Beispiel für Javascript-Code, den Sie in Ihr Widget einfügen können :
 
 `` ''
 <script>
-    Jeedom.cmd.update ['#id#'] = Funktion (_Optionen){
-      $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Datum der Abholung : '+ _options.collectDate)
-      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.Anzeigewert +' #unite#');;
+    jeedom.cmd.addUpdateFunction('#id#', Funktion (_Optionen) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
+        cmd.setAttribute('title', '{{Valutadatum}}: ' + _Optionen.WertDatum + '<br>{{Datum der Abholung}}: ' + _options.collectDate)
+        cmd.querySelector('.value').innerHTML = _options.display_value
+        cmd.querySelector('.unit').innerHTML = _options.unit
+      }
     }
-    Jeedom.cmd.update ['#id#']({Anzeigewert:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});;
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', Anzeigewert: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 </script>
 `` ''
 
 Hier sind zwei wichtige Dinge :
 
 `` ''
-Jeedom.cmd.update ['#id#'] = Funktion (_Optionen){
-  $('.cmd[data-cmd_id=#id#]').attr('title','Date de valeur : '+_options.valueDate+'<br/>Datum der Abholung : '+ _options.collectDate)
-  $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.Anzeigewert +' #unite#');;
+jeedom.cmd.addUpdateFunction('#id#', Funktion (_Optionen) {
+  if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
+    cmd.setAttribute('title', '{{Valutadatum}}: ' + _Optionen.WertDatum + '<br>{{Datum der Abholung}}: ' + _options.collectDate)
+    cmd.querySelector('.value').innerHTML = _options.display_value
+    cmd.querySelector('.unit').innerHTML = _options.unit
+  }
 }
 `` ''
 Die Funktion wird während einer Aktualisierung des Widgets aufgerufen. Anschließend wird der HTML-Code der Widget-Vorlage aktualisiert.
 
 `` ''
-Jeedom.cmd.update ['#id#']({Anzeigewert:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});;
+jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', Anzeigewert: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 `` ''
  Der Aufruf dieser Funktion zur Initialisierung des Widgets.
 

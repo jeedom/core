@@ -36,7 +36,6 @@ foreach ((plugin::listPlugin()) as $pluginList) {
 }
 $objectOptions = jeeObject::getUISelectList(false);
 ?>
-<div style="display: none;" id="div_alertProfils"></div>
 <div class="row row-overflow" id="div_userProfils">
 	<div class="hasfloatingbar col-xs-12">
 		<div class="floatingbar">
@@ -321,7 +320,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-house-user"></i> {{Session(s) active(s)}}</legend>
-							<table class="table table-condensed table-bordered">
+							<table class="table table-condensed">
 								<thead>
 									<tr>
 										<th>{{ID}}</th>
@@ -357,13 +356,13 @@ $objectOptions = jeeObject::getUISelectList(false);
 					<form class="form-horizontal">
 						<fieldset>
 							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-							<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
+							<table id="tableDevices" class="table table-condensed">
 								<thead>
 									<tr>
 										<th>{{Identification}}</th>
-										<th>{{IP}}</th>
-										<th>{{Date dernière utilisation}}</th>
-										<th data-sorter="false" data-filter="false">{{Action}}</th>
+										<th style="width:180px;">{{IP}}</th>
+										<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:180px;">{{Date}}</th>
+										<th data-sortable="false" data-filter="false" style="width:100px;">{{Action}}</th>
 									</tr>
 								</thead>
 								<tbody>

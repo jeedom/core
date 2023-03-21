@@ -36,7 +36,7 @@ jeedom.cmd.notifyEq = function(_eqlogic, _hide) {
   if (refresh != null) {
     refresh.addClass('spinning')
   } else {
-    _eqlogic.querySelector('.widget-name').insertAdjacentHTML('afterbegin', '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
+    _eqlogic.querySelector('.widget-name')?.insertAdjacentHTML('afterbegin', '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
   var refresh = _eqlogic.querySelector('.cmd.refresh')
   if (_hide && refresh != null) {
@@ -56,8 +56,8 @@ jeedom.cmd.execute = function(_params) {
   }
   var notify = _params.notify || true
   if (notify) {
-    var eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]').closest('div.eqLogic-widget')
-    jeedom.cmd.notifyEq(eqLogic, false)
+    var eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget')
+    if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
   }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = JSON.stringify(_params.value)
@@ -68,7 +68,7 @@ jeedom.cmd.execute = function(_params) {
     pre_success: function(data) {
       if (data.state != 'ok') {
         if (data.code == -32005) {
-          if ($.mobile) {
+          if (jeedom.display.version == 'mobile') {
             var result = prompt("{{Veuillez indiquer le code ?}}", "")
             if (result != null) {
               _params.codeAccess = result
@@ -89,7 +89,7 @@ jeedom.cmd.execute = function(_params) {
               return data
             }
           } else {
-            bootbox.prompt("{{Veuillez indiquer le code ?}}", function(result) {
+            jeeDialog.prompt("{{Veuillez indiquer le code ?}}", function(result) {
               if (result != null) {
                 _params.codeAccess = result
                 jeedom.cmd.execute(_params)
@@ -112,7 +112,7 @@ jeedom.cmd.execute = function(_params) {
             })
           }
         } else if (data.code == -32006) {
-          if ($.mobile) {
+          if (jeedom.display.version == 'mobile') {
             var result = confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}")
             if (result) {
               _params.confirmAction = 1
@@ -133,7 +133,7 @@ jeedom.cmd.execute = function(_params) {
               return data
             }
           } else {
-            bootbox.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function(result) {
+            jeeDialog.confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}", function(result) {
               if (result) {
                 _params.confirmAction = 1
                 jeedom.cmd.execute(_params)
@@ -205,9 +205,6 @@ jeedom.cmd.execute = function(_params) {
 }
 
 jeedom.cmd.test = function(_params) {
-  if (typeof _params.alert == 'undefined') {
-    _params.alert = '#div_alert'
-  }
   var paramsRequired = ['id']
   var paramsSpecifics = {
     global: false,
@@ -247,13 +244,11 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'slider':
-              bootbox.prompt({
-                title: "This is a prompt with a range input!",
-                inputType: 'range',
-                min: result.configuration.minValue || 0,
-                max: result.configuration.maxValue || 100,
-                step: 1,
-                value: 50,
+              let min = result.configuration.minValue || 0
+              let max = result.configuration.maxValue || 100
+              jeeDialog.prompt({
+                title: '{{Entrer une valeur entre}}' + ' ' + min + ' ' + '{{et}}' + ' ' + max ,
+                value: parseInt(min) + (parseInt(max) / 2),
                 callback: function(result) {
                   if (result === null) {
                     return
@@ -281,8 +276,9 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'color':
-              bootbox.prompt({
+              jeeDialog.prompt({
                 title: "{{Quelle couleur (#rrggbb) ?}}",
+                placeholder: '#rrggbb',
                 value: '#ff000',
                 callback: function(result) {
                   if (result === null) {
@@ -316,7 +312,7 @@ jeedom.cmd.test = function(_params) {
               for (let i in values) {
                 inputOptions.push({ text: values[i].split('|')[1], value: values[i].split('|')[0] })
               }
-              bootbox.prompt({
+              jeeDialog.prompt({
                 title: "{{Valeur ?}}",
                 inputType: 'select',
                 inputOptions: inputOptions,
@@ -347,45 +343,36 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'message':
-              var productName = JEEDOM_PRODUCT_NAME
-              bootbox.dialog({
+              let productName = JEEDOM_PRODUCT_NAME
+              let content = '<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="{{Titre pour la commande}} ' + result.name + '">'
+              content += '<textarea class="promptAttr" data-l1key="message" placeholder="{{Message pour la commande}} ' + result.name + '"></textarea>'
+              jeeDialog.prompt({
                 title: "{{Message}}",
-                message: '<form class="bootbox-form"><input id="in_testCmdTitle" class="bootbox-input bootbox-input-text form-control" autocomplete="off" type="text" value="' + productName + '{{ Message de test}}"><br/><br/><textarea  id="ta_testCmdMessage" class="bootbox-input bootbox-input-textarea form-control">{{Ceci est un test de message pour la commande}} ' + result.name + '</textarea></form>',
-                size: 'large',
-                buttons: {
-                  cancel: {
-                    label: "{{Annuler}}",
-                    className: 'btn-warning',
-                    callback: function() {
-
-                    }
-                  },
-                  success: {
-                    label: "{{Ok}}",
-                    className: "btn-success",
-                    callback: function() {
-                      jeedom.cmd.execute({
-                        id: _params.id,
-                        value: {
-                          title: document.getElementById('in_testCmdTitle').jeeValue(),
-                          message: document.getElementById('ta_testCmdMessage').jeeValue()
-                        },
-                        cache: 0,
-                        error: function(error) {
-                          jeedomUtils.showAlert({
-                            message: error.message,
-                            level: 'danger'
-                          })
-                        },
-                        success: function() {
-                          jeedomUtils.showAlert({
-                            message: '{{Action exécutée avec succès}}',
-                            level: 'success'
-                          })
-                        }
-                      })
-                    }
-                  },
+                message: content,
+                inputType: false,
+                callback: function(result) {
+                  if (result) {
+                    jeedom.cmd.execute({
+                      id: _params.id,
+                      value: {
+                        title: result.title,
+                        message: result.message
+                      },
+                      cache: 0,
+                      error: function(error) {
+                        jeedomUtils.showAlert({
+                          message: error.message,
+                          level: 'danger'
+                        })
+                      },
+                      success: function() {
+                        jeedomUtils.showAlert({
+                          message: '{{Action exécutée avec succès}}',
+                          level: 'success'
+                        })
+                      }
+                    })
+                  }
                 }
               })
               break
@@ -412,27 +399,27 @@ jeedom.cmd.test = function(_params) {
 
 //deprecated
 jeedom.cmd.refreshByEqLogic = function(_params) {
-  var cmds = $('.cmd[data-eqLogic_id=' + _params.eqLogic_id + ']')
+  var cmds = document.querySelectorAll('.cmd[data-eqLogic_id="' + _params.eqLogic_id + '"]')
   if (cmds.length == 0) {
     return
   }
-  $(cmds).each(function() {
-    var cmd = $(this)
-    if (cmd.closest('.eqLogic[data-eqLogic_id=' + _params.eqLogic_id + ']').html() != undefined) {
+  cmds.forEach(_cmd => {
+    if (_cmd.closest('.eqLogic[data-eqLogic_id="' + _params.eqLogic_id + '"]') == null) {
       return true
     }
     jeedom.cmd.toHtml({
       global: false,
       noDisplayError: true,
-      id: $(this).attr('data-cmd_id'),
-      version: $(this).attr('data-version'),
+      id: _cmd.getAttribute('data-cmd_id'),
+      version: _cmd.getAttribute('data-version'),
       success: function(data) {
-        var html = $(data.html)
-        var uid = html.attr('data-cmd_uid')
+        var html = domUtils.parseHTML(data.html).childNodes[0]
+        var uid = html.getAttribute('data-cmd_uid')
         if (uid != 'undefined') {
-          cmd.attr('data-cmd_uid', uid)
+          cmd.setAttribute('data-cmd_uid', uid)
         }
-        cmd.empty().html(html.children()).attr("class", html.attr("class"))
+        cmd.empty().html(html)
+        cmd.setAttribute("class", html.getAttribute("class"))
       }
     })
   })
@@ -827,7 +814,6 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _params.error(error)
     },
     success: function(subType) {
-
       for (var i in subType) {
         newOption = document.createElement('option')
         newOption.text = subType[i].name
@@ -837,9 +823,12 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _cmd.querySelector('.subType')?.empty()
       _cmd.querySelector('.subType')?.appendChild(selSubType)
 
-      if (isset(_subType)) {
-        _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')?.jeeValue(_subType)
+      if (isset(_subType) && _subType != '') {
+        _cmd.querySelector('.cmdAttr[data-l1key="subType"]')?.jeeValue(_subType)
         modifyWithoutSave = false
+      } else {
+        _cmd.querySelector('.cmdAttr[data-l1key="subType"]').selectedIndex = 0
+        modifyWithoutSave = true
       }
       jeedom.cmd.changeSubType(_cmd)
     }
@@ -850,7 +839,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
-  if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null || (subtype = _cmd.querySelector('.cmdAttr[data-l1key="subType" i]')) === null) {
+  if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null || (subtype = _cmd.querySelector('.cmdAttr[data-l1key="subType"]')) === null) {
     return
   }
   jeedom.getConfiguration({
@@ -978,46 +967,53 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   }
 
   document.getElementById('mod_insertCmdValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" title="{{Sélectionner la commande}}" ></div>')
-  $("#mod_insertCmdValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" ></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertCmdValue',
+    title: '{{Sélectionner la commande}}',
     height: 250,
-    width: 800
-  })
-
-  domUtils.ajaxSetup({ async: false })
-  document.getElementById('mod_insertCmdValue').load('index.php?v=d&modal=cmd.human.insert')
-  domUtils.ajaxSetup({ async: true })
-
-  mod_insertCmd.setOptions(_options)
-  $("#mod_insertCmdValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      if (isset(_options.returnCancel) && 'function' == typeof (_callback)) {
-        _callback({})
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=cmd.human.insert',
+    callback: function() { mod_insertCmd.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.cmd = {}
+            args.human = mod_insertCmd.getValue()
+            args.cmd.id = mod_insertCmd.getCmdId()
+            args.cmd.type = mod_insertCmd.getType()
+            args.cmd.subType = mod_insertCmd.getSubType()
+            if (args.human.trim() != '' && 'function' === typeof (_callback)) {
+              _callback(args)
+            }
+            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            if (isset(_options.returnCancel) && 'function' === typeof (_callback)) {
+              _callback({})
+            }
+            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.cmd = {}
-      retour.human = mod_insertCmd.getValue()
-      retour.cmd.id = mod_insertCmd.getCmdId()
-      retour.cmd.type = mod_insertCmd.getType()
-      retour.cmd.subType = mod_insertCmd.getSubType()
-      if (retour.human.trim() != '' && 'function' == typeof (_callback)) {
-        _callback(retour)
-      }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertCmdValue').dialog('open')
 }
 
 jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
   if (_expression == '') {
-    if ('function' == typeof (_callback)) {
+    if (typeof _callback === 'function') {
       _callback('')
       return
     }

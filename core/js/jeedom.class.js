@@ -86,7 +86,11 @@ jeedom.changes = function() {
           if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
             document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           } else {
-            $('body').trigger(data.result[i].name, data.result[i].option)
+            if (typeof jQuery === 'function') {
+              $('body').trigger(data.result[i].name, data.result[i].option)
+            } else {
+              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+            }
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
@@ -129,10 +133,8 @@ jeedom.changes = function() {
 
 jeedom.init = function() {
   jeedom.datetime = jeeFrontEnd.serverDatetime
-  jeedom.display.version = 'desktop'
-  if ($.mobile) {
-    jeedom.display.version = 'mobile'
-  }
+  jeedom.display.version = document.body.dataset.uimode
+
   var cssComputedStyle = getComputedStyle(document.documentElement)
   Highcharts.setOptions({
     accessibility: {
@@ -145,7 +147,15 @@ jeedom.init = function() {
     lang: {
       months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
       shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
-      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
+      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}'],
+      downloadCSV: '{{Téléchargement CSV}}',
+      downloadJPEG: '{{Téléchargement JPEG}}',
+      downloadPDF: '{{Téléchargement PDF}}',
+      downloadPNG: '{{Téléchargement PNG}}',
+      downloadSVG: '{{Téléchargement SVG}}',
+      downloadXLS: '{{Téléchargement XLS}}',
+      printChart: '{{Imprimer}}',
+      viewFullscreen: '{{Plein écran}}',
     },
     colors: [
       cssComputedStyle.getPropertyValue('--al-info-color'),
@@ -179,7 +189,7 @@ jeedom.init = function() {
 
   document.body.addEventListener('ui::update', function(_event) {
     if (isset(_event.detail.page) && _event.detail.page != '') {
-      if ($.mobile) {
+      if (jeedom.display.version == 'mobile') {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
           return
         }
@@ -205,11 +215,11 @@ jeedom.init = function() {
   document.body.addEventListener('jeedom::alert', function(_event) {
     if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
-        if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
-          $.hideAlert()
+        if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
+          jeedomUtils.hideAlert()
         }
       } else {
-        $.hideAlert()
+        jeedomUtils.hideAlert()
       }
     } else {
       if (isset(_event.detail.page) && _event.detail.page != '') {
@@ -220,7 +230,7 @@ jeedom.init = function() {
         if (_event.detail.ttl) {
           options.ttl = _event.detail.ttl
         }
-        if (getUrlVars('p') == _event.detail.page || ($.mobile && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
+        if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           jeedomUtils.showAlert(options)
         }
       } else {
@@ -250,11 +260,7 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('checkThemechange', function(_event) {
-    if ($.mobile) {
-      document.getElementById('jQMnDColor').setAttribute('data-nochange', 0)
-    } else {
-      document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
-    }
+    document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
 
     if (isset(_event.detail.theme_start_day_hour)) {
       jeedom.theme.theme_start_day_hour = _event.detail.theme_start_day_hour
@@ -278,18 +284,22 @@ jeedom.init = function() {
 
 jeedom.getPageType = function(_modal) {
   if (isset(_modal) && _modal == true) {
-    var modal = Array.prototype.slice.call(document.querySelectorAll('.ui-dialog')).filter(item => item.isVisible())
-    if (modal.length > 0) {
-      var modalType = modal[0].querySelector('div[data-modalType]')?.getAttribute('data-modalType')
-      if (modalType != undefined) return modalType
+    let modalType = undefined
+    let modals = Array.prototype.slice.call(document.querySelectorAll('.jeeDialogMain')).filter(item => item.isVisible())
+    if (modals.length == 1) {
+      modalType = modals[0].querySelector('div[data-modalType]')?.getAttribute('data-modalType')
+    } else if (modals.length > 1) {
+      let prevMod = 0
+      modals.forEach(_mod => {
+        if (_mod.style.zIndex > prevMod) {
+          prevMod = _mod.style.zIndex
+          modalType = _mod.querySelector('div[data-modalType]')?.getAttribute('data-modalType')
+        }
+      })
     }
+    if (modalType != undefined) return modalType
   }
-  var dataPage = document.body.getAttribute('data-page')
-  if (dataPage == '') {
-    return 'unknown'
-  } else {
-    return dataPage
-  }
+  return document.body.getAttribute('data-page')
 }
 
 jeedom.MESSAGE_NUMBER
@@ -337,14 +347,25 @@ jeedom.notify = function(_title, _text, _class_name) {
   if (_title == '' && _text == '') {
     return true
   }
-  if (typeof toastr !== 'undefined') {
-    if (isset(_class_name) != '' && isset(toastr[_class_name])) {
-      toastr[_class_name](_text, _title)
-    } else {
-      toastr.info(_text, _title)
+  if (typeof jeeDialog !== 'undefined') {
+    let options = {
+      title: _title,
+      message: _text,
+      onclick: function() {
+        jeeDialog.clearToasts()
+        jeeDialog.dialog({
+          id: 'jee_modal',
+          title: "{{Centre de Messages}}",
+          contentUrl: 'index.php?v=d&modal=message.display'
+        })
+      }
     }
+    if (isset(_class_name) != '') {
+      options.level = _class_name
+    }
+    jeeDialog.toast(options)
   } else {
-    //no toastr in mobile
+    //no jeeDialog in mobile
     jeedomUtils.notify(_title, _text)
   }
 }
@@ -448,7 +469,7 @@ jeedom.haltSystem = function(_params) {
 }
 
 jeedom.ssh = function(_params) {
-  if ($.isPlainObject(_params)) {
+  if (isPlainObject(_params)) {
     command = _params.command
   } else {
     command = _params
@@ -474,7 +495,7 @@ jeedom.ssh = function(_params) {
 }
 
 jeedom.db = function(_params) {
-  if ($.isPlainObject(_params)) {
+  if (isPlainObject(_params)) {
     command = _params.command
   } else {
     command = _params
@@ -593,34 +614,41 @@ jeedom.forceSyncHour = function(_params) {
 
 jeedom.getCronSelectModal = function(_options, _callback) {
   document.getElementById('mod_insertCronValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue" title="{{Assistant cron}}" ></div>')
-  $("#mod_insertCronValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertCronValue',
+    title: '{{Assistant cron}}',
     height: 310,
-    width: 800
-  })
-
-  domUtils.ajaxSetup({async: false})
-  document.getElementById('mod_insertCronValue').load('index.php?v=d&modal=cron.human.insert')
-  domUtils.ajaxSetup({async: true})
-
-  $("#mod_insertCronValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.cron = {}
-      retour.value = mod_insertCron.getValue()
-      if (retour.value.trim() != '' && 'function' == typeof (_callback)) {
-        _callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=cron.human.insert',
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.cron = {}
+            args.value = mod_insertCron.getValue()
+            if (args.value != undefined && args.value.trim() != '' && 'function' === typeof (_callback)) {
+              _callback(args)
+            }
+            document.getElementById('mod_insertCronValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertCronValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertCronValue').dialog('open')
 }
 
 jeedom.getSelectActionModal = function(_options, _callback) {
@@ -629,34 +657,41 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   }
 
   document.getElementById('mod_insertActionValue')?.remove()
-  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue" title="{{Sélectionner la commande}}" ></div>')
-  $("#mod_insertActionValue").dialog({
-    closeText: '',
-    autoOpen: false,
-    modal: true,
+  document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue"></div>')
+  jeeDialog.dialog({
+    id: 'mod_insertActionValue',
+    title: '{{Sélectionner la commande}}',
     height: 310,
-    width: 800
-  })
-  domUtils.ajaxSetup({async: false})
-  document.getElementById('mod_insertActionValue').load('index.php?v=d&modal=action.insert')
-  domUtils.ajaxSetup({async: true})
-
-  mod_insertAction.setOptions(_options)
-  $("#mod_insertActionValue").dialog('option', 'buttons', {
-    "{{Annuler}}": function() {
-      $(this).dialog("close")
-    },
-    "{{Valider}}": function() {
-      var retour = {}
-      retour.action = {}
-      retour.human = mod_insertAction.getValue()
-      if (retour.human.trim() != '' && 'function' == typeof (_callback)) {
-        _callback(retour)
+    width: 800,
+    top: '20vh',
+    contentUrl: 'index.php?v=d&modal=action.insert',
+    callback: function() { mod_insertAction.setOptions(_options) },
+    buttons: {
+      confirm: {
+        label: '{{Valider}}',
+        className: 'success',
+        callback: {
+          click: function(event) {
+            var args = {}
+            args.human = mod_insertAction.getValue()
+            if (args.human.trim() != '' && 'function' === typeof (_callback)) {
+              _callback(args)
+            }
+            document.getElementById('mod_insertActionValue')._jeeDialog.destroy()
+          }
+        }
+      },
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            document.getElementById('mod_insertActionValue')._jeeDialog.destroy()
+          }
+        }
       }
-      $(this).dialog('close')
     }
   })
-  $('#mod_insertActionValue').dialog('open')
 }
 
 jeedom.getGraphData = function(_params) {

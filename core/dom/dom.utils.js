@@ -20,9 +20,7 @@
 */
 var domUtils = function() {
   if (typeof arguments[0] == 'function') {
-    if (domUtils._debug) console.log('[ >> domUtils ready register func << ]', arguments[0])
-    if (domUtils._ajaxCalling <= 0 && domUtils._DOMloading <= 0) {
-      if (domUtils._debug) console.log('[ >> domUtils ready register func << ] no loading / no ajax -> exec now!')
+    if (domUtils._DOMloading <= 0) {
       arguments[0].apply(this)
       return
     }
@@ -31,10 +29,9 @@ var domUtils = function() {
 }
 Object.assign(domUtils, {
   __description: 'DOM related Jeedom functions.',
-  ajaxCalling: 1,
-  DOMloading: 1,
+  DOMloading: 0,
+  _DOMloading: 0,
   loadingTimeout: null,
-  _debug: false,
   ajaxSettings: {
     async: true,
     global: true,
@@ -47,53 +44,25 @@ Object.assign(domUtils, {
   headInjexted: []
 })
 
-domUtils.showLoading = function() {
-  document.getElementById('div_jeedomLoading')?.seen()
-  //Hanging timeout:
-  clearTimeout(domUtils.loadingTimeout)
-  domUtils.loadingTimeout = setTimeout(() => {
-    if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
-      domUtils.hideLoading()
-      domUtils.ajaxCalling --
-      if (jeedomUtils) jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
-    }
-  }, 20 * 1000)
-}
-domUtils.hideLoading = function() {
-  document.getElementById('div_jeedomLoading')?.unseen()
-  clearTimeout(domUtils.loadingTimeout)
-}
-
 domUtils.DOMReady = function() {
-  if (domUtils._debug) console.log('[ >> domUtils.DOMReady] registeredFuncs?', domUtils.registeredFuncs)
   domUtils.hideLoading()
   for (var i = 0; i < domUtils.registeredFuncs.length; i++) {
     let f = domUtils.registeredFuncs.shift()
-    if (domUtils._debug) console.log('[ >> domUtils.DOMReady] exec deferred func:', f)
-    f.apply(this)
+    try {
+      f.apply(this)
+    } catch(e) { }
   }
 }
 
-Object.defineProperty(domUtils, 'ajaxCalling', {
-  enumerable: true,
-  get: function() {
-    return this._ajaxCalling
-  },
-  set: function(number) {
-    this._ajaxCalling = number < 0 ? 0 : number
-    if (number <= 0 && domUtils._DOMloading <= 0) {
-      domUtils.DOMReady()
-    }
-  }
-})
 Object.defineProperty(domUtils, 'DOMloading', {
   enumerable: true,
   get: function() {
     return this._DOMloading
   },
   set: function(number) {
+    if (number === 1) domUtils.showLoading()
     this._DOMloading = number < 0 ? 0 : number
-    if (number <= 0 && domUtils._ajaxCalling <= 0) {
+    if (this._DOMloading <= 0) {
       domUtils.DOMReady()
     }
   }
@@ -102,8 +71,7 @@ Object.defineProperty(domUtils, 'DOMloading', {
 document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() { //document.readyState still interactive
     domUtils.DOMloading = domUtils._DOMloading || 0
-    domUtils.ajaxCalling = domUtils._ajaxCalling || 0
-  }, 100)
+  }, 200)
 })
 
 /* Extension Functions
@@ -127,167 +95,14 @@ String.prototype.stripAccents = function() {
   })
 }
 
-/* Shortcuts Functions
-*/
-//Hide Show as seen(), unseen() as prototype show/hide are ever declared and fired by bootstrap and jquery
-Element.prototype.isVisible = function() {
-  return this.offsetWidth > 0 || this.offsetHeight > 0 || this.getClientRects().length > 0 || this.offsetParent != null
-}
-Element.prototype.isHidden = function() {
-  return (this.offsetParent === null)
-}
-Element.prototype.seen = function() {
-  this.style.display = ''
-  return this
-}
-NodeList.prototype.seen = function() {
-  for (var idx = 0; idx < this.length; idx++) {
-    this[idx].seen()
-  }
-  return this
-}
-Element.prototype.unseen = function() {
-  this.style.display = 'none'
-  return this
-}
-NodeList.prototype.unseen = function() {
-  for (var idx = 0; idx < this.length; idx++) {
-    this[idx].unseen()
-  }
-  return this
-}
-
-Element.prototype.empty = function() {
-  while (this.firstChild) {
-    this.removeChild(this.lastChild)
-  }
-  return this
-}
-NodeList.prototype.empty = function() {
-  for (var idx = 0; idx < this.length; idx++) {
-    this[idx].empty()
-  }
-  return this
-}
-Document.prototype.emptyById = function(_id) {
-  if (_id == '') return
-  if (!(_id instanceof Element)) {
-    var _id = document.getElementById(_id)
-  }
-  if (_id) {
-    return _id.empty()
-  }
-  return null
-}
-
-//CSS Class manipulation
-Element.prototype.addClass = function(_className /*, _className... */) {
-  if (_className == '') return this
-  let args = Array.prototype.slice.call(arguments)
-  this.classList.add(...args)
-  return this
-}
-NodeList.prototype.addClass = function(_className /*, _className... */) {
-  if (_className == '') return this
-  let args = Array.prototype.slice.call(arguments)
-  for (let idx = 0; idx < this.length; idx++) {
-    this[idx].addClass(...args)
-  }
-  return this
-}
-
-Element.prototype.removeClass = function(_className /*, _className... */) {
-  if (_className == '') return this
-  let args = Array.prototype.slice.call(arguments)
-  this.classList.remove(...args)
-  return this
-}
-NodeList.prototype.removeClass = function(_className /*, _className... */) {
-  if (_className == '') return this
-  let args = Array.prototype.slice.call(arguments)
-  for (let idx = 0; idx < this.length; idx++) {
-    this[idx].removeClass(...args)
-  }
-  return this
-}
-
-Element.prototype.toggleClass = function(_className) {
-  this.classList.toggle(_className)
-  return this
-}
-NodeList.prototype.toggleClass = function() {
-  for (let idx = 0; idx < this.length; idx++) {
-    this[idx].toggleClass()
-  }
-  return this
-}
-
-Element.prototype.hasClass = function(_className) {
-  return this.classList.contains(_className)
-}
-
-
-//Misc
-NodeList.prototype.last = function() {
-  return Array.from(this).pop() || null
-}
-
-NodeList.prototype.remove = function() {
-  for (let idx = 0; idx < this.length; idx++) {
-    this[idx].remove()
-  }
-  return this
-}
-
-Element.prototype.fade = function(_delayms, _opacity, _callback) {
-  let opacity = parseInt(this.style.opacity) || 0
-  let interval = 50,
-      gap = interval / _delayms,
-      delay = 0,
-      self = this
-
-  if (opacity > _opacity) gap = gap * -1
-
-  let func = function() {
-    let stop = false
-    delay += interval
-    opacity = opacity + gap
-    if (gap > 0 && opacity >= _opacity) {
-      opacity = _opacity
-      stop = true
-    }
-    if (gap < 0 && opacity <= 0) {
-      opacity = 0
-      self.unseen()
-      stop = true
-    }
-    self.style.opacity = opacity
-    if (stop) {
-      window.clearInterval(fading)
-      if (typeof _callback === 'function') {
-        _callback()
-      }
-    }
-  }
-
-  self.seen()
-  var fading = window.setInterval(func, interval)
-  return this
-}
-
-Element.prototype.insertAtCursor = function(_valueString) {
-  if (this.selectionStart || this.selectionStart == '0') {
-    this.value = this.value.substring(0, this.selectionStart) + _valueString + this.value.substring(this.selectionEnd, this.value.length)
-  } else {
-    this.value += _valueString
-  }
-  return this
-}
-
 Element.prototype.uniqueId = function(_prefix) {
   if (!isset(_prefix)) _prefix = 'jee-id-'
   this.setAttribute('id', _prefix + Math.floor(Math.random() * Date.now()).toString(16))
   return this
+}
+domUtils.uniqueId = function(_prefix) {
+  if (!isset(_prefix)) _prefix = 'jee-id-'
+  return _prefix + Math.floor(Math.random() * Date.now()).toString(16)
 }
 
 /* Set and Get element values according to Jeedom data
@@ -512,8 +327,8 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
     }
     return
   }
-  let script = document.createElement('script')
-  script.type = (_scripts[_idx].type) ? _scripts[_idx].type : "text/javascript"
+  var script = document.createElement('script')
+  script.type = _scripts[_idx].type || "text/javascript"
   Array.prototype.forEach.call(_scripts[_idx].attributes, function(attr) {
     script.setAttribute(attr.nodeName, attr.nodeValue)
   })
@@ -525,12 +340,12 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
         _scripts[_idx].remove()
         domUtils.loadScript(_scripts, _idx + 1, _callback)
       } else {
+        domUtils.headInjexted.push(_scripts[_idx].src)
+        _scripts[_idx].remove()
         script.onload = function() {
           domUtils.loadScript(_scripts, _idx + 1, _callback)
         }
-        _scripts[_idx].remove()
-        document.head.appendChild(script)
-        domUtils.headInjexted.push(_scripts[_idx].src)
+        document.head.append(script)
       }
     } else {
       script.onload = function() {
@@ -541,8 +356,32 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
   } else {
     script.text = _scripts[_idx].text
     _scripts[_idx].replaceWith(script)
-    domUtils.loadScript(_scripts,_idx + 1, _callback)
+    domUtils.loadScript(_scripts, _idx + 1, _callback)
   }
+}
+
+
+//Use new html document to load scripts synch/ordered
+domUtils.DOMparseHTML = function(_htmlString) {
+  var frag = document.createRange().createContextualFragment(_htmlString)
+  var node = null
+  var nodeChilds = []
+  frag.childNodes.forEach(_child => {
+    if (!node && _child.tagName != undefined && _child.tagName !== 'SCRIPT') {
+      node = _child
+    } else {
+      nodeChilds.push(_child)
+    }
+  })
+  if (!node) {
+    return null
+  }
+
+  if (nodeChilds.length > 0) {
+    node.append(...nodeChilds)
+  }
+
+  return node
 }
 
 //Scripts with src won't load until inserted in DOM
@@ -550,12 +389,14 @@ domUtils.parseHTML = function(_htmlString) {
   let newEl = document.createElement('template')
   newEl.innerHTML = _htmlString
 
+  domUtils.DOMloading += 1
   newEl.content.querySelectorAll('script').forEach(function(element) {
     let script = document.createElement('script')
     script.setAttribute('injext', '1')
     element.src != '' ? script.src = element.src : script.text = element.text
     element.replaceWith(script)
   })
+  domUtils.DOMloading -= 1
 
   return newEl.content
 }
@@ -563,7 +404,7 @@ domUtils.parseHTML = function(_htmlString) {
 Element.prototype.html = function(_htmlString, _append, _callback) {
   if (!isset(_htmlString)) return this.innerHTML
   if (!isset(_append) || _append === false) this.empty()
-  domUtils.DOMloading ++
+  domUtils.DOMloading += 1
   let template = document.createElement('template')
   template.innerHTML = _htmlString
 
@@ -579,23 +420,31 @@ Element.prototype.html = function(_htmlString, _append, _callback) {
       }
     }
   })
-  this.appendChild(template.content)
+  this.append(template.content)
 
   let self = this
-  domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
-    domUtils.DOMloading --
+  if (this.querySelectorAll('script').length > 0) {
+    domUtils.loadScript(this.querySelectorAll('script'), 0, function() {
+      domUtils.DOMloading -= 1
+      if (typeof _callback === 'function') {
+        return _callback.apply(self)
+      } else {
+        return self
+      }
+    }, document.head)
+  } else {
+    domUtils.DOMloading -= 1
     if (typeof _callback === 'function') {
-      return _callback(self)
+      return _callback.apply(self)
     } else {
       return self
     }
-  }, document.head)
-  return self
+  }
 }
 
 Element.prototype.load = function(_path, _callback) {
   let self = this
-  domUtils.DOMloading ++
+  domUtils.DOMloading += 1
   domUtils.ajax({
     url: _path,
     async: domUtils.ajaxSettings.async,
@@ -610,9 +459,9 @@ Element.prototype.load = function(_path, _callback) {
     },
     success: function(rawHtml) {
       self.html(rawHtml, false, function() {
-        domUtils.DOMloading --
+        domUtils.DOMloading -= 1
         if (typeof _callback === 'function') {
-          _callback()
+          _callback(self)
         }
       })
     }
@@ -621,19 +470,20 @@ Element.prototype.load = function(_path, _callback) {
 
 /* ____________Ajax Management____________
 */
-domUtils.handleAjaxError = function(_request, _status, _error) {
+domUtils.handleAjaxError = function(_request, _status, _error, _params) {
   domUtils.hideLoading()
-  if (is_object(_request)) {
-    jeedomUtils.showAlert({
-      message: _request.url + ' : ' + _request.status + ' error: ' + _error,
-      level: 'warning'
-    })
-  } else {
-    jeedomUtils.showAlert({
-      message: _request + ' : ' + _status + ' error: ' + _error,
-      level: 'warning'
-    })
+  var msg = _request + ' : ' + _status + ' /error: ' + _error
+  if (isset(_params)) {
+    msg += ' /async:' + _params.async + ' /type:' + _params.type + ' /dataType:' + _params.dataType
+    if (isset(_params.data) && isset(_params.data.action)) {
+      msg += ' /action:' + _params.data.action
+    }
   }
+  jeedomUtils.showAlert({
+    message: msg,
+    level: 'warning',
+    ttl: 15000
+  })
 }
 
 domUtils.ajaxSetup = function(_params) {
@@ -642,15 +492,35 @@ domUtils.ajaxSetup = function(_params) {
   }
 }
 
-domUtils.countAjax = function(_type, _global) {
-  if (_global === false) return
-  if (_type == 0) {
-    domUtils.ajaxCalling ++
-    if (domUtils.ajaxCalling == 1) domUtils.showLoading()
-  } else {
-    domUtils.ajaxCalling --
-  }
+/*Handle nested multi-level js object to query string
+*/
+domUtils.getUrlString = function(params, keys = [], isArray = false) {
+  const p = Object.keys(params).map(key => {
+    let val = params[key]
+    if ("[object Object]" === Object.prototype.toString.call(val) || Array.isArray(val)) {
+      if (Array.isArray(params)) {
+        keys.push('')
+      } else {
+        keys.push(key)
+      }
+      return domUtils.getUrlString(val, keys, Array.isArray(val))
+    } else {
+      let tKey = key
+      if (keys.length > 0) {
+        const tKeys = isArray ? keys : [...keys, key]
+        tKey = tKeys.reduce((str, k) => { return '' === str ? k : `${str}[${k}]` }, '')
+      }
+      if (isArray) {
+        return `${ tKey }[]=${ encodeURIComponent(val) }`
+      } else {
+        return `${ tKey }=${ encodeURIComponent(val) }`
+      }
+    }
+  }).join('&')
+  keys.pop()
+  return p
 }
+
 
 domUtils.ajax = function(_params) {
   _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
@@ -661,21 +531,31 @@ domUtils.ajax = function(_params) {
   _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() { }
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
+  _params.timeoutRetry = isset(_params.timeoutRetry) ? _params.timeoutRetry : 0
+  _params.processData = isset(_params.processData) ? _params.processData : true
 
-  domUtils.countAjax(0, _params.global)
+  if (_params.global) domUtils.DOMloading += 1
 
   let isGet = _params.type.toLowerCase() == 'get' ? true : false
   let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
+
+  var sendData = _params.data
+  var postHeaders = new Headers()
+  if (isset(_params.data) && isJson && _params.processData === true) {
+    sendData = domUtils.getUrlString(_params.data)
+    sendData = new URLSearchParams(sendData)
+    postHeaders = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
+  }
 
   if (_params.async === false) { //Synchronous request:
     const request = new XMLHttpRequest()
     request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))
     if (request.status === 200) { //Answer ok
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       domUtils.handleAjaxError(response, response.status, response.statusText)
       if (_params.onError) _params.onError(error)
       _params.onError('', '', error)
@@ -688,45 +568,77 @@ domUtils.ajax = function(_params) {
     }
     fetch(url, {
       method: _params.type,
+      body: isGet ? null : sendData,
+      headers: isGet ? new Headers() : postHeaders,
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
       mode: 'cors',
-      credentials: 'include',
-      body: isGet ? null : new URLSearchParams(_params.data),
-      headers: isGet ? new Headers() : {"Content-Type": "application/x-www-form-urlencoded"},
+      credentials: 'same-origin',
+      //Safari AbortSignal.timeout not a functyion
+      //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
-    .then(function(response, reject) {
+    .then( response => {
       if (!response.ok) {
-        if (response.status != 504) domUtils.handleAjaxError(response, response.status, response.statusText)
-        const rejectReponse = {
-          error_type: "SERVER_ERROR",
-          error: true
-        }
-
-        if (reject != undefined) rejectReponse.error_type = reject
-        domUtils.countAjax(1, _params.global)
-        return Promise.reject(rejectReponse)
+        if (_params.global) domUtils.DOMloading -= 1
+        throw response
       }
       if (isJson) {
         return response.json()
       } else {
         return response.text()
       }
+      return response
     })
-    .then(function(obj) {
+    .then( obj => {
       return _params.success(obj)
     }).then(async function() {
-      domUtils.countAjax(1, _params.global)
+      if (_params.global) domUtils.DOMloading -= 1
       _params.complete()
+      return
     })
-    .catch(function(error) {
-      domUtils.countAjax(1, _params.global)
-      if (!_params.noDisplayError) {
-        if (_params.url != 'core/ajax/event.ajax.php' || _params.data.action != 'changes') {
-          let msg = 'domUtils.ajax(' + _params.url + ') ' + _params.type + ' async: ' + _params.async
-          domUtils.handleAjaxError(msg, _params.data, error)
-          console.error(msg, _params.data, error)
+    .catch( error => {
+      if (_params.global) domUtils.DOMloading -= 1
+      if (typeof error.text === 'function') { //Catched from fetch return
+        error.text().then(errorMessage => {
+          if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error
+            //Timeout, retry:
+            if (_params.timeoutRetry < 3) {
+              _params.timeoutRetry ++
+              setTimeout( () => {
+                domUtils.ajax(_params)
+              }, 100)
+              return
+            } else {
+              console.warn('[Timeout Error], retried two times:', error, errorMessage, _params)
+            }
+          } else {
+            console.warn('[Bad Fetch response]', error, errorMessage, _params)
+          }
+        })
+      } else { //Catched from fetch error
+        if (error.code == 20) return //NetworkError when attempting to fetch resource.
+        if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
+        if (error.name == 'TypeError'){
+          console.warn('Error JS > TypeError > ',error)
         }
+        if (error.name == 'ReferenceError'){
+          console.warn('Error Reference > ReferenceError > '+ error)
+        }
+        if (!_params.noDisplayError) {
+          domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+          if (_params.onError) {
+            _params.onError(error)
+          }
+        }
+
+
+        //Alpha test code:
+        /*
+        console.warn('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
+        console.dir(error)
+        domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+        */
       }
-      if (_params.onError) _params.onError(error)
     })
   }
 }
@@ -756,27 +668,37 @@ domUtils.unRegisterEvents = function() {
 }
 
 EventTarget.prototype.registerEvent = function(_type, _listener, _options) {
+  //To be removed, removeEventListener need same EventTarget, callback, capture setting
   if (typeof _listener !== 'function') return
   domUtils.registeredEvents.push({
     element: this,
     type: _type,
     id: _listener.name || '',
-    callback: _listener
+    callback: _listener,
+    options: _options
   })
   this.addEventListener(_type, _listener, _options)
   return this
 }
 
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
+  var that = this
+  var listeners = domUtils.registeredEvents.filter(function(listener) {
+    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == that )
+  })
+  for (var listener of listeners) {
+    var result = that.removeEventListener(listener.type, listener.callback, listener.options)
+    domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
+  }
+  return that
+}
+
+EventTarget.prototype.getRegisteredEvent = function(_type, _id) {
   var self = this
   let listeners = domUtils.registeredEvents.filter(function(listener) {
     return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == self )
   })
-  for (let listener of listeners) {
-    self.removeEventListener(listener.type, listener.callback, false)
-    domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
-  }
-  return self
+  return listeners
 }
 
 EventTarget.prototype.triggerEvent = function(_eventName, _params) {
@@ -797,55 +719,19 @@ NodeList.prototype.triggerEvent = function(_eventName, _params) {
   return this
 }
 
-/* Widgets
+domUtils.octetsToHumanSize = function(_size) {
+  _size = Math.abs(parseInt(_size, 10))
+  var def = [[1, 'octets'], [1024, 'Ko'], [1024*1024, 'Mo'], [1024*1024*1024, 'Go'], [1024*1024*1024*1024, 'To']]
+  for (var i=0; i < def.length; i++) {
+    if (_size < def[i][0]) return (_size / def[i-1][0]).toFixed(2) +' '+ def[i-1][1]
+  }
+
+}
+
+/*Global window functions
 */
-domUtils.issetWidgetOptParam = function(_def, _param) {
-  if (_def != '#' + _param + '#') return true
-  return false
-}
-
-domUtils.createWidgetSlider = function(_options) {
-  try {
-    if (_options.sliderDiv.hasClass('slider') && _options.sliderDiv.noUiSlider) {
-      _options.sliderDiv.noUiSlider.destroy()
-    }
-  } catch(error) { }
-
-  let createOptions = {
-    start: [_options.state],
-    connect: [true, false],
-    step: _options.step,
-    range: {
-      'min': _options.min,
-      'max': _options.max
-    },
-    tooltips: _options.tooltips
-  }
-
-  if (isset(_options.format) && _options.format == true) {
-    createOptions.format = {
-      from: Number,
-      to: function(value) {
-        let dec = _options.step.toString().includes('.') ? (_options.step.toString().length - 1) - _options.step.toString().indexOf('.') : 0
-        return ((Math.round(value * (100 / _options.step)) / (100 / _options.step)).toFixed(dec) + ' ' + _options.unite).trim()
-      }
-    }
-  }
-
-  if (isset(_options.vertical) && _options.vertical == true) {
-    createOptions.orientation = 'vertical'
-    createOptions.direction = 'rtl'
-  }
-
-  try {
-    return noUiSlider.create(_options.sliderDiv, createOptions)
-  } catch(error) { }
-}
-
-
-
-//Global functions
 function isElement_jQuery(_element) {
+  if (typeof jQuery !== 'function') return false
   return (_element instanceof jQuery && _element.length)
 }
 
@@ -861,6 +747,26 @@ function init(_value, _default) {
     return _default
   }
   return _value
+}
+
+function isset() {
+  let a = arguments,
+    b = a.length,
+    d = 0
+  if (0 === b)
+    throw Error("Empty isset")
+  for (; d !== b;) {
+    if (void 0 === a[d] || null === a[d])
+      return !1
+    d++
+  }
+  return !0
+}
+
+function getNearestMultiple(_value, _factor, _method) {
+  if (!_factor) return _value
+  _method = _method || 'round'
+  return Math[_method](_value/_factor) * _factor
 }
 
 function json_decode(a) {
@@ -963,18 +869,19 @@ function json_encode(a) {
   }
 }
 
-function isset() {
-  let a = arguments,
-    b = a.length,
-    d = 0
-  if (0 === b)
-    throw Error("Empty isset")
-  for (; d !== b;) {
-    if (void 0 === a[d] || null === a[d])
-      return !1
-    d++
-  }
-  return !0
+function isInWindow(_el) {
+  var { top, bottom } = _el.getBoundingClientRect()
+  var vHeight = (window.innerHeight || document.documentElement.clientHeight)
+  return (
+    (top > 0 || bottom > 0) &&
+    top < vHeight
+  )
+}
+
+function getBool(val) {
+  if (val === undefined) return false
+  var num = +val
+  return !isNaN(num) ? !!num : !!String(val).toLowerCase().replace(!!0,'')
 }
 
 //Prefer [array].includes()
@@ -1024,6 +931,9 @@ function is_object(a) {
   return "[object Array]" === Object.prototype.toString.call(a) ? !1 : null !== a && "object" === typeof a
 }
 
+function isPlainObject(obj) {
+  return Object.prototype.toString.call(obj) === '[object Object]';
+}
 function is_real(a) {
   return this.is_float(a)
 }

@@ -29,6 +29,10 @@ sendVarToJS([
 	'root' => init('root', ''),
 ]);
 
+include_file('3rdparty', 'jquery/jquery.min', 'js');
+include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
+
+
 //Core CodeMirror:
 include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
 include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
@@ -67,7 +71,7 @@ if ($lang != 'en') {
 
 <div id="elfinder" class=""></div>
 
-<div id="md_widgetCreate" style="display: none;overflow-x: hidden;">
+<div id="md_widgetCreate" class="hidden">
 	<form class="form-horizontal">
 		<fieldset>
 			<div class="form-group">
@@ -112,15 +116,8 @@ if ($lang != 'en') {
 					<input id="in_widgetName" class="form-control" />
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-xs-4 control-label"></label>
-				<div class="col-xs-8">
-					<a class="btn btn-success" style="color:white;" id="bt_widgetCreate"><i class="fas fa-check"></i> {{Créer}}</a>
-				</div>
-			</div>
-</div>
-</fieldset>
-</form>
+		</fieldset>
+	</form>
 </div>
 
 <?php

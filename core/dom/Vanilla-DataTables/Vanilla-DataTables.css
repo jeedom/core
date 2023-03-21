@@ -1,0 +1,384 @@
+/*!
+ *
+ * Vanilla-DataTables
+ * Copyright (c) 2015-2017 Karl Saunders (http://mobius.ovh)
+ * Licensed under MIT (http://www.opensource.org/licenses/mit-license.php)
+ *
+ * Version: v2.0.0-alpha.23
+ *
+ */
+
+.dt-table thead th input,
+.dt-table thead th select {
+  position: absolute;
+  top: -20px;
+  width: 80%;
+}
+.dt-table thead th input {
+  top: -12px;
+}
+
+.dt-wrapper.no-header .dt-container {
+  border-top: 1px solid var(--placeholder-color);
+}
+
+.dt-wrapper.no-footer .dt-container {
+  border-bottom: 1px solid var(--placeholder-color);
+}
+
+.dt-top,
+.dt-bottom {
+  padding: 8px 10px;
+}
+
+.dt-top > div:first-child,
+.dt-bottom > div:first-child {
+  float: left;
+}
+
+.dt-top > div:last-child:not(:first-child),
+.dt-bottom > div:last-child {
+  float: right;
+}
+
+.dt-top > .dt-dropdown > label {
+  display: inline-flex;
+}
+.dt-selector {
+  min-width: 100px;
+  padding: 6px;
+}
+.dt-top > .dt-dropdown > label > span {
+  min-width: 150px;
+  padding: 5px;
+}
+
+.dt-input {
+  padding: 6px 12px;
+}
+
+.dt-info {
+  margin: 7px 0;
+}
+
+/* PAGER */
+.dt-pagination ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+.dt-pagination li {
+  list-style: none;
+  float: left;
+}
+
+.dt-pagination a,
+.dt-ellipsis span {
+  border: 1px solid transparent;
+  float: left;
+  margin-left: 2px;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dt-pagination a:hover {
+  background-color: var(--placeholder-color);
+}
+
+.dt-pagination .active a,
+.dt-pagination .active a:focus,
+.dt-pagination .active a:hover {
+  background-color: var(--placeholder-color);
+  cursor: default;
+}
+
+.dt-pagination .dt-ellipsis span,
+.dt-pagination .disabled a,
+.dt-pagination .disabled a:focus,
+.dt-pagination .disabled a:hover {
+  cursor: not-allowed;
+}
+
+.dt-pagination .disabled a,
+.dt-pagination .disabled a:focus,
+.dt-pagination .disabled a:hover {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.dt-pagination .pager a {
+  font-weight: bold;
+}
+
+/* TABLE */
+.dt-table {
+  max-width: 100%;
+  width: 100%;
+  border-spacing: 0;
+}
+
+.dt-table > tbody > tr > td,
+.dt-table > tbody > tr > th,
+.dt-table > tfoot > tr > td,
+.dt-table > tfoot > tr > th,
+.dt-table > thead > tr > td,
+.dt-table > thead > tr > th {
+  vertical-align: top;
+  padding: 8px 10px;
+}
+
+.dt-table > thead > tr > th,
+.dt-table > thead > tr > td {
+  vertical-align: bottom;
+  text-align: left;
+  border-bottom: 1px solid var(--placeholder-color);
+}
+
+.dt-table > tfoot > tr > th {
+  vertical-align: bottom;
+  text-align: left;
+  border-top: 1px solid var(--placeholder-color);
+}
+
+.dt-table th {
+  vertical-align: bottom;
+  text-align: left;
+}
+
+.dt-sorter {
+  position: relative;
+  cursor: pointer;
+  max-width: calc(100% - 7px);
+  white-space: nowrap;
+}
+
+.dt-sorter::before,
+.dt-sorter::after {
+    content: "";
+    height: 0;
+    width: ;
+    position: absolute;
+    right: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    opacity: 0.2;
+  }
+
+.dt-sorter::before {
+    border-top: 5px solid var(--link-color);
+    top: 18px;
+  }
+
+.dt-sorter::after {
+    border-bottom: 5px solid var(--link-color);
+    border-top: 5px solid transparent;
+    bottom: 22px;
+  }
+
+.dt-sorter.asc::after,
+.dt-sorter.desc::before {
+    opacity: 0.7;
+  }
+
+.dt-sorter.loading::before {
+      opacity: 0;
+    }
+.dt-sorter.loading::after {
+      width: 15px;
+      height: 15px;
+      border-width: 3px;
+      border-style: solid;
+      border-color: #ccc #ccc #ccc #999;
+      border-radius: 50%;
+      bottom: 12px;
+      right: -2px;
+      opacity: 1;
+
+      animation: 400ms linear 0ms forwards infinite spin;
+    }
+  }
+
+.dataTables-empty {
+  text-align: center;
+}
+
+.dt-top::after, .dt-bottom::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Extension: Editable */
+.dt-editor-modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  animation: 250ms ease 0ms fadeIn;
+}
+.dt-editor-modal.closed {
+  animation: 250ms ease 0ms fadeIn;
+}
+.dt-editor-modal.closed .dt-editor-inner {
+  animation: 250ms ease 0ms slideIn;
+}
+
+.dt-editor-inner {
+  width: 30%;
+  margin: 10% auto;
+  background-color: #fff;
+  border-radius: 5px;
+  animation: 250ms ease 0ms slideIn;
+}
+
+.dt-editor-header {
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.dt-editor-header h4 {
+  font-size: 20px;
+  margin: 0;
+}
+.dt-editor-header button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 5px;
+  line-height: 1;
+  opacity: 0.6;
+}
+.dt-editor-header button:hover {
+  opacity: 1;
+}
+
+.dt-editor-header {
+  padding: 15px 30px;
+}
+
+.dt-editor-block {
+  padding: 15px 60px;
+}
+
+.dt-editor-row {
+  margin: 0 0 15px;
+}
+
+.dt-editor-row:last-child {
+  margin: 0 0 5px;
+}
+
+.dt-editor-row:last-child {
+  text-align: right;
+}
+
+.dt-editor-label {
+  width: 25%;
+  text-align: right;
+  padding: 0 15px;
+}
+
+.dt-editor-label, .dt-editor-input {
+  display: inline-block;
+}
+
+.dt-editor-input {
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  margin: -5px 0;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.dt-editor-row .dt-editor-input {
+  margin: 0;
+  width: 75%;
+}
+
+.dt-editor-save {
+  background-color: #27ae60;
+  border: 1px solid #27ae60;
+  padding: 6px 12px;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.dt-editor-save:hover {
+  background-color: #2cc36b;
+  border-color: #2cc36b;
+}
+
+/* ContextMenu */
+.dt-editor-wrapper {
+  position: absolute;
+}
+
+.dt-editor-menu {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 3px;
+  margin: 0;
+  min-width: 220px;
+  padding: 5px 0;
+  box-shadow: 0px 0px 10px 2px #aaa;
+}
+.dt-editor-menu li {
+  list-style: none;
+}
+.dt-editor-menu a {
+  box-sizing: border-box;
+  color: inherit;
+  display: block;
+  padding: 5px 15px;
+  text-decoration: none;
+  width: 100%;
+}
+.dt-editor-menu a:hover {
+  background-color: #ddd;
+}
+
+.dt-editor-separator {
+  border-bottom: 1px solid #aaa;
+  margin: 5px 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0%, 0);
+  }
+}

@@ -1,4 +1,5 @@
 <?php
+
 /* This file is part of Jeedom.
 *
 * Jeedom is free software: you can redistribute it and/or modify
@@ -18,124 +19,136 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-?>
-<?php
-/* LANCEMENT DE JEEASY */
-$find_jeeasy = false;
+
+$pluginJeeEasy = false;
 try {
-	$plugin = plugin::byId('jeeasy');
-	$find_jeeasy = true;
+	$pluginJeeEasy = plugin::byId('jeeasy');
+} catch (Exception $e) { }
+
+$showDoc = false;
+if (config::byKey('doc::base_url', 'core') != '') {
+	$showDoc = true;
+}
+
+$showButton = false;
+if (config::byKey('jeedom::firstUse') == 1) {
+	$showButton = true;
+}
+
+sendVarToJS([
+  'jeephp2js.md_firstuse_pluginJeeEasy' => $pluginJeeEasy,
+  'jeephp2js.md_firstuse_showDoc' => $showDoc,
+  'jeephp2js.md_firstuse_showButton' => $showButton
+]);
+
+
 ?>
-	<script>
-		$(document).ready(function() {
-			$('#md_modal').dialog({
-				title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>"
-			}).load('index.php?v=d&plugin=jeeasy&modal=wizard').dialog('open');
-		})
-	</script>
-<?php
-} catch (Exception $e) {
-?>
-	<div id="div_alertFirstUse"></div>
+
+
+<div id="md_firstuse" data-modalType="md_firstuse">
 	<center>
-		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, et merci d'avoir choisi cette solution pour votre habitat connecté.}}<br />
+		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, merci d'avoir choisi cette solution pour votre habitat connecté.}}<br />
 		{{Voici 4 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
 	</center>
-	<br /><br /><br />
+	<br/><br/><br/>
 
-	<div style="position: relative; transform: translateY(-50%); top: calc(50% - 120px);">
-		<div class="row">
+	<div class="row row-overflow">
+		<div class="col-xs-3">
+			<center>
+				<a href="https://start.jeedom.com/" target="_blank">
+					<i class="fas fa-image" style="font-size:40px;"></i><br />
+					{{Guide de démarrage}}
+				</a>
+			</center>
+		</div>
+		<div id="divDoc" style="display: none;">
 			<div class="col-xs-3">
 				<center>
-					<a href="https://start.jeedom.com/" target="_blank">
-						<i class="fas fa-image" style="font-size:40px;"></i><br />
-						{{Guide de démarrage}}
+					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/concept/" target="_blank">
+						<i class="fas fa-cogs" style="font-size:40px;"></i><br />
+						{{Concept}}
 					</a>
 				</center>
 			</div>
-			<?php if (config::byKey('doc::base_url', 'core') != '') { ?>
-				<div class="col-xs-3">
-					<center>
-						<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/concept/" target="_blank">
-							<i class="fas fa-cogs" style="font-size:40px;"></i><br />
-							{{Concept}}
-						</a>
-					</center>
-				</div>
 
-				<div class="col-xs-3">
-					<center>
-						<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/premiers-pas/" target="_blank">
-							<i class="fas fa-check-square" style="font-size:40px;"></i><br />
-							{{Documentation de démarrage}}
-						</a>
-					</center>
-				</div>
-				<div class="col-xs-3">
-					<center>
-						<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>" target="_blank">
-							<i class="fas fa-book" style="font-size:40px;"></i><br />
-							{{Documentation}}
-						</a>
-					</center>
-				</div>
-			<?php } ?>
+			<div class="col-xs-3">
+				<center>
+					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/premiers-pas/" target="_blank">
+						<i class="fas fa-check-square" style="font-size:40px;"></i><br />
+						{{Documentation de démarrage}}
+					</a>
+				</center>
+			</div>
+			<div class="col-xs-3">
+				<center>
+					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>" target="_blank">
+						<i class="fas fa-book" style="font-size:40px;"></i><br />
+						{{Documentation}}
+					</a>
+				</center>
+			</div>
 		</div>
-
-		<br><br><br>
-		<center>
-			<a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
-			<a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
-			<a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-			<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
-		</center>
-
-		<?php
-		if (config::byKey('jeedom::firstUse') == 1) {
-			$divButton = '<br><br>';
-			$divButton .= '<div class="row">';
-			$divButton .= '<div class="col-xs-12">';
-			$divButton .= '<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>';
-			$divButton .= '</div>';
-			$divButton .= '</div>';
-			echo $divButton;
-		}
-		?>
 	</div>
 
-	<script>
-		var modalContent = $('#div_alertFirstUse').parents('.ui-dialog-content.ui-widget-content')
-		var modal = modalContent.parents('.ui-dialog.ui-resizable')
-		if ($(window).width() > 800) {
-			width = 720
-			height = 400
-			modal.width(width).height(height)
-			modal.position({
-				my: "center",
-				at: "center",
-				of: window
-			})
-			modalContent.width(width - 26).height(height - 40)
-		}
+	<br><br><br>
+	<center>
+		<a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
+		<a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
+		<a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
+		<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
+	</center>
 
-		$('#bt_doNotDisplayFirstUse').on('click', function() {
-			jeedom.config.save({
-				configuration: {
-					'jeedom::firstUse': 0
-				},
-				error: function(error) {
-					$('#div_alertFirstUse').showAlert({
-						message: error.message,
-						level: 'danger'
-					})
-				},
-				success: function() {
-					$('#div_alertFirstUse').showAlert({
-						message: '{{Sauvegarde réussie}}',
-						level: 'success'
-					})
-				}
-			})
+	<div id="divButton" style="display: none;">
+		<br><br>
+		<div class="row">
+			<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>
+		</div>
+	</div>
+</div>
+
+<script>
+(function() {// Self Isolation!
+  	if (jeephp2js.md_firstuse_showDoc == "1") {
+  		document.querySelector('#md_firstuse #divDoc').seen()
+  	}
+
+  	if (jeephp2js.md_firstuse_showButton == "1") {
+  		document.querySelector('#md_firstuse #divButton').seen()
+  	}
+
+  	if (jeephp2js.md_firstuse_pluginJeeEasy != "") {
+		jeeDialog.dialog({
+			id: 'md_firstConfig',
+			title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
+			fullScreen: true,
+			onClose: function() {
+		    	jeeDialog.get('#md_firstConfig').destroy()
+		    },
+			contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard',
+			callback: function() {
+		    	jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
+		    }
 		})
-	</script>
-<?php } ?>
+	}
+
+	document.getElementById('bt_doNotDisplayFirstUse')?.addEventListener('click', function() {
+		jeedom.config.save({
+			configuration: {
+				'jeedom::firstUse': 0
+			},
+			error: function(error) {
+				jeedomUtils.showAlert({
+					message: error.message,
+					level: 'danger'
+				})
+			},
+			success: function() {
+				jeedomUtils.showAlert({
+					message: '{{Option enregistrée}}',
+					level: 'success'
+				})
+			}
+		})
+	})
+})()
+</script>

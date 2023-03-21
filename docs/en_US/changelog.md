@@ -9,7 +9,6 @@
 ### 4.4 : News / Improvements
 
 - **Historical** : History modal and History page allow to use buttons *Week, Month, Year* to dynamically reload a larger history.
-- **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 - **Image selection window** : Added a context menu for sending images and creating, renaming or deleting a folder.
 - **Icon selection window** : Ability to add a `path` parameter when calling `jeedomUtils.chooseIcon` by a plugin to display only its icons.
 - **Dashboard** : Ability to display multiple objects side by side *(Settings → System → Configuration / Interface)*.
@@ -17,36 +16,65 @@
 - **Dashboard** : In table layout, possibility to insert HTML attributes *(colspan/rowspan in particular)* for each cell.
 - **Equipment** : Ability to disable the widget templates of plugins that use them to return to the Jeedom default display *(device configuration window)*.
 - **Equipment** : Equipment made inactive automatically disappears from all pages. Reactivated equipment reappears on the dashboard if the parent object is already present.
-- **Equipment** : Equipment made invisible automatically disappears from the dashboard. The redisplayed equipment reappears on the dashboard if the parent object is already present.
-- **Analysis > Devices > Devices on alert** : Devices that go into alert automatically appear and those that come out of an alert automatically disappear.
+- **Equipment** : Equipment made invisible automatically disappears from the dashboard. The re-displayed equipment reappears on the dashboard if the parent object is already present.
+- **Analysis > Equipment / Equipment on alert** : Devices that go into alert automatically appear and those that come out of an alert automatically disappear.
+- **Message center** : Core messages on anomaly now inform an action, for example a link to open the offending scenario, or equipment, plugin configuration, etc.
 - **Object** : Deleting or creating a summary results in the update of the global summary and the subject.
 - **Tools > Replace** : This tool now offers a mode *To copy*, allowing to copy the configurations of equipment and commands, without replacing them in the scenarios and others.
-- **Timeline** : The Timeline now loads the first 35 events. At the bottom of the page, several buttons allow you to dynamically load the following events.
+- **Timeline** : The Timeline now loads the first 35 events. The following events are loaded on scroll at the bottom of the page.
 - **Administration** : Possibility to differentiate actions on error or on command alert.
-- A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
-- **Dashboard** : possibility on the object configuration page to ask jeedom to reorder the equipment according to their use
+- **Administration** : Ability to set default command widgets.
+- **Dashboard** : possibility on the object configuration page to ask jeedom to reorder the equipment according to their use.
+- **Theme** : Possibility to choose the theme directly from the url (by adding &theme=Dark or &theme=Light).
+- **Report** : Possibility to choose the theme during a report on a jeedom page.
+- **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 
 ### 4.4 : Autre
 
 - **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
 - **Core** : More detailed listing of USB devices.
+- **Core** : A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 - **Lib** : Update Highchart v9.3.2 to v10.3.2 (The module *solid gauge* no longer imported).
 
 ### 4.4 : Remarques
 
->**Dashboard**
+> **Dashboard**
 >
->On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
->The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
+> On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
+> The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
 
 
->**Widgets**
+> **Widgets**
 >
->Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
->All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
+> Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
+> All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
+
+> **Dialog boxes**
+>
+> All dialog boxes (bootstrap, bootbox, jQuery UI) have been migrated to an internal Core lib (jeeDialog) specially developed. Resizable dialogs now have a button to switch to *fullscreen*.
 
 
 # Changelog Jeedom V4.3
+
+## 4.3.15
+
+- Prohibition of the translation of Jeedom by browsers (avoids market.repo type errors.php not found).
+- Optimization of the replacement function.
+
+## 4.3.14
+
+- Reduced load on DNS.
+
+## 4.3.13
+
+- Bugfix on **Tools / Replace**.
+
+## 4.3.12
+
+- Optimization on the histories.
+- Bugfix Summary on mobile.
+- Mobile shutter widget bugfix.
+- Bugfix tile curves with binary info.
 
 ## 4.3.11
 

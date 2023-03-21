@@ -368,7 +368,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``name(type,commande)`` : Usado para recuperar o nome do pedido, equipamento ou objeto. Gentil : cmd, eqLogic ou objeto.
 
-- ``lastCommunication(equipment,[format])`` : Retorna a data da última comunicação para o dispositivo dado como parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado.
+- ``lastCommunication(equipment,[format])`` : Retorna a data do último retorno de informação do equipamento informado no parâmetro, o 2º parâmetro opcional é usado para especificar o formato de retorno (detalhes [aqui](https://www.php.net/manual/fr/datetime.format.php)). Um retorno de -1 significa que o equipamento não pode ser encontrado. A data da última informação é calculada em relação ao tipo de informação pedido e sua data de coleta.
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 
@@ -455,6 +455,11 @@ E exemplos práticos :
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Retorna o tempo de ignição em Dias / Horas / minutos do tempo de transição para o estado 1 do módulo desde o 1º dia do mês |
 
 
+### Funções diversas
+
+- ``sun(elevation)`` : Dá em ° a elevação do sol (cuidado, você deve ter inserido suas coordenadas geográficas na configuração do jeedom)
+- ``sun(azimuth)`` : Dá em ° o azimute do sol (cuidado, você deve ter inserido suas coordenadas geográficas na configuração do jeedom)
+
 ### Pedidos específicos
 
 Além dos comandos de automação residencial, você tem acesso às seguintes ações :
@@ -484,7 +489,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Ícone** (icon) : Permite alterar o ícone de representação do cenário.
 - **Alerta** (alert) : Exibe uma pequena mensagem de alerta em todos os navegadores que têm uma página Jeedom aberta. Além disso, você pode escolher 4 níveis de alerta.
 - **Aparecer** (popup) : Permite exibir um pop-up que deve ser absolutamente validado em todos os navegadores que possuem uma página jeedom aberta.
-- **Relatório** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário.
+- **Relatório** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário. O "atraso" é em milissegundos (ms).
 - **Excluir bloco IN / A agendado** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).

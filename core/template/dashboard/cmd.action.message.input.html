@@ -1,0 +1,37 @@
+<div class="cmd cmd-widget reportModeHidden" data-type="action" data-subtype="message" data-template="default" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="content">
+    <input class="form-control input-sm title" placeholder="#title_placeholder#" value="#title#">
+    <textarea class="form-control input-sm message" rows="2" placeholder="#message_placeholder#">#message#</textarea>
+    <a class="btn btn-xs execute">#name_display#</a>
+  </div>
+  <template>
+    <div>title : {{Titre par défaut}}</div>
+    <div>title_placeholder : {{Titre indicatif par défaut}}</div>
+    <div>title_possibility_list : title1, title2 ({{Autocomplete}})</div>
+    <div>title_disable : 1 ({{Ne pas afficher le champ titre}})</div>
+    <div>message_placeholder : {{Message indicatif par défaut}}</div>
+    <div>message : {{Message par défaut}}</div>
+    <div>message_disable : 1 ({{Ne pas afficher le champ message}})</div>
+  </template>
+  <script>
+    document.querySelector('.cmd[data-cmd_uid=#uid#] .execute').addEventListener('click', function() {
+      let title = document.querySelector('.cmd[data-cmd_uid=#uid#] .title').value
+      let message = document.querySelector('.cmd[data-cmd_uid=#uid#] .message').value
+      jeedom.cmd.execute({ id: '#id#', value: { title: title, message: message } })
+    })
+
+    if ('#title_disable#' == '1') {
+      document.querySelector('.cmd[data-cmd_uid=#uid#] .title').unseen()
+    }
+    if ('#message_disable#' == '1') {
+      document.querySelector('.cmd[data-cmd_uid=#uid#] .message').unseen()
+    }
+
+    if (domUtils.issetWidgetOptParam('#title_possibility_list#', 'title_possibility_list')) {
+      let mylist = '#title_possibility_list#'
+      document.querySelector('.cmd[data-cmd_uid=#uid#] .title').jeeComplete({
+        source: mylist.split(',').map(str => str.trim())
+      })
+    }
+  </script>
+</div>

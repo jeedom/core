@@ -141,6 +141,10 @@ class plan {
 		}
 	}
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save() {
 		DB::save($this);
 	}
@@ -151,7 +155,7 @@ class plan {
 			$imgPath = $this->getDisplay('path', '');
 			if ($imgPath != '') {
 				@unlink(str_replace('data/plan/', __DIR__ . '/../../data/plan/', $imgPath));
-				@rmdir(__DIR__ . '/../../data/plan/plan_'.$this->getId());
+				@rmdir(__DIR__ . '/../../data/plan/plan_' . $this->getId());
 			}
 		}
 		DB::remove($this);
@@ -231,7 +235,7 @@ class plan {
 				'html' => $link->toHtml($_version),
 			);
 		} else if ($linkType == 'plan') {
-			$html = '<span class="cursor plan-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
+			$html = '<span class="cursor plan-link-widget" data-id="' . $this->getId() . '" data-link_id="' . $this->getLink_id() . '" data-offsetX="' . $this->getDisplay('offsetX') . '" data-offsetY="' . $this->getDisplay('offsetY') . '">';
 			if ($this->getDisplay('color-defaut', 1) == 1) {
 				$html .= '<a>';
 			} else {
@@ -246,7 +250,7 @@ class plan {
 			);
 		} else if ($linkType == 'view') {
 			$link = 'index.php?p=view&view_id=' . $this->getLink_id();
-			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-id="'.$this->getId().'" data-link_id="' . $this->getLink_id() . '" >';
+			$html = '<span href="' . $link . '" class="cursor view-link-widget" data-id="' . $this->getId() . '" data-link_id="' . $this->getLink_id() . '" >';
 			if ($this->getDisplay('color-defaut', 1) == 1) {
 				$html .= '<a href="' . $link . '" class="noOnePageLoad">';
 			} else {
@@ -371,40 +375,40 @@ class plan {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
 
 	public function setLink_type($_link_type) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->link_type,$_link_type);
+		$this->_changed = utils::attrChanged($this->_changed, $this->link_type, $_link_type);
 		$this->link_type = $_link_type;
 		return $this;
 	}
 
 	public function setLink_id($_link_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->link_id, $_link_id);
 		$this->link_id = $_link_id;
 		return $this;
 	}
 
 	public function setPosition($_key, $_value) {
 		$position = utils::setJsonAttr($this->position, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->position,$position);
+		$this->_changed = utils::attrChanged($this->_changed, $this->position, $position);
 		$this->position = $position;
 		return $this;
 	}
 
 	public function setDisplay($_key, $_value) {
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->display,$display);
+		$this->_changed = utils::attrChanged($this->_changed, $this->display, $display);
 		$this->display = $display;
 		return $this;
 	}
 
 	public function setCss($_key, $_value) {
 		$css = utils::setJsonAttr($this->css, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->css,$css);
+		$this->_changed = utils::attrChanged($this->_changed, $this->css, $css);
 		$this->css = $css;
 		return $this;
 	}
@@ -414,7 +418,7 @@ class plan {
 	}
 
 	public function setPlanHeader_id($_planHeader_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->planHeader_id,$_planHeader_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->planHeader_id, $_planHeader_id);
 		$this->planHeader_id = $_planHeader_id;
 		return $this;
 	}
@@ -425,7 +429,7 @@ class plan {
 
 	public function setConfiguration($_key, $_value) {
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->configuration,$configuration);
+		$this->_changed = utils::attrChanged($this->_changed, $this->configuration, $configuration);
 		$this->configuration = $configuration;
 		return $this;
 	}

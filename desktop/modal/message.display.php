@@ -46,15 +46,15 @@ if ($selectPlugin != '') {
     </span>
   </div>
 
-  <table class="table table-condensed table-bordered tablesorter" id="table_message" style="margin-top: 5px;">
+  <table class="table table-condensed dataTable" id="table_message" style="margin-top: 5px;">
     <thead>
       <tr>
-        <th data-sorter="false" data-filter="false"></th>
-        <th>{{Date et heure}}</th>
-        <th>{{Source}}</th>
-        <th data-sorter="false" data-filter="false">{{Description}}</th>
-        <th data-sorter="false" data-filter="false">{{Action}}</th>
-        <th>{{Occurrences}}</th>
+        <th data-sortable="false" data-filter="false" style="width:30px;"></th>
+        <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:150px;">{{Date et heure}}</th>
+        <th style="width:20%;">{{Source}}</th>
+        <th data-sortable="false" data-filter="false">{{Description}}</th>
+        <th style="min-width:130px; width:10%;" data-sortable="false" data-filter="false">{{Action}}</th>
+        <th style="width:105px;">{{Occurrences}}</th>
       </tr>
     </thead>
     <tbody>
@@ -65,8 +65,8 @@ if ($selectPlugin != '') {
         $trs .= '<td><div class="center"><i class="far fa-trash-alt cursor removeMessage"></i></div></td>';
         $trs .= '<td class="datetime">' . $message->getDate() . '</td>';
         $trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
-        $trs .= '<td class="message">' . html_entity_decode($message->getMessage()) . '</td>';
-        $trs .= '<td class="message_action">' . html_entity_decode($message->getAction()) . '</td>';
+        $trs .= '<td class="message">' . $message->getMessage(true) . '</td>';
+        $trs .= '<td class="message_action">' . $message->getAction(true) . '</td>';
         $trs .= '<td class="occurrences" style="text-align: center">' . $message->getOccurrences() . '</td>';
         $trs .= '</tr>';
       }
@@ -77,60 +77,81 @@ if ($selectPlugin != '') {
 </div>
 
 <script>
-  "use strict"
+(function() {// Self Isolation!
 
   jeedomUtils.hideAlert()
-  jeedomUtils.initTableSorter()
-  $('#table_message')[0].config.widgetOptions.resizable_widths = ['50px', '140px', '20%', '', '90px', '120px']
-  $('#table_message').trigger('applyWidgets')
-    .trigger('resizableReset')
-    .trigger('update')
+  jeedomUtils.initDataTables('#md_messageDisplay', false, false)
 
-  $("#sel_plugin").on('change', function(event) {
-    $('#md_modal').dialog({
-      title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())).dialog('open')
-  })
+  let table = document.querySelector('#md_messageDisplay #table_message')
+  let msgDataTable = table._dataTable
 
-  $("#bt_clearMessage").on('click', function(event) {
-    jeedom.message.clear({
-      plugin: document.getElementById('sel_plugin').jeeValue(),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        document.querySelector("#table_message tbody").empty()
-        jeedom.refreshMessageNumber()
-      }
-    })
-  })
-
-  $('#bt_refreshMessage').on('click', function(event) {
-    $('#md_modal').dialog({
-      title: "{{Centre de Messages}}"
-    }).load('index.php?v=d&modal=message.display').dialog('open')
-  })
-
-  $('#table_message').on({
-    'click': function(event) {
-      var tr = $(this).closest('tr')
-      jeedom.message.remove({
-        id: tr.attr('data-message_id'),
+  /*Events delegations
+  */
+  document.getElementById('md_messageDisplay').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_clearMessage')) {
+      jeedom.message.clear({
+        plugin: document.getElementById('sel_plugin').jeeValue(),
         error: function(error) {
           jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_messageDisplay', 'dialog'),
             message: error.message,
             level: 'danger'
           })
         },
         success: function() {
-          tr.remove();
-          $("#table_message").trigger("update")
+          document.querySelector("#table_message tbody").empty()
           jeedom.refreshMessageNumber()
         }
       })
+      return
     }
-  }, '.removeMessage')
+
+    if (_target = event.target.closest('#bt_refreshMessage')) {
+      jeeDialog.get(event.target).options.retainPosition = true
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Centre de Messages}}",
+        contentUrl: 'index.php?v=d&modal=message.display'
+      })
+      jeeDialog.get(event.target).options.retainPosition = false
+      return
+    }
+
+    if (_target = event.target.closest('.removeMessage')) {
+      var tr = _target.closest('tr')
+      jeedom.message.remove({
+        id: _target.closest('tr').getAttribute('data-message_id'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_messageDisplay', 'dialog'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          _target.closest('tr').remove()
+          document.getElementById("table_message").triggerEvent('update')
+          msgDataTable.refresh()
+          jeedom.refreshMessageNumber()
+        }
+      })
+      return
+    }
+  })
+
+  document.getElementById('md_messageDisplay').addEventListener('change', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#sel_plugin')) {
+      jeeDialog.get(_target).options.retainPosition = true
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Centre de Messages}}",
+        contentUrl: 'index.php?v=d&modal=message.display&selectPlugin=' + encodeURI(document.getElementById('sel_plugin').jeeValue())
+      })
+      jeeDialog.get(_target).options.retainPosition = false
+      return
+    }
+  })
+})()
 </script>

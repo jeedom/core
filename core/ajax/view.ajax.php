@@ -97,26 +97,29 @@ try {
 			throw new Exception(__('Vous n\'avez pas le droit de modifier cette vue', __FILE__));
 		}
 		$view_ajax = json_decode(init('view'), true);
+		if (!is_array($view_ajax) || count($view_ajax) == 0) {
+			throw new Exception(__('Erreur dans le decodage json veuiller réessaye : ', __FILE__) . init('view'));
+		}
 		utils::a2o($view, $view_ajax);
 		$view->save();
-		if (isset($view_ajax['zones'])) {
+		if (isset($view_ajax['zones']) && is_array($view_ajax['zones'])) {
 			$view->removeviewZone();
-		}
-		if (isset($view_ajax['zones']) && count($view_ajax['zones']) > 0) {
-			foreach ($view_ajax['zones'] as $viewZone_info) {
-				$viewZone = new viewZone();
-				$viewZone->setView_id($view->getId());
-				utils::a2o($viewZone, $viewZone_info);
-				$viewZone->save();
-				if (isset($viewZone_info['viewData'])) {
-					$order = 0;
-					foreach ($viewZone_info['viewData'] as $viewData_info) {
-						$viewData = new viewData();
-						$viewData->setviewZone_id($viewZone->getId());
-						$viewData->setOrder($order);
-						utils::a2o($viewData, jeedom::fromHumanReadable($viewData_info));
-						$viewData->save();
-						$order++;
+			if (count($view_ajax['zones']) > 0) {
+				foreach ($view_ajax['zones'] as $viewZone_info) {
+					$viewZone = new viewZone();
+					$viewZone->setView_id($view->getId());
+					utils::a2o($viewZone, $viewZone_info);
+					$viewZone->save();
+					if (isset($viewZone_info['viewData'])) {
+						$order = 0;
+						foreach ($viewZone_info['viewData'] as $viewData_info) {
+							$viewData = new viewData();
+							$viewData->setviewZone_id($viewZone->getId());
+							$viewData->setOrder($order);
+							utils::a2o($viewData, jeedom::fromHumanReadable($viewData_info));
+							$viewData->save();
+							$order++;
+						}
 					}
 				}
 			}

@@ -26,7 +26,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 					</span>
 				</div>
 			</legend>
-			<table class="table table-condensed table-bordered" id="table_user">
+			<table class="table table-condensed" id="table_user">
 				<thead>
 					<th style="min-width: 120px;">{{Utilisateur}}</th>
 					<th style="width: 250px;">{{Actif}}</th>
@@ -44,7 +44,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 
 <form class="form-horizontal">
 	<legend>{{Session(s) active(s)}}</legend>
-	<table class="table table-condensed table-bordered">
+	<table id="tableSessions" class="table table-condensed">
 		<thead>
 			<tr>
 				<th>{{ID}}</th>
@@ -85,16 +85,16 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 	</table>
 </form>
 
-<form class="form-horizontal">
+<form id="div_Devices" class="form-horizontal">
 	<legend>{{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
-	<table id="tableDevices" class="table table-bordered table-condensed tablesorter">
+	<table id="tableDevices" class="table table-condensed dataTable">
 		<thead>
 			<tr>
-				<th>{{ID}}</th>
+				<th style="width:220px;">{{ID}}</th>
 				<th>{{Utilisateur}}</th>
-				<th>{{IP}}</th>
-				<th>{{Date}}</th>
-				<th data-sorter="false" data-filter="false">{{Action}}</th>
+				<th style="width:180px;">{{IP}}</th>
+				<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss" style="width:180px;">{{Date}}</th>
+				<th data-sortable="false" data-filter="false" style="width:100px;">{{Action}}</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -129,25 +129,5 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 		</tbody>
 	</table>
 </form>
-
-<div class="modal fade" id="md_newUser">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" data-dismiss="modal">×</button>
-				<h3>{{Ajouter un utilisateur}}</h3>
-			</div>
-			<div class="modal-body">
-				<div style="display: none;" id="div_newUserAlert"></div>
-				<input class="form-control" type="text" id="in_newUserLogin" placeholder="{{Identifiant}}" /><br /><br />
-				<input class="form-control" type="password" autocomplete="new-password" id="in_newUserMdp" placeholder="{{Mot de passe}}" />
-			</div>
-			<div class="modal-footer">
-				<a class="btn btn-default" data-dismiss="modal">{{Annuler}}</a>
-				<a class="btn btn-primary bootbox-accept" id="bt_newUserSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</a>
-			</div>
-		</div>
-	</div>
-</div>
 
 <?php include_file("desktop", "user", "js"); ?>

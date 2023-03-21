@@ -69,6 +69,10 @@ class viewZone {
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function refresh() {
+		DB::refresh($this);
+	}
+
 	public function save() {
 		return DB::save($this);
 	}

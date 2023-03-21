@@ -53,12 +53,11 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight" id="bt_updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
-					</a><?php } elseif ($showUpgrade == true) { ?><a class="btn btn-sm btn-danger roundedRight" href="index.php?v=d&p=migrate"><i class="fab fa-linux"></i> {{Mettre à niveau}}
 					</a><?php } ?>
 			</span>
 		</div>
 		<br /><br />
-		<div class="col-sm-12 progressbarContainer hidden">
+		<div id="progressbarContainer" class="col-sm-12 hidden">
 			<div class="progress" style="width:100%;height:22px;margin-top: 12px;">
 				<div class="progress-bar progress-bar-striped" id="div_progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;font-size:18px;">
 					N/A
@@ -76,16 +75,16 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="coreplugin">
-				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_update">
+				<table class="ui-table-reflow table table-condensed dataTable" id="table_update">
 					<thead>
 						<tr>
 							<th>{{Etat}}</th>
 							<th>{{Nom}}</th>
-							<th data-sorter="shortDate">{{Version installée}}</th>
-							<th data-sorter="shortDate">{{Dernière version}}</th>
-							<th data-sorter="shortDate">{{Mise à jour faite le}}</th>
-							<th data-sorter="checkbox" data-filter="false">{{Options}}</th>
-							<th data-sorter="false" data-filter="false">{{Actions}}</th>
+							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Version installée}}</th>
+							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Dernière version}}</th>
+							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Mise à jour faite le}}</th>
+							<th data-type="checkbox">{{Options}}</th>
+							<th data-sortable="false">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -106,20 +105,19 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 				<div class="input-group pull-right" style="display:inline-flex">
 					<span class="input-group-btn">
 						<a class="bt_refreshOsPackageUpdate btn btn-success roundedLeft" data-forceRefresh="1"><i class="fas fa-sync"></i> {{Mettre à jour la liste}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning roundedRight" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
+						<a class="bt_OsPackageUpdate btn btn-warning roundedRight disabled" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
 					</span>
 				</div>
 
-				<table class="ui-table-reflow table table-condensed table-bordered tablesorter" id="table_osUpdate">
+				<table class="ui-table-reflow table table-condensed" id="table_osUpdate">
 					<thead>
 						<tr>
-							<th>{{Type}}</th>
+							<th style="width:50px">{{Type}}</th>
 							<th>{{Nom}}</th>
-							<th data-sorter="shortDate">{{Version installée}}</th>
-							<th data-sorter="shortDate">{{Dernière version}}</th>
-							<th data-sorter="false" data-filter="false">{{Actions}}</th>
+							<th>{{Version installée}}</th>
+							<th>{{Dernière version}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -129,74 +127,83 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 			</div>
 		</div>
 
-		<div id="md_specifyUpdate" class="cleanableModal hidden" style="overflow-x: hidden;">
+		<div id="md_specifyUpdate-template" class="hidden">
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
-						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
+						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
 
 					<div class="form-group">
+						<label><i class="fas fa-home"></i> Core</label>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Pré-update}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+							<label class="col-xs-6 control-label"> {{Pré-update}}
+								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="preUpdate" />
+								<input type="checkbox" class="updateOption" data-l1key="preUpdate" /><i class="fas fa-retweet"></i>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Sauvegarder avant}}</label>
-							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mettre à jour les plugins}}</label>
-							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="plugins" checked />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mettre à jour le core}}</label>
-							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="core" checked />
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-xs-6 control-label">{{Mode forcé}}
-								<sup><i class="fas fa-question-circle tooltips" title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+							<label class="col-xs-6 control-label"> {{Sauvegarder avant}}
+								<sup><i class="fas fa-question-circle" data-title="{{Réalise une sauvegarde avant de lancer la mise à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="force" />
+								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked /><i class="fas fa-save"></i>
 							</div>
 						</div>
-					</div>
-					<div class="alert alert-danger">{{L'option suivante n'est à modifier que sur demande du support sinon il faut ABSOLUMENT qu'elle soit sur 'Aucune'.}}</div>
-					<div class="form-group">
-						<label class="col-xs-6 control-label ">{{Mise à jour à réappliquer}}</label>
-						<div class="col-xs-5">
-							<select id="sel_updateVersion" class="form-control updateOption" data-l1key="update::reapply">
-								<option value="">{{Aucune}}</option>
-								<?php
-								$updates = array();
-								foreach ((update::listCoreUpdate()) as $udpate) {
-									$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
-								}
-								usort($updates, 'version_compare');
-								$updates = array_reverse($updates);
-								foreach ($updates as $value) {
-									//if ($value < 4.0) continue;
-									echo '<option value="' . $value . '">' . $value . '</option>';
-								}
-								?>
-							</select>
+						<div class="form-group">
+							<label class="col-xs-6 control-label"> {{Mettre à jour le Core}}
+								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, la Core sera mis à jour.}}"></i></sup>
+							</label>
+							<div class="col-xs-4">
+								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-pen-alt"></i>
+							</div>
 						</div>
-					</div>
+						<div class="form-group">
+							<label class="col-xs-6 control-label"> {{Mode forcé}}
+								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+							</label>
+							<div class="col-xs-4">
+								<input type="checkbox" class="updateOption" data-l1key="force" /><i class="fas fa-user-injured"></i>
+							</div>
+						</div>
+						<label><i class="fas fa-tasks"></i> Plugins</label>
+						<div class="form-group">
+							<label class="col-xs-6 control-label"> {{Mettre à jour les plugins}}
+								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.}}"></i></sup>
+							</label>
+							<div class="col-xs-4">
+								<input type="checkbox" class="updateOption" data-l1key="plugins" checked /><i class="fas fa-pen-alt"></i>
+							</div>
+						</div>
+						<hr class="hrPrimary">
+						<label><i class="fas fa-exclamation-circle"></i> Support</label>
+						<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> {{A n'utiliser que sur demande du support.}}</div>
+						<div class="form-group">
+							<label class="col-xs-6 control-label warning"><i class="fas fa-exclamation-triangle"></i> {{Script d'update à réappliquer}}</label>
+							<div class="col-xs-5">
+								<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
+									<option value="">{{Aucune}}</option>
+										<?php
+										$updates = array();
+										foreach ((update::listCoreUpdate()) as $udpate) {
+											$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+										}
+										usort($updates, 'version_compare');
+										$updates = array_reverse($updates);
+										$options = '';
+										foreach ($updates as $value) {
+											$options .= '<option value="' . $value . '">' . $value . '</option>';
+										}
+										echo $options;
+									?>
+								</select>
+							</div>
+						</div>
+
 				</fieldset>
 			</form>
-			<br>
-			<a class="btn btn-warning pull-right" id="bt_doUpdate"><i class="fas fa-check"></i> {{Mettre à jour}}</a>
 		</div>
 	</div>
 </div>

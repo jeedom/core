@@ -935,7 +935,7 @@ class history {
 		if ($this->getValue() === null) {
 			return;
 		}
-		global $JEEDOM_INTERNAL_CONFIG;
+		//global $JEEDOM_INTERNAL_CONFIG;
 		if ($_cmd === null) {
 			$cmd = $this->getCmd();
 			if (!is_object($cmd)) {
@@ -951,7 +951,7 @@ class history {
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
+		/*if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % 300;
@@ -997,7 +997,7 @@ class history {
 					}
 				}
 			}
-		}
+		}*/
 		$values = array(
 			'cmd_id' => $this->getCmd_id(),
 			'datetime' => $this->getDatetime(),

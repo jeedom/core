@@ -80,50 +80,58 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 </div>
 
 <script>
-var currentTheme = $('body').attr('data-theme')
-if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
-  $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
-}
-var parentWidth = $( window ).width()
-var parentHeight = $( window ).height()
-if (parentWidth > 850 && parentHeight > 750) {
-  $('#md_modal').dialog("option", "width", 800).dialog("option", "height", 650)
-  $("#md_modal").dialog({
-    position: {
-      my: "center center",
-      at: "center center",
-      of: window
-    }
-  })
-}
+(function() {// Self Isolation!
+  var currentTheme = document.body.getAttribute('data-theme')
+  if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+    document.getElementById('logoJeedom').src = jeedom.theme.logo_dark
+  }
 
-$('body').off('click','#bt_changelogCore').on('click','#bt_changelogCore',function() {
-  jeedom.getDocumentationUrl({
-    page: 'changelog',
-    theme: $('body').attr('data-theme'),
-    error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(url) {
-      window.open(url,'_blank')
-    }
+  document.querySelector('#md_about #bt_changelogCore').addEventListener('click', function(event) {
+    jeedom.getDocumentationUrl({
+      page: 'changelog',
+      theme: document.body.getAttribute('data-theme'),
+      error: function(error) {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_about', 'dialog'),
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(url) {
+        window.open(url,'_blank')
+      }
+    })
   })
-})
 
-$('body').off('click','#bt_faq').on('click','#bt_faq',function() {
-  jeedom.getDocumentationUrl({
-    page: 'faq',
-    theme: $('body').attr('data-theme'),
-    error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(url) {
-      window.open(url,'_blank')
-    }
+  document.querySelector('#md_about #bt_faq').addEventListener('click', function(event) {
+    jeedom.getDocumentationUrl({
+      page: 'faq',
+      theme: document.body.getAttribute('data-theme'),
+      error: function(error) {
+        jeedomUtils.showAlert({
+          attachTo: jeeDialog.get('#md_about', 'dialog'),
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(url) {
+        window.open(url,'_blank')
+      }
+    })
   })
-})
 
-$('#bt_firstUse').on('click',function(){
-  $('#md_modal').dialog({title: "{{Bienvenue dans Jeedom}}"}).load('index.php?v=d&modal=first.use').dialog('open')
-})
+  document.querySelector('#md_about #bt_firstUse').addEventListener('click', function(event) {
+    jeeDialog.dialog({
+      id: 'md_firstUse',
+      title: "{{Bienvenue dans Jeedom}}",
+      width: window.innerWidth > 800 ? 720 : '80vw',
+      height: window.innerHeight > 600 ? 400 : '80vw',
+      zIndex: 1040,
+      onClose: function() {
+        jeeDialog.get('#md_firstUse').destroy()
+      },
+      contentUrl: 'index.php?v=d&modal=first.use'
+    })
+  })
+})()
 </script>

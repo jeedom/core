@@ -45,6 +45,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		$_index = $object->getId();
 		$numParents = $object->getConfiguration('parentNumber');
 		$objectId = $object->getId();
+		$objectFatherId = $object->getFather() != 0 ? $object->getFather()->getId() : 0;
 		$objectName = $object->getName();
 		$objecUseCustomColor = $object->getConfiguration('useCustomColor');
 		$objectIcon = $object->getDisplay('icon');
@@ -57,16 +58,16 @@ function jeedom_displayObjectGroup($object = -1) {
 	} else {
 		$aStyle = ' style="margin-left:5px"';
 	}
-	$div .= '<div class="panel panel-default objectSortable" ' . $aStyle . '">';
+	$div .= '<div class="panel panel-default objectSortable" ' . $aStyle . '>';
 	$div .= '<div class="panel-heading" data-id="' . $objectId . '">';
 	//custom colors panel-title:
 	if ($objecUseCustomColor == 1) {
 		$aStyle = 'style="color:' . $object->getDisplay('tagTextColor') . '!important"';
 		$div .= '<h3 class="panel-title" style="background-color:' . $object->getDisplay('tagColor') . '; width:calc(100% - 50px);display: inline-block;">';
-		$div .= '<a ' . $aStyle . 'class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $_index . '" style="color:' . $object->getDisplay('tagTextColor') . '!important">' . $objectIcon . ' ' . $objectName;
+		$div .= '<a ' . $aStyle . 'class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '" style="color:' . $object->getDisplay('tagTextColor') . '!important">' . $objectIcon . ' ' . $objectName;
 	} else {
 		$div .= '<h3 class="panel-title" style="width:calc(100% - 50px);display: inline-block;">';
-		$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#config_' . $_index . '">' . $objectIcon . ' ' . $objectName;
+		$div .= '<a class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '">' . $objectIcon . ' ' . $objectName;
 	}
 	$div .= '</a></h3>';
 	//second panel-title trick for functions on the right:
@@ -91,6 +92,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		}
 		$translate_category = trim($translate_category, ',');
 		$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-translate-category="' . $translate_category . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+		$div .= '<i class="bt_sortable fas fa-arrows-alt-v cursor"></i> ';
 		$div .= '<input type="checkbox" class="cb_selEqLogic checkContext" data-context="objectId' . $objectId . '"/> ';
 		$div .= $eqLogic->getId() . ' | ' . $eqLogic->getEqType_name() . ' | ' . $eqLogic->getName();
 		if ($eqLogic->getIsEnable() != 1) {
@@ -184,9 +186,9 @@ function jeedom_displayObjectGroup($object = -1) {
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="historytab">
-				<div id="div_alertRemoveHistory"></div>
 				<a class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
-				<table class="table table-condensed table-bordered tablesorter" id="table_removeHistory">
+				<br>
+				<table class="table table-condensed" id="table_removeHistory">
 					<thead>
 						<tr>
 							<th>{{Date}}</th>

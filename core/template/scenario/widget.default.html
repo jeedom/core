@@ -1,3 +1,4 @@
+<!--template/scenario/widget.default-->
 <input class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="eqLogic" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;" value="#eqLogic#"/>
 <a class="btn btn-default btn-sm listCmdInfo cursor" data-cmd_id="#id#" data-uid="#uid#" style="display: inline-block;"><i class="fas fa-list-alt"></i></a>
 <select class="expressionAttr form-control input-sm" data-l1key="options" data-l2key="action" data-option_id="#id#" data-uid="#uid#" style="width: 35%; display: inline-block;">
@@ -6,12 +7,11 @@
   <option value="activate">{{Activer}}</option>
   <option value="deactivate">{{Désactiver}}</option>
 </select>
-
 <script>
   if (document.querySelector('.expressionAttr[data-option_id=#id#][data-uid="#uid#"][data-l1key="options"][data-l2key="action"] option[value="#action#"]')?.innerHTML != '') {
     document.querySelector('.expressionAttr[data-option_id=#id#][data-uid="#uid#"][data-l1key="options"][data-l2key="action"]').value = '#action#'
   }
-  $('.listCmdInfo[data-uid="#uid#"]').on('click', function() {
+  document.querySelector('.listCmdInfo[data-uid="#uid#"]').addEventListener('click', function() {
     jeedom.eqLogic.getSelectModal({cmd: {type: 'info'}}, function(result) {
       document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="eqLogic"]').value = result.human
     })

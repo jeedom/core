@@ -18,24 +18,40 @@
 
 if (!jeeFrontEnd.cron) {
   jeeFrontEnd.cron = {
+    cronDataTable: null,
     init: function() {
       window.jeeP = this
-      this.$tableCron = $('#table_cron')
+      this.tableCron = document.getElementById('table_cron')
+      this.tableListener = document.getElementById('table_listener')
       this.printCron()
       this.printListener()
-      jeedomUtils.initTableSorter(false)
-      this.$tableCron[0].config.widgetOptions.resizable_widths = ['50px', '65px', '52px', '100px', '80px', '', '', '', '115px', '148px', '120px', '60px', '90px']
-      this.$tableCron.trigger('applyWidgets')
-        .trigger('resizableReset')
-        .trigger('sorton', [
-          [
-            [0, 0]
-          ]
-        ])
-
       this.getDeamonState()
+
+      //Global cron state:
+      this.switchState()
+
+      domUtils(function() {
+        if (document.getElementById('tab_tableCron').hasClass('active')) {
+          document.querySelector('div.floatingbar').seen()
+        } else {
+          document.querySelector('div.floatingbar').unseen()
+        }
+      })
     },
     //-> Cron
+    switchState: function(state) {
+      if (!isset(state)) state = document.getElementById('bt_changeCronState').getAttribute('data-state')
+      let button = document.getElementById('bt_changeCronState')
+      if (state == '0') {
+        button.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
+        button.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
+        document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').addClass('warning')
+      } else {
+        button.removeClass('btn-success').addClass('btn-danger').setAttribute('data-state', '0')
+        button.innerHTML = '<i class="fas fa-times"></i> {{Désactiver le système cron}}'
+        document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').removeClass('warning')
+      }
+    },
     printCron: function() {
       jeedom.cron.all({
         success: function(data) {
@@ -48,7 +64,7 @@ if (!jeeFrontEnd.cron) {
             newRow.setJeeValues(data[i], '.cronAttr')
             table.appendChild(newRow)
           }
-          jeeP.$tableCron.trigger("update")
+          jeeFrontEnd.cron.setCronTable()
           jeeFrontEnd.modifyWithoutSave = false
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
@@ -91,7 +107,7 @@ if (!jeeFrontEnd.cron) {
       tr += '<td>'
       tr += init(_cron.lastRun)
       tr += '</td>'
-      tr += '<td>'
+      tr += '<td data-sorton="' + init(_cron.runtime, '0') + '">'
       tr += init(_cron.runtime, '0') + 's'
       tr += '</td>'
       tr += '<td>'
@@ -128,10 +144,22 @@ if (!jeeFrontEnd.cron) {
           tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>'
         }
       }
-      tr += ' <a class="btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle remove"></i></a>'
+      tr += ' <a class="remove btn btn-danger btn-xs" title="{{Supprimer cette tâche}}"><i class="icon maison-poubelle"></i></a>'
       tr += '</td>'
       tr += '</tr>'
       return tr
+    },
+    setCronTable: function() {
+      if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.destroy()
+
+      jeeFrontEnd.cron.cronDataTable = new DataTable(jeeFrontEnd.cron.tableCron, {
+        columns: [
+          { select: 0, sort: "asc" },
+          { select: 12, sortable: false }
+        ],
+        searchable: false,
+        paging: false,
+      })
     },
     //-> Listeners
     printListener: function() {
@@ -170,7 +198,7 @@ if (!jeeFrontEnd.cron) {
     },
     //-> Daemons
     getDeamonState: function() {
-      $('#table_deamon tbody').empty()
+      document.querySelector('#table_deamon tbody').empty()
       jeedom.plugin.all({
         activateOnly: true,
         error: function(error) {
@@ -217,10 +245,25 @@ if (!jeeFrontEnd.cron) {
                 }
                 html += '</td>'
                 html += '</tr>'
-                $('#table_deamon tbody').append(html)
+                document.getElementById('table_deamon').querySelector('tbody').insertAdjacentHTML('beforeend', html)
               }
             })
           }
+        }
+      })
+    },
+    //Save
+    saveCron: function() {
+      jeedom.cron.save({
+        crons: document.querySelectorAll('#table_cron tbody tr').getJeeValues('.cronAttr'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.printCron()
         }
       })
     },
@@ -229,50 +272,32 @@ if (!jeeFrontEnd.cron) {
 
 jeeFrontEnd.cron.init()
 
-document.registerEvent('keydown', function(event) {
-  if (jeedomUtils.getOpenedModal()) return
-
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-    event.preventDefault()
-    $("#bt_save").click()
-  }
-})
-
-$("#bt_refreshCron").on('click', function() {
+//Manage events outside parents delegations:
+document.getElementById('bt_refreshCron')?.addEventListener('click', function(event) {
   jeeP.printCron()
   jeeP.printListener()
 })
 
-$("#bt_addCron").on('click', function() {
-  var table = document.getElementById('table_cron').querySelector('tbody')
+document.getElementById('bt_addCron')?.addEventListener('click', function(event) {
+  let table = document.getElementById('table_cron').tBodies[0]
   let newRow = document.createElement("tr")
   newRow.innerHTML = jeeP.addCron({})
   newRow.setJeeValues({}, '.cronAttr')
-  table.appendChild(newRow)
-  jeeP.$tableCron.trigger("update")
+  table.insertBefore(newRow, table.firstChild)
+  //table.appendChild(newRow)
+  if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.refresh()
   jeeFrontEnd.modifyWithoutSave = true
 })
 
-$("#bt_save").on('click', function() {
-  jeedom.cron.save({
-    crons: document.querySelectorAll('#table_cron tbody tr').getJeeValues('.cronAttr'),
-    error: function(error) {
-      jeedomUtils.showAlert({
-        message: error.message,
-        level: 'danger'
-      })
-    },
-    success: function() {
-      jeeP.printCron()
-    }
-  })
+document.getElementById('bt_save')?.addEventListener('click', function(event) {
+  jeeFrontEnd.cron.saveCron()
 })
 
-$("#bt_changeCronState").on('click', function() {
-  var el = $(this)
+document.getElementById('bt_changeCronState')?.addEventListener('click', function(event) {
+  var _target = event.target
   jeedom.config.save({
     configuration: {
-      enableCron: el.attr('data-state')
+      enableCron: _target.getAttribute('data-state')
     },
     error: function(error) {
       jeedomUtils.showAlert({
@@ -281,110 +306,60 @@ $("#bt_changeCronState").on('click', function() {
       })
     },
     success: function() {
-      if (el.attr('data-state') == 1) {
-        el.removeClass('btn-success').addClass('btn-danger').attr('data-state', 0)
-        el.empty().html('<i class="fas fa-times"></i> {{Désactiver le système cron}}')
-      } else {
-        el.removeClass('btn-danger').addClass('btn-success').attr('data-state', 1)
-        el.empty().html('<i class="fas fa-check"></i> {{Activer le système cron}}</a>')
-      }
+      jeeP.switchState()
     }
   })
 })
 
-jeeP.$tableCron.on({
-  'click': function(event) {
-    $(this).closest('tr').remove()
-  }
-}, '.remove')
-
-jeeP.$tableCron.on({
-  'click': function(event) {
-    jeedom.cron.setState({
-      state: 'stop',
-      id: this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.printCron()
-      }
-    })
-  }
-}, '.stop')
-
-jeeP.$tableCron.on({
-  'click': function(event) {
-    jeedom.cron.setState({
-      state: 'start',
-      id: this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.printCron()
-      }
-    })
-  }
-}, '.start')
-
-jeeP.$tableCron.on({
-  'click': function(event) {
-    $('#md_modal').dialog({
-      title: "{{Détails du cron}}"
-    }).load('index.php?v=d&modal=object.display&class=cron&id=' + this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML).dialog('open')
-  }
-}, '.display')
-
-jeeP.$tableCron.on({
-  'change': function(event) {
-    if (this.jeeValue() == 1) {
-      this.closest('tr').querySelector('.cronAttr[data-l1key=deamonSleepTime]').seen()
-    } else {
-      this.closest('tr').querySelector('.cronAttr[data-l1key=deamonSleepTime]').unseen()
-    }
-  }
-}, '.cronAttr[data-l1key=deamon]')
-
-$("#table_listener").on({
-  'click': function(event) {
-    $('#md_modal').dialog({
-      title: "{{Détails du listener}}"
-    }).load('index.php?v=d&modal=object.display&class=listener&id=' + this.closest('tr').querySelector('span[data-l1key="id"]').innerHTML).dialog('open')
-  }
-}, '.display')
-
-$('#div_pageContainer').off('change', '.cronAttr').on('change', '.cronAttr:visible', function() {
-  jeeFrontEnd.modifyWithoutSave = true
-})
-
-$('#table_listener').off('click', '.removeListener').on('click', '.removeListener', function() {
-  var tr = $(this).closest('tr')
-  jeedom.listener.remove({
-    id: tr.attr('id'),
-    success: function() {
-      tr.remove()
-    }
-  })
-})
-
-$('#bt_refreshDeamon').on('click', function() {
+document.getElementById('bt_refreshDeamon')?.addEventListener('click', function(event) {
   jeeP.getDeamonState()
 })
 
-$('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
-  var plugin = $(this).data('plugin')
-  var action = $(this).data('action')
-  if (action == 'start') {
-    jeedom.plugin.deamonStart({
-      id: plugin,
-      forceRestart: 1,
+//Specials
+document.registerEvent('keydown', function(event) {
+  if (jeedomUtils.getOpenedModal()) return
+  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+    event.preventDefault()
+    jeeFrontEnd.cron.saveCron()
+  }
+})
+
+/*Events delegations
+*/
+document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('ul.nav.nav-tabs')) {
+    if (document.getElementById('tab_tableCron').hasClass('active')) {
+      document.querySelector('div.floatingbar').seen()
+    } else {
+      document.querySelector('div.floatingbar').unseen()
+    }
+    return
+  }
+})
+
+document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.cronAttr')) {
+    jeeFrontEnd.modifyWithoutSave = true
+  }
+})
+
+
+//Table cron
+document.getElementById('table_cron')?.tBodies[0].addEventListener('click', function(event) {
+  console.log('click:', event.target)
+  var _target = null
+  if (_target = event.target.closest('.remove')) {
+    _target.closest('tr').remove()
+    if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.refresh()
+    return
+  }
+
+  if (_target = event.target.closest('.stop')) {
+    jeedom.cron.setState({
+      state: 'stop',
+      id: _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -392,12 +367,16 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        jeeP.getDeamonState()
+        jeeP.printCron()
       }
     })
-  } else if (action == 'stop') {
-    jeedom.plugin.deamonStop({
-      id: plugin,
+    return
+  }
+
+  if (_target = event.target.closest('.start')) {
+    jeedom.cron.setState({
+      state: 'start',
+      id: _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML,
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -405,36 +384,121 @@ $('#table_deamon tbody').on('click', '.bt_deamonAction', function() {
         })
       },
       success: function() {
-        jeeP.getDeamonState()
+        jeeP.printCron()
       }
     })
-  } else if (action == 'enableAuto') {
-    jeedom.plugin.deamonChangeAutoMode({
-      id: plugin,
-      mode: 1,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
+    return
+  }
+
+  if (_target = event.target.closest('.display')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails du cron}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=cron&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+})
+
+document.getElementById('table_cron')?.tBodies[0].addEventListener('change', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.cronAttr[data-l1key="deamon"]')) {
+    if (_target.jeeValue() == 1) {
+      _target.closest('tr').querySelector('.cronAttr[data-l1key="deamonSleepTime"]').seen()
+    } else {
+      _target.closest('tr').querySelector('.cronAttr[data-l1key="deamonSleepTime"]').unseen()
+    }
+    return
+  }
+})
+
+
+
+//Table listeners
+document.getElementById('table_listener')?.tBodies[0].addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.display')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails du listener}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=listener&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.removeListener')) {
+    jeedom.listener.remove({
+      id: _target.getAttribute('id'),
       success: function() {
-        jeeP.getDeamonState()
+        tr.remove()
       }
     })
-  } else if (action == 'disableAuto') {
-    jeedom.plugin.deamonChangeAutoMode({
-      id: plugin,
-      mode: 0,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function() {
-        jeeP.getDeamonState()
-      }
-    })
+    return
+  }
+})
+
+//Table daemons
+document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', function(event) {
+  var _target = null
+  if (_target = event.target.closest('.bt_deamonAction')) {
+    var plugin = _target.getAttribute('data-plugin')
+    var action = _target.getAttribute('data-action')
+    if (action == 'start') {
+      jeedom.plugin.deamonStart({
+        id: plugin,
+        forceRestart: 1,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    } else if (action == 'stop') {
+      jeedom.plugin.deamonStop({
+        id: plugin,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    } else if (action == 'enableAuto') {
+      jeedom.plugin.deamonChangeAutoMode({
+        id: plugin,
+        mode: 1,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    } else if (action == 'disableAuto') {
+      jeedom.plugin.deamonChangeAutoMode({
+        id: plugin,
+        mode: 0,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeeP.getDeamonState()
+        }
+      })
+    }
+    return
   }
 })

@@ -32,17 +32,16 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 		</div>
 
 		<ul class="nav nav-tabs reportModeHidden" role="tablist" id="ul_tabBatteryAlert">
-			<li role="presentation" class="active batteries"><a data-target="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
-			<li role="presentation" class="alerts"><a data-target="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
-			<li role="presentation" id="tab_actionCmd"><a data-target="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
-			<li role="presentation" id="tab_alertCmd"><a data-target="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
-			<li role="presentation" id="tab_pushCmd"><a data-target="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
-			<li role="presentation" id="tab_deadCmd"><a data-target="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
+			<li id="tab_batteries" role="presentation" class="active"><a data-target="#battery" aria-controls="battery" role="tab" data-toggle="tab"><i class="fas fa-battery-full"></i> <span class="hidden-992">{{Batteries}}</span></a></li>
+			<li id="tab_alerts" role="presentation"><a data-target="#alertEqlogic" aria-controls="alertEqlogic" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> <span class="hidden-992">{{Equipements en alerte}}</span></a></li>
+			<li id="tab_actionCmd" role="presentation"><a data-target="#actionCmd" aria-controls="actionCmd" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> <span class="hidden-992">{{Actions définies}}</span></a></li>
+			<li id="tab_alertCmd" role="presentation"><a data-target="#alertCmd" aria-controls="alertCmd" role="tab" data-toggle="tab"><i class="fas fa-bell"></i> <span class="hidden-992">{{Alertes définies}}</span></a></li>
+			<li id="tab_pushCmd" role="presentation"><a data-target="#pushCmd" aria-controls="pushCmd" role="tab" data-toggle="tab"><i class="fas fa-upload"></i> <span class="hidden-992">{{Push définis}}</span></a></li>
+			<li id="tab_deadCmd" role="presentation"><a data-target="#deadCmd" aria-controls="deadCmd" role="tab" data-toggle="tab"><i class="fab fa-snapchat-ghost"></i> <span class="hidden-992">{{Commandes orphelines}}</span></a></li>
 		</ul>
 
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="battery">
-				<br />
 				<div class="input-group" style="margin-bottom:5px;">
 					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_search" />
 					<div class="input-group-btn">
@@ -75,14 +74,14 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</div>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="actionCmd">
-				<table class="table table-condensed tablesorter" id="table_Action">
+				<table class="table table-condensed dataTable" id="table_Action">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
 							<th>{{Commande}}</th>
-							<th>{{Type}}</th>
-							<th>{{Actions}}</th>
-							<th></th>
+							<th style="width:190px;">{{Type}}</th>
+							<th>{{Exécution}}</th>
+							<th style="width:80px;">{{Actions}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -168,13 +167,13 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="pushCmd">
-				<table class="table table-condensed tablesorter" id="table_Push">
+				<table class="table table-condensed dataTable" id="table_Push">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
 							<th>{{Commande}}</th>
 							<th>{{Type}}</th>
-							<th></th>
+							<th style="width:80px;">{{Action}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -222,12 +221,12 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="alertCmd">
-				<table class="table table-condensed tablesorter" id="table_Alert">
+				<table class="table table-condensed dataTable" id="table_Alert">
 					<thead>
 						<tr>
 							<th>{{Equipement}}</th>
 							<th>{{Alertes}}</th>
-							<th>{{Timeout}}</th>
+							<th style="width:180px;">{{Timeout}}</th>
 							<th>{{Seuils batterie}}</th>
 						</tr>
 					</thead>
@@ -294,13 +293,13 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 				</table>
 			</div>
 			<div role="tabpanel" class="tab-pane" id="deadCmd">
-				<table class="table table-condensed tablesorter" id="table_deadCmd">
+				<table class="table table-condensed dataTable" id="table_deadCmd">
 					<thead>
 						<tr>
-							<th>{{Type}}</th>
+							<th style="width:180px;">{{Type}}</th>
 							<th>{{Détail}}</th>
 							<th>{{Commande}}</th>
-							<th>{{Utilisation}}</th>
+							<th style="width:180px;">{{Utilisation}}</th>
 						</tr>
 					</thead>
 					<tbody>

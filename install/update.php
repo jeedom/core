@@ -75,7 +75,9 @@ try {
 	echo "[PROGRESS][5]\n";
 	try {
 		echo "Check rights...";
-		jeedom::cleanFileSystemRight();
+		if(method_exists('jeedom','cleanFileSystemRight')){
+			jeedom::cleanFileSystemRight();
+		}
 		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***ERROR***' . $e->getMessage();
@@ -111,7 +113,10 @@ try {
 					echo "Download url : " . $url . "\n";
 					echo "Download in progress...";
 					if (!is_writable($tmp_dir)) {
-						throw new Exception('Can not write : ' . $tmp . '. Please execute : chmod 777 -R ' . $tmp_dir);
+						shell_exec('sudo chmod 777 -R ' . $tmp_dir);
+					}
+					if (!is_writable($tmp_dir)) {
+						throw new Exception('Can not write : ' . $tmp . '. Please execute : sudo chmod 777 -R ' . $tmp_dir);
 					}
 					if (file_exists($tmp)) {
 						unlink($tmp);
@@ -280,7 +285,7 @@ try {
 			require_once __DIR__ . '/consistency.php';
 			echo "OK\n";
 		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 		try {
 			echo "Check update...";
@@ -288,7 +293,7 @@ try {
 			config::save('version', jeedom::version());
 			echo "OK\n";
 		} catch (Exception $ex) {
-			echo "***ERREUR*** " . $ex->getMessage() . "\n";
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
 		}
 		echo "***************Jeedom is up to date in " . jeedom::version() . "***************\n";
 	}
@@ -305,13 +310,13 @@ try {
 		update::checkAllUpdate();
 		echo "OK\n";
 	} catch (Exception $ex) {
-		echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		echo "***ERROR*** " . $ex->getMessage() . "\n";
 	}
 	echo "[PROGRESS][95]\n";
 	try {
 		jeedom::start();
 	} catch (Exception $ex) {
-		echo "***ERREUR*** " . $ex->getMessage() . "\n";
+		echo "***ERROR*** " . $ex->getMessage() . "\n";
 	}
 	config::save('version', jeedom::version());
 	echo "[PROGRESS][100]\n";

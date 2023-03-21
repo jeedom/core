@@ -86,9 +86,15 @@ class network {
 				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
 			if ($_protocol == 'proto:127.0.0.1:port:comp') {
+				if (jeedom::getHardwareName() == 'docker') {
+					return trim(config::byKey('internalProtocol') . config::byKey('internalProtocol') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+				}
 				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
+				if (jeedom::getHardwareName() == 'docker') {
+					return trim(config::byKey('internalProtocol') . config::byKey('internalProtocol') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+				}
 				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if (config::byKey('internalPort', 'core', '') == '') {
@@ -478,9 +484,9 @@ class network {
 		return json_decode(shell_exec(system::getCmdSudo() . "ip -j a"), true);
 	}
 
-	public static function cron5() {
+	public static function cron10() {
 		if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1) {
-			sleep(rand(0, 15));
+			sleep(rand(0, 240));
 			if (!network::test('external')) {
 				sleep(rand(20, 60));
 				if (!network::test('external')) {

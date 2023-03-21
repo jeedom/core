@@ -95,6 +95,24 @@ switch ($argv[1]) {
                 die();
         }
         break;
+    case 'message':
+        switch ($argv[2]) {
+            case 'add':
+                if (!isset($argv[3])) {
+                    echo "No type provide";
+                    break;
+                }
+                if (!isset($argv[4])) {
+                    echo "No message provide";
+                    break;
+                }
+                message::add($argv[3], $argv[4]);
+                break;
+            default:
+                echo "No action provide : add";
+                die();
+        }
+        break;
     default:
         help();
         break;

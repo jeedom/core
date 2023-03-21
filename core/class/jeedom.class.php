@@ -982,13 +982,6 @@ class jeedom {
 
 	public static function cron5() {
 		try {
-			network::cron5();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		}
-		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron5') && config::byKey($name . '::enable') == 1) {
@@ -1008,6 +1001,13 @@ class jeedom {
 	}
 
 	public static function cron10() {
+		try {
+			network::cron10();
+		} catch (Exception $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		} catch (Error $e) {
+			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
@@ -1164,6 +1164,7 @@ class jeedom {
 			listener::clean();
 			user::regenerateHash();
 			jeeObject::cronDaily();
+			timeline::clean(false);
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
@@ -1205,7 +1206,9 @@ class jeedom {
 					}
 					if ($toUpdate != '') {
 						//set $_logicalId so update function can remove such messages. Bypassed by message::save to notify different updates instead of new occurence.
-						message::add('update', __('De nouvelles mises à jour sont disponibles', __FILE__) . ' : ' . trim($toUpdate, ','), '', 'newUpdate');
+						$msg = __('De nouvelles mises à jour sont disponibles', __FILE__) . ' : ' . trim($toUpdate, ',');
+						$action = '<a href="/index.php?v=d&p=update">' . __('Centre de mise à jour', __FILE__) . '</a>';
+						message::add('update', $msg, $action, 'newUpdate');
 					}
 				}
 			}
@@ -1251,6 +1254,9 @@ class jeedom {
 		if (count($datas) > 0) {
 			foreach ($datas as $data) {
 				try {
+					if (method_exists($data, 'refresh')) {
+						$data->refresh();
+					}
 					utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
 					$data->save(true);
 				} catch (\Exception $e) {

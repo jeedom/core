@@ -67,7 +67,7 @@ jeedom.view.toHtml = function(_params) {
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: "get",
-    id: ($.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
+    id: (Array.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
     version: _params.version,
     html: true,
   };
@@ -91,7 +91,7 @@ jeedom.view.handleViewAjax = function(_params) {
     viewZone = _params.view.viewZone[i];
     if (colIdx == 0) result.html += '<div class="col-xs-12 div_rowZones">';
     div_class = 'div_viewZone ';
-    if (!$.mobile) {
+    if (jeedom.display.version != 'mobile') {
       div_class += ' col-xs-12 col-sm-' + init(viewZone.configuration.zoneCol, 12);
     }
     if (viewZone.type == 'table') {

@@ -102,28 +102,32 @@ jeedom.timeline.autocompleteFolder = function() {
           availableTags.push(data[i])
         }
       }
+      document.querySelectorAll('[data-l2key="timeline::folder"]').forEach(_input => {
+        _input.jeeComplete({
+          id: 'timelineAutocomplete',
+          minLength: 0,
+          source: availableTags,
+          focus: function() {
+            return false
+          },
+          select: function(event, data) {
+            //Ensure timeline folders comma sperated:
+            var inputValue = data.item.value
+            var term = data.value
+            if (inputValue.includes(' ')) {
+              var values = inputValue.split(' ')
+              values.pop()
+              inputValue = values.join(',') + ',' + data.value
+            }
+            var values = inputValue.split(',')
+            values.pop()
+            var newValue = values.join(',') + ',' + data.value
+            if (newValue.substring(0, 1) == ',') newValue = newValue.substr(1)
 
-      $('[data-l2key="timeline::folder"]').autocomplete({
-        minLength: 0,
-        source: function(request, response) {
-          //return last term:
-          var values = request.term.split(',')
-          var term = values[values.length - 1]
-          response(
-            $.ui.autocomplete.filter(availableTags, term)
-          )
-        },
-        focus: function() {
-          return false
-        },
-        select: function(event, ui) {
-          var values = this.value.split(',')
-          values.pop()
-          var newValue = values.join(',') + ',' + ui.item.value
-          if (newValue.substring(0, 1) == ',') newValue = newValue.substr(1)
-          this.value = newValue
-          return false
-        }
+            data.item.value = newValue
+            return false
+          }
+        })
       })
     }
   })
