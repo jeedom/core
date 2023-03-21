@@ -307,7 +307,7 @@ class system {
 		self::$_installPackage[$_type] = array();
 		switch ($_type) {
 			case 'apt':
-				$lines = explode("\n", shell_exec('dpkg -l | tail -n +6'));
+				$lines = explode("\n", shell_exec('dpkg -l | grep "^ii"'));
 				foreach ($lines as $line) {
 					$infos = array_values(array_filter(explode(" ", $line)));
 					if (!isset($infos[1])) {

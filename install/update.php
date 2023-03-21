@@ -113,7 +113,10 @@ try {
 					echo "Download url : " . $url . "\n";
 					echo "Download in progress...";
 					if (!is_writable($tmp_dir)) {
-						throw new Exception('Can not write : ' . $tmp . '. Please execute : chmod 777 -R ' . $tmp_dir);
+						shell_exec('sudo chmod 777 -R ' . $tmp_dir);
+					}
+					if (!is_writable($tmp_dir)) {
+						throw new Exception('Can not write : ' . $tmp . '. Please execute : sudo chmod 777 -R ' . $tmp_dir);
 					}
 					if (file_exists($tmp)) {
 						unlink($tmp);
