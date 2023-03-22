@@ -1376,6 +1376,7 @@ document.getElementById('apitab').addEventListener('click', function(event) {
   if (_target = event.target.closest('.bt_copyPass')) {
     _target.closest('.input-group').querySelector('.span_apikey').select();
     document.execCommand('copy');
+    window.getSelection()?.removeAllRanges();
   }
 })
 
