@@ -16,6 +16,13 @@
 
 jeedom.appMobile = function () {};
 
+jeedom.appMobile.detected = function() {
+  if (window.ReactNativeWebView != undefined) {
+    return true; 
+  }
+  return false;
+}
+
 jeedom.appMobile.postToApp = function (_action, _options) {
   let message = {}
   if (window.ReactNativeWebView != undefined) {
