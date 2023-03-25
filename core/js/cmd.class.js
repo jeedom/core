@@ -447,27 +447,30 @@ jeedom.cmd.refreshValue = function(_params) {
   }
 }
 
-jeedom.cmd.addUpdateFunction = function(cmd_id, _function) {
+jeedom.cmd.addUpdateFunction = function(_cmd_id, _function) {
+  if(_cmd_id == ''){
+    return;
+  }
   if (!isset(jeedom.cmd.update)) {
     jeedom.cmd.update = []
   }
-  if (!isset(jeedom.cmd.update[cmd_id])) {
-    jeedom.cmd.update[cmd_id] = [_function]
+  if (!isset(jeedom.cmd.update[_cmd_id])) {
+    jeedom.cmd.update[_cmd_id] = [_function]
     return
   }
-  if (typeof jeedom.cmd.update[cmd_id] == 'function') {
-    let prevFunction = jeedom.cmd.update[cmd_id]
+  if (typeof jeedom.cmd.update[_cmd_id] == 'function') {
+    let prevFunction = jeedom.cmd.update[_cmd_id]
     if (prevFunction.toString() == _function.toString()) {
       return
     }
-    jeedom.cmd.update[cmd_id] = [prevFunction, _function]
+    jeedom.cmd.update[_cmd_id] = [prevFunction, _function]
   }
-  for (var i in jeedom.cmd.update[cmd_id]) {
-    if (jeedom.cmd.update[cmd_id][i].toString() == _function.toString()) {
+  for (var i in jeedom.cmd.update[_cmd_id]) {
+    if (jeedom.cmd.update[_cmd_id][i].toString() == _function.toString()) {
       return
     }
   }
-  jeedom.cmd.update[cmd_id].push(_function)
+  jeedom.cmd.update[_cmd_id].push(_function)
 }
 
 jeedom.cmd.resetUpdateFunction = function() {
