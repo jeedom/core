@@ -143,7 +143,7 @@ sendVarToJS([
                 $display .= '<td><span class="label label-sm label-' . (($cmd->getType() == 'action') ? 'warning' : 'primary') . '">' . $cmd->getType() . '</span> <span class="label label-sm label-info">' . $cmd->getSubtype() . '</span></td>';
                 $display .= '<td>';
                 if ($cmd->getType() == 'info') {
-                  $value = $cmd->execCmd();
+                  $value = htmlspecialchars($cmd->execCmd());
                   $title = '{{Date de valeur}} : ' . $cmd->getValueDate() . '<br>{{Date de collecte}} : ' .  $cmd->getCollectDate();
                   if (strlen($value) > 50) {
                     $title .= '<br>{{Valeur}} : ' . $value;
