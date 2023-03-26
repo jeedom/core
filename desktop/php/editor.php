@@ -29,7 +29,10 @@ sendVarToJS([
 	'root' => init('root', ''),
 ]);
 
-include_file('3rdparty', 'jquery/jquery.min', 'js');
+if (!$loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
+if (!$loadJquery) include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+
+//include_file('3rdparty', 'jquery/jquery.min', 'js');
 include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 
 
