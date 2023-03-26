@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  jeedom:
+    # fix jeedom version to avoid unwanted upgrade
+    image: jeedom/jeedom:4.4
+    restart: unless-stopped
+    # map host directories into container volumes
+    # volumes:
+    #  - ./volumes/jeedom:/var/www/html
+    #  - ./volumes/backup:/tmp/backup
+    healthcheck:
+      test: ["CMD-SHELL", "curl -so /tmp/status http://localhost/here.html || exit 1"]
+      interval: 1m30s
+      retries: 3
+      start_period: 40s
+      timeout: 20s
+    ports:
+      # host port mapped to the container port 80
+      - "80:80"
+    logging:
+      # limit log file and size
+      options:
+        max-size: "10m"
+        max-file: "1"
