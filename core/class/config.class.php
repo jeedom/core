@@ -444,11 +444,11 @@ class config {
 	}
 
 	public static function preConfig_info_latitude($_value) {
-		return str_replace(',', '.', $_value);
+		return trim(str_replace(',', '.', $_value));
 	}
 
 	public static function preConfig_info_longitude($_value) {
-		return str_replace(',', '.', $_value);
+		return trim(str_replace(',', '.', $_value));
 	}
 
 	public static function preConfig_tts_engine($_value) {
