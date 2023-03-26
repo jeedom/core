@@ -1219,7 +1219,7 @@ if (!jeeFrontEnd.scenario) {
       if (subType == 'numeric') {
         message += '<div class="col-xs-3">'
         message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égal}}</option>'
+        message += '    <option value="===">{{égal}}</option>'
         message += '    <option value=">">{{supérieur}}</option>'
         message += '    <option value="<">{{inférieur}}</option>'
         message += '    <option value="!=">{{différent}}</option>'
