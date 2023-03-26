@@ -686,17 +686,28 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             //saving will update the eqLogic tile, set event once:
             document.body.addEventListener('eqLogic::update', function(_event, _options) {
               console.log('eqLogic::update', _event, _options)
-              if (document.body.getAttribute('data-page' == 'dashboard')) {
+              let found = false;
+              if (_event.detail) {
+                for (let i in _event.detail) {
+                  if (_event.detail[i].eqLogic_id && eqLogic.id == _event.detail[i].eqLogic_id) {
+                    found = true
+                  }
+                }
+              }
+              if (!found) {
+                return;
+              }
+              if (document.body.getAttribute('data-page') == 'dashboard') {
                 setTimeout(function() {
                   jeeFrontEnd.dashboard.editWidgetMode(0, false)
                   jeeFrontEnd.dashboard.editWidgetMode(1, false)
-                }, 250)
+                }, 50)
               }
-              if (document.body.getAttribute('data-page' == 'view')) {
+              if (document.body.getAttribute('data-page') == 'view') {
                 setTimeout(function() {
                   jeeFrontEnd.view.editWidgetMode(0, false)
                   jeeFrontEnd.view.editWidgetMode(1, false)
-                }, 250)
+                }, 50)
               }
             }, {
               once: true
