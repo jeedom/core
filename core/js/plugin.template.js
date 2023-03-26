@@ -703,6 +703,7 @@ function addCmdToTableDefault(_cmd) {
   }
   var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
   tr += '<td style="min-width:50px;width:70px;">';
+  tr += '<span class="cmdAttr" data-l1key="id"></span>';
   tr += '</td>';
   tr += '<td>';
   tr += '<div class="row">';
@@ -719,7 +720,6 @@ function addCmdToTableDefault(_cmd) {
   tr += '</select>';
   tr += '</td>';
   tr += '<td>';
-  tr += '<input class="cmdAttr form-control input-sm" data-l1key="id" style="display : none;">';
   tr += '<span class="type" type="' + init(_cmd.type) + '">' + jeedom.cmd.availableType() + '</span>';
   tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>';
   tr += '</td>';
