@@ -99,6 +99,7 @@ if (!jeeFrontEnd.scenario) {
           })
         },
         minLength: 1,
+        forceSingle: true
       })
 
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
