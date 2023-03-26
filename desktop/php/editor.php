@@ -2,7 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+$loadJquery = true;
+if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 global $JEEDOM_INTERNAL_CONFIG;
 
 if (init('type', '') == 'custom') {
