@@ -697,6 +697,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               if (!found) {
                 return;
               }
+              document.body.removeEventListener('eqLogic::update', arguments.callee);
               if (document.body.getAttribute('data-page') == 'dashboard') {
                 setTimeout(function() {
                   jeeFrontEnd.dashboard.editWidgetMode(0, false)
@@ -709,8 +710,6 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   jeeFrontEnd.view.editWidgetMode(1, false)
                 }, 50)
               }
-            }, {
-              once: true
             })
           }
         })
