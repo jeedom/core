@@ -22,7 +22,11 @@ input[type=checkbox]:checked {
   color: var(--linkHover-color) !important;
 }
 
+/* ___________________________________________________________VIEW */
 
+div.div_viewZone {
+  background-color: rgba(255, 255, 255, 0.2)
+}
 
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
