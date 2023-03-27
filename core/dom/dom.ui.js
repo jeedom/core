@@ -1364,12 +1364,14 @@ var jeeDialog = (function()
             })
           }
           dialogContent.appendChild(content)
+          break
         case 'textarea':
           var content = document.createElement('textarea')
           content.setAttribute('data-l1key', 'result')
           content.addClass('promptAttr')
           if (_options.value) content.value = _options.value
           dialogContent.appendChild(content)
+          break
       }
     }
 
