@@ -41,7 +41,7 @@ sendVarToJS([
     <div id="div_plan3dHeaderConfigure">
       <form class="form-horizontal">
         <fieldset>
-          <input type="text"  class="plan3dHeaderAttr form-control" data-l1key="id" style="display: none;"/>
+          <input type="text" class="plan3dHeaderAttr form-control" data-l1key="id" style="display: none;" />
           <div class="form-group">
             <label class="col-lg-4 control-label">{{Nom}}</label>
             <div class="col-lg-2">
@@ -66,14 +66,14 @@ sendVarToJS([
               <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
             </div>
             <div class="col-lg-2">
-              <div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon" ></div>
+              <div class="plan3dHeaderAttr" data-l1key="configuration" data-l2key="icon"></div>
             </div>
           </div>
           <div class="form-group">
             <label class="col-lg-4 control-label">{{Modèle 3D}}</label>
             <div class="col-lg-8">
               <span class="btn btn-default btn-file">
-                <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input  id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
+                <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_upload3dModel" type="file" name="file" style="display: inline-block;">
               </span>
             </div>
           </div>
@@ -109,7 +109,7 @@ sendVarToJS([
           <tbody>
             <?php
             foreach (($plan3dHeader->getPlan3d()) as $plan3d) {
-              echo '<tr  class="plan" data-id="'.$plan3d->getId().'">';
+              echo '<tr  class="plan" data-id="' . $plan3d->getId() . '">';
               echo '<td>';
               echo $plan3d->getId();
               echo '</td>';
@@ -137,77 +137,95 @@ sendVarToJS([
 </div>
 
 <script>
-$('.bt_removePlan3dComposant').off('click').on('click', function() {
-  var tr = $(this).closest('tr')
-  jeedom.plan3d.remove({
-    id : tr.attr('data-id'),
-    error: function(error) {
-      $('#div_alertplan3dHeaderConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      $('#div_alertplan3dHeaderConfigure').showAlert({message: '{{Composant supprimé}}', level: 'success'})
-      tr.remove()
+  $('.bt_removePlan3dComposant').off('click').on('click', function() {
+    var tr = $(this).closest('tr')
+    jeedom.plan3d.remove({
+      id: tr.attr('data-id'),
+      error: function(error) {
+        $('#div_alertplan3dHeaderConfigure').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        $('#div_alertplan3dHeaderConfigure').showAlert({
+          message: '{{Composant supprimé}}',
+          level: 'success'
+        })
+        tr.remove()
+      }
+    })
+  })
+
+  $('.bt_configurePlan3dComposant').off('click').on('click', function() {
+    var tr = $(this).closest('tr')
+    jeeDialog.dialog({
+      id: 'jee_modal2',
+      title: "{{Configuration du composant}}",
+      contentUrl: 'index.php?v=d&modal=plan3d.configure&id=' + tr.attr('data-id')
+    })
+  });
+
+  $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', function() {
+    this.jeeValue('')
+  })
+
+  $('#bt_upload3dModel').fileupload({
+    replaceFileInput: false,
+    url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + jeephp2js.md_plan3dHeaderConfigure_Id,
+    dataType: 'json',
+    done: function(e, data) {
+      if (data.result.state != 'ok') {
+        $('#div_alertplan3dHeaderConfigure').showAlert({
+          message: data.result.result,
+          level: 'danger'
+        })
+        return
+      }
+      $('#div_alertplan3dHeaderConfigure').showAlert({
+        message: '{{Chargement réussi merci de recharger la page pour voir le résultat}}',
+        level: 'success'
+      })
     }
   })
-})
 
-$('.bt_configurePlan3dComposant').off('click').on('click', function() {
-  var tr = $(this).closest('tr')
-  jeeDialog.dialog({
-    id: 'jee_modal2',
-    title: "{{Configuration du composant}}",
-    contentUrl: 'index.php?v=d&modal=plan3d.configure&id=' + tr.attr('data-id')
+  $('#bt_chooseIcon').on('click', function() {
+    jeedomUtils.chooseIcon(function(_icon) {
+      $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').empty().append(_icon)
+    })
   })
-});
 
-$('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').on('dblclick', function() {
-  this.jeeValue('')
-})
+  $('#bt_saveConfigureplan3dHeader').on('click', function() {
+    jeedom.plan3d.saveHeader({
+      plan3dHeader: document.getElementById('div_plan3dHeaderConfigure').getJeeValues('.plan3dHeaderAttr')[0],
+      error: function(error) {
+        $('#div_alertplan3dHeaderConfigure').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        window.location.reload()
+      }
+    })
+  })
 
-$('#bt_upload3dModel').fileupload({
-  replaceFileInput: false,
-  url: 'core/ajax/plan3d.ajax.php?action=uploadModel&id=' + jeephp2js.md_plan3dHeaderConfigure_Id,
-  dataType: 'json',
-  done: function(e, data) {
-    if (data.result.state != 'ok') {
-      $('#div_alertplan3dHeaderConfigure').showAlert({message: data.result.result, level: 'danger'})
-      return
-    }
-    $('#div_alertplan3dHeaderConfigure').showAlert({message: '{{Chargement réussi merci de recharger la page pour voir le résultat}}', level: 'success'})
+  $('#bt_removeConfigureplan3dHeader').on('click', function() {
+    jeedom.plan3d.removeHeader({
+      id: document.getElementById('div_plan3dHeaderConfigure').getJeeValues('.plan3dHeaderAttr')[0].id,
+      error: function(error) {
+        $('#div_alertplan3dHeaderConfigure').showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function() {
+        window.location.reload()
+      }
+    })
+  })
+
+  if (isset(jeephp2js.md_plan3dHeaderConfigure_Id) && jeephp2js.md_plan3dHeaderConfigure_Id != '') {
+    document.getElementById('div_plan3dHeaderConfigure').setJeeValues(jeephp2js.md_plan3dHeaderConfigure_plan3dHeader, '.plan3dHeaderAttr')
   }
-})
-
-$('#bt_chooseIcon').on('click', function() {
-  jeedomUtils.chooseIcon(function(_icon) {
-    $('.plan3dHeaderAttr[data-l1key=configuration][data-l2key=icon]').empty().append(_icon)
-  })
-})
-
-$('#bt_saveConfigureplan3dHeader').on('click', function() {
-  jeedom.plan3d.saveHeader({
-    plan3dHeader: document.getElementById('div_plan3dHeaderConfigure').getJeeValues('.plan3dHeaderAttr')[0],
-    error: function(error) {
-      $('#div_alertplan3dHeaderConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      window.location.reload()
-    }
-  })
-})
-
-$('#bt_removeConfigureplan3dHeader').on('click', function() {
-  jeedom.plan3d.removeHeader({
-    id: document.getElementById('div_plan3dHeaderConfigure').getJeeValues('.plan3dHeaderAttr')[0],
-    error: function(error) {
-      $('#div_alertplan3dHeaderConfigure').showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      window.location.reload()
-    }
-  })
-})
-
-if (isset(jeephp2js.md_plan3dHeaderConfigure_Id) && jeephp2js.md_plan3dHeaderConfigure_Id != '') {
-  document.getElementById('div_plan3dHeaderConfigure').setJeeValues(jeephp2js.md_plan3dHeaderConfigure_plan3dHeader, '.plan3dHeaderAttr')
-}
 </script>
