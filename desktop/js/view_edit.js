@@ -82,7 +82,7 @@ if (!jeeFrontEnd.view_edit) {
         _viewZone.configuration = {};
       }
       if (init(_viewZone.emplacement) == '') {
-        var id = document.querySelectorAll('div_viewZones .viewZone').length
+        var id = document.querySelectorAll('#div_viewZones .viewZone').length
         var div = '<div class="viewZone" id="div_viewZone' + id + '">'
         div += '<legend><span class="viewZoneAttr" data-l1key="name"></span><span class="small viewtype"></span>'
         div += '<div class="input-group pull-right" style="display:inline-flex">'
@@ -182,7 +182,7 @@ if (!jeeFrontEnd.view_edit) {
         }
         div += '</div>'
 
-        document.getElementById('div_viewZones').insertAdjacentHTML('beforeend', div)
+        document.getElementById('div_viewZones').insertAdjacentHTML('beforeend', div);
         document.querySelectorAll('#div_viewZones .viewZone').last().setJeeValues(_viewZone, '.viewZoneAttr')
 
         let lastView = document.getElementById('div_viewZones').querySelectorAll('.viewZone').last().querySelector('table.div_viewData')
@@ -387,6 +387,8 @@ Sortable.create(document.getElementById('div_viewZones'), {
   delay: 100,
   delayOnTouchOnly: true,
   direction: 'vertical',
+  filter: "input",
+  preventOnFilter: false,
   removeCloneOnHide: true,
   onStart: function (event) {
     console.log('div_viewZones onStart', event, event.oldIndex)

@@ -856,7 +856,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         //Set cmd values badges
         document.querySelectorAll('#cmd_information .cmdConfigure_cmdValue').forEach(_cmd => {
           jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
-            let cmd = document.querySelector('.cmdConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
+            let cmd = document.querySelector('.cmdConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
             cmd.setAttribute('title', '{{Date de collecte}} : ' + _options.collectDate)
             cmd.empty().innerHTML = _options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate
             jeedomUtils.initTooltips()

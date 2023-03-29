@@ -778,8 +778,8 @@ document.getElementById('div_pageContainer').addEventListener('dblclick', functi
   var _target = null
   if (event.target.matches('.cmd input, textarea, select, span, a')) {
     event.stopPropagation()
+    return;
   }
-
   //Cmd-->
   if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
     _target.innerHTML = ''
