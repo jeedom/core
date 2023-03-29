@@ -387,6 +387,8 @@ Sortable.create(document.getElementById('div_viewZones'), {
   delay: 100,
   delayOnTouchOnly: true,
   direction: 'vertical',
+  filter: "input",
+  preventOnFilter: false,
   removeCloneOnHide: true,
   onStart: function (event) {
     console.log('div_viewZones onStart', event, event.oldIndex)
