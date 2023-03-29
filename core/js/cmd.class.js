@@ -792,6 +792,9 @@ jeedom.cmd.historyInfluxAll = function(_params) {
 }
 
 jeedom.cmd.changeType = function(_cmd, _subType) {
+  if(_cmd.length == 0){
+    return; 
+  }
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
@@ -842,6 +845,9 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
 }
 
 jeedom.cmd.changeSubType = function(_cmd) {
+  if(_cmd.length == 0){
+    return; 
+  }
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
