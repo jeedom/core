@@ -436,6 +436,9 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   var cmd = null;
   for (var i in _params) {
+    if(_params[i].cmd_id == ''){
+      continue;
+    }
     //update tile graph info:
     if ($('.eqlogicbackgraph[data-cmdid=' + _params[i].cmd_id + ']').length) {
       jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
