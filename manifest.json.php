@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 {
   "short_name": "<?php echo config::byKey('product_name'); ?>",
   "background_color": "#ffffff",
-  "theme_color": "#94ca02",
+  "theme_color": "<?php echo config::byKey('theme_color'); ?>",
   "name": "<?php echo config::byKey('product_name'); ?>",
   "gcm_sender_id": "103953800507",
   "start_url": "index.php",
