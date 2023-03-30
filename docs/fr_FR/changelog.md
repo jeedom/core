@@ -3,7 +3,7 @@
 ## 4.3.17
 
 - Correction de bugs
-- Ajout d'un message lors d ela mise à jour si l'utilisateur n'est ps sur la version stable
+- Ajout d'un message lors de la mise à jour si l'utilisateur n'est pas sur la version stable
 
 ## 4.3.16
 
