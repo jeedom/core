@@ -135,6 +135,11 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 					<div class="alert alert-warning">
 						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
+					<?php if (config::byKey('core::branch') == 'beta' || config::byKey('core::branch') == 'alpha') { ?>
+						<div class="alert alert-danger">
+							{{Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : }} <?php echo config::byKey('core::branch'); ?>. {{Cette version ne bénéficie d'aucun support de Jeedom SAS.}}
+						</div>
+					<?php } ?>
 
 					<div class="form-group">
 						<div class="form-group">
