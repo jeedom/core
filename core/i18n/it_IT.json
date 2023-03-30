@@ -1561,6 +1561,8 @@
         "Avant toute mise à jour, merci de consulter le": "Avant toute mise à jour, merci de consulter le",
         "changelog": "changelog",
         "du Core": "du Core",
+        "Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : ": "Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version :",
+        "Cette version ne bénéficie d'aucun support de Jeedom SAS.": "Cette version ne bénéficie d'aucun support de Jeedom SAS",
         "Pré-update": "Pre-update",
         "Mettre d'abord le script d'update à jour.": "Prima aggiorna lo script di aggiornamento",
         "Sauvegarder avant": "Salva prima",
