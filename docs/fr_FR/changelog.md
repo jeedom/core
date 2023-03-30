@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.3
 
+## 4.3.17
+
+- Correction de bugs
+- Ajout d'un message lors d ela mise à jour si l'utilisateur n'est ps sur la version stable
+
 ## 4.3.16
 
 - Correction de bugs sur les designs 3D
