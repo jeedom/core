@@ -428,7 +428,7 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   var cmd = null
   for (var i in _params) {
-    if(_params[i].cmd_id == '' || isNaN(_params[i].cmd_id)){
+    if(_params[i].cmd_id == ''){
       continue;
     }
     //update tile graph info:
@@ -451,7 +451,7 @@ jeedom.cmd.refreshValue = function(_params) {
 }
 
 jeedom.cmd.addUpdateFunction = function(_cmd_id, _function) {
-  if(_cmd_id == '' || isNaN(_cmd_id)){
+  if(_cmd_id == ''){
     return;
   }
   if (!isset(jeedom.cmd.update)) {
