@@ -460,7 +460,7 @@ jeedom.cmd.refreshValue = function(_params) {
 };
 
 jeedom.cmd.addUpdateFunction = function(cmd_id, _function){
-  if(_cmd_id == '' || isNaN(_cmd_id)){
+  if(cmd_id == '' || isNaN(cmd_id)){
     return;
   }
   if (!isset(jeedom.cmd.update)) {
