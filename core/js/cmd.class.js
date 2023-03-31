@@ -436,14 +436,14 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   var cmd = null;
   for (var i in _params) {
-    if(_params[i].cmd_id == '' || isNaN(_params[i].cmd_id)){
+    if(_params[i].cmd_id == ''){
       continue;
     }
     //update tile graph info:
-    if ($('.eqlogicbackgraph[data-cmdid=' + _params[i].cmd_id + ']').length) {
+    if ($('.eqlogicbackgraph[data-cmdid="' + _params[i].cmd_id + '"]').length) {
       jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
     }
-    cmd = $('.cmd[data-cmd_id=' + _params[i].cmd_id + ']');
+    cmd = $('.cmd[data-cmd_id="' + _params[i].cmd_id + '"]');
     if (cmd.hasClass('noRefresh')) {
       continue;
     }
@@ -460,7 +460,7 @@ jeedom.cmd.refreshValue = function(_params) {
 };
 
 jeedom.cmd.addUpdateFunction = function(cmd_id, _function){
-  if(cmd_id == '' || isNaN(cmd_id)){
+  if(cmd_id == ''){
     return;
   }
   if (!isset(jeedom.cmd.update)) {
