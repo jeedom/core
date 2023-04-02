@@ -29,12 +29,14 @@
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
 
+
 ### 4.4 : Autre
 
 - **Core** : Début du développement en pure js, sans jQuery. Voir [doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4).
 - **Core** : Listing plus détaillé des périphériques USB.
 - **Core** : Un menu contextuel a été ajouté à différents endroits au niveau des cases à cocher pour les sélectionner toutes, aucunes, ou inverser la sélection *(voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.4))*.
 - **Lib** : Update Highchart v9.3.2 vers v10.3.2 (Le module *solid-gauge* n'est plus importé).
+- **Commandes** :  ajout d'une option (en alpha) pour ne pas executer une action si l'état de l'équipement est deja bon
 
 ### 4.4 : Remarques
 

@@ -400,6 +400,19 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </fieldset>
           </form>
+          <form class="form-horizontal">
+            <legend><i class="fas fa-exclamation-triangle"></i> {{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</legend>
+            <div class="form-group">
+              <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
+              <div class="col-sm-6">
+                <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="alreadyInState">
+                  <option value="">{{Défaut}}</option>
+                  <option value="allow">{{Oui}}</option>
+                  <option value="deny">{{Non}}</option>
+                </select>
+              </div>
+            </div>
+          </form>
         <?php }
         ?>
         <?php if ($cmd->getType() == 'info') {

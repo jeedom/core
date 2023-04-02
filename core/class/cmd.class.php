@@ -1142,6 +1142,55 @@ class cmd {
 		$this->pre_postExecCmd($_values, 'jeedomPostExecCmd');
 	}
 
+	public function isAlreadyInStateAllow() {
+		if ($this->getConfiguration('alreadyInState') == 'deny') {
+			return false;
+		}
+		if ($this->getConfiguration('alreadyInState') == '' && config::byKey('cmd::allowCheckState') == 0) {
+			return false;
+		}
+		if ($this->getType() != 'action') {
+			return false;
+		}
+		$cmdValue = $this->getCmdValue();
+		if (!is_object($cmdValue)) {
+			return false;
+		}
+		return true;
+	}
+
+	public function alreadyInState($_options) {
+		if ($this->getSubType() == 'message') {
+			return false;
+		}
+		$cmdValue = $this->getCmdValue();
+		$value =  $cmdValue->execCmd();
+		switch ($this->getSubType()) {
+			case 'other':
+				switch ($cmdValue->getSubtype()) {
+					case 'binary':
+						if (strtolower($this->getName()) == 'on' && $value == 1) {
+							return true;
+						}
+						if (strtolower($this->getName()) == 'off' && $value == 0) {
+							return true;
+						}
+						break;
+					case 'string':
+						if (strtolower($this->getName()) == $value) {
+							return true;
+						}
+						break;
+				}
+				break;
+			case 'slider':
+				if ($_options['slider'] == $value) {
+					return true;
+				}
+		}
+		return false;
+	}
+
 	/**
 	 *
 	 * @param type $_options
@@ -1187,12 +1236,6 @@ class cmd {
 			if ($this->getSubType() == 'slider' && isset($options['slider']) && $this->getConfiguration('calculValueOffset') != '') {
 				$options['slider'] = jeedom::evaluateExpression(str_replace('#value#', $options['slider'], $this->getConfiguration('calculValueOffset')));
 			}
-			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options));
-			} else {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
-			}
-
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('cmd');
@@ -1202,6 +1245,21 @@ class cmd {
 				$timeline->setName($this->getHumanName(true, true));
 				$timeline->save();
 			}
+			if ($this->isAlreadyInStateAllow() && $this->alreadyInState($options)) {
+				if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
+					log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options) . ' ' . __('(ignorée)', __FILE__));
+				} else {
+					log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('(ignorée)', __FILE__));
+				}
+				return;
+			}
+			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options));
+			} else {
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
+			}
+
+
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
 			$this->postExecCmd($options);
@@ -1418,13 +1476,13 @@ class cmd {
 
 					//ltrim avoid js variable starting with # error
 					if ($_version == 'dashboard') {
-						$replace['#test#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
+						$replace['#test#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd' . "\n";
 						$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
 						$replace['#test#'] .= 'cmdjs.setAttribute("data-state", ' . $i . ')' . "\n";
 						$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#test#'] .= "}\n";
 
-						$replace['#change_theme#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
+						$replace['#change_theme#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd' . "\n";
 						$replace['#change_theme#'] .= 'if (cmdjs.getAttribute("data-state") == ' . $i . ') {' . "\n";
 						$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#change_theme#'] .= "}\n";

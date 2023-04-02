@@ -1276,6 +1276,12 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Core js (dev)}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery / Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)}}."></i></sup>
 							</label>
