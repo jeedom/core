@@ -29,12 +29,14 @@
 - **Bericht** : Möglichkeit, das Thema während eines Berichts auf einer Jeedom-Seite zu wählen.
 - **Jeedom-Menü** : Eine Verzögerung von 0.25s wurde beim Öffnen von Untermenüs eingeführt.
 
+
 ### 4.4 : Autre
 
 - **Kern** : Beginn der Entwicklung in reinem js, ohne jQuery. Sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4).
 - **Kern** : Detailliertere Auflistung von USB-Geräten.
 - **Kern** : Ein Kontextmenü wurde an verschiedenen Stellen auf der Ebene der Kontrollkästchen hinzugefügt, um alle oder keine auszuwählen oder die Auswahl umzukehren *(siehe [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4))*.
 - **Lib** : Aktualisieren Sie Highchart v9.3.2 bis v10.3.2 (Das Modul *solide Lehre* nicht mehr importiert).
+- **Aufträge** :  Option (in Alpha) hinzugefügt, um eine Aktion nicht auszuführen, wenn der Zustand der Ausrüstung bereits gut ist
 
 ### 4.4 : Remarques
 
