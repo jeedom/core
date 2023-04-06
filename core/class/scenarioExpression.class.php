@@ -1748,7 +1748,7 @@ class scenarioExpression {
 					}
 					$options['name'] = str_replace(array('/'), array(''), $options['name']);
 					$tmp_file = jeedom::getTmpFolder('history_export') . '/' . $options['name'] . '.csv';
-					$cmd_parameters = array('files' => $tmp_file, 'title' => $options['name'], 'message' => $options['name']);
+					$cmd_parameters = array('files' => [$tmp_file], 'title' => $options['name'], 'message' => $options['name']);
 
 					$start = date('Y-m-d H:i:s', strtotime($options['start']));
 					$end = date('Y-m-d H:i:s', strtotime($options['end']));
