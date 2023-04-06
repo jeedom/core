@@ -1267,10 +1267,13 @@ if (!jeeFrontEnd.scenario) {
       message += '<div class="col-xs-3">'
       message += '  <select class="conditionAttr form-control" data-l1key="next">'
       message += '    <option value="">{{rien}}</option>'
-      message += '    <option value="&&">&& (AND)</option>'
-      message += '    <option value="||">|| (OR)</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
+      if (jeeFrontEnd.language == "fr_FR"){
+        message += '    <option value="&&">&& {{et}}</option>'
+        message += '    <option value="||">|| {{ou}}</option>'
+      }else{
+        message += '    <option value="&&">&& (AND)</option>'
+        message += '    <option value="||">|| (OR)</option>'
+      }
       message += '  </select>'
       message += '</div>'
       message += '</div>'
