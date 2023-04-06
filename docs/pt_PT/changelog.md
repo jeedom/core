@@ -29,12 +29,14 @@
 - **Relatório** : Possibilidade de escolher o tema durante um relatório em uma página jeedom.
 - **Menu Jeedom** : Um atraso de 0.25s foi introduzido na abertura de submenus.
 
+
 ### 4.4 : Autre
 
 - **Essencial** : Início do desenvolvimento em js puro, sem jQuery. Ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4).
 - **Essencial** : Listagem mais detalhada de dispositivos USB.
 - **Essencial** : Um menu contextual foi adicionado em diferentes lugares ao nível das caixas de seleção para selecionar todas, nenhuma ou inverter a seleção *(consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4))*.
 - **Livre** : Atualizar Highchart v9.3.2 a v10.3.2 (O módulo *calibre sólido* não é mais importado).
+- **Pedidos** :  adicionada uma opção (em alfa) para não executar uma ação se o estado do equipamento já for bom
 
 ### 4.4 : Remarques
 
