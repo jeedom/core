@@ -409,7 +409,7 @@ user::isBan();
 
 						<div class="form-group">
 							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Désactiver l'interface mobile}}
-								<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la meme que la version desktop}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la même que la version desktop}}"></i></sup>
 							</label>
 							<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="disableMobileUi" />
@@ -459,7 +459,7 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par defaut}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Les tuile prendont toute la largeur par défaut en mobile}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prendront toute la largeur par défaut en mobile}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::mobile::onecolumn" />
@@ -1273,6 +1273,12 @@ user::isBan();
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
 							</div>
 						</div>
 						<div class="form-group">
