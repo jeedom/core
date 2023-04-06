@@ -1156,6 +1156,9 @@ class cmd {
 		if (!is_object($cmdValue)) {
 			return false;
 		}
+		if ($cmdValue->getCache('lastAction') != '' && strtotime($cmdValue->getCache('lastAction')) > strtotime($cmdValue->getCache('valueDate'))) {
+			return false;
+		}
 		return true;
 	}
 
@@ -1262,6 +1265,10 @@ class cmd {
 
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
+			$cmdValue = $this->getCmdValue();
+			if (is_object($cmdValue)) {
+				$cmdValue->setCache('lastAction', date('Y-m-d H:i:s'));
+			}
 			$this->postExecCmd($options);
 			$usage = $this->getCache(array('usage::automation', 'usage::ui'));
 			if (isset($_options['user_login'])) {
