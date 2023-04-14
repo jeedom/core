@@ -61,7 +61,7 @@ jobs:
 
       - name: Build and push Jeedom on DockerHub
         # https://github.com/marketplace/actions/build-and-push-docker-images
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         # continue-on-error: true
         with:
           context: ./
@@ -75,7 +75,7 @@ jobs:
 
       - name: Build and push Jeedom on Debian:Buster
         # https://github.com/marketplace/actions/build-and-push-docker-images
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         # continue-on-error: true
         with:
           context: ./
