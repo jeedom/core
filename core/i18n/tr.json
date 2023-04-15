@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "\/ Devre dışı gizleme \/ gösterme cihazları etkinleştirme",
         "Pause": "Durdur",
         "Variable": "Değişken",
         "Supprimer une variable": "Supprimer une variable",
@@ -437,7 +438,6 @@
         "Aller au design": "Dizayna git",
         "Ajouter un log": "Log ekleyin",
         "Créer un message": "Mesaj oluştur",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "\/ Devre dışı gizleme \/ gösterme cihazları etkinleştirme",
         "Faire une demande": "Istek yapın",
         "Arrêter": "Durdur",
         "Redémarrer": "Tekrar başlat",

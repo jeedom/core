@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Aktivieren \/ Deaktivieren Ausblenden \/ Anzeigen eines Geräts",
         "Pause": "Unterbrechung",
         "Variable": "Variable",
         "Supprimer une variable": "Variable löschen",
@@ -437,7 +438,6 @@
         "Aller au design": "Gehe zum Design",
         "Ajouter un log": "Fügen Sie ein Protokoll hinzu",
         "Créer un message": "Nachricht erstellen",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Aktivieren \/ Deaktivieren Ausblenden \/ Anzeigen eines Geräts",
         "Faire une demande": "Stellen Sie eine Anfrage",
         "Arrêter": "Beenden",
         "Redémarrer": "Neu starten",

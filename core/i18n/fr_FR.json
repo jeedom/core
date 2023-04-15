@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Activer\/Désactiver Masquer\/Afficher un équipement",
         "Pause": "Pause",
         "Variable": "Variable",
         "Supprimer une variable": "Supprimer une variable",
@@ -437,7 +438,6 @@
         "Aller au design": "Aller au design",
         "Ajouter un log": "Ajouter un log",
         "Créer un message": "Créer un message",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Activer\/Désactiver Masquer\/Afficher un équipement",
         "Faire une demande": "Faire une demande",
         "Arrêter": "Arrêter",
         "Redémarrer": "Redémarrer",

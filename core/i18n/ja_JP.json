@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "デバイスの有効化\/無効化非表示\/表示",
         "Pause": "休止",
         "Variable": "変数",
         "Supprimer une variable": "変数を削除",
@@ -437,7 +438,6 @@
         "Aller au design": "デザインに行く",
         "Ajouter un log": "ログを追加する",
         "Créer un message": "メッセージを作成",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "デバイスの有効化\/無効化非表示\/表示",
         "Faire une demande": "リクエストする",
         "Arrêter": "ストップ",
         "Redémarrer": "再起動",

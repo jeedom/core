@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Activar\/Desactivar Ocultar\/Mostrar dispositivo",
         "Pause": "Pausa",
         "Variable": "Variable",
         "Supprimer une variable": "Eliminar variable",
@@ -437,7 +438,6 @@
         "Aller au design": "Ir al diseño",
         "Ajouter un log": "Añadir un log",
         "Créer un message": "Crear mensaje",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Activar\/Desactivar Ocultar\/Mostrar dispositivo",
         "Faire une demande": "Hacer un solicitud",
         "Arrêter": "Detener",
         "Redémarrer": "Reiniciar",

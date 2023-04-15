@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Активировать \/ Деактивировать Скрыть \/ Показать устройство",
         "Pause": "Пауза",
         "Variable": "переменная",
         "Supprimer une variable": "Удалить переменную",
@@ -437,7 +438,6 @@
         "Aller au design": "Перейти к дизайну",
         "Ajouter un log": "Добавить журнал",
         "Créer un message": "Создать сообщение",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Активировать \/ Деактивировать Скрыть \/ Показать устройство",
         "Faire une demande": "Сделать запрос",
         "Arrêter": "Стоп",
         "Redémarrer": "Перезагрузить",

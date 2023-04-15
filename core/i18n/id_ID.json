@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Aktifkan \/ Nonaktifkan Sembunyikan \/ Tampilkan peralatan",
         "Pause": "Berhenti Sebentar",
         "Variable": "Variabel",
         "Supprimer une variable": "Supprimer une variable",
@@ -437,7 +438,6 @@
         "Aller au design": "Pergi desain",
         "Ajouter un log": "Menambahkan log",
         "Créer un message": "Buat pesan",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Aktifkan \/ Nonaktifkan Sembunyikan \/ Tampilkan peralatan",
         "Faire une demande": "Berlaku",
         "Arrêter": "Berhenti",
         "Redémarrer": "Mulai lagi",

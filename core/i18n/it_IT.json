@@ -428,6 +428,7 @@
     },
     "desktop\/modal\/action.insert.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
+        "Activer\/Désactiver Masquer\/Afficher un équipement": "Attiva \/ Disattiva Mostra \/ Nascondi attrezzature",
         "Pause": "Pausa",
         "Variable": "Variabile",
         "Supprimer une variable": "Supprimer une variable",
@@ -437,7 +438,6 @@
         "Aller au design": "Vai al design",
         "Ajouter un log": "Aggiungi un registro",
         "Créer un message": "Crea messaggio",
-        "Activer\/Désactiver Masquer\/Afficher un équipement": "Attiva \/ Disattiva Mostra \/ Nascondi attrezzature",
         "Faire une demande": "Apri una richiesta",
         "Arrêter": "Ferma",
         "Redémarrer": "Riavvia",
