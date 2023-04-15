@@ -551,6 +551,7 @@ jeedom.scenario.autoCompleteCondition = [
   '#median(commande1,commande2)',
   '#avg(commande1,commande2)',
   '#time(value)',
+  '#time_op(time,value)',
   '#collectDate(cmd)',
   '#valueDate(cmd)',
   '#eqEnable(equipement)',
