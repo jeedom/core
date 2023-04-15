@@ -542,6 +542,7 @@ jeedom.scenario.autoCompleteCondition = [
   '#min(commande,periode)',
   '#round(valeur)',
   '#trigger(commande)',
+  '#triggerValue(commande)',
   '#randomColor(debut,fin)',
   '#lastScenarioExecution(scenario)',
   '#stateDuration(commande)',
@@ -579,7 +580,7 @@ jeedom.scenario.autoCompleteAction = [
   'event',
   'remove_inat',
   'changeTheme',
-  'genericType',
+  'genericType'
 ]
 /* Actions Autocomplete only for scenarios*/
 jeedom.scenario.autoCompleteActionScOnly = [
