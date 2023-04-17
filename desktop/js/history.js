@@ -73,7 +73,7 @@ if (!jeeFrontEnd.history) {
 
       if (currentSeries.length == 1) { //only one series in chart:
         var serieId = currentSeries[0].userOptions.id
-        var isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history').getAttribute('data-calcul') === null ? false : true
+        var isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history')?.getAttribute('data-calcul') === null ? false : true
         if (isCalcul) {
           this.__lastId__ = null
           document.getElementById('cb_derive').checked = false
