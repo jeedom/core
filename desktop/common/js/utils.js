@@ -23,7 +23,7 @@ var jeedomUtils = {
 }
 jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80
 jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60
-jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 /*Hijack jQuery ready function, still used in plugins
@@ -1471,7 +1471,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-  var widthSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * widthStep })
+  var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
