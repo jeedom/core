@@ -1483,6 +1483,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     }
     var width = jeedomUtils.getClosestInArray(tile.offsetWidth, widthSteps)
     tile.dataset.confWidth = tile.offsetWidth
+    tile.dataset.confHeight = tile.offsetHeight
     var height = jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps)
     Object.assign(tile.style, {
       width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
@@ -1491,17 +1492,24 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     })
     tile.classList.add('jeedomAlreadyPosition')
   } else {
-    var width, height, idx, element
+    var width, height, idx
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
 
     for (idx = 0; idx < elements.length; idx++) {
       tile = elements[idx]
+     
       if (tile.dataset.confWidth === undefined) {
         tile.dataset.confWidth = tile.offsetWidth
+      }
+      if (tile.dataset.confHeight === undefined) {
+        tile.dataset.confHeight = tile.offsetHeight
+      }
+      if (tile.dataset.stepHeight === undefined) {
         tile.dataset.stepHeight = jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps))
       }
       width = jeedomUtils.getClosestInArray(tile.dataset.confWidth, widthSteps)
       height = jeedomUtils.tileHeightSteps[tile.dataset.stepHeight]
+      
       Object.assign(tile.style, {
         width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
         height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
