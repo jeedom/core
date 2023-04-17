@@ -4992,6 +4992,7 @@
         "Vous n\\'avez pas les droits sur ce scénario": "You do not have the rights to this scenario",
         "Scénario exécuté sur appel API": "Scenario executed on API call",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "The \"state\" parameter cannot be empty and must have the value [run, stop, enable, disable]",
+        "Impossible de trouver le message :": "Unable to find message:",
         "Impossible de trouver l\\'objet associé :": "Unable to find the associated object:",
         "Impossible de trouver l\\'objet": "Unable to find object",
         "Demande pour le plugin :": "Request for plugin:"

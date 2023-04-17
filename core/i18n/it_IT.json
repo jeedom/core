@@ -4992,6 +4992,7 @@
         "Vous n\\'avez pas les droits sur ce scénario": "Vous n\\'avez pas les droits sur ce scénario",
         "Scénario exécuté sur appel API": "Scenario eseguito su chiamata API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
+        "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "Impossibile trovare l'oggetto associato:",
         "Impossible de trouver l\\'objet": "Impossibile trovare l'oggetto",
         "Demande pour le plugin :": "Richiesta di plug-in:"

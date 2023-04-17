@@ -4992,6 +4992,7 @@
         "Vous n\\'avez pas les droits sur ce scénario": "No tienes los derechos para este escenario",
         "Scénario exécuté sur appel API": "Escenario ejecutado en llamada API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "El parámetro \"estado\" no puede estar vacío y debe tener el valor [ejecutar, detener, habilitar, deshabilitar]",
+        "Impossible de trouver le message :": "No se puede encontrar el mensaje:",
         "Impossible de trouver l\\'objet associé :": "No se puede encontrar el objeto asociado:",
         "Impossible de trouver l\\'objet": "Incapaz de encontrar el objeto",
         "Demande pour le plugin :": "Solicitud de complemento:"

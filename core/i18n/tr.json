@@ -4992,6 +4992,7 @@
         "Vous n\\'avez pas les droits sur ce scénario": "Vous n\\'avez pas les droits sur ce scénario",
         "Scénario exécuté sur appel API": "API çağrısında senaryo yürütüldü",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
+        "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "İlişkili nesne bulunamıyor:",
         "Impossible de trouver l\\'objet": "Nesne bulunamadı",
         "Demande pour le plugin :": "Eklenti talebi:"

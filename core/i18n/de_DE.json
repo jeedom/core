@@ -4992,6 +4992,7 @@
         "Vous n\\'avez pas les droits sur ce scénario": "Sie haben keine Rechte an diesem Szenario",
         "Scénario exécuté sur appel API": "Szenario beim API-Aufruf ausgeführt",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Der Parameter \"state\" darf nicht leer sein und muss den Wert [run, stop, enable, disable] haben",
+        "Impossible de trouver le message :": "Nachricht kann nicht gefunden werden:",
         "Impossible de trouver l\\'objet associé :": "Das zugehörige Objekt konnte nicht gefunden werden:",
         "Impossible de trouver l\\'objet": "Objekt kann nicht gefunden werden",
         "Demande pour le plugin :": "Anfrage für Plugin:"
