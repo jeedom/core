@@ -21,8 +21,8 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 110 ? parseInt(jeedom.theme['widget::step::width']) : 110
-jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 100 ? parseInt(jeedom.theme['widget::step::height']) : 100
+jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80
+jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60
 jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
