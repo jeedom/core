@@ -1014,6 +1014,20 @@ try {
 		message::removeAll();
 		$jsonrpc->makeSuccess('ok');
 	}
+	
+	if ($jsonrpc->getMethod() == 'message::removebyId') {
+       		 if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
+          		  throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+                 }
+                  $message = message::byId($params['messageId']);
+                  if(is_object($message)){
+                       $message->remove();
+		       $jsonrpc->makeSuccess('ok');
+                   }else{
+			 throw new Exception(__('Impossible de trouver le message :', __FILE__) . ' ' . secureXSS($params['messageId']));
+		  }
+        
+    	}
 
 	if ($jsonrpc->getMethod() == 'message::all') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
