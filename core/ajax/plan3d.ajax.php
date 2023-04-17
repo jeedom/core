@@ -198,7 +198,7 @@ try {
 				throw new Exception(__('Impossible de décompresser les fichiers :', __FILE__) . ' ');
 			}
 			$zip->close();
-			unlink($tmp);
+			unlink($file);
 		} else {
 			throw new Exception(__('Impossible de décompresser l\'archive zip :', __FILE__) . ' ' . $file . ' => ' . ZipErrorMessage($res));
 		}
