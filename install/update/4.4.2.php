@@ -12,11 +12,11 @@ foreach ((cmd::all()) as $cmd) {
 }
 
 //New grid steps:
-if (config::byKey('widget::step::width', 'core', 0) < 90) {
-    config::save('widget::step::width', 220, 'core');
+if (config::byKey('widget::step::width', 'core', 0) < 80) {
+    config::save('widget::step::width', 80, 'core');
 }
-if (config::byKey('widget::step::height', 'core', 0) < 140) {
-    config::save('widget::step::height', 140, 'core');
+if (config::byKey('widget::step::height', 'core', 0) < 60) {
+    config::save('widget::step::height', 60, 'core');
 }
 
 //Theme config renamed:
