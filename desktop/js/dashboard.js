@@ -121,6 +121,7 @@ if (!jeeFrontEnd.dashboard) {
       }
 
       if (_mode == 0) { //Exit edit mode:
+        document.getElementById('div_displayObject').style.height = 'auto'
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').removeClass('disabled')
         jeedom.cmd.disableExecute = false
         jeedomUI.isEditing = false
@@ -150,12 +151,13 @@ if (!jeeFrontEnd.dashboard) {
         document.getElementById('in_searchDashboard').readOnly = false
         if (!isset(_save) || _save) document.getElementById('md_dashEdit')?.remove()
       } else { //Enter edit mode!
+        document.getElementById('div_displayObject').style.height = (document.getElementById('div_displayObject').offsetHeight*1.2)+'px'
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').addClass('disabled')
         jeedomUI.isEditing = true
         jeedom.cmd.disableExecute = true
         this.resetCategoryFilter()
         document.querySelectorAll('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
-
+        
         //set resizables:
         new jeeResize('div.eqLogic-widget, div.scenario-widget', {
           handles: ['right', 'bottom-right', 'bottom'],
