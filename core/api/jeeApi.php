@@ -390,7 +390,7 @@ try {
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__) . ' ' . $jsonrpc->getMethod(), -32001);
 		}
-		jeedom::update('', 0);
+		jeedom::update(json_decode(init('options', ''), true), 0);
 		$jsonrpc->makeSuccess('ok');
 	}
 
