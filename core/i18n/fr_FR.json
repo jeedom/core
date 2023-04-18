@@ -2995,6 +2995,7 @@
     "desktop\/js\/interact.js": {
         "Action": "Action",
         "Sélectionner un mot-clé": "Sélectionner un mot-clé",
+        "Sélectionner la commande": "Sélectionner la commande",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?",
         "Toutes les interactions ont été régénérées": "Toutes les interactions ont été régénérées",
         "Tester les interactions": "Tester les interactions",

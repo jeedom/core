@@ -2995,6 +2995,7 @@
     "desktop\/js\/interact.js": {
         "Action": "アクション",
         "Sélectionner un mot-clé": "キーワードを選択",
+        "Sélectionner la commande": "Sélectionner la commande",
         "Êtes-vous sûr de vouloir régénérer toutes les interactions (cela peut être très long) ?": "すべてのインタラクションを再生成してもよろしいですか（これは非常に長くなる可能性があります）？",
         "Toutes les interactions ont été régénérées": "すべてのインタラクションが再生成されました",
         "Tester les interactions": "相互作用をテストする",
