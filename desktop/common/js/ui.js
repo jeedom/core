@@ -126,22 +126,24 @@ if (!jeedomUI) {
         document.querySelectorAll('.div_displayEquipement').forEach(function(el_display) {
           var order = 1
           el_display.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(el_tile) {
-            if (el_tile.hasClass('eqLogic-widget')) {
-              var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id')}
-              eqLogic.display = {}
-              eqLogic.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
-              eqLogic.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
-              eqLogic.order = el_tile.getAttribute('data-order') || order
-              eqLogics.push(eqLogic)
-            } else if (el_tile.hasClass('scenario-widget')) {
-              var scenario = {id: el_tile.getAttribute('data-scenario_id')}
-              scenario.display = {}
-              scenario.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
-              scenario.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
-              scenario.order = el_tile.getAttribute('data-order') || order
-              scenarios.push(scenario)
+            if (el_tile.offsetWidth > 0 && el_tile.offsetHeight > 0) {
+              if (el_tile.hasClass('eqLogic-widget')) {
+                var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id')}
+                eqLogic.display = {}
+                eqLogic.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+                eqLogic.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+                eqLogic.order = el_tile.getAttribute('data-order') || order
+                eqLogics.push(eqLogic)
+              } else if (el_tile.hasClass('scenario-widget')) {
+                var scenario = {id: el_tile.getAttribute('data-scenario_id')}
+                scenario.display = {}
+                scenario.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+                scenario.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+                scenario.order = el_tile.getAttribute('data-order') || order
+                scenarios.push(scenario)
+              }
+              order++
             }
-            order++
           })
         })
         jeedom.eqLogic.setOrder({
