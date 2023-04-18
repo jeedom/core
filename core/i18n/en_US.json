@@ -264,7 +264,7 @@
         "Action": "Action",
         "Sauvegarde effectuée": "Backup completed",
         "Formule de calcul": "Algorithm",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Ligne": "Line",
         "Aire": "Area",
         "Barre": "Bar",
@@ -2643,7 +2643,7 @@
         "Historique calculé": "Calculated history",
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Configuration": "Configuration",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Afficher le graphique calculé": "Show calculated graph",
         "Commandes": "Commands",
         "Configuration de l'historique des commandes": "Configure command history",
@@ -3053,7 +3053,7 @@
         "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
         "Cocher pour que la commande s\\'éxecute en parallèle des autres actions": "Check to have the command run in parallel with other actions",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Cache vidé": "Cache cleared",
         "Cache nettoyé": "Cache cleaned",
         "Sauvegarde réussie": "Saved successfully",
@@ -3194,7 +3194,7 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Check for the command to run in parallel with the other actions",
         "Supprimer l\\'action": "Delete action",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Hide this block. <br> Ctrl + click: all",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Show this block. <br> Ctrl + click: all",
         "Décocher pour désactiver l\\'élément": "Uncheck to deactivate the element",
@@ -3394,7 +3394,7 @@
         "Message": "Message",
         "Info": "Information",
         "Action": "Action",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Valider": "Ok",
         "Annuler": "Cancel"
     },
@@ -3480,7 +3480,7 @@
         "Assistant cron": "Cron assistant",
         "Valider": "Ok",
         "Annuler": "Cancel",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Select a variable",
@@ -4712,7 +4712,7 @@
         "Durée en secondes": "Duration in seconds"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
@@ -4727,21 +4727,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condition",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Time out": "Timeout"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Color",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Name",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
@@ -4767,7 +4767,7 @@
         "Type Action (exec)": "Action type (exec)",
         "Objet": "Object",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Tous": "All"
     },
     "core\/template\/scenario\/ask.default.html": {
@@ -4779,31 +4779,31 @@
         "Délai": "Delay",
         "Délai en s": "Delay in s",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Command",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Design"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Name",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Active",
@@ -4811,7 +4811,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
@@ -4829,16 +4829,16 @@
         "Important": "Important",
         "Information": "Information",
         "Message": "Message",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select order"
+        "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "History to export",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "De": "From",
         "à": "To",
         "Nom": "Name",
@@ -4860,7 +4860,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select order",
+        "Sélectionner la commande": "Select command",
         "Largeur (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
         "Délai (ms)": "Delay (ms)",

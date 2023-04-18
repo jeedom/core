@@ -264,7 +264,7 @@
         "Action": "Acción",
         "Sauvegarde effectuée": "Guardado correctamente",
         "Formule de calcul": "Fórmula",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Ligne": "Línea",
         "Aire": "Area",
         "Barre": "Cerrada",
@@ -2643,7 +2643,7 @@
         "Historique calculé": "Historia calculada",
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Configuration": "Configuración ",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Afficher le graphique calculé": "Mostrar gráfico calculado",
         "Commandes": "Pedidos",
         "Configuration de l'historique des commandes": "Configurar historial de pedidos",
@@ -3053,7 +3053,7 @@
         "Décocher pour désactiver l\\'action": "Desmarque para desactivar la acción",
         "Cocher pour que la commande s\\'éxecute en parallèle des autres actions": "Marque para que el comando se ejecute en paralelo con otras acciones",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione la orden",
         "Cache vidé": "Caché vaciada",
         "Cache nettoyé": "Cache borrada",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
@@ -3194,7 +3194,7 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Compruebe si la ejecución del comando \\'s en otras acciones paralelas",
         "Supprimer l\\'action": "Borrar acción",
         "Sélectionner un mot-clé": "Seleccionar una palabra clave",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Esconde este bloque. <br> Ctrl + clic: todo",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Muestra este bloque. <br> Ctrl + clic: todo",
         "Décocher pour désactiver l\\'élément": "Desactive para desactivar elemento",
@@ -3394,7 +3394,7 @@
         "Message": "Mensaje",
         "Info": "Información",
         "Action": "Acción",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Valider": "Validar",
         "Annuler": "Cancelar"
     },
@@ -3480,7 +3480,7 @@
         "Assistant cron": "Asistente cron",
         "Valider": "Validar",
         "Annuler": "Cancelar",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Seleccionar una variable",
@@ -4712,7 +4712,7 @@
         "Durée en secondes": "Duración en segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Escenario",
@@ -4727,21 +4727,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condición",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Time out": "Se acabó el tiempo"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Color",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione la orden"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nombre",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione la orden"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
@@ -4767,7 +4767,7 @@
         "Type Action (exec)": "Tipo Acción (ejecutivo)",
         "Objet": "Objeto",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el orden",
         "Tous": "Todos"
     },
     "core\/template\/scenario\/ask.default.html": {
@@ -4779,31 +4779,31 @@
         "Délai": "Plazo",
         "Délai en s": "Retraso en s",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Diseño"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nombre",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Activo",
@@ -4811,7 +4811,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
@@ -4829,16 +4829,16 @@
         "Important": "Importante",
         "Information": "Información",
         "Message": "Mensaje",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensaje",
-        "Sélectionner la commande": "Elije el orden"
+        "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Historial para exportar",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccionar el comando",
         "De": "De",
         "à": "a",
         "Nom": "Nombre",
@@ -4860,7 +4860,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Elije el orden",
+        "Sélectionner la commande": "Seleccione el comando",
         "Largeur (px)": "Ancho (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai (ms)": "Retardo (ms)",

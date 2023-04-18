@@ -264,7 +264,7 @@
         "Action": "Aktion",
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
         "Formule de calcul": "Berechnungsformel",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Ligne": "Linie",
         "Aire": "Fläche",
         "Barre": "Abgesperrt",
@@ -2643,7 +2643,7 @@
         "Historique calculé": "Berechnete Historie",
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration": "Konfiguration",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Afficher le graphique calculé": "Berechnete Grafik anzeigen",
         "Commandes": "Aufträge",
         "Configuration de l'historique des commandes": "Bestellhistorie konfigurieren",
@@ -3053,7 +3053,7 @@
         "Décocher pour désactiver l\\'action": "Deaktivieren Sie diese Option, um die Aktion zu deaktivieren",
         "Cocher pour que la commande s\\'éxecute en parallèle des autres actions": "Aktivieren Sie diese Option, um den Befehl parallel zu anderen Aktionen auszuführen",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Cache vidé": "Cache geleert",
         "Cache nettoyé": "Cache gereinigt",
         "Sauvegarde réussie": "Speichern erfolgreich",
@@ -3194,7 +3194,7 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Überprüfen Sie, ob der Befehl parallel zu den anderen Aktionen ausgeführt wird",
         "Supprimer l\\'action": "Aktion löschen",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Verstecke diesen Block. <br> Strg + Klick: alle",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Zeige diesen Block. <br> Strg + Klick: alle",
         "Décocher pour désactiver l\\'élément": "Deaktivieren Sie diese Option, um das Element zu deaktivieren",
@@ -3394,7 +3394,7 @@
         "Message": "Nachricht",
         "Info": "Die Info",
         "Action": "Aktion",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Valider": "Validate",
         "Annuler": "Abbrechen"
     },
@@ -3480,7 +3480,7 @@
         "Assistant cron": "Cron Assistent",
         "Valider": "Validate",
         "Annuler": "Abbrechen",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Wählen Sie eine Variable aus",
@@ -4712,7 +4712,7 @@
         "Durée en secondes": "Dauer in Sekunden"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Szenario",
@@ -4727,21 +4727,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Zustand",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Time out": "Auszeit"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Farbe",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Name",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Sichtbar",
@@ -4767,7 +4767,7 @@
         "Type Action (exec)": "Typ Aktion (exec)",
         "Objet": "Objekt",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Bestellung auswählen",
         "Tous": "Alle"
     },
     "core\/template\/scenario\/ask.default.html": {
@@ -4779,31 +4779,31 @@
         "Délai": "Bekanntmachung",
         "Délai en s": "Verzögerung in s",
         "Commandes": "Befehle",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Befehl",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Entwurf"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Name",
         "Valeur": "Wert",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Aktiviert",
@@ -4811,7 +4811,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Suchsymbol"
@@ -4829,16 +4829,16 @@
         "Important": "Wichtig",
         "Information": "Information",
         "Message": "Nachricht",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Nachricht",
-        "Sélectionner la commande": "Auftrag auswählen"
+        "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Verlauf zum Exportieren",
         "Commandes": "Befehle",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "De": "Von",
         "à": "Bis",
         "Nom": "Name",
@@ -4860,7 +4860,7 @@
         "PNG": "PNG",
         "PDF": "Pdf",
         "Commandes": "Befehle",
-        "Sélectionner la commande": "Auftrag auswählen",
+        "Sélectionner la commande": "Befehl auswählen",
         "Largeur (px)": "Breite (px)",
         "Hauteur (px)": "Höhe (px)",
         "Délai (ms)": "Verzögerung (ms)",
