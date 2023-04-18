@@ -43,9 +43,18 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	if (!$isAdmin && !in_array(dirname($pathfile), getWhiteListFolders($onlyPluginId))) {
-		log::add('api', 'debug', 'downloadFile - fichier non accessible en zone blanche');
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	if (!$isAdmin) {
+		$authorized = false;
+		foreach (getWhiteListFolders($onlyPluginId) as $publicFolder) {
+			if (strpos($pathfile, $publicFolder) !== false) {
+				$authorized = true;
+				break;
+			}
+		}
+		if (!$authorized) {
+			log::add('api', 'debug', 'downloadFile - fichier non accessible en zone blanche');
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 	}
 
 	if (strpos($pathfile, '.php') !== false) {
