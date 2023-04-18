@@ -21,9 +21,9 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80
-jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60
-jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 /*Hijack jQuery ready function, still used in plugins
@@ -1460,7 +1460,7 @@ jeedomUtils.closeJeedomMenu = function() {
 }
 
 jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
-  var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin'] * 2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
+  var margin = '0px ' + jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
 
   //Get full width, step columns, to fill right space:
   if (document.getElementsByClassName('posEqWidthRef').length > 0) {
@@ -1468,10 +1468,10 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   } else {
     var containerWidth = window.innerWidth - 22
   }
-  var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
+  var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep)
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
-  var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-  var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
+  var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols)
+  var widthSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
@@ -1483,11 +1483,10 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     }
     var width = jeedomUtils.getClosestInArray(tile.offsetWidth, widthSteps)
     tile.dataset.confWidth = tile.offsetWidth
-    tile.dataset.confHeight = tile.offsetHeight
     var height = jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps)
     Object.assign(tile.style, {
-      width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
-      height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+      width: (width - parseInt(jeedom.theme['widget::margin'])) + 'px',
+      height: (height - parseInt(jeedom.theme['widget::margin'])) + 'px',
       margin: margin
     })
     tile.classList.add('jeedomAlreadyPosition')
@@ -1500,19 +1499,14 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
      
       if (tile.dataset.confWidth === undefined) {
         tile.dataset.confWidth = tile.offsetWidth
-      }
-      if (tile.dataset.confHeight === undefined) {
-        tile.dataset.confHeight = tile.offsetHeight
-      }
-      if (tile.dataset.stepHeight === undefined) {
         tile.dataset.stepHeight = jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps))
       }
       width = jeedomUtils.getClosestInArray(tile.dataset.confWidth, widthSteps)
       height = jeedomUtils.tileHeightSteps[tile.dataset.stepHeight]
       
       Object.assign(tile.style, {
-        width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
-        height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+        width: (width - parseInt(jeedom.theme['widget::margin'])) + 'px',
+        height: (height - parseInt(jeedom.theme['widget::margin'])) + 'px',
         margin: margin
       })
       tile.classList.add('jeedomAlreadyPosition')
