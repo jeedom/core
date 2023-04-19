@@ -161,6 +161,7 @@ if (!jeeFrontEnd.dashboard) {
         //set resizables:
         new jeeResize('div.eqLogic-widget, div.scenario-widget', {
           handles: ['right', 'bottom-right', 'bottom'],
+          allowHeightOversize: true,
           start: function(event, element) {
             jeeFrontEnd.modifyWithoutSave = true
           },
