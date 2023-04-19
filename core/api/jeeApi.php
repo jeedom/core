@@ -1156,7 +1156,9 @@ try {
 		}
        		 $deamons_infos = [];
 		foreach ((plugin::listPlugin()) as $plugin) {
-         	    $deamons_infos[$plugin->getId()] = $plugin->deamon_info();  
+			if($plugin->getHasOwnDeamon() == 1){
+                           $deamons_infos[$plugin->getId()] = $plugin->deamon_info();  
+                         } 
        		 }
 		$jsonrpc->makeSuccess($deamons_infos);
 	}
