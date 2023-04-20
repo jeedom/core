@@ -2080,7 +2080,7 @@ class cmd {
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-				message::add($eqLogic->getEqType_name(), $message, $action, '', true, 'alerting');
+				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting');
 			}
 			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
 			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
@@ -2102,7 +2102,7 @@ class cmd {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-			message::add($this->getEqLogic()->getEqType_name(), $message, $action, '', true, 'alertingReturnBack');
+			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack');
 		}
 
 		if ($prevAlert != $maxAlert) {

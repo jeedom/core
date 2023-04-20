@@ -142,6 +142,8 @@ try {
     )
   );
   foreach (eqLogic::all() as $eqLogic) {
+    if ($eqLogic->getName() == '')
+        $eqLogic->setName('EqLogic'.$eqLogic->getId());
     echo 'Cleaning eqLogic : '.$eqLogic->getHumanName()."\n";
     $displays = $eqLogic->getDisplay();
     foreach ($displays as $key => $value) {

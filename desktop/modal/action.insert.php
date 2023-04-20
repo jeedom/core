@@ -21,6 +21,7 @@ if (!isConnect()) {
 ?>
 
 <select id="mod_actionValue_sel" class="form-control">
+  <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
   <option value="sleep">{{Pause}}</option>
   <option value="variable">{{Variable}}</option>
   <option value="delete_variable">{{Supprimer une variable}}</option>
@@ -30,7 +31,6 @@ if (!isConnect()) {
   <option value="gotodesign">{{Aller au design}}</option>
   <option value="log">{{Ajouter un log}}</option>
   <option value="message">{{Créer un message}}</option>
-  <option value="equipement">{{Activer/Désactiver Masquer/Afficher un équipement}}</option>
   <option value="ask">{{Faire une demande}}</option>
   <option value="jeedom_poweroff">{{Arrêter}} <?php echo config::byKey('product_name'); ?></option>
   <option value="jeedom_reboot">{{Redémarrer}} <?php echo config::byKey('product_name'); ?></option>
@@ -47,8 +47,8 @@ if (!isConnect()) {
   <option value="genericType">{{Type générique}}</option>
   <option value="changeTheme">{{Changer de thème}}</option>
 </select>
-<br/>
-<div class="alert alert-info mod_actionValue_selDescription sleep">
+<br />
+<div class="alert alert-info mod_actionValue_selDescription sleep" style="display:none;">
   {{Pause de x seconde(s)}}
 </div>
 
@@ -88,7 +88,7 @@ if (!isConnect()) {
   {{Permet d'ajouter une message dans le centre de message}}
 </div>
 
-<div class="alert alert-info mod_actionValue_selDescription equipement" style="display:none;">
+<div class="alert alert-info mod_actionValue_selDescription equipement">
   {{Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement}}
 </div>
 
@@ -149,35 +149,35 @@ if (!isConnect()) {
 </div>
 
 <script>
-(function() {// Self Isolation!
-  if (window.mod_insertAction == undefined) {
-    window.mod_insertAction = function() {}
-    mod_insertAction.options = {}
-  }
-
-  mod_insertAction.setOptions = function(_options) {
-    mod_insertAction.options = _options
-    if (init(_options.scenario, false) == false) {
-      document.querySelectorAll('#mod_actionValue_sel option').forEach(_opt => {
-        if (jeedom.scenario.autoCompleteActionScOnly.includes(_opt.value)) {
-          _opt.unseen()
-        }
-      })
-    } else {
-      document.querySelectorAll('#mod_actionValue_sel option').seen()
+  (function() { // Self Isolation!
+    if (window.mod_insertAction == undefined) {
+      window.mod_insertAction = function() {}
+      mod_insertAction.options = {}
     }
-  }
-  mod_insertAction.getValue = function() {
-    return document.getElementById('mod_actionValue_sel').value
-  }
 
-  document.getElementById('mod_actionValue_sel').sortOptions()
+    mod_insertAction.setOptions = function(_options) {
+      mod_insertAction.options = _options
+      if (init(_options.scenario, false) == false) {
+        document.querySelectorAll('#mod_actionValue_sel option').forEach(_opt => {
+          if (jeedom.scenario.autoCompleteActionScOnly.includes(_opt.value)) {
+            _opt.unseen()
+          }
+        })
+      } else {
+        document.querySelectorAll('#mod_actionValue_sel option').seen()
+      }
+    }
+    mod_insertAction.getValue = function() {
+      return document.getElementById('mod_actionValue_sel').value
+    }
 
-  document.getElementById('mod_actionValue_sel').addEventListener('change', function(event) {
-    var value = event.target.value
-    if (value == 'alert') value = 'alert2'
-    document.querySelectorAll('.mod_actionValue_selDescription').unseen()
-    document.querySelector('.mod_actionValue_selDescription.' + value).seen()
-  })
-})()
+    document.getElementById('mod_actionValue_sel').sortOptions()
+
+    document.getElementById('mod_actionValue_sel').addEventListener('change', function(event) {
+      var value = event.target.value
+      if (value == 'alert') value = 'alert2'
+      document.querySelectorAll('.mod_actionValue_selDescription').unseen()
+      document.querySelector('.mod_actionValue_selDescription.' + value).seen()
+    })
+  })()
 </script>

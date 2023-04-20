@@ -390,7 +390,7 @@ try {
 		if (is_object($_USER_GLOBAL) && $_USER_GLOBAL->getProfils() != 'admin') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__) . ' ' . $jsonrpc->getMethod(), -32001);
 		}
-		jeedom::update('', 0);
+		jeedom::update($params['options'], 0);
 		$jsonrpc->makeSuccess('ok');
 	}
 
@@ -1014,6 +1014,20 @@ try {
 		message::removeAll();
 		$jsonrpc->makeSuccess('ok');
 	}
+	
+	if ($jsonrpc->getMethod() == 'message::removebyId') {
+       		 if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
+          		  throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+                 }
+                  $message = message::byId($params['messageId']);
+                  if(is_object($message)){
+                       $message->remove();
+		       $jsonrpc->makeSuccess('ok');
+                   }else{
+			 throw new Exception(__('Impossible de trouver le message :', __FILE__) . ' ' . secureXSS($params['messageId']));
+		  }
+        
+    	}
 
 	if ($jsonrpc->getMethod() == 'message::all') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
@@ -1134,6 +1148,19 @@ try {
 			$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
 		}
 		$jsonrpc->makeSuccess($plugin->deamon_info());
+	}
+	
+	if ($jsonrpc->getMethod() == 'plugin::deamonInfoAll') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+       		 $deamons_infos = [];
+		foreach ((plugin::listPlugin()) as $plugin) {
+			if($plugin->getHasOwnDeamon() == 1){
+                           $deamons_infos[$plugin->getId()] = $plugin->deamon_info();  
+                         } 
+       		 }
+		$jsonrpc->makeSuccess($deamons_infos);
 	}
 
 	if ($jsonrpc->getMethod() == 'plugin::deamonStart') {

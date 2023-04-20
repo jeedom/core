@@ -422,13 +422,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="140" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1" />
+								<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="90" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1" />
+								<input type="number" min="80" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">

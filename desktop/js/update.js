@@ -504,7 +504,7 @@ if (!jeeFrontEnd.update) {
         id: 'md_update',
         title: "{{Options de mise à jour}}",
         width: window.innerWidth > 600 ? 580 : window.innerWidth,
-        height: window.innerHeight > 500 ? 400 : window.innerHeight - 30,
+        height: window.innerHeight > 500 ? 440 : window.innerHeight - 80,
         top: window.innerHeight > 500 ? 120 : 0,
         callback: function() {
           var contentEl = jeeDialog.get('#md_update', 'content')
