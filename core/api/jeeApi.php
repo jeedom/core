@@ -1149,6 +1149,19 @@ try {
 		}
 		$jsonrpc->makeSuccess($plugin->deamon_info());
 	}
+	
+	if ($jsonrpc->getMethod() == 'plugin::deamonInfoAll') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+       		 $deamons_infos = [];
+		foreach ((plugin::listPlugin()) as $plugin) {
+			if($plugin->getHasOwnDeamon() == 1){
+                           $deamons_infos[$plugin->getId()] = $plugin->deamon_info();  
+                         } 
+       		 }
+		$jsonrpc->makeSuccess($deamons_infos);
+	}
 
 	if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
