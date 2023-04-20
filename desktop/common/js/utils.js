@@ -1515,7 +1515,8 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
 }
 jeedomUtils.getClosestInArray = function(_num, _refAr) {
   return _refAr.reduce(function(prev, curr) {
-    return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev)
+    //return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev) // old
+    return (Math.abs(_num) > Math.abs(prev) ? curr : prev) // new
   })
 }
 
