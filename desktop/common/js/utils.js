@@ -1601,6 +1601,10 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
         className: 'success',
         callback: {
           click: function(event) {
+            if(document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel') === null){
+              jeeDialog.get('#mod_selectIcon').close()
+              return;
+            }
             var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
             if (icon == undefined) {
               icon = ''
