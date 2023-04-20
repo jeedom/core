@@ -346,6 +346,17 @@ try {
 		$data = array();
 		$dateStart = null;
 		$dateEnd = null;
+                
+                if(is_numeric(init('id'))){
+                    $cmd = cmd::byId(init('id'));
+
+                    if(!$cmd->getIsHistorized()){
+                        $_GET['id'] = $cmd->getConfiguration('calcul');
+
+
+                    }
+                }
+            
 		if (init('dateRange') != '' && init('dateRange') != 'all') {
 			if (is_json(init('dateRange'))) {
 				$dateRange = json_decode(init('dateRange'), true);
