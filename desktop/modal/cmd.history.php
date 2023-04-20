@@ -27,6 +27,7 @@ if (trim($id) == '') {
   $id = init('showId');
 }
 sendVarToJs('jeephp2js.md_history_cmdId', $id);
+sendVarToJs('jeephp2js.derive', init('derive', ''));
 ?>
 
 
@@ -95,6 +96,7 @@ if (!jeeFrontEnd.md_history) {
       this.loadIds.forEach(function(cmd_id) {
         jeedom.history.drawChart({
           cmd_id: cmd_id,
+          option: {derive: jeephp2js.derive},
           el: self.__el__,
           dateRange: 'all',
           dateStart: $('#in_startDate').value(),

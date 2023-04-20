@@ -470,9 +470,20 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
+			$derive = init('derive', 0);
+			$previousValue = null;
 			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
+                    if ($derive == 1 || $derive == '1') {
+						$valTmp = $value;
+						if ($value !== null && $previousValue !== null) {
+							$value = $value - $previousValue;
+                        } else {
+                                $value = null;
+                        }
+                        $previousValue = $valTmp;
+					}
 					$info_history = array();
 					$info_history[] = floatval(strtotime(date('Y-m-d H:i:s', $datetime))) * 1000;
 					$info_history[] = ($value === null) ? null : floatval($value);
