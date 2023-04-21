@@ -134,7 +134,7 @@ class cmd {
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 		INNER JOIN object ob ON el.object_id=ob.id
-		WHERE isHistorized=1
+		WHERE (isHistorized=1 || c.configuration LIKE \'%"isHistorizedCalc":"1"%\')
 		AND type=\'info\'';
 		$sql .= ' ORDER BY ob.position,ob.name,el.name,c.name';
 		$result1 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
@@ -142,7 +142,7 @@ class cmd {
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 		WHERE el.object_id IS NULL
-		AND isHistorized=1
+		AND (isHistorized=1 || c.configuration LIKE \'%"isHistorizedCalc":"1"%\')
 		AND type=\'info\'';
 		$sql .= ' ORDER BY el.name,c.name';
 		$result2 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
@@ -1580,7 +1580,7 @@ class cmd {
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
-			if ($this->getIsHistorized() == 1) {
+			if ($this->getIsHistorized() == 1 || $this->getConfiguration('isHistorizedCalc', 0)) {
 				$replace['#history#'] = 'history cursor';
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#hide_history#') !== false && $this->getDisplay('showStatsOn' . $_version, 1) == 1) {
 					$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));

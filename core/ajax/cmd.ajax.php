@@ -470,7 +470,10 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
-			$derive = init('derive', 0);
+			$derive = init('derive', '');
+                        if($derive == '')
+                            $derive = $cmd->getDisplay('graphDerive');
+			$return['derive'] = $derive;
 			$previousValue = null;
 			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
 			if (is_array($histories)) {
