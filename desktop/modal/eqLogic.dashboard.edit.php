@@ -225,9 +225,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 ?>
               </tbody>
             </table>
-        <?php }
-        }
-        ?>
+          <?php }
+          ?>
         </div>
       </div>
     </div>
@@ -338,113 +337,114 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         </div>
       </div>
     <?php }
-    ?>
+  }
+  ?>
 
-    <!-- Commands -->
-    <div id="panel_cmds" class="panel panel-default">
-      <h3 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands"><i class="fas fa-list-alt"></i> {{Commandes}}</a>
-        <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
-      </h3>
-      <div id="commands" class="panel-collapse collapse">
-        <div class="panel-body">
-          <div id="div_eqLogicCmds">
-            <?php
-            $display = '';
-            foreach (($eqLogic->getCmd()) as $cmd) {
-              $thisclassAttrib = 'cmdAttr' . $cmd->getId();
-              $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
-              $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
+  <!-- Commands -->
+  <div id="panel_cmds" class="panel panel-default">
+    <h3 class="panel-title">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#commands"><i class="fas fa-list-alt"></i> {{Commandes}}</a>
+      <sup class="pull-right"><i class="fas fa-question-circle" title="{{Paramètres d'affichage des commandes.<br>En disposition standard, l'ordre des commandes est modifiable par glisser-déposer.}}"></i></sup>
+    </h3>
+    <div id="commands" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div id="div_eqLogicCmds">
+          <?php
+          $display = '';
+          foreach (($eqLogic->getCmd()) as $cmd) {
+            $thisclassAttrib = 'cmdAttr' . $cmd->getId();
+            $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
+            $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
 
-              if ($cmd->getType() == 'info') {
-                $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
-              } else {
-                $display .= '<a class="btn btn-default btn-warning btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
-              }
+            if ($cmd->getType() == 'info') {
+              $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
+            } else {
+              $display .= '<a class="btn btn-default btn-warning btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
+            }
 
-              $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
-              $display .= '<table class="table table-condensed">';
+            $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
+            $display .= '<table class="table table-condensed">';
 
-              //Editable name:
-              $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
+            //Editable name:
+            $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
 
-              //visible and td widths:
-              $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
+            //visible and td widths:
+            $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
 
-              foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
-                $display .= '<td width="28%"><strong>' . $value['name'] . '</strong></td>';
-              }
+            foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
+              $display .= '<td width="28%"><strong>' . $value['name'] . '</strong></td>';
+            }
 
-              //generic type:
-              $display .= '<tr><td>{{Type générique}}</td>';
-              $display .= '<td colspan="2"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="generic_type">';
-              $display .= $cmd->getGenericTypeSelectOptions();
-              $display .= '</select></td></tr>';
+            //generic type:
+            $display .= '<tr><td>{{Type générique}}</td>';
+            $display .= '<td colspan="2"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="generic_type">';
+            $display .= $cmd->getGenericTypeSelectOptions();
+            $display .= '</select></td></tr>';
 
-              $display .= '<tr><td>{{Widget}}</td>';
-              //select dashboard widget
-              $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="dashboard">';
-              $display .= $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
-              $display .= '</select></td>';
+            $display .= '<tr><td>{{Widget}}</td>';
+            //select dashboard widget
+            $display .= '<td class="widgetPossibilityDashboard" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="dashboard">';
+            $display .= $cmd->getWidgetsSelectOptions('dashboard', $cmd_widgetDashboard);
+            $display .= '</select></td>';
 
-              //select mobile widget:
-              $display .= '<td class="widgetPossibilityMobile" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="mobile">';
-              $display .= $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
-              $display .= '</select></td>';
+            //select mobile widget:
+            $display .= '<td class="widgetPossibilityMobile" style="display: none;"><select class="input-sm ' . $thisclassAttrib . '" data-l1key="template" data-l2key="mobile">';
+            $display .= $cmd->getWidgetsSelectOptions('mobile', $cmd_widgetMobile);
+            $display .= '</select></td>';
+            $display .= '</tr>';
+
+            $display .= '<tr><td>{{Afficher le nom}}</td>';
+            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOndashboard" checked></td>';
+            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
+            $display .= '</tr>';
+
+            $display .= "<tr><td>{{Afficher le nom ET l'icône}}</td>";
+            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
+            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
+            $display .= '</tr>';
+
+            if ($cmd->getType() == 'info' && $cmd->getSubType() != 'string') {
+              $display .= '<tr><td>{{Afficher les statistiques}}</td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
+              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
               $display .= '</tr>';
+            }
 
-              $display .= '<tr><td>{{Afficher le nom}}</td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOndashboard" checked></td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showNameOnmobile" checked></td>';
-              $display .= '</tr>';
 
-              $display .= "<tr><td>{{Afficher le nom ET l'icône}}</td>";
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamedashboard"></td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showIconAndNamemobile"></td>';
-              $display .= '</tr>';
+            $display .= '<tr><td>{{Retour à la ligne avant}}</td>';
+            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineBefore" ></td></tr>';
 
-              if ($cmd->getType() == 'info' && $cmd->getSubType() != 'string') {
-                $display .= '<tr><td>{{Afficher les statistiques}}</td>';
-                $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOndashboard" checked></td>';
-                $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="showStatsOnmobile" checked></td>';
+            $display .= '<tr><td>{{Retour à la ligne après}}</td>';
+            $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineAfter" ></td></tr>';
+
+            $display .= '<tr><td>{{Paramètres optionnels}}</td>';
+            $display .= '<td colspan="2"><a class="btn btn-xs btn-success addWidgetParametersCmd pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></td></tr>';
+
+            $display .= '<tr><td colspan="3"><div class="optionalParamHelp ' . $thisclassAttrib . '"></div></td></tr>';
+
+            if ($cmd->getDisplay('parameters') != '') {
+              foreach (($cmd->getDisplay('parameters')) as $key => $value) {
+                $display .= '<tr class="cmdoptparam text-center">';
+                $display .= '<td colspan="3">';
+                $display .= '<input class="key" value="' . $key . '" style="width:45%;">';
+                $display .= ' <input class="value" value="' . $value . '" style="width:45%;">';
+                $display .= '<a class="btn btn-danger btn-xs pull-right removeWidgetParameter"><i class="fas fa-trash-alt"></i></a>';
+                $display .= '</td>';
                 $display .= '</tr>';
               }
-
-
-              $display .= '<tr><td>{{Retour à la ligne avant}}</td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineBefore" ></td></tr>';
-
-              $display .= '<tr><td>{{Retour à la ligne après}}</td>';
-              $display .= '<td><input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="display" data-l2key="forceReturnLineAfter" ></td></tr>';
-
-              $display .= '<tr><td>{{Paramètres optionnels}}</td>';
-              $display .= '<td colspan="2"><a class="btn btn-xs btn-success addWidgetParametersCmd pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a></td></tr>';
-
-              $display .= '<tr><td colspan="3"><div class="optionalParamHelp ' . $thisclassAttrib . '"></div></td></tr>';
-
-              if ($cmd->getDisplay('parameters') != '') {
-                foreach (($cmd->getDisplay('parameters')) as $key => $value) {
-                  $display .= '<tr class="cmdoptparam text-center">';
-                  $display .= '<td colspan="3">';
-                  $display .= '<input class="key" value="' . $key . '" style="width:45%;">';
-                  $display .= ' <input class="value" value="' . $value . '" style="width:45%;">';
-                  $display .= '<a class="btn btn-danger btn-xs pull-right removeWidgetParameter"><i class="fas fa-trash-alt"></i></a>';
-                  $display .= '</td>';
-                  $display .= '</tr>';
-                }
-              }
-
-              $display .= '</table>';
-
-              $display .= '</div>';
-              $display .= '</div>';
             }
-            echo $display;
-            ?>
-          </div>
+
+            $display .= '</table>';
+
+            $display .= '</div>';
+            $display .= '</div>';
+          }
+          echo $display;
+          ?>
         </div>
       </div>
     </div>
+  </div>
 </div>
 
 <script>
