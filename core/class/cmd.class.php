@@ -1318,6 +1318,9 @@ class cmd {
 					case 'select':
 						$value = str_replace('#select#', $options['select'], $value);
 						break;
+					case 'message':
+						$value = str_replace('#message#', $options['message'], $value);
+						break;
 				}
 				$cmd->event($value);
 			}

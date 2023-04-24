@@ -14,40 +14,42 @@
 			</div>
 			<div class="wrapper">
 				<div id="login" tabindex="503" class="form-group">
-					<h3>{{Connexion}}
+					<form>
+						<h3>{{Connexion}}
+							<?php
+							if (config::byKey('display_name_login') == 1) {
+								echo ' {{à}} ' . config::byKey('name');
+							}
+							?>
+						</h3>
+						<div class="mail">
+							<label>{{Nom d'utilisateur}}</label>
+							<input type="text" id="in_login_username">
+						</div>
+						<div class="passwd">
+							<label>{{Mot de passe}}</label>
+							<input type="password" id="in_login_password">
+						</div>
+						<div class="passwd" id="div_twoFactorCode" style="display:none;">
+							<label>{{Code à 2 facteurs}}</label>
+							<input type="text" id="in_twoFactorCode" autocomplete="off">
+						</div>
+						<div class="checkbox">
+							<input type="checkbox" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
+						</div>
+						<div class="submit center">
+							<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
+						</div>
 						<?php
-						if (config::byKey('display_name_login') == 1) {
-							echo ' {{à}} ' . config::byKey('name');
-						}
-						?>
-					</h3>
-					<div class="mail">
-						<label>{{Nom d'utilisateur}}</label>
-						<input type="text" id="in_login_username">
-					</div>
-					<div class="passwd">
-						<label>{{Mot de passe}}</label>
-						<input type="password" id="in_login_password">
-					</div>
-					<div class="passwd" id="div_twoFactorCode" style="display:none;">
-						<label>{{Code à 2 facteurs}}</label>
-						<input type="text" id="in_twoFactorCode" autocomplete="off">
-					</div>
-					<div class="checkbox">
-						<input type="checkbox" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
-					</div>
-					<div class="submit center">
-						<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
-					</div>
-					<?php
-					$mbState = config::byKey('mbState');
-					if ($mbState == 0) {
-						if (config::byKey('doc::base_url', 'core') != '') { ?>
-							<div class="resetPassword center">
-								<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-							</div>
-					<?php }
-					} ?>
+						$mbState = config::byKey('mbState');
+						if ($mbState == 0) {
+							if (config::byKey('doc::base_url', 'core') != '') { ?>
+								<div class="resetPassword center">
+									<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+								</div>
+						<?php }
+						} ?>
+					</form>
 				</div>
 				<div id="market" tabindex="502" class="form-group" style="display:none;">
 					<h3>Je n'ai pas de compte Market</h3>
@@ -100,32 +102,32 @@
 </div>
 
 <?php
-	if (config::byKey('product_connection_BG')) {
-		echo "<style>";
-		echo "body {";
-		echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
-		echo "background-position: center !important;";
-		echo "background-repeat: no-repeat !important;";
-		echo "background-size: cover !important;";
-		echo "}";
-		echo "</style>";
-	} elseif (config::byKey('product_connection_color')) {
-		echo "<style>";
-		echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
-		echo "</style>";
-	}
-	if (config::byKey('product_btn_login_color')) {
-		echo "<style>";
-		echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
-		echo "</style>";
-	}
-	if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
-		echo "<style>";
-		echo ".btn_help { display:none; }";
-		echo "</style>";
-	}
+if (config::byKey('product_connection_BG')) {
+	echo "<style>";
+	echo "body {";
+	echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
+	echo "background-position: center !important;";
+	echo "background-repeat: no-repeat !important;";
+	echo "background-size: cover !important;";
+	echo "}";
+	echo "</style>";
+} elseif (config::byKey('product_connection_color')) {
+	echo "<style>";
+	echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
+	echo "</style>";
+}
+if (config::byKey('product_btn_login_color')) {
+	echo "<style>";
+	echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
+	echo "</style>";
+}
+if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
+	echo "<style>";
+	echo ".btn_help { display:none; }";
+	echo "</style>";
+}
 
-	include_file('3rdparty', 'animate/animate', 'css');
-	include_file('desktop', 'connection', 'css');
-	include_file('desktop', 'connection', 'js');
+include_file('3rdparty', 'animate/animate', 'css');
+include_file('desktop', 'connection', 'css');
+include_file('desktop', 'connection', 'js');
 ?>

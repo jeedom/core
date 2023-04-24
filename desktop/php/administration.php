@@ -1240,7 +1240,7 @@ user::isBan();
 					</fieldset>
 				</form>
 
-				<legend>{{Régorganisation automatique des tuiles}}</legend>
+				<legend>{{Réorganisation automatique des tuiles}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
@@ -1256,7 +1256,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historiques}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids de la consultation des historiques}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_history">
 							</div>
@@ -1268,7 +1268,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemet automatique}}
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemets automatiques}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -1276,7 +1276,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
 							</div>

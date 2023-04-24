@@ -241,7 +241,7 @@ document.getElementById('bt_removeTimelineEvent').addEventListener('click', func
     },
     success: function(data) {
       jeedomUtils.showAlert({
-        message: '{{Ev ements de la timeline supprim  avec succ }}',
+        message: '{{Evénements de la timeline supprimés avec succès}}',
         level: 'success'
       })
       jeeP.displayTimeline()
