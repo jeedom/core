@@ -1842,14 +1842,14 @@
         "Mot de passe de la base": "Contraseña base",
         "Actions": "Acciones",
         "Envoyer Historique": "Enviar historial",
-        "Régorganisation automatique des tuiles": "Reorganización automática de mosaicos",
+        "Réorganisation automatique des tuiles": "Reorganización automática de mosaicos",
         "Poids des actions humaines": "Peso de las acciones humanas",
         "Poids des actions automatiques": "Peso de las acciones automáticas",
-        "Poids consultation historiques": "Pesos históricos de consulta",
+        "Poids de la consultation des historiques": "Peso de la consulta histórica",
         "Spécial": "Especial",
-        "Guillemet automatique": "Cotización automática",
+        "Guillemets automatiques": "Cotizaciones automáticas",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Administra automáticamente las comillas para cadenas en expresiones (habilitado de forma predeterminada)",
-        "Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)": "No ejecutar el comando si el equipo ya está en buen estado (alfa)",
+        "Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)": "No ejecutar el comando si el equipo ya está en buen estado (alfa)",
         "Core js (dev)": "Corejs (desarrollador)",
         "Ne charge pas jQuery \/ Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)": "No carga jQuery\/Boostrap y sus bibliotecas (Advertencia: los complementos instalados deben ser compatibles con este modo)",
         "Délai d'attente après génération de la page": "Tiempo de espera después de la generación de la página",
@@ -3007,7 +3007,7 @@
         "Liste des interactions": "Lista de Interacciones"
     },
     "desktop\/js\/timeline.js": {
-        "Ev ements de la timeline supprim  avec succ ": "Eventos de la línea de tiempo eliminados con éxito",
+        "Evénements de la timeline supprimés avec succès": "Eventos de la línea de tiempo eliminados con éxito",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
         "Historique": "Historial",
@@ -3548,6 +3548,7 @@
         "Batterie en Danger": "Batería en peligro",
         "Warning": "Advertencia",
         "Danger": "Peligro",
+        "Connecté": "Conectado",
         "Lumière Toggle": "Luz Conmutada",
         "Lumière Etat": "Estado de Luz",
         "Lumière Bouton On": "Botón de Encendido de luz",
@@ -4913,8 +4914,8 @@
         "Aucune entrée trouvée": "Entradas no encontradas",
         "Affichage": "Mostrar",
         "à": "a",
-        "de": "de",
-        "entrées": "entradas"
+        "sur": "seguro",
+        "entrée(s)": "entrada(s)"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "De acuerdo",

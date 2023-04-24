@@ -1842,14 +1842,14 @@
         "Mot de passe de la base": "Password",
         "Actions": "Ações",
         "Envoyer Historique": "Enviar histórico",
-        "Régorganisation automatique des tuiles": "Reorganização automática de ladrilhos",
+        "Réorganisation automatique des tuiles": "Reorganização automática de ladrilhos",
         "Poids des actions humaines": "Peso das ações humanas",
         "Poids des actions automatiques": "Peso das ações automáticas",
-        "Poids consultation historiques": "Pesos de consulta histórica",
+        "Poids de la consultation des historiques": "Peso da consulta histórica",
         "Spécial": "Especial",
-        "Guillemet automatique": "Cotação automática",
+        "Guillemets automatiques": "Cotações automáticas",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gerenciar automaticamente aspas para strings em expressões (habilitado por padrão)",
-        "Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)": "Não execute o comando se o equipamento já estiver em bom estado (alfa)",
+        "Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)": "Não execute o comando se o equipamento já estiver em bom estado (alfa)",
         "Core js (dev)": "Corejs (desenvolvedor)",
         "Ne charge pas jQuery \/ Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)": "Não carrega jQuery \/ Boostrap e suas bibliotecas (Aviso: Plugins instalados devem suportar este modo.)",
         "Délai d'attente après génération de la page": "Tempo de espera após a geração da página",
@@ -3007,7 +3007,7 @@
         "Liste des interactions": "Lista de interação"
     },
     "desktop\/js\/timeline.js": {
-        "Ev ements de la timeline supprim  avec succ ": "Eventos da linha do tempo excluídos com sucesso",
+        "Evénements de la timeline supprimés avec succès": "Eventos da linha do tempo excluídos com sucesso",
         "Configuration de l'historique des commandes": "Configuração do histórico de comandos",
         "Log d'exécution du scénario": "Registo de execução do cenário",
         "Historique": "Histórico",
@@ -3548,6 +3548,7 @@
         "Batterie en Danger": "Bateria em perigo",
         "Warning": "Aviso",
         "Danger": "Perigo",
+        "Connecté": "Conectado",
         "Lumière Toggle": "Luz de alternância",
         "Lumière Etat": "Estado da Luz",
         "Lumière Bouton On": "Luz do Botão On",
@@ -4913,8 +4914,8 @@
         "Aucune entrée trouvée": "Nenhuma entrada encontrada",
         "Affichage": "Tela",
         "à": "no",
-        "de": "de",
-        "entrées": "entradas"
+        "sur": "sobre",
+        "entrée(s)": "entrada(s)"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Ok",
