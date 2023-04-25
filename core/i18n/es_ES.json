@@ -4914,8 +4914,8 @@
         "Aucune entrée trouvée": "Entradas no encontradas",
         "Affichage": "Mostrar",
         "à": "a",
-        "sur": "seguro",
-        "entrée(s)": "entrada(s)"
+        "de": "de",
+        "entrées": "entradas"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "De acuerdo",

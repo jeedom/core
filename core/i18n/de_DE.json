@@ -4914,8 +4914,8 @@
         "Aucune entrée trouvée": "Keine Einträge gefunden",
         "Affichage": "Anzeige",
         "à": "bei",
-        "sur": "An",
-        "entrée(s)": "Eingang(e)"
+        "de": "von",
+        "entrées": "Einträge"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Okay",
