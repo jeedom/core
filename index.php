@@ -42,7 +42,7 @@ try {
 				$_script .= '</script>';
 				echo $_script;
 			} else {
-				exit(header('Location: ' . $url));
+				header('Location: ' . $url);
 			}
 			die();
 		}
