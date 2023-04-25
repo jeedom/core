@@ -527,9 +527,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <?php } ?>
               </div>
             </div>
-              <?php if ($cmd->getIsHistorized() != 1 && $cmd->isHistorizedCalcPossible()) { ?>
+              <?php if ($cmd->isHistorizedCalcPossible()) { ?>
             <div class="form-group">
-              <label class="col-md-3 col-sm-3 control-label">{{Historique Calculée}}</label>
+              <label class="col-md-3 col-sm-3 control-label">{{Historique Calculé}}</label>
               <div class="col-sm-6">
                   <input type="checkbox" class="cmdAttr form-control" data-l1key="configuration" data-l2key="isHistorizedCalc" />
               </div>

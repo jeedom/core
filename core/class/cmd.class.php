@@ -134,7 +134,7 @@ class cmd {
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 		INNER JOIN object ob ON el.object_id=ob.id
-		WHERE (isHistorized=1 || c.configuration LIKE \'%"isHistorizedCalc":"1"%\')
+		WHERE isHistorized=1
 		AND type=\'info\'';
 		$sql .= ' ORDER BY ob.position,ob.name,el.name,c.name';
 		$result1 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
@@ -142,7 +142,7 @@ class cmd {
 		FROM cmd c
 		INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 		WHERE el.object_id IS NULL
-		AND (isHistorized=1 || c.configuration LIKE \'%"isHistorizedCalc":"1"%\')
+		AND isHistorized=1
 		AND type=\'info\'';
 		$sql .= ' ORDER BY el.name,c.name';
 		$result2 = self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
@@ -2288,7 +2288,7 @@ class cmd {
 	}
 
 	public function addHistoryValue($_value, $_datetime = '') {
-		if ($this->getIsHistorized() == 1 && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
+		if ($this->getIsHistorized() == 1 && !$this->getConfiguration('isHistorizedCalc', 0) && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
 			$history = new history();
 			$history->setCmd_id($this->getId());
 			$history->setValue($_value);
@@ -2746,6 +2746,8 @@ class cmd {
 	}
         
         public function isHistorizedCalcPossible(){
+                if($this->eqType != 'virtual')
+                        return 0;
                 preg_match_all("/#([0-9]*)#/", $this->getConfiguration('calcul'), $matches);
 		if (count($matches[1]) > 0) {
 			foreach ($matches[1] as $cmd_id) {

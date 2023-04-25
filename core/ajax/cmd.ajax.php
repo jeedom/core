@@ -350,7 +350,7 @@ try {
                 if(is_numeric(init('id'))){
                     $cmd = cmd::byId(init('id'));
 
-                    if(!$cmd->getIsHistorized()){
+                    if($cmd->getIsHistorized() && $cmd->getConfiguration('isHistorizedCalc', 0)){
                         $_GET['id'] = $cmd->getConfiguration('calcul');
 
 
