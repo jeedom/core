@@ -1842,14 +1842,14 @@
         "Mot de passe de la base": "Basiskennwort",
         "Actions": "Aktionen",
         "Envoyer Historique": "Verlauf senden",
-        "Régorganisation automatique des tuiles": "Automatische Neuanordnung der Kacheln",
+        "Réorganisation automatique des tuiles": "Automatische Neuanordnung der Kacheln",
         "Poids des actions humaines": "Gewicht menschlicher Handlungen",
         "Poids des actions automatiques": "Gewicht automatischer Aktionen",
-        "Poids consultation historiques": "Historische Konsultationsgewichte",
+        "Poids de la consultation des historiques": "Gewicht der historischen Beratung",
         "Spécial": "Speziell",
-        "Guillemet automatique": "Automatisches Angebot",
+        "Guillemets automatiques": "Automatische Zitate",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Anführungszeichen für Zeichenfolgen in Ausdrücken automatisch verwalten (standardmäßig aktiviert)",
-        "Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)": "Führen Sie den Befehl nicht aus, wenn sich das Gerät bereits im guten Zustand (Alpha) befindet",
+        "Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)": "Führen Sie den Befehl nicht aus, wenn sich das Gerät bereits im guten Zustand (Alpha) befindet",
         "Core js (dev)": "Corejs (Entwickler)",
         "Ne charge pas jQuery \/ Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)": "Lädt jQuery \/ Boostrap und deren Bibliotheken nicht (Warnung: Installierte Plugins müssen diesen Modus unterstützen.)",
         "Délai d'attente après génération de la page": "Wartezeit nach der Seitengenerierung",
@@ -3007,7 +3007,7 @@
         "Liste des interactions": "Liste der Interaktionen"
     },
     "desktop\/js\/timeline.js": {
-        "Ev ements de la timeline supprim  avec succ ": "Timeline-Ereignisse erfolgreich gelöscht",
+        "Evénements de la timeline supprimés avec succès": "Timeline-Ereignisse erfolgreich gelöscht",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
         "Historique": "Chronik",
@@ -3548,6 +3548,7 @@
         "Batterie en Danger": "Batterie in Gefahr",
         "Warning": "Warnung",
         "Danger": "Gefahr",
+        "Connecté": "In Verbindung gebracht",
         "Lumière Toggle": "Licht umschalten",
         "Lumière Etat": "Staatslicht",
         "Lumière Bouton On": "Lichtknopf an",
@@ -4913,8 +4914,8 @@
         "Aucune entrée trouvée": "Keine Einträge gefunden",
         "Affichage": "Anzeige",
         "à": "bei",
-        "de": "von",
-        "entrées": "Einträge"
+        "sur": "An",
+        "entrée(s)": "Eingang(e)"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Okay",
