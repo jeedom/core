@@ -1712,8 +1712,8 @@
                 }
                 else {   // CUSTOM LABELS
                   var string = this.config.labels.info
-                    .replace("{start}", f)
-                    .replace("{end}", t+1)
+                    .replace("{start}", f+1)
+                    .replace("{end}", t)
                     .replace("{page}", this.currentPage)
                     .replace("{pages}", this.totalPages)
                     .replace("{rows}", items);
