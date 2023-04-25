@@ -1842,14 +1842,14 @@
         "Mot de passe de la base": "DataBase password",
         "Actions": "Actions",
         "Envoyer Historique": "Send History",
-        "Régorganisation automatique des tuiles": "Automatic tile rearrangement",
+        "Réorganisation automatique des tuiles": "Automatic tile rearrangement",
         "Poids des actions humaines": "Weight of human actions",
         "Poids des actions automatiques": "Weight of automatic actions",
-        "Poids consultation historiques": "Historical consultation weights",
+        "Poids de la consultation des historiques": "Weight of historical consultation",
         "Spécial": "Special",
-        "Guillemet automatique": "Automatic quote",
+        "Guillemets automatiques": "Automatic quotes",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Automatically manage quotation marks for strings in expressions (enabled by default)",
-        "Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)": "Do not execute the command if the equipment is already in the good state (alpha)",
+        "Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)": "Do not execute the command if the equipment is already in the good state (alpha)",
         "Core js (dev)": "Corejs (dev)",
         "Ne charge pas jQuery \/ Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)": "Does not load jQuery \/ Boostrap and their libraries (Warning: Installed plugins must support this mode.)",
         "Délai d'attente après génération de la page": "Waiting time after page generation",
@@ -3007,7 +3007,7 @@
         "Liste des interactions": "List of interactions"
     },
     "desktop\/js\/timeline.js": {
-        "Ev ements de la timeline supprim  avec succ ": "Timeline events successfully deleted",
+        "Evénements de la timeline supprimés avec succès": "Timeline events deleted successfully",
         "Configuration de l'historique des commandes": "Commands history setup",
         "Log d'exécution du scénario": "Scenario execution log",
         "Historique": "History",
@@ -3548,6 +3548,7 @@
         "Batterie en Danger": "Battery in Danger",
         "Warning": "Warning",
         "Danger": "Hazard",
+        "Connecté": "Connected",
         "Lumière Toggle": "Light Toggle",
         "Lumière Etat": "Light State",
         "Lumière Bouton On": "Light Button On",
@@ -4913,8 +4914,8 @@
         "Aucune entrée trouvée": "No entries found",
         "Affichage": "Display",
         "à": "at",
-        "de": "of",
-        "entrées": "entries"
+        "sur": "on",
+        "entrée(s)": "entrance(s)"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Ok",

@@ -1842,14 +1842,14 @@
         "Mot de passe de la base": "Mot de passe de la base",
         "Actions": "株式",
         "Envoyer Historique": "Envoyer Historique",
-        "Régorganisation automatique des tuiles": "Régorganisation automatique des tuiles",
+        "Réorganisation automatique des tuiles": "Réorganisation automatique des tuiles",
         "Poids des actions humaines": "Poids des actions humaines",
         "Poids des actions automatiques": "Poids des actions automatiques",
-        "Poids consultation historiques": "Poids consultation historiques",
+        "Poids de la consultation des historiques": "Poids de la consultation des historiques",
         "Spécial": "Spécial",
-        "Guillemet automatique": "Guillemet automatique",
+        "Guillemets automatiques": "Guillemets automatiques",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)",
-        "Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)": "Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)",
+        "Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)": "Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)",
         "Core js (dev)": "Core js (dev)",
         "Ne charge pas jQuery \/ Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)": "Ne charge pas jQuery \/ Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)",
         "Délai d'attente après génération de la page": "ページ生成後の待機時間",
@@ -3007,7 +3007,7 @@
         "Liste des interactions": "相互作用のリスト"
     },
     "desktop\/js\/timeline.js": {
-        "Ev ements de la timeline supprim  avec succ ": "Ev ements de la timeline supprim  avec succ",
+        "Evénements de la timeline supprimés avec succès": "Evénements de la timeline supprimés avec succès",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Log d'exécution du scénario": "スクリプトの実行をログに記録します",
         "Historique": "歴史的",
@@ -3548,6 +3548,7 @@
         "Batterie en Danger": "Batterie en Danger",
         "Warning": "警告",
         "Danger": "危険",
+        "Connecté": "Connecté",
         "Lumière Toggle": "Lumière Toggle",
         "Lumière Etat": "Lumière Etat",
         "Lumière Bouton On": "Lumière Bouton On",
@@ -4913,8 +4914,8 @@
         "Aucune entrée trouvée": "Aucune entrée trouvée",
         "Affichage": "Affichage",
         "à": "à",
-        "de": "de",
-        "entrées": "entrées"
+        "sur": "sur",
+        "entrée(s)": "entrée(s)"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "OK",
