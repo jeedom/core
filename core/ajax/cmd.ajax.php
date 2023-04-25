@@ -346,6 +346,17 @@ try {
 		$data = array();
 		$dateStart = null;
 		$dateEnd = null;
+                
+                if(is_numeric(init('id'))){
+                    $cmd = cmd::byId(init('id'));
+
+                    if($cmd->getIsHistorized() && $cmd->getConfiguration('isHistorizedCalc', 0)){
+                        $_GET['id'] = $cmd->getConfiguration('calcul');
+
+
+                    }
+                }
+            
 		if (init('dateRange') != '' && init('dateRange') != 'all') {
 			if (is_json(init('dateRange'))) {
 				$dateRange = json_decode(init('dateRange'), true);
@@ -459,9 +470,23 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
+			$derive = init('derive', '');
+                        if($derive == '')
+                            $derive = $cmd->getDisplay('graphDerive');
+			$return['derive'] = $derive;
+			$previousValue = null;
 			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
+                    if ($derive == 1 || $derive == '1') {
+						$valTmp = $value;
+						if ($value !== null && $previousValue !== null) {
+							$value = $value - $previousValue;
+                        } else {
+                                $value = null;
+                        }
+                        $previousValue = $valTmp;
+					}
 					$info_history = array();
 					$info_history[] = floatval(strtotime(date('Y-m-d H:i:s', $datetime))) * 1000;
 					$info_history[] = ($value === null) ? null : floatval($value);

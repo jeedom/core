@@ -103,3 +103,7 @@ Devant chaque donnée pouvant être affichée, vous retrouvez deux icônes :
 Parfois, il se peut que vous ayez des valeurs incohérentes sur les graphiques. Cela est souvent dû à un souci d’interprétation de la valeur. Il est possible de supprimer ou changer la valeur du point en question, en cliquant sur celui-ci directement sur le graphique ; de plus, vous pouvez régler le minimum et le maximum autorisés afin d’éviter des problèmes futurs.
 
 
+### Historique calculé des commandes virtuelle
+
+En plus d'activer l'historique d'une commande dans un virtuel, on peut activer "historique calculé ». Cet historique ne sera donc pas enregistré en base, mais calculé à l'affichage.
+Il faut pour cela que toutes les composantes de cette commande soient historisées de manière classique.

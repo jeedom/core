@@ -851,7 +851,7 @@ class history {
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
 					$cmd = cmd::byId($cmd_id);
-					if (is_object($cmd) && $cmd->getIsHistorized() == 1) {
+					if (is_object($cmd) && $cmd->getIsHistorized() == 1 && !$cmd->getConfiguration('isHistorizedCalc', 0)) {
 						$prevDatetime = null;
 						$prevValue = 0;
 						$histories_cmd = $cmd->getHistory($_dateStart, $_dateEnd, $_groupingType);
@@ -863,6 +863,16 @@ class history {
 							$cmd_histories[$histories_cmd[$i]->getDatetime()]['#' . $cmd_id . '#'] = $histories_cmd[$i]->getValue();
 						}
 					}
+                                        elseif(is_object($cmd)){
+                                            $histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_dateStart, $_dateEnd, $_noCalcul, $_groupingType);
+                                            foreach ($histories as $datetime => $valueT){
+                                                $datetime = date('Y/m/d H:i:s', $datetime);
+                                                if (!isset($cmd_histories[$datetime])) {
+                                                        $cmd_histories[$datetime] = array();
+                                                }
+                                                $cmd_histories[$datetime]['#' . $cmd_id . '#'] = $valueT;
+                                            }
+                                        }
 				}
 			}
 			ksort($cmd_histories);
