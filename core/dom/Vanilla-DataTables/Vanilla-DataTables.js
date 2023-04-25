@@ -84,7 +84,7 @@
             placeholder: "{{Rechercher}}...", // The search input placeholder
             perPage: "{select} <span> {{Entrées par page}} </span>", // per-page dropdown label
             noRows: "{{Aucune entrée trouvée}}", // Message shown when there are no search results
-            info: "{{Affichage}} : {start} {{à}} {end} {{sur}} {rows} {{entrée(s)}}" //
+            info: "{{Affichage}} : {start} {{à}} {end} {{de}} {rows} {{entrées}}" //
         },
 
         // Customise the layout
@@ -1707,14 +1707,17 @@
             }
 
             if (this.labels.length && this.config.labels.info.length) {
-                // CUSTOM LABELS
-                var string = this.config.labels.info
+               if (items < 2) {
+                  var string = '';
+                }
+                else {   // CUSTOM LABELS
+                  var string = this.config.labels.info
                     .replace("{start}", f+1)
-                    .replace("{end}", t+1)
+                    .replace("{end}", t)
                     .replace("{page}", this.currentPage)
                     .replace("{pages}", this.totalPages)
-                    .replace("{rows}", items+1);
-
+                    .replace("{rows}", items);
+                }
                 each([].slice.call(this.labels), function(label) {
                     label.innerHTML = items ? string : "";
                 });
