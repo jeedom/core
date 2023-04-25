@@ -527,7 +527,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <?php } ?>
               </div>
             </div>
-              <?php if ($cmd->getIsHistorized() != 1) { ?>
+              <?php if ($cmd->getIsHistorized() != 1 && $cmd->isHistorizedCalcPossible()) { ?>
             <div class="form-group">
               <label class="col-md-3 col-sm-3 control-label">{{Historique Calculée}}</label>
               <div class="col-sm-6">

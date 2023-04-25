@@ -1580,7 +1580,7 @@ class cmd {
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');
-			if ($this->getIsHistorized() == 1 || $this->getConfiguration('isHistorizedCalc', 0)) {
+			if ($this->getIsHistorized() == 1 || ($this->getConfiguration('isHistorizedCalc', 0) && $this->isHistorizedCalcPossible())) {
 				$replace['#history#'] = 'history cursor';
 				if (config::byKey('displayStatsWidget') == 1 && strpos($template, '#hide_history#') !== false && $this->getDisplay('showStatsOn' . $_version, 1) == 1) {
 					$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculPeriod') . ' hour'));
@@ -2744,6 +2744,24 @@ class cmd {
 	public function getUnite() {
 		return $this->unite;
 	}
+        
+        public function isHistorizedCalcPossible(){
+                preg_match_all("/#([0-9]*)#/", $this->getConfiguration('calcul'), $matches);
+		if (count($matches[1]) > 0) {
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					$cmd = cmd::byId($cmd_id);
+					if (!is_object($cmd) || (!$cmd->getIsHistorized() && !$cmd->isHistorizedCalcPossible())) {
+                                            return 0;
+                                        }
+                                }
+                        }
+                }
+                else{
+                    return 0;
+                }
+                return 1;
+        }
 
 	public function getEqLogic() {
 		if ($this->_eqLogic === null) {
