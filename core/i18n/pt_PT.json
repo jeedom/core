@@ -4914,8 +4914,8 @@
         "Aucune entrée trouvée": "Nenhuma entrada encontrada",
         "Affichage": "Tela",
         "à": "no",
-        "sur": "sobre",
-        "entrée(s)": "entrada(s)"
+        "de": "de",
+        "entrées": "entradas"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Ok",

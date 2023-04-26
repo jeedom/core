@@ -4914,8 +4914,8 @@
         "Aucune entrée trouvée": "No entries found",
         "Affichage": "Display",
         "à": "at",
-        "sur": "on",
-        "entrée(s)": "entrance(s)"
+        "de": "of",
+        "entrées": "entries"
     },
     "core\/dom\/dom.ui.js": {
         "OK": "Ok",
