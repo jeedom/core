@@ -1671,7 +1671,7 @@ class cmd {
 				$replace['#state#'] = $replace['#value#'];
 			}
 			if ($this->getSubType() == 'string') {
-				$replace['#value#'] = addslashes($replace['#value#']);
+				$replace['#value#'] = str_replace("\n", '<br/>', addslashes($replace['#value#']));
 			}
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
