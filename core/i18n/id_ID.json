@@ -3798,6 +3798,7 @@
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Connexion de l\\'utilisateur par REMOTE_USER :",
         "Double authentification requise": "Double authentification requise",
+        "Mot de passe ou nom d\\'utilisateur incorrect": "Mot de passe ou nom d\\'utilisateur incorrect",
         "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Akses tidak sah",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur",
