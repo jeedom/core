@@ -36,11 +36,18 @@
       "visible": 1
 
   },
+"dnsGo" : {
+      "title": "OpenVPN",
+      "wizard": "dnsGo",
+      "order": 4,
+      "custom": "",
+      "visible": 1
+  },
   "pack" :
     {
       "title": "Service pack",
       "wizard": "pack",
-      "order": 4,
+      "order": 5,
       "custom": "",
       "visible": 1
     }
@@ -49,7 +56,7 @@
     {
       "title": "Configuration des plugins",
       "wizard": "pluginsConfigs",
-      "order": 5,
+      "order": 6,
       "custom": "",
       "visible": 1
     }
@@ -58,7 +65,7 @@
     {
       "title": "Services",
       "wizard": "services",
-      "order": 6,
+      "order": 7,
       "custom": "",
       "visible": 1
     }
@@ -67,7 +74,7 @@
     {
       "title": "Assistants Vocaux",
       "wizard": "assistants",
-      "order": 7,
+      "order": 8,
       "custom": "",
       "visible": 1
     }
@@ -76,7 +83,7 @@
    	{
 	  "title": "Options Luna",
       "wizard": "luna",
-      "order": 8,
+      "order": 9,
       "custom": "",
       "visible": 1
    	}
@@ -85,7 +92,7 @@
     {
       "title": "Prêt à commencer",
       "wizard": "ready",
-      "order": 9,
+      "order": 10,
       "custom": "",
       "visible": 1
     }
