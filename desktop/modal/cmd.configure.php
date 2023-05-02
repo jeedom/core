@@ -827,6 +827,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
           document.getElementById('bt_cmdConfigureTest').remove()
           document.getElementById('bt_cmdConfigureGraph').remove()
+          document.getElementById('bt_cmdConfigureRawObject').classList.add("roundedLeft")
         }
         this.setModal()
 
