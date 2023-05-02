@@ -272,7 +272,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             $usedBy = $cmd->getUsedBy();
             ?>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
@@ -286,7 +286,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['cmd'] as $usedByCmd) {
@@ -296,7 +296,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['scenario'] as $usedByScenario) {
@@ -310,7 +310,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumés}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumé(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['object'] as $usedByObject) {
@@ -322,7 +322,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
             <?php foreach ($usedBy['plugin'] as $key => $values) { ?>
               <div class="form-group">
-                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin}} <?php echo $key; ?></label>
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin(s)}} <?php echo $key; ?></label>
                 <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                   <?php
                   foreach ($values as $value) {
