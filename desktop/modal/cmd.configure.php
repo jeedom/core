@@ -725,7 +725,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
               ?>
                 <tr>
-                  <td>{{Afficher le nom ET l'icône}}</td>
+                  <td>{{Afficher le nom et l'icône}}</td>
                   <?php
                   $display = '';
                   foreach ($configEqDisplayType as $key => $value) {
