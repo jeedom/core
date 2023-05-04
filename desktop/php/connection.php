@@ -14,7 +14,7 @@
 			</div>
 			<div class="wrapper">
 				<div id="login" tabindex="503" class="form-group">
-					<form>
+					<form onsubmit="return false;">
 						<h3>{{Connexion}}
 							<?php
 							if (config::byKey('display_name_login') == 1) {

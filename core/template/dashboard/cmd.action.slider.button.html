@@ -22,7 +22,7 @@
   <script>
     var step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 0.5
 
-    document.querySelector('.cmd[data-cmd_uid=#uid#] .bt_plus').addEventListener('click', function() {
+    document.querySelector('.cmd[data-cmd_uid="#uid#"] .bt_plus').addEventListener('click', function() {
       let input = document.querySelector('.cmd[data-cmd_uid="#uid#"] .in_value')
       let value = parseFloat(input.value.replace("#unite#", "").replace(" ", "")) + step
       if (value > parseFloat('#maxValue#')) value = parseFloat('#maxValue#')
@@ -33,7 +33,7 @@
       }, 1000)
     })
 
-    document.querySelector('.cmd[data-cmd_uid=#uid#] .bt_minus').addEventListener('click', function() {
+    document.querySelector('.cmd[data-cmd_uid="#uid#"] .bt_minus').addEventListener('click', function() {
       let input = document.querySelector('.cmd[data-cmd_uid="#uid#"] .in_value')
       let value = parseFloat(input.value.replace("#unite#", "").replace(" ", "")) - step
       if (value < parseFloat('#minValue#')) value = parseFloat('#minValue#')
@@ -54,7 +54,7 @@
 
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
       if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
-        if ('#time#' == 'duration' || '#time#' == 'date') {
+        if ('#time#' === 'duration' || '#time#' === 'date') {
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
 
