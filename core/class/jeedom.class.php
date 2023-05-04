@@ -602,8 +602,14 @@ class jeedom {
 		$serial = '';
 		$serial_by_id = '';
 		foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $_usb . ' --query=all')) as $line) {
+			if (strpos($line, 'E: ID_USB_MODEL=') !== false) {
+				$model = trim(str_replace(array('E: ID_USB_MODEL=', '"'), '', $line));
+			}
 			if (strpos($line, 'E: ID_MODEL=') !== false) {
 				$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
+			}
+			if (strpos($line, 'E: ID_USB_VENDOR=') !== false) {
+				$vendor = trim(str_replace(array('E: ID_USB_VENDOR=', '"'), '', $line));
 			}
 			if (strpos($line, 'E: ID_VENDOR=') !== false) {
 				$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
@@ -614,6 +620,14 @@ class jeedom {
 					if (strpos($serial_links, '/serial/by-id') !== false) {
 						$serial_by_id = trim($serial_links);
 						break;
+					}
+				}
+				if ($serial_by_id == '') {
+					foreach ($serial_by_ids as $serial_links) {
+						if (strpos($serial_links, '/serial/by-path') !== false) {
+							$serial_by_id = trim($serial_links);
+							break;
+						}
 					}
 				}
 			}
