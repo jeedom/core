@@ -1307,7 +1307,7 @@ class scenario {
 			return $return;
 		}
 		if ($elements != '') {
-			$element = scenarioElement::byId($element_id);
+			$element = scenarioElement::byId($elements);
 			if (is_object($element)) {
 				$return[] = $element;
 				$this->_elements = $return;
