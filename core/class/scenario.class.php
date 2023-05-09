@@ -1305,7 +1305,8 @@ class scenario {
 			}
 			$this->_elements = $return;
 			return $return;
-		} else if ($elements != '') {
+		}
+		if ($elements != '') {
 			$element = scenarioElement::byId($elements);
 			if (is_object($element)) {
 				$return[] = $element;
@@ -1985,7 +1986,7 @@ class scenario {
 		return $this;
 	}
 
-		
+
 	/**
 	 * getReturn
 	 *
@@ -2003,7 +2004,7 @@ class scenario {
 		$this->_return = $_return;
 		return $this;
 	}
-	
+
 	/**
 	 * getTags
 	 *
@@ -2012,7 +2013,7 @@ class scenario {
 	public function getTags() {
 		return $this->_tags;
 	}
-	
+
 	/**
 	 * setTags
 	 *
@@ -2023,7 +2024,7 @@ class scenario {
 		$this->_tags = $_tags;
 		return $this;
 	}
-	
+
 	/**
 	 * getDo
 	 *
