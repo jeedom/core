@@ -47,11 +47,13 @@ class planHeader {
 		ORDER BY `order`,`name`';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
+	
 	/**
+	 * searchByUse
 	 *
-	 * @param type $_type
-	 * @param type $_id
-	 * @return type
+	 * @param  mixed $_type
+	 * @param  mixed $_id
+	 * @return array
 	 */
 	public static function searchByUse($_type, $_id) {
 		$return = array();

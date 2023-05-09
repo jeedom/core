@@ -89,10 +89,10 @@ class cron {
 	}
 	/**
 	*
-	* @param type $_class
-	* @param type $_function
-	* @param type $_option
-	* @return type
+	* @param string $_class
+	* @param string $_function
+	* @param string|array $_option
+	* @return cron[]
 	*/
 	public static function searchClassAndFunction($_class, $_function, $_option = '') {
 		$value = array(

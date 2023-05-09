@@ -65,6 +65,10 @@ class eqLogic {
 		return $return;
 	}
 
+	/** 
+	 * @param int|string $_id
+	 * @return void|eqLogic void if $_id is not valid else the eqLogic
+	 */
 	public static function byId($_id) {
 		if ($_id == '') {
 			return;
@@ -156,6 +160,12 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/** 
+	 * @param string $_logicalId
+	 * @param string $_eqType_name the plugin class name
+	 * @param bool $_multiple default value=false
+	 * @return eqLogic|eqLogic[] eqLogic if $_multiple is false else eqLogic[]
+	 */
 	public static function byLogicalId($_logicalId, $_eqType_name, $_multiple = false) {
 		$values = array(
 			'logicalId' => $_logicalId,
@@ -177,6 +187,11 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/** 
+	 * @param string $_eqType_name the plugin class name
+	 * @param bool $_onlyEnable
+	 * @return eqLogic[]
+	 */
 	public static function byType($_eqType_name, $_onlyEnable = false) {
 		$values = array(
 			'eqType_name' => $_eqType_name,
@@ -509,7 +524,13 @@ class eqLogic {
 		}
 		return $text;
 	}
-
+	
+	/**
+	 * byString
+	 *
+	 * @param  string $_string
+	 * @return \eqLogic
+	 */
 	public static function byString($_string) {
 		$eqLogic = self::byId(str_replace(array('#', 'eqLogic'), '', self::fromHumanReadable($_string)));
 		if (!is_object($eqLogic)) {
