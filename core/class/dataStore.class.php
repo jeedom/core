@@ -41,6 +41,12 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * @param string $_type
+	 * @param string $_link_id
+	 * @param string $_key
+	 * @return dataStore
+	 */
 	public static function byTypeLinkIdKey($_type, $_link_id, $_key) {
 		$values = array(
 			'type' => $_type,
