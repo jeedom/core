@@ -1320,9 +1320,8 @@ class scenario {
 			}
 			$this->_elements = $return;
 			return $return;
-		}
-		if ($elements != '') {
-			$element = scenarioElement::byId($element_id);
+		} else if ($elements != '') {
+			$element = scenarioElement::byId($elements);
 			if (is_object($element)) {
 				$return[] = $element;
 				$this->_elements = $return;
