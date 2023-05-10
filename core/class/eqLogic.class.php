@@ -44,6 +44,8 @@ class eqLogic {
 	protected $_batteryUpdated = false;
 	protected $_changed = false;
 
+	private $_cmds = array();
+
 	private static $_templateArray = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
