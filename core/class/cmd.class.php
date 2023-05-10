@@ -2532,7 +2532,7 @@ class cmd {
 		return $return;
 	}
 
-	public function migrateCmd($_sourceId, $_targetId) {
+	public static function migrateCmd($_sourceId, $_targetId) {
 		$sourceCmd = cmd::byId($_sourceId);
 		if (!is_object($sourceCmd)) {
 			throw new Exception(__('La commande source n\'existe pas', __FILE__));
@@ -2872,7 +2872,7 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
-	/** 
+	/**
 	 * @param eqLogic $_eqLogic
 	 */
 	public function setEqLogic($_eqLogic) {
