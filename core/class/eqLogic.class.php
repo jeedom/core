@@ -44,6 +44,8 @@ class eqLogic {
 	protected $_batteryUpdated = false;
 	protected $_changed = false;
 
+	private $_cmds = array();
+
 	private static $_templateArray = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -65,7 +67,7 @@ class eqLogic {
 		return $return;
 	}
 
-	/** 
+	/**
 	 * @param int|string $_id
 	 * @return void|eqLogic void if $_id is not valid else the eqLogic
 	 */
@@ -160,7 +162,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	/** 
+	/**
 	 * @param string $_logicalId
 	 * @param string $_eqType_name the plugin class name
 	 * @param bool $_multiple default value=false
@@ -187,7 +189,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	/** 
+	/**
 	 * @param string $_eqType_name the plugin class name
 	 * @param bool $_onlyEnable
 	 * @return eqLogic[]
@@ -375,7 +377,7 @@ class eqLogic {
 					if ($eqLogic->getStatus('lastCommunication', date('Y-m-d H:i:s')) < date('Y-m-d H:i:s', strtotime('-' . $noReponseTimeLimit . ' minutes' . date('Y-m-d H:i:s')))) {
 						$message = __('Attention', __FILE__) . ' ' . $eqLogic->getHumanName();
 						$message .= ' ' . __('n\'a pas envoyé de message depuis plus de', __FILE__) . ' ' . $noReponseTimeLimit . ' ' . __('min (vérifiez les piles)', __FILE__);
-						$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+						$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 						$prevStatus = $eqLogic->getStatus('timeout', 0);
 						$eqLogic->setStatus('timeout', 1);
 						if (config::byKey('alert::addMessageOnTimeout') == 1 && $prevStatus == 0) {
@@ -524,7 +526,7 @@ class eqLogic {
 		}
 		return $text;
 	}
-	
+
 	/**
 	 * byString
 	 *
