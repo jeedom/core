@@ -1244,7 +1244,7 @@ class eqLogic {
 		return false;
 	}
 
-	public function migrateEqlogic($_sourceId, $_targetId, $_mode = 'replace') {
+	public static function migrateEqlogic($_sourceId, $_targetId, $_mode = 'replace') {
 		$sourceEq = eqLogic::byId($_sourceId);
 		if (!is_object($sourceEq)) {
 			throw new Exception(__('L\'équipement source n\'existe pas', __FILE__));
