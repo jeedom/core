@@ -1178,6 +1178,44 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       }, 100)
     })
 
+    document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'info',
+            subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
+          }
+        }, function(result) {
+          var target_id = result.cmd.id
+          var name = result.human
+          jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
+            if (result) {
+              jeedom.history.copyHistoryToCmd({
+                source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
+                target_id: target_id,
+                error: function(error) {
+                  jeedomUtils.showAlert({
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                    message: error.message,
+                    level: 'danger'
+                  })
+                },
+                success: function(data) {
+                  jeedomUtils.showAlert({
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                    message: '{{Historique copié avec succès}}',
+                    level: 'success'
+                  })
+                }
+              })
+            }
+          })
+        })
+        return
+      }
+    });
+
     /*Events delegations
      */
     //cmd information tab
@@ -1237,41 +1275,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               }
             })
           }
-        })
-        return
-      }
-
-      if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
-        jeedom.cmd.getSelectModal({
-          cmd: {
-            type: 'info',
-            subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
-          }
-        }, function(result) {
-          var target_id = result.cmd.id
-          var name = result.human
-          jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
-            if (result) {
-              jeedom.history.copyHistoryToCmd({
-                source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-                target_id: target_id,
-                error: function(error) {
-                  jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                    message: error.message,
-                    level: 'danger'
-                  })
-                },
-                success: function(data) {
-                  jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                    message: '{{Historique copié avec succès}}',
-                    level: 'success'
-                  })
-                }
-              })
-            }
-          })
         })
         return
       }

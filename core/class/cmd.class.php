@@ -46,9 +46,11 @@ class cmd {
 	protected $alert;
 	protected $_collectDate = '';
 	protected $_valueDate = '';
+	/** @var eqLogic */
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	protected $_needRefreshAlert;
+	/** @var bool */
 	protected $_changed = false;
 	private static $_templateArray = array();
 	private static $_unite_conversion = array(
@@ -88,6 +90,10 @@ class cmd {
 		return $_inputs;
 	}
 
+	/**
+	 * @param int|string $_id the id of the command
+	 * @return void|cmd void if $_id is not valid else the cmd
+	 */
 	public static function byId($_id) {
 		if ($_id == '') {
 			return;
@@ -101,6 +107,10 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * @param array<string|int> $_ids
+	 * @return void|array<cmd> void if $_ids is not valid else an array of cmd
+	 */
 	public static function byIds($_ids) {
 		if (!is_array($_ids) || count($_ids) == 0) {
 			return;
@@ -114,6 +124,9 @@ class cmd {
 		}
 	}
 
+	/**
+	 * @return array<cmd>
+	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
@@ -1196,10 +1209,10 @@ class cmd {
 
 	/**
 	 *
-	 * @param type $_options
-	 * @param type $_sendNodeJsEvent
-	 * @param type $_quote
-	 * @return command result
+	 * @param null|string $_options
+	 * @param bool $_sendNodeJsEvent
+	 * @param bool $_quote
+	 * @return void|string
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
@@ -2519,7 +2532,7 @@ class cmd {
 		return $return;
 	}
 
-	public function migrateCmd($_sourceId, $_targetId) {
+	public static function migrateCmd($_sourceId, $_targetId) {
 		$sourceCmd = cmd::byId($_sourceId);
 		if (!is_object($sourceCmd)) {
 			throw new Exception(__('La commande source n\'existe pas', __FILE__));
@@ -2859,6 +2872,9 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
+	/**
+	 * @param eqLogic $_eqLogic
+	 */
 	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
@@ -2876,7 +2892,7 @@ class cmd {
 
 	/**
 	 *
-	 * @param type $name
+	 * @param string $name
 	 * @return $this
 	 */
 	public function setName($_name) {
@@ -2889,6 +2905,9 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * @param string $_type
+	 */
 	public function setType($_type) {
 		if ($this->type != $_type) {
 			$this->_needRefreshWidget = true;
@@ -2898,6 +2917,9 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * @param string $_subType
+	 */
 	public function setSubType($_subType) {
 		if ($this->subType != $_subType) {
 			$this->_needRefreshWidget = true;
@@ -3082,6 +3104,9 @@ class cmd {
 		return $this->_changed;
 	}
 
+	/**
+	 * @param bool $_changed
+	 */
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;

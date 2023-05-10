@@ -414,9 +414,8 @@ class DB {
 
 	/**
 	 *
-	 *
-	 * @param type $object
-	 * @return type
+	 * @param mixed $object
+	 * @return mixed
 	 * @throws RuntimeException
 	 */
 	private static function getFields($object) {
@@ -468,8 +467,8 @@ class DB {
 	 * first being the list of parts "key=:key" to inject in the SQL, the
 	 * second being the mapping of these parameters to the values.
 	 *
-	 * @param type $object
-	 * @return type
+	 * @param mixed $object
+	 * @return array
 	 */
 	private static function buildQuery($object) {
 		$parameters = array();
@@ -485,9 +484,9 @@ class DB {
 	 * Returns the value of a field of a given object. It'll try to use a
 	 * getter first if defined. If not defined, we'll use the reflection API.
 	 *
-	 * @param type $object
-	 * @param type $field
-	 * @return type
+	 * @param object $object
+	 * @param string $field
+	 * @return mixed
 	 * @throws RuntimeException if the getter is not defined
 	 */
 	private static function getField($object, $field) {

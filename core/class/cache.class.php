@@ -96,7 +96,7 @@ class cache {
 	* @name getCache()
 	* @access public
 	* @static
-	* @return type
+	* @return \Doctrine\Common\Cache\CacheProvider
 	*/
 	public static function getCache() {
 		if (self::$cache !== null) {
@@ -144,8 +144,8 @@ class cache {
 	
 	/**
 	*
-	* @param type $_key
-	* @return type
+	* @param string $_key
+	* @return object
 	*/
 	public static function byKey($_key) {
 		$cache = self::getCache()->fetch($_key);

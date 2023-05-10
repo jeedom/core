@@ -40,6 +40,11 @@ class utils {
 		return ($_old != $_new);
 	}
 	
+	/**
+	 * @param object $_object
+	 * @param bool $_noToArray
+	 * @return array
+	 */
 	public static function o2a($_object, $_noToArray = false) {
 		if (is_array($_object)) {
 			$return = array();
