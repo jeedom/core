@@ -14,6 +14,11 @@ Esta API es muy fácil de usar mediante simples solicitudes HTTP a través de UR
 >
 > Para toda esta documentación, \#API\_KEY\# corresponde a su clave API, específica a su instalación. Para encontrarlo, vaya al menú "General" → "Configuración" → pestaña "General"".
 
+> **Nota**
+>
+> Para solicitudes POST, cada parámetro de consulta se puede enviar en el cuerpo de la solicitud en formato form-data o x-www-form-urlencoded.
+> Los parámetros de consulta y el contenido del cuerpo se pueden usar juntos, pero tenga en cuenta que los parámetros de consulta tienen prioridad sobre el contenido del cuerpo.
+
 ## Guión
 
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = escenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = escenario e id=#ID#&action=#ACTION#)
@@ -21,6 +26,10 @@ Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& ty
 - **identificación** : coincide con su id de escenario. El ID se puede encontrar en la página de escenario relevante, en "Herramientas" → "Escenarios", una vez que se ha seleccionado el escenario, junto al nombre de la pestaña "General"". Otra forma de encontrarlo : en "Herramientas" → "Escenarios", haga clic en "Descripción general".
 - **Valores** : corresponde a la acción que desea aplicar. Los comandos disponibles son : "iniciar "," detener "," deshabilitar "y" habilitar "para iniciar, detener, desactivar o activar respectivamente el escenario.
 - **etiquetas** \ [Opcional \] : si la acción es "inicio", puede pasar etiquetas al escenario (consulte la documentación sobre los escenarios) en el formulario etiquetas = toto% 3D1% 20tata% 3D2 (tenga en cuenta que% 20 corresponde a un espacio y% 3D a = ).
+
+> **Nota**
+>
+> No intentes usar 'php://input' para pasar datos a su escenario, las etiquetas están ahí para eso.
 
 ##  Comando de información / acción
 

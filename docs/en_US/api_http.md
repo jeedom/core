@@ -16,8 +16,8 @@ This API is very easy to use by simple HTTP requests via URL.
 
 > **Note**
 >
-> In POST requests every query parameter can be sent through the request body in form-data or x-www-form-urlencoded format. 
-> Query parameters and body content can be mixed together, with query parameters having a higher precedence than the body content.
+> For POST requests, each query parameter can be sent in the body of the request in form-data or x-www-form-urlencoded format.
+> Query parameters and body content can be used together, but note that query parameters take precedence over body content.
 
 ## Scenario
 
@@ -29,7 +29,7 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 > **Note**
 >
-> Don't try to use 'php://input' to send data to your scenario, it won't work and tags are here for that purpose.
+> Don't try to use 'php://input' to pass data to your scenario, tags are there for that.
 
 ##  Info / Action command
 
