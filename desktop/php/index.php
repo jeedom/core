@@ -518,8 +518,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li class="divider"></li>
-									<?php if (isConnect('admin')) { ?>
-										<?php $mbState = config::byKey('mbState');
+									<?php $mbState = config::byKey('mbState'); ?>
+									<?php if (isConnect('admin')) {
 										if ($mbState == 0) { ?>
 											<li>
 												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
