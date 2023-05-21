@@ -16,6 +16,12 @@ natcasesort($list_logfile);
 
 <div class="row row-overflow">
 	<div class="hasfloatingbar col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="input-group pull-left col-lg-2 col-md-3 col-sm-12 col-xs-12" style="top: 7px;">
+			<span class="input-group-btn pull-left">
+				<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="Rechercher | nom | :not(nom" style="width:250px;">
+				<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
+			</span>
+		</div>
 		<div class="floatingbar">
 			<div class="input-group">
 				<span class="input-group-btn">
@@ -37,14 +43,6 @@ natcasesort($list_logfile);
 	<br /><br />
 	<div class="col-lg-2 col-md-3 col-sm-12 col-xs-12" id="div_displayLogList">
 		<ul id="ul_object" class="nav nav-list bs-sidenav">
-			<li style="margin-bottom: 5px;">
-				<div class="input-group">
-					<span class="input-group-btn">
-						<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" style="width: calc(100% - 20px)" />
-						<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
-					</span>
-				</div>
-			</li>
 			<?php
 			$html = '';
 			foreach ($list_logfile as $file) {
