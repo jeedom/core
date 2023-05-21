@@ -91,6 +91,32 @@ jeedom.log.get = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+jeedom.log.getDelta = function(_params) {
+  var paramsRequired = ['log', 'position'];
+  var paramsSpecifics = {
+    global: _params.global || true,
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/log.ajax.php';
+  paramsAJAX.data = {
+    action: 'getDelta',
+    log: _params.log,
+    position: _params.position,
+    search: _params.search,
+    colored: _params.colored,
+    numbered: _params.numbered,
+    numberStart: _params.numberStart
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
 jeedom.log.remove = function(_params) {
   var paramsRequired = ['log'];
   var paramsSpecifics = {
