@@ -234,11 +234,11 @@ class log {
 	* @return boolean|array
 	*/
 	public static function get($_log = 'core', $_begin, $_nbLines) {
-		self::chunk($_log);
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;
 		}
+		self::chunkLog($path);
 		$page = array();
 		$log = new SplFileObject($path);
 		if ($log) {
