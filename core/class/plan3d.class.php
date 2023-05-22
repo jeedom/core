@@ -30,6 +30,7 @@ class plan3d {
 	private $position;
 	private $display;
 	private $configuration;
+	private $css;
 	private $_changed = false;
 
 	/*     * ***********************Methode static*************************** */

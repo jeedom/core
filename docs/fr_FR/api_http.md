@@ -14,6 +14,11 @@ Cette API s’utilise très facilement par de simples requêtes HTTP via URL.
 >
 > Pour toute cette documentation, \#API\_KEY\# correspond à votre clé API, propre à votre installation. Pour la trouver, il faut aller dans le menu "Général" → "Configuration" → onglet "Général".
 
+> **Note**
+>
+> Pour les requêtes POST, chaque query parameter peut-être envoyé dans le body de la requête au format form-data ou x-www-form-urlencoded.
+> Les query parameters et le contenu du body peuvent être utilisés ensembles, mais il faut noter que les query parameters sont prioritaires par rapport au contenu du body.
+
 ## Scénario
 
 Voici l’URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
@@ -21,6 +26,10 @@ Voici l’URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&typ
 - **id** : correspond à l’id de votre scénario. L’ID se trouve sur la page du scénario concerné, dans "Outils" → "Scénarios", une fois le scénario sélectionné, à côté du nom de l’onglet "Général". Autre moyen de le retrouver : dans "Outils" → "Scénarios", cliquez sur "Vue d’ensemble".
 - **action** : correspond à l’action que vous voulez appliquer. Les commandes disponibles sont : "start", "stop", "disable" et "enable" pour respectivement démarrer, arrêter, désactiver ou activer le scénario.
 - **tags** \[optionnel\] : si l’action est "start", vous pouvez passer des tags au scénario (voir la documentation sur les scénarios) sous la forme tags=toto%3D1%20tata%3D2 (à noter que %20 correspond à un espace et %3D à = ).
+
+> **Note**
+>
+> N'essayez pas d'utiliser 'php://input' pour passer des données à votre scénario, les tags sont là pour ça.
 
 ##  Info/Action commande
 

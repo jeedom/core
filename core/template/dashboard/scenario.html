@@ -14,15 +14,17 @@
     </center>
   </div>
   <script>
-    document.querySelector('.scenario[data-scenario_id="#id#"] .changeScenarioState').addEventListener('click', function(event) {
-      document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').innerHTML = '<i class="fa fa-spinner fa-spin"></i>'
-      jeedom.scenario.changeState({
-        id: this.closest('.scenario').getAttribute('data-scenario_id'),
-        state: this.getAttribute('data-state'),
-        error: function (error) {
-          jeedomUtils.showAlert({message: error.message, level: 'danger'})
-          document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').innerHTML = '<i class="fa fa-times"></i>'
-        }
+    document.querySelectorAll('.scenario[data-scenario_id="#id#"] .changeScenarioState').forEach(
+      _bt => { _bt.addEventListener('click', function(event) {
+        document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').innerHTML = '<i class="fa fa-spinner fa-spin"></i>'
+        jeedom.scenario.changeState({
+          id: this.closest('.scenario').getAttribute('data-scenario_id'),
+          state: this.getAttribute('data-state'),
+          error: function (error) {
+            jeedomUtils.showAlert({message: error.message, level: 'danger'})
+            document.querySelector('.scenario[data-scenario_id="#id#"] .iconCmd').innerHTML = '<i class="fa fa-times"></i>'
+          }
+        })
       })
     })
 
@@ -43,7 +45,7 @@
       if (typeof _options.icon != 'undefined' && _options.icon != '') {
         scEl.querySelector('.iconCmd').innerHTML = _options.icon
       }
-      scEl.querySelector('.changeScenarioState').unseen()
+      scEl.querySelectorAll('.changeScenarioState').unseen()
       if (!isset(_options.isActive)) {
         _options.isActive = '#isActive#'
       }
@@ -57,12 +59,12 @@
           scEl.querySelector('.changeScenarioState[data-state=stop]').seen()
           scEl.querySelector('.changeScenarioState[data-state=deactivate]').seen()
         } else {
-          scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '#icon#')
+          scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '<i class="fas fa-check"></i>')
           scEl.querySelector('.changeScenarioState[data-state=start]').seen()
           scEl.querySelector('.changeScenarioState[data-state=deactivate]').seen()
         }
       } else {
-        scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '#icon#')
+        scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '<i class="fas fa-times"></i>')
         scEl.querySelector('.changeScenarioState[data-state=activate]').seen()
         scEl.addClass('inactive')
       }

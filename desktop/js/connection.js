@@ -81,7 +81,7 @@ if (!jeeFrontEnd.connection) {
     changeValidate: function(_event) {
       if (document.getElementById('in_change_password').value != '' && document.getElementById('in_change_password').value == document.getElementById('in_change_passwordToo').value) {
         jeedom.user.get({
-          error: function() {
+          error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
