@@ -71,7 +71,7 @@ $('#bt_login_validate').on('click', function() {
 $('#bt_change_validate').on('click', function() {
   if ($('#in_change_password').val() != '' && $('#in_change_password').val() == $('#in_change_passwordToo').val()) {
     jeedom.user.get({
-      error: function() {
+      error: function(error) {
         $.fn.showAlert({
           message: error.message,
           level: 'danger'
