@@ -54,7 +54,9 @@ AddEncoding gzip svgz
 DirectoryIndex index.php
 </IfModule>
 
-
+<FilesMatch "apple-app-site-association">
+    ForceType application/json
+</FilesMatch>
 
 <IfModule mod_alias.c>
     # Right on folder
@@ -120,10 +122,6 @@ Order Allow,Deny
     Order Allow,Deny
     Deny from all
 </Files>
-
-<FilesMatch "apple-app-site-association">
-    ForceType application/json
-</FilesMatch>
 
 <FilesMatch ".*\.(class|com|config|sample)\.(php)$">
     Order Allow,Deny
