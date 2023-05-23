@@ -10,6 +10,10 @@ Options -Indexes -ExecCGI -FollowSymLinks
     ServerSignature Off
 </IfModule>
 
+<FilesMatch "apple-app-site-association">
+    ForceType application/json
+</FilesMatch>
+
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
 mod_gzip_dechunk Yes
@@ -53,10 +57,6 @@ AddEncoding gzip svgz
 <IfModule mod_dir.c>
 DirectoryIndex index.php
 </IfModule>
-
-<FilesMatch "apple-app-site-association">
-    ForceType application/json
-</FilesMatch>
 
 <IfModule mod_alias.c>
     # Right on folder
