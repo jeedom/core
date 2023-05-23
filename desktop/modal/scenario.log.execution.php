@@ -47,7 +47,7 @@ sendVarToJs('jeephp2js.md_scenarioLog_scId', init('scenario_id'));
 if (!jeeFrontEnd.md_scenarioLog) {
   jeeFrontEnd.md_scenarioLog = {
     init: function() {
-      jeedom.log.autoupdate({
+      jeedom.log.autoUpdateDelta({
         log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
         display: document.getElementById('pre_scenariolog'),
         search: document.getElementById('in_scenarioLogSearch'),
@@ -92,15 +92,13 @@ if (!jeeFrontEnd.md_scenarioLog) {
 
   document.getElementById('brutlogcheck').addEventListener('click', function(event) {
     event.target.setAttribute('autoswitch', 0)
-    var scroll = document.getElementById('pre_scenariolog').scrollTop
-    jeedom.log.autoupdate({
-      log: jeephp2js.md_logDislay_Name,
+    document.getElementById('pre_scenariolog').empty()
+    jeedom.log.autoUpdateDelta({
+      log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',
       display: document.getElementById('pre_scenariolog'),
       search: document.getElementById('in_scenarioLogSearch'),
-      control: document.getElementById('bt_scenarioLogStopStart'),
-      once: 1
+      control: document.getElementById('bt_scenarioLogStopStart')
     })
-    document.getElementById('pre_scenariolog').scrollTop = scroll
   })
 
 })()
