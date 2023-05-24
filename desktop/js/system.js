@@ -41,8 +41,8 @@ document.getElementById('bt_validateSpecifiCommand')?.addEventListener('click', 
       let insertCmd = '<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="' + command + '">' + command + '</a></li>'
       document.getElementById('ul_userListCmdHistory').insertAdjacentHTML('afterbegin', insertCmd)
       var kids = document.getElementById('ul_userListCmdHistory').children
-      if (kids.length >= 10) {
-        kids.last().remove()
+      while (kids.length >= 10) {
+        kids[kids.length - 1].remove()
       }
     }
   })
@@ -63,8 +63,8 @@ document.getElementById('in_specificCommand')?.addEventListener('keyup', functio
           document.getElementById('ul_userListCmdHistory').insertAdjacentHTML('afterbegin', insertCmd)
         }
         var kids = document.getElementById('ul_userListCmdHistory').children
-        if (kids.length >= 10) {
-          kids.last().remove()
+        while (kids.length >= 10) {
+          kids[kids.length - 1].remove()
         }
       }
     })
