@@ -27,7 +27,7 @@ function initLog(_log) {
         _log = $('#bottompanel .ui-listview li.ui-first-child > a > span').text().trim()
       }
 
-      jeedom.log.autoupdate({
+      jeedom.log.autoUpdateDelta({
         log : _log,
         display : $('#pre_globallog'),
         search : $('#in_globalLogSearch'),

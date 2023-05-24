@@ -62,6 +62,19 @@ try {
 		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 	}
 
+	if (init('action') == 'getDelta') {
+		ajax::success(
+			log::getDelta(
+				init('log'),
+				intval(init('position', 0)),
+				init('search'),
+				intval(init('colored', 0)),
+				init('numbered', true),
+				intval(init('numberStart', 0))
+			)
+		);
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

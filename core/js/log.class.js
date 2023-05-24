@@ -18,6 +18,7 @@ jeedom.log = function() {};
 jeedom.log.timeout = null
 jeedom.log.currentAutoupdate = []
 jeedom.log.coloredThreshold = 300000
+jeedom.log.maxLines = 4000
 
 jeedom.log.list = function(_params) {
   var paramsRequired = [];
@@ -87,6 +88,32 @@ jeedom.log.get = function(_params) {
   paramsAJAX.data = {
     action: 'get',
     log: _params.log
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
+jeedom.log.getDelta = function(_params) {
+  var paramsRequired = ['log', 'position'];
+  var paramsSpecifics = {
+    global: _params.global || true,
+  };
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/log.ajax.php';
+  paramsAJAX.data = {
+    action: 'getDelta',
+    log: _params.log,
+    position: _params.position,
+    search: _params.search,
+    colored: _params.colored,
+    numbered: _params.numbered,
+    numberStart: _params.numberStart
   };
   domUtils.ajax(paramsAJAX);
 }
@@ -300,6 +327,155 @@ jeedom.log.autoupdate = function(_params) {
   });
 }
 
+jeedom.log.updateBtn = function(_control) {
+  if (_control.getAttribute('data-state') == 1) {
+    _control.removeClass('btn-success').addClass('btn-warning')
+    _control.innerHTML = '<i class="fa fa-pause"></i><span class="hidden-768"> {{Pause}}</span>'
+  } else {
+    _control.removeClass('btn-warning').addClass('btn-success')
+    _control.innerHTML = '<i class="fa fa-play"></i><span class="hidden-768"> {{Reprendre}}</span>'
+  }
+}
+
+jeedom.log.autoUpdateDelta = function(_params) {
+  // Normalize parameters
+  if (!isset(_params.callNumber)) _params.callNumber = 0
+  if (!isset(_params.position)) _params.position = 0;
+  if (!isset(_params.lineNum)) _params.lineNum = 0;
+  if (!isset(_params.log)) return
+  if (!isset(_params.display)) return
+
+  // Deprecated use with jQuery objects by plugins
+  if (_params.callNumber == 0) {
+    if (isElement_jQuery(_params.log)) _params.log = _params.log[0]
+    if (isElement_jQuery(_params.display)) _params.display = _params.display[0]
+    if (isElement_jQuery(_params.search)) _params.search = _params.search[0]
+    if (isElement_jQuery(_params.control)) _params.control = _params.control[0]
+  }
+
+  // Exit if invisible
+  if (!_params.display.isVisible()) return
+
+  // Exit if Paused
+  if (_params.callNumber > 0 && isset(_params.control) && _params.control.getAttribute('data-state') != 1) {
+    return
+  }
+  // Exit if a newer instance on another log is running
+  if (_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.getAttribute('id')]) && jeedom.log.currentAutoupdate[_params.display.getAttribute('id')].log != _params.log) {
+    return
+  }
+
+  if (_params.callNumber == 0) {
+    // Empty space on first call
+    _params.position = 0;
+    _params.lineNum = 0;
+    _params.display.empty();
+
+    if (isset(_params.default_search)) {
+      _params.search.value = _params.default_search
+    }
+    _params.display.scrollTop = _params.display.offsetHeight + _params.display.scrollHeight + 1
+    if (_params.control.getAttribute('data-state') == 0) {
+      _params.control.setAttribute('data-state', 1)
+      jeedom.log.updateBtn(_params.control)
+    }
+
+    // Setup callback: On control button click
+    _params.control.unRegisterEvent('click').registerEvent('click', function (event) {
+      if (this.getAttribute('data-state') == 1) {
+        // On "Pause" requested
+        this.setAttribute('data-state', 0)
+        jeedom.log.updateBtn(this)
+      } else {
+        // On "Continue" requested
+        this.setAttribute('data-state', 1)
+        jeedom.log.updateBtn(this)
+        _params.display.scrollTop = _params.display.offsetHeight + _params.display.scrollHeight + 1
+        jeedom.log.autoUpdateDelta(_params)
+      }
+    })
+
+    // Setup callback: On search field update
+    _params.search.unRegisterEvent('keypress').registerEvent('keypress', function (event) {
+      // Reset log position and empty view
+      _params.position = 0;
+      _params.lineNum = 0;
+      _params.display.empty();
+      // Enable refresh/scrolling if disabled
+      if (_params.control.getAttribute('data-state') == 0) {
+        _params.control.click()
+      }
+    })
+  }
+  _params.callNumber++
+
+  jeedom.log.currentAutoupdate[_params.display.getAttribute('id')] = {
+    log: _params.log
+  }
+
+  // Disable auto update if log is scrolled
+  if (_params.callNumber > 1 && (_params.display.scrollTop + _params.display.offsetHeight + 10) < _params.display.scrollHeight) {
+    if (_params.control.getAttribute('data-state') == 1) {
+      _params.control.click()
+    }
+    return
+  }
+
+  var dom_brutlogcheck = document.getElementById('brutlogcheck')
+  // If first call AND element exists AND (enabled OR should be enabled), Then enable it
+  if (_params.callNumber == 1 && dom_brutlogcheck != null && dom_brutlogcheck.checked && dom_brutlogcheck.getAttribute('autoswitch') == 1) {
+    dom_brutlogcheck.checked = false
+  }
+
+  // If (element exists AND is disabled) OR (first call AND (element does not exists OR should be enabled)), Then colored
+  var colorMe = ((dom_brutlogcheck != null && !dom_brutlogcheck.checked) || (_params.callNumber == 1 && (dom_brutlogcheck == null || dom_brutlogcheck.getAttribute('autoswitch') == 1)))
+
+  jeedom.log.getDelta({
+    log: _params.log,
+    slaveId: _params.slaveId,
+    position: _params.position,
+    search: (!isset(_params.search)) ? '' : _params.search.value.toLowerCase(),
+    colored: (colorMe ? ((_params.display.id == 'pre_scenariolog') ? 2 : 1) : 0), // 0: no color ; 1: global log colors ; 2: Scenario colors
+    numbered: (_params.display.id == 'pre_globallog'),
+    numberStart: _params.lineNum,
+    global: (_params.callNumber == 1),
+    success: function(result) {
+      // Optimise search operation
+      var searchString = (!isset(_params.search)) ? '' : _params.search.value.toLowerCase()
+      // Store log file current position
+      _params.position = result.position;
+      // Store log file current line
+      _params.lineNum = result.line;
+
+      // Get logs as text from ajax
+      if (result.logText.length > 0) {
+        if (colorMe) {
+          // log = (_params.display.id == 'pre_scenariolog') ? jeedom.log.scenarioColorReplace(log) : jeedom.log.stringColorReplace(log);
+          _params.display.innerHTML += result.logText
+        } else {
+          _params.display.textContent += result.logText
+        }
+      }
+
+      _params.display.scrollTop = _params.display.offsetHeight + _params.display.scrollHeight + 1
+      if (jeedom.log.timeout !== null) {
+        clearTimeout(jeedom.log.timeout)
+      }
+      jeedom.log.timeout = setTimeout(function() {
+        jeedom.log.autoUpdateDelta(_params)
+      }, 1000)
+    },
+    error: function() {
+      if (jeedom.log.timeout !== null) {
+        clearTimeout(jeedom.log.timeout)
+      }
+      jeedom.log.timeout = setTimeout(function() {
+        jeedom.log.autoUpdateDelta(_params)
+      }, 1000)
+    },
+  });
+}
+
 //Standard log replacement:
 jeedom.log.colorReplacement = {
   'WARNING:': '--startTg--span class="warning"--endTg--WARNING--startTg--/span--endTg--:',
@@ -338,7 +514,7 @@ jeedom.log.getScTranslations({
     }
   },
   error: function() {
-    console.log('Unable to get jeedom scenario traductions')
+    console.log('Unable to get jeedom scenario translations')
   }
 })
 

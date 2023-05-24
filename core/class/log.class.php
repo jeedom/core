@@ -234,11 +234,11 @@ class log {
 	* @return boolean|array
 	*/
 	public static function get($_log = 'core', $_begin, $_nbLines) {
-		self::chunk($_log);
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;
 		}
+		self::chunkLog($path);
 		$page = array();
 		$log = new SplFileObject($path);
 		if ($log) {
@@ -258,6 +258,110 @@ class log {
 			}
 		}
 		return $page;
+	}
+
+	/*
+	* Get the log delta from $_position to the end of the file
+	* New position is stored in $_position when eof is reached
+	*
+	* @param string $_log Log filename (default 'core')
+	* @param int $_position Bytes representing position from the begining of the file (default 0)
+	* @param string $_search Text to find in log file (default '')
+	* @param int $_colored Should lines be colored (default 0) [0: no ; 1: global log colors ; 2: scenario colors]
+	* @param boolean $_numbered Should lines be numbered (default true)
+	* @param int $_numStart At what number should lines number start (default 0)
+	* @param int $_max Max number of returned lines (default 4000)
+	* @return array Array containing log to append to buffer and new position for next call
+	*/
+	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = 0, $_numbered = true, $_numStart = 0, $_max = 4000) {
+		// Check if log file exists
+		$path = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
+		if (!file_exists($path))
+			return false;
+		// Prepare file for reading
+		if (!$fp = fopen($path, 'r'))
+			return false;
+		// Set file pointer at requested position
+		fseek($fp, $_position);
+		// Iterate the file
+		$logs = array();
+		while (!feof($fp)) {
+			// Get a new line
+			$line = mb_convert_encoding(trim(fgets($fp)), 'UTF-8');
+			if ($line == '')
+				continue;
+			// Append line to array if not empty
+			if ($_search === '' || mb_stripos($line, $_search) !== false) {
+				if ($_numbered) {
+					array_push($logs, str_pad($_numStart, 4, '0', STR_PAD_LEFT) . '|' . trim($line) . "\n");
+				} else {
+					array_push($logs, trim($line) . "\n");
+				}
+			}
+			$_numStart++;
+		}
+		// Store new file position in $_position
+		$_position = ftell($fp);
+		fclose($fp);
+
+		// Display only the last jeedom.log.maxLines
+		$logText = '';
+		$nbLogs = count($logs);
+		// If logs are TRUNCATED, then add a message
+		if (count($logs) > $_max) {
+			$logText .= "-------------------- TRUNCATED LOG --------------------\n";
+			$logs = array_slice($logs, -$_max, $_max);
+		}
+		// Merge all lignes
+		$logText .= implode('', $logs);
+
+		// Apply color in system logs
+		if ($_colored == 1) {
+			$search = array(
+				'<',
+				'>',
+				'WARNING:',
+				'Erreur',
+				'OK',
+				'[INFO]',
+				'[DEBUG]',
+				'[WARNING]',
+				'[ALERT]',
+				'[ERROR]',
+				'-------------------- TRUNCATED LOG --------------------'
+			);
+			$replace = array(
+				'&lt;',
+				'&gt;',
+				'<span class="warning">WARNING</span>',
+				'<span class="danger">Erreur</span>',
+				'<strong>OK</strong>',
+				'<span class="label label-xs label-info">INFO</span>',
+				'<span class="label label-xs label-success">DEBUG</span>',
+				'<span class="label label-xs label-warning">WARNING</span>',
+				'<span class="label label-xs label-warning">ALERT</span>',
+				'<span class="label label-xs label-danger">ERROR</span>',
+				'<span class="label label-xl label-danger">-------------------- TRUNCATED LOG --------------------</span>'
+			);
+			$logText = str_replace($search, $replace, $logText);
+		}
+		// Apply color in scenario logs
+		elseif ($_colored == 2) {
+			$search = array();
+			$replace = array();
+			foreach($GLOBALS['JEEDOM_SCLOG_TEXT'] as $item) {
+				$search[] = $item['txt'];
+				$replace[] = str_replace('::', $item['txt'], $item['replace']);
+			}
+			$search[] = ' Start : ';
+			$replace[] = '<strong> -- Start : </strong>';
+			$search[] = 'Log :';
+			$replace[] = '<span class="success">&ensp;&ensp;&ensp;Log :</span>';
+			$logText = str_replace($search, $replace, $logText);
+		}
+
+		// Return the lines to the end of the file, the new position and line number
+		return array('position' => $_position, 'line' => $_numStart, 'logText' => $logText);
 	}
 
 	public static function liste($_filtre = null) {

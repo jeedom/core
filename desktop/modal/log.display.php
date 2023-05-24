@@ -55,18 +55,15 @@ if(init('log','event') == 'event'){
 (function() {// Self Isolation!
   document.getElementById('brutlogcheck').addEventListener('click', function(event) {
     event.target.setAttribute('autoswitch', 0)
-    var scroll = document.getElementById('pre_eventlog').scrollTop
-    jeedom.log.autoupdate({
+    jeedom.log.autoUpdateDelta({
       log: jeephp2js.md_logDislay_Name,
       display: document.getElementById('pre_eventlog'),
       search: document.getElementById('in_eventLogSearch'),
-      control: document.getElementById('bt_eventLogStopStart'),
-      once: 1
+      control: document.getElementById('bt_eventLogStopStart')
     })
-    document.getElementById('pre_eventlog').scrollTop = scroll
   })
 
-  jeedom.log.autoupdate({
+  jeedom.log.autoUpdateDelta({
     log: jeephp2js.md_logDislay_Name,
     default_search: jeephp2js.md_logDislay_defaultSearch,
     display: document.getElementById('pre_eventlog'),

@@ -7,7 +7,7 @@ function initScenariolog(_scenarioId) {
   $('#pre_scenariolog').empty()
   if (isset(_scenarioId)) {
     setTimeout(function() {
-      jeedom.log.autoupdate({
+      jeedom.log.autoUpdateDelta({
         log : 'scenarioLog/scenario'+_scenarioId+'.log',
         display : $('#pre_scenariolog'),
         search : $('#in_globalLogSearch'),
