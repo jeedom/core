@@ -2076,8 +2076,7 @@
         "Vider": "Vacío",
         "Vider tous": "Limpiar todo",
         "Supprimer": "Eliminar",
-        "Supprimer tous": "Borrar todos",
-        "Rechercher | nom | :not(nom": "Buscar | nombre | : sin nombre"
+        "Supprimer tous": "Borrar todos"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 no autorizado",
@@ -2723,7 +2722,6 @@
         "Log de mise à jour": "Actualizar registro"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Pausa",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "¿Está seguro de que desea vaciar todos los registros?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
