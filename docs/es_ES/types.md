@@ -1,7 +1,7 @@
 # Tipos de equipo
 **Herramientas → Tipos de equipos**
 
-Los sensores y actuadores en Jeedom son administrados por complementos, que crean equipos con comandos *Información* (sensor) o *Valores* (solenoide). Esto luego permite activar acciones basadas en el cambio de ciertos sensores, como encender una luz en la detección de movimiento. Pero Jeedom Core y complementos como *Móvil*, *Puente de casa*, *Hogar inteligente de Google*, *Hogar inteligente de Alexa* etc., no sé qué es este equipo : Un enchufe, una luz, una persiana, etc.
+Los sensores y actuadores en Jeedom son administrados por complementos, que crean equipos con comandos *Información* (sensor) o *Existencias* (solenoide). Esto luego permite activar acciones basadas en el cambio de ciertos sensores, como encender una luz en la detección de movimiento. Pero Jeedom Core y complementos como *Móvil*, *Puente de casa*, *Hogar inteligente de Google*, *Hogar inteligente de Alexa* etc., no sé qué es este equipo : Un enchufe, una luz, una persiana, etc.
 
 Para superar este problema, especialmente con asistentes de voz (*Enciende la luz de la habitación*), Core presentó el **Tipos genéricos**, utilizado por estos complementos.
 
@@ -24,7 +24,7 @@ Esta página ofrece almacenamiento por tipo de equipo : Enchufe, luz, obturador,
 
 ## Tipo de comando
 
-Una vez que un elemento de equipo se coloca en la posición correcta *Tipo*, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Valores* (Orange).
+Una vez que un elemento de equipo se coloca en la posición correcta *Amable*, Pulsando sobre él accedes a la lista de sus pedidos, coloreados de diferente color si es un *Información* (Azul) o un *Existencias* (Orange).
 
 Al hacer clic con el botón derecho en un pedido, puede asignarle un Tipo genérico correspondiente a las especificaciones de este pedido (Tipo de información / acción, Numérico, Subtipo binario, etc).
 
@@ -82,15 +82,15 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 
 > **Consejo**
 >
-> - Puede encontrar esta lista directamente en Jeedom, en esta misma página, con el botón **Listado** arriba a la derecha.
+> - Puede encontrar esta lista directamente en Jeedom, en esta misma página, con el botón **Lista** arriba a la derecha.
 
 | **Otro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | TEMPORIZADOR | Temporizador de estado | Información | numeric
 | TIMER_ESTADO | Estado del temporizador (pausar o no) | Información | binario, numérico
-| ESTABLECER_TIMER | Temporizador | Valores | slider
-| TIMER_PAUSE | Pausar temporizador | Valores | other
-| TIMER_RESUME | Reanudar el temporizador | Valores | other
+| ESTABLECER_TIMER | Temporizador | Existencias | slider
+| TIMER_PAUSE | Pausar temporizador | Existencias | other
+| TIMER_RESUME | Reanudar el temporizador | Existencias | other
 
 | **Batería (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -101,34 +101,34 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 |:--------|:----------------|:--------:|:---------:|
 | CÁMARA_URL | URL de la cámara | Información | string
 | CAMERA_RECORD_ESTADO | Estado de grabación de la cámara | Información | binary
-| CÁMARA_ARRIBA | Movimiento de la cámara hacia arriba | Valores | other
-| CÁMARA HACIA ABAJO | Movimiento de la cámara hacia abajo | Valores | other
-| CÁMARA_IZQUIERDA | Movimiento de la cámara hacia la izquierda | Valores | other
-| CÁMARA_DERECHA | Movimiento de la cámara hacia la derecha | Valores | other
-| CÁMARA_ZOOM | Acercar la cámara hacia adelante | Valores | other
-| CÁMARA_DEZOOM | Zoom de la cámara hacia atrás | Valores | other
-| CÁMARA_DETENER | Detener la cámara | Valores | other
-| CÁMARA_PRESET | Preajuste de la cámara | Valores | other
-| CAMERA_RECORD | Grabación de cámara | Valores |
-| CÁMARA_TOMAR | Cámara de instantáneas | Valores |
+| CÁMARA_ARRIBA | Movimiento de la cámara hacia arriba | Existencias | other
+| CÁMARA HACIA ABAJO | Movimiento de la cámara hacia abajo | Existencias | other
+| CÁMARA_IZQUIERDA | Movimiento de la cámara hacia la izquierda | Existencias | other
+| CÁMARA_DERECHA | Movimiento de la cámara hacia la derecha | Existencias | other
+| CÁMARA_ZOOM | Acercar la cámara hacia adelante | Existencias | other
+| CÁMARA_DEZOOM | Zoom de la cámara hacia atrás | Existencias | other
+| CÁMARA_DETENER | Detener la cámara | Existencias | other
+| CÁMARA_PRESET | Preajuste de la cámara | Existencias | other
+| CAMERA_RECORD | Grabación de cámara | Existencias |
+| CÁMARA_TOMAR | Cámara de instantáneas | Existencias |
 
 | **Calefacción (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | CALEFACCIÓN_ESTADO | Estado de calentamiento del hilo piloto | Información | binary
-| CALEFACCIÓN_ENCENDIDO | Botón de encendido del calentamiento del hilo piloto | Valores | other
-| CALEFACCIÓN_APAGADO | Botón de apagado del calentamiento del hilo piloto | Valores | other
-| HEATING_OTHER | Botón de hilo piloto de calentamiento | Valores | other
+| CALEFACCIÓN_ENCENDIDO | Botón de encendido del calentamiento del hilo piloto | Existencias | other
+| CALEFACCIÓN_APAGADO | Botón de apagado del calentamiento del hilo piloto | Existencias | other
+| HEATING_OTHER | Botón de hilo piloto de calentamiento | Existencias | other
 
 | **Electricidad (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| Energía | Energia electrica | Información | numeric
+| FUERZA | Energia electrica | Información | numeric
 | CONSUMO | El consumo de energía | Información | numeric
 | VOLTAJE | Tensión | Información | numeric
-| REINICIAR | Reiniciar | Valores | other
+| REINICIAR | Reiniciar | Existencias | other
 
 | **Entorno (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| LA TEMPERATURA | LA TEMPERATURA | Información | numeric
+| TEMPERATURA | LA TEMPERATURA | Información | numeric
 | CALIDAD DEL AIRE | Calidad del aire | Información | numeric
 | BRILLO | Brillo | Información | numeric
 | PRESENCIA | PRESENCIA | Información | binary
@@ -145,10 +145,10 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | PROFUNDIDAD | Profundidad | Información | numeric
-| DISTANCIA | DISTANCIA | Información | numeric
+| DISTANCIA | Distancia | Información | numeric
 | BOTÓN | Botón | Información | binario, numérico
 | INFORMACIÓN_GENÉRICA |  Genérico | Información |
-| ACCIÓN_GENÉRICA |  Genérico | Valores | other
+| ACCIÓN_GENÉRICA |  Genérico | Existencias | other
 
 | **Luz (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -157,40 +157,40 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | COLOR CLARO | Color claro | Información | string
 | LUZ_ESTADO_BOOL | Estado de luz (binario) | Información | binary
 | LUZ_COLOR_TEMP | Color de temperatura de luz | Información | numeric
-| LUZ_TOGGLE | Alternar luz | Valores | other
-| LUCES ENCENDIDAS | Botón de luz encendido | Valores | other
-| LUZ APAGADA | Botón de luz apagado | Valores | other
-| LUZ_SLIDER | Luz deslizante | Valores | slider
-| LUZ_SET_COLOR | Color claro | Valores | color
-| MODO_LUZ | Modo de luz | Valores | other
-| LUZ_SET_COLOR_TEMP | Color de temperatura de luz | Valores |
+| LUZ_TOGGLE | Alternar luz | Existencias | other
+| LUCES ENCENDIDAS | Botón de luz encendido | Existencias | other
+| LUZ APAGADA | Botón de luz apagado | Existencias | other
+| LUZ_SLIDER | Luz deslizante | Existencias | slider
+| LUZ_SET_COLOR | Color claro | Existencias | color
+| MODO_LUZ | Modo de luz | Existencias | other
+| LUZ_SET_COLOR_TEMP | Color de temperatura de luz | Existencias |
 
 | **Modo (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | MODO_ESTADO | Modo de estado | Información | string
-| MODE_SET_STATE | Modo de cambio | Valores | other
+| MODE_SET_STATE | Modo de cambio | Existencias | other
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| Volumen | Volumen | Información | numeric
+| VOLUMEN | Volumen | Información | numeric
 | MEDIO_ESTADO | Estado | Información | string
 | MEDIA_ALBUM | Álbum | Información | string
 | ARTISTA_MEDIA | Artista | Información | string
 | MEDIO_TITLE | Título | Información | string
-| MEDIA_POWER | Energía | Información | string
+| MEDIA_POWER | Fuerza | Información | string
 | CANAL | Cadena | Información | numérico, cadena
 | MEDIO_ESTADO | Estado | Información | binary
-| SET_VOLUMEN | Volumen | Valores | slider
-| SET_CHANNEL | Cadena | Valores | otro control deslizante
-| MEDIOS_PAUSA | Pausa | Valores | other
-| MEDIOS_RESUME | Lectura | Valores | other
-| MEDIA_STOP | Deténgase | Valores | other
-| MEDIOS_SIGUIENTE | Próximo | Valores | other
-| MEDIOS_ANTERIORES | Anterior | Valores | other
-| MEDIA_ON | Nosotros | Valores | other
-| MEDIOS_DESACTIVADOS | Apagado | Valores | other
-| MEDIOS_MUTE | Silencio | Valores | other
-| MEDIA_UNMUTE | Sin silencio | Valores | other
+| SET_VOLUMEN | Volumen | Existencias | slider
+| SET_CHANNEL | Cadena | Existencias | otro control deslizante
+| MEDIOS_PAUSA | Romper | Existencias | other
+| MEDIOS_RESUME | Lectura | Existencias | other
+| MEDIA_STOP | Detener | Existencias | other
+| MEDIOS_SIGUIENTE | Próximo | Existencias | other
+| MEDIOS_ANTERIORES | Anterior | Existencias | other
+| MEDIA_ON | Nosotros | Existencias | other
+| MEDIOS_DESACTIVADOS | Apagado | Existencias | other
+| MEDIOS_MUTE | Silenciar | Existencias | other
+| MEDIA_UNMUTE | Sin silencio | Existencias | other
 
 | **Clima (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -233,23 +233,23 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | GARAJE_ESTADO | Estado del garaje (apertura) | Información | binary
 | APERTURA | Puerta | Información | binary
 | ABRIENDO_VENTANA | Ventana | Información | binary
-| BLOQUEAR_ABRIR | Botón de bloqueo abierto | Valores | other
-| LOCK_CLOSE | Cerrar el botón de bloqueo | Valores | other
-| GB_OPEN | Botón de apertura de puerta o garaje | Valores | other
-| GB_CLOSE | Botón de cierre de puerta o garaje | Valores | other
-| GB_TOGGLE | Interruptor de botón de puerta o garaje | Valores | other
+| BLOQUEAR_ABRIR | Botón de bloqueo abierto | Existencias | other
+| LOCK_CLOSE | Cerrar el botón de bloqueo | Existencias | other
+| GB_OPEN | Botón de apertura de puerta o garaje | Existencias | other
+| GB_CLOSE | Botón de cierre de puerta o garaje | Existencias | other
+| GB_TOGGLE | Interruptor de botón de puerta o garaje | Existencias | other
 
 | **Zócalo (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | ESTADO_ENERGÍA | Toma de estado | Información | numérico, binario
-| ENERGÍA_ON | En el enchufe del botón | Valores | other
-| ENERGÍA_APAGADA | Botón de enchufe desactivado | Valores | other
-| DESLIZADOR DE ENERGÍA | Toma deslizante | Valores |
+| ENERGÍA_ON | En el enchufe del botón | Existencias | other
+| ENERGÍA_APAGADA | Botón de enchufe desactivado | Existencias | other
+| DESLIZADOR DE ENERGÍA | Toma deslizante | Existencias |
 
 | **Robot (identificación: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | MUELLE_ESTADO | Base estatal | Información | binary
-| MUELLE | De regreso a la base | Valores | other
+| MUELLE | De regreso a la base | Existencias | other
 
 | **Seguridad (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -258,13 +258,13 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | MODO_ALARMA | Modo de alarma | Información | string
 | ALARMA_ENABLE_ESTADO | Estado de alarma activado | Información | binary
 | INUNDACIÓN | Inundación | Información | binary
-| SABOTAJE | SABOTAJE | Información | binary
+| SABOTAJE | Sabotaje | Información | binary
 | CHOQUE | Choque | Información | binario, numérico
-| SIREN_OFF | Botón de sirena apagado | Valores | other
-| SIREN_EN | Botón de sirena encendido | Valores | other
-| ALARMA_ARMADO | Alarma armada | Valores | other
-| ALARMA_LIBERADA | Alarma lanzada | Valores | other
-| ALARMA_ESTABLECER_MODO | Modo de alarma | Valores | other
+| SIREN_OFF | Botón de sirena apagado | Existencias | other
+| SIREN_EN | Botón de sirena encendido | Existencias | other
+| ALARMA_ARMADO | Alarma armada | Existencias | other
+| ALARMA_LIBERADA | Alarma lanzada | Existencias | other
+| ALARMA_ESTABLECER_MODO | Modo de alarma | Existencias | other
 
 | **Termostato (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -277,26 +277,26 @@ O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si
 | TERMOSTATO_ESTADO_NOMBRE | Estado del termostato (HUMAN) (solo para termostato de complemento) | Información | string
 | TERMOSTATO_HUMEDAD | Termostato de humedad ambiental | Información | numeric
 | HUMEDAD_CONSIGNA | Establecer humedad | Información | slider
-| TERMOSTATO_SET_SETPOINT | Termostato de consigna | Valores | slider
-| TERMOSTATO_FIJAR_MODO | Modo de termostato (solo para termostato de complemento) | Valores | other
-| TERMOSTATO_SET_LOCK | Termostato de bloqueo (solo para termostato de complemento) | Valores | other
-| TERMOSTATO_SET_UNLOCK | Desbloquear el termostato (solo para el termostato enchufable)) | Valores | other
-| HUMEDAD_SET_SETPOINT | Establecer humedad | Valores | slider
+| TERMOSTATO_SET_SETPOINT | Termostato de consigna | Existencias | slider
+| TERMOSTATO_FIJAR_MODO | Modo de termostato (solo para termostato de complemento) | Existencias | other
+| TERMOSTATO_SET_LOCK | Termostato de bloqueo (solo para termostato de complemento) | Existencias | other
+| TERMOSTATO_SET_UNLOCK | Desbloquear el termostato (solo para el termostato enchufable)) | Existencias | other
+| HUMEDAD_SET_SETPOINT | Establecer humedad | Existencias | slider
 
 | **Ventilador (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | FAN_SPEED_STATE | Estado de la velocidad del ventilador | Información | numeric
 | ROTACIÓN_ESTADO | Rotación de estado | Información | numeric
-| VELOCIDAD DEL VENTILADOR | Velocidad del ventilador | Valores | slider
-| GIRAR | GIRAR | Valores | slider
+| VELOCIDAD DEL VENTILADOR | Velocidad del ventilador | Existencias | slider
+| GIRAR | Girar | Existencias | slider
 
 | **Panel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | FLAP_ESTADO | Panel de estado | Información | binario, numérico
 | FLAP_BSO_ESTADO | Panel de estado de BSO | Información | binario, numérico
-| FLAP_ARRIBA | Botón de panel hacia arriba | Valores | other
-| FLAP_ABAJO | Botón de panel hacia abajo | Valores | other
-| FLAP_DETENER | Botón de parada del obturador | Valores |
-| FLAP_SLIDER | Panel de botones deslizantes | Valores | slider
-| FLAP_BSO_ARRIBA | Botón arriba del panel BSO | Valores | other
-| FLAP_BSO_ABAJO | Botón Abajo del panel BSO | Valores | other
+| FLAP_ARRIBA | Botón de panel hacia arriba | Existencias | other
+| FLAP_ABAJO | Botón de panel hacia abajo | Existencias | other
+| FLAP_DETENER | Botón de parada del obturador | Existencias |
+| FLAP_SLIDER | Panel de botones deslizantes | Existencias | slider
+| FLAP_BSO_ARRIBA | Botón arriba del panel BSO | Existencias | other
+| FLAP_BSO_ABAJO | Botón Abajo del panel BSO | Existencias | other

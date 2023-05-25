@@ -75,7 +75,7 @@ Retorna a lista de alterações desde a data / hora passada no parâmetro (deve 
 
 Configurações Json :
 
--   int datetime
+-   data e hora int
 
 API de plug-in JSON
 ===============

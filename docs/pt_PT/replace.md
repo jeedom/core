@@ -13,7 +13,7 @@ Você pode exibir apenas determinados equipamentos para maior legibilidade, filt
 
 ## Options
 
-> **Observação**
+> **Percebido**
 >
 > Se nenhuma dessas opções estiver marcada, a substituição equivale ao uso da função *Substitua este comando pelo comando* em configuração avançada.
 
@@ -21,7 +21,7 @@ Você pode exibir apenas determinados equipamentos para maior legibilidade, filt
 Para cada equipamento, será copiado da fonte para o destino (lista não exaustiva) :
 	* O objeto pai,
 	* As categorias,
-	* Propriedades *de ativos* e *visível*,
+	* Propriedades *ativo* E *visível*,
 	* Comentários e etiquetas,
 	* Encomenda (Painel),
 	* A largura e a altura (painel de ladrilhos),
@@ -48,11 +48,11 @@ Para cada pedido, será copiado da origem para o destino (lista não exaustiva) 
 	* Os widgets Dashboard e Mobile usados,
 	* O tipo genérico,
 	* Parâmetros opcionais,
-	* As configurações *jeedomPreExecCmd* e *jeedomPostExecCmd* (ação),
+	* As configurações *jeedomPreExecCmd* E *jeedomPostExecCmd* (ação),
 	* Configurações de ação de valor (informações),
 	* ícone,
 	* A ativação e o diretório em *Linha do tempo*,
-	* As configurações de *Cálculo* e *redondo*,
+	* As configurações de *Cálculo* E *redondo*,
 	* A configuração do influxDB,
 	* A configuração do valor de repetição,
 	* Alertas,
@@ -74,6 +74,6 @@ Para cada equipamento :
 - Clique em seu nome para ver seus comandos e indique quais comandos os substituem. Ao escolher um equipamento, a ferramenta preenche essas opções se encontrar um pedido do mesmo tipo e mesmo nome no equipamento de destino.
 
 
-> **Observação**
+> **Percebido**
 >
 > Quando você indica um dispositivo de destino em um dispositivo de origem, esse dispositivo de destino é desabilitado na lista.

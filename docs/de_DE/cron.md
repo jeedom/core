@@ -15,7 +15,7 @@ Oben rechts haben Sie :
 - **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
 - **Cool** : Aktualisiert die Aufgabentabelle.
 - **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
-- **Zu schützen** : Speichern Sie Ihre Änderungen.
+- **Zum Schutz** : Speichern Sie Ihre Änderungen.
 
 Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
 

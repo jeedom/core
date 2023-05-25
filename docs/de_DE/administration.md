@@ -23,7 +23,7 @@ Nachfolgend einige Parameter, die Informationen zentralisieren, die von Plugins 
 
 - Kontakt : Breite, Länge und Höhe Ihres Hauses / Standorts.
 - Adresse : Postanschrift Ihres Hauses / Ihrer Website.
-- Verschiedene : Oberfläche und Anzahl der Bewohner Ihres Hauses / Standorts.
+- Verschieden : Oberfläche und Anzahl der Bewohner Ihres Hauses / Standorts.
 
 ## Registerkarte &quot;Schnittstelle&quot;
 
@@ -103,11 +103,11 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
     - **Anmeldung** : Geben Sie den Proxy-Login ein,
     - **Passwort** : Geben Sie das Passwort ein.
 
-> **Tipp**
+> **Spitze**
 >
 > Wenn Sie sich in HTTPS befinden, ist der Port 443 (Standard) und in HTTP ist der Port 80 (Standard)). Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
 
-> **Tipp**
+> **Spitze**
 >
 > Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
@@ -140,15 +140,15 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
 ### Alertes
 
 - **Fügen Sie jedem Timeout eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn ein Gerät hineinfällt **Auszeit**.
-- **Timeout-Reihenfolge** : Befehl eingeben **Botschaft** zu verwenden, wenn sich ein Gerät in befindet **Auszeit**.
+- **Timeout-Reihenfolge** : Befehl eingeben **Nachricht** zu verwenden, wenn sich ein Gerät in befindet **Auszeit**.
 - **Fügen Sie jeder Batterie in Warnung eine Nachricht hinzu** : Fügen Sie im Nachrichtencenter eine Nachricht hinzu, wenn der Akkuladestand eines Geräts eingelegt ist **Warnung**.
-- **Batteriebefehl in Warnung** : Befehl eingeben **Botschaft** zu verwenden, wenn sich das Gerät auf Batteriestand befindet **Warnung**.
-- **Fügen Sie jeder gefährdeten Batterie eine Nachricht hinzu** : Fügen Sie im Nachrichtencenter eine Nachricht hinzu, wenn der Akkuladestand eines Geräts eingelegt ist **Achtung**.
-- **Befehl zur Batterie in Gefahr** : Befehl eingeben **Botschaft** zu verwenden, wenn sich das Gerät auf Batteriestand befindet **Achtung**.
+- **Batteriebefehl in Warnung** : Befehl eingeben **Nachricht** zu verwenden, wenn sich das Gerät auf Batteriestand befindet **Warnung**.
+- **Fügen Sie jeder gefährdeten Batterie eine Nachricht hinzu** : Fügen Sie im Nachrichtencenter eine Nachricht hinzu, wenn der Akkuladestand eines Geräts eingelegt ist **Gefahr**.
+- **Befehl zur Batterie in Gefahr** : Befehl eingeben **Nachricht** zu verwenden, wenn sich das Gerät auf Batteriestand befindet **Gefahr**.
 - **Fügen Sie jeder Warnung eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn eine Bestellung alarmiert wird **Warnung**.
-- **Befehl zur Warnung** : Befehl eingeben **Botschaft** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Warnung**.
-- **Fügen Sie jeder Gefahr eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn eine Bestellung alarmiert wird **Achtung**.
-- **Befehl zur Gefahr** : Befehl eingeben **Botschaft** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Achtung**.
+- **Befehl zur Warnung** : Befehl eingeben **Nachricht** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Warnung**.
+- **Fügen Sie jeder Gefahr eine Nachricht hinzu** : Fügen Sie eine Nachricht im Nachrichtencenter hinzu, wenn eine Bestellung alarmiert wird **Gefahr**.
+- **Befehl zur Gefahr** : Befehl eingeben **Nachricht** zu verwenden, wenn eine Bestellung in Alarmbereitschaft geht **Gefahr**.
 
 ### Logs
 
@@ -186,7 +186,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 > **Notiz**
 >
 > Der erste Parameter **Zeige Statistiken über Widgets** ist möglich, aber standardmäßig deaktiviert, da dadurch die Anzeigezeit des Dashboards erheblich verlängert wird. Wenn Sie diese Option aktivieren, stützt sich Jeedom standardmäßig auf Daten der letzten 24 Stunden, um diese Statistiken zu berechnen.
-> Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
+> Die Trendberechnungsmethode basiert auf der Berechnung der kleinsten Quadrate (siehe [Hier](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) für das Detail).
 
 ### Push
 
@@ -219,7 +219,7 @@ Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramm
 
 Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen festlegen, die Sie unter Extras → Interaktionen finden.
 
-> **Tipp**
+> **Spitze**
 >
 > Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration : Protokolle, dann überprüfen **Debuggen** in der unteren Liste. Aufmerksamkeit : Die Protokolle sind dann sehr ausführlich !
 
@@ -237,19 +237,19 @@ Hier haben Sie drei Parameter :
 
 ### Automatische Interaktion, kontextuelle & Warnung
 
--   Das **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
+-   DER **automatische Interaktionen** Erlaube Jeedom, zu versuchen, eine Interaktionsanforderung zu verstehen, auch wenn keine definiert ist. Er wird dann nach einem Objektnamen und / oder einer Ausrüstung suchen und / oder versuchen, so gut wie möglich zu reagieren.
 
--   Das **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
+-   DER **kontextuelle Interaktionen** Sie können beispielsweise mehrere Anforderungen verketten, ohne alles zu wiederholen :
     - *Jeedom hält den Kontext :*
-        - *Du* : Wie viel ist er im Raum ?
+        - *DU* : Wie viel ist er im Raum ?
         - *Jeedom* : Temperatur 25.2 ° C.
-        - *Du* : und im Wohnzimmer ?
+        - *DU* : und im Wohnzimmer ?
         - *Jeedom* : Temperatur 27.2 ° C.
     - *Stellen Sie zwei Fragen in einer :*
-        - *Du* : Wie ist es im Schlafzimmer und im Wohnzimmer? ?
+        - *DU* : Wie ist es im Schlafzimmer und im Wohnzimmer? ?
         - *Jeedom* : Temperatur 23.6 ° C, Temperatur 27.2 ° C.
 -   Typ Interaktionen **Lassen Sie uns wissen** Erlauben Sie Jeedom, Sie zu warnen, wenn eine Bestellung einen bestimmten Wert überschreitet / fällt oder wert ist.
-    - *Du* : Benachrichtigen Sie mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
+    - *DU* : Benachrichtigen Sie mich, wenn die Wohnzimmertemperatur 25 ° C überschreitet ?
     - *Jeedom* : OK (*Sobald die Wohnzimmertemperatur 25 ° C überschreitet, wird Jeedom es Ihnen einmal mitteilen*)
 
 > **Notiz**

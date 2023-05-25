@@ -26,7 +26,7 @@ Hier haben Sie drei Tasten :
 
 Gehen Sie in einem Browser zu [Markt](https://market.jeedom.com).
 Melden Sie sich bei Ihrem Konto an.
-Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Wo *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
+Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Oder *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
 
 Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → Updates / Markt → Registerkarte Markt), können Sie auf klicken *Markt synchronisieren* oder warten Sie, bis es sich von selbst niedergelassen hat.
 
@@ -34,7 +34,7 @@ Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → 
 
 Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche "Market" (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
 
-> **Tipp**
+> **Spitze**
 >
 > Sie müssen Ihre Marktkontoinformationen in der Administration eingegeben haben (Konfiguration → Updates / Markt → Registerkarte Markt), um die Plugins zu finden, die Sie beispielsweise bereits gekauft haben.
 
@@ -45,7 +45,7 @@ Oben im Fenster befinden sich Filter :
 - **Forschen** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
 - **Benutzername** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
 
-> **Tipp**
+> **Spitze**
 >
 > Das kleine Kreuz setzt den betreffenden Filter zurück
 
@@ -56,7 +56,7 @@ Wenn Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um d
     - **Stabil installieren** : ermöglicht die Installation des Plugins in seiner stabilen Version.
     - **Installieren Sie die Beta** : ermöglicht die Installation des Plugins in seiner Beta-Version (nur für Betatester).
     - **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr wenig verwendet).
-    - **Löschen** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
+    - **LÖSCHEN** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
 
 Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das neueste Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
 
@@ -80,7 +80,7 @@ Achtung, beim Hinzufügen durch eine Zip-Datei muss der Name der Zip mit der ID 
 
 Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseite.
 
-> **Tipp**
+> **Spitze**
 >
 > Sie können bei gedrückter Strg-Taste oder Klick-Mitte die Konfiguration in einer neuen Browser-Registerkarte öffnen.
 
@@ -89,7 +89,7 @@ Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseit
 - **Dokumentation** : Ermöglicht den direkten Zugriff auf die Plugin-Dokumentationsseite.
 - **Änderungsprotokoll** : Sehen wir uns das Plugin-Änderungsprotokoll an, falls vorhanden.
 - **Details** : Ermöglicht es Ihnen, die Plugin-Seite auf dem Markt zu finden.
-- **Löschen** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
+- **LÖSCHEN** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
 
 ### Unten links befindet sich ein Bereich **Zustand** mit :
 
@@ -114,14 +114,14 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 
 ### Nebengebäude :
 
-- **Nachname** : Im Allgemeinen wird lokal sein.
+- **Name** : Im Allgemeinen wird lokal sein.
 - **Status** : Abhängigkeitsstatus, OK oder NOK.
 - **Einrichtung** : Ermöglicht das Installieren oder Neuinstallieren von Abhängigkeiten (wenn Sie dies nicht manuell tun und diese NOK sind, kümmert sich Jeedom nach einer Weile um sich selbst).
 - **Letzte Installation** : Datum der letzten Abhängigkeitsinstallation.
 
 ### Dämon :
 
-- **Nachname** : Im Allgemeinen wird lokal sein.
+- **Name** : Im Allgemeinen wird lokal sein.
 - **Status** : Daemon-Status, OK oder NOK.
 - **Aufbau** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
 - **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.
@@ -129,7 +129,7 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. Sofern nicht anders angegeben, ist es ratsam, die automatische Verwaltung aktiv zu lassen).
 - **Letzter Start** : Datum des letzten Starts des Daemons.
 
-> **Tipp**
+> **Spitze**
 >
 > Einige Plugins haben einen Konfigurationsteil. Wenn dies der Fall ist, wird es unter den oben beschriebenen Abhängigkeits- und Dämonzonen angezeigt.
 > In diesem Fall finden Sie Informationen zur Konfiguration des betreffenden Plugins in der Dokumentation.
@@ -142,12 +142,12 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 - **Cron10** : Ein Cron alle 10 Minuten.
 - **Cron15** : Ein Cron alle 15 Minuten.
 - **Cron30** : Ein Cron alle 30 Minuten.
-- **CronStündlich** : Ein Cron pro Stunde.
+- **CronHourly** : Ein Cron pro Stunde.
 - **CronDaily** : Ein täglicher Cron.
-- **totcmd** : Ein Cron für tote Kommandeure.
-- **die Gesundheit** : Eine alte Gesundheit.
+- **deadcmd** : Ein Cron für tote Kommandeure.
+- **Gesundheit** : Eine alte Gesundheit.
 
-> **Tipp**
+> **Spitze**
 >
 > Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
 

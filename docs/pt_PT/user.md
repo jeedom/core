@@ -12,7 +12,7 @@ Na página você tem três botões :
 ## Lista de usuários
 
 - **Nome de Usuário** : ID do usuário.
-- **De ativos** : Permite desativar a conta sem excluí-la.
+- **Ativo** : Permite desativar a conta sem excluí-la.
 - **Local** : Permite a conexão do usuário apenas se ele estiver na rede local Jeedom.
 - **Perfil** : Permite escolher o perfil do usuário :
     - **Administrador** : O usuário obtém todos os direitos (edição / consulta) no Jeedom.
@@ -23,7 +23,7 @@ Na página você tem três botões :
 - **Data da última conexão** : Data do último login do usuário. Observe que esta é a data real da conexão; portanto, se você salvar seu computador, a data da conexão não será atualizada sempre que você retornar.
 - **Direitos** : Modificar direitos de usuário.
 - **Senha** : Permite alterar a senha do usuário.
-- **Deletar** : Remover usuário.
+- **EXCLUIR** : Remover usuário.
 - **Regenerar chave de API** : Regenerar chave de API do usuário.
 - **Gerenciar direitos** : Permite gerenciar com precisão os direitos do usuário (observe que o perfil deve estar em "usuário limitado"").
 

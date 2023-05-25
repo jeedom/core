@@ -2,7 +2,7 @@
 **Einstellungen → System → Update Center**
 
 
-Das **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
+DER **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
 Andere Erweiterungsverwaltungsfunktionen sind verfügbar (Löschen, Neuinstallieren, Überprüfen usw.).).
 
 
@@ -16,7 +16,7 @@ Wenn diese Überprüfung zu Beginn der Seite älter als zwei Stunden ist, wieder
 Sie können auch die Schaltfläche verwenden **Suchen Sie nach Updates** Um es manuell zu tun.
 Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie auf die Schaltfläche "Nach Updates suchen" klicken".
 
-Die Taste **Zu schützen** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
+Die Taste **Zum Schutz** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
 
 ## Aktualisieren Sie den Core
 
@@ -34,7 +34,7 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 >
 > Vor einem Update erstellt Jeedom standardmäßig ein Backup. Im Falle eines Problems beim Anwenden eines Updates stellt Jeedom das unmittelbar zuvor erstellte Backup automatisch wieder her. Dieses Prinzip gilt nur für Jeedom-Updates und nicht für Plugin-Updates.
 
-> **Tipp**
+> **Spitze**
 >
 > Sie können ein Update von Jeedom erzwingen, auch wenn es keines bietet.
 
@@ -45,14 +45,14 @@ Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stetig*, oder orange in *Beta* oder andere.
 
 - **Status** : OK oder NOK.
-- **Nachname** : Name und Herkunft des Plugins
+- **Name** : Name und Herkunft des Plugins
 - **Ausführung** : Zeigt die genaue Version des Core oder Plugins an.
 - **Optionen** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 - **Wieder einstellen** : Neuansiedlung erzwingen.
-- **Löschen** : Ermöglicht die Deinstallation.
+- **LÖSCHEN** : Ermöglicht die Deinstallation.
 - **überprüfen** : Fragen Sie die Quelle nach Updates ab, um herauszufinden, ob ein neues Update verfügbar ist.
 - **Update** : Ermöglicht das Aktualisieren des Elements (sofern es aktualisiert wurde)).
 - **Änderungsprotokoll** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
@@ -62,13 +62,13 @@ In jeder Zeile können Sie die folgenden Funktionen verwenden:
 > Wenn das Änderungsprotokoll leer ist, Sie aber noch ein Update haben, bedeutet dies, dass die Dokumentation aktualisiert wurde. Es ist daher nicht erforderlich, den Entwickler um Änderungen zu bitten, da diese nicht unbedingt vorhanden sind. (Es ist oft eine Aktualisierung der Übersetzung, Dokumentation).
 > In einigen Fällen kann der Plugin-Entwickler auch einfache Bugfixes vornehmen, für die nicht unbedingt das Changelog aktualisiert werden muss.
 
-> **Tipp**
+> **Spitze**
 >
 > Wenn Sie ein Update starten, wird über der Tabelle ein Fortschrittsbalken angezeigt. Vermeiden Sie andere Manipulationen während des Updates.
 
 ## Registerkarte Betriebssystem/Paket
 
-> **Wichtig**
+> **WICHTIG**
 >
 > Diese Registerkarte ist fortgeschrittenen Benutzern vorbehalten und nur für fortgeschrittene Benutzer, die geringste schlechte Aktion hier kann Ihr Jeedom BRECHEN (ohne die Möglichkeit, auf den Support zurückzugreifen)
 

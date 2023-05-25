@@ -22,7 +22,7 @@ En esta pestaña encontramos información general sobre Jeedom :
 A continuación, varios parámetros que centralizan la información que pueden usar los complementos, evitando tener que ingresarlos en cada complemento.
 
 - Contacto : Latitud, longitud y altitud de su hogar / sitio.
-- Dirección : Dirección postal de su hogar / sitio.
+- DIRECCIÓN : Dirección postal de su hogar / sitio.
 - Diverso : Superficie y número de ocupantes de su hogar / sitio.
 
 ## Pestaña interfaz
@@ -65,7 +65,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 ### Personnalisation
 
-- **Habilitar** : Active el uso de las siguientes opciones.
+- **Permitir** : Active el uso de las siguientes opciones.
 - **Transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
 - **Redondo** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
 - **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz.
@@ -116,7 +116,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
     - **Usando Jeedom DNS** : activa Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio)).
     - **Estado de DNS** : Estado HTTP HTTP.
-    - **Administración** : permite detener y reiniciar el servicio DNS de Jeedom.
+    - **Gestión** : permite detener y reiniciar el servicio DNS de Jeedom.
 
 > **Importante**
 >
@@ -237,9 +237,9 @@ Aquí tienes tres parámetros :
 
 ### Interacción automática, contextuales y de alerta
 
--   Los **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible.
+-   EL **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible.
 
--   Los **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
+-   EL **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
     - *Jeedom manteniendo el contexto :*
         - *Vosotras* : Cuanto esta el en el cuarto ?
         - *Jeedom* : Temperatura 25.2 ° C
@@ -250,7 +250,7 @@ Aquí tienes tres parámetros :
         - *Jeedom* : Temperatura 23.6 ° C, temperatura 27.2 ° C
 -   Interacciones de tipo **Avísame** permita pedirle a Jeedom que le avise si un pedido excede / cae o vale un cierto valor.
     - *Vosotras* : Notificarme si la temperatura de la sala supera los 25 ° C ?
-    - *Jeedom* : OK (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
+    - *Jeedom* : DE ACUERDO (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
 
 > **Nota**
 >
@@ -327,7 +327,7 @@ Depósito utilizado para conectar Jeedom a Github.
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
-- **Dirección** : Dirección du Mercado.(https://www.Jeedom.com/market).
+- **DIRECCIÓN** : DIRECCIÓN du Mercado.(https://www.Jeedom.com/market).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
 - **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre sí).
