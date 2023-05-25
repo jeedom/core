@@ -142,7 +142,7 @@ O consultar el log : /var/log/mysql/error.log
 
 ### Los botones de apagado / reinicio no funcionan
 En una instalación de bricolaje es normal. En SSH, debe realizar el comando visudo y al final del archivo debe agregar : www-data ALL = (ALL)
-NOPASSWD: TODO.
+NOPASSWD: TODOS.
 
 `` `{.bash}
 servicio sudo apache2 reiniciar
@@ -188,7 +188,7 @@ rm -rf / root / tmp / core-master
 ### Tengo el error en backdrop_execution MYSQL_ATTR_INIT_COMMAND
 En la administración de Jeedom parte OS / DB, entonces en la consola del sistema es necesario hacer :
 `` ''
-Sí | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sí | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 `` ''
 
 ### No puedo instalar las dependencias del complemento. Tengo un error del tipo : "E: dpkg ha sido descatalogado. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: No se pudo obtener lock / var / lib / dpkg / lock"

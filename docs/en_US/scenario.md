@@ -9,13 +9,13 @@ Real brain of home automation, the scenarios allow to interact with the real wor
 
 You will find there the list of scenarios of your Jeedom, as well as functionalities to manage them at best :
 
-- **Add** : Create a scenario. The procedure is described in the next chapter.
+- **To add** : Create a scenario. The procedure is described in the next chapter.
 - **Disable scenarios** : Disables all scenarios. Rarely used and knowingly, since no scenario will run anymore.
-- **Overview** : Allows you to have an overview of all scenarios. You can change the values **asset**, **visible**, **multi launch**, **synchronous mode**, **Log** And **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
+- **Overview** : Allows you to have an overview of all scenarios. You can change the values **asset**, **visible**, **multi launch**, **synchronous mode**, **Log** and **Timeline** (these parameters are described in the following chapter). You can also access the logs for each scenario and start them individually.
 
 ## My scenarios
 
-You will find in this part **list of scenarios** that you created. They are classified according to their **band**, possibly defined for each of them. Each scenario is displayed with its **name** and his **parent object**. THE **grayed out scenarios** are the ones that are disabled.
+You will find in this part **list of scenarios** that you created. They are classified according to their **band**, possibly defined for each of them. Each scenario is displayed with its **name** and his **parent object**. The **grayed out scenarios** are the ones that are disabled.
 
 > **Tip**
 >
@@ -33,11 +33,11 @@ Once on the configuration of a scenario, you have a contextual menu with the Rig
 
 ## Creation | Editing a scenario
 
-After clicking on **Add**, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
+After clicking on **To add**, you must choose the name of your scenario. You are then redirected to the page of its general parameters.
 Before that, at the top of the page, there are some useful functions to manage this scenario :
 
 - **ID** : Next to the word **General**, this is the scenario identifier.
-- **Status** : *Stopped* Or *In progress*, it indicates the current state of the scenario.
+- **Status** : *Stopped* Where *In progress*, it indicates the current state of the scenario.
 - **Previous / next state** : Cancel / redo an action.
 - **Add block** : Allows you to add a block of the desired type to the scenario (see below).
 - **Log** : Displays the scenario logs.
@@ -48,7 +48,7 @@ Before that, at the top of the page, there are some useful functions to manage t
 - **Template** : Allows you to access the templates and apply one to the scenario from the Market (explained at the bottom of the page).
 - **Research** : Unfolds a search field to search in the scenario. This search unfolds the collapsed blocks if necessary and folds them back after the search.
 - **Perform** : Allows you to launch the scenario manually (regardless of the triggers). Save beforehand to take into account the modifications.
-- **DELETE** : Delete scenario.
+- **To delete** : Delete scenario.
 - **To safeguard** : Save the changes made.
 
 > **Tips**
@@ -88,7 +88,7 @@ In the tab **General**, we find the main parameters of the scenario :
 
 > **Tip mode programmed**
 >
-> Scheduled mode uses syntax **Cron**. For example, you can run a scenario every 20 minutes with  ``*/20 * * * *``, or at 5 a.m. to settle a multitude of things for the day with ``0 5 * * *``. THE ? to the right of a program allows you to set it without being a specialist in Cron syntax.
+> Scheduled mode uses syntax **Cron**. For example, you can run a scenario every 20 minutes with  ``*/20 * * * *``, or at 5 a.m. to settle a multitude of things for the day with ``0 5 * * *``. The ? to the right of a program allows you to set it without being a specialist in Cron syntax.
 
 ## Scenario tab
 
@@ -103,7 +103,7 @@ For more convenience and not having to constantly reorder the blocks in the scen
 
 > **Tip**
 >
-> A Ctrl Shift Z or Ctrl Shift Y allows you to'**Cancel** or from **redo** a modification (addition of action, block...).
+> A Ctrl Shift Z or Ctrl Shift Y allows you to'**to cancel** or from **remake** a modification (addition of action, block...).
 
 ## Blocks
 
@@ -113,7 +113,7 @@ Here are the different types of blocks available :
 - **Stock** : Allows you to launch simple actions without any conditions.
 - **Loop** : Allows actions to be performed repeatedly from 1 to a defined number (or even the value of a sensor, or a random number…).
 - **In** : Allows to launch an action in X minute (s) (0 is a possible value). The peculiarity is that the actions are launched in the background, so they do not block the rest of the scenario. So it&#39;s a non-blocking block.
-- **AT** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking. Ex : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
+- **HAS** : Allows to tell Jeedom to launch the actions of the block at a given time (in the form hhmm). This block is non-blocking. Ex : 0030 for 00:30, or 0146 for 1h46 and 1050 for 10h50.
 - **Coded** : Allows you to write directly in PHP code (requires certain knowledge and can be risky but allows you to have no constraints).
 - **Comment** : Allows you to add comments to your scenario.
 
@@ -136,7 +136,7 @@ For the conditions, Jeedom tries to make it possible to write them as much as po
 
 Three buttons are available on the right of this type of block to select an item to test :
 
-- **Find a command** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose **And** Or **Or** before **Afterwards** to chain tests on different equipment.
+- **Find a command** : Allows you to search for a command in all those available in Jeedom. Once the command is found, Jeedom opens a window to ask you what test you want to perform on it. If you choose to **Put nothing**, Jeedom will add the command without comparison. You can also choose **and** Where **Where** before **Next** to chain tests on different equipment.
 - **Search a scenario** : Allows you to search for a scenario to test.
 - **Search for equipment** : Same for equipment.
 
@@ -159,7 +159,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 #### Access to controls (sensors and actuators)
 
 -  ``cmd::byString($string);`` : Returns the corresponding command object.
-    -   ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (ex : ``#[Appartement][Alarme][Asset]#``)
+    -   ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Asset]#``)
 -  ``cmd::byId($id);`` : Returns the corresponding command object.
     -  ``$id`` : Command ID.
 -  ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
@@ -186,7 +186,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 - ``$scenario->save();`` : Save changes.
 - ``$scenario->setData($key, $value);`` : Save a data (variable).
     - ``$key`` : value key (int or string).
-    - ``$value`` : value to store (``int``, ``string``, ``array`` Or ``object``).
+    - ``$value`` : value to store (``int``, ``string``, ``array`` Where ``object``).
 - ``$scenario->getData($key);`` : Get data (variable).
     - ``$key => 1`` : value key (int or string).
 - ``$scenario->removeData($key);`` : Delete data.
@@ -211,7 +211,7 @@ Actions added to blocks have several options :
 - A box **activated** so that this command is taken into account in the scenario.
 - A box **parallel** so that this command is launched in parallel (at the same time) with the other commands also selected.
 - A **vertical double arrow** to move the action. Just drag and drop from there.
-- A button for **DELETE** the action.
+- A button for **To delete** the action.
 - A button for specific actions, with each time the description (on hover) of this action.
 - A button to search for an action command.
 
@@ -253,8 +253,8 @@ You can use any of the following symbols for comparisons under conditions :
 
 You can combine any comparison with the following operators :
 
-- ``&&`` : And. It is also possible to use : ``ET`` / ``et`` / ``AND`` / ``and`` but may not work well with some php functions.
-- ``||`` : Or. It is also possible to use : ``OU`` / ``ou`` / ``OR`` / ``or`` but may not work well with some php functions.
+- ``&&`` : and. It is also possible to use : ``ET`` / ``et`` / ``AND`` / ``and`` but may not work well with some php functions.
+- ``||`` : Where. It is also possible to use : ``OU`` / ``ou`` / ``OR`` / ``or`` but may not work well with some php functions.
 - ``xor``  : or exclusive. It is also possible to use : ``XOR`` / ``^`` but may not work well with some php functions.
 
 ### Tags
@@ -276,7 +276,7 @@ A tag is replaced during the execution of the scenario by its value. You can use
 - ``#timestamp#`` : Number of seconds since January 1, 1970.
 - ``#date#`` : Day and month. Attention, the first number is the month. Ex : 1215 for December 15.
 - ``#week#`` : Week number.
-- ``#sday#`` : Name of day of week. Ex : SATURDAY.
+- ``#sday#`` : Name of day of week. Ex : Saturday.
 - ``#nday#`` : Day number from 0 (Sunday) to 6 (Saturday).
 - ``#smonth#`` : Name of the month. Ex : January.
 - ``#IP#`` : Jeedom&#39;s internal IP.
@@ -293,7 +293,7 @@ You also have the following additional tags if your scenario was triggered by an
 - #query# : Interaction that triggered the scenario.
 - #profil# : Profile of the user who started the scenario (can be empty).
 
-> **Important**
+> **IMPORTANT**
 >
 > When a scenario is triggered by an interaction, it is necessarily executed in fast mode. So in the interaction thread and not in a separate thread.
 
@@ -301,17 +301,17 @@ You also have the following additional tags if your scenario was triggered by an
 
 Several functions are available for the equipment :
 
-- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Give the average of the commandover the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``average(commande,période)`` & ``averageBetween(commande,start,end)`` : Give the average of the commandover the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Give the average of the values of the order weighted by their duration of existence over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` : Give the average of the values of the order weighted by their duration of existence over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Give the minimum command over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``min(commande,période)`` & ``minBetween(commande,start,end)`` : Give the minimum command over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Give the maximum of the commandover the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``max(commande,période)`` & ``maxBetween(commande,start,end)`` : Give the maximum of the commandover the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` & ``durationbetween(commande,valeur,start,end)`` : Give the duration in minutes during which the equipment had the chosen value over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` & ``statisticsBetween(commande,calcul,start,end)`` : Give the result of different statistical calculations (sum, count, std, variance, avg, min, max) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``tendance(commande,période,seuil)`` : Gives the trend of the command over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
@@ -330,9 +330,9 @@ Several functions are available for the equipment :
 - ``age(commande)`` : Gives the age in seconds of the value of the command (``collecDate``)
     -1 : The command does not exist or it is not of type info.
 
-- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` & ``stateChangesBetween(commande, [valeur], start, end)`` : Give the number of changes of state (towards a certain value if indicated, or if not indicated compared to its current value) over the period (period=[month, day, hour, min] or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)) or between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
-- ``lastBetween(commande,start,end)`` : Gives the last value recorded for the device between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Or [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Gives the last value recorded for the device between the 2 requested terminals (in the form ``Y-m-d H:i:s`` Where [PHP expression](http://php.net/manual/fr/datetime.formats.relative.php)).
 
 - ``variable(mavariable,valeur par défaut)`` : Retrieves the value of a variable or the desired value by default.
 
@@ -374,8 +374,8 @@ Several functions are available for the equipment :
 
 The periods and intervals of these functions can also be used with [PHP expressions](http://php.net/manual/fr/datetime.formats.relative.php) For example :
 
-- ``Now`` : NOW.
-- ``Today`` : 00:00 today (allows for example to obtain results for the day if between ``Today`` And ``Now``).
+- ``Now`` : now.
+- ``Today`` : 00:00 today (allows for example to obtain results for the day if between ``Today`` and ``Now``).
 - ``Last Monday`` : last Monday at 00:00.
 - ``5 days ago`` : 5 days ago.
 - ``Yesterday noon`` : yesterday afternoon.
@@ -429,7 +429,7 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``median(commande1,commande2…​.commandeN)`` : Returns the median of the values.
 - ``avg(commande1,commande2…​.commandeN)`` : Returns the average of the values.
 - ``time_op(time,value)`` : Allows you to perform operations on time, with time = time (ex : 1530) and value = value to add or subtract in minutes.
-- ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
+- ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
 - ``time_diff(date1,date2[,format, round])`` : Used to find out the difference between two dates (the dates must be in the format YYYY / MM / DD HH:MM:SS). By default, the method returns the difference in day (s). You can ask it in seconds (s), minutes (m), hours (h). Example in seconds ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. The difference is returned in absolute, unless you specify ``f`` (``sf``, ``mf``, ``hf``, ``df``). You can also use ``dhms`` who will not return example ``7j 2h 5min 46s``. The optional round parameter rounds to x decimal places (2 by default). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formats the return of a chain ``#time#``.
 - ``floor(time/60)`` : Convert seconds to minutes, or minutes to hours (``floor(time/3600)`` for seconds to hours).
@@ -464,7 +464,7 @@ And practical examples :
 
 In addition to home automation commands, you have access to the following actions :
 
-- **Break** (sleep) : Pause of x second (s).
+- **Pause** (sleep) : Pause of x second (s).
 - **variable** (variable) : Creation / modification of a variable or the value of a variable.
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
 - **genericType (GENERIC, #[Object]#)** : Modification of an info (event) or action (execCmd) command by Generic Type, in an object. For example, turn off all the lights in the Living Room.
@@ -474,9 +474,9 @@ In addition to home automation commands, you have access to the following action
     - Stop : Stop the scenario.
     - Enable : Activate a disabled scenario.
     - Deactivate : Disable scenario. It no longer launches regardless of the triggers.
-    - Resetting the ISs : Used to reset the status of **WHETHER**. This status is used for the non-repetition of the actions of a **WHETHER**, if the evaluation of the condition gives the same result as the previous evaluation.
+    - Resetting the ISs : Used to reset the status of **IF**. This status is used for the non-repetition of the actions of a **IF**, if the evaluation of the condition gives the same result as the previous evaluation.
 - **Stop** (stop) : Stop the scenario.
-- **To wait for** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
+- **Expect** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
 - **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.
 - **Add a log** (log) : Allows you to add a message to the logs.
 - **Create message** (message) : Add a message to the message center.
@@ -509,7 +509,7 @@ In addition to home automation commands, you have access to the following action
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 
-By clicking on the button **template** at the top of the page, you open the template management window.
+By clicking on the button **Template** at the top of the page, you open the template management window.
 
 From there, you have the possibility :
 
@@ -520,8 +520,8 @@ From there, you have the possibility :
 
 By clicking on a template, you can :
 
-- **Share** : Share the template on the Market.
-- **DELETE** : Delete template.
+- **To share** : Share the template on the Market.
+- **To delete** : Delete template.
 - **Download** : Get the template as a JSON file to send it to another Jeedom for example.
 
 Below, you have the part to apply your template to the current scenario.

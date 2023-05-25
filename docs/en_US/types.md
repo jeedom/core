@@ -82,7 +82,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 > **Tip**
 >
-> - You can find this list directly in Jeedom, on this same page, with the button **List** top right.
+> - You can find this list directly in Jeedom, on this same page, with the button **Listing** top right.
 
 | **Other (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -121,7 +121,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 | **Electricity (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| POWER | Electric power | Information | numeric
+| Power | Electric power | Information | numeric
 | CONSUMPTION | Power consumption | Information | numeric
 | VOLTAGE | Tension | Information | numeric
 | REBOOT | Restart | Stock | other
@@ -145,7 +145,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | **Generic (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | DEPTH | Depth | Information | numeric
-| DISTANCE | Distance | Information | numeric
+| DISTANCE | DISTANCE | Information | numeric
 | BUTTON | Button | Information | binary, numeric
 | GENERIC_INFO |  Generic | Information |
 | GENERIC_ACTION |  Generic | Stock | other
@@ -172,7 +172,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume | Information | numeric
+| Volume | Volume | Information | numeric
 | MEDIA_STATUS | Status | Information | string
 | MEDIA_ALBUM | Album | Information | string
 | MEDIA_ARTIST | Artist | Information | string
@@ -182,10 +182,10 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | MEDIA_STATE | State | Information | binary
 | SET_VOLUME | Volume | Stock | slider
 | SET_CHANNEL | Chain | Stock | other slider
-| MEDIA_PAUSE | Break | Stock | other
+| MEDIA_PAUSE | Pause | Stock | other
 | MEDIA_RESUME | Reading | Stock | other
 | MEDIA_STOP | Stop | Stock | other
-| MEDIA_NEXT | Following | Stock | other
+| MEDIA_NEXT | Next | Stock | other
 | MEDIA_PREVIOUS | Previous | Stock | other
 | MEDIA_ON | We | Stock | other
 | MEDIA_OFF | Off | Stock | other
@@ -231,7 +231,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | LOCK_STATE | State lock | Information | binary
 | BARRIER_STATE | Portal (opening) State | Information | binary
 | GARAGE_STATE | Garage (opening) State | Information | binary
-| OPENING | Door | Information | binary
+| OPENING | Gate | Information | binary
 | OPENING_WINDOW | Window | Information | binary
 | LOCK_OPEN | Lock Button Open | Stock | other
 | LOCK_CLOSE | Lock Button Close | Stock | other
@@ -258,7 +258,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | ALARM_MODE | Alarm Mode | Information | string
 | ALARM_ENABLE_STATE | Alarm Status activated | Information | binary
 | FLOOD | Flood | Information | binary
-| SABOTAGE | Sabotage | Information | binary
+| SABOTAGE | SABOTAGE | Information | binary
 | SHOCK | Shock | Information | binary, numeric
 | SIREN_OFF | Siren Button Off | Stock | other
 | SIREN_ON | Siren Button On | Stock | other
@@ -288,7 +288,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | FAN_SPEED_STATE | Fan speed Status | Information | numeric
 | ROTATION_STATE | State Rotation | Information | numeric
 | FAN_SPEED | Fan speed | Stock | slider
-| SPIN | Spin | Stock | slider
+| SPIN | SPIN | Stock | slider
 
 | **Pane (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

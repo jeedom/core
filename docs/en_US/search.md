@@ -13,12 +13,12 @@ Select a device with the icon to the right of the field.
 
 The engine will display in the tables below :
 
-- THE **Scenarios** using this equipment.
-- THE **designs** displaying this equipment.
-- THE **views** displaying this equipment.
-- THE **interactions** using this equipment.
+- The **Scenarios** using this equipment.
+- The **designs** displaying this equipment.
+- The **views** displaying this equipment.
+- The **interactions** using this equipment.
 - Others **equipment** using this equipment.
-- THE **orders** using this equipment.
+- The **orders** using this equipment.
 
 ## By order
 
@@ -26,11 +26,11 @@ Select an order with the icon to the right of the field.
 
 The engine will display in the tables below :
 
-- THE **Scenarios** using this command.
-- THE **designs** displaying this command.
-- THE **views** displaying this command.
-- THE **interactions** using this command.
-- THE **equipment** using this command.
+- The **Scenarios** using this command.
+- The **designs** displaying this command.
+- The **views** displaying this command.
+- The **interactions** using this command.
+- The **equipment** using this command.
 - Others **orders** using this command.
 
 ## By Variable
@@ -39,10 +39,10 @@ Select a variable from the drop-down list.
 
 The engine will display in the tables below :
 
-- THE **Scenarios** using this variable.
-- THE **interactions** using this variable.
-- THE **equipment** using this variable.
-- THE **orders** using this variable.
+- The **Scenarios** using this variable.
+- The **interactions** using this variable.
+- The **equipment** using this variable.
+- The **orders** using this variable.
 
 ## By Plugin
 
@@ -50,12 +50,12 @@ Select a plugin from the drop-down list.
 
 The engine will display in the tables below :
 
-- THE **Scenarios** using this plugin.
-- THE **designs** displaying this plugin.
-- THE **views** displaying this plugin.
-- THE **interactions** using this plugin.
-- THE **equipment** using this plugin.
-- THE **orders** using this plugin.
+- The **Scenarios** using this plugin.
+- The **designs** displaying this plugin.
+- The **views** displaying this plugin.
+- The **interactions** using this plugin.
+- The **equipment** using this plugin.
+- The **orders** using this plugin.
 
 ## By Word
 
@@ -63,15 +63,15 @@ Enter a character string in the search field. Validate with *enter* or with the 
 
 The engine will display in the tables below :
 
-- THE **Scenarios** using this string.
+- The **Scenarios** using this string.
 	Search in expressions, comments, code blocks.
-- THE **interactions** using this string.
-	Search in fields *Asked*.
-- THE **equipment** using this string.
-	Search in fields *name*, *logicalId*, *eqType*, *how*, *tags*.
-- THE **orders** using this string.
+- The **interactions** using this string.
+	Search in fields *Request*.
+- The **equipment** using this string.
+	Search in fields *name*, *logicalId*, *eqType*, *How? 'Or' What*, *tags*.
+- The **orders** using this string.
 	Search in fields *name*, *logicalId*, *eqType*, *generic_type*, .
-- THE **grades** using this string.
+- The **grades** using this string.
 	Notes text search.
 
 ## By ID
@@ -80,13 +80,13 @@ Enter a number corresponding to a searched Id in the search field. Validate with
 
 The engine will display in the tables below :
 
-- THE **Scenario** having this Id.
-- THE **design** having this Id.
-- There **seen** having this Id.
+- The **Scenario** having this Id.
+- The **design** having this Id.
+- The **seen** having this Id.
 - L'**interaction** having this Id.
 - L'**equipment** having this Id.
-- There **order** having this Id.
-- There **note** having this Id.
+- The **ordered** having this Id.
+- The **note** having this Id.
 
 ## Results
 

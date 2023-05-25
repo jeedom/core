@@ -13,12 +13,12 @@ Wählen Sie ein Gerät mit dem Symbol rechts neben dem Feld aus.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- DER **Szenarien** mit diesem Gerät.
-- DER **Entwürfe** Anzeige dieser Ausrüstung.
-- DER **Ansichten** Anzeige dieser Ausrüstung.
-- DER **Interaktionen** mit diesem Gerät.
+- Das **Szenarien** mit diesem Gerät.
+- Das **Entwürfe** Anzeige dieser Ausrüstung.
+- Das **Ansichten** Anzeige dieser Ausrüstung.
+- Das **Interaktionen** mit diesem Gerät.
 - Die anderen **Ausrüstung** mit diesem Gerät.
-- DER **Aufträge** mit diesem Gerät.
+- Das **Aufträge** mit diesem Gerät.
 
 ## Auf Bestellung
 
@@ -26,11 +26,11 @@ Wählen Sie eine Bestellung mit dem Symbol rechts neben dem Feld.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- DER **Szenarien** mit diesem Befehl.
-- DER **Entwürfe** Anzeige dieses Befehls.
-- DER **Ansichten** Anzeige dieses Befehls.
-- DER **Interaktionen** mit diesem Befehl.
-- DER **Ausrüstung** mit diesem Befehl.
+- Das **Szenarien** mit diesem Befehl.
+- Das **Entwürfe** Anzeige dieses Befehls.
+- Das **Ansichten** Anzeige dieses Befehls.
+- Das **Interaktionen** mit diesem Befehl.
+- Das **Ausrüstung** mit diesem Befehl.
 - Die anderen **Aufträge** mit diesem Befehl.
 
 ## Nach Variablen
@@ -39,10 +39,10 @@ Wählen Sie eine Variable aus der Dropdown-Liste.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- DER **Szenarien** mit dieser Variablen.
-- DER **Interaktionen** mit dieser Variablen.
-- DER **Ausrüstung** mit dieser Variablen.
-- DER **Aufträge** mit dieser Variablen.
+- Das **Szenarien** mit dieser Variablen.
+- Das **Interaktionen** mit dieser Variablen.
+- Das **Ausrüstung** mit dieser Variablen.
+- Das **Aufträge** mit dieser Variablen.
 
 ## Per Plugin
 
@@ -50,43 +50,43 @@ Wählen Sie ein Plugin aus der Dropdown-Liste.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- DER **Szenarien** mit diesem Plugin.
-- DER **Entwürfe** Anzeige dieses Plugins.
-- DER **Ansichten** Anzeige dieses Plugins.
-- DER **Interaktionen** mit diesem Plugin.
-- DER **Ausrüstung** mit diesem Plugin.
-- DER **Aufträge** mit diesem Plugin.
+- Das **Szenarien** mit diesem Plugin.
+- Das **Entwürfe** Anzeige dieses Plugins.
+- Das **Ansichten** Anzeige dieses Plugins.
+- Das **Interaktionen** mit diesem Plugin.
+- Das **Ausrüstung** mit diesem Plugin.
+- Das **Aufträge** mit diesem Plugin.
 
 ## Durch Wort
 
-Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit *eingeben* oder mit der Taste *Forschen*.
+Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit *Eintreten* oder mit der Taste *Forschen*.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- DER **Szenarien** mit dieser Zeichenfolge.
+- Das **Szenarien** mit dieser Zeichenfolge.
 	Suchen Sie in Ausdrücken, Kommentaren und Codeblöcken.
-- DER **Interaktionen** mit dieser Zeichenfolge.
-	Suche in Feldern *Fragte*.
-- DER **Ausrüstung** mit dieser Zeichenfolge.
-	Suche in Feldern *Name*, *logischeId*, *eqType*, *Wie*, *Stichworte*.
-- DER **Aufträge** mit dieser Zeichenfolge.
-	Suche in Feldern *Name*, *logischeId*, *eqType*, *generischer_typ*, .
-- DER **Noten** mit dieser Zeichenfolge.
+- Das **Interaktionen** mit dieser Zeichenfolge.
+	Suche in Feldern *Anfrage*.
+- Das **Ausrüstung** mit dieser Zeichenfolge.
+	Suche in Feldern *Name*, *logische ID*, *eqType*, *Wie? 'Oder' Was*, *Stichworte*.
+- Das **Aufträge** mit dieser Zeichenfolge.
+	Suche in Feldern *Name*, *logische ID*, *eqType*, *generischer_typ*, .
+- Das **Noten** mit dieser Zeichenfolge.
 	Notizen Textsuche.
 
 ## Nach ID
 
-Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validieren mit *eingeben* oder mit der Taste *Forschen*.
+Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validieren mit *Eintreten* oder mit der Taste *Forschen*.
 
 Der Motor wird in den folgenden Tabellen angezeigt :
 
-- DER **Szenario** mit dieser ID.
-- DER **Design** mit dieser ID.
-- Dort **gesehen** mit dieser ID.
+- Das **Szenario** mit dieser ID.
+- Das **Entwurf** mit dieser ID.
+- Das **gesehen** mit dieser ID.
 - L'**Interaktion** mit dieser ID.
 - L'**Ausrüstung** mit dieser ID.
-- Dort **Befehl** mit dieser ID.
-- Dort **Notiz** mit dieser ID.
+- Das **bestellt** mit dieser ID.
+- Das **Hinweis** mit dieser ID.
 
 ## Ergebnisse
 

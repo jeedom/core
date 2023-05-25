@@ -26,7 +26,7 @@ Here you have three buttons :
 
 From a browser, go to the [Market](https://market.jeedom.com).
 Sign into your account.
-Click on a plugin, then choose *Install stable* Or *Install beta* (if your Market account allows it).
+Click on a plugin, then choose *Install stable* Where *Install beta* (if your Market account allows it).
 
 If your Market account is correctly configured on your Jeedom (Configuration → Updates / Market → Market tab), you can click on *Synchronize Market* or wait for it to settle down on its own.
 
@@ -56,7 +56,7 @@ Once you have found the plugin you want, just click on it to bring up its file. 
     - **Install stable** : allows to install the plugin in its stable version.
     - **Install beta** : allows to install the plugin in its beta version (only for betatesters).
     - **Install pro** : allows to install the pro version (very little used).
-    - **DELETE** : if the plugin is currently installed, this button allows you to remove it.
+    - **To delete** : if the plugin is currently installed, this button allows you to remove it.
 
 Below, you will find the description of the plugin, the compatibility (if Jeedom detects an incompatibility, it will notify you), the opinions on the plugin (you can note it here) and additional information (the author, the person who made the latest update, a link to the doc, the number of downloads). On the right you find a &quot;Changelog&quot; button which allows you to have all the history of modifications, a &quot;Documentation&quot; button which refers to the documentation of the plugin. Then you have the available language and the various information on the date of the last stable version.
 
@@ -89,7 +89,7 @@ By clicking on the icon of a plugin, you open its configuration page.
 - **Documentation** : Allows direct access to the plugin documentation page.
 - **Changelog** : Lets see the plugin changelog if it exists.
 - **Details** : Allows you to find the plugin page on the market.
-- **DELETE** : Remove the plugin from your Jeedom. Please note, this also permanently removes all equipment from this plugin.
+- **To delete** : Remove the plugin from your Jeedom. Please note, this also permanently removes all equipment from this plugin.
 
 ### Below left, there is an area **state** with :
 
@@ -114,14 +114,14 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 
 ### Dependencies :
 
-- **Name** : Generally will be local.
+- **Last name** : Generally will be local.
 - **Status** : Dependency status, OK or NOK.
 - **Facility** : Allows to install or reinstall dependencies (if you do not do it manually and they are NOK, Jeedom will take care of itself after a while).
 - **Last installation** : Date of last dependency installation.
 
 ### Devil :
 
-- **Name** : Generally will be local.
+- **Last name** : Generally will be local.
 - **Status** : Daemon status, OK or NOK.
 - **Configuration** : OK if all the criteria for the demon to run are met, or gives the cause of the blocking.
 - **(To restart** : Allows you to launch or restart the demon.

@@ -1,7 +1,7 @@
 # Erweiterte Anpassung
 **Einstellungen → System → Erweiterte Anpassung**
 
-Hier können Sie Funktionen verwalten **** und Regeln **** auf Desktop oder Handy angewendet.
+Hier können Sie Funktionen verwalten **Javascript** und Regeln **CSS** auf Desktop oder Handy angewendet.
 
 > **Aufmerksamkeit**
 >
@@ -9,20 +9,20 @@ Hier können Sie Funktionen verwalten **** und Regeln **** auf Desktop oder Hand
 
 Diese Funktion verwendet einen bestimmten Modus des Core-Dateieditors mit zwei Speicherorten:
 
-- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **** Und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
-- mobil / benutzerdefiniert : Kann beide Dateien enthalten **** Und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
+- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **custom.js** und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
+- mobil / benutzerdefiniert : Kann beide Dateien enthalten **custom.js** und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
 
-In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Ermöglicht** Oder **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
+In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Ermöglicht** Wo **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
 
-> **Bemerkte**
+> **Anmerkung**
 >
 > Beim Aufruf dieser Seite wird automatisch die Baumstruktur erstellt, sowie die 4 Dateien mit einem Kommentar in der 1. Zeile inklusive der Version des Cores, der sie erstellt hat.
 
 ## Ressources
 
-[CSS: ](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Tipps zum Anpassen der Benutzeroberfläche](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 

@@ -18,7 +18,7 @@ Los dispositivos (o mosaicos) tienen ciertos parámetros de configuración acces
 
 Este widget es un poco especial porque es un widget de múltiples comandos, es decir, ensambla el valor de varios comandos. Aquí toma los comandos de temperatura y humedad. Para configurarlo, debes asignar el widget a los controles de temperatura y humedad de tu equipo.
 
-![WidgY HygroThermographe](./images/widgets3.png)
+![Widgy HygroThermographe](./images/widgets3.png)
 
 ##### Parámetros opcionales)
 
@@ -50,7 +50,7 @@ Widget para acción / control del cursor con botón "**+**" y un botón "**-**" 
 
 Widget para mostrar niveles de agua.
 
-![WidgY Rain](./images/widgets4.png)
+![Widgy Rain](./images/widgets4.png)
 
 ##### Parámetros opcionales)
 
@@ -66,7 +66,7 @@ Esta posibilidad se puede utilizar tanto con widgets predeterminados como con wi
 
 Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 
-- EL **2 comandos de acción / falla** debe estar vinculado a un pedido **info / binario** que almacenará el estado actual del dispositivo.
+- Los **2 comandos de acción / falla** debe estar vinculado a un pedido **info / binario** que almacenará el estado actual del dispositivo.
 
 >**Ejemplo**      
 >![Widget de ToggleLink](./images/widgets5.png)
@@ -97,7 +97,7 @@ Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 `` ''
 
 >**Truco**      
->Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* O *shutter_close*, *2 de Marzo* Y *parada_2*, etc..
+>Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* Dónde *shutter_close*, *2 de Marzo* y *parada_2*, etc..
 
 ## Widgets personalizados
 
@@ -113,7 +113,7 @@ Hay dos tipos de widgets personalizados :
 ![Widgets](./images/widgets.png)
 
 Tienes cuatro opciones :
-- **Agregar** : Le permite agregar un widget *Centro*.
+- **Para agregar** : Le permite agregar un widget *Centro*.
 - **Importar** : Le permite importar un widget como un archivo json previamente exportado.
 - **Codificado** : Accede a la página de edición del widget *Tercero*.
 - **Reemplazo** : Abre una ventana que le permite reemplazar un widget por otro en todos los dispositivos que lo usan.
@@ -143,10 +143,10 @@ Una vez en la página de configuración de un widget, se puede acceder a un men�
 
 ### Crear un widget
 
-Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "**Agregar**" y dale un nombre a tu nuevo widget.
+Una vez en la página **Herramientas → Widgets** tienes que hacer clic en el botón "**Para agregar**" y dale un nombre a tu nuevo widget.
 
-Después :
-- Tú eliges si se aplica a una orden de tipo **Existencias** O **Información**.
+Próximo :
+- Tú eliges si se aplica a una orden de tipo **Valores** Dónde **Información**.
 - Dependiendo de la elección anterior, deberá **elige el subtipo** De la orden.
 - Finalmente **la plantilla** entre los que estarán disponibles según las opciones anteriores.
 - Una vez que se ha elegido la plantilla, Jeedom muestra las opciones de configuración para ella a continuación.
@@ -161,12 +161,12 @@ Dependiendo del tipo de widget, generalmente puede personalizar los íconos, pon
 
 Hay dos tipos de plantillas :
 
-- EL "**simple**" : como un icono / imagen para el "**NOSOTROS**" y un icono / imagen para el "**APAGADO**".
-- EL "**multiestado**" : Esto permite definir, por ejemplo, una imagen si el comando tiene el valor "**XX**" y otro tan grande que "**AA**" o si menos de "**ZZ**". También funciona para valores de texto, una imagen si el valor es "**toto**", otro si "**plaf**" y así enseguida...
+- Los "**simple**" : como un icono / imagen para el "**Nosotros**" y un icono / imagen para el "**Apagado**".
+- Los "**multiestado**" : Esto permite definir, por ejemplo, una imagen si el comando tiene el valor "**XX**" y otro tan grande que "**AA**" o si menos de "**ZZ**". También funciona para valores de texto, una imagen si el valor es "**toto**", otro si "**plaf**" y así enseguida...
 
 #### Remplacement
 
-Esto se llama una plantilla simple, aquí solo tiene que decir que el "**NOSOTROS**" coincide con ese icono / imagen *(usando el botón elegir)*, EL "**APAGADO**" a otro icono / imagen, etc...      
+Esto se llama una plantilla simple, aquí solo tiene que decir que el "**Nosotros**" coincide con ese icono / imagen *(usando el botón elegir)*, la "**Apagado**" a otro icono / imagen, etc...      
 
 La caja **Widget de tiempo**, si está disponible, muestra la duración desde el último cambio de estado en el widget.
 
@@ -174,11 +174,11 @@ Para las plantillas que usan imágenes, puede configurar el ancho del widget en 
 
 >**Truco**     
 >Para usuarios avanzados, es posible colocar etiquetas en los valores de reemplazo y especificar su valor en la configuración avanzada del comando.    
->Si, por ejemplo, en **Ancho de escritorio** pones como valor '#largeur_desktop#'' (**tenga cuidado de poner el** ''#'' **autour**) puis dans la configuratinosotros avancée d'une commande, onglY affichage → "**Paramètres optionnels widget**" vous ajoutez EL paramètre ''largeur_desktop'' (**sans les** ''#`) y darle el valor "**90**", este widget personalizado en este comando tendrá 90 píxeles de ancho. Esto le permite adaptar el tamaño del widget a cada pedido sin tener que hacer un widget específico cada vez.
+>Si, por ejemplo, en **Ancho de escritorio** pones como valor '#largeur_desktop#'' (**tenga cuidado de poner el** ''#'' **autour**) puis dans la configuratinosotros avancée d'une commande, ongly affichage → "**Paramètres optionnels widget**" vous ajoutez la paramètre ''largeur_desktop'' (**sans les** ''#`) y darle el valor "**90**", este widget personalizado en este comando tendrá 90 píxeles de ancho. Esto le permite adaptar el tamaño del widget a cada pedido sin tener que hacer un widget específico cada vez.
 
 #### Test
 
-Esto se llama plantillas multiestado *(varios estados)*. En lugar de poner una imagen para el "**NOSOTROS** y / o para el "**APAGADO** como en el caso anterior, se le asignará un icono según la validación de una condición *(test)*. Si esto es cierto, el widget mostrará el icono / imagen en cuestión.
+Esto se llama plantillas multiestado *(varios estados)*. En lugar de poner una imagen para el "**Nosotros** y / o para el "**Apagado** como en el caso anterior, se le asignará un icono según la validación de una condición *(test)*. Si esto es cierto, el widget mostrará el icono / imagen en cuestión.
 
 Como antes, se pueden seleccionar diferentes imágenes según el tema activo en Jeedom y el cuadro **Widget de tiempo** muestra la duración desde el último cambio de estado.
 
@@ -188,13 +188,13 @@ Las pruebas están en forma : ''#value# == 1`, `#value#`será reemplazado autom�
 - ''#value# >= 1 && #value# <= 5''
 - ''#value# == 'toto'''
 
->**Nota**     
+>**NOTA**     
 >Es imprescindible mostrar los apóstrofos (**'**) alrededor del texto para comparar si el valor es texto *(info / otro)*.
 
->**Nota**     
+>**NOTA**     
 >Para usuarios avanzados, también es posible utilizar funciones javascript como `#value#.match ("^ plop") `, aquí probamos si el texto comienza con` plop`.
 
->**Nota**     
+>**NOTA**     
 >Es posible mostrar el valor del comando en el widget especificando `#value#`en el código HTML de la prueba. Para mostrar la unidad, agregue `#unite#''.
 
 ## Widget de código
@@ -214,7 +214,7 @@ En el modo de código tiene acceso a diferentes etiquetas para pedidos, aquí ha
 - **#valueDate#** : fecha del valor del pedido
 - **#collectDate#** : fecha de recogida del pedido
 - **#alertLevel#** : nivel de alerta (ver [aquí](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para la lista)
-- **#hide_history#** : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# Y #tendance# no será reemplazado por Jeedom.
+- **#hide_history#** : si el historial (máximo, mínimo, promedio, tendencia) debe estar oculto o no. En cuanto a la #hide_name# está vacío u oculto y, por lo tanto, se puede usar directamente en una clase. IMPORTANTE si esta etiqueta no se encuentra en su widget, entonces las etiquetas #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# y #tendance# no será reemplazado por Jeedom.
 - **#minHistoryValue#** : valor mínimo durante el período (período definido en la configuración de Jeedom por el usuario)
 - **#averageHistoryValue#** : valor promedio durante el período (período definido en la configuración de Jeedom por el usuario)
 - **#maxHistoryValue#** : valor máximo durante el período (período definido en la configuración de Jeedom por el usuario)

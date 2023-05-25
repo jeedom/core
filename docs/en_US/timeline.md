@@ -8,7 +8,7 @@ The Timeline page allows you to chronologically display events, such as order ch
 To see them, you must first activate the tracking on the timeline of the desired commands or scenarios, then these events occur.
 
 - **Script** : Either directly on a scenario page, or on *Overview* scenarios.
-- **Order** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
+- **Ordered** : Either in the advanced configuration of the command, or in the configuration of the history to do it in "mass".
 
 ![Timeline](images/timeline_intro.jpg)
 

@@ -15,7 +15,7 @@ A página Logs é bastante simples :
 - **Pausar / retomar** : Pausar / retomar a atualização em tempo real do log atual.
 - **Baixar** : Faça o download do log atual.
 - **Vazio** : Limpe o log atual.
-- **EXCLUIR** : Excluir o log atual. Se o Jeedom precisar, ele será recriado automaticamente.
+- **Deletar** : Excluir o log atual. Se o Jeedom precisar, ele será recriado automaticamente.
 - **Excluir todos os logs** : Excluir todos os logs presentes.
 
 > **Dica**

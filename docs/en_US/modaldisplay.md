@@ -1,6 +1,6 @@
 # ModalDisplay
 
-The page **ModalDisplay** is a simple container for loading the contents of a window (*modal* Or *dialogue*) full page.
+The page **ModalDisplay** is a simple container for loading the contents of a window (*modal* Where *dialogue*) full page.
 
 It is used in particular in the following cases:
 - Analysis menu : Ctrl Click / Click Center on *Real time*

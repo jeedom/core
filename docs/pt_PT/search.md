@@ -66,11 +66,11 @@ O mecanismo será exibido nas tabelas abaixo :
 - O **Cenas** usando esta string.
 	Pesquise expressões, comentários, blocos de código.
 - O **interações** usando esta string.
-	Pesquisar nos campos *Perguntado*.
+	Pesquisar nos campos *Solicitar*.
 - O **equipamento** usando esta string.
-	Pesquisar nos campos *nome*, *ID lógico*, *eqType*, *como*, *Tag*.
+	Pesquisar nos campos *nome*, *logicId*, *eqType*, *Como? 'Ou' O que*, *Tag*.
 - O **ordens** usando esta string.
-	Pesquisar nos campos *nome*, *ID lógico*, *eqType*, *tipo_genérico*, .
+	Pesquisar nos campos *nome*, *logicId*, *eqType*, *tipo_genérico*, .
 - O **notas** usando esta string.
 	Pesquisa de texto do Notes.
 
@@ -80,13 +80,13 @@ Insira um número correspondente a um Id pesquisado no campo de pesquisa. Valide
 
 O mecanismo será exibido nas tabelas abaixo :
 
-- O **Cenas** tendo este id.
-- O **projeto** tendo este id.
-- Lá **visto** tendo este id.
+- A **Cenas** tendo este id.
+- A **Projeto** tendo este id.
+- O **visto** tendo este id.
 - L'**interação** tendo este id.
 - L'**equipamento** tendo este id.
-- Lá **ordem** tendo este id.
-- Lá **observação** tendo este id.
+- O **ordenado** tendo este id.
+- O **Nota** tendo este id.
 
 ## Resultados
 
