@@ -33,7 +33,7 @@
 
 ### 4.4 : Autre
 
-- **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
+- **Core** : Start of development in pure js, without jQuery. See [doc-dev](https://doc.jeedom.com/en_US/dev/core4.4).
 - **Core** : More detailed listing of USB devices.
 - **Core** : A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 - **Lib** : Update Highchart v9.3.2 to v10.3.2 (The module *solid gauge* no longer imported).
@@ -43,14 +43,14 @@
 
 > **Dashboard**
 >
-> On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* and *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
+> On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Vertical pitch (minimum 100)* And *Horizontal pitch (minimum 110)*. The value *Margin* defining the space between the tiles.
 > The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
 
 
 > **Widgets**
 >
 > Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
-> All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Where *date*.
+> All Core widgets now support displaying *time*, by adding an optional parameter *time* / *duration* Or *date*.
 
 > **Dialog boxes**
 >
@@ -265,7 +265,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 ## 4.2.9
 
 - Bugfix UI : Widget fix *numeric default* (cmdName too long).
-- Bugfix UI : Passing css variables *--url-iconsDark* and *--url-iconsLight* in absolute (Bug Safari MacOS).
+- Bugfix UI : Passing css variables *--url-iconsDark* And *--url-iconsLight* in absolute (Bug Safari MacOS).
 - Bugfix UI : Position of notifications in *top center*.
 
 - Bugfix Core : Default step for widgets *Slider* at 1.
@@ -317,9 +317,9 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Report** : Preview PDF files.
 - **Types of equipment** : [New page](/en_US/core/4.2/types) **Tools → Equipment types** allowing generic types to be assigned to devices and commands, with support for types dedicated to installed plugins (see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2)).
 - **Selection of illustrations** : New global window for the choice of illustrations *(icons, images, backgrounds)*.
-- **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* and *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. The plugins can use this new function of the Core. see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
+- **Table display** : Addition of a button to the right of the search on the pages *Objects* *Scenarios* *Interactions* *Widgets* And *Plugins* to switch to table mode. This is stored by a cookie or in **Settings → System → Configuration / Interface, Options**. The plugins can use this new function of the Core. see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.2).
 - **Equipment configuration** : Possibility of configuring a history curve at the bottom of the tile of a device.
-- **Ordered** : Possibility of making a calculation on a command action of type slider before execution of the command.
+- **Order** : Possibility of making a calculation on a command action of type slider before execution of the command.
 - **Plugins / Management** : Display of the plugin category, and a link to directly open its page without going through the Plugins menu.
 - **Scenario** : Code fallback function (*folding code*) in the *Code Blocks*. Ctrl + Y and Ctrl + I shortcuts.
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
@@ -431,7 +431,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Bugfix of colored summaries on synthesis.
 - Bugfix on scenario comments with json.
 - Bugfix on summary updates on Dashboard mode previews.
-- Bugfix of elements *image* on a design.
+- Bugfix of elements *picture* on a design.
 - Added grouping options by time for charts on views.
 - Conservation of the Synthesis context when clicking on the summaries.
 - Centering of Synthesis images.
@@ -464,7 +464,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **Core updates** : Implementation of a system for cleaning up old unused Core files.
 - **Scenario** : Adding a search engine (to the left of the Run button).
 - **Scenario** : Addition of the age function (gives the age of the value of the order).
-- **Scenario** : *stateChanges()* now accept the period *today* (midnight to now), *yesterday* and *day* (for 1 day).
+- **Scenario** : *stateChanges()* now accept the period *today* (midnight to now), *yesterday* And *day* (for 1 day).
 - **Scenario** : Functions *statistics (), average (), max (), min (), trend (), duration()* : Bugfix over the period *yesterday*, and accept now *day* (for 1 day).
 - **Scenario** : Possibility to deactivate the automatic quote system (Settings → System → Configuration : Equipements).
 - **Scenario** : Viewing a *warning* if no trigger is configured.
@@ -695,7 +695,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Domotic overview : Adding equipment and order IDs, to display and search.
 - Domotic overview : CSV export of parent object, id, equipment and their id, command.
 - Domotic overview : Possibility of making visible or not one or more commands.<br/><br/>
-- Design : Possibility to specify the order (position) of the *Designs* and *3d designs* (Edit, Configure Design).
+- Design : Possibility to specify the order (position) of the *Designs* And *3d designs* (Edit, Configure Design).
 - Design : Addition of a custom CSS field on the elements of the *design*.
 - Design : Moved the display options in Design of the advanced configuration, in the display parameters from the *Design*. This in order to simplify the interface, and to allow to have different parameters by *Design*.
 - Design : Moving and resizing components on *Design* takes their size into account, with or without magnetization.<br/><br/>

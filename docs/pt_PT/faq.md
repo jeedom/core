@@ -142,7 +142,7 @@ Ou consulte o log : /var/log/mysql/error.log
 
 ### Os botões Desligar / Reiniciar não funcionam
 Em uma instalação DIY é normal. No SSH, você deve fazer o comando visudo e, no final do arquivo, adicionar : www-data ALL = (ALL)
-NOPASSWD: TUDO.
+NOPASSWD: TODOS.
 
 `` `{.bash}
 serviço sudo reinício apache2

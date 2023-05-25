@@ -1,7 +1,7 @@
 # Gerätearten
 **Werkzeuge → Gerätetypen**
 
-Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen *Information* (Sensor) oder *Aktie* (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie *Handy, Mobiltelefon*, *Heimatbrücke*, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
+Die Sensoren und Aktoren in Jeedom werden von Plugins verwaltet, die Geräte mit Befehlen erstellen *Information* (Sensor) oder *Aktie* (Antrieb). Dadurch ist es dann möglich, Aktionen basierend auf der Änderung bestimmter Sensoren auszulösen, wie z.B. das Einschalten eines Lichts bei Bewegungserkennung. Aber der Jeedom Core und Plugins wie *Handy, Mobiltelefon*, *Homebridge*, *Google-Smarthome*, *Alexa-Smarthome* etc., weiß nicht was das für ein Gerät ist : Eine Steckdose, ein Licht, ein Rollladen usw.
 
 Um dieses Problem zu lösen, insbesondere bei Sprachassistenten (*Mach das Zimmerlicht an*), Core stellte die . vor **Generische Typen**, von diesen Plugins verwendet.
 
@@ -17,18 +17,18 @@ Diese Seite ermöglicht eine direktere und einfachere Konfiguration dieser Gener
 
 Diese Seite bietet Lagerung nach Gerätetyp : Steckdose, Licht, Shutter, Thermostat, Kamera usw. Zunächst werden die meisten Ihrer Geräte klassifiziert in **Geräte ohne Typ**. Um ihnen einen Typ zuzuweisen, können Sie sie entweder auf einen anderen Typ verschieben oder mit der rechten Maustaste auf das Gerät klicken, um es direkt zu verschieben. Der Ausrüstungstyp ist an sich nicht wirklich nützlich, am wichtigsten sind die Auftragstypen. Sie können also eine Ausrüstung ohne Typ haben oder einen Typ, der nicht unbedingt seinen Befehlen entspricht. Sie können natürlich verschiedene Steuerungstypen innerhalb derselben Ausrüstung mischen. Im Moment ist es eher ein Speicher, eine logische Organisation, die vielleicht in zukünftigen Versionen dienen wird.
 
-> **Tipp**
+> **Spitze**
 >
 > - Wenn du Ausrüstung im Spiel bewegst **Geräte ohne Typ**, Jeedom schlägt vor, generische Typen aus seinen Bestellungen zu entfernen.
 > - Sie können mehrere Ausrüstungsgegenstände gleichzeitig bewegen, indem Sie die Kontrollkästchen links davon aktivieren.
 
 ## Befehlstyp
 
-Sobald ein Ausrüstungsgegenstand richtig positioniert ist *Nett*, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist *Information* (Blau) oder a *Aktie* (Orange).
+Sobald ein Ausrüstungsgegenstand richtig positioniert ist *Art*, wenn Sie darauf klicken, gelangen Sie zur Liste der Bestellungen, die anders gefärbt sind, wenn es a . ist *Information* (Blau) oder a *Aktie* (Orange).
 
 Durch Rechtsklick auf einen Auftrag können Sie ihm dann einen generischen Typ entsprechend den Spezifikationen dieses Auftrags zuweisen (Info-/Aktionstyp, Numerisch, Binärer Untertyp usw).
 
-> **Tipp**
+> **Spitze**
 >
 > - Das Kontextmenü der Befehle zeigt den Gerätetyp in Fettdruck an, ermöglicht aber dennoch die Zuweisung eines beliebigen generischen Typs eines beliebigen Gerätetyps.
 
@@ -58,7 +58,7 @@ Hier ein Auslöser beim Einschalten eines Lichts im Wohnzimmer : ``#genericType(
 
 Wenn Sie in einem Szenario wissen möchten, ob im Wohnzimmer Licht brennt, können Sie dies tun :
 
-WENN `#[Wohnzimmer][Lumiere Canapé][Bundesland]# == 1 ODER #[Wohnzimmer][Lumiere Salon][Bundesland]# == 1 ODER #[Wohnzimmer][Lumiere Angle][Bundesland]# == 1`
+WENN `#[Wohnzimmer][Lumiere Canapé][Zustand]# == 1 ODER #[Wohnzimmer][Lumiere Salon][Zustand]# == 1 ODER #[Wohnzimmer][Lumiere Angle][Zustand]# == 1`
 
 Oder einfacher : IF `genericType (LIGHT_STATE .),#[Wohnzimmer]#) > 0` oder wenn ein oder mehrere Licht(e) im Wohnzimmer leuchten.
 
@@ -80,9 +80,9 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 
 ## Liste der generischen Kerntypen
 
-> **Tipp**
+> **Spitze**
 >
-> - Sie finden diese Liste direkt in Jeedom, auf derselben Seite, mit dem Button **Auflistung** oben rechts.
+> - Sie finden diese Liste direkt in Jeedom, auf derselben Seite, mit dem Button **Aufführen** oben rechts.
 
 | **Andere (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
@@ -108,7 +108,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | KAMERA_ZOOM | Kamera nach vorne zoomen | Aktie | other
 | KAMERA_DEZOOM | Kamerarückseite zoomen | Aktie | other
 | KAMERA_STOP | Kamera stoppen | Aktie | other
-| CAMERA_PRESET | Kameravoreinstellung | Aktie | other
+| KAMERA_PRESET | Kameravoreinstellung | Aktie | other
 | KAMERA_AUFNAHME | Kameraaufnahme | Aktie |
 | KAMERA_AUFNAHME | Schnappschuss-Kamera | Aktie |
 
@@ -121,7 +121,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 
 | **Strom (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| Leistung | Elektrische Energie | Information | numeric
+| LEISTUNG | Elektrische Energie | Information | numeric
 | VERBRAUCH | Energieverbrauch | Information | numeric
 | STROMSPANNUNG | Spannung | Information | numeric
 | NEUSTART | Neu starten | Aktie | other
@@ -145,7 +145,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | **Generisch (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | TIEFE | Tiefe | Information | numeric
-| DISTANZ | DISTANZ | Information | numeric
+| DISTANZ | Distanz | Information | numeric
 | TASTE | Taste | Information | binär, numerisch
 | ALLGEMEINE_INFO |  Generisch | Information |
 | GENERIC_ACTION |  Generisch | Aktie | other
@@ -172,20 +172,20 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| Volumen | Volumen | Information | numeric
+| VOLUMEN | Volumen | Information | numeric
 | MEDIEN_STATUS | Status | Information | string
 | MEDIA_ALBUM | Album | Information | string
 | MEDIEN_KÜNSTLER | Künstler | Information | string
 | MEDIEN_TITEL | Titel | Information | string
 | MEDIEN_MACHT | Leistung | Information | string
 | KANAL | Kette | Information | numerisch, Zeichenfolge
-| MEDIEN_STATUS | Bundesland | Information | binary
+| MEDIEN_STATUS | Zustand | Information | binary
 | SET_VOLUME | Volumen | Aktie | slider
 | SET_CHANNEL | Kette | Aktie | anderer Schieberegler
-| MEDIEN_PAUSE | Pause | Aktie | other
+| MEDIEN_PAUSE | Brechen | Aktie | other
 | MEDIA_RESUME | Lektüre | Aktie | other
-| MEDIEN_STOP | Halt | Aktie | other
-| MEDIEN_NÄCHSTES | Nächste | Aktie | other
+| MEDIEN_STOP | Stoppen | Aktie | other
+| MEDIEN_NÄCHSTES | Nachfolgend | Aktie | other
 | MEDIEN_VORHER | Vorherige | Aktie | other
 | MEDIEN_EIN | Wir | Aktie | other
 | MEDIEN_AUS | Aus | Aktie | other
@@ -220,8 +220,8 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | WEATHER_TEMPERATURE_MAX | Wetter Höchsttemperatur | Information | numeric
 | WEATHER_TEMPERATURE_MIN | Wetter Temperatur min | Information | numeric
 | WEATHER_SONNENAUFGANG | Sonnenuntergang Wetter | Information | numeric
-| WEATHER_SUNSET | Sonnenaufgang Wetter | Information | numeric
-| WEATHER_WIND_DIRECTION | Windrichtung Wetter | Information | numeric
+| WETTER_SONNENUNTERGANG | Sonnenaufgang Wetter | Information | numeric
+| WETTER_WIND_RICHTUNG | Windrichtung Wetter | Information | numeric
 | WEATHER_WIND_SPEED | Wetter mit Windgeschwindigkeit | Information | numeric
 | WETTER_DRUCK | Wetterdruck | Information | numeric
 | WINDRICHTUNG | Windrichtung) | Information | numeric
@@ -231,7 +231,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | LOCK_STATE | Zustandssperre | Information | binary
 | BARRIER_STATE | Portal (Öffnen) Status | Information | binary
 | GARAGE_STAAT | Garage (Eröffnung) Zustand | Information | binary
-| ÖFFNUNG | Tor | Information | binary
+| ÖFFNUNG | Tür | Information | binary
 | OPENING_WINDOW | Fenster | Information | binary
 | LOCK_OPEN | Sperrtaste öffnen | Aktie | other
 | LOCK_CLOSE | Sperrtaste Schließen | Aktie | other
@@ -258,7 +258,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | ALARM_MODUS | Alarmmodus | Information | string
 | ALARM_ENABLE_STATE | Alarmstatus aktiviert | Information | binary
 | FLUT | Flut | Information | binary
-| SABOTAGE | SABOTAGE | Information | binary
+| SABOTAGE | Sabotage | Information | binary
 | SCHOCK | Schock | Information | binär, numerisch
 | SIRENE_AUS | Sirenentaste aus | Aktie | other
 | SIRENE_EIN | Sirenenknopf Ein | Aktie | other
@@ -288,7 +288,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | FAN_SPEED_STATE | Lüftergeschwindigkeit Status | Information | numeric
 | ROTATION_STATUS | Zustandsrotation | Information | numeric
 | LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit | Aktie | slider
-| DREHEN | DREHEN | Aktie | slider
+| DREHEN | Drehen | Aktie | slider
 
 | **Bereich (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

@@ -13,7 +13,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 
 ## Options
 
-> **Observación**
+> **Observó**
 >
 > Si ninguna de estas opciones está marcada, el reemplazo equivale a usar la función *Reemplace este comando con el comando* en configuración avanzada.
 
@@ -21,7 +21,7 @@ Puede mostrar solo ciertos equipos para una mayor legibilidad, filtrando por obj
 Para cada equipo, se copiará desde el origen al destino (lista no exhaustiva) :
 	* El objeto padre,
 	* Las categorias,
-	* Los propietarios *activo* y *visible*,
+	* Los propietarios *activo* Y *visible*,
 	* Comentarios y etiquetas,
 	* Orden (Tablero),
 	* El ancho y la altura (panel de mosaico),
@@ -48,11 +48,11 @@ Para cada pedido, se copiará desde el origen al destino (lista no exhaustiva) :
 	* Los widgets Dashboard y Mobile utilizados,
 	* El tipo genérico,
 	* Parámetros opcionales,
-	* Las configuraciones *JeedomPreExecCmd* y *jeedomPostExecCmd* (acción),
+	* Las configuraciones *JeedomPreExecCmd* Y *jeedomPostExecCmd* (acción),
 	* Configuraciones de acción de valor (información),
 	* Icono,
 	* La activación y el directorio en *Línea de tiempo*,
-	* Las configuraciones de *cálculo* y *redondo*,
+	* Las configuraciones de *cálculo* Y *redondo*,
 	* La configuración de influxDB,
 	* La configuración del valor de repetición,
 	* Alertas,
@@ -74,6 +74,6 @@ Para cada equipo :
 - Haga clic en su nombre para ver sus comandos e indique qué comandos los reemplazan. Al elegir un equipo, la herramienta rellena previamente estas opciones si encuentra un pedido del mismo tipo y el mismo nombre en el equipo de destino.
 
 
-> **Observación**
+> **Observó**
 >
 > Cuando indica un dispositivo de destino en un dispositivo de origen, este dispositivo de destino está deshabilitado en la lista.

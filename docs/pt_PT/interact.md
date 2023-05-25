@@ -51,16 +51,16 @@ Também podemos definir um comando a ser executado se, por exemplo, a interaçã
 A página de configuração consiste em várias guias e botões :
 
 - **Frases** : Exibe o número de frases da interação (um clique nelas mostra a você).
-- **Registrar** : Registra a interação atual.
-- **Deletar** : Excluir interação atual.
+- **Registro** : Registra a interação atual.
+- **EXCLUIR** : Excluir interação atual.
 - **Duplicado** : Duplicar a interação atual.
 
 ### Guia Geral
 
-- **Sobrenome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
+- **Nome** : Nome da interação (pode estar vazio, o nome substitui o texto da solicitação na lista de interação).
 - **Banda** : Grupo de interação, isso permite organizá-los (pode estar vazio, portanto estará no grupo "none").
-- **De ativos** : Permite ativar ou desativar a interação.
-- **Solicitar** : A sentença do modelo de geração (obrigatório).
+- **Ativo** : Permite ativar ou desativar a interação.
+- **Perguntado** : A sentença do modelo de geração (obrigatório).
 - **Sinônimo** : Permite definir sinônimos nos nomes dos comandos.
 - **Resposta** : A resposta para fornecer.
 - **Aguarde antes de responder (s))** : Adicione um atraso de X segundos antes de gerar a resposta. Permite, por exemplo, aguardar o retorno do status de uma lâmpada antes de ser atendido.
@@ -111,7 +111,7 @@ Nos 2 exemplos acima, a sentença modelo é idêntica, mas as ações resultante
 
 Aqui veremos todo o interesse e todo o poder das interações. Com uma sentença modelo, poderemos gerar sentenças para todo um grupo de comandos.
 
-Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em vez da frase fixa, em "Solicitação", usaremos as tags **\#commande\#** e **\#equipement\#**. Portanto, a Jeedom substituirá essas tags pelo nome dos comandos e pelo nome do equipamento (podemos ver a importância de ter nomes consistentes de comando / equipamento).
+Retomaremos o que foi feito acima, excluiremos as ações que adicionamos e, em vez da frase fixa, em "Solicitação", usaremos as tags **\#commande\#** E **\#equipement\#**. Portanto, a Jeedom substituirá essas tags pelo nome dos comandos e pelo nome do equipamento (podemos ver a importância de ter nomes consistentes de comando / equipamento).
 
 ![interact006](../images/interact006.png)
 
@@ -242,7 +242,7 @@ Neste exemplo, vemos uma frase simples que retornará uma resposta com três tem
 
 ![interact017](../images/interact017.png)
 
-Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *Júlia*\|sim tem alguém na sala *Júlia*"
+Este exemplo visa especificamente equipamentos específicos que permitem uma resposta personalizada. Então, podemos imaginar substituir a resposta do exemplo por "não, não há ninguém na sala *Julie*\|sim tem alguém na sala *Julie*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ Isso permite que você exclua todos os comandos que possuem uma dessas palavras 
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Solicitar : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Ações : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *ordem*.
+Como podemos ver, existe aqui no pedido a tag **\#consigne\#** (você pode colocar o que deseja), incluído no controle do inversor, para aplicar o valor desejado. Para fazer isso, temos 3 partes : \* Perguntado : em que criamos uma tag que representará o valor que será enviado para a interação. \* Resposta : reutilizamos a tag da resposta para garantir que o Jeedom entenda corretamente a solicitação. \* Estoque : colocamos uma ação na lâmpada que queremos acionar e, no valor que passamos, nossa tag *ordem*.
 
 > **Observação**
 >

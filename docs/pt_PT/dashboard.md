@@ -51,7 +51,7 @@ Além disso, você pode clicar no título do ladrilho (o nome do equipamento) pa
 
 - Um clique em um pedido de tipo de informação exibe o histórico do pedido (se for histórico).
 - Um Ctrl + Clique em um comando de tipo de informação exibe o histórico de todos os comandos (históricos) desse bloco.
-- Um clique na informação *Tempo* de um comando de ação exibe o histórico do comando (se for historizado).
+- Um clique na informação *tempo* de um comando de ação exibe o histórico do comando (se for historizado).
 
 
 ## Modo de edição

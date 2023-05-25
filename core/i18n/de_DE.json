@@ -86,7 +86,7 @@
         "Message": "Nachricht",
         "Accueil": "Mein Haus",
         "Vue": "Gesehen",
-        "Dashboard": "Dashboard"
+        "Dashboard": "Armaturenbrett"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Nein"
@@ -313,7 +313,7 @@
         "Dernier lancement": "Letzter Start",
         "Local": "Lokal",
         "OK": "Ok",
-        "NOK": "NOK",
+        "NOK": "NEIN",
         "Désactiver": "Deactivate",
         "Activer": "Aktivieren"
     },
@@ -420,7 +420,7 @@
         "Dernière installation": "Letzte Installation",
         "Local": "Lokal",
         "OK": "Ok",
-        "NOK": "NOK",
+        "NOK": "NEIN",
         "Installation en cours": "Installation läuft",
         "Relancer": "Beleben",
         "Désactiver": "Deaktivieren",
@@ -1207,7 +1207,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Dashboard": "Instrumententafel",
+        "Dashboard": "Armaturenbrett",
         "Remplacer le widget": "Widget ersetzen",
         "Par": "Durch",
         "Remplacer": "Ersetzen",
@@ -1397,7 +1397,7 @@
         "Aucune santé spécifique": "Keine spezifische Gesundheit",
         "Dépendances": "Nebengebäude",
         "OK": "Ok",
-        "NOK": "NOK",
+        "NOK": "NEIN",
         "En cours": "In Bearbeitung",
         "Configuration démon": "Daemon-Konfiguration",
         "Désactivé": "Deaktiviert",
@@ -1435,7 +1435,7 @@
         "Toggle navigation": "Schalter Steuerung",
         "Accueil": "Mein Haus",
         "Synthèse": "Synthese",
-        "Dashboard": "Instrumententafel",
+        "Dashboard": "Armaturenbrett",
         "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
@@ -2080,7 +2080,7 @@
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
-        "Dashboard": "Instrumententafel",
+        "Dashboard": "Armaturenbrett",
         "Synthèse": "Synthese",
         "Vue": "Aussicht",
         "Design": "Entwurf",
@@ -2509,7 +2509,7 @@
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Dashboard": "Instrumententafel",
+        "Dashboard": "Armaturenbrett",
         "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
@@ -2920,7 +2920,7 @@
         "Désactivé": "Deaktiviert",
         "OK": "Ok",
         "Désactiver": "Deactivate",
-        "NOK": "NOK",
+        "NOK": "NEIN",
         "Supprimer": "Entfernen",
         "Mot de passe": "Passwort",
         "Renouveler la clef API": "Erneuern Sie den API-Schlüssel",
@@ -3795,15 +3795,15 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Benutzeranmeldung mit REMOTE_USER:",
-        "Double authentification requise": "Double authentification requise",
+        "Double authentification requise": "Doppelte Authentifizierung erforderlich",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Passwort oder ungültiger Benutzername",
-        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
+        "Mot de passe ou nom d\\'utilisateur incorrect')": "Passwort oder ungültiger Benutzername‘)",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer hinzuzufügen",
         "Utilisateur invalide": "Ungültiger Benutzer",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer löschen zu können",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Sie können das Konto, mit dem Sie verbunden sind, nicht löschen",
-        "User ID inconnu": "User ID inconnu",
+        "User ID inconnu": "Unbekannte Benutzer-ID",
         "Utilisateur non trouvé :": "Benutzer nicht gefunden:",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
@@ -4196,7 +4196,7 @@
         "Système à jour": "Aktuelles System",
         "OK": "Ok",
         "Cron actif": "Active Cron",
-        "NOK": "NOK",
+        "NOK": "NEIN",
         "Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver": "Cron-Fehler: Cron sind deaktiviert. Gehen Sie zu Administration -> Cron-System, um sie wieder zu aktivieren",
         "Scénario actif": "Aktives Szenario",
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Szenariofehler: Alle Szenarien sind deaktiviert. Gehen Sie zu Tools -> Szenarien, um sie wieder zu aktivieren",

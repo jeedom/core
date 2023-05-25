@@ -13,7 +13,7 @@ You can display only certain equipment for more readability, filtering by object
 
 ## Options
 
-> **Remark**
+> **Noticed**
 >
 > If none of these options is checked, the replacement amounts to using the function *Replace this command with the command* in advanced configuration.
 
@@ -21,7 +21,7 @@ You can display only certain equipment for more readability, filtering by object
 For each piece of equipment, will be copied from the source to the target (non-exhaustive list) :
 	* The parent object,
 	* The categories,
-	* Properties *asset* and *visible*,
+	* Properties *asset* And *visible*,
 	* Comments and tags,
 	* Order (Dashboard),
 	* The Width and Height (Tile Dashboard),
@@ -48,11 +48,11 @@ For each order, will be copied from the source to the target (non-exhaustive lis
 	* The Dashboard and Mobile widgets used,
 	* The Generic Type,
 	* Optional parameters,
-	* The configurations *jeedomPreExecCmd* and *jeedomPostExecCmd* (action),
+	* The configurations *jeedomPreExecCmd* And *jeedomPostExecCmd* (action),
 	* Value Action configurations (info),
 	* Icon,
 	* The activation and the directory in *Timeline*,
-	* The configurations of *calculation* and *round*,
+	* The configurations of *calculation* And *round*,
 	* The influxDB configuration,
 	* The repeat value configuration,
 	* Alerts,
@@ -74,6 +74,6 @@ For each equipment :
 - Click on its name to see its commands, and indicate which commands replace them. When choosing a device, the tool pre-fills these choices if it finds a command of the same type and same name on the target device.
 
 
-> **Remark**
+> **Noticed**
 >
 > When you indicate a target device on a source device, this target device is disabled in the list.

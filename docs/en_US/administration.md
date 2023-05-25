@@ -143,12 +143,12 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Timeout command** : Type command **message** to be used if an equipment is in **timeout**.
 - **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **warning**.
 - **Battery command in Warning** : Type command **message** to be used if equipment at its battery level **warning**.
-- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **danger**.
-- **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **danger**.
+- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **hazard**.
+- **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **hazard**.
 - **Add a message to each Warning** : Add a message in the message center if a command goes on alert **warning**.
 - **Command on Warning** : Type command **message** to use if a command goes on alert **warning**.
-- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **danger**.
-- **Command on Danger** : Type command **message** to use if a command goes on alert **danger**.
+- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **hazard**.
+- **Command on Danger** : Type command **message** to use if a command goes on alert **hazard**.
 
 ### Logs
 
@@ -237,19 +237,19 @@ Here you have three parameters :
 
 ### Automatic, contextual & warning interaction
 
--   The **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
+-   THE **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
 
--   The **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
+-   THE **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
     - *Jeedom keeping the context :*
-        - *You* : How much is he in the room ?
+        - *YOU* : How much is he in the room ?
         - *Jeedom* : Temperature 25.2 ° C
-        - *You* : and in the living room ?
+        - *YOU* : and in the living room ?
         - *Jeedom* : Temperature 27.2 ° C
     - *Ask two questions in one :*
-        - *You* : What is it like in the bedroom and in the living room ?
+        - *YOU* : What is it like in the bedroom and in the living room ?
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 -   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
-    - *You* : Notify me if the living room temperature exceeds 25 ° C ?
+    - *YOU* : Notify me if the living room temperature exceeds 25 ° C ?
     - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
 > **Note**

@@ -2,7 +2,7 @@
 **Configurações → Sistema → Centro de Atualização**
 
 
-A **Update Center** permite atualizar todas as funcionalidades do Jeedom, incluindo o software principal e seus plugins.
+O **Update Center** permite atualizar todas as funcionalidades do Jeedom, incluindo o software principal e seus plugins.
 Outras funções de gerenciamento de extensão estão disponíveis (excluir, reinstalar, verificar etc.).).
 
 
@@ -28,7 +28,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 - **Atualizar o núcleo** : Permite incluir o kernel Jeedom (o Core) na atualização.
 
 - **Modo forçado** : Execute a atualização no modo forçado, ou seja, mesmo se houver um erro, o Jeedom continuará e não restaurará o backup. (Este modo desabilita o salvamento !).
-- **Update para reaplicar** : Permite reaplicar uma atualização. (NB : Nem todas as atualizações podem ser reaplicadas.)
+- **Update para reaplicar** : Permite reaplicar uma atualização. ( : Nem todas as atualizações podem ser reaplicadas.)
 
 > **Importante**
 >
@@ -42,20 +42,20 @@ Depois de clicar nele, você obtém essas opções diferentes :
 
 A tabela contém as versões dos núcleos e plug-ins instalados.
 
-Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *estável*, ou laranja em *beta* ou outro.
+Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *estável*, ou laranja em ** ou outro.
 
 - **Status** : OK ou NÃO.
-- **Sobrenome** : Nome e origem do plug-in
+- **Nome** : Nome e origem do plug-in
 - **Versão** : Indica a versão precisa do Core ou plugin.
 - **Opções** : Marque esta caixa se não desejar que este plugin seja atualizado durante a atualização global (Button **Atualizar**).
 
 Em cada linha, você pode usar as seguintes funções:
 
 - **Reinstalar** : Forçar reassentamento.
-- **Deletar** : Permite desinstalá-lo.
+- **EXCLUIR** : Permite desinstalá-lo.
 - **Verificar** : Consulte a fonte de atualizações para descobrir se uma nova atualização está disponível.
 - **Atualizar** : Permite atualizar o elemento (se houver uma atualização).
-- **Registro de alterações** : Permite acesso à lista de alterações na atualização.
+- **Log de alterações** : Permite acesso à lista de alterações na atualização.
 
 > **Importante**
 >
@@ -68,7 +68,7 @@ Em cada linha, você pode usar as seguintes funções:
 
 ## Guia SO/Pacote
 
-> **Importante**
+> **IMPORTANTE**
 >
 > Esta guia é reservada para usuários avançados e apenas para usuários avançados, a menor ação ruim aqui pode QUEBRAR seu Jeedom (sem a possibilidade de recorrer ao suporte)
 
@@ -91,8 +91,8 @@ Uma vez conectado, este é o comando para executar :
 
 Os possíveis parâmetros são :
 
-- **moda** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
-- **Versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
+- **** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
+- **versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :
 

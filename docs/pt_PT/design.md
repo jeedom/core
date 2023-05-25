@@ -28,7 +28,7 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Adicionar imagem / câmera** : Permite adicionar uma imagem ou um fluxo de uma câmera.
 - **Adicionar área** : Permite adicionar uma zona transparente clicável que poderá executar uma série de ações durante um clique (dependendo ou não do status de outro comando).
 - **Adicionar resumo** : Adiciona informações de um objeto ou resumo geral.
-- **Exibição**
+- **Mostrar**
     - **Nenhum** : Não exibe nenhuma grade.
     - **10x10** : Exibe uma grade 10 por 10.
     - **15x15** : Exibe uma grade de 15 por 15.
@@ -51,14 +51,14 @@ No menu (clique direito), encontramos as seguintes ações :
 Encontrado aqui :
 
 - **Geral**
-    - **Sobrenome** : O nome do seu design.
+    - **Nome** : O nome do seu design.
     - **Posição** : A posição do design no menu. Permite que você encomende os desenhos.
     - **Fundo transparente** : Torna o plano de fundo transparente. Atenção, se a caixa estiver marcada, a cor do plano de fundo não será usada.
     - **Cor de fundo** : Cor do plano de fundo do design.
     - **Código de acesso** : Código de acesso ao seu design (se vazio, nenhum código é necessário).
     - **Ícone** : Um ícone para ele (aparece no menu de opções de design).
-    - **Imagem**
-        - **Mandar** : Permite adicionar uma imagem de plano de fundo ao design.
+    - **Foto**
+        - **Enviar** : Permite adicionar uma imagem de plano de fundo ao design.
         - **Excluir imagem** : Excluir imagem.
 - **Tamanhos**
     - **Tamanho (LxA))** : Permite definir o tamanho em pixels do seu design.
@@ -131,7 +131,7 @@ Permite escolher os comandos para grapher.
 
 ### Configurações de exibição específicas
 
-- **Sobrenome** : Nome do link (texto exibido).
+- **Nome** : Nome do link (texto exibido).
 - **Link** : Link para o design ou exibição em questão.
 - **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
@@ -179,7 +179,7 @@ Exibe a janela de configuração avançada do equipamento (consulte a documenta�
 ### Configurações de exibição específicas
 
 - **Mostrar** : Define o que você deseja exibir, imagem estática ou transmitir a partir de uma câmera.
-- **Imagem** : Envie a imagem em questão (se você escolheu uma imagem).
+- **Foto** : Envie a imagem em questão (se você escolheu uma imagem).
 - **Câmera** : Câmera a ser exibida (se você escolher a câmera).
 
 ## Zone
