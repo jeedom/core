@@ -1,7 +1,7 @@
 # Tipos de equipamento
 **Ferramentas → Tipos de equipamento**
 
-Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Informação* (sensor) ou *Estoque* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, **, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
+Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Informação* (sensor) ou *Estoque* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
 
 Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
 
@@ -52,13 +52,13 @@ Você pode acionar um cenário a partir de sensores. Por exemplo, se você tiver
 
 Os tipos genéricos permitem que você use um único gatilho : ``#genericType(PRESENCE)# == 1`. Aqui, nenhum objeto é indicado, então o menor movimento em toda a casa irá desencadear o cenário. Se você adicionar um novo detector na casa, não há necessidade de editar o (s) cenário (s)).
 
-Aqui, um gatilho para acender uma luz na sala de estar : ``#genericType(LIGHT_STATE,#[Salão]#)# > 
+Aqui, um gatilho para acender uma luz na sala de estar : ``#genericType(LIGHT_STATE,#[Salão]#)# > 0`
 
 #### Expression
 
 Se, em um cenário, você quiser saber se uma luz está acesa na sala de estar, você pode fazer :
 
-SE `#[Salão][Lumiere Canapé][Estado]# ==  #[Salão][Lumiere Salon][Estado]# ==  #[Salão][Lumiere Angle][Estado]# == 1`
+SE `#[Salão][Lumiere Canapé][Estado]# == 1 OU #[Salão][Lumiere Salon][Estado]# == 1 OU #[Salão][Lumiere Angle][Estado]# == 1`
 
 Ou mais simplesmente : IF `genericType (LIGHT_STATE,#[Salão]#) > 0` ou se uma ou mais luzes estiverem acesas na sala de estar.
 
@@ -82,60 +82,60 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 > **Dica**
 >
-> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **** canto superior direito.
+> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **Lista** canto superior direito.
 
 | **Outro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Cronômetro de estado | Informação | numeric
-|  | Status do temporizador (pausa ou não) | Informação | binário, numérico
-| DEFINIR TEMPORIZADOR |  | Estoque | slider
-|  | Pausar cronômetro | Estoque | other
-|  | Resumo do cronômetro | Estoque | other
+| CRONÔMETRO | Cronômetro de estado | Informação | numeric
+| TIMER_STATE | Status do temporizador (pausa ou não) | Informação | binário, numérico
+| DEFINIR TEMPORIZADOR | Cronômetro | Estoque | slider
+| TIMER_PAUSE | Pausar cronômetro | Estoque | other
+| TIMER_RESUME | Resumo do cronômetro | Estoque | other
 
 | **Bateria (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  |  | Informação | numeric
-|  | Carregamento de bateria | Informação | binary
+| BATERIA | Bateria | Informação | numeric
+| BATERIA_CARREGANDO | Carregamento de bateria | Informação | binary
 
 | **Câmera (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Url da câmera | Informação | string
-|  | Status de gravação da câmera | Informação | binary
-|  | Movimento da câmera para cima | Estoque | other
-|  | Movimento da câmera para baixo | Estoque | other
-|  | Movimento da câmera para a esquerda | Estoque | other
-|  | Movimento da câmera para a direita | Estoque | other
-|  | Zoom da câmera para frente | Estoque | other
-|  | Zoom da câmera para trás | Estoque | other
-|  | Parar câmera | Estoque | other
-|  | Predefinição da câmera | Estoque | other
-|  | Gravação de câmera | Estoque |
-|  | Câmera instantânea | Estoque |
+| CAMERA_URL | Url da câmera | Informação | string
+| CAMERA_RECORD_STATE | Status de gravação da câmera | Informação | binary
+| CAMERA_UP | Movimento da câmera para cima | Estoque | other
+| CAMERA_DOWN | Movimento da câmera para baixo | Estoque | other
+| CAMERA_LEFT | Movimento da câmera para a esquerda | Estoque | other
+| CAMERA_RIGHT | Movimento da câmera para a direita | Estoque | other
+| CAMERA_ZOOM | Zoom da câmera para frente | Estoque | other
+| CAMERA_DEZOOM | Zoom da câmera para trás | Estoque | other
+| CAMERA_STOP | Parar câmera | Estoque | other
+| CAMERA_PRESET | Predefinição da câmera | Estoque | other
+| CAMERA_RECORD | Gravação de câmera | Estoque |
+| CAMERA_TAKE | Câmera instantânea | Estoque |
 
 | **Aquecimento (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Status de aquecimento do fio piloto | Informação | binary
+| HEATING_STATE | Status de aquecimento do fio piloto | Informação | binary
 | AQUECIMENTO_ON | Botão LIGADO de aquecimento do fio piloto | Estoque | other
 | AQUECIMENTO_OFF | Botão de aquecimento do fio piloto DESLIGADO | Estoque | other
-|  | Botão do fio piloto de aquecimento | Estoque | other
+| HEATING_OTHER | Botão do fio piloto de aquecimento | Estoque | other
 
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | Energia elétrica | Informação | numeric
-|  | Consumo de energia | Informação | numeric
-|  |  | Informação | numeric
-|  | Reiniciar | Estoque | other
+| PODER | Energia elétrica | Informação | numeric
+| CONSUMO | Consumo de energia | Informação | numeric
+| TENSÃO | Tensão | Informação | numeric
+| REINÍCIO | Reiniciar | Estoque | other
 
 | **Ambiente (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-|  | TEMPERATURA | Informação | numeric
+| TEMPERATURA | TEMPERATURA | Informação | numeric
 | QUALIDADE DO AR | Qualidade do ar | Informação | numeric
-|  |  | Informação | numeric
-|  | PRESENÇA | Informação | binary
-|  | Detecção de fumaça | Informação | binary
-|  |  | Informação | numeric
-|  |  | Informação | numeric
-|  | ) | Informação | numeric
+| BRILHO | Brilho | Informação | numeric
+| PRESENÇA | PRESENÇA | Informação | binary
+| FUMAÇA | Detecção de fumaça | Informação | binary
+| UMIDADE | Umidade | Informação | numeric
+| Ultravioleta | Ultravioleta | Informação | numeric
+| CO2 | CO2 (ppm) | Informação | numeric
 | CO | CO (ppm) | Informação | numeric
 | BARULHO | Som (dB) | Informação | numeric
 | PRESSÃO | Pressão | Informação | numeric

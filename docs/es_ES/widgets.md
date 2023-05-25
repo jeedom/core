@@ -97,7 +97,7 @@ Para hacerlo, es necesario tener en cuenta 2 requisitos previos :
 `` ''
 
 >**Truco**      
->Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* O *shutter_close*, *caminar_2* Y *parada_2*, etc..
+>Siempre que el nombre estandarizado siga siendo legible, es posible adaptar el nombre, por ejemplo *open_volet* O *shutter_close*, *2 de Marzo* Y *parada_2*, etc..
 
 ## Widgets personalizados
 

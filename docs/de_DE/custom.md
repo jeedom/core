@@ -1,7 +1,7 @@
 # Erweiterte Anpassung
 **Einstellungen → System → Erweiterte Anpassung**
 
-Hier können Sie Funktionen verwalten **Javascript** und Regeln **CSS** auf Desktop oder Handy angewendet.
+Hier können Sie Funktionen verwalten **** und Regeln **** auf Desktop oder Handy angewendet.
 
 > **Aufmerksamkeit**
 >
@@ -9,8 +9,8 @@ Hier können Sie Funktionen verwalten **Javascript** und Regeln **CSS** auf Desk
 
 Diese Funktion verwendet einen bestimmten Modus des Core-Dateieditors mit zwei Speicherorten:
 
-- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **custom.js** Und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
-- mobil / benutzerdefiniert : Kann beide Dateien enthalten **custom.js** Und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
+- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **** Und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
+- mobil / benutzerdefiniert : Kann beide Dateien enthalten **** Und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
 
 In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Ermöglicht** Oder **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
 
@@ -20,9 +20,9 @@ In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Erm�
 
 ## Ressources
 
-[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: ](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Tipps zum Anpassen der Benutzeroberfläche](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 

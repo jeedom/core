@@ -13,15 +13,15 @@ Na página você tem três botões :
 
 - **Nome de Usuário** : ID do usuário.
 - **Ativo** : Permite desativar a conta sem excluí-la.
-- **** : Permite a conexão do usuário apenas se ele estiver na rede local Jeedom.
+- **Local** : Permite a conexão do usuário apenas se ele estiver na rede local Jeedom.
 - **Perfil** : Permite escolher o perfil do usuário :
-    - **** : O usuário obtém todos os direitos (edição / consulta) no Jeedom.
+    - **Administrador** : O usuário obtém todos os direitos (edição / consulta) no Jeedom.
     - **Do utilizador** : O usuário pode ver Painel, visualizações, designs etc. e atuar em equipamentos / controles. No entanto, ele não terá acesso à configuração dos controles / equipamentos nem à configuração do Jeedom.
     - **Usuário limitado** : O usuário vê apenas o equipamento autorizado (configurável com o botão "Direitos"").
 - **Chave de API** : Chave de API pessoal do usuário.
 - **Autenticação dupla** : Indica se a autenticação dupla está ativa (OK) ou não (NOK).
 - **Data da última conexão** : Data do último login do usuário. Observe que esta é a data real da conexão; portanto, se você salvar seu computador, a data da conexão não será atualizada sempre que você retornar.
-- **** : Modificar direitos de usuário.
+- **Direitos** : Modificar direitos de usuário.
 - **Senha** : Permite alterar a senha do usuário.
 - **EXCLUIR** : Remover usuário.
 - **Regenerar chave de API** : Regenerar chave de API do usuário.
@@ -37,7 +37,7 @@ Ao clicar em "Direitos", uma janela é exibida, permitindo que você gerencie os
 
 Você obtém uma tabela que permite, para cada dispositivo e cada cenário, definir os direitos do usuário :
 - **Nenhum** : o usuário não vê o equipamento / cenário.
-- **** : o usuário vê o equipamento / cenário, mas não pode agir sobre ele.
+- **Visualização** : o usuário vê o equipamento / cenário, mas não pode agir sobre ele.
 - **Visualização e execução** : o usuário vê o equipamento / cenário e pode agir sobre ele (acender uma lâmpada, iniciar o cenário etc.)).
 
 ## Sessões ativas))

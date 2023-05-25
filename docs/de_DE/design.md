@@ -14,7 +14,7 @@ Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
 Im Menü (Rechtsklick) finden wir folgende Aktionen :
 
-- **Entwürfe** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
+- **** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
 - **Bearbeitung** : Wechseln Sie in den Bearbeitungsmodus.
 - **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite, wodurch das Jeedom-Menü von oben entfernt wird.
 - **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu.
@@ -29,10 +29,10 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Bereich hinzufügen** : Ermöglicht das Hinzufügen einer anklickbaren transparenten Zone, die während eines Klicks eine Reihe von Aktionen ausführen kann (abhängig vom Status eines anderen Befehls oder nicht).
 - **Zusammenfassung hinzufügen** : Fügt Informationen aus einem Objekt oder einer allgemeinen Zusammenfassung hinzu.
 - **Anzeige**
-    - **Keiner** : Zeigt kein Raster an.
-    - **10x10** : Zeigt ein 10 x 10-Raster an.
-    - **15x15** : Zeigt ein Raster von 15 mal 15 an.
-    - **20x20** : Zeigt ein 20 x 20-Raster an.
+    - **** : Zeigt kein Raster an.
+    - **** : Zeigt ein 10 x 10-Raster an.
+    - **** : Zeigt ein Raster von 15 mal 15 an.
+    - **** : Zeigt ein 20 x 20-Raster an.
     - **Magnetisieren Sie die Elemente** : Fügt eine Magnetisierung zwischen den Elementen hinzu, um das Aufkleben zu erleichtern.
     - **Magnet auf dem Gitter** : Fügen Sie dem Raster eine Magnetisierung der Elemente hinzu (Aufmerksamkeit : Abhängig vom Zoom des Elements kann diese Funktionalität mehr oder weniger funktionieren).
     - **Hervorheben von Elementen ausblenden** : Hervorheben von Elementen ausblenden.
@@ -52,15 +52,15 @@ Hier gefunden :
 
 - **General**
     - **Name** : Der Name Ihres Designs.
-    - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
+    - **** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode** : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
-        - **Schicken** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
+        - **** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
-- **Größen**
+- ****
     - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
 
 ## Allgemeine Konfiguration der Elemente
@@ -207,7 +207,7 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 - **Ausrüstung** : Widget, das beim Bewegen oder Klicken angezeigt wird.
 - **Show auf Überführung** : Wenn diese Option aktiviert ist, wird das Widget beim Hover angezeigt.
 - **Ansicht mit einem Klick** : Wenn diese Option aktiviert ist, wird das Widget beim Klicken angezeigt.
-- **Position** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (standardmäßig unten rechts)).
+- **** : Hier können Sie auswählen, wo das Widget angezeigt werden soll (standardmäßig unten rechts)).
 
 ## Zusammenfassung
 

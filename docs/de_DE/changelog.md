@@ -431,12 +431,12 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Bugfix von farbigen Zusammenfassungen zur Synthese.
 - Bugfix für Szenariokommentare mit json.
 - Bugfix bei Zusammenfassungsaktualisierungen in der Vorschau des Dashboard-Modus.
-- Bugfix von Elementen *Bild* auf ein Design.
+- Bugfix von Elementen ** auf ein Design.
 - Gruppierungsoptionen nach Zeit für Diagramme in Ansichten hinzugefügt.
 - Beibehaltung des Synthesekontexts beim Klicken auf die Zusammenfassungen.
 - Zentrierung von Synthesebildern.
 
-## 4.1.0
+## 
 
 ### 4.1 : Voraussetzungen
 
@@ -455,8 +455,8 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Armaturenbrett** : Neugestaltung der Anzeige des Objektbaums (Pfeil links neben der Suche).
 - **Armaturenbrett** : Möglichkeit, Hintergrundbilder zu verwischen (Konfiguration -> Benutzeroberfläche)).
 - **Tools / Widgets** : Die Funktion *Bewerben Sie sich am* Zeigt die aktivierten verknüpften Befehle an. Wenn Sie diese Option deaktivieren, wird das Standard-Kern-Widget auf diesen Befehl angewendet.
-- **Widgets** : Hinzufügen eines Kern-Widgets *sliderVertical*.
-- **Widgets** : Hinzufügen eines Kern-Widgets *binärSwitch*.
+- **Widgets** : Hinzufügen eines Kern-Widgets **.
+- **Widgets** : Hinzufügen eines Kern-Widgets **.
 - **Update Center** : Aktualisierungen werden beim Öffnen der Seite automatisch überprüft, wenn sie 120 Minuten älter ist.
 - **Update Center** : Der Fortschrittsbalken befindet sich jetzt auf der Registerkarte *Core und Plugins*, und das Protokoll wird standardmäßig auf der Registerkarte geöffnet *Information*.
 - **Update Center** : Wenn Sie während eines Updates einen anderen Browser öffnen, wird dies in der Fortschrittsanzeige und im Protokoll angezeigt.
@@ -464,11 +464,11 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Kernupdates** : Implementierung eines Systems zum Bereinigen alter nicht verwendeter Core-Dateien.
 - **Szenario** : Hinzufügen einer Suchmaschine (links von der Schaltfläche Ausführen)).
 - **Szenario** : Hinzufügung der Altersfunktion (gibt das Alter des Wertes der Bestellung an).
-- **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum *Heute* (Mitternacht bis jetzt), *gestern* Und *Tag* (für 1 Tag).
-- **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum *gestern*, und jetzt akzeptieren *Tag* (für 1 Tag).
+- **Szenario** : *stateChanges()* Akzeptieren Sie jetzt den Zeitraum ** (Mitternacht bis jetzt), ** Und ** (für 1 Tag).
+- **Szenario** : Funktionen *Statistik (), Durchschnitt (), Max (), Min (), Trend (), Dauer()* : Bugfix über den Zeitraum **, und jetzt akzeptieren ** (für 1 Tag).
 - **Szenario** : Möglichkeit, das automatische Angebotssystem zu deaktivieren (Einstellungen → System → Konfiguration : Equipements).
 - **Szenario** : Anzeigen a *Warnung* wenn kein Trigger konfiguriert ist.
-- **Szenario** : Bugfix von *wählen* auf Block kopieren / einfügen.
+- **Szenario** : Bugfix von ** auf Block kopieren / einfügen.
 - **Szenario** : Kopieren / Einfügen eines Blocks zwischen verschiedenen Szenarien.
 - **Szenario** : Die Funktionen zum Rückgängigmachen / Wiederherstellen sind jetzt als Schaltflächen verfügbar (neben der Schaltfläche zum Erstellen von Blöcken)).
 - **Szenario** :  Hinzufügung von "Historischer Export" (exportHistory)
@@ -478,10 +478,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Analyse / Geschichte** : Die Optionen *Gruppierung, Typ, Variation, Treppe* sind nur mit einer einzigen angezeigten Kurve aktiv.
 - **Analyse / Geschichte** : Wir können jetzt die Option verwenden *Bereich* mit der Option *Stufen*.
 - **Analyse / Protokolle** : Neue Monospace-Schriftart für Protokolle.
-- **Gesehen** : Möglichkeit, Szenarien zu setzen.
-- **Gesehen** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
-- **Gesehen** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
-- **Gesehen** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
+- **** : Möglichkeit, Szenarien zu setzen.
+- **** : Im Bearbeitungsmodus wird jetzt die verschobene Kachel eingefügt.
+- **** : Bearbeitungsmodus: Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das dank eines neuen vereinfachten Modals den Zugriff auf ihre Konfiguration ermöglicht.
+- **** : Die Anzeigereihenfolge ist jetzt unabhängig von der im Dashboard.
 - **Zeitleiste** : Trennung von Verlaufs- und Zeitleisten-Seiten.
 - **Zeitleiste** : Integration der Timeline in die DB aus Zuverlässigkeitsgründen.
 - **Zeitleiste** : Verwaltung mehrerer Zeitleisten.
@@ -493,12 +493,12 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Zusammenfassung der Hausautomation** : Möglichkeit, mehrere Geräte von einem Objekt zum anderen zu bewegen.
 - **Zusammenfassung der Hausautomation** : Möglichkeit, alle Geräte eines Objekts auszuwählen.
 - **Task-Engine** : Auf der Registerkarte *Dämon*, deaktivierte Plugins werden nicht mehr angezeigt.
-- **Bericht** : Die Verwendung von *Chrom* wenn verfügbar.
+- **Bericht** : Die Verwendung von ** wenn verfügbar.
 - **Bericht** : Möglichkeit zum Exportieren von Zeitleisten.
 - **Aufbau** : Tab *Information* ist jetzt in der Registerkarte *Allgemein*.
 - **Aufbau** : Tab *Aufträge* ist jetzt in der Registerkarte *Ausrüstung*.
 - **Fenster zur erweiterten Gerätekonfiguration** : Dynamische Änderung der Schalttafelkonfiguration.
-- **Ausrüstung** : Neue Kategorie *Öffnung*.
+- **Ausrüstung** : Neue Kategorie **.
 - **Ausrüstung** : Möglichkeit des Invertierens von Cursortypbefehlen (Info und Aktion))
 - **Ausrüstung** : Möglichkeit, einer Kachel Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
@@ -528,27 +528,27 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
 - **Lib** : Aktualisieren Sie jQuery v3.4.1 bis v3.5.1.
 - **Lib** : Aktualisieren Sie Font Awesome 5.9.0 bis 5.13.1.
-- **APIs** :  Hinzufügung einer Option, um zu verhindern, dass ein API-Schlüssel eines Plugins Kernmethoden ausführt (allgemein))
+- **** :  Hinzufügung einer Option, um zu verhindern, dass ein API-Schlüssel eines Plugins Kernmethoden ausführt (allgemein))
 - Sichern von Ajax-Anfragen.
 - API-Aufrufe sichern.
 - Fehlerbehebungen.
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
 ### 4.1 : Changements
-- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* Aber *[Gruppe] [Objekt] [Name]*.
+- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]*  *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
 
 
 # Änderungsprotokoll Jeedom V4.0
 
-## 4.0.62
+## 
 
 - Neue Buster + Kernel-Migration für Smart und Pro v2
 - Überprüfung der Betriebssystemversion bei wichtigen Jeedom-Updates
 
 
-## 4.0.61
+## 
 
 - Ein Problem beim Anwenden einer Szenariovorlage wurde behoben
 - Hinzufügen einer Option zum Deaktivieren der SSL-Überprüfung während der Kommunikation mit dem Markt (nicht empfohlen, aber in bestimmten Netzwerkkonfigurationen nützlich)
@@ -556,73 +556,73 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Fehlerbehebungen
 - Korrektur des Befehls trigger () in Szenarien, sodass der Name des Triggers (ohne das #) anstelle des Werts für den Wert zurückgegeben wird, den Sie triggerValue verwenden müssen()
 
-## 4.0.60
+## 
 
 - Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die permanente http2-Flows verbieten
 
-## 4.0.59
+## 
 
 - Fehler bei Zeit-Widgets behoben
 - Erhöhen Sie die Anzahl der fehlerhaften Kennwörter vor dem Sperren (vermeidet Probleme mit der Webanwendung beim Drehen von API-Schlüsseln)
 
-## 4.0.57
+## 
 
 - Verstärkung der Cookie-Sicherheit
 - Verwendung von Chrom (falls installiert) für Berichte
 - Es wurde ein Problem mit der Berechnung der Statuszeit für Widgets behoben, wenn die Zeitzone jeedom nicht mit der des Browsers übereinstimmt
 - Bug-Fix
 
-## 4.0.55
+## 
 
 - Die neuen DNS (\*. Eu.jeedom.Link) wird zum primären DNS (der alte DNS funktioniert immer noch)
 
-## 4.0.54
+## 
 
 - Start des Updates für die neue Dokumentationssite
 
-## 4.0.53
+## 
 
 - Bug-Fix.
 
-## 4.0.52
+## 
 
 - Fehlerkorrektur (Update unbedingt durchführen, wenn Sie in 4.0.51 sind).
 
-## 4.0.51
+## 
 
 - Bug-Fix.
 - Optimierung des zukünftigen DNS-Systems.
 
-## 4.0.49
+## 
 
 - Möglichkeit, den Jeedom TTS-Motor zu wählen und Plugins zu haben, die einen neuen TTS-Motor bieten.
 - Verbesserte Webview-Unterstützung in der mobilen Anwendung.
 - Bug-Fix.
 - Doc Update.
 
-## 4.0.47
+## 
 
 - Verbesserter Expressionstester.
 - Update des Repositorys auf smart.
 - Bug-Fix.
 
-## 4.0.44
+## 
 
 - Verbesserte Übersetzungen.
 - Bug-Fix.
 - Verbesserte Wiederherstellung von Cloud-Backups.
 - Bei der Cloud-Wiederherstellung wird nur noch das lokale Backup abgerufen, sodass Sie es herunterladen oder wiederherstellen können.
 
-## 4.0.43
+## 
 
 - Verbesserte Übersetzungen.
 - Fehler in Szenariovorlagen behoben.
 
-## 4.0.0
+## 
 
 ### 4.0 : Voraussetzungen
 
-- Debian 9 Stretch
+- 
 
 ### 4.0 : Neuigkeiten / Verbesserungen
 
@@ -636,10 +636,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Suchfelder unterstützen jetzt Akzente.
 - Die Suchfelder (Dashboard, Szenarien, Objekte, Widgets, Interaktionen, Plugins) sind jetzt beim Öffnen der Seite aktiv, sodass Sie eine Suche direkt eingeben können.
 - In den Suchfeldern wurde eine X-Schaltfläche hinzugefügt, um die Suche abzubrechen.
-- Während einer Suche wird der Schlüssel *fliehen* Suche abbrechen.
+- Während einer Suche wird der Schlüssel ** Suche abbrechen.
 - Armaturenbrett : Im Bearbeitungsmodus sind das Suchsteuerelement und seine Schaltflächen deaktiviert und werden behoben.
 - Armaturenbrett : Im Bearbeitungsmodus ein Klick auf eine Schaltfläche *expandieren* rechts von Objekten wird die Größe der Kacheln des Objekts auf die höchste Höhe geändert. Strg + Klick reduziert sie auf die niedrigste Höhe.
-- Armaturenbrett : Die Befehlsausführung auf einer Kachel wird jetzt durch die Schaltfläche signalisiert *Aktualisierung*. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
+- Armaturenbrett : Die Befehlsausführung auf einer Kachel wird jetzt durch die Schaltfläche signalisiert **. Wenn sich keine auf der Kachel befindet, wird sie während der Ausführung angezeigt.
 - Armaturenbrett : Die Kacheln zeigen einen Infobefehl (historisiert, wodurch das Verlaufsfenster geöffnet wird) oder eine Aktion beim Schweben an.
 - Armaturenbrett : Im Verlaufsfenster können Sie diesen Verlauf jetzt in Analyse / Verlauf öffnen.
 - Armaturenbrett : Das Verlaufsfenster behält seine Position / Abmessungen bei, wenn ein anderer Verlauf erneut geöffnet wird.
@@ -665,7 +665,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Widgets : Ein numerisches Regeninfo-Widget wurde hinzugefügt (danke @thanaus)
 - Widgets : Anzeige des Info- / Action-Shutter-Widgets proportional zum Wert.<br/><br/>
 - Aufbau : Verbesserung und Reorganisation von Registerkarten.
-- Aufbau : Hinzufügung von vielen *Tooltips* (aide).
+- Aufbau : Hinzufügung von vielen ** (aide).
 - Aufbau : Hinzufügen einer Suchmaschine.
 - Aufbau : Es wurde eine Schaltfläche hinzugefügt, um den Cache der Widgets zu leeren (Registerkarte Cache)).
 - Aufbau : Es wurde eine Option hinzugefügt, um den Cache von Widgets zu deaktivieren (Registerkarte Cache)).
@@ -695,7 +695,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zusammenfassung der Hausautomation : Hinzufügen von Geräten und Bestell-IDs zum Anzeigen und Suchen.
 - Zusammenfassung der Hausautomation : CSV-Export des übergeordneten Objekts, der ID, der Ausrüstung und ihrer ID, des Befehls.
 - Zusammenfassung der Hausautomation : Möglichkeit, einen oder mehrere Befehle sichtbar zu machen oder nicht.<br/><br/>
-- Design : Möglichkeit zur Angabe der Reihenfolge (Position) des *Entwürfe* Und *3D-Designs* (Bearbeiten, Design konfigurieren).
+- Design : Möglichkeit zur Angabe der Reihenfolge (Position) des ** Und *3D-Designs* (Bearbeiten, Design konfigurieren).
 - Design : Hinzufügen eines benutzerdefinierten CSS-Felds zu den Elementen des *Design*.
 - Design : Die Anzeigeoptionen im Design der erweiterten Konfiguration wurden in den Anzeigeparametern aus dem verschoben *Design*. Dies, um die Schnittstelle zu vereinfachen und verschiedene Parameter durch zu ermöglichen *Design*.
 - Design : Verschieben und Ändern der Größe von Komponenten *Design* berücksichtigt ihre Größe mit oder ohne Magnetisierung.<br/><br/>

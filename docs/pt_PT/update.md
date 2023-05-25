@@ -28,7 +28,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 - **Atualizar o núcleo** : Permite incluir o kernel Jeedom (o Core) na atualização.
 
 - **Modo forçado** : Execute a atualização no modo forçado, ou seja, mesmo se houver um erro, o Jeedom continuará e não restaurará o backup. (Este modo desabilita o salvamento !).
-- **Update para reaplicar** : Permite reaplicar uma atualização. ( : Nem todas as atualizações podem ser reaplicadas.)
+- **Update para reaplicar** : Permite reaplicar uma atualização. (NB : Nem todas as atualizações podem ser reaplicadas.)
 
 > **Importante**
 >
@@ -42,7 +42,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 
 A tabela contém as versões dos núcleos e plug-ins instalados.
 
-Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *estável*, ou laranja em ** ou outro.
+Os plug-ins têm um crachá ao lado do nome, especificando sua versão, de cor verde *estável*, ou laranja em *beta* ou outro.
 
 - **Status** : OK ou NÃO.
 - **Nome** : Nome e origem do plug-in
@@ -91,7 +91,7 @@ Uma vez conectado, este é o comando para executar :
 
 Os possíveis parâmetros são :
 
-- **** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
+- **moda** : `force ', para iniciar uma atualização no modo forçado (ignora erros).
 - **versão** : Rastreamento de número da versão, para reaplicar as alterações desta versão.
 
 Aqui está um exemplo de sintaxe para fazer uma atualização forçada reaplicando as alterações desde o 4.0.04 :

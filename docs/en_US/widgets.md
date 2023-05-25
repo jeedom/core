@@ -97,7 +97,7 @@ To do so, it is necessary to take into account 2 prerequisites :
 `` ''
 
 >**Trick**      
->As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Or *shutter_close*, *walk_2* And *stop_2*, etc.
+>As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Or *shutter_close*, *march_2* And *stop_2*, etc.
 
 ## Custom widgets
 
