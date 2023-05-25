@@ -75,36 +75,30 @@ sendVarToJS([
 ?>
 
 <div id="md_iconSelector" data-modalType="md_iconSelector">
+<?php if (init('showimg') == 1) { ?>
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active <?php if ($objectId) echo ' hidden' ?>">
-      <a href="#tabicon" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icônes}}</a>
+    <li role="presentation" class="active">
+      <a href="#tabicon" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icônes}}</a>
     </li>
-    <li role="presentation" class="<?php if (init('showimg') != 1) echo 'hidden' ?>">
-      <a href="#tabimg" aria-controls="home" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Images}}</a>
-    </li>
-    <li role="presentation" class="<?php echo (!$objectId) ? 'hidden' : 'active' ?>">
-      <a href="#tabobjectbg" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-image"></i> {{Librairie}}</a>
+    <li role="presentation">
+      <a href="#tabimg" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Images}}</a>
     </li>
   </ul>
-
-  <div class="tab-content" style="overflow-y:scroll;">
-      <div id="tabicon" role="tabpanel" class="tab-pane active">
-        <div class="imgContainer">
-          <div id="treeFolder-icon" class="div_treeFolder">
-          </div>
+<?php } ?>
+  <div class="tab-content" style="overflow-y:scroll;max-height: 100%">
+      <div id="tabicon" role="tabpanel" class="tab-pane active" <?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
+        <div class="imgContainer"<?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
+          <div id="treeFolder-icon" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
-
-      <div id="tabobjectbg" role="tabpanel" class="tab-pane active">
+      <div id="tabobjectbg" role="tabpanel" class="tab-pane active" <?php if (!$objectId) echo ' style="display:none;"' ?>>
         <div class="imgContainer">
-          <div id="treeFolder-bg" class="div_treeFolder">
-          </div>
+          <div id="treeFolder-bg" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
-
-      <div id="tabimg" role="tabpanel" class="tab-pane">
+      <div id="tabimg" role="tabpanel" class="tab-pane" <?php if (init('showimg') != 1) echo ' style="display:none;"' ?>>
         <div id="treeFunctions">
             <span class="bt_upload"><i class="fas fa-file-upload" title="{{Ajouter}}"></i></span>
             <span class="bt_new"><i class="fas fa-folder-plus" title="{{Nouveau}}"></i></span>
@@ -112,9 +106,8 @@ sendVarToJS([
             <span class="bt_delete"><i class="fas fa-folder-minus" title="{{Supprimer}}"></i></span>
         </div>
         <input class="hidden" id="bt_uploadImg" type="file" name="file" multiple="multiple" data-path="">
-        <div class="imgContainer">
-          <div id="treeFolder-img" class="div_treeFolder">
-          </div>
+        <div class="imgContainer" style="padding-top: 10px;">
+          <div id="treeFolder-img" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
@@ -135,6 +128,8 @@ sendVarToJS([
     <input class="form-control" placeholder="{{Rechercher}}" id="in_searchIconSelector">
     <div class="input-group-btn">
       <a id="bt_resetIconSelectorSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+    </div>
+    <div id="bt_cancelConfirm" class="input-group-btn">
     </div>
   </div>
 </div>
@@ -199,7 +194,11 @@ if (!jeeFrontEnd.md_iconSelector) {
       var modal = jeeDialog.get('#sel_colorIcon', 'dialog')
       var modalFooter = jeeDialog.get('#sel_colorIcon', 'footer')
       var uiOptions = modal.querySelector('#mySearch')
+      var btTarget = uiOptions.querySelector('#bt_cancelConfirm')
       modalFooter.insertBefore(uiOptions, modalFooter.firstChild)
+      btTarget.append(modalFooter.querySelector('button[data-type="cancel"]'))
+      btTarget.append(modalFooter.querySelector('button[data-type="confirm"]'))
+      modal.querySelector('.jeeDialogContent').style.overflowY = 'hidden'
       document.getElementById('sel_colorIcon').selectedIndex = 1
     },
     //Tree builders:
@@ -479,8 +478,9 @@ if (!jeeFrontEnd.md_iconSelector) {
                 success: function(data) {
                   data = JSON.parse(data)
                   for (var i in data.icons) {
-                    var test = (iconClasses && iconClasses[2] === data.icons[i].substr(4)) ? ' iconSelected' : ''
-                    div += '<div class="divIconSel text-center' + test + '">'
+                    var selected = (iconClasses && iconClasses[2] === data.icons[i].substr(4)) ? ' iconSelected' : ''
+                    var icon = data.icons[i] + ' ' + document.getElementById('sel_colorIcon').value
+                    div += '<div class="divIconSel text-center tooltips' + selected + '" title="' + icon + '">'
                     div += '<span class="cursor iconSel"><i class="' + data.icons[i] + ' ' + document.getElementById('sel_colorIcon').value + '"></i></span><br/><span class="iconDesc">' + data.icons[i].substr(7) + '</span>'
                     div += '</div>'
                   }
@@ -504,8 +504,9 @@ if (!jeeFrontEnd.md_iconSelector) {
                   var matches = data.match(exp_reg)
                   for (var i in matches) {
                     var selected = (iconClasses && iconClasses[2] === matches[i]) ? ' iconSelected' : ''
-                    div += '<div class="divIconSel text-center' + selected + '">'
-                    div += '<span class="cursor iconSel"><i class=\'icon ' + matches[i] + ' ' + document.getElementById('sel_colorIcon').value + '\'></i></span><br/><span class="iconDesc">' + matches[i].replace(category + '-', '') + '</span>'
+                    var icon = matches[i] + ' ' + document.getElementById('sel_colorIcon').value
+                    div += '<div class="divIconSel text-center tooltips' + selected + '" title="' + icon + '">'
+                    div += '<span class="cursor iconSel"><i class="icon ' + icon + '"></i></span><br/><span class="iconDesc">' + matches[i].replace(category + '-', '') + '</span>'
                     div += '</div>'
                   }
                   folderDisplayContainer.insertAdjacentHTML('beforeend', div)
