@@ -1,7 +1,7 @@
 # Tipos de equipamento
 **Ferramentas → Tipos de equipamento**
 
-Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Informação* (sensor) ou *Estoque* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
+Os sensores e atuadores no Jeedom são gerenciados por plug-ins, que criam equipamentos com comandos *Em formação* (sensor) ou *Ações* (atuador do). Isso torna possível disparar ações com base na mudança de certos sensores, como acender uma luz na detecção de movimento. Mas o Jeedom Core e plug-ins como *Móvel*, *Homebridge*, *Casa inteligente do Google*, *Alexa Casa Inteligente* etc, não sei o que é este equipamento : Uma tomada, uma luz, uma veneziana, etc.
 
 Para superar esse problema, especialmente com assistentes de voz (*Acenda a luz da sala*), Core introduziu o **Tipos Genéricos**, usado por esses plugins.
 
@@ -24,7 +24,7 @@ Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obtur
 
 ## Tipo de comando
 
-Uma vez que um item do equipamento é posicionado na posição correta *Tipo*, clicando nele você acessa a lista de seus pedidos, colorida de forma diferente se for um *Informação* (Azul) ou um *Estoque* (Orange).
+Uma vez que um item do equipamento é posicionado na posição correta *Gentil*, clicando nele você acessa a lista de seus pedidos, colorida de forma diferente se for um *Em formação* (Azul) ou um *Ações* (Orange).
 
 Ao clicar com o botão direito em um pedido, você pode atribuir a ele um tipo genérico correspondente às especificações desse pedido (tipo de informação / ação, numérico, subtipo binário, etc).
 
@@ -48,7 +48,7 @@ Na v4.2, o Core integrou os tipos genéricos nos cenários. Você pode, assim, a
 
 #### Desencadear
 
-Você pode acionar um cenário a partir de sensores. Por exemplo, se você tiver detectores de movimento em casa, pode criar um cenário de alarme com cada detector acionando : ``#[Salão][Move Salon][Presence]# == 1`,`#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. Nesse cenário, você precisará de todos os detectores de movimento e, se adicionar um, terá que adicioná-lo aos gatilhos. Lógica.
+Você pode acionar um cenário a partir de sensores. Por exemplo, se você tiver detectores de movimento em casa, pode criar um cenário de alarme com cada detector acionando : ``#[Salão][Move Salon][Presence]# == 1`, `#[Cuisine][Move Cuisine][Presence]# == 1`, etc.. Nesse cenário, você precisará de todos os detectores de movimento e, se adicionar um, terá que adicioná-lo aos gatilhos. Lógica.
 
 Os tipos genéricos permitem que você use um único gatilho : ``#genericType(PRESENCE)# == 1`. Aqui, nenhum objeto é indicado, então o menor movimento em toda a casa irá desencadear o cenário. Se você adicionar um novo detector na casa, não há necessidade de editar o (s) cenário (s)).
 
@@ -82,221 +82,221 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 > **Dica**
 >
-> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **Lista** canto superior direito.
+> - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **Listagem** canto superior direito.
 
 | **Outro (id: Other)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CRONÔMETRO | Cronômetro de estado | Informação | numeric
-| TIMER_STATE | Status do temporizador (pausa ou não) | Informação | binário, numérico
-| DEFINIR TEMPORIZADOR | Cronômetro | Estoque | slider
-| TIMER_PAUSE | Pausar cronômetro | Estoque | other
-| TIMER_RESUME | Resumo do cronômetro | Estoque | other
+| CRONÔMETRO | Cronômetro de estado | Em formação | numeric
+| TIMER_STATE | Status do temporizador (pausa ou não) | Em formação | binário, numérico
+| DEFINIR TEMPORIZADOR | Cronômetro | Ações | slider
+| TIMER_PAUSE | Pausar cronômetro | Ações | other
+| TIMER_RESUME | Resumo do cronômetro | Ações | other
 
 | **Bateria (id: Battery)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| BATERIA | Bateria | Informação | numeric
-| BATERIA_CARREGANDO | Carregamento de bateria | Informação | binary
+| BATERIA | Bateria | Em formação | numeric
+| BATTERY_CHARGING | Carregamento de bateria | Em formação | binary
 
 | **Câmera (id: Camera)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| CAMERA_URL | Url da câmera | Informação | string
-| CAMERA_RECORD_STATE | Status de gravação da câmera | Informação | binary
-| CAMERA_UP | Movimento da câmera para cima | Estoque | other
-| CAMERA_DOWN | Movimento da câmera para baixo | Estoque | other
-| CAMERA_LEFT | Movimento da câmera para a esquerda | Estoque | other
-| CAMERA_RIGHT | Movimento da câmera para a direita | Estoque | other
-| CAMERA_ZOOM | Zoom da câmera para frente | Estoque | other
-| CAMERA_DEZOOM | Zoom da câmera para trás | Estoque | other
-| CAMERA_STOP | Parar câmera | Estoque | other
-| CAMERA_PRESET | Predefinição da câmera | Estoque | other
-| CAMERA_RECORD | Gravação de câmera | Estoque |
-| CAMERA_TAKE | Câmera instantânea | Estoque |
+| CAMERA_URL | Url da câmera | Em formação | string
+| CAMERA_RECORD_STATE | Status de gravação da câmera | Em formação | binary
+| CAMERA_UP | Movimento da câmera para cima | Ações | other
+| CAMERA_DOWN | Movimento da câmera para baixo | Ações | other
+| CAMERA_LEFT | Movimento da câmera para a esquerda | Ações | other
+| CAMERA_RIGHT | Movimento da câmera para a direita | Ações | other
+| CAMERA_ZOOM | Zoom da câmera para frente | Ações | other
+| CAMERA_DEZOOM | Zoom da câmera para trás | Ações | other
+| CAMERA_STOP | Parar câmera | Ações | other
+| CAMERA_PRESET | Predefinição da câmera | Ações | other
+| CAMERA_RECORD | Gravação de câmera | Ações |
+| CAMERA_TAKE | Câmera instantânea | Ações |
 
 | **Aquecimento (id: Heating)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| HEATING_STATE | Status de aquecimento do fio piloto | Informação | binary
-| AQUECIMENTO_ON | Botão LIGADO de aquecimento do fio piloto | Estoque | other
-| AQUECIMENTO_OFF | Botão de aquecimento do fio piloto DESLIGADO | Estoque | other
-| HEATING_OTHER | Botão do fio piloto de aquecimento | Estoque | other
+| HEATING_STATE | Status de aquecimento do fio piloto | Em formação | binary
+| AQUECIMENTO_ON | Botão LIGADO de aquecimento do fio piloto | Ações | other
+| AQUECIMENTO_OFF | Botão de aquecimento do fio piloto DESLIGADO | Ações | other
+| HEATING_OTHER | Botão do fio piloto de aquecimento | Ações | other
 
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| PODER | Energia elétrica | Informação | numeric
-| CONSUMO | Consumo de energia | Informação | numeric
-| TENSÃO | Tensão | Informação | numeric
-| REINÍCIO | Reiniciar | Estoque | other
+| Poder | Energia elétrica | Em formação | numeric
+| CONSUMO | Consumo de energia | Em formação | numeric
+| VOLTAGEM | Tensão | Em formação | numeric
+| REINÍCIO | Reiniciar | Ações | other
 
 | **Ambiente (id: Environment)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TEMPERATURA | TEMPERATURA | Informação | numeric
-| QUALIDADE DO AR | Qualidade do ar | Informação | numeric
-| BRILHO | Brilho | Informação | numeric
-| PRESENÇA | PRESENÇA | Informação | binary
-| FUMAÇA | Detecção de fumaça | Informação | binary
-| UMIDADE | Umidade | Informação | numeric
-| Ultravioleta | Ultravioleta | Informação | numeric
-| CO2 | CO2 (ppm) | Informação | numeric
-| CO | CO (ppm) | Informação | numeric
-| BARULHO | Som (dB) | Informação | numeric
-| PRESSÃO | Pressão | Informação | numeric
-| VAZAMENTO DE ÁGUA | Vazamento de água | Informação |
-| FILTER_CLEAN_STATE | Estado do filtro | Informação | binary
+| TEMPERATURA | TEMPERATURA | Em formação | numeric
+| QUALIDADE DO AR | Qualidade do ar | Em formação | numeric
+| BRILHO | Brilho | Em formação | numeric
+| PRESENÇA | PRESENÇA | Em formação | binary
+| FUMAÇA | Detecção de fumaça | Em formação | binary
+| UMIDADE | Umidade | Em formação | numeric
+| UV | UV | Em formação | numeric
+| CO2 | CO2 (ppm) | Em formação | numeric
+| CO | CO (ppm) | Em formação | numeric
+| RUÍDO | Som (dB) | Em formação | numeric
+| PRESSÃO | Pressão | Em formação | numeric
+| VAZAMENTO DE ÁGUA | Vazamento de água | Em formação |
+| FILTER_CLEAN_STATE | Estado do filtro | Em formação | binary
 
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| PROFUNDIDADE | Profundidade | Informação | numeric
-| DISTÂNCIA | Distância | Informação | numeric
-| BOTÃO | Botão | Informação | binário, numérico
-| GENERIC_INFO |  Genérico | Informação |
-| GENERIC_ACTION |  Genérico | Estoque | other
+| PROFUNDIDADE | Profundidade | Em formação | numeric
+| DISTÂNCIA | DISTÂNCIA | Em formação | numeric
+| BOTÃO | Botão | Em formação | binário, numérico
+| GENERIC_INFO |  Genérico | Em formação |
+| GENERIC_ACTION |  Genérico | Ações | other
 
 | **Light (id: Light)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| LIGHT_STATE | Estado claro | Informação | binário, numérico
-| LIGHT_BRIGHTNESS | Brilho da luz | Informação | numeric
-| COR CLARA | Cor clara | Informação | string
-| LIGHT_STATE_BOOL | Estado Leve (Binário) | Informação | binary
-| LIGHT_COLOR_TEMP | Cor da temperatura da luz | Informação | numeric
-| LIGHT_TOGGLE | Alternar luz | Estoque | other
-| LUZES LIGADAS | Botão de luz ligado | Estoque | other
-| LUZ APAGADA | Botão de luz apagado | Estoque | other
-| LIGHT_SLIDER | Luz deslizante | Estoque | slider
-| LIGHT_SET_COLOR | Cor clara | Estoque | color
-| LIGHT_MODE | Modo de luz | Estoque | other
-| LIGHT_SET_COLOR_TEMP | Cor da temperatura da luz | Estoque |
+| LIGHT_STATE | Estado claro | Em formação | binário, numérico
+| LIGHT_BRIGHTNESS | Brilho da luz | Em formação | numeric
+| COR CLARA | Cor clara | Em formação | string
+| LIGHT_STATE_BOOL | Estado Leve (Binário) | Em formação | binary
+| LIGHT_COLOR_TEMP | Cor da temperatura da luz | Em formação | numeric
+| LIGHT_TOGGLE | Alternar luz | Ações | other
+| LUZES LIGADAS | Botão de luz ligado | Ações | other
+| LUZ APAGADA | Botão de luz apagado | Ações | other
+| LIGHT_SLIDER | Luz deslizante | Ações | slider
+| LIGHT_SET_COLOR | Cor clara | Ações | color
+| LIGHT_MODE | Modo de luz | Ações | other
+| LIGHT_SET_COLOR_TEMP | Cor da temperatura da luz | Ações |
 
 | **Modo (id: Mode)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| MODE_STATE | Modo de status | Informação | string
-| MODE_SET_STATE | Modo de mudança | Estoque | other
+| MODE_STATE | Modo de status | Em formação | string
+| MODE_SET_STATE | Modo de mudança | Ações | other
 
 | **Multimídia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume | Informação | numeric
-| MEDIA_STATUS | Status | Informação | string
-| MEDIA_ALBUM | Álbum | Informação | string
-| MEDIA_ARTIST | Artista | Informação | string
-| MEDIA_TITLE | Título | Informação | string
-| MEDIA_POWER | Poder | Informação | string
-| CANAL | Corrente | Informação | numérico, string
-| MEDIA_STATE | Estado | Informação | binary
-| SET_VOLUME | Volume | Estoque | slider
-| SET_CHANNEL | Corrente | Estoque | outro controle deslizante
-| MEDIA_PAUSE | Quebrar | Estoque | other
-| MEDIA_RESUME | Leitura | Estoque | other
-| MEDIA_STOP | Parar | Estoque | other
-| MEDIA_NEXT | Seguindo | Estoque | other
-| MEDIA_PREVIOUS | Anterior | Estoque | other
-| MEDIA_ON | Nós | Estoque | other
-| MEDIA_OFF | Desligado | Estoque | other
-| MEDIA_MUTE | Mudo | Estoque | other
-| MEDIA_UNMUTE | Sem mudo | Estoque | other
+| Volume | Volume | Em formação | numeric
+| MEDIA_STATUS | Status | Em formação | string
+| MEDIA_ALBUM | Álbum | Em formação | string
+| MEDIA_ARTIST | Artista | Em formação | string
+| MEDIA_TITLE | Título | Em formação | string
+| MEDIA_POWER | Poder | Em formação | string
+| CANAL | Corrente | Em formação | numérico, string
+| MEDIA_STATE | Estado | Em formação | binary
+| SET_VOLUME | Volume | Ações | slider
+| SET_CHANNEL | Corrente | Ações | outro controle deslizante
+| MEDIA_PAUSE | Pausa | Ações | other
+| MEDIA_RESUME | Leitura | Ações | other
+| MEDIA_STOP | Pare | Ações | other
+| MEDIA_NEXT | Próximo | Ações | other
+| MEDIA_PREVIOUS | Anterior | Ações | other
+| MEDIA_ON | Nós | Ações | other
+| MEDIA_OFF | Desligado | Ações | other
+| MEDIA_MUTE | Mudo | Ações | other
+| MEDIA_UNMUTE | Sem mudo | Ações | other
 
 | **Tempo (id: Weather)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TEMPO_TEMPERATURA | Temperatura do tempo | Informação | numeric
-| TEMPO_TEMPERATURE_MAX_2 | Condição climática d + 1 max d + 2 | Informação | numeric
-| VELOCIDADE DO VENTO | Velocidade do vento) | Informação | numeric
-| RAIN_TOTAL | Chuva (acumulação) | Informação | numeric
-| RAIN_CURRENT | Chuva (mm / h) | Informação | numeric
-| WEATHER_CONDITION_ID_4 | Condição climática (id) d + 4 | Informação | numeric
-| TEMPO_CONDIÇÃO_4 | Condição climática d + 4 | Informação | string
-| TEMPO_TEMPERATURE_MAX_4 | Temperatura máxima do tempo d + 4 | Informação | numeric
-| TEMPO_TEMPERATURE_MIN_4 | Temperatura do tempo min d + 4 | Informação | numeric
-| WEATHER_CONDITION_ID_3 | Condição climática (id) d + 3 | Informação | numeric
-| TEMPO_CONDIÇÃO_3 | Condição climática d + 3 | Informação | string
-| TEMPO_TEMPERATURE_MAX_3 | Temperatura máxima do tempo d + 3 | Informação | numeric
-| TEMPO_TEMPERATURE_MIN_3 | Temperatura do tempo min d + 3 | Informação | numeric
-| WEATHER_CONDITION_ID_2 | Condição climática (id) d + 2 | Informação | numeric
-| TEMPO_CONDIÇÃO_2 | Condição climática d + 2 | Informação | string
-| TEMPO_TEMPERATURE_MIN_2 | Temperatura do tempo min d + 2 | Informação | numeric
-| TEMPO_UMIDADE | Umidade do tempo | Informação | numeric
-| WEATHER_CONDITION_ID_1 | Condição climática (id) d + 1 | Informação | numeric
-| TEMPO_CONDIÇÃO_1 | Condição climática d + 1 | Informação | string
-| TEMPO_TEMPERATURE_MAX_1 | Temperatura máxima do tempo d + 1 | Informação | numeric
-| TEMPO_TEMPERATURE_MIN_1 | Temperatura do tempo min d + 1 | Informação | numeric
-| WEATHER_CONDITION_ID | Condições meteorológicas (id) | Informação | numeric
-| TEMPO_CONDIÇÃO | Condição do tempo | Informação | string
-| WEATHER_TEMPERATURE_MAX | Temperatura máxima do tempo | Informação | numeric
-| WEATHER_TEMPERATURE_MIN | Temperatura mínima do tempo | Informação | numeric
-| TEMPO_SUNRISE | Clima de pôr do sol | Informação | numeric
-| TEMPO_SUNSET | Clima do nascer do sol | Informação | numeric
-| WEATHER_WIND_DIRECTION | Tempo de direção do vento | Informação | numeric
-| WEATHER_WIND_SPEED | Tempo de velocidade do vento | Informação | numeric
-| TEMPO_PRESSÃO | Pressão do Tempo | Informação | numeric
-| DIREÇÃO DO VENTO | Direção do vento) | Informação | numeric
+| WEATHER_TEMPERATURE | Temperatura do tempo | Em formação | numeric
+| WEATHER_TEMPERATURE_MAX_2 | Condição climática d + 1 max d + 2 | Em formação | numeric
+| VELOCIDADE DO VENTO | Velocidade do vento) | Em formação | numeric
+| RAIN_TOTAL | Chuva (acumulação) | Em formação | numeric
+| RAIN_CURRENT | Chuva (mm / h) | Em formação | numeric
+| WEATHER_CONDITION_ID_4 | Condição climática (id) d + 4 | Em formação | numeric
+| WEATHER_CONDITION_4 | Condição climática d + 4 | Em formação | string
+| WEATHER_TEMPERATURE_MAX_4 | Temperatura máxima do tempo d + 4 | Em formação | numeric
+| WEATHER_TEMPERATURE_MIN_4 | Temperatura do tempo min d + 4 | Em formação | numeric
+| WEATHER_CONDITION_ID_3 | Condição climática (id) d + 3 | Em formação | numeric
+| WEATHER_CONDITION_3 | Condição climática d + 3 | Em formação | string
+| WEATHER_TEMPERATURE_MAX_3 | Temperatura máxima do tempo d + 3 | Em formação | numeric
+| WEATHER_TEMPERATURE_MIN_3 | Temperatura do tempo min d + 3 | Em formação | numeric
+| WEATHER_CONDITION_ID_2 | Condição climática (id) d + 2 | Em formação | numeric
+| WEATHER_CONDITION_2 | Condição climática d + 2 | Em formação | string
+| WEATHER_TEMPERATURE_MIN_2 | Temperatura do tempo min d + 2 | Em formação | numeric
+| WEATHER_HUMIDITY | Umidade do tempo | Em formação | numeric
+| WEATHER_CONDITION_ID_1 | Condição climática (id) d + 1 | Em formação | numeric
+| WEATHER_CONDITION_1 | Condição climática d + 1 | Em formação | string
+| WEATHER_TEMPERATURE_MAX_1 | Temperatura máxima do tempo d + 1 | Em formação | numeric
+| WEATHER_TEMPERATURE_MIN_1 | Temperatura do tempo min d + 1 | Em formação | numeric
+| WEATHER_CONDITION_ID | Condições meteorológicas (id) | Em formação | numeric
+| WEATHER_CONDITION | Condição do tempo | Em formação | string
+| WEATHER_TEMPERATURE_MAX | Temperatura máxima do tempo | Em formação | numeric
+| WEATHER_TEMPERATURE_MIN | Temperatura mínima do tempo | Em formação | numeric
+| WEATHER_SUNRISE | Clima de pôr do sol | Em formação | numeric
+| WEATHER_SUNSET | Clima do nascer do sol | Em formação | numeric
+| WEATHER_WIND_DIRECTION | Tempo de direção do vento | Em formação | numeric
+| WEATHER_WIND_SPEED | Tempo de velocidade do vento | Em formação | numeric
+| WEATHER_PRESSURE | Pressão do Tempo | Em formação | numeric
+| DIREÇÃO DO VENTO | Direção do vento) | Em formação | numeric
 
 | **Abrindo (id: Opening)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| LOCK_STATE | Bloqueio de estado | Informação | binary
-| BARRIER_STATE | Estado do portal (abertura) | Informação | binary
-| GARAGE_STATE | Estado de garagem (abertura) | Informação | binary
-| ABERTURA | Porta | Informação | binary
-| OPENING_WINDOW | Janela | Informação | binary
-| LOCK_OPEN | Botão de bloqueio aberto | Estoque | other
-| LOCK_CLOSE | Botão de bloqueio Fechar | Estoque | other
-| GB_OPEN | Botão de abertura do portão ou garagem | Estoque | other
-| GB_CLOSE | Botão de fechamento do portão ou garagem | Estoque | other
-| GB_TOGGLE | Botão de alternância de portão ou garagem | Estoque | other
+| LOCK_STATE | Bloqueio de estado | Em formação | binary
+| BARRIER_STATE | Estado do portal (abertura) | Em formação | binary
+| GARAGE_STATE | Estado de garagem (abertura) | Em formação | binary
+| ABERTURA | Portão | Em formação | binary
+| OPENING_WINDOW | Janela | Em formação | binary
+| LOCK_OPEN | Botão de bloqueio aberto | Ações | other
+| LOCK_CLOSE | Botão de bloqueio Fechar | Ações | other
+| GB_OPEN | Botão de abertura do portão ou garagem | Ações | other
+| GB_CLOSE | Botão de fechamento do portão ou garagem | Ações | other
+| GB_TOGGLE | Botão de alternância de portão ou garagem | Ações | other
 
 | **Soquete (id: Outlet)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| ENERGY_STATE | Soquete de estado | Informação | numérico, binário
-| ENERGY_ON | No Soquete de Botão | Estoque | other
-| ENERGY_OFF | Botão de soquete desligado | Estoque | other
-| ENERGY_SLIDER | Soquete deslizante | Estoque |
+| ENERGY_STATE | Soquete de estado | Em formação | numérico, binário
+| ENERGY_ON | No Soquete de Botão | Ações | other
+| ENERGY_OFF | Botão de soquete desligado | Ações | other
+| ENERGY_SLIDER | Soquete deslizante | Ações |
 
 | **Robô (código: Robot)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| DOCK_STATE | Base estadual | Informação | binary
-| DOCA | De volta à base | Estoque | other
+| DOCK_STATE | Base estadual | Em formação | binary
+| DOCA | De volta à base | Ações | other
 
 | **Segurança (id: Security)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| SIREN_STATE | Estado da sereia | Informação | binary
-| ALARM_STATE | Status de Alarme | Informação | binário, string
-| ALARM_MODE | Modo de Alarme | Informação | string
-| ALARM_ENABLE_STATE | Status de alarme ativado | Informação | binary
-| ENCHENTE | Enchente | Informação | binary
-| SABOTAR | Sabotar | Informação | binary
-| CHOQUE | Choque | Informação | binário, numérico
-| SIREN_OFF | Botão da sirene desligado | Estoque | other
-| SIREN_ON | Botão de sirene ligado | Estoque | other
-| ALARME_ARMED | Alarme armado | Estoque | other
-| ALARM_RELEASED | Alarme liberado | Estoque | other
-| ALARM_SET_MODE | Modo de Alarme | Estoque | other
+| SIREN_STATE | Estado da sereia | Em formação | binary
+| ALARM_STATE | Status de Alarme | Em formação | binário, string
+| ALARM_MODE | Modo de Alarme | Em formação | string
+| ALARM_ENABLE_STATE | Status de alarme ativado | Em formação | binary
+| ENCHENTE | Enchente | Em formação | binary
+| SABOTAR | SABOTAR | Em formação | binary
+| CHOQUE | Choque | Em formação | binário, numérico
+| SIREN_OFF | Botão da sirene desligado | Ações | other
+| SIREN_ON | Botão de sirene ligado | Ações | other
+| ALARME_ARMED | Alarme armado | Ações | other
+| ALARM_RELEASED | Alarme liberado | Ações | other
+| ALARM_SET_MODE | Modo de Alarme | Ações | other
 
 | **Termostato (id: Thermostat)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| TERMOSTAT_STATE | Status do termostato (BINÁRIO) (apenas para termostato de plug-in) | Informação |
-| TERMOSTAT_TEMPERATURE | Termostato de temperatura ambiente | Informação | numeric
-| TERMOSTAT_SETPOINT | Termostato de ponto de ajuste | Informação | numeric
-| THERMOSTAT_MODE | Modo do termostato (apenas para termostato de plug-in) | Informação | string
-| TERMOSTATO_LOCK | Termostato de bloqueio (apenas para termostato de plug-in) | Informação | binary
-| THERMOSTAT_TEMPERATURE_OUTDOOR | Termostato de temperatura externa (apenas para termostato de plug-in) | Informação | numeric
-| THERMOSTAT_STATE_NAME | Status do termostato (HUMANO) (apenas para termostato de plug-in) | Informação | string
-| TERMOSTATO_HUMIDITY | Termostato de umidade ambiente | Informação | numeric
-| HUMIDITY_SETPOINT | Definir umidade | Informação | slider
-| THERMOSTAT_SET_SETPOINT | Termostato de ponto de ajuste | Estoque | slider
-| THERMOSTAT_SET_MODE | Modo do termostato (apenas para termostato de plug-in) | Estoque | other
-| TERMOSTAT_SET_LOCK | Termostato de bloqueio (apenas para termostato de plug-in) | Estoque | other
-| THERMOSTAT_SET_UNLOCK | Desbloquear termostato (apenas para termostato de plug-in) | Estoque | other
-| HUMIDITY_SET_SETPOINT | Definir umidade | Estoque | slider
+| THERMOSTAT_STATE | Status do termostato (BINÁRIO) (apenas para termostato de plug-in) | Em formação |
+| THERMOSTAT_TEMPERATURE | Termostato de temperatura ambiente | Em formação | numeric
+| THERMOSTAT_SETPOINT | Termostato de ponto de ajuste | Em formação | numeric
+| THERMOSTAT_MODE | Modo do termostato (apenas para termostato de plug-in) | Em formação | string
+| TERMOSTATO_LOCK | Termostato de bloqueio (apenas para termostato de plug-in) | Em formação | binary
+| THERMOSTAT_TEMPERATURE_OUTDOOR | Termostato de temperatura externa (apenas para termostato de plug-in) | Em formação | numeric
+| THERMOSTAT_STATE_NAME | Status do termostato (HUMANO) (apenas para termostato de plug-in) | Em formação | string
+| TERMOSTATO_HUMIDITY | Termostato de umidade ambiente | Em formação | numeric
+| HUMIDITY_SETPOINT | Definir umidade | Em formação | slider
+| THERMOSTAT_SET_SETPOINT | Termostato de ponto de ajuste | Ações | slider
+| THERMOSTAT_SET_MODE | Modo do termostato (apenas para termostato de plug-in) | Ações | other
+| THERMOSTAT_SET_LOCK | Termostato de bloqueio (apenas para termostato de plug-in) | Ações | other
+| THERMOSTAT_SET_UNLOCK | Desbloquear termostato (apenas para termostato de plug-in) | Ações | other
+| HUMIDITY_SET_SETPOINT | Definir umidade | Ações | slider
 
 | **Ventilador (id: Fan)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FAN_SPEED_STATE | Status da velocidade do ventilador | Informação | numeric
-| ROTATION_STATE | Rotação de estado | Informação | numeric
-| VELOCIDADE DO VENTILADOR | Velocidade do ventilador | Estoque | slider
-| RODAR | Rodar | Estoque | slider
+| FAN_SPEED_STATE | Status da velocidade do ventilador | Em formação | numeric
+| ROTATION_STATE | Rotação de estado | Em formação | numeric
+| VELOCIDADE DO VENTILADOR | Velocidade do ventilador | Ações | slider
+| RODAR | RODAR | Ações | slider
 
 | **Painel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| FLAP_STATE | Painel de status | Informação | binário, numérico
-| FLAP_BSO_STATE | Painel de status do BSO | Informação | binário, numérico
-| FLAP_UP | Botão Pane Up | Estoque | other
-| FLAP_DOWN | Botão do painel para baixo | Estoque | other
-| FLAP_STOP | Botão de parada do obturador | Estoque |
-| FLAP_SLIDER | Painel de botões deslizantes | Estoque | slider
-| FLAP_BSO_UP | Botão para cima do painel BSO | Estoque | other
-| FLAP_BSO_DOWN | Botão para baixo do painel BSO | Estoque | other
+| FLAP_STATE | Painel de status | Em formação | binário, numérico
+| FLAP_BSO_STATE | Painel de status do BSO | Em formação | binário, numérico
+| FLAP_UP | Botão Pane Up | Ações | other
+| FLAP_DOWN | Botão do painel para baixo | Ações | other
+| FLAP_STOP | Botão de parada do obturador | Ações |
+| FLAP_SLIDER | Painel de botões deslizantes | Ações | slider
+| FLAP_BSO_UP | Botão para cima do painel BSO | Ações | other
+| FLAP_BSO_DOWN | Botão para baixo do painel BSO | Ações | other

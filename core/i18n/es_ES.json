@@ -86,7 +86,7 @@
         "Message": "Mensaje",
         "Accueil": "Inicio",
         "Vue": "Visto",
-        "Dashboard": "Panel"
+        "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Ninguno"
@@ -1207,7 +1207,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Panel",
+        "Dashboard": "Tablero",
         "Remplacer le widget": "Reemplazar widget",
         "Par": "Por",
         "Remplacer": "Reemplazar",
@@ -1416,7 +1416,7 @@
     "desktop\/php\/editor.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Version": "Versión",
-        "Dashboard": "Panel",
+        "Dashboard": "Tablero",
         "Mobile": "Móvil",
         "Type": "Escribe",
         "Sous-type": "Subtipo",
@@ -1435,7 +1435,7 @@
         "Toggle navigation": "Cambiar la navegación",
         "Accueil": "Inicio",
         "Synthèse": "Síntesis",
-        "Dashboard": "Panel",
+        "Dashboard": "Tablero",
         "Vue": "Ver",
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
@@ -2080,7 +2080,7 @@
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 no autorizado",
-        "Dashboard": "Panel",
+        "Dashboard": "Tablero",
         "Synthèse": "Síntesis",
         "Vue": "Vista",
         "Design": "Diseño",
@@ -2509,7 +2509,7 @@
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Panel",
+        "Dashboard": "Tablero",
         "Vue": "Ver",
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
@@ -3795,15 +3795,15 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Inicio de sesión de usuario por REMOTE_USER:",
-        "Double authentification requise": "Se requiere doble autenticación",
+        "Double authentification requise": "Double authentification requise",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Contraseña o nombre de usuario no válido",
-        "Mot de passe ou nom d\\'utilisateur incorrect')": "Contraseña o nombre de usuario no válido')",
+        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Debe desactivar la autenticación LDAP para agregar un usuario",
         "Utilisateur invalide": "Usuario invalido",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Debe desactivar la autenticación LDAP para poder eliminar un usuario",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "No puede eliminar la cuenta con la que está conectado",
-        "User ID inconnu": "ID de usuario desconocido",
+        "User ID inconnu": "User ID inconnu",
         "Utilisateur non trouvé :": "Usuario no encontrado:",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },

@@ -18,7 +18,7 @@ Os dispositivos (ou blocos) têm certos parâmetros de configuração acessívei
 
 Este widget é um pouco especial porque é um widget de vários comandos, ou seja, ele reúne o valor de vários comandos. Aqui ele assume comandos de temperatura e umidade. Para configurá-lo, você deve atribuir o widget aos controles de temperatura e umidade do seu equipamento.
 
-![WidgE HygroThermographe](./images/widgets3.png)
+![Widge HygroThermographe](./images/widgets3.png)
 
 ##### Parâmetros opcionais)
 
@@ -27,7 +27,7 @@ Este widget é um pouco especial porque é um widget de vários comandos, ou sej
 >**IMPORTANTE**      
 >É ABSOLUTAMENTE necessário que os tipos genéricos sejam indicados; `Temperatura` no controle de temperatura e` Umidade` no controle de umidade (isso é configurado na configuração avançada do controle, guia de configuração).
 
->**OBSERVAÇÃO**      
+>**NOTA**      
 > Atenção em um design, é especialmente importante não fazer um pedido sozinho com esse widget que não funcionará, pois é um widget usando o valor de vários comandos; é absolutamente necessário colocar o widget completo
 
 ### Multiline
@@ -44,13 +44,13 @@ Widget para controle de ação / cursor com botão "**+**" e um botão "**-**" p
 
 ##### Parâmetros opcionais)
 
-- **passos** *(pas)* : Permite que você defina a etapa de mudança de valor *(0,5 por padrão)*.
+- **degraus** *(pas)* : Permite que você defina a etapa de mudança de valor *(0,5 por padrão)*.
 
 ### Rain
 
 Widget para exibir os níveis de água.
 
-![WidgE Rain](./images/widgets4.png)
+![Widge Rain](./images/widgets4.png)
 
 ##### Parâmetros opcionais)
 
@@ -71,7 +71,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 >**Exemplo**      
 >![Widget Alternar Link](./images/widgets5.png)
 
->**Conselho**     
+>**Adendo**     
 >Desmarque *"Afficher"* do comando info / binário que não precisa ser exibido.
 
 - Para que o Jeedom Core seja capaz de identificar qual comando corresponde a qual ação, é essencial respeitar a seguinte nomenclatura para **2 comandos de ação / falha** :
@@ -97,7 +97,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 `` ''
 
 >**Truque**      
->Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Ou *shutter_close*, *2 de março* E *stop_2*, etc.
+>Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc.
 
 ## Widgets personalizados
 
@@ -145,8 +145,8 @@ Uma vez na página de configuração de um widget, um menu de contexto é acess�
 
 Uma vez na página **Ferramentas → Widgets** você tem que clicar no botão "**Adicionar**" e dê um nome ao seu novo widget.
 
-Após :
-- Você escolhe se isso se aplica a um pedido de tipo **Estoque** Ou **Informação**.
+Próximo :
+- Você escolhe se isso se aplica a um pedido de tipo **Ações** Onde **Em formação**.
 - Dependendo da escolha anterior, você terá que **escolha o subtipo** da ordem.
 - Finalmente **o modelo** entre aqueles que estarão disponíveis de acordo com as escolhas anteriores.
 - Uma vez que o modelo foi escolhido, Jeedom exibe as opções de configuração para ele abaixo.
@@ -161,12 +161,12 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
-- O "**simples**" : como um ícone / imagem para o "**NÓS**" e um ícone / imagem para o "**DESLIGADO**".
+- O "**simples**" : como um ícone / imagem para o "**Nós**" e um ícone / imagem para o "**Desligado**".
 - O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**toto**", outro se "**plop**" E assim por diante...
 
 #### Remplacement
 
-Isso é chamado de modelo simples, aqui você só precisa dizer que o "**NÓS**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, O "**DESLIGADO**" para esse outro ícone / imagem, etc...      
+Isso é chamado de modelo simples, aqui você só precisa dizer que o "**Nós**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, a "**Desligado**" para esse outro ícone / imagem, etc...      
 
 A Caixa **Widget de tempo**, se disponível, exibe a duração desde a última mudança de estado no widget.
 
@@ -174,27 +174,27 @@ Para modelos usando imagens, você pode configurar a largura do widget em pixels
 
 >**Truque**     
 >Para usuários avançados, é possível colocar tags nos valores de substituição e especificar seu valor na configuração avançada do comando.    
->Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configuratinós avancée d'une commande, onglE affichage → "**Paramètres optionnels widget**" vous ajoutez O paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
+>Se, por exemplo, em **Largura da área de trabalho** você coloca como valor `#largeur_desktop#`` (**tenha cuidado para colocar o** ``#`` **autour**) puis dans la configuratinós avancée d'une commande, ongle affichage → "**Paramètres optionnels widget**" vous ajoutez a paramètre ``largeur_desktop`` (**sans les** ``#`) e dê a ele o valor "**90**", este widget personalizado neste comando terá 90 pixels de largura. Isso permite que você adapte o tamanho do widget a cada pedido sem ter que fazer um widget específico a cada vez.
 
 #### Test
 
-Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**NÓS** e / ou para o "**DESLIGADO** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
+Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**Nós** e / ou para o "**Desligado** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
 
 Como antes, diferentes imagens podem ser selecionadas dependendo do tema ativo no Jeedom e na caixa **Widget de tempo** mostra a duração desde a última mudança de estado.
 
-Os testes estão no formato : ``#value# == 1`,`#value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
+Os testes estão no formato : ``#value# == 1`, `#value#`será automaticamente substituído pelo valor atual do comando. Você também pode fazer, por exemplo :
 
 - ``#value# > 1`
 - ``#value# >= 1 && #value# <= 5``
 - ``#value# == 'toto'``
 
->**Observação**     
+>**NOTA**     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**Observação**     
+>**NOTA**     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**Observação**     
+>**NOTA**     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#``.
 
 ## Widget de código
@@ -214,7 +214,7 @@ No modo de código, você tem acesso a diferentes tags para pedidos, aqui está 
 - **#valueDate#** : data do valor do pedido
 - **#collectDate#** : data de coleta do pedido
 - **#alertLevel#** : nível de alerta (consulte [aqui](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) para a lista)
-- **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# E #tendance# não será substituído pelo Jeedom.
+- **#hide_history#** : se o histórico (máximo, mínimo, média, tendência) deve ser oculto ou não. Quanto ao #hide_name# está vazio ou oculto e, portanto, pode ser usado diretamente em uma classe. IMPORTANTE se essa tag não for encontrada no seu widget, as tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# e #tendance# não será substituído pelo Jeedom.
 - **#minHistoryValue#** : valor mínimo durante o período (período definido na configuração do Jeedom pelo usuário)
 - **#averageHistoryValue#** : valor médio ao longo do período (período definido na configuração do Jeedom pelo usuário)
 - **#maxHistoryValue#** : valor máximo durante o período (período definido na configuração do Jeedom pelo usuário)

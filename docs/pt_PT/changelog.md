@@ -3,7 +3,7 @@
 
 ### 4.4 : Pré-requisitos
 
-- Buster do Debian 10
+- Debian 10 Buster
 - PHP 7.3
 
 ### 4.4 : Notícias / Melhorias
@@ -36,21 +36,21 @@
 - **Essencial** : Início do desenvolvimento em js puro, sem jQuery. Ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4).
 - **Essencial** : Listagem mais detalhada de dispositivos USB.
 - **Essencial** : Um menu contextual foi adicionado em diferentes lugares ao nível das caixas de seleção para selecionar todas, nenhuma ou inverter a seleção *(consulte [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4))*.
-- **Lib** : Atualizar Highchart v9.3.2 a v10.3.2 (O módulo *calibre sólido* não é mais importado).
+- **Livre** : Atualizar Highchart v9.3.2 a v10.3.2 (O módulo *calibre sólido* não é mais importado).
 - **Pedidos** :  Adicionado uma opção *(alpha)* não executar uma ação se o equipamento já estiver no estado esperado.
 
 ### 4.4 : Remarques
 
 > **Painel**
 >
-> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical (mínimo 100)* E *Passo horizontal (mínimo 110)*. O valor que *Margem* definindo o espaço entre as telhas.
+> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical (mínimo 100)* e *Passo horizontal (mínimo 110)*. O valor que *Margem* definindo o espaço entre as telhas.
 > Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
 
 
 > **Widgets**
 >
 > Widgets principais foram reescritos em js/css puro. Você terá que editar o Painel *(Edite, em seguida, botão ⁝ nos ladrilhos)* e use a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
-> Todos os widgets Core agora suportam a exibição *tempo*, adicionando um parâmetro opcional *tempo* / *duração* Ou *data*.
+> Todos os widgets Core agora suportam a exibição *Tempo*, adicionando um parâmetro opcional *Tempo* / *duração* Onde *encontro*.
 
 > **Caixa de diálogo**
 >
@@ -145,7 +145,7 @@
 
 ### 4.3 : Pré-requisitos
 
-- Buster do Debian 10
+- Debian 10 Buster
 - PHP 7.3
 
 ### 4.3 : Notícias / Melhorias
@@ -160,7 +160,7 @@
 - **Relatório** : Capacidade de relatar equipamentos alertados.
 - **Atualizar** : Capacidade de ver do Jeedom os pacotes OS / PIP2 / PIP3 / NodeJS que podem ser atualizados e iniciar a atualização (cuidado com a função arriscada e em beta).
 - **Comando de alerta** : Adicionada uma opção para receber uma mensagem em caso de fim de alerta.
-- **Plugins** : Possibilidade de desabilitar a instalação de dependências por plugin.
+- **Plug-ins** : Possibilidade de desabilitar a instalação de dependências por plugin.
 - **Otimização** : jeeFrontEnd{}, jeephp2js{}, pequenas correções de bugs e otimizações.
 
 ### 4.3 : WebApp
@@ -170,7 +170,7 @@
 
 ### 4.3 : Autre
 
-- **Lib** : Atualizar fonte impressionante 5.13.1 a 5.15.4.
+- **Livre** : Atualizar fonte impressionante 5.13.1 a 5.15.4.
 
 ### 4.3 : Notes
 
@@ -182,7 +182,7 @@ Você deve agora usar:
 
 ``<a onClick="jeephp2js.planHeader_id=15; jeeFrontEnd.plan.displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
-ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.3).
+Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.3).
 
 Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 
@@ -208,19 +208,19 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 - Núcleo de correção de bugs : Acesso limitado do usuário a designs e visualizações.
 - IU de correção de bug : Exibição de blocos A no Chrome.
-- Bugfix : Link para documentação quando o plug-in estiver em beta.
+- Correção de bug : Link para documentação quando o plug-in estiver em beta.
 
 ## 4.2.16
 
 - Núcleo de correção de bugs : Cenas : Mesclar itens colados em alguns casos.
 - Núcleo de correção de bugs : Criação de arquivos com editor de arquivos.
-- Bugfix : Maior atraso para entrar em contato com o serviço de monitoramento (permite aliviar a carga nos servidores em nuvem).
+- Correção de bug : Maior atraso para entrar em contato com o serviço de monitoramento (permite aliviar a carga nos servidores em nuvem).
 
 ## 4.2.15
 
-- IU de correção de bug : Cenas : Adicionando a ação *tipogenérico* no modo de seleção.
+- IU de correção de bug : Cenas : Adicionando a ação *tipo genérico* no modo de seleção.
 - Núcleo de correção de bugs : Corrigido o atraso nos históricos calculados.
-- Bugfix : Instalação de dependências de plugin zigbee.
+- Correção de bug : Instalação de dependências de plugin zigbee.
 
 ## 4.2.14
 
@@ -265,7 +265,7 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 ## 4.2.9
 
 - IU de correção de bug : Correção de widget *padrão numérico* (cmdName muito longo).
-- IU de correção de bug : Passando variáveis css *--url-iconsDark* E *--url-iconsLight* em absoluto (Bug Safari MacOS).
+- IU de correção de bug : Passando variáveis css *--url-iconsDark* e *--url-iconsLight* em absoluto (Bug Safari MacOS).
 - IU de correção de bug : Posição das notificações em *centro superior*.
 
 - Núcleo de correção de bugs : Etapa padrão para widgets *Controle deslizante* em 1.
@@ -295,12 +295,12 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ### 4.2 : Pré-requisitos
 
-- Buster do Debian 10
+- Debian 10 Buster
 - PHP 7.3
 
 ### 4.2 : Notícias / Melhorias
 
-- **Síntese** : Possibilidade de configurar objetos para ir a um *projeto* ou um *visto* desde a síntese.
+- **Síntese** : Possibilidade de configurar objetos para ir a um *Projeto* ou um *visto* desde a síntese.
 - **Painel** : A janela de configuração do dispositivo (modo de edição) agora permite que você configure widgets móveis e tipos genéricos.
 - **Widgets** : Internacionalização de Widgets de terceiros (código do usuário). Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Análise / História** : Possibilidade de comparar uma história ao longo de um determinado período.
@@ -317,17 +317,17 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Relatório** : Visualizar arquivos PDF.
 - **Tipos de equipamento** : [Nova página](/pt_PT/core/4.2/types) **Ferramentas → Tipos de equipamento** permitindo que tipos genéricos sejam atribuídos a dispositivos e comandos, com suporte para tipos dedicados a plug-ins instalados (ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2)).
 - **Seleção de ilustrações** : Nova janela global para a escolha de ilustrações *(ícones, imagens, planos de fundo)*.
-- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* E *Plugins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
+- **Exibir mesa** : Adição de um botão à direita da pesquisa nas páginas *Objetos* *Cenários* *Interações* *Widgets* e *Plug-ins* para mudar para o modo de mesa. Isso é armazenado por um cookie ou em **Configurações → Sistema → Configuração / Interface, Opções**. Os plugins podem usar esta nova função do Core. Vejo [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.2).
 - **Configuração do equipamento** : Possibilidade de configurar uma curva de histórico na parte inferior do ladrilho de um dispositivo.
-- **Ordem** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
+- **Encomendado** : Possibilidade de fazer um cálculo em uma ação de comando do tipo deslizante antes da execução do comando.
 - **Plugins / Gerenciamento** : Exibição da categoria do plugin e um link para abrir diretamente sua página sem passar pelo menu Plugins.
 - **Cenas** : Função de fallback de código (*dobradura de código*) no *Blocos de Código*. Atalhos Ctrl + Y e Ctrl + I.
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Cenas** : Adicionando funções de cálculo ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` permitindo obter a média ponderada pela duração ao longo do período.
 - **Cenas** : Adicionado suporte para tipos genéricos em cenários.
 	- Desencadear : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Estoque ``genericType``
+	- E SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+	- Ações ``genericType``
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Usuários** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Usuários** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
@@ -350,8 +350,8 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - As configurações de widgets para a versão Mobile agora estão acessíveis a partir da janela de configuração do equipamento no modo Dashboard Edit.
 - Os parâmetros opcionais disponíveis nos widgets agora são exibidos para cada widget, seja na configuração do comando ou no modo de edição do painel.
 - Muitos widgets principais agora aceitam configurações de cores opcionais. (controle deslizante horizontal e vertical, medidor, bússola, chuva, obturador, controle deslizante de modelos, etc.).
-- Widgets principais com exibição de um *tempo* agora suporta um parâmetro opcional **tempo : data** para exibir uma data relativa (ontem às 16h48, segunda-feira passada às 14h, etc).
-- Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *passos* para definir a etapa de mudança no cursor.
+- Widgets principais com exibição de um *Tempo* agora suporta um parâmetro opcional **Tempo : encontro** para exibir uma data relativa (ontem às 16h48, segunda-feira passada às 14h, etc).
+- Widgets do tipo cursor (ação) agora aceitam um parâmetro opcional *degraus* para definir a etapa de mudança no cursor.
 - O widget **ação.slider.value** agora está disponível no desktop, com um parâmetro opcional *noslider*, o que o torna um *entrada* simples.
 - O widget **info.numeric.default** (*Medidor*) foi refeito em puro css e integrado em dispositivos móveis. Eles são, portanto, agora idênticos em computadores e dispositivos móveis.
 
@@ -371,7 +371,7 @@ Adicionamos uma confirmação da senha do backup na nuvem para evitar erros de e
 - Reforço de sessões : Mude para sha256 com 64 caracteres em modo estrito.
 
 A equipe da Jeedom está ciente de que essas mudanças podem ter um impacto e ser embaraçosas para você, mas não podemos comprometer a segurança.
-Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Doutor](https://doc.jeedom.com/pt_PT/dev/plugin_template).
+Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pastas e arquivos : [Médico](https://doc.jeedom.com/pt_PT/dev/plugin_template).
 
 [Blog: Jeedom 4 introdução.2 : Segurança](https://blog.jeedom.com/6165-introduction-jeedom-4-2-la-securite/)
 
@@ -431,7 +431,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Correção de bugs de resumos coloridos na síntese.
 - Correção de bug em comentários de cenário com json.
 - Correção de bug em atualizações de resumo em visualizações do modo Painel.
-- Bugfix de elementos *foto* em um design.
+- Bugfix de elementos *imagem* em um design.
 - Adicionadas opções de agrupamento por tempo para gráficos em visualizações.
 - Conservação do contexto de síntese ao clicar nos resumos.
 - Centralização de imagens de síntese.
@@ -440,7 +440,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 ### 4.1 : Pré-requisitos
 
-- Buster do Debian 10
+- Debian 10 Buster
 
 ### 4.1 : Notícias / Melhorias
 
@@ -448,23 +448,23 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Pesquisar** : Adição de um mecanismo de pesquisa em **Ferramentas → Pesquisa**.
 - **Painel** : Modo de edição agora inserindo o bloco movido.
 - **Painel** : Modo de edição: os ícones de atualização do equipamento são substituídos por um ícone que permite acesso à sua configuração, graças a um novo modal simplificado.
-- **Painel** : Agora podemos clicar no *tempo* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
+- **Painel** : Agora podemos clicar no *Tempo* widgets de ações de tempo para abrir a janela do histórico do comando info vinculado.
 - **Painel** : O tamanho do bloco de um novo equipamento se adapta ao seu conteúdo.
 - **Painel** : Adicionar (voltar!) Um botão para filtrar os itens exibidos por categoria.
 - **Painel** : Ctrl Clique em uma informação para abrir a janela do histórico com todos os comandos históricos do equipamento visíveis no bloco. Ctrl Clique em uma legenda para exibir apenas esta, Alt Clique para exibir todas.
 - **Painel** : Redesenho da exibição da árvore de objetos (seta à esquerda da pesquisa).
 - **Painel** : Capacidade de desfocar imagens de fundo (Configuração -> Interface).
 - **Ferramentas / Widgets** : A função *Aplicar em* mostra os comandos vinculados marcados, desmarcando um aplicará o widget principal padrão a este comando.
-- **Widgets** : Adicionando um widget principal *sliderVertical*.
-- **Widgets** : Adicionando um widget principal *binarySwitch*.
+- **Widgets** : Adicionando um widget principal *controle deslizante Vertical*.
+- **Widgets** : Adicionando um widget principal *binárioSwitch*.
 - **Update Center** : As atualizações são verificadas automaticamente quando a página é aberta, se for 120 minutos mais antiga.
-- **Update Center** : A barra de progresso está agora na guia *Núcleo e plugins*, e o log aberto por padrão na guia *Informação*.
+- **Update Center** : A barra de progresso está agora na guia *Núcleo e plugins*, e o log aberto por padrão na guia *Em formação*.
 - **Update Center** : Se você abrir outro navegador durante uma atualização, a barra de progresso e o log indicarão.
 - **Update Center** : Se a atualização terminar corretamente, é exibida uma janela pedindo para recarregar a página.
 - **Atualizações principais** : Implementação de um sistema para limpar arquivos Core não utilizados antigos.
 - **Cenas** : Adicionando um mecanismo de pesquisa (à esquerda do botão Executar).
 - **Cenas** : Adição da função de idade (fornece a idade do valor da ordem).
-- **Cenas** : *stateChanges()* agora aceite o período *hoje* (meia-noite até agora), *ontem* E *dia* (por 1 dia).
+- **Cenas** : *stateChanges()* agora aceite o período *hoje* (meia-noite até agora), *ontem* e *dia* (por 1 dia).
 - **Cenas** : Funções *estatísticas (), média (), max (), min (), tendência (), duração()* : Bugfix ao longo do período *ontem*, e aceite agora *dia* (por 1 dia).
 - **Cenas** : Possibilidade de desativar o sistema de cotação automática (Configurações → Sistema → Configuração : Equipements).
 - **Cenas** : Visualizando um *aviso* se nenhum gatilho estiver configurado.
@@ -476,7 +476,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Janela Variáveis de Cenário** : Os cenários usados pelas variáveis agora são clicáveis, com a abertura da pesquisa na variável.
 - **Análise / História** : Ctrl Clique em uma legenda para exibir apenas esse histórico, Alt Clique para exibir todos eles.
 - **Análise / História** : As opções *agrupamento, tipo, variação, escada* estão ativos apenas com uma única curva exibida.
-- **Análise / História** : Agora podemos usar a opção *Área* com a opção *Escadaria*.
+- **Análise / História** : Agora podemos usar a opção *Área* com a opção *Escadas*.
 - **Análise / Logs** : Nova fonte de tipo monoespaçado para logs.
 - **Visto** : Possibilidade de colocar cenários.
 - **Visto** : Modo de edição agora inserindo o bloco movido.
@@ -495,7 +495,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Mecanismo de tarefas** : Na guia *Demônio*, plugins desativados não aparecem mais.
 - **Relatório** : O uso de *cromada* se disponível.
 - **Relatório** : Possibilidade de exportar cronogramas.
-- **Configuração** : Aba *Informação* agora está na guia *Em geral*.
+- **Configuração** : Aba *Em formação* agora está na guia *Em geral*.
 - **Configuração** : Aba *Pedidos* agora está na guia *Equipamento*.
 - **Janela de configuração avançada de equipamentos** : Alteração dinâmica da configuração do quadro de distribuição.
 - **Equipamento** : Nova categoria *Abertura*.
@@ -507,7 +507,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay :
 	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Avaliações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
+	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
@@ -525,10 +525,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 ### 4.1 : Autres
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
-- **Lib** : Atualizar o HighStock v7.1.2 a v8.2.0.
-- **Lib** : Atualizar o jQuery v3.4.1 a v3.5.1.
-- **Lib** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
-- **APIs** :  adição de uma opção para proibir uma chave de API de um plugin de executar métodos centrais (geral)
+- **Livre** : Atualizar o HighStock v7.1.2 a v8.2.0.
+- **Livre** : Atualizar o jQuery v3.4.1 a v3.5.1.
+- **Livre** : Atualizar fonte Awesome 5.9.0 a 5.13.1.
+- **API** :  adição de uma opção para proibir uma chave de API de um plugin de executar métodos centrais (geral)
 - Protegendo solicitações Ajax.
 - Protegendo chamadas de API.
 - Correções de bugs.
@@ -622,7 +622,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 ### 4.0 : Pré-requisitos
 
-- Debian 9 Alongamento
+- Debian 9 Stretch
 
 ### 4.0 : Notícias / Melhorias
 
@@ -649,8 +649,8 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Objetos : Adicionada opção para usar cores personalizadas.
 - Objetos : Adição de um menu contextual nas guias (mudança rápida de objeto).
 - Interações : Adição de um menu contextual nas guias (mudança rápida de interação).
-- Plugins : Adição de um menu contextual nas abas (troca rápida de equipamento).
-- Plugins : Na página de gerenciamento de plug-ins, um ponto laranja indica que os plug-ins em versão não estável.
+- Plug-ins : Adição de um menu contextual nas abas (troca rápida de equipamento).
+- Plug-ins : Na página de gerenciamento de plug-ins, um ponto laranja indica que os plug-ins em versão não estável.
 - Melhorias na tabela com filtro e opção de classificação.
 - Possibilidade de atribuir um ícone a uma interação.
 - Cada página do Jeedom agora tem um título no idioma da interface (guia do navegador).
@@ -695,17 +695,17 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Resumo Automation : Adicionando equipamentos e IDs de pedido, para exibir e pesquisar.
 - Resumo Automation : Exportação CSV de objeto pai, id, equipamento e seu id, comando.
 - Resumo Automation : Possibilidade de tornar visível ou não um ou mais comandos.<br/><br/>
-- Projeto : Possibilidade de especificar a ordem (posição) do *Desenhos* E *Projetos 3D* (Editar, Configurar Design).
-- Projeto : Adição de um campo CSS personalizado nos elementos do *projeto*.
+- Projeto : Possibilidade de especificar a ordem (posição) do *Desenhos* e *Projetos 3D* (Editar, Configurar Design).
+- Projeto : Adição de um campo CSS personalizado nos elementos do *Projeto*.
 - Projeto : Movidas as opções de exibição em Design da configuração avançada, nos parâmetros de exibição do *Projeto*. Isso para simplificar a interface e permitir ter diferentes parâmetros por *Projeto*.
 - Projeto : Movendo e redimensionando componentes em *Projeto* leva seu tamanho em consideração, com ou sem magnetização.<br/><br/>
 - Adição de um sistema de configuração em massa (usado na página Equipamento para configurar alertas de comunicações neles)
 
 ### 4.0 : Autres
 
-- **Lib** : Atualize o jquery 3.4.1
-- **Lib** : Atualizar CodeMiror 5.46.0
-- **Lib** : Atualizar o tablesorter 2.31.1
+- **Livre** : Atualize o jquery 3.4.1
+- **Livre** : Atualizar CodeMiror 5.46.0
+- **Livre** : Atualizar o tablesorter 2.31.1
 - Iluminação geral (estilos css / inline, refatoração, etc.) e melhorias de desempenho.
 - Adição de compatibilidade global do Jeedom DNS com uma conexão de internet 4G.
 - Inúmeras correções de bugs.

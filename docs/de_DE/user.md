@@ -6,7 +6,7 @@ Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt s
 Auf der Seite haben Sie drei Schaltflächen :
 
 - Benutzer hinzufügen.
-- Zum Schutz.
+- Zu schützen.
 - Öffnen Sie den Support-Zugriff.
 
 ## Liste der Benutzer
@@ -23,7 +23,7 @@ Auf der Seite haben Sie drei Schaltflächen :
 - **Datum der letzten Verbindung** : Datum der letzten Benutzeranmeldung. Bitte beachten Sie, dass dies das tatsächliche Verbindungsdatum ist. Wenn Sie also Ihren Computer speichern, wird das Verbindungsdatum nicht bei jeder Rückkehr aktualisiert.
 - **Rechte** : Benutzerrechte ändern.
 - **Passwort** : Ermöglicht das Ändern des Benutzerpassworts.
-- **LÖSCHEN** : Benutzer entfernen.
+- **Löschen** : Benutzer entfernen.
 - **API-Schlüssel neu generieren** : Benutzer-API-Schlüssel neu generieren.
 - **Rechte verwalten** : Ermöglicht die Feinverwaltung von Benutzerrechten (beachten Sie, dass sich das Profil in "eingeschränkter Benutzer" befinden muss)").
 

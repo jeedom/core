@@ -51,13 +51,13 @@ In the menu (right click), we find the following actions :
 Found here :
 
 - **General**
-    - **Name** : The name of your design.
+    - **Last name** : The name of your design.
     - **Position** : The position of the design in the menu. Allows you to order the designs.
     - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
     - **Access code** : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
-    - **Picture**
+    - **Image**
         - **Send** : Allows you to add a background image to the design.
         - **Delete image** : Delete image.
 - **Sizes**
@@ -131,7 +131,7 @@ Allows you to choose the commands to grapher.
 
 ### Specific display settings
 
-- **Name** : Name of the link (displayed text).
+- **Last name** : Name of the link (displayed text).
 - **Link** : Link to the design or view in question.
 - **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
 - **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
@@ -178,8 +178,8 @@ Displays the advanced equipment configuration window (see documentation **Home a
 
 ### Specific display settings
 
-- **Display** : Defines what you want to display, still image or stream from a camera.
-- **Picture** : Send the image in question (if you have chosen an image).
+- **To display** : Defines what you want to display, still image or stream from a camera.
+- **Image** : Send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 
 ## Zone

@@ -9,12 +9,12 @@ Aquí puede administrar funciones **javascript** y reglas **CSS** aplicado en es
 
 Esta función usa un modo particular del editor de archivos Core con dos ubicaciones:
 
-- escritorio / personalizado : Puede contener ambos archivos **personalizado.js** Y **personalizado.css** que será cargado por el Core en la versión de escritorio.
-- móvil / personalizado : Puede contener ambos archivos **personalizado.js** Y **personalizado.css** que será cargado por el Core en la versión móvil.
+- escritorio / personalizado : Puede contener ambos archivos **personalizado.js** y **personalizado.css** que será cargado por el Core en la versión de escritorio.
+- móvil / personalizado : Puede contener ambos archivos **personalizado.js** y **personalizado.css** que será cargado por el Core en la versión móvil.
 
-En la barra de menú del editor de archivos Core, un botón **Activado** O **Desactivado** te dice si el Core debe cargarlos o no. Esta opción también está disponible en **Configuración → Sistema → Configuración** Pestaña de interfaz.
+En la barra de menú del editor de archivos Core, un botón **Activado** Dónde **Desactivado** te dice si el Core debe cargarlos o no. Esta opción también está disponible en **Configuración → Sistema → Configuración** Pestaña de interfaz.
 
-> **Observó**
+> **Observación**
 >
 > Cuando se lanza esta página, se crea automáticamente la estructura de árbol, así como los 4 archivos con un comentario en la 1ra línea, incluida la versión del Core que los creó.
 
@@ -22,7 +22,7 @@ En la barra de menú del editor de archivos Core, un botón **Activado** O **Des
 
 [CSS: Hojas de estilo en cascada](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Consejos para personalizar la interfaz](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 

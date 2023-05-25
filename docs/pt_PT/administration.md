@@ -65,7 +65,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Personnalisation
 
-- **Habilitar** : Ative o uso das opções abaixo.
+- **Permitir** : Ative o uso das opções abaixo.
 - **Transparência** : Exibe blocos do painel e algum conteúdo com transparência. 1 : totalmente opaco, 0 : totalmente transparente.
 - **Redondo** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
 - **Desativar sombras** : Desativa sombras de blocos no painel, menus e certos elementos da interface.
@@ -116,7 +116,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Mercado de proxy** : permite acesso remoto ao seu Jeedom sem a necessidade de um DNS, um IP fixo ou abrir as portas da sua caixa da Internet.
     - **Usando o DNS Jeedom** : ativa o DNS Jeedom (observe que isso requer pelo menos um service pack).
     - **Status de DNS** : Status HTTP DNS.
-    - **Gerenciamento** : permite parar e reiniciar o serviço DNS Jeedom.
+    - **Gestão** : permite parar e reiniciar o serviço DNS Jeedom.
 
 > **Importante**
 >
@@ -241,15 +241,15 @@ Aqui você tem três parâmetros :
 
 -   O **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
     - *Jeedom mantendo o contexto :*
-        - *VOCÊ* : Quanto ele está na sala ?
+        - *Você* : Quanto ele está na sala ?
         - *Jeedom* : Temperatura 25.2 ° C
-        - *VOCÊ* : e na sala de estar ?
+        - *Você* : e na sala de estar ?
         - *Jeedom* : Temperatura 27.2 ° C
     - *Faça duas perguntas em uma :*
-        - *VOCÊ* : Como é no quarto e na sala de estar ?
+        - *Você* : Como é no quarto e na sala de estar ?
         - *Jeedom* : Temperatura 23.6 ° C, Temperatura 27.2 ° C
 -   Interações de tipo **Avise-me** permita que a Jeedom avise se um pedido excede / cai ou vale algum valor.
-    - *VOCÊ* : Notifique-me se a temperatura da sala exceder 25 ° C ?
+    - *Você* : Notifique-me se a temperatura da sala exceder 25 ° C ?
     - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
 > **Observação**

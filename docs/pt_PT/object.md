@@ -1,7 +1,7 @@
 # Objets
 **Ferramentas → Objetos**
 
-O **objetos** permitem definir a estrutura em árvore da sua automação residencial.
+O **Objetos** permitem definir a estrutura em árvore da sua automação residencial.
 
 Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mais facilmente identificável. Dizemos então que o objeto é o **relativo** equipamento.
 
@@ -19,7 +19,7 @@ Você tem duas opções :
 
 A visão geral permite visualizar todos os objetos no Jeedom, bem como suas configurações :
 
-- **EU IA** : Object ID.
+- **EU IRIA** : Object ID.
 - **Objeto** : Nome do objeto.
 - **Pai** : Nome do objeto pai.
 - **Visível** : Visibilidade do objeto.
@@ -60,16 +60,16 @@ Aqui estão as diferentes características para configurar um objeto :
 - **Visível** : Marque esta caixa para tornar este objeto visível.
 - **Esconder o painel de instrumentos** : Marque esta caixa para ocultar o objeto no painel. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
 - **Ocultar no resumo** : Marque esta caixa para ocultar o objeto no resumo'. Ele ainda é mantido na lista, o que permite que seja exibido, mas apenas explicitamente.
-- **Ação de síntese** : Aqui você pode indicar uma vista ou desenho para ir ao clicar no objeto do Resumo. *Padrão : Painel*.
+- **Ação de síntese** : Aqui você pode indicar uma vista ou desenho para ir ao clicar no objeto do Resumo. *Defeito : Painel*.
 
-#### Mostrar :
+#### Exibição :
 
 - **Ícone** : Permite escolher um ícone para o seu objeto.
 - **Cores personalizadas** : Ativa a consideração dos dois parâmetros de cores personalizadas abaixo.
 - **Cor tag** : Permite escolher a cor do objeto e o equipamento a ele conectado.
 - **Texto tag Cor** : Permite escolher a cor do texto do objeto. Este texto estará sobre o **Cor tag**. Você escolhe uma cor para tornar o texto legível.
 - **Somente na síntese** : Permite que você coloque uma imagem para a Síntese sem que seja usada como imagem de fundo, especialmente na página *Painel* deste objeto.
-- **Foto** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
+- **Imagem** : Você tem a opção de fazer upload de uma imagem ou excluí-la. No formato jpeg, essa imagem será a imagem de plano de fundo do objeto quando você a exibir no Painel. Também será usado para a miniatura da peça no Synthesis.
 
 > **Dica**
 >
