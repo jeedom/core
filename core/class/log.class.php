@@ -274,14 +274,15 @@ class log {
 	* @return array Array containing log to append to buffer and new position for next call
 	*/
 	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = 0, $_numbered = true, $_numStart = 0, $_max = 4000) {
-		// Check if log file exists
-		$path = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
-		if (!file_exists($path))
-			return false;
-		// Prepare file for reading
-		if (!$fp = fopen($path, 'r'))
-			return false;
-		// Set file pointer at requested position
+		// Add path to file if needed
+		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
+		// Check if log file exists and is readable
+		if (!file_exists($filename) || !$fp = fopen($filename, 'r'))
+			return array('position' => 0, 'line' => 0, 'logText' => '');
+		// Locate EOF
+		fseek($fp, 0, SEEK_END);
+		$_position = min($_position, ftell($fp));
+		// Set file pointer at requested position or at EOF
 		fseek($fp, $_position);
 		// Iterate the file
 		$logs = array();
