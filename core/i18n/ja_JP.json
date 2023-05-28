@@ -1741,7 +1741,6 @@
         "Utiliser les DNS": "DNSを使用する",
         "Mode": "Mode",
         "Openvpn (standard)": "Openvpn (standard)",
-        "Wireguard (alpha)": "Wireguard (alpha)",
         "Statut DNS": "DNSのステータス",
         "Démarré :": "開始しました：",
         "Normal si vous n\\'avez pas coché la case : Utiliser les DNS": "ボックスにチェックマークを付けていない場合は通常：DNSを使用",
