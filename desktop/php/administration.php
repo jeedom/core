@@ -747,7 +747,6 @@ user::isBan();
 									$div .= '<div class="col-xs-8">';
 									$div .= '<select class="configKey" data-l1key="dns::mode">';
 									$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
-									$div .= '<option value="wireguard">{{Wireguard (alpha)}}</option>';
 									$div .= '</select>';
 									$div .= '</div>';
 									$div .= '</div>';
