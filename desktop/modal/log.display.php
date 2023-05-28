@@ -37,8 +37,7 @@ if(init('log','event') == 'event'){
   <div class="input-group pull-right">
     <span class="input-group-btn" style="display: inline;">
       <span class="label-sm">{{Log brut}}</span>
-      <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
-      <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
+      <input type="checkbox" id="brutlogcheck" />
       <input class="input-sm roundedLeft" id="in_eventLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
       </a><a id="bt_resetLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
       <a class="btn btn-warning btn-sm" data-state="1" id="bt_eventLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
@@ -54,7 +53,6 @@ if(init('log','event') == 'event'){
 <script>
 (function() {// Self Isolation!
   document.getElementById('brutlogcheck').addEventListener('click', function(event) {
-    event.target.setAttribute('autoswitch', 0)
     jeedom.log.autoUpdateDelta({
       log: jeephp2js.md_logDislay_Name,
       display: document.getElementById('pre_eventlog'),

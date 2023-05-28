@@ -30,8 +30,7 @@ sendVarToJs('jeephp2js.md_scenarioLog_scId', init('scenario_id'));
   <div class="input-group pull-right">
     <span class="input-group-btn" style="display: inline;">
       <span class="label-sm">{{Log brut}}</span>
-      <input type="checkbox" id="brutlogcheck" autoswitch="1"/>
-      <i id="brutlogicon" class="fas fa-exclamation-circle icon_orange"></i>
+      <input type="checkbox" id="brutlogcheck" />
       <input class="input-sm roundedLeft" id="in_scenarioLogSearch" style="width : 200px;margin-left:5px;" placeholder="{{Rechercher}}" />
       <a id="bt_resetScenarioLogSearch" class="btn btn-sm"><i class="fas fa-times"></i>
       </a><a class="btn btn-warning btn-sm" data-state="1" id="bt_scenarioLogStopStart"><i class="fas fa-pause"></i> {{Pause}}
@@ -91,7 +90,6 @@ if (!jeeFrontEnd.md_scenarioLog) {
   })
 
   document.getElementById('brutlogcheck').addEventListener('click', function(event) {
-    event.target.setAttribute('autoswitch', 0)
     document.getElementById('pre_scenariolog').empty()
     jeedom.log.autoUpdateDelta({
       log: 'scenarioLog/scenario' + jeephp2js.md_scenarioLog_scId + '.log',

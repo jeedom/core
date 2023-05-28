@@ -422,13 +422,8 @@ jeedom.log.autoUpdateDelta = function(_params) {
   }
 
   var dom_brutlogcheck = document.getElementById('brutlogcheck')
-  // If first call AND element exists AND (enabled OR should be enabled), Then enable it
-  if (_params.callNumber == 1 && dom_brutlogcheck != null && dom_brutlogcheck.checked && dom_brutlogcheck.getAttribute('autoswitch') == 1) {
-    dom_brutlogcheck.checked = false
-  }
-
-  // If (element exists AND is disabled) OR (first call AND (element does not exists OR should be enabled)), Then colored
-  var colorMe = ((dom_brutlogcheck != null && !dom_brutlogcheck.checked) || (_params.callNumber == 1 && (dom_brutlogcheck == null || dom_brutlogcheck.getAttribute('autoswitch') == 1)))
+  // If element does NOT exists OR is disabled, Then colored
+  var colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
 
   jeedom.log.getDelta({
     log: _params.log,
@@ -450,7 +445,6 @@ jeedom.log.autoUpdateDelta = function(_params) {
       // Get logs as text from ajax
       if (result.logText.length > 0) {
         if (colorMe) {
-          // log = (_params.display.id == 'pre_scenariolog') ? jeedom.log.scenarioColorReplace(log) : jeedom.log.stringColorReplace(log);
           _params.display.innerHTML += result.logText
         } else {
           _params.display.textContent += result.logText

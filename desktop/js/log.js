@@ -70,8 +70,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   // "Raw log" button clicked
   if (_target = event.target.closest('#brutlogcheck')) {
-    // Disable switching automatically to "Rich Log"
-    _target.setAttribute('autoswitch', 0)
     // Empty log view
     document.getElementById('pre_globallog').empty()
     // Display Pause button
