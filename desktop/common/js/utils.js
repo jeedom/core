@@ -883,9 +883,15 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.body.addEventListener('click', function(event) {
     //Summary display:
-    if (!event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryParent') || event.target.matches('.objectSummaryParent'))) {
+    if (!event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.parentNode.matches('.objectSummaryParent') || event.target.parentNode.matches('.objectSummaryParent') || event.target.matches('.objectSummaryParent'))) {
       event.stopPropagation()
-      var _el = event.target.matches('.objectSummaryParent') ? event.target : event.target.parentNode
+      if(event.target.matches('.objectSummaryParent')){
+        var _el = event.target
+      }else if(event.target.parentNode.matches('.objectSummaryParent')){
+        var _el = event.target.parentNode
+      }else{
+        var _el = event.target.parentNode.parentNode
+      }
 
       if (document.body.getAttribute('data-page') == "overview" && _el.closest('.objectSummaryglobal') == null) return false
 
@@ -897,12 +903,18 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
     //Summary action:
-    if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
+    if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.parentNode.matches('.objectSummaryAction') || event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
       event.stopPropagation()
       jeedomUtils.closeModal()
       jeedomUtils.closeJeeDialogs()
-
-      var _el = event.target.matches('.objectSummaryAction') ? event.target : event.target.parentNode
+      
+	  if(event.target.matches('.objectSummaryAction')){
+        var _el = event.target
+      }else if(event.target.parentNode.matches('.objectSummaryAction')){
+        var _el = event.target.parentNode
+      }else{
+        var _el = event.target.parentNode.parentNode
+      }
       var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
       url += '&coords=' + event.clientX + '::' + event.clientY
       jeeDialog.dialog({
@@ -912,7 +924,6 @@ jeedomUtils.setJeedomGlobalUI = function() {
       })
       return
     }
-
     //close all modales on outside click - deprecated 4.4
     if (event.target.matches('.ui-widget-overlay')) {
       event.stopPropagation()
