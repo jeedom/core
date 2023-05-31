@@ -67,30 +67,34 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   var _target = null
+
+  // "Raw log" button clicked
   if (_target = event.target.closest('#brutlogcheck')) {
-    _target.setAttribute('autoswitch', 0)
-    let elPreGlobalLog = document.getElementById('pre_globallog')
-    var scroll = elPreGlobalLog.scrollTop
-    jeedom.log.autoupdate({
+    // Empty log view
+    document.getElementById('pre_globallog').empty()
+    // Display Pause button
+    jeedom.log.updateBtn(jeeP.btGlobalLogStopStart)
+    // Activate log auto update
+    jeedom.log.autoUpdateDelta({
       log: document.querySelector('li.li_log.active')?.getAttribute('data-log'),
       display: document.getElementById('pre_globallog'),
       search: document.getElementById('in_searchGlobalLog'),
-      control: jeeP.btGlobalLogStopStart,
-      once: 1
+      control: jeeP.btGlobalLogStopStart
     })
-    elPreGlobalLog.scrollTop = scroll
     return
   }
 
+  // Log selected in the list
   if (_target = event.target.closest('.li_log')) {
+    // Empty log view
     document.getElementById('pre_globallog').empty()
+    // Activate the corresponding item in the list
     document.querySelectorAll('.li_log').removeClass('active')
     _target.addClass('active')
-    jeeP.btGlobalLogStopStart.removeClass('btn-success')
-      .addClass('btn-warning')
-      .html('<i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>')
-      .setAttribute('data-state', '1')
-    jeedom.log.autoupdate({
+    // Display Pause button
+    jeedom.log.updateBtn(jeeP.btGlobalLogStopStart)
+    // Activate log auto update
+    jeedom.log.autoUpdateDelta({
       log: _target.getAttribute('data-log'),
       display: document.getElementById('pre_globallog'),
       search: document.getElementById('in_searchGlobalLog'),
@@ -99,6 +103,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
+  // Log download button clicked
   if (_target = event.target.closest('#bt_downloadLog')) {
     window.open('core/php/downloadFile.php?pathfile=log/' + document.querySelector('.li_log.active').getAttribute('data-log'), "_blank", null)
     return
@@ -108,11 +113,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     jeedom.log.clear({
       log: document.querySelector('.li_log.active').getAttribute('data-log'),
       success: function(data) {
-        document.querySelector('.li_log.active a').innerHTML = '<i class="fa fa-check"></i> ' + document.querySelector('.li_log.active').getAttribute('data-log')
-        document.querySelector('.li_log.active i').removeClass().addClass('fas', 'fa-check')
-        if (jeeP.btGlobalLogStopStart.getAttribute('data-state') == 0) {
-          jeeP.btGlobalLogStopStart.click()
-        }
+        document.querySelector('li.li_log.active').click()
       }
     })
     return

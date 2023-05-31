@@ -1741,7 +1741,6 @@
         "Utiliser les DNS": "Use DNS",
         "Mode": "Modo",
         "Openvpn (standard)": "Openvpn (padrão)",
-        "Wireguard (alpha)": "Wireguard (alfa)",
         "Statut DNS": "Estado do DNS",
         "Démarré :": "Iniciado:",
         "Normal si vous n\\'avez pas coché la case : Utiliser les DNS": "Normal se não tiver marcado a caixa: Usar DNS",
@@ -2076,8 +2075,7 @@
         "Vider": "Limpar",
         "Vider tous": "Limpar tudo",
         "Supprimer": "Eliminar",
-        "Supprimer tous": "Eliminar tudo",
-        "Rechercher | nom | :not(nom": "Pesquisar | nome | :not(nome"
+        "Supprimer tous": "Eliminar tudo"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Erro 401 não autorizado",
@@ -2723,7 +2721,6 @@
         "Log de mise à jour": "Atualizar registro"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Pausa",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Tem certeza de que deseja esvaziar todos os logs?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Tem certeza de que deseja excluir todos os logs?"
     },

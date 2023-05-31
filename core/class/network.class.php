@@ -87,7 +87,7 @@ class network {
 			}
 			if ($_protocol == 'proto:127.0.0.1:port:comp') {
 				if (jeedom::getHardwareName() == 'docker') {
-					return trim(config::byKey('internalProtocol') . config::byKey('internalProtocol') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+					return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
 				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}

@@ -1741,7 +1741,6 @@
         "Utiliser les DNS": "Utiliser les DNS",
         "Mode": "Mode",
         "Openvpn (standard)": "Openvpn (standard)",
-        "Wireguard (alpha)": "Wireguard (alpha)",
         "Statut DNS": "Statut DNS",
         "Démarré :": "Démarré :",
         "Normal si vous n\\'avez pas coché la case : Utiliser les DNS": "Normal si vous n\\'avez pas coché la case : Utiliser les DNS",
@@ -2076,8 +2075,7 @@
         "Vider": "Vider",
         "Vider tous": "Vider tous",
         "Supprimer": "Supprimer",
-        "Supprimer tous": "Supprimer tous",
-        "Rechercher | nom | :not(nom": "Rechercher | nom | :not(nom"
+        "Supprimer tous": "Supprimer tous"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 Unauthorized",
@@ -2723,7 +2721,6 @@
         "Log de mise à jour": "Log de mise à jour"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Pause",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Êtes-vous sûr de vouloir vider tous les logs ?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Êtes-vous sûr de vouloir supprimer tous les logs ?"
     },

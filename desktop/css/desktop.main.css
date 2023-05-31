@@ -4672,16 +4672,6 @@ div.eqLogic-widget.editingMode .panelLink {
     line-height: 14px;
   }
 
-  #brutlogicon {
-    display: none;
-    position: relative;
-    top: 5px;
-    left: -7px;
-    font-size: 15px;
-  }
-  #brutlogcheck[autoswitch="1"]:checked + #brutlogicon {
-    display: inline-block;
-  }
   #md_scenarioLog {
     height: 100%;
     overflow: hidden;

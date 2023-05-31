@@ -1741,7 +1741,6 @@
         "Utiliser les DNS": "DNS benutzen",
         "Mode": "Mode",
         "Openvpn (standard)": "OpenVPN (Standard)",
-        "Wireguard (alpha)": "Drahtschutz (Alpha)",
         "Statut DNS": "DNS Status",
         "Démarré :": "Gestartet :",
         "Normal si vous n\\'avez pas coché la case : Utiliser les DNS": "Normal, wenn Sie das Kontrollkästchen nicht aktiviert haben: DNS verwenden",
@@ -2076,8 +2075,7 @@
         "Vider": "Leer",
         "Vider tous": "Alles löschen",
         "Supprimer": "Entfernen",
-        "Supprimer tous": "Alles löschen",
-        "Rechercher | nom | :not(nom": "Suche | Name | : nicht (Name"
+        "Supprimer tous": "Alles löschen"
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
@@ -2723,7 +2721,6 @@
         "Log de mise à jour": "Protokoll aktualisieren"
     },
     "desktop\/js\/log.js": {
-        "Pause": "Unterbrechung",
         "Êtes-vous sûr de vouloir vider tous les logs ?": "Möchten Sie wirklich alle Protokolle leeren?",
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "Möchten Sie wirklich alle Protokolle löschen?"
     },
