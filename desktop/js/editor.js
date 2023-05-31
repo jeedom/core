@@ -362,7 +362,7 @@ if (jeephp2js.editorType != '') {
 jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
 jeeP._elfInstance.options.windowCloseConfirm = []
 
-if(document.getElementById('jeedomMenuBar').offsetHeight){
+if(document.getElementById('jeedomMenuBar')){
   document.getElementById('elfinder').style.height = (window.innerHeight - document.getElementById('jeedomMenuBar').offsetHeight) + 'px'
 }else{
   document.getElementById('elfinder').style.height = window.innerHeight + 'px'
