@@ -1,6 +1,7 @@
 "use strict"
 
 var jeedomUtils = {}
+jeedomUtils.initTooltips = function(_el) { } // no Tooltips in mobile but the function is call by jeedom.eqLogic.refreshValue
 jeedomUtils.backgroundIMG = null
 jeedomUtils._elBackground = null
 jeedomUtils.scrolling = false
@@ -367,7 +368,7 @@ var plugins
 var defaultMobilePage = null
 
 jeedomUtils.initApplication = function(_reinit) {
-  jeedomUtils.refreshMessageNumber()
+  jeedom.refreshMessageNumber()
   domUtils.ajax({
     type: 'POST',
     url: 'core/ajax/jeedom.ajax.php',
@@ -677,6 +678,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
   }
   if (init(_plugin) != '') {
     page += '&m=' + _plugin
+    page += '&plugin=' + _plugin // index.php needs plugin variable to load plugin file
   }
 
   if (isset(_dialog) && _dialog) {
@@ -824,15 +826,15 @@ jeedomUtils.appMobile.vibration = function(type = "impactMedium"){
 jeedomUtils.appMobile.notifee = function(title,body, time){
   jeedomUtils.postToApp('notifee',{title:title,body:body,time:time});
 }
-jeedomUtils.appMobile.modal = function() {
-  jeedomUtils.postToApp('modal',{});
+jeedomUtils.appMobile.modal = function(_options) {
+  jeedomUtils.postToApp('modal', _options);
 }
 
-jeedomUtils.MESSAGE_NUMBER = null
-jeedomUtils.refreshMessageNumber = function() {
+jeedom.MESSAGE_NUMBER = null
+jeedom.refreshMessageNumber = function() {
   jeedom.message.number({
     success: function (_number) {
-      jeedomUtils.MESSAGE_NUMBER = _number
+      jeedom.MESSAGE_NUMBER = _number
       $('.span_nbMessage').html(_number)
       if (_number > 0) {
         $('#span_nbMessage').show()
@@ -843,7 +845,7 @@ jeedomUtils.refreshMessageNumber = function() {
   })
 }
 
-jeedomUtils.notify = function(_title, _text) {
+jeedom.notify = function(_title, _text) {
   if(window.ReactNativeWebView != undefined){
     jeedomUtils.appMobile.notifee(_title, _text, 3000);
   }else{
