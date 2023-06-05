@@ -189,9 +189,13 @@ user::isBan();
 									<option value="Asia/Seoul">(GMT+09:00) Seoul</option>
 									<option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
 									<option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
+									<option value="Australia/Broken_Hill">(GMT+09:30) Broken Hill</option>
 									<option value="Australia/Darwin">(GMT+09:30) Darwin</option>
 									<option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
 									<option value="Australia/Hobart">(GMT+10:00) Hobart</option>
+									<option value="Australia/Lindeman">(GMT+10:00) Lindeman</option>
+									<option value="Australia/Melbourne">(GMT+10:00) Melbourne</option>
+									<option value="Australia/Sydney">(GMT+10:00) Sydney</option>
 									<option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
 									<option value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</option>
 									<option value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</option>

@@ -362,11 +362,7 @@ if (jeephp2js.editorType != '') {
 jeeP._elfInstance = $('#elfinder').elfinder(options).elfinder('instance')
 jeeP._elfInstance.options.windowCloseConfirm = []
 
-if(document.getElementById('jeedomMenuBar')){
-  document.getElementById('elfinder').style.height = (window.innerHeight - document.getElementById('jeedomMenuBar').offsetHeight) + 'px'
-}else{
-  document.getElementById('elfinder').style.height = window.innerHeight + 'px'
-}
+document.getElementById('elfinder').style.height = (window.innerHeight - document.getElementById('jeedomMenuBar').offsetHeight) + 'px'
 document.querySelectorAll('.ui-state-default.elfinder-navbar.ui-resizable').forEach(el => { el.style.height = '100%'})
 
 jeeP.killTooltips()
