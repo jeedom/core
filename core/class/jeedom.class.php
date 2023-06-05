@@ -520,6 +520,9 @@ class jeedom {
 	}
 
 	public static function apiModeResult($_mode = 'enable') {
+		if ($_mode == 'localhost' && jeedom::getHardwareName() == 'docker') {
+			$_mode = 'whiteip';
+		}
 		switch ($_mode) {
 			case 'disable':
 				return false;
