@@ -3,8 +3,8 @@ nbproject/
 .project
 Thumbs.db
 .DS_Store
-/.buildpath
-/.vscode
+.buildpath
+.vscode
 ui
 
 test.php
@@ -13,22 +13,29 @@ core/config/common.config.php
 sftp.json
 core2019-light
 core2019-dark
+cache.tar.gz
+DB_backup.sql
+backup/*.tar.gz
+.tmb
+test/
+vendor/
+mobile/custom/
+desktop/custom/
 
-/plugins
+plugins/
 
 data/*
 !data/.htaccess
-!data/php
-!data/3d
-!data/backgrounds
-!data/view
-!data/img
-!data/object
-!data/plan
-!data/custom
-!data/customTemplates
-data/3d/*
-!3d/.htaccess
+!data/php/.htaccess
+!data/3d/.htaccess
+!data/backgrounds/.htaccess
+!data/view/.htaccess
+!data/img/.htaccess
+!data/object/.htaccess
+!data/plan/.htaccess
+!data/custom/.htaccess
+!data/customTemplates/.htaccess
+data/3d/.htaccess
 
 log/*
 !log/.htaccess
@@ -37,3 +44,4 @@ tmp/*
 !tmp/.htaccess
 
 !.htaccess
+.github/
