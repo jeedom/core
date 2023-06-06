@@ -327,7 +327,7 @@ Deposit used to connect Jeedom to Github.
 
 Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Warning : any request for support may be refused if you use a deposit other than this one.
 
-- **Address** : Address du Market.(https://www.Jeedom.com/market).
+- **Address** : Address du Market.(https://market.jeedom.com).
 - **Username** : Your Username on the Market.
 - **Password** : Your Market password.
 - **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom under risk of them crashing into each other).

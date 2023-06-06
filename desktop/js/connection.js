@@ -171,7 +171,7 @@ $('#bt_ignore_market').on('click', function() {
 
 $('#bt_compte_market').on('click', function() {
   window.open(
-    'https://www.jeedom.com/market/index.php?v=d&p=register',
+    'https://market.jeedom.com/index.php?v=d&p=register',
     '_blank'
   )
 })
@@ -225,7 +225,7 @@ var marketdemande = function() {
   $('.veen .wrapper').removeClass('move')
   $('#login').hide()
   $('#market').show()
-  $('.img-responsive').attr('src', 'https://www.jeedom.com/market/core/img/logo-MARKET.svg')
+  $('.img-responsive').attr('src', 'https://market.jeedom.com/core/img/logo-MARKET.svg')
   $('.img-responsive').width('100%')
 }
 
