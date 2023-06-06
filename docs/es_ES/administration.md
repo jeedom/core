@@ -327,7 +327,7 @@ Depósito utilizado para conectar Jeedom a Github.
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
-- **Dirección** : Dirección du Mercado.(https://www.Jeedom.com/market).
+- **Dirección** : Dirección du Mercado.(https://market.jeedom.com).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
 - **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre sí).

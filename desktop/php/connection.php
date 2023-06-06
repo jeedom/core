@@ -72,7 +72,7 @@
 					</div>
 					<?php if ($mbState == 0) { ?>
 						<div class="resetPassword">
-							<a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
+							<a href="https://market.jeedom.com/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
 						</div>
 					<?php } ?>
 					<br />
