@@ -90,6 +90,7 @@ try {
 		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz ' . $pattern . '> /dev/null 2>&1');
 		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	}
+	ob_clean();
 	$path_parts = pathinfo($pathfile);
 	if ($path_parts['extension'] == 'pdf') {
 		header('Content-Type: application/pdf');
