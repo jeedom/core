@@ -1403,7 +1403,7 @@ jeedomUtils.setJeedomMenu = function() {
   })
 
   if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
-    document.getElementById('configName').addEventListener('click', event => {
+    document.getElementById('configName')?.addEventListener('click', event => {
       //center mouse click event to new tab:
       if (isset(event.detail) && event.detail.newtab) {
         var url = 'index.php?v=d&p=administration'
@@ -1434,7 +1434,7 @@ jeedomUtils.setJeedomMenu = function() {
 
     })
 
-    document.getElementById('configName').addEventListener('mouseup', event => {
+    document.getElementById('configName')?.addEventListener('mouseup', event => {
       if (event.which == 2) {
         event.preventDefault()
         event.target.triggerEvent('click', { detail: { newtab: true } })
