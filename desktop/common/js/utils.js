@@ -883,18 +883,10 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.body.addEventListener('click', function(event) {
     //Summary display:
-    if (!event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.parentNode.matches('.objectSummaryParent') || event.target.parentNode.matches('.objectSummaryParent') || event.target.matches('.objectSummaryParent'))) {
+    if (!event.ctrlKey && event.target.closest('.objectSummaryParent') != null) {
       event.stopPropagation()
-      if(event.target.matches('.objectSummaryParent')){
-        var _el = event.target
-      }else if(event.target.parentNode.matches('.objectSummaryParent')){
-        var _el = event.target.parentNode
-      }else{
-        var _el = event.target.parentNode.parentNode
-      }
-
+      var _el = (event.target.matches('.objectSummaryParent')) ? event.target : event.target.closest('.objectSummaryParent')
       if (document.body.getAttribute('data-page') == "overview" && _el.closest('.objectSummaryglobal') == null) return false
-
       var url = 'index.php?v=d&p=dashboard&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
       if (window.location.href.includes('&btover=1') || (document.body.getAttribute('data-page') != "dashboard" && jeeFrontEnd.userProfils.homePage == 'core::overview')) {
         url += '&btover=1'
@@ -903,18 +895,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
     //Summary action:
-    if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.parentNode.matches('.objectSummaryAction') || event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
+    if (event.ctrlKey && event.target.closest('.objectSummaryAction') != null) {
       event.stopPropagation()
       jeedomUtils.closeModal()
       jeedomUtils.closeJeeDialogs()
-      
-	  if(event.target.matches('.objectSummaryAction')){
-        var _el = event.target
-      }else if(event.target.parentNode.matches('.objectSummaryAction')){
-        var _el = event.target.parentNode
-      }else{
-        var _el = event.target.parentNode.parentNode
-      }
+      var _el = (event.target.matches('.objectSummaryAction')) ? event.target : event.target.closest('.objectSummaryAction')
       var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
       url += '&coords=' + event.clientX + '::' + event.clientY
       jeeDialog.dialog({
