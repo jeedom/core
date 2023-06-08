@@ -883,7 +883,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.body.addEventListener('click', function(event) {
     //Summary display:
-    if (!event.ctrlKey && event.target.closest('.objectSummaryParent') != null) {
+    if (!event.ctrlKey && (event.target.matches('.objectSummaryParent') || event.target.closest('.objectSummaryParent') != null)) {
       event.stopPropagation()
       var _el = (event.target.matches('.objectSummaryParent')) ? event.target : event.target.closest('.objectSummaryParent')
       if (document.body.getAttribute('data-page') == "overview" && _el.closest('.objectSummaryglobal') == null) return false
@@ -895,7 +895,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
     //Summary action:
-    if (event.ctrlKey && event.target.closest('.objectSummaryAction') != null) {
+    if (event.ctrlKey && (event.target.matches('.objectSummaryAction') || event.target.closest('.objectSummaryAction') != null)) {
       event.stopPropagation()
       jeedomUtils.closeModal()
       jeedomUtils.closeJeeDialogs()
