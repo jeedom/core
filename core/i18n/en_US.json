@@ -3333,7 +3333,7 @@
         "Logs": "Logs",
         "Mises à jour": "Updates",
         "Panel": "Panel",
-        ", ": ","
+        "(.*?)": "(.*?)"
     },
     "core\/php\/export.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
