@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Configurazione di formule",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
+        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Настройка формул",
         "Configuration de l'historique des commandes": "управления История конфигурации",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Просьба указать дату (Y-м д ч: м: с), перед которым он должен удалить историю \\ «s",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
+        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
