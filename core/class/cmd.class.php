@@ -2401,6 +2401,9 @@ class cmd {
 	}
 
 	public function emptyHistory($_date = '') {
+		if ($_date == '-1') {
+			$_date = '';
+		}
 		return history::emptyHistory($this->getId(), $_date);
 	}
 
