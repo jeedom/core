@@ -83,7 +83,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 			ob_start();
 			require_once $path;
 			if ($_rescue) {
-				echo str_replace(array('{{', '}}'), '', ob_get_clean());
+				echo preg_replace("/{{(.*?)}}/s", '$1', ob_get_clean());
 			} else {
 				echo translate::exec(ob_get_clean(), $_folder . '/' . $_fn);
 			}
