@@ -5,7 +5,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/jeedom/core/graphs/commit-activity)
 [![GitHub contributors](https://img.shields.io/github/contributors/jeedom/core.svg)](https://github.com/jeedom/core/graphs/contributors/)
 [![Website www.jeedom.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://www.jeedom.com/)
-[![Try it now!](https://img.shields.io/badge/PWD-Try%20it%20now-blue?logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/pifou25/jeedom-core/alpha/docker-compose.yml)
+[![Try it now!](https://img.shields.io/badge/PWD-Try%20it%20now-blue?logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/pifou25/jeedom-core/pwd/docker-compose.yml)
 
 # Jeedom - La domotique innovante | *Innovative Home Automation*
 <p align="center">
