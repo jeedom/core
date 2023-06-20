@@ -234,7 +234,7 @@ class network {
 				if ($ip == null) {
 					continue;
 				}
-				if (!netMatch('127.0.*.*', $ip) && $ip != '' && filter_var($ip, FILTER_VALIDATE_IP)) {
+				if (!netMatch('127.0.*.*', $ip) && !netMatch('169.*.*.*', $ip) && $ip != '' && filter_var($ip, FILTER_VALIDATE_IP)) {
 					config::save('internalAddr', $ip);
 					break;
 				}
