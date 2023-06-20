@@ -74,7 +74,7 @@ class timeline {
   public static function byFolder($_folder = 'main', $_start=0, $_offset=0) {
     $_start = intval($_start);
     $_offset = intval($_offset);
-    if ($_offset == 0) self::cleaning();
+    if ($_offset == 0) self::clean();
     if ($_folder == 'main') {
       $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
       FROM timeline';
