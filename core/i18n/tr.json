@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
+        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
@@ -3333,7 +3333,7 @@
         "Logs": "Loglar",
         "Mises à jour": "Güncellemeler",
         "Panel": "Panel",
-        ", ": ","
+        "(.*?)": "(.*?)"
     },
     "core\/php\/export.php": {
         "401 - Accès non autorisé": "401 - Yetkisiz erişim",

@@ -610,7 +610,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
       inputType: 'date',
       pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
       placeholder: 'yyyy-mm-dd hh:mm:ss',
-      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + _target.closest('.li_history').querySelector('.history').textContent + ' ?</span><br>({{Laissez vide pour tout supprimer}})'
+      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + _target.closest('.li_history').querySelector('.history').textContent + ' ?</span><br>({{Mettez -1 pour ton supprimer}})'
       }, function(result) {
       if (result !== null) {
         jeeP.emptyHistory(_target.closest('.li_history').attr('data-cmd_id'), result)

@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
-        "Laissez vide pour tout supprimer": "Laissez vide pour tout supprimer"
+        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
@@ -3333,7 +3333,7 @@
         "Logs": "Logs",
         "Mises à jour": "Pembaruan",
         "Panel": "Panel",
-        ", ": ", "
+        "(.*?)": "(.*?)"
     },
     "core\/php\/export.php": {
         "401 - Accès non autorisé": "401 - Akses tidak sah",

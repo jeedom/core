@@ -89,7 +89,7 @@ $(function() {
     $('div[data-role=header]').hide()
     $('#searchContainer').css('top',0)
     $('#bt_eraseSearchInput').css('top',0)
-    $('#pagecontainer').append('<a href="#bottompanel" id="bt_bottompanel" class="ui-btn ui-btn-inline ui-btn-fab ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" style="position:fixed;bottom:10px;right:10px;"><i class="fas fa-bars" style="position:relative;top:-3px"></i></a>')
+    $('#pagecontainer').append('<a href="#bottompanel" id="bt_bottompanel" class="ui-btn ui-btn-inline ui-btn-fab ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" style="position:fixed;bottom:10px;right:10px;display:none;"><i class="fas fa-bars" style="position:relative;top:-3px"></i></a>')
   }
 
   window.addEventListener("contextmenu", function(e) {

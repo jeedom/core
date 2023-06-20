@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
-        "Laissez vide pour tout supprimer": "Dejar en blanco para borrar todo"
+        "Mettez -1 pour ton supprimer": "Ponga -1 para su eliminación"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Quitar este filtro",
@@ -3333,7 +3333,7 @@
         "Logs": "Registros",
         "Mises à jour": "Actualizaciones",
         "Panel": "Panel",
-        ", ": ","
+        "(.*?)": "(.*?)"
     },
     "core\/php\/export.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -4346,7 +4346,7 @@
     },
     "core\/class\/translate.class.php": {
         " . $_content . ": ". $ _contenido.",
-        "(.*?)": "(. *?)",
+        "(.*?)": "(.*?)",
         "content parts": "partes de contenido",
         " . $text . ": ". $ texto."
     },
