@@ -224,6 +224,7 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
           if (jeeFrontEnd.md_cmdConfigureHistory.vDataTable) {
             jeeFrontEnd.md_cmdConfigureHistory.vDataTable.refresh()
             jeeFrontEnd.md_cmdConfigureHistory.resetChanges()
+            jeeFrontEnd.md_cmdConfigureHistory.init();
           }
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_cmdConfigureHistory', 'dialog'),
