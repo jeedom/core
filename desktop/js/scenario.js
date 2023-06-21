@@ -2195,6 +2195,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         title: '{{Edition}}',
         width: '80%',
         inputType: "textarea",
+        zIndex: 1109,
         value: selfInput.value,
         container: document.getElementById('scenariotab'),
         backdrop: false,
