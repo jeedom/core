@@ -24,6 +24,7 @@ $sysCmdsSudo = array(
   array("cmd" => 'sudo ../../health.sh', "name" => 'health.sh'),
   array("cmd" => 'sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf', "name" => 'Set DNS'),
   array("cmd" => 'sudo cat /var/log/mysql/error.log', "name" => 'MySQL log'),
+  array("cmd" => 'sudo  ../../resources/install_nodejs.sh', "name" => 'Install nodejs'),
   array("cmd" => 'sudo fdtput -t s /media/boot/multiboot/meson64_odroidc2.dtb.linux /i2c@c1108500/pcf8563@51 status "okay"', "name" => 'RTC Jeedom Pro'),
   array("cmd" => 'sudo cp /var/www/html/install/apache_security_unsecure /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now', "name" => ' {{Apache non securisé}}'),
   array("cmd" => 'sudo cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now', "name" => ' {{Apache sécurisé}}'),
