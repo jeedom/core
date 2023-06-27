@@ -97,7 +97,7 @@ if (init('type') != '') {
 				if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
 					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
 				}
-				if ($cmd->getType() == 'info' && init('value')) {
+				if ($cmd->getType() == 'info' && init('value') != '') {
 					$cmd->event(init('value'));
 				}
 				log::add('api', 'debug', __('Exécution de :', __FILE__) . ' ' . $cmd->getHumanName());
