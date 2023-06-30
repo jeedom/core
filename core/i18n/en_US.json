@@ -498,7 +498,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Scénario introuvable": "Scenario not found",
         "Télécharger": "Download",
-        "Copier": "To copy"
+        "Copier": "Copy"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Unauthorized access",
@@ -2030,7 +2030,7 @@
         "Options": "Options",
         "Mode": "Mode",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Replaces the equipment and its commands (scenarios, etc.) or copies only the desired properties",
-        "Copier": "To copy",
+        "Copier": "Copy",
         "Copier la configuration de l'équipement source": "Copy configuration from source equipment",
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copies the properties of the source device (parent object, categories, visibility, dashboard positioning, designs, views, etc.) to the target device",
         "Cacher l'équipement source": "Hide source equipment",
