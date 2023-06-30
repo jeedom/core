@@ -74,6 +74,26 @@ jeedom.view.toHtml = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+jeedom.view.copy = function(_params) {
+  var paramsRequired = ['id', 'name'];
+  var paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/view.ajax.php';
+  paramsAJAX.data = {
+    action: 'copy',
+    id: _params.id,
+    name: _params.name
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
 jeedom.view.handleViewAjax = function(_params) {
   var result = {
     html: '',
