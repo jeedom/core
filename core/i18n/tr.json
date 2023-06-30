@@ -2215,6 +2215,7 @@
         "Configuration": "Ayar",
         "Ajouter une zone": "Bölge ekleyin",
         "Voir le résultat": "Sonuca bakın",
+        "Copier": "Copier",
         "Sauvegarder": "Kaydet",
         "Supprimer": "Sil"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Görünümün ismi ?",
         "Modification enregistrée": "Modifikasyon kaydedildi",
         "Largeur": "Largeur",
         "Hauteur": "Hauteur",
@@ -2845,7 +2847,6 @@
         "Visible": "Visible",
         "Non": "Hayır",
         "Oui": "Evet",
-        "Nom de la vue ?": "Görünümün ismi ?",
         "Configuration de la vue": "Configuration de la vue",
         "Êtes-vous sûr de vouloir supprimer la vue": "Görünümü silmekden eminmisiniz",
         "Equipement": "Equipement",

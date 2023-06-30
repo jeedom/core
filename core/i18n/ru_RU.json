@@ -2215,6 +2215,7 @@
         "Configuration": "Конфигурация",
         "Ajouter une zone": "Добавить зону",
         "Voir le résultat": "Посмотрите результат",
+        "Copier": "Copier",
         "Sauvegarder": "Сохранить",
         "Supprimer": "удаление"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Название вида?",
         "Modification enregistrée": "Изменение зарегистрировано",
         "Largeur": "ширина",
         "Hauteur": "Hauteur",
@@ -2845,7 +2847,6 @@
         "Visible": "Visible",
         "Non": "не",
         "Oui": "да",
-        "Nom de la vue ?": "Название вида?",
         "Configuration de la vue": "Configuration de la vue",
         "Êtes-vous sûr de vouloir supprimer la vue": "Вы уверены, что хотите удалить вид",
         "Equipement": "Equipement",

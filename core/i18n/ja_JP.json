@@ -2215,6 +2215,7 @@
         "Configuration": "コンフィギュレーション",
         "Ajouter une zone": "ゾーンを追加する",
         "Voir le résultat": "結果を見る",
+        "Copier": "Copier",
         "Sauvegarder": "セーブ",
         "Supprimer": "取り除きます"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "ビューの名前？",
         "Modification enregistrée": "記録された変更",
         "Largeur": "幅",
         "Hauteur": "Hauteur",
@@ -2845,7 +2847,6 @@
         "Visible": "Visible",
         "Non": "ではありません",
         "Oui": "はい",
-        "Nom de la vue ?": "ビューの名前？",
         "Configuration de la vue": "構成を表示",
         "Êtes-vous sûr de vouloir supprimer la vue": "ビューを削除してもよろしいですか",
         "Equipement": "Equipement",

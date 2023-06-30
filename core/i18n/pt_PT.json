@@ -2215,6 +2215,7 @@
         "Configuration": "Configuração",
         "Ajouter une zone": "Adicionar Zona",
         "Voir le résultat": "Visualização de resultados",
+        "Copier": "Copiar",
         "Sauvegarder": "Salvar",
         "Supprimer": "Retirar"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Aplicar"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Nome da vista?",
         "Modification enregistrée": "Alterações guardadas",
         "Largeur": "Largura",
         "Hauteur": "Altura",
@@ -2845,7 +2847,6 @@
         "Visible": "Visível",
         "Non": "Não",
         "Oui": "Sim",
-        "Nom de la vue ?": "Nome da vista?",
         "Configuration de la vue": "Configuração da vista",
         "Êtes-vous sûr de vouloir supprimer la vue": "Tem certeza de que deseja excluir esta vista",
         "Equipement": "Equipamento",

@@ -498,7 +498,7 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Scénario introuvable": "Scenario not found",
         "Télécharger": "Download",
-        "Copier": "Copy"
+        "Copier": "To copy"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Unauthorized access",
@@ -2030,7 +2030,7 @@
         "Options": "Options",
         "Mode": "Mode",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Replaces the equipment and its commands (scenarios, etc.) or copies only the desired properties",
-        "Copier": "Copy",
+        "Copier": "To copy",
         "Copier la configuration de l'équipement source": "Copy configuration from source equipment",
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copies the properties of the source device (parent object, categories, visibility, dashboard positioning, designs, views, etc.) to the target device",
         "Cacher l'équipement source": "Hide source equipment",
@@ -2215,6 +2215,7 @@
         "Configuration": "Configuration",
         "Ajouter une zone": "Add a zone",
         "Voir le résultat": "Display the result",
+        "Copier": "To copy",
         "Sauvegarder": "Save",
         "Supprimer": "Remove"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Apply"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Name of the view?",
         "Modification enregistrée": "Recorded change",
         "Largeur": "Width",
         "Hauteur": "Height",
@@ -2845,7 +2847,6 @@
         "Visible": "Visible",
         "Non": "No",
         "Oui": "Yes",
-        "Nom de la vue ?": "Name of the view?",
         "Configuration de la vue": "View configuration",
         "Êtes-vous sûr de vouloir supprimer la vue": "Are you sure you want to delete the view",
         "Equipement": "Equipment",

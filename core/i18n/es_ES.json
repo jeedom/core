@@ -498,7 +498,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Scénario introuvable": "Escenario no encontrado",
         "Télécharger": "Descargar",
-        "Copier": "Copia"
+        "Copier": "Copiar"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Acceso no autorizado",
@@ -2215,6 +2215,7 @@
         "Configuration": "Configuración ",
         "Ajouter une zone": "Añadir una zona",
         "Voir le résultat": "Ver el resultado",
+        "Copier": "Copiar",
         "Sauvegarder": "Guardar",
         "Supprimer": "Borrar"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Solicitar"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Nombre de la vista ?",
         "Modification enregistrée": "Modificación registrada",
         "Largeur": "Ancho",
         "Hauteur": "Altura",
@@ -2845,7 +2847,6 @@
         "Visible": "Visible",
         "Non": "No",
         "Oui": "Si",
-        "Nom de la vue ?": "Nombre de la vista ?",
         "Configuration de la vue": "Ver configuración",
         "Êtes-vous sûr de vouloir supprimer la vue": "¿Está seguro de que desea eliminar la vista?",
         "Equipement": "Equipo",

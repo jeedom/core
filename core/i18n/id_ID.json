@@ -2215,6 +2215,7 @@
         "Configuration": "Konfigurasi",
         "Ajouter une zone": "Tambah Zona",
         "Voir le résultat": "Melihat hasil",
+        "Copier": "Copier",
         "Sauvegarder": "Menyimpan",
         "Supprimer": "Menghapus"
     },
@@ -2789,6 +2790,7 @@
         "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "View nama?",
         "Modification enregistrée": "Perubahan disimpan",
         "Largeur": "Largeur",
         "Hauteur": "Hauteur",
@@ -2845,7 +2847,6 @@
         "Visible": "Visible",
         "Non": "Tidak",
         "Oui": "Ya",
-        "Nom de la vue ?": "View nama?",
         "Configuration de la vue": "Configuration de la vue",
         "Êtes-vous sûr de vouloir supprimer la vue": "Apakah Anda yakin ingin menghapus pandangan",
         "Equipement": "Equipement",
