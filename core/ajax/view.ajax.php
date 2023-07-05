@@ -26,6 +26,21 @@ try {
 
 	ajax::init(array('uploadImage'));
 
+	if (init('action') == 'copy') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$view = view::byId(init('id'));
+		if (!is_object($view)) {
+			throw new Exception(__('Vue non trouvée. Vérifiez l\'iD', __FILE__));
+		}
+		if (!$view->hasRight('w')) {
+			throw new Exception(__('Vous n\'avez pas le droit de modifier cette vue', __FILE__));
+		}
+		ajax::success(utils::o2a($view->copy(init('name'))));
+	}
+
 	if (init('action') == 'remove') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));

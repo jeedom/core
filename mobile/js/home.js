@@ -8,7 +8,7 @@ var $bottomPanelAnalyseActions
 var $bottomPanelOtherActions
 
 function initHome() {
-  jeedomUtils.refreshMessageNumber()
+  jeedom.refreshMessageNumber()
 
   //set other analyse:
   $bottomPanelAnalyseActions = $('#bottompanel_analyseActionList')

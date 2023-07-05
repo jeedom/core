@@ -34,11 +34,11 @@ class message {
 	/*     * ***********************Methode static*************************** */
 	/**
 	 *
-	 * @param type $_type
-	 * @param type $_message
-	 * @param type $_action
-	 * @param type $_logicalId
-	 * @param type $_writeMessage
+	 * @param string $_type
+	 * @param string $_message
+	 * @param string $_action
+	 * @param string $_logicalId
+	 * @param bool $_writeMessage
 	 */
 	public static function add($_type, $_message, $_action = '', $_logicalId = '', $_writeMessage = true, $_channel = null) {
 		if (is_array($_message)) $_message = json_encode($_message, JSON_PRETTY_PRINT);

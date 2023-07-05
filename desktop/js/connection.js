@@ -30,7 +30,7 @@ if (!jeeFrontEnd.connection) {
       document.querySelectorAll('.veen .wrapper').removeClass('move')
       document.getElementById('login').unseen()
       document.getElementById('market').seen()
-      document.querySelector('.img-responsive').setAttribute('src', 'https://www.jeedom.com/market/core/img/logo-MARKET.svg')
+      document.querySelector('.img-responsive').setAttribute('src', 'https://market.jeedom.com/core/img/logo-MARKET.svg')
       document.querySelector('.img-responsive').style.width = '100%'
     },
     goToIndex: function() {
@@ -81,7 +81,7 @@ if (!jeeFrontEnd.connection) {
     changeValidate: function(_event) {
       if (document.getElementById('in_change_password').value != '' && document.getElementById('in_change_password').value == document.getElementById('in_change_passwordToo').value) {
         jeedom.user.get({
-          error: function() {
+          error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
@@ -175,7 +175,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
   if (_target = event.target.closest('#bt_login_validate_market')) {
     var username = document.getElementById('in_login_username_market').value
     var password = document.getElementById('in_login_password_market').value
-    var adress = 'https://jeedom.com/market'
+    var adress = 'https://market.jeedom.com'
     jeedom.config.save({
       configuration: {
         'market::username': username
@@ -225,7 +225,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_compte_market')) {
-    window.open('https://www.jeedom.com/market/index.php?v=d&p=register', '_blank')
+    window.open('https://market.jeedom.com/index.php?v=d&p=register', '_blank')
     return
   }
 })

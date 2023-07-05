@@ -73,7 +73,7 @@ if (!jeeFrontEnd.history) {
 
       if (currentSeries.length == 1) { //only one series in chart:
         var serieId = currentSeries[0].userOptions.id
-        var isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history').getAttribute('data-calcul') === null ? false : true
+        var isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history')?.getAttribute('data-calcul') === null ? false : true
         if (isCalcul) {
           this.__lastId__ = null
           document.getElementById('cb_derive').checked = false
@@ -543,7 +543,6 @@ document.getElementById('div_historyOptions').addEventListener('change', functio
     return
   }
 })
-
 //Sidebar:
 document.getElementById('sidebar').addEventListener('click', function(event) {
   var _target = null
@@ -605,6 +604,26 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
     return
   }
 
+  if (_target = event.target.closest('.li_history .remove')) {
+    jeedomUtils.hideAlert()
+    jeeDialog.prompt({
+      inputType: 'date',
+      pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
+      placeholder: 'yyyy-mm-dd hh:mm:ss',
+      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + _target.closest('.li_history').querySelector('.history').textContent + ' ?</span><br>({{Mettez -1 pour ton supprimer}})'
+      }, function(result) {
+      if (result !== null) {
+        jeeP.emptyHistory(_target.closest('.li_history').attr('data-cmd_id'), result)
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.li_history .export')) {
+    window.open('core/php/export.php?type=cmdHistory&id=' + _target.closest('.li_history').getAttribute('data-cmd_id'), "_blank", null)
+    return
+  }
+
   if (_target = event.target.closest('.li_history .history')) {
     jeedomUtils.hideAlert()
     if (_target.hasClass('remove') || _target.hasClass('export')) return
@@ -629,25 +648,6 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
     return
   }
 
-  if (_target = event.target.closest('.li_history .remove')) {
-    jeedomUtils.hideAlert()
-    jeeDialog.prompt({
-      inputType: 'date',
-      pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}',
-      placeholder: 'yyyy-mm-dd hh:mm:ss',
-      message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + _target.closest('.li_history').querySelector('.history').textContent + ' ?</span><br>({{Laissez vide pour tout supprimer}})'
-      }, function(result) {
-      if (result !== null) {
-        jeeP.emptyHistory(_target.closest('.li_history').attr('data-cmd_id'), result)
-      }
-    })
-    return
-  }
-
-  if (_target = event.target.closest('.li_history .export')) {
-    window.open('core/php/export.php?type=cmdHistory&id=' + _target.closest('.li_history').getAttribute('data-cmd_id'), "_blank", null)
-    return
-  }
 })
 
 document.getElementById('sidebar').addEventListener('keyup', function(event) {

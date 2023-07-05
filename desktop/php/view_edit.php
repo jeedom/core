@@ -32,6 +32,7 @@ if (!isConnect('admin')) {
 					<a class="btn btn-default btn-sm roundedLeft" id="bt_editView"><i class="fas fa-pencil-alt"></i> {{Configuration}}
 					</a><a class="btn btn-default btn-sm" id="bt_addviewZone"><i class="fas fa-plus-circle"></i> {{Ajouter une zone}}
 					</a><a class="btn btn-primary btn-sm" id="bt_viewResult"><i class="fas fa fa-eye"></i> {{Voir le résultat}}
+					</a><a class="btn btn-default btn-sm" id="bt_copyView"><i class="fas fa-copy"></i> {{Copier}}
 					</a><a class="btn btn-success btn-sm" id="bt_saveView"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
 					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeView"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 				</span>

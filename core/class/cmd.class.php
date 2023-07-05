@@ -46,9 +46,11 @@ class cmd {
 	protected $alert;
 	protected $_collectDate = '';
 	protected $_valueDate = '';
+	/** @var eqLogic */
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	protected $_needRefreshAlert;
+	/** @var bool */
 	protected $_changed = false;
 	private static $_templateArray = array();
 	private static $_unite_conversion = array(
@@ -88,6 +90,10 @@ class cmd {
 		return $_inputs;
 	}
 
+	/**
+	 * @param int|string $_id the id of the command
+	 * @return void|cmd void if $_id is not valid else the cmd
+	 */
 	public static function byId($_id) {
 		if ($_id == '') {
 			return;
@@ -101,6 +107,10 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * @param array<string|int> $_ids
+	 * @return void|array<cmd> void if $_ids is not valid else an array of cmd
+	 */
 	public static function byIds($_ids) {
 		if (!is_array($_ids) || count($_ids) == 0) {
 			return;
@@ -114,6 +124,9 @@ class cmd {
 		}
 	}
 
+	/**
+	 * @return array<cmd>
+	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
@@ -1142,12 +1155,64 @@ class cmd {
 		$this->pre_postExecCmd($_values, 'jeedomPostExecCmd');
 	}
 
+	public function isAlreadyInStateAllow() {
+		if ($this->getConfiguration('alreadyInState') == 'deny') {
+			return false;
+		}
+		if ($this->getConfiguration('alreadyInState') == '' && config::byKey('cmd::allowCheckState') == 0) {
+			return false;
+		}
+		if ($this->getType() != 'action') {
+			return false;
+		}
+		$cmdValue = $this->getCmdValue();
+		if (!is_object($cmdValue)) {
+			return false;
+		}
+		if ($cmdValue->getCache('lastAction') != '' && strtotime($cmdValue->getCache('lastAction')) > strtotime($cmdValue->getCache('valueDate'))) {
+			return false;
+		}
+		return true;
+	}
+
+	public function alreadyInState($_options) {
+		if ($this->getSubType() == 'message') {
+			return false;
+		}
+		$cmdValue = $this->getCmdValue();
+		$value =  $cmdValue->execCmd();
+		switch ($this->getSubType()) {
+			case 'other':
+				switch ($cmdValue->getSubtype()) {
+					case 'binary':
+						if (strtolower($this->getName()) == 'on' && $value == 1) {
+							return true;
+						}
+						if (strtolower($this->getName()) == 'off' && $value == 0) {
+							return true;
+						}
+						break;
+					case 'string':
+						if (strtolower($this->getName()) == $value) {
+							return true;
+						}
+						break;
+				}
+				break;
+			case 'slider':
+				if ($_options['slider'] == $value) {
+					return true;
+				}
+		}
+		return false;
+	}
+
 	/**
 	 *
-	 * @param type $_options
-	 * @param type $_sendNodeJsEvent
-	 * @param type $_quote
-	 * @return command result
+	 * @param null|string $_options
+	 * @param bool $_sendNodeJsEvent
+	 * @param bool $_quote
+	 * @return void|string
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
@@ -1187,12 +1252,6 @@ class cmd {
 			if ($this->getSubType() == 'slider' && isset($options['slider']) && $this->getConfiguration('calculValueOffset') != '') {
 				$options['slider'] = jeedom::evaluateExpression(str_replace('#value#', $options['slider'], $this->getConfiguration('calculValueOffset')));
 			}
-			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options));
-			} else {
-				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
-			}
-
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('cmd');
@@ -1202,8 +1261,27 @@ class cmd {
 				$timeline->setName($this->getHumanName(true, true));
 				$timeline->save();
 			}
+			if ($this->isAlreadyInStateAllow() && $this->alreadyInState($options)) {
+				if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
+					log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options) . ' ' . __('(ignorée)', __FILE__));
+				} else {
+					log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('(ignorée)', __FILE__));
+				}
+				return;
+			}
+			if (is_array($options) && ((count($options) > 1 && isset($options['uid'])) || count($options) > 0)) {
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName() . ' ' . __('avec les paramètres', __FILE__) . ' ' . json_encode($options));
+			} else {
+				log::add('event', 'info', $GLOBALS['JEEDOM_SCLOG_TEXT']['execCmd']['txt'] . $this->getHumanName());
+			}
+
+
 			$this->preExecCmd($options);
 			$value = $this->formatValue($this->execute($options), $_quote);
+			$cmdValue = $this->getCmdValue();
+			if (is_object($cmdValue)) {
+				$cmdValue->setCache('lastAction', date('Y-m-d H:i:s'));
+			}
 			$this->postExecCmd($options);
 			$usage = $this->getCache(array('usage::automation', 'usage::ui'));
 			if (isset($_options['user_login'])) {
@@ -1252,6 +1330,9 @@ class cmd {
 						break;
 					case 'select':
 						$value = str_replace('#select#', $options['select'], $value);
+						break;
+					case 'message':
+						$value = str_replace('#message#', $options['message'], $value);
 						break;
 				}
 				$cmd->event($value);
@@ -1418,13 +1499,13 @@ class cmd {
 
 					//ltrim avoid js variable starting with # error
 					if ($_version == 'dashboard') {
-						$replace['#test#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
+						$replace['#test#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd' . "\n";
 						$replace['#test#'] .= 'if (' . ltrim($test['operation'], '#') . ') {' . "\n";
 						$replace['#test#'] .= 'cmdjs.setAttribute("data-state", ' . $i . ')' . "\n";
 						$replace['#test#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#test#'] .= "}\n";
 
-						$replace['#change_theme#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd'. "\n";
+						$replace['#change_theme#'] .= 'var cmdjs = isElement_jQuery(cmd) ? cmd[0] : cmd' . "\n";
 						$replace['#change_theme#'] .= 'if (cmdjs.getAttribute("data-state") == ' . $i . ') {' . "\n";
 						$replace['#change_theme#'] .= 'state = jeedom.widgets.getThemeImg("' . $test['state_light'] . '", "' . $test['state_dark'] . '")' . "\n";
 						$replace['#change_theme#'] .= "}\n";
@@ -1603,7 +1684,7 @@ class cmd {
 				$replace['#state#'] = $replace['#value#'];
 			}
 			if ($this->getSubType() == 'string') {
-				$replace['#value#'] = addslashes($replace['#value#']);
+				$replace['#value#'] = str_replace("\n", '<br/>', addslashes($replace['#value#']));
 			}
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
@@ -2015,7 +2096,7 @@ class cmd {
 			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-				message::add($eqLogic->getEqType_name(), $message, $action, '', true, 'alerting');
+				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting');
 			}
 			$cmds = explode(('&&'), config::byKey('alert::' . $_level . 'Cmd'));
 			if (count($cmds) > 0 && trim(config::byKey('alert::' . $_level . 'Cmd')) != '') {
@@ -2037,7 +2118,7 @@ class cmd {
 			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-			message::add($this->getEqLogic()->getEqType_name(), $message, $action, '', true, 'alertingReturnBack');
+			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack');
 		}
 
 		if ($prevAlert != $maxAlert) {
@@ -2320,6 +2401,9 @@ class cmd {
 	}
 
 	public function emptyHistory($_date = '') {
+		if ($_date == '-1') {
+			$_date = '';
+		}
 		return history::emptyHistory($this->getId(), $_date);
 	}
 
@@ -2451,7 +2535,7 @@ class cmd {
 		return $return;
 	}
 
-	public function migrateCmd($_sourceId, $_targetId) {
+	public static function migrateCmd($_sourceId, $_targetId) {
 		$sourceCmd = cmd::byId($_sourceId);
 		if (!is_object($sourceCmd)) {
 			throw new Exception(__('La commande source n\'existe pas', __FILE__));
@@ -2791,6 +2875,9 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
+	/**
+	 * @param eqLogic $_eqLogic
+	 */
 	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
@@ -2808,7 +2895,7 @@ class cmd {
 
 	/**
 	 *
-	 * @param type $name
+	 * @param string $name
 	 * @return $this
 	 */
 	public function setName($_name) {
@@ -2821,6 +2908,9 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * @param string $_type
+	 */
 	public function setType($_type) {
 		if ($this->type != $_type) {
 			$this->_needRefreshWidget = true;
@@ -2830,6 +2920,9 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * @param string $_subType
+	 */
 	public function setSubType($_subType) {
 		if ($this->subType != $_subType) {
 			$this->_needRefreshWidget = true;
@@ -3014,6 +3107,9 @@ class cmd {
 		return $this->_changed;
 	}
 
+	/**
+	 * @param bool $_changed
+	 */
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;

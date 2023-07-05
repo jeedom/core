@@ -187,8 +187,10 @@ step_7_jeedom_customization_mariadb() {
   
   service_action stop mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
+    service_action status mariadb
     service_action stop mysql > /dev/null 2>&1
     if [ $? -ne 0 ]; then
+      service_action status mysql
       echo "${ROUGE}Cannot stop mariadb - Canceling${NORMAL}"
       exit 1
     fi
@@ -216,8 +218,10 @@ step_7_jeedom_customization_mariadb() {
   
   service_action start mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
+    service_action status mariadb
     service_action start mysql > /dev/null 2>&1
     if [ $? -ne 0 ]; then
+      service_action status mysql
       echo "${ROUGE}Cannot start mariadb - Cancelling${NORMAL}"
       exit 1
     fi

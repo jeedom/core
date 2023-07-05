@@ -26,8 +26,10 @@
 - **Administración** : Capacidad para establecer widgets de comando predeterminados.
 - **Tablero** : posibilidad en la página de configuración del objeto de pedirle a jeedom que reordene el equipo de acuerdo con su uso.
 - **Temática** : Posibilidad de elegir el tema directamente desde la url (agregando &theme=Dark o &theme=Light).
+- **Temática** : Eliminación del tema **Legado Core2019** *(alpha)*.
 - **Relación** : Posibilidad de elegir el tema durante un informe en una página de jeedom.
 - **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
+
 
 ### 4.4 : Autre
 
@@ -35,6 +37,7 @@
 - **Centro** : Lista más detallada de dispositivos USB.
 - **Centro** : Se ha añadido un menú contextual en diferentes lugares al nivel de los checkboxes para seleccionarlos todos, ninguno, o invertir la selección *(ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4))*.
 - **Liberación** : Actualizar Highchart v9.3.2 a v10.3.2 (El módulo *calibre sólido* ya no importa).
+- **Pedidos** :  Se agregó una opción *(alpha)* no ejecutar una acción si el equipo ya está en el estado esperado.
 
 ### 4.4 : Remarques
 

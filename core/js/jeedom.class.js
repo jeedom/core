@@ -347,7 +347,7 @@ jeedom.notify = function(_title, _text, _class_name) {
   if (_title == '' && _text == '') {
     return true
   }
-  if (typeof jeeDialog !== 'undefined') {
+  if (typeof jeeDialog !== 'undefined' && typeof jeeDialog.toast !== 'undefined') {
     let options = {
       title: _title,
       message: _text,

@@ -820,6 +820,7 @@ div.div_viewZone legend.lg_viewZone {
   text-align: center !important;
   margin: 5px !important;
 }
+
 div.eqLogicZone {
   user-select: none;
 }
@@ -876,9 +877,6 @@ div.eqLogicZone {
     max-width: 100%;
     overflow: hidden;
     z-index: 0;
-  }
-  .scenario-widget {
-    max-width: 75%;
   }
   body[data-page="plan"] .eqLogic-widget,
   body[data-page="plan"] .scenario-widget {
@@ -1413,10 +1411,6 @@ div.eqLogicZone {
     margin-right: unset !important;
   }
 
-  #mod_selectIcon .imgContainer {
-    padding-top: 10px;
-  }
-
   #mod_selectIcon #treeFunctions {
     padding: 2px 0 0 30px;
     font-size: 16px;
@@ -1427,8 +1421,11 @@ div.eqLogicZone {
   }
 
   #mod_selectIcon .div_treeFolder {
-    position:absolute;
+    height: calc(100% - 80px);
     width:160px;
+    position:absolute;
+    overflow-y: auto;
+    padding-right: 3px;
   }
 
   #mod_selectIcon .div_imageGallery {
@@ -4674,16 +4671,6 @@ div.eqLogic-widget.editingMode .panelLink {
     line-height: 14px;
   }
 
-  #brutlogicon {
-    display: none;
-    position: relative;
-    top: 5px;
-    left: -7px;
-    font-size: 15px;
-  }
-  #brutlogcheck[autoswitch="1"]:checked + #brutlogicon {
-    display: inline-block;
-  }
   #md_scenarioLog {
     height: 100%;
     overflow: hidden;

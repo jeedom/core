@@ -26,8 +26,10 @@
 - **Administration** : Ability to set default command widgets.
 - **Dashboard** : possibility on the object configuration page to ask jeedom to reorder the equipment according to their use.
 - **Theme** : Possibility to choose the theme directly from the url (by adding &theme=Dark or &theme=Light).
+- **Theme** : Removal of the theme **Core2019 Legacy** *(alpha)*.
 - **Report** : Possibility to choose the theme during a report on a jeedom page.
 - **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
+
 
 ### 4.4 : Autre
 
@@ -35,6 +37,7 @@
 - **Core** : More detailed listing of USB devices.
 - **Core** : A contextual menu has been added in different places at the level of the checkboxes to select them all, none, or invert the selection *(see [Doc dev](https://doc.jeedom.com/en_US/dev/core4.4))*.
 - **Lib** : Update Highchart v9.3.2 to v10.3.2 (The module *solid gauge* no longer imported).
+- **Orders** :  Added an option *(alpha)* to not execute an action if the equipment is already in the expected state.
 
 ### 4.4 : Remarques
 

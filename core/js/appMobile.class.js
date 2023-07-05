@@ -16,7 +16,14 @@
 
 jeedom.appMobile = function () {};
 
-jeedom.appMobile.postToApp = function (_action, _options) {
+jeedom.appMobile.detected = function() {
+  if (window.ReactNativeWebView != undefined) {
+    return true; 
+  }
+  return false;
+}
+
+jeedom.appMobile.postToApp = function (_action, _options = {}) {
   let message = {}
   if (window.ReactNativeWebView != undefined) {
     message.action = _action
@@ -30,7 +37,7 @@ jeedom.appMobile.vibration = function (type = "impactMedium") {
 }
 
 jeedom.appMobile.syncBoxs = function () {
-  jeedom.appMobile.postToApp('syncBoxs', {})
+  jeedom.appMobile.postToApp('syncBoxs')
 }
 
 jeedom.appMobile.notifee = function (title, body, time) {
@@ -59,4 +66,8 @@ jeedom.appMobile.modal = function (_options) {
    * 
  */
   jeedom.appMobile.postToApp('modal', _options);
+}
+
+jeedom.appMobile.modalClose = function () {
+  jeedom.appMobile.postToApp('modal:close');
 }

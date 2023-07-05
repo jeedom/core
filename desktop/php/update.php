@@ -133,6 +133,11 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 					<div class="alert alert-warning">
 						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
+					<?php if (config::byKey('core::branch') == 'beta' || config::byKey('core::branch') == 'alpha') { ?>
+						<div class="alert alert-danger">
+							{{Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : }} <?php echo config::byKey('core::branch'); ?>. {{Cette version ne bénéficie d'aucun support de Jeedom SAS.}}
+						</div>
+					<?php } ?>
 
 					<div class="form-group">
 						<label><i class="fas fa-home"></i> Core</label>
@@ -185,18 +190,18 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 							<div class="col-xs-5">
 								<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
 									<option value="">{{Aucune}}</option>
-										<?php
-										$updates = array();
-										foreach ((update::listCoreUpdate()) as $udpate) {
-											$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
-										}
-										usort($updates, 'version_compare');
-										$updates = array_reverse($updates);
-										$options = '';
-										foreach ($updates as $value) {
-											$options .= '<option value="' . $value . '">' . $value . '</option>';
-										}
-										echo $options;
+									<?php
+									$updates = array();
+									foreach ((update::listCoreUpdate()) as $udpate) {
+										$updates[str_replace(array('.php', '.sql'), '', $udpate)] = str_replace(array('.php', '.sql'), '', $udpate);
+									}
+									usort($updates, 'version_compare');
+									$updates = array_reverse($updates);
+									$options = '';
+									foreach ($updates as $value) {
+										$options .= '<option value="' . $value . '">' . $value . '</option>';
+									}
+									echo $options;
 									?>
 								</select>
 							</div>

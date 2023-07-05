@@ -2,7 +2,8 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-
+$loadJquery = true;
+if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 global $JEEDOM_INTERNAL_CONFIG;
 
 if (init('type', '') == 'custom') {
@@ -29,7 +30,10 @@ sendVarToJS([
 	'root' => init('root', ''),
 ]);
 
-include_file('3rdparty', 'jquery/jquery.min', 'js');
+if (!$loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
+if (!$loadJquery) include_file('3rdparty', 'jquery.utils/jquery.utils', 'js');
+
+//include_file('3rdparty', 'jquery/jquery.min', 'js');
 include_file('3rdparty', 'jquery.ui/jquery-ui.min', 'js');
 
 

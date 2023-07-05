@@ -9,7 +9,7 @@
   <template>
     <div>color : rgb(20,20,20) ({{Couleur d'arrière plan}})</div>
     <div>step : 0.5 ({{Pas du changement de valeur}})</div>
-    <div>time : date ({{Affiche l'info time sous forme de date}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
     window['mySlider#id#'] = domUtils.createWidgetSlider({
@@ -38,7 +38,7 @@
         if ('#time#' == 'duration' || '#time#' == 'date') {
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
-        if (_options.value  != undefined) {
+        if (_options.value != undefined) {
           window['mySlider#id#'].set(_options.value)
         }
       }

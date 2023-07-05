@@ -39,7 +39,7 @@ if (!jeeFrontEnd.pluginTemplate) {
       if (butDisp != null) {
         butDisp.removeClass('hidden') //Not shown on previous core versions
         if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
-          butDisp.addClass('active').dataset.sate = '1'
+          butDisp.addClass('active').dataset.state = '1'
           if (coreSupport) {
             document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
             document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.removeClass('hidden')
@@ -49,14 +49,14 @@ if (!jeeFrontEnd.pluginTemplate) {
         //core event:
         if (coreSupport) {
           butDisp.unRegisterEvent('click').registerEvent('click', function(event) {
-            if (butDisp.dataset.sate == '0') {
-              butDisp.addClass('active').dataset.sate = '1'
+            if (butDisp.dataset.state != '1') {
+              butDisp.addClass('active').dataset.state = '1'
               setCookie('jeedom_displayAsTable', 'true', 2)
               document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
               document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.removeClass('hidden')
               document.querySelector('.eqLogicThumbnailContainer').addClass('containerAsTable')
             } else {
-              butDisp.removeClass('active').dataset.sate = '0'
+              butDisp.removeClass('active').dataset.state = '0'
               setCookie('jeedom_displayAsTable', 'false', 2)
               document.querySelectorAll('.eqLogicDisplayCard')?.removeClass('displayAsTable')
               document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.addClass('hidden')
@@ -778,8 +778,8 @@ document.getElementById('div_pageContainer').addEventListener('dblclick', functi
   var _target = null
   if (event.target.matches('.cmd input, textarea, select, span, a')) {
     event.stopPropagation()
+    return;
   }
-
   //Cmd-->
   if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
     _target.innerHTML = ''

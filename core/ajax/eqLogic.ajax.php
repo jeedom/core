@@ -297,7 +297,7 @@ try {
 		$eqLogicSave = json_decode(init('eqLogic'), true);
 		$eqLogic = eqLogic::byId($eqLogicSave['id']);
 		if (!is_object($eqLogic)) {
-			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__) . ' ' . $eqLogicsSave['id']);
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__) . ' ' . $eqLogicSave['id']);
 		}
 
 		if (!$eqLogic->hasRight('w')) {
@@ -366,7 +366,7 @@ try {
 			throw new Exception(__('Equipement inconnu :', __FILE__) . ' ' . init('id'), 9999);
 		}
 		$result = $eqLogic->getUsedBy();
-		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array(), 'interactDef' => array(), 'cmd' => array());
+		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array(), 'interactDef' => array());
 		foreach ($result['cmd'] as $cmd) {
 			$info = utils::o2a($cmd);
 			$info['humanName'] = $cmd->getHumanName();
@@ -407,13 +407,6 @@ try {
 			$info['link'] = $interact->getLinkToConfiguration();
 			$info['linkId'] = $interact->getId();
 			$return['interactDef'][] = $info;
-		}
-		foreach ($result['cmd'] as $cmd) {
-			$info = utils::o2a($cmd);
-			$info['humanName'] = $cmd->getHumanName();
-			$info['link'] = $cmd->getEqLogic()->getLinkToConfiguration();
-			$info['linkId'] = $cmd->getId();
-			$return['cmd'][] = $info;
 		}
 		ajax::success($return);
 	}

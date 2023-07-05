@@ -189,9 +189,13 @@ user::isBan();
 									<option value="Asia/Seoul">(GMT+09:00) Seoul</option>
 									<option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
 									<option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
+									<option value="Australia/Broken_Hill">(GMT+09:30) Broken Hill</option>
 									<option value="Australia/Darwin">(GMT+09:30) Darwin</option>
 									<option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
 									<option value="Australia/Hobart">(GMT+10:00) Hobart</option>
+									<option value="Australia/Lindeman">(GMT+10:00) Lindeman</option>
+									<option value="Australia/Melbourne">(GMT+10:00) Melbourne</option>
+									<option value="Australia/Sydney">(GMT+10:00) Sydney</option>
 									<option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
 									<option value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</option>
 									<option value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</option>
@@ -409,7 +413,7 @@ user::isBan();
 
 						<div class="form-group">
 							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Désactiver l'interface mobile}}
-								<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la meme que la version desktop}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la même que la version desktop}}"></i></sup>
 							</label>
 							<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="disableMobileUi" />
@@ -422,13 +426,13 @@ user::isBan();
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="140" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1" />
+								<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="90" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1" />
+								<input type="number" min="80" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -459,7 +463,7 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par defaut}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Les tuile prendont toute la largeur par défaut en mobile}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prendront toute la largeur par défaut en mobile}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::mobile::onecolumn" />
@@ -733,7 +737,7 @@ user::isBan();
 									}
 									echo '<legend>{{Gestion DNS}} ' . $value['name'] . '</legend>';
 									if ($configs['dns::token'] == '') {
-										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le}} <a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
+										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le}} <a href="https://market.jeedom.com/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
 										continue;
 									}
 									$div = '<div class="form-group col-xs-12">';
@@ -747,7 +751,6 @@ user::isBan();
 									$div .= '<div class="col-xs-8">';
 									$div .= '<select class="configKey" data-l1key="dns::mode">';
 									$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
-									$div .= '<option value="wireguard">{{Wireguard (alpha)}}</option>';
 									$div .= '</select>';
 									$div .= '</div>';
 									$div .= '</div>';
@@ -1255,7 +1258,7 @@ user::isBan();
 					</fieldset>
 				</form>
 
-				<legend>{{Régorganisation automatique des tuiles}}</legend>
+				<legend>{{Réorganisation automatique des tuiles}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
@@ -1271,7 +1274,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historiques}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids de la consultation des historiques}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_history">
 							</div>
@@ -1283,11 +1286,17 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemet automatique}}
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemets automatiques}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="expression::autoQuote">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
 							</div>
 						</div>
 						<div class="form-group">

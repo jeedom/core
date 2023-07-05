@@ -21,9 +21,9 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = parseInt(jeedom.theme['widget::step::width']) > 110 ? parseInt(jeedom.theme['widget::step::width']) : 110
-jeedomUtils.tileHeightStep = parseInt(jeedom.theme['widget::step::height']) > 100 ? parseInt(jeedom.theme['widget::step::height']) : 100
-jeedomUtils.tileHeightSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 /*Hijack jQuery ready function, still used in plugins
@@ -883,12 +883,10 @@ jeedomUtils.setJeedomGlobalUI = function() {
 
   document.body.addEventListener('click', function(event) {
     //Summary display:
-    if (!event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryParent') || event.target.matches('.objectSummaryParent'))) {
+    if (!event.ctrlKey && (event.target.matches('.objectSummaryParent') || event.target.closest('.objectSummaryParent') != null)) {
       event.stopPropagation()
-      var _el = event.target.matches('.objectSummaryParent') ? event.target : event.target.parentNode
-
+      var _el = (event.target.matches('.objectSummaryParent')) ? event.target : event.target.closest('.objectSummaryParent')
       if (document.body.getAttribute('data-page') == "overview" && _el.closest('.objectSummaryglobal') == null) return false
-
       var url = 'index.php?v=d&p=dashboard&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
       if (window.location.href.includes('&btover=1') || (document.body.getAttribute('data-page') != "dashboard" && jeeFrontEnd.userProfils.homePage == 'core::overview')) {
         url += '&btover=1'
@@ -897,12 +895,11 @@ jeedomUtils.setJeedomGlobalUI = function() {
       return
     }
     //Summary action:
-    if (event.ctrlKey && event.target.parentNode != null && (event.target.parentNode.matches('.objectSummaryAction') || event.target.matches('.objectSummaryAction'))) {
+    if (event.ctrlKey && (event.target.matches('.objectSummaryAction') || event.target.closest('.objectSummaryAction') != null)) {
       event.stopPropagation()
       jeedomUtils.closeModal()
       jeedomUtils.closeJeeDialogs()
-
-      var _el = event.target.matches('.objectSummaryAction') ? event.target : event.target.parentNode
+      var _el = (event.target.matches('.objectSummaryAction')) ? event.target : event.target.closest('.objectSummaryAction')
       var url = 'index.php?v=d&modal=summary.action&summary=' + _el.dataset.summary + '&object_id=' + _el.dataset.object_id
       url += '&coords=' + event.clientX + '::' + event.clientY
       jeeDialog.dialog({
@@ -912,7 +909,6 @@ jeedomUtils.setJeedomGlobalUI = function() {
       })
       return
     }
-
     //close all modales on outside click - deprecated 4.4
     if (event.target.matches('.ui-widget-overlay')) {
       event.stopPropagation()
@@ -1407,7 +1403,7 @@ jeedomUtils.setJeedomMenu = function() {
   })
 
   if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
-    document.getElementById('configName').addEventListener('click', event => {
+    document.getElementById('configName')?.addEventListener('click', event => {
       //center mouse click event to new tab:
       if (isset(event.detail) && event.detail.newtab) {
         var url = 'index.php?v=d&p=administration'
@@ -1438,7 +1434,7 @@ jeedomUtils.setJeedomMenu = function() {
 
     })
 
-    document.getElementById('configName').addEventListener('mouseup', event => {
+    document.getElementById('configName')?.addEventListener('mouseup', event => {
       if (event.which == 2) {
         event.preventDefault()
         event.target.triggerEvent('click', { detail: { newtab: true } })
@@ -1460,7 +1456,7 @@ jeedomUtils.closeJeedomMenu = function() {
 }
 
 jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
-  var margin = jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin'] * 2 + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
+  var margin = '0px ' + jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
 
   //Get full width, step columns, to fill right space:
   if (document.getElementsByClassName('posEqWidthRef').length > 0) {
@@ -1468,10 +1464,10 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   } else {
     var containerWidth = window.innerWidth - 22
   }
-  var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
+  var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep)
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
-  var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-  var widthSteps = Array.apply(null, { length: 10 }).map(function(value, index) { return (index + 1) * widthStep })
+  var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols)
+  var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
@@ -1485,26 +1481,28 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
     tile.dataset.confWidth = tile.offsetWidth
     var height = jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps)
     Object.assign(tile.style, {
-      width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
-      height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+      width: (width - parseInt(jeedom.theme['widget::margin'])) + 'px',
+      height: (height - parseInt(jeedom.theme['widget::margin'])) + 'px',
       margin: margin
     })
     tile.classList.add('jeedomAlreadyPosition')
   } else {
-    var width, height, idx, element
+    var width, height, idx
     var elements = document.querySelectorAll('div.eqLogic-widget, div.scenario-widget')
 
     for (idx = 0; idx < elements.length; idx++) {
       tile = elements[idx]
+     
       if (tile.dataset.confWidth === undefined) {
         tile.dataset.confWidth = tile.offsetWidth
         tile.dataset.stepHeight = jeedomUtils.tileHeightSteps.indexOf(jeedomUtils.getClosestInArray(tile.offsetHeight, jeedomUtils.tileHeightSteps))
       }
       width = jeedomUtils.getClosestInArray(tile.dataset.confWidth, widthSteps)
       height = jeedomUtils.tileHeightSteps[tile.dataset.stepHeight]
+      
       Object.assign(tile.style, {
-        width: (width + (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']))) + 'px',
-        height: (height + (2 * jeedomUtils.tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']))) + 'px',
+        width: (width - parseInt(jeedom.theme['widget::margin'])) + 'px',
+        height: (height - parseInt(jeedom.theme['widget::margin'])) + 'px',
         margin: margin
       })
       tile.classList.add('jeedomAlreadyPosition')
@@ -1513,7 +1511,8 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
 }
 jeedomUtils.getClosestInArray = function(_num, _refAr) {
   return _refAr.reduce(function(prev, curr) {
-    return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev)
+    //return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev) // old
+    return (Math.abs(_num) > Math.abs(prev) ? curr : prev) // new
   })
 }
 
@@ -1599,6 +1598,10 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
         className: 'success',
         callback: {
           click: function(event) {
+            if(document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel') === null){
+              jeeDialog.get('#mod_selectIcon').close()
+              return;
+            }
             var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
             if (icon == undefined) {
               icon = ''

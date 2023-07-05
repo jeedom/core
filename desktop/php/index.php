@@ -518,8 +518,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li class="divider"></li>
-									<?php if (isConnect('admin')) { ?>
-										<?php $mbState = config::byKey('mbState');
+									<?php $mbState = config::byKey('mbState'); ?>
+									<?php if (isConnect('admin')) {
 										if ($mbState == 0) { ?>
 											<li>
 												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
@@ -589,7 +589,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 			</header>
 		<?php } ?>
 		<?php if (init('rescue', 0) == 1) { ?>
-			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
+			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">

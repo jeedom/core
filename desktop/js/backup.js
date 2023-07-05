@@ -64,6 +64,12 @@ if (!jeeFrontEnd.backup) {
 
     },
     getJeedomLog: function(_autoUpdate, _log) {
+      if (document.body.getAttribute('data-page') != 'backup') {
+        setTimeout(function() {
+          jeeFrontEnd.backup.getJeedomLog(_autoUpdate, _log)
+        }, 1000)
+        return
+      }
       domUtils.ajax({
         type: 'POST',
         url: 'core/ajax/log.ajax.php',

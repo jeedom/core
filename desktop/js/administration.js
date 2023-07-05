@@ -1374,11 +1374,9 @@ document.getElementById('apitab').addEventListener('click', function(event) {
     return
   }
   if (_target = event.target.closest('.bt_copyPass')) {
-    navigator.clipboard.writeText(_target.closest('.input-group').querySelector('.span_apikey').jeeValue()).then(function() {
-      /* clipboard successfully set */
-    }, function() {
-      /* clipboard write failed */
-    });
+    _target.closest('.input-group').querySelector('.span_apikey').select();
+    document.execCommand('copy');
+    window.getSelection()?.removeAllRanges();
   }
 })
 

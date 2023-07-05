@@ -167,6 +167,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			)
 		),
 		'generic_type' => array(
+			'ONLINE' => array(
+				'name' => __('Connecté', __FILE__), 'familyid' => 'Other', 'family' => __('Autre', __FILE__),
+				'type' => 'Info', 'subtype' => array('binary')
+			),
 			'LIGHT_TOGGLE' => array(
 				'name' => __('Lumière Toggle', __FILE__), 'familyid' => 'Light', 'family' => __('Lumière', __FILE__),
 				'type' => 'Action', 'subtype' => array('other')
@@ -384,9 +388,9 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'type' => 'Info', 'subtype' => array('slider')
 			),
 			'HUMIDITY_SET_SETPOINT' => array(
- 				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
- 				'type' => 'Action', 'subtype' => array('slider')
- 			),
+				'name' => __('Humidité consigne', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
+				'type' => 'Action', 'subtype' => array('slider')
+			),
 			'CAMERA_UP' => array(
 				'name' => __('Mouvement caméra vers le haut', __FILE__), 'familyid' => 'Camera', 'family' => __('Caméra', __FILE__),
 				'type' => 'Action', 'subtype' => array('other')

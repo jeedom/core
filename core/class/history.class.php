@@ -377,7 +377,7 @@ class history {
 		$sql .= ')a ';
 		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
-				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`))';
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`,7))';
 			} else if ($goupingType[1] == 'hour') {
 				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			} else if ($goupingType[1] == 'month') {

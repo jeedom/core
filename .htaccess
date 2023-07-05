@@ -10,6 +10,10 @@ Options -Indexes -ExecCGI -FollowSymLinks
     ServerSignature Off
 </IfModule>
 
+<FilesMatch "apple-app-site-association">
+    ForceType application/json
+</FilesMatch>
+
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
 mod_gzip_dechunk Yes
@@ -54,8 +58,6 @@ AddEncoding gzip svgz
 DirectoryIndex index.php
 </IfModule>
 
-
-
 <IfModule mod_alias.c>
     # Right on folder
     RedirectMatch 403 (?i)^.*\/3rdparty\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.js|\.js.map|\.woff|\.woff2|\.ttf|\.svg).)*$
@@ -99,7 +101,7 @@ Order Allow,Deny
 
 # Allow all :
 
-<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac|mp4|pdf|txt)$">
+<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac|mp4|pdf|txt)$|(apple\-app\-site\-association)$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>

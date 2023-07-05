@@ -1707,14 +1707,17 @@
             }
 
             if (this.labels.length && this.config.labels.info.length) {
-                // CUSTOM LABELS
-                var string = this.config.labels.info
-                    .replace("{start}", f)
+               if (items < 2) {
+                  var string = '';
+                }
+                else {   // CUSTOM LABELS
+                  var string = this.config.labels.info
+                    .replace("{start}", f+1)
                     .replace("{end}", t)
                     .replace("{page}", this.currentPage)
                     .replace("{pages}", this.totalPages)
                     .replace("{rows}", items);
-
+                }
                 each([].slice.call(this.labels), function(label) {
                     label.innerHTML = items ? string : "";
                 });

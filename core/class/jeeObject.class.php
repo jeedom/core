@@ -667,12 +667,12 @@ class jeeObject {
 				'usage' => config::byKey('autoreorder::weight_automation_action') * $usage['automation'] + config::byKey('autoreorder::weight_human_actio') * $usage['ui'] + config::byKey('autoreorder::weight_history') * $usage['history'],
 			);
 		}
-		usort($eqLogics, create_function('$a, $b', '
-        if ($a["usage"] == $b["usage"]){
-            return 0;
-        }
-        return ($a["usage"] >  $b["usage"]) ? -1 : 1;
-    '));
+		usort($eqLogics, function ($a, $b) {
+			if ($a["usage"] == $b["usage"]) {
+				return 0;
+			}
+			return ($a["usage"] >  $b["usage"]) ? -1 : 1;
+		});
 		$order = 0;
 		foreach ($eqLogics as $eqLogic) {
 			$eqLogic['eqLogic']->setOrder($order);

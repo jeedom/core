@@ -33,8 +33,8 @@ class com_shell {
 	
 	/**
 	* @access public
-	* @param type $_cmd
-	* @param type $_background
+	* @param mixed $_cmd
+	* @param bool $_background
 	*/
 	public function __construct($_cmd = null, $_background = false) {
 		$this->setBackground($_background);

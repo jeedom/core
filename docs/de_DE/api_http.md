@@ -14,6 +14,11 @@ Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
 >
 > Für die gesamte Dokumentation gilt \#API\_KEY\# entspricht Ihrem API-Schlüssel, der für Ihre Installation spezifisch ist. Um es zu finden, gehen Sie zum Menü "Allgemein" → "Konfiguration" → Registerkarte "Allgemein"".
 
+> **Notiz**
+>
+> Bei POST-Anfragen kann jeder Abfrageparameter im Hauptteil der Anfrage im Format „form-data“ oder „x-www-form-urlencoded“ gesendet werden.
+> Abfrageparameter und Hauptinhalt können zusammen verwendet werden. Beachten Sie jedoch, dass Abfrageparameter Vorrang vor Hauptinhalt haben.
+
 ## Szenario
 
 Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = Szenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Szenario & ID=#ID#&action=#ACTION#)
@@ -21,6 +26,10 @@ Vohier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 - **Ich würde** : entspricht Ihrer Szenario-ID. Die ID finden Sie auf der entsprechenden Szenarioseite unter "Extras" → "Szenarien" nach Auswahl des Szenarios neben dem Namen der Registerkarte "Allgemein"". Ein anderer Weg, um es zu finden : Klicken Sie unter "Extras" → "Szenarien" auf "Übersicht"".
 - **Lager** : entspricht der Aktion, die Sie anwenden möchten. Verfügbare Befehle sind : "start "," stop "," deaktivieren "und" aktivieren "um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
 - **Stichworte** \ [Optional \] : Wenn die Aktion "Start" ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht = ).
+
+> **Notiz**
+>
+> Versuchen Sie nicht, „php“ zu verwenden://input‘, um Daten an Ihr Szenario zu übergeben, dafür sind Tags vorhanden.
 
 ##  Info / Aktionsbefehl
 

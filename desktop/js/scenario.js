@@ -99,6 +99,7 @@ if (!jeeFrontEnd.scenario) {
           })
         },
         minLength: 1,
+        forceSingle: true
       })
 
       document.querySelector('sub.itemsNumber').innerHTML = '(' + document.querySelectorAll('.scenarioDisplayCard').length + ')'
@@ -1218,7 +1219,7 @@ if (!jeeFrontEnd.scenario) {
       if (subType == 'numeric') {
         message += '<div class="col-xs-3">'
         message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égal}}</option>'
+        message += '    <option value="===">{{égal}}</option>'
         message += '    <option value=">">{{supérieur}}</option>'
         message += '    <option value="<">{{inférieur}}</option>'
         message += '    <option value="!=">{{différent}}</option>'
@@ -1266,10 +1267,13 @@ if (!jeeFrontEnd.scenario) {
       message += '<div class="col-xs-3">'
       message += '  <select class="conditionAttr form-control" data-l1key="next">'
       message += '    <option value="">{{rien}}</option>'
-      message += '    <option value="&&">&& (AND)</option>'
-      message += '    <option value="||">|| (OR)</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="ET">{{et}}</option>'
-      if (jeeFrontEnd.language == "fr_FR") message += '    <option value="OU">{{ou}}</option>'
+      if (jeeFrontEnd.language == "fr_FR"){
+        message += '    <option value="&&">&& {{et}}</option>'
+        message += '    <option value="||">|| {{ou}}</option>'
+      }else{
+        message += '    <option value="&&">&& (AND)</option>'
+        message += '    <option value="||">|| (OR)</option>'
+      }
       message += '  </select>'
       message += '</div>'
       message += '</div>'
@@ -2191,6 +2195,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         title: '{{Edition}}',
         width: '80%',
         inputType: "textarea",
+        zIndex: 1109,
         value: selfInput.value,
         container: document.getElementById('scenariotab'),
         backdrop: false,

@@ -138,9 +138,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                       <?php
                       if ($value !== '') {
                       ?>
-                        <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
+                        <span class="label label-primary" style="max-width: 100%;display: inline-table !important;line-height: initial !important;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title="{{Date de collecte}} : ' .  $cmd->getCollectDate() . '">' . $value . ' ' . $cmd->getUnite() . ' {{le}} ' . $cmd->getValueDate() . '<span>'; ?></span>
                       <?php } else { ?>
-                        <span class="label label-primary" style="max-width: 100%;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '">{{Inconnu}}<span>'; ?></span>
+                        <span class="label label-primary" style="max-width: 100%;display: inline-table !important;line-height: initial !important;"><?php echo '<span class="cmdConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '">{{Inconnu}}<span>'; ?></span>
                       <?php } ?>
                     </div>
                   </div>
@@ -272,7 +272,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             $usedBy = $cmd->getUsedBy();
             ?>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Equipement(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['eqLogic'] as $usedByEqLogic) {
@@ -286,7 +286,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commandes}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Commande(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['cmd'] as $usedByCmd) {
@@ -296,7 +296,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Scénario(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['scenario'] as $usedByScenario) {
@@ -310,7 +310,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumés}}</label>
+              <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Résumé(s)}}</label>
               <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                 <?php
                 foreach ($usedBy['object'] as $usedByObject) {
@@ -322,7 +322,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
             <?php foreach ($usedBy['plugin'] as $key => $values) { ?>
               <div class="form-group">
-                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin}} <?php echo $key; ?></label>
+                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin(s)}} <?php echo $key; ?></label>
                 <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                   <?php
                   foreach ($values as $value) {
@@ -399,6 +399,19 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
             </fieldset>
+          </form>
+          <form class="form-horizontal">
+            <legend><i class="fas fa-exclamation-triangle"></i> {{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</legend>
+            <div class="form-group">
+              <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
+              <div class="col-sm-6">
+                <select class="cmdAttr form-control" data-l1key="configuration" data-l2key="alreadyInState">
+                  <option value="">{{Défaut}}</option>
+                  <option value="allow">{{Oui}}</option>
+                  <option value="deny">{{Non}}</option>
+                </select>
+              </div>
+            </div>
           </form>
         <?php }
         ?>
@@ -712,7 +725,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               <?php if ($cmd->widgetPossibility('custom::displayIconAndName')) {
               ?>
                 <tr>
-                  <td>{{Afficher le nom ET l'icône}}</td>
+                  <td>{{Afficher le nom et l'icône}}</td>
                   <?php
                   $display = '';
                   foreach ($configEqDisplayType as $key => $value) {
@@ -814,6 +827,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (jeephp2js.md_cmdConfigure_cmdInfo.type == 'info') {
           document.getElementById('bt_cmdConfigureTest').remove()
           document.getElementById('bt_cmdConfigureGraph').remove()
+          document.getElementById('bt_cmdConfigureRawObject').classList.add("roundedLeft")
         }
         this.setModal()
 
@@ -856,7 +870,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         //Set cmd values badges
         document.querySelectorAll('#cmd_information .cmdConfigure_cmdValue').forEach(_cmd => {
           jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
-            let cmd = document.querySelector('.cmdConfigure_cmdValue[data-cmd_id=' + _options.cmd_id + ']')
+            let cmd = document.querySelector('.cmdConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
+            if (cmd === null) {
+              return;
+            }
             cmd.setAttribute('title', '{{Date de collecte}} : ' + _options.collectDate)
             cmd.empty().innerHTML = _options.display_value + ' ' + _options.unit + ' {{le}} ' + _options.valueDate
             jeedomUtils.initTooltips()
@@ -1161,6 +1178,44 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       }, 100)
     })
 
+    document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'info',
+            subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
+          }
+        }, function(result) {
+          var target_id = result.cmd.id
+          var name = result.human
+          jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
+            if (result) {
+              jeedom.history.copyHistoryToCmd({
+                source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
+                target_id: target_id,
+                error: function(error) {
+                  jeedomUtils.showAlert({
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                    message: error.message,
+                    level: 'danger'
+                  })
+                },
+                success: function(data) {
+                  jeedomUtils.showAlert({
+                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
+                    message: '{{Historique copié avec succès}}',
+                    level: 'success'
+                  })
+                }
+              })
+            }
+          })
+        })
+        return
+      }
+    });
+
     /*Events delegations
      */
     //cmd information tab
@@ -1220,41 +1275,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               }
             })
           }
-        })
-        return
-      }
-
-      if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
-        jeedom.cmd.getSelectModal({
-          cmd: {
-            type: 'info',
-            subType: jeephp2js.md_cmdConfigure_cmdInfo.subType
-          }
-        }, function(result) {
-          var target_id = result.cmd.id
-          var name = result.human
-          jeeDialog.confirm('{{Êtes-vous sûr de vouloir copier l\'historique de}} <strong>' + jeephp2js.md_cmdConfigure_cmdInfo.name + '</strong> {{vers}} <strong>' + name + '</strong> ? {{Il est conseillé de vider l\'historique de la commande}} : <strong>' + name + '</strong> {{avant la copie}}', function(result) {
-            if (result) {
-              jeedom.history.copyHistoryToCmd({
-                source_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-                target_id: target_id,
-                error: function(error) {
-                  jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                    message: error.message,
-                    level: 'danger'
-                  })
-                },
-                success: function(data) {
-                  jeedomUtils.showAlert({
-                    attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                    message: '{{Historique copié avec succès}}',
-                    level: 'success'
-                  })
-                }
-              })
-            }
-          })
         })
         return
       }

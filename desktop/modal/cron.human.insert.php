@@ -69,7 +69,7 @@ if (!isConnect()) {
           var strdate = (date.getDate() < 10 ? '0' : '') + date.getDate()
           var month = ((date.getMonth() + 1) < 10 ? '0' : '') + (date.getMonth() + 1)
           var cron = minute + ' ' + hour + ' ' + strdate + ' ' + month + ' ' + date.getDay() + ' ' + date.getFullYear()
-          document.getElementById('mod_cron_span_cronResult').value = cron
+          document.getElementById('mod_cron_span_cronResult').textContent = cron
         }
       })
     } else {

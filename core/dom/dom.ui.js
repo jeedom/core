@@ -1364,12 +1364,14 @@ var jeeDialog = (function()
             })
           }
           dialogContent.appendChild(content)
+          break
         case 'textarea':
           var content = document.createElement('textarea')
           content.setAttribute('data-l1key', 'result')
           content.addClass('promptAttr')
           if (_options.value) content.value = _options.value
           dialogContent.appendChild(content)
+          break
       }
     }
 
@@ -2226,7 +2228,8 @@ var jeeResize = function(_selector, _options) {
     handles: ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left'],
     start: false,
     resize: false,
-    stop: false
+    stop: false,
+    allowHeightOversize: false
   }
   _options = domUtils.extend(defaultOptions, _options)
 
@@ -2330,7 +2333,7 @@ var jeeResize = function(_selector, _options) {
     if (currentRszr.resizer.includes('bottom')) {
       let maxHeight = currentRszr.containmentRect.height - element.offsetTop
       let height = clientY - initialTop
-      if (height <= maxHeight) {
+      if (_options.allowHeightOversize || height <= maxHeight) {
         element.style.height = height + 'px'
       }
     }

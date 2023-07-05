@@ -428,6 +428,9 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   var cmd = null
   for (var i in _params) {
+    if(_params[i].cmd_id == ''){
+      continue;
+    }
     //update tile graph info:
     if (document.querySelector('.eqlogicbackgraph[data-cmdid="' + _params[i].cmd_id + '"]') != null) {
       jeedom.eqLogic.drawGraphInfo(_params[i].cmd_id)
@@ -447,27 +450,30 @@ jeedom.cmd.refreshValue = function(_params) {
   }
 }
 
-jeedom.cmd.addUpdateFunction = function(cmd_id, _function) {
+jeedom.cmd.addUpdateFunction = function(_cmd_id, _function) {
+  if(_cmd_id == ''){
+    return;
+  }
   if (!isset(jeedom.cmd.update)) {
     jeedom.cmd.update = []
   }
-  if (!isset(jeedom.cmd.update[cmd_id])) {
-    jeedom.cmd.update[cmd_id] = [_function]
+  if (!isset(jeedom.cmd.update[_cmd_id])) {
+    jeedom.cmd.update[_cmd_id] = [_function]
     return
   }
-  if (typeof jeedom.cmd.update[cmd_id] == 'function') {
-    let prevFunction = jeedom.cmd.update[cmd_id]
+  if (typeof jeedom.cmd.update[_cmd_id] == 'function') {
+    let prevFunction = jeedom.cmd.update[_cmd_id]
     if (prevFunction.toString() == _function.toString()) {
       return
     }
-    jeedom.cmd.update[cmd_id] = [prevFunction, _function]
+    jeedom.cmd.update[_cmd_id] = [prevFunction, _function]
   }
-  for (var i in jeedom.cmd.update[cmd_id]) {
-    if (jeedom.cmd.update[cmd_id][i].toString() == _function.toString()) {
+  for (var i in jeedom.cmd.update[_cmd_id]) {
+    if (jeedom.cmd.update[_cmd_id][i].toString() == _function.toString()) {
       return
     }
   }
-  jeedom.cmd.update[cmd_id].push(_function)
+  jeedom.cmd.update[_cmd_id].push(_function)
 }
 
 jeedom.cmd.resetUpdateFunction = function() {
@@ -786,6 +792,9 @@ jeedom.cmd.historyInfluxAll = function(_params) {
 }
 
 jeedom.cmd.changeType = function(_cmd, _subType) {
+  if(_cmd.length == 0){
+    return; 
+  }
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }
@@ -836,6 +845,9 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
 }
 
 jeedom.cmd.changeSubType = function(_cmd) {
+  if(_cmd.length == 0){
+    return; 
+  }
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
   }

@@ -24,6 +24,25 @@ if (!jeeFrontEnd.view_edit) {
         this.printView(getUrlVars('view_id'))
       }
     },
+    copyView: function(_viewResult) {
+      jeeDialog.prompt("{{Nom de la vue ?}}", function(result) {
+        if (result !== null) {
+          jeedom.view.copy({
+            id: document.querySelector(".li_view.active").getAttribute('data-view_id'),
+            name: result,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              window.location = 'index.php?v=d&p=view_edit&view_id=' + data.id
+            }
+          })
+        }
+      })
+    },
     saveView: function(_viewResult) {
       jeedomUtils.hideAlert()
       var view = document.getElementById('div_view').getJeeValues('.viewAttr')[0]
@@ -82,7 +101,7 @@ if (!jeeFrontEnd.view_edit) {
         _viewZone.configuration = {};
       }
       if (init(_viewZone.emplacement) == '') {
-        var id = document.querySelectorAll('div_viewZones .viewZone').length
+        var id = document.querySelectorAll('#div_viewZones .viewZone').length
         var div = '<div class="viewZone" id="div_viewZone' + id + '">'
         div += '<legend><span class="viewZoneAttr" data-l1key="name"></span><span class="small viewtype"></span>'
         div += '<div class="input-group pull-right" style="display:inline-flex">'
@@ -182,7 +201,7 @@ if (!jeeFrontEnd.view_edit) {
         }
         div += '</div>'
 
-        document.getElementById('div_viewZones').insertAdjacentHTML('beforeend', div)
+        document.getElementById('div_viewZones').insertAdjacentHTML('beforeend', div);
         document.querySelectorAll('#div_viewZones .viewZone').last().setJeeValues(_viewZone, '.viewZoneAttr')
 
         let lastView = document.getElementById('div_viewZones').querySelectorAll('.viewZone').last().querySelector('table.div_viewData')
@@ -387,6 +406,8 @@ Sortable.create(document.getElementById('div_viewZones'), {
   delay: 100,
   delayOnTouchOnly: true,
   direction: 'vertical',
+  filter: "input",
+  preventOnFilter: false,
   removeCloneOnHide: true,
   onStart: function (event) {
     console.log('div_viewZones onStart', event, event.oldIndex)
@@ -445,6 +466,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     })
     return
   }
+
+  if (_target = event.target.closest('#bt_copyView')) {
+    jeeP.copyView()
+    return
+  }
+
 
   if (_target = event.target.closest('#bt_saveView')) {
     jeeP.saveView()

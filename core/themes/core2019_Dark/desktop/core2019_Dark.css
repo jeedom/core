@@ -36,6 +36,12 @@ ul[role="tablist"] li:not(.active) a {
   background-color: var(--el-defaultColor) !important;
 }
 
+/* ___________________________________________________________VIEW */
+
+div.div_viewZone {
+  background-color: rgba(0, 0, 0, 0.4)
+}
+
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
 .eqLogic-widget {
