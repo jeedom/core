@@ -95,7 +95,7 @@ sendVarToJS([
 
 <div id="md_iconSelector" data-modalType="md_iconSelector">
 <?php if (init('showimg') == 1) { ?>
-  <ul class="nav nav-tabs" role="tablist">
+  <ul class="nav nav-tabs" role="tablist" style="padding-top:60px;">
     <li role="presentation" class="active">
       <a href="#tabicon" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icônes}}</a>
     </li>
@@ -105,19 +105,19 @@ sendVarToJS([
   </ul>
 <?php } ?>
   <div class="tab-content" style="overflow-y:scroll;max-height: 100%">
-      <div id="tabicon" role="tabpanel" class="tab-pane active" <?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
+      <div id="tabicon" role="tabpanel" class="tab-pane active"<?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
         <div class="imgContainer"<?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
           <div id="treeFolder-icon" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
-      <div id="tabobjectbg" role="tabpanel" class="tab-pane active" <?php if (!$objectId) echo ' style="display:none;"' ?>>
-        <div class="imgContainer">
+      <div id="tabobjectbg" role="tabpanel" class="tab-pane active"<?php if (!$objectId) echo ' style="display:none;"' ?>>
+        <div class="imgContainer"<?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
           <div id="treeFolder-bg" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
-      <div id="tabimg" role="tabpanel" class="tab-pane" <?php if (init('showimg') != 1) echo ' style="display:none;"' ?>>
+      <div id="tabimg" role="tabpanel" class="tab-pane"<?php if (init('showimg') != 1) echo ' style="display:none;"' ?>>
         <div id="treeFunctions">
             <span class="bt_upload"><i class="fas fa-file-upload" title="{{Ajouter}}"></i></span>
             <span class="bt_new"><i class="fas fa-folder-plus" title="{{Nouveau}}"></i></span>
