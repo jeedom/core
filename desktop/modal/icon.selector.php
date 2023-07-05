@@ -33,7 +33,7 @@ $gal_Struct = [];
 $objectId = init('object_id');
 if (!$objectId) {
   //Build $icon_Struct for js tree:
-  $scanPaths = array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
+  $scanPaths = (init('path', '') != '') ? [__DIR__ . '/../../' . init('path')] : array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
   foreach ($scanPaths as $root) {
     foreach (ls($root, '*', false, array('folders')) as $dir) {
       if (!file_exists($root . '/' . $dir . 'style.css') || !file_exists($root . '/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf')) {
