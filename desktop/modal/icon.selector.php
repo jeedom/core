@@ -33,19 +33,38 @@ $gal_Struct = [];
 $objectId = init('object_id');
 if (!$objectId) {
   //Build $icon_Struct for js tree:
-  $scanPaths = (init('path', '') != '') ? [__DIR__ . '/../../' . init('path')] : array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
+  $scanPaths = array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
   foreach ($scanPaths as $root) {
-    $ls = ls($root, '*', false, array('folders'));
-    foreach ($ls as $dir) {
+    foreach (ls($root, '*', false, array('folders')) as $dir) {
       if (!file_exists($root . '/' . $dir . 'style.css') || !file_exists($root . '/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf')) {
         continue;
       }
-      $icon_Struct[ucfirst(str_replace(array('/', '_'), array('', ' '), $dir))] = $root . '/' . $dir;
+      // Generate name and get last file modification date
+      $name = ucfirst(str_replace(array('/', '_'), array('', ' '), $dir));
+      $mtime = filemtime($root . '/' . $dir . 'style.css');
+      // If changed, Then refresh cached value
+      if (cache::byKey('icon::' . $name . '::mtime')->getValue(0) < $mtime) {
+        // Parse CSS on the fly
+        $matches = null;
+        preg_match_all('/[.](' . str_replace('/', '', $dir) . '-[^ :]+)[ ]*[:]+before/', file_get_contents($root . '/' . $dir . 'style.css'), $matches);
+        sort($matches[1]);
+        // Set cache for next time
+        cache::set('icon::' . $name . '::mtime', $mtime);
+        cache::set('icon::' . $name . '::data', $matches[1]);
+        $icon_Struct[$name] = array_values($matches[1]);
+      } else {
+        // Use cached value (slightly faster)
+        $icon_Struct[$name] = cache::byKey('icon::' . $name . '::data')->getValue(array());
+      }
     }
   }
-  if (init('path', '') == '') {
-    $icon_Struct['Font-Awesome'] = __DIR__ . '/../../3rdparty/font-awesome5/';
-  }
+
+  // No cache for Font-Awesome, as it's faster to fetch the json file directly
+  $res = json_decode(file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/icons.json'), true);
+  sort($res['icons']);
+  $icon_Struct['Font-Awesome'] = $res['icons'];
+  ksort($icon_Struct);
+
 } else {
   //Build $gal_Struct for js tree:
   $rootPath = __DIR__ . '/../../core/img/object_background/';
@@ -75,36 +94,30 @@ sendVarToJS([
 ?>
 
 <div id="md_iconSelector" data-modalType="md_iconSelector">
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active <?php if ($objectId) echo ' hidden' ?>">
-      <a href="#tabicon" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icônes}}</a>
+<?php if (init('showimg') == 1) { ?>
+  <ul class="nav nav-tabs" role="tablist" style="padding-top:60px;">
+    <li role="presentation" class="active">
+      <a href="#tabicon" role="tab" data-toggle="tab"><i class="fas fa-icons"></i> {{Icônes}}</a>
     </li>
-    <li role="presentation" class="<?php if (init('showimg') != 1) echo 'hidden' ?>">
-      <a href="#tabimg" aria-controls="home" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Images}}</a>
-    </li>
-    <li role="presentation" class="<?php echo (!$objectId) ? 'hidden' : 'active' ?>">
-      <a href="#tabobjectbg" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-image"></i> {{Librairie}}</a>
+    <li role="presentation">
+      <a href="#tabimg" role="tab" data-toggle="tab"><i class="far fa-images"></i> {{Images}}</a>
     </li>
   </ul>
-
-  <div class="tab-content" style="overflow-y:scroll;">
-      <div id="tabicon" role="tabpanel" class="tab-pane active">
-        <div class="imgContainer">
-          <div id="treeFolder-icon" class="div_treeFolder">
-          </div>
+<?php } ?>
+  <div class="tab-content" style="overflow-y:scroll;max-height: 100%">
+      <div id="tabicon" role="tabpanel" class="tab-pane active"<?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
+        <div class="imgContainer"<?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
+          <div id="treeFolder-icon" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
-
-      <div id="tabobjectbg" role="tabpanel" class="tab-pane active">
-        <div class="imgContainer">
-          <div id="treeFolder-bg" class="div_treeFolder">
-          </div>
+      <div id="tabobjectbg" role="tabpanel" class="tab-pane active"<?php if (!$objectId) echo ' style="display:none;"' ?>>
+        <div class="imgContainer"<?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
+          <div id="treeFolder-bg" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
-
-      <div id="tabimg" role="tabpanel" class="tab-pane">
+      <div id="tabimg" role="tabpanel" class="tab-pane"<?php if (init('showimg') != 1) echo ' style="display:none;"' ?>>
         <div id="treeFunctions">
             <span class="bt_upload"><i class="fas fa-file-upload" title="{{Ajouter}}"></i></span>
             <span class="bt_new"><i class="fas fa-folder-plus" title="{{Nouveau}}"></i></span>
@@ -112,9 +125,8 @@ sendVarToJS([
             <span class="bt_delete"><i class="fas fa-folder-minus" title="{{Supprimer}}"></i></span>
         </div>
         <input class="hidden" id="bt_uploadImg" type="file" name="file" multiple="multiple" data-path="">
-        <div class="imgContainer">
-          <div id="treeFolder-img" class="div_treeFolder">
-          </div>
+        <div class="imgContainer" style="padding-top: 10px;">
+          <div id="treeFolder-img" class="div_treeFolder"></div>
           <div class="div_imageGallery"></div>
         </div>
       </div>
@@ -135,6 +147,8 @@ sendVarToJS([
     <input class="form-control" placeholder="{{Rechercher}}" id="in_searchIconSelector">
     <div class="input-group-btn">
       <a id="bt_resetIconSelectorSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+    </div>
+    <div id="bt_cancelConfirm" class="input-group-btn">
     </div>
   </div>
 </div>
@@ -161,45 +175,24 @@ if (!jeeFrontEnd.md_iconSelector) {
       if (Object.keys(jeephp2js.gal_Struct).length > 0) this.setCoreGalTree()
     },
     postInit: function() {
-      if (jeedomUtils.userDevice.type == 'desktop') document.getElementById("in_searchIconSelector").focus()
+      if (jeedomUtils.userDevice.type == 'desktop') document.getElementById("in_searchIconSelector").focus();
 
-      if (jeephp2js.md_iconSelector_selectIcon != "0") {
-        var iconClasses = jeephp2js.md_iconSelector_selectIcon.split('.')
-        var lookPath = iconClasses[0]
-        if (iconClasses[0].substr(0, 2) === 'fa') {
-          lookPath = 'font-awesome5'
-        } else if (iconClasses[0] === 'icon') {
-          lookPath = iconClasses[1].split('-')[0]
-        }
-        jeephp2js.md_iconSelector_selectIcon.iconClasses = iconClasses
-        lookPath = '/' + lookPath + '/'
-        document.querySelectorAll('span[data-path]').forEach(_span => {
-          if (_span.dataset.path.includes(lookPath)) {
-            jeeFrontEnd.md_iconSelector.printFileFolder(_span.dataset.path, 'treeFolder-icon', function() {
-              if (jeephp2js.md_iconSelector_colorIcon != '0') {
-                let select = document.getElementById('sel_colorIcon')
-                select.value = jeephp2js.md_iconSelector_colorIcon
-                select.triggerEvent('change')
-              }
-              document.querySelector('span[data-path*="' + lookPath + '"]')?.closest('.tj_description').addClass('selected')
-              //Select current icon:
-              let icon = document.querySelector('#tabicon div.div_imageGallery').querySelector('span.iconSel > i.' + iconClasses[1])
-              if (icon) {
-                icon.closest('div.divIconSel').addClass('iconSelected')
-                icon.scrollIntoView()
-              }
-            })
-          }
-        })
-      } else {
-        document.querySelector('span.tj_description').click()
+      if (jeephp2js.md_iconSelector_selectIcon != "0") { // Select current icon
+        let icon = document.querySelector('#tabicon div.div_imageGallery span.iconSel > i.' + jeephp2js.md_iconSelector_selectIcon);
+        if (icon) icon.closest('div.divIconSel').addClass('iconSelected').scrollIntoView();
+      } else { // Select first icon category
+        document.querySelector('span.tj_description').click();
       }
     },
     setModal: function() {
       var modal = jeeDialog.get('#sel_colorIcon', 'dialog')
       var modalFooter = jeeDialog.get('#sel_colorIcon', 'footer')
       var uiOptions = modal.querySelector('#mySearch')
+      var btTarget = uiOptions.querySelector('#bt_cancelConfirm')
       modalFooter.insertBefore(uiOptions, modalFooter.firstChild)
+      btTarget.append(modalFooter.querySelector('button[data-type="cancel"]'))
+      btTarget.append(modalFooter.querySelector('button[data-type="confirm"]'))
+      modal.querySelector('.jeeDialogContent').style.overflowY = 'hidden'
       document.getElementById('sel_colorIcon').selectedIndex = 1
     },
     //Tree builders:
@@ -209,21 +202,80 @@ if (!jeeFrontEnd.md_iconSelector) {
       this.icon_tree.setContainer(document.getElementById('treeFolder-icon'))
 
       var newNode
-      for (const [key, value] of Object.entries(jeephp2js.icon_Struct)) {
-        newNode = new TreeNode('<span class="leafRef cursor" data-path="' + value + '">' + key + '</span>', {
-          options: {
-            path: value,
-          }
-        })
-        newNode.setOptions('dataPath', value)
+      var tmp = null
+      var folderDisplayContainer = document.getElementById('treeFolder-icon').parentNode.querySelector('div.div_imageGallery')
+      folderDisplayContainer.empty()
+      for (const category in jeephp2js.icon_Struct) {
+        const keyClass = 'ico' + category.replace('-', '').replace(' ', '')
+        newNode = new TreeNode('<span class="leafRef cursor ' + keyClass + '">' + category + '</span>', {});
         newNode.on('click', (event, node) => {
-          if (!event.target.matches('i')) node.toggleExpanded() //Default behavior allways toggle
-          jeeFrontEnd.md_iconSelector.printFileFolder(node.getOptions().options.path, 'treeFolder-icon')
-        })
-        this.icon_root.addChild(newNode)
-      }
+          if (!event.target.matches('i')) node.toggleExpanded(); // Default behavior always toggle
+          document.querySelector('legend.' + keyClass)?.scrollIntoView();
+        });
+        this.icon_root.addChild(newNode);
 
+        document.getElementById('sel_colorIcon').seen()
+        const iconColor = (document.getElementById('sel_colorIcon').value != '') ? (' ' + document.getElementById('sel_colorIcon').value) : '';
+        var iconClasses = jeephp2js.md_iconSelector_selectIcon.iconClasses
+
+        const tagB = document.createElement('b');
+        tagB.textContent = category;
+        const tagLegend = document.createElement('legend');
+        tagLegend.className = keyClass;
+        tagLegend.appendChild(tagB);
+        tagLegend.addEventListener("visibilitychange", (event) => { console.log(event, newNode); });
+        folderDisplayContainer.appendChild(tagLegend);
+
+        const iconList = jeephp2js.icon_Struct[category]
+        for (const i in iconList) {
+          if (category == 'Font-Awesome') {
+            var selected = (iconClasses && iconClasses[2] === iconList[i].substr(4)) ? ' iconSelected' : ''
+            var name = iconList[i].substr(7)
+          } else {
+            var selected = (iconClasses && iconClasses[2] === iconList[i]) ? ' iconSelected' : ''
+            var name = iconList[i].substr(1 + category.length)
+          }
+
+          const tagDiv = document.createElement('div');
+          tagDiv.className = 'divIconSel text-center ' + keyClass + selected;
+          tagDiv.style.display = 'none';
+          const tagI = document.createElement('i');
+          tagI.className = 'icon ' + iconList[i] + iconColor;
+          const tagSpan1 = document.createElement('span');
+          tagSpan1.className = 'cursor iconSel';
+          tagSpan1.appendChild(tagI);
+          tagDiv.appendChild(tagSpan1);
+          tagDiv.appendChild(document.createElement('br'));
+          const tagSpan2 = document.createElement('span');
+          tagSpan2.className = 'iconDesc';
+          tagSpan2.textContent = name;
+          tagDiv.appendChild(tagSpan2);
+
+          folderDisplayContainer.appendChild(tagDiv);
+        }
+      }
+      document.querySelectorAll('div.divIconSel')?.seen(); // Speed up display
       this.icon_tree.reload()
+
+      var view = document.querySelector('#md_iconSelector .tab-content').getBoundingClientRect();
+      document.querySelector('#md_iconSelector .tab-content').addEventListener("scroll", function (event) {
+        var legends = document.querySelectorAll('#tabicon .imgContainer legend');
+        var i = 0;
+        while (i < legends.length && legends[i].getBoundingClientRect().bottom < view.top) {
+          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+          i += 1;
+        }
+        if (i < legends.length && legends[i].getBoundingClientRect().bottom < view.bottom) { // In view
+          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.addClass('selected');
+          i += 1;
+        } else { // Out of view, select last
+          document.querySelector('#treeFolder-icon .' + (legends[i - 1].className)).parentNode.addClass('selected');
+        }
+        while (i < legends.length) {
+          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+          i += 1;
+        }
+      });
     },
     setUserImgTree: function() {
       this.userImg_root = new TreeNode('icons_root', { expanded: true })
@@ -469,55 +521,7 @@ if (!jeeFrontEnd.md_iconSelector) {
           }
 
           var div = ''
-          if (jstreeId === 'treeFolder-icon') {
-            document.getElementById('sel_colorIcon').seen()
-            var category = realPath.slice(0, -1).split('/').pop()
-            var iconClasses = jeephp2js.md_iconSelector_selectIcon.iconClasses
-            if (category === 'font-awesome5') {
-              jeedom.getFileContent({
-                path: realPath + 'icons.json',
-                success: function(data) {
-                  data = JSON.parse(data)
-                  for (var i in data.icons) {
-                    var test = (iconClasses && iconClasses[2] === data.icons[i].substr(4)) ? ' iconSelected' : ''
-                    div += '<div class="divIconSel text-center' + test + '">'
-                    div += '<span class="cursor iconSel"><i class="' + data.icons[i] + ' ' + document.getElementById('sel_colorIcon').value + '"></i></span><br/><span class="iconDesc">' + data.icons[i].substr(7) + '</span>'
-                    div += '</div>'
-                  }
-                  folderDisplayContainer.insertAdjacentHTML('beforeend', div)
-                  if (isset(callback) && typeof callback === 'function') {
-                    setTimeout(function() {
-                      callback()
-                    })
-                  }
-                  return
-                }
-              })
-
-            } else {
-              domUtils.ajax({
-                url: realPath + 'style.css',
-                type: 'get',
-                dataType: 'text',
-                success: function(data) {
-                  var exp_reg = new RegExp('(?=\.)' + category + '-(.*?).+?(?=\:)', "gi")
-                  var matches = data.match(exp_reg)
-                  for (var i in matches) {
-                    var selected = (iconClasses && iconClasses[2] === matches[i]) ? ' iconSelected' : ''
-                    div += '<div class="divIconSel text-center' + selected + '">'
-                    div += '<span class="cursor iconSel"><i class=\'icon ' + matches[i] + ' ' + document.getElementById('sel_colorIcon').value + '\'></i></span><br/><span class="iconDesc">' + matches[i].replace(category + '-', '') + '</span>'
-                    div += '</div>'
-                  }
-                  folderDisplayContainer.insertAdjacentHTML('beforeend', div)
-                  if (isset(callback) && typeof callback === 'function') {
-                    setTimeout(function() {
-                      callback()
-                    })
-                  }
-                },
-              })
-            }
-          } else if (jstreeId === 'treeFolder-img') {
+          if (jstreeId === 'treeFolder-img') {
             document.getElementById('sel_colorIcon').unseen()
             document.getElementById('bt_uploadImg').setAttribute('data-path', realPath)
             for (var i in data) {
@@ -543,24 +547,31 @@ if (!jeeFrontEnd.md_iconSelector) {
   }
 }
 
-(function() {// Self Isolation!
+(function() { // Self Isolation!
   jeeFrontEnd.md_iconSelector.init()
 
   //Manage events outside parents delegations:
   document.getElementById('in_searchIconSelector').addEventListener('keyup', function(event) {
     var tab = document.querySelector('#md_iconSelector div.tab-pane.active').getAttribute('id')
-    var selector = '#' + tab + ' .iconDesc'
 
     document.querySelectorAll('.divIconSel').seen()
     var search = event.target.value
     if (search != '') {
       search = jeedomUtils.normTextLower(search)
-      document.querySelectorAll(selector).forEach(_item => {
+      document.querySelectorAll('#' + tab + ' .iconDesc').forEach(_item => {
         if (!jeedomUtils.normTextLower(_item.textContent).includes(search)) {
           _item.closest('.divIconSel').unseen()
         }
       })
     }
+    document.querySelectorAll('#' + tab + ' .imgContainer legend').forEach(_item => {
+      var k = _item.nextSibling;
+      while (k != null && !k.isVisible() && k.tagName == 'DIV') {
+        k = k.nextSibling;
+      }
+      if (k == null) return;
+      (k.tagName == 'LEGEND') ? _item.unseen() : _item.seen();
+    });
   })
   document.getElementById('bt_resetIconSelectorSearch').addEventListener('click', function(event) {
     document.getElementById('in_searchIconSelector').jeeValue('').triggerEvent('keyup')
@@ -651,25 +662,27 @@ if (!jeeFrontEnd.md_iconSelector) {
     }
   })
 
-  new jeeFileUploader({
-    fileInput: document.getElementById('bt_uploadImg'),
-    add: function(event, options) {
-      let currentPath = document.getElementById('bt_uploadImg').getAttribute('data-path')
-      options.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
-      options.submit()
-    },
-    done: function(event, data) {
-      if (data.result.state != 'ok') {
-        jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
-          message: data.result.result,
-          level: 'danger'
-        })
-        return
+  if (jeephp2js.showimg == 1) {
+    new jeeFileUploader({
+      fileInput: document.getElementById('bt_uploadImg'),
+      add: function(event, options) {
+        let currentPath = document.getElementById('bt_uploadImg').getAttribute('data-path')
+        options.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
+        options.submit()
+      },
+      done: function(event, data) {
+        if (data.result.state != 'ok') {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
+            message: data.result.result,
+            level: 'danger'
+          })
+          return
+        }
+        document.querySelector('#treeFolder-img span.tj_description.selected')?.click()
       }
-      document.querySelector('#treeFolder-img span.tj_description.selected')?.click()
-    }
-  })
+    })
+  }
 
   jeeFrontEnd.md_iconSelector.postInit()
 
