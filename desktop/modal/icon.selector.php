@@ -671,25 +671,27 @@ if (!jeeFrontEnd.md_iconSelector) {
     }
   })
 
-  new jeeFileUploader({
-    fileInput: document.getElementById('bt_uploadImg'),
-    add: function(event, options) {
-      let currentPath = document.getElementById('bt_uploadImg').getAttribute('data-path')
-      options.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
-      options.submit()
-    },
-    done: function(event, data) {
-      if (data.result.state != 'ok') {
-        jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
-          message: data.result.result,
-          level: 'danger'
-        })
-        return
+  if (jeephp2js.showimg == 1) {
+    new jeeFileUploader({
+      fileInput: document.getElementById('bt_uploadImg'),
+      add: function(event, options) {
+        let currentPath = document.getElementById('bt_uploadImg').getAttribute('data-path')
+        options.url = 'core/ajax/jeedom.ajax.php?action=uploadImageIcon&filepath=' + currentPath
+        options.submit()
+      },
+      done: function(event, data) {
+        if (data.result.state != 'ok') {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_iconSelector', 'dialog'),
+            message: data.result.result,
+            level: 'danger'
+          })
+          return
+        }
+        document.querySelector('#treeFolder-img span.tj_description.selected')?.click()
       }
-      document.querySelector('#treeFolder-img span.tj_description.selected')?.click()
-    }
-  })
+    })
+  }
 
   jeeFrontEnd.md_iconSelector.postInit()
 
