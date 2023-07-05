@@ -260,26 +260,25 @@ if (!jeeFrontEnd.md_iconSelector) {
       }
       document.querySelectorAll('div.divIconSel')?.seen(); // Speed up display
       this.icon_tree.reload()
-
+    },
+    iconTreeOnScroll: function() {
       var view = document.querySelector('#md_iconSelector .tab-content').getBoundingClientRect();
-      document.querySelector('#md_iconSelector .tab-content').addEventListener("scroll", function (event) {
-        var legends = document.querySelectorAll('#tabicon .imgContainer legend');
-        var i = 0;
-        while (i < legends.length && legends[i].getBoundingClientRect().bottom < view.top) {
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
-          i += 1;
-        }
-        if (i < legends.length && legends[i].getBoundingClientRect().bottom < view.bottom) { // In view
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.addClass('selected');
-          i += 1;
-        } else { // Out of view, select last
-          document.querySelector('#treeFolder-icon .' + (legends[i - 1].className)).parentNode.addClass('selected');
-        }
-        while (i < legends.length) {
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
-          i += 1;
-        }
-      });
+      var legends = document.querySelectorAll('#tabicon .imgContainer legend');
+      var i = 0;
+      while (i < legends.length && legends[i].getBoundingClientRect().bottom < view.top) {
+        document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+        i += 1;
+      }
+      if (i < legends.length && legends[i].getBoundingClientRect().bottom < view.bottom) { // In view
+        document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.addClass('selected');
+        i += 1;
+      } else { // Out of view, select last
+        document.querySelector('#treeFolder-icon .' + (legends[i - 1].className)).parentNode.addClass('selected');
+      }
+      while (i < legends.length) {
+        document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+        i += 1;
+      }
     },
     setUserImgTree: function() {
       this.userImg_root = new TreeNode('icons_root', { expanded: true })
@@ -575,6 +574,7 @@ if (!jeeFrontEnd.md_iconSelector) {
       }
       (k == null || k.tagName == 'LEGEND') ? _item.unseen() : _item.seen();
     });
+    jeeFrontEnd.md_iconSelector.iconTreeOnScroll();
   })
   document.getElementById('bt_resetIconSelectorSearch').addEventListener('click', function(event) {
     document.getElementById('in_searchIconSelector').jeeValue('').triggerEvent('keyup')
@@ -586,6 +586,8 @@ if (!jeeFrontEnd.md_iconSelector) {
 
   /*Events delegations
   */
+  document.querySelector('#md_iconSelector .tab-content').addEventListener("scroll", jeeFrontEnd.md_iconSelector.iconTreeOnScroll);
+
   document.getElementById('md_iconSelector').addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('a.bt_removeImg')) {
