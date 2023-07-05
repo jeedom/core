@@ -573,8 +573,7 @@ if (!jeeFrontEnd.md_iconSelector) {
       while (k != null && !k.isVisible() && k.tagName == 'DIV') {
         k = k.nextSibling;
       }
-      if (k == null) return;
-      (k.tagName == 'LEGEND') ? _item.unseen() : _item.seen();
+      (k == null || k.tagName == 'LEGEND') ? _item.unseen() : _item.seen();
     });
   })
   document.getElementById('bt_resetIconSelectorSearch').addEventListener('click', function(event) {
