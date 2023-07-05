@@ -33,19 +33,38 @@ $gal_Struct = [];
 $objectId = init('object_id');
 if (!$objectId) {
   //Build $icon_Struct for js tree:
-  $scanPaths = (init('path', '') != '') ? [__DIR__ . '/../../' . init('path')] : array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
+  $scanPaths = array(__DIR__ . '/../../core/css/icon', __DIR__ . '/../../data/fonts');
   foreach ($scanPaths as $root) {
-    $ls = ls($root, '*', false, array('folders'));
-    foreach ($ls as $dir) {
+    foreach (ls($root, '*', false, array('folders')) as $dir) {
       if (!file_exists($root . '/' . $dir . 'style.css') || !file_exists($root . '/' . $dir . 'fonts/' . substr($dir, 0, -1) . '.ttf')) {
         continue;
       }
-      $icon_Struct[ucfirst(str_replace(array('/', '_'), array('', ' '), $dir))] = $root . '/' . $dir;
+      // Generate name and get last file modification date
+      $name = ucfirst(str_replace(array('/', '_'), array('', ' '), $dir));
+      $mtime = filemtime($root . '/' . $dir . 'style.css');
+      // If changed, Then refresh cached value
+      if (cache::byKey('icon::' . $name . '::mtime')->getValue(0) < $mtime) {
+        // Parse CSS on the fly
+        $matches = null;
+        preg_match_all('/[.](' . str_replace('/', '', $dir) . '-[^ :]+)[ ]*[:]+before/', file_get_contents($root . '/' . $dir . 'style.css'), $matches);
+        sort($matches[1]);
+        // Set cache for next time
+        cache::set('icon::' . $name . '::mtime', $mtime);
+        cache::set('icon::' . $name . '::data', $matches[1]);
+        $icon_Struct[$name] = array_values($matches[1]);
+      } else {
+        // Use cached value (slightly faster)
+        $icon_Struct[$name] = cache::byKey('icon::' . $name . '::data')->getValue(array());
+      }
     }
   }
-  if (init('path', '') == '') {
-    $icon_Struct['Font-Awesome'] = __DIR__ . '/../../3rdparty/font-awesome5/';
-  }
+
+  // No cache for Font-Awesome, as it's faster to fetch the json file directly
+  $res = json_decode(file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/icons.json'), true);
+  sort($res['icons']);
+  $icon_Struct['Font-Awesome'] = $res['icons'];
+  ksort($icon_Struct);
+
 } else {
   //Build $gal_Struct for js tree:
   $rootPath = __DIR__ . '/../../core/img/object_background/';
