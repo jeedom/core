@@ -183,6 +183,10 @@ if (!jeeFrontEnd.md_iconSelector) {
       } else { // Select first icon category
         document.querySelector('span.tj_description').click();
       }
+      if (jeephp2js.md_iconSelector_colorIcon != "0") { // Select current color
+        document.getElementById('sel_colorIcon').value = jeephp2js.md_iconSelector_colorIcon;
+        document.getElementById('sel_colorIcon').triggerEvent('change');
+      }
     },
     setModal: function() {
       var modal = jeeDialog.get('#sel_colorIcon', 'dialog')
