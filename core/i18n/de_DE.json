@@ -179,7 +179,7 @@
         "Vues": "Ansichten",
         "Designs": "Design",
         "Scénarios": "Szenarien",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Analyse": "Analysieren",
         "Autre": "Andere",
         "Plugins": "Plugins"
@@ -394,7 +394,7 @@
         "Visualisation et exécution": "Visualisierung und Ausführung",
         "Equipement": "Gerät",
         "Droits": "Rechte",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
     },
     "desktop\/modal\/object.display.php": {
@@ -432,7 +432,7 @@
         "Pause": "Unterbrechung",
         "Variable": "Variable",
         "Supprimer une variable": "Variable löschen",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Stop": "STOP",
         "Attendre": "Erwarten",
         "Aller au design": "Gehe zum Design",
@@ -631,7 +631,7 @@
         "Rechercher une commande": "Befehl suchen",
         "Type Générique": "Generischer Typ",
         "Résultats": "Ergebnisse",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Actions": "Lager",
         "Design": "Entwurf",
         "Vue": "Aussicht",
@@ -674,7 +674,7 @@
         "Catégorie": "Kategorie",
         "Aucune": "Keine",
         "Général": "Allgemein",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Etape 4 : Demande de support": "Schritt 4: Bitte um Unterstützung",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "WICHTIG: Für eine schnelle und präzise Antwort lesen Sie bitte diese <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">Dokumentation<\/a>",
         "Titre": "Titel",
@@ -1145,7 +1145,7 @@
         "Rafraîchir": "Aktualisieren",
         "Sauvegarder": "Speichern",
         "ID": "Identifikation",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Statut": "Status",
         "Dernier lancement": "Letzter Start",
         "Actif": "Aktiviert",
@@ -1722,6 +1722,8 @@
         "Arrondi": "Runde",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Rundung von Schnittstellenelementen (Kacheln, Schaltflächen usw.). <br> 0: keine Rundung",
         "Désactiver les ombres": "Schatten deaktivieren",
+        "Scénario": "Skript",
+        "Désactiver l'autocompletion": "Deaktivieren Sie die automatische Vervollständigung",
         "Attention : cette configuration n'est là que pour informer": "Achtung : Diese Konfiguration gibt es nur, um Jeedom über",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "die Netzwerkkonfiguration zu informieren und hat keine Auswirkung auf die wirklich benutzten Ports oder IPs, um Jeedom zu verbinden",
         "Accès interne": "Interner Zugriff",
@@ -2058,7 +2060,7 @@
         "Filtre par catégorie": "Nach Kategorie filtern",
         "Toutes": "Alle",
         "Aucune": "Keine",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Édition du Dashboard": "Dashboard Edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Stellen Sie alle Kacheln auf die Höhe der niedrigsten ein",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Stellen Sie alle Kacheln auf die höchste Höhe"
@@ -2142,7 +2144,7 @@
         "Equipement": "Ausrüstung",
         "Commande": "Bestellt",
         "Objet": "Objekt",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Ajouter un filtre": "Filter hinzufügen",
         "Ajouter": "Hinzufügen",
         "Test": "Prüfen",
@@ -2245,7 +2247,7 @@
         "Sauvegarder": "Speichern",
         "Supprimer": "Entfernen",
         "Général": "Allgemein",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Paramètres": "Die Einstellungen",
         "Nom du scénario": "Name des Szenarios",
         "Nom à afficher": "Name, der angezeigt werden soll",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Mettez -1 pour ton supprimer": "Geben Sie -1 für Ihren Löschvorgang ein"
+        "Mettez -1 pour tout supprimer": "Geben Sie -1 ein, um alles zu löschen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
@@ -3245,7 +3247,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Möchten Sie wirklich alle Szenarioprotokolle löschen?",
         "Logs des scénarios supprimés.": "Protokolle gelöschter Szenarien",
         "Vue d'ensemble des scénarios": "Überblick über Szenarien",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "copie": "Kopieren",
         "Graphique de lien(s)": "Grafik verknüpfen",
         "Edition texte scénarios": "Textbearbeitungsszenarien",
@@ -3967,7 +3969,7 @@
         "Jeedom": "Jeedom",
         "Commande": "Befehl",
         "Objet": "Objekt",
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Interaction": "Interaktion",
         "Utilisateur": "Nutzer",
         "Plugin": "Plugin",
@@ -4412,7 +4414,7 @@
         "Impossible d\\'arrêter la sous tâche :": "Die Unteraufgabe kann nicht gestoppt werden:",
         "Impossible d\\'arrêter le scénario :": "Das Szenario kann nicht gestoppt werden:",
         "PID :": "PID:",
-        "Scénario": "Szenario"
+        "Scénario": "Skript"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "Geben Sie die Adresse ein",
@@ -4471,7 +4473,7 @@
         "() : Impossible d\\'arrêter la tâche": "(): Die Aufgabe kann nicht gestoppt werden"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Variable": "Variable",
         "Activation de": "Aktivierung von",
         "Désactivation de": "Deaktivierung von",
@@ -4710,7 +4712,7 @@
         "Sélectionner la commande": "Befehl auswählen"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Szenario",
+        "Scénario": "Skript",
         "Action": "Aktion",
         "Démarrer": "Start",
         "Démarrer (sync)": "Starten (Synchronisieren)",

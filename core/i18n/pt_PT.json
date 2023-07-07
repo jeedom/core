@@ -179,7 +179,7 @@
         "Vues": "Vistas",
         "Designs": "Desenhos",
         "Scénarios": "Cenários",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Analyse": "Análise",
         "Autre": "Outra",
         "Plugins": "Plug-ins"
@@ -394,7 +394,7 @@
         "Visualisation et exécution": "Visualização e execução",
         "Equipement": "Equipamento",
         "Droits": "Direitos",
-        "Scénario": "Cenários",
+        "Scénario": "Roteiro",
         "Sauvegarde effectuée": "Backup feito"
     },
     "desktop\/modal\/object.display.php": {
@@ -432,7 +432,7 @@
         "Pause": "Pausa",
         "Variable": "Variável",
         "Supprimer une variable": "Excluir uma variável",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Stop": "Parar",
         "Attendre": "Esperar",
         "Aller au design": "Ir para o Design",
@@ -631,7 +631,7 @@
         "Rechercher une commande": "Procurar um comando",
         "Type Générique": "Tipo Genérico",
         "Résultats": "Resultados",
-        "Scénario": "Cenários",
+        "Scénario": "Roteiro",
         "Actions": "Ações",
         "Design": "Projeto",
         "Vue": "Vista",
@@ -674,7 +674,7 @@
         "Catégorie": "Categoria",
         "Aucune": "Nenhuma",
         "Général": "Geral",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Etape 4 : Demande de support": "Passo 4: Pedido de Suporte",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANTE: para uma resposta rápida e precisa, leia esta <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentação<\/a>",
         "Titre": "Título",
@@ -1145,7 +1145,7 @@
         "Rafraîchir": "Recarregar",
         "Sauvegarder": "Guardar",
         "ID": "EU IRIA",
-        "Scénario": "Cenários",
+        "Scénario": "Roteiro",
         "Statut": "Estado",
         "Dernier lancement": "Último lançamento",
         "Actif": "Ativo",
@@ -1722,6 +1722,8 @@
         "Arrondi": "Arredondar",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Arredondar os elementos da interface (blocos, botões, etc.). <br> 0: sem arredondamento",
         "Désactiver les ombres": "Desativar sombras",
+        "Scénario": "Roteiro",
+        "Désactiver l'autocompletion": "Desativar preenchimento automático",
         "Attention : cette configuration n'est là que pour informer": "Atenção: esta configuração existe apenas para informar o",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "da configuração de rede e não tem impacto nas portas ou no IP realmente usados para atingir o",
         "Accès interne": "Acesso interno",
@@ -2058,7 +2060,7 @@
         "Filtre par catégorie": "Filtrar por categoria",
         "Toutes": "Todos",
         "Aucune": "Nenhum",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Édition du Dashboard": "Edição do painel",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todas as células com a altura da mais baixa",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Defina todas as células com a altura da mais alta"
@@ -2142,7 +2144,7 @@
         "Equipement": "Equipamento",
         "Commande": "Comando",
         "Objet": "Objeto",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Ajouter un filtre": "Adicionar filtro",
         "Ajouter": "Adicionar",
         "Test": "Testar",
@@ -2245,7 +2247,7 @@
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
         "Général": "Geral",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Paramètres": "Parâmetros",
         "Nom du scénario": "Nome do cenário",
         "Nom à afficher": "Nome a ser exibido",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "A configurar as fórmulas",
         "Configuration de l'historique des commandes": "Configuração do histórico dos comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data  (A-m-d H:m:s) antes da qual quer remover o histórico de",
-        "Mettez -1 pour ton supprimer": "Coloque -1 para sua exclusão"
+        "Mettez -1 pour tout supprimer": "Coloque -1 para deletar tudo"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",
@@ -3245,7 +3247,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Tem a certeza de que deseja excluir todos os registos dos cenários?",
         "Logs des scénarios supprimés.": "Registos dos cenários excluídos",
         "Vue d'ensemble des scénarios": "Vista geral dos cenários",
-        "Scénario": "Cenários",
+        "Scénario": "Roteiro",
         "copie": "cópia de",
         "Graphique de lien(s)": "Gráfico do(s) link(s)",
         "Edition texte scénarios": "Edição de texto do cenário",
@@ -3967,7 +3969,7 @@
         "Jeedom": "Jeedom",
         "Commande": "Comando",
         "Objet": "Objeto",
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Interaction": "Interação",
         "Utilisateur": "Utilizador",
         "Plugin": "Plugar",
@@ -4412,7 +4414,7 @@
         "Impossible d\\'arrêter la sous tâche :": "Não foi possível parar a subtarefa:",
         "Impossible d\\'arrêter le scénario :": "Não foi possível parar o cenário:",
         "PID :": "PID:",
-        "Scénario": "Cenário"
+        "Scénario": "Roteiro"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "preencha o endereço",
@@ -4471,7 +4473,7 @@
         "() : Impossible d\\'arrêter la tâche": "(): Não foi possível parar a tarefa"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Cenários",
+        "Scénario": "Roteiro",
         "Variable": "Variável",
         "Activation de": "Ativação de",
         "Désactivation de": "Desativação de",
@@ -4710,7 +4712,7 @@
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Cenário",
+        "Scénario": "Roteiro",
         "Action": "Ação",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sincronização)",

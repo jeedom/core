@@ -179,7 +179,7 @@
         "Vues": "Vistas",
         "Designs": "Diseños",
         "Scénarios": "Escenarios",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Analyse": "Análisis",
         "Autre": "Otro",
         "Plugins": "Complementos"
@@ -394,7 +394,7 @@
         "Visualisation et exécution": "Visualización y ejecución",
         "Equipement": "Dispositivos",
         "Droits": "Permisos",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Sauvegarde effectuée": "Guardado correctamente"
     },
     "desktop\/modal\/object.display.php": {
@@ -432,7 +432,7 @@
         "Pause": "Pausa",
         "Variable": "Variable",
         "Supprimer une variable": "Eliminar variable",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Stop": "Detener",
         "Attendre": "Esperar",
         "Aller au design": "Ir al diseño",
@@ -631,7 +631,7 @@
         "Rechercher une commande": "Buscar un comando",
         "Type Générique": "Tipo genérico",
         "Résultats": "Resultados",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Actions": "Acciones",
         "Design": "Diseño",
         "Vue": "Vista",
@@ -674,7 +674,7 @@
         "Catégorie": "Categoría",
         "Aucune": "Ninguno",
         "Général": "General",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Etape 4 : Demande de support": "Paso 4: Solicitud de soporte",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANTE: para una respuesta rápida y precisa, lea esta <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentación<\/a>",
         "Titre": "Título",
@@ -1145,7 +1145,7 @@
         "Rafraîchir": "Refrescar",
         "Sauvegarder": "Guardar",
         "ID": "IDENTIFICACIÓN",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Statut": "Estado",
         "Dernier lancement": "Última ejecución",
         "Actif": "Activo",
@@ -1722,6 +1722,8 @@
         "Arrondi": "Ronda",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Redondeo de elementos de la interfaz (mosaicos, botones, etc.). <br> 0: sin redondeo",
         "Désactiver les ombres": "Deshabilitar sombras",
+        "Scénario": "Guion",
+        "Désactiver l'autocompletion": "Deshabilitar autocompletar",
         "Attention : cette configuration n'est là que pour informer": "Atención: esta configuración solo está ahí para informar",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "configuración de red y no tiene impacto en los puertos o IP realmente utilizados para alcanzar",
         "Accès interne": "Acceso interno",
@@ -2058,7 +2060,7 @@
         "Filtre par catégorie": "Filtrar por categoría",
         "Toutes": "Todas",
         "Aucune": "Ninguna",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Édition du Dashboard": "Edición del tablero",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todas las baldosas a la altura de la más baja",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Coloca todas las fichas a la altura de la más alta"
@@ -2142,7 +2144,7 @@
         "Equipement": "Equipo",
         "Commande": "Ordenado",
         "Objet": "Objeto",
-        "Scénario": "Guión",
+        "Scénario": "Guion",
         "Ajouter un filtre": "Añadir filtro",
         "Ajouter": "Agregar",
         "Test": "Prueba",
@@ -2245,7 +2247,7 @@
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
         "Général": "General",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Paramètres": "Parámetros",
         "Nom du scénario": "Nombre de escenario",
         "Nom à afficher": "Nombre a mostrar",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
-        "Mettez -1 pour ton supprimer": "Ponga -1 para su eliminación"
+        "Mettez -1 pour tout supprimer": "Poner -1 para borrar todo"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Quitar este filtro",
@@ -3245,7 +3247,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
         "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "copie": "Copiar",
         "Graphique de lien(s)": "Gráfico de enlace",
         "Edition texte scénarios": "Edición texto escenarios",
@@ -3967,7 +3969,7 @@
         "Jeedom": "Jeedom",
         "Commande": "Comando",
         "Objet": "Objeto",
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Interaction": "Interacción",
         "Utilisateur": "Usuario",
         "Plugin": "Enchufar",
@@ -4412,7 +4414,7 @@
         "Impossible d\\'arrêter la sous tâche :": "No se puede detener la subtarea:",
         "Impossible d\\'arrêter le scénario :": "Incapaz de detener el escenario:",
         "PID :": "PID:",
-        "Scénario": "Escenario"
+        "Scénario": "Guion"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "complete la dirección",
@@ -4471,7 +4473,7 @@
         "() : Impossible d\\'arrêter la tâche": "(): No se puede detener la tarea"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Variable": "Variable",
         "Activation de": "Activación de",
         "Désactivation de": "Desactivación de",
@@ -4710,7 +4712,7 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Escenario",
+        "Scénario": "Guion",
         "Action": "Acción",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sync)",

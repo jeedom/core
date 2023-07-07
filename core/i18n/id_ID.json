@@ -1722,6 +1722,8 @@
         "Arrondi": "Arrondi",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi",
         "Désactiver les ombres": "Désactiver les ombres",
+        "Scénario": "Scénario",
+        "Désactiver l'autocompletion": "Désactiver l'autocompletion",
         "Attention : cette configuration n'est là que pour informer": "Attention : cette configuration n'est là que pour informer",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre",
         "Accès interne": "Akses internal",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "Konfigurasi rumus",
         "Configuration de l'historique des commandes": "Kontrol Sejarah Konfigurasi",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Harap menunjukkan tanggal (Y-m d H: m: s) sebelum yang ia harus menghapus sejarah \\ 's",
-        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
+        "Mettez -1 pour tout supprimer": "Mettez -1 pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",

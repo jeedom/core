@@ -1722,6 +1722,8 @@
         "Arrondi": "ラウンド",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "インターフェイス要素（タイル、ボタンなど）の丸め。 <br> 0：丸めなし",
         "Désactiver les ombres": "影を無効にする",
+        "Scénario": "Scénario",
+        "Désactiver l'autocompletion": "Désactiver l'autocompletion",
         "Attention : cette configuration n'est là que pour informer": "重要：この構成は通知するためだけにあります",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "ネットワーク構成であり、実際に到達するために使用されるポートまたはIPには影響しません",
         "Accès interne": "内部アクセス",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "式の設定",
         "Configuration de l'historique des commandes": "歴史Configurationフォームのコントロール",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "彼は\\「sの歴史を削除する必要がある前に、日付（S：M Y-するM d H）を記入してください",
-        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
+        "Mettez -1 pour tout supprimer": "Mettez -1 pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
