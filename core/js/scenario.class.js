@@ -592,6 +592,7 @@ jeedom.scenario.autoCompleteActionScOnly = [
 ]
 
 jeedom.scenario.setAutoComplete = function(_params) {
+  return;
   if (!isset(_params)) {
     _params = {}
     _params.parent = document.getElementById('div_scenarioElement')
