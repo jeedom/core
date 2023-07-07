@@ -179,7 +179,7 @@
         "Vues": "View",
         "Designs": "Designs",
         "Scénarios": "Scenarios",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Analyse": "Analysis",
         "Autre": "Other",
         "Plugins": "Plugins"
@@ -394,7 +394,7 @@
         "Visualisation et exécution": "Visualization and execution",
         "Equipement": "Equipment",
         "Droits": "Rights",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Sauvegarde effectuée": "Backup completed"
     },
     "desktop\/modal\/object.display.php": {
@@ -432,7 +432,7 @@
         "Pause": "Pause",
         "Variable": "Variable",
         "Supprimer une variable": "Delete a variable",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Stop": "Stop",
         "Attendre": "Wait",
         "Aller au design": "Go to design",
@@ -631,7 +631,7 @@
         "Rechercher une commande": "Search a command",
         "Type Générique": "Generic Type",
         "Résultats": "Results",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Actions": "Actions",
         "Design": "Design",
         "Vue": "View",
@@ -674,7 +674,7 @@
         "Catégorie": "Category",
         "Aucune": "None",
         "Général": "Main",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Etape 4 : Demande de support": "Step 4: Request for support",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANT: for a quick and precise response, please read this <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation<\/a>",
         "Titre": "Title",
@@ -1145,7 +1145,7 @@
         "Rafraîchir": "Refresh",
         "Sauvegarder": "Save",
         "ID": "ID",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Statut": "Status",
         "Dernier lancement": "Last start",
         "Actif": "Active",
@@ -2060,7 +2060,7 @@
         "Filtre par catégorie": "Filter by category",
         "Toutes": "All",
         "Aucune": "None",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Édition du Dashboard": "Dashboard edition",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Adjust all the tiles to the height of the lowest",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Set all the tiles to the height of the tallest"
@@ -2144,7 +2144,7 @@
         "Equipement": "Equipment",
         "Commande": "Command",
         "Objet": "Object",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Ajouter un filtre": "Add filter",
         "Ajouter": "Add",
         "Test": "Test",
@@ -2247,7 +2247,7 @@
         "Sauvegarder": "Save",
         "Supprimer": "Delete",
         "Général": "General",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Paramètres": "Settings",
         "Nom du scénario": "Scenario name",
         "Nom à afficher": "Name to display",
@@ -3247,7 +3247,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Are you sure you want to delete all scenario logs?",
         "Logs des scénarios supprimés.": "Logs of scenarios deleted",
         "Vue d'ensemble des scénarios": "Overview of scenarios",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "copie": "copy",
         "Graphique de lien(s)": "Link graphic",
         "Edition texte scénarios": "Text editing scenarios",
@@ -3969,7 +3969,7 @@
         "Jeedom": "Jeedom",
         "Commande": "Command",
         "Objet": "Object",
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Interaction": "Interaction",
         "Utilisateur": "User",
         "Plugin": "Plugin",
@@ -4414,7 +4414,7 @@
         "Impossible d\\'arrêter la sous tâche :": "Unable to stop the sub task:",
         "Impossible d\\'arrêter le scénario :": "Unable to stop scenario:",
         "PID :": "PID:",
-        "Scénario": "Script"
+        "Scénario": "Scenario"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "informs the address",
@@ -4473,7 +4473,7 @@
         "() : Impossible d\\'arrêter la tâche": "(): Unable to stop the task"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Variable": "Variable",
         "Activation de": "Activation of",
         "Désactivation de": "Deactivation of",
@@ -4712,7 +4712,7 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Script",
+        "Scénario": "Scenario",
         "Action": "Action",
         "Démarrer": "Start",
         "Démarrer (sync)": "Start (sync)",

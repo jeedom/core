@@ -179,7 +179,7 @@
         "Vues": "Vistas",
         "Designs": "Diseños",
         "Scénarios": "Escenarios",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Analyse": "Análisis",
         "Autre": "Otro",
         "Plugins": "Complementos"
@@ -394,7 +394,7 @@
         "Visualisation et exécution": "Visualización y ejecución",
         "Equipement": "Dispositivos",
         "Droits": "Permisos",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Sauvegarde effectuée": "Guardado correctamente"
     },
     "desktop\/modal\/object.display.php": {
@@ -432,7 +432,7 @@
         "Pause": "Pausa",
         "Variable": "Variable",
         "Supprimer une variable": "Eliminar variable",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Stop": "Detener",
         "Attendre": "Esperar",
         "Aller au design": "Ir al diseño",
@@ -631,7 +631,7 @@
         "Rechercher une commande": "Buscar un comando",
         "Type Générique": "Tipo genérico",
         "Résultats": "Resultados",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Actions": "Acciones",
         "Design": "Diseño",
         "Vue": "Vista",
@@ -674,7 +674,7 @@
         "Catégorie": "Categoría",
         "Aucune": "Ninguno",
         "Général": "General",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Etape 4 : Demande de support": "Paso 4: Solicitud de soporte",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANTE: para una respuesta rápida y precisa, lea esta <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentación<\/a>",
         "Titre": "Título",
@@ -1145,7 +1145,7 @@
         "Rafraîchir": "Refrescar",
         "Sauvegarder": "Guardar",
         "ID": "IDENTIFICACIÓN",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Statut": "Estado",
         "Dernier lancement": "Última ejecución",
         "Actif": "Activo",
@@ -2060,7 +2060,7 @@
         "Filtre par catégorie": "Filtrar por categoría",
         "Toutes": "Todas",
         "Aucune": "Ninguna",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Édition du Dashboard": "Edición del tablero",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todas las baldosas a la altura de la más baja",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Coloca todas las fichas a la altura de la más alta"
@@ -2144,7 +2144,7 @@
         "Equipement": "Equipo",
         "Commande": "Ordenado",
         "Objet": "Objeto",
-        "Scénario": "Guion",
+        "Scénario": "Guión",
         "Ajouter un filtre": "Añadir filtro",
         "Ajouter": "Agregar",
         "Test": "Prueba",
@@ -2247,7 +2247,7 @@
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
         "Général": "General",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Paramètres": "Parámetros",
         "Nom du scénario": "Nombre de escenario",
         "Nom à afficher": "Nombre a mostrar",
@@ -3247,7 +3247,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
         "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "copie": "Copiar",
         "Graphique de lien(s)": "Gráfico de enlace",
         "Edition texte scénarios": "Edición texto escenarios",
@@ -3969,7 +3969,7 @@
         "Jeedom": "Jeedom",
         "Commande": "Comando",
         "Objet": "Objeto",
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Interaction": "Interacción",
         "Utilisateur": "Usuario",
         "Plugin": "Enchufar",
@@ -4414,7 +4414,7 @@
         "Impossible d\\'arrêter la sous tâche :": "No se puede detener la subtarea:",
         "Impossible d\\'arrêter le scénario :": "Incapaz de detener el escenario:",
         "PID :": "PID:",
-        "Scénario": "Guion"
+        "Scénario": "Escenario"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "complete la dirección",
@@ -4473,7 +4473,7 @@
         "() : Impossible d\\'arrêter la tâche": "(): No se puede detener la tarea"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Variable": "Variable",
         "Activation de": "Activación de",
         "Désactivation de": "Desactivación de",
@@ -4712,7 +4712,7 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Guion",
+        "Scénario": "Escenario",
         "Action": "Acción",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sync)",
