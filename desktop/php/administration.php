@@ -637,6 +637,14 @@ user::isBan();
 								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" data-reload="1" />
 							</div>
 						</div>
+
+						<legend>{{Scénario}}</legend>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver l'autocompletion}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="scenario::disableAutocomplete" />
+							</div>
+						</div>
 					</fieldset>
 				</form>
 			</div>

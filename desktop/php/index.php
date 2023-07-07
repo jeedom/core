@@ -6,7 +6,7 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
-$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose')));
+$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose', 'scenario::disableAutocomplete')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -271,6 +271,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	setTheme();
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
+		'jeeFrontEnd.scenario_autocomplete' => $configs['scenario::disableAutocomplete'],
 		'jeedom.theme' => $jeedom_theme
 	]);
 	include_file('desktop/common', 'utils', 'js');
