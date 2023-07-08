@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "Tipo errato (classe di equipaggiamento inesistente):",
         "Informations reçues incorrectes": "Informazioni errate ricevute",
         "Type incorrect, (classe commande inexistante)": "Type incorrect, (classe commande inexistante)",
-        "Un équipement portant ce nom (": "Apparecchiature con questo nome (",
-        ") existe déjà pour cet objet": ") esiste già per questo oggetto",
-        "Une commande portant ce nom (": "Un comando con questo nome (",
-        ") existe déjà pour cet équipement": ") esiste già per questa apparecchiatura",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
     },
     "core\/ajax\/cache.ajax.php": {

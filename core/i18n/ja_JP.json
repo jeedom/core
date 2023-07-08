@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "不正なタイプ（存在しない機器クラス）：",
         "Informations reçues incorrectes": "誤った情報を受け取った",
         "Type incorrect, (classe commande inexistante)": "Type incorrect, (classe commande inexistante)",
-        "Un équipement portant ce nom (": "この名前の付いた機器（",
-        ") existe déjà pour cet objet": "）このオブジェクトには既に存在します",
-        "Une commande portant ce nom (": "この名前のコマンド（",
-        ") existe déjà pour cet équipement": "）この機器には既に存在します",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
     },
     "core\/ajax\/cache.ajax.php": {

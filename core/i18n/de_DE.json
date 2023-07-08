@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "Falscher Typ (nicht vorhandene Geräteklasse):",
         "Informations reçues incorrectes": "Falsche Informationen erhalten",
         "Type incorrect, (classe commande inexistante)": "Ungültiger Typ (nicht vorhandene Auftragsklasse)",
-        "Un équipement portant ce nom (": "Geräte mit diesem Namen (",
-        ") existe déjà pour cet objet": ") existiert bereits für dieses Objekt",
-        "Une commande portant ce nom (": "Ein Befehl mit diesem Namen (",
-        ") existe déjà pour cet équipement": ") existiert bereits für dieses Gerät",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
     "core\/ajax\/cache.ajax.php": {
