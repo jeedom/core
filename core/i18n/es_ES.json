@@ -1722,6 +1722,8 @@
         "Arrondi": "Ronda",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Redondeo de elementos de la interfaz (mosaicos, botones, etc.). <br> 0: sin redondeo",
         "Désactiver les ombres": "Deshabilitar sombras",
+        "Scénario": "Guion",
+        "Désactiver l'autocompletion": "Deshabilitar autocompletar",
         "Attention : cette configuration n'est là que pour informer": "Atención: esta configuración solo está ahí para informar",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "configuración de red y no tiene impacto en los puertos o IP realmente utilizados para alcanzar",
         "Accès interne": "Acceso interno",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "Configuración de fórmulas",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Indique la fecha (A-M-D H:m:s) desde la cuál borrar el historial",
-        "Mettez -1 pour ton supprimer": "Ponga -1 para su eliminación"
+        "Mettez -1 pour tout supprimer": "Poner -1 para borrar todo"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Quitar este filtro",

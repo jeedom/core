@@ -1722,6 +1722,8 @@
         "Arrondi": "Round",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Rounding of interface elements (tiles, buttons, etc.). <br> 0: no rounding",
         "Désactiver les ombres": "Disable shadows",
+        "Scénario": "Script",
+        "Désactiver l'autocompletion": "Disable autocompletion",
         "Attention : cette configuration n'est là que pour informer": "Warning : Please note this configuration is only here to inform",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "of its network configuration and has no impact on ports or IP actually used to join Jeedom",
         "Accès interne": "Internal access",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Configuration de l'historique des commandes": "Commands history setup",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Remove history before provided date (Y-m-d H:m:s)",
-        "Mettez -1 pour ton supprimer": "Put -1 for your delete"
+        "Mettez -1 pour tout supprimer": "Put -1 to delete everything"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remove this filter",

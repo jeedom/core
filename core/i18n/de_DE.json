@@ -1722,6 +1722,8 @@
         "Arrondi": "Runde",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Rundung von Schnittstellenelementen (Kacheln, Schaltflächen usw.). <br> 0: keine Rundung",
         "Désactiver les ombres": "Schatten deaktivieren",
+        "Scénario": "Skript",
+        "Désactiver l'autocompletion": "Deaktivieren Sie die automatische Vervollständigung",
         "Attention : cette configuration n'est là que pour informer": "Achtung : Diese Konfiguration gibt es nur, um Jeedom über",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "die Netzwerkkonfiguration zu informieren und hat keine Auswirkung auf die wirklich benutzten Ports oder IPs, um Jeedom zu verbinden",
         "Accès interne": "Interner Zugriff",
@@ -2892,7 +2894,7 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Mettez -1 pour ton supprimer": "Geben Sie -1 für Ihren Löschvorgang ein"
+        "Mettez -1 pour tout supprimer": "Geben Sie -1 ein, um alles zu löschen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
