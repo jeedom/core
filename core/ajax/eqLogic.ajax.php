@@ -463,77 +463,66 @@ try {
 		$return = array();
 
 		foreach ($eqLogicsSave as $eqLogicSave) {
-			try {
-				if (!is_array($eqLogicSave)) {
-					throw new Exception(__('Informations reçues incorrectes', __FILE__));
-				}
-				$typeEqLogic = init('type');
-				$typeCmd = $typeEqLogic . 'Cmd';
-				if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
-					throw new Exception(__('Type incorrect, (classe commande inexistante)', __FILE__) . $typeCmd);
-				}
-				$eqLogic = null;
-				if (isset($eqLogicSave['id'])) {
-					$eqLogic = $typeEqLogic::byId($eqLogicSave['id']);
-				}
-				if (!is_object($eqLogic)) {
-					$eqLogic = new $typeEqLogic();
-					$eqLogic->setEqType_name(init('type'));
-				} else {
-					if (!$eqLogic->hasRight('w')) {
-						throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
-					}
-				}
-				if (method_exists($eqLogic, 'preAjax')) {
-					$eqLogic->preAjax();
-				}
-				$eqLogicSave = jeedom::fromHumanReadable($eqLogicSave);
-				utils::a2o($eqLogic, $eqLogicSave);
-				$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
-				$eqLogic->save();
-				$enableList = array();
 
-				if (isset($eqLogicSave['cmd'])) {
-					$cmd_order = 0;
-					foreach ($eqLogicSave['cmd'] as $cmd_info) {
-						$cmd = null;
-						if (isset($cmd_info['id'])) {
-							$cmd = $typeCmd::byId($cmd_info['id']);
-						}
-						if (!is_object($cmd)) {
-							$cmd = new $typeCmd();
-						}
-						if (isset($cmd_info['display']['parameters'])) {
-							$keys = array_map('trim', array_keys($cmd_info['display']['parameters']));
-							$values = array_map('trim', array_values($cmd_info['display']['parameters']));
-							$cmd_info['display']['parameters'] = array_combine($keys, $values);
-						}
-						$cmd->setEqLogic_id($eqLogic->getId());
-						$cmd->setOrder($cmd_order);
-						utils::a2o($cmd, $cmd_info);
-						$cmd->save();
-						$cmd_order++;
-						$enableList[$cmd->getId()] = true;
+			if (!is_array($eqLogicSave)) {
+				throw new Exception(__('Informations reçues incorrectes', __FILE__));
+			}
+			$typeEqLogic = init('type');
+			$typeCmd = $typeEqLogic . 'Cmd';
+			if ($typeEqLogic == '' || !class_exists($typeEqLogic) || !class_exists($typeCmd)) {
+				throw new Exception(__('Type incorrect, (classe commande inexistante)', __FILE__) . $typeCmd);
+			}
+			$eqLogic = null;
+			if (isset($eqLogicSave['id'])) {
+				$eqLogic = $typeEqLogic::byId($eqLogicSave['id']);
+			}
+			if (!is_object($eqLogic)) {
+				$eqLogic = new $typeEqLogic();
+				$eqLogic->setEqType_name(init('type'));
+			} else {
+				if (!$eqLogic->hasRight('w')) {
+					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+				}
+			}
+			if (method_exists($eqLogic, 'preAjax')) {
+				$eqLogic->preAjax();
+			}
+			$eqLogicSave = jeedom::fromHumanReadable($eqLogicSave);
+			utils::a2o($eqLogic, $eqLogicSave);
+			$dbList = $typeCmd::byEqLogicId($eqLogic->getId());
+			$eqLogic->save();
+			$enableList = array();
+
+			if (isset($eqLogicSave['cmd'])) {
+				$cmd_order = 0;
+				foreach ($eqLogicSave['cmd'] as $cmd_info) {
+					$cmd = null;
+					if (isset($cmd_info['id'])) {
+						$cmd = $typeCmd::byId($cmd_info['id']);
 					}
-					foreach ($dbList as $dbObject) {
-						if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
-							$dbObject->remove();
-						}
+					if (!is_object($cmd)) {
+						$cmd = new $typeCmd();
+					}
+					if (isset($cmd_info['display']['parameters'])) {
+						$keys = array_map('trim', array_keys($cmd_info['display']['parameters']));
+						$values = array_map('trim', array_values($cmd_info['display']['parameters']));
+						$cmd_info['display']['parameters'] = array_combine($keys, $values);
+					}
+					$cmd->setEqLogic_id($eqLogic->getId());
+					$cmd->setOrder($cmd_order);
+					utils::a2o($cmd, $cmd_info);
+					$cmd->save();
+					$cmd_order++;
+					$enableList[$cmd->getId()] = true;
+				}
+				foreach ($dbList as $dbObject) {
+					if (!isset($enableList[$dbObject->getId()]) && !$dbObject->dontRemoveCmd()) {
+						$dbObject->remove();
 					}
 				}
-				if (method_exists($eqLogic, 'postAjax')) {
-					$eqLogic->postAjax();
-				}
-			} catch (Exception $e) {
-				if (strpos($e->getMessage(), '[MySQL] Error code : 23000') !== false) {
-					if ($e->getTrace()[2]['class'] == 'eqLogic') {
-						throw new Exception(__('Un équipement portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet objet', __FILE__));
-					} elseif ($e->getTrace()[2]['class'] == 'cmd') {
-						throw new Exception(__('Une commande portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet équipement', __FILE__));
-					}
-				} else {
-					throw new Exception($e->getMessage());
-				}
+			}
+			if (method_exists($eqLogic, 'postAjax')) {
+				$eqLogic->postAjax();
 			}
 			array_push($return, utils::o2a($eqLogic));
 		}
