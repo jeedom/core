@@ -179,7 +179,7 @@ if (!jeeFrontEnd.md_iconSelector) {
 
       if (jeephp2js.md_iconSelector_selectIcon != "0") { // Select current icon
         let icon = document.querySelector('#tabicon div.div_imageGallery span.iconSel > i.' + jeephp2js.md_iconSelector_selectIcon);
-        if (icon) icon.closest('div.divIconSel').addClass('iconSelected').scrollIntoView();
+        if (icon) icon.closest('div.divIconSel').addClass('iconSelected').scrollIntoView({block: "center"});
       } else { // Select first icon category
         document.querySelector('span.tj_description').click();
       }
