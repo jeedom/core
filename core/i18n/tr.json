@@ -869,7 +869,6 @@
         "Accès non autorisé": "Accès non autorisé",
         "Icônes": "Icônes",
         "Images": "Images",
-        "Librairie": "Librairie",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
@@ -1723,6 +1722,8 @@
         "Arrondi": "Arrondi",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi",
         "Désactiver les ombres": "Désactiver les ombres",
+        "Scénario": "Scénario",
+        "Désactiver l'autocompletion": "Désactiver l'autocompletion",
         "Attention : cette configuration n'est là que pour informer": "Attention : cette configuration n'est là que pour informer",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre",
         "Accès interne": "İç ulaşım",
@@ -1806,8 +1807,6 @@
         "Inférieur à": "Inférieur à",
         "Si le niveau de charge passe en dessous de (%)": "Si le niveau de charge passe en dessous de (%)",
         "Danger": "Tehlike",
-        "Scénario à éxecuter lors de la création d'un équipement": "Scénario à éxecuter lors de la création d'un équipement",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée",
         "Historique des commandes": "Historique des commandes",
         "Afficher les statistiques sur les widgets": "Widget istatistiklerini görüntüle",
         "Période de calcul pour min, max, moyenne": "Période de calcul pour min, max, moyenne",
@@ -2215,6 +2214,7 @@
         "Configuration": "Ayar",
         "Ajouter une zone": "Bölge ekleyin",
         "Voir le résultat": "Sonuca bakın",
+        "Copier": "Copier",
         "Sauvegarder": "Kaydet",
         "Supprimer": "Sil"
     },
@@ -2789,6 +2789,7 @@
         "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Görünümün ismi ?",
         "Modification enregistrée": "Modifikasyon kaydedildi",
         "Largeur": "Largeur",
         "Hauteur": "Hauteur",
@@ -2845,7 +2846,6 @@
         "Visible": "Visible",
         "Non": "Hayır",
         "Oui": "Evet",
-        "Nom de la vue ?": "Görünümün ismi ?",
         "Configuration de la vue": "Configuration de la vue",
         "Êtes-vous sûr de vouloir supprimer la vue": "Görünümü silmekden eminmisiniz",
         "Equipement": "Equipement",
@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Formüller yapılandırılması",
         "Configuration de l'historique des commandes": "Komut geçmişini yapılandırma",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Geçmişi hangi tarihden (Y-m-d H:m:s) önce silinmesi gerekdiğini girin",
-        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
+        "Mettez -1 pour tout supprimer": "Mettez -1 pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "Type incorrect (classe équipement inexistante) :",
         "Informations reçues incorrectes": "Informations reçues incorrectes",
         "Type incorrect, (classe commande inexistante)": "Type incorrect, (classe commande inexistante)",
-        "Un équipement portant ce nom (": "Un équipement portant ce nom (",
-        ") existe déjà pour cet objet": ") existe déjà pour cet objet",
-        "Une commande portant ce nom (": "Une commande portant ce nom (",
-        ") existe déjà pour cet équipement": ") existe déjà pour cet équipement",
         "Aucune méthode correspondante à :": "Aşağıdakilere karşılık gelen bir yöntem yok:"
     },
     "core\/ajax\/cache.ajax.php": {
@@ -4445,7 +4441,6 @@
         "Piles": "Piles",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
         "Le nom de l\\'équipement ne peut pas être vide :": "Cihazın adı boş olamaz:",
-        "Lancement du scénario sur création équipement": "Lancement du scénario sur création équipement",
         "[' . config::byKey('name', 'core', 'JEEDOM') . ']": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
         "L\\'équipement source n\\'existe pas": "L\\'équipement source n\\'existe pas",
         "L\\'équipement cible n\\'existe pas": "L\\'équipement cible n\\'existe pas",

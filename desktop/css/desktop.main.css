@@ -1411,10 +1411,6 @@ div.eqLogicZone {
     margin-right: unset !important;
   }
 
-  #mod_selectIcon .imgContainer {
-    padding-top: 10px;
-  }
-
   #mod_selectIcon #treeFunctions {
     padding: 2px 0 0 30px;
     font-size: 16px;
@@ -1425,8 +1421,11 @@ div.eqLogicZone {
   }
 
   #mod_selectIcon .div_treeFolder {
-    position:absolute;
+    height: calc(100% - 80px);
     width:160px;
+    position:absolute;
+    overflow-y: auto;
+    padding-right: 3px;
   }
 
   #mod_selectIcon .div_imageGallery {

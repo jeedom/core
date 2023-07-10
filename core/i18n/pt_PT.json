@@ -869,7 +869,6 @@
         "Accès non autorisé": "Acesso não autorizado",
         "Icônes": "Ícones",
         "Images": "Imagens",
-        "Librairie": "Biblioteca",
         "Ajouter": "Adicionar",
         "Nouveau": "Novo",
         "Renommer": "Renomear",
@@ -1723,6 +1722,8 @@
         "Arrondi": "Arredondar",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Arredondar os elementos da interface (blocos, botões, etc.). <br> 0: sem arredondamento",
         "Désactiver les ombres": "Desativar sombras",
+        "Scénario": "Roteiro",
+        "Désactiver l'autocompletion": "Desativar preenchimento automático",
         "Attention : cette configuration n'est là que pour informer": "Atenção: esta configuração existe apenas para informar o",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "da configuração de rede e não tem impacto nas portas ou no IP realmente usados para atingir o",
         "Accès interne": "Acesso interno",
@@ -1806,8 +1807,6 @@
         "Inférieur à": "Menos que",
         "Si le niveau de charge passe en dessous de (%)": "Se o nível de carga cair abaixo de (%)",
         "Danger": "Perigo",
-        "Scénario à éxecuter lors de la création d'un équipement": "Cenário a executar ao criar um equipamento",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Este cenário será lançado a cada criação de novo equipamento. O tag eqLogic_id será passado para o cenário e conterá o id do equipamento criado",
         "Historique des commandes": "Histórico",
         "Afficher les statistiques sur les widgets": "Mostrar estatísticas sobre os widgets",
         "Période de calcul pour min, max, moyenne": "Período de cálculo para min, max, média",
@@ -2215,6 +2214,7 @@
         "Configuration": "Configuração",
         "Ajouter une zone": "Adicionar Zona",
         "Voir le résultat": "Visualização de resultados",
+        "Copier": "Copiar",
         "Sauvegarder": "Salvar",
         "Supprimer": "Retirar"
     },
@@ -2789,6 +2789,7 @@
         "Appliquer": "Aplicar"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Nome da vista?",
         "Modification enregistrée": "Alterações guardadas",
         "Largeur": "Largura",
         "Hauteur": "Altura",
@@ -2845,7 +2846,6 @@
         "Visible": "Visível",
         "Non": "Não",
         "Oui": "Sim",
-        "Nom de la vue ?": "Nome da vista?",
         "Configuration de la vue": "Configuração da vista",
         "Êtes-vous sûr de vouloir supprimer la vue": "Tem certeza de que deseja excluir esta vista",
         "Equipement": "Equipamento",
@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "A configurar as fórmulas",
         "Configuration de l'historique des commandes": "Configuração do histórico dos comandos",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Por favor indicar a data  (A-m-d H:m:s) antes da qual quer remover o histórico de",
-        "Mettez -1 pour ton supprimer": "Coloque -1 para sua exclusão"
+        "Mettez -1 pour tout supprimer": "Coloque -1 para deletar tudo"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Remova este filtro",
@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "Type incorrect (classe equipamento inexistente):",
         "Informations reçues incorrectes": "Informação recebida incorreta",
         "Type incorrect, (classe commande inexistante)": "Tipo incorreto, (classe de comando não existe)",
-        "Un équipement portant ce nom (": "Equipamentos com este nome (",
-        ") existe déjà pour cet objet": ") já existe para este objeto",
-        "Une commande portant ce nom (": "Um comando com este nome (",
-        ") existe déjà pour cet équipement": ") já existe para este equipamento",
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
     },
     "core\/ajax\/cache.ajax.php": {
@@ -4445,7 +4441,6 @@
         "Piles": "Pilhas",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "A versão solicitada não pode estar vazia (móvel, painel ou cenário)",
         "Le nom de l\\'équipement ne peut pas être vide :": "O nome do dispositivo não pode estar vazio:",
-        "Lancement du scénario sur création équipement": "Lançamento do cenário de criação de equipamentos",
         "[' . config::byKey('name', 'core', 'JEEDOM') . ']": "['. config :: byKey ('nome', 'núcleo', 'JEEDOM'). ']",
         "L\\'équipement source n\\'existe pas": "O equipamento de origem não existe",
         "L\\'équipement cible n\\'existe pas": "O dispositivo de destino não existe",

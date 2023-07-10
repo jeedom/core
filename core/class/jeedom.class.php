@@ -991,8 +991,8 @@ class jeedom {
 		return true;
 	}
 
-	public static function event($_event, $_forceSyncMode = false) {
-		scenario::check($_event, $_forceSyncMode);
+	public static function event($_event, $_forceSyncMode = false, $_options = null) {
+		scenario::check($_event, $_forceSyncMode, null, null, null, $_options);
 	}
 
 	/*****************************************CRON JEEDOM****************************************************************/

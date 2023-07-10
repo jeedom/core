@@ -869,7 +869,6 @@
         "Accès non autorisé": "Accès non autorisé",
         "Icônes": "Icônes",
         "Images": "Images",
-        "Librairie": "Librairie",
         "Ajouter": "Ajouter",
         "Nouveau": "Nouveau",
         "Renommer": "Renommer",
@@ -1723,6 +1722,8 @@
         "Arrondi": "Tondo",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Arrotondamento di elementi dell'interfaccia (riquadri, pulsanti, ecc.). <br> 0: nessun arrotondamento",
         "Désactiver les ombres": "Disabilita le ombre",
+        "Scénario": "Scénario",
+        "Désactiver l'autocompletion": "Désactiver l'autocompletion",
         "Attention : cette configuration n'est là que pour informer": "Attenzione: questa configurazione è lì solo per informare",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "configurazione di rete e non ha alcun impatto sulle porte o sull'IP effettivamente utilizzati per raggiungere",
         "Accès interne": "Accesso interno",
@@ -1806,8 +1807,6 @@
         "Inférieur à": "Meno di",
         "Si le niveau de charge passe en dessous de (%)": "Se il livello di carica scende al di sotto (%)",
         "Danger": "Pericolo",
-        "Scénario à éxecuter lors de la création d'un équipement": "Scénario à éxecuter lors de la création d'un équipement",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement crée",
         "Historique des commandes": "Historique des commandes",
         "Afficher les statistiques sur les widgets": "Modifica statistiche widget",
         "Période de calcul pour min, max, moyenne": "Periodo di calcolo per min, max, media",
@@ -2215,6 +2214,7 @@
         "Configuration": "Configurazione",
         "Ajouter une zone": "Aggiungi una zona",
         "Voir le résultat": "Vedi il risultato",
+        "Copier": "Copier",
         "Sauvegarder": "Salva",
         "Supprimer": "Rimuovere"
     },
@@ -2789,6 +2789,7 @@
         "Appliquer": "Appliquer"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Nome della vista?",
         "Modification enregistrée": "Cambiamento registrato",
         "Largeur": "Larghezza",
         "Hauteur": "Hauteur",
@@ -2845,7 +2846,6 @@
         "Visible": "Visible",
         "Non": "No",
         "Oui": "Sì",
-        "Nom de la vue ?": "Nome della vista?",
         "Configuration de la vue": "Visualizza la configurazione",
         "Êtes-vous sûr de vouloir supprimer la vue": "Sei sicuro di voler eliminare la vista",
         "Equipement": "Equipement",
@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Configurazione di formule",
         "Configuration de l'historique des commandes": "Controlli di configurazione Storia",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Si prega di inserire la data (Y-m-g H:m:s) che dovrà essere rimossa prima dello storico di",
-        "Mettez -1 pour ton supprimer": "Mettez -1 pour ton supprimer"
+        "Mettez -1 pour tout supprimer": "Mettez -1 pour tout supprimer"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Supprimer ce filtre",
@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "Tipo errato (classe di equipaggiamento inesistente):",
         "Informations reçues incorrectes": "Informazioni errate ricevute",
         "Type incorrect, (classe commande inexistante)": "Type incorrect, (classe commande inexistante)",
-        "Un équipement portant ce nom (": "Apparecchiature con questo nome (",
-        ") existe déjà pour cet objet": ") esiste già per questo oggetto",
-        "Une commande portant ce nom (": "Un comando con questo nome (",
-        ") existe déjà pour cet équipement": ") esiste già per questa apparecchiatura",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
     },
     "core\/ajax\/cache.ajax.php": {
@@ -4445,7 +4441,6 @@
         "Piles": "Piles",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)",
         "Le nom de l\\'équipement ne peut pas être vide :": "Il nome del dispositivo non può essere vuoto:",
-        "Lancement du scénario sur création équipement": "Lancement du scénario sur création équipement",
         "[' . config::byKey('name', 'core', 'JEEDOM') . ']": "[' . config::byKey('name', 'core', 'JEEDOM') . ']",
         "L\\'équipement source n\\'existe pas": "L\\'équipement source n\\'existe pas",
         "L\\'équipement cible n\\'existe pas": "L\\'équipement cible n\\'existe pas",

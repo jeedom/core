@@ -297,7 +297,7 @@ class scenario {
 	 * @param null|string $_value
 	 * @return void|true
 	 */
-	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null, $_value = null) {
+	public static function check($_event = null, $_forceSyncMode = false, $_generic = null, $_object = null, $_value = null, $_options = null) {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
@@ -363,7 +363,7 @@ class scenario {
 
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
-				$scenario_->launch($trigger, $message, $_forceSyncMode);
+				$scenario_->launch($trigger, $message, $_forceSyncMode, $_options);
 			}
 		}
 		return true;
@@ -766,7 +766,7 @@ class scenario {
 	 * @param boolean $_forceSyncMode
 	 * @return boolean
 	 */
-	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false) {
+	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false, $_options = null) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
@@ -800,12 +800,22 @@ class scenario {
 		if ($state == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return false;
 		}
+		if (is_array($_options) && count($_options) > 0) {
+			$tags = $this->getTags();
+			if (!is_array($tags)) {
+				$tags = array();
+			}
+			foreach ($_options as $key => $value) {
+				$tags[$key] = $value;
+			}
+			$this->setTags($tags);
+		}
 		$this->setCache(array('startingTime' => strtotime('now'), 'state' => 'starting'));
 		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
 			return $this->execute($_trigger, $_message);
 		} else {
-			if (count($this->getTags()) != '') {
+			if (count($this->getTags()) > 0) {
 				$this->setCache('tags', $this->getTags());
 			}
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';

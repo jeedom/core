@@ -1039,6 +1039,7 @@ class eqLogic {
 				}
 			}
 		}
+		$newEqlogic = ($this->getId() == '');
 		DB::save($this, $_direct);
 		if ($this->_needRefreshWidget) {
 			$this->_needRefreshWidget = false;
@@ -1059,15 +1060,8 @@ class eqLogic {
 				$this->checkAlive();
 			}
 		}
-		if ($this->getConfiguration('updatetime') == '' && config::byKey('eqLogic::create::execScenario', 'core', -1) != -1) {
-			try {
-				$scenario = scenario::byId(config::byKey('eqLogic::create::execScenario', 'core', -1));
-				if (is_object($scenario)) {
-					$scenario->setTags(array('eqLogic_id' => $this->getId()));
-					$scenario->launch('other', __('Lancement du scénario sur création équipement', __FILE__));
-				}
-			} catch (\Exception $e) {
-			}
+		if ($newEqlogic) {
+			jeedom::event('new_eqLogic', false, array('id' => $this->getId(), 'name' => $this->getName(), 'eqType' => $this->getEqType_name()));
 		}
 	}
 

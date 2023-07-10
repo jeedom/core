@@ -473,255 +473,161 @@ sendVarToJS([
 </div>
 
 <script>
-
-if (!jeeFrontEnd.md_eqLogicConfigure) {
-  jeeFrontEnd.md_eqLogicConfigure = {
-    init: function(_cmdIds) {
-      if (document.body.getAttribute('data-page') == "eqAnalyse") {
-        document.querySelector('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
-      }
-      this.setModal()
-
-      //Set values:
-      document.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicConfigure_Info, '.eqLogicAttr')
-      //check some values:
-      if (document.querySelector('select[data-l2key="layout::dashboard"]') != null) { //Can be unavailable!
-        var nbColumn = document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value
-        if (nbColumn == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = 1
-        var nbLine = document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value
-        if (nbLine == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = 1
-      }
-    },
-    postInit: function() {
-      document.querySelector('select[data-l2key="layout::dashboard"]')?.triggerEvent('change')
-
-      //Dynamic values:
-      document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
-        jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
-          _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
-          let cmd = document.querySelector('#md_eqLogicConfigure .eqLogicConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
-          let title = '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate
-          if (_options.value.length > 50) {
-            title += '<br>{{Valeur}} : ' + _options.value
-            _options.value = _options.value.trim().substring(0, 50) + '...'
-          }
-          cmd.setAttribute('title', title)
-          cmd.empty().innerHTML = _options.value + ' ' + _options.unit
-          cmd.style.color = 'var(--logo-primary-color)'
-          setTimeout(function() {
-            cmd.style.color = null
-          }, 1000)
-        })
-      })
-
-      jeeFrontEnd.md_eqLogicConfigure.setTableLayoutSortable()
-      jeedomUtils.initSpinners()
-    },
-    setModal: function() {
-      //modal title:
-      var title = "{{Configuration de l'équipement}}"
-      title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
-      title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
-      var titleEl = jeeDialog.get('#eqLogicConfigureTab', 'title')
-      if (titleEl != null) {
-        titleEl.querySelector('span.title').innerHTML = title
-      } else {
-        //Deprecated, some plugins may load old ui-dialog modale
-        document.getElementById('div_displayEqLogicConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
-      }
-    },
-    synchModalToEq: function() {
-      document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]').value = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="name"').value
-      document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isEnable"').checked
-      document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
-    },
-    setTableLayoutSortable: function() {
-      let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
-      containers.forEach(_container => {
-        new Sortable(_container, {
-          delay: 100,
-          delayOnTouchOnly: true,
-          group: 'cmdLayoutContainer',
-          draggable: '.cmdLayout',
-          filter: 'a, input, textarea',
-          preventOnFilter: false,
-        })
-      })
-    },
-    getNewLayoutTd: function(row, col) {
-      var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
-      newTd += '<center class="cmdLayoutContainer"></center>'
-      newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la cellule}}">'
-      newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style CSS ou attribut(s) HTML}}">'
-      newTd += '</td>'
-      return newTd
-    },
-    applyTableLayout: function() {
-      var nbColumn = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbColumn"]').value
-      var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
-
-      var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
-      var tableRowCount = tableLayout.querySelectorAll('tr').length
-      var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td').length
-
-      if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
-        //build new table:
-        var newTableLayout = document.createElement('table')
-        newTableLayout.addClass('table table-condensed')
-        newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
-        newTableLayout.appendChild(document.createElement('tbody'))
-
-        for (i = 1; i <= nbRow; i++) {
-          var newTr = document.createElement('tr')
-          for (j = 1; j <= nbColumn; j++) {
-            newTd = jeeFrontEnd.md_eqLogicConfigure.getNewLayoutTd(i, j)
-            newTr.insertAdjacentHTML('beforeend', newTd)
-          }
-          newTableLayout.tBodies[0].appendChild(newTr)
+  if (!jeeFrontEnd.md_eqLogicConfigure) {
+    jeeFrontEnd.md_eqLogicConfigure = {
+      init: function(_cmdIds) {
+        if (document.body.getAttribute('data-page') == "eqAnalyse") {
+          document.querySelector('#eqLogicConfigureTab > li > a[href="#eqLogic_alert"]').click()
         }
+        this.setModal()
 
-        //distribute back cmds into new table
-        var firstTdLayout = newTableLayout.querySelector('tr').querySelector('td > .cmdLayoutContainer')
-        var row, col, newTd, text, style
-        tableLayout.querySelectorAll('.cmdLayout').forEach(_cLay => {
-          row = _cLay.closest('td').getAttribute('data-line')
-          col = _cLay.closest('td').getAttribute('data-column')
-          newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
-          if (newTd) {
-            newTd.querySelector('.cmdLayoutContainer').appendChild(_cLay)
-          } else {
-            firstTdLayout.appendChild(_cLay)
-          }
+        //Set values:
+        document.getElementById('div_displayEqLogicConfigure').setJeeValues(jeephp2js.md_eqLogicConfigure_Info, '.eqLogicAttr')
+        //check some values:
+        if (document.querySelector('select[data-l2key="layout::dashboard"]') != null) { //Can be unavailable!
+          var nbColumn = document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value
+          if (nbColumn == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = 1
+          var nbLine = document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value
+          if (nbLine == '') document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = 1
+        }
+      },
+      postInit: function() {
+        document.querySelector('select[data-l2key="layout::dashboard"]')?.triggerEvent('change')
+
+        //Dynamic values:
+        document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
+          jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
+            _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
+            let cmd = document.querySelector('#md_eqLogicConfigure .eqLogicConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
+            if (cmd === null) {
+              return
+            }
+            let title = '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate
+            if (_options.value.length > 50) {
+              title += '<br>{{Valeur}} : ' + _options.value
+              _options.value = _options.value.trim().substring(0, 50) + '...'
+            }
+            cmd.setAttribute('title', title)
+            cmd.empty().innerHTML = _options.value + ' ' + _options.unit
+            cmd.style.color = 'var(--logo-primary-color)'
+            setTimeout(function() {
+              cmd.style.color = null
+            }, 1000)
+          })
         })
 
-        //get back tds texts and styles
-        tableLayout.querySelectorAll('td').forEach(_td => {
-          row = _td.getAttribute('data-line')
-          col = _td.getAttribute('data-column')
-          text = _td.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value
-          style = _td.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value
-          newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
-          if (newTd) {
-            newTableLayout.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value = text
-            newTableLayout.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value = style
-          }
-        })
-
-        //replace by new table:
-        tableLayout.replaceWith(newTableLayout)
-        document.querySelectorAll('#tableCmdLayoutConfiguration td').forEach(td => { td.style.width = 100 / nbColumn + '%' })
         jeeFrontEnd.md_eqLogicConfigure.setTableLayoutSortable()
-      }
-    },
-    eqlogicSave: function(event) {
-      var eqLogic = document.getElementById('div_displayEqLogicConfigure').getJeeValues('.eqLogicAttr')[0]
-      if (!isset(eqLogic.display)) eqLogic.display = {}
-      if (!isset(eqLogic.display.parameters)) eqLogic.display.parameters = {}
-
-      document.querySelectorAll('#table_widgetParameters tbody tr').forEach(_tr => {
-        eqLogic.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
-      })
-
-      jeedom.eqLogic.save({
-        eqLogics: [eqLogic],
-        type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-            message: error.message,
-            level: 'danger'
+        jeedomUtils.initSpinners()
+      },
+      setModal: function() {
+        //modal title:
+        var title = "{{Configuration de l'équipement}}"
+        title += ' : ' + jeephp2js.md_eqLogicConfigure_Info.name
+        title += ' <span class="cmdName"><em>(' + jeephp2js.md_eqLogicConfigure_Info.eqType_name + ')</em></span>'
+        var titleEl = jeeDialog.get('#eqLogicConfigureTab', 'title')
+        if (titleEl != null) {
+          titleEl.querySelector('span.title').innerHTML = title
+        } else {
+          //Deprecated, some plugins may load old ui-dialog modale
+          document.getElementById('div_displayEqLogicConfigure').closest('.ui-dialog').querySelector('.ui-dialog-title').innerHTML = title
+        }
+      },
+      synchModalToEq: function() {
+        document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]').value = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="name"').value
+        document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isEnable"').checked
+        document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
+      },
+      setTableLayoutSortable: function() {
+        let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
+        containers.forEach(_container => {
+          new Sortable(_container, {
+            delay: 100,
+            delayOnTouchOnly: true,
+            group: 'cmdLayoutContainer',
+            draggable: '.cmdLayout',
+            filter: 'a, input, textarea',
+            preventOnFilter: false,
           })
-        },
-        success: function() {
-          var cmds = []
-          var order = 1
-          document.querySelectorAll('#tableCmdLayoutConfiguration tbody td .cmdLayout').forEach( _lay => {
-            cmd = {}
-            cmd.id = _lay.getAttribute('data-cmd_id')
-            cmd.line = _lay.closest('td').getAttribute('data-line')
-            cmd.column = _lay.closest('td').getAttribute('data-column')
-            cmd.order = order
-            cmds.push(cmd)
-            order++
-          })
+        })
+      },
+      getNewLayoutTd: function(row, col) {
+        var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
+        newTd += '<center class="cmdLayoutContainer"></center>'
+        newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la cellule}}">'
+        newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style CSS ou attribut(s) HTML}}">'
+        newTd += '</td>'
+        return newTd
+      },
+      applyTableLayout: function() {
+        var nbColumn = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbColumn"]').value
+        var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
 
-          for (cmd of cmds) {
-            delete jeedom.cmd.update[cmd.id]
+        var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
+        var tableRowCount = tableLayout.querySelectorAll('tr').length
+        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td').length
+
+        if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
+          //build new table:
+          var newTableLayout = document.createElement('table')
+          newTableLayout.addClass('table table-condensed')
+          newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
+          newTableLayout.appendChild(document.createElement('tbody'))
+
+          for (i = 1; i <= nbRow; i++) {
+            var newTr = document.createElement('tr')
+            for (j = 1; j <= nbColumn; j++) {
+              newTd = jeeFrontEnd.md_eqLogicConfigure.getNewLayoutTd(i, j)
+              newTr.insertAdjacentHTML('beforeend', newTd)
+            }
+            newTableLayout.tBodies[0].appendChild(newTr)
           }
 
-          jeedom.cmd.setOrder({
-            version: 'dashboard',
-            cmds: cmds,
-            error: function(error) {
-              jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function() {
-              jeeFrontEnd.md_eqLogicConfigure.synchModalToEq()
-              if (event.ctrlKey || event.metaKey) {
-                setTimeout(function() {
-                  jeeDialog.get('#md_modal').close()
-                }, 500)
-              } else {
-                var tab = document.querySelector('#eqLogicConfigureTab > li.active > a').getAttribute('href')
-                jeeDialog.dialog({
-                  id: 'jee_modal',
-                  contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + eqLogic.id,
-                  callback: function() {
-                    document.querySelector('#eqLogicConfigureTab > li > a[href="' + tab + '"]')?.click()
-                    jeedomUtils.showAlert({
-                      attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-                      message: '{{Sauvegarde réussie}}',
-                      level: 'success'
-                    })
-                  }
-                })
-              }
+          //distribute back cmds into new table
+          var firstTdLayout = newTableLayout.querySelector('tr').querySelector('td > .cmdLayoutContainer')
+          var row, col, newTd, text, style
+          tableLayout.querySelectorAll('.cmdLayout').forEach(_cLay => {
+            row = _cLay.closest('td').getAttribute('data-line')
+            col = _cLay.closest('td').getAttribute('data-column')
+            newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
+            if (newTd) {
+              newTd.querySelector('.cmdLayoutContainer').appendChild(_cLay)
+            } else {
+              firstTdLayout.appendChild(_cLay)
             }
           })
+
+          //get back tds texts and styles
+          tableLayout.querySelectorAll('td').forEach(_td => {
+            row = _td.getAttribute('data-line')
+            col = _td.getAttribute('data-column')
+            text = _td.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value
+            style = _td.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value
+            newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
+            if (newTd) {
+              newTableLayout.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value = text
+              newTableLayout.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value = style
+            }
+          })
+
+          //replace by new table:
+          tableLayout.replaceWith(newTableLayout)
+          document.querySelectorAll('#tableCmdLayoutConfiguration td').forEach(td => {
+            td.style.width = 100 / nbColumn + '%'
+          })
+          jeeFrontEnd.md_eqLogicConfigure.setTableLayoutSortable()
         }
-      })
-    },
-  }
-}
+      },
+      eqlogicSave: function(event) {
+        var eqLogic = document.getElementById('div_displayEqLogicConfigure').getJeeValues('.eqLogicAttr')[0]
+        if (!isset(eqLogic.display)) eqLogic.display = {}
+        if (!isset(eqLogic.display.parameters)) eqLogic.display.parameters = {}
 
-(function() {// Self Isolation!
-  var jeeM = jeeFrontEnd.md_eqLogicConfigure
-  jeeM.init()
+        document.querySelectorAll('#table_widgetParameters tbody tr').forEach(_tr => {
+          eqLogic.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+        })
 
-  //Manage events outside parents delegations:
-  document.getElementById('bt_eqLogicConfigureLogRealTime')?.addEventListener('click', function(event) {
-    jeeDialog.dialog({
-      id: 'jee_modal2',
-      title: "{{Logs}}",
-      contentUrl: 'index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_eqLogicConfigure_InfoSearchString
-    })
-  })
-  document.getElementById('bt_eqLogicConfigureGraph')?.addEventListener('click', function(event) {
-    jeeDialog.dialog({
-      id: 'jee_modal2',
-      title: "{{Graphique des liens}}",
-      contentUrl: 'index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id=' + jeephp2js.md_eqLogicConfigure_Info.id
-    })
-  })
-  document.getElementById('bt_eqLogicConfigureRawObject')?.addEventListener('click', function(event) {
-    jeeDialog.dialog({
-      id: 'jee_modal2',
-      title: "{{Informations brutes}}",
-      contentUrl: 'index.php?v=d&modal=object.display&class=eqLogic&id=' + jeephp2js.md_eqLogicConfigure_Info.id
-    })
-  })
-  document.getElementById('bt_eqLogicConfigureSave')?.addEventListener('click', function(event) {
-    jeeFrontEnd.md_eqLogicConfigure.eqlogicSave(event)
-  })
-  document.getElementById('bt_eqLogicConfigureRemove')?.addEventListener('click', function(event) {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function(result) {
-      if (result) {
-        jeedom.eqLogic.remove({
-          id: jeephp2js.md_eqLogicConfigure_Info.id,
+        jeedom.eqLogic.save({
+          eqLogics: [eqLogic],
           type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
           error: function(error) {
             jeedomUtils.showAlert({
@@ -730,128 +636,97 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
               level: 'danger'
             })
           },
-          success: function(data) {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-              message: '{{Equipement supprimé avec succès}}',
-              level: 'success'
+          success: function() {
+            var cmds = []
+            var order = 1
+            document.querySelectorAll('#tableCmdLayoutConfiguration tbody td .cmdLayout').forEach(_lay => {
+              cmd = {}
+              cmd.id = _lay.getAttribute('data-cmd_id')
+              cmd.line = _lay.closest('td').getAttribute('data-line')
+              cmd.column = _lay.closest('td').getAttribute('data-column')
+              cmd.order = order
+              cmds.push(cmd)
+              order++
+            })
+
+            for (cmd of cmds) {
+              delete jeedom.cmd.update[cmd.id]
+            }
+
+            jeedom.cmd.setOrder({
+              version: 'dashboard',
+              cmds: cmds,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                jeeFrontEnd.md_eqLogicConfigure.synchModalToEq()
+                if (event.ctrlKey || event.metaKey) {
+                  setTimeout(function() {
+                    jeeDialog.get('#md_modal').close()
+                  }, 500)
+                } else {
+                  var tab = document.querySelector('#eqLogicConfigureTab > li.active > a').getAttribute('href')
+                  jeeDialog.dialog({
+                    id: 'jee_modal',
+                    contentUrl: 'index.php?v=d&modal=eqLogic.configure&eqLogic_id=' + eqLogic.id,
+                    callback: function() {
+                      document.querySelector('#eqLogicConfigureTab > li > a[href="' + tab + '"]')?.click()
+                      jeedomUtils.showAlert({
+                        attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
+                        message: '{{Sauvegarde réussie}}',
+                        level: 'success'
+                      })
+                    }
+                  })
+                }
+              }
             })
           }
         })
-      }
+      },
+    }
+  }
+
+  (function() { // Self Isolation!
+    var jeeM = jeeFrontEnd.md_eqLogicConfigure
+    jeeM.init()
+
+    //Manage events outside parents delegations:
+    document.getElementById('bt_eqLogicConfigureLogRealTime')?.addEventListener('click', function(event) {
+      jeeDialog.dialog({
+        id: 'jee_modal2',
+        title: "{{Logs}}",
+        contentUrl: 'index.php?v=d&modal=log.display&log=event&search=' + jeephp2js.md_eqLogicConfigure_InfoSearchString
+      })
     })
-  })
-
-  /*Events delegations
-  */
-  //eqLogic information tab
-  document.getElementById('eqLogic_information')?.addEventListener('click', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.bt_advanceCmdConfigurationOnEqLogicConfiguration')) {
+    document.getElementById('bt_eqLogicConfigureGraph')?.addEventListener('click', function(event) {
       jeeDialog.dialog({
         id: 'jee_modal2',
-        title: '{{Configuration de la commande}}',
-        contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-id')
+        title: "{{Graphique des liens}}",
+        contentUrl: 'index.php?v=d&modal=graph.link&filter_type=eqLogic&filter_id=' + jeephp2js.md_eqLogicConfigure_Info.id
       })
-      return
-    }
-  })
-
-  document.getElementById('eqLogic_information')?.addEventListener('dblclick', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.advanceCmdConfigurationCmdConfigure')) {
+    })
+    document.getElementById('bt_eqLogicConfigureRawObject')?.addEventListener('click', function(event) {
       jeeDialog.dialog({
         id: 'jee_modal2',
-        title: '{{Configuration de la commande}}',
-        contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-id')
+        title: "{{Informations brutes}}",
+        contentUrl: 'index.php?v=d&modal=object.display&class=eqLogic&id=' + jeephp2js.md_eqLogicConfigure_Info.id
       })
-      return
-    }
-  })
-
-  //eqLogic display tab
-  document.getElementById('eqLogic_display')?.addEventListener('click', function(event) {
-    var _target = null
-    if (_target = event.target.closest('#bt_addWidgetParameters')) {
-      var tr = '<tr>'
-      tr += '<td>'
-      tr += '<input class="form-control input-sm key">'
-      tr += '</td>'
-      tr += '<td>'
-      tr += '<input class="form-control input-sm value">'
-      tr += '</td>'
-      tr += '<td class="text-right">'
-      tr += '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
-      tr += '</td>'
-      tr += '</tr>'
-      document.getElementById('table_widgetParameters').tBodies[0].insertAdjacentHTML('beforeend', tr)
-      return
-    }
-
-    if (_target = event.target.closest('.removeWidgetParameter')) {
-      _target.closest('tr').remove()
-      return
-    }
-  })
-
-  document.getElementById('eqLogic_display')?.addEventListener('change', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.advanceWidgetParameterDefault')) {
-      if (_target.jeeValue() == 1) {
-        _target.closest('td').querySelectorAll('.advanceWidgetParameter').unseen()
-      } else {
-        _target.closest('td').querySelectorAll('.advanceWidgetParameter').seen()
-      }
-      return
-    }
-
-    if (_target = event.target.closest('.advanceWidgetParameterColorTransparent')) {
-      if (_target.jeeValue() == 1) {
-        _target.closest('td').querySelectorAll('.advanceWidgetParameterColor').unseen()
-      } else {
-        _target.closest('td').querySelectorAll('.advanceWidgetParameterColor').seen()
-      }
-      return
-    }
-  })
-
-  //eqLogic layout tab
-  document.getElementById('eqLogic_layout')?.addEventListener('click', function(event) {
-    var _target = null
-    if (_target = event.target.closest('#bt_eqLogicLayoutApply')) {
-      jeeFrontEnd.md_eqLogicConfigure.applyTableLayout()
-      return
-    }
-  })
-
-  document.getElementById('eqLogic_layout')?.addEventListener('change', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.sel_layout')) {
-      document.querySelectorAll('.widget_layout').unseen()
-      document.querySelectorAll('.widget_layout.' + _target.value).seen()
-      return
-    }
-  })
-
-  //eqLogic alert tab
-  document.getElementById('eqLogic_alert')?.addEventListener('click', function(event) {
-    var _target = null
-    if (_target = event.target.closest('#bt_resetbattery')) {
-      jeeDialog.confirm("{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.}}", function(result) {
+    })
+    document.getElementById('bt_eqLogicConfigureSave')?.addEventListener('click', function(event) {
+      jeeFrontEnd.md_eqLogicConfigure.eqlogicSave(event)
+    })
+    document.getElementById('bt_eqLogicConfigureRemove')?.addEventListener('click', function(event) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function(result) {
         if (result) {
-          var eqLogic = {}
-          eqLogic['id'] = jeephp2js.md_eqLogicConfigure_Info.id
-          eqLogic['configuration'] = {}
-          var today = new Date()
-          var dd = today.getDate()
-          var mm = today.getMonth() + 1
-          var hh = today.getHours()
-          var MM = today.getMinutes()
-          var ss = today.getSeconds()
-          var yyyy = today.getFullYear()
-          eqLogic['configuration']['batterytime'] = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM + ':' + ss
-          jeedom.eqLogic.simpleSave({
-            eqLogic: eqLogic,
+          jeedom.eqLogic.remove({
+            id: jeephp2js.md_eqLogicConfigure_Info.id,
+            type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
             error: function(error) {
               jeedomUtils.showAlert({
                 attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
@@ -862,19 +737,147 @@ if (!jeeFrontEnd.md_eqLogicConfigure) {
             success: function(data) {
               jeedomUtils.showAlert({
                 attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-                message: '{{Le remplacement des piles a été enregistré}}',
+                message: '{{Equipement supprimé avec succès}}',
                 level: 'success'
               })
-              document.querySelectorAll('.eqLogicAttr[data-l1key="configuration"][data-l2key="batterytime"]').jeeValue(yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM + ':' + ss)
             }
           })
         }
       })
-      return
-    }
-  })
+    })
 
-  jeeM.postInit()
-})()
+    /*Events delegations
+     */
+    //eqLogic information tab
+    document.getElementById('eqLogic_information')?.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.bt_advanceCmdConfigurationOnEqLogicConfiguration')) {
+        jeeDialog.dialog({
+          id: 'jee_modal2',
+          title: '{{Configuration de la commande}}',
+          contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-id')
+        })
+        return
+      }
+    })
 
+    document.getElementById('eqLogic_information')?.addEventListener('dblclick', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.advanceCmdConfigurationCmdConfigure')) {
+        jeeDialog.dialog({
+          id: 'jee_modal2',
+          title: '{{Configuration de la commande}}',
+          contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-id')
+        })
+        return
+      }
+    })
+
+    //eqLogic display tab
+    document.getElementById('eqLogic_display')?.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#bt_addWidgetParameters')) {
+        var tr = '<tr>'
+        tr += '<td>'
+        tr += '<input class="form-control input-sm key">'
+        tr += '</td>'
+        tr += '<td>'
+        tr += '<input class="form-control input-sm value">'
+        tr += '</td>'
+        tr += '<td class="text-right">'
+        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>'
+        tr += '</td>'
+        tr += '</tr>'
+        document.getElementById('table_widgetParameters').tBodies[0].insertAdjacentHTML('beforeend', tr)
+        return
+      }
+
+      if (_target = event.target.closest('.removeWidgetParameter')) {
+        _target.closest('tr').remove()
+        return
+      }
+    })
+
+    document.getElementById('eqLogic_display')?.addEventListener('change', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.advanceWidgetParameterDefault')) {
+        if (_target.jeeValue() == 1) {
+          _target.closest('td').querySelectorAll('.advanceWidgetParameter').unseen()
+        } else {
+          _target.closest('td').querySelectorAll('.advanceWidgetParameter').seen()
+        }
+        return
+      }
+
+      if (_target = event.target.closest('.advanceWidgetParameterColorTransparent')) {
+        if (_target.jeeValue() == 1) {
+          _target.closest('td').querySelectorAll('.advanceWidgetParameterColor').unseen()
+        } else {
+          _target.closest('td').querySelectorAll('.advanceWidgetParameterColor').seen()
+        }
+        return
+      }
+    })
+
+    //eqLogic layout tab
+    document.getElementById('eqLogic_layout')?.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#bt_eqLogicLayoutApply')) {
+        jeeFrontEnd.md_eqLogicConfigure.applyTableLayout()
+        return
+      }
+    })
+
+    document.getElementById('eqLogic_layout')?.addEventListener('change', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.sel_layout')) {
+        document.querySelectorAll('.widget_layout').unseen()
+        document.querySelectorAll('.widget_layout.' + _target.value).seen()
+        return
+      }
+    })
+
+    //eqLogic alert tab
+    document.getElementById('eqLogic_alert')?.addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('#bt_resetbattery')) {
+        jeeDialog.confirm("{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.}}", function(result) {
+          if (result) {
+            var eqLogic = {}
+            eqLogic['id'] = jeephp2js.md_eqLogicConfigure_Info.id
+            eqLogic['configuration'] = {}
+            var today = new Date()
+            var dd = today.getDate()
+            var mm = today.getMonth() + 1
+            var hh = today.getHours()
+            var MM = today.getMinutes()
+            var ss = today.getSeconds()
+            var yyyy = today.getFullYear()
+            eqLogic['configuration']['batterytime'] = yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM + ':' + ss
+            jeedom.eqLogic.simpleSave({
+              eqLogic: eqLogic,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(data) {
+                jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
+                  message: '{{Le remplacement des piles a été enregistré}}',
+                  level: 'success'
+                })
+                document.querySelectorAll('.eqLogicAttr[data-l1key="configuration"][data-l2key="batterytime"]').jeeValue(yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM + ':' + ss)
+              }
+            })
+          }
+        })
+        return
+      }
+    })
+
+    jeeM.postInit()
+  })()
 </script>

@@ -155,13 +155,14 @@ try {
 				echo "[PROGRESS][35]\n";
 				echo "Unzip in progress...";
 				$zip = new ZipArchive;
-				if ($zip->open($tmp) === TRUE) {
+                                $open = $zip->open($tmp);
+				if ($open === TRUE) {
 					if (!$zip->extractTo($cibDir)) {
-						throw new Exception('Can not unzip file');
+						throw new Exception('Can not unzip file => '.$zip->getStatusString());
 					}
 					$zip->close();
 				} else {
-					throw new Exception('Unable to unzip file : ' . $tmp);
+					throw new Exception('Unable to unzip file : ' . $tmp.' =>'.$open);
 				}
 				echo "OK\n";
 				if (disk_free_space($cibDir) < 10) {

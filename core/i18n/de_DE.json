@@ -869,7 +869,6 @@
         "Accès non autorisé": "Unautorisierter Zugriff",
         "Icônes": "Symbole",
         "Images": "Bilder",
-        "Librairie": "Bibliothek",
         "Ajouter": "Hinzufügen",
         "Nouveau": "Neu",
         "Renommer": "Umbenennen",
@@ -1723,6 +1722,8 @@
         "Arrondi": "Runde",
         "Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi": "Rundung von Schnittstellenelementen (Kacheln, Schaltflächen usw.). <br> 0: keine Rundung",
         "Désactiver les ombres": "Schatten deaktivieren",
+        "Scénario": "Skript",
+        "Désactiver l'autocompletion": "Deaktivieren Sie die automatische Vervollständigung",
         "Attention : cette configuration n'est là que pour informer": "Achtung : Diese Konfiguration gibt es nur, um Jeedom über",
         "de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre": "die Netzwerkkonfiguration zu informieren und hat keine Auswirkung auf die wirklich benutzten Ports oder IPs, um Jeedom zu verbinden",
         "Accès interne": "Interner Zugriff",
@@ -1806,8 +1807,6 @@
         "Inférieur à": "Weniger als",
         "Si le niveau de charge passe en dessous de (%)": "Wenn der Ladezustand unter (%) fällt",
         "Danger": "Gefahr",
-        "Scénario à éxecuter lors de la création d'un équipement": "Szenario, das beim Erstellen eines Ausrüstungsgegenstands ausgeführt werden soll",
-        "Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.": "Dieses Szenario wird für jede neue Ausrüstungserstellung gestartet. Das Tag eqLogic_id wird an das Szenario übergeben und enthält die ID der erstellten Ausrüstung",
         "Historique des commandes": "Bestellhistorie",
         "Afficher les statistiques sur les widgets": "Zeige Statistiken über Widgets",
         "Période de calcul pour min, max, moyenne": "Berechnungszeitraum für min, max, Durchschnitt",
@@ -2215,6 +2214,7 @@
         "Configuration": "Konfiguration",
         "Ajouter une zone": "Fügen Sie eine Zone hinzu",
         "Voir le résultat": "Siehe das Ergebnis",
+        "Copier": "Kopieren",
         "Sauvegarder": "Speichern",
         "Supprimer": "Entfernen"
     },
@@ -2789,6 +2789,7 @@
         "Appliquer": "Anwenden"
     },
     "desktop\/js\/view_edit.js": {
+        "Nom de la vue ?": "Name der Ansicht?",
         "Modification enregistrée": "Aufgezeichnete Änderung",
         "Largeur": "Breite",
         "Hauteur": "Höhe",
@@ -2845,7 +2846,6 @@
         "Visible": "Sichtbar",
         "Non": "Nicht",
         "Oui": "Ja",
-        "Nom de la vue ?": "Name der Ansicht?",
         "Configuration de la vue": "Konfiguration anzeigen",
         "Êtes-vous sûr de vouloir supprimer la vue": "Möchten Sie die Ansicht wirklich löschen?",
         "Equipement": "Ausrüstung",
@@ -2894,7 +2894,7 @@
         "Configuration des formules de calcul": "Konfiguration von Berechnungsformeln",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\\'historique de": "Bitte geben sie das Datum der Chronik an(J-M-T H:M:S), welche gelöscht werden soll",
-        "Mettez -1 pour ton supprimer": "Geben Sie -1 für Ihren Löschvorgang ein"
+        "Mettez -1 pour tout supprimer": "Geben Sie -1 ein, um alles zu löschen"
     },
     "desktop\/js\/massedit.js": {
         "Supprimer ce filtre": "Diesen Filter entfernen",
@@ -4011,10 +4011,6 @@
         "Type incorrect (classe équipement inexistante) :": "Falscher Typ (nicht vorhandene Geräteklasse):",
         "Informations reçues incorrectes": "Falsche Informationen erhalten",
         "Type incorrect, (classe commande inexistante)": "Ungültiger Typ (nicht vorhandene Auftragsklasse)",
-        "Un équipement portant ce nom (": "Geräte mit diesem Namen (",
-        ") existe déjà pour cet objet": ") existiert bereits für dieses Objekt",
-        "Une commande portant ce nom (": "Ein Befehl mit diesem Namen (",
-        ") existe déjà pour cet équipement": ") existiert bereits für dieses Gerät",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
     "core\/ajax\/cache.ajax.php": {
@@ -4445,7 +4441,6 @@
         "Piles": "Batterien",
         "La version demandée ne peut pas être vide (mobile, dashboard ou scénario)": "Die angeforderte Version darf nicht leer sein (Handy, Dashboard oder Szenario)",
         "Le nom de l\\'équipement ne peut pas être vide :": "Der Name des Geräts darf nicht leer sein:",
-        "Lancement du scénario sur création équipement": "Start des Szenarios zur Ausrüstungserstellung",
         "[' . config::byKey('name', 'core', 'JEEDOM') . ']": "['. config :: byKey ('name', 'core', 'JEEDOM'). ']",
         "L\\'équipement source n\\'existe pas": "Quellgeräte sind nicht vorhanden",
         "L\\'équipement cible n\\'existe pas": "Das Zielgerät existiert nicht",
