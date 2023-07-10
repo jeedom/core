@@ -82,7 +82,7 @@ try {
 		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 	} else {
 		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
-			$str_db_connexion = " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		} else {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
