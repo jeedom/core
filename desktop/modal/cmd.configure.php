@@ -1222,10 +1222,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     document.getElementById('cmd_information')?.addEventListener('click', function(event) {
       var _target = null
       if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
-        var displayIconParent = _target.closest('.displayIconParent')
+        let displayIconParent = _target.closest('.displayIconParent')
+        let icon = displayIconParent.querySelector('[data-l2key="icon"] > i')
+        let params = {}
+        if (icon) params.icon = icon.attributes.class.value
         jeedomUtils.chooseIcon(function(_icon) {
           displayIconParent.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
-        })
+        }, params)
         return
       }
 
