@@ -178,8 +178,6 @@ step_7_jeedom_customization_mysql() {
     exit 1
   fi
   
-  rm /var/lib/mysql/ib_logfile*
-  
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
     echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
