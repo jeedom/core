@@ -17,6 +17,7 @@ $sysCmdsSudo = array(
   array("cmd" => 'sudo ip addr', "name" => 'ip addr'),
   array("cmd" => 'sudo lsusb', "name" => 'lsusb'),
   array("cmd" => 'sudo ls -la /dev/ttyUSB*', "name" => 'ls -la /dev/ttyUSB*'),
+  array("cmd" => 'sudo ls -la /dev/serial/by-id', "name" => 'ls -la /dev/serial/by-id'),
   array("cmd" => 'sudo ps ax', "name" => 'ps ax'),
   array("cmd" => 'sudo rm -f /var/lib/dpkg/updates/*', "name" => 'Fix dpkg'),
   array("cmd" => 'echo "yes | sudo apt -f install" | sudo at now', "name" => 'Fix install'),
