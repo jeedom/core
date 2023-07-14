@@ -500,17 +500,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-                <div class="form-group">
-                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
-                  <div class="col-sm-6">
-                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                      <option value="avg">{{Moyenne}}</option>
-                      <option value="min">{{Minimum}}</option>
-                      <option value="max">{{Maximum}}</option>
-                      <option value="none">{{Aucun}}</option>
-                    </select>
-                  </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
+                <div class="col-sm-6">
+                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                    <option value="avg">{{Moyenne}}</option>
+                    <option value="min">{{Minimum}}</option>
+                    <option value="max">{{Maximum}}</option>
+                    <option value="none">{{Aucun}}</option>
+                  </select>
                 </div>
+              </div>
               <?php }
               ?>
               <div class="form-group">
@@ -531,6 +531,49 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   </select>
                 </div>
               </div>
+              <?php if ($cmd->getIsHistorized() == 1 && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Paramètres d'affichage}}</label>
+                <div class="col-sm-2">
+                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="groupingType">
+                    <option value="">{{Aucun groupement}}</option>
+                    <option value="sum::hour">{{Somme par heure}}</option>
+                    <option value="average::hour">{{Moyenne par heure}}</option>
+                    <option value="low::hour">{{Minimum par heure}}</option>
+                    <option value="high::hour">{{Maximum par heure}}</option>
+                    <option value="sum::day">{{Somme par jour}}</option>
+                    <option value="average::day">{{Moyenne par jour}}</option>
+                    <option value="low::day">{{Minimum par jour}}</option>
+                    <option value="high::day">{{Maximum par jour}}</option>
+                    <option value="sum::week">{{Somme par semaine}}</option>
+                    <option value="average::week">{{Moyenne par semaine}}</option>
+                    <option value="low::week">{{Minimum par semaine}}</option>
+                    <option value="high::week">{{Maximum par semaine}}</option>
+                    <option value="sum::month">{{Somme par mois}}</option>
+                    <option value="average::month">{{Moyenne par mois}}</option>
+                    <option value="low::month">{{Minimum par mois}}</option>
+                    <option value="high::month">{{Maximum par mois}}</option>
+                    <option value="sum::year">{{Somme par année}}</option>
+                    <option value="average::year">{{Moyenne par année}}</option>
+                    <option value="low::year">{{Minimum par année}}</option>
+                    <option value="high::year">{{Maximum par année}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
+                    <option value="line">{{Ligne}}</option>
+                    <option value="area">{{Aire}}</option>
+                    <option value="column">{{Barre}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
+                  </div>
+                <div class="col-sm-1">
+                  {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
+                </div>
+              </div>
+              <?php } ?>
             </fieldset>
           </form>
         <?php }
