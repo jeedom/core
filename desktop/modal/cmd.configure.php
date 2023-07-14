@@ -1091,12 +1091,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-        //Get widget optionnal parameters:
-        document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
-          if (_tr.nodeType != 3) {
-            cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
-          }
-        })
+        if (document.querySelector('#cmd_display #table_widgetParametersCmd')) { 
+          document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+            if (_tr.nodeType != 3) {
+              cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+            }
+          })
+        }
 
         try {
           var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0]
