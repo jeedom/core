@@ -995,24 +995,30 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         })
       },
       displayWidgetHelp: function(_widgetName) {
-        jeedom.cmd.getWidgetHelp({
-          id: document.querySelector('#cmd_information span[data-l1key="id"]').textContent,
-          version: 'dashboard',
-          widgetName: _widgetName,
-          error: function(error) {
-            document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
-          },
-          success: function(data) {
-            document.getElementById('optionalParamHelp').empty().innerHTML = data.html
-          }
-        })
+        if (document.getElementById('optionalParamHelp')) {
+          jeedom.cmd.getWidgetHelp({
+            id: document.querySelector('#cmd_information span[data-l1key="id"]').textContent,
+            version: 'dashboard',
+            widgetName: _widgetName,
+            error: function(error) {
+              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
+            },
+            success: function(data) {
+              document.getElementById('optionalParamHelp').empty().innerHTML = data.html
+            }
+          })
+        }
       },
       synchModalToCmd: function() {
         var cmdId = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="id"]').textContent
         var cmdTr = document.querySelector('#div_pageContainer tr[data-cmd_id="' + cmdId + '"]')
         if (cmdTr) {
-          cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]').checked = document.querySelector('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').checked
-          cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
+          if (cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]')) {
+            cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]').checked = document.querySelector('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').checked
+          }
+          if (cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
+            cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
+          }
         }
       },
       syncModalToScenario: function() {
@@ -1085,7 +1091,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-        document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+        document.querySelector('#cmd_display #table_widgetParametersCmd')?.tBodies[0].childNodes.forEach(_tr => {
           if (_tr.nodeType != 3) {
             cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
           }
@@ -1135,12 +1141,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
         if (document.querySelector('#cmd_display #table_widgetParametersCmd')) { 
-          document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+          document.querySelector('#cmd_display #table_widgetParametersCmd')?.tBodies[0].childNodes.forEach(_tr => {
             if (_tr.nodeType != 3) {
               cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
             }
           })
-        }
+        } else delete cmd.display.parameters;
 
         try {
           var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0]
