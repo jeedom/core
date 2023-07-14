@@ -85,7 +85,7 @@ $date = array(
 				<i class="icon techno-courbes3"></i> {{Commandes}}
 				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration de l'historique des commandes}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</li>
-			<li class="filter input-group input-group-sm" style="margin-top: 10px; //width: 98%;">
+			<li class="filter input-group input-group-sm" style="margin-top: 10px; /*width: 98%;*/">
 				<input id="in_searchHistory" class="filter form-control input-sm roundedLeft" style="width: calc(100% - 28px);" placeholder="{{Rechercher}}" autocomplete="off" />
 				<span class="input-group-btn ">
 					<a id="bt_resetSearch" class="btn btn-default roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
