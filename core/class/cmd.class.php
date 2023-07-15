@@ -2508,6 +2508,9 @@ class cmd {
 		if (property_exists($class, '_widgetPossibility')) {
 			$return = $class::$_widgetPossibility;
 			if ($_key != '') {
+				if (isset($return[$_key])) {
+					return $return[$_key];
+				}
 				$keys = explode('::', $_key);
 				foreach ($keys as $k) {
 					if (!isset($return[$k])) {
