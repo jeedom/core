@@ -249,7 +249,7 @@ sendVarToJS([
                     $echo .= $parameter['name'];
                     $echo .= '</td>';
                     foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
-                      $echo .= '<td>';
+                      $echo .= '<td><div class="form-group">';
                       if (!isset($parameter['allow_displayType'])) {
                         continue;
                       }
@@ -284,10 +284,10 @@ sendVarToJS([
                           $echo .= '<input class="eqLogicAttr advanceWidgetParameter"' . $display . '" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" value="' . $default . '">';
                           break;
                         case 'number':
-                          $echo .= '<input type="number" class="eqLogicAttr advanceWidgetParameter"' . $display . '" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" value="' . $default . '">';
+                          $echo .= '<input type="number" class="eqLogicAttr advanceWidgetParameter form-control input-sm ispin"' . $display . '" data-l1key="display" data-l2key="advanceWidgetParameter' . $pKey . $key . '" min="0" max="999999" value="' . $default . '">';
                           break;
                       }
-                      $echo .= '</td>';
+                      $echo .= '</div></td>';
                     }
                     $echo .= '</tr>';
                   }
@@ -493,6 +493,12 @@ sendVarToJS([
       },
       postInit: function() {
         document.querySelector('select[data-l2key="layout::dashboard"]')?.triggerEvent('change')
+        document.querySelectorAll('#md_eqLogicConfigure .advanceWidgetParameterDefault').forEach(_default => {
+          _default?.triggerEvent('change')
+        })
+        document.querySelectorAll('#md_eqLogicConfigure .advanceWidgetParameterColorTransparent').forEach(_transparent => {
+          _transparent?.triggerEvent('change')
+        })
 
         //Dynamic values:
         document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
