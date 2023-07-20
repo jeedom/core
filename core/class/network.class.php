@@ -339,6 +339,7 @@ class network {
 			$openvpn->setLogicalId('dnsjeedom');
 			$openvpn->setEqType_name('openvpn');
 			$openvpn->setConfiguration('dev', 'tun');
+			$openvpn->setConfiguration('proto', 'udp');
 			if(strpos(config::byKey('dns::protocol'),config::byKey('dns::preferProtocol')) !== false){
 				$openvpn->setConfiguration('proto', config::byKey('dns::preferProtocol'));
 			}
