@@ -395,6 +395,7 @@ VERSION=V4-stable
 WEBSERVER_HOME=/var/www/html
 MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
+DATABASE=1
 
 while getopts ":s:v:w:m:i:" opt; do
   case $opt in
@@ -406,6 +407,8 @@ while getopts ":s:v:w:m:i:" opt; do
     ;;
     i) INSTALLATION_TYPE="$OPTARG"
     ;;
+    d) DATABASE="$OPTARG"
+    ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
   esac
@@ -415,20 +418,31 @@ echo "${JAUNE}Welcome to Jeedom installer${NORMAL}"
 echo "${JAUNE}Jeedom version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Web folder : ${WEBSERVER_HOME}${NORMAL}"
 echo "${JAUNE}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
+if [ ${DATABASE} -ne 1 ]; then
+  echo "${JAUNE}External database${NORMAL}"
+fi
 
 case ${STEP} in
   0)
   echo "${JAUNE}Starting installation ...${NORMAL}"
   step_1_upgrade
   step_2_mainpackage
-  step_3_database
+  if [ ${DATABASE} -eq 1 ]; then
+    step_3_database
+  fi
   step_4_apache
   step_5_php
   step_6_jeedom_download
-  step_7_jeedom_customization_mariadb
+  if [ ${DATABASE} -eq 1 ]; then
+    step_7_jeedom_customization_mariadb
+  fi
   step_8_jeedom_customization
-  step_9_jeedom_configuration
-  step_10_jeedom_installation
+ 
+
+  if [ ${DATABASE} -eq 1 ]; then
+    step_9_jeedom_configuration
+    step_10_jeedom_installation
+  fi
   step_11_jeedom_post
   step_12_jeedom_check
   distrib_1_spe
