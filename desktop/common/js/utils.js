@@ -36,9 +36,8 @@ $(function() {
 //js error in ! ui:
 jeedomUtils.JS_ERROR = []
 window.addEventListener('error', function(event) {
-  if (event.filename.indexOf('3rdparty/') != -1) {
-    return
-  }
+  if (event.filename.indexOf('3rdparty/') != -1) return
+  if (event.message.includes('ResizeObserver loop')) return
   jeedomUtils.JS_ERROR.push(event)
   $('#bt_jsErrorModal').show()
   $.hideLoading()
