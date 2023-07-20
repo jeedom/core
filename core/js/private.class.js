@@ -92,6 +92,7 @@ jeedom.private.getParamsAJAX = function(_params) {
     dataType: _params.dataType,
     async: _params.async,
     global: _params.global,
+    noDisplayError: _params.noDisplayError || false,
     error: function(_request, _status, _error) {
       _params.error(jeedom.private.handleAjaxErrorAPI(_request, _status, _error));
     },
