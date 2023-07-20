@@ -397,7 +397,7 @@ MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
-while getopts ":s:v:w:m:i:" opt; do
+while getopts ":s:v:w:m:i:d:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
