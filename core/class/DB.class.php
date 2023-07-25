@@ -35,32 +35,32 @@ class DB {
 	private static function initConnection() {
 		global $CONFIG;
 		if (isset($CONFIG['db']['unix_socket'])) {
-			self::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
 		} else {
-			self::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
 		}
 	}
 
 	public static function getLastInsertId() {
-		return self::getConnection()->lastInsertId();
+		return static::getConnection()->lastInsertId();
 	}
 
 	public static function getConnection() {
-		if (self::$connection == null) {
-			self::initConnection();
-			self::$lastConnection = strtotime('now');
-		} elseif (self::$lastConnection + 120 < strtotime('now')) {
+		if (static::$connection == null) {
+			static::initConnection();
+			static::$lastConnection = strtotime('now');
+		} elseif (static::$lastConnection + 120 < strtotime('now')) {
 			try {
-				$result = @self::$connection->query('select 1;');
+				$result = @static::$connection->query('select 1;');
 				if (!$result) {
-					self::initConnection();
+					static::initConnection();
 				}
 			} catch (Exception $e) {
-				self::initConnection();
+				static::initConnection();
 			}
-			self::$lastConnection = strtotime('now');
+			static::$lastConnection = strtotime('now');
 		}
-		return self::$connection;
+		return static::$connection;
 	}
 
 	public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL) {
@@ -70,19 +70,19 @@ class DB {
 		}
 		$bind_params = trim($bind_params, ', ');
 		if ($_className != NULL && class_exists($_className)) {
-			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type, PDO::FETCH_CLASS, $_className);
+			return static::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type, PDO::FETCH_CLASS, $_className);
 		} elseif ($_fetch_opt != NULL) {
-			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type, $_fetch_opt, $_className);
+			return static::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type, $_fetch_opt, $_className);
 		} else {
-			return self::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type);
+			return static::Prepare("CALL $_procName($bind_params)", $_params, $_fetch_type);
 		}
 	}
 
 	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL) {
-		$stmt = self::getConnection()->prepare($_query);
+		$stmt = static::getConnection()->prepare($_query);
 		$res = NULL;
 		if ($stmt != false && $stmt->execute($_params) != false) {
-			if ($_fetchType == self::FETCH_TYPE_ROW) {
+			if ($_fetchType == static::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
 				} elseif ($_fetch_param == PDO::FETCH_CLASS) {
@@ -98,10 +98,10 @@ class DB {
 		}
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
-			self::$lastConnection = 0;
+			static::$lastConnection = 0;
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
 		}
-		self::$lastConnection = strtotime('now');
+		static::$lastConnection = strtotime('now');
 		if ($_fetch_param == PDO::FETCH_CLASS) {
 			if (is_array($res) && count($res) > 0) {
 				foreach ($res as &$obj) {
@@ -129,24 +129,24 @@ class DB {
 	}
 
 	public static function optimize() {
-		$tables = self::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
+		$tables = static::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
 		foreach ($tables as $table) {
 			$table = array_values($table);
 			$table = $table[0];
-			self::Prepare('OPTIMIZE TABLE `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
+			static::Prepare('OPTIMIZE TABLE `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		}
 	}
 
 	public static function beginTransaction() {
-		self::getConnection()->beginTransaction();
+		static::getConnection()->beginTransaction();
 	}
 
 	public static function commit() {
-		self::getConnection()->commit();
+		static::getConnection()->commit();
 	}
 
 	public static function rollBack() {
-		self::getConnection()->rollBack();
+		static::getConnection()->rollBack();
 	}
 
 	/**
@@ -160,11 +160,11 @@ class DB {
 		if (!$_direct && method_exists($object, 'preSave')) {
 			$object->preSave();
 		}
-		if (!self::getField($object, 'id')) {
+		if (!static::getField($object, 'id')) {
 			//New object to save.
-			$fields = self::getFields($object);
+			$fields = static::getFields($object);
 			if (in_array('id', $fields)) {
-				self::setField($object, 'id', null);
+				static::setField($object, 'id', null);
 			}
 			if (!$_direct && method_exists($object, 'preInsert')) {
 				$object->preInsert();
@@ -172,17 +172,17 @@ class DB {
 			if (method_exists($object, 'encrypt')) {
 				$object->encrypt();
 			}
-			list($sql, $parameters) = self::buildQuery($object);
+			list($sql, $parameters) = static::buildQuery($object);
 			if ($_replace) {
-				$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+				$sql = 'REPLACE INTO `' . static::getTableName($object) . '` SET ' . implode(', ', $sql);
 			} else {
-				$sql = 'INSERT INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+				$sql = 'INSERT INTO `' . static::getTableName($object) . '` SET ' . implode(', ', $sql);
 			}
-			$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
-			$reflection = self::getReflectionClass($object);
+			$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+			$reflection = static::getReflectionClass($object);
 			if ($reflection->hasProperty('id')) {
 				try {
-					self::setField($object, 'id', self::getLastInsertId());
+					static::setField($object, 'id', static::getLastInsertId());
 				} catch (Exception $exc) {
 					trigger_error($exc->getMessage(), E_USER_NOTICE);
 				} catch (InvalidArgumentException $ex) {
@@ -208,16 +208,16 @@ class DB {
 				if (method_exists($object, 'encrypt')) {
 					$object->encrypt();
 				}
-				list($sql, $parameters) = self::buildQuery($object);
+				list($sql, $parameters) = static::buildQuery($object);
 				if (!$_direct && method_exists($object, 'getId')) {
 					$parameters['id'] = $object->getId(); //override if necessary
 				}
 				if ($_replace) {
-					$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
+					$sql = 'REPLACE INTO `' . static::getTableName($object) . '` SET ' . implode(', ', $sql);
 				} else {
-					$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+					$sql = 'UPDATE `' . static::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
 				}
-				$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+				$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			} else {
 				$res = true;
 			}
@@ -238,12 +238,12 @@ class DB {
 	}
 
 	public static function refresh($object) {
-		if (!self::getField($object, 'id')) {
+		if (!static::getField($object, 'id')) {
 			throw new Exception('Can\'t refresh DB object without its ID');
 		}
-		$parameters = array('id' => self::getField($object, 'id'));
-		$sql = 'SELECT ' . self::buildField(get_class($object)) .
-			' FROM `' . self::getTableName($object) . '` ' .
+		$parameters = array('id' => static::getField($object, 'id'));
+		$sql = 'SELECT ' . static::buildField(get_class($object)) .
+			' FROM `' . static::getTableName($object) . '` ' .
 			' WHERE ';
 		foreach ($parameters as $field => $value) {
 			if ($value != '') {
@@ -253,18 +253,18 @@ class DB {
 			}
 		}
 		$sql .= '1';
-		$newObject = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, get_class($object));
+		$newObject = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, get_class($object));
 		if (!is_object($newObject)) {
 			return false;
 		}
-		foreach (self::getFields($object) as $field) {
-			$reflection = self::getReflectionClass($object);
+		foreach (static::getFields($object) as $field) {
+			$reflection = static::getReflectionClass($object);
 			$property = $reflection->getProperty($field);
 			if (!$reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
 			$property->setAccessible(true);
-			$property->setValue($object, self::getField($newObject, $field));
+			$property->setValue($object, static::getField($newObject, $field));
 			$property->setAccessible(false);
 		}
 		return true;
@@ -279,10 +279,10 @@ class DB {
 	public static function getWithFilter(array $_filters, $_object) {
 		// operators have to remain in this order. If you put '<' before '<=', algorithm won't make the difference & will think a '<=' is a '<'
 		$operators = array('!=', '<=', '>=', '<', '>', 'NOT LIKE', 'LIKE', '=');
-		$fields = self::getFields($_object);
-		$class = self::getReflectionClass($_object)->getName();
+		$fields = static::getFields($_object);
+		$class = static::getReflectionClass($_object)->getName();
 		// create query
-		$query = 'SELECT ' . self::buildField($class) . ' FROM ' . $class . '';
+		$query = 'SELECT ' . static::buildField($class) . ' FROM ' . $class . '';
 		$values = array();
 		$where = ' WHERE ';
 		foreach ($fields as $property) {
@@ -324,7 +324,7 @@ class DB {
 			$query .= $where;
 		}
 		// if values contains id, one value only
-		return self::Prepare($query . ';', $values, in_array('id', $values) ? self::FETCH_TYPE_ROW : self::FETCH_TYPE_ALL);
+		return static::Prepare($query . ';', $values, in_array('id', $values) ? static::FETCH_TYPE_ROW : static::FETCH_TYPE_ALL);
 	}
 
 	/**
@@ -339,8 +339,8 @@ class DB {
 				return false;
 			}
 		}
-		list($sql, $parameters) = self::buildQuery($object);
-		$sql = 'DELETE FROM `' . self::getTableName($object) . '` WHERE ';
+		list($sql, $parameters) = static::buildQuery($object);
+		$sql = 'DELETE FROM `' . static::getTableName($object) . '` WHERE ';
 		if (isset($parameters['id'])) {
 			$sql .= '`id`=:id AND ';
 			$parameters = array('id' => $parameters['id']);
@@ -354,10 +354,10 @@ class DB {
 			}
 		}
 		$sql .= '1';
-		$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
-		$reflection = self::getReflectionClass($object);
+		$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+		$reflection = static::getReflectionClass($object);
 		if ($reflection->hasProperty('id')) {
-			self::setField($object, 'id', null);
+			static::setField($object, 'id', null);
 		}
 		if (method_exists($object, 'postRemove')) {
 			$object->postRemove();
@@ -367,7 +367,7 @@ class DB {
 
 	public static function checksum($_table) {
 		$sql = 'CHECKSUM TABLE ' . $_table;
-		$result = self::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$result = static::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		return $result['Checksum'];
 	}
 
@@ -383,8 +383,8 @@ class DB {
 				return false;
 			}
 		}
-		list($sql, $parameters) = self::buildQuery($object);
-		$sql = 'SELECT * FROM ' . self::getTableName($object) . ' WHERE ';
+		list($sql, $parameters) = static::buildQuery($object);
+		$sql = 'SELECT * FROM ' . static::getTableName($object) . ' WHERE ';
 		foreach ($parameters as $field => $value) {
 			if ($value != '') {
 				$sql .= '`' . $field . '`=:' . $field . ' AND ';
@@ -393,7 +393,7 @@ class DB {
 			}
 		}
 		$sql .= '1 LOCK IN SHARE MODE';
-		$res = self::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
+		$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 		if (method_exists($object, 'postLock')) {
 			$object->postLock();
 		}
@@ -419,23 +419,23 @@ class DB {
 	 * @throws RuntimeException
 	 */
 	private static function getFields($object) {
-		$table = is_string($object) ? $object : self::getTableName($object);
-		if (isset(self::$fields[$table])) {
-			return self::$fields[$table];
+		$table = is_string($object) ? $object : static::getTableName($object);
+		if (isset(static::$fields[$table])) {
+			return static::$fields[$table];
 		}
-		$reflection = is_object($object) ? self::getReflectionClass($object) : new ReflectionClass($object);
+		$reflection = is_object($object) ? static::getReflectionClass($object) : new ReflectionClass($object);
 		$properties = $reflection->getProperties();
-		self::$fields[$table] = array();
+		static::$fields[$table] = array();
 		foreach ($properties as $property) {
 			$name = $property->getName();
 			if ('_' !== $name[0]) {
-				self::$fields[$table][] = $name;
+				static::$fields[$table][] = $name;
 			}
 		}
-		if (empty(self::$fields[$table])) {
+		if (empty(static::$fields[$table])) {
 			throw new RuntimeException('No fields found for class ' . get_class($object));
 		}
-		return self::$fields[$table];
+		return static::$fields[$table];
 	}
 
 	/**
@@ -451,7 +451,7 @@ class DB {
 		if (method_exists($object, $method)) {
 			$object->$method($value);
 		} else {
-			$reflection = self::getReflectionClass($object);
+			$reflection = static::getReflectionClass($object);
 			if ($reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
@@ -473,9 +473,9 @@ class DB {
 	private static function buildQuery($object) {
 		$parameters = array();
 		$sql = array();
-		foreach (self::getFields($object) as $field) {
+		foreach (static::getFields($object) as $field) {
 			$sql[] = '`' . $field . '` = :' . $field;
-			$parameters[$field] = self::getField($object, $field);
+			$parameters[$field] = static::getField($object, $field);
 		}
 		return array($sql, $parameters);
 	}
@@ -495,7 +495,7 @@ class DB {
 		if (method_exists($object, $method)) {
 			$retval = $object->$method();
 		} else {
-			$reflection = self::getReflectionClass($object);
+			$reflection = static::getReflectionClass($object);
 			if ($reflection->hasProperty($field)) {
 				$property = $reflection->getProperty($field);
 				$property->setAccessible(true);
@@ -526,7 +526,7 @@ class DB {
 
 	public static function buildField($_class, $_prefix = '') {
 		$fields = array();
-		foreach (self::getFields($_class) as $field) {
+		foreach (static::getFields($_class) as $field) {
 			if ('_' !== $field[0]) {
 				if ($_prefix != '') {
 					$fields[] = '`' . $_prefix . '`.' . '`' . $field . '`';
@@ -605,7 +605,7 @@ class DB {
 		}
 		if (trim($error) != '') {
 			if ($_loop < 1) {
-				return self::compareAndFix($_database, $_table, $_verbose, ($_loop + 1));
+				return static::compareAndFix($_database, $_table, $_verbose, ($_loop + 1));
 			}
 			throw new \Exception($error);
 		}
@@ -615,7 +615,7 @@ class DB {
 	public static function compareDatabase($_database) {
 		$return = array();
 		foreach ($_database['tables'] as $table) {
-			$return = array_merge($return, self::compareTable($table));
+			$return = array_merge($return, static::compareTable($table));
 		}
 		return $return;
 	}
@@ -635,7 +635,7 @@ class DB {
 			));
 			foreach ($_table['fields'] as $field) {
 				$return[$_table['name']]['sql'] .= "\n" . '`' . $field['name'] . '`';
-				$return[$_table['name']]['sql']	.= self::buildDefinitionField($field);
+				$return[$_table['name']]['sql']	.= static::buildDefinitionField($field);
 				$return[$_table['name']]['sql'] .= ',';
 			}
 			$return[$_table['name']]['sql'] .= "\n" . 'primary key(';
@@ -652,7 +652,7 @@ class DB {
 			}
 			$return[$_table['name']]['sql'] .= ' ENGINE ' . $_table['engine'] . ";\n";
 			foreach ($_table['indexes'] as $index) {
-				$return[$_table['name']]['sql'] .= "\n" . self::buildDefinitionIndex($index, $_table['name']) . ';';
+				$return[$_table['name']]['sql'] .= "\n" . static::buildDefinitionIndex($index, $_table['name']) . ';';
 			}
 			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'], ';');
 			return $return;
@@ -664,7 +664,7 @@ class DB {
 				if ($describe['Field'] != $field['name']) {
 					continue;
 				}
-				$return[$_table['name']]['fields'] = array_merge($return[$_table['name']]['fields'], self::compareField($field, $describe, $_table['name']));
+				$return[$_table['name']]['fields'] = array_merge($return[$_table['name']]['fields'], static::compareField($field, $describe, $_table['name']));
 				if (isset($return[$_table['name']]['fields'][$field['name']]) && $return[$_table['name']]['fields'][$field['name']]['status'] == 'nok') {
 					$forceRebuildIndex = true;
 				}
@@ -676,7 +676,7 @@ class DB {
 					'message' => 'Not found',
 					'sql' => 'ALTER TABLE `' . $_table['name'] . '` ADD `' . $field['name'] . '`'
 				);
-				$return[$_table['name']]['fields'][$field['name']]['sql']	.= self::buildDefinitionField($field);
+				$return[$_table['name']]['fields'][$field['name']]['sql']	.= static::buildDefinitionField($field);
 			}
 		}
 		foreach ($describes as $describe) {
@@ -695,7 +695,7 @@ class DB {
 				);
 			}
 		}
-		$showIndexes = self::prepareIndexCompare(DB::Prepare('show index from `' . $_table['name'] . '`', array(), DB::FETCH_TYPE_ALL));
+		$showIndexes = static::prepareIndexCompare(DB::Prepare('show index from `' . $_table['name'] . '`', array(), DB::FETCH_TYPE_ALL));
 		foreach ($_table['indexes'] as $index) {
 			$found = false;
 			foreach ($showIndexes as $showIndex) {
@@ -703,7 +703,7 @@ class DB {
 					continue;
 				}
 
-				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'], self::compareIndex($index, $showIndex, $_table['name'], $forceRebuildIndex));
+				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'], static::compareIndex($index, $showIndex, $_table['name'], $forceRebuildIndex));
 				$found = true;
 			}
 			if (!$found) {
@@ -712,7 +712,7 @@ class DB {
 					'message' => 'Not found',
 					'sql' => ''
 				);
-				$return[$_table['name']]['indexes'][$index['Key_name']]['sql']	.= self::buildDefinitionIndex($index, $_table['name']);
+				$return[$_table['name']]['indexes'][$index['Key_name']]['sql']	.= static::buildDefinitionIndex($index, $_table['name']);
 			}
 		}
 		foreach ($showIndexes as $showIndex) {
@@ -773,7 +773,7 @@ class DB {
 		}
 		if ($return[$_ref_field['name']]['status'] == 'nok') {
 			$return[$_ref_field['name']]['sql'] = 'ALTER TABLE `' . $_table_name . '` MODIFY COLUMN `' . $_ref_field['name'] . '` ';
-			$return[$_ref_field['name']]['sql'] .= self::buildDefinitionField($_ref_field);
+			$return[$_ref_field['name']]['sql'] .= static::buildDefinitionField($_ref_field);
 		}
 		return $return;
 	}
@@ -794,7 +794,7 @@ class DB {
 		}
 		if ($return[$_ref_index['Key_name']]['status'] == 'nok') {
 			$return[$_ref_index['Key_name']]['presql'] =  'ALTER TABLE `' . $_table_name . '` DROP INDEX `' . $_ref_index['Key_name'] . '`;';
-			$return[$_ref_index['Key_name']]['sql'] = "\n" . self::buildDefinitionIndex($_ref_index, $_table_name);
+			$return[$_ref_index['Key_name']]['sql'] = "\n" . static::buildDefinitionIndex($_ref_index, $_table_name);
 		}
 		return $return;
 	}

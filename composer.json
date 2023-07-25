@@ -1,30 +1,17 @@
 {
-  "name": "jeedom/core",
-  "description": "Software for home automation",
   "require": {
     "dragonmantank/cron-expression": "*",
     "symfony/expression-language": "*",
-    "doctrine/cache": "*",
+    "doctrine/cache": "^1.10",
     "monolog/monolog": "*",
     "knplabs/github-api": "*",
-    "touki/ftp": "*",
     "league/flysystem-webdav": "*",
-    "league/oauth2-client": "*",
-    "matthiasmullie/minify": "*",
-    "pragmarx/google2fa-qrcode": "^1.0",
-    "abbadon1334/sun-position-spa-php": "^1.0"
+    "pragmarx/google2fa-qrcode": "*",
+    "abbadon1334/sun-position-spa-php": "*"
   },
-  "license": "GPL",
   "config": {
-    "preferred-install": "dist",
-    "platform": {
-      "php": "7.0.0"
-    }
-  },
-  "authors": [
-    {
-      "name": "Loic",
-      "email": "loic@jeedom.com"
-    }
-  ]
+      "allow-plugins": {
+          "php-http/discovery": true
+      }
+  }
 }

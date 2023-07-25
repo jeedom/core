@@ -52,8 +52,8 @@ class cmd {
 	protected $_needRefreshAlert;
 	/** @var bool */
 	protected $_changed = false;
-	private static $_templateArray = array();
-	private static $_unite_conversion = array(
+	protected static $_templateArray = array();
+	protected static $_unite_conversion = array(
 		's' => array(60, 's', 'min', 'h'),
 		'W' => array(1000, 'W', 'kW', 'MW'),
 		'Wh' => array(1000, 'Wh', 'kWh', 'MWh'),
