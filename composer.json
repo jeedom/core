@@ -1,6 +1,4 @@
 {
-  "name": "jeedom/core",
-  "description": "Software for home automation",
   "require": {
     "dragonmantank/cron-expression": "*",
     "symfony/expression-language": "*",
@@ -14,17 +12,9 @@
     "pragmarx/google2fa-qrcode": "^1.0",
     "abbadon1334/sun-position-spa-php": "^1.0"
   },
-  "license": "GPL",
   "config": {
-    "preferred-install": "dist",
-    "platform": {
-      "php": "7.0.0"
-    }
-  },
-  "authors": [
-    {
-      "name": "Loic",
-      "email": "loic@jeedom.com"
-    }
-  ]
+      "allow-plugins": {
+          "php-http/discovery": true
+      }
+  }
 }
