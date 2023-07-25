@@ -364,6 +364,12 @@ step_11_jeedom_post() {
 
   chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
   ${WEBSERVER_HOME}/resources/install_composer.sh
+  if [ $(which composer | wc -l) -ne 0 ]; then
+      rm -rf ${WEBSERVER_HOME}/vendor
+      cd ${WEBSERVER_HOME}
+      composer install
+  fi
+  
   echo "${VERT}Step 11 - Jeedom post-install done${NORMAL}"
 }
 
