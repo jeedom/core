@@ -185,7 +185,7 @@ try {
 		$communitUrl = 'https://community.jeedom.com';
 		$ressource = '/new-topic?';
 
-		$finalBody = br2nl($infoPost . $infoPlugin);
+		$finalBody = br2nl($infoPost . $infoPlugin .'<br/>```');
 
 		$data = array(
 			'category' => 'plugins/' . $plugin->getCategory(),
