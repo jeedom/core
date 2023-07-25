@@ -36,7 +36,6 @@ jeeFrontEnd = {
   //@index.php
   serverDatetime: null,
   clientServerDiffDatetime: null,
-  serverDatetime: null,
   serverTZoffsetMin: null,
 }
 
