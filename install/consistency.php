@@ -470,6 +470,17 @@ try {
 	echo "Set cache hour...";
 	cache::set('hour', strtotime('UTC'));
 	echo "OK\n";
+
+	echo "Check composer..."
+	if (exec('which composer | wc -l') == 0) {
+		echo "\nNeed to install composer..."
+		echo shell_exec('sudo ' . __DIR__ . '/../resources/install_composer.sh');
+	}
+	echo "OK\n";
+
+	echo "Check nodejs..."
+        echo shell_exec('sudo ' . __DIR__ . '/../resources/install_nodejs.sh');
+	echo "OK\n";
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();
