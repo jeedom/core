@@ -693,6 +693,35 @@ document.getElementById('div_pageContainer').addEventListener('click', function 
     return
   }
 
+  if (_target = event.target.closest('.eqLogicAction[data-action="createCommunityPost"]')) {
+    jeedom.plugin.createCommunityPost({
+      type: eqType
+      ,
+      error: function (error) {
+        domUtils.hideLoading()
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function (data) {
+        var element = document.createElement('a');
+
+        element.setAttribute('href', data.url);
+        element.setAttribute('target', '_blank');
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+      }
+    });
+    return;
+
+  }
+
 
   //Cmd-->
   if (_target = event.target.closest('.cmdAction[data-action="add"]')) {
@@ -757,11 +786,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function 
       title: '',
       contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.closest('.cmd').getAttribute('data-cmd_id')
     })
-    return
-  }
-
-  if (_target = event.target.closest('.eqLogicAction[data-action="createCommunityPost"]')) {
-    jeeFrontEnd.pluginTemplate.createCommunityPost()
     return
   }
 
