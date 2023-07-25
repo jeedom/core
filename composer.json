@@ -2,7 +2,7 @@
   "require": {
     "dragonmantank/cron-expression": "*",
     "symfony/expression-language": "*",
-    "doctrine/cache": "^1.10",
+    "doctrine/cache": "^1.13",
     "monolog/monolog": "*",
     "knplabs/github-api": "*",
     "league/flysystem-webdav": "*",
