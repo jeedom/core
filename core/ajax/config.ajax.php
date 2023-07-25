@@ -57,18 +57,14 @@ try {
 		if (is_json($keys)) {
 			$keys = json_decode($keys, true);
 			$return = config::byKeys(array_keys($keys), init('plugin', 'core'));
-			if (init('convertToHumanReadable', 0)) {
-				$return = jeedom::toHumanReadable($return);
-			}
-			ajax::success($return);
-		} else {
+        } else {
 			$return = config::byKey($keys, init('plugin', 'core'));
-			if (init('convertToHumanReadable', 0)) {
-				$return = jeedom::toHumanReadable($return);
-			}
-			ajax::success($return);
-		}
-	}
+        }
+        if (init('convertToHumanReadable', 0)) {
+            $return = jeedom::toHumanReadable($return);
+        }
+        ajax::success($return);
+    }
 
 	if (init('action') == 'addKey') {
 		if (!isConnect('admin')) {
@@ -108,7 +104,7 @@ try {
 
 		$page = init('id');
 		$key = 'interface::background::' . $page;
-		config::save($key, config::getDefaultConfiguration('core')['core'][$key], 'core');
+		config::save($key, config::getDefaultConfiguration()['core'][$key]);
 
 		if (!isset($_FILES['file'])) {
 			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
@@ -123,7 +119,7 @@ try {
 
 		$uploaddir = realpath(__DIR__ . '/../../data/backgrounds');
 		if (!file_exists($uploaddir)) {
-			mkdir($uploaddir, 0777);
+			mkdir($uploaddir);
 		}
 
 
@@ -131,7 +127,7 @@ try {
 		@unlink($filepath);
 		file_put_contents($filepath, file_get_contents($_FILES['file']['tmp_name']));
 		if (!file_exists($filepath)) {
-			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
+			throw new Exception(__('Impossible de sauvegarder l\'image', __FILE__));
 		}
 
 		config::save($key, '/data/backgrounds/config_' . $page . $extension);
@@ -146,10 +142,10 @@ try {
 
 		$page = init('id');
 		$key = 'interface::background::' . $page;
-		$filepath = '../..' . config::byKey($key, 'core');
+		$filepath = '../..' . config::byKey($key);
 
 		@unlink($filepath);
-		config::save($key, config::getDefaultConfiguration('core')['core'][$key], 'core');
+		config::save($key, config::getDefaultConfiguration()['core'][$key]);
 		ajax::success();
 	}
 
