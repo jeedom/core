@@ -361,6 +361,9 @@ step_11_jeedom_post() {
   fi
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
   ${WEBSERVER_HOME}/resources/install_nodejs.sh
+
+  chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
+  ${WEBSERVER_HOME}/resources/install_composer.sh
   echo "${VERT}Step 11 - Jeedom post-install done${NORMAL}"
 }
 
