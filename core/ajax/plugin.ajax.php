@@ -152,6 +152,10 @@ try {
 
 	if (init('action') == 'createCommunityPost') {
 
+		$header = '< Ajoutez un titre puis rédigez votre question/problème ici, sans effacer les infos de config indiquées ci-dessous ><br/><br/><br/><br/>';
+		$header .= '--- <br/>**Mes infos de config** : <br/>```<br/>';
+		$footer .= '<br/>```<br/>';
+
 		$infoPost = plugin::getConfigForCommunity();
 
 		/** @var plugin $plugin */
@@ -185,7 +189,7 @@ try {
 		$communitUrl = 'https://community.jeedom.com';
 		$ressource = '/new-topic?';
 
-		$finalBody = br2nl($infoPost . $infoPlugin .'<br/>```');
+		$finalBody = br2nl($header . $infoPost . $infoPlugin . $footer);
 
 		$data = array(
 			'category' => 'plugins/' . $plugin->getCategory(),
