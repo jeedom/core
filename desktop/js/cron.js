@@ -150,8 +150,10 @@ if (!jeeFrontEnd.cron) {
       return tr
     },
     setCronTable: function() {
-      if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.destroy()
-
+     if (jeeFrontEnd.cron.cronDataTable){
+        jeeFrontEnd.cron.cronDataTable.destroy()
+        delete jeeFrontEnd.cron.cronDataTable;
+      } 
       jeeFrontEnd.cron.cronDataTable = new DataTable(jeeFrontEnd.cron.tableCron, {
         columns: [
           { select: 0, sort: "asc" },
