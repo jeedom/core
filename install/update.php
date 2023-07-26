@@ -225,6 +225,15 @@ try {
 					echo 'Cleaning ' . $folder . "\n";
 					shell_exec('find ' . __DIR__ . '/../' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 				}
+				echo "OK\n";
+				echo "[PROGRESS][53]\n";
+				echo "Update composer file...\n";
+                                if (exec('which composer | wc -l') > 0) {
+					shell_exec('cd ' . __DIR__ . '/../; composer update');
+				}
+				echo "OK\n";
+				echo "[PROGRESS][58]\n";
+				echo "Update jeedom information date...\n";
 				try {
 					$update = update::byLogicalId('jeedom');
 					if (is_object($update) && method_exists($update, 'setUpdateDate')) {
@@ -233,6 +242,8 @@ try {
 					}
 				} catch (\Exception $e) {
 				}
+				echo "OK\n";
+				echo "[PROGRESS][59]\n";
 			} catch (Exception $e) {
 				if (init('force') != 1) {
 					throw $e;
@@ -243,7 +254,7 @@ try {
 		} else {
 			jeedom::stop();
 		}
-		echo "[PROGRESS][55]\n";
+		echo "[PROGRESS][60]\n";
 		if (init('update::reapply') != '') {
 			$updateScript = __DIR__ . '/update/' . init('update::reapply') . '.php';
 			if (file_exists($updateScript)) {
