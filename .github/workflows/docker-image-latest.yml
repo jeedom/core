@@ -21,6 +21,8 @@ jobs:
       - name: Free disk space
         run: |
           df -h
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
           sudo apt-get autoclean -y 2>&1
           docker rmi $(docker image ls -aq) 2>&1
           df -h
