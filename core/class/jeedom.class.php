@@ -817,7 +817,7 @@ class jeedom {
 	public static function update($_options = array()) {
 		log::clear('update');
 		$params = '';
-		if (count($_options) > 0) {
+		if (is_array($_options) && count($_options) > 0) {
 			foreach ($_options as $key => $value) {
 				$params .= '"' . $key . '"="' . $value . '" ';
 			}
