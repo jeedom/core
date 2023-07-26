@@ -17,6 +17,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Free disk space
+        run: |
+          sudo apt-get autoclean -y 2>&1
+          docker rmi $(docker image ls -aq) 2>&1
+          sudo swapoff /swapfile 2>&1
+          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc 2>&1
+    
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
@@ -59,10 +67,31 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
+      - name: Build and push Jeedom on Debian:Bookworm without internal DB
+        # https://github.com/marketplace/actions/build-and-push-docker-images
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            "VERSION=${{ env.GITHUB_BRANCH }}"
+            "DEBIAN=bookworm"
+            "DATABASE=0"
+          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-http-bookworm"
+
+      - name: Clean docker image
+        run: |
+          docker rmi $(docker image ls -aq) 2>&1
+      
       - name: Build and push Jeedom on DockerHub
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
-        # continue-on-error: true
+        continue-on-error: true
         with:
           context: ./
           file: ./Dockerfile
@@ -72,11 +101,15 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
           build-args: "VERSION=${{ env.GITHUB_BRANCH }}"
           tags: "${{ env.JEEDOM_TAGS }}"
+          
+      - name: Clean docker image
+        run: |
+          docker rmi $(docker image ls -aq) 2>&1
 
       - name: Build and push Jeedom on Debian:Buster
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
-        # continue-on-error: true
+        continue-on-error: true
         with:
           context: ./
           file: ./Dockerfile
@@ -88,6 +121,26 @@ jobs:
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=buster"
           tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
+          
+      - name: Clean docker image
+        run: |
+          docker rmi $(docker image ls -aq) 2>&1
+      
+      - name: Build and push Jeedom on Debian:Bookworm
+        # https://github.com/marketplace/actions/build-and-push-docker-images
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            "VERSION=${{ env.GITHUB_BRANCH }}"
+            "DEBIAN=bookworm"
+          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-bookworm"
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
