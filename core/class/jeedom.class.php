@@ -446,7 +446,7 @@ class jeedom {
 		}
 		$return[] = $cache_health;
 
-		if(jeedom::getHardwareName() == 'docker'){
+		if(jeedom::getHardwareName() != 'docker'){
 			$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
 			$return[] = array(
 				'name' => __('Apache private tmp', __FILE__),
