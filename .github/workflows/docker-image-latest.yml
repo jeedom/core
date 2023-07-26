@@ -23,6 +23,7 @@ jobs:
           df -h
           sudo apt-get autoclean -y 2>&1
           docker rmi $(docker image ls -aq) 2>&1
+          df -h
     
       - name: Check Out Repo
         # Check out the repo, using current branch
@@ -85,6 +86,8 @@ jobs:
 
       - name: Clean docker image
         run: |
+          docker stop $(docker ps -aq) 2>&1
+          docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
       
       - name: Build and push Jeedom on DockerHub
@@ -103,6 +106,8 @@ jobs:
           
       - name: Clean docker image
         run: |
+          docker stop $(docker ps -aq) 2>&1
+          docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
 
       - name: Build and push Jeedom on Debian:Buster
@@ -123,6 +128,8 @@ jobs:
           
       - name: Clean docker image
         run: |
+          docker stop $(docker ps -aq) 2>&1
+          docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
       
       - name: Build and push Jeedom on Debian:Bookworm
