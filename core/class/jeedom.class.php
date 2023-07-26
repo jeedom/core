@@ -1704,7 +1704,7 @@ class jeedom {
 		$result = 'diy';
 		$uname = shell_exec('uname -a');
 		$hostname = shell_exec('cat /etc/hostname');
-		if (file_exists('/.dockerinit')) {
+		if (file_exists('/.dockerinit') || file_exists('/.dockerenv')) {
 			$result = 'docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'rpi';
