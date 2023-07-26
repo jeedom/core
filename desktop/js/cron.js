@@ -56,6 +56,10 @@ if (!jeeFrontEnd.cron) {
       jeedom.cron.all({
         success: function(data) {
           domUtils.showLoading()
+          if (jeeFrontEnd.cron.cronDataTable){
+            jeeFrontEnd.cron.cronDataTable.destroy()
+            delete jeeFrontEnd.cron.cronDataTable;
+          } 
           var table = document.getElementById('table_cron').querySelector('tbody')
           table.empty()
           for (var i in data) {
