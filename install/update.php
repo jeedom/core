@@ -221,7 +221,7 @@ try {
 				echo "OK\n";
 				echo "[PROGRESS][52]\n";
 				echo "Remove useless files...\n";
-				foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor') as $folder) {
+				foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script') as $folder) {
 					echo 'Cleaning ' . $folder . "\n";
 					shell_exec('find ' . __DIR__ . '/../' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 				}
