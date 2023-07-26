@@ -1082,11 +1082,8 @@ class plugin {
 
 	public static function getConfigForCommunity($separator = '<br/>') {
 
-		$infoCore = '< Ajoutez un titre puis rédigez votre question/problème ici, sans effacer les infos de config indiquées ci-dessous >';
-		$infoCore .= '<br/><br/><br/><br/>--- <br/>**Mes infos de config** : <br/>```<br/>';
-
 		// retrieve core version and branch
-		$infoCore .= 'Core : ' . config::byKey('version', 'core', '#NA#') . ' (' . config::byKey('core::branch') . ')' . $separator;
+		$infoCore = 'Core : ' . config::byKey('version', 'core', '#NA#') . ' (' . config::byKey('core::branch') . ')' . $separator;
 
 		// check if connexion used jeedom DNS 
 		$url =  network::getNetworkAccess('external');
