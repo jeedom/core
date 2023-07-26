@@ -68,7 +68,7 @@ if($freespace <= 1){
 	echo "OK\n";
 }
 
-if(jeedom::getHardwareName() == 'docker'){
+if (file_exists('/.dockerinit')) {
 	exit(0);
 }
 
