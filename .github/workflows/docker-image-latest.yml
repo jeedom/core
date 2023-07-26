@@ -20,10 +20,9 @@ jobs:
     
       - name: Free disk space
         run: |
+          df -h
           sudo apt-get autoclean -y 2>&1
           docker rmi $(docker image ls -aq) 2>&1
-          sudo swapoff /swapfile 2>&1
-          sudo rm -rf /swapfile /usr/share/dotnet /usr/local/lib/android /opt/ghc 2>&1
     
       - name: Check Out Repo
         # Check out the repo, using current branch
