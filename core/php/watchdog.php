@@ -68,7 +68,7 @@ if($freespace <= 1){
 	echo "OK\n";
 }
 
-if (file_exists('/.dockerinit')) {
+if (file_exists('/.dockerinit') || file_exists('/.dockerenv')) {
 	exit(0);
 }
 
