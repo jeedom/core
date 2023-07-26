@@ -461,7 +461,7 @@ class update {
 						if (!file_exists($cibDir . '/' . $folder)) {
 							continue;
 						}
-						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete 2>/dev/null');
+						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" ! -path "./vendor/*" -delete 2>/dev/null');
 					}
 				} catch (Exception $e) {
 					$this->remove();
