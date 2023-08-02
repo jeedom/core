@@ -369,7 +369,7 @@ step_11_jeedom_post() {
       rm -rf ${WEBSERVER_HOME}/composer.lock
       export COMPOSER_ALLOW_SUPERUSER=1
       cd ${WEBSERVER_HOME}
-      composer install
+      composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
   fi
   
   echo "${VERT}Step 11 - Jeedom post-install done${NORMAL}"
