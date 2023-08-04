@@ -271,7 +271,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<div class="alert" style="margin-bottom: 0;">
 						<i class="far fa-comment"></i>
-						<i>{{Les informations suivantes peuvent êtres utilisées par les plugins.}}</i>
+						<i>{{Les informations suivantes peuvent être utilisées par les plugins.}}</i>
 						<i>{{Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site.</a>}}</i>
 					</div>
 					<fieldset>
@@ -538,7 +538,7 @@ user::isBan();
 								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitylight" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitydark" data-reload="1" />
@@ -794,7 +794,7 @@ user::isBan();
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Addresse du proxy}}</label>
+									<label class="col-xs-4 control-label">{{Adresse du proxy}}</label>
 									<div class="col-xs-4">
 										<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 									</div>
@@ -1724,16 +1724,16 @@ user::isBan();
 
 						<legend>{{Dépendance et démon}}</legend>
 						<div class="form-group">
-							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}"></i></sup>
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}"></i></sup>
 							</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDependancy" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}"></i></sup>
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle}}"></i></sup>
 							</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDeamony" />
@@ -2255,7 +2255,7 @@ user::isBan();
 
 									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
-											<sup><i class="fas fa-question-circle" tooltip="{{Edition multiples de paramètres d'équipements, commandes, ...}}"></i></sup>
+											<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d'équipements, commandes...}}"></i></sup>
 										</label>
 										<div class="col-md-5 col-xs-6">
 											<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>
