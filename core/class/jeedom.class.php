@@ -446,14 +446,16 @@ class jeedom {
 		}
 		$return[] = $cache_health;
 
-		$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
-		$return[] = array(
-			'name' => __('Apache private tmp', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec).', __FILE__) . '</a>',
-			'key' => 'apache2::privateTmp'
-		);
+		if(jeedom::getHardwareName() != 'docker'){
+			$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
+			$return[] = array(
+				'name' => __('Apache private tmp', __FILE__),
+				'state' => $state,
+				'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
+				'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec).', __FILE__) . '</a>',
+				'key' => 'apache2::privateTmp'
+			);
+		}
 
 		foreach ((update::listRepo()) as $repo) {
 			if (!$repo['enable']) {
@@ -520,6 +522,9 @@ class jeedom {
 	}
 
 	public static function apiModeResult($_mode = 'enable') {
+		if ($_mode == 'localhost' && jeedom::getHardwareName() == 'docker') {
+			$_mode = 'whiteip';
+		}
 		switch ($_mode) {
 			case 'disable':
 				return false;
@@ -602,8 +607,14 @@ class jeedom {
 		$serial = '';
 		$serial_by_id = '';
 		foreach (explode("\n", shell_exec('udevadm info --name=/dev/' . $_usb . ' --query=all')) as $line) {
+			if (strpos($line, 'E: ID_USB_MODEL=') !== false) {
+				$model = trim(str_replace(array('E: ID_USB_MODEL=', '"'), '', $line));
+			}
 			if (strpos($line, 'E: ID_MODEL=') !== false) {
 				$model = trim(str_replace(array('E: ID_MODEL=', '"'), '', $line));
+			}
+			if (strpos($line, 'E: ID_USB_VENDOR=') !== false) {
+				$vendor = trim(str_replace(array('E: ID_USB_VENDOR=', '"'), '', $line));
 			}
 			if (strpos($line, 'E: ID_VENDOR=') !== false) {
 				$vendor = trim(str_replace(array('E: ID_VENDOR=', '"'), '', $line));
@@ -614,6 +625,14 @@ class jeedom {
 					if (strpos($serial_links, '/serial/by-id') !== false) {
 						$serial_by_id = trim($serial_links);
 						break;
+					}
+				}
+				if ($serial_by_id == '') {
+					foreach ($serial_by_ids as $serial_links) {
+						if (strpos($serial_links, '/serial/by-path') !== false) {
+							$serial_by_id = trim($serial_links);
+							break;
+						}
 					}
 				}
 			}
@@ -800,7 +819,7 @@ class jeedom {
 	public static function update($_options = array()) {
 		log::clear('update');
 		$params = '';
-		if (count($_options) > 0) {
+		if (is_array($_options) && count($_options) > 0) {
 			foreach ($_options as $key => $value) {
 				$params .= '"' . $key . '"="' . $value . '" ';
 			}
@@ -974,8 +993,8 @@ class jeedom {
 		return true;
 	}
 
-	public static function event($_event, $_forceSyncMode = false) {
-		scenario::check($_event, $_forceSyncMode);
+	public static function event($_event, $_forceSyncMode = false, $_options = null) {
+		scenario::check($_event, $_forceSyncMode, null, null, null, $_options);
 	}
 
 	/*****************************************CRON JEEDOM****************************************************************/
@@ -1687,7 +1706,7 @@ class jeedom {
 		$result = 'diy';
 		$uname = shell_exec('uname -a');
 		$hostname = shell_exec('cat /etc/hostname');
-		if (file_exists('/.dockerinit')) {
+		if (file_exists('/.dockerinit') || file_exists('/.dockerenv')) {
 			$result = 'docker';
 		} else if (file_exists('/usr/bin/raspi-config')) {
 			$result = 'rpi';

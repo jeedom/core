@@ -129,8 +129,8 @@ if (!jeeFrontEnd.interact) {
       div += '</span>'
       div += '<input class="expressionAttr form-control cmdAction input-sm" data-l1key="cmd" data-type="' + _type + '" />'
       div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-default btn-sm listAction"" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
-      div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
+      div += '<a class="btn btn-default btn-sm listAction" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
+      div += '<a class="btn btn-default btn-sm listCmd roundedRight" data-type="' + _type + '" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i></a>'
       div += '</span>'
       div += '</div>'
       div += '</div>'
@@ -590,7 +590,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
     var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
-        type: 'info'
+        type: 'action'
       }
     }, function(result) {
       el.jeeValue(result.human)
@@ -607,24 +607,6 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
     var type = _target.getAttribute('data-type')
     var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.getSelectActionModal({}, function(result) {
-      el.jeeValue(result.human)
-      jeeFrontEnd.modifyWithoutSave = true
-      jeedom.cmd.displayActionOption(result.human, '', function(html) {
-        el.closest('.' + type).querySelector('.actionOptions').html(html)
-        jeedomUtils.taAutosize()
-      })
-    })
-    return
-  }
-
-  if (_target = event.target.closest('.listCmdAction')) {
-    var type = _target.getAttribute('data-type')
-    var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
-    jeedom.cmd.getSelectModal({
-      cmd: {
-        type: 'action'
-      }
-    }, function(result) {
       el.jeeValue(result.human)
       jeeFrontEnd.modifyWithoutSave = true
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
@@ -656,11 +638,10 @@ document.getElementById('div_conf').addEventListener('focusout', function(event)
   if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
     var type = _target.getAttribute('data-type')
     var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
-    jeedom.cmd.displayActionOption(el.jeeValue(), init(expression[0].options), function(html) {
+    jeedom.cmd.displayActionOption(_target.jeeValue(), init(expression[0].options), function(html) {
       _target.closest('.' + type).querySelector('.actionOptions').html(html)
       jeedomUtils.taAutosize()
     })
     return
   }
 })
-

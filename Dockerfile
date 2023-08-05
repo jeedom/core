@@ -7,6 +7,8 @@ ARG WEBSERVER_HOME=/var/www/html
 ENV WEBSERVER_HOME=${WEBSERVER_HOME}
 ARG VERSION=V4-stable
 ENV VERSION=${VERSION}
+ARG DATABASE=1
+ENV DATABASE=${DATABASE}
 
 # labels follows opencontainers convention
 LABEL org.opencontainers.image.title='Jeedom'
@@ -24,7 +26,7 @@ VOLUME ${WEBSERVER_HOME}
 VOLUME /var/lib/mysql
 
 COPY install/install.sh /tmp/
-RUN sh /tmp/install.sh -v ${VERSION} -w ${WEBSERVER_HOME}
+RUN sh /tmp/install.sh -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE}
 
 EXPOSE 80
 COPY install/OS_specific/Docker/init.sh /root/

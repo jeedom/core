@@ -6,7 +6,7 @@ include_file('core', 'authentification', 'php');
 global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
-$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose')));
+$configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose', 'scenario::disableAutocomplete')));
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -41,9 +41,9 @@ $panel_menu = '';
 if (init('rescue', 0) == 0) {
 	$plugins_list = plugin::listPlugin(true, true);
 	$eventjs_plugin = array();
+	$panelMenuArray = array();
+	$categories = array();
 	if (count($plugins_list) > 0) {
-		$categories = array();
-		$panelMenuArray = array();
 		foreach ($plugins_list as $category_name => $category) {
 			$icon = '';
 			if (isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]) && isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$category_name]['icon'])) {
@@ -79,7 +79,7 @@ if (init('rescue', 0) == 0) {
 				$plugin_menu .= '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getIndex() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
 				if ($pluginObj->getDisplay() != '' && config::byKey('displayDesktopPanel', $pluginObj->getId(), 0) != 0) {
 					$panelLi = '<li><a href="index.php?v=d&m=' . $pluginObj->getId() . '&p=' . $pluginObj->getDisplay() . '"><img class="img-responsive" src="' . $pluginObj->getPathImgIcon() . '" /> ' . $pluginObj->getName() . '</a></li>';
-					array_push($panelMenuArray, array('name' => $pluginObj->getName(), 'menu' => $panelLi));
+					$panelMenuArray[] = array('name' => $pluginObj->getName(), 'menu' => $panelLi);
 				}
 				if ($pluginObj->getEventjs() == 1) {
 					$eventjs_plugin[] = $pluginObj->getId();
@@ -271,6 +271,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	setTheme();
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
+		'jeeFrontEnd.scenario_autocomplete' => $configs['scenario::disableAutocomplete'],
 		'jeedom.theme' => $jeedom_theme
 	]);
 	include_file('desktop/common', 'utils', 'js');
@@ -518,8 +519,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 									<?php } ?>
 									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
 									<li class="divider"></li>
-									<?php if (isConnect('admin')) { ?>
-										<?php $mbState = config::byKey('mbState');
+									<?php $mbState = config::byKey('mbState'); ?>
+									<?php if (isConnect('admin')) {
 										if ($mbState == 0) { ?>
 											<li>
 												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
@@ -589,7 +590,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 			</header>
 		<?php } ?>
 		<?php if (init('rescue', 0) == 1) { ?>
-			<header class="navbar navbar-fixed-top navbar-default reportModeHidden">
+			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden">
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">

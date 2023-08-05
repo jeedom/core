@@ -222,7 +222,6 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
         },
         success: function(data) {
           if (jeeFrontEnd.md_cmdConfigureHistory.vDataTable) {
-            jeeFrontEnd.md_cmdConfigureHistory.vDataTable.refresh()
             jeeFrontEnd.md_cmdConfigureHistory.resetChanges()
           }
           jeedomUtils.showAlert({

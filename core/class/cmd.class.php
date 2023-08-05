@@ -46,12 +46,14 @@ class cmd {
 	protected $alert;
 	protected $_collectDate = '';
 	protected $_valueDate = '';
+	/** @var eqLogic */
 	protected $_eqLogic = null;
 	protected $_needRefreshWidget;
 	protected $_needRefreshAlert;
+	/** @var bool */
 	protected $_changed = false;
-	private static $_templateArray = array();
-	private static $_unite_conversion = array(
+	protected static $_templateArray = array();
+	protected static $_unite_conversion = array(
 		's' => array(60, 's', 'min', 'h'),
 		'W' => array(1000, 'W', 'kW', 'MW'),
 		'Wh' => array(1000, 'Wh', 'kWh', 'MWh'),
@@ -88,6 +90,10 @@ class cmd {
 		return $_inputs;
 	}
 
+	/**
+	 * @param int|string $_id the id of the command
+	 * @return void|cmd void if $_id is not valid else the cmd
+	 */
 	public static function byId($_id) {
 		if ($_id == '') {
 			return;
@@ -101,6 +107,10 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * @param array<string|int> $_ids
+	 * @return void|array<cmd> void if $_ids is not valid else an array of cmd
+	 */
 	public static function byIds($_ids) {
 		if (!is_array($_ids) || count($_ids) == 0) {
 			return;
@@ -114,6 +124,9 @@ class cmd {
 		}
 	}
 
+	/**
+	 * @return array<cmd>
+	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cmd
@@ -977,7 +990,7 @@ class cmd {
 						$binary = true;
 					} elseif ((is_numeric(intval($_value)) && intval($_value) >= 1)) { // Handle number and numeric string
 						$binary = true;
-					} elseif (in_array(strtolower($_value), array('on', 'true', 'high'))) { // Handle common string boolean values
+					} elseif (in_array(strtolower($_value), array('on', 'true', 'high', 'enable', 'enabled'))) { // Handle common string boolean values
 						$binary = true;
 					} else { // Handle everything else as false
 						$binary = false;
@@ -1196,10 +1209,10 @@ class cmd {
 
 	/**
 	 *
-	 * @param type $_options
-	 * @param type $_sendNodeJsEvent
-	 * @param type $_quote
-	 * @return command result
+	 * @param null|string $_options
+	 * @param bool $_sendNodeJsEvent
+	 * @param bool $_quote
+	 * @return void|string
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
@@ -1317,6 +1330,9 @@ class cmd {
 						break;
 					case 'select':
 						$value = str_replace('#select#', $options['select'], $value);
+						break;
+					case 'message':
+						$value = str_replace('#message#', $options['message'], $value);
 						break;
 				}
 				$cmd->event($value);
@@ -1668,7 +1684,7 @@ class cmd {
 				$replace['#state#'] = $replace['#value#'];
 			}
 			if ($this->getSubType() == 'string') {
-				$replace['#value#'] = addslashes($replace['#value#']);
+				$replace['#value#'] = str_replace("\n", '<br/>', addslashes($replace['#value#']));
 			}
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
@@ -2385,6 +2401,9 @@ class cmd {
 	}
 
 	public function emptyHistory($_date = '') {
+		if ($_date == '-1') {
+			$_date = '';
+		}
 		return history::emptyHistory($this->getId(), $_date);
 	}
 
@@ -2489,6 +2508,9 @@ class cmd {
 		if (property_exists($class, '_widgetPossibility')) {
 			$return = $class::$_widgetPossibility;
 			if ($_key != '') {
+				if (isset($return[$_key])) {
+					return $return[$_key];
+				}
 				$keys = explode('::', $_key);
 				foreach ($keys as $k) {
 					if (!isset($return[$k])) {
@@ -2516,7 +2538,7 @@ class cmd {
 		return $return;
 	}
 
-	public function migrateCmd($_sourceId, $_targetId) {
+	public static function migrateCmd($_sourceId, $_targetId) {
 		$sourceCmd = cmd::byId($_sourceId);
 		if (!is_object($sourceCmd)) {
 			throw new Exception(__('La commande source n\'existe pas', __FILE__));
@@ -2856,6 +2878,9 @@ class cmd {
 		return $this->_eqLogic;
 	}
 
+	/**
+	 * @param eqLogic $_eqLogic
+	 */
 	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
@@ -2873,7 +2898,7 @@ class cmd {
 
 	/**
 	 *
-	 * @param type $name
+	 * @param string $name
 	 * @return $this
 	 */
 	public function setName($_name) {
@@ -2886,6 +2911,9 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * @param string $_type
+	 */
 	public function setType($_type) {
 		if ($this->type != $_type) {
 			$this->_needRefreshWidget = true;
@@ -2895,6 +2923,9 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * @param string $_subType
+	 */
 	public function setSubType($_subType) {
 		if ($this->subType != $_subType) {
 			$this->_needRefreshWidget = true;
@@ -3079,6 +3110,9 @@ class cmd {
 		return $this->_changed;
 	}
 
+	/**
+	 * @param bool $_changed
+	 */
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;

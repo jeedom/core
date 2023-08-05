@@ -14,6 +14,11 @@ Essa API é muito fácil de usar por solicitações HTTP simples via URL.
 >
 > Para toda esta documentação, \#API\_KEY\# corresponde à sua chave API, específica para sua instalação. Para encontrá-lo, vá ao menu "Geral" → guia "Configuração" → "Geral"".
 
+> **Observação**
+>
+> Para solicitações POST, cada parâmetro de consulta pode ser enviado no corpo da solicitação no formato form-data ou x-www-form-urlencoded.
+> Os parâmetros de consulta e o conteúdo do corpo podem ser usados juntos, mas observe que os parâmetros de consulta têm precedência sobre o conteúdo do corpo.
+
 ## Cenas
 
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cenário & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cenário & id=#ID#&action=#ACTION#)
@@ -21,6 +26,10 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 - **Eu iria** : corresponde ao seu ID do cenário. O ID pode ser encontrado na página do cenário relevante, em "Ferramentas" → "Cenários", após a seleção do cenário, ao lado do nome da guia "Geral"". Outra maneira de encontrá-lo : em "Ferramentas" → "Cenários", clique em "Visão geral".
 - **estoque** : corresponde à ação que você deseja aplicar. Os comandos disponíveis são : "iniciar "," parar "," desabilitar "e" habilitar "para, respectivamente, iniciar, parar, desativar ou ativar o cenário.
 - **Tag** \ [opcional \] : se a ação for "iniciar", você pode passar as tags para o cenário (consulte a documentação sobre os cenários) nas tags de formulário = para% 3D1% 20tata% 3D2 (observe que% 20 corresponde a um espaço e% 3D para = ).
+
+> **Observação**
+>
+> Não tente usar 'php://input' para passar dados para o seu cenário, as tags existem para isso.
 
 ##  Comando Info / Ação
 

@@ -150,6 +150,61 @@ try {
 		ajax::success($plugin->deamon_changeAutoMode(init('mode')));
 	}
 
+	if (init('action') == 'createCommunityPost') {
+
+		$header = '< Ajoutez un titre puis rédigez votre question/problème ici, sans effacer les infos de config indiquées ci-dessous ><br/><br/><br/><br/>';
+		$header .= '--- <br/>**Mes infos de config** : <br/>```<br/>';
+		$footer .= '<br/>```<br/>';
+
+		$infoPost = plugin::getConfigForCommunity();
+
+		/** @var plugin $plugin */
+		$plugin = plugin::byId(init('type'));
+		$plugin_id = $plugin->getId();
+		$infoPost .= '<br/>Plugin : ' . $plugin->getName() . '<br/>';
+
+		/** @var update $update */
+		$update = $plugin->getUpdate();
+		$isBeta = false;
+		if (is_object($update)) {
+			$version = $update->getConfiguration('version');
+			$isBeta = ($version && $version != 'stable');
+		}
+
+		$infoPost .= 'Version : ' . $update->getLocalVersion() . ' (' . ($isBeta ? 'beta' : 'stable') . ')<br/>';
+
+		if ($plugin->getHasOwnDeamon()) {
+			$daemon_info = $plugin_id::deamon_info();
+			$infoPost .= 'Statut Démon : ' . ($daemon_info['state'] == 'ok' ? 'Démarré ' : 'Stoppé') . ' - (' . ($daemon_info['last_launch'] ?? 'NA') . ')<br/>';
+		}
+
+		$infoPlugin = '';
+		if (method_exists($plugin_id, 'getConfigForCommunity')) {
+			$infoPlugin .= '<br/>Informations complémentaires du plugin :<br/>';
+			$infoPlugin .= $plugin_id::getConfigForCommunity();
+		}
+
+
+		// GENERATE URL with Query Param to create a new post
+		$communitUrl = 'https://community.jeedom.com';
+		$ressource = '/new-topic?';
+
+		$finalBody = br2nl($header . $infoPost . $infoPlugin . $footer);
+
+		$data = array(
+			'category' => 'plugins/' . $plugin->getCategory(),
+			'tags' => 'plugin-' . $plugin->getId(),
+			'body' => $finalBody
+		);
+
+
+		$query = http_build_query($data);
+
+		$url = $communitUrl . $ressource . $query;
+
+		ajax::success(array('url' => $url, 'plugin' => $plugin->getName()));
+	}
+
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

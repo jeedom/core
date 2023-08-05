@@ -187,14 +187,14 @@ step_7_jeedom_customization_mariadb() {
   
   service_action stop mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
+    service_action status mariadb
     service_action stop mysql > /dev/null 2>&1
     if [ $? -ne 0 ]; then
+      service_action status mysql
       echo "${ROUGE}Cannot stop mariadb - Canceling${NORMAL}"
       exit 1
     fi
   fi
-  
-  rm /var/lib/mysql/ib_logfile*
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
@@ -216,8 +216,10 @@ step_7_jeedom_customization_mariadb() {
   
   service_action start mariadb > /dev/null 2>&1
   if [ $? -ne 0 ]; then
+    service_action status mariadb
     service_action start mysql > /dev/null 2>&1
     if [ $? -ne 0 ]; then
+      service_action status mysql
       echo "${ROUGE}Cannot start mariadb - Cancelling${NORMAL}"
       exit 1
     fi
@@ -359,6 +361,17 @@ step_11_jeedom_post() {
   fi
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
   ${WEBSERVER_HOME}/resources/install_nodejs.sh
+
+  chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
+  ${WEBSERVER_HOME}/resources/install_composer.sh
+  if [ $(which composer | wc -l) -ne 0 ]; then
+      rm -rf ${WEBSERVER_HOME}/vendor
+      rm -rf ${WEBSERVER_HOME}/composer.lock
+      export COMPOSER_ALLOW_SUPERUSER=1
+      cd ${WEBSERVER_HOME}
+      composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+  fi
+  
   echo "${VERT}Step 11 - Jeedom post-install done${NORMAL}"
 }
 
@@ -393,8 +406,9 @@ VERSION=V4-stable
 WEBSERVER_HOME=/var/www/html
 MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
+DATABASE=1
 
-while getopts ":s:v:w:m:i:" opt; do
+while getopts ":s:v:w:m:i:d:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -403,6 +417,8 @@ while getopts ":s:v:w:m:i:" opt; do
     w) WEBSERVER_HOME="$OPTARG"
     ;;
     i) INSTALLATION_TYPE="$OPTARG"
+    ;;
+    d) DATABASE="$OPTARG"
     ;;
     \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
@@ -413,20 +429,31 @@ echo "${JAUNE}Welcome to Jeedom installer${NORMAL}"
 echo "${JAUNE}Jeedom version : ${VERSION}${NORMAL}"
 echo "${JAUNE}Web folder : ${WEBSERVER_HOME}${NORMAL}"
 echo "${JAUNE}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
+if [ ${DATABASE} -ne 1 ]; then
+  echo "${JAUNE}External database${NORMAL}"
+fi
 
 case ${STEP} in
   0)
   echo "${JAUNE}Starting installation ...${NORMAL}"
   step_1_upgrade
   step_2_mainpackage
-  step_3_database
+  if [ ${DATABASE} -eq 1 ]; then
+    step_3_database
+  fi
   step_4_apache
   step_5_php
   step_6_jeedom_download
-  step_7_jeedom_customization_mariadb
+  if [ ${DATABASE} -eq 1 ]; then
+    step_7_jeedom_customization_mariadb
+  fi
   step_8_jeedom_customization
-  step_9_jeedom_configuration
-  step_10_jeedom_installation
+ 
+
+  if [ ${DATABASE} -eq 1 ]; then
+    step_9_jeedom_configuration
+    step_10_jeedom_installation
+  fi
   step_11_jeedom_post
   step_12_jeedom_check
   distrib_1_spe

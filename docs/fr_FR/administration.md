@@ -327,7 +327,7 @@ Dépôt servant à relier Jeedom à Github.
 
 Dépôt servant à relier Jeedom au Market, il est vivement conseillé d’utiliser ce dépôt. Attention : toute demande de support pourra être refusée si vous utilisez un autre dépôt que celui-ci.
 
-- **Adresse** : Adresse du Market.(https://www.Jeedom.com/market).
+- **Adresse** : Adresse du Market.(https://market.jeedom.com).
 - **Nom d’utilisateur** : Votre nom d’utilisateur sur le Market.
 - **Mot de passe** : Votre mot de passe du Market.
 - **[Backup cloud] Nom** : Nom de votre backup cloud (attention doit être unique pour chaque Jeedom sous risque qu'ils s'écrasent entre eux).

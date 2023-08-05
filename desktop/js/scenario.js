@@ -2049,7 +2049,6 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
     var _icon = false
     if (document.querySelector('div[data-l2key="icon"] > i') != null) {
       _icon = document.querySelector('div[data-l2key="icon"] > i').getAttribute('class')
-      _icon = '.' + _icon.replace(' ', '.')
     }
     jeedomUtils.chooseIcon(function(_icon) {
       document.querySelector('.scenarioAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = _icon
@@ -2195,6 +2194,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         title: '{{Edition}}',
         width: '80%',
         inputType: "textarea",
+        zIndex: 1109,
         value: selfInput.value,
         container: document.getElementById('scenariotab'),
         backdrop: false,

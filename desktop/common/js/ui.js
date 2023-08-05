@@ -93,17 +93,7 @@ if (!jeedomUI) {
       if (init(_params) == '') {
         _params = {}
       }
-      if (document.getElementsByClassName('posEqWidthRef').length > 0) {
-        var containerWidth = document.getElementsByClassName('posEqWidthRef')[0].offsetWidth
-      } else {
-        var containerWidth = window.innerWidth - 22
-      }
-      var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep) + 1
-      var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
-      var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols) - (2 * parseInt(jeedom.theme['widget::margin']))
-      var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
       var cmds = []
-      var width, height
       //Get all commands for display default eqLogic:
       document.querySelectorAll('div.eqLogic-widget:not(div.eqLogic_layout_table)').forEach(function(el_eqLogic) {
         var order = 1
@@ -136,35 +126,24 @@ if (!jeedomUI) {
         document.querySelectorAll('.div_displayEquipement').forEach(function(el_display) {
           var order = 1
           el_display.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(el_tile) {
-            if (el_tile.hasClass('eqLogic-widget')) {
-              var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id')}
-              eqLogic.display = {}
-              if (el_tile.dataset.confWidth !== undefined) {
-                width = el_tile.dataset.confWidth
-              }else{
-                width = jeedomUtils.getClosestInArray(el_tile.offsetWidth, widthSteps)
-                width = width - (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']));
+            if (el_tile.offsetWidth > 0 && el_tile.offsetHeight > 0) {
+              if (el_tile.hasClass('eqLogic-widget')) {
+                var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id')}
+                eqLogic.display = {}
+                eqLogic.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+                eqLogic.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+                eqLogic.order = el_tile.getAttribute('data-order') || order
+                eqLogics.push(eqLogic)
+              } else if (el_tile.hasClass('scenario-widget')) {
+                var scenario = {id: el_tile.getAttribute('data-scenario_id')}
+                scenario.display = {}
+                scenario.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+                scenario.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
+                scenario.order = el_tile.getAttribute('data-order') || order
+                scenarios.push(scenario)
               }
-              eqLogic.display.width = width + 'px'
-
-              if (el_tile.dataset.confHeight !== undefined) {
-                height = el_tile.dataset.confHeight
-              }else{
-                height = jeedomUtils.getClosestInArray(el_tile.offsetHeight, tileHeightSteps)
-                height = height - (2 * tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']));
-              }
-              eqLogic.display.height = height + 'px'
-              eqLogic.order = el_tile.getAttribute('data-order') || order
-              eqLogics.push(eqLogic)
-            } else if (el_tile.hasClass('scenario-widget')) {
-              var scenario = {id: el_tile.getAttribute('data-scenario_id')}
-              scenario.display = {}
-              scenario.display.width = (el_tile.offsetWidth-1) + 'px'
-              scenario.display.height = (el_tile.offsetHeight-1) + 'px'
-              scenario.order = el_tile.getAttribute('data-order') || order
-              scenarios.push(scenario)
+              order++
             }
-            order++
           })
         })
         jeedom.eqLogic.setOrder({
@@ -197,28 +176,16 @@ if (!jeedomUI) {
             if (el_tile.hasClass('eqLogic-widget')) {
               var eqLogic = {id: el_tile.getAttribute('data-eqlogic_id'), type:'eqLogic'}
               eqLogic.display = {}
-              if (el_tile.dataset.confWidth !== undefined) {
-                width = el_tile.dataset.confWidth
-              }else{
-                width = jeedomUtils.getClosestInArray(el_tile.offsetWidth, widthSteps)
-                width = width - (2 * widthSteps.indexOf(width) * parseInt(jeedom.theme['widget::margin']));
-              }
-              eqLogic.display.width = width + 'px'
-
-              if (el_tile.dataset.confHeight !== undefined) {
-                height = el_tile.dataset.confHeight
-              }else{
-                height = jeedomUtils.getClosestInArray(el_tile.offsetHeight, tileHeightSteps)
-                height = height - (2 * tileHeightSteps.indexOf(height) * parseInt(jeedom.theme['widget::margin']));
-              }
+              eqLogic.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+              eqLogic.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
               eqLogic.viewZone_id = el_tile.closest('.eqLogicZone').getAttribute('data-viewZone-id') || undefined
               eqLogic.viewOrder = el_tile.getAttribute('data-viewOrder') || order
               components.push(eqLogic)
             } else if (el_tile.hasClass('scenario-widget')) {
               var scenario = {id: el_tile.getAttribute('data-scenario_id'), type:'scenario'}
               scenario.display = {}
-              scenario.display.width = (el_tile.offsetWidth-1) + 'px'
-              scenario.display.height = (el_tile.offsetHeight-1) + 'px'
+              scenario.display.width = Math.floor(el_tile.offsetWidth / 2) * 2 + 'px'
+              scenario.display.height = Math.floor(el_tile.offsetHeight / 2) * 2+ 'px'
               scenario.viewZone_id = el_tile.closest('.eqLogicZone').getAttribute('data-viewZone-id') || undefined
               scenario.viewOrder = el_tile.getAttribute('data-viewOrder') || order
               components.push(scenario)

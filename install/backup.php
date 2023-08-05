@@ -19,7 +19,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once dirname(__DIR__).'/core/php/console.php';
+require_once dirname(__DIR__) . '/core/php/console.php';
 
 echo "[START BACKUP]\n";
 $starttime = strtotime('now');
@@ -27,7 +27,7 @@ $starttime = strtotime('now');
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
 	echo "***************Start of Jeedom backup at " . date('Y-m-d H:i:s') . "***************\n";
-	
+
 	try {
 		echo "Send begin backup event...";
 		jeedom::event('begin_backup', true);
@@ -35,7 +35,7 @@ try {
 	} catch (Exception $e) {
 		echo '***ERROR*** ' . $e->getMessage();
 	}
-	
+
 	try {
 		echo 'Checking files rights...';
 		jeedom::cleanFileSystemRight();
@@ -43,7 +43,7 @@ try {
 	} catch (Exception $e) {
 		echo "NOK\n";
 	}
-	
+
 	global $CONFIG;
 	$jeedom_dir = realpath(__DIR__ . '/..');
 	$backup_dir = calculPath(config::byKey('backup::path'));
@@ -64,7 +64,7 @@ try {
 	);
 	$jeedom_name = str_replace(array_keys($replace_name), $replace_name, config::byKey('name', 'core', 'Jeedom'));
 	$backup_name = str_replace(' ', '_', 'backup-' . $jeedom_name . '-' . jeedom::version() . '-' . date("Y-m-d-H\hi") . '.tar.gz');
-	
+
 	global $NO_PLUGIN_BACKUP;
 	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
@@ -76,15 +76,24 @@ try {
 			}
 		}
 	}
-	
+
 	echo "Checking  database...";
-	if(isset($CONFIG['db']['unix_socket'])) {
-		system("mysqlcheck --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
+	if (isset($CONFIG['db']['unix_socket'])) {
+		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 	} else {
-		system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
+		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
+			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		} else {
+			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		}
+	}
+	if (isset($CONFIG['db']['unix_socket'])) {
+		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
+	} else {
+		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
 	}
 	echo "OK" . "\n";
-	
+
 	echo 'Backing up database...';
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		unlink($jeedom_dir . "/DB_backup.sql");
@@ -95,10 +104,10 @@ try {
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('can\'t delete database backup. Check rights');
 	}
-	if(isset($CONFIG['db']['unix_socket'])) {
-		system("mysqldump --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
+	if (isset($CONFIG['db']['unix_socket'])) {
+		system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	} else {
-		system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
+		system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	}
 	if ($rc != 0) {
 		throw new Exception('Backing up database failed. Check mysqldump installation. Code: ' . $rc);
@@ -107,7 +116,7 @@ try {
 		throw new Exception('Backing up database failed. Backup file too old, check rights.');
 	}
 	echo "OK" . "\n";
-	
+
 	echo "Cache persistence: \n";
 	try {
 		cache::persist();
@@ -115,9 +124,9 @@ try {
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
-	
+
 	echo "Creating archive...\n";
-	
+
 	$excludes = array(
 		'tmp',
 		'log',
@@ -129,28 +138,29 @@ try {
 		'script/tunnel',
 		'node_modules',
 		'.git',
+		'.gitignore',
 		'.log',
 		'core/config/common.config.php',
 		'/var/www/html/data/imgOs/',
 		config::byKey('backup::path'),
 	);
-	
+
 	if (config::byKey('recordDir', 'camera') != '') {
 		$excludes[] = config::byKey('recordDir', 'camera');
 	}
-	
-  	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
+
+	if (!isset($NO_PLUGIN_BACKUP) || $NO_PLUGIN_BACKUP === false) {
 		foreach (plugin::listPlugin(true) as $plugin) {
 			$plugin_id = $plugin->getId();
 			if (method_exists($plugin_id, 'backupExclude')) {
-				$plugin_excludes=$plugin_id::backupExclude();
-				if(isset($plugin_excludes) === true) {
+				$plugin_excludes = $plugin_id::backupExclude();
+				if (isset($plugin_excludes) === true) {
 					foreach ($plugin_excludes as $plugin_exclude) {
-						$plugin_exclude=trim($plugin_exclude);
-     					if(isset($plugin_exclude) === true && $plugin_exclude !== '') {
+						$plugin_exclude = trim($plugin_exclude);
+						if (isset($plugin_exclude) === true && $plugin_exclude !== '') {
 							if (strpos($plugin_exclude, '..') === false) {
-								$excludes[]="plugins/".$plugin_id."/".$plugin_exclude;
-								echo "Plugin " . $plugin_id . " - Following subfolder will be excluded from the backup: ".$plugin_exclude."\n";
+								$excludes[] = "plugins/" . $plugin_id . "/" . $plugin_exclude;
+								echo "Plugin " . $plugin_id . " - Following subfolder will be excluded from the backup: " . $plugin_exclude . "\n";
 							}
 						}
 					}
@@ -158,23 +168,23 @@ try {
 			}
 		}
 	}
-  
-  
+
+
 	$exclude = '';
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
 	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' . > /dev/null');
 	echo "OK" . "\n";
-	
+
 	if (!file_exists($backup_dir . '/' . $backup_name)) {
 		throw new Exception('Backup failed. Can\'t find: ' . $backup_dir . '/' . $backup_name);
 	}
-	
+
 	echo 'Cleaning old backup...';
 	shell_exec('find "' . $backup_dir . '" -name "*.gz" -mtime +' . config::byKey('backup::keepDays') . ' -delete');
 	echo "OK" . "\n";
-	
+
 	global $NO_CLOUD_BACKUP;
 	if ((!isset($NO_CLOUD_BACKUP) || $NO_CLOUD_BACKUP === false)) {
 		foreach (update::listRepo() as $key => $value) {
@@ -198,7 +208,7 @@ try {
 			echo "OK" . "\n";
 		}
 	}
-	
+
 	echo 'Limiting backup size to ' . config::byKey('backup::maxSize') . " Mb...\n";
 	$max_size = config::byKey('backup::maxSize') * 1024 * 1024;
 	$i = 0;
@@ -246,9 +256,9 @@ try {
 		}
 	}
 	echo "OK" . "\n";
-	
+
 	echo "Backup name: " . $backup_dir . '/' . $backup_name . "\n";
-	
+
 	try {
 		echo 'Checking files rights...';
 		jeedom::cleanFileSystemRight();
@@ -256,7 +266,7 @@ try {
 	} catch (Exception $e) {
 		echo "NOK\n";
 	}
-	
+
 	try {
 		echo 'Send end backup event...';
 		jeedom::event('end_backup');

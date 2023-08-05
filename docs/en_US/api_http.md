@@ -14,6 +14,11 @@ This API is very easy to use by simple HTTP requests via URL.
 >
 > For all of this documentation, \#API\_KEY\# corresponds to your API key, specific to your installation. To find it, go to the "General" menu → "Configuration" → "General" tab".
 
+> **Note**
+>
+> For POST requests, each query parameter can be sent in the body of the request in form-data or x-www-form-urlencoded format.
+> Query parameters and body content can be used together, but note that query parameters take precedence over body content.
+
 ## Scenario
 
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = scenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = scenario & id=#ID#&action=#ACTION#)
@@ -21,6 +26,10 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 - **id** : matches your scenario id. The ID can be found on the relevant scenario page, in "Tools" → "Scenarios", once the scenario has been selected, next to the name of the "General" tab". Another way to find it : in "Tools" → "Scenarios", click on "Overview".
 - **stock** : corresponds to the action you want to apply. Available commands are : "start ", " stop ", " disable "and "enable" to respectively start, stop, disable or enable the scenario.
 - **tags** \[optional\] : if the action is "start", you can pass tags to the scenario (see the documentation on the scenarios) in the form tags = toto% 3D1% 20tata% 3D2 (note that% 20 corresponds to a space and% 3D to = ).
+
+> **Note**
+>
+> Don't try to use 'php://input' to pass data to your scenario, tags are there for that.
 
 ##  Info / Action command
 

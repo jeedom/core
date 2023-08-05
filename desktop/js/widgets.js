@@ -699,21 +699,23 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#div_templateReplace .chooseIcon')) {
+    var params = {img: true};
+    let input = _target.closest('div').querySelector('input').value;
+    if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6);
     jeedomUtils.chooseIcon(function(_icon) {
       _target.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
-    }, {
-      img: true
-    })
+    }, params)
     jeeFrontEnd.modifyWithoutSave = true
     return
   }
 
   if (_target = event.target.closest('#div_templateTest .chooseIcon')) {
+    var params = {img: true};
+    let input = _target.closest('div').querySelector('input').value;
+    if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6);
     jeedomUtils.chooseIcon(function(_icon) {
       _target.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
-    }, {
-      img: true
-    })
+    }, params)
     jeeFrontEnd.modifyWithoutSave = true
     return
   }

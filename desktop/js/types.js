@@ -415,8 +415,8 @@ document.getElementById('in_searchTypes')?.addEventListener('keyup', function(ev
   }
 })
 document.getElementById('bt_resetypeSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchTypes').jeeValue('')
-  document.querySelectorAll('.cb_selEqLogic').forEach(_check => { _check.checkd = false })
+  document.getElementById('in_searchTypes').jeeValue('').triggerEvent('keyup')
+  document.querySelectorAll('.cb_selEqLogic').forEach(_check => { _check.checked = false })
 })
 
 

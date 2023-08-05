@@ -3,16 +3,16 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $date = array(
-  'start' => init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d')))),
-  'end' => init('endDate', date('Y-m-d')),
+	'start' => init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d')))),
+	'end' => init('endDate', date('Y-m-d')),
 );
 ?>
 <div id="div_historyOptions" class="row">
 	<br>
 	<div class="col-lg-3 col-sm-4 col-xs-12">
 		<div class="input-group input-group-sm">
-			<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
-			<input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
+			<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>" />
+			<input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>" />
 			<a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
 				<i class="fas fa-check"></i>
 			</a>
@@ -54,7 +54,7 @@ $date = array(
 			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
 			<a id="bt_compare" class="btn btn-sm btn-success disabled roundedLeft"><i class="fas fa-greater-than-equal"></i> {{Comparer}}
-			</a><a id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}" >
+			</a><a id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}">
 				<i class="fas fa-times"></i> {{Affichage}}
 			</a>
 		</div>
@@ -70,7 +70,7 @@ $date = array(
 			</li>
 			<li>
 				<div class="input-group input-group-sm" style="margin-top: 10px;">
-					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}" ></textarea>
+					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}"></textarea>
 					<span class="input-group-btn">
 						<a id="bt_findCmdCalculHistory" class="btn btn-default" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
 						</a><a id="bt_displayCalculHistory" class="btn btn-success roundedRight" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i></a>
@@ -85,7 +85,7 @@ $date = array(
 				<i class="icon techno-courbes3"></i> {{Commandes}}
 				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration de l'historique des commandes}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
 			</li>
-			<li class="filter input-group input-group-sm" style="margin-top: 10px; //width: 98%;">
+			<li class="filter input-group input-group-sm" style="margin-top: 10px; /*width: 98%;*/">
 				<input id="in_searchHistory" class="filter form-control input-sm roundedLeft" style="width: calc(100% - 28px);" placeholder="{{Rechercher}}" autocomplete="off" />
 				<span class="input-group-btn ">
 					<a id="bt_resetSearch" class="btn btn-default roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
@@ -120,7 +120,7 @@ $date = array(
 				}
 				$class = 'history';
 				if (!$eqLogic->getIsEnable()) $class = 'history disabled';
-				$_echo .= '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="'.$class.'"><i class="far fa-trash-alt remove" title="{{Supprimer tout ou partie de cet historique.}}"></i> ';
+				$_echo .= '<li class="cursor li_history" data-cmd_id="' . $cmd->getId() . '"><a class="' . $class . '"><i class="far fa-trash-alt remove" title="{{Supprimer tout ou partie de cet historique.}}"></i> ';
 				if ($cmd->getSubType() == 'string') {
 					$_echo .= '<i class="fas fa-share export" title="{{Exporter cet historique.}}"></i> ';
 				}
@@ -149,10 +149,10 @@ $date = array(
 				<div class="form-group">
 					<label class="col-xs-3 control-label">{{Comparer la période}}</label>
 					<div class="col-xs-3">
-						<input id="in_compareStart1" class="form-control input-sm in_datepicker" value="<?php echo $date['start'] ?>"/>
+						<input id="in_compareStart1" class="form-control input-sm in_datepicker" value="<?php echo $date['start'] ?>" />
 					</div>
 					<div class="col-xs-3">
-						<input id="in_compareEnd1" class="form-control input-sm in_datepicker" value="<?php echo $date['end'] ?>"/>
+						<input id="in_compareEnd1" class="form-control input-sm in_datepicker" value="<?php echo $date['end'] ?>" />
 					</div>
 					<div class="col-xs-3">
 						<select id="sel_setPeriod" class="form-control">
@@ -169,10 +169,10 @@ $date = array(
 				<div class="form-group">
 					<label class="col-xs-3 control-label">{{Avec la période}}</label>
 					<div class="col-xs-3">
-						<input id="in_compareStart2" class="form-control input-sm in_datepicker"/>
+						<input id="in_compareStart2" class="form-control input-sm in_datepicker" />
 					</div>
 					<div class="col-xs-3">
-						<input id="in_compareEnd2" class="form-control input-sm in_datepicker"/>
+						<input id="in_compareEnd2" class="form-control input-sm in_datepicker" />
 					</div>
 					<div class="col-xs-3">
 						<select id="sel_comparePeriod" class="form-control">
@@ -190,7 +190,7 @@ $date = array(
 
 					<div class="form-group">
 						<div class="col-xs-12">
-							<span class="spanCompareDiffResult"></span><br/>
+							<span class="spanCompareDiffResult"></span><br />
 							<span class="spanCompareDiff warning" style="display: none;">{{Attention: les deux périodes ne sont pas identiques (tous les mois n'ont pas le même nombre de jours)}}</span>
 						</div>
 					</div>

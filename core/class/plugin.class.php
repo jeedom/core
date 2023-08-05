@@ -1080,6 +1080,19 @@ class plugin {
 		return 'index.php?v=d&p=plugin&id=' . $this->getId();
 	}
 
+	public static function getConfigForCommunity($separator = '<br/>') {
+
+		// retrieve core version and branch
+		$infoCore = 'Core : ' . config::byKey('version', 'core', '#NA#') . ' (' . config::byKey('core::branch') . ')' . $separator;
+
+		// check if connexion used jeedom DNS 
+		$url =  network::getNetworkAccess('external');
+		$hasDns  = ((strpos($url, 'jeedom.com') !== false || strpos($url, 'eu.jeedom.link')) !== false);
+		$infoCore .= 'DNS Jeedom : ' . ($hasDns ? 'oui' : 'non') . $separator;
+
+		return $infoCore;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getId() {

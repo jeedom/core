@@ -137,10 +137,20 @@ try {
 	}
 	
 	echo "Restoring database from backup...";
-	if(isset($CONFIG['db']['unix_socket'])) {
-		shell_exec("mysql --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $jeedom_dir . "/DB_backup.sql");
+
+	if (isset($CONFIG['db']['unix_socket'])) {
+		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 	} else {
-		shell_exec("mysql --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password=" . $CONFIG['db']['password'] . " " . $CONFIG['db']['dbname'] . "  < " . $jeedom_dir . "/DB_backup.sql");
+		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
+			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		} else {
+			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		}
+	}
+	if(isset($CONFIG['db']['unix_socket'])) {
+		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
+	} else {
+		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
 	}
 	echo "OK\n";
 	

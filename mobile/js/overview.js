@@ -20,6 +20,17 @@ function initOverview() {
           }
           _backUrl = _this.img
           if (_backUrl == '') {
+            jeedom.config.load({
+              configuration: 'product_synthese_image',
+              success: function(data) {
+                if(data) {
+                  var elements = document.getElementsByClassName("objectPreview")
+                  for (var i = 0; i < elements.length; i++) {
+                    elements[i].style.background='url('+data+')';
+                  }
+                }
+              }
+            });
             _backUrl = 'core/img/background/jeedom_abstract_04_light.jpg'
           }
 

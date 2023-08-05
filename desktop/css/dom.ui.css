@@ -31,6 +31,7 @@ ul.jeeComplete > li.jeeCompleteItem.active {
   z-index: 9999;
 }
 div.jeeToastContainer > div.jeeToast {
+  border-radius: var(--border-radius) !important;
   opacity: 0.9;
 }
 div.jeeToastContainer > div.jeeToast:hover {

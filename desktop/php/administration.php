@@ -189,9 +189,13 @@ user::isBan();
 									<option value="Asia/Seoul">(GMT+09:00) Seoul</option>
 									<option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
 									<option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
+									<option value="Australia/Broken_Hill">(GMT+09:30) Broken Hill</option>
 									<option value="Australia/Darwin">(GMT+09:30) Darwin</option>
 									<option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
 									<option value="Australia/Hobart">(GMT+10:00) Hobart</option>
+									<option value="Australia/Lindeman">(GMT+10:00) Lindeman</option>
+									<option value="Australia/Melbourne">(GMT+10:00) Melbourne</option>
+									<option value="Australia/Sydney">(GMT+10:00) Sydney</option>
 									<option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
 									<option value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</option>
 									<option value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</option>
@@ -267,7 +271,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<div class="alert" style="margin-bottom: 0;">
 						<i class="far fa-comment"></i>
-						<i>{{Les informations suivantes peuvent êtres utilisées par les plugins.}}</i>
+						<i>{{Les informations suivantes peuvent être utilisées par les plugins.}}</i>
 						<i>{{Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site.</a>}}</i>
 					</div>
 					<fieldset>
@@ -534,7 +538,7 @@ user::isBan();
 								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitylight" data-reload="1" />
 							</div>
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark.  Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitydark" data-reload="1" />
@@ -631,6 +635,14 @@ user::isBan();
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver les ombres}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" data-reload="1" />
+							</div>
+						</div>
+
+						<legend>{{Scénario}}</legend>
+						<div class="form-group">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver l'autocompletion}}</label>
+							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+								<input type="checkbox" class="configKey form-control" data-l1key="scenario::disableAutocomplete" />
 							</div>
 						</div>
 					</fieldset>
@@ -733,7 +745,7 @@ user::isBan();
 									}
 									echo '<legend>{{Gestion DNS}} ' . $value['name'] . '</legend>';
 									if ($configs['dns::token'] == '') {
-										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le}} <a href="https://www.jeedom.com/market/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
+										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le}} <a href="https://market.jeedom.com/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
 										continue;
 									}
 									$div = '<div class="form-group col-xs-12">';
@@ -747,7 +759,6 @@ user::isBan();
 									$div .= '<div class="col-xs-8">';
 									$div .= '<select class="configKey" data-l1key="dns::mode">';
 									$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
-									$div .= '<option value="wireguard">{{Wireguard (alpha)}}</option>';
 									$div .= '</select>';
 									$div .= '</div>';
 									$div .= '</div>';
@@ -783,7 +794,7 @@ user::isBan();
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Addresse du proxy}}</label>
+									<label class="col-xs-4 control-label">{{Adresse du proxy}}</label>
 									<div class="col-xs-4">
 										<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 									</div>
@@ -1081,23 +1092,6 @@ user::isBan();
 							</div>
 							<label class="col-lg-1 col-sm-4 col-xs-12 eqLogicAttr label label-danger">{{Danger}}</label>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-12 control-label">{{Scénario à éxecuter lors de la création d'un équipement}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Ce scénario sera lancé pour chaque nouvelle création d'équipement. Le tag eqLogic_id sera passé au scénario et contiendra l'id de l'équipement créé.}}"></i></sup>
-							</label>
-							<div class="col-lg-4 col-sm-5 col-xs-6">
-								<select class="configKey form-control" data-l1key="eqLogic::create::execScenario">
-									<option value="-1">{{Aucun}}</option>
-									<?php
-									$scenarios = '';
-									foreach (scenario::all() as $scenario) {
-										$scenarios .= '<option value="' . $scenario->getId() . '">' . $scenario->getHumanName() . '</option>';
-									}
-									echo $scenarios;
-									?>
-								</select>
-							</div>
-						</div>
 					</fieldset>
 				</form>
 
@@ -1240,7 +1234,7 @@ user::isBan();
 					</fieldset>
 				</form>
 
-				<legend>{{Régorganisation automatique des tuiles}}</legend>
+				<legend>{{Réorganisation automatique des tuiles}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
@@ -1256,7 +1250,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids consultation historiques}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids de la consultation des historiques}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_history">
 							</div>
@@ -1268,7 +1262,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemet automatique}}
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Guillemets automatiques}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -1276,7 +1270,7 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</label>
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
 							</div>
@@ -1730,16 +1724,16 @@ user::isBan();
 
 						<legend>{{Dépendance et démon}}</legend>
 						<div class="form-group">
-							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalles}}"></i></sup>
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}"></i></sup>
 							</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDependancy" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalles}}"></i></sup>
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle}}"></i></sup>
 							</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDeamony" />
@@ -2261,7 +2255,7 @@ user::isBan();
 
 									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
-											<sup><i class="fas fa-question-circle" tooltip="{{Edition multiples de paramètres d'équipements, commandes, ...}}"></i></sup>
+											<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d'équipements, commandes...}}"></i></sup>
 										</label>
 										<div class="col-md-5 col-xs-6">
 											<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>

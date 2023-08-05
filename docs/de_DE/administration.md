@@ -327,7 +327,7 @@ Kaution verwendet, um Jeedom mit Github zu verbinden.
 
 Einzahlung, die verwendet wird, um Jeedom mit dem Markt zu verbinden. Es wird dringend empfohlen, diese Einzahlung zu verwenden. Aufmerksamkeit : Jede Anfrage nach Unterstützung kann abgelehnt werden, wenn Sie eine andere Anzahlung als diese verwenden.
 
-- **Adresse** : Adresse du Markt.(https://www.Jeedom.com/market).
+- **Adresse** : Adresse du Markt.(https://market.jeedom.com).
 - **Benutzername** : Ihr Benutzername auf dem Markt.
 - **Passwort** : Ihr Marktpasswort.
 - **[Backup Cloud] Name** : Name Ihres Cloud-Backups (Achtung muss für jeden Jeedom eindeutig sein, da die Gefahr besteht, dass sie ineinander stürzen).
