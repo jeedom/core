@@ -99,9 +99,9 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	if ($type == 'js') {
 		$md5 = md5_file($path);
 		if (strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false) {
-			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '"></script>';
+			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . $md5 . '"></script>';
 		} else {
-			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . md5_file($path) . '&lang=' . translate::getLanguage() . '"></script>';
+			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . $md5 . '&lang=' . translate::getLanguage() . '"></script>';
 		}
 		return;
 	}
@@ -436,7 +436,6 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 	$folders = array();
 	// Get the all files and folders in the given directory.
 	if ($get_files) {
-		$both = array();
 		foreach (glob_brace($pattern, GLOB_MARK) as $file) {
 			if (!is_dir($folder . '/' . $file)) {
 				$both[] = $file;
@@ -461,10 +460,10 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 				//If a pattern is specified, make sure even the folders match that pattern.
 				if ($pattern !== '*') {
 					if (in_array($this_folder, $matching_folders)) {
-						array_push($all, $this_folder);
+						$all[] = $this_folder;
 					}
 				} else {
-					array_push($all, $this_folder);
+					$all[] = $this_folder;
 				}
 			}
 
@@ -472,7 +471,7 @@ function ls($folder = "", $pattern = "*", $recursivly = false, $options = array(
 				// Continue calling this function for all the folders
 				$deep_items = ls($this_folder, $pattern, $recursivly, $options); # :RECURSION:
 				foreach ($deep_items as $item) {
-					array_push($all, $this_folder . $item);
+					$all[] = $this_folder . $item;
 				}
 			}
 		}
@@ -734,7 +733,6 @@ function date_fr($date_en) {
 			break;
 		default:
 			return $date_en;
-			break;
 	}
 	return preg_replace($texte_short_day_en, $texte_short_day, preg_replace($texte_short_month_en, $texte_short_month, preg_replace($texte_long_en, $texte_long, $date_en)));
 }
@@ -936,13 +934,11 @@ function netMatch($network, $ip) {
 		$ip_long = ip2long($ip);
 		return ($ip_long & $mask) == ($network_long & $mask);
 	} else {
-
 		$from = trim(ip2long(substr($network, 0, $d)));
 		$to = trim(ip2long(substr($network, $d + 1)));
 		$ip = ip2long($ip);
 		return ($ip >= $from && $ip <= $to);
 	}
-	return false;
 }
 
 function getNtpTime() {
