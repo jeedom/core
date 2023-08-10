@@ -500,17 +500,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-                <div class="form-group">
-                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
-                  <div class="col-sm-6">
-                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                      <option value="avg">{{Moyenne}}</option>
-                      <option value="min">{{Minimum}}</option>
-                      <option value="max">{{Maximum}}</option>
-                      <option value="none">{{Aucun}}</option>
-                    </select>
-                  </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
+                <div class="col-sm-6">
+                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                    <option value="avg">{{Moyenne}}</option>
+                    <option value="min">{{Minimum}}</option>
+                    <option value="max">{{Maximum}}</option>
+                    <option value="none">{{Aucun}}</option>
+                  </select>
                 </div>
+              </div>
               <?php }
               ?>
               <div class="form-group">
@@ -531,6 +531,49 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   </select>
                 </div>
               </div>
+              <?php if ($cmd->getIsHistorized() == 1 && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Paramètres d'affichage}}</label>
+                <div class="col-sm-2">
+                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="groupingType">
+                    <option value="">{{Aucun groupement}}</option>
+                    <option value="sum::hour">{{Somme par heure}}</option>
+                    <option value="average::hour">{{Moyenne par heure}}</option>
+                    <option value="low::hour">{{Minimum par heure}}</option>
+                    <option value="high::hour">{{Maximum par heure}}</option>
+                    <option value="sum::day">{{Somme par jour}}</option>
+                    <option value="average::day">{{Moyenne par jour}}</option>
+                    <option value="low::day">{{Minimum par jour}}</option>
+                    <option value="high::day">{{Maximum par jour}}</option>
+                    <option value="sum::week">{{Somme par semaine}}</option>
+                    <option value="average::week">{{Moyenne par semaine}}</option>
+                    <option value="low::week">{{Minimum par semaine}}</option>
+                    <option value="high::week">{{Maximum par semaine}}</option>
+                    <option value="sum::month">{{Somme par mois}}</option>
+                    <option value="average::month">{{Moyenne par mois}}</option>
+                    <option value="low::month">{{Minimum par mois}}</option>
+                    <option value="high::month">{{Maximum par mois}}</option>
+                    <option value="sum::year">{{Somme par année}}</option>
+                    <option value="average::year">{{Moyenne par année}}</option>
+                    <option value="low::year">{{Minimum par année}}</option>
+                    <option value="high::year">{{Maximum par année}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
+                    <option value="line">{{Ligne}}</option>
+                    <option value="area">{{Aire}}</option>
+                    <option value="column">{{Barre}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-1">
+                  {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
+                  </div>
+                <div class="col-sm-1">
+                  {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
+                </div>
+              </div>
+              <?php } ?>
             </fieldset>
           </form>
         <?php }
@@ -952,24 +995,30 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         })
       },
       displayWidgetHelp: function(_widgetName) {
-        jeedom.cmd.getWidgetHelp({
-          id: document.querySelector('#cmd_information span[data-l1key="id"]').textContent,
-          version: 'dashboard',
-          widgetName: _widgetName,
-          error: function(error) {
-            document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
-          },
-          success: function(data) {
-            document.getElementById('optionalParamHelp').empty().innerHTML = data.html
-          }
-        })
+        if (document.getElementById('optionalParamHelp')) {
+          jeedom.cmd.getWidgetHelp({
+            id: document.querySelector('#cmd_information span[data-l1key="id"]').textContent,
+            version: 'dashboard',
+            widgetName: _widgetName,
+            error: function(error) {
+              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
+            },
+            success: function(data) {
+              document.getElementById('optionalParamHelp').empty().innerHTML = data.html
+            }
+          })
+        }
       },
       synchModalToCmd: function() {
         var cmdId = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="id"]').textContent
         var cmdTr = document.querySelector('#div_pageContainer tr[data-cmd_id="' + cmdId + '"]')
         if (cmdTr) {
-          cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]').checked = document.querySelector('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').checked
-          cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
+          if (cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]')) {
+            cmdTr.querySelector('input.cmdAttr[data-l1key="isVisible"]').checked = document.querySelector('#div_displayCmdConfigure input.cmdAttr[data-l1key="isVisible"').checked
+          }
+          if (cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
+            cmdTr.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = document.querySelector('#div_displayCmdConfigure .cmdAttr[data-l1key="display"][data-l2key="icon"]').innerHTML
+          }
         }
       },
       syncModalToScenario: function() {
@@ -1042,7 +1091,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-        document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
+        document.querySelector('#cmd_display #table_widgetParametersCmd')?.tBodies[0].childNodes.forEach(_tr => {
           if (_tr.nodeType != 3) {
             cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
           }
@@ -1091,12 +1140,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-        //Get widget optionnal parameters:
-        document.querySelector('#cmd_display #table_widgetParametersCmd').tBodies[0].childNodes.forEach(_tr => {
-          if (_tr.nodeType != 3) {
-            cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
-          }
-        })
+        if (document.querySelector('#cmd_display #table_widgetParametersCmd')) { 
+          document.querySelector('#cmd_display #table_widgetParametersCmd')?.tBodies[0].childNodes.forEach(_tr => {
+            if (_tr.nodeType != 3) {
+              cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
+            }
+          })
+        } else delete cmd.display.parameters;
 
         try {
           var checkCmdParameter = document.getElementById('div_jeedomCheckCmdCmdOption').getJeeValues('.expressionAttr')[0]
@@ -1222,10 +1272,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     document.getElementById('cmd_information')?.addEventListener('click', function(event) {
       var _target = null
       if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
-        var displayIconParent = _target.closest('.displayIconParent')
+        let displayIconParent = _target.closest('.displayIconParent')
+        let icon = displayIconParent.querySelector('[data-l2key="icon"] > i')
+        let params = {}
+        if (icon) params.icon = icon.attributes.class.value
         jeedomUtils.chooseIcon(function(_icon) {
           displayIconParent.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
-        })
+        }, params)
         return
       }
 

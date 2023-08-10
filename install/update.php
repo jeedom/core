@@ -221,10 +221,21 @@ try {
 				echo "OK\n";
 				echo "[PROGRESS][52]\n";
 				echo "Remove useless files...\n";
-				foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor') as $folder) {
+				foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script') as $folder) {
 					echo 'Cleaning ' . $folder . "\n";
 					shell_exec('find ' . __DIR__ . '/../' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 				}
+				echo "OK\n";
+				echo "[PROGRESS][53]\n";
+				echo "Update composer file...\n";
+                                if (exec('which composer | wc -l') > 0) {
+					shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update');
+					shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache');
+					shell_exec(system::getCmdSudo().' rm /tmp/composer');
+				}
+				echo "OK\n";
+				echo "[PROGRESS][58]\n";
+				echo "Update jeedom information date...\n";
 				try {
 					$update = update::byLogicalId('jeedom');
 					if (is_object($update) && method_exists($update, 'setUpdateDate')) {
@@ -233,6 +244,8 @@ try {
 					}
 				} catch (\Exception $e) {
 				}
+				echo "OK\n";
+				echo "[PROGRESS][59]\n";
 			} catch (Exception $e) {
 				if (init('force') != 1) {
 					throw $e;
@@ -243,7 +256,7 @@ try {
 		} else {
 			jeedom::stop();
 		}
-		echo "[PROGRESS][55]\n";
+		echo "[PROGRESS][60]\n";
 		if (init('update::reapply') != '') {
 			$updateScript = __DIR__ . '/update/' . init('update::reapply') . '.php';
 			if (file_exists($updateScript)) {

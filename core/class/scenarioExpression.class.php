@@ -1229,6 +1229,9 @@ class scenarioExpression {
 		if (isset($tags['#' . $_name . '#'])) {
 			return $tags['#' . $_name . '#'];
 		}
+		if (isset($tags[$_name])) {
+			return $tags[$_name];
+		}
 		return $_default;
 	}
 

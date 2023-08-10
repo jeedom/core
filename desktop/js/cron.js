@@ -56,6 +56,10 @@ if (!jeeFrontEnd.cron) {
       jeedom.cron.all({
         success: function(data) {
           domUtils.showLoading()
+          if (jeeFrontEnd.cron.cronDataTable){
+            jeeFrontEnd.cron.cronDataTable.destroy()
+            delete jeeFrontEnd.cron.cronDataTable;
+          } 
           var table = document.getElementById('table_cron').querySelector('tbody')
           table.empty()
           for (var i in data) {
@@ -150,8 +154,10 @@ if (!jeeFrontEnd.cron) {
       return tr
     },
     setCronTable: function() {
-      if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.destroy()
-
+     if (jeeFrontEnd.cron.cronDataTable){
+        jeeFrontEnd.cron.cronDataTable.destroy()
+        delete jeeFrontEnd.cron.cronDataTable;
+      } 
       jeeFrontEnd.cron.cronDataTable = new DataTable(jeeFrontEnd.cron.tableCron, {
         columns: [
           { select: 0, sort: "asc" },

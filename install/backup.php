@@ -79,9 +79,18 @@ try {
 
 	echo "Checking  database...";
 	if (isset($CONFIG['db']['unix_socket'])) {
-		system("mysqlcheck --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
+		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 	} else {
-		system("mysqlcheck --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . ' --auto-repair --silent');
+		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
+			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		} else {
+			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		}
+	}
+	if (isset($CONFIG['db']['unix_socket'])) {
+		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
+	} else {
+		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
 	}
 	echo "OK" . "\n";
 
@@ -96,9 +105,9 @@ try {
 		throw new Exception('can\'t delete database backup. Check rights');
 	}
 	if (isset($CONFIG['db']['unix_socket'])) {
-		system("mysqldump --socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
+		system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	} else {
-		system("mysqldump --host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'] . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
+		system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
 	}
 	if ($rc != 0) {
 		throw new Exception('Backing up database failed. Check mysqldump installation. Code: ' . $rc);
