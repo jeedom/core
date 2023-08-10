@@ -7,7 +7,8 @@
     "knplabs/github-api": "*",
     "league/flysystem-webdav": "*",
     "pragmarx/google2fa-qrcode": "*",
-    "abbadon1334/sun-position-spa-php": "*"
+    "abbadon1334/sun-position-spa-php": "*",
+    "php-http/guzzle7-adapter": "*"
   },
   "config": {
       "allow-plugins": {
