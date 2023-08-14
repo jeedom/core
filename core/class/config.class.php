@@ -249,7 +249,7 @@ class config {
 
 	public static function genKey($_car = 64) {
 		$key = '';
-		$chaine = "abcdefghijklmnpqrstuvwxy1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$chaine = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
 			if (function_exists('random_int')) {
 				$key .= $chaine[random_int(0, strlen($chaine) - 1)];
