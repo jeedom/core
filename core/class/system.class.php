@@ -380,6 +380,12 @@ class system {
 					);
 				}
 				break;
+		        case 'composer':
+				$datas = shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null');
+				foreach ($datas['installed'] as $value) {
+					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array('version' => $value['version']);
+				}
+				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
 				foreach ($updates as $update) {
@@ -450,6 +456,33 @@ class system {
 						'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
 						'fix' => ($found == 0) ?  self::installPackage($type, $package) : '',
 						'remark' => isset($info['remark']) ? __($info['remark'], 'install/packages.json') : '',
+					);
+					continue;
+				}
+				if ($type == 'composer' && strpos($package, '/') !== false) {
+					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
+						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
+						if (file_exists(__DIR__ . '/../../' . $package . '/vendors')) {
+							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l', $output, $return_var); 
+							if ($output == 0) {
+							   $found = 1;
+							}
+						}
+					} else {
+						$version = __('Erreur', __FILE__);
+					}
+					$return[$type . '::' . $package] = array(
+						'name' => $package,
+						'status' => $found,
+						'version' => empty($version) ? 'N/A' : $version,
+						'type' => $type,
+						'needUpdate' => '',
+						'needVersion' => '',
+						'alternative_found' => '',
+						'optional' => isset($info['optional']) ? $info['optional'] : false,
+						'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
+						'fix' => ($found == 0) ?  self::installPackage($type, $package) : '',
+						'remark' => isset($info['remark']) ? __($info['remark'], 'install/composer.json') : '',
 					);
 					continue;
 				}
@@ -596,6 +629,14 @@ class system {
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
+				        case 'composer':
+						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_composer.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_composer.sh');
+						} else {
+							$cmd .= self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_composer.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_composer.sh' . "\n";
+							$count++;
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+						}
 				}
 			}
 			if ($_foreground) {
@@ -728,6 +769,14 @@ class system {
 				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;chown -R www-data:www-data *';
 			case 'plugin':
 				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
+			case 'composer':
+				if (strpos($_package, '/') === false) {
+					return self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+				}
+				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
+					return '';
+				}
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;chown -R www-data:www-data *';
 		}
 	}
 
