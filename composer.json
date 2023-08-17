@@ -8,7 +8,9 @@
     "league/flysystem-webdav": "*",
     "pragmarx/google2fa-qrcode": "*",
     "abbadon1334/sun-position-spa-php": "*",
-    "php-http/guzzle7-adapter": "*"
+    "php-http/guzzle7-adapter": "*",
+    "league/oauth2-client":"*",
+    "guzzlehttp/psr7":"1.9.0"
   },
   "config": {
       "allow-plugins": {
