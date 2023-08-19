@@ -30,9 +30,9 @@ $sysCmdsSudo = array(
   array("cmd" => 'sudo cp /var/www/html/install/apache_security_unsecure /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now', "name" => ' {{Apache non securisé}}'),
   array("cmd" => 'sudo cp /var/www/html/install/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now', "name" => ' {{Apache sécurisé}}'),
   array("cmd" => 'cd ../../;export COMPOSER_HOME=/tmp/composer;export COMPOSER_ALLOW_SUPERUSER=1;sudo composer self-update', "name" => '[Danger] Update composer executable'),
-  array("cmd" => 'cd ../../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME=/tmp/composer;sudo composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache', "name" => '[Danger] Composer update'),
-  array("cmd" => 'cd ../../;sudo git pull', "name" => '[Danger] Git pull'),
-  array("cmd" => 'cd ../../;sudo git reset --hard HEAD;sudo git pull', "name" => '[Danger] Git force pull'),
+  array("cmd" => 'cd ../../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME=/tmp/composer;sudo composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache;sudo chown -R www-data:www-data *', "name" => '[Danger] Composer update'),
+  array("cmd" => 'cd ../../;sudo git pull;sudo chown -R www-data:www-data *', "name" => '[Danger] Git pull'),
+  array("cmd" => 'cd ../../;sudo git reset --hard HEAD;sudo git pull;sudo chown -R www-data:www-data *', "name" => '[Danger] Git force pull'),
   array("cmd" => 'cd ../../;sudo git commit -a -m "Commit from jeedom";sudo git push', "name" => '[Danger] Git commit push'),
 );
 ?>
