@@ -462,12 +462,11 @@ class system {
 				if ($type == 'composer' && strpos($package, '/') !== false) {
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
-						if (file_exists(__DIR__ . '/../../' . $package . '/vendors')) {
-							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l', $output, $return_var); 
-							if ($output == 0) {
+						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l'); 
+                          if ($output == 0) {
 							   $found = 1;
 							}
-						}
+						
 					} else {
 						$version = __('Erreur', __FILE__);
 					}
