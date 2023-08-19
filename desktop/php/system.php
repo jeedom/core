@@ -49,7 +49,7 @@ $sysCmdsSudo = array(
         $list = '';
         foreach ($sysCmds as $cmd) {
           $list .= '<li class="cursor list-group-item list-group-item-success">';
-          $list .= '<a class="bt_systemCommand" data-command="' . $cmd["cmd"] . '">' . $cmd["name"] . '</a></li>';
+          $list .= '<a class="bt_systemCommand" data-command=\'' . $cmd["cmd"] . '\'>' . $cmd["name"] . '</a></li>';
         }
         echo $list;
 
@@ -57,7 +57,7 @@ $sysCmdsSudo = array(
           $list = '<li class="info list-group-item">-- Commandes Sudo --</li>';
           foreach ($sysCmdsSudo as $cmd) {
             $list .= '<li class="cursor list-group-item list-group-item-success">';
-            $list .= '<a class="bt_systemCommand" data-command="' . $cmd["cmd"] . '">' . $cmd["name"] . '</a></li>';
+            $list .= '<a class="bt_systemCommand" data-command=\'' . $cmd["cmd"] . '\'>' . $cmd["name"] . '</a></li>';
           }
           echo $list;
         }
