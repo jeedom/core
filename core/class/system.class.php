@@ -758,7 +758,7 @@ class system {
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' yarn global add ' . $_package;
@@ -766,7 +766,7 @@ class system {
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'plugin':
 				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
@@ -776,7 +776,7 @@ class system {
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 		}
 	}
 
