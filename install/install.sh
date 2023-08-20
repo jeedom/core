@@ -239,7 +239,6 @@ step_8_jeedom_customization() {
   ln -s /etc/apache2/conf-available/remoteip.conf /etc/apache2/conf-enabled/
   
   cp ${WEBSERVER_HOME}/install/apache_default /etc/apache2/sites-available/000-default.conf
-  sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/sites-available/000-default.conf
   rm /etc/apache2/sites-enabled/000-default.conf > /dev/null 2>&1
   ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/
   
@@ -273,7 +272,7 @@ step_8_jeedom_customization() {
   a2enmod headers
   a2enmod remoteip
 
-  sed -i -e "s%^ErrorLog%#ErrorLog%g" /etc/apache2/apache2.conf
+  sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
   
   service_action restart apache2 > /dev/null 2>&1
   
