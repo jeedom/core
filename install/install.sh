@@ -195,6 +195,8 @@ step_7_jeedom_customization_mariadb() {
       exit 1
     fi
   fi
+
+  rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
@@ -210,7 +212,7 @@ step_7_jeedom_customization_mariadb() {
     echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
-   # echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
    # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
