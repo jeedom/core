@@ -198,7 +198,7 @@ step_7_jeedom_customization_mariadb() {
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
-    echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "[mysqld]" > /etc/mysql/conf.d/jeedom_my.cnf
     echo "skip-name-resolve" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
