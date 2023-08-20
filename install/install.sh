@@ -272,6 +272,9 @@ step_8_jeedom_customization() {
   a2dismod status
   a2enmod headers
   a2enmod remoteip
+
+  sed -i -e "s%^ErrorLog%#ErrorLog%g" /etc/apache2/apache2.conf
+  
   service_action restart apache2 > /dev/null 2>&1
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
