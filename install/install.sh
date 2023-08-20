@@ -83,8 +83,6 @@ step_2_mainpackage() {
   apt-get -y install libcurl3-gnutls
   apt-get -y install chromium
   apt-get -y install librsync-dev
-  apt-get -y install snmp
-  apt-get -y install snmp-mibs-downloader
   apt-get -y install ssl-cert
   apt-get -y remove brltty
   echo "${GREEN}step 2 - packages done${NORMAL}"
