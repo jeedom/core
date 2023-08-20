@@ -63,7 +63,7 @@ step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${JAUNE}Starting step 2 - packages${NORMAL}"
   apt-get -y install software-properties-common
-  add-apt-repository non-free
+  add-apt-repository -y non-free
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
@@ -212,6 +212,7 @@ step_7_jeedom_customization_mariadb() {
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
   service_action start mariadb > /dev/null 2>&1
