@@ -68,6 +68,10 @@ if($freespace <= 1){
 	echo "OK\n";
 }
 
+if (file_exists('/.dockerinit') || file_exists('/.dockerenv')) {
+	exit(0);
+}
+
 /********************************MySQL****************************************/
 echo 'Check MySql => ';
 $rc = 0;

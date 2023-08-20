@@ -1,13 +1,8 @@
 #!/bin/sh
-VERT="\\033[1;32m"
+GREEN="\\033[1;32m"
 NORMAL="\\033[0;39m"
-ROUGE="\\033[1;31m"
-ROSE="\\033[1;35m"
-BLEU="\\033[1;34m"
-BLANC="\\033[0;02m"
-BLANCLAIR="\\033[1;08m"
-JAUNE="\\033[1;33m"
-CYAN="\\033[1;36m"
+RED="\\033[1;31m"
+YELLOW="\\033[1;33m"
 
 if [ $(id -u) != 0 ] ; then
   echo "Superuser rights (root) are required to install Jeedom"
@@ -18,7 +13,7 @@ fi
 apt_install() {
   apt-get -o Dpkg::Options::="--force-confdef" -y install "$@"
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Cannot install $@ - Cancelling${NORMAL}"
+    echo "${RED}Cannot install $@ - Cancelling${NORMAL}"
     exit 1
   fi
 }
@@ -26,7 +21,7 @@ apt_install() {
 mariadb_sql() {
   echo "$@" | mariadb -uroot
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Cannot execute $@ in MySQL - Cancelling${NORMAL}"
+    echo "${RED}Cannot execute $@ in MySQL - Cancelling${NORMAL}"
     exit 1
   fi
 }
@@ -51,19 +46,19 @@ service_action(){
 
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 1 - install${NORMAL}"
+  echo "${YELLOW}Starting step 1 - install${NORMAL}"
   
   apt-get update
   apt-get -f install
   apt-get -y dist-upgrade
-  echo "${VERT} Step 1 - Install done ${NORMAL}"
+  echo "${GREEN} Step 1 - Install done ${NORMAL}"
 }
 
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 2 - packages${NORMAL}"
+  echo "${YELLOW}Starting step 2 - packages${NORMAL}"
   apt-get -y install software-properties-common
-  add-apt-repository non-free
+  add-apt-repository -y non-free
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
@@ -88,16 +83,14 @@ step_2_mainpackage() {
   apt-get -y install libcurl3-gnutls
   apt-get -y install chromium
   apt-get -y install librsync-dev
-  apt-get -y install snmp
-  apt-get -y install snmp-mibs-downloader
   apt-get -y install ssl-cert
   apt-get -y remove brltty
-  echo "${VERT}step 2 - packages done${NORMAL}"
+  echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
 step_3_database() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 3 - databse${NORMAL}"
+  echo "${YELLOW}Starting step 3 - databse${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
   
   service_action status mariadb
@@ -109,24 +102,24 @@ step_3_database() {
   if [ $? -ne 0 ]; then
     service_action status mysql
     if [ $? -ne 0 ]; then
-      echo "${ROUGE}Cannot start mariadb - Cancelling${NORMAL}"
+      echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
       exit 1
     fi
   fi
   
-  echo "${VERT}Step 3 - database done${NORMAL}"
+  echo "${GREEN}Step 3 - database done${NORMAL}"
 }
 
 step_4_apache() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 4 - apache${NORMAL}"
+  echo "${YELLOW}Starting step 4 - apache${NORMAL}"
   apt_install apache2 apache2-utils libexpat1 ssl-cert
-  echo "${VERT}Step 4 - apache done${NORMAL}"
+  echo "${GREEN}Step 4 - apache done${NORMAL}"
 }
 
 step_5_php() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 5 - php${NORMAL}"
+  echo "${YELLOW}Starting step 5 - php${NORMAL}"
   apt_install php libapache2-mod-php php-json php-mysql
   apt install -y php-curl
   apt install -y php-gd
@@ -143,21 +136,22 @@ step_5_php() {
   apt install -y php-ldap
   apt install -y php-yaml
   apt install -y php-snmp
-  echo "${VERT}Step 5 - php done${NORMAL}"
+  echo "${GREEN}Step 5 - php done${NORMAL}"
 }
 
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 6 - download Jeedom${NORMAL}"
-  wget https://github.com/jeedom/core/archive/${VERSION}.zip -O /tmp/jeedom.zip
+  echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
+  wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
+  
   if [ $? -ne 0 ]; then
-    echo "${JAUNE}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
+    echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
     if [ -f /root/jeedom.zip ]; then
       cp /root/jeedom.zip /tmp/jeedom.zip
     fi
   fi
   if [ ! /tmp/jeedom.zip ]; then
-    echo "${ROUGE}Cannot get jeedom.zip archive - Cancelling${NORMAL}"
+    echo "${RED}Cannot get jeedom.zip archive - Cancelling${NORMAL}"
     exit 1
   fi
   mkdir -p ${WEBSERVER_HOME}
@@ -165,19 +159,19 @@ step_6_jeedom_download() {
   rm -rf /root/core-*
   unzip -q /tmp/jeedom.zip -d /root/
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Cannot unpack archive - Cancelling${NORMAL}"
+    echo "${RED}Cannot unpack archive - Cancelling${NORMAL}"
     exit 1
   fi
   cp -R /root/core-*/* ${WEBSERVER_HOME}
   cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
   rm -rf /root/core-* > /dev/null 2>&1
   rm /tmp/jeedom.zip
-  echo "${VERT}Step 6 - download Jeedom done${NORMAL}"
+  echo "${GREEN}Step 6 - download Jeedom done${NORMAL}"
 }
 
 step_7_jeedom_customization_mariadb() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 7 - mariadb customization${NORMAL}"
+  echo "${YELLOW}Starting step 7 - mariadb customization${NORMAL}"
   
   mkdir -p /lib/systemd/system/mariadb.service.d
   echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
@@ -191,14 +185,16 @@ step_7_jeedom_customization_mariadb() {
     service_action stop mysql > /dev/null 2>&1
     if [ $? -ne 0 ]; then
       service_action status mysql
-      echo "${ROUGE}Cannot stop mariadb - Canceling${NORMAL}"
+      echo "${RED}Cannot stop mariadb - Canceling${NORMAL}"
       exit 1
     fi
   fi
+
+  rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
-    echo "[mysqld]" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "[mysqld]" > /etc/mysql/conf.d/jeedom_my.cnf
     echo "skip-name-resolve" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "key_buffer_size = 16M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
@@ -212,6 +208,7 @@ step_7_jeedom_customization_mariadb() {
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
+   # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
   service_action start mariadb > /dev/null 2>&1
@@ -220,17 +217,17 @@ step_7_jeedom_customization_mariadb() {
     service_action start mysql > /dev/null 2>&1
     if [ $? -ne 0 ]; then
       service_action status mysql
-      echo "${ROUGE}Cannot start mariadb - Cancelling${NORMAL}"
+      echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
       exit 1
     fi
   fi
   
-  echo "${VERT}Step 7 - mariadb customization done${NORMAL}"
+  echo "${GREEN}Step 7 - mariadb customization done${NORMAL}"
 }
 
 step_8_jeedom_customization() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 8 - Jeedom customization${NORMAL}"
+  echo "${YELLOW}Starting step 8 - Jeedom customization${NORMAL}"
   cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/security.conf
 
@@ -289,12 +286,12 @@ step_8_jeedom_customization() {
   systemctl daemon-reload
   service_action restart fail2ban > /dev/null 2>&1
   
-  echo "${VERT}Step 8 - Jeedom customization done${NORMAL}"
+  echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
 }
 
 step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 9 - Jeedom configuration${NORMAL}"
+  echo "${YELLOW}Starting step 9 - Jeedom configuration${NORMAL}"
   echo "DROP USER 'jeedom'@'localhost';" | mariadb -uroot > /dev/null 2>&1
   mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MARIADB_JEEDOM_PASSWD}';"
   mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
@@ -308,26 +305,26 @@ step_9_jeedom_configuration() {
   sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
   chmod 775 -R ${WEBSERVER_HOME}
   chown -R www-data:www-data ${WEBSERVER_HOME}
-  echo "${VERT}Step 9 - Jeedom configuration done${NORMAL}"
+  echo "${GREEN}Step 9 - Jeedom configuration done${NORMAL}"
 }
 
 step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 10 - Jeedom install${NORMAL}"
+  echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
   php ${WEBSERVER_HOME}/install/install.php mode=force
   if [ $? -ne 0 ]; then
-    echo "${ROUGE}Cannot install Jeedom - Cancelling${NORMAL}"
+    echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
     exit 1
   fi
-  echo "${VERT}Step 10 - Jeedom install done${NORMAL}"
+  echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
 
 step_11_jeedom_post() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 11 - Jeedom post-install${NORMAL}"
+  echo "${YELLOW}Starting step 11 - Jeedom post-install${NORMAL}"
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
     
@@ -335,14 +332,14 @@ step_11_jeedom_post() {
   if [ ! -f /etc/cron.d/jeedom ]; then
     echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
     if [ $? -ne 0 ]; then
-      echo "${ROUGE}Cannot install Jeedom cron - Canceling${NORMAL}"
+      echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
       exit 1
     fi
   fi
   if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
     echo "*/5 * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
     if [ $? -ne 0 ]; then
-      echo "${ROUGE}Cannot install Jeedom cron - Canceling${NORMAL}"
+      echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
       exit 1
     fi
   fi
@@ -350,7 +347,7 @@ step_11_jeedom_post() {
   if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
     echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
     if [ $? -ne 0 ]; then
-      echo "${ROUGE}Cannot allow Sudo for Jeedom - Cancelling${NORMAL}"
+      echo "${RED}Cannot allow Sudo for Jeedom - Cancelling${NORMAL}"
       exit 1
     fi
   fi
@@ -369,19 +366,19 @@ step_11_jeedom_post() {
       rm -rf ${WEBSERVER_HOME}/composer.lock
       export COMPOSER_ALLOW_SUPERUSER=1
       cd ${WEBSERVER_HOME}
-      composer install
+      composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
   fi
   
-  echo "${VERT}Step 11 - Jeedom post-install done${NORMAL}"
+  echo "${GREEN}Step 11 - Jeedom post-install done${NORMAL}"
 }
 
 step_12_jeedom_check() {
   echo "---------------------------------------------------------------------"
-  echo "${JAUNE}Starting step 12 - Jeedom check${NORMAL}"
+  echo "${YELLOW}Starting step 12 - Jeedom check${NORMAL}"
   php ${WEBSERVER_HOME}/sick.php
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
-  echo "${VERT}Step 12 - Jeedom check done${NORMAL}"
+  echo "${GREEN}Step 12 - Jeedom check done${NORMAL}"
 }
 
 distrib_1_spe(){
@@ -420,22 +417,22 @@ while getopts ":s:v:w:m:i:d:" opt; do
     ;;
     d) DATABASE="$OPTARG"
     ;;
-    \?) echo "${ROUGE}Invalid option -$OPTARG${NORMAL}" >&2
+    \?) echo "${RED}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
   esac
 done
 
-echo "${JAUNE}Welcome to Jeedom installer${NORMAL}"
-echo "${JAUNE}Jeedom version : ${VERSION}${NORMAL}"
-echo "${JAUNE}Web folder : ${WEBSERVER_HOME}${NORMAL}"
-echo "${JAUNE}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
+echo "${YELLOW}Welcome to Jeedom installer${NORMAL}"
+echo "${YELLOW}Jeedom version : ${VERSION}${NORMAL}"
+echo "${YELLOW}Web folder : ${WEBSERVER_HOME}${NORMAL}"
+echo "${YELLOW}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
 if [ ${DATABASE} -ne 1 ]; then
-  echo "${JAUNE}External database${NORMAL}"
+  echo "${YELLOW}External database${NORMAL}"
 fi
 
 case ${STEP} in
   0)
-  echo "${JAUNE}Starting installation ...${NORMAL}"
+  echo "${YELLOW}Starting installation ...${NORMAL}"
   step_1_upgrade
   step_2_mainpackage
   if [ ${DATABASE} -eq 1 ]; then
@@ -483,7 +480,7 @@ case ${STEP} in
   ;;
   12) step_12_jeedom_check
   ;;
-  *) echo "${ROUGE}Sorry, cannot select step ${STEP}${NORMAL}"
+  *) echo "${RED}Sorry, cannot select step ${STEP}${NORMAL}"
   ;;
 esac
 

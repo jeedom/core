@@ -77,9 +77,7 @@ class repo_github {
 	}
 	
 	public static function getGithubClient() {
-		$client = new \Github\Client(
-			new \Github\HttpClient\CachedHttpClient(array('cache_dir' => jeedom::getTmpFolder('github') . '/cache'))
-		);
+		$client = new \Github\Client();
 		if (config::byKey('github::token') != '') {
 			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_HTTP_TOKEN);
 		}
