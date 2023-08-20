@@ -84,7 +84,7 @@ try {
 		if (!is_object($plugin)) {
 			ajax::success();
 		}
-		ajax::success($plugin->dependancy_install());
+		ajax::success($plugin->dependancy_install(true));
 	}
 
 	if (init('action') == 'dependancyChangeAutoMode') {

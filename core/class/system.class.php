@@ -414,7 +414,7 @@ class system {
 		return false;
 	}
 
-	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '') {
+	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '',$_force = false) {
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			if ($type == 'post-install' || $type == 'pre-install') {
@@ -577,7 +577,7 @@ class system {
 		}
 		$has_something_todo = false;
 		foreach ($return as $package => $info) {
-			if (($info['status'] != 0 && !$info['reinstall']) || $info['status'] == 3) {
+			if ((($info['status'] != 0 && !$info['reinstall']) || $info['status'] == 3) && !$_force) {
 				continue;
 			}
 			$has_something_todo = true;
@@ -628,7 +628,7 @@ class system {
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
-				        case 'composer':
+				    case 'composer':
 						if ($_foreground) {
 							echo shell_exec(self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_composer.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_composer.sh');
 						} else {
