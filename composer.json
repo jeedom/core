@@ -1,14 +1,15 @@
 {
   "require": {
-    "dragonmantank/cron-expression": "*",
-    "symfony/expression-language": "*",
+    "dragonmantank/cron-expression": "^3.3",
+    "symfony/expression-language": "^5.4",
     "doctrine/cache": "^1.13",
-    "monolog/monolog": "*",
-    "knplabs/github-api": "*",
-    "league/flysystem-webdav": "*",
-    "pragmarx/google2fa-qrcode": "*",
-    "abbadon1334/sun-position-spa-php": "*",
-    "php-http/guzzle7-adapter": "*"
+    "monolog/monolog": "^2.9",
+    "knplabs/github-api": "^3.11",
+    "league/flysystem-webdav": "^1.0",
+    "pragmarx/google2fa-qrcode": "^3.0",
+    "abbadon1334/sun-position-spa-php": "^2.0",
+    "league/oauth2-client": "~2.3",
+    "guzzlehttp/psr7":"^1.9",
   },
   "config": {
       "allow-plugins": {
