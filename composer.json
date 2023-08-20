@@ -9,7 +9,8 @@
     "pragmarx/google2fa-qrcode": "^3.0",
     "abbadon1334/sun-position-spa-php": "^2.0",
     "league/oauth2-client": "~2.3",
-    "guzzlehttp/psr7":"^1.9"
+    "guzzlehttp/psr7":"^1.9",
+    "guzzlehttp/guzzle":"^6.5"
   },
   "config": {
       "allow-plugins": {
