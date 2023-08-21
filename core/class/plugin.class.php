@@ -953,6 +953,11 @@ class plugin {
 				}
 			}
 		} else if ($alreadyActive == 0 && $_state == 1) {
+			try{
+				include_file('core', $this->getId(), 'class', $this->getId());
+			} catch (Exception $e) {
+			} catch (Error $e) {
+			}
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
 				try {
 					$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));

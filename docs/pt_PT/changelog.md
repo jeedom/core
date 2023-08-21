@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.4
 
+>**IMPORTANTE**
+>
+>Nota versão 4.4 é uma grande atualização do jeedom, mesmo que visualmente as mudanças para você sejam mínimas, todo o código da interface foi reescrito (para ser mais rápido em particular), assim como o gerenciamento de dependências do php foi revisado. Mesmo que o equipamento Jeedom e os betatesters tenham feito muitos testes, existem tantas versões de jeedom quanto jeedom. Portanto, não é possível garantir que funcione para todos em 100% dos casos. Portanto, aconselhamos você a não pular na atualização.
+>Como lembrete, em caso de problemas, você pode escrever para o suporte (se tiver um service pack ou mais) na página de perfis de mercado.
+
 
 ### 4.4 : Pré-requisitos
 

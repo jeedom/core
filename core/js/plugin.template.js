@@ -43,7 +43,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           if (coreSupport) {
             document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
             document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.removeClass('hidden')
-            document.querySelector('.eqLogicThumbnailContainer').addClass('containerAsTable')
+            document.querySelectorAll('.eqLogicThumbnailContainer')?.addClass('containerAsTable')
           }
         }
         //core event:
@@ -54,13 +54,13 @@ if (!jeeFrontEnd.pluginTemplate) {
               setCookie('jeedom_displayAsTable', 'true', 2)
               document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
               document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.removeClass('hidden')
-              document.querySelector('.eqLogicThumbnailContainer').addClass('containerAsTable')
+              document.querySelectorAll('.eqLogicThumbnailContainer')?.addClass('containerAsTable')
             } else {
               butDisp.removeClass('active').dataset.state = '0'
               setCookie('jeedom_displayAsTable', 'false', 2)
               document.querySelectorAll('.eqLogicDisplayCard')?.removeClass('displayAsTable')
               document.querySelectorAll('.eqLogicDisplayCard .hiddenAsCard')?.addClass('hidden')
-              document.querySelector('.eqLogicThumbnailContainer').removeClass('containerAsTable')
+              document.querySelectorAll('.eqLogicThumbnailContainer')?.removeClass('containerAsTable')
             }
           })
         }

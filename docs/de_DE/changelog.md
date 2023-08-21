@@ -1,5 +1,10 @@
 # Änderungsprotokoll Jeedom V4.4
 
+>**WICHTIG**
+>
+>Beachten Sie Version 4.4 ist ein großes Update von jeedom, auch wenn die Änderungen für Sie optisch minimal sein werden, der gesamte Schnittstellencode wurde neu geschrieben (um insbesondere schneller zu sein) und auch die Verwaltung von PHP-Abhängigkeiten wurde überprüft. Auch wenn Jeedom-Geräte und Betatester viele Tests durchgeführt haben, gibt es so viele Versionen von Jeedom, wie es Jeedom gibt. Es kann daher nicht garantiert werden, dass es in 100 % der Fälle bei jedem funktioniert. Wir raten Ihnen daher, sich nicht auf das Update zu stürzen.
+>Zur Erinnerung bei Problemen können Sie über Ihre Marktprofilseite an den Support schreiben (wenn Sie über ein Service Pack oder mehr verfügen).
+
 
 ### 4.4 : Voraussetzungen
 
