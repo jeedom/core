@@ -79,7 +79,7 @@ class repo_github {
 	public static function getGithubClient() {
 		$client = new \Github\Client();
 		if (config::byKey('github::token') != '') {
-			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_HTTP_TOKEN);
+			$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_ACCESS_TOKEN);
 		}
 		return $client;
 	}
