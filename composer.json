@@ -10,8 +10,8 @@
     "abbadon1334/sun-position-spa-php": "^2.0",
     "league/oauth2-client": "~2.3",
     "guzzlehttp/psr7":"^1.9",
-    "guzzlehttp/guzzle":"^7",
-    "php-http/guzzle7-adapter": "^1.0"
+    "guzzlehttp/guzzle":"^6.5",
+    "php-http/guzzle6-adapter":"^2.0"
   },
   "config": {
       "allow-plugins": {
