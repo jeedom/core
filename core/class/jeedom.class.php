@@ -429,6 +429,17 @@ class jeedom {
 			'key' => 'network::external'
 		);
 
+		$value = shell_exec('sudo node --version');
+		
+		$return[] = array(
+			'name' => __('Node version', __FILE__),
+			'state' => true,
+			'result' => $value,
+			'comment' => '',
+			'key' => 'node::version'
+		);
+
+
 		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__), 'key' => 'cache::persit');
 		if (cache::isPersistOk()) {
 			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
