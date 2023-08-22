@@ -30,6 +30,11 @@ $backup_ok = false;
 $update_begin = false;
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
+	try{
+          new Cron\CronExpression('00 00 * * *', new Cron\FieldFactory);
+	} catch (Exception $e) {
+
+	}
 	echo "[PROGRESS][1]\n";
 	if (count(system::ps('install/update.php', 'sudo')) > 1) {
 		echo "Update in progress. I will wait 10s\n";
