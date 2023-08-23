@@ -429,6 +429,38 @@ class jeedom {
 			'key' => 'network::external'
 		);
 
+		$value = shell_exec('node --version');
+		$return[] = array(
+			'name' => __('Node', __FILE__),
+			'state' => true,
+			'result' => $value,
+			'comment' => '',
+			'key' => 'node::version'
+		);
+
+		if(shell_exec('which python') != ''){
+			$value = shell_exec('python --version');
+			$return[] = array(
+				'name' => __('Python', __FILE__),
+				'state' => true,
+				'result' => $value,
+				'comment' => '',
+				'key' => 'python::version'
+			);
+		}
+
+		if(shell_exec('which python3') != ''){
+			$value = shell_exec('python3 --version');
+			$return[] = array(
+				'name' => __('Python 3', __FILE__),
+				'state' => true,
+				'result' => $value,
+				'comment' => '',
+				'key' => 'python3::version'
+			);
+		}
+
+
 		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__), 'key' => 'cache::persit');
 		if (cache::isPersistOk()) {
 			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
