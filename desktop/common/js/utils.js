@@ -362,7 +362,7 @@ jeedomUtils.showAlert = function(_options) {
   options.message = init(options.message, '')
   options.level = init(options.level, '')
   options.emptyBefore = init(options.emptyBefore, false)
-  options.timeOut = init(options.timeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
+  options.timeOut = init(options.timeOut, init(options.ttl, parseInt(jeedom.theme['interface::toast::duration']) * 1000))
   options.extendedTimeOut = init(options.extendedTimeOut, parseInt(jeedom.theme['interface::toast::duration']) * 1000)
   if (options.level == 'danger') {
     options.timeOut = 0
