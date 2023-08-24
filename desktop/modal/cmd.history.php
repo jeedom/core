@@ -83,7 +83,7 @@ if (!jeeFrontEnd.md_history) {
     done: null,
     loadIds: null,
     init: function(_cmdIds) {
-      self = this
+      let self = this
       document.getElementById(this.__el__).style.position = 'relative'
       document.getElementById(this.__el__).style.width = '100%'
       delete jeedom.history.chart[this.__el__]

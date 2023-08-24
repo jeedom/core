@@ -259,7 +259,7 @@ var options = {
             name : '{{Editer}}'
           },
           load : function(textarea) {
-            self = this
+            let self = this
             var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
             var fileUrl = elfinderInstance.url(self.file.hash)
             fileUrl = fileUrl.replace('/core/php/../../', '')
