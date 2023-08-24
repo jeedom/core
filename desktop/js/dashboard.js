@@ -231,7 +231,7 @@ if (!jeeFrontEnd.dashboard) {
     },
     getObjectHtmlFromSummary: function(_object_id) {
       if (_object_id == null) return
-      self = this
+      let self = this
       self._object_id = _object_id
       self.summaryObjEqs = []
       self.summaryObjEqs[_object_id] = []
@@ -297,7 +297,7 @@ if (!jeeFrontEnd.dashboard) {
       })
     },
     getObjectHtml: function(_object_id) {
-      self = this
+      let self = this
       jeedom.object.toHtml({
         id: _object_id,
         version: 'dashboard',
