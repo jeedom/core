@@ -108,7 +108,7 @@ class log {
 			return;
 		}
 		$logger = self::getLogger($_log);
-		$action = 'add' . ucwords(strtolower($_type));
+		$action = strtolower($_type);
 		if (method_exists($logger, $action)) {
 			$logger->$action($_message);
 			try {
