@@ -216,7 +216,7 @@ if (!isConnect()) {
 if (!jeeFrontEnd.md_search) {
   jeeFrontEnd.md_search = {
     init: function() {
-      var self = this
+      let self = this
       this.tableScSearch = document.getElementById('table_ScenarioSearch')
       this.tablePlanSearch = document.getElementById('table_DesignSearch')
       this.tableViewSearch = document.getElementById('table_ViewSearch')
@@ -255,7 +255,7 @@ if (!jeeFrontEnd.md_search) {
     },
     /* ------            Searching            -------*/
     searchFor_variable: function(_searchFor) {
-      self = this
+      let self = this
       jeedom.dataStore.byTypeLinkIdKey({
         type: 'scenario',
         linkId: -1,
@@ -295,7 +295,7 @@ if (!jeeFrontEnd.md_search) {
       })
     },
     searchFor_plugin: function(_searchFor) {
-      self = this
+      let self = this
       jeedom.eqLogic.byType({
         type: _searchFor,
         error: function(error) {
@@ -319,7 +319,7 @@ if (!jeeFrontEnd.md_search) {
         var eQiD = _byId
       }
 
-      self = this
+      let self = this
       jeedom.eqLogic.usedBy({
         id: eQiD,
         error: function(error) {
@@ -373,7 +373,7 @@ if (!jeeFrontEnd.md_search) {
         var cmdId = _byId
       }
 
-      self = this
+      let self = this
       jeedom.cmd.usedBy({
         id: cmdId,
         error: function(error) {
@@ -406,7 +406,7 @@ if (!jeeFrontEnd.md_search) {
       })
     },
     searchFor_string: function(_searchFor) {
-      self = this
+      let self = this
       jeedom.getStringUsedBy({
         search: _searchFor,
         error: function(error) {
@@ -436,7 +436,7 @@ if (!jeeFrontEnd.md_search) {
       })
     },
     searchFor_id: function(_searchFor) {
-      self = this
+      let self = this
       jeedom.getIdUsedBy({
         search: _searchFor,
         error: function(error) {

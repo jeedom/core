@@ -49,7 +49,7 @@ if (!jeeFrontEnd.plugin) {
     },
     displayPlugin: function(_pluginId) {
       jeedomUtils.hideAlert()
-      var self = this
+      let self = this
       //Is plugin page displayed inside modal from _pluginId page or Core plugin management page:
       this.modal = jeeDialog.get('#div_confPlugin', 'dialog')
       if (this.modal != null) {
