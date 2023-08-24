@@ -30,8 +30,9 @@ if (!jeeFrontEnd.plan3d) {
     controls: null,
     init: function() {
       window.jeeP = this
-      this.SCREEN_WIDTH = document.getElementById('div_display3d').style.widt
-      this.SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
+      document.getElementById('div_pageContainer').style.height = '100%'
+      this.SCREEN_WIDTH = document.getElementById('div_display3d').offsetWidth
+      this.SCREEN_HEIGHT = document.getElementById('div_display3d').offsetHeight
       this.raycaster = new THREE.Raycaster()
       this.mouse = new THREE.Vector2()
       
