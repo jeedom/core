@@ -311,7 +311,7 @@ if (!jeeFrontEnd.history) {
       jeedom.history.emptyChart(this.__el__, true)
 
       //add data from both date range:
-      self = this
+      let self = this
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
         el: self.__el__,

@@ -82,7 +82,7 @@ if (!jeeFrontEnd.overview) {
     },
     getSummaryHtml: function(_object_id, _summary, _title) {
       this.summaryObjEqs[_object_id] = []
-      self = this
+      let self = this
       jeedom.object.getEqLogicsFromSummary({
         id: _object_id,
         onlyEnable: '1',
