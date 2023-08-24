@@ -51,7 +51,7 @@ class log {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
-		$formatter = new LineFormatter(str_replace('\n', "\n", self::getConfig('log::formatter')));
+		$formatter = new LineFormatter(str_replace('\n', "\n", self::getConfig('log::formatter')),'Y-m-d H:i:s');
 		self::$logger[$_log] = new Logger($_log);
 		switch (self::getConfig('log::engine')) {
 			case 'SyslogHandler':
