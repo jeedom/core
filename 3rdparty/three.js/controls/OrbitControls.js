@@ -762,7 +762,7 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 		if ( scope.enabled === false || scope.enableZoom === false || ( state !== STATE.NONE && state !== STATE.ROTATE ) ) return;
 
-		event.preventDefault();
+		//event.preventDefault();
 		event.stopPropagation();
 
 		handleMouseWheel( event );
