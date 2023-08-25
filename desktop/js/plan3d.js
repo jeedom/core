@@ -195,6 +195,9 @@ if (!jeeFrontEnd.plan3d) {
               }, function(progress) {
                 document.getElementById('span_loadPercent3dPlan')?.remove()
                 document.body.insertAdjacentHTML('beforeend','<span id="span_loadPercent3dPlan" style="font-size:4em;z-index:9999;position:fixed;top: 40%;left : 47%;">2/2 : ' + Math.round((progress.loaded / progress.total) * 100) + '%' + '</span>')
+                if(progress.loaded == progress.total){
+                 setTimeout( jeeFrontEnd.plan3d.render, 1000);
+                }
               }, function(error) {
                 console.log(error)
               })
@@ -227,10 +230,11 @@ if (!jeeFrontEnd.plan3d) {
           }
           jeeFrontEnd.plan3d.controls = new THREE.OrbitControls(jeeFrontEnd.plan3d.camera, jeeFrontEnd.plan3d.camera.domElement)
           jeeFrontEnd.plan3d.controls.maxPolarAngle = 0.9 * Math.PI / 2
-          //jeeFrontEnd.plan3d.controls.addEventListener('change', render)
+          jeeFrontEnd.plan3d.controls.addEventListener('change', jeeFrontEnd.plan3d.render)
           jeeFrontEnd.plan3d.scene.add(new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5))
           jeeFrontEnd.plan3d.renderer.render(jeeFrontEnd.plan3d.scene, jeeFrontEnd.plan3d.camera)
           jeeFrontEnd.plan3d.animate()
+     
         }
       })
     }
