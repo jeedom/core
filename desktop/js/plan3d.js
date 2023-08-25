@@ -170,7 +170,7 @@ if (!jeeFrontEnd.plan3d) {
             antialias: true
           })
           jeeFrontEnd.plan3d.renderer.setSize(jeeFrontEnd.plan3d.SCREEN_WIDTH, jeeFrontEnd.plan3d.SCREEN_HEIGHT)
-          jeeFrontEnd.plan3d.container.appendChild(jeeFrontEnd.plan3d.renderer .domElement)
+          jeeFrontEnd.plan3d.container.appendChild(jeeFrontEnd.plan3d.renderer.domElement)
           if (data.configuration.mtlfile && data.configuration.mtlfile != '') {
             domUtils.showLoading()
             var mtlLoader = new THREE.MTLLoader()
