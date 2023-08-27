@@ -45,7 +45,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		$_index = $object->getId();
 		$numParents = $object->getConfiguration('parentNumber');
 		$objectId = $object->getId();
-		$objectFatherId = $object->getFather() != 0 ? $object->getFather()->getId() : 0;
+		$objectFatherId = is_object($object->getFather()) ? $object->getFather()->getId() : 0;
 		$objectName = $object->getName();
 		$objecUseCustomColor = $object->getConfiguration('useCustomColor');
 		$objectIcon = $object->getDisplay('icon');
