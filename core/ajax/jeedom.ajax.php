@@ -610,7 +610,9 @@ try {
 
 	if (init('action') == 'emptyRemoveHistory') {
 		unautorizedInDemo();
-		unlink(__DIR__ . '/../../data/remove_history.json');
+		if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
+			unlink(__DIR__ . '/../../data/remove_history.json');
+		}
 		ajax::success();
 	}
 
