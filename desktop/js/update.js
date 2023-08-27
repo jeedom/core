@@ -139,6 +139,8 @@ if (!jeeFrontEnd.update) {
           for (var tr of tr_updates) {
             tbody.appendChild(tr)
           }
+          jeedomUtils.initTooltips(tbody)
+          
           if (isset(jeeFrontEnd.update.updtDataTable)) jeeFrontEnd.update.updtDataTable.refresh()
 
           jeedomUtils.initDataTables('#coreplugin')
