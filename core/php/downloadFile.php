@@ -92,7 +92,7 @@ try {
 	}
 	ob_clean();
 	$path_parts = pathinfo($pathfile);
-	if ($path_parts['extension'] == 'pdf') {
+	if (isset($path_parts['extension']) && $path_parts['extension'] == 'pdf') {
 		header('Content-Type: application/pdf');
 		header('Content-Disposition: inline; filename=' . $path_parts['basename']);
 	} else {
