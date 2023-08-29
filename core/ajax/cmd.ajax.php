@@ -468,7 +468,7 @@ try {
 			}
 		} else {
 			$derive = init('derive', '');
-                        if($derive == '')
+                        if($derive == '' && is_object($cmd))
                             $derive = $cmd->getDisplay('graphDerive');
 			$return['derive'] = $derive;
 			$previousValue = null;
