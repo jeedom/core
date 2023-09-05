@@ -287,7 +287,11 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
     - ``user`` wenn es manuell gestartet wurde,
     - ``start`` für einen Start beim Start von Jeedom.
 - ``#trigger_value#`` (veraltet, besser TriggerValue zu verwenden()) : Für den Wert des Befehls, der das Szenario ausgelöst hat
+- ``#latitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Breitengradinformationen abzurufen
+- ``#longitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Längengradinformationen abzurufen
+- ``#altitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Höheninformationen abzurufen
 
+  
 Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine Interaktion ausgelöst wurde :
 
 - #query# : Interaktion, die das Szenario ausgelöst hat.

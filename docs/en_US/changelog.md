@@ -34,6 +34,7 @@
 - **Theme** : Removal of the theme **Core2019 Legacy** *(alpha)*.
 - **Report** : Possibility to choose the theme during a report on a jeedom page.
 - **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
+- **System** : Possibility of adding personalized commands (see documentation)
 
 
 ### 4.4 : Autre

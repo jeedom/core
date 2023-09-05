@@ -34,6 +34,7 @@
 - **Thema** : Entfernen des Themas **Core2019 Vermächtnis** *(alpha)*.
 - **Bericht** : Möglichkeit, das Thema während eines Berichts auf einer Jeedom-Seite zu wählen.
 - **Jeedom-Menü** : Eine Verzögerung von 0.25s wurde beim Öffnen von Untermenüs eingeführt.
+- **System** : Möglichkeit zum Hinzufügen personalisierter Befehle (siehe Dokumentation))
 
 
 ### 4.4 : Autre

@@ -69,11 +69,11 @@ Wenn Sie morgen ein Licht in Ihrem Wohnzimmer hinzufügen, müssen Sie Ihre Szen
 
 Wenn Sie alle Lichter im Wohnzimmer einschalten möchten, können Sie eine Lichtaktion erstellen:
 
-`` ``
+„
 #[Wohnzimmer][Lumiere Canapé][Wir]#
 #[Wohnzimmer][Lumiere Salon][Wir]#
 #[Wohnzimmer][Lumiere Angle][Wir]#
-`` ``
+„
 
 Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon`. Wenn Sie morgen ein Licht in Ihrem Wohnzimmer hinzufügen, müssen Sie Ihre Szenarien nicht retuschieren !
 

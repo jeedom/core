@@ -34,6 +34,7 @@
 - **Temática** : Eliminación del tema **Legado Core2019** *(alpha)*.
 - **Relación** : Posibilidad de elegir el tema durante un informe en una página de jeedom.
 - **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
+- **Sistema** : Posibilidad de añadir comandos personalizados (ver documentación)
 
 
 ### 4.4 : Autre
