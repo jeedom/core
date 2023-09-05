@@ -1212,6 +1212,15 @@ class scenarioExpression {
 				case '#trigger_value#':
 					$return['#trigger_value#'] = '';
 					break;
+				case '#latitude#':
+					$return['#latitude#'] = config::byKey('info::latitude');
+					break;
+				case '#longitude#':
+					$return['#longitude#'] = config::byKey('info::longitude');
+					break;
+			 	case '#altitude#':
+					$return['#altitude#'] = config::byKey('info::altitude');
+					break;
 			}
 		}
 		$new = array();
