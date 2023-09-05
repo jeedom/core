@@ -75,7 +75,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
 >Desmarque *"Afficher"* do comando info / binário que não precisa ser exibido.
 
 - Para que o Jeedom Core seja capaz de identificar qual comando corresponde a qual ação, é essencial respeitar a seguinte nomenclatura para **2 comandos de ação / falha** :
-```
+`` ''
     'on':'on',
     'off':'off',
     'monter':'on',
@@ -94,7 +94,7 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
     'Pare':'off',
     'stop':'off',
     'go':'on'
-```
+`` ''
 
 >**Truque**      
 >Desde que o nome padronizado permaneça legível, é possível adaptar a nomenclatura, por exemplo *open_volet* Onde *shutter_close*, *caminhada_2* e *parada_2*, etc.
@@ -224,13 +224,13 @@ No modo de código, você tem acesso a diferentes tags para pedidos, aqui está 
 
 Quando um novo valor o Jeedom irá pesquisar na página se o comando está lá e no Jeedom.cmd.atualizar se houver uma função de atualização. Se sim, chama-o com um único argumento, que é um objeto no formulário :
 
-```
+`` ''
 {valor_exibição: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'}
-```
+`` ''
 
 Aqui está um exemplo simples de código javascript para colocar no seu widget :
 
-```
+`` ''
 <script>
     jeedom.cmd.addUpdateFunction('#id#', função (_options) {
       if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
@@ -241,11 +241,11 @@ Aqui está um exemplo simples de código javascript para colocar no seu widget :
     }
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', valor_exibição: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 </script>
-```
+`` ''
 
 Aqui estão duas coisas importantes :
 
-```
+`` ''
 jeedom.cmd.addUpdateFunction('#id#', função (_options) {
   if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
     cmd.setAttribute('title', '{{Data do valor}}: ' + _opções.valorData + '<br>{{Data da coleta}}: ' + _options.collectDate)
@@ -253,12 +253,12 @@ jeedom.cmd.addUpdateFunction('#id#', função (_options) {
     cmd.querySelector('.unit').innerHTML = _options.unit
   }
 }
-```
+`` ''
 A função é chamada durante uma atualização do widget. Em seguida, ele atualiza o código html do widget_template.
 
-```
+`` ''
 jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', valor_exibição: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
-```
+`` ''
  A chamada para esta função para a inicialização do widget.
 
 ### Exemples

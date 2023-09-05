@@ -69,11 +69,11 @@ Si mañana añades luz en tu salón, no es necesario que retoques tus escenarios
 
 Si desea encender todas las luces en la sala de estar, puede crear una acción de luz:
 
-```
+`` ``
 #[Salón][Lumiere Canapé][Nosotros]#
 #[Salón][Lumiere Salon][Nosotros]#
 #[Salón][Lumiere Angle][Nosotros]#
-```
+`` ``
 
 O más simplemente, cree una acción `genericType` con` LIGHT_ON` en` Salon`. Si mañana añades luz en tu salón, no es necesario que retoques tus escenarios !
 

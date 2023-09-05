@@ -69,11 +69,11 @@ Se amanhã você adicionar uma luz em sua sala, não há necessidade de retocar 
 
 Se você deseja acender todas as luzes da sala de estar, pode criar uma ação leve:
 
-```
+`` ``
 #[Salão][Lumiere Canapé][Nós]#
 #[Salão][Lumiere Salon][Nós]#
 #[Salão][Lumiere Angle][Nós]#
-```
+`` ``
 
 Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. Se amanhã você adicionar uma luz em sua sala, não há necessidade de retocar seus cenários !
 

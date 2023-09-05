@@ -69,11 +69,11 @@ If tomorrow you add a light in your living room, no need to retouch your scenari
 
 If you want to turn on all the lights in the Living Room, you can create a light action:
 
-```
+`` ``
 #[Living room][Lumiere Canapé][We]#
 #[Living room][Lumiere Salon][We]#
 #[Living room][Lumiere Angle][We]#
-```
+`` ``
 
 Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tomorrow you add a light in your living room, no need to retouch your scenarios !
 

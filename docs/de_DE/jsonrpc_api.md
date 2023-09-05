@@ -16,7 +16,7 @@ Hier ist ein Beispiel für die Konfiguration eines Json-Objekts, das im Haupttei
         "datetime": "0"
     }
 }
-„
+`` ''
 
 Divers
 ======
@@ -801,7 +801,7 @@ if ($ jsonrpc-&gt; sendrequest ( ‚jeeObject::all ', Array())){
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-„
+`` ''
 
 Ausführung eines Auftrags (mit der Option eines Titels und einer Nachricht)
 
@@ -812,6 +812,6 @@ if ($ jsonrpc-&gt; sendrequest ( ‚cmd::execCmd ', array (' id' => #cmd_id#, 'o
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-„
+`` ''
 
 Die API kann natürlich auch mit anderen Sprachen verwendet werden (nur ein Beitrag auf einer Seite)
