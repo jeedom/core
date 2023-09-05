@@ -71,8 +71,8 @@ if(file_exists(__DIR__.'/../../data/systemCustomCmd.json')){
             $list .= '<li class="cursor list-group-item list-group-item-success">';
             $list .= '<a class="bt_systemCommand" data-command=\'' . $cmd["cmd"] . '\'>' . $cmd["name"] . '</a></li>';
           }
+          echo $list;
          }
-         echo $list;
         ?>
       </ul>
     </div>
