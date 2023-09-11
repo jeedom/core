@@ -287,7 +287,11 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
     - ``user`` se foi iniciado manualmente,
     - ``start`` para um lançamento na inicialização do Jeedom.
 - ``#trigger_value#`` (descontinuado, melhor usar triggerValue()) : Para o valor do comando que acionou o cenário
+- ``#latitude#`` : Permite recuperar as informações de latitude colocadas na configuração do jeedom
+- ``#longitude#`` : Permite recuperar as informações de longitude colocadas na configuração do jeedom
+- ``#altitude#`` : Permite recuperar as informações de altitude colocadas na configuração do jeedom
 
+  
 Você também tem as seguintes tags adicionais se seu cenário foi acionado por uma interação :
 
 - #query# : Interação que acionou o cenário.

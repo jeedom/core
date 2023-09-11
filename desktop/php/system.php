@@ -35,6 +35,10 @@ $sysCmdsSudo = array(
   array("cmd" => 'cd ../../;sudo git reset --hard HEAD;sudo git pull;sudo chown -R www-data:www-data *', "name" => '[Danger] Git force pull'),
   array("cmd" => 'cd ../../;sudo git commit -a -m "Commit from jeedom";sudo git push', "name" => '[Danger] Git commit push'),
 );
+$sysCmdsCustom = array();
+if(file_exists(__DIR__.'/../../data/systemCustomCmd.json')){
+  $sysCmdsCustom = is_json(file_get_contents(__DIR__.'/../../data/systemCustomCmd.json'),array());
+}
 ?>
 
 <div id="div_rowSystemCommand" class="row row-overflow">
@@ -61,6 +65,14 @@ $sysCmdsSudo = array(
           }
           echo $list;
         }
+         if (is_array($sysCmdsCustom) && count($sysCmdsCustom) > 0) {
+         $list = '<li class="info list-group-item">-- Commandes custom --</li>';
+           foreach ($sysCmdsCustom as $cmd) {
+            $list .= '<li class="cursor list-group-item list-group-item-success">';
+            $list .= '<a class="bt_systemCommand" data-command=\'' . $cmd["cmd"] . '\'>' . $cmd["name"] . '</a></li>';
+          }
+          echo $list;
+         }
         ?>
       </ul>
     </div>

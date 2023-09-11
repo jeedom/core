@@ -287,7 +287,11 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
     - ``user`` si se inició manualmente,
     - ``start`` para un lanzamiento al inicio de Jeedom.
 - ``#trigger_value#`` (en desuso, mejor usar triggerValue()) : Por el valor del comando que activó el escenario
+- ``#latitude#`` : Le permite recuperar la información de latitud ingresada en la configuración de jeedom
+- ``#longitude#`` : Le permite recuperar la información de longitud ingresada en la configuración de jeedom
+- ``#altitude#`` : Le permite recuperar la información de altitud ingresada en la configuración de jeedom
 
+  
 También tiene las siguientes etiquetas adicionales si su escenario fue desencadenado por una interacción :
 
 - #query# : Interacción que desencadenó el escenario.

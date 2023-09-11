@@ -287,7 +287,11 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
     - ``user`` s'il a été lancé manuellement,
     - ``start`` pour un lancement au démarrage de Jeedom.
 - ``#trigger_value#`` (déprecié, mieux vaut utiliser triggerValue()) : Pour la valeur de la commande ayant déclenché le scénario
+- ``#latitude#`` : Permet de récuperer l'information de latitude mise dans la configuration de jeedom
+- ``#longitude#`` : Permet de récuperer l'information de longitude mise dans la configuration de jeedom
+- ``#altitude#`` : Permet de récuperer l'information de altitude mise dans la configuration de jeedom
 
+  
 Vous avez aussi les tags suivants en plus si votre scénario a été déclenché par une interaction :
 
 - #query# : Interaction ayant déclenché le scénario.

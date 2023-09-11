@@ -1506,7 +1506,7 @@ class jeedom {
 		if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
 			$remove_history = json_decode(file_get_contents(__DIR__ . '/../../data/remove_history.json'), true);
 		}
-		if (!is_array($remove_history)) {
+		if (!isset($remove_history) || !is_array($remove_history)) {
 			$remove_history = array();
 		}
 		return $remove_history;
