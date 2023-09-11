@@ -1630,7 +1630,11 @@ class cmd {
 						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
 					}
 				} else {
-					$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
+					if(isset($coupleArray[1])){
+						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
+					}else{
+						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[0] . '</option>';
+					}
 				}
 			}
 			if (!$foundSelect) {
