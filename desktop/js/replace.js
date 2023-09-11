@@ -534,7 +534,7 @@ document.getElementById('eqSource').addEventListener('click', function(event) {
 
 document.getElementById('eqSource').addEventListener('mouseup', function(event) {
   var _target = null
-  if (_target = event.target.closest('select.selectEqReplace option')) {
+  if (_target = event.target.closest('select.selectEqReplace')) {
     jeeP.selectReplacerEqlogic(_target.closest('select.selectEqReplace'))
     return
   }
