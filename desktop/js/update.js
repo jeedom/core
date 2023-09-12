@@ -204,7 +204,13 @@ if (!jeeFrontEnd.update) {
       var tr = '<tr>'
       tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
-      tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span><span class="label label-info"><span class="updateAttr" data-l1key="plugin" data-l2key="name"></span> (<span class="updateAttr" data-l1key="name"></span>)</span>'
+      tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>';
+      if (_update.name == 'jeedom') {
+        tr += '<span class="updateAttr label label-info" data-l1key="name"></span>';
+      }
+      else {
+        tr += '<span class="label label-info"><span class="updateAttr" data-l1key="plugin" data-l2key="name"></span> (<span class="updateAttr" data-l1key="name"></span>)</span>';
+      }
       tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
       if (_update.configuration && _update.configuration.version) {
         var updClass;
