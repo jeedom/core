@@ -207,26 +207,40 @@ if (!jeeFrontEnd.update) {
       tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>';
       if (_update.name == 'jeedom') {
         tr += '<span class="updateAttr label label-info text-capitalize" data-l1key="name"></span>';
+        if (_update.branch) {
+          var updClass;
+          switch (_update.branch.toLowerCase()) {
+            case 'alpha':
+              updClass = 'label-danger';
+              break;
+            case 'beta':
+              updClass = 'label-warning';
+              break;
+            default:
+              updClass = 'label-success';
+          }
+          tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.branch + '</span>'
+        }
       }
       else {
         tr += '<span class="label label-info"><span class="updateAttr text-capitalize" data-l1key="plugin" data-l2key="name"></span> (<span class="updateAttr" data-l1key="name"></span>)</span>';
+        if (_update.configuration && _update.configuration.version) {
+          var updClass;
+          switch (_update.configuration.version.toLowerCase()) {
+            case 'stable':
+            case 'master':
+              updClass = 'label-success';
+              break;
+            case 'beta':
+              updClass = 'label-warning';
+              break;
+            default:
+              updClass = 'label-danger';
+          }
+          tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
+        }
       }
       tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
-      if (_update.configuration && _update.configuration.version) {
-        var updClass;
-        switch (_update.configuration.version.toLowerCase()) {
-          case 'stable':
-          case 'master':
-            updClass = 'label-success';
-            break;
-          case 'beta':
-            updClass = 'label-warning';
-            break;
-          default:
-            updClass = 'label-danger';
-        }
-        tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
-      }
 
       if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0, 16) + '...'
       if (_update.remoteVersion !== null && _update.remoteVersion.length > 19) _update.remoteVersion = _update.remoteVersion.substring(0, 16) + '...'
