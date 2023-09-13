@@ -22,7 +22,7 @@ if (!jeeFrontEnd.update) {
     regExLogProgress: /\[PROGRESS\]\[(\d.*)]/gm,
     updtDataTable: null,
     osDataTable: null,
-    init: function() {
+    init: function () {
       window.jeeP = this
       this.hasUpdate = false
       this.progress = -2
@@ -34,22 +34,22 @@ if (!jeeFrontEnd.update) {
       this._UpdateObserver_ = null
       this.printUpdate()
     },
-    checkAllUpdate: function() {
+    checkAllUpdate: function () {
       jeedomUtils.hideAlert()
       document.getElementById('progressbarContainer').addClass('hidden')
       jeedom.update.checkAll({
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function() {
+        success: function () {
           jeeP.printUpdate()
         }
       })
     },
-    getJeedomLog: function(_autoUpdate, _log) {
+    getJeedomLog: function (_autoUpdate, _log) {
       domUtils.ajax({
         type: 'POST',
         url: 'core/ajax/log.ajax.php',
@@ -59,14 +59,14 @@ if (!jeeFrontEnd.update) {
         },
         dataType: 'json',
         global: false,
-        error: function(request, status, error) {
-          setTimeout(function() {
+        error: function (request, status, error) {
+          setTimeout(function () {
             jeeP.getJeedomLog(_autoUpdate, _log)
           }, 1000)
         },
-        success: function(data) {
+        success: function (data) {
           if (data.state != 'ok') {
-            setTimeout(function() {
+            setTimeout(function () {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000)
             return
@@ -106,7 +106,7 @@ if (!jeeFrontEnd.update) {
           }
           document.getElementById('pre_' + _log + 'Info').innerHTML = log
           if (init(_autoUpdate, 0) == 1) {
-            setTimeout(function() {
+            setTimeout(function () {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000);
           } else {
@@ -116,15 +116,15 @@ if (!jeeFrontEnd.update) {
         }
       })
     },
-    printUpdate: function() {
+    printUpdate: function () {
       jeedom.update.get({
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           let tbody = document.querySelector('#table_update tbody')
           tbody.empty()
           if (isset(jeeFrontEnd.update.updtDataTable)) jeeFrontEnd.update.updtDataTable.refresh()
@@ -140,13 +140,13 @@ if (!jeeFrontEnd.update) {
             tbody.appendChild(tr)
           }
           jeedomUtils.initTooltips(tbody)
-          
+
           if (isset(jeeFrontEnd.update.updtDataTable)) jeeFrontEnd.update.updtDataTable.refresh()
 
           jeedomUtils.initDataTables('#coreplugin')
           jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
 
-          jeeFrontEnd.update.updtDataTable.on('columns.sort', function(column, direction) {
+          jeeFrontEnd.update.updtDataTable.on('columns.sort', function (column, direction) {
             let tbody = document.querySelector('#table_update tbody')
             tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
           })
@@ -175,20 +175,20 @@ if (!jeeFrontEnd.update) {
         configuration: {
           "update::lastCheck": 0
         },
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           let span = document.getElementById('span_lastUpdateCheck')
           span.title = '{{Dernière verification des mises à jour}}'
           span.jeeValue(data['update::lastCheck'])
         }
       })
     },
-    addUpdate: function(_update) {
+    addUpdate: function (_update) {
       if (init(_update.status) == '') {
         _update.status = 'OK'
       }
@@ -204,23 +204,43 @@ if (!jeeFrontEnd.update) {
       var tr = '<tr>'
       tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
-      tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span><span class="updateAttr label label-info" data-l1key="name"></span>'
-      tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
-      if (_update.configuration && _update.configuration.version) {
+      tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>';
+      if (_update.name == 'jeedom') {
+        tr += '<span class="updateAttr label label-info text-capitalize" data-l1key="name"></span>';
+        if (_update.branch) {
+          var updClass;
+          switch (_update.branch.toLowerCase()) {
+            case 'alpha':
+              updClass = 'label-danger';
+              break;
+            case 'beta':
+              updClass = 'label-warning';
+              break;
+            default:
+              updClass = 'label-success';
+          }
+          tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.branch + '</span>'
+        }
+      }
+      else {
+        tr += '<span class="label label-info"><span class="updateAttr text-capitalize" data-l1key="plugin" data-l2key="name"></span> (<span class="updateAttr" data-l1key="name"></span>)</span>';
+        if (_update.configuration && _update.configuration.version) {
           var updClass;
           switch (_update.configuration.version.toLowerCase()) {
-              case 'stable':
-              case 'master':
-                  updClass = 'label-success';
-                  break;
-              case 'beta':
-                  updClass = 'label-warning';
-                  break;
-              default:
-                  updClass = 'label-danger';
+            case 'stable':
+            case 'master':
+              updClass = 'label-success';
+              break;
+            case 'beta':
+              updClass = 'label-warning';
+              break;
+            default:
+              updClass = 'label-danger';
           }
           tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
+        }
       }
+      tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'
 
       if (_update.localVersion !== null && _update.localVersion.length > 19) _update.localVersion = _update.localVersion.substring(0, 16) + '...'
       if (_update.remoteVersion !== null && _update.remoteVersion.length > 19) _update.remoteVersion = _update.remoteVersion.substring(0, 16) + '...'
@@ -243,13 +263,13 @@ if (!jeeFrontEnd.update) {
         if (_update.configuration && _update.configuration.version == 'beta') {
           if (isset(_update.plugin) && isset(_update.plugin.changelog_beta) && _update.plugin.changelog_beta != '') {
             tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog_beta + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          }else {
+          } else {
             tr += '<a class="btn btn-xs disabled"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
           }
         } else {
           if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
             tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          }else {
+          } else {
             tr += '<a class="btn btn-xs disabled"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
           }
         }
@@ -285,7 +305,7 @@ if (!jeeFrontEnd.update) {
       newRow.setJeeValues(_update, '.updateAttr')
       return newRow
     },
-    updateProgressBar: function() {
+    updateProgressBar: function () {
       let progressBar = document.getElementById('div_progressbar')
       if (jeeP.progress == -4) {
         progressBar.removeClass('active progress-bar-info progress-bar-success progress-bar-danger')
@@ -326,7 +346,7 @@ if (!jeeFrontEnd.update) {
       progressBar.setAttribute('aria-valuenow', jeeP.progress)
       progressBar.innerHTML = jeeP.progress + '%'
     },
-    alertTimeout: function() {
+    alertTimeout: function () {
       jeeP.progress = -4
       this.updateProgressBar()
       jeedomUtils.showAlert({
@@ -335,9 +355,9 @@ if (!jeeFrontEnd.update) {
       })
     },
     //listen change in log to update cleaned one:
-    createUpdateObserver: function() {
-      this._UpdateObserver_ = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+    createUpdateObserver: function () {
+      this._UpdateObserver_ = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
           if (mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
             jeeFrontEnd.update.cleanUpdateLog()
           }
@@ -354,7 +374,7 @@ if (!jeeFrontEnd.update) {
       var targetNode = document.getElementById('pre_updateInfo')
       if (targetNode) this._UpdateObserver_.observe(targetNode, this.observerConfig)
     },
-    cleanUpdateLog: function() {
+    cleanUpdateLog: function () {
       var currentUpdateText = document.getElementById('pre_updateInfo').innerHTML
       if (currentUpdateText == '') return false
       if (this.prevUpdateText == currentUpdateText) return false
@@ -392,7 +412,7 @@ if (!jeeFrontEnd.update) {
         //remove points ...
         matches = line.match(/[.]{2,}/g)
         if (matches) {
-          matches.forEach(function(match) {
+          matches.forEach(function (match) {
             line = line.replace(match, '')
           })
         }
@@ -408,7 +428,7 @@ if (!jeeFrontEnd.update) {
         if (!nextLine.replace('OK', '').match(letters)) {
           matches = nextLine.match(/[.]{2,}/g)
           if (matches) {
-            matches.forEach(function(match) {
+            matches.forEach(function (match) {
               nextLine = nextLine.replace(match, '')
             })
           }
@@ -435,18 +455,18 @@ if (!jeeFrontEnd.update) {
       jeeP.alertTimeout = setTimeout(jeeP.alertTimeout, 60000 * 10)
     },
     //packages updates:
-    printOsUpdate: function(_forceRefresh) {
+    printOsUpdate: function (_forceRefresh) {
       this.osUpdateChecked = 1
       jeedom.systemGetUpgradablePackage({
         type: 'all',
         forceRefresh: _forceRefresh,
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           document.querySelectorAll('#os .bt_OsPackageUpdate').addClass('disabled')
 
           var osTable = document.getElementById('table_osUpdate')
@@ -482,7 +502,7 @@ if (!jeeFrontEnd.update) {
         }
       })
     },
-    addOsUpdate: function(_update) {
+    addOsUpdate: function (_update) {
       var tr = '<tr>'
       tr += '<td>'
       tr += '<span class="osUpdateAttr" data-l1key="type"></span>'
@@ -501,14 +521,14 @@ if (!jeeFrontEnd.update) {
       return newRow
     },
     //modal update:
-    getUpdateModal: function() {
+    getUpdateModal: function () {
       jeeDialog.dialog({
         id: 'md_update',
         title: "{{Options de mise à jour}}",
         width: window.innerWidth > 600 ? 580 : window.innerWidth,
         height: window.innerHeight > 500 ? 440 : window.innerHeight - 80,
         top: window.innerHeight > 500 ? 120 : 0,
-        callback: function() {
+        callback: function () {
           var contentEl = jeeDialog.get('#md_update', 'content')
           if (contentEl.querySelector('#md_specifyUpdate') == null) {
             var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
@@ -521,7 +541,7 @@ if (!jeeFrontEnd.update) {
             jeedomUtils.initTooltips(document.getElementById('md_update'))
           }
 
-          contentEl.querySelector('input[data-l1key="force"]').addEventListener('click', function(event) {
+          contentEl.querySelector('input[data-l1key="force"]').addEventListener('click', function (event) {
             let mdSpec = document.getElementById('md_update')
             let check_backupBefore = mdSpec.querySelector('.updateOption[data-l1key="backup::before"]')
             if (event.target.checked) {
@@ -534,23 +554,23 @@ if (!jeeFrontEnd.update) {
             }
           })
 
-          contentEl.querySelector('.bt_changelogCore').addEventListener('click', function(event) {
+          contentEl.querySelector('.bt_changelogCore').addEventListener('click', function (event) {
             jeedom.getDocumentationUrl({
               page: 'changelog',
               theme: document.body.getAttribute('data-theme'),
-              error: function(error) {
+              error: function (error) {
                 jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
               },
-              success: function(url) {
+              success: function (url) {
                 window.open(url, '_blank')
               }
             })
-        })
+          })
         },
-        onShown: function() {
+        onShown: function () {
           jeeDialog.get('#md_update', 'content').querySelector('#md_specifyUpdate').removeClass('hidden')
         },
         buttons: {
@@ -558,7 +578,7 @@ if (!jeeFrontEnd.update) {
             label: '{{Mettre à jour}}',
             className: 'success',
             callback: {
-              click: function(event) {
+              click: function (event) {
                 var options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
                 jeedomUtils.hideAlert()
                 jeeDialog.get('#md_update').hide()
@@ -568,13 +588,13 @@ if (!jeeFrontEnd.update) {
                 jeeP.updateProgressBar()
                 jeedom.update.doAll({
                   options: options,
-                  error: function(error) {
+                  error: function (error) {
                     jeedomUtils.showAlert({
                       message: error.message,
                       level: 'danger'
                     })
                   },
-                  success: function() {
+                  success: function () {
                     jeeP.getJeedomLog(1, 'update')
                   }
                 })
@@ -603,7 +623,7 @@ if (jeephp2js.isUpdating == '1') {
 
 /*Events delegations
 */
-document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+document.getElementById('div_pageContainer').addEventListener('click', function (event) {
   var _target = null
   if (_target = event.target.closest('#bt_checkAllUpdate')) {
     if (!document.querySelector('a[data-target="#coreplugin"]').hasClass('active')) document.querySelector('a[data-target="#coreplugin"]').click()
@@ -618,7 +638,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('#table_update input[data-l2key="doNotUpdate"]')) {
     _target._tippy.show()
-    setTimeout(()=>{_target._tippy.hide()}, 1500)
+    setTimeout(() => { _target._tippy.hide() }, 1500)
     if (_target.checked) {
       _target.closest('tr').querySelector('a.btn.update').addClass('disabled')
     } else {
@@ -631,7 +651,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     if (_target.hasClass('disabled')) return
     var id = _target.closest('tr').getAttribute('data-id')
     var logicalId = _target.closest('tr').getAttribute('data-logicalid')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function (result) {
       if (result) {
         jeeP.progress = -1;
         document.getElementById('progressbarContainer').removeClass('hidden')
@@ -640,13 +660,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
         jeedomUtils.hideAlert()
         jeedom.update.do({
           id: id,
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function() {
+          success: function () {
             jeeP.getJeedomLog(1, 'update')
           }
         })
@@ -658,18 +678,18 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('#table_update .remove')) {
     var id = _target.closest('tr').getAttribute('data-id');
     var logicalId = _target.closest('tr').getAttribute('data-logicalid')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function (result) {
       if (result) {
         jeedomUtils.hideAlert();
         jeedom.update.remove({
           id: id,
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function() {
+          success: function () {
             jeeP.printUpdate()
           }
         })
@@ -683,13 +703,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     jeedomUtils.hideAlert()
     jeedom.update.check({
       id: id,
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function() {
+      success: function () {
         jeeP.printUpdate()
       }
     })
@@ -699,13 +719,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('#bt_saveUpdate')) {
     jeedom.update.saves({
       updates: document.querySelectorAll('#table_update tbody tr').getJeeValues('.updateAttr'),
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function(data) {
+      success: function (data) {
         jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
       }
     })
@@ -724,19 +744,19 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       return
     }
     let type = _target.getAttribute('data-type');
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function (result) {
       if (!result) {
         return
       }
       jeedom.systemUpgradablePackage({
-        type : type,
-        error: function(error) {
+        type: type,
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           jeedomUtils.showAlert({
             message: '{{Mise à jour lancée avec succès.}}',
             level: 'success'
