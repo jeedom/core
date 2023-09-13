@@ -1,4 +1,4 @@
-name : 'Php 7.4'
+name : 'Php 7.3'
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
-      - name: PHP syntax checker 7.4
-        uses: prestashop/github-action-php-lint/7.4@v1
+      - name: PHP syntax checker 7.3
+        uses: prestashop/github-action-php-lint/7.3@v1
         with:
           folder-to-exclude: "! -path \"./3rdparty/*\" ! -path \"./vendor/*\""
