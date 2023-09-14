@@ -1484,7 +1484,7 @@ user::isBan();
 						<div class="form-group">
 							<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">{{Synonymes pour les objets}}</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-								<input class="configKey form-control" data-l1key="interact::autoreply::jeeObject::synonym" />
+								<input class="configKey form-control" data-l1key="interact::autoreply::object::synonym" />
 							</div>
 						</div>
 						<div class="form-group">
