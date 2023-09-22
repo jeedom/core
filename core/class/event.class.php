@@ -42,6 +42,9 @@ class event {
 	public static function add($_event, $_option = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
+		if($fd === false){
+			return;
+		}
 		if (@flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
 			$value = json_decode($cache->getValue('[]'), true);
@@ -57,6 +60,9 @@ class event {
 	public static function adds($_event, $_values = array()) {
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
+		if($fd === false){
+			return;
+		}
 		if (flock($fd, LOCK_EX, $waitIfLocked)) {
 			$cache = cache::byKey('event');
 			$value_src = json_decode($cache->getValue('[]'), true);
