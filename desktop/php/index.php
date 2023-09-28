@@ -321,7 +321,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 			}
 		}
 	?>
-		<?php if (init('rescue', 0) == 0) { ?>
+		<?php if (((init('rescue', 0) == 0) && init('headerHidden', 0) == 0) ) { ?>
 			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden shadowed">
 				<div class="container-fluid">
 					<div class="navbar-header">
