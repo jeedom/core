@@ -1,0 +1,14 @@
+on:
+  # Create branch > prettier / this workflows create commit on branch prettier.
+  push:
+    branches:
+      - prettier
+  pull_request:
+    branches:
+      - prettier
+
+name : 'Prettier Plugin Jeedom'
+
+jobs:
+  prettier:
+    uses: jeedom/workflows/.github/workflows/prettier.yml@main
