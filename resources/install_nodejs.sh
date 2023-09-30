@@ -1,7 +1,7 @@
 #!/bin/bash
 
-installVer='16' 	#NodeJS major version to be installed
-minVer='16'	      #min NodeJS major version to be accepted
+installVer='18' 	#NodeJS major version to be installed
+minVer='18'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
@@ -95,25 +95,16 @@ else
   if [[ $arch == "armv6l" ]]
   then
     #version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
-    if [[ $installVer == "12" ]]
-    then
+    if [[ $installVer == "12" ]]; then
       armVer="12.22.12"
-    fi
-    if [[ $installVer == "13" ]]
-    then
-      armVer="13.14.0"
-    fi
-    if [[ $installVer == "14" ]]
-    then
-      armVer="14.19.2"
-    fi
-    if [[ $installVer == "15" ]]
-    then
-      armVer="15.14.0"
-    fi
-    if [[ $installVer == "16" ]]
-    then
-      armVer="16.15.0"
+    elif [[ $installVer == "14" ]]; then
+      armVer="14.21.3"
+    elif [[ $installVer == "16" ]]; then
+      armVer="16.20.2"
+    elif [[ $installVer == "18" ]]; then
+      armVer="18.18.0"
+    elif [[ $installVer == "20" ]]; then
+      armVer="20.8.0"
     fi
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
     wget https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
