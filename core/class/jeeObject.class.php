@@ -463,6 +463,61 @@ class jeeObject {
 		return $return;
 	}
 
+	public static function getGlobalArraySummary($_version = 'dashboard') {
+		$objects = self::all();
+		$def = config::byKey('object:summary');
+		$values = array();
+		$return = array();
+		foreach ($def as $key => $value) {
+			foreach ($objects as $object) {
+				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
+					continue;
+				}
+				if (!isset($values[$key])) {
+					$values[$key] = array();
+				}
+				$result = $object->getSummary($key, true);
+				if ($result === null || !is_array($result)) {
+					continue;
+				}
+				$values[$key] = array_merge($values[$key], $result);
+			}
+		}
+		foreach ($values as $key => $value) {
+			if (count($value) == 0) {
+				continue;
+			}
+			$style = 1;
+			$allowDisplayZero = $def[$key]['allowDisplayZero'];
+			if ($def[$key]['calcul'] == 'text') {
+				$result = trim(implode(',', $value), ',');
+				$allowDisplayZero = 1;
+			} else {
+				$result = jeedom::calculStat($def[$key]['calcul'], $value);
+			}
+			if ($allowDisplayZero == 0 && $result == 0) {
+				$style = 0;
+			}
+			if (!isset($def[$key]['hidenumber'])) {
+				$def[$key]['hidenumber'] = 0;
+			}
+			if (!isset($def[$key]['hidenulnumber'])) {
+				$def[$key]['hidenulnumber'] = 0;
+			}
+			if (!isset($def[$key]['iconnul']) || $def[$key]['iconnul'] == '') {
+				$def[$key]['iconnul'] = $def[$key]['icon'];
+			}
+			$return[$key]['style'] = $style;
+			$return[$key]['displayzerovalue'] = $allowDisplayZero;
+			$return[$key]['icon'] = urlencode($def[$key]['icon']);
+			$return[$key]['iconnul'] = urlencode($def[$key]['iconnul']);
+			$return[$key]['hidenulnumber'] = $def[$key]['hidenulnumber'];
+			$return[$key]['value'] = $result;
+			$return[$key]['unit'] = $def[$key]['unit'];
+		}
+		return $return;
+	}
+
 	public static function createSummaryToVirtual($_key = '') {
 		if ($_key == '') {
 			return;
