@@ -579,19 +579,22 @@ jeedomUtils.initApplication = function(_reinit) {
 	      } else {
 		   if (redirect != '' && APP_MODE == true) {
                            jeedom.plugin.get({
-                                  id : redirect,
-                                  async:false,
-                                  error: function (error) {
-                                  alert('Erreur sur affichage du panel');
-                                },
-                               success: function (data) {
-                                  if(data.mobile == 'panel'){
-                                    jeedomUtils.loadPage('panel', 'Plugin', '', redirect)
-                                  }else{
-                                    jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
-                                  }
-                                }
-                            })
+                             id : redirect,
+                             async:false,
+                             error: function (error) {
+                               jeedomUtils.showAlert({
+                                 message: 'Erreur sur affichage du panel',
+                                 level: 'danger'
+                               })
+                             },
+                             success: function (data) {
+                               if (data.mobile != '') {
+                                 jeedomUtils.loadPage(data.mobile, 'Plugin', '', redirect)
+                               }else{
+                                 jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
+                               }
+                             }
+                           })
                    }else{
                       jeedomUtils.loadPage('home', '{{Accueil}}') 
                   }
