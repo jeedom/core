@@ -84,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Demônios",
         "Message": "Mensagem",
+        "Scenario": "Cenário",
         "Accueil": "Início",
         "Vue": "Visto",
         "Dashboard": "Dashboard"
@@ -4405,7 +4406,7 @@
         "Expression non valide": "Expressão inválida",
         "trouvée dans le scénario :": "encontrado no cenário:",
         ", résultat : ": ", resultado:",
-        "Scenario": "Roteiro",
+        "Scenario": "Cenário",
         "Non exécution des actions pour cause de répétition": "A ações não foram executadas devido à repetição",
         "La condition pour une boucle doit être numérique :": "A condição para um loop deve ser numérica:",
         "Bloc type A :": "Bloco tipo A:",

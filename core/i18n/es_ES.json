@@ -84,6 +84,7 @@
         "Crons": "Crones",
         "Démons": "Demonios",
         "Message": "Mensaje",
+        "Scenario": "Guión",
         "Accueil": "Inicio",
         "Vue": "Visto",
         "Dashboard": "Dashboard"
@@ -4405,7 +4406,7 @@
         "Expression non valide": "Expresión inválida",
         "trouvée dans le scénario :": "encontrado en el escenario:",
         ", résultat : ": ", resultado:",
-        "Scenario": "Guion",
+        "Scenario": "Guión",
         "Non exécution des actions pour cause de répétition": "No aplicar las medidas por causa de la repetición",
         "La condition pour une boucle doit être numérique :": "La condición para un bucle debe ser numérica:",
         "Bloc type A :": "Bloque tipo A:",

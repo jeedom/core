@@ -84,6 +84,7 @@
         "Crons": "Kronen",
         "Démons": "Dämonen",
         "Message": "Nachricht",
+        "Scenario": "Szenario",
         "Accueil": "Mein Haus",
         "Vue": "Gesehen",
         "Dashboard": "Dashboard"
@@ -4405,7 +4406,7 @@
         "Expression non valide": "Ungültiger Ausdruck",
         "trouvée dans le scénario :": "im Szenario gefunden:",
         ", résultat : ": ", Ergebnis:",
-        "Scenario": "Skript",
+        "Scenario": "Szenario",
         "Non exécution des actions pour cause de répétition": "Fehler beim Ausführen von Aktionen aufgrund von Wiederholungen",
         "La condition pour une boucle doit être numérique :": "Die Bedingung für eine Schleife muss numerisch sein:",
         "Bloc type A :": "Blocktyp A:",
