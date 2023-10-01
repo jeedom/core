@@ -4406,7 +4406,7 @@
         "Expression non valide": "Expressão inválida",
         "trouvée dans le scénario :": "encontrado no cenário:",
         ", résultat : ": ", resultado:",
-        "Scenario": "Cenário",
+        "Scenario": "Roteiro",
         "Non exécution des actions pour cause de répétition": "A ações não foram executadas devido à repetição",
         "La condition pour une boucle doit être numérique :": "A condição para um loop deve ser numérica:",
         "Bloc type A :": "Bloco tipo A:",

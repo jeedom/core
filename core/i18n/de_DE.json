@@ -4406,7 +4406,7 @@
         "Expression non valide": "Ungültiger Ausdruck",
         "trouvée dans le scénario :": "im Szenario gefunden:",
         ", résultat : ": ", Ergebnis:",
-        "Scenario": "Szenario",
+        "Scenario": "Skript",
         "Non exécution des actions pour cause de répétition": "Fehler beim Ausführen von Aktionen aufgrund von Wiederholungen",
         "La condition pour une boucle doit être numérique :": "Die Bedingung für eine Schleife muss numerisch sein:",
         "Bloc type A :": "Blocktyp A:",
