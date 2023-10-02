@@ -1804,6 +1804,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "Адрес системного журнала UDP",
         "Port syslog UDP": "Syslog UDP-порт",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "Формат логов",
         "Nombre maximal de lignes dans un fichier de log": "Nombre maximal de lignes dans un fichier de log",
         "Niveau de log par défaut": "Уровень лога по умолчанию",
