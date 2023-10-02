@@ -487,16 +487,12 @@ class jeeObject {
 			if (count($value) == 0) {
 				continue;
 			}
-			$style = 1;
 			$allowDisplayZero = $def[$key]['allowDisplayZero'];
 			if ($def[$key]['calcul'] == 'text') {
 				$result = trim(implode(',', $value), ',');
 				$allowDisplayZero = 1;
 			} else {
 				$result = jeedom::calculStat($def[$key]['calcul'], $value);
-			}
-			if ($allowDisplayZero == 0 && $result == 0) {
-				$style = 0;
 			}
 			if (!isset($def[$key]['hidenumber'])) {
 				$def[$key]['hidenumber'] = 0;
@@ -534,7 +530,6 @@ class jeeObject {
 			}
 			else $return[$key]['iconnul'] = $return[$key]['icon'];
           
-			$return[$key]['style'] = $style;
 			$return[$key]['displayzerovalue'] = $allowDisplayZero;
 			$return[$key]['hidenulnumber'] = $def[$key]['hidenulnumber'];
 			$return[$key]['value'] = $result;
