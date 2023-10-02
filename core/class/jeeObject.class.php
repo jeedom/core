@@ -508,11 +508,11 @@ class jeeObject {
 				$arrayIcon = explode(' ', $def[$key]['icon']);
 				$iconName = substr(strstr($arrayIcon[1], '-'), 1);
 				$libName = strstr($arrayIcon[1], '-', true);
-				$iconColour = (isset($arrayIcon[2])) ? substr(strstr($arrayIcon[2], '_'), 1) : '';
+				$iconColor = (isset($arrayIcon[2])) ? substr(strstr($arrayIcon[2], '_'), 1) : '';
 				if ($libName == 'mdi') $libName = 'Mdi';
 				$return[$key]['icon']['type'] = $libName;
 				$return[$key]['icon']['name'] = $iconName;
-				$return[$key]['icon']['colour'] = $iconColour;
+				$return[$key]['icon']['color'] = $iconColor;
 			}
             
 			$return[$key]['iconnul'] = array();
@@ -522,11 +522,11 @@ class jeeObject {
 				$arrayIcon = explode(' ', $def[$key]['iconnul']);
 				$iconName = substr(strstr($arrayIcon[1], '-'), 1);
 				$libName = strstr($arrayIcon[1], '-', true);
-				$iconColour = (isset($arrayIcon[2])) ? substr(strstr($arrayIcon[2], '_'), 1) : '';
+				$iconColor = (isset($arrayIcon[2])) ? substr(strstr($arrayIcon[2], '_'), 1) : '';
 				if ($libName == 'mdi') $libName = 'Mdi';
 				$return[$key]['iconnul']['type'] = $libName;
 				$return[$key]['iconnul']['name'] = $iconName;
-				$return[$key]['iconnul']['colour'] = $iconColour;
+				$return[$key]['iconnul']['color'] = $iconColor;
 			}
 			else $return[$key]['iconnul'] = $return[$key]['icon'];
           
