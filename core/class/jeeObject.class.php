@@ -508,7 +508,7 @@ class jeeObject {
 			$return[$key]['icon'] = array();
 			if (isset($def[$key]['icon']) && $def[$key]['icon'] != '') {
 				$def[$key]['icon'] = substr(substr($def[$key]['icon'], 10), 0, -6);
-                $def[$key]['icon'] = str_replace(array(' fab', ' fas'), '', $def[$key]['icon']);
+				$def[$key]['icon'] = str_replace(array(' fab', ' fas'), '', $def[$key]['icon']);
 				$arrayIcon = explode(' ', $def[$key]['icon']);
 				$iconName = substr(strstr($arrayIcon[1], '-'), 1);
 				$libName = strstr($arrayIcon[1], '-', true);
@@ -517,10 +517,10 @@ class jeeObject {
 				$return[$key]['icon']['type'] = $libName;
 				$return[$key]['icon']['name'] = $iconName;
 				$return[$key]['icon']['colour'] = $iconColour;
-            }
+			}
             
-            $return[$key]['iconnul'] = array();
-            if (isset($def[$key]['iconnul']) && $def[$key]['iconnul'] != '') {
+			$return[$key]['iconnul'] = array();
+			if (isset($def[$key]['iconnul']) && $def[$key]['iconnul'] != '') {
 				$def[$key]['iconnul'] = substr(substr($def[$key]['iconnul'], 10), 0, -6);
 				$def[$key]['iconnul'] = str_replace(array(' fab', ' fas', 'far'), '', $def[$key]['iconnul']);
 				$arrayIcon = explode(' ', $def[$key]['iconnul']);
@@ -531,8 +531,8 @@ class jeeObject {
 				$return[$key]['iconnul']['type'] = $libName;
 				$return[$key]['iconnul']['name'] = $iconName;
 				$return[$key]['iconnul']['colour'] = $iconColour;
-            }
-            else $return[$key]['iconnul'] = $return[$key]['icon'];
+			}
+			else $return[$key]['iconnul'] = $return[$key]['icon'];
           
 			$return[$key]['style'] = $style;
 			$return[$key]['displayzerovalue'] = $allowDisplayZero;
