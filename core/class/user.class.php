@@ -53,7 +53,7 @@ class user {
 	 * @param string $_mdp motsz de passe en sha512
 	 * @return user object user
 	 */
-	public static function connect($_login, $_mdp) {
+	public static function connect(string $_login, string $_mdp) {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", __('LDAP Authentification', __FILE__));
@@ -229,7 +229,7 @@ class user {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByRight($_rights) {
+	public static function searchByRight(string $_rights) {
 		$values = array(
 			'rights' => '%"' . $_rights . '":1%',
 			'rights2' => '%"' . $_rights . '":"1"%',
@@ -286,7 +286,7 @@ class user {
 		$cache->remove();
 	}
 
-	public static function isBan() {
+	public static function isBan(): bool {
 		$ip = getClientIp();
 		if ($ip == '') {
 			return false;
