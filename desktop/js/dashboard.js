@@ -44,6 +44,18 @@ if (!jeeFrontEnd.dashboard) {
           jeeFrontEnd.dashboard.getObjectHtml(objId)
         })
       }
+      jeedom.getInfoApplication({
+        version: 'dashboard',
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeedom.appMobile.postToApp('initSummary', data.summary)
+        }
+      })
     },
     postInit: function() {
       jeedomUI.isEditing = false
@@ -703,6 +715,17 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
       checkbox.checked = !checkbox.checked
     }
     setTimeout(function() { jeeP.filterByCategory() }, 1)
+  }
+})
+
+//Event for App Mobile:
+document.body.addEventListener('jeeObject::summary::update', function(_event) {
+  for (var i in _event.detail) {
+    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if(_event.detail[i].object_id == 'global') {
+      /* SEND UPDATE SUMMARY TO APP */
+      jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
+    }
   }
 })
 
