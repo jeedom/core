@@ -56,7 +56,7 @@ class report {
 				$_url .= '#' . $_parameter['tab'];
 			}
 			if ($_format == 'pdf') {
-				$cmd = 'chromium --headless --no-sandbox --disable-gpu --print-to-pdf=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
+				$cmd = 'chromium --headless --no-sandbox --disable-gpu --no-pdf-header-footer --print-to-pdf=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
 			} else {
 				$cmd = 'chromium --headless --no-sandbox --disable-gpu --screenshot=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
 			}
