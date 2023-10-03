@@ -154,7 +154,7 @@ try {
 
 		$header = '< Ajoutez un titre puis rédigez votre question/problème ici, sans effacer les infos de config indiquées ci-dessous ><br/><br/><br/><br/>';
 		$header .= '--- <br/>**Mes infos de config** : <br/>```<br/>';
-		$footer .= '<br/>```<br/>';
+		$footer = '<br/>```<br/>';
 
 		$infoPost = plugin::getConfigForCommunity();
 
