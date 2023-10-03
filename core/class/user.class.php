@@ -207,7 +207,7 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byLoginAndPassword($_login, $_password) {
+	public static function byLoginAndPassword(string $_login, string $_password) {
 		$values = array(
 			'login' => $_login,
 			'password' => $_password,
@@ -274,14 +274,14 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function failedLogin() {
+	public static function failedLogin(): void {
 		@session_start();
 		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
 		$_SESSION['failed_datetime'] = strtotime('now');
 		@session_write_close();
 	}
 
-	public static function removeBanIp() {
+	public static function removeBanIp(): void {
 		$cache = cache::byKey('security::banip');
 		$cache->remove();
 	}
@@ -348,7 +348,7 @@ class user {
 		return false;
 	}
 
-	public static function getAccessKeyForReport() {
+	public static function getAccessKeyForReport(): string {
 		$user = user::byLogin('internal_report');
 		if (!is_object($user)) {
 			$user = new user();
@@ -441,13 +441,13 @@ class user {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function preInsert() {
+	public function preInsert(): void {
 		if (is_object(self::byLogin($this->getLogin()))) {
 			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
 		}
 	}
 
-	public function preSave() {
+	public function preSave(): void {
 		if ($this->getLogin() == '') {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
@@ -465,11 +465,11 @@ class user {
 		}
 	}
 
-	public function encrypt() {
+	public function encrypt(): void {
 		$this->getOptions('twoFactorAuthentification', utils::encrypt($this->getOptions('twoFactorAuthentification')));
 	}
 
-	public function decrypt() {
+	public function decrypt(): void {
 		$this->getOptions('twoFactorAuthentification', utils::decrypt($this->getOptions('twoFactorAuthentification')));
 	}
 
@@ -477,7 +477,7 @@ class user {
 		return DB::save($this);
 	}
 
-	public function preRemove() {
+	public function preRemove(): void {
 		if (count(user::byProfils('admin', true)) == 1 && ($this->getProfils() == 'admin' && $this->getEnable() == 1)) {
 			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
 		}
@@ -488,7 +488,7 @@ class user {
 		return DB::remove($this);
 	}
 
-	public function refresh() {
+	public function refresh(): void {
 		DB::refresh($this);
 	}
 
@@ -496,7 +496,7 @@ class user {
 	 *
 	 * @return boolean vrai si l'utilisateur est valide
 	 */
-	public function is_Connected() {
+	public function is_Connected(): bool {
 		return (is_numeric($this->id) && $this->login != '');
 	}
 
@@ -519,19 +519,19 @@ class user {
 		return $this->password;
 	}
 
-	public function setId($_id) {
+	public function setId($_id): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
 
-	public function setLogin($_login) {
+	public function setLogin($_login): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->login, $_login);
 		$this->login = $_login;
 		return $this;
 	}
 
-	public function setPassword($_password) {
+	public function setPassword(string $_password): self {
 		if ($_password != '') {
 			$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
 		} else {
@@ -563,7 +563,7 @@ class user {
 		return utils::getJsonAttr($this->rights, $_key, $_default);
 	}
 
-	public function setRights($_key, $_value) {
+	public function setRights($_key, $_value): self {
 		$rights = utils::setJsonAttr($this->rights, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->rights, $rights);
 		$this->rights = $rights;
@@ -574,7 +574,7 @@ class user {
 		return $this->enable;
 	}
 
-	public function setEnable($_enable) {
+	public function setEnable($_enable): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
 		$this->enable = $_enable;
 		return $this;
@@ -603,7 +603,7 @@ class user {
 		return $this->profils;
 	}
 
-	public function setProfils($_profils) {
+	public function setProfils($_profils): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->profils, $_profils);
 		$this->profils = $_profils;
 		return $this;
@@ -613,7 +613,7 @@ class user {
 		return $this->_changed;
 	}
 
-	public function setChanged($_changed) {
+	public function setChanged($_changed): self {
 		$this->_changed = $_changed;
 		return $this;
 	}
