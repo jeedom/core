@@ -165,6 +165,15 @@ class cmd {
 		return array_merge($result1, $result2);
 	}
 
+	/**
+	 *
+	 * @param int|array<int> $_eqLogic_id
+	 * @param string $_type ['action'|'info']
+	 * @param bool $_visible
+	 * @param eqLogic $_eqLogic
+	 * @param bool $_has_generic_type
+	 * @return array<cmd>
+	 */
 	public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null, $_has_generic_type = null) {
 		$values = array();
 		if (is_array($_eqLogic_id)) {
@@ -196,6 +205,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__), $_eqLogic);
 	}
 
+	/**
+	 *
+	 * @param string $_logical_id
+	 * @param string $_type ['action'|'info']
+	 * @return array<cmd>
+	 */
 	public static function byLogicalId($_logical_id, $_type = null) {
 		$values = array(
 			'logicalId' => $_logical_id,
@@ -211,6 +226,13 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 *
+	 * @param string|array<string> $_generic_type
+	 * @param int $_eqLogic_id
+	 * @param boolean $_one
+	 * @return cmd|array<cmd> first cmd if $_one is true otherwise an array of all cmd
+	 */
 	public static function byGenericType($_generic_type, $_eqLogic_id = null, $_one = false) {
 		if (is_array($_generic_type)) {
 			$in = '';
@@ -240,6 +262,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Search a command on eqType, logicalId, generic_type or name
+	 *
+	 * @param string $_search the needle
+	 * @return array<cmd>
+	 */
 	public static function searchByString($_search) {
 		$values = array(
 			'search' => '%' . $_search . '%'
@@ -250,6 +278,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 *
+	 * @param string|array<string> $_configuration
+	 * @param string $_eqType
+	 * @return array<cmd>
+	 */
 	public static function searchConfiguration($_configuration, $_eqType = null) {
 		if (!is_array($_configuration)) {
 			$values = array(
@@ -1630,9 +1664,9 @@ class cmd {
 						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
 					}
 				} else {
-					if(isset($coupleArray[1])){
+					if (isset($coupleArray[1])) {
 						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[1] . '</option>';
-					}else{
+					} else {
 						$listOption .= '<option value="' . $coupleArray[0] . '">' . $coupleArray[0] . '</option>';
 					}
 				}
@@ -2902,7 +2936,7 @@ class cmd {
 
 	/**
 	 *
-	 * @param string $name
+	 * @param string $_name
 	 * @return $this
 	 */
 	public function setName($_name) {
