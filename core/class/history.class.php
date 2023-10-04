@@ -884,7 +884,7 @@ class history {
             
                 $return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
                 if(isset($return[0]))
-                    return $return[0]->getValue();
+                    return array('unite' => $cmd->getUnite(), 'value' => $return[0]->getValue());
             }
             elseif(is_object($cmd)){
                 return array('unite' => $cmd->getUnite(), 'value' =>history::getLastHistoryFromCalcul (jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time));
