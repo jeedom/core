@@ -109,6 +109,7 @@ jeedomUtils.checkPageModified = function () {
 var prePrintEqLogic = undefined
 var printEqLogic = undefined
 var addCmdToTable = undefined
+var saveEqLogic = undefined
 jeedomUtils.userDevice = getDeviceType()
 
 //OnePage design PageLoader -------------------------------------
@@ -159,7 +160,7 @@ jeedomUtils.loadPage = function (_url, _noPushHistory) {
   jeedom.scenario.update = []
   jeephp2js = {}
   delete window.jeeP
-  prePrintEqLogic = printEqLogic = addCmdToTable = undefined
+  prePrintEqLogic = printEqLogic = addCmdToTable = saveEqLogic = undefined
   if (typeof jQuery === 'function') $('body').off('changeThemeEvent')
 
   if (_url.indexOf('#') == -1) {
