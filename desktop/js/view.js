@@ -28,6 +28,18 @@ if (!jeeFrontEnd.view) {
       if (jeephp2js.view_id != '') {
         jeeFrontEnd.view.printView(jeephp2js.view_id)
       }
+      jeedom.getInfoApplication({
+        version: 'dashboard',
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeedom.appMobile.postToApp('initSummary', data.summary)
+        }
+      })
     },
     printView: function(_id) {
       jeedom.view.toHtml({
@@ -221,6 +233,17 @@ if (!jeeFrontEnd.view) {
 }
 
 jeeFrontEnd.view.init()
+
+//Event for App Mobile:
+document.body.addEventListener('jeeObject::summary::update', function(_event) {
+  for (var i in _event.detail) {
+    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if(_event.detail[i].object_id == 'global') {
+      /* SEND UPDATE SUMMARY TO APP */
+      jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
+    }
+  }
+})
 
 //Register events on top of page container:
 window.registerEvent("resize", function view(event) {

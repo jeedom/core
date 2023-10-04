@@ -45,3 +45,4 @@ include_file('core', 'note', 'class.js');
 include_file('core', 'listener', 'class.js');
 include_file('core', 'widgets', 'class.js');
 include_file('core', 'timeline', 'class.js');
+include_file('core', 'appMobile', 'class.js');

@@ -381,6 +381,9 @@ jeedomUtils.initApplication = function(_reinit) {
       confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?')
     },
     success: function (data) {
+      /* SEND SUMMARY TO APP */
+      jeedom.appMobile.postToApp('initSummary', data.result.summary)
+	    
       jeedom.theme = data.result
       jeeFrontEnd.language = data.result.language
 
@@ -608,6 +611,15 @@ jeedomUtils.initApplication = function(_reinit) {
             }
           })
         })
+      }
+    }
+  })
+  document.body.addEventListener('jeeObject::summary::update', function(_event) {
+    for (var i in _event.detail) {
+      if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+      if(_event.detail[i].object_id == 'global') {
+        /* SEND UPDATE SUMMARY TO APP */
+        jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
       }
     }
   })
