@@ -1659,22 +1659,42 @@ class eqLogic {
 
 	/*     * **********************Getteur Setteur*************************** */
 
+	/**
+	 *
+	 * @return int
+	 */
 	public function getId() {
 		return $this->id;
 	}
 
+	/**
+	 *
+	 * @return string
+	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 *
+	 * @return string
+	 */
 	public function getLogicalId() {
 		return $this->logicalId;
 	}
 
+	/**
+	 *
+	 * @return int
+	 */
 	public function getObject_id() {
 		return $this->object_id;
 	}
 
+	/**
+	 *
+	 * @return jeeObject
+	 */
 	public function getObject() {
 		if ($this->_object === null) {
 			$this->setObject(jeeObject::byId($this->object_id));
@@ -1682,15 +1702,29 @@ class eqLogic {
 		return $this->_object;
 	}
 
+	/**
+	 *
+	 * @param jeeObject $_object
+	 * @return $this
+	 */
 	public function setObject($_object) {
 		$this->_object = $_object;
 		return $this;
 	}
 
+	/**
+	 *
+	 * @return string
+	 */
 	public function getEqType_name() {
 		return $this->eqType_name;
 	}
 
+	/**
+	 *
+	 * @param integer $_default
+	 * @return int
+	 */
 	public function getIsVisible($_default = 0) {
 		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
 			return $_default;
@@ -1698,6 +1732,11 @@ class eqLogic {
 		return $this->isVisible;
 	}
 
+	/**
+	 *
+	 * @param integer $_default
+	 * @return int
+	 */
 	public function getIsEnable($_default = 0) {
 		if ($this->isEnable == '' || !is_numeric($this->isEnable)) {
 			return $_default;
@@ -1705,6 +1744,15 @@ class eqLogic {
 		return $this->isEnable;
 	}
 
+	/**
+	 * get one or multiple cmd of the eqLogic
+	 *
+	 * @param string $_type ['action'|'info']
+	 * @param string $_logicalId
+	 * @param boolean $_visible
+	 * @param boolean $_multiple
+	 * @return cmd|cmd[]
+	 */
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId !== null) {
 			if (isset($this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type])) {
@@ -1727,6 +1775,15 @@ class eqLogic {
 		return $cmds;
 	}
 
+	/**
+	 * get one or multiple cmd of the eqLogic
+	 *
+	 * @param string $_type ['action'|'info']
+	 * @param string $_generic_type
+	 * @param boolean $_visible
+	 * @param boolean $_multiple
+	 * @return cmd|cmd[]
+	 */
 	public function getCmdByGenericType($_type = null, $_generic_type = null, $_visible = null, $_multiple = false) {
 		if ($_generic_type !== null) {
 			if (isset($this->_cmds[$_generic_type . '.' . $_multiple . '.' . $_type])) {
@@ -1749,6 +1806,12 @@ class eqLogic {
 		return $cmds;
 	}
 
+	/**
+	 *
+	 * @param string $_configuration
+	 * @param string $_type ['action'|'info']
+	 * @return cmd[]
+	 */
 	public function searchCmdByConfiguration($_configuration, $_type = null) {
 		return cmd::searchConfigurationEqLogic($this->id, $_configuration, $_type);
 	}
@@ -1917,6 +1980,10 @@ class eqLogic {
 		$this->_debug = $_debug;
 	}
 
+	/**
+	 *
+	 * @return int
+	 */
 	public function getOrder() {
 		if ($this->order == '' || !is_numeric($this->order)) {
 			return 0;
