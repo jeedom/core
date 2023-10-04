@@ -490,6 +490,14 @@ try {
 		ajax::success($return);
 	}
 
+        if (init('action') == 'getLastHistory') {
+            if(is_numeric(init('id'))){
+                $date = date('Y-m-d H:i:s', strtotime(init('time')));
+                ajax::success(history::lastFromDate(init('id'), $date));
+            }
+            return ajax::success(0);
+        }
+
 	if (init('action') == 'emptyHistory') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
