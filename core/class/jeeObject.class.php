@@ -463,6 +463,81 @@ class jeeObject {
 		return $return;
 	}
 
+	public static function getGlobalArraySummary($_version = 'dashboard') {
+		$objects = self::all();
+		$def = config::byKey('object:summary');
+		$values = array();
+		$return = array();
+		foreach ($def as $key => $value) {
+			foreach ($objects as $object) {
+				if ($object->getConfiguration('summary::global::' . $key, 0) == 0) {
+					continue;
+				}
+				if (!isset($values[$key])) {
+					$values[$key] = array();
+				}
+				$result = $object->getSummary($key, true);
+				if ($result === null || !is_array($result)) {
+					continue;
+				}
+				$values[$key] = array_merge($values[$key], $result);
+			}
+		}
+		foreach ($values as $key => $value) {
+			if (count($value) == 0) {
+				continue;
+			}
+			$allowDisplayZero = $def[$key]['allowDisplayZero'];
+			if ($def[$key]['calcul'] == 'text') {
+				$result = trim(implode(',', $value), ',');
+				$allowDisplayZero = 1;
+			} else {
+				$result = jeedom::calculStat($def[$key]['calcul'], $value);
+			}
+			if (!isset($def[$key]['hidenumber'])) {
+				$def[$key]['hidenumber'] = 0;
+			}
+			if (!isset($def[$key]['hidenulnumber'])) {
+				$def[$key]['hidenulnumber'] = 0;
+			}
+            
+			$return[$key]['icon'] = array();
+			if (isset($def[$key]['icon']) && $def[$key]['icon'] != '') {
+				$def[$key]['icon'] = substr(substr($def[$key]['icon'], 10), 0, -6);
+				$def[$key]['icon'] = str_replace(array(' fab', ' fas'), '', $def[$key]['icon']);
+				$arrayIcon = explode(' ', $def[$key]['icon']);
+				$iconName = substr(strstr($arrayIcon[1], '-'), 1);
+				$libName = strstr($arrayIcon[1], '-', true);
+				$iconColor = (isset($arrayIcon[2])) ? substr(strstr($arrayIcon[2], '_'), 1) : '';
+				if ($libName == 'mdi') $libName = 'Mdi';
+				$return[$key]['icon']['type'] = $libName;
+				$return[$key]['icon']['name'] = $iconName;
+				$return[$key]['icon']['color'] = $iconColor;
+			}
+            
+			$return[$key]['iconnul'] = array();
+			if (isset($def[$key]['iconnul']) && $def[$key]['iconnul'] != '') {
+				$def[$key]['iconnul'] = substr(substr($def[$key]['iconnul'], 10), 0, -6);
+				$def[$key]['iconnul'] = str_replace(array(' fab', ' fas', 'far'), '', $def[$key]['iconnul']);
+				$arrayIcon = explode(' ', $def[$key]['iconnul']);
+				$iconName = substr(strstr($arrayIcon[1], '-'), 1);
+				$libName = strstr($arrayIcon[1], '-', true);
+				$iconColor = (isset($arrayIcon[2])) ? substr(strstr($arrayIcon[2], '_'), 1) : '';
+				if ($libName == 'mdi') $libName = 'Mdi';
+				$return[$key]['iconnul']['type'] = $libName;
+				$return[$key]['iconnul']['name'] = $iconName;
+				$return[$key]['iconnul']['color'] = $iconColor;
+			}
+			else $return[$key]['iconnul'] = $return[$key]['icon'];
+          
+			$return[$key]['displayzerovalue'] = $allowDisplayZero;
+			$return[$key]['hidenulnumber'] = $def[$key]['hidenulnumber'];
+			$return[$key]['value'] = $result;
+			$return[$key]['unit'] = $def[$key]['unit'];
+		}
+		return $return;
+	}
+
 	public static function createSummaryToVirtual($_key = '') {
 		if ($_key == '') {
 			return;

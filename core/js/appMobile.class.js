@@ -40,15 +40,17 @@ jeedom.appMobile.syncBoxs = function () {
   jeedom.appMobile.postToApp('syncBoxs')
 }
 
-jeedom.appMobile.notifee = function (title, body, time) {
+jeedom.appMobile.notifee = function (title, body, time = 5000, display = "") {
    /**
-   * time : display time for inapp notification, in ms
+   * time (Number) : display time for inapp notification, in ms 
+   * display (string) : display notiication : error(red), success(green), warn(orange) and info(blue). if "" : classic notification in App
    * 
  */
   jeedom.appMobile.postToApp('notifee', {
     body: body,
     time: time,
-    title: title
+    title: title,
+    display : display
   });
 }
 

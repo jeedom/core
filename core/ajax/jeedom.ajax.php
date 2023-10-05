@@ -66,6 +66,7 @@ try {
 			$return['custom']['js'] = file_exists(__DIR__ . '/../../mobile/custom/custom.js');
 			$return['custom']['css'] = file_exists(__DIR__ . '/../../mobile/custom/custom.css');
 		}
+		$return['summary'] = jeeObject::getGlobalArraySummary();
 		ajax::success($return);
 	}
 

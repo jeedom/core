@@ -82,6 +82,13 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 *
+	 * @param string $_class
+	 * @param string $_function
+	 * @param array $_option
+	 * @return listener
+	 */
 	public static function byClassAndFunction($_class, $_function, $_option = '') {
 		$value = array(
 			'class' => $_class,
@@ -99,6 +106,13 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 *
+	 * @param string $_class
+	 * @param string $_function
+	 * @param array $_option
+	 * @return array<listener>
+	 */
 	public static function searchClassFunctionOption($_class, $_function, $_option = '') {
 		$value = array(
 			'class' => $_class,
@@ -113,6 +127,13 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 *
+	 * @param string $_class
+	 * @param string $_function
+	 * @param string $_event
+	 * @return array<listener>
+	 */
 	public static function byClassFunctionAndEvent($_class, $_function, $_event) {
 		$value = array(
 			'class' => $_class,
@@ -277,6 +298,10 @@ class listener {
 
 	/*     * **********************Getteur Setteur*************************** */
 
+	/**
+	 *
+	 * @return int
+	 */
 	public function getId() {
 		return $this->id;
 	}

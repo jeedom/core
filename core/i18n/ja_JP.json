@@ -84,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Démons",
         "Message": "Message",
+        "Scenario": "Scenario",
         "Accueil": "家庭",
         "Vue": "Vue",
         "Dashboard": "Dashboard"
@@ -1803,6 +1804,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "アドレスのsyslog UDP",
         "Port syslog UDP": "SyslogのUDPポート",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "フォーマットのログ",
         "Nombre maximal de lignes dans un fichier de log": "Nombre maximal de lignes dans un fichier de log",
         "Niveau de log par défaut": "デフォルトのログレベル",

@@ -381,6 +381,9 @@ jeedomUtils.initApplication = function(_reinit) {
       confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?')
     },
     success: function (data) {
+      /* SEND SUMMARY TO APP */
+      jeedom.appMobile.postToApp('initSummary', data.result.summary)
+	    
       jeedom.theme = data.result
       jeeFrontEnd.language = data.result.language
 
@@ -539,6 +542,7 @@ jeedomUtils.initApplication = function(_reinit) {
 		{page: 'deamon', title: '{{Démons}}'},
 		{page: 'message', title: '{{Message}}'},
 		{page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"},
+		{page: 'scenario', title: "{{Scenario}}"},
 		{page: 'home', title: "{{Accueil}}"},
 	      ]
 	      window.redirected = false
@@ -551,7 +555,7 @@ jeedomUtils.initApplication = function(_reinit) {
 		}
 	      } else if (redirect == 'view') {
 		jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
-	      } else if (redirect == 'dashboard') {
+	      } else if (redirect == 'dashboard' || redirect == 'equipment') {
 		 jeedomUtils.loadPage('equipment', '{{Dashboard}}',getUrlVars('object_id'));
 	      }
               else if (redirect == 'plan') {
@@ -607,6 +611,15 @@ jeedomUtils.initApplication = function(_reinit) {
             }
           })
         })
+      }
+    }
+  })
+  document.body.addEventListener('jeeObject::summary::update', function(_event) {
+    for (var i in _event.detail) {
+      if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+      if(_event.detail[i].object_id == 'global') {
+        /* SEND UPDATE SUMMARY TO APP */
+        jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
       }
     }
   })
@@ -724,7 +737,10 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       }
       $('#page').trigger('create')
       jeedomUtils.setBackgroundImage('')
-      window.history.pushState('', '', 'index.php?v=m&p=' + _page)
+      page = 'index.php?v=m'
+      page += (init(_plugin) != '') ? '&p=' + _plugin : '&p=' + _page
+      if (getUrlVars('app_mode') == 1) page += '&app_mode=1'
+      window.history.pushState('', '', page)
 
       var functionName = ''
       if (init(_plugin) != '') {

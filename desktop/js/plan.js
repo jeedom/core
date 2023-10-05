@@ -40,6 +40,18 @@ if (!jeeFrontEnd.plan) {
           highlight: true
         }
       }
+      jeedom.getInfoApplication({
+        version: 'dashboard',
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          jeedom.appMobile.postToApp('initSummary', data.summary)
+        }
+      })
     },
     postInit: function() {
       for (var i in jeephp2js.planHeader) {
@@ -1469,9 +1481,19 @@ document.querySelector('.div_displayObject').addEventListener('mouseleave', func
   }
 }, {capture: true})
 
+//Event for App Mobile:
+document.body.addEventListener('jeeObject::summary::update', function(_event) {
+  for (var i in _event.detail) {
+    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if(_event.detail[i].object_id == 'global') {
+      /* SEND UPDATE SUMMARY TO APP */
+      jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
+    }
+  }
+})
 
 //back to mobile home with three fingers on mobile:
-if (user_isAdmin == 1 && jeedomUtils.userDevice.type == 'mobile') {
+if (user_isAdmin == 1 && jeedomUtils.userDevice.type != 'desktop') {
   document.body.registerEvent('touchstart', function (event) {
     if (event.touches.length == 3) {
       event.preventDefault()

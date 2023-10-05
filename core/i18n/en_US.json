@@ -84,6 +84,7 @@
         "Crons": "Crons",
         "Démons": "Demons",
         "Message": "Message",
+        "Scenario": "Scenario",
         "Accueil": "Home",
         "Vue": "Seen",
         "Dashboard": "Dashboard"
@@ -1803,6 +1804,7 @@
         "SyslogUdp": "SyslogUdp",
         "Adresse syslog UDP": "UDP syslog address",
         "Port syslog UDP": "UDP syslog port",
+        "Facility syslog UDP": "UDP syslog faciliy",
         "Format des logs": "Log format",
         "Nombre maximal de lignes dans un fichier de log": "Maximum number of lines in a log file",
         "Niveau de log par défaut": "Default log level",

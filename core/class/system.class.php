@@ -83,7 +83,7 @@ class system {
 		return $return;
 	}
 
-	public static function getCmdSudo() {
+	public static function getCmdSudo(): string {
 		if (!class_exists('jeedom')) {
 			return 'sudo ';
 		}
@@ -93,7 +93,7 @@ class system {
 		return 'sudo ';
 	}
 
-	public static function fuserk($_port, $_protocol = 'tcp') {
+	public static function fuserk($_port, $_protocol = 'tcp'): void {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
@@ -180,7 +180,7 @@ class system {
 		return exec('php ' . $arguments);
 	}
 
-	public static function getArch() {
+	public static function getArch(): string {
 		$arch = php_uname('m');
 		if ($arch == 'x86_64') {
 			return 'amd64';
@@ -396,7 +396,7 @@ class system {
 		return self::$_installPackage[$_type];
 	}
 
-	public static function os_incompatible($_type, $_package, $_info) {
+	public static function os_incompatible($_type, $_package, $_info): bool {
 		if (isset($_info['denyDebianHigherEqual']) && self::getDistrib() == 'debian' && version_compare(self::getOsVersion(), $_info['denyDebianHigherEqual'], '>=')) {
 			return true;
 		}
@@ -684,7 +684,7 @@ class system {
 		self::launchScriptPackage($_plugin);
 	}
 
-	public static function installPackageInProgress($_plugin = '') {
+	public static function installPackageInProgress($_plugin = ''): bool {
 		if (count(self::ps('^dpkg ')) > 0 || count(self::ps('^apt ')) > 0) {
 			return true;
 		}
@@ -798,7 +798,7 @@ class system {
 		return self::$_os_version;
 	}
 
-	public static function checkInstallationLog($_plugin = '') {
+	public static function checkInstallationLog($_plugin = ''): string {
 		if (class_exists('log')) {
 			if ($_plugin != '') {
 				$log = log::getPathToLog($_plugin . '_packages');

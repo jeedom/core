@@ -31,6 +31,7 @@ class com_http {
 	private $sleepTime = 500000;
 	private $post = '';
 	private $put = '';
+	private $patch = '';
 	private $delete = '';
 	private $header = array('Connection: close');
 	private $cookiesession = false;
@@ -94,6 +95,10 @@ class com_http {
 			if ($this->getPut() != '') {
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPut());
+			}
+			if ($this->getPatch() != '') {
+				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PATCH");
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $this->getPatch());
 			}
 			if ($this->getDelete() != '') {
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -248,6 +253,15 @@ class com_http {
 		return $this;
 	}
 	
+	public function getPatch() {
+		return $this->patch;
+	}
+	
+	public function setPatch($patch = array()) {
+		$this->patch = $patch;
+		return $this;
+	}
+
 	public function getUserAgent() {
 		return $this->userAgent;
 	}
