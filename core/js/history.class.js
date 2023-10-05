@@ -49,34 +49,6 @@ jeedom.history.get = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.history.getLast = function(_params) {
-  var paramsRequired = ['cmd_id', 'time'];
-  var paramsSpecifics = { 
-    global: _params.global || true,
-    pre_success: function(data) {
-      if (isset(jeedom.cmd.cache.byId[data.result.id])) {
-        delete jeedom.cmd.cache.byId[data.result.id];
-      }
-      return data;
-    }
-  };
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/cmd.ajax.php';
-  paramsAJAX.data = {
-    action: 'getLastHistory',
-    id: _params.cmd_id,
-    time: _params.time || '',
-  };
-  $.ajax(paramsAJAX);
-}
-
 jeedom.history.getInitDates = function(_params) {
   var paramsRequired = [];
   var paramsSpecifics = {};
