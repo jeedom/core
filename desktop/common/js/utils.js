@@ -83,6 +83,7 @@ jeedomUtils.checkPageModified = function() {
 }
 
 var printEqLogic = undefined
+var saveEqLogic = undefined
 //OnePage design PageLoader -------------------------------------
 jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
