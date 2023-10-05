@@ -491,11 +491,14 @@ try {
 	}
 
         if (init('action') == 'getLastHistory') {
-            if(is_numeric(init('id'))){
-                $date = date('Y-m-d H:i:s', strtotime(init('time')));
-                ajax::success(history::lastFromDate(init('id'), $date));
+            $cmd = cmd::byId(init('id'));
+            $_time = date('Y-m-d H:i:s', strtotime(init('time')));
+            if(is_object($cmd)){
+                ajax::success($cmd->getLastHistory($_time));
+            } 
+            else{
+                throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
             }
-            return ajax::success(0);
         }
 
 	if (init('action') == 'emptyHistory') {

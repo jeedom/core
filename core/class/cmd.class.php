@@ -2480,6 +2480,22 @@ class cmd {
 	public function getHistory($_dateStart = null, $_dateEnd = null, $_groupingType = null, $_addFirstPreviousValue = false) {
 		return history::all($this->id, $_dateStart, $_dateEnd, $_groupingType, $_addFirstPreviousValue);
 	}
+        
+        public function getLastHistory($_time, $_previous = true){
+            $value = 0;
+            if($this->getIsHistorized() == 1){
+                if(!$this->getConfiguration('isHistorizedCalc', 0)){
+                    $result = history::byCmdIdAtDatetime($this->getId(), $_time, $_previous);
+                    if($result){
+                        $value = $result->getValue();
+                    }
+                }
+                else{
+                    $value = history::byCmdIdAtDatetimeFromCalcul (jeedom::fromHumanReadable($this->getConfiguration('calcul')), $_time, $_previous);
+                }
+            }
+            return(array('value'=>$value, 'unite'=>$this->getUnite()));
+        }
 
 	public function getOldest() {
 		return history::getOldestValue($this->id);

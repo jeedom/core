@@ -865,53 +865,29 @@ class history {
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	}  
-        
-        public static function lastFromDate($_cmd_id, $_time){
-            $cmd = cmd::byId($_cmd_id);
-            if(is_object($cmd) && $cmd->getIsHistorized() == 1 && !$cmd->getConfiguration('isHistorizedCalc', 0)){
-		$values = array(
-                    'cmd_id' => $_cmd_id,
-                    'time'   => $_time
-		);
-            
-            $sql = 'SELECT (CAST(value AS DECIMAL(12,2))) as value 
-                FROM (
-		 (SELECT value, datetime from history WHERE value is not null AND cmd_id=:cmd_id  AND datetime<=:time ORDER by datetime DESC LIMIT 0,1) 
-		 UNION ALL 
-		 (SELECT value, datetime from historyArch WHERE value is not null AND cmd_id=:cmd_id  AND datetime<=:time ORDER by datetime DESC LIMIT 0,1)
-                 )a
-                 ORDER by datetime DESC LIMIT 0,1';
-            
-                $return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-                if(isset($return[0]))
-                    return array('unite' => $cmd->getUnite(), 'value' => $return[0]->getValue());
-            }
-            elseif(is_object($cmd)){
-                return array('unite' => $cmd->getUnite(), 'value' =>history::getLastHistoryFromCalcul (jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time));
-            }
-            return array('unite' => $cmd->getUnite(), 'value' => 0);
-        }
               
-        public static function getLastHistoryFromCalcul($_strcalcul, $_time){
+        public static function byCmdIdAtDatetimeFromCalcul($_strcalcul, $_time, $_previous = true){
 		$cmd_histories = array();
                 preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
                 if (count($matches[1]) > 0) {
 			foreach ($matches[1] as $cmd_id) {
 				if (is_numeric($cmd_id)) {
                                     $cmd = cmd::byId($cmd_id);
+                                    $value = 0;
                                     if (is_object($cmd) && $cmd->getIsHistorized() == 1 && !$cmd->getConfiguration('isHistorizedCalc', 0)) {
-                                            
-                                        $cmd_histories['#' . $cmd_id . '#'] = history::lastFromDate($cmd_id, $_time);
+                                        $result = history::byCmdIdAtDatetime($cmd_id, $_time, $_previous);
+                                        if($result)
+                                            $value = $result->getValue();
                                     }
                                     elseif(is_object($cmd)){
-                                        $cmd_histories['#' . $cmd_id . '#'] = history::getLastHistoryFromCalcul(jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time);
+                                        $value = history::byCmdIdAtDatetimeFromCalcul(jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time, $_previous);
                                     }
+                                    $cmd_histories['#' . $cmd_id . '#'] = $value;
                                 }
                         }
                 }
-//                echo '<br/>uuu'.template_replace($cmd_histories, $_strcalcul).' pour : '.$_strcalcul;
                 $calcul = template_replace($cmd_histories, $_strcalcul);
-                return floatval(jeedom::evaluateExpression($calcul));;
+                return floatval(jeedom::evaluateExpression($calcul));
         }
 
 	public static function getHistoryFromCalcul($_strcalcul, $_dateStart = null, $_dateEnd = null, $_noCalcul = false, $_groupingType = null) {
