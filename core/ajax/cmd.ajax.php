@@ -490,6 +490,17 @@ try {
 		ajax::success($return);
 	}
 
+        if (init('action') == 'getLastHistory') {
+            $cmd = cmd::byId(init('id'));
+            $_time = date('Y-m-d H:i:s', strtotime(init('time')));
+            if(is_object($cmd)){
+                ajax::success($cmd->getLastHistory($_time));
+            } 
+            else{
+                throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
+            }
+        }
+
 	if (init('action') == 'emptyHistory') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
