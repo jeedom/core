@@ -40,6 +40,7 @@ class com_http {
 	private $userAgent = '';
 	private $CURLOPT_HTTPAUTH = '';
 	private $CURLOPT = array();
+	private $httpCode = 0;
 	
 	/*     * ********************Fonctions statiques********************* */
 	
@@ -113,6 +114,7 @@ class com_http {
 				}
 			}
 			$response = curl_exec($ch);
+			$this->httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			$nbRetry++;
 			if (curl_errno($ch) && $nbRetry < $_maxRetry) {
 				curl_close($ch);
@@ -289,4 +291,7 @@ class com_http {
 		return $this;
 	}
 	
+	public function getHttpCode() {
+		return $this->httpCode;
+	}
 }
