@@ -207,6 +207,9 @@ class utils {
 	}
 	
 	public static function encrypt($plaintext, $password = null) {
+		if($plaintext === ''){
+			return null;
+		}
 		if($plaintext == ''){
 			return $plaintext;
 		}
@@ -223,6 +226,9 @@ class utils {
 	}
 	
 	public static function decrypt($ciphertext, $password = null) {
+		if($ciphertext === ''){
+			return null;
+		}
 		if($password == null){
 			$password = self::getEncryptionPassword();
 		}
