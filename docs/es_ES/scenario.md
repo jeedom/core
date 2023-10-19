@@ -236,7 +236,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - ``#variable(nom_variable)#`` : Cambiar el valor de la variable name_name.
 - ``#genericType (GENÉRICO, #[Object]#)#`` : Cambio de un comando de información de tipo GENÉRICO genérico, en el objeto Objeto.
 
-También puede activar un escenario utilizando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.1/ /api_http).
+También puede activar un escenario utilizando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.4/ /api_http).
 
 ### Operadores de comparación y enlaces entre condiciones
 
@@ -291,7 +291,7 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 - ``#longitude#`` : Le permite recuperar la información de longitud ingresada en la configuración de jeedom
 - ``#altitude#`` : Le permite recuperar la información de altitud ingresada en la configuración de jeedom
 
-  
+
 También tiene las siguientes etiquetas adicionales si su escenario fue desencadenado por una interacción :
 
 - #query# : Interacción que desencadenó el escenario.
@@ -305,19 +305,19 @@ También tiene las siguientes etiquetas adicionales si su escenario fue desencad
 
 Hay varias funciones disponibles para el equipo :
 
-- ``average(commande,période)`` Y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``average(commande,période)`` Y ``averageBetween(commande,start,end)`` : Indique el promedio del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` : Indique el promedio de los valores del pedido ponderado por su duración de existencia durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` : Indique el promedio de los valores del pedido ponderado por su duración de existencia durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``min(commande,période)`` Y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``min(commande,période)`` Y ``minBetween(commande,start,end)`` : Dar el pedido mínimo durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``max(commande,période)`` Y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``max(commande,période)`` Y ``maxBetween(commande,start,end)`` : Dar el máximo del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``duration(commande, valeur, période)`` Y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` Y ``durationbetween(commande,valeur,start,end)`` : Indique la duración en minutos durante los cuales el equipo tuvo el valor elegido durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``statistics(commande,calcul,période)`` Y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` Y ``statisticsBetween(commande,calcul,start,end)`` : Proporcione el resultado de diferentes cálculos estadísticos (suma, recuento, estándar, varianza, promedio, mínimo, máximo) durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``tendance(commande,période,seuil)`` : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``tendance(commande,période,seuil)`` : Da la tendencia del pedido durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
 - ``stateDuration(commande)`` : Da la duración en segundos desde el último cambio de valor.
     -1 : No existe historial o el valor no existe en el historial.
@@ -334,9 +334,9 @@ Hay varias funciones disponibles para el equipo :
 - ``age(commande)`` : Da la edad en segundos del valor del comando (``collecDate``)
     -1 : El comando no existe o no es de tipo información.
 
-- ``stateChanges(commande,[valeur], période)`` Y ``stateChangesBetween(commande, [valeur], start, end)`` : Da el número de cambios de estado (hacia un cierto valor si se indica, o si no se indica en comparación con su valor actual) durante el período (período=[mes, día, hora, min] o [expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` Y ``stateChangesBetween(commande, [valeur], start, end)`` : Da el número de cambios de estado (hacia un cierto valor si se indica, o si no se indica en comparación con su valor actual) durante el período (período=[mes, día, hora, min] o [expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)) o entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
-- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Da el último valor registrado para el dispositivo entre los 2 terminales solicitados (en el formulario ``Y-m-d H:i:s`` Dónde [Expresión PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera el valor de una variable o el valor deseado por defecto.
 
@@ -376,7 +376,7 @@ Hay varias funciones disponibles para el equipo :
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Devuelve un color calculado en relación con un valor en el intervalo color_start / color_end. El valor debe estar entre min_value y max_value.
 
-Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](http:/ // /php.net/ /manual/ /fr/ /datetime.formats.relative.php) como por ejemplo :
+Los períodos e intervalos de estas funciones también se pueden usar con [Expresiones PHP](https:/ // /www.php.net/ /manual/ /fr/ /datetime.formats.php#datetime.formats.relative) como por ejemplo :
 
 - ``Now`` : Ahora.
 - ``Today`` : 00:00 hoy (permite, por ejemplo, obtener resultados para el día si entre ``Today`` y ``Now``).

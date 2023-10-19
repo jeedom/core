@@ -33,11 +33,17 @@ jeedom.appMobile.postToApp = function (_action, _options = {}) {
 }
 
 jeedom.appMobile.vibration = function (type = "impactMedium") {
+  /* vibration > impactLight, impactMedium, impactHeavy, rigid, soft, notificationSuccess, notificationWarning, notificationError */
   jeedom.appMobile.postToApp('vibration', {type: type})
 }
 
 jeedom.appMobile.syncBoxs = function () {
   jeedom.appMobile.postToApp('syncBoxs')
+}
+
+jeedom.appMobile.addBoxQrCode = function () {
+  /* open windows for add box QrCode on App */
+  jeedom.appMobile.postToApp('addBoxQrCode')
 }
 
 jeedom.appMobile.notifee = function (title, body, time = 5000, display = "") {

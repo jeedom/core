@@ -236,7 +236,7 @@ Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 - ``#variable(nom_variable)#`` : Alterando o valor da variável name_name.
 - ``#genericType (GENERIC, #[Object]#)#`` : Alteração de um comando de informação do tipo GENÉRICO genérico, no objeto Object.
 
-Você também pode acionar um cenário usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.1/api_http).
+Você também pode acionar um cenário usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.4/api_http).
 
 ### Operadores de comparação e links entre condições
 
@@ -291,7 +291,7 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 - ``#longitude#`` : Permite recuperar as informações de longitude colocadas na configuração do jeedom
 - ``#altitude#`` : Permite recuperar as informações de altitude colocadas na configuração do jeedom
 
-  
+
 Você também tem as seguintes tags adicionais se seu cenário foi acionado por uma interação :
 
 - #query# : Interação que acionou o cenário.
@@ -305,19 +305,19 @@ Você também tem as seguintes tags adicionais se seu cenário foi acionado por 
 
 Várias funções estão disponíveis para o equipamento :
 
-- ``average(commande,période)`` E ``averageBetween(commande,start,end)`` : Dê a média do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``average(commande,période)`` E ``averageBetween(commande,start,end)`` : Dê a média do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` : Dê a média dos valores do pedido ponderados por sua duração de existência ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` : Dê a média dos valores do pedido ponderados por sua duração de existência ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``min(commande,période)`` E ``minBetween(commande,start,end)`` : Dê o pedido mínimo durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``min(commande,période)`` E ``minBetween(commande,start,end)`` : Dê o pedido mínimo durante o período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``max(commande,période)`` E ``maxBetween(commande,start,end)`` : Forneça o máximo do pedido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``max(commande,période)`` E ``maxBetween(commande,start,end)`` : Forneça o máximo do pedido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``duration(commande, valeur, période)`` E ``durationbetween(commande,valeur,start,end)`` : Indique a duração em minutos durante os quais o equipamento teve o valor escolhido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``duration(commande, valeur, période)`` E ``durationbetween(commande,valeur,start,end)`` : Indique a duração em minutos durante os quais o equipamento teve o valor escolhido durante o período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``statistics(commande,calcul,période)`` E ``statisticsBetween(commande,calcul,start,end)`` : Forneça o resultado de diferentes cálculos estatísticos (soma, contagem, padrão, variação, média, mín., Máx.) Ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``statistics(commande,calcul,période)`` E ``statisticsBetween(commande,calcul,start,end)`` : Forneça o resultado de diferentes cálculos estatísticos (soma, contagem, padrão, variação, média, mín., Máx.) Ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``tendance(commande,période,seuil)`` : Dá a tendência do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``tendance(commande,période,seuil)`` : Dá a tendência do pedido ao longo do período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
 - ``stateDuration(commande)`` : Dá a duração em segundos desde a última alteração no valor.
     -1 : Não existe histórico ou valor não existe no histórico.
@@ -334,9 +334,9 @@ Várias funções estão disponíveis para o equipamento :
 - ``age(commande)`` : Dá a idade em segundos do valor do comando (``collecDate``)
     -1 : O comando não existe ou não é do tipo info.
 
-- ``stateChanges(commande,[valeur], période)`` E ``stateChangesBetween(commande, [valeur], start, end)`` : Dá o número de mudanças de estado (em direção a um certo valor se indicado, ou se não indicado em comparação com seu valor atual) durante o período (período=[mês, dia, hora, min] ou [expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``stateChanges(commande,[valeur], période)`` E ``stateChangesBetween(commande, [valeur], start, end)`` : Dá o número de mudanças de estado (em direção a um certo valor se indicado, ou se não indicado em comparação com seu valor atual) durante o período (período=[mês, dia, hora, min] ou [expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)) ou entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
-- ``lastBetween(commande,start,end)`` : Dá o último valor registrado para o dispositivo entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](http://php.net/manual/fr/datetime.formats.relative.php)).
+- ``lastBetween(commande,start,end)`` : Dá o último valor registrado para o dispositivo entre os 2 terminais solicitados (no formulário ``Y-m-d H:i:s`` Onde [Expressão PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative)).
 
 - ``variable(mavariable,valeur par défaut)`` : Recupera o valor de uma variável ou o valor desejado por padrão.
 
@@ -376,7 +376,7 @@ Várias funções estão disponíveis para o equipamento :
 
 - ``color_gradient(couleur_debut,couleur_fin,valuer_min,valeur_max,valeur)`` : Retorna uma cor calculada em relação a um valor no intervalo color_start / color_end. O valor deve estar entre min_value e max_value.
 
-Os períodos e intervalos dessas funções também podem ser usados com [Expressões PHP](http://php.net/manual/fr/datetime.formats.relative.php) como por exemplo :
+Os períodos e intervalos dessas funções também podem ser usados com [Expressões PHP](https://www.php.net/manual/fr/datetime.formats.php#datetime.formats.relative) como por exemplo :
 
 - ``Now`` : agora.
 - ``Today`` : 00:00 hoje (permite, por exemplo, obter resultados para o dia se entre ``Today`` e ``Now``).

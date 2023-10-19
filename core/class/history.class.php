@@ -183,6 +183,30 @@ class history {
 		}
 		return $result;
 	}
+        
+        public static function byCmdIdAtDatetimeFromCalcul($_strcalcul, $_time, $_previous = true){
+		$cmd_histories = array();
+                preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
+                if (count($matches[1]) > 0) {
+                    foreach ($matches[1] as $cmd_id) {
+                        if (is_numeric($cmd_id)) {
+                            $cmd = cmd::byId($cmd_id);
+                            $value = 0;
+                            if (is_object($cmd) && $cmd->getIsHistorized() == 1 && !$cmd->getConfiguration('isHistorizedCalc', 0)) {
+                                $result = history::byCmdIdAtDatetime($cmd_id, $_time, $_previous);
+                                if($result)
+                                    $value = $result->getValue();
+                            }
+                            elseif(is_object($cmd)){
+                                $value = history::byCmdIdAtDatetimeFromCalcul(jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time, $_previous);
+                            }
+                            $cmd_histories['#' . $cmd_id . '#'] = $value;
+                        }
+                    }
+                }
+                $calcul = template_replace($cmd_histories, $_strcalcul);
+                return floatval(jeedom::evaluateExpression($calcul));
+        }
 
 	/**
 	 * Archive data from history into historyArch
