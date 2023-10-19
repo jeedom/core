@@ -213,7 +213,7 @@ class cache {
 		
 	}
 	
-	public static function isPersistOk() {
+	public static function isPersistOk(): bool {
 		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 			return true;
 		}
@@ -407,7 +407,7 @@ class cache {
 		}
 	}
 	
-	public function hasExpired() {
+	public function hasExpired(): bool {
 		return true;
 	}
 	
@@ -417,7 +417,7 @@ class cache {
 		return $this->key;
 	}
 	
-	public function setKey($key) {
+	public function setKey($key): self {
 		$this->key = $key;
 		return $this;
 	}
@@ -426,7 +426,7 @@ class cache {
 		return ($this->value === null || (is_string($this->value) && trim($this->value) === '')) ? $_default : $this->value;
 	}
 	
-	public function setValue($value) {
+	public function setValue($value): self {
 		$this->value = $value;
 		return $this;
 	}
@@ -435,7 +435,7 @@ class cache {
 		return $this->lifetime;
 	}
 	
-	public function setLifetime($lifetime) {
+	public function setLifetime($lifetime): self {
 		$this->lifetime = $lifetime;
 		return $this;
 	}
@@ -444,7 +444,7 @@ class cache {
 		return $this->datetime;
 	}
 	
-	public function setDatetime($datetime) {
+	public function setDatetime($datetime): self {
 		$this->datetime = $datetime;
 		return $this;
 	}
@@ -453,7 +453,7 @@ class cache {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 	
-	public function setOptions($_key, $_value = null) {
+	public function setOptions($_key, $_value = null): self {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
