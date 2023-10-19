@@ -155,7 +155,7 @@ if (!isConnect()) {
     if (_target = event.target.closest('#bt_saveSummaryObject')) {
       jeedom.massEditSave({
         type: 'jeeObject',
-        objects: document.querySelector('#table_ObjectSummary .tr_object').getJeeValues('.objectAttr'),
+        objects: document.querySelectorAll('#table_ObjectSummary .tr_object').getJeeValues('.objectAttr'),
         error: function(error) {
           jeedomUtils.showAlert({
             attachTo: jeeDialog.get('#md_objectSummary', 'dialog'),
