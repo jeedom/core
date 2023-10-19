@@ -1,7 +1,7 @@
 #!/bin/bash
 
 installVer='18' 	#NodeJS major version to be installed
-minVer='15'	      #min NodeJS major version to be accepted
+minVer='18'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
