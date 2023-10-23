@@ -513,7 +513,10 @@ if (!jeeFrontEnd.scenario) {
       switch (_expression.type) {
         case 'condition':
           if (isset(_expression.expression)) {
-            _expression.expression = _expression.expression.replace(/"/g, '&quot;')
+            try {
+              _expression.expression = _expression.expression.replace(/"/g, '&quot;')
+            } catch (error) {
+            }
           }
           retour += '<div class="input-group input-group-sm" >'
           retour += '<input class="expressionAttr form-control roundedLeft" data-l1key="expression" value="' + init(_expression.expression) + '" />'
