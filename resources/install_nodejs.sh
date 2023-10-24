@@ -60,6 +60,18 @@ then
 fi
 fi
 
+#stretch doesn't support NodeJS 18
+lsb_release -c | grep stretch
+if [ $? -eq 0 ]
+then
+  today=$(date +%Y%m%d)
+  if [[ "$today" > "20220630" ]]; 
+  then 
+  echo "== ATTENTION Debian 9 Stretch n'est officiellement plus supportée depuis le 30 juin 2022, merci de mettre à jour votre distribution !!!"
+  exit 1
+fi
+fi
+
 #x86 32 bits not supported by nodesource anymore
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
@@ -119,8 +131,14 @@ else
     sudo npm install -g npm
   else
     echo "Utilisation du dépot officiel"
-    curl -sL https://deb.nodesource.com/setup_${installVer}.x | sudo -E bash -
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs  
+    NODE_MAJOR=$installVer
+    sudo mkdir -p /etc/apt/keyrings
+    sudo rm /etc/apt/keyrings/nodesource.gpg
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+    sudo rm /etc/apt/sources.list.d/nodesource.list
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+    sudo apt-get update
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
   fi
   
   npm config set prefix ${npmPrefix} &>/dev/null
