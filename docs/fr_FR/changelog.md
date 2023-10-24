@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.3
 
+## 4.3.18
+
+- Passage en nodejs v18
+- Correction de bugs
+
 ## 4.3.17
 
 - Correction de bugs
