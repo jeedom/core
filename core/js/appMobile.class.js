@@ -78,3 +78,8 @@ jeedom.appMobile.modal = function (_options) {
 jeedom.appMobile.modalClose = function () {
   jeedom.appMobile.postToApp('modal:close');
 }
+
+jeedom.appMobile.reloadView = function () {
+  // Reload actual tab webview
+  jeedom.appMobile.postToApp('reload');
+}
