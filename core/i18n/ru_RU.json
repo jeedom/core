@@ -1940,7 +1940,7 @@
         "Hôte": "Хост",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "URL, используемый для связи с базой данных, с указанием типа соединения (например, ldap(s):\/\/URL)",
         "Port": "Порт",
-        "Port à utiliser (par défaut, LDAP:389, LDAPS:636)": "Порт для использования (по умолчанию, LDAP:389, LDAPS:636)",
+        "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)": "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)",
         "Domaine": "Домен",
         "FQDN de la base": "Базовое FQDN",
         "Base DN des utilisateurs": "База DN",

@@ -1940,7 +1940,7 @@
         "Hôte": "Evsahibi",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "Bağlantı türünü belirterek veritabanıyla iletişim kurmak için kullanılan URL (ör. Ldap (s): \/\/ URL)",
         "Port": "Port",
-        "Port à utiliser (par défaut, LDAP:389, LDAPS:636)": "Kullanılacak bağlantı noktası (varsayılan olarak, LDAP: 389, LDAPS: 636)",
+        "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)": "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)",
         "Domaine": "Domen",
         "FQDN de la base": "Temel FQDN",
         "Base DN des utilisateurs": "DN tabanı",

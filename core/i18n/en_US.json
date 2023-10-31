@@ -1940,7 +1940,7 @@
         "Hôte": "Host",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "URL used to contact the database, specifying the type of connection (e.g. ldap(s):\/\/URL)",
         "Port": "Harbor",
-        "Port à utiliser (par défaut, LDAP:389, LDAPS:636)": "Port to use (default, LDAP:389, LDAPS:636)",
+        "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)": "Port to use (default, LDAP: 389, LDAPS: 636)",
         "Domaine": "Domain",
         "FQDN de la base": "Base FQDN",
         "Base DN des utilisateurs": "DN user base",

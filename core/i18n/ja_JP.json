@@ -1940,7 +1940,7 @@
         "Hôte": "ホスト",
         "URL utilisée pour contacter la base, en précisant le type de connexion (e.g ldap(s):\/\/URL)": "接続の種類を指定してデータベースに連絡するために使用されるURL (例: ldap(s):\/\/URL)",
         "Port": "ポート",
-        "Port à utiliser (par défaut, LDAP:389, LDAPS:636)": "使用するポート（デフォルト、LDAP:389、LDAPS:636",
+        "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)": "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)",
         "Domaine": "ドメイン",
         "FQDN de la base": "ベースFQDN",
         "Base DN des utilisateurs": "ベースDN",
