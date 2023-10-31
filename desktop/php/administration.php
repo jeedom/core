@@ -444,7 +444,7 @@ user::isBan();
 							</div>
 
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes sur écran large/moyen/petit}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonne sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<select class="form-control configKey" data-l1key="dahsboard::column::size" data-reload="1">
@@ -462,7 +462,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par defaut}}
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par défaut}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prendront toute la largeur par défaut en mobile}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
