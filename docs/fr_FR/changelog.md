@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.19
+
+- Correction installation et mise à jour de nodejs
+
 ## 4.3.18
 
 - Passage en nodejs v18
