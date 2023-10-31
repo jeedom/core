@@ -324,7 +324,7 @@ try {
 	}
 	$apikey = isset($params['apikey']) ? $params['apikey'] : $params['api'];
 
-	if (!jeedom::apiAccess($apikey, $params['plugin'])) {
+	if (!jeedom::apiAccess($apikey, $params['plugin']) && !jeedom::apiAccess($apikey, 'core')) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
 	}
 
