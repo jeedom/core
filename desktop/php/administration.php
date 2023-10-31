@@ -1635,7 +1635,7 @@ user::isBan();
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP:389, LDAPS:636)}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)}}"></i></sup>
 									</label>
 									<div class="col-md-3 col-sm-4 col-xs-12">
 										<input type="text" class="configKey form-control" data-l1key="ldap:port" />
