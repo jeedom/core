@@ -753,9 +753,9 @@ document.getElementById('interfacetab').addEventListener('click', function(event
 /**************************NETWORK***********************************/
 /*Events delegations
 */
-document.getElementById('networktab').addEventListener('click', function(event) {
-  var _target = null
-  if (_target = event.target.closest('#bt_networkTab')) {
+document.getElementById('tablist').addEventListener('click', function(event) {
+var _target = null
+if (_target = event.target.closest('#bt_networkTab')) {
     var tableBody = document.getElementById('networkInterfacesTable').tBodies[0]
     if (tableBody.children.length == 0) {
       jeedom.network.getInterfacesInfo({
@@ -780,7 +780,13 @@ document.getElementById('networktab').addEventListener('click', function(event) 
     }
     return
   }
+});
 
+
+
+document.getElementById('networktab').addEventListener('click', function(event) {
+  var _target = null
+  
   if (_target = event.target.closest('#bt_restartDns')) {
     jeedomUtils.hideAlert()
     jeedom.config.save({
