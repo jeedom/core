@@ -30,7 +30,7 @@ user::isBan();
 			</form>
 		</div>
 
-		<ul class="nav nav-tabs nav-primary" role="tablist">
+		<ul class="nav nav-tabs nav-primary" role="tablist" id="tablist">
 			<li role="presentation" class="active"><a data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 			<li role="presentation"><a data-target="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
 			<li role="presentation"><a id="bt_networkTab" data-target="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
@@ -444,7 +444,7 @@ user::isBan();
 							</div>
 
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes sur écran large/moyen/petit}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonne sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<select class="form-control configKey" data-l1key="dahsboard::column::size" data-reload="1">
@@ -462,7 +462,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par defaut}}
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par défaut}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prendront toute la largeur par défaut en mobile}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -1635,7 +1635,7 @@ user::isBan();
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP:389, LDAPS:636)}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)}}"></i></sup>
 									</label>
 									<div class="col-md-3 col-sm-4 col-xs-12">
 										<input type="text" class="configKey form-control" data-l1key="ldap:port" />

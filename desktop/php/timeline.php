@@ -6,7 +6,10 @@ $date = array(
 	'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),
 	'end' => date('Y-m-d'),
 );
+
 ?>
+
+
 
 <div class="row row-overflow">
 	<div id="timelineBar" class="input-group">
@@ -14,11 +17,11 @@ $date = array(
 		<a id="bt_resetTimelineSearch" class="btn input-sm form-control noCorner" style="width:30px"><i class="fas fa-times"></i></a>
 		<select class="form-control input-sm noCorner" style="width:200px;" id="sel_timelineFolder">
 			<?php
-				$options = '<option value="main">{{Principal}}</option>';
+				$options = '<option value="main">{{Principal}}</option>';	
 				$options .= '<optgroup label="{{Timelines}}">';
 				foreach ((timeline::listFolder()) as $folder) {
 					if ($folder == 'main') continue;
-					$options .= '<option value="' . $folder . '">' . $folder . '</option>';
+					$options .= '<option ' . (init('folder') == $folder ? 'selected' : '') . ' value="' . $folder . '">' . $folder . '</option>';
 				}
 				$options .= '</optgroup>';
 				echo $options;
