@@ -1189,7 +1189,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     height: 10,
     width: 10,
     align: 'right',
-    title: "{{Echelle independante des axes Y}}"
+    title: "{{Echelle indépendante des axes Y}}"
   })
   .on('click', function() {
     jeedom.history.toggleyAxisScaling(thisId)
