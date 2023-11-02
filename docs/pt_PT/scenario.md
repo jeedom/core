@@ -281,12 +281,13 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 - ``#smonth#`` : Nome do mês. Ex : Janeiro.
 - ``#IP#`` : IP interno da Jeedom.
 - ``#hostname#`` : Nome da máquina Jeedom.
+- ``#jeedomName#`` : Nome de Jeedom.
 - ``#trigger#`` (obsoleto, melhor usar ``trigger()``) : Talvez o nome do comando que iniciou o cenário :
     - ``api`` se o lançamento foi acionado pela API,
     - ``schedule`` se foi iniciado por programação,
     - ``user`` se foi iniciado manualmente,
     - ``start`` para um lançamento na inicialização do Jeedom.
-- ``#trigger_value#`` (descontinuado, melhor usar triggerValue()) : Para o valor do comando que acionou o cenário
+- ``#triggerValue#`` (descontinuado, melhor usar triggerValue()) : Para o valor do comando que acionou o cenário
 - ``#latitude#`` : Permite recuperar as informações de latitude colocadas na configuração do jeedom
 - ``#longitude#`` : Permite recuperar as informações de longitude colocadas na configuração do jeedom
 - ``#altitude#`` : Permite recuperar as informações de altitude colocadas na configuração do jeedom

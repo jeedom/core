@@ -281,12 +281,13 @@ A tag is replaced during the execution of the scenario by its value. You can use
 - ``#smonth#`` : Name of the month. Ex : January.
 - ``#IP#`` : Jeedom&#39;s internal IP.
 - ``#hostname#`` : Jeedom machine name.
+- ``#jeedomName#`` : Name of Jeedom.
 - ``#trigger#`` (deprecated, better to use ``trigger()``) : Maybe the name of the command that started the scenario :
     - ``api`` if the launch was triggered by the API,
     - ``schedule`` if it was started by programming,
     - ``user`` if it was started manually,
     - ``start`` for a launch at startup of Jeedom.
-- ``#trigger_value#`` (deprecated, better to use triggerValue()) : For the value of the command that triggered the scenario
+- ``#triggerValue#`` (deprecated, better to use triggerValue()) : For the value of the command that triggered the scenario
 - ``#latitude#`` : Allows you to retrieve the latitude information put in the jeedom configuration
 - ``#longitude#`` : Allows you to retrieve the longitude information put in the jeedom configuration
 - ``#altitude#`` : Allows you to retrieve the altitude information put in the jeedom configuration

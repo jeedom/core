@@ -281,12 +281,13 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 - ``#smonth#`` : Name des Monats. Ex : Januar.
 - ``#IP#`` : Jeedom&#39;s interne IP.
 - ``#hostname#`` : Name der Jeedom-Maschine.
+- ``#jeedomName#`` : Name von Jeedom.
 - ``#trigger#`` (veraltet, besser zu bedienen ``trigger()``) : Möglicherweise der Name des Befehls, der das Szenario gestartet hat :
     - ``api`` wenn der Start von der API ausgelöst wurde,
     - ``schedule`` wenn es durch Programmierung gestartet wurde,
     - ``user`` wenn es manuell gestartet wurde,
     - ``start`` für einen Start beim Start von Jeedom.
-- ``#trigger_value#`` (veraltet, besser TriggerValue zu verwenden()) : Für den Wert des Befehls, der das Szenario ausgelöst hat
+- ``#triggerValue#`` (veraltet, besser TriggerValue zu verwenden()) : Für den Wert des Befehls, der das Szenario ausgelöst hat
 - ``#latitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Breitengradinformationen abzurufen
 - ``#longitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Längengradinformationen abzurufen
 - ``#altitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Höheninformationen abzurufen
