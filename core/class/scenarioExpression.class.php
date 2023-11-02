@@ -1109,64 +1109,64 @@ class scenarioExpression {
 			$tag = str_replace(array_keys($replace), $replace, $tag);
 			switch ($tag) {
 				case '#seconde#':
-					$return['#seconde#'] = (int) date('s');
+					$return[$tag] = (int) date('s');
 					break;
 				case '#hour#':
-					$return['#hour#'] = (int) date('G');
+					$return[$tag] = (int) date('G');
 					break;
 				case '#hour12#':
-					$return['#hour12#'] = (int) date('g');
+					$return[$tag] = (int) date('g');
 					break;
 				case '#minute#':
-					$return['#minute#'] = (int) date('i');
+					$return[$tag] = (int) date('i');
 					break;
 				case '#day#':
-					$return['#day#'] = (int) date('d');
+					$return[$tag] = (int) date('d');
 					break;
 				case '#month#':
-					$return['#month#'] = (int) date('m');
+					$return[$tag] = (int) date('m');
 					break;
 				case '#year#':
-					$return['#year#'] = (int) date('Y');
+					$return[$tag] = (int) date('Y');
 					break;
 				case '#time#':
-					$return['#time#'] = date('Gi');
+					$return[$tag] = date('Gi');
 					break;
 				case '#timestamp#':
-					$return['#timestamp#'] = time();
+					$return[$tag] = time();
 					break;
 				case '#seconde#':
-					$return['#seconde#'] = (int) date('s');
+					$return[$tag] = (int) date('s');
 					break;
 				case '#date#':
-					$return['#date#'] = date('md');
+					$return[$tag] = date('md');
 					break;
 				case '#week#':
-					$return['#week#'] = date('W');
+					$return[$tag] = date('W');
 					break;
 				case '#sday#':
-					$return['#sday#'] = date_fr(date('l'));
+					$return[$tag] = date_fr(date('l'));
 					break;
 				case '#smonth#':
-					$return['#smonth#'] = date_fr(date('F'));
+					$return[$tag] = date_fr(date('F'));
 					break;
 				case '#nday#':
-					$return['#nday#'] = (int) date('w');
+					$return[$tag] = (int) date('w');
 					break;
 				case '#jeedomName#':
-					$return['#jeedom_name#'] = config::byKey('name');
+					$return[$tag] = config::byKey('name');
 					break;
 				case '#hostname#':
-					$return['#hostname#'] = gethostname();
+					$return[$tag] = gethostname();
 					break;
 				case '#IP#':
-					$return['#IP#'] = network::getNetworkAccess('internal', 'ip', '', false);
+					$return[$tag] = network::getNetworkAccess('internal', 'ip', '', false);
 					break;
 				case '#trigger#':
-					$return['#trigger#'] = '';
+					$return[$tag] = '';
 					break;
 				case '#triggerValue#':
-					$return['#trigger_value#'] = '';
+					$return[$tag] = '';
 					break;
 			}
 		}
