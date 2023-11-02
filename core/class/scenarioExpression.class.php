@@ -1151,7 +1151,7 @@ class scenarioExpression {
 		);
 		foreach ($matches as &$tag) {
 			$tag = str_replace(array_keys($replace), $replace, $tag);
-			if(isset($return[$tag]){
+			if(isset($return[$tag])){
 				continue;
 			}
 			switch ($tag) {
