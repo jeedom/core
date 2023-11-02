@@ -281,12 +281,13 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 - ``#smonth#`` : Nom du mois. Ex : Janvier.
 - ``#IP#`` : IP interne de Jeedom.
 - ``#hostname#`` : Nom de la machine Jeedom.
+- ``#jeedomName#`` : Nom du Jeedom.
 - ``#trigger#`` (déprecié, mieux vaut utiliser ``trigger()``) : Peut être le nom de la commande qui a déclenché le scénario :
     - ``api`` si le lancement a été déclenché par l'API,
     - ``schedule`` s'il a été lancé par une programmation,
     - ``user`` s'il a été lancé manuellement,
     - ``start`` pour un lancement au démarrage de Jeedom.
-- ``#trigger_value#`` (déprecié, mieux vaut utiliser triggerValue()) : Pour la valeur de la commande ayant déclenché le scénario
+- ``#triggerValue#`` (déprecié, mieux vaut utiliser triggerValue()) : Pour la valeur de la commande ayant déclenché le scénario
 
 Vous avez aussi les tags suivants en plus si votre scénario a été déclenché par une interaction :
 
