@@ -1268,6 +1268,7 @@ class scenarioExpression {
 			if (is_object($cmd)) {
 				$replace1['#trigger#'] = $cmd->getHumanName();
 				$replace1['#trigger_value#'] = $cmd->execCmd();
+				$replace1['#triggerValue#'] = $cmd->execCmd();
 			} else {
 				$replace1['#trigger#'] = $_scenario->getRealTrigger();
 			}
