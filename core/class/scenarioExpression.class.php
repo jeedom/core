@@ -1198,7 +1198,7 @@ class scenarioExpression {
 					$return['#nday#'] = (int) date('w');
 					break;
 				case '#jeedomName#':
-					$return['#jeedom_name#'] = config::byKey('name');
+					$return['#jeedomName#'] = config::byKey('name');
 					break;
 				case '#hostname#':
 					$return['#hostname#'] = gethostname();
@@ -1210,7 +1210,7 @@ class scenarioExpression {
 					$return['#trigger#'] = '';
 					break;
 				case '#triggerValue#':
-					$return['#trigger_value#'] = '';
+					$return['#triggerValue#'] = '';
 					break;
 				case '#latitude#':
 					$return['#latitude#'] = config::byKey('info::latitude');
