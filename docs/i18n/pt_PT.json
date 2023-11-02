@@ -8074,6 +8074,7 @@
         "Nom du mois": "Nome do mês",
         "IP interne de Jeedom": "IP interno da Jeedom",
         "Nom de la machine Jeedom": "Nome da máquina Jeedom",
+        "Nom du Jeedom": "Nome de Jeedom",
         "déprecié, mieux vaut utiliser": "obsoleto, melhor usar",
         "Peut être le nom de la commande qui a déclenché le scénario": "Talvez o nome do comando que iniciou o cenário",
         "si le lancement a été déclenché par l'API": "se o lançamento foi acionado pela API",

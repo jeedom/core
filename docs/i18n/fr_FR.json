@@ -4494,6 +4494,7 @@
         "Janvier": "Janvier",
         "IP interne de Jeedom": "IP interne de Jeedom",
         "Nom de la machine Jeedom": "Nom de la machine Jeedom",
+        "Nom du Jeedom": "Nom du Jeedom",
         "déprecié, mieux vaut utiliser": "déprecié, mieux vaut utiliser",
         "Peut être le nom de la commande qui a déclenché le scénario": "Peut être le nom de la commande qui a déclenché le scénario",
         "si le lancement a été déclenché par l'API": "si le lancement a été déclenché par l'API",
