@@ -1120,6 +1120,7 @@ jeedom.cmd.normalizeName = function(_tagname) {
     'unlock': 'off',
     'verrouiller': 'on',
     'deverrouiller': 'off',
+    'déverrouiller': 'off',
     'marche': 'on',
     'arret': 'off',
     'arrêt': 'off',
