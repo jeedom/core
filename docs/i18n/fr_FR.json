@@ -2327,6 +2327,7 @@
         "Purger l'historique si plus vieux de": "Purger l'historique si plus vieux de",
         "Permet de dire à Jeedom de supprimer toutes les données plus vieilles qu'une certaine période": "Permet de dire à Jeedom de supprimer toutes les données plus vieilles qu'une certaine période",
         "Peut être pratique pour ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom": "Peut être pratique pour ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom",
+        "Attention la purge se déclenche la nuit, il faut donc attendre que la nuit passe avant d'avoir l'action effective de la purge": "Attention la purge se déclenche la nuit, il faut donc attendre que la nuit passe avant d'avoir l'action effective de la purge",
         "Gestion des valeurs": "Gestion des valeurs",
         "Valeur interdite": "Valeur interdite",
         "Si la commande prend une de ces valeurs,  Jeedom l'ignore avant de l'appliquer": "Si la commande prend une de ces valeurs,  Jeedom l'ignore avant de l'appliquer",

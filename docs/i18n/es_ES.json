@@ -3864,6 +3864,7 @@
         "Purger l'historique si plus vieux de": "Purgue el historial si es anterior a",
         "Permet de dire à Jeedom de supprimer toutes les données plus vieilles qu'une certaine période": "Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado",
         "Peut être pratique pour ne pas conserver de données si ça n'est pas nécessaire et donc limiter la quantité d'informations enregistrées par Jeedom": "Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom",
+        "Attention la purge se déclenche la nuit, il faut donc attendre que la nuit passe avant d'avoir l'action effective de la purge": "Tenga en cuenta que la purga se activa durante la noche, por lo que debe esperar a que pase la noche antes de tener la acción efectiva de la purga",
         "Gestion des valeurs": "Gestión de valores",
         "Valeur interdite": "Valor prohibido",
         "Si la commande prend une de ces valeurs,  Jeedom l'ignore avant de l'appliquer": "Si el comando toma uno de estos valores, Jeedom lo ignora antes de aplicarlo",
