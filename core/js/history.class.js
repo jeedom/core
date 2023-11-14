@@ -1874,7 +1874,8 @@ jeedom.history.handleRangeButton = function(_button, _chartId) {
       }
     })
 
-    document.getElementById('in_startDate').value = mRequestStart.format('YYYY-MM-DD')
+    var in_startDate = document.getElementById("in_startDate")
+    if (in_startDate) in_startDate.value = mRequestStart.format('YYYY-MM-DD')
 
     return true
   } else {
