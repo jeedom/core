@@ -203,7 +203,7 @@ En-dessous, vous retrouvez la liste des différents équipements, commandes, sc�
 - **Historique**
     - **Historiser** : Cochez la case pour que les valeurs de cette  commande soient historisées. (Voir **Analyse→Historique**)
     - **Mode de lissage** : Mode de **lissage** ou d'**archivage** permet de choisir la manière d’archiver la donnée. Par défaut, c’est une **moyenne**. Il est aussi possible de choisir le **maximum**, le **minimum**, ou **aucun**. **aucun** permet de dire à Jeedom qu’il ne doit pas réaliser d’archivage sur cette  commande (aussi bien sur la première période des 5 mins qu’avec la tâche d’archivage). Cette option est dangereuse car Jeedom        conserve tout : il va donc y avoir beaucoup plus de données conservées.
-    - **Purger l’historique si plus vieux de** : Permet de dire à Jeedom de supprimer toutes les données plus vieilles qu’une certaine période. Peut être pratique pour ne pas conserver de données si ça n’est pas nécessaire et donc limiter la quantité d’informations enregistrées par Jeedom.
+    - **Purger l’historique si plus vieux de** : Permet de dire à Jeedom de supprimer toutes les données plus vieilles qu’une certaine période. Peut être pratique pour ne pas conserver de données si ça n’est pas nécessaire et donc limiter la quantité d’informations enregistrées par Jeedom. Attention la purge se déclenche la nuit, il faut donc attendre que la nuit passe avant d'avoir l'action effective de la purge.
 
 - **Gestion des valeurs**
     - **Valeur interdite** : Si la commande prend une de ces valeurs,  Jeedom l’ignore avant de l’appliquer.

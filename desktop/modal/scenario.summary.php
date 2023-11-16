@@ -182,7 +182,7 @@ if (!jeeFrontEnd.md_scenarioSummary) {
   })
 
   document.getElementById('bt_saveSummaryScenario')?.addEventListener('click', function(event) {
-    var scenarios = document.querySelector('#table_scenarioSummary tbody .scenario').getJeeValues('.scenarioAttr')
+    var scenarios = document.querySelectorAll('#table_scenarioSummary tbody .scenario').getJeeValues('.scenarioAttr')
     jeedom.scenario.saveAll({
       scenarios : scenarios,
       error: function(error) {

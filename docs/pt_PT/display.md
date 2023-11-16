@@ -203,7 +203,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 - **Histórico**
     - **Historizar** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
     - **Suavização moda** : Modo de **suavização** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **significa**. Também é possível escolher o **máximo**, a **mínimo**, Onde **Nenhum**. **Nenhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
-    - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom.
+    - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom. Observe que a purga é acionada à noite, portanto você deve aguardar a noite passar antes de ter a ação efetiva da purga.
 
 - **Gerenciando valores**
     - **Valor proibido** : Se o comando pegar um desses valores, o Jeedom o ignorará antes de aplicá-lo.
