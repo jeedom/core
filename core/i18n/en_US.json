@@ -3838,6 +3838,9 @@
     "core\/ajax\/plugin.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Plugin introuvable :": "Plugin not found:",
+        "Démarré": "Started",
+        "Stoppé": "Stopped",
+        "Inconnue": "Unknown",
         "Aucune méthode correspondante à :": "No method corresponding to:"
     },
     "core\/ajax\/note.ajax.php": {
