@@ -208,6 +208,7 @@ step_7_jeedom_customization_mariadb() {
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "connect_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
    # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   

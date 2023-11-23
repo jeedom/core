@@ -39,4 +39,5 @@ $JEEDOM_RPI_HARDWARE = array(
 	'RPI 3 B' => array('a02082','a22082','a22083','a52082','a32082','a020d3'),
 	'RPI 3 Compute' => array('a02100','a220a0','a020a0'),
 	'RPI 4 B' => array('a03111','b03111','c03111'),
+	'RPI 5' => array('d04170','c04170'),
 );
