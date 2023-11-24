@@ -38,7 +38,7 @@
     scrollbar-width: none !important;  /* Firefox */
   }
 
-  @keyframes "loading" {
+  @keyframes loading {
     from { left: 0; }
     to { left: 100%; }
   }
@@ -46,15 +46,15 @@
     from { left: 0; }
     to { left: 100%; }
   }
-  @-webkit-keyframes "loading" {
+  @-webkit-keyframes loading {
     from { left: 0; }
     to { left: 100%; }
   }
-  @-ms-keyframes "loading" {
+  @-ms-keyframes loading {
     from { left: 0; }
     to { left: 100%; }
   }
-  @-o-keyframes "loading" {
+  @-o-keyframes loading {
     from { left: 0; }
     to { left: 100%; }
   }
@@ -657,6 +657,8 @@
     color: var(--link-color) !important;
     background-color: var(--bg-modal-color) !important;
     box-shadow: none !important;
+  }
+  .ui-header-fixed {
     height: 72px;
   }
   .ui-header .ui-title {
@@ -1136,7 +1138,7 @@
   #pre_scenariolog .warning {
     color: var(--al-warning-color) !important;
   }
-  #pre_scenariolog > label.danger
+  #pre_scenariolog > label.danger {
     color: var(--al-danger-color) !important;
   }
 
@@ -1487,6 +1489,7 @@
   }
   #popupDialog-popup {
     background-color: var(--bg-modal-color);
+    top: 72px!important;
   }
   #div_summaryAction div.eqLogic-widget {
     z-index: 1200 !important;
