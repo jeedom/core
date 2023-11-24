@@ -1041,6 +1041,7 @@
 /* ________________DIVERS */
   div.ui-header.ui-bar-inherit > a[data-rel=back]{
     background-color: var(--btn-default-color) !important;
+    font-size: 12px;
   }
 
   #searchContainer {
