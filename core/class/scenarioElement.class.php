@@ -114,22 +114,25 @@ class scenarioElement {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function refresh() {
+	public function refresh(): void {
 		DB::refresh($this);
 	}
 
-	public function save() {
+	public function save(): bool {
 		DB::save($this);
 		return true;
 	}
 
-	public function remove() {
+	public function remove(): void {
 		foreach (($this->getSubElement()) as $subelement) {
 			$subelement->remove();
 		}
 		DB::remove($this);
 	}
 
+	/**
+ 	* @return void|bool
+  	*/
 	public function execute(&$_scenario = null) {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
@@ -181,17 +184,17 @@ class scenarioElement {
 				}
 			}
 			return $this->getSubElement('else')->execute($_scenario);
-		} else if ($this->getType() == 'action') {
+		} elseif ($this->getType() == 'action') {
 			if ($this->getSubElement('action')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('action')->execute($_scenario);
-		} else if ($this->getType() == 'code') {
+		} elseif ($this->getType() == 'code') {
 			if ($this->getSubElement('code')->getOptions('enable', 1) == 0) {
 				return true;
 			}
 			return $this->getSubElement('code')->execute($_scenario);
-		} else if ($this->getType() == 'for') {
+		} elseif ($this->getType() == 'for') {
 			if ($this->getSubElement('for')->getOptions('enable', 1) == 0) {
 				return true;
 			}
@@ -204,7 +207,7 @@ class scenarioElement {
 				$return = $this->getSubElement('do')->execute($_scenario);
 			}
 			return $return;
-		} else if ($this->getType() == 'in') {
+		} elseif ($this->getType() == 'in') {
 			if ($this->getSubElement('in')->getOptions('enable', 1) == 0) {
 				return true;
 			}
@@ -241,7 +244,7 @@ class scenarioElement {
 				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['task']['txt'] . $this->getId() . $GLOBALS['JEEDOM_SCLOG_TEXT']['sheduledOn']['txt'] . date('Y-m-d H:i:s', $next) . ' (+ ' . $time . ' min)');
 			}
 			return true;
-		} else if ($this->getType() == 'at') {
+		} elseif ($this->getType() == 'at') {
 			if ($this->getSubElement('at')->getOptions('enable', 1) == 0) {
 				return true;
 			}
