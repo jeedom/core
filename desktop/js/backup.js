@@ -47,7 +47,7 @@ if (!jeeFrontEnd.backup) {
         dataType: 'json',
         replaceFileInput: false,
         done: function(e, data) {
-          if (data.state != 'ok') {
+          if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
               message: data.result.result,
               level: 'danger'
