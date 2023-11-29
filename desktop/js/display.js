@@ -38,7 +38,7 @@ if (!jeeFrontEnd.display) {
         delay: 100,
         delayOnTouchOnly: true,
         draggable: '.objectSortable',
-        filter: 'a, input, textarea',
+        filter: 'input, textarea',
         preventOnFilter: false,
         direction: 'vertical',
         removeCloneOnHide: true,

@@ -40,6 +40,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		$objectName = '{{Aucun}}';
 		$objecUseCustomColor = 0;
 		$objectIcon = '<i class="far fa-circle"></i>';
+		$objectSortable = '';
 	} else {
 		if (!is_object($object)) return;
 		$_index = $object->getId();
@@ -49,6 +50,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		$objectName = $object->getName();
 		$objecUseCustomColor = $object->getConfiguration('useCustomColor');
 		$objectIcon = $object->getDisplay('icon');
+		$objectSortable = 'objectSortable';
 	}
 
 	$div = '';
@@ -58,7 +60,7 @@ function jeedom_displayObjectGroup($object = -1) {
 	} else {
 		$aStyle = ' style="margin-left:5px"';
 	}
-	$div .= '<div class="panel panel-default objectSortable" ' . $aStyle . '>';
+	$div .= '<div class="panel panel-default ' . $objectSortable . '" ' . $aStyle . '>';
 	$div .= '<div class="panel-heading" data-id="' . $objectId . '">';
 	//custom colors panel-title:
 	if ($objecUseCustomColor == 1) {
