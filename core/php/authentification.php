@@ -42,7 +42,7 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 }
 @session_start();
 if(isset($_COOKIE['PHPSESSID'])|| session_id() !== $_COOKIE['PHPSESSID']) {
-    throw new Exception('session does not exist');
+    //throw new Exception('session does not exist');
 }
 $_SESSION['ip'] = getClientIp();
 @session_write_close();
