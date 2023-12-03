@@ -252,7 +252,9 @@ $synthToActions = array(
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label checkbox-inline">{{Couleurs personnalisées}}</label>
-								<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor" />
+								<div class="col-sm-7">
+									<input class="objectAttr" type="checkbox" data-l1key="configuration" data-l2key="useCustomColor">
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Couleur du tag}}
@@ -298,7 +300,9 @@ $synthToActions = array(
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label checkbox-inline">{{Réordonner automatiquement}}</label>
-								<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="orderEqLogicByUsage::auto" />
+								<div class="col-sm-7">
+									<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="orderEqLogicByUsage::auto" />
+								</div>
 							</div>
 						</div>
 
