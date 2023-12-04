@@ -270,10 +270,12 @@ class history {
 					continue;
 				}
 				$purgeTime = false;
-				if ($cmd->getConfiguration('historyPurge', '') != '') {
-					$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
-				} else if (config::byKey('historyPurge') != '') {
-					$purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
+				if($cmd->getConfiguration('historyPurge', '') != 'never'){
+					if ($cmd->getConfiguration('historyPurge', '') != '') {
+						$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
+					} else if (config::byKey('historyPurge') != '' && config::byKey('historyPurge') != 'never') {
+						$purgeTime = date('Y-m-d H:i:s', strtotime(config::byKey('historyPurge')));
+					}
 				}
 				if ($purgeTime !== false) {
 					$values = array(
