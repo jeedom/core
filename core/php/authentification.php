@@ -19,6 +19,8 @@ require_once __DIR__ . '/core.inc.php';
 
 $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:remoteUserHeader'));
 
+
+
 if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	$session_lifetime = $configs['session_lifetime'];
 	if (!is_numeric($session_lifetime)) {
@@ -39,6 +41,9 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	}
 }
 @session_start();
+if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
+    throw new Exception('session does not exist');
+}
 $_SESSION['ip'] = getClientIp();
 @session_write_close();
 if (user::isBan()) {

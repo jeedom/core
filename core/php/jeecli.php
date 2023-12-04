@@ -105,7 +105,7 @@ switch ($argv[1]) {
                     die();
                 }
                 $user = new user();
-        		$user->setLogin('admin');
+        		$user->setLogin($argv[3]);
         		$user->setPassword(sha512($argv[4]));
         		$user->setProfils('admin');
         		$user->save();

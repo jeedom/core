@@ -163,26 +163,25 @@ if (!jeeFrontEnd.plugin) {
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
           spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
           if(jeedom.theme.mbState == 0) {
-          if (data.update.configuration && data.update.configuration.version == 'beta') {
-            if (isset(data.documentation_beta) && data.documentation_beta != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+            if (data.update.configuration){
+              if (isset(data.documentation_beta) && data.documentation_beta != '' && data.update.configuration.version == 'beta') {
+                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+              }
+              else if (isset(data.documentation) && data.documentation != '') {
+                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+              }
+              if (isset(data.changelog_beta) && data.changelog_beta != '' && data.update.configuration.version == 'beta') {
+                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+              }
+              else if (isset(data.changelog) && data.changelog != '') {
+                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+              }
             }
-            if (isset(data.changelog_beta) && data.changelog_beta != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
-            }
-          } else {
-            if (isset(data.documentation) && data.documentation != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
-            }
-            if (isset(data.changelog) && data.changelog != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
-            }
-          }
 
-          if (isset(data.info.display) && data.info.display != '') {
-            spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
+            if (isset(data.info.display) && data.info.display != '') {
+              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
+            }
           }
-        }
           spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
 
           self.dom_container.querySelector('#div_configPanel').unseen()

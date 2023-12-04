@@ -966,6 +966,7 @@ user::isBan();
 												<option value="local5">local5</option>
 												<option value="local6">local6</option>
 												<option value="local7">local7</option>
+											</select>
 										</div>
 									</div>
 								</div>
