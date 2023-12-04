@@ -527,7 +527,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <option value="-1 year">{{1 an}}</option>
                     <option value="-2 years">{{2 ans}}</option>
                     <option value="-3 years">{{3 ans}}</option>
-                    <option value="" selected>{{Jamais}}</option>
+                    <option value="" selected>{{Défaut}}</option>
                   </select>
                 </div>
               </div>
