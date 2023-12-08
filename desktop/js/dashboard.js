@@ -329,7 +329,7 @@ if (!jeeFrontEnd.dashboard) {
           effect: 'drop',
           queue: false
         }).find('.div_displayEquipement').packery()
-        this.displayChildObject($(this).attr('data-object_id'), true)
+        jeeP.displayChildObject($(this).attr('data-object_id'), true)
       })
     },
   }
