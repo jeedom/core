@@ -27,7 +27,7 @@ domUtils.showLoading = function() {
     if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
       domUtils.hideLoading()
       domUtils.DOMloading = 0
-      if (jeedomUtils) jeedomUtils.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+      if (jeedomUtils) jeedomUtils.showAlert({ level: 'danger', message: 'Operation Timeout: Something has gone wrong!' })
     }
   }, 20 * 1000)
 }
@@ -151,9 +151,9 @@ NodeList.prototype.remove = function() {
 Element.prototype.fade = function(_delayms, _opacity, _callback) {
   let opacity = parseInt(this.style.opacity) || 0
   let interval = 50,
-      gap = interval / _delayms,
-      delay = 0,
-      self = this
+    gap = interval / _delayms,
+    delay = 0,
+    self = this
 
   if (opacity > _opacity) gap = gap * -1
 
@@ -233,7 +233,7 @@ domUtils.createWidgetSlider = function(_options) {
     if (_options.sliderDiv.hasClass('slider') && _options.sliderDiv.noUiSlider) {
       _options.sliderDiv.noUiSlider.destroy()
     }
-  } catch(error) { }
+  } catch (error) { }
 
   let createOptions = {
     start: [_options.state],
@@ -263,7 +263,7 @@ domUtils.createWidgetSlider = function(_options) {
 
   try {
     return noUiSlider.create(_options.sliderDiv, createOptions)
-  } catch(error) { }
+  } catch (error) { }
 }
 
 /*Components
@@ -398,9 +398,9 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
 
       var matchesAr = []
       if (Array.isArray(matches) && matches.length > 0) {
-        if (!is_object(matches[0] )) {
+        if (!is_object(matches[0])) {
           matches.forEach(_src => {
-            matchesAr.push({text: _src, value: _src})
+            matchesAr.push({ text: _src, value: _src })
           })
           matches = matchesAr
         }
@@ -411,9 +411,9 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       _options.response(event, _options.data)
       _options.setUIContent()
     },
-    response: function(event, ui) {},
-    focus: function(event) {},
-    select: function(event, ui) {},
+    response: function(event, ui) { },
+    focus: function(event) { },
+    select: function(event, ui) { },
   }
 
   //Merge defaults and submitted options:
@@ -425,7 +425,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       _options.sourceAr = _options.source
     } else {
       _options.source.forEach(_src => {
-        _options.sourceAr.push({text: _src, value: _src})
+        _options.sourceAr.push({ text: _src, value: _src })
       })
     }
   }
@@ -443,7 +443,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     createEvents = true
     _options.data.container = document.createElement('ul')
     _options.data.container.addClass('jeeComplete').unseen()
-    _options.data.container._jeeComplete = {reference: _options.data.item, references: [_options.data.item]}
+    _options.data.container._jeeComplete = { reference: _options.data.item, references: [_options.data.item] }
     _options.data.container = document.body.appendChild(_options.data.container)
   } else {
     _options.data.container._jeeComplete.references.push(_options.data.item)
@@ -508,15 +508,15 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
         ulContainer._jeeComplete.reference.value = _options.data.text
       } else {
         var inputValue = ulContainer._jeeComplete.reference.value
-        inputValue = inputValue.substring(0, _options.request.start-1) + inputValue.substring(_options.request.end-1)
-        inputValue = inputValue.slice(0, _options.request.start-1) + _options.data.text + inputValue.slice(_options.request.start-1)
+        inputValue = inputValue.substring(0, _options.request.start - 1) + inputValue.substring(_options.request.end - 1)
+        inputValue = inputValue.slice(0, _options.request.start - 1) + _options.data.text + inputValue.slice(_options.request.start - 1)
         ulContainer._jeeComplete.reference.value = inputValue
       }
       _options.data.container.unseen()
-      setTimeout(()=> {
+      setTimeout(() => {
         ulContainer._jeeComplete.reference.blur()
       })
-    }, {capture: true, buble: true})
+    }, { capture: true, buble: true })
   }
 
   this.unRegisterEvent('keydown', 'jeeComplete').registerEvent('keydown', function jeeComplete(event) {
@@ -582,7 +582,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     if (event.key == 'Enter') {
       _options.data.container.querySelector('li.jeeCompleteItem.active')?.firstChild.triggerEvent('mousedown')
       _options.data.container.unseen()
-      setTimeout(()=> {
+      setTimeout(() => {
         event.target.blur()
       })
       return
@@ -591,7 +591,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     if (event.key == 'Backspace') {
       _options.data.container.unseen()
       _options.request.term = _options.request.term.slice(0, -1)
-      _options.request.end --
+      _options.request.end--
 
       document.getElementById(_options.id)._jeeComplete.request = _options.request
       _options._source(_options.request)
@@ -599,8 +599,8 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     } else if (event.key == 'Delete') {
       _options.data.container.unseen()
       if (event.target.selectionStart >= _options.request.start && event.target.selectionEnd <= _options.request.end) {
-        _options.request.end --
-        _options.request.term = _options.request.term.substr(_options.request.start-1, _options.request.end-1)
+        _options.request.end--
+        _options.request.term = _options.request.term.substr(_options.request.start - 1, _options.request.end - 1)
 
         document.getElementById(_options.id)._jeeComplete.request = _options.request
         _options._source(_options.request)
@@ -615,7 +615,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       return
     } else {
       _options.request.term += event.key
-      _options.request.end ++
+      _options.request.end++
     }
 
     if (event.key.length == 1 && _options.request.term.length >= _options.minLength) {
@@ -661,8 +661,7 @@ jeeDialog.alert() / confirm() / prompt() Handle mini modals
 jeeDialog.modal() handle mini modal with predefined content
 jeeDialog.dialog() handle complete moveable/resiable dialogs
 */
-var jeeDialog = (function()
-{
+var jeeDialog = (function() {
   'use strict'
   let exports = {
     _description: 'Jeedom dialog function handling modals and alert messages. /core/dom/dom.ui.js'
@@ -705,7 +704,7 @@ var jeeDialog = (function()
 
     //Main toast div:
     var toast = document.createElement('div')
-    toast.addClass('jeeToast', 'toast', 'toast-'+_options.level)
+    toast.addClass('jeeToast', 'toast', 'toast-' + _options.level)
     //Child title div:
     var toastTitle = document.createElement('div')
     toastTitle.addClass('jeeToast', 'toastTitle')
@@ -810,7 +809,7 @@ var jeeDialog = (function()
       container: document.body,
       open: function() { },
       onShown: function() { },
-      beforeClose: function() {},
+      beforeClose: function() { },
       onClose: function() {
         cleanBackdrop()
       }
@@ -923,8 +922,8 @@ var jeeDialog = (function()
             event.target.closest('div.jeeDialog').querySelector('button[data-type="cancel"]')?.click()
           })
         }
-
       }
+
     }
 
     _container.append(...template.children)
@@ -986,13 +985,13 @@ var jeeDialog = (function()
       var backDrop = document.getElementById('jeeDialogBackdrop')
       if (backDrop === null) {
         backDrop = document.createElement('div')
-        backDrop.setAttribute('id',  'jeeDialogBackdrop')
+        backDrop.setAttribute('id', 'jeeDialogBackdrop')
         backDrop.unseen()
         document.body.appendChild(backDrop)
       }
       if (_params.isMainDialog) {
         backDrop.addEventListener('click', function(event) {
-          document.querySelectorAll('div.jeeDialog').forEach( _dialog => {
+          document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
             if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
           })
         })
@@ -1007,7 +1006,7 @@ var jeeDialog = (function()
     var jeeDialogs = document.querySelectorAll('div.jeeDialog')
     var jeeDialogsWithBackdrop = 0
     var keep = false
-    jeeDialogs.forEach( _dialog => {
+    jeeDialogs.forEach(_dialog => {
       if (isset(_dialog._jeeDialog)) {
         if (_dialog._jeeDialog.options.backdrop === true && _dialog.isVisible()) {
           keep = true
@@ -1468,12 +1467,12 @@ var jeeDialog = (function()
       zIndex: 1025
     },
     jee_modal2: {
-      width:'75vw',
+      width: '75vw',
       top: '7vh',
       zIndex: 1021,
     },
     jee_modal3: {
-      width:'60vw',
+      width: '60vw',
       top: '5vh',
       zIndex: 1022,
     }
@@ -1581,6 +1580,7 @@ var jeeDialog = (function()
           this.dialog.unseen()
           this.dialog._jeeDialog.options.onClose()
           this.dialog.removeClass('active')
+          document.querySelectorAll('div.jeeDialog.jeeDialogMain:not([style*="display: none;"])')[0]?.addClass('active')
           cleanBackdrop()
         },
         destroy: function() {
@@ -1598,7 +1598,7 @@ var jeeDialog = (function()
 
       dialogContainer.parentNode.addEventListener('mousedown', function(event) {
         document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
-        try { event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active') } catch(e) { } //Dialog may close!
+        try { event.target.closest('div.jeeDialog.jeeDialogMain').addClass('active') } catch (e) { } //Dialog may close!
       })
 
       //____Set Moveable
@@ -1952,8 +1952,8 @@ var jeeCtxMenu = function(_options) {
     build: false, //Dynamic function building called at show
     position: false, //fn called on setPosition
     events: {
-      show: function() {}, //Beforte show
-      hide: function() {}, //Before hide
+      show: function() { }, //Beforte show
+      hide: function() { }, //Before hide
     },
   }
 
@@ -1972,7 +1972,7 @@ var jeeCtxMenu = function(_options) {
   ctxInstance.ctxMenu = ctxMenuContainer
 
   ctxInstance.hideAll = function() {
-    document.querySelectorAll('div.jeeCtxMenu').forEach(_ctx =>  {
+    document.querySelectorAll('div.jeeCtxMenu').forEach(_ctx => {
       if (isset(_ctx._jeeCtxMenu)) {
         _ctx._jeeCtxMenu.ctxMenu.unseen()
       }
@@ -2042,7 +2042,7 @@ var jeeCtxMenu = function(_options) {
   */
   document.querySelector(ctxInstance.options.appendTo)?.registerEvent('contextmenu', function(event) {
     ctxInstance.hideAll()
-    if (event.target.matches(ctxInstance.options.selector + ', ' + ctxInstance.options.selector + ' *') || event.target.closest(ctxInstance.options.selector) != null ) {
+    if (event.target.matches(ctxInstance.options.selector + ', ' + ctxInstance.options.selector + ' *') || event.target.closest(ctxInstance.options.selector) != null) {
       event.preventDefault()
       if (ctxInstance.isDisable) return
       event.stopImmediatePropagation()
@@ -2052,7 +2052,7 @@ var jeeCtxMenu = function(_options) {
       ctxInstance.show(event)
       return
     }
-  }, {capture: true, bubble: true})
+  }, { capture: true, bubble: true })
 
   /* Main context menu should always open under mouse to allways trigger mouseleave
   let doesExist = domUtils.registeredEvents.filter(l => l.id == 'closeContexts').length > 0
@@ -2181,7 +2181,7 @@ var jeeFileUploader = function(_options) {
           console.warn('jeeFileUploader: ajax error.')
         },
         success: function(data) {
-          if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
+          if (_options.done) _options.done.apply(_options.fileInput, [event, { result: data }])
         },
       })
     }
@@ -2202,7 +2202,7 @@ var jeeFileUploader = function(_options) {
         console.warn('jeeFileUploader: ajax error.')
       },
       success: function(data) {
-        if (_options.done) _options.done.apply(_options.fileInput, [event, {result: data}])
+        if (_options.done) _options.done.apply(_options.fileInput, [event, { result: data }])
       },
     })
   }
