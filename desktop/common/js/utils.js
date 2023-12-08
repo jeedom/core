@@ -879,9 +879,10 @@ jeedomUtils.setJeedomGlobalUI = function() {
         event.target.value = ''
         return
       }
-      else
+      else if (event.target.matches('body')) {
         //close active modal
         document.querySelector('div.jeeDialog.active')?._jeeDialog.close()
+      }
     }
   })
 

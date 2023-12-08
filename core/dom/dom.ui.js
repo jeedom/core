@@ -1580,7 +1580,8 @@ var jeeDialog = (function() {
           this.dialog.unseen()
           this.dialog._jeeDialog.options.onClose()
           this.dialog.removeClass('active')
-          document.querySelectorAll('div.jeeDialog.jeeDialogMain:not([style*="display: none;"])')[0]?.addClass('active')
+          let _dialog = document.querySelectorAll('div.jeeDialog.jeeDialogMain:not([style*="display: none;"])')
+          _dialog[_dialog.length - 1]?.addClass('active')
           cleanBackdrop()
         },
         destroy: function() {
