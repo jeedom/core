@@ -10,7 +10,10 @@
     "abbadon1334/sun-position-spa-php": "^2.0",
     "league/oauth2-client": "~2.3",
     "bacon/bacon-qr-code": "^2.0",
-    "guzzlehttp/guzzle" : "^6.5.8"
+    "guzzlehttp/guzzle" : "^6.5.8",
+    "http-interop/http-factory-guzzle": "^1.2",
+    "symfony/http-client": "^7.0",
+    "nyholm/psr7": "^1.8"
   },
   "config": {
       "allow-plugins": {
