@@ -1301,6 +1301,7 @@ class jeedom {
 			$datas = array_merge($datas, plan3d::searchByConfiguration($key));
 			$datas = array_merge($datas, listener::searchEvent($key));
 			$datas = array_merge($datas, user::searchByOptions($key));
+			$datas = array_merge($datas, user::searchByRight($key));
 		}
 		if (count($datas) > 0) {
 			foreach ($datas as $data) {
