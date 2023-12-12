@@ -37,10 +37,8 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 		ini_set('session.cookie_secure', 1);
 		session_name('__Host-PHPSESSID');
 	}
-}else{
-	if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
-	    throw new Exception('session does not exist');
-	}
+}else if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
+	throw new Exception('session does not exist');
 }
 @session_start();
 if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
