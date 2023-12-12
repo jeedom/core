@@ -21,6 +21,8 @@ $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:
 
 
 
+
+
 if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	$session_lifetime = $configs['session_lifetime'];
 	if (!is_numeric($session_lifetime)) {
@@ -38,6 +40,10 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
 		ini_set('session.cookie_secure', 1);
 		session_name('__Host-PHPSESSID');
+	}
+}else{
+	if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
+	    throw new Exception('session does not exist');
 	}
 }
 @session_start();
