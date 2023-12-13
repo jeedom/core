@@ -1414,9 +1414,6 @@
   .highcharts-data-label > span > span {
     color: var(--txt-color) !important;
   }
-  .highcharts-color-0 {
-    fill: var(--link-color);
-  }
   .highcharts-label.highcharts-point path {
     fill: var(--btnEq-default-color) !important;
     stroke: none;
