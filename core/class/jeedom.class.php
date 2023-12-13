@@ -173,6 +173,14 @@ class jeedom {
 
 	public static function health() {
 		$return = array();
+		$return[] = array(
+			'name' => __('Matériel', __FILE__),
+			'state' => true,
+			'result' => jeedom::getHardwareName(),
+			'comment' => '',
+			'key' => 'hardware'
+		);
+
 		$nbNeedUpdate = update::nbNeedUpdate();
 		$state = ($nbNeedUpdate == 0) ? true : false;
 		$return[] = array(
