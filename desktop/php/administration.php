@@ -1905,6 +1905,11 @@ user::isBan();
 													$div .= '<span class="input-group-btn"><a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a></span>';
 													$div .= '</div>';
 													break;
+												case 'password_noshow':
+													$div .= '<div class="input-group">';
+													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
+													$div .= '</div>';
+													break;
 												case 'select':
 													$div .= '<select class="form-control configKey" data-l1key="' . $key . '::' . $pKey . '">';
 													foreach ($parameter['values'] as $optkey => $optval) {
