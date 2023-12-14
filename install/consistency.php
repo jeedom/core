@@ -470,6 +470,10 @@ try {
 	echo "Set cache hour...";
 	cache::set('hour', strtotime('UTC'));
 	echo "OK\n";
+
+	echo "Check nodejs...";
+        echo shell_exec('sudo ' . __DIR__ . '/../resources/install_nodejs.sh');
+	echo "OK\n";
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();
