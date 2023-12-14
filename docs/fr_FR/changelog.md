@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.3
 
+## 4.3.21
+
+- Lancement forcé à chaque mise à jour du script de verification de nodejs/npm pour eviter des soucis d'installation de certain plugin (zwavejs, jeezigbee...)
+
 ## 4.3.20
 
 - Amélioration de la detection des ports USB
