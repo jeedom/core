@@ -225,7 +225,7 @@ class jeedom {
 			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? __('OK', __FILE__) . ' ' . date('Y-m-d H:i:s') . ' (' . gmdate('Y-m-d H:i:s', $lastKnowDate) . ')' : date('Y-m-d H:i:s'),
-			'comment' => ($state) ? '' : __('Si la derniere heure enregistrée est fausse, il faut la remettre à zéro', __FILE__),
+			'comment' => ($state) ? '' : __('Si la dernière heure enregistrée est fausse, il faut la remettre à zéro', __FILE__),
 			'key' => 'hour'
 		);
 
@@ -355,7 +355,7 @@ class jeedom {
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
 			'result' => $value,
-			'comment' => ($value == 0) ? '' : __('Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de reduire le nombre de plugins ou de scénarios', __FILE__),
+			'comment' => ($value == 0) ? '' : __('Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou de scénarios', __FILE__),
 		);
 
 		$value = shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk0" | grep "card status" | wc -l');
