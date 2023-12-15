@@ -41,9 +41,6 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	throw new Exception('session does not exist');
 }
 @session_start();
-if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
-    throw new Exception('session does not exist');
-}
 $_SESSION['ip'] = getClientIp();
 @session_write_close();
 if (user::isBan()) {
