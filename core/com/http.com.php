@@ -40,8 +40,8 @@ class com_http {
 	private $userAgent = '';
 	private $CURLOPT_HTTPAUTH = '';
 	private $CURLOPT = array();
-	private $httpCode = 0;
-	private $returnHeaders = array();
+	private $getinfo = '';
+	private $streamHeaders = array();
 	
 	/*     * ********************Fonctions statiques********************* */
 	
@@ -78,11 +78,7 @@ class com_http {
 			} else {
 				curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
 			}
-			curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($ch, $rHeader) use (&$rHeaders) {
-				$len = explode(":", $rHeader);
-				if (count($len) >= 2) $rHeaders[trim($len[0])] = trim($len[1]);
-				return strlen($rHeader); 
-			});
+			curl_setopt( $ch, CURLOPT_HEADERFUNCTION, array( $this, 'streamHeaders' ) );
 			if ($this->getCookiesession()) {
 				curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 			} else {
@@ -120,8 +116,7 @@ class com_http {
 				}
 			}
 			$response = curl_exec($ch);
-			$this->httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			$this->returnHeaders = $rHeaders;
+			$this->getinfo = curl_getinfo($ch);
 			$nbRetry++;
 			if (curl_errno($ch) && $nbRetry < $_maxRetry) {
 				curl_close($ch);
@@ -297,12 +292,22 @@ class com_http {
 		$this->CURLOPT = $CURLOPT;
 		return $this;
 	}
+
+	public function getInfos() {
+		return $this->getinfo;
+	}
 	
 	public function getHttpCode() {
-		return $this->httpCode;
+		$getInfos = $this->getInfos();
+		return $getInfos['http_code'];
 	}
 
-	public function getReturnHeaders() {
-		return $this->returnHeaders;
+	private function streamHeaders($handle, $headers) {
+		$this->streamHeaders[] = $headers;
+		return strlen( $headers );
+	}
+
+	public function getStreamHeaders() {
+		return $this->streamHeaders;
 	}
 }
