@@ -401,7 +401,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             </fieldset>
           </form>
           <form class="form-horizontal">
-            <legend><i class="fas fa-exclamation-triangle"></i> {{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</legend>
+            <legend><i class="fas fa-exclamation-triangle"></i> {{Ne pas exécuter la commande si l'équipement est déjà dans le bon état (alpha)}}</legend>
             <div class="form-group">
               <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
               <div class="col-sm-6">
