@@ -41,6 +41,7 @@ class com_http {
 	private $CURLOPT_HTTPAUTH = '';
 	private $CURLOPT = array();
 	private $httpCode = 0;
+	private $returnHeaders = array();
 	
 	/*     * ********************Fonctions statiques********************* */
 	
@@ -77,6 +78,11 @@ class com_http {
 			} else {
 				curl_setopt($ch, CURLOPT_TIMEOUT, $_timeout);
 			}
+			curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($ch, $rHeader) use (&$rHeaders) {
+				$len = explode(":", $rHeader);
+				if (count($len) >= 2) $rHeaders[trim($len[0])] = trim($len[1]);
+				return strlen($rHeader); 
+			});
 			if ($this->getCookiesession()) {
 				curl_setopt($ch, CURLOPT_COOKIESESSION, true);
 			} else {
@@ -115,6 +121,7 @@ class com_http {
 			}
 			$response = curl_exec($ch);
 			$this->httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			$this->returnHeaders = $rHeaders;
 			$nbRetry++;
 			if (curl_errno($ch) && $nbRetry < $_maxRetry) {
 				curl_close($ch);
@@ -293,5 +300,9 @@ class com_http {
 	
 	public function getHttpCode() {
 		return $this->httpCode;
+	}
+
+	public function getReturnHeaders() {
+		return $this->returnHeaders;
 	}
 }
