@@ -657,7 +657,10 @@ user::isBan();
 				</fieldset>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Accès interne}}</legend>
+						<legend>{{Accès interne (sur lui meme)}}</legend>
+						<fieldset>
+					<div class="alert alert-warning">{{La configuration réseaux interne n'est la que pour la communication interne de }} <?php echo config::byKey('product_name'); ?> {{ avec lui meme}}</div>
+				</fieldset>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
@@ -665,7 +668,6 @@ user::isBan();
 									<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
 										<option value="">{{Aucun}}</option>
 										<option value="http://">{{HTTP}}</option>
-										<option value="https://">{{HTTPS}}</option>
 									</select>
 									<span class="input-group-addon">://</span>
 									<input type="text" class="configKey form-control" data-l1key="internalAddr" />
