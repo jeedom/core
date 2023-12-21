@@ -93,7 +93,7 @@ class network {
 			}
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
 				if (jeedom::getHardwareName() == 'docker') {
-					return trim('http://' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+					return trim('http://'. config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
 				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
