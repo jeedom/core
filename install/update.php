@@ -231,9 +231,9 @@ try {
 				if(config::byKey('update::composerUpdate') == 1){
 					echo "Update composer file...\n";
 					if (exec('which composer | wc -l') > 0) {
-						shell_exec('export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
-						shell_exec('cd ' . __DIR__ . '/../;'.system::getCmdSudo().' export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
-						shell_exec(system::getCmdSudo().' rm /tmp/composer');
+						shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
+						shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
+						shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
 						if(method_exists('jeedom','cleanFileSystemRight')){
 							jeedom::cleanFileSystemRight();
 						}
