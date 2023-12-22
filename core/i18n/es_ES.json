@@ -1976,6 +1976,7 @@
         "Beta (Pas de support)": "Beta (sin soporte)",
         "Alpha (Pas de support)": "Alfa (sin soporte)",
         "Vérification automatique des mises à jour": "Comprobación automática de actualizaciones",
+        "[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core": "[PELIGRO] Actualice las dependencias de PHP (compositor) después de cada actualización principal",
         "Configuration des dépôts": "Configuración de repositorios",
         "Tester\/Synchroniser": "Prueba \/ Sincronizar",
         "Tester": "Prueba",
