@@ -1841,6 +1841,12 @@ user::isBan();
 										<input type="checkbox" class="configKey" data-l1key="update::autocheck" />
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core}}</label>
+									<div class="col-sm-1">
+										<input type="checkbox" class="configKey" data-l1key="update::composerUpdate" />
+									</div>
+								</div>
 							</fieldset>
 						</form>
 					</div>
