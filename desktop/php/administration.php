@@ -2248,14 +2248,10 @@ user::isBan();
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="form-group">
 							<div class="row">
-								<div class="col-md-3 col-xs-12">
 									<div class="alert alert-danger">
 										{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
 										{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 									</div>
-								</div>
-
-								<div class="col-md-9 col-xs-12">
 									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 										<div class="col-md-5 col-xs-6">
@@ -2313,7 +2309,6 @@ user::isBan();
 										</div>
 
 									</div>
-								</div>
 							</div>
 					</fieldset>
 					<br />
