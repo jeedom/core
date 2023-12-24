@@ -289,7 +289,7 @@ if (!jeeFrontEnd.types) {
           select = _queryCmd.querySelector('.modalCmdGenericSelect')
           genericName = select.options[select.selectedIndex].text
           if (genericName != '{{Aucun}}') {
-            genericName = genFamilyId + jeephp2js.typeStringSep + genericName
+            genericName = jeeP.gen_families[genFamilyId] + jeephp2js.typeStringSep + genericName
           }
           cmd = document.querySelector('div.eqlogicSortable[data-id="' + genFamilyId + '"] li.cmd[data-id="' + _queryCmd.getAttribute('data-id') + '"]')
           cmd.setAttribute('data-changed', '1')
