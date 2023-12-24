@@ -739,7 +739,7 @@ Desktop
     min-height: 30px !important;
   }
   li.eqLogic.dragSelected {
-    border: 2px dashed var(--logo-primary-color);
+    border: 2px dashed var(--logo-primary-color) !important;
   }
   li.eqLogic .bt_sortable {
     padding: 5px 0 0;
