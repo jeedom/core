@@ -22,7 +22,7 @@ sendVarToJS([
 	'jeephp2js.typeStringSep' => $typeStringSep
 ]);
 
-function jeedom_displayGenFamily($_family, $_familyId='') {
+function jeedom_displayGenFamily($_family, $_familyId = '') {
 	global $EQLOGICSALL, $GENRICSTYPES, $typeStringSep;
 
 	if ($_family == -1) {
@@ -36,7 +36,7 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 	$div .= '<div class="panel panel-default eqlogicSortable" data-id="' . $_index . '">';
 	$div .= '<div class="panel-heading">';
 	$div .= '<h3 class="panel-title">';
-	$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#gen_' . $_index . '">'.$_family;
+	$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#gen_' . $_index . '">' . $_family;
 	$div .= '<span class="spanNumber"> (#num#)</span></a></h3>';
 	$div .= '</div>';
 
@@ -46,17 +46,17 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
 	//eqLogics ul with cmds ul inside:
 	$div .= '<ul class="eqLogicSortable">';
-  	$numEqs = 0;
+	$numEqs = 0;
 	foreach ($EQLOGICSALL as $eqLogic) {
 		$eqGeneric = $eqLogic->getGenericType();
 		if (is_null($eqGeneric) && $_index != '') continue;
 		if (!is_null($eqGeneric) && $_index == '') continue;
 		if ($eqGeneric != $_familyId && $_index != '') continue;
 
-      	$numEqs++;
-		$div .= '<li class="eqLogic cursor" data-id="'.$eqLogic->getId().'" data-objectId="' . $eqLogic->getObject_id() . '" data-changed="0" data-generic="' . $eqGeneric . '" data-enable="'.$eqLogic->getIsEnable().'" data-name="'.$eqLogic->getHumanName().'" data-type="'.$eqLogic->getEqType_name().'">';
-		$div .= '<i class="bt_sortable fas fa-arrows-alt-v cursor"></i> ';
-		$div .= '<input type="checkbox" class="cb_selEqLogic" /> ';
+		$numEqs++;
+		$div .= '<li class="cursor eqLogic" data-id="' . $eqLogic->getId() . '" data-objectId="' . $eqLogic->getObject_id() . '" data-changed="0" data-generic="' . $eqGeneric . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getHumanName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
+		$div .= '<i class="fas fa-sort bt_sortable" style="cursor:grab!important;"></i> ';
+		$div .= '<input type="checkbox" class="cb_selEqLogic" title="{{Sélectionner l\'équipement}}"> ';
 
 		$object = $eqLogic->getObject();
 		if (is_object($object)) {
@@ -65,53 +65,53 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 			$objName = '<span class="eqName">{{Aucun}}</span>';
 		}
 
-		$div .= $eqLogic->getHumanName(). ' (' . $objName .' / '.$eqLogic->getEqType_name() . ')';
+		$div .= $eqLogic->getHumanName() . ' (' . $objName . ' / ' . $eqLogic->getEqType_name() . ')';
 		if ($eqLogic->getIsEnable() != 1) {
-			$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
-		}
-		if ($eqLogic->getIsVisible() != 1) {
+			$div .= '<i class="fas fa-power-off" title="{{Désactivé}}"></i> ';
+		} else if ($eqLogic->getIsVisible() != 1) {
 			$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 		}
 
-		$div .= '<a class="btn-xs warning bt_resetCmdsTypes pull-right"><i class="fas fa-times"></i> {{Reset types}}</a>';
-		$div .= '<a class="btn-xs success hidden bt_queryCmdsTypes pull-right"><i class="fas fa-puzzle-piece"></i> {{Types auto}}</a>';
+		if (!empty($cmds = $eqLogic->getCmd())) {
+			$div .= '<a class="btn-xs warning pull-right bt_resetCmdsTypes"><i class="fas fa-times"></i> {{Reset types}}</a>';
+			$div .= '<a class="btn-xs success pull-right hidden bt_queryCmdsTypes"><i class="fas fa-puzzle-piece"></i> {{Types auto}}</a>';
 
-
-		//cmds ul:
-		$div .= '<ul class="eqLogicCmds" style="display:none;" >';
-		foreach (($eqLogic->getCmd()) as $cmd) {
-			if ($cmd->getType() == 'info') {
-				$typeClass = 'alert-info';
-			} else {
-				$typeClass = 'alert-warning';
-			}
-
-			$cmdGenericType = $cmd->getGeneric_type();
-			$div .= '<li class="alert ' . $typeClass . ' cmd" data-id="' . $cmd->getId() . '" data-changed="0" data-name="' . $cmd->getName() . '" data-generic="' . $cmdGenericType . '" data-type="' . $cmd->getType() . '" data-subType="' . $cmd->getSubType() . '">' ;
-			$div .=  $cmd->getId().' | '.$cmd->getName();
-			if ($cmd->getIsVisible() != 1) {
-				$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
-			}
-
-			if ($cmdGenericType != '') {
-				if (isset($GENRICSTYPES[$cmdGenericType]['family'], $GENRICSTYPES[$cmdGenericType]['name'])) {
-					$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . $typeStringSep . $GENRICSTYPES[$cmdGenericType]['name'];
+			//cmds ul:
+			$div .= '<ul class="eqLogicCmds" style="display:none;" >';
+			foreach ($cmds as $cmd) {
+				if ($cmd->getType() == 'info') {
+					$typeClass = 'alert-info';
 				} else {
-					 $cmdGeneric = $cmdGenericType . ' ({{Inconnu}})';
+					$typeClass = 'alert-warning';
 				}
-			} else {
-				$cmdGeneric = 'None';
-			}
-			$div .= '<span class="genericType">' . $cmdGeneric . '</span>';
 
-			$div .= '</li>';
+				$cmdGenericType = $cmd->getGeneric_type();
+				$div .= '<li class="alert ' . $typeClass . ' cmd" data-id="' . $cmd->getId() . '" data-changed="0" data-name="' . $cmd->getName() . '" data-generic="' . $cmdGenericType . '" data-type="' . $cmd->getType() . '" data-subType="' . $cmd->getSubType() . '">';
+				$div .=  $cmd->getId() . ' | ' . $cmd->getName();
+				if ($cmd->getIsVisible() != 1) {
+					$div .= ' <i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
+				}
+
+				if ($cmdGenericType != '') {
+					if (isset($GENRICSTYPES[$cmdGenericType]['family'], $GENRICSTYPES[$cmdGenericType]['name'])) {
+						$cmdGeneric = $GENRICSTYPES[$cmdGenericType]['family'] . $typeStringSep . $GENRICSTYPES[$cmdGenericType]['name'];
+					} else {
+						$cmdGeneric = $cmdGenericType . ' ({{Inconnu}})';
+					}
+				} else {
+					$cmdGeneric = 'None';
+				}
+				$div .= '<span class="genericType">' . $cmdGeneric . '</span>';
+
+				$div .= '</li>';
+			}
+			$div .= '</ul>';
 		}
-		$div .= '</ul>';
 
 		$div .= '</li>';
 	}
 	$div .= '</ul>';
-  	$div = str_replace('#num#', strval($numEqs), $div);
+	$div = str_replace('#num#', strval($numEqs), $div);
 	$div .= '</div>';
 	$div .= '</div>';
 	$div .= '</div>';
@@ -119,9 +119,9 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 }
 ?>
 
-<br/>
+<br />
 <div class="input-group" style="margin-bottom:5px;display: inline-table;">
-	<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | id}}" id="in_searchTypes"/>
+	<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | id}}" id="in_searchTypes" />
 	<div class="input-group-btn">
 		<a id="bt_resetypeSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
 		</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
@@ -135,7 +135,7 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 
 <div class="panel-group" id="genericsContainer">
 
-<?php
+	<?php
 	echo jeedom_displayGenFamily(-1);
 	foreach ($families as $id => $name) {
 		echo jeedom_displayGenFamily($name, $id);
@@ -160,8 +160,8 @@ function jeedom_displayGenFamily($_family, $_familyId='') {
 			echo jeedom_displayGenFamily($family, trim($family));
 		}
 	}
-?>
+	?>
 
 </div>
 
-<?php include_file('desktop', 'types', 'js');?>
+<?php include_file('desktop', 'types', 'js'); ?>

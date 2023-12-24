@@ -38,55 +38,55 @@ if (!jeeFrontEnd.types) {
     setQueryButtons: function() {
       document.querySelectorAll('div.eqlogicSortable').forEach(_sort => {
         if (!Object.keys(jeeP.gen_families).includes(_sort.getAttribute('data-id'))) {
-          _sort.querySelector('.bt_queryCmdsTypes')?.addClass('hidden')
+          _sort.querySelectorAll('.bt_queryCmdsTypes')?.addClass('hidden')
         } else {
-          _sort.querySelector('.bt_queryCmdsTypes')?.removeClass('hidden')
+          _sort.querySelectorAll('.bt_queryCmdsTypes')?.removeClass('hidden')
         }
 
       })
     },
-    getSelectCmd: function(_family='', _type, _subtype, _none=true) {
+    getSelectCmd: function(_family = '', _type, _subtype, _none = true) {
       var htmlSelect = '<select class="modalCmdGenericSelect input-xs">'
       if (_none) htmlSelect += '<option value="">{{Aucun}}</option>'
       for (var group in this.genericsByFamily) {
         if (_family != '' && group != _family) continue
-          for (var i in this.genericsByFamily[group]) {
-            if (this.genericsByFamily[group][i].type.toLowerCase() == _type.toLowerCase() && (this.genericsByFamily[group][i].subtype.includes(_subtype) || this.genericsByFamily[group][i].subtype.length == 0) ) {
-              htmlSelect += '<option value="' + this.genericsByFamily[group][i].genkey + '">' + this.genericsByFamily[group][i].name + '</option>'
-            }
+        for (var i in this.genericsByFamily[group]) {
+          if (this.genericsByFamily[group][i].type.toLowerCase() == _type.toLowerCase() && (this.genericsByFamily[group][i].subtype.includes(_subtype) || this.genericsByFamily[group][i].subtype.length == 0)) {
+            htmlSelect += '<option value="' + this.genericsByFamily[group][i].genkey + '">' + this.genericsByFamily[group][i].name + '</option>'
           }
         }
-        htmlSelect += '</select>'
-        return htmlSelect
+      }
+      htmlSelect += '</select>'
+      return htmlSelect
     },
-    levenshteinDistance: function(str1='', str2='') {
-       const track = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null))
-       for (let i = 0; i <= str1.length; i += 1) {
-          track[0][i] = i
-       }
-       for (let j = 0; j <= str2.length; j += 1) {
-          track[j][0] = j
-       }
-       for (let j = 1; j <= str2.length; j += 1) {
-          for (let i = 1; i <= str1.length; i += 1) {
-             const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1
-             track[j][i] = Math.min(
-                track[j][i - 1] + 1, // deletion
-                track[j - 1][i] + 1, // insertion
-                track[j - 1][i - 1] + indicator, // substitution
-             )
-          }
-       }
-       return track[str2.length][str1.length];
+    levenshteinDistance: function(str1 = '', str2 = '') {
+      const track = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null))
+      for (let i = 0; i <= str1.length; i += 1) {
+        track[0][i] = i
+      }
+      for (let j = 0; j <= str2.length; j += 1) {
+        track[j][0] = j
+      }
+      for (let j = 1; j <= str2.length; j += 1) {
+        for (let i = 1; i <= str1.length; i += 1) {
+          const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1
+          track[j][i] = Math.min(
+            track[j][i - 1] + 1, // deletion
+            track[j - 1][i] + 1, // insertion
+            track[j - 1][i - 1] + indicator, // substitution
+          )
+        }
+      }
+      return track[str2.length][str1.length]
     },
     compareGenericName: function(a, b) {
-      if ( a.name < b.name ){
-        return -1;
+      if (a.name < b.name) {
+        return -1
       }
-      if ( a.name > b.name ){
-        return 1;
+      if (a.name > b.name) {
+        return 1
       }
-      return 0;
+      return 0
     },
     listGenericTypes: function() {
       jeeDialog.dialog({
@@ -116,7 +116,7 @@ if (!jeeFrontEnd.types) {
           if (generic.type == 'Info') {
             infos.push(generic)
           }
-           if (generic.type == 'Action') {
+          if (generic.type == 'Action') {
             actions.push(generic)
           }
         }
@@ -147,10 +147,10 @@ if (!jeeFrontEnd.types) {
 
       //Get selected eqLogics and all their cmd data:
       var queryEqIds = {}
-      queryEqIds[(_butAuto.closest('li.eqLogic ').getAttribute('data-id'))] = {'cmds': []}
-      _butAuto.closest('ul.eqLogicSortable').querySelectorAll('.ui-sortable-handle').forEach(_handle => {
-        if (_handle.querySelector('.cb_selEqLogic').checked) {
-          queryEqIds[_handle.getAttribute('data-id')] = {'cmds': []}
+      queryEqIds[(_butAuto.closest('li.eqLogic').getAttribute('data-id'))] = { 'cmds': [] }
+      _butAuto.closest('ul.eqLogicSortable').querySelectorAll('li.eqLogic.dragSelected').forEach(_handle => {
+        if (_handle.querySelector('ul.eqLogicCmds')) {
+          queryEqIds[_handle.getAttribute('data-id')] = { 'cmds': [] }
         }
       })
       var cmd
@@ -211,7 +211,7 @@ if (!jeeFrontEnd.types) {
               match = true
             else if (thisPoss.shortName.includes(thisCmd.name))
               match = true
-            else if (jeeP.levenshteinDistance(thisPoss.shortName, thisCmd.name) < (thisCmd.name.length / 2) +1)
+            else if (jeeP.levenshteinDistance(thisPoss.shortName, thisCmd.name) < (thisCmd.name.length / 2) + 1)
               match = true
 
             if (match) {
@@ -257,18 +257,21 @@ if (!jeeFrontEnd.types) {
         inner += '<div class="center biggerText">' + eqName + '</div>'
         for (var _cmd in queryEqIds[_id].cmds) {
           thisCmd = queryEqIds[_id].cmds[_cmd]
+          console.log(thisCmd)
           cmdName = document.querySelector('li.cmd[data-id="' + thisCmd.id + '"]').getAttribute('data-name')
           thisClass = thisCmd.type == 'info' ? 'alert-info' : 'alert-warning'
 
           inner += '<div class="form-group queryCmd" data-id="' + thisCmd.id + '">'
-          inner += '<label class="col-xs-2">' + cmdName + '</label>'
-          inner += '<span class="col-xs-3 ' + thisClass + '">' + thisCmd.genericName + '</span>'
+          inner += '<div class="col-xs-3">'
+          inner += '<input type = "checkbox" class="cb_selCmd" title = "{{Sélectionner la commande}}" checked> '
+          inner += '<label>' + cmdName + '</label>'
+          inner += '</div>'
+          inner += '<span class="col-xs-5 ' + thisClass + '">' + thisCmd.genericName + '</span>'
 
           select = jeeP.getSelectCmd(genFamily, thisCmd.type, thisCmd.subtype)
           select = select.replace('<option value="' + thisCmd.queryGeneric + '">', '<option selected value="' + thisCmd.queryGeneric + '">')
 
-          inner += '<div class="col-xs-6">' + select + '</div>'
-          inner += '<div class="col-xs-1"><input type="checkbox" class="cb_selCmd" checked/></div>'
+          inner += '<div class="col-xs-4">' + select + '</div>'
           inner += '</div>'
         }
         inner += '</div>'
@@ -309,8 +312,8 @@ if (!jeeFrontEnd.types) {
         _listEqlogic.querySelectorAll('li.eqLogic').forEach(_eqlogic => {
           if (_eqlogic.getAttribute('data-changed') == '0') return true
           eqLogics.push({
-            id : _eqlogic.getAttribute('data-id'),
-            generic_type : eqGeneric
+            id: _eqlogic.getAttribute('data-id'),
+            generic_type: eqGeneric
           })
         })
       })
@@ -333,8 +336,8 @@ if (!jeeFrontEnd.types) {
       document.querySelectorAll('li.cmd').forEach(_cmd => {
         if (_cmd.getAttribute('data-changed') == '0') return true
         cmds.push({
-          id : _cmd.getAttribute('data-id'),
-          generic_type : _cmd.getAttribute('data-generic')
+          id: _cmd.getAttribute('data-id'),
+          generic_type: _cmd.getAttribute('data-generic')
         })
       })
 
@@ -362,6 +365,20 @@ if (!jeeFrontEnd.types) {
         level: 'success'
       })
     },
+    removeCmdsGenerics: function(_eqLogics) {
+      jeeDialog.confirm('{{Supprimer les types génériques sur les commandes ?}}', function(result) {
+        if (result) {
+          _eqLogics.forEach(_eqLogic => {
+            _eqLogic.querySelectorAll('ul.eqLogicCmds li.cmd').forEach(_cmd => {
+              _cmd.setAttribute('data-generic', '')
+              _cmd.setAttribute('data-changed', '1')
+              _cmd.querySelector('.genericType').textContent = 'None'
+            })
+          })
+          jeeFrontEnd.modifyWithoutSave = true
+        }
+      })
+    }
   }
 }
 
@@ -416,30 +433,56 @@ document.getElementById('in_searchTypes')?.addEventListener('keyup', function(ev
 })
 document.getElementById('bt_resetypeSearch')?.addEventListener('click', function(event) {
   document.getElementById('in_searchTypes').jeeValue('').triggerEvent('keyup')
-  document.querySelectorAll('.cb_selEqLogic').forEach(_check => { _check.checked = false })
+  document.querySelectorAll('.cb_selEqLogic').forEach(_check => {
+    if (_check.checked) {
+      _check.checked = false
+      Sortable.utils.deselect(_check.closest('li.eqLogic.dragSelected'))
+    }
+  })
 })
 
 
 //Sortable:
 var sortLists = document.getElementById('genericsContainer').querySelectorAll('.eqLogicSortable')
 sortLists.forEach(_group => {
-  var sorty = new Sortable(_group, {
+  new Sortable(_group, {
     group: {
       name: 'expressions',
     },
-    delay: 100,
+    delay: 50,
     animation: 150,
     draggable: 'li.eqLogic',
     direction: 'vertical',
-    handle: 'i.bt_sortable',
+    handle: '.bt_sortable, .cb_selEqLogic',
     multiDrag: true,
     selectedClass: 'dragSelected',
-    multiDragKey: 'CTRL',
     avoidImplicitDeselect: true,
-    removeCloneOnHide: true
+    removeCloneOnHide: true,
+    onSelect: function(evt) {
+      if (!evt.item.querySelector('.cb_selEqLogic').checked)
+        setTimeout(function() { evt.item.querySelector('.cb_selEqLogic').checked = true }, 10)
+    },
+    onDeselect: function(evt) {
+      if (evt.item.querySelector('.cb_selEqLogic').checked) {
+        setTimeout(function() { evt.item.querySelector('.cb_selEqLogic').checked = false }, 10)
+      }
+    },
+    onAdd: function(evt) {
+      var generic = evt.target.closest('.eqlogicSortable').getAttribute('data-id')
+      evt.items.forEach(_eqLogic => {
+        _eqLogic.setAttribute('data-generic', generic)
+        _eqLogic.setAttribute('data-changed', '1')
+      })
+      jeeP.setFamiliesNumber()
+      jeeP.setQueryButtons()
+      jeeFrontEnd.modifyWithoutSave = true
+
+      if (!generic) {
+        jeeP.removeCmdsGenerics(evt.items)
+      }
+    }
   })
 })
-
 
 //Contextmenu commands:
 Object.keys(jeeP.genericsByFamily).forEach(key => {
@@ -466,15 +509,17 @@ new jeeCtxMenu({
     var cmdSubType = trigger.getAttribute('data-subType')
 
     var contextmenuitems = {}
-    contextmenuitems['deleteme'] = {'name': '{{Supprimer}}', 'id': 'delete_me'}
-    contextmenuitems['sep1'] = "---------"
+    if (trigger.getAttribute('data-generic')) {
+      contextmenuitems['deleteme'] = { 'name': '{{Supprimer}}', 'id': 'delete_me' }
+      contextmenuitems['sep1'] = "---------"
+    }
 
     var items
     var uniqId = 0
     for (var group in jeeP.genericsByFamily) {
       items = {}
       for (var i in jeeP.genericsByFamily[group]) {
-        if (jeeP.genericsByFamily[group][i].type.toLowerCase() == cmdType.toLowerCase() && (jeeP.genericsByFamily[group][i].subtype.includes(cmdSubType) || jeeP.genericsByFamily[group][i].subtype.length == 0) ) {
+        if (jeeP.genericsByFamily[group][i].type.toLowerCase() == cmdType.toLowerCase() && (jeeP.genericsByFamily[group][i].subtype.includes(cmdSubType) || jeeP.genericsByFamily[group][i].subtype.length == 0)) {
           items[uniqId] = {
             //'name': '<span title="'+jeeP.genericsByFamily[group][i].comment+'">'+jeeP.genericsByFamily[group][i].name+'</span>',
             'name': jeeP.genericsByFamily[group][i].name,
@@ -528,15 +573,13 @@ new jeeCtxMenu({
     trigger.addClass('hover')
     var eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
     var eqIds = [trigger.getAttribute('data-id')]
-    trigger.closest('ul.eqLogicSortable').querySelectorAll('.ui-sortable-handle').forEach( _hdl => {
-      if (_hdl.querySelector('.cb_selEqLogic').checked == true) {
-        eqIds.push(_hdl.getAttribute('data-id'))
-      }
+    trigger.closest('ul.eqLogicSortable').querySelectorAll('li.eqLogic.dragSelected').forEach(_hdl => {
+      eqIds.push(_hdl.getAttribute('data-id'))
     })
     eqIds = [...new Set(eqIds)]
 
     var contextmenuitems = {}
-    contextmenuitems['none'] = {'name': '{{Aucun}}', 'id': 'none'}
+    contextmenuitems['none'] = { 'name': '{{Aucun}}', 'id': 'none' }
     for (var group in jeeP.gen_families) {
       contextmenuitems[group] = {
         'name': jeeP.gen_families[group],
@@ -548,8 +591,10 @@ new jeeCtxMenu({
       callback: function(key, options) {
         var dataGeneric = options.commands[key].id
         if (dataGeneric == 'none') dataGeneric = ''
+        var eqLogics = []
         for (var idx in eqIds) {
           let eqlogic = document.querySelector('li.eqLogic[data-id="' + eqIds[idx] + '"]')
+          eqLogics.push(eqlogic)
           eqlogic.setAttribute('data-generic', dataGeneric)
           eqlogic.setAttribute('data-changed', '1')
           document.querySelector('#gen_' + dataGeneric + ' ul.eqLogicSortable').appendChild(eqlogic)
@@ -557,6 +602,10 @@ new jeeCtxMenu({
         jeeP.setFamiliesNumber()
         jeeP.setQueryButtons()
         jeeFrontEnd.modifyWithoutSave = true
+
+        if (!dataGeneric) {
+          jeeP.removeCmdsGenerics(eqLogics)
+        }
       },
       items: contextmenuitems
     }
@@ -588,24 +637,25 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if ((_target = event.target.matches('.eqLogicSortable > li.eqLogic')) || (_target = event.target.matches('.eqLogicSortable span.eqName'))) {
+  if ((_target = event.target.matches('li.eqLogic') || (_target = event.target.matches('li.eqLogic span.eqName')))) {
     _target = event.target.closest('li.eqLogic')
-    var el = event.target.closest('li.eqLogic').querySelector('ul.eqLogicCmds')
-    if (el.isVisible()) {
-      el.unseen()
+    var el = _target.querySelector('ul.eqLogicCmds')
+    if (el?.isVisible()) {
+      el?.unseen()
     } else {
-      el.seen()
+      el?.seen()
     }
     return
   }
 
   if (_target = event.target.closest('.bt_resetCmdsTypes')) {
-    _target.closest('li.eqLogic').querySelectorAll('ul.eqLogicCmds li.cmd').forEach(_cmd => {
-      _cmd.setAttribute('data-generic', '')
-      _cmd.setAttribute('data-changed', '1')
-      _cmd.querySelector('.genericType').textContent = 'None'
+    var eqLogics = []
+    _target.closest('ul.eqLogicSortable').querySelectorAll('li.eqLogic').forEach(_handle => {
+      if (_handle.hasClass('dragSelected') || _handle == _target.closest('li.eqLogic')) {
+        eqLogics.push(_handle)
+      }
     })
-    jeeFrontEnd.modifyWithoutSave = true
+    jeeP.removeCmdsGenerics(eqLogics)
     return
   }
 
@@ -634,4 +684,3 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 })
-
