@@ -265,7 +265,7 @@
         "Action": "Action",
         "Sauvegarde effectuée": "Backup completed",
         "Formule de calcul": "Algorithm",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Ligne": "Line",
         "Aire": "Area",
         "Barre": "Bar",
@@ -2352,8 +2352,9 @@
     "desktop\/php\/types.php": {
         "401 - Accès non autorisé": "401 - Unauthorized Access",
         "Equipements sans type": "Equipment without type",
+        "Sélectionner l\\'équipement": "Select equipment",
         "Aucun": "None",
-        "Non actif": "Disabled",
+        "Désactivé": "Disabled",
         "Non visible": "Not visible",
         "Reset types": "Reset types",
         "Types auto": "Auto type",
@@ -2673,7 +2674,7 @@
         "Historique calculé": "Calculated history",
         "Configuration des formules de calcul": "Configuration of calculation formulas",
         "Configuration": "Configuration",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Afficher le graphique calculé": "Show calculated graph",
         "Commandes": "Commands",
         "Configuration de l'historique des commandes": "Configure command history",
@@ -2948,7 +2949,7 @@
         "Utilisateur": "User",
         "Utilisateur limité": "Limited user",
         "Activé": "Enabled",
-        "Désactivé": "Deactivated",
+        "Désactivé": "Disabled",
         "OK": "Okay",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
@@ -3082,7 +3083,7 @@
         "Décocher pour désactiver l\\'action": "Uncheck to disable the action",
         "Cocher pour que la commande s\\'éxecute en parallèle des autres actions": "Check to have the command run in parallel with other actions",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Cache vidé": "Cache cleared",
         "Cache nettoyé": "Cache cleaned",
         "Sauvegarde réussie": "Saved successfully",
@@ -3123,7 +3124,9 @@
         "Sous type": "Sub type",
         "Types Génériques automatiques": "Automatic Generic Types",
         "Appliquer": "Apply",
+        "Sélectionner la commande": "Select order",
         "Types Génériques sauvegardés": "Generic types saved",
+        "Supprimer les types génériques sur les commandes ?": "Remove generic types on commands?",
         "Supprimer": "Delete"
     },
     "desktop\/js\/replace.js": {
@@ -3223,7 +3226,7 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Check for the command to run in parallel with the other actions",
         "Supprimer l\\'action": "Delete action",
         "Sélectionner un mot-clé": "Select a keyword",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Hide this block. <br> Ctrl + click: all",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Show this block. <br> Ctrl + click: all",
         "Décocher pour désactiver l\\'élément": "Uncheck to deactivate the element",
@@ -3423,7 +3426,7 @@
         "Message": "Message",
         "Info": "Information",
         "Action": "Action",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Valider": "Ok",
         "Annuler": "Cancel"
     },
@@ -3509,7 +3512,7 @@
         "Assistant cron": "Cron assistant",
         "Valider": "Ok",
         "Annuler": "Cancel",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Select a variable",
@@ -4744,7 +4747,7 @@
         "Durée en secondes": "Duration in seconds"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Scenario",
@@ -4759,21 +4762,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condition",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Time out": "Timeout"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Color",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Name",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visible",
@@ -4799,7 +4802,7 @@
         "Type Action (exec)": "Action type (exec)",
         "Objet": "Object",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Tous": "All"
     },
     "core\/template\/scenario\/ask.default.html": {
@@ -4811,31 +4814,31 @@
         "Délai": "Delay",
         "Délai en s": "Delay in s",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Command",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Design"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Name",
         "Valeur": "Value",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Active",
@@ -4843,7 +4846,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Search icon"
@@ -4861,16 +4864,16 @@
         "Important": "Important",
         "Information": "Information",
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Message",
-        "Sélectionner la commande": "Select command"
+        "Sélectionner la commande": "Select order"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "History to export",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "De": "From",
         "à": "To",
         "Nom": "Name",
@@ -4892,7 +4895,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Commands",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner la commande": "Select order",
         "Largeur (px)": "Width (px)",
         "Hauteur (px)": "Height (px)",
         "Délai (ms)": "Delay (ms)",

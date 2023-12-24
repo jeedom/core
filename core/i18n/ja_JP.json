@@ -2352,8 +2352,9 @@
     "desktop\/php\/types.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé",
         "Equipements sans type": "Equipements sans type",
+        "Sélectionner l\\'équipement": "Sélectionner l\\'équipement",
         "Aucun": "Aucun",
-        "Non actif": "Non actif",
+        "Désactivé": "Désactivé",
         "Non visible": "Non visible",
         "Reset types": "Reset types",
         "Types auto": "Types auto",
@@ -3123,7 +3124,9 @@
         "Sous type": "Sous type",
         "Types Génériques automatiques": "Types Génériques automatiques",
         "Appliquer": "Appliquer",
+        "Sélectionner la commande": "Sélectionner la commande",
         "Types Génériques sauvegardés": "Types Génériques sauvegardés",
+        "Supprimer les types génériques sur les commandes ?": "Supprimer les types génériques sur les commandes ?",
         "Supprimer": "Supprimer"
     },
     "desktop\/js\/replace.js": {
