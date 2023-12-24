@@ -99,7 +99,7 @@ function jeedom_displayGenFamily($_family, $_familyId = '') {
 						$cmdGeneric = $cmdGenericType . ' ({{Inconnu}})';
 					}
 				} else {
-					$cmdGeneric = 'None';
+					$cmdGeneric = '{{Aucun}}';
 				}
 				$div .= '<span class="genericType">' . $cmdGeneric . '</span>';
 
