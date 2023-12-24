@@ -265,7 +265,7 @@
         "Action": "Ação",
         "Sauvegarde effectuée": "Backup feito",
         "Formule de calcul": "Fórmula de calculo",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecionar o comando",
         "Ligne": "Linha",
         "Aire": "Área",
         "Barre": "Barra",
@@ -1427,7 +1427,7 @@
         "NOK": "NOK",
         "En cours": "Em curso",
         "Configuration démon": "Configuração do daemon",
-        "Désactivé": "Desabilitado",
+        "Désactivé": "Desactivado",
         "Statut démon": "Estatuto do daemon",
         "Santé": "Problemas",
         "Configuration du plugin": "Configuração de plugin",
@@ -2008,7 +2008,7 @@
         "Accès API": "Acesso à API",
         "Activé": "Ativado",
         "IP blanche": "IP em branco",
-        "Désactivé": "Desabilitado",
+        "Désactivé": "Desativado",
         "Accès API TTS": "Acesso API TTS",
         "Localhost": "Localhost",
         "Clé API Pro": "Chave API Pro",
@@ -2674,7 +2674,7 @@
         "Historique calculé": "Histórico calculado",
         "Configuration des formules de calcul": "Configuração das fórmulas de calculo",
         "Configuration": "Configuração",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecionar o comando",
         "Afficher le graphique calculé": "Mostrar o gráfico calculado",
         "Commandes": "Comandos",
         "Configuration de l'historique des commandes": "Configurar histórico de comandos",
@@ -2766,7 +2766,7 @@
         "Fichier enregistré avec succès": "Arquivo guardado com sucesso",
         "Activé": "Ativado",
         "Personnalisation avancée active": "Personalização avançada ativa",
-        "Désactivé": "Desabilitado",
+        "Désactivé": "Desativado",
         "Personnalisation avancée inactive": "Personalização avançada desativada",
         "Configutation sauvegardée": "Configuração guardada",
         "Editer": "Editar"
@@ -2949,7 +2949,7 @@
         "Utilisateur": "Utilizador",
         "Utilisateur limité": "Utilizador limitado",
         "Activé": "Ativo",
-        "Désactivé": "Desabilitado",
+        "Désactivé": "Desativo",
         "OK": "Ok",
         "Désactiver": "Desativar",
         "NOK": "NOK",
@@ -3083,7 +3083,7 @@
         "Décocher pour désactiver l\\'action": "Desmarque para desativar a ação",
         "Cocher pour que la commande s\\'éxecute en parallèle des autres actions": "Marque para que o comando seja executado em paralelo com outras ações",
         "Sélectionner un mot-clé": "Selecione uma palavra-chave",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Cache vidé": "Cache vazia",
         "Cache nettoyé": "Cache limpa",
         "Sauvegarde réussie": "Backup bem-sucedido",
@@ -3226,7 +3226,7 @@
         "Cocher pour que la commande s\\'exécute en parallèle des autres actions": "Marque para executar o comando em paralelo com outras ações",
         "Supprimer l\\'action": "Excluir a ação",
         "Sélectionner un mot-clé": "Selecione uma password",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Masquer ce bloc.<br>Ctrl+click: tous.": "Oculte este bloco.<br>Ctrl+clique: todos",
         "Afficher ce bloc.<br>Ctrl+click: tous.": "Mostre este bloco.<br>Ctrl+clique: todos",
         "Décocher pour désactiver l\\'élément": "Desmarque para desativar o elemento",
@@ -3426,7 +3426,7 @@
         "Message": "Mensagem",
         "Info": "Informações",
         "Action": "Açao",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Valider": "Validar",
         "Annuler": "Cancelar"
     },
@@ -3512,7 +3512,7 @@
         "Assistant cron": "Assistente de cron",
         "Valider": "Confirmar",
         "Annuler": "Cancelar",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",
@@ -4747,7 +4747,7 @@
         "Durée en secondes": "Duração em segundos"
     },
     "core\/template\/scenario\/cmd.action.message.default.html": {
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Cenário",
@@ -4762,21 +4762,21 @@
     },
     "core\/template\/scenario\/wait.default.html": {
         "Condition": "Condição",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecionar o comando",
         "Time out": "Tempo limite"
     },
     "core\/template\/scenario\/cmd.action.color.default.html": {
         "Couleur": "Cor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/popup.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/variable.default.html": {
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/widget.default.html": {
         "Visible": "Visível",
@@ -4802,7 +4802,7 @@
         "Type Action (exec)": "Tipo Ação (exec)",
         "Objet": "Objeto",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecione o comando",
         "Tous": "Todos"
     },
     "core\/template\/scenario\/ask.default.html": {
@@ -4814,31 +4814,31 @@
         "Délai": "Atraso",
         "Délai en s": "Atraso em s",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Comando",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
         "Design": "Projeto"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/message.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/log.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/tag.default.html": {
         "Nom": "Nome",
         "Valeur": "Valor",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/setColoredIcon.default.html": {
         "Actif": "Ativo",
@@ -4846,7 +4846,7 @@
     },
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Procurar ícone"
@@ -4864,16 +4864,16 @@
         "Important": "Importante",
         "Information": "Informação",
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/say.default.html": {
         "Message": "Mensagem",
-        "Sélectionner la commande": "Selecione o pedido"
+        "Sélectionner la commande": "Selecionar o comando"
     },
     "core\/template\/scenario\/exportHistory.default.html": {
         "Historique à exporter": "Histórico a exportar",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecionar o comando",
         "De": "De",
         "à": "até",
         "Nom": "Nome",
@@ -4895,7 +4895,7 @@
         "PNG": "PNG",
         "PDF": "PDF",
         "Commandes": "Comandos",
-        "Sélectionner la commande": "Selecione o pedido",
+        "Sélectionner la commande": "Selecionar o comando",
         "Largeur (px)": "Largura (px)",
         "Hauteur (px)": "Altura (px)",
         "Délai (ms)": "Atraso (ms)",
