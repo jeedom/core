@@ -597,7 +597,7 @@ include_file('3rdparty', 'tree/tree', 'js');
                 })
               },
               success: function() {
-                document.querySelector('#treeFolder-img span.tj_description.selected')?.click()
+                document.querySelector('.leafRef[data-path$="' + filepath.replace(/[^\/]+$/, '') + '"]')?.click()
               }
             })
           }
