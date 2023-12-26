@@ -231,9 +231,6 @@ include_file('3rdparty', 'tree/tree', 'js');
           const tagLegend = document.createElement('legend');
           tagLegend.className = keyClass;
           tagLegend.appendChild(tagB);
-          tagLegend.addEventListener("visibilitychange", (event) => {
-            console.log(event, newNode);
-          });
           folderDisplayContainer.appendChild(tagLegend);
 
           const iconList = jeephp2js.icon_Struct[category]
