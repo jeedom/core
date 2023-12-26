@@ -910,7 +910,9 @@
         "Icônes vertes": "Grüne Symbole",
         "Rechercher": "Suchen nach",
         "Nom du nouveau dossier": "Neuer Ordnername",
+        "Impossible de renommer le dossier parent": "Der übergeordnete Ordner kann nicht umbenannt werden",
         "Nouveau nom du dossier": "Neuer Ordnername",
+        "Impossible de supprimer le dossier parent": "Der übergeordnete Ordner kann nicht gelöscht werden",
         "Etes-vous sûr de vouloir supprimer le dossier": "Möchten Sie den Ordner wirklich löschen?",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Achtung: Der Inhalt des Ordners wird während des Vorgangs dauerhaft gelöscht",
         "Êtes-vous sûr de vouloir supprimer cette image": "Möchten Sie dieses Bild wirklich löschen?"

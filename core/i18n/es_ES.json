@@ -910,7 +910,9 @@
         "Icônes vertes": "Iconos verdes",
         "Rechercher": "Buscar",
         "Nom du nouveau dossier": "Nuevo nombre de carpeta",
+        "Impossible de renommer le dossier parent": "No se puede cambiar el nombre de la carpeta principal",
         "Nouveau nom du dossier": "Nuevo nombre de carpeta",
+        "Impossible de supprimer le dossier parent": "No se puede eliminar la carpeta principal",
         "Etes-vous sûr de vouloir supprimer le dossier": "¿Está seguro de que desea eliminar la carpeta?",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Advertencia: el contenido de la carpeta se eliminará de forma permanente durante la operación",
         "Êtes-vous sûr de vouloir supprimer cette image": "¿Estás seguro de que deseas eliminar esta imagen?"

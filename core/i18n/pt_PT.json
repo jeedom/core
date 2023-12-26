@@ -910,7 +910,9 @@
         "Icônes vertes": "Ícones verdes",
         "Rechercher": "Pesquisar",
         "Nom du nouveau dossier": "Nome da nova pasta",
+        "Impossible de renommer le dossier parent": "Não é possível renomear a pasta pai",
         "Nouveau nom du dossier": "Nome da nova pasta",
+        "Impossible de supprimer le dossier parent": "Não foi possível excluir a pasta pai",
         "Etes-vous sûr de vouloir supprimer le dossier": "Tem certeza de que deseja excluir a pasta",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Atenção: o conteúdo da pasta será excluído permanentemente durante a operação",
         "Êtes-vous sûr de vouloir supprimer cette image": "Tem certeza de que deseja excluir esta imagem"

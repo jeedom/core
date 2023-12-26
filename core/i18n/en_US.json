@@ -910,7 +910,9 @@
         "Icônes vertes": "Green icons",
         "Rechercher": "Search",
         "Nom du nouveau dossier": "New folder name",
+        "Impossible de renommer le dossier parent": "Unable to rename parent folder",
         "Nouveau nom du dossier": "New folder name",
+        "Impossible de supprimer le dossier parent": "Unable to delete parent folder",
         "Etes-vous sûr de vouloir supprimer le dossier": "Are you sure you want to delete the folder",
         "Attention : le contenu du dossier sera définitivement supprimé lors de l'opération.": "Warning: the contents of the folder will be permanently deleted during the operation",
         "Êtes-vous sûr de vouloir supprimer cette image": "Are you sure you want to delete this picture"
