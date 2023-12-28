@@ -83,7 +83,7 @@ $repoList = [];
 						if ($value['scope']['backup'] == false) {
 							continue;
 						}
-						if ($value['enable'] == 0) {
+						if (!isset($value['enable']) || $value['enable'] != 1) {
 							continue;
 						}
 						$class = 'repo_' . $rkey;

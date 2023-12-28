@@ -1726,13 +1726,21 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
-					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
-					$scenario->persistLog();
+					if(is_object($scenario)){
+						$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
+						$scenario->persistLog();
+					} else {
+						log::add('cmd', 'info', __('Lancement de l\'arret de jeedom', __FILE__));
+					}
 					jeedom::haltSystem();
 					return;
 				} elseif ($this->getExpression() == 'jeedom_reboot') {
-					$this->setLog($scenario, __('Lancement du reboot de jeedom', __FILE__));
-					$scenario->persistLog();
+					if(is_object($scenario)){
+						$this->setLog($scenario, __('Lancement du reboot de jeedom', __FILE__));
+						$scenario->persistLog();
+					} else {
+						log::add('cmd', 'info', __('Lancement du reboot de jeedom', __FILE__));
+					}
 					jeedom::rebootSystem();
 					return;
 				} elseif ($this->getExpression() == 'scenario_return') {

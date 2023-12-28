@@ -19,3 +19,5 @@ jobs:
     uses: jeedom/workflows/.github/workflows/lint_Php73.yml@main
   php74:
     uses: jeedom/workflows/.github/workflows/lint_Php74.yml@main
+  php82:
+    uses: jeedom/workflows/.github/workflows/lint_Php82.yml@main

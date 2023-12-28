@@ -32,7 +32,7 @@ if (!jeeFrontEnd.plugin) {
     },
     postInit: function() {
       //is plugin id in url to go to configuration:
-      if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
+      if (typeof (jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
         let modal = jeeDialog.get('#div_confPlugin', 'dialog')
         let dom_container = null
         if (modal != null) {
@@ -162,8 +162,8 @@ if (!jeeFrontEnd.plugin) {
           //top right buttons:
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
           spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
-          if(jeedom.theme.mbState == 0) {
-            if (data.update.configuration){
+          if (jeedom.theme.mbState == 0) {
+            if (data.update.configuration) {
               if (isset(data.documentation_beta) && data.documentation_beta != '' && data.update.configuration.version == 'beta') {
                 spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
               }
@@ -182,7 +182,7 @@ if (!jeeFrontEnd.plugin) {
               spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
             }
           }
-          spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
+          spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>')
 
           self.dom_container.querySelector('#div_configPanel').unseen()
           self.dom_container.querySelector('#div_plugin_panel').empty()
@@ -407,7 +407,7 @@ if (!jeeFrontEnd.plugin) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
-          });
+          })
         },
         success: function() {
           if (!isset(_param)) {
@@ -417,7 +417,7 @@ if (!jeeFrontEnd.plugin) {
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })
-          jeeFrontEnd.modifyWithoutSave = false;
+          jeeFrontEnd.modifyWithoutSave = false
           var postSave = document.getElementById('span_plugin_id').innerHTML + '_postSaveConfiguration'
           if (typeof window[postSave] == 'function') {
             window[postSave]()
@@ -474,7 +474,7 @@ document.getElementById('in_searchPlugin')?.addEventListener('keyup', function(e
 
   document.querySelectorAll('.pluginDisplayCard').unseen()
   var text
-  document.querySelectorAll('.pluginDisplayCard .name').forEach( _name => {
+  document.querySelectorAll('.pluginDisplayCard .name').forEach(_name => {
     text = jeedomUtils.normTextLower(_name.textContent)
     if (text.includes(search)) {
       _name.closest('.pluginDisplayCard').seen()
@@ -514,7 +514,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('click', funct
           jeedomUtils.reloadPagePrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
         } else {
           jeedomUtils.showAlert({
-            message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}',
+            message: '{{Synchronisation réussie. Aucun nouveau plugin installé.}}',
             level: 'success'
           })
         }
@@ -570,7 +570,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('mouseup', fun
     if (event.which == 2) {
       event.preventDefault()
       var pluginId = _target.getAttribute('data-plugin_id')
-      document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
   }

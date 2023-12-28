@@ -277,7 +277,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'HEATING_STATE' => array(
 				'name' => __('Chauffage fil pilote Etat', __FILE__), 'familyid' => 'Heating', 'family' => __('Chauffage', __FILE__),
-				'type' => 'Info', 'subtype' => array('binary')
+				'type' => 'Info', 'subtype' => array('binary', 'numeric')
 			),
 			'HEATING_OTHER' => array(
 				'name' => __('Chauffage fil pilote Bouton', __FILE__), 'familyid' => 'Heating', 'family' => __('Chauffage', __FILE__),

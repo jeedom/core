@@ -27,10 +27,6 @@ class network {
 		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
 			return 'external';
 		}
-		$jeedom_ips = explode('.', $jeedom_ip);
-		if (count($jeedom_ips) != 4) {
-			return 'external';
-		}
 		if (config::byKey('network::localip') != '') {
 			$localIps = explode(';', config::byKey('network::localip'));
 			foreach ($localIps as $localIp) {
@@ -38,6 +34,10 @@ class network {
 					return 'internal';
 				}
 			}
+		}
+		$jeedom_ips = explode('.', $jeedom_ip);
+		if (count($jeedom_ips) != 4) {
+			return 'external';
 		}
 		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
@@ -93,7 +93,7 @@ class network {
 			}
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
 				if (jeedom::getHardwareName() == 'docker') {
-					return trim(config::byKey('internalProtocol') . config::byKey('internalProtocol') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+					return trim('http://'. config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
 				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}

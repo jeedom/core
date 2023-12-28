@@ -657,7 +657,8 @@ user::isBan();
 				</fieldset>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Accès interne}}</legend>
+						<legend>{{Accès interne (sur lui meme)}}</legend>
+						<div class="alert alert-warning">{{La configuration réseaux interne n'est la que pour la communication interne de }} <?php echo config::byKey('product_name'); ?> {{ avec lui meme}}</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
@@ -665,7 +666,6 @@ user::isBan();
 									<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
 										<option value="">{{Aucun}}</option>
 										<option value="http://">{{HTTP}}</option>
-										<option value="https://">{{HTTPS}}</option>
 									</select>
 									<span class="input-group-addon">://</span>
 									<input type="text" class="configKey form-control" data-l1key="internalAddr" />
@@ -1841,6 +1841,12 @@ user::isBan();
 										<input type="checkbox" class="configKey" data-l1key="update::autocheck" />
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core}}</label>
+									<div class="col-sm-1">
+										<input type="checkbox" class="configKey" data-l1key="update::composerUpdate" />
+									</div>
+								</div>
 							</fieldset>
 						</form>
 					</div>
@@ -1903,6 +1909,11 @@ user::isBan();
 													$div .= '<div class="input-group">';
 													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													$div .= '<span class="input-group-btn"><a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a></span>';
+													$div .= '</div>';
+													break;
+												case 'password_noshow':
+													$div .= '<div class="input-group">';
+													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													$div .= '</div>';
 													break;
 												case 'select':
@@ -2243,14 +2254,10 @@ user::isBan();
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="form-group">
 							<div class="row">
-								<div class="col-md-3 col-xs-12">
 									<div class="alert alert-danger">
 										{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
 										{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 									</div>
-								</div>
-
-								<div class="col-md-9 col-xs-12">
 									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 										<div class="col-md-5 col-xs-6">
@@ -2308,7 +2315,6 @@ user::isBan();
 										</div>
 
 									</div>
-								</div>
 							</div>
 					</fieldset>
 					<br />
