@@ -2,7 +2,6 @@
 
 echo "Begin installation of composer"
 wget https://getcomposer.org/installer -O composer-setup.php
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 sudo rm /usr/local/bin/composer
