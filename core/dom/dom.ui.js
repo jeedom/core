@@ -19,21 +19,29 @@
 /* jeeDOM UI functionnalities
 */
 
-domUtils.showLoading = function() {
+domUtils.showLoading = function(_timeout) {
   document.getElementById('div_jeedomLoading')?.seen()
   //Hanging timeout:
-  clearTimeout(domUtils.loadingTimeout)
-  domUtils.loadingTimeout = setTimeout(() => {
-    if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
-      domUtils.hideLoading()
-      domUtils.DOMloading = 0
-      if (jeedomUtils) jeedomUtils.showAlert({ level: 'danger', message: 'Operation Timeout: Something has gone wrong!' })
-    }
-  }, 20 * 1000)
+  if(domUtils.loadingTimeout && domUtils.loadingTimeout != null){
+    clearTimeout(domUtils.loadingTimeout)
+    domUtils.loadingTimeout = null
+  }
+  if(_timeout && typeof _timeout == 'number'){
+    domUtils.loadingTimeout = setTimeout(() => {
+      if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
+        domUtils.hideLoading()
+        domUtils.DOMloading = 0
+        if (jeedomUtils) jeedomUtils.showAlert({ level: 'danger', message: 'Operation Timeout: Something has gone wrong!' })
+      }
+    }, _timeout * 1000)
+  }
 }
 domUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading')?.unseen()
-  clearTimeout(domUtils.loadingTimeout)
+  if(domUtils.loadingTimeout && domUtils.loadingTimeout != null){
+    clearTimeout(domUtils.loadingTimeout)
+    domUtils.loadingTimeout = null
+  }
 }
 
 /* HTMLCollection is live, NodeList is static and iterable
