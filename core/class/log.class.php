@@ -345,9 +345,9 @@ class log {
 				'<span class="label label-xs label-info">NOTICE</span>',
 				'<span class="label label-xs label-warning">WARNING</span>',
 				'<span class="label label-xs label-danger">ERROR</span>',
-				'<span class="label label-xs label-danger">CRITICAL</span>',
+				'<span class="label label-xs label-danger">CRITI</span>',
 				'<span class="label label-xs label-danger">ALERT</span>',
-				'<span class="label label-xs label-danger">EMERGENCY</span>',
+				'<span class="label label-xs label-danger">EMERG</span>',
 				'<span class="label label-xl label-danger">-------------------- TRUNCATED LOG --------------------</span>'
 			);
 			$logText = str_replace($search, $replace, $logText);
