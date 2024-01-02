@@ -324,11 +324,14 @@ class log {
 				'WARNING:',
 				'Erreur',
 				'OK',
-				'[INFO]',
 				'[DEBUG]',
+				'[INFO]',
+				'[NOTICE]',
 				'[WARNING]',
-				'[ALERT]',
 				'[ERROR]',
+				'[CRITICAL]',
+				'[ALERT]',
+				'[EMERGENCY]',
 				'-------------------- TRUNCATED LOG --------------------'
 			);
 			$replace = array(
@@ -337,11 +340,14 @@ class log {
 				'<span class="warning">WARNING</span>',
 				'<span class="danger">Erreur</span>',
 				'<strong>OK</strong>',
-				'<span class="label label-xs label-info">INFO</span>',
 				'<span class="label label-xs label-success">DEBUG</span>',
+				'<span class="label label-xs label-info">INFO</span>',
+				'<span class="label label-xs label-info">NOTICE</span>',
 				'<span class="label label-xs label-warning">WARNING</span>',
-				'<span class="label label-xs label-warning">ALERT</span>',
 				'<span class="label label-xs label-danger">ERROR</span>',
+				'<span class="label label-xs label-danger">CRITICAL</span>',
+				'<span class="label label-xs label-danger">ALERT</span>',
+				'<span class="label label-xs label-danger">EMERGENCY</span>',
 				'<span class="label label-xl label-danger">-------------------- TRUNCATED LOG --------------------</span>'
 			);
 			$logText = str_replace($search, $replace, $logText);
