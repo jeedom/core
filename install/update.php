@@ -205,7 +205,7 @@ try {
 				}
 				jeedom::stop();
 				echo "[PROGRESS][45]\n";
-				if(version_compare(PHP_VERSION, '8.0.0') >= 0 && file_exist($cibDir . '/vendor')){
+				if(version_compare(PHP_VERSION, '8.0.0') >= 0 && file_exists($cibDir . '/vendor')){
 					shell_exec('rm -rf ' . $cibDir . '/vendor');
 				}
 				echo "Moving files...";
