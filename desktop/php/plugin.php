@@ -69,14 +69,19 @@ $plugins_list = plugin::listPlugin(false, true);
             $div .= '<center>';
             $div .= '<img src="' . $plugin->getPathImgIcon() . '" />';
             $div .= '</center>';
-            $lbl_version = false;
             $update = $plugin->getUpdate();
             if (is_object($update)) {
               $version = $update->getConfiguration('version');
-              if ($version && $version != 'stable') $lbl_version = true;
-            }
-            if ($lbl_version) {
-              $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
+              switch($version) {
+                case 'alpha':
+                  $div .= '<span class="name"><sub style="font-size:22px" class="danger">&#8226</sub>' . $plugin->getName() . '</span>';
+                  break;
+                case 'beta':
+                  $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
+                  break;
+                default:
+                  $div .= '<span class="name">' . $plugin->getName() . '</span>';
+              }
             } else {
               $div .= '<span class="name">' . $plugin->getName() . '</span>';
             }
