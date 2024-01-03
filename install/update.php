@@ -232,6 +232,11 @@ try {
 				echo "OK\n";
 				echo "[PROGRESS][53]\n";
 				if(config::byKey('update::composerUpdate') == 1 || version_compare(PHP_VERSION, '8.0.0') >= 0){
+					if (exec('which composer | wc -l') == 0) {
+						echo "\nNeed to install composer...";
+						echo shell_exec('sudo ' . __DIR__ . '/../resources/install_composer.sh');
+						echo "OK\n";
+					}
 					echo "Update composer file...\n";
 					if (exec('which composer | wc -l') > 0) {
 						shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
