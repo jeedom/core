@@ -144,6 +144,9 @@ try {
 		'/var/www/html/data/imgOs/',
 		config::byKey('backup::path'),
 	);
+	if(version_compare(PHP_VERSION, '8.0.0') >= 0){
+		$excludes[] = 'vendor';
+	}
 
 	if (config::byKey('recordDir', 'camera') != '') {
 		$excludes[] = config::byKey('recordDir', 'camera');
