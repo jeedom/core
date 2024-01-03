@@ -502,6 +502,10 @@ jeedomUtils.initApplication = function(_reinit) {
         }
 
         jeedomUtils.triggerThemechange()
+        // hide changeTheme button if theme change is not possible
+        if (jeedom.theme.mobile_theme_color == jeedom.theme.mobile_theme_color_night) {
+          $('#bt_changeTheme').hide()
+        }
         for (let i in plugins) {
           if (plugins[i].eventjs == 1) {
             include.push('plugins/' + plugins[i].id + '/mobile/js/event.js')
