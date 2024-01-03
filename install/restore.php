@@ -124,7 +124,7 @@ try {
 	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
 	echo "OK\n";
 
-	if(config::byKey('update::composerUpdate') == 1 || version_compare(PHP_VERSION, '8.0.0') >= 0){
+	if(version_compare(PHP_VERSION, '8.0.0') >= 0){
 		if (exec('which composer | wc -l') == 0) {
 			echo "\nNeed to install composer...";
 			echo shell_exec('sudo ' . __DIR__ . '/../resources/install_composer.sh');
