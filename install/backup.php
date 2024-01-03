@@ -145,7 +145,7 @@ try {
 		config::byKey('backup::path'),
 	);
 	if(version_compare(PHP_VERSION, '8.0.0') >= 0){
-		$excludes[] = 'vendor';
+		$excludes[] = '/vendor';
 	}
 
 	if (config::byKey('recordDir', 'camera') != '') {
