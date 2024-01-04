@@ -79,7 +79,7 @@ class user {
 					return false;
 				}
 			} else {
-				if (!ldap_bind($ad, 'uid=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+				if (!ldap_bind($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
 					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
 					return false;
 				}
