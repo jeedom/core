@@ -44,6 +44,10 @@ service_action(){
   fi
 }
 
+version() { 
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; 
+}
+
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 1 - install${NORMAL}"
@@ -316,6 +320,17 @@ step_9_jeedom_configuration() {
 step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
+  chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
+  ${WEBSERVER_HOME}/resources/install_composer.sh
+  PHP_VERSION=$(php -r "echo PHP_VERSION;")
+  if [ $(version $PHP_VERSION) -ge $(version "8.0.0") ]; then
+    echo "PHP version highter than 8.0.0, need to reinstall composer dependancy"
+    rm -rf ${WEBSERVER_HOME}/vendor
+    rm -rf ${WEBSERVER_HOME}/composer.lock
+    export COMPOSER_ALLOW_SUPERUSER=1
+    cd ${WEBSERVER_HOME}
+    composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+  fi
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
@@ -363,17 +378,6 @@ step_11_jeedom_post() {
   fi
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
   ${WEBSERVER_HOME}/resources/install_nodejs.sh
-
-  chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
-  ${WEBSERVER_HOME}/resources/install_composer.sh
- # if [ $(which composer | wc -l) -ne 0 ]; then
- #     rm -rf ${WEBSERVER_HOME}/vendor
- #     rm -rf ${WEBSERVER_HOME}/composer.lock
- #     export COMPOSER_ALLOW_SUPERUSER=1
- #     cd ${WEBSERVER_HOME}
- #     composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
- # fi
-  
   echo "${GREEN}Step 11 - Jeedom post-install done${NORMAL}"
 }
 
