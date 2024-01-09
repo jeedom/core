@@ -15,7 +15,7 @@ service_mariadb(){
     service mariadb $1
     if [ $? -ne 0 ]; then
       echo "${ROUGE}Cannot start mariadb - Cancelling${NORMAL}"
-      exit 1
+      return 1
     fi
   fi
   return 0
