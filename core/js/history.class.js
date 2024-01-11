@@ -986,6 +986,7 @@ jeedom.history.drawChart = function(_params) {
           if (isset(_params.yAxisScaling) && _params.yAxisScaling !== '') options.default.yAxisScaling = _params.yAxisScaling
           if (isset(_params.yAxisByUnit) && _params.yAxisByUnit !== '') options.default.yAxisByUnit = _params.yAxisByUnit
           if (isset(_params.yAxisScalePercent) && _params.yAxisScalePercent !== '') options.default.yAxisScalePercent = _params.yAxisScalePercent
+          if (isset(_params.yAxisVisible) && _params.yAxisVisible !== '') options.default.yAxisVisible = _params.yAxisVisible
           jeedom.history.initChart(_params.el, options)
         } else {
           //set options for comparison serie:
@@ -1112,6 +1113,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   if (isset(_options.default.yAxisScaling)) jeedom.history.default.yAxisScaling = Boolean(Number(_options.default.yAxisScaling))
   if (isset(_options.default.yAxisByUnit)) jeedom.history.default.yAxisByUnit = Boolean(Number(_options.default.yAxisByUnit))
   if (isset(_options.default.yAxisScalePercent)) jeedom.history.default.yAxisScalePercent = Number(_options.default.yAxisScalePercent)
+  if (isset(_options.default.yAxisVisible)) jeedom.history.default.yAxisVisible = Boolean(Number(_options.default.yAxisVisible))
 
   /*
   HichCharts button states (undocumented):
