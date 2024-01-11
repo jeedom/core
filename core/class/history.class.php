@@ -381,6 +381,22 @@ class history {
 			}
 		}
 		$sql .= ' FROM (';
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false && count($goupingType)>2) {
+			$functionFinest = 'AVG';
+			if ($goupingType[2] == 'high' || $goupingType[2] == 'max') {
+				$functionFinest = 'MAX';
+			} else  if ($goupingType[2] == 'low' || $goupingType[2] == 'min') {
+				$functionFinest = 'MIN';
+			} else  if ($goupingType[2] == 'sum') {
+				$functionFinest = 'SUM';
+			}
+			if ($goupingType[3] == 'hour') {
+				$sql .= 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $functionFinest . '(CAST(value AS DECIMAL(12,2))) as value';
+			} else {
+				$sql .= 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $functionFinest . '(CAST(value AS DECIMAL(12,2))) as value';
+			}
+			$sql .= ' FROM (';
+		}
 		$sql .= ' (SELECT * from history
         WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
@@ -401,6 +417,22 @@ class history {
 		}
 		$sql .= ') ';
 		$sql .= ')a ';
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false && count($goupingType)>2) {
+			if ($goupingType[3] == 'week') {
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`,7))';
+			} else if ($goupingType[3] == 'hour') {
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
+			} else if ($goupingType[3] == 'month') {
+				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
+			} else {
+				$time = 'DATE';
+				if ($goupingType[3] == 'year') {
+					$time = 'YEAR';
+				}
+				$sql .= ' GROUP BY ' . $time . '(DATE_SUB(`datetime`, INTERVAL 1 SECOND))';
+			}
+			$sql .= ')a ';
+		}
 		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`,7))';
