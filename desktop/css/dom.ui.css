@@ -549,6 +549,7 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
 div.ispin-wrapper {
   padding-right: 30px;
   background: var(--form-bg-color);
+  border-radius: var(--border-radius);
   line-height: 100%;
 }
 div.ispin-wrapper button.ispin-button {
