@@ -346,6 +346,7 @@ class update {
 								throw new Exception($this->getLogicalId() . ' : ' . __('Version du core Jeedom non supportée, installation annulée', __FILE__));
 							}
 						}
+						log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
 						$this->preInstallUpdate();
 						try {
 							if (file_exists(__DIR__ . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
@@ -362,7 +363,6 @@ class update {
 						if (file_exists($cibDir)) {
 							rrmdir($cibDir);
 						}
-						log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
 					} else {
 						throw new Exception(__("Impossible de décompresser l'archive zip", __FILE__) . ' : ' . $tmp . ' => ' . ZipErrorMessage($res));
 					}
