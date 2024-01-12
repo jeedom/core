@@ -94,7 +94,13 @@ class scenario {
 			WHERE s.object_id IS NULL
 			ORDER BY s.group, s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-			return array_merge($result1, $result2);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
+			FROM scenario s
+            		LEFT JOIN object ob ON s.object_id=ob.id
+			AND ob.id IS NULL
+			ORDER BY s.group, s.name';
+			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			return array_merge($result1, $result2,$result3);
 		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
@@ -111,7 +117,20 @@ class scenario {
 			AND s.object_id IS NULL
 			ORDER BY  s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-			return array_merge($result1, $result2);
+			if (!is_array($result2)) {
+				$result2 = array();
+			}
+			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
+			FROM scenario s
+            		LEFT JOIN object ob ON s.object_id=ob.id
+			WHERE (`group` IS NULL OR `group` = "")
+			AND ob.id IS NULL
+			ORDER BY s.group, s.name';
+			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			if (!is_array($result3)) {
+				$result3 = array();
+			}
+			return array_merge($result1, $result2,$result3);
 		} else {
 			$values = array(
 				'group' => $_group,
@@ -128,7 +147,14 @@ class scenario {
 			AND s.object_id IS NULL
 			ORDER BY s.group, s.name';
 			$result2 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-			return array_merge($result1, $result2);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
+			FROM scenario s
+            		LEFT JOIN object ob ON s.object_id=ob.id
+			WHERE `group`=:group
+			AND ob.id IS NULL
+			ORDER BY s.group, s.name';
+			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+			return array_merge($result1, $result2,$result3);
 		}
 	}
 	/**
