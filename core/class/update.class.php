@@ -308,11 +308,7 @@ class update {
 					log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
 
 					if (filesize($tmp) < 100) {
-						if (jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true) {
-							throw new Exception(__("Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, un soucis sur l'achat de votre plugin, etc.", __FILE__));
-						} else {
-							throw new Exception(__("Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de " . jeedom::getHardwareName() . " qu'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de " . jeedom::getHardwareName() . " un souci du plugin sur le market, un soucis sur l'achat de votre plugin, etc.", __FILE__));
-						}
+						throw new Exception(__("Echec lors du téléchargement du plugin (taille inférieure à 100 octets), veuillez réessayer plus tard. Cela peut être dû à une absence de connexion au market (effectuez un test de connexion depuis la configuration générale), lié à un manque d'espace disque, une version minimale requise ou un souci sur le plugin ou son achat, etc...", __FILE__));
 					}
 					$extension = strtolower(strrchr($tmp, '.'));
 					if (!in_array($extension, array('.zip'))) {
