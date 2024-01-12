@@ -460,9 +460,7 @@ class history {
 		if ($delta) {
 			$sql .= ')c ';
 		}
-		log::add('enersol','error',$sql);
 		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-		log::add('enersol','error',print_r($return,true));
 		if ($_addFirstPreviousValue && count($return) > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
 			$values = array(
 				'cmd_id' => $_cmd_id,
