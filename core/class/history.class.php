@@ -386,6 +386,8 @@ class history {
 			}
 			if ($goupingType[1] == 'hour') {
 				$sql .= 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+			} else if ($goupingType[1] == 'minute') {
+				$sql .= 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:%i:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
 				$sql .= 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
@@ -402,6 +404,8 @@ class history {
 			}
 			if ($goupingType[3] == 'hour') {
 				$sql .= 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $functionFinest . '(CAST(value AS DECIMAL(12,2))) as value';
+			} else if ($goupingType[3] == 'minute') {
+				$sql .= 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:%i:00\') as `datetime`,' . $functionFinest . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
 				$sql .= 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $functionFinest . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
@@ -432,6 +436,8 @@ class history {
 				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			} else if ($goupingType[3] == 'month') {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
+			} else if ($goupingType[3] == 'minute') {
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`), \'/\', MINUTE(`datetime`))';
 			} else {
 				$time = 'DATE';
 				if ($goupingType[3] == 'year') {
@@ -448,6 +454,8 @@ class history {
 				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`))';
 			} else if ($goupingType[1] == 'month') {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', MONTH(`datetime`))';
+			} else if ($goupingType[1] == 'minute') {
+				$sql .= ' GROUP BY CONCAT(DATE(`datetime`), \'/\', HOUR(`datetime`), \'/\', MINUTE(`datetime`))';
 			} else {
 				$time = 'DATE';
 				if ($goupingType[1] == 'year') {
