@@ -353,6 +353,7 @@ class history {
 	}
 
 	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null, $_addFirstPreviousValue = false) {
+		$delta=false;
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
@@ -362,9 +363,18 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
+		$sql='';
 		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
-			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql .= 'SELECT ' . DB::buildField(__CLASS__);
 		} else {
+			$goupingTypeDelta = explode('||', $_groupingType);
+			if (count($goupingTypeDelta)>1){
+				$_groupingType=$goupingTypeDelta[0];
+				$delta=true;
+				if ($goupingTypeDelta[1]== 'delta'){
+					$sql .= 'SELECT `cmd_id`,`datetime` as datetime, CAST(value - COALESCE(LAG(value) OVER (ORDER BY `datetime` ),0) AS DECIMAL(12,2)) as value FROM (';
+				}
+			}
 			$goupingType = explode('::', $_groupingType);
 			$function = 'AVG';
 			if ($goupingType[0] == 'high' || $goupingType[0] == 'max') {
@@ -375,9 +385,9 @@ class history {
 				$function = 'SUM';
 			}
 			if ($goupingType[1] == 'hour') {
-				$sql = 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql .= 'SELECT `cmd_id`,DATE_FORMAT(`datetime`,\'%Y-%m-%d %H:00:00\') as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			} else {
-				$sql = 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
+				$sql .= 'SELECT `cmd_id`,DATE(`datetime`) as `datetime`,' . $function . '(CAST(value AS DECIMAL(12,2))) as value';
 			}
 		}
 		$sql .= ' FROM (';
@@ -397,8 +407,7 @@ class history {
 			}
 			$sql .= ' FROM (';
 		}
-		$sql .= ' (SELECT * from history
-        WHERE value is not null AND cmd_id=:cmd_id ';
+		$sql .= ' (SELECT * from history WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
@@ -407,8 +416,7 @@ class history {
 		}
 		$sql .= ') ';
 		$sql .= ' UNION ALL ';
-		$sql .= ' (SELECT * from historyArch
-        WHERE value is not null AND cmd_id=:cmd_id ';
+		$sql .= ' (SELECT * from historyArch WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
@@ -431,7 +439,7 @@ class history {
 				}
 				$sql .= ' GROUP BY ' . $time . '(DATE_SUB(`datetime`, INTERVAL 1 SECOND))';
 			}
-			$sql .= ')a ';
+			$sql .= ')b ';
 		}
 		if ($_groupingType != null && strpos($_groupingType, '::') !== false) {
 			if ($goupingType[1] == 'week') {
@@ -449,7 +457,12 @@ class history {
 			}
 		}
 		$sql .= ' ORDER BY `datetime` ASC';
+		if ($delta) {
+			$sql .= ')c ';
+		}
+		log::add('enersol','error',$sql);
 		$return = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		log::add('enersol','error',print_r($return,true));
 		if ($_addFirstPreviousValue && count($return) > 0 && ($_groupingType == null || strpos($_groupingType, '::') === false)) {
 			$values = array(
 				'cmd_id' => $_cmd_id,
@@ -457,13 +470,11 @@ class history {
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__);
 			$sql .= ' FROM (';
-			$sql .= ' (SELECT * from history
-			WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
+			$sql .= ' (SELECT * from history WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
 			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$sql .= ') ';
 			$sql .= ' UNION ALL ';
-			$sql .= ' (SELECT * from historyArch
-			WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
+			$sql .= ' (SELECT * from historyArch WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
 			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$sql .= ') ';
 			$sql .= ')a ';

@@ -375,7 +375,8 @@ jeedom.history.drawChart = function(_params) {
           _params.option.graphType = (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') ? data.result.cmd.display.graphType : 'area'
         }
         if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
-          var split = data.result.cmd.display.groupingType.split('::')
+          var split = data.result.cmd.display.groupingType.split('||')[0]
+		  split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -643,7 +644,8 @@ jeedom.history.drawChart = function(_params) {
           enabled: false
         }
         if (isset(_params.option.groupingType) && typeof _params.option.groupingType === 'string' && _params.option.groupingType != '') {
-          var split = _params.option.groupingType.split('::')
+          var split = _params.option.groupingType.split('||')[0]
+		  split=split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
