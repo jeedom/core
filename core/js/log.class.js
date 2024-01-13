@@ -60,7 +60,9 @@ jeedom.log.removeAll = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+// DEPRECATED: jeedom.log.getScTranslations -> remove in 4.6?
 jeedom.log.getScTranslations = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.log.getScTranslations', 'none', '4.6', '4.4')
   var paramsSpecifics = {};
   var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
@@ -71,7 +73,9 @@ jeedom.log.getScTranslations = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+// DEPRECATED: jeedom.log.get -> remove in 4.6?
 jeedom.log.get = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.log.get', 'jeedom.log.getDelta', '4.6', '4.4')
   var paramsRequired = ['log'];
   var paramsSpecifics = {
     global: _params.global || true,
@@ -180,7 +184,9 @@ jeedom.log.clear = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+// DEPRECATED: jeedom.log.autoupdate -> remove in 4.6?
 jeedom.log.autoupdate = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.log.autoupdate', 'jeedom.log.autoUpdateDelta', '4.6', '4.4')
   if (!isset(_params.once)) _params['once'] = 0
   if (!isset(_params.callNumber)) _params.callNumber = 0
   if (!isset(_params.log)) return
@@ -357,11 +363,19 @@ jeedom.log.autoUpdateDelta = function(_params) {
   if (!_params.display.isVisible()) return
 
   // Exit if Paused
-  if (_params.callNumber > 0 && isset(_params.control) && _params.control.getAttribute('data-state') != 1) {
+  if (
+    _params.callNumber > 0
+    && isset(_params.control)
+    && _params.control.getAttribute('data-state') != 1
+  ) {
     return
   }
   // Exit if a newer instance on another log is running
-  if (_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.getAttribute('id')]) && jeedom.log.currentAutoupdate[_params.display.getAttribute('id')].log != _params.log) {
+  if (
+    _params.callNumber > 0
+    && isset(jeedom.log.currentAutoupdate[_params.display.getAttribute('id')])
+    && jeedom.log.currentAutoupdate[_params.display.getAttribute('id')].log != _params.log
+  ) {
     return
   }
 
@@ -471,6 +485,7 @@ jeedom.log.autoUpdateDelta = function(_params) {
 }
 
 // Standard log replacement:
+// DEPRECATED: jeedom.log.colorReplacement -> remove in 4.6?
 jeedom.log.colorReplacement = {
   'WARNING:': '--startTg--span class="warning"--endTg--WARNING--startTg--/span--endTg--:',
   'Erreur': '--startTg--span class="danger"--endTg--Erreur--startTg--/span--endTg--',
@@ -482,7 +497,9 @@ jeedom.log.colorReplacement = {
   '[ERROR]': '--startTg--span class="label label-xs label-danger"--endTg--ERROR--startTg--/span--endTg--',
 }
 
+// DEPRECATED: jeedom.log.stringColorReplace -> remove in 4.6?
 jeedom.log.stringColorReplace = function(_str) {
+  jeedomUtils.deprecatedFunc('jeedom.log.stringColorReplace', 'none', '4.6', '4.4')
   for (var re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
   }
@@ -494,30 +511,36 @@ jeedom.log.stringColorReplace = function(_str) {
 }
 
 // Scenario log replacement:
+// DEPRECATED: jeedom.log.colorScReplacement -> remove in 4.6?
 jeedom.log.colorScReplacement = null
-jeedom.log.getScTranslations({
-  global: false,
-  success: function(result) {
-    jeedom.log.colorScReplacement = JSON.parse(result)
-    jeedom.log.colorScReplacement[' Start : '] = {
-      'txt': ' Start : ',
-      'replace': '<strong> -- Start : </strong>'
-    }
-    jeedom.log.colorScReplacement['Log :'] = {
-      'txt': 'Log :',
-      'replace': '<span class="success">&ensp;&ensp;&ensp;Log :</span>'
-    }
-  },
-  error: function() {
-    console.log('Unable to get jeedom scenario translations')
-  }
-})
 
+// DEPRECATED: jeedom.log.scenarioColorReplace -> remove in 4.6?
 jeedom.log.scenarioColorReplace = function(_str) {
+  jeedomUtils.deprecatedFunc('jeedom.log.scenarioColorReplace', 'none', '4.6', '4.4')
+  if (jeedom.log.colorScReplacement == null) {
+    // Only load translations if we are going to use them
+    jeedom.log.getScTranslations({
+      global: false,
+      success: function(result) {
+        jeedom.log.colorScReplacement = JSON.parse(result)
+        jeedom.log.colorScReplacement[' Start : ']  = {
+          'txt': ' Start : ',
+          'replace':  '<strong> -- Start : </strong>'
+        }
+        jeedom.log.colorScReplacement['Log :'] = {
+          'txt': 'Log :',
+          'replace':  '<span class="success">&ensp;&ensp;&ensp;Log :</span>'
+        }
+      },
+      error: function() {
+        console.log('Unable to get jeedom scenario translations')
+      }
+    })
+
+  }
   if (jeedom.log.colorScReplacement == null) return _str
   for (var item in jeedom.log.colorScReplacement) {
     _str = _str.split(jeedom.log.colorScReplacement[item]['txt']).join(jeedom.log.colorScReplacement[item]['replace'].replace('::', jeedom.log.colorScReplacement[item]['txt']))
   }
   return _str
 }
-
