@@ -470,7 +470,7 @@ jeedom.log.autoUpdateDelta = function(_params) {
   });
 }
 
-//Standard log replacement:
+// Standard log replacement:
 jeedom.log.colorReplacement = {
   'WARNING:': '--startTg--span class="warning"--endTg--WARNING--startTg--/span--endTg--:',
   'Erreur': '--startTg--span class="danger"--endTg--Erreur--startTg--/span--endTg--',
@@ -481,6 +481,7 @@ jeedom.log.colorReplacement = {
   '[ALERT]': '--startTg--span class="label label-xs label-warning"--endTg--ALERT--startTg--/span--endTg--',
   '[ERROR]': '--startTg--span class="label label-xs label-danger"--endTg--ERROR--startTg--/span--endTg--',
 }
+
 jeedom.log.stringColorReplace = function(_str) {
   for (var re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
@@ -492,7 +493,7 @@ jeedom.log.stringColorReplace = function(_str) {
   return _str
 }
 
-//scenario log replacement:
+// Scenario log replacement:
 jeedom.log.colorScReplacement = null
 jeedom.log.getScTranslations({
   global: false,
