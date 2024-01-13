@@ -614,8 +614,9 @@ class jeedom {
 		}
 		$apikey = self::getApiKey($_plugin);
 		if (trim($apikey) != '' && $apikey === $_apikey) {
+			/** @var bool $_RESTRICTED */
 			global $_RESTRICTED;
-			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', 0);
+			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', false);
 			return true;
 		}
 		return false;

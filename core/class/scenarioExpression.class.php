@@ -428,6 +428,7 @@ class scenarioExpression {
 		$RedOrigin = hexdec(substr($startcol, 1, 2));
 		$GrnOrigin = hexdec(substr($startcol, 3, 2));
 		$BluOrigin = hexdec(substr($startcol, 5, 2));
+		$RetVal = array();
 		if ($graduations >= 2) {
 			$GradientSizeRed = (hexdec(substr($endcol, 1, 2)) - $RedOrigin) / $graduations;
 			$GradientSizeGrn = (hexdec(substr($endcol, 3, 2)) - $GrnOrigin) / $graduations;
@@ -1064,10 +1065,10 @@ class scenarioExpression {
 				$dureeAbs %= 60;
 				$s = $dureeAbs;
 				$ret = '';
-				if ($j > 0) $ret .= "${j}j ";
-				if ($h > 0) $ret .= "${h}h ";
-				if ($m > 0) $ret .= "${m}min ";
-				if ($s > 0) $ret .= "${s}s";
+				if ($j > 0) $ret .= $j . 'j ';
+				if ($h > 0) $ret .= $h . 'h ';
+				if ($m > 0) $ret .= $m . 'min ';
+				if ($s > 0) $ret .= $s . 's';
 				return (trim($ret));
 			case 'df':
 				return round($duree / 86400, $_rnd); // en jours decimaux avec signe

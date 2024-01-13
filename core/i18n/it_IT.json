@@ -4992,8 +4992,7 @@
         "Aucune méthode correspondante :": "Nessun metodo corrispondente:"
     },
     "core\/api\/jeeApi.php": {
-        "Token invalide": "Token non valido",
-        "Commande inconnue :": "Comando sconosciuto:",
+        "Commande inconnue ou Token invalide": "Comando sconosciuto o Token non valido",
         "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Non sei autorizzato a eseguire questa azione",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
