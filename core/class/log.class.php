@@ -331,7 +331,7 @@ class log {
 		if ($_colored) {
 			// Highlight searched text first (when more than 3 chars)
 			if (strlen($_search) > 2) {
-				$srch = preg_quote($_search);
+				$srch = preg_quote($_search, '/');
 				$logText = preg_replace('/(' . $srch . ')/i', '<mark>$1</mark>', $logText);
 			}
 
