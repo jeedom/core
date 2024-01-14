@@ -70,6 +70,7 @@ if (!jeeFrontEnd.display) {
           filter: 'ul.cmdSortable',
           multiDrag: true,
           selectedClass: 'dragSelected',
+          chosenClass: 'dragSelected',
           avoidImplicitDeselect: true,
           onSelect: function(evt) {
             if (!evt.item.querySelector('.cb_selEqLogic').checked) {
