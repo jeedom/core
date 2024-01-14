@@ -2703,7 +2703,7 @@
         "Aucun": "Nein",
         "Configuration avancée": "Erweiterte Konfiguration",
         "Aller sur la configuration de l\\'objet": "Gehen Sie zur Konfiguration des Objekts",
-        "Non actif": "Nicht aktiv",
+        "Désactivé": "Deaktiviert",
         "Non visible": "Nicht sichtbar",
         "Aller sur la configuration de l\\'équipement": "Gehen Sie zur Konfiguration des Geräts",
         "Supprimer": "Entfernen",
@@ -2891,7 +2891,7 @@
         "Supprimer cette zone": "Löschen Sie diesen Bereich"
     },
     "desktop\/js\/display.js": {
-        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Möchten Sie wirklich alle diese Geräte löschen?",
+        "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?": "Sind Sie sicher, dass Sie die ausgewählten Geräte löschen möchten?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Möchten Sie den Löschverlauf wirklich löschen?",
         "Historique vidé avec succès": "Die Geschichte wurde erfolgreich geleert",
         "Configuration de l'objet": "Objektkonfiguration",

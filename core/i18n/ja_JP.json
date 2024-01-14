@@ -2703,7 +2703,7 @@
         "Aucun": "何でもありません",
         "Configuration avancée": "高度な構成",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
-        "Non actif": "アクティブではありません",
+        "Désactivé": "Désactivé",
         "Non visible": "見えない",
         "Aller sur la configuration de l\\'équipement": "機器の構成に移動します",
         "Supprimer": "取り除きます",
@@ -2891,7 +2891,7 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "この機器をすべて削除してもよろしいですか？",
+        "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?": "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "履歴が空になりました",
         "Configuration de l'objet": "オブジェクト構成",

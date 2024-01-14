@@ -2703,7 +2703,7 @@
         "Aucun": "Nessuno",
         "Configuration avancée": "Configurazione avanzata",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
-        "Non actif": "Non attivo",
+        "Désactivé": "Désactivé",
         "Non visible": "Non visibile",
         "Aller sur la configuration de l\\'équipement": "Vai alla configurazione dell'apparecchiatura",
         "Supprimer": "Rimuovere",
@@ -2891,7 +2891,7 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Sei sicuro di voler eliminare tutta questa attrezzatura?",
+        "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?": "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "La storia si è svuotata con successo",
         "Configuration de l'objet": "Configurazione dell'oggetto",

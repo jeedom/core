@@ -2703,7 +2703,7 @@
         "Aucun": "Нет",
         "Configuration avancée": "Расширенные настройки",
         "Aller sur la configuration de l\\'objet": "Aller sur la configuration de l\\'objet",
-        "Non actif": "не существует",
+        "Désactivé": "Désactivé",
         "Non visible": "не видно",
         "Aller sur la configuration de l\\'équipement": "Aller sur la configuration de l\\'équipement",
         "Supprimer": "удаление",
@@ -2891,7 +2891,7 @@
         "Supprimer cette zone": "Supprimer cette zone"
     },
     "desktop\/js\/display.js": {
-        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Вы уверены, что хотите удалить все это оборудование?",
+        "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?": "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?",
         "Historique vidé avec succès": "История успешно опустошена",
         "Configuration de l'objet": "Конфигурация объекта",

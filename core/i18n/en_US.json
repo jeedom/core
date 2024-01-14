@@ -2703,7 +2703,7 @@
         "Aucun": "None",
         "Configuration avancée": "Advanced configuration",
         "Aller sur la configuration de l\\'objet": "Go to the object configuration",
-        "Non actif": "Not active",
+        "Désactivé": "Disabled",
         "Non visible": "Not visible",
         "Aller sur la configuration de l\\'équipement": "Go to the configuration of the equipment",
         "Supprimer": "Delete",
@@ -2891,7 +2891,7 @@
         "Supprimer cette zone": "Delete this area"
     },
     "desktop\/js\/display.js": {
-        "Êtes-vous sûr de vouloir supprimer tous ces équipements ?": "Are you sure you want to delete all of this equipment?",
+        "Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?": "Are you sure you want to delete the selected equipment(s)?",
         "Êtes-vous sûr de vouloir vider l\\'historique de suppression ?": "Are you sure you want to clear the deletion history?",
         "Historique vidé avec succès": "History emptied successfully",
         "Configuration de l'objet": "Object configuration",
@@ -2951,7 +2951,7 @@
         "Utilisateur": "User",
         "Utilisateur limité": "Limited user",
         "Activé": "Enabled",
-        "Désactivé": "Deactivated",
+        "Désactivé": "Disabled",
         "OK": "Okay",
         "Désactiver": "Deactivate",
         "NOK": "NOK",
