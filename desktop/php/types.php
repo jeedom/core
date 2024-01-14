@@ -55,7 +55,7 @@ function jeedom_displayGenFamily($_family, $_familyId = '') {
 
 		$numEqs++;
 		$div .= '<li class="cursor eqLogic" data-id="' . $eqLogic->getId() . '" data-objectId="' . $eqLogic->getObject_id() . '" data-changed="0" data-generic="' . $eqGeneric . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getHumanName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-		$div .= '<i class="fas fa-sort bt_sortable" style="cursor:grab!important;"></i> ';
+		$div .= '<i class="fas fa-sort bt_sortable" style="cursor:move!important;"></i> ';
 		$div .= '<input type="checkbox" class="cb_selEqLogic" title="{{Sélectionner l\'équipement}}"> ';
 
 		$object = $eqLogic->getObject();

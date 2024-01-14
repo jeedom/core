@@ -94,7 +94,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		}
 		$translate_category = trim($translate_category, ',');
 		$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-translate-category="' . $translate_category . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-		$div .= '<i class="fas fa-sort bt_sortable" style="cursor:grab!important;"></i> ';
+		$div .= '<i class="fas fa-sort bt_sortable" style="cursor:move!important;"></i> ';
 		$div .= '<input type="checkbox" class="cb_selEqLogic checkContext" data-context="objectId' . $objectId . '"/> ';
 		$div .= $eqLogic->getId() . ' | ' . $eqLogic->getEqType_name() . ' | ' . $eqLogic->getName();
 
