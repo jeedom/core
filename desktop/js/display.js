@@ -356,7 +356,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       var cmds = []
       document.querySelectorAll('.cb_selCmd').forEach(_cb => {
         if (_cb.checked) {
-          eqLogics.push(_cb.closest('.cmd').getAttribute('data-id'))
+          cmds.push(_cb.closest('.cmd').getAttribute('data-id'))
         }
       })
       jeedom.cmd.setIsVisibles({
@@ -450,7 +450,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('.bt_exportcsv')) {
     var fullFile = ''
-    var eqParent, cmd
+    var eqParent
     document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
       eqParent = _eqlogic.closest('.panel.panel-default')
       eqParent = eqParent.querySelector('a.accordion-toggle').textContent
