@@ -738,7 +738,7 @@ Desktop
     padding-left: 0px;
     min-height: 30px !important;
   }
-  li.eqLogic.dragSelected {
+  .dragSelected {
     border: 2px dashed var(--logo-primary-color) !important;
   }
   li.eqLogic .bt_sortable {
