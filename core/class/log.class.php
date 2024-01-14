@@ -267,13 +267,13 @@ class log {
 	* @param string $_log Log filename (default 'core')
 	* @param int $_position Bytes representing position from the begining of the file (default 0)
 	* @param string $_search Text to find in log file (default '')
-	* @param int $_colored Should lines be colored (default 0) [0: no ; 1: global log colors ; 2: scenario colors]
+	* @param int $_colored Should lines be colored
 	* @param boolean $_numbered Should lines be numbered (default true)
 	* @param int $_numStart At what number should lines number start (default 0)
 	* @param int $_max Max number of returned lines (default 4000)
 	* @return array Array containing log to append to buffer and new position for next call
 	*/
-	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = 0, $_numbered = true, $_numStart = 0, $_max = 4000) {
+	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = false, $_numbered = true, $_numStart = 0, $_max = 4000) {
 		// Add path to file if needed
 		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
 		// Check if log file exists and is readable
@@ -281,7 +281,12 @@ class log {
 			return array('position' => 0, 'line' => 0, 'logText' => '');
 		// Locate EOF
 		fseek($fp, 0, SEEK_END);
-		$_position = min($_position, ftell($fp));
+		// If log file has been truncated/altered (EOF is smaller than requested position)
+		// Then we restart from the start of the file
+		if (ftell($fp) < $_position) {
+			$_position = 0;
+			$_numStart = 0;
+		}
 		// Set file pointer at requested position or at EOF
 		fseek($fp, $_position);
 		// Iterate the file
@@ -341,6 +346,7 @@ class log {
 			$search[] = ' KO ';             $replace[] = '<span class="label label-xs label-danger"> K<&>O </span>';
 			$search[] = 'ERROR';            $replace[] = '<span class="label label-xs label-danger">E<&>RROR</span>';
 			$search[] = 'PHP Notice:';      $replace[] = '<span class="warning">PHP N<&>otice:</span>';
+			$search[] = 'PHP Warning:';     $replace[] = '<span class="warning">PHP War<&>ning:</span>';
 			$search[] = 'PHP Stack trace:'; $replace[] = '<span class="danger">PHP S<&>tack trace:</span>';
 
 			$search[] = ':br:';             $replace[] = '<br>';

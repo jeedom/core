@@ -410,7 +410,7 @@ jeedom.log.autoUpdateDelta = function(_params) {
     })
 
     // Setup callback: On search field update
-    _params.search.unRegisterEvent('keypress').registerEvent('keypress', function (event) {
+    _params.search.unRegisterEvent('keydown').registerEvent('keydown', function (event) {
       // Reset log position and empty view
       _params.position = 0;
       _params.lineNum = 0;
@@ -428,29 +428,34 @@ jeedom.log.autoUpdateDelta = function(_params) {
   }
 
   // Disable auto update if log is scrolled
-  if (_params.callNumber > 1 && (_params.display.scrollTop + _params.display.offsetHeight + 10) < _params.display.scrollHeight) {
+  if (
+    _params.callNumber > 1
+    && (_params.display.scrollTop + _params.display.offsetHeight + 10) < _params.display.scrollHeight
+  ) {
     if (_params.control.getAttribute('data-state') == 1) {
       _params.control.click()
     }
     return
   }
 
-  var dom_brutlogcheck = document.getElementById('brutlogcheck')
+  let dom_brutlogcheck = document.getElementById('brutlogcheck')
   // If element does NOT exists OR is disabled, Then colored
-  var colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
+  let colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
 
   jeedom.log.getDelta({
     log: _params.log,
     slaveId: _params.slaveId,
     position: _params.position,
     search: (!isset(_params.search)) ? '' : _params.search.value.toLowerCase(),
-    colored: (colorMe ? ((_params.display.id == 'pre_scenariolog') ? 2 : 1) : 0), // 0: no color ; 1: global log colors ; 2: Scenario colors
-    numbered: (_params.display.id == 'pre_globallog'),
+    colored: (colorMe ? 1 : 0),
+    numbered: (_params.display.id == 'pre_globallog' ? 1 : 0),
     numberStart: _params.lineNum,
     global: (_params.callNumber == 1),
     success: function(result) {
-      // Optimise search operation
-      var searchString = (!isset(_params.search)) ? '' : _params.search.value.toLowerCase()
+      // Reset display if start at position 0 (log file has been truncated/altered)
+      if (result.position == 0) {
+        _params.display.empty()
+      }
       // Store log file current position
       _params.position = result.position;
       // Store log file current line
