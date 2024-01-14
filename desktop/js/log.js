@@ -173,7 +173,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_resetGlobalLogSearch')) {
-    document.getElementById('in_searchGlobalLog').jeeValue('').triggerEvent('keydown')
+    document.getElementById('in_searchGlobalLog').jeeValue('').triggerEvent('keyup')
     return
   }
 })

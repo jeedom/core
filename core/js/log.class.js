@@ -410,7 +410,7 @@ jeedom.log.autoUpdateDelta = function(_params) {
     })
 
     // Setup callback: On search field update
-    _params.search.unRegisterEvent('keydown').registerEvent('keydown', function (event) {
+    _params.search.unRegisterEvent('keyup').registerEvent('keyup', function (event) {
       // Reset log position and empty view
       _params.position = 0;
       _params.lineNum = 0;
