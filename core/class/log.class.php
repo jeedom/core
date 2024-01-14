@@ -355,16 +355,16 @@ class log {
 			$search[] = 'PHP Stack trace:'; $replace[] = '<span class="danger">PHP S<&>tack trace:</span>';
 
 			$search[] = ':br:';             $replace[] = '<br>';
-			$search[] = ':h-success:';      $replace[] = '<span class="label label-success">';
-			$search[] = ':h-info:';         $replace[] = '<span class="label label-info">';
-			$search[] = ':h-warning:';      $replace[] = '<span class="label label-warning">';
-			$search[] = ':h-danger:';       $replace[] = '<span class="label label-danger">';
-			$search[] = ':/h:';             $replace[] = '</span>';
-			$search[] = ':t-success:';      $replace[] = '<span class="success">';
-			$search[] = ':t-info:';         $replace[] = '<span class="info">';
-			$search[] = ':t-warning:';      $replace[] = '<span class="warning">';
-			$search[] = ':t-danger:';       $replace[] = '<span class="danger">';
-			$search[] = ':/t:';             $replace[] = '</span>';
+			$search[] = ':bg-success:';     $replace[] = '<span class="label label-success">';
+			$search[] = ':bg-info:';        $replace[] = '<span class="label label-info">';
+			$search[] = ':bg-warning:';     $replace[] = '<span class="label label-warning">';
+			$search[] = ':bg-danger:';      $replace[] = '<span class="label label-danger">';
+			$search[] = ':/bg:';            $replace[] = '</span>';
+			$search[] = ':fg-success:';     $replace[] = '<span class="success">';
+			$search[] = ':fg-info:';        $replace[] = '<span class="info">';
+			$search[] = ':fg-warning:';     $replace[] = '<span class="warning">';
+			$search[] = ':fg-danger:';      $replace[] = '<span class="danger">';
+			$search[] = ':/fg:';            $replace[] = '</span>';
 			$search[] = ':b:';              $replace[] = '<b>';
 			$search[] = ':/b:';             $replace[] = '</b>';
 			$search[] = ':s:';              $replace[] = '<strong>';
