@@ -37,7 +37,7 @@ if (!jeeFrontEnd.display) {
       Sortable.create(document.getElementById('accordionObject'), {
         delay: 50,
         draggable: '.objectSortable',
-        filter: 'input, textarea',
+        filter: '.eqLogic',
         preventOnFilter: false,
         direction: 'vertical',
         chosenClass: 'dragSelected',
@@ -464,9 +464,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.eqLogicSortable > li.eqLogic')) {
-    if (_target.tagName.toUpperCase() == 'I') return
-    if (_target.tagName.toUpperCase() == 'INPUT') return
-    if (_target.hasClass('cmd')) return
+    if (event.target.closest('ul.cmdSortable')) return
     var el = _target.querySelector('ul.cmdSortable')
     if (el.isVisible()) {
       el.unseen()
@@ -479,10 +477,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
   var _target = null
-  if (_target = event.target.closest('.cb_selEqLogic')) {
-    jeeP.setEqActions()
-    return
-  }
   if (_target = event.target.closest('.cb_selEqLogic')) {
     jeeP.setEqActions()
     return
