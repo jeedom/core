@@ -456,7 +456,6 @@ sortLists.forEach(_group => {
     handle: '.bt_sortable, .cb_selEqLogic',
     multiDrag: true,
     selectedClass: 'dragSelected',
-    chosenClass: 'dragSelected',
     avoidImplicitDeselect: true,
     removeCloneOnHide: true,
     onSelect: function(evt) {
