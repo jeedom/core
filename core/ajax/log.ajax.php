@@ -59,7 +59,7 @@ try {
 	}
 
 	if (init('action') == 'get') {
-		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
+		ajax::success(log::get(init('log', 'core'), init('start', 0), init('nbLine', 99999)));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
