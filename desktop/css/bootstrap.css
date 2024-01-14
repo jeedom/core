@@ -69,6 +69,12 @@ mark {
   background: #ff0;
 }
 
+pre mark {
+  color: #000;
+  background-color: #ff0;
+  padding: 0em;
+}
+
 .img-thumbnail {
   background-color: #fff;
 }
@@ -4429,4 +4435,3 @@ button.close {
 		transform: translate3d(0,0,0);
 	}
 }
-

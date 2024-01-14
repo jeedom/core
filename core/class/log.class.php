@@ -329,6 +329,11 @@ class log {
 
 		// Apply color in logs
 		if ($_colored) {
+			// Highlight searched text first (when more than 3 chars)
+			if (strlen($_search) > 2) {
+				$srch = preg_quote($_search);
+				$logText = preg_replace('/(' . $srch . ')/i', '<mark>$1</mark>', $logText);
+			}
 
 			$search = array();              $replace = array();
 			$search[] = '[DEBUG]';          $replace[] = '<span class="label label-xs label-success">&nbsp;D<&>EBUG&nbsp;</span>';
