@@ -119,8 +119,7 @@ if (!jeeFrontEnd.display) {
       let cmdContainers = document.querySelectorAll('#accordionObject ul.cmdSortable')
       cmdContainers.forEach(_Sortcontainer => {
         var sorty = new Sortable(_Sortcontainer, {
-          delay: 100,
-          delayOnTouchOnly: true,
+          delay: 50,
           draggable: '.cmd',
           direction: 'vertical',
           chosenClass: 'dragSelected',
