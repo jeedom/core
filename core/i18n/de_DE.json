@@ -3776,6 +3776,7 @@
         "Exécution d\\'un bloc code": "Ausführung eines Codeblocks",
         "Lancement du scénario :": "Start des Szenarios:",
         "Lancement du scénario en mode synchrone": "Starten des Szenarios im synchronen Modus",
+        "Début :": "Anfang:",
         "Tâche :": "Aufgabe:",
         "Changement de": "Änderung von",
         "Arrêt du scénario car il a dépassé son temps de timeout :": "Beenden des Szenarios, weil die Zeitüberschreitung überschritten wurde:",

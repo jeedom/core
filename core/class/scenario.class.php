@@ -914,9 +914,9 @@ class scenario {
 			return;
 		}
 		if (count($this->getTags()) == 0) {
-			$this->setLog('Start : ' . trim($_message, "'") . '.');
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . trim($_message, "'") . '.');
 		} else {
-			$this->setLog('Start : ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
 		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');

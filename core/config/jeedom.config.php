@@ -986,6 +986,7 @@ $GLOBALS['JEEDOM_SCLOG_TEXT'] = array(
 	'execCode'				=> array('txt' => __('Exécution d\'un bloc code', __FILE__), 'replace' => '<label class="warning">:: </label>'),
 	'launchScenario'		=> array('txt' => __('Lancement du scénario :', __FILE__) . ' ', 'replace' => '<label class="warning">:: </label>'),
 	'launchScenarioSync'	=> array('txt' => __('Lancement du scénario en mode synchrone', __FILE__), 'replace' => '<label class="warning">:: </label>'),
+	'start'					=> array('txt' => '-- ' . __('Début :', __FILE__), 'replace' => '<strong>::</strong>'),
 	'task'					=> array('txt' => __('Tâche :', __FILE__) . ' ', 'replace' => '<label class="warning">:: </label>'),
 	'event'					=> array('txt' => __('Changement de', __FILE__) . ' ', 'replace' => '<label class="warning">:: </label>'),
 

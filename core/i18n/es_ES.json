@@ -3776,6 +3776,7 @@
         "Exécution d\\'un bloc code": "Ejecución de un bloque de código",
         "Lancement du scénario :": "Lanzamiento del escenario:",
         "Lancement du scénario en mode synchrone": "Lanzamiento del escenario en modo síncrono",
+        "Début :": "Inicio :",
         "Tâche :": "Mancha :",
         "Changement de": "Cambio de",
         "Arrêt du scénario car il a dépassé son temps de timeout :": "Deteniendo el escenario porque ha excedido su tiempo de espera:",

@@ -383,10 +383,9 @@ class log {
 
 			$replacables = array(
 				array('txt' => 'WARNING:', 'replace' => '<span class="warning">::</span>'),
-				array('txt' => 'Erreur', 'replace' => '<span class="danger">::</span>'),
-				array('txt' => 'OK', 'replace' => '<strong>::</strong>'),
-				array('txt' => 'Start :', 'replace' => '<strong>-- ::</strong>'),
-				array('txt' => 'Log :', 'replace' => '<span class="success">&nbsp;&nbsp;&nbsp;::</span>'),
+				array('txt' => 'Erreur',   'replace' => '<span class="danger">::</span>'),
+				array('txt' => 'OK',       'replace' => '<strong>::</strong>'),
+				array('txt' => 'Log :',    'replace' => '<span class="success">&nbsp;&nbsp;&nbsp;::</span>'),
 				array('txt' => '-------------------- TRUNCATED LOG --------------------', 'replace' => '<span class="label label-xl label-danger">::</span>')
 			);
 			foreach($replacables as $item) {
