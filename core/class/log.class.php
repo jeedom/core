@@ -226,14 +226,14 @@ class log {
 		return true;
 	}
 
-	/*
+	/**
 	*
 	* @param string $_log
 	* @param int $_begin
 	* @param int $_nbLines
 	* @return boolean|array
 	*/
-	public static function get($_log = 'core', $_begin, $_nbLines) {
+	public static function get($_log, $_begin, $_nbLines) {
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;
@@ -260,7 +260,7 @@ class log {
 		return $page;
 	}
 
-	/*
+	/**
 	* Get the log delta from $_position to the end of the file
 	* New position is stored in $_position when eof is reached
 	*

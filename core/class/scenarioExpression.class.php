@@ -1234,7 +1234,13 @@ class scenarioExpression {
 		return array_merge($return, $new);
 	}
 
-	public static function tag(&$_scenario = null, $_name, $_default = '') {
+	/**
+	 * @param null|scenario $_scenario
+	 * @param string $_name
+	 * @param string $_default
+	 * @return string
+	 */
+	public static function tag(&$_scenario, $_name, $_default = '') {
 		if ($_scenario == null) {
 			return $_default;
 		}
