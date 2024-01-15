@@ -226,14 +226,14 @@ class log {
 		return true;
 	}
 
-	/*
+	/**
 	*
 	* @param string $_log
 	* @param int $_begin
 	* @param int $_nbLines
 	* @return boolean|array
 	*/
-	public static function get($_log = 'core', $_begin, $_nbLines) {
+	public static function get($_log, $_begin, $_nbLines) {
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
 			return false;
@@ -260,20 +260,20 @@ class log {
 		return $page;
 	}
 
-	/*
+	/**
 	* Get the log delta from $_position to the end of the file
 	* New position is stored in $_position when eof is reached
 	*
 	* @param string $_log Log filename (default 'core')
 	* @param int $_position Bytes representing position from the begining of the file (default 0)
 	* @param string $_search Text to find in log file (default '')
-	* @param int $_colored Should lines be colored (default 0) [0: no ; 1: global log colors ; 2: scenario colors]
+	* @param int $_colored Should lines be colored
 	* @param boolean $_numbered Should lines be numbered (default true)
 	* @param int $_numStart At what number should lines number start (default 0)
 	* @param int $_max Max number of returned lines (default 4000)
 	* @return array Array containing log to append to buffer and new position for next call
 	*/
-	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = 0, $_numbered = true, $_numStart = 0, $_max = 4000) {
+	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = false, $_numbered = true, $_numStart = 0, $_max = 4000) {
 		// Add path to file if needed
 		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
 		// Check if log file exists and is readable
@@ -281,7 +281,12 @@ class log {
 			return array('position' => 0, 'line' => 0, 'logText' => '');
 		// Locate EOF
 		fseek($fp, 0, SEEK_END);
-		$_position = min($_position, ftell($fp));
+		// If log file has been truncated/altered (EOF is smaller than requested position)
+		// Then we restart from the start of the file
+		if (ftell($fp) < $_position) {
+			$_position = 0;
+			$_numStart = 0;
+		}
 		// Set file pointer at requested position or at EOF
 		fseek($fp, $_position);
 		// Iterate the file
@@ -305,66 +310,96 @@ class log {
 		$_position = ftell($fp);
 		fclose($fp);
 
-		// Display only the last jeedom.log.maxLines
+		// Display only the last maxLines
 		$logText = '';
+
 		$nbLogs = count($logs);
-		// If logs are TRUNCATED, then add a message
-		if (count($logs) > $_max) {
+		if ($nbLogs == 0) {
+			return array('position' => $_position, 'line' => $_numStart, 'logText' => $logText);
+		}
+		if ($nbLogs > $_max) {
+			// If logs must be TRUNCATED, then add a message
 			$logText .= "-------------------- TRUNCATED LOG --------------------\n";
 			$logs = array_slice($logs, -$_max, $_max);
 		}
 		// Merge all lignes
 		$logText .= implode('', $logs);
+		// Clear logs from HTML
+		$logText = secureXSS($logText);
 
-		// Apply color in system logs
-		if ($_colored == 1) {
-			$search = array(
-				'<',
-				'>',
-				'WARNING:',
-				'Erreur',
-				'OK',
-				'[DEBUG]',
-				'[INFO]',
-				'[NOTICE]',
-				'[WARNING]',
-				'[ERROR]',
-				'[CRITICAL]',
-				'[ALERT]',
-				'[EMERGENCY]',
-				'-------------------- TRUNCATED LOG --------------------'
-			);
-			$replace = array(
-				'&lt;',
-				'&gt;',
-				'<span class="warning">WARNING</span>',
-				'<span class="danger">Erreur</span>',
-				'<strong>OK</strong>',
-				'<span class="label label-xs label-success">DEBUG</span>',
-				'<span class="label label-xs label-info">INFO</span>',
-				'<span class="label label-xs label-info">NOTICE</span>',
-				'<span class="label label-xs label-warning">WARNING</span>',
-				'<span class="label label-xs label-danger">ERROR</span>',
-				'<span class="label label-xs label-danger">CRITI</span>',
-				'<span class="label label-xs label-danger">ALERT</span>',
-				'<span class="label label-xs label-danger">EMERG</span>',
-				'<span class="label label-xl label-danger">-------------------- TRUNCATED LOG --------------------</span>'
-			);
-			$logText = str_replace($search, $replace, $logText);
-		}
-		// Apply color in scenario logs
-		elseif ($_colored == 2) {
-			$search = array();
-			$replace = array();
+		// Apply color in logs
+		if ($_colored) {
+			// Highlight searched text first (when more than 3 chars)
+			if (strlen($_search) > 2) {
+				$srch = preg_quote($_search, '/');
+				$logText = preg_replace('/(' . $srch . ')/i', '<mark>$1</mark>', $logText);
+			}
+
+			$search = array();              $replace = array();
+			$search[] = '[DEBUG]';          $replace[] = '<span class="label label-xs label-success">&nbsp;D<&>EBUG&nbsp;</span>';
+			$search[] = '[INFO]';           $replace[] = '<span class="label label-xs label-info">&nbsp;I<&>NFO&nbsp;</span>';
+			$search[] = '[NOTICE]';         $replace[] = '<span class="label label-xs label-info">N<&>OTICE&nbsp;</span>';
+			$search[] = '[WARNING]';        $replace[] = '<span class="label label-xs label-warning">W<&>ARNING</span>';
+			$search[] = '[ERROR]';          $replace[] = '<span class="label label-xs label-danger">&nbsp;E<&>RROR&nbsp;</span>';
+			$search[] = '[CRITICAL]';       $replace[] = '<span class="label label-xs label-danger">&nbsp;C<&>RITI&nbsp;</span>';
+			$search[] = '[ALERT]';          $replace[] = '<span class="label label-xs label-danger">&nbsp;A<&>LERT&nbsp;</span>';
+			$search[] = '[EMERGENCY]';      $replace[] = '<span class="label label-xs label-danger">&nbsp;E<&>MERG&nbsp;</span>';
+
+			$search[] = '[  OK  ]';         $replace[] = '<span class="label label-xs label-success">[&nbsp;&nbsp;O<&>K&nbsp;&nbsp;]</span>';
+			$search[] = '[  KO  ]';         $replace[] = '<span class="label label-xs label-danger">[&nbsp;&nbsp;K<&>O&nbsp;&nbsp;]</span>';
+			$search[] = ' OK ';             $replace[] = '<span class="label label-xs label-success"> O<&>K </span>';
+			$search[] = ' KO ';             $replace[] = '<span class="label label-xs label-danger"> K<&>O </span>';
+			$search[] = 'ERROR';            $replace[] = '<span class="label label-xs label-danger">E<&>RROR</span>';
+			$search[] = 'PHP Notice:';      $replace[] = '<span class="warning">PHP N<&>otice:</span>';
+			$search[] = 'PHP Warning:';     $replace[] = '<span class="warning">PHP War<&>ning:</span>';
+			$search[] = 'PHP Stack trace:'; $replace[] = '<span class="danger">PHP S<&>tack trace:</span>';
+
+			$search[] = ':br:';             $replace[] = '<br>';
+			$search[] = ':bg-success:';     $replace[] = '<span class="label label-success">';
+			$search[] = ':bg-info:';        $replace[] = '<span class="label label-info">';
+			$search[] = ':bg-warning:';     $replace[] = '<span class="label label-warning">';
+			$search[] = ':bg-danger:';      $replace[] = '<span class="label label-danger">';
+			$search[] = ':/bg:';            $replace[] = '</span>';
+			$search[] = ':fg-success:';     $replace[] = '<span class="success">';
+			$search[] = ':fg-info:';        $replace[] = '<span class="info">';
+			$search[] = ':fg-warning:';     $replace[] = '<span class="warning">';
+			$search[] = ':fg-danger:';      $replace[] = '<span class="danger">';
+			$search[] = ':/fg:';            $replace[] = '</span>';
+			$search[] = ':b:';              $replace[] = '<b>';
+			$search[] = ':/b:';             $replace[] = '</b>';
+			$search[] = ':s:';              $replace[] = '<strong>';
+			$search[] = ':/s:';             $replace[] = '</strong>';
+			$search[] = ':i:';              $replace[] = '<i>';
+			$search[] = ':/i:';             $replace[] = '</i>';
+			$search[] = ':hide:';           $replace[] = '<!--';
+			$search[] = ':/hide:';          $replace[] = '-->';
+
 			foreach($GLOBALS['JEEDOM_SCLOG_TEXT'] as $item) {
 				$search[] = $item['txt'];
-				$replace[] = str_replace('::', $item['txt'], $item['replace']);
+				// Insert a marker into subject string to avoid replacing it multiple times
+				$subject = $item['txt'][0] . '<&>' . substr($item['txt'], 1);
+				$replace[] = str_replace('::', $subject, $item['replace']);
 			}
-			$search[] = ' Start : ';
-			$replace[] = '<strong> -- Start : </strong>';
-			$search[] = 'Log :';
-			$replace[] = '<span class="success">&ensp;&ensp;&ensp;Log :</span>';
+
+			$replacables = array(
+				array('txt' => 'WARNING:', 'replace' => '<span class="warning">::</span>'),
+				array('txt' => 'Erreur',   'replace' => '<span class="danger">::</span>'),
+				array('txt' => 'OK',       'replace' => '<strong>::</strong>'),
+				array('txt' => 'Log :',    'replace' => '<span class="success">&nbsp;&nbsp;&nbsp;::</span>'),
+				array('txt' => '-------------------- TRUNCATED LOG --------------------', 'replace' => '<span class="label label-xl label-danger">::</span>')
+			);
+			foreach($replacables as $item) {
+				if (strlen($item['txt']) >= 2) {
+					$search[] = $item['txt'];
+					// Insert a marker into subject string to avoid replacing it multiple times
+					$subject = $item['txt'][0] . '<&>' . substr($item['txt'], 1);
+					$replace[] = str_replace('::', $subject, $item['replace']);
+				}
+			}
+			// Replace everything in log
 			$logText = str_replace($search, $replace, $logText);
+			// Remove all inserted markers
+			$logText = str_replace('<&>', '', $logText);
 		}
 
 		// Return the lines to the end of the file, the new position and line number

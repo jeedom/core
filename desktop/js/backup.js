@@ -74,6 +74,7 @@ if (!jeeFrontEnd.backup) {
         type: 'POST',
         url: 'core/ajax/log.ajax.php',
         data: {
+          // Warning get is slow, prefer getDelta in ajax or use jeedom.log.autoUpdateDelta js class
           action: 'get',
           log: _log,
         },

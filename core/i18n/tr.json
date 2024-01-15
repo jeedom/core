@@ -3776,6 +3776,7 @@
         "Exécution d\\'un bloc code": "Exécution d\\'un bloc code",
         "Lancement du scénario :": "Lancement du scénario :",
         "Lancement du scénario en mode synchrone": "Lancement du scénario en mode synchrone",
+        "Début :": "Başlangıç:",
         "Tâche :": "Tâche :",
         "Changement de": "Changement de",
         "Arrêt du scénario car il a dépassé son temps de timeout :": "Arrêt du scénario car il a dépassé son temps de timeout :",
@@ -4992,8 +4993,7 @@
         "Aucune méthode correspondante :": "Karşılık gelen yöntem yok:"
     },
     "core\/api\/jeeApi.php": {
-        "Token invalide": "Geçersiz simge",
-        "Commande inconnue :": "Bilinmeyen komut:",
+        "Commande inconnue ou Token invalide": "Bilinmeyen komut veya Geçersiz simge",
         "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
@@ -5016,7 +5016,7 @@
         "Demande API pour les commandes": "Siparişler için API isteği",
         "Demande API pour les variables": "Değişkenler için API isteği",
         "Requête invalide. Version JSON-RPC invalide :": "Geçersiz istek. Geçersiz JSON-RPC sürümü:",
-        "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Kullanıcı adı veya şifre boş bırakılamaz",
+        "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Kullanıcı adı  şifre boş bırakılamaz",
         "Echec lors de l\\'authentification": "Kimlik doğrulaması başarısız oldu",
         "Aucune méthode correspondante :": "Karşılık gelen yöntem yok:",
         "Objet introuvable :": "Nesne bulunamadı:",

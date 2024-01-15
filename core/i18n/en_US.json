@@ -3776,6 +3776,7 @@
         "Exécution d\\'un bloc code": "Execution of a code block",
         "Lancement du scénario :": "Launch of the scenario:",
         "Lancement du scénario en mode synchrone": "Launch of the scenario in synchronous mode",
+        "Début :": "Start:",
         "Tâche :": "Task:",
         "Changement de": "Change of",
         "Arrêt du scénario car il a dépassé son temps de timeout :": "Stopping the scenario because it has exceeded its timeout time:",
@@ -4992,8 +4993,7 @@
         "Aucune méthode correspondante :": "No corresponding method:"
     },
     "core\/api\/jeeApi.php": {
-        "Token invalide": "Invalid token",
-        "Commande inconnue :": "Unknown command:",
+        "Commande inconnue ou Token invalide": "Unknown command or Invalid token",
         "Erreur response ask, temps écoulé ou réponse invalide": "Response ask error, time elapsed or invalid response",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",
