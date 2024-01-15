@@ -5036,7 +5036,8 @@
         "Impossible de trouver le message :": "Nachricht kann nicht gefunden werden:",
         "Impossible de trouver l\\'objet associé :": "Das zugehörige Objekt konnte nicht gefunden werden:",
         "Impossible de trouver l\\'objet": "Objekt kann nicht gefunden werden",
-        "Demande pour le plugin :": "Anfrage für Plugin:"
+        "Demande pour le plugin :": "Anfrage für Plugin:",
+        "Utilisateur non défini": "Undefinierter Benutzer"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",

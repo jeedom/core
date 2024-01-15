@@ -5016,7 +5016,7 @@
         "Demande API pour les commandes": "Siparişler için API isteği",
         "Demande API pour les variables": "Değişkenler için API isteği",
         "Requête invalide. Version JSON-RPC invalide :": "Geçersiz istek. Geçersiz JSON-RPC sürümü:",
-        "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Kullanıcı adı  şifre boş bırakılamaz",
+        "L\\'identifiant ou le mot de passe ne peuvent pas être vide": "Kullanıcı adı veya şifre boş bırakılamaz",
         "Echec lors de l\\'authentification": "Kimlik doğrulaması başarısız oldu",
         "Aucune méthode correspondante :": "Karşılık gelen yöntem yok:",
         "Objet introuvable :": "Nesne bulunamadı:",
@@ -5036,7 +5036,8 @@
         "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "İlişkili nesne bulunamıyor:",
         "Impossible de trouver l\\'objet": "Nesne bulunamadı",
-        "Demande pour le plugin :": "Eklenti talebi:"
+        "Demande pour le plugin :": "Eklenti talebi:",
+        "Utilisateur non défini": "Utilisateur non défini"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "Bu işlemi gerçekleştirme yetkiniz yok",

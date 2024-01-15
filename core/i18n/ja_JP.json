@@ -4993,7 +4993,7 @@
         "Aucune méthode correspondante :": "対応する方法はありません："
     },
     "core\/api\/jeeApi.php": {
-        "Commande inconnue ou Token invalide": "不明なコマンド / Token invalide",
+        "Commande inconnue ou Token invalide": "不明なコマンド \/ Token invalide",
         "Erreur response ask, temps écoulé ou réponse invalide": "Erreur response ask, temps écoulé ou réponse invalide",
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Vous n\\'êtes pas autorisé à effectuer cette action, IP :",
@@ -5036,7 +5036,8 @@
         "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "関連するオブジェクトが見つかりません：",
         "Impossible de trouver l\\'objet": "オブジェクトが見つかりません",
-        "Demande pour le plugin :": "プラグインのリクエスト："
+        "Demande pour le plugin :": "プラグインのリクエスト：",
+        "Utilisateur non défini": "Utilisateur non défini"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "このアクションを実行する権限がありません",

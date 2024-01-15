@@ -5036,7 +5036,8 @@
         "Impossible de trouver le message :": "Unable to find message:",
         "Impossible de trouver l\\'objet associé :": "Unable to find the associated object:",
         "Impossible de trouver l\\'objet": "Unable to find object",
-        "Demande pour le plugin :": "Request for plugin:"
+        "Demande pour le plugin :": "Request for plugin:",
+        "Utilisateur non défini": "Undefined user"
     },
     "core\/api\/tts.php": {
         "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
