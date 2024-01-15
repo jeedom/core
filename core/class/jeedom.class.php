@@ -1493,7 +1493,7 @@ class jeedom {
 				$sourceEq = eqLogic::byId($_sourceId);
 				$targetEq = eqLogic::byId($_targetId);
 				if (!is_object($sourceEq) || !is_object($targetEq)) continue;
-              
+
               	//replace equipment where used:
               	jeedom::replaceTag(array('eqLogic'.$_sourceId => 'eqLogic'.$_targetId));
 

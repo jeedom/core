@@ -25,22 +25,24 @@ if (user::isBan()) {
 	echo "The page that you have requested could not be found.";
 	die();
 }
+/** @var user|null $_USER_GLOBAL */
 global $_USER_GLOBAL;
 $_USER_GLOBAL = null;
+/** @var bool $_RESTRICTED */
 global $_RESTRICTED;
 $_RESTRICTED = false;
 if (init('type') != '') {
 	try {
 		if (init('type') == 'ask') {
 			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
-				throw new Exception(__('Token invalide', __FILE__));
+				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
 			}
 			$cmd = cmd::byId(init('cmd_id'));
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('cmd_id'));
+				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
 			}
 			if (trim($cmd->getCache('ask::token', config::genKey())) != init('token')) {
-				throw new Exception(__('Token invalide', __FILE__));
+				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
 			}
 			if (!$cmd->askResponse(init('response'))) {
 				throw new Exception(__('Erreur response ask, temps écoulé ou réponse invalide', __FILE__));
@@ -108,7 +110,7 @@ if (init('type') != '') {
 		if ($type == 'interact') {
 			$query = init('query');
 			if (init('utf8', 0) == 1) {
-				$query = utf8_encode($query);
+				$query = mb_convert_encoding($query, 'UTF-8', 'ISO-8859-1');
 			}
 			$param = array();
 			if (init('emptyReply') != '') {
@@ -491,7 +493,7 @@ try {
 		if (isset($params['key'])) {
 			$jsonrpc->makeSuccess(jeeObject::getGlobalSummary($params['key']));
 		}
-		$return = array();
+		/** @var array $def */
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => &$value) {
 			$value['value'] = jeeObject::getGlobalSummary($key);
@@ -1300,6 +1302,9 @@ try {
 	/*                                       Mobile API                                      */
 	if ($jsonrpc->getMethod() == 'getJson') {
 		log::add('api', 'debug', 'Demande du RDK to send with Json');
+		if (!is_object($_USER_GLOBAL)) {
+			throw new Exception(__('Utilisateur non défini', __FILE__), -32500);
+		}
 		$registerDevice = $_USER_GLOBAL->getOptions('registerDevice', array());
 		if (!is_array($registerDevice)) {
 			$registerDevice = array();
