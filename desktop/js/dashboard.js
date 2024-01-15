@@ -69,6 +69,7 @@ if (!jeeFrontEnd.dashboard) {
       })
       document.querySelectorAll('div.div_object, div.eqLogic-widget, div.scenario-widget').seen()
       document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
+      document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
     },
     filterByCategory: function() {
       //get defined categories:
@@ -120,6 +121,7 @@ if (!jeeFrontEnd.dashboard) {
       } else {
         document.querySelector('#dashTopBar button.dropdown-toggle').addClass('warning')
       }
+      document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
 
     },
     editWidgetMode: function(_mode, _save) {
