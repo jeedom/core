@@ -98,6 +98,7 @@ class scenario {
 			FROM scenario s
             		LEFT JOIN object ob ON s.object_id=ob.id
 			AND ob.id IS NULL
+   			AND s.object_id IS NOT NULL
 			ORDER BY s.group, s.name';
 			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			return array_merge($result1, $result2,$result3);
@@ -125,6 +126,7 @@ class scenario {
             		LEFT JOIN object ob ON s.object_id=ob.id
 			WHERE (`group` IS NULL OR `group` = "")
 			AND ob.id IS NULL
+   			AND s.object_id IS NOT NULL
 			ORDER BY s.group, s.name';
 			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			if (!is_array($result3)) {
@@ -152,6 +154,7 @@ class scenario {
             		LEFT JOIN object ob ON s.object_id=ob.id
 			WHERE `group`=:group
 			AND ob.id IS NULL
+   			AND s.object_id IS NOT NULL
 			ORDER BY s.group, s.name';
 			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 			return array_merge($result1, $result2,$result3);
