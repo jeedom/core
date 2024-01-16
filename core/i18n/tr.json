@@ -2775,9 +2775,10 @@
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Yenile",
+        "Détails": "Detaylar",
         "Documentation": "Belgeleme",
         "Changelog": "Değişiklikler",
-        "Détails": "Detaylar",
+        "Assistance": "Assistance",
         "Supprimer": "Sil",
         "Afficher le panneau desktop": "Görünüm masaüstü paneli",
         "Afficher le panneau mobile": "Mobil panelini görüntüle",

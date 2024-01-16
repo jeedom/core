@@ -2775,9 +2775,10 @@
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Обновить",
+        "Détails": "Подробности",
         "Documentation": "документация",
         "Changelog": "Изменения",
-        "Détails": "Подробности",
+        "Assistance": "Assistance",
         "Supprimer": "удаление",
         "Afficher le panneau desktop": "Вид рабочего стола панель",
         "Afficher le panneau mobile": "Просмотр подвижной панели",

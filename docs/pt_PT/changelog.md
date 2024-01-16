@@ -8,6 +8,7 @@
 
 - Suporte Debian12/PHP8.
 - Verificando a versão mínima do núcleo necessária antes de instalar ou atualizar um plugin.
+- Adicionando um botão **Assistência** na página de configuração do plugin *(Criação automática de um pedido de ajuda no fórum)*
 
 ### 4.4 : Pré-requisitos
 

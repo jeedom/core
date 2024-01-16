@@ -2775,9 +2775,10 @@
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Menyegarkan",
+        "Détails": "Rincian",
         "Documentation": "Dokumentasi",
         "Changelog": "Changelog",
-        "Détails": "Rincian",
+        "Assistance": "Assistance",
         "Supprimer": "Menghapus",
         "Afficher le panneau desktop": "Lihat desktop panel",
         "Afficher le panneau mobile": "Lihat panel seluler",

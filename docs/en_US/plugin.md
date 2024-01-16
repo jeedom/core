@@ -74,8 +74,6 @@ You can add a plugin to Jeedom from a file or from a Github repository. To do th
 
 Attention, in the case of adding by a zip file, the name of the zip must be the same as the ID of the plugin and upon opening the ZIP a plugin\_info folder must be present.
 
-
-
 ## My plugins
 
 By clicking on the icon of a plugin, you open its configuration page.
@@ -86,9 +84,10 @@ By clicking on the icon of a plugin, you open its configuration page.
 
 ### At the top right, some buttons :
 
+- **Details** : Allows you to find the plugin page on the market.
 - **Documentation** : Allows direct access to the plugin documentation page.
 - **Changelog** : Lets see the plugin changelog if it exists.
-- **Details** : Allows you to find the plugin page on the market.
+- **Assistance** : Allows you to automatically create a help request on the forum.
 - **To delete** : Remove the plugin from your Jeedom. Please note, this also permanently removes all equipment from this plugin.
 
 ### Below left, there is an area **state** with :
@@ -154,5 +153,3 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 ### Panel
 
 We can find a Panel section which will enable or disable the display of the panel on the dashboard or mobile if the plugin offers one.
-
-

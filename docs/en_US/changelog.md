@@ -8,6 +8,7 @@
 
 - Debian12/PHP8 support.
 - Checking the minimum core version required before installing or updating a plugin.
+- Adding a button **Assistance** on the plugin configuration page *(Automatic creation of a help request on the forum)*
 
 ### 4.4 : Prerequisites
 

@@ -2775,9 +2775,10 @@
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "Refresh",
+        "Détails": "Details",
         "Documentation": "Documentation",
         "Changelog": "Changelog",
-        "Détails": "Details",
+        "Assistance": "Assistance",
         "Supprimer": "Delete",
         "Afficher le panneau desktop": "Show desktop panel",
         "Afficher le panneau mobile": "Show mobile panel",

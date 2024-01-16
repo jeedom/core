@@ -2775,9 +2775,10 @@
     },
     "desktop\/js\/plugin.js": {
         "Rafraichir": "リフレッシュ",
+        "Détails": "細部",
         "Documentation": "ドキュメンテーション",
         "Changelog": "変更履歴",
-        "Détails": "細部",
+        "Assistance": "Assistance",
         "Supprimer": "取り除きます",
         "Afficher le panneau desktop": "デスクトップパネルを表示",
         "Afficher le panneau mobile": "モバイルパネルを表示",
