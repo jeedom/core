@@ -8,6 +8,7 @@
 
 - Prise en charge Debian12/PHP8.
 - Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin.
+- Ajout d'un bouton **Assistance** sur la page de configuration des plugins *(Création automatique d'une demande d'aide sur le forum)*
 
 ### 4.4 : Pré-requis
 
