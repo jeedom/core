@@ -14,76 +14,117 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.cache = function() {};
+jeedom.cache = function() { }
+
+jeedom.cache.set = function(_params) {
+  var paramsRequired = ['key', 'value']
+  var paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
+  paramsAJAX.data = {
+    action: 'set',
+    key: _params.key,
+    value: _params.value,
+    lifetime: _params.lifetime || 0,
+    options: JSON.stringify(_params.options) || null
+  }
+  domUtils.ajax(paramsAJAX)
+}
+
+jeedom.cache.byKey = function(_params) {
+  var paramsRequired = ['key']
+  var paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
+  paramsAJAX.data = {
+    action: 'byKey',
+    key: _params.key
+  }
+  domUtils.ajax(paramsAJAX)
+}
 
 jeedom.cache.clean = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/cache.ajax.php';
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
   paramsAJAX.data = {
     action: 'clean'
-  };
-  domUtils.ajax(paramsAJAX);
+  }
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cache.flush = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/cache.ajax.php';
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
   paramsAJAX.data = {
     action: 'flush'
-  };
-  domUtils.ajax(paramsAJAX);
+  }
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cache.stats = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/cache.ajax.php';
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
   paramsAJAX.data = {
     action: 'stats'
-  };
-  domUtils.ajax(paramsAJAX);
+  }
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.cache.flushWidget = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  var paramsRequired = []
+  var paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/cache.ajax.php';
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
   paramsAJAX.data = {
     action: 'flushWidget'
-  };
-  domUtils.ajax(paramsAJAX);
+  }
+  domUtils.ajax(paramsAJAX)
 }

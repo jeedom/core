@@ -21,42 +21,42 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class cache {
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $cache = null;
-	
+
 	private $key;
 	private $value = null;
 	private $lifetime = 0;
 	private $datetime;
 	private $options = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
+
 	public static function getFolder() {
 		return jeedom::getTmpFolder('cache');
 	}
-	
+
 	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}
 		$cache = (new self())
-		->setKey($_key)
-		->setValue($_value)
-		->setLifetime($_lifetime);
+			->setKey($_key)
+			->setValue($_value)
+			->setLifetime($_lifetime);
 		if ($_options != null) {
 			$cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
 		}
 		return $cache->save();
 	}
-	
+
 	public static function delete($_key) {
 		$cache = cache::byKey($_key);
 		if (is_object($cache)) {
 			$cache->remove();
 		}
 	}
-	
+
 	public static function stats($_details = false) {
 		$return = self::getCache()->getStats();
 		$return['count'] = __('Inconnu', __FILE__);
@@ -71,7 +71,7 @@ class cache {
 					$return['count']++;
 				}
 			}
-		} else if($engine == 'RedisCache') {
+		} else if ($engine == 'RedisCache') {
 			$return['count'] = self::$cache->getRedis()->dbSize();
 		}
 		if ($_details) {
@@ -93,11 +93,11 @@ class cache {
 		return $return;
 	}
 	/**
-	* @name getCache()
-	* @access public
-	* @static
-	* @return \Doctrine\Common\Cache\CacheProvider
-	*/
+	 * @name getCache()
+	 * @access public
+	 * @static
+	 * @return \Doctrine\Common\Cache\CacheProvider
+	 */
 	public static function getCache() {
 		if (self::$cache !== null) {
 			return self::$cache;
@@ -113,91 +113,89 @@ class cache {
 		}
 		switch ($engine) {
 			case 'FilesystemCache':
-			self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
-			break;
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				break;
 			case 'PhpFileCache':
-			self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
-			break;
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				break;
 			case 'MemcachedCache':
-			$memcached = new Memcached();
-			$memcached->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
-			self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
-			self::$cache->setMemcached($memcached);
-			break;
+				$memcached = new Memcached();
+				$memcached->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
+				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
+				self::$cache->setMemcached($memcached);
+				break;
 			case 'RedisCache':
-			$redis = new Redis();
-			$redisAddr = config::byKey('cache::redisaddr');
-			if (strncmp($redisAddr, '/', 1) === 0) {
-				$redis->connect($redisAddr);
-			} else {
-				$redis->connect($redisAddr, config::byKey('cache::redisport'));
-			}
-			self::$cache = new \Doctrine\Common\Cache\RedisCache();
-			self::$cache->setRedis($redis);
-			break;
+				$redis = new Redis();
+				$redisAddr = config::byKey('cache::redisaddr');
+				if (strncmp($redisAddr, '/', 1) === 0) {
+					$redis->connect($redisAddr);
+				} else {
+					$redis->connect($redisAddr, config::byKey('cache::redisport'));
+				}
+				self::$cache = new \Doctrine\Common\Cache\RedisCache();
+				self::$cache->setRedis($redis);
+				break;
 			default:
-			self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
-			break;
+				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
+				break;
 		}
 		return self::$cache;
 	}
-	
+
 	/**
-	*
-	* @param string $_key
-	* @return object
-	*/
+	 *
+	 * @param string $_key
+	 * @return object
+	 */
 	public static function byKey($_key) {
 		$cache = self::getCache()->fetch($_key);
 		if (!is_object($cache)) {
 			$cache = (new self())
-			->setKey($_key)
-			->setDatetime(date('Y-m-d H:i:s'));
+				->setKey($_key)
+				->setDatetime(date('Y-m-d H:i:s'));
 		}
 		return $cache;
 	}
-	
+
 	public static function exist($_key) {
 		return is_object(self::getCache()->fetch($_key));
 	}
-	
+
 	public static function flush() {
 		self::getCache()->deleteAll();
 		shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
 	}
-	
-	
+
+
 	public static function flushWidget() {
-		foreach((eqLogic::all()) as $eqLogic) {
+		foreach ((eqLogic::all()) as $eqLogic) {
 			try {
 				$eqLogic->emptyCacheWidget();
 			} catch (Exception $e) {
-				
 			}
 		}
-		foreach((scenario::all()) as $scenario) {
+		foreach ((scenario::all()) as $scenario) {
 			try {
 				$scenario->emptyCacheWidget();
 			} catch (Exception $e) {
-				
 			}
 		}
 	}
-	
+
 	public static function search() {
 		return array();
 	}
-	
+
 	public static function persist() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
-			$cache_dir = self::getFolder();
-			break;
+				$cache_dir = self::getFolder();
+				break;
 			case 'PhpFileCache':
-			$cache_dir = self::getFolder();
-			break;
+				$cache_dir = self::getFolder();
+				break;
 			default:
-			return;
+				return;
 		}
 		try {
 			$cmd = system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';';
@@ -208,11 +206,9 @@ class cache {
 			$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . $cache_dir . ' 2>&1 > /dev/null';
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
-			
 		}
-		
 	}
-	
+
 	public static function isPersistOk(): bool {
 		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
 			return true;
@@ -226,17 +222,17 @@ class cache {
 		}
 		return true;
 	}
-	
+
 	public static function restore() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
-			$cache_dir = self::getFolder();
-			break;
+				$cache_dir = self::getFolder();
+				break;
 			case 'PhpFileCache':
-			$cache_dir = self::getFolder();
-			break;
+				$cache_dir = self::getFolder();
+				break;
 			default:
-			return;
+				return;
 		}
 		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
 			$cmd = 'mkdir ' . $cache_dir . ';';
@@ -251,7 +247,7 @@ class cache {
 		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
 	}
-	
+
 	public static function clean() {
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
@@ -387,9 +383,9 @@ class cache {
 			}
 		}
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	public function save() {
 		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
@@ -398,64 +394,62 @@ class cache {
 			return self::getCache()->save($this->getKey(), $this, $this->getLifetime());
 		}
 	}
-	
+
 	public function remove() {
 		try {
 			self::getCache()->delete($this->getKey());
 		} catch (Exception $e) {
-			
 		}
 	}
-	
+
 	public function hasExpired(): bool {
 		return true;
 	}
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
+
 	public function getKey() {
 		return $this->key;
 	}
-	
+
 	public function setKey($key): self {
 		$this->key = $key;
 		return $this;
 	}
-	
+
 	public function getValue($_default = '') {
 		return ($this->value === null || (is_string($this->value) && trim($this->value) === '')) ? $_default : $this->value;
 	}
-	
+
 	public function setValue($value): self {
 		$this->value = $value;
 		return $this;
 	}
-	
+
 	public function getLifetime() {
 		return $this->lifetime;
 	}
-	
+
 	public function setLifetime($lifetime): self {
 		$this->lifetime = $lifetime;
 		return $this;
 	}
-	
+
 	public function getDatetime() {
 		return $this->datetime;
 	}
-	
+
 	public function setDatetime($datetime): self {
 		$this->datetime = $datetime;
 		return $this;
 	}
-	
+
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
-	
+
 	public function setOptions($_key, $_value = null): self {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
-	
 }
