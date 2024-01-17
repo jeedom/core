@@ -161,29 +161,42 @@ if (!jeeFrontEnd.plugin) {
 
           //top right buttons:
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
-          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
+          let title = '{{Rafraichir la page}}'
+          let button = '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo" title="' + title + '"><i class="fas fa-sync"></i><span class="hidden-768"> {{Rafraichir}}</span></a>'
+          spanRightButton.empty().insertAdjacentHTML('beforeend', button)
           if (jeedom.theme.mbState == 0) {
             if (isset(data.info.display) && data.info.display != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-search"></i> {{Détails}}</a>')
+              title = '{{Voir sur le market}}'
+              button = '<a class="btn btn-sm" target="_blank" href="' + data.info.display + '" title="' + title + '"><i class="fas fa-search"></i><span class="hidden-768"> {{Détails}}</span></a>'
+              spanRightButton.insertAdjacentHTML('beforeend', button)
             }
             if (data.update.configuration) {
+              title = '{{Accéder à la documentation du plugin}}'
               if (isset(data.documentation_beta) && data.documentation_beta != '' && data.update.configuration.version == 'beta') {
-                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+                button = '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '" title="' + title + '"><i class="fas fa-book"></i> {{Documentation}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
               }
               else if (isset(data.documentation) && data.documentation != '') {
-                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+                button = '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '" title="' + title + '"><i class="fas fa-book"></i> {{Documentation}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
               }
+              title = '{{Consulter le journal des modifications du plugin}}'
               if (isset(data.changelog_beta) && data.changelog_beta != '' && data.update.configuration.version == 'beta') {
-                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>')
+                button = '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog_beta + '" title="' + title + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
               }
               else if (isset(data.changelog) && data.changelog != '') {
-                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>')
+                button = '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog + '" title="' + title + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
               }
             }
-            spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-warning btn-sm" target="_blank" id="createCommunityPost" data-plugin_id="' + data.id + '"><i class="fas fa-ambulance"></i> {{Assistance}}</a>')
-
+            title = '{{Ouvrir une demande d\'aide sur le forum communautaire}}'
+            button = '<a class="btn btn-warning btn-sm" id="createCommunityPost" data-plugin_id="' + data.id + '" title="' + title + '"><i class="fas fa-ambulance"></i><span class="hidden-768"> {{Assistance}}</span></a>'
+            spanRightButton.insertAdjacentHTML('beforeend', button)
           }
-          spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>')
+          title = '{{Supprimer le plugin}}'
+          button = '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '" title="' + title + '"><i class="fas fa-trash"></i><span class="hidden-768"> {{Supprimer}}</span></a>'
+          spanRightButton.insertAdjacentHTML('beforeend', button)
 
           self.dom_container.querySelector('#div_configPanel').unseen()
           self.dom_container.querySelector('#div_plugin_panel').empty()
