@@ -110,7 +110,7 @@ if (init('type') != '') {
 		if ($type == 'interact') {
 			$query = init('query');
 			if (init('utf8', 0) == 1) {
-				$query = mb_convert_encoding($query, 'UTF-8', 'ISO-8859-1');
+				$query = mb_convert_encoding($query, 'UTF-8');
 			}
 			$param = array();
 			if (init('emptyReply') != '') {
