@@ -49,7 +49,7 @@ try {
 				if (config::byKey('core::repo::provider') == 'default') {
 					$infos['branch'] = config::byKey('core::branch', 'core', 'Unknown');
 				}else{
-					$infos['branch'] = 'custom';
+					$infos['branch'] = config::byKey('core::repo::provider').' - custom';
 				}
 			}
 			$return[] = $infos;
