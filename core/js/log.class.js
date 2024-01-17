@@ -261,6 +261,7 @@ jeedom.log.autoupdate = function(_params) {
       }
 
       if (colorMe) {
+        log = log.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")
         if (isScenaroLog) {
           log = jeedom.log.scenarioColorReplace(log)
         } else {

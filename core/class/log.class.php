@@ -246,8 +246,6 @@ class log {
 			while ($log->valid() && $linesRead != $_nbLines) {
 				$line = trim($log->current()); //get current line
 				if ($line != '') {
-					$line = htmlspecialchars($line, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-					$line = str_replace('&amp;', '&', $line);
 					array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
 				}
 				$log->next();
