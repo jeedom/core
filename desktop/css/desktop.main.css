@@ -738,7 +738,7 @@ Desktop
     padding-left: 0px;
     min-height: 30px !important;
   }
-  li.eqLogic.dragSelected {
+  .dragSelected {
     border: 2px dashed var(--logo-primary-color) !important;
   }
   li.eqLogic .bt_sortable {
@@ -4695,11 +4695,18 @@ div.eqLogic-widget.editingMode .panelLink {
     width: 100%;
     margin-top: 5px;
   }
+  #pre_globallog mark,
+  #pre_scenariolog mark,
+  #pre_eventlog mark {
+    color: #000;
+    background-color: #ff0;
+    display: inline-flex;
+    padding: 0em;
+  }
   #pre_globallog span,
   #pre_eventlog span {
     height: 12px;
     min-width: 60px;
-    padding: 0px 4px;
     margin-bottom: -1px !important;
     line-height: 10px;
   }

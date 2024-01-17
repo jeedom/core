@@ -163,6 +163,9 @@ if (!jeeFrontEnd.plugin) {
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
           spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
           if (jeedom.theme.mbState == 0) {
+            if (isset(data.info.display) && data.info.display != '') {
+              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-search"></i> {{Détails}}</a>')
+            }
             if (data.update.configuration) {
               if (isset(data.documentation_beta) && data.documentation_beta != '' && data.update.configuration.version == 'beta') {
                 spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
@@ -171,16 +174,14 @@ if (!jeeFrontEnd.plugin) {
                 spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
               }
               if (isset(data.changelog_beta) && data.changelog_beta != '' && data.update.configuration.version == 'beta') {
-                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>')
               }
               else if (isset(data.changelog) && data.changelog != '') {
-                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+                spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>')
               }
             }
+            spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-warning btn-sm" target="_blank" id="createCommunityPost" data-plugin_id="' + data.id + '"><i class="fas fa-ambulance"></i> {{Assistance}}</a>')
 
-            if (isset(data.info.display) && data.info.display != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
-            }
           }
           spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>')
 
@@ -735,6 +736,29 @@ document.getElementById('div_confPlugin')?.addEventListener('click', function(ev
   if (_target = event.target.closest('.bt_openPluginPage')) {
     event.stopPropagation()
     jeeFrontEnd.plugin.openPluginPage(event)
+    return
+  }
+
+  if (_target = event.target.closest('#createCommunityPost')) {
+    jeedom.plugin.createCommunityPost({
+      type: _target.getAttribute('data-plugin_id'),
+      error: function(error) {
+        domUtils.hideLoading()
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        let element = document.createElement('a')
+        element.setAttribute('href', data.url)
+        element.setAttribute('target', '_blank')
+        element.style.display = 'none'
+        document.body.appendChild(element)
+        element.click()
+        document.body.removeChild(element)
+      }
+    })
     return
   }
 })

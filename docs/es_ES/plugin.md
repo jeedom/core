@@ -74,8 +74,6 @@ Puede agregar un complemento a Jeedom desde un archivo o desde un repositorio de
 
 Atención, en el caso de agregar por un archivo zip, el nombre del zip debe ser el mismo que el ID del complemento y al abrir el ZIP debe estar presente una carpeta plugin\_info.
 
-
-
 ## Mis plugins
 
 Al hacer clic en el icono de un complemento, abre su página de configuración.
@@ -86,9 +84,10 @@ Al hacer clic en el icono de un complemento, abre su página de configuración.
 
 ### Arriba a la derecha, algunos botones :
 
+- **Detalles** : Le permite encontrar la página de complementos en el mercado.
 - **Documentación** : Permite el acceso directo a la página de documentación del complemento.
 - **Registro de cambios** : Veamos el registro de cambios del complemento si existe.
-- **Detalles** : Le permite encontrar la página de complementos en el mercado.
+- **Asistencia** : Le permite crear automáticamente una solicitud de ayuda en el foro.
 - **Borrar** : Elimina el complemento de tu Jeedom. Tenga en cuenta que esto también elimina permanentemente todo el equipo de este complemento.
 
 ### Abajo a la izquierda, hay un área **estado** con :
@@ -154,5 +153,3 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 ### Panel
 
 Podemos encontrar una sección de Panel que habilitará o deshabilitará la visualización del panel en el tablero o en el dispositivo móvil si el complemento ofrece uno.
-
-

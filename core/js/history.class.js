@@ -375,7 +375,8 @@ jeedom.history.drawChart = function(_params) {
           _params.option.graphType = (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') ? data.result.cmd.display.graphType : 'area'
         }
         if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
-          var split = data.result.cmd.display.groupingType.split('::')
+          var split = data.result.cmd.display.groupingType.split('||')[0]
+		  split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -643,7 +644,8 @@ jeedom.history.drawChart = function(_params) {
           enabled: false
         }
         if (isset(_params.option.groupingType) && typeof _params.option.groupingType === 'string' && _params.option.groupingType != '') {
-          var split = _params.option.groupingType.split('::')
+          var split = _params.option.groupingType.split('||')[0]
+		  split=split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -986,6 +988,7 @@ jeedom.history.drawChart = function(_params) {
           if (isset(_params.yAxisScaling) && _params.yAxisScaling !== '') options.default.yAxisScaling = _params.yAxisScaling
           if (isset(_params.yAxisByUnit) && _params.yAxisByUnit !== '') options.default.yAxisByUnit = _params.yAxisByUnit
           if (isset(_params.yAxisScalePercent) && _params.yAxisScalePercent !== '') options.default.yAxisScalePercent = _params.yAxisScalePercent
+          if (isset(_params.yAxisVisible) && _params.yAxisVisible !== '') options.default.yAxisVisible = _params.yAxisVisible
           jeedom.history.initChart(_params.el, options)
         } else {
           //set options for comparison serie:
@@ -1112,6 +1115,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   if (isset(_options.default.yAxisScaling)) jeedom.history.default.yAxisScaling = Boolean(Number(_options.default.yAxisScaling))
   if (isset(_options.default.yAxisByUnit)) jeedom.history.default.yAxisByUnit = Boolean(Number(_options.default.yAxisByUnit))
   if (isset(_options.default.yAxisScalePercent)) jeedom.history.default.yAxisScalePercent = Number(_options.default.yAxisScalePercent)
+  if (isset(_options.default.yAxisVisible)) jeedom.history.default.yAxisVisible = Boolean(Number(_options.default.yAxisVisible))
 
   /*
   HichCharts button states (undocumented):

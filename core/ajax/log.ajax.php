@@ -68,8 +68,8 @@ try {
 				init('log'),
 				intval(init('position', 0)),
 				init('search'),
-				intval(init('colored', 0)),
-				init('numbered', true),
+				boolval(init('colored', 0)),
+				boolval(init('numbered', 1)),
 				intval(init('numberStart', 0))
 			)
 		);

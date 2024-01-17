@@ -2,9 +2,13 @@
 
 >**IMPORTANTE**
 >
->Nota versión 4.4 es una actualización importante de jeedom, incluso si visualmente los cambios para usted serán mínimos, se ha reescrito todo el código de la interfaz (para que sea más rápido en particular), así como también se ha revisado la gestión de las dependencias de php. Incluso si el equipo Jeedom y los betatesters han realizado muchas pruebas, hay tantas versiones de Jeedom como Jeedom. Por lo tanto, no es posible garantizar que funcionará para todos en el 100% de los casos. Por lo tanto, le recomendamos que no salte sobre la actualización.
->Como recordatorio, en caso de problemas, puede escribir al soporte (si tiene un paquete de servicio o más) desde su página de perfiles de mercado.
+>Aunque no sean necesariamente visibles a primera vista, la versión 4.4 de Jeedom trae cambios importantes con una interfaz que ha sido completamente reescrita para un control total y, sobre todo, una ganancia inigualable en fluidez de navegación. También se ha revisado la gestión de dependencias PHP para poder mantenerlas actualizadas automáticamente. Incluso si el equipo de Jeedom y los probadores beta han hecho muchas pruebas, hay tantas versiones de jeedom como jeedom... Por lo tanto, no es posible garantizar el correcto funcionamiento en el 100% de los casos. Sin embargo, en caso de problema puede [abrir un tema en el foro con la etiqueta `v4_4`](https://community.jeedom.com/) o contacta con soporte desde tu perfil de mercado *(siempre que tenga un paquete de servicio o superior)*.
 
+## 4.4.1
+
+- Soporte para Debian12/PHP8.
+- Verificar la versión básica mínima requerida antes de instalar o actualizar un complemento.
+- Agregar un botón **Asistencia** en la página de configuración del complemento *(Creación automática de una solicitud de ayuda en el foro)*
 
 ### 4.4 : Prerrequisitos
 
