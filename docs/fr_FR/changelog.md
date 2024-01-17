@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.3
 
+## 4.3.22
+
+- Correction de bugs
+- Amélioration de l'affichage des logs
+
 ## 4.3.21
 
 - Lancement forcé à chaque mise à jour du script de verification de nodejs/npm pour eviter des soucis d'installation de certain plugin (zwavejs, jeezigbee...)
