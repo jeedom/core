@@ -112,7 +112,7 @@ class view {
 		}
 	}
 
-	public function refresh() {
+	public function refresh():void {
 		DB::refresh($this);
 	}
 
@@ -261,7 +261,7 @@ class view {
 		);
 	}
 
-	public function hasRight($_right, $_user = null) {
+	public function hasRight($_right, $_user = null): bool {
 		if ($_user != null) {
 			if ($_user->getProfils() == 'admin' || $_user->getProfils() == 'user') {
 				return true;
