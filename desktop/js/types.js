@@ -468,8 +468,9 @@ sortLists.forEach(_group => {
       }
     },
     onAdd: function(evt) {
-      var generic = evt.target.closest('.eqlogicSortable').getAttribute('data-id')
-      evt.items.forEach(_eqLogic => {
+      let generic = evt.target.closest('.eqlogicSortable').getAttribute('data-id')
+      let eqLogics = (evt.items.length > 1) ? evt.items : [evt.item]
+      eqLogics.forEach(_eqLogic => {
         _eqLogic.setAttribute('data-generic', generic)
         _eqLogic.setAttribute('data-changed', '1')
       })
@@ -478,7 +479,7 @@ sortLists.forEach(_group => {
       jeeFrontEnd.modifyWithoutSave = true
 
       if (!generic) {
-        jeeP.removeCmdsGenerics(evt.items)
+        jeeP.removeCmdsGenerics(eqLogics)
       }
     }
   })
