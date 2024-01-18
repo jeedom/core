@@ -2774,11 +2774,17 @@
         "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
+        "Rafraichir la page": "Rafraichir la page",
         "Rafraichir": "リフレッシュ",
+        "Voir sur le market": "Voir sur le market",
         "Détails": "細部",
+        "Accéder à la documentation du plugin": "Accéder à la documentation du plugin",
         "Documentation": "ドキュメンテーション",
+        "Consulter le journal des modifications du plugin": "Consulter le journal des modifications du plugin",
         "Changelog": "変更履歴",
+        "Ouvrir une demande d\\'aide sur le forum communautaire": "Ouvrir une demande d\\'aide sur le forum communautaire",
         "Assistance": "Assistance",
+        "Supprimer le plugin": "Supprimer le plugin",
         "Supprimer": "取り除きます",
         "Afficher le panneau desktop": "デスクトップパネルを表示",
         "Afficher le panneau mobile": "モバイルパネルを表示",

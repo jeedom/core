@@ -2774,11 +2774,17 @@
         "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
+        "Rafraichir la page": "Rafraichir la page",
         "Rafraichir": "Menyegarkan",
+        "Voir sur le market": "Voir sur le market",
         "Détails": "Rincian",
+        "Accéder à la documentation du plugin": "Accéder à la documentation du plugin",
         "Documentation": "Dokumentasi",
+        "Consulter le journal des modifications du plugin": "Consulter le journal des modifications du plugin",
         "Changelog": "Changelog",
+        "Ouvrir une demande d\\'aide sur le forum communautaire": "Ouvrir une demande d\\'aide sur le forum communautaire",
         "Assistance": "Assistance",
+        "Supprimer le plugin": "Supprimer le plugin",
         "Supprimer": "Menghapus",
         "Afficher le panneau desktop": "Lihat desktop panel",
         "Afficher le panneau mobile": "Lihat panel seluler",

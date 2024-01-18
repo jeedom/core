@@ -2774,11 +2774,17 @@
         "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
+        "Rafraichir la page": "Rafraichir la page",
         "Rafraichir": "Обновить",
+        "Voir sur le market": "Voir sur le market",
         "Détails": "Подробности",
+        "Accéder à la documentation du plugin": "Accéder à la documentation du plugin",
         "Documentation": "документация",
+        "Consulter le journal des modifications du plugin": "Consulter le journal des modifications du plugin",
         "Changelog": "Изменения",
+        "Ouvrir une demande d\\'aide sur le forum communautaire": "Ouvrir une demande d\\'aide sur le forum communautaire",
         "Assistance": "Assistance",
+        "Supprimer le plugin": "Supprimer le plugin",
         "Supprimer": "удаление",
         "Afficher le panneau desktop": "Вид рабочего стола панель",
         "Afficher le panneau mobile": "Просмотр подвижной панели",

@@ -46,7 +46,11 @@ try {
 				}
 			}
 			if ($update->getType() == 'core') {
-				$infos['branch'] = config::byKey('core::branch', 'core', 'Unknown');
+				if (config::byKey('core::repo::provider') == 'default') {
+					$infos['branch'] = config::byKey('core::branch', 'core', 'Unknown');
+				}else{
+					$infos['branch'] = config::byKey('core::repo::provider').' - custom';
+				}
 			}
 			$return[] = $infos;
 		}

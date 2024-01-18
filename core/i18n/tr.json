@@ -2774,11 +2774,17 @@
         "Editer": "Editer"
     },
     "desktop\/js\/plugin.js": {
+        "Rafraichir la page": "Rafraichir la page",
         "Rafraichir": "Yenile",
+        "Voir sur le market": "Voir sur le market",
         "Détails": "Detaylar",
+        "Accéder à la documentation du plugin": "Accéder à la documentation du plugin",
         "Documentation": "Belgeleme",
+        "Consulter le journal des modifications du plugin": "Consulter le journal des modifications du plugin",
         "Changelog": "Değişiklikler",
+        "Ouvrir une demande d\\'aide sur le forum communautaire": "Ouvrir une demande d\\'aide sur le forum communautaire",
         "Assistance": "Assistance",
+        "Supprimer le plugin": "Supprimer le plugin",
         "Supprimer": "Sil",
         "Afficher le panneau desktop": "Görünüm masaüstü paneli",
         "Afficher le panneau mobile": "Mobil panelini görüntüle",

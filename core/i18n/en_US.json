@@ -2774,11 +2774,17 @@
         "Editer": "Edit"
     },
     "desktop\/js\/plugin.js": {
+        "Rafraichir la page": "Refresh the page",
         "Rafraichir": "Refresh",
+        "Voir sur le market": "See on the market",
         "Détails": "Details",
+        "Accéder à la documentation du plugin": "Access the plugin documentation",
         "Documentation": "Documentation",
+        "Consulter le journal des modifications du plugin": "View the plugin changelog",
         "Changelog": "Changelog",
+        "Ouvrir une demande d\\'aide sur le forum communautaire": "Open a help request on the community forum",
         "Assistance": "Assistance",
+        "Supprimer le plugin": "Remove plugin",
         "Supprimer": "Delete",
         "Afficher le panneau desktop": "Show desktop panel",
         "Afficher le panneau mobile": "Show mobile panel",

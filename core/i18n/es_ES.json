@@ -2774,11 +2774,17 @@
         "Editer": "Editar"
     },
     "desktop\/js\/plugin.js": {
+        "Rafraichir la page": "Recarga la página",
         "Rafraichir": "Actualizar",
+        "Voir sur le market": "Ver en el mercado",
         "Détails": "Detalles",
+        "Accéder à la documentation du plugin": "Acceda a la documentación del complemento",
         "Documentation": "Documentación",
+        "Consulter le journal des modifications du plugin": "Ver el registro de cambios del complemento",
         "Changelog": "Cambios",
+        "Ouvrir une demande d\\'aide sur le forum communautaire": "Abrir una solicitud de ayuda en el foro de la comunidad",
         "Assistance": "Asistencia",
+        "Supprimer le plugin": "Eliminar complemento",
         "Supprimer": "Eliminar",
         "Afficher le panneau desktop": "Vista del panel de escritorio",
         "Afficher le panneau mobile": "Vista del panel móvil",
