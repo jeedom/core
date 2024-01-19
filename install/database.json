@@ -30,7 +30,7 @@
         },
         {
           "name": "logicalId",
-          "type": "varchar(1024)",
+          "type": "varchar(1023)",
           "null": "YES",
           "key": "MUL",
           "default": null,
