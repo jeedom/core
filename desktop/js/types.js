@@ -257,7 +257,7 @@ if (!jeeFrontEnd.types) {
         inner += '<div class="center biggerText">' + eqName + '</div>'
         for (var _cmd in queryEqIds[_id].cmds) {
           thisCmd = queryEqIds[_id].cmds[_cmd]
-          console.log(thisCmd)
+          // console.log(thisCmd)
           cmdName = document.querySelector('li.cmd[data-id="' + thisCmd.id + '"]').getAttribute('data-name')
           thisClass = thisCmd.type == 'info' ? 'alert-info' : 'alert-warning'
 

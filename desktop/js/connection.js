@@ -129,7 +129,7 @@ if (!jeeFrontEnd.connection) {
       }
     },
     animateCss: function(element, animationName, callback) {
-      console.log('animateCss:', element, animationName, callback)
+      // console.log('animateCss:', element, animationName, callback)
       var animationEnd = (function(el) {
         var animations = {
           animation: 'animationend',
