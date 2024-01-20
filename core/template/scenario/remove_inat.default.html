@@ -1,0 +1,30 @@
+<!--template/scenario/remove_inat.default-->
+<div class="input-group input-group-sm" style="width: 100%">
+  <span class="input-group-addon roundedLeft">{{Scénario}}</span>
+  <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+</div>
+<script>
+  jeedom.scenario.allOrderedByGroupObjectName({
+    asGroup: 0,
+    error: function (error) {
+      jeedomUtils.showAlert({message: error.message, level: 'danger'});
+    },
+    success: function (scenarios) {
+      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
+      var newOption
+      if (document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
+        newOption = document.createElement('option')
+        newOption.text = '{{Ce scénario}}'
+        newOption.value = 0
+        newOption.selected = true
+      }
+      select.appendChild(newOption)
+      for (var i in scenarios) {
+        newOption = document.createElement('option')
+        newOption.text = scenarios[i].humanName
+        newOption.value = scenarios[i].id
+        select.appendChild(newOption)
+      }
+    }
+  })
+</script>
