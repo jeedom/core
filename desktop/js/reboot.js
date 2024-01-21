@@ -19,7 +19,7 @@ jeeDialog.confirm('{{Êtes-vous sûr de vouloir redémarrer le système ?}}', fu
 function redirectIP() {
   redirect++
   new ping(ip, function (status, e) {
-      console.log(status)
+      // console.log(status)
       if (redirect == 100) {
         document.getElementById('div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{Impossible de trouver la box suite au redémarrage ...}}</h6>')
       } else {
@@ -80,4 +80,3 @@ function ping(ip, callback) {
     }, 1500)
   }
 }
-

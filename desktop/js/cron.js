@@ -354,7 +354,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 
 //Table cron
 document.getElementById('table_cron')?.tBodies[0].addEventListener('click', function(event) {
-  console.log('click:', event.target)
+  // console.log('click:', event.target)
   var _target = null
   if (_target = event.target.closest('.remove')) {
     _target.closest('tr').remove()
