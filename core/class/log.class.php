@@ -432,7 +432,7 @@ class log {
 		$line = '';
 		$cursor = -1;
 		// Locate EOF
-		fseek($fp, 0, SEEK_END);
+		fseek($fp, $cursor, SEEK_END);
 		$char = fgetc($fp);
 		// Trim trailing newline chars of the file
 		while ($char === "\n" || $char === "\r") {
