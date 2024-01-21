@@ -421,7 +421,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   var match, text
   document.querySelectorAll('div.eqLogic-widget').forEach(function(element) {
     match = false
-    text = jeedomUtils.normTextLower(element.querySelector('div.widget-name > a, center.widget-name > a')?.textContent)
+    text = jeedomUtils.normTextLower(element.querySelector('.widget-name > a')?.textContent)
     if (text.includes(search)) match = true
 
     if (element.getAttribute('data-tags') != undefined) {
