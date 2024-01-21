@@ -446,7 +446,7 @@ JSON Log API
 log::get
 --------
 
-Retrieve a log file
+Allows you to retrieve a log
 
 Settings:
 
@@ -456,40 +456,10 @@ Settings:
 
 -   string nbLine : number of lines to recover
 
-log::getDelta
---------
-
-Retrieve a log file incrementally
-
-Paramètres:
-
--   string log: log filename
-
--   int position: bytes representing position from the begining of the file
-
--   string search: text to find in log file
-
--   int colored: should lines be colored
-
--   boolean numbered: should lines be numbered
-
--   int numStart: at what number should lines number start
-
--   int max Max: number of returned lines
-
-log::getLastLine
---------
-
-Retrieve the last line of a log file
-
-Settings:
-
--   string log : name of the log to retrieve
-
 log::add
 --------
 
-Write into a log file
+Allows to write in a log
 
 Settings:
 
@@ -573,7 +543,7 @@ Returns the list of all messages
 message::add
 --------
 
-Write in a log
+Allows to write in a log
 
 Settings:
 
