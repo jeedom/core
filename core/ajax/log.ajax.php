@@ -58,6 +58,7 @@ try {
 		ajax::success();
 	}
 
+	// DEPRECATED -> remove in 4.6?
 	if (init('action') == 'get') {
 		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 	}

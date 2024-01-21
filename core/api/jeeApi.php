@@ -980,6 +980,29 @@ try {
 		$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
 	}
 
+	if ($jsonrpc->getMethod() == 'log::getDelta') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+		$jsonrpc->makeSuccess(log::getDelta(
+			$params['log'],
+			$params['position'],
+			$params['search'],
+			$params['position'],
+			$params['colored'],
+			$params['numbered'],
+			$params['numStart'],
+			$params['max']
+		));
+	}
+
+	if ($jsonrpc->getMethod() == 'log::getLastLine') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+		$jsonrpc->makeSuccess(log::getLastLine($params['log']));
+	}
+
 	if ($jsonrpc->getMethod() == 'log::add') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
