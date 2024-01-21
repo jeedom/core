@@ -668,67 +668,67 @@ function date_fr($date_en) {
 		return $date_en;
 	}
 	$texte_long_en = array(
-		'/(^| )Monday($| )/', '/(^| )Tuesday($| )/', '/(^| )Wednesday($| )/', '/(^| )Thursday($| )/',
-		'/(^| )Friday($| )/', '/(^| )Saturday($| )/', '/(^| )Sunday($| )/', '/(^| )January($| )/',
-		'/(^| )February($| )/', '/(^| )March($| )/', '/(^| )April($| )/', '/(^| )May($| )/',
-		'/(^| )June($| )/', '/(^| )July($| )/', '/(^| )August($| )/', '/(^| )September($| )/',
-		'/(^| )October($| )/', '/(^| )November($| )/', '/(^| )December($| )/',
+		'/(^|\W)Monday($|\W)/', '/(^|\W)Tuesday($|\W)/', '/(^|\W)Wednesday($|\W)/', '/(^|\W)Thursday($|\W)/',
+		'/(^|\W)Friday($|\W)/', '/(^|\W)Saturday($|\W)/', '/(^|\W)Sunday($|\W)/', '/(^|\W)January($|\W)/',
+		'/(^|\W)February($|\W)/', '/(^|\W)March($|\W)/', '/(^|\W)April($|\W)/', '/(^|\W)May($|\W)/',
+		'/(^|\W)June($|\W)/', '/(^|\W)July($|\W)/', '/(^|\W)August($|\W)/', '/(^|\W)September($|\W)/',
+		'/(^|\W)October($|\W )/', '/(^|\W)November($|\W)/', '/(^|\W)December($|\W)/',
 	);
 	$texte_short_day_en = array(
-		'/(^| )Mon($| )/', '/(^| )Tue($| )/', '/(^| )Wed($| )/', '/(^| )Thu($| )/', '/(^| )Fri($| )/', '/(^| )Sat($| )/', '/(^| )Sun($| )/'
+		'/(^|\W)Mon($|\W)/', '/(^|\W)Tue($|\W)/', '/(^|\W)Wed($|\W)/', '/(^|\W)Thu($|\W)/', '/(^|\W)Fri($|\W)/', '/(^|\W)Sat($|\W)/', '/(^|\W)Sun($|\W)/'
 	);
 	$texte_short_month_en = array(
-		'/(^| )Jan($| )/', '/(^| )Feb($| )/', '/(^| )Mar($| )/', '/(^| )Apr($| )/', '/(^| )May($| )/', '/(^| )Jun($| )/', '/(^| )Jul($| )/',
-		'/(^| )Aug($| )/', '/(^| )Sep($| )/', '/(^| )Oct($| )/', '/(^| )Nov($| )/', '/(^| )Dec($| )/',
+		'/(^|\W)Jan($|\W)/', '/(^|\W)Feb($|\W)/', '/(^|\W)Mar($|\W)/', '/(^|\W)Apr($|\W)/', '/(^|\W)May($|\W)/', '/(^|\W)Jun($|\W)/', '/(^|\W)Jul($|\W)/',
+		'/(^|\W)Aug($|\W)/', '/(^|\W)Sep($|\W)/', '/(^|\W)Oct($|\W)/', '/(^|\W)Nov($|\W)/', '/(^|\W)Dec($|\W)/',
 	);
 
 	switch (config::byKey('language', 'core', 'fr_FR')) {
 		case 'fr_FR':
 			$texte_long = array(
-				'Lundi', 'Mardi', 'Mercredi', 'Jeudi',
-				'Vendredi', 'Samedi', 'Dimanche', 'Janvier',
-				'Février', 'Mars', 'Avril', 'Mai',
-				'Juin', 'Juillet', 'Août', 'Septembre',
-				'Octobre', 'Novembre', 'Décembre',
+				'$1Lundi$2', '$1Mardi$2', '$1Mercredi$2', '$1Jeudi$2',
+				'$1Vendredi$2', '$1Samedi$2', '$1Dimanche$2', '$1Janvier$2',
+				'$1Février$2', '$1Mars$2', '$1Avril$2', '$1Mai$2',
+				'$1Juin$2', '$1Juillet$2', '$1Août$2', '$1Septembre$2',
+				'$1Octobre$2', '$1Novembre$2', '$1Décembre$2',
 			);
 			$texte_short_day = array(
-				'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'
+				'$1Lun$2', '$1Mar$2', '$1Mer$2', '$1Jeu$2', '$1Ven$2', '$1Sam$2', '$1Dim$2'
 			);
 			$texte_short_month = array(
-				'Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin',
-				'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.',
+				'$1Janv.$2', '$1Févr.$2', '$1Mars$2', '$1Avril$2', '$1Mai$2', '$1Juin$2',
+				'$1Juil.$2', '$1Août$2', '$1Sept.$2', '$1Oct.$2', '$1Nov.$2', '$1Déc.$2',
 			);
 			break;
 		case 'de_DE':
 			$texte_long = array(
-				'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag',
-				'Freitag', 'Samstag', 'Sonntag', 'Januar',
-				'Februar', 'März', 'April', 'May',
-				'Juni', 'July', 'August', 'September',
-				'October', 'November', 'December',
+				'$1Montag$2', '$1Dienstag$2', '$1Mittwoch$2', '$1Donnerstag$2',
+				'$1Freitag$2', '$1Samstag$2', '$1Sonntag$2', '$1Januar$2',
+				'$1Februar$2', '$1März$2', '$1April$2', '$1May$2',
+				'$1Juni$2', '$1July$2', '$1August$2', '$1September$2',
+				'$1October$2', '$1November$2', '$1December$2',
 			);
 			$texte_short_day = array(
-				'Mon', 'Die', 'Mit', 'Thu', 'Don', 'Sam', 'Son'
+				'$1Mon$2', '$1Die$2', '$1Mit$2', '$1Thu$2', '$1Don$2', '$1Sam$2', '$1Son$2'
 			);
 			$texte_short_month = array(
-				'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
-				'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+				'$1Jan$2', '$1Feb$2', '$1Mar$2', '$1Apr$2', '$1May$2', '$1Jun$2', '$1Jul$2',
+				'$1Aug$2', '$1Sep$2', '$1Oct$2', '$1Nov$2', '$1Dec$2',
 			);
 			break;
 		case 'es_ES':
 			$texte_long = array(
-				'Lunes', 'Martes', 'Miércoles', 'Jueves',
-				'Viernes', 'Sábado', 'Domingo', 'Enero',
-				'Febrero', 'Marzo', 'Abril', 'Mayo',
-				'Junio', 'Julio', 'Agosto', 'Septiembre',
-				'Octubre', 'Noviembre', 'Diciembre',
+				'$1Lunes$2', '$1Martes$2', '$1Miércoles$2', '$1Jueves$2',
+				'$1Viernes$2', '$1Sábado$2', '$1Domingo$2', '$1Enero$2',
+				'$1Febrero$2', '$1Marzo$2', '$1Abril$2', '$1Mayo$2',
+				'$1Junio$2', '$1Julio$2', '$1Agosto$2', '$1Septiembre$2',
+				'$1Octubre$2', '$1Noviembre$2', '$1Diciembre$2',
 			);
 			$texte_short_day = array(
-				'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'
+				'$1Lun$2', '$1Mar$2', '$1Mie$2', '$1Jue$2', '$1Vie$2', '$1Sab$2', '$1Dom$2'
 			);
 			$texte_short_month = array(
-				'Ener.', 'Febr.', 'Marz.', 'Abr.', 'May.', 'Jun.',
-				'Jul.', 'Ago.', 'Sept.', 'Oct.', 'Nov.', 'Dic.',
+				'$1Ener.$2', '$1Febr.$2', '$1Marz.$2', '$1Abr.$2', '$1May.$2', '$1Jun.$2',
+				'$1Jul.$2', '$1Ago.$2', '$1Sept.$2', '$1Oct.$2', '$1Nov.$2', '$1Dic.$2',
 			);
 			break;
 		default:
