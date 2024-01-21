@@ -371,7 +371,7 @@ sendVarToJS([
 
 				<div id="md_addElement" class="jeeDialog jeeDialogPrompt" style="display:none;">
 					<div class="jeeDialogTitle">
-						<span class="title">{{Ajouter un bloc}}</span><button class="btClose" type="button">×</button>
+						<span class="title">{{Ajouter un bloc}}</span><button class="btClose" id="bt_crossElementSave" type="button"></button>
 					</div>
 					<br />
 					<div class="jeeDialogContent">

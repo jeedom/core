@@ -2185,7 +2185,11 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (_target = event.target.closest('#bt_cancelElementSave')) {
+  if (_target = event.target.closest('#bt_cancelElementSave'))  {
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
+  }
+
+  if (_target = event.target.closest('#bt_crossElementSave'))  {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
   }
 
