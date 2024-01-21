@@ -32,7 +32,7 @@ class elFinder
      *
      * @var integer
      */
-    protected static $ApiRevision = 61;
+    protected static $ApiRevision = 65;
 
     /**
      * Storages (root dirs)
@@ -792,7 +792,7 @@ class elFinder
             foreach ($opts['bind'] as $cmd => $handlers) {
                 $doRegist = (strpos($cmd, '*') !== false);
                 if (!$doRegist) {
-                    $doRegist = ($_reqCmd && in_array($_reqCmd, array_map('self::getCmdOfBind', explode(' ', $cmd))));
+                    $doRegist = ($_reqCmd && in_array($_reqCmd, array_map('elFinder::getCmdOfBind', explode(' ', $cmd))));
                 }
                 if ($doRegist) {
                     // for backward compatibility
@@ -3338,7 +3338,14 @@ class elFinder
                                 fclose($fp);
                                 throw $e;
                             }
-                            $_name = preg_replace('~^.*?([^/#?]+)(?:\?.*)?(?:#.*)?$~', '$1', rawurldecode($url));
+                            if (strpos($url, '%') !== false) {
+                                $url = rawurldecode($url);
+                            }
+                            if (is_callable('mb_convert_encoding') && is_callable('mb_detect_encoding')) {
+                                $url = mb_convert_encoding($url, 'UTF-8', mb_detect_encoding($url));
+                            }
+                            $url = iconv('UTF-8', 'UTF-8//IGNORE', $url);
+                            $_name = preg_replace('~^.*?([^/#?]+)(?:\?.*)?(?:#.*)?$~', '$1', $url);
                             // Check `Content-Disposition` response header
                             if (($headers = get_headers($url, true)) && !empty($headers['Content-Disposition'])) {
                                 if (preg_match('/filename\*=(?:([a-zA-Z0-9_-]+?)\'\')"?([a-z0-9_.~%-]+)"?/i', $headers['Content-Disposition'], $m)) {
