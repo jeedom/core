@@ -227,11 +227,22 @@ class log {
 	}
 
 	/**
-	*
+	* Get $_nbLines from a $_log from $_begin position
 	* @param string $_log
 	* @param int $_begin
 	* @param int $_nbLines
 	* @return boolean|array
+	* @deprecated since v4.4 => removed in v4.6 (use log::getDelta() instead)
+	*
+	* Note that log::get($_log, $_begin, $_nbLines) is equivalent to:
+	*    $path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
+	*    if (!file_exists($path)) {
+	*      return false;
+	*    }
+	*    $delta = self::getDelta($_log, $_begin, '', false, false, 0, $_nbLines);
+	*    $arr = explode("\n", $delta['logText']);
+	*    unset($arr[count($arr) - 1]);
+	*    $res = array_reverse($arr);
 	*/
 	public static function get($_log, $_begin, $_nbLines) {
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
@@ -247,11 +258,8 @@ class log {
 			while ($log->valid() && $linesRead != $_nbLines) {
 				$line = trim($log->current()); //get current line
 				if ($line != '') {
-					if (function_exists('mb_convert_encoding')) {
-						array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
-					} else {
-						array_unshift($page, $line);
-					}
+					array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
+
 				}
 				$log->next();
 				$linesRead++;
@@ -267,7 +275,7 @@ class log {
 	* @param string $_log Log filename (default 'core')
 	* @param int $_position Bytes representing position from the begining of the file (default 0)
 	* @param string $_search Text to find in log file (default '')
-	* @param int $_colored Should lines be colored
+	* @param int $_colored Should lines be colored (default false)
 	* @param boolean $_numbered Should lines be numbered (default true)
 	* @param int $_numStart At what number should lines number start (default 0)
 	* @param int $_max Max number of returned lines (default 4000)
@@ -324,11 +332,12 @@ class log {
 		}
 		// Merge all lignes
 		$logText .= implode('', $logs);
-		// Clear logs from HTML
-		$logText = secureXSS($logText);
 
 		// Apply color in logs
 		if ($_colored) {
+			// Clear logs from HTML only in colored view
+			$logText = htmlspecialchars($logText, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
 			// Highlight searched text first (when more than 3 chars)
 			if (strlen($_search) > 2) {
 				$srch = preg_quote($_search, '/');
@@ -388,6 +397,7 @@ class log {
 				array('txt' => 'Log :',    'replace' => '<span class="success">&nbsp;&nbsp;&nbsp;::</span>'),
 				array('txt' => '-------------------- TRUNCATED LOG --------------------', 'replace' => '<span class="label label-xl label-danger">::</span>')
 			);
+
 			foreach($replacables as $item) {
 				if (strlen($item['txt']) >= 2) {
 					$search[] = $item['txt'];
