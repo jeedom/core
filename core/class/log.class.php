@@ -232,7 +232,8 @@ class log {
 	* @param int $_begin
 	* @param int $_nbLines
 	* @return boolean|array
-	* @deprecated since v4.4 => removed in v4.6 (use log::getDelta() instead)
+	* @deprecated v4.4
+	* => removed in v4.6 (use log::getDelta() instead)
 	*
 	* Note that log::get($_log, $_begin, $_nbLines) is equivalent to:
 	*    $path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
@@ -414,6 +415,40 @@ class log {
 
 		// Return the lines to the end of the file, the new position and line number
 		return array('position' => $_position, 'line' => $_numStart, 'logText' => $logText);
+	}
+
+	/**
+	* Efficiently get the last line of a file
+	* @param string $_log Log filename
+	* @return string The last non-empty line of the file (or '')
+	*/
+	public static function getLastLine($_log) {
+		// Add path to file if needed
+		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
+		// Check if log file exists and is readable
+		if (!file_exists($filename) || !$fp = fopen($filename, 'r'))
+			return '';
+		// Init line and cursor
+		$line = '';
+		$cursor = -1;
+		// Locate EOF
+		fseek($fp, 0, SEEK_END);
+		$char = fgetc($fp);
+		// Trim trailing newline chars of the file
+		while ($char === "\n" || $char === "\r") {
+			fseek($fp, $cursor--, SEEK_END);
+			$char = fgetc($fp);
+		}
+		// Read until the start of file or first newline char
+		while ($char !== false && $char !== "\n" && $char !== "\r") {
+			// Prepend the new char
+			$line = $char . $line;
+			fseek($fp, $cursor--, SEEK_END);
+			$char = fgetc($fp);
+		}
+		// Colse file and return
+		fclose($fp);
+		return $line;
 	}
 
 	public static function liste($_filtre = null) {
