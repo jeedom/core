@@ -70,7 +70,7 @@ $date = array(
 			</li>
 			<li>
 				<div class="input-group input-group-sm" style="margin-top: 10px;">
-					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}"></textarea>
+					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}" style="height: 17px; font-size: 12px!important;"></textarea>
 					<span class="input-group-btn">
 						<a id="bt_findCmdCalculHistory" class="btn btn-default" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
 						</a><a id="bt_displayCalculHistory" class="btn btn-success roundedRight" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i></a>
