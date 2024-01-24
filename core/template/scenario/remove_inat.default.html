@@ -1,7 +1,7 @@
 <!--template/scenario/remove_inat.default-->
 <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft">{{Scénario}}</span>
-  <select class="expressionAttr form-control input-sm roundedRight"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+  <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
 </div>
 <script>
   jeedom.scenario.allOrderedByGroupObjectName({
@@ -10,23 +10,25 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'});
     },
     success: function (scenarios) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
-      var newOption
-      if (document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
-        newOption = document.createElement('option')
-        newOption.text = '{{Ce scénario}}'
-        newOption.value = 0
-        newOption.selected = true
-      }
-      select.appendChild(newOption)
-      for (var i in scenarios) {
+      let select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
+      let currentScenario = document.querySelector('.scenarioAttr[data-l1key=id]')?.jeeValue() // Get current scenario number (if available)
+      let hasSelected = false
+      let newOption
+      for (let i in scenarios) {
         newOption = document.createElement('option')
         newOption.text = scenarios[i].humanName
-        newOption.value = scenarios[i].id
+        if (currentScenario == scenarios[i].id) { // Identifiy current scenario (if in a scenario)
+          newOption.text += ' ({{Scénario courant}})'
+          newOption.value = 0 // Always use 0 for current scenario
+          newOption.selected = !hasSelected // Select as default if nothing already selected
+        } else {
+          newOption.value = scenarios[i].id
+        }
+        if ('#scenario_id#' == scenarios[i].id) { // Set as selected scenario
+          hasSelected = true
+          newOption.selected = hasSelected
+        }
         select.appendChild(newOption)
-      }
-      if ('#scenario_id#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
-        document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]').value = '#scenario_id#'
       }
     }
   })
