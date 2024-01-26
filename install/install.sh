@@ -77,6 +77,7 @@ step_2_mainpackage() {
   apt-get -y install at
   apt-get -y install mariadb-client
   apt-get -y install libav-tools
+  apt-get -y install libsox-fmt-mp3 sox libttspico-utils
   apt-get -y install espeak
   apt-get -y install mbrola
   apt-get -y install net-tools
