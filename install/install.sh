@@ -64,6 +64,7 @@ step_2_mainpackage() {
   apt-get -y install software-properties-common
   add-apt-repository -y non-free
   apt-add-repository -y contrib non-free-firmware
+  apt-add-repository -y contrib
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
