@@ -1276,7 +1276,7 @@
         "Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez": "Auch wenn das Jeedom-Team und die Betatester viele Tests durchgeführt haben, gibt es so viele Versionen von Jeedom, wie es Jeedom gibt ... Es ist daher nicht möglich, die ordnungsgemäße Funktion in 100 % der Fälle zu garantieren du kannst",
         "ou contacter le support depuis votre profil market": "oder wenden Sie sich über Ihr Marktprofil an den Support",
         "4.4.1": "4.4.1",
-        "Prise en charge Debian12\/PHP8": "Debian12\/PHP8-Unterstützung",
+        "Prise en charge PHP8": "PHP8-Unterstützung",
         "Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin": "Überprüfen Sie die erforderliche Mindestkernversion, bevor Sie ein Plugin installieren oder aktualisieren",
         "Création automatique d'une demande d'aide sur le forum": "Automatische Erstellung einer Hilfeanfrage im Forum",
         "Ajout d'un bouton": "Hinzufügen einer Schaltfläche",
