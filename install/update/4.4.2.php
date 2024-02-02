@@ -20,11 +20,11 @@ if (config::byKey('widget::step::height', 'core', 0) < 60) {
 }
 
 //Theme config renamed:
-if (config::byKey('default_bootstrap_theme', 'core', 0) != 0) {
+if (config::byKey('default_bootstrap_theme', 'core', 0) !== 0) {
     $value = config::byKey('default_bootstrap_theme', 'core');
     config::save('jeedom_theme_main', $value, 'core');
 }
-if (config::byKey('default_bootstrap_theme_night', 'core', 0) != 0) {
+if (config::byKey('default_bootstrap_theme_night', 'core', 0) !== 0) {
     $value = config::byKey('default_bootstrap_theme_night', 'core');
     config::save('jeedom_theme_alternate', $value, 'core');
 }
