@@ -100,7 +100,7 @@ class scenario {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
             		LEFT JOIN object ob ON s.object_id=ob.id
-			AND ob.id IS NULL
+			WHERE ob.id IS NULL
    			AND s.object_id IS NOT NULL
 			ORDER BY s.group, s.name';
 			$result3 = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
