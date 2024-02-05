@@ -1229,6 +1229,9 @@
         "Il est possible de modifier celle-ci, à partir du \"Moteur de tâches\" (la tâche est nommée": "É possível modificá-lo, no \"Mecanismo de tarefas\" (a tarefa é denominada",
         "mais ce n'est pas recommandé": "mas não é recomendado",
         "En effet, elle est calculée par rapport à la charge du Market": "De fato, é calculado em relação à carga do mercado",
+        "Je n'arrive pas a restorer ma sauvegarde que j'ai récuperée depuis Safari": "Não consigo restaurar meu backup que recuperei do Safari",
+        "Par defaut Safari décompresse les tar": "Por padrão, o Safari descompacta tars",
+        "gz (en tar) ce qui fait que la sauvegarde n'est plus exploitable par jeedom, il faut la recompresser (gzip) en tar.gz": "gz (em tar) o que significa que o backup não pode mais ser usado pelo jeedom, ele deve ser recompactado (gzip) em tar.gz",
         " Sauvegardes.": " Backups.",
         " Sauvegardes?": " Backups?",
         "Sauvegardes ": "Backups ",
@@ -1263,7 +1266,14 @@
         " Tip]": " Dica]",
         "[Tip]": "[Dica]",
         "*Tip*": "*Dica*",
-        " Tip*": " Dica*"
+        " Tip*": " Dica*",
+        " FAQ.": " Perguntas frequentes.",
+        " FAQ?": " Perguntas frequentes?",
+        "FAQ ": "Perguntas frequentes ",
+        " FAQ]": " Perguntas frequentes]",
+        "[FAQ]": "[Perguntas frequentes]",
+        "*FAQ*": "*Perguntas frequentes*",
+        " FAQ*": " Perguntas frequentes*"
     },
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repita valores idênticos (Sim",
