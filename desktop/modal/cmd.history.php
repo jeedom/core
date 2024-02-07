@@ -124,11 +124,13 @@ if (!jeeFrontEnd.md_history) {
           height: window.innerHeight - 270,
           success: function(data) {
             self.done -= 1
-            let d = (data && data.cmd && data.cmd.display) ? data.cmd.display : {groupingType:'', graphType: 'area', graphDerive: '0', graphStep: '0'};
-            document.getElementById('sel_groupingType').value = (d.groupingType != null ? d.groupingType : '');
-            document.getElementById('sel_chartType').value = (d.graphType != null && d.graphType != '' ? d.graphType : 'area');
-            document.getElementById('cb_derive').checked = (d.graphDerive == '1');
-            document.getElementById('cb_step').checked = (d.graphStep == '1');
+            if(_cmdIds.length < 2){
+              let d = (data && data.cmd && data.cmd.display) ? data.cmd.display : {groupingType:'', graphType: 'area', graphDerive: '0', graphStep: '0'};
+              document.getElementById('sel_groupingType').value = (d.groupingType != null ? d.groupingType : '');
+              document.getElementById('sel_chartType').value = (d.graphType != null && d.graphType != '' ? d.graphType : 'area');
+              document.getElementById('cb_derive').checked = (d.graphDerive == '1');
+              document.getElementById('cb_step').checked = (d.graphStep == '1');
+            }
             if (self.done == 0) {
               self.setModal()
             }
