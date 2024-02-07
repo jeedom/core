@@ -747,7 +747,11 @@
         "Jeedom effectue une sauvegarde automatique tous les jours à la même heure": "Jeedom effectue une sauvegarde automatique tous les jours à la même heure",
         "Il est possible de modifier celle-ci, à partir du \"Moteur de tâches\" (la tâche est nommée": "Il est possible de modifier celle-ci, à partir du \"Moteur de tâches\" (la tâche est nommée",
         "mais ce n'est pas recommandé": "mais ce n'est pas recommandé",
-        "En effet, elle est calculée par rapport à la charge du Market": "En effet, elle est calculée par rapport à la charge du Market"
+        "En effet, elle est calculée par rapport à la charge du Market": "En effet, elle est calculée par rapport à la charge du Market",
+        "FAQ": "FAQ",
+        "Je n'arrive pas a restorer ma sauvegarde que j'ai récuperée depuis Safari": "Je n'arrive pas a restorer ma sauvegarde que j'ai récuperée depuis Safari",
+        "Par defaut Safari décompresse les tar": "Par defaut Safari décompresse les tar",
+        "gz (en tar) ce qui fait que la sauvegarde n'est plus exploitable par jeedom, il faut la recompresser (gzip) en tar.gz": "gz (en tar) ce qui fait que la sauvegarde n'est plus exploitable par jeedom, il faut la recompresser (gzip) en tar.gz"
     },
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Répéter les valeurs identiques (Oui",
@@ -762,7 +766,7 @@
         "Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez": "Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez",
         "ou contacter le support depuis votre profil market": "ou contacter le support depuis votre profil market",
         "4.4.1": "4.4.1",
-        "Prise en charge Debian12\/PHP8": "Prise en charge Debian12\/PHP8",
+        "Prise en charge PHP8": "Prise en charge PHP8",
         "Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin": "Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin",
         "Assistance": "Assistance",
         "Création automatique d'une demande d'aide sur le forum": "Création automatique d'une demande d'aide sur le forum",

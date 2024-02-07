@@ -137,7 +137,7 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 }
 
 jeedom.history.changePoint = function(_params) {
-  console.log('changePoint:', _params)
+  // console.log('changePoint:', _params)
   var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue']
   var paramsSpecifics = {
     error: function(error) {

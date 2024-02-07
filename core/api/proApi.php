@@ -758,6 +758,23 @@ try {
 			$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
 		}
 
+		if ($jsonrpc->getMethod() == 'log::getDelta') {
+			$jsonrpc->makeSuccess(log::getDelta(
+				$params['log'],
+				$params['position'],
+				$params['search'],
+				$params['position'],
+				$params['colored'],
+				$params['numbered'],
+				$params['numStart'],
+				$params['max']
+			));
+		}
+
+		if ($jsonrpc->getMethod() == 'log::getLastLine') {
+			$jsonrpc->makeSuccess(log::getLastLine($params['log']));
+		}
+
 		if ($jsonrpc->getMethod() == 'log::list') {
 			$jsonrpc->makeSuccess(log::liste());
 		}
