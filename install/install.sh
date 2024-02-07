@@ -192,7 +192,7 @@ step_7_jeedom_customization_mariadb() {
     fi
   fi
 
-  rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
+  #rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
