@@ -151,7 +151,7 @@ class repo_github {
 		if ($token == '') {
 			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
 		} else {
-			$result = shell_exec('curl -s -H "Authorization: token ' . $token) . '" -L ' . $url . ' > ' . $tmp);
+			$result = shell_exec('curl -s -H "Authorization: token ' . $token . '" -L ' . $url . ' > ' . $tmp);
 		}
 		log::add('update', 'alert', $result);
 		
