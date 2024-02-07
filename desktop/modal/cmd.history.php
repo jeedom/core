@@ -130,6 +130,11 @@ if (!jeeFrontEnd.md_history) {
               document.getElementById('sel_chartType').value = (d.graphType != null && d.graphType != '' ? d.graphType : 'area');
               document.getElementById('cb_derive').checked = (d.graphDerive == '1');
               document.getElementById('cb_step').checked = (d.graphStep == '1');
+            } else {
+              document.getElementById('sel_groupingType').addClass('disabled');
+              document.getElementById('sel_chartType').addClass('disabled');
+              document.getElementById('cb_derive').addClass('disabled');
+              document.getElementById('cb_step').addClass('disabled');
             }
             if (self.done == 0) {
               self.setModal()
