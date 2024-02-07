@@ -31,7 +31,7 @@ sendVarToJs('jeephp2js.md_history_cmdId', $id);
 
 <div id="md_history" class="md_history" data-modalType="md_history">
   <button id="bt_toggleOptions" class="btn" style="position: absolute; right: 8px; top: 0;z-index: 2;"><i class="fas fa-arrow-down"></i></button>
-  <div id="div_historyOptions">
+  <div id="div_modalHistoryOptions">
     <div class="options col-lg-4" style="display:none">
       <div class="input-group input-group-sm">
         <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
@@ -162,8 +162,10 @@ if (!jeeFrontEnd.md_history) {
           titleEl.innerHTML = curTitle  + ' : ' + jeedom.history.chart[this.__el__].chart.series[0].name
         }
       } else {
-        document.getElementById('div_historyOptions').querySelectorAll('input, select, a:not(#bt_openInHistory)').forEach(_ctrl => {
-          _ctrl.addClass('disabled')
+        document.getElementById('div_modalHistoryOptions').querySelectorAll('input, select, a').forEach(_ctrl => {
+          if (_ctrl.getAttribute('id') != 'bt_openInHistory' && _ctrl.getAttribute('id') != 'in_startDate'  && _ctrl.getAttribute('id') != 'in_endDate' && _ctrl.getAttribute('id') != 'bt_validChangeDate') {
+            _ctrl.addClass('disabled')
+          }
         })
       }
       this.resizeHighChartModal()
