@@ -127,7 +127,8 @@ class repo_github {
 	}
 	
 	public static function downloadObject($_update) {
-		$client = self::getGithubClient($_update->getConfiguration('token',config::byKey('github::token','core','')));
+		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
+		$client = self::getGithubClient($token);
 		try {
 			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
 		} catch (Exception $e) {
@@ -147,10 +148,10 @@ class repo_github {
 		
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $_update->getLogicalId() . '...');
-		if (config::byKey('github::token') == '') {
+		if ($token == '') {
 			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
 		} else {
-			$result = shell_exec('curl -s -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
+			$result = shell_exec('curl -s -H "Authorization: token ' . $token) . '" -L ' . $url . ' > ' . $tmp);
 		}
 		log::add('update', 'alert', $result);
 		
