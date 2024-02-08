@@ -179,7 +179,7 @@ if (!jeeFrontEnd.md_history) {
         callback: function() {
             setTimeout(() => {
                 document.getElementById('bt_toggleOptions')?.click()
-            }, "100");
+            }, "200");
           
         }
       })
