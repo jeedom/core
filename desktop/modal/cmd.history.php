@@ -30,7 +30,7 @@ sendVarToJs('jeephp2js.md_history_cmdId', $id);
 ?>
 
 <div id="md_history" class="md_history" data-modalType="md_history">
-  <button id="bt_toggleOptions" class="btn" style="position: absolute; right: 8px; top: 0;z-index: 2;"><i class="fas fa-arrow-down"></i></button>
+  <button id="bt_toggleOptions" class="btn" style="position: absolute; right: 5px; top: 12px;z-index: 2;"><i class="fas fa-arrow-down"></i></button>
   <div id="div_modalHistoryOptions">
     <div class="options col-lg-4" style="display:none">
       <div class="input-group input-group-sm">
@@ -41,8 +41,8 @@ sendVarToJs('jeephp2js.md_history_cmdId', $id);
     </div>
     <div class="options col-lg-8" style="display:none">
       <div class="input-group input-group-sm">
-        <a class="btn btn-success btn-sm roundedLeft" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
-        <select class="input input-sm" id="sel_groupingType" style="width: 180px">
+        <a class="btn btn-success btn-sm roundedRight" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
+        <select class="form-control input input-sm roundedLeft" id="sel_groupingType" style="width: 180px">
           <option value="">Aucun groupement</option>
           <option value="sum::hour">Somme par heure</option>
           <option value="average::hour">Moyenne par heure</option>
@@ -65,13 +65,13 @@ sendVarToJs('jeephp2js.md_history_cmdId', $id);
           <option value="low::year">Minimum par année</option>
           <option value="high::year">Maximum par année</option>
         </select>
-        <select class="input input-sm roundedRight" id="sel_chartType" style="width: 80px;">
+        <select class="form-control input input-sm" id="sel_chartType" style="width: 80px;">
           <option value="line">Ligne</option>
           <option value="area">Aire</option>
           <option value="column">Barre</option>
         </select>
-        <span class="input input-sm">Variation&nbsp;</span><input type="checkbox" id="cb_derive" />
-        <span class="input input-sm">Escalier&nbsp;</span><input type="checkbox" id="cb_step" />
+        <span class="input input-sm">Variation</span><input type="checkbox" id="cb_derive" />
+        <span class="input input-sm">Escalier</span><input type="checkbox" id="cb_step" />
       </div>
     </div>
   </div>
@@ -150,7 +150,6 @@ if (!jeeFrontEnd.md_history) {
       )
     },
     setModal: function() {
-      document.querySelectorAll('#md_history div.options')?.unseen()
       document.querySelector('#md_history g.highcharts-range-selector-group')?.unseen()
       document.querySelectorAll('.highcharts-button')?.unseen()
 
@@ -176,7 +175,13 @@ if (!jeeFrontEnd.md_history) {
       jeeDialog.dialog({
         id: 'md_cmdHistory',
         title: "{{Historique}}",
-        contentUrl: url
+        contentUrl: url,
+        callback: function() {
+            setTimeout(() => {
+                document.getElementById('bt_toggleOptions')?.click()
+            }, "100");
+          
+        }
       })
     }
   }
@@ -299,3 +304,4 @@ if (!jeeFrontEnd.md_history) {
 
 })()
 </script>
+
