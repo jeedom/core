@@ -30,47 +30,49 @@ sendVarToJs('jeephp2js.md_history_cmdId', $id);
 ?>
 
 <div id="md_history" class="md_history" data-modalType="md_history">
-  <button id="bt_toggleOptions" class="btn" style="position: absolute; right: 8px; top: 0;z-index: 2;"><i class="fas fa-arrow-down"></i></button>
-  <div class="options col-lg-4" style="display:none">
-    <div class="input-group input-group-sm">
-      <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
-      <input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
-      <a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fas fa-check"></i></a>
+  <button id="bt_toggleOptions" class="btn" style="position: absolute; right: 5px; top: 12px;z-index: 2;"><i class="fas fa-arrow-down"></i></button>
+  <div id="div_modalHistoryOptions">
+    <div class="options col-lg-4" style="display:none">
+      <div class="input-group input-group-sm">
+        <input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>"/>
+        <input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>"/>
+        <a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}"><i class="fas fa-check"></i></a>
+      </div>
     </div>
-  </div>
-  <div class="options col-lg-8" style="display:none">
-    <div class="input-group input-group-sm">
-      <a class="btn btn-success btn-sm roundedLeft" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
-      <select class="input input-sm" id="sel_groupingType" style="width: 180px">
-        <option value="">Aucun groupement</option>
-        <option value="sum::hour">Somme par heure</option>
-        <option value="average::hour">Moyenne par heure</option>
-        <option value="low::hour">Minimum par heure</option>
-        <option value="high::hour">Maximum par heure</option>
-        <option value="sum::day">Somme par jour</option>
-        <option value="average::day">Moyenne par jour</option>
-        <option value="low::day">Minimum par jour</option>
-        <option value="high::day">Maximum par jour</option>
-        <option value="sum::week">Somme par semaine</option>
-        <option value="average::week">Moyenne par semaine</option>
-        <option value="low::week">Minimum par semaine</option>
-        <option value="high::week">Maximum par semaine</option>
-        <option value="sum::month">Somme par mois</option>
-        <option value="average::month">Moyenne par mois</option>
-        <option value="low::month">Minimum par mois</option>
-        <option value="high::month">Maximum par mois</option>
-        <option value="sum::year">Somme par année</option>
-        <option value="average::year">Moyenne par année</option>
-        <option value="low::year">Minimum par année</option>
-        <option value="high::year">Maximum par année</option>
-      </select>
-      <select class="input input-sm roundedRight" id="sel_chartType" style="width: 80px;">
-        <option value="line">Ligne</option>
-        <option value="area">Aire</option>
-        <option value="column">Barre</option>
-      </select>
-      <span class="input input-sm">Variation&nbsp;</span><input type="checkbox" id="cb_derive" />
-      <span class="input input-sm">Escalier&nbsp;</span><input type="checkbox" id="cb_step" />
+    <div class="options col-lg-8" style="display:none">
+      <div class="input-group input-group-sm">
+        <a class="btn btn-success btn-sm roundedRight" id='bt_openInHistory' title="{{Ouvrir dans Analyse / Historique.}}"><i class="fas fa-chart-line"></i></a>
+        <select class="form-control input input-sm roundedLeft" id="sel_groupingType" style="width: 180px">
+          <option value="">Aucun groupement</option>
+          <option value="sum::hour">Somme par heure</option>
+          <option value="average::hour">Moyenne par heure</option>
+          <option value="low::hour">Minimum par heure</option>
+          <option value="high::hour">Maximum par heure</option>
+          <option value="sum::day">Somme par jour</option>
+          <option value="average::day">Moyenne par jour</option>
+          <option value="low::day">Minimum par jour</option>
+          <option value="high::day">Maximum par jour</option>
+          <option value="sum::week">Somme par semaine</option>
+          <option value="average::week">Moyenne par semaine</option>
+          <option value="low::week">Minimum par semaine</option>
+          <option value="high::week">Maximum par semaine</option>
+          <option value="sum::month">Somme par mois</option>
+          <option value="average::month">Moyenne par mois</option>
+          <option value="low::month">Minimum par mois</option>
+          <option value="high::month">Maximum par mois</option>
+          <option value="sum::year">Somme par année</option>
+          <option value="average::year">Moyenne par année</option>
+          <option value="low::year">Minimum par année</option>
+          <option value="high::year">Maximum par année</option>
+        </select>
+        <select class="form-control input input-sm" id="sel_chartType" style="width: 80px;">
+          <option value="line">Ligne</option>
+          <option value="area">Aire</option>
+          <option value="column">Barre</option>
+        </select>
+        <span class="input input-sm">Variation</span><input type="checkbox" id="cb_derive" />
+        <span class="input input-sm">Escalier</span><input type="checkbox" id="cb_step" />
+      </div>
     </div>
   </div>
   <div id="div_modalGraph" class="chartContainer"></div>
@@ -124,11 +126,11 @@ if (!jeeFrontEnd.md_history) {
           height: window.innerHeight - 270,
           success: function(data) {
             self.done -= 1
-            let d = (data && data.cmd && data.cmd.display) ? data.cmd.display : {groupingType:'', graphType: 'area', graphDerive: '0', graphStep: '0'};
-            document.getElementById('sel_groupingType').value = (d.groupingType != null ? d.groupingType : '');
-            document.getElementById('sel_chartType').value = (d.graphType != null && d.graphType != '' ? d.graphType : 'area');
-            document.getElementById('cb_derive').checked = (d.graphDerive == '1');
-            document.getElementById('cb_step').checked = (d.graphStep == '1');
+            let d = (data && data.cmd && data.cmd.display && self.loadIds.length == 1) ? data.cmd.display : {groupingType:'', graphType: 'area', graphDerive: '0', graphStep: '0'}
+            document.getElementById('sel_groupingType').value = (d.groupingType != null ? d.groupingType : '')
+            document.getElementById('sel_chartType').value = (d.graphType != null && d.graphType != '' ? d.graphType : 'area')
+            document.getElementById('cb_derive').checked = (d.graphDerive == '1')
+            document.getElementById('cb_step').checked = (d.graphStep == '1')
             if (self.done == 0) {
               self.setModal()
             }
@@ -148,7 +150,6 @@ if (!jeeFrontEnd.md_history) {
       )
     },
     setModal: function() {
-      document.querySelectorAll('#md_history div.options')?.unseen()
       document.querySelector('#md_history g.highcharts-range-selector-group')?.unseen()
       document.querySelectorAll('.highcharts-button')?.unseen()
 
@@ -159,6 +160,12 @@ if (!jeeFrontEnd.md_history) {
           let curTitle = titleEl.innerHTML
           titleEl.innerHTML = curTitle  + ' : ' + jeedom.history.chart[this.__el__].chart.series[0].name
         }
+      } else {
+        document.getElementById('div_modalHistoryOptions').querySelectorAll('input, select, a').forEach(_ctrl => {
+          if (_ctrl.getAttribute('id') != 'bt_openInHistory' && _ctrl.getAttribute('id') != 'in_startDate'  && _ctrl.getAttribute('id') != 'in_endDate' && _ctrl.getAttribute('id') != 'bt_validChangeDate') {
+            _ctrl.addClass('disabled')
+          }
+        })
       }
       this.resizeHighChartModal()
     },
@@ -168,7 +175,13 @@ if (!jeeFrontEnd.md_history) {
       jeeDialog.dialog({
         id: 'md_cmdHistory',
         title: "{{Historique}}",
-        contentUrl: url
+        contentUrl: url,
+        callback: function() {
+            setTimeout(() => {
+                document.getElementById('bt_toggleOptions')?.click()
+            }, "200");
+          
+        }
       })
     }
   }
@@ -291,3 +304,4 @@ if (!jeeFrontEnd.md_history) {
 
 })()
 </script>
+
