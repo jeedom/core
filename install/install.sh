@@ -44,6 +44,10 @@ service_action(){
   fi
 }
 
+version() { 
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; 
+}
+
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 1 - install${NORMAL}"
@@ -58,7 +62,6 @@ step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
   apt-get -y install software-properties-common
-  add-apt-repository -y non-free
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
@@ -72,7 +75,6 @@ step_2_mainpackage() {
   apt-get -y install at
   apt-get -y install mariadb-client
   apt-get -y install libav-tools
-  apt-get -y install libsox-fmt-mp3 sox libttspico-utils
   apt-get -y install espeak
   apt-get -y install mbrola
   apt-get -y install net-tools
@@ -190,7 +192,7 @@ step_7_jeedom_customization_mariadb() {
     fi
   fi
 
-  rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
+  #rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
@@ -208,6 +210,9 @@ step_7_jeedom_customization_mariadb() {
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "connect_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "wait_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
+    echo "interactive_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
    # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
@@ -313,6 +318,17 @@ step_9_jeedom_configuration() {
 step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
+  chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
+  ${WEBSERVER_HOME}/resources/install_composer.sh
+  PHP_VERSION=$(php -r "echo PHP_VERSION;")
+  if [ $(version $PHP_VERSION) -ge $(version "8.0.0") ]; then
+    echo "PHP version highter than 8.0.0, need to reinstall composer dependancy"
+    rm -rf ${WEBSERVER_HOME}/vendor
+    rm -rf ${WEBSERVER_HOME}/composer.lock
+    export COMPOSER_ALLOW_SUPERUSER=1
+    cd ${WEBSERVER_HOME}
+    composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+  fi
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
@@ -360,17 +376,6 @@ step_11_jeedom_post() {
   fi
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
   ${WEBSERVER_HOME}/resources/install_nodejs.sh
-
-  chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
-  ${WEBSERVER_HOME}/resources/install_composer.sh
- # if [ $(which composer | wc -l) -ne 0 ]; then
- #     rm -rf ${WEBSERVER_HOME}/vendor
- #     rm -rf ${WEBSERVER_HOME}/composer.lock
- #     export COMPOSER_ALLOW_SUPERUSER=1
- #     cd ${WEBSERVER_HOME}
- #     composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
- # fi
-  
   echo "${GREEN}Step 11 - Jeedom post-install done${NORMAL}"
 }
 

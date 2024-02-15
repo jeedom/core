@@ -2,9 +2,13 @@
 
 >**WICHTIG**
 >
->Beachten Sie Version 4.4 ist ein großes Update von jeedom, auch wenn die Änderungen für Sie optisch minimal sein werden, der gesamte Schnittstellencode wurde neu geschrieben (um insbesondere schneller zu sein) und auch die Verwaltung von PHP-Abhängigkeiten wurde überprüft. Auch wenn Jeedom-Geräte und Betatester viele Tests durchgeführt haben, gibt es so viele Versionen von Jeedom, wie es Jeedom gibt. Es kann daher nicht garantiert werden, dass es in 100 % der Fälle bei jedem funktioniert. Wir raten Ihnen daher, sich nicht auf das Update zu stürzen.
->Zur Erinnerung bei Problemen können Sie über Ihre Marktprofilseite an den Support schreiben (wenn Sie über ein Service Pack oder mehr verfügen).
+>Auch wenn sie auf den ersten Blick nicht unbedingt sichtbar sind, Version 4.4 von Jeedom bringt große Änderungen mit einer völlig neu geschriebenen Benutzeroberfläche für vollständige Kontrolle und vor allem einen unübertroffenen Gewinn an flüssiger Navigation. Auch die Verwaltung der PHP-Abhängigkeiten wurde überarbeitet, um diese automatisch auf dem neuesten Stand halten zu können. Auch wenn das Jeedom-Team und die Betatester viele Tests durchgeführt haben, gibt es so viele Versionen von Jeedom, wie es Jeedom gibt ... Es ist daher nicht möglich, die ordnungsgemäße Funktion in 100 % der Fälle zu garantieren du kannst [Öffnen Sie im Forum ein Thema mit der Bezeichnung „v4_4“](https://community.jeedom.com/) oder wenden Sie sich über Ihr Marktprofil an den Support *(vorausgesetzt, Sie verfügen über ein Service Pack oder höher)*.
 
+## 4.4.1
+
+- PHP8-Unterstützung.
+- Überprüfen Sie die erforderliche Mindestkernversion, bevor Sie ein Plugin installieren oder aktualisieren.
+- Hinzufügen einer Schaltfläche **Hilfe** auf der Plugin-Konfigurationsseite *(Automatische Erstellung einer Hilfeanfrage im Forum)*
 
 ### 4.4 : Voraussetzungen
 

@@ -203,7 +203,7 @@ Unten finden Sie eine Liste der verschiedenen Geräte, Befehle, Szenarien oder I
 - **Historisch**
     - **Historisiere** : Aktivieren Sie das Kontrollkästchen, um die Werte dieses Befehls zu protokollieren. (Siehe **Analyse → Geschichte**)
     - **Glättungsmodus** : Modus von **Glättung** oder d'**Archivierung** Hier können Sie auswählen, wie die Daten archiviert werden sollen. Standardmäßig ist dies ein **bedeuten**. Es ist auch möglich, die zu wählen **maximal**, das **Minimum**, Wo **Keiner**. **Keiner** Lassen Sie uns Jeedom mitteilen, dass für diesen Befehl keine Archivierung durchgeführt werden soll (sowohl während der ersten 5 Minuten als auch während der Archivierungsaufgabe)). Diese Option ist gefährlich, weil Jeedom alles behält : Es werden also viel mehr Daten gespeichert.
-    - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen.
+    - **Verlauf löschen, wenn älter als** : Sagen wir Jeedom, dass alle Daten gelöscht werden sollen, die älter als ein bestimmter Zeitraum sind. Es kann praktisch sein, keine Daten zu speichern, wenn dies nicht erforderlich ist, und daher die Menge der von Jeedom aufgezeichneten Informationen zu begrenzen. Bitte beachten Sie, dass die Spülung nachts ausgelöst wird. Sie müssen also warten, bis die Nacht vorüber ist, bevor die Spülung wirksam wird.
 
 - **Werteverwaltung**
     - **Verbotener Wert** : Wenn der Befehl einen dieser Werte annimmt, ignoriert Jeedom ihn, bevor er angewendet wird.

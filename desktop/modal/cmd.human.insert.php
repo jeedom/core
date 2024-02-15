@@ -48,6 +48,8 @@ if (!isConnect()) {
     mod_insertCmd.options.cmd = {}
     mod_insertCmd.options.eqLogic = {}
     mod_insertCmd.options.object = {}
+  }else if(mod_insertCmd?.options?.object?.id){
+    document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select').jeeValue(mod_insertCmd.options.object.id)
   }
 
   mod_insertCmd.setOptions = function(_options) {
@@ -62,7 +64,7 @@ if (!isConnect()) {
     if (!isset(mod_insertCmd.options.object)) {
       mod_insertCmd.options.object = {}
     }
-    if (isset(mod_insertCmd.options.object.id)) {
+    if (mod_insertCmd?.options?.object?.id) {
       document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select').value = mod_insertCmd.options.object.id
     }
     if (isset(mod_insertCmd.options.cmd.type)) {
@@ -103,6 +105,7 @@ if (!isConnect()) {
   }
 
   mod_insertCmd.changeObjectCmd = function(_select, _options) {
+    mod_insertCmd.options.object.id = (_select.jeeValue() == '' ? -1 : _select.jeeValue())
     jeedom.object.getEqLogic({
       id: (_select.jeeValue() == '' ? -1 : _select.jeeValue()),
       orderByName : true,
@@ -120,18 +123,18 @@ if (!isConnect()) {
         }
         selectEqLogic += '</select>'
         _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').insertAdjacentHTML('beforeend', selectEqLogic)
+        if (mod_insertCmd?.options?.eqLogic?.id && Array.from(_select.closest('tr').querySelectorAll('.mod_insertCmdValue_eqLogic select option')).filter( o => o.value === mod_insertCmd.options.eqLogic.id ).length > 0) {
+          _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').jeeValue(mod_insertCmd.options.eqLogic.id)
+        }
         _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').addEventListener('change', function() {
           mod_insertCmd.changeEqLogic(this, mod_insertCmd.options)
         })
-        if (isset(mod_insertCmd.options.object.id)) {
-          _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').jeeValue(mod_insertCmd.options.eqLogic.id)
-        }
         mod_insertCmd.changeEqLogic(_select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options)
       }
     })
   }
 
-  mod_insertCmd.changeEqLogic = function(_select) {
+  mod_insertCmd.changeEqLogic = function(_select, _options) {
     jeedom.eqLogic.buildSelectCmd({
       id: _select.jeeValue(),
       filter: mod_insertCmd.options.cmd,

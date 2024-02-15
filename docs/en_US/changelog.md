@@ -2,9 +2,13 @@
 
 >**IMPORTANT**
 >
->Note version 4.4 is a major update of jeedom, even if visually the changes for you will be minimal all the interface code has been rewritten (to be faster in particular), as well as the management of php dependencies has been reviewed. Even if Jeedom equipment and betatesters have done a lot of testing, there are as many versions of jeedom as there are jeedom. It is therefore not possible to guarantee that it will work for everyone in 100% of cases. We therefore advise you not to jump on the update.
->As a reminder in case of problems you can write to support (if you have a service pack or more) from your market profiles page.
+>Even if they are not necessarily visible at first glance, version 4.4 from Jeedom brings major changes with an interface that has been completely rewritten for complete control and above all an unrivaled gain in navigation fluidity. The management of PHP dependencies has also been revised in order to be able to keep them up to date automatically. Even if the Jeedom team and the beta testers have done a lot of testing, there are as many versions of jeedom as there are jeedom... It is therefore not possible to guarantee proper functioning in 100% of the However, in case of problem you can [open a topic on the forum with the label `v4_4`](https://community.jeedom.com/) or contact support from your market profile *(provided you have a service pack or higher)*.
 
+## 4.4.1
+
+- PHP8 support.
+- Checking the minimum core version required before installing or updating a plugin.
+- Adding a button **Assistance** on the plugin configuration page *(Automatic creation of a help request on the forum)*
 
 ### 4.4 : Prerequisites
 

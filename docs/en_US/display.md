@@ -203,7 +203,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 - **Historical**
     - **Historize** : Check the box to have the values of this command logged. (See **Analysis → History**)
     - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **mean**. It is also possible to choose the **maximum**, the **minimum**, Where **None**. **None** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
-    - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom.
+    - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom. Please note that the purge is triggered at night, so you must wait for the night to pass before having the effective action of the purge.
 
 - **Values management**
     - **Prohibited value** : If the command takes one of these values, Jeedom ignores it before applying it.

@@ -685,7 +685,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
             //saving will update the eqLogic tile, set event once:
             document.body.addEventListener('eqLogic::update', function(_event, _options) {
-              console.log('eqLogic::update', _event, _options)
+              // console.log('eqLogic::update', _event, _options)
               let found = false;
               if (_event.detail) {
                 for (let i in _event.detail) {

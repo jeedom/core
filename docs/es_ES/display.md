@@ -203,7 +203,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 - **Histórico**
     - **Historizar** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
     - **Modo de suavizado** : Modo de **alisado** o d'**archivando** le permite elegir cómo archivar los datos. Por defecto, este es un **significar**. También es posible elegir el **máximo**, la **mínimo**, Dónde **Ninguna**. **Ninguna** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
-    - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom.
+    - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom. Tenga en cuenta que la purga se activa durante la noche, por lo que debe esperar a que pase la noche antes de tener la acción efectiva de la purga.
 
 - **Gestión de valores**
     - **Valor prohibido** : Si el comando toma uno de estos valores, Jeedom lo ignora antes de aplicarlo.

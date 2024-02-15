@@ -26,6 +26,7 @@ foreach ((plugin::listPlugin(true, false, false, true)) as $plugin) {
   }
 }
 $datas = array();
+$canFix = false;
 foreach ($result as $key => $packages) {
   foreach ($packages as $package => $info) {
     if (!isset($datas[$package])) {
@@ -42,6 +43,9 @@ foreach ($result as $key => $packages) {
       if ($info['remark'] != '') {
         $datas[$package]['remark'] .= '. ' . $info['remark'];
       }
+      if($info['needUpdate']){
+      	$canFix = true; 
+      }
       $datas[$package]['needBy'][] = $key;
     }
   }
@@ -55,8 +59,8 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 <div id="md_packageCheck" data-modalType="md_packageCheck">
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
-      <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}
-      </a><a class="btn btn-sm btn-warning bt_correctPackage roundedRight" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>
+      <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
+      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight'. (!$canFix ? ' disabled' : '').'" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>'; ?>
     </span>
   </div>
   <br /><br />

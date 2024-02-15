@@ -59,9 +59,9 @@ if (!jeeFrontEnd.md_scenarioLog) {
   var jeeM = jeeFrontEnd.md_scenarioLog
   jeeM.init()
 
-  //Manage events outside parents delegations:
+  // Manage events outside parents delegations:
   document.getElementById('bt_resetScenarioLogSearch').addEventListener('click', function(event) {
-    document.getElementById('in_scenarioLogSearch').value = ''
+    document.getElementById('in_scenarioLogSearch').jeeValue('').triggerEvent('keyup')
   })
 
   document.getElementById('bt_scenarioLogEmpty').addEventListener('click', function(event) {

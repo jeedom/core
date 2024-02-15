@@ -28,7 +28,7 @@ if (init('scenarioElement_id') != '') {
 } else {
 	try {
 		$scenario = scenario::byId(init('scenario_id'));
-	}catch (Error $e) {
+	} catch (Error $e) {
 		log::add('scenario', 'error', __('Scenario  :', __FILE__) . ' ' . init('scenario_id') . '. ' . __('Erreur :', __FILE__) . ' ' . $e->getMessage());
 		cache::set('scenarioCacheAttr' . init('scenario_id'), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . init('scenario_id'))->getValue(), 'state', 'error'));
 		die();

@@ -133,10 +133,10 @@ class update {
 						try {
 							$update->doUpdate();
 						} catch (Exception $e) {
-							log::add('update', 'update', $e->getMessage());
+							log::add(__CLASS__, 'alert', $e->getMessage());
 							$error = true;
 						} catch (Error $e) {
-							log::add('update', 'update', $e->getMessage());
+							log::add(__CLASS__, 'alert', $e->getMessage());
 							$error = true;
 						}
 					}
@@ -284,53 +284,66 @@ class update {
 
 	public function doUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1  && $this->getType() != 'core') {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
+			log::add(__CLASS__, 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {
 			jeedom::update();
 		} else {
+			log::add(__CLASS__, 'alert', __('Début de la mise à jour de :', __FILE__) . ' ' . $this->getLogicalId() . "\n");
 			$class = 'repo_' . $this->getSource();
 			if (class_exists($class) && method_exists($class, 'downloadObject') && config::byKey($this->getSource() . '::enable') == 1) {
-				$this->preInstallUpdate();
 				$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 				if (file_exists($cibDir)) {
 					rrmdir($cibDir);
 				}
 				mkdir($cibDir);
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
-					throw new Exception(__('Impossible de créer le dossier  :', __FILE__) . ' ' . $cibDir . '. ' . __('Problème de droits ?', __FILE__));
+					throw new Exception(__('Impossible de créer le dossier', __FILE__) . ' : ' . $cibDir . '. ' . __('Problème de droits ?', __FILE__));
 				}
-				log::add('update', 'alert', __('Téléchargement du plugin (source : ', __FILE__) . $this->getSource() . ')...');
+				log::add(__CLASS__, 'alert', __('Téléchargement du plugin (source', __FILE__) . ' : ' . $this->getSource() . ')...');
 				$info = $class::downloadObject($this);
 				if ($info['path'] !== false) {
 					$tmp = $info['path'];
-					log::add('update', 'alert', __("OK\n", __FILE__));
+					log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
 
 					if (filesize($tmp) < 100) {
-						if (jeedom::getHardwareName() == 'smart' && stristr(config::byKey('product_name'), 'Jeedom') == true) {
-							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, un soucis sur l\'achat de votre plugin, etc.', __FILE__));
-						} else {
-							throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de ' . jeedom::getHardwareName() . ' qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de ' . jeedom::getHardwareName() . ' un souci du plugin sur le market, un soucis sur l\'achat de votre plugin, etc.', __FILE__));
-						}
-					}
-					if (filesize($tmp) < 100) {
-						throw new Exception(__('Echec lors du téléchargement du fichier. Veuillez réessayer plus tard (taille inférieure à 100 octets). Cela peut être dû à une absence de connexion au market (vérifiez dans la configuration de jeedom qu\'un test de connexion au market marche) ou lié à un manque de place, une version minimale requise non consistante avec votre version de Jeedom, un souci du plugin sur le market, un soucis sur l\'achat de votre plugin, etc.', __FILE__));
+						throw new Exception(__("Echec lors du téléchargement du plugin (taille inférieure à 100 octets), veuillez réessayer plus tard. Cela peut être dû à une absence de connexion au market (effectuez un test de connexion depuis la configuration générale), lié à un manque d'espace disque, une version minimale requise ou un souci sur le plugin ou son achat, etc...", __FILE__));
 					}
 					$extension = strtolower(strrchr($tmp, '.'));
 					if (!in_array($extension, array('.zip'))) {
 						throw new Exception(__('Extension du fichier non valide (autorisé .zip) :', __FILE__) . ' ' . $extension);
 					}
-					log::add('update', 'alert', __('Décompression du zip...', __FILE__));
+					log::add(__CLASS__, 'alert', __('Décompression du zip...', __FILE__));
 					$zip = new ZipArchive;
 					$res = $zip->open($tmp);
 					if ($res === TRUE) {
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
-							throw new Exception(__('Impossible d\'installer le plugin. Les fichiers n\'ont pas pu être décompressés :', __FILE__) . ' ' . substr($content, 255));
+							throw new Exception(__("Impossible d'installer le plugin. Les fichiers n'ont pas pu être décompressés", __FILE__) . ' : ' . substr($content, 255));
 						}
 						$zip->close();
 						unlink($tmp);
+						if (!file_exists($cibDir . '/plugin_info')) {
+							$files = ls($cibDir, '*');
+							if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
+								$cibDir = $cibDir . '/' . $files[0];
+							}
+						}
+						if (is_file($cibDir . '/plugin_info/info.json') && is_array($data = json_decode(file_get_contents($cibDir . '/plugin_info/info.json'), true)) && isset($data['require'])) {
+							$vJeedom = update::byLogicalId('jeedom')->getLocalVersion();
+							if (version_compare($data['require'], $vJeedom, '>')) {
+								log::add(__CLASS__, 'alert', 'KO ' . __("Version minimale requise", __FILE__) . ' (' . $data['require'] . ') > ' . __("Version Jeedom", __FILE__) . ' (' . $vJeedom . ')');
+								rrmdir($cibDir);
+								$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
+								if (file_exists($cibDir)) {
+									rrmdir($cibDir);
+								}
+								throw new Exception($this->getLogicalId() . ' : ' . __('Version du core Jeedom non supportée, installation annulée', __FILE__));
+							}
+						}
+						log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
+						$this->preInstallUpdate();
 						try {
 							if (file_exists(__DIR__ . '/../../plugins/' . $this->getLogicalId() . '/doc')) {
 								shell_exec('sudo rm -rf ' . __DIR__ . '/../../plugins/' . $this->getLogicalId() . '/doc');
@@ -340,21 +353,14 @@ class update {
 							}
 						} catch (Exception $e) {
 						}
-						if (!file_exists($cibDir . '/plugin_info')) {
-							$files = ls($cibDir, '*');
-							if (count($files) == 1 && file_exists($cibDir . '/' . $files[0] . 'plugin_info')) {
-								$cibDir = $cibDir . '/' . $files[0];
-							}
-						}
 						rmove($cibDir . '/', __DIR__ . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
 						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
 						if (file_exists($cibDir)) {
 							rrmdir($cibDir);
 						}
-						log::add('update', 'alert', __("OK\n", __FILE__));
 					} else {
-						throw new Exception(__('Impossible de décompresser l\'archive zip :', __FILE__) . ' ' . $tmp . ' => ' . ZipErrorMessage($res));
+						throw new Exception(__("Impossible de décompresser l'archive zip", __FILE__) . ' : ' . $tmp . ' => ' . ZipErrorMessage($res));
 					}
 				}
 				$this->postInstallUpdate($info);
@@ -418,7 +424,6 @@ class update {
 		shell_exec(system::getCmdSudo() . ' chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../plugins');
 		@chmod(__DIR__ . '/../../plugins', 0775);
 		$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
-		log::add('update', 'alert', __('Début de la mise à jour de :', __FILE__) . ' ' . $this->getLogicalId() . "\n");
 		switch ($this->getType()) {
 			case 'plugin':
 				if (!file_exists($cibDir) && !mkdir($cibDir, 0775, true)) {
@@ -427,9 +432,9 @@ class update {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					if (is_object($plugin)) {
-						log::add('update', 'alert', __('Action de pré-update...', __FILE__));
+						log::add(__CLASS__, 'alert', __('Action de pré-update...', __FILE__));
 						$plugin->callInstallFunction('pre_update');
-						log::add('update', 'alert', __("OK\n", __FILE__));
+						log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
 					}
 				} catch (Exception $e) {
 				} catch (Error $e) {
@@ -438,7 +443,7 @@ class update {
 	}
 
 	public function postInstallUpdate($_infos) {
-		log::add('update', 'alert', __('Post-installation de', __FILE__) . ' ' . $this->getLogicalId() . '...');
+		log::add(__CLASS__, 'alert', __('Post-installation de', __FILE__) . ' ' . $this->getLogicalId() . '...');
 		try {
 			if (function_exists('opcache_reset')) {
 				opcache_reset();
@@ -450,13 +455,13 @@ class update {
 				try {
 					$plugin = plugin::byId($this->getLogicalId());
 					$cibDir = __DIR__ . '/../../plugins/' . $this->getLogicalId();
-					log::add('update', 'alert',  __('Vérification des droits sur les fichiers...', __FILE__));
+					log::add(__CLASS__, 'alert',  __('Vérification des droits sur les fichiers...', __FILE__));
 					$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cibDir . ';';
 					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . ';';
 					$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . $cibDir . '/.*;';
 					exec($cmd);
-					log::add('update', 'alert', __("OK", __FILE__) . "\n");
-					log::add('update', 'alert',  __('Suppression des fichiers inutiles...', __FILE__));
+					log::add(__CLASS__, 'alert', __("OK", __FILE__) . "\n");
+					log::add(__CLASS__, 'alert',  __('Suppression des fichiers inutiles...', __FILE__));
 					foreach (array('3rdparty', '3rparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor', 'plugin_info') as $folder) {
 						if (!file_exists($cibDir . '/' . $folder)) {
 							continue;
@@ -465,10 +470,10 @@ class update {
 					}
 				} catch (Exception $e) {
 					$this->remove();
-					throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
+					throw new Exception(__("Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur", __FILE__));
 				} catch (Error $e) {
 					$this->remove();
-					throw new Exception(__('Impossible d\'installer le plugin. Le nom du plugin est différent de l\'ID ou le plugin n\'est pas correctement formé. Veuillez contacter l\'auteur.', __FILE__));
+					throw new Exception(__("Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur", __FILE__));
 				}
 				if (is_object($plugin) && $plugin->isActive()) {
 					$plugin->setIsEnable(1);
@@ -480,8 +485,8 @@ class update {
 		}
 		$this->setUpdateDate(date('Y-m-d H:i:s'));
 		$this->save();
-		log::add('update', 'alert', __("OK", __FILE__) . "\n");
-		log::add('update', 'alert', __("END UPDATE SUCCESS", __FILE__) . "\n");
+		log::add(__CLASS__, 'alert', __("OK", __FILE__) . "\n");
+		log::add(__CLASS__, 'alert', __("END UPDATE SUCCESS", __FILE__) . "\n");
 	}
 
 	public static function getLastAvailableVersion() {
@@ -490,16 +495,16 @@ class update {
 			$request_http = new com_http($url);
 			return trim($request_http->exec(30));
 		} catch (Exception $e) {
-			log::add('update', 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
 		} catch (Error $e) {
-			log::add('update', 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
 		}
 		return null;
 	}
-	
+
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
-			log::add('update', 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
+			log::add(__CLASS__, 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
 			return;
 		}
 		if ($this->getType() == 'core') {

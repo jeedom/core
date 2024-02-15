@@ -47,7 +47,7 @@ if (!jeeFrontEnd.backup) {
         dataType: 'json',
         replaceFileInput: false,
         done: function(e, data) {
-          if (data.state != 'ok') {
+          if (data.result.state != 'ok') {
             jeedomUtils.showAlert({
               message: data.result.result,
               level: 'danger'
@@ -74,6 +74,7 @@ if (!jeeFrontEnd.backup) {
         type: 'POST',
         url: 'core/ajax/log.ajax.php',
         data: {
+          // Warning get is slow, prefer getDelta in ajax or use jeedom.log.autoUpdateDelta js class
           action: 'get',
           log: _log,
         },

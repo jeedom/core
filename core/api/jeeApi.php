@@ -16,6 +16,8 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: POST, GET");
+header("Access-Control-Allow-Headers: Content-Type");
 require_once __DIR__ . "/../php/core.inc.php";
 if (user::isBan()) {
 	header("Status: 404 Not Found");
@@ -25,22 +27,24 @@ if (user::isBan()) {
 	echo "The page that you have requested could not be found.";
 	die();
 }
+/** @var user|null $_USER_GLOBAL */
 global $_USER_GLOBAL;
 $_USER_GLOBAL = null;
+/** @var bool $_RESTRICTED */
 global $_RESTRICTED;
 $_RESTRICTED = false;
 if (init('type') != '') {
 	try {
 		if (init('type') == 'ask') {
 			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
-				throw new Exception(__('Token invalide', __FILE__));
+				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
 			}
 			$cmd = cmd::byId(init('cmd_id'));
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('cmd_id'));
+				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
 			}
 			if (trim($cmd->getCache('ask::token', config::genKey())) != init('token')) {
-				throw new Exception(__('Token invalide', __FILE__));
+				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
 			}
 			if (!$cmd->askResponse(init('response'))) {
 				throw new Exception(__('Erreur response ask, temps écoulé ou réponse invalide', __FILE__));
@@ -108,7 +112,7 @@ if (init('type') != '') {
 		if ($type == 'interact') {
 			$query = init('query');
 			if (init('utf8', 0) == 1) {
-				$query = utf8_encode($query);
+				$query = mb_convert_encoding($query, 'UTF-8', 'ISO-8859-1');
 			}
 			$param = array();
 			if (init('emptyReply') != '') {
@@ -322,7 +326,7 @@ try {
 	}
 	$apikey = isset($params['apikey']) ? $params['apikey'] : $params['api'];
 
-	if (!jeedom::apiAccess($apikey, $params['plugin'])) {
+	if (!jeedom::apiAccess($apikey, $params['plugin']) && !jeedom::apiAccess($apikey, 'core')) {
 		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__), -32002);
 	}
 
@@ -491,7 +495,7 @@ try {
 		if (isset($params['key'])) {
 			$jsonrpc->makeSuccess(jeeObject::getGlobalSummary($params['key']));
 		}
-		$return = array();
+		/** @var array $def */
 		$def = config::byKey('object:summary');
 		foreach ($def as $key => &$value) {
 			$value['value'] = jeeObject::getGlobalSummary($key);
@@ -976,6 +980,29 @@ try {
 		$jsonrpc->makeSuccess(log::get($params['log'], $params['start'], $params['nbLine']));
 	}
 
+	if ($jsonrpc->getMethod() == 'log::getDelta') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+		$jsonrpc->makeSuccess(log::getDelta(
+			$params['log'],
+			$params['position'],
+			$params['search'],
+			$params['position'],
+			$params['colored'],
+			$params['numbered'],
+			$params['numStart'],
+			$params['max']
+		));
+	}
+
+	if ($jsonrpc->getMethod() == 'log::getLastLine') {
+		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
+			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
+		}
+		$jsonrpc->makeSuccess(log::getLastLine($params['log']));
+	}
+
 	if ($jsonrpc->getMethod() == 'log::add') {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
@@ -1326,6 +1353,9 @@ try {
 	/*                                       Mobile API                                      */
 	if ($jsonrpc->getMethod() == 'getJson') {
 		log::add('api', 'debug', 'Demande du RDK to send with Json');
+		if (!is_object($_USER_GLOBAL)) {
+			throw new Exception(__('Utilisateur non défini', __FILE__), -32500);
+		}
 		$registerDevice = $_USER_GLOBAL->getOptions('registerDevice', array());
 		if (!is_array($registerDevice)) {
 			$registerDevice = array();

@@ -23,32 +23,32 @@ var jeedomUtils = {
 }
 jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80) + parseInt(jeedom.theme['widget::margin']) // with margin
 jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60) + parseInt(jeedom.theme['widget::margin']) // with margin
-jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function (value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 /*Hijack jQuery ready function, still used in plugins
 */
 if (typeof jQuery === 'function') {
   jeedomUtils.$readyFn = jQuery.fn.ready
-  jQuery.fn.ready = function () {
+  jQuery.fn.ready = function() {
     if (domUtils._DOMloading <= 0) {
       jeedomUtils.$readyFn.apply(this, arguments)
     } else {
-      setTimeout(function () {
+      setTimeout(function() {
         jQuery.fn.ready.apply(this, arguments[1])
       }, 250, this, arguments)
     }
   }
 }
 //Deprecated, keep for plugins using jQuery ajax call
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   jeedomUtils._elBackground = document.getElementById('backgroundforJeedom')
   if (typeof jQuery === 'function') {
     $(document)
-      .ajaxStart(function () {
+      .ajaxStart(function() {
         domUtils.showLoading()
       })
-      .ajaxStop(function () {
+      .ajaxStop(function() {
         domUtils.hideLoading()
       })
   }
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //js error in ! ui:
 jeedomUtils.JS_ERROR = []
-window.addEventListener('error', function (event) {
+window.addEventListener('error', function(event) {
   if (event.filename.indexOf('3rdparty/') != -1) return
   if (event.message.includes('ResizeObserver loop')) return
   jeedomUtils.JS_ERROR.push(event)
@@ -65,7 +65,7 @@ window.addEventListener('error', function (event) {
 })
 
 if ('SecurityPolicyViolationEvent' in window) { // Check browser support of SecurityPolicyViolationEnevt interface
-  window.addEventListener("securitypolicyviolation", function (event) {
+  window.addEventListener("securitypolicyviolation", function(event) {
     var uri = event.blockedURI
     var msg = `{{Erreur de directive Content Security Policy sur la ressource "${uri}"}}`
     if (event.originalPolicy && event.violatedDirective) {
@@ -84,7 +84,7 @@ if ('SecurityPolicyViolationEvent' in window) { // Check browser support of Secu
 }
 
 //UI Time display:
-setInterval(function () {
+setInterval(function() {
   if (document.getElementById('horloge') === null) {
     return
   }
@@ -94,7 +94,7 @@ setInterval(function () {
 }, 1000)
 
 var modifyWithoutSave = false
-jeedomUtils.checkPageModified = function () {
+jeedomUtils.checkPageModified = function() {
   if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
       domUtils.hideLoading()
@@ -113,7 +113,7 @@ var saveEqLogic = undefined
 jeedomUtils.userDevice = getDeviceType()
 
 //OnePage design PageLoader -------------------------------------
-jeedomUtils.loadPage = function (_url, _noPushHistory) {
+jeedomUtils.loadPage = function(_url, _noPushHistory) {
   jeeFrontEnd.PREVIOUS_LOCATION = window.location.href
   if (jeedomUtils.checkPageModified()) return
   if (jeedomUtils.JS_ERROR.length > 0) {
@@ -190,7 +190,7 @@ jeedomUtils.loadPage = function (_url, _noPushHistory) {
 
   //AJAX LOAD URL INTO PAGE CONTAINER:
   domUtils.DOMloading += 1
-  document.getElementById('div_pageContainer').load(url, function () {
+  document.getElementById('div_pageContainer').load(url, function() {
     document.body.setAttribute('data-page', getUrlVars('p') || '')
     document.getElementById('bt_getHelpPage')?.setAttribute('data-page', getUrlVars('p'))
     document.getElementById('bt_getHelpPage')?.setAttribute('data-plugin', getUrlVars('m') || '')
@@ -208,7 +208,7 @@ jeedomUtils.loadPage = function (_url, _noPushHistory) {
       }
     }
 
-    setTimeout(function () {
+    setTimeout(function() {
       if (window.location.hash != '') {
         var tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]') || document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
         if (tab != null) {
@@ -217,7 +217,7 @@ jeedomUtils.loadPage = function (_url, _noPushHistory) {
       }
     }, 150) //let time for plugin page!
 
-    setTimeout(function () {
+    setTimeout(function() {
       modifyWithoutSave = false
       jeeFrontEnd.modifyWithoutSave = false
     }, 250)
@@ -229,14 +229,14 @@ jeedomUtils.loadPage = function (_url, _noPushHistory) {
 
 /* First time loading, all next goes by loadpage()
 */
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
   jeedom.init()
   document.body.setAttribute('data-device', jeedomUtils.userDevice.type)
   document.body.setAttribute('data-page', getUrlVars('p'))
   document.body.style.setProperty('--bkg-opacity-light', jeedom.theme['interface::background::opacitylight'])
   document.body.style.setProperty('--bkg-opacity-dark', jeedom.theme['interface::background::opacitydark'])
 
-  document.body.addEventListener('jeedom_page_load', function (event) {
+  document.body.addEventListener('jeedom_page_load', function(event) {
     if (getUrlVars('saveSuccessFull') == 1) {
       jeedomUtils.showAlert({ message: '{{Sauvegarde effectuée avec succès}}', level: 'success' })
       jeeFrontEnd.PREVIOUS_PAGE = window.location.href.split('&saveSuccessFull')[0] + window.location.hash
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   //custom jQuery event can't use pur js event listener
   if (typeof jQuery === 'function') {
-    $('body').on('shown.bs.tab', '.nav-tabs a', function (event) {
+    $('body').on('shown.bs.tab', '.nav-tabs a', function(event) {
       if (event.target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
       if (event.target.closest('.ui-dialog-content')?.innerHTML !== undefined) return
       if (event.target.closest('.jeeDialog')?.innerHTML !== undefined) return
@@ -280,14 +280,14 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   }
 
-  window.addEventListener('hashchange', function (event) {
+  window.addEventListener('hashchange', function(event) {
     jeeFrontEnd.NO_POPSTAT = true
-    setTimeout(function () {
+    setTimeout(function() {
       jeeFrontEnd.NO_POPSTAT = false
     }, 200)
   })
 
-  window.addEventListener('popstate', function (event) {
+  window.addEventListener('popstate', function(event) {
     if (event.state === null) {
       if (jeeFrontEnd.NO_POPSTAT) {
         jeeFrontEnd.NO_POPSTAT = false
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   jeedomUtils.initPage()
 
-  setTimeout(function () {
+  setTimeout(function() {
     jeedomUtils.initTooltips()
     document.body.triggerEvent('jeedom_page_load')
   })
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 })
 
-jeedomUtils.showAlert = function (_options) {
+jeedomUtils.showAlert = function(_options) {
   //if (getUrlVars('report') == 1) return
   var options = init(_options, {})
   options.title = init(options.title, '')
@@ -374,18 +374,18 @@ jeedomUtils.showAlert = function (_options) {
   jeeDialog.toast(options)
 }
 
-jeedomUtils.hideAlert = function () {
+jeedomUtils.hideAlert = function() {
   jeeDialog.clearToasts()
 
   //Deprecated, old div_alert may be used by plugins:
-  document.querySelectorAll('.jqAlert').forEach(function (element) {
+  document.querySelectorAll('.jqAlert').forEach(function(element) {
     element.innerHTML = ''
     element.unseen()
   })
 }
 
 //Jeedom theme__
-jeedomUtils.setJeedomTheme = function () {
+jeedomUtils.setJeedomTheme = function() {
   if (getCookie('currentTheme') == 'alternate') {
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     document.getElementById('bt_switchTheme')?.html(themeButton)
@@ -400,19 +400,19 @@ jeedomUtils.setJeedomTheme = function () {
   }
 
   //button event:
-  document.getElementById('bt_switchTheme')?.addEventListener('click', function () {
+  document.getElementById('bt_switchTheme')?.addEventListener('click', function() {
     jeedomUtils.closeJeedomMenu()
     jeedomUtils.switchTheme()
   })
 
-  jeedomUtils.changeTheme = function (_theme) {
+  jeedomUtils.changeTheme = function(_theme) {
     var currentTheme = document.body.getAttribute('data-theme').toLowerCase()
     if (_theme == 'toggle' || !currentTheme.endsWith(_theme)) {
       jeedomUtils.switchTheme()
     }
   }
 
-  jeedomUtils.switchTheme = function () {
+  jeedomUtils.switchTheme = function() {
     var theme = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
     var themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/shadows.css'
     var themeCook = 'alternate'
@@ -458,19 +458,19 @@ jeedomUtils.setJeedomTheme = function () {
   }
 }
 
-jeedomUtils.changeJeedomThemeAuto = function () {
+jeedomUtils.changeJeedomThemeAuto = function() {
   if (typeof jeedom.theme == 'undefined') return
   if (typeof jeedom.theme.theme_changeAccordingTime == 'undefined' || jeedom.theme.theme_changeAccordingTime == 0) return
   if (typeof jeedom.theme.jeedom_theme_main == 'undefined' || typeof jeedom.theme.jeedom_theme_alternate == 'undefined') return
   if (jeedom.theme.jeedom_theme_main == jeedom.theme.jeedom_theme_alternate) return
 
   jeedomUtils.checkThemechange()
-  setInterval(function () {
+  setInterval(function() {
     jeedomUtils.checkThemechange()
   }, 60000)
 }
 
-jeedomUtils.checkThemechange = function () {
+jeedomUtils.checkThemechange = function() {
   //User forced current theme:
   if (getCookie('currentTheme') == 'alternate' || document.getElementById('jeedom_theme_currentcss')?.getAttribute('data-nochange') == 1) return
 
@@ -503,7 +503,7 @@ jeedomUtils.checkThemechange = function () {
   }
 }
 
-jeedomUtils.triggerThemechange = function () {
+jeedomUtils.triggerThemechange = function() {
   //set jeedom logo:
   if (document.body.hasAttribute('data-theme')) {
     var currentTheme = document.body.getAttribute('data-theme')
@@ -532,7 +532,7 @@ jeedomUtils.triggerThemechange = function () {
   }
 }
 
-jeedomUtils.setBackgroundImage = function (_path) {
+jeedomUtils.setBackgroundImage = function(_path) {
   if (getUrlVars('rescue') == 1) return false
   //Exact same function desktop/mobile, only transitionJeedomBackground() differ
   if (!isset(jeedom) || !isset(jeedom.theme) || !isset(jeedom.theme.showBackgroundImg) || jeedom.theme.showBackgroundImg == 0) {
@@ -586,7 +586,7 @@ jeedomUtils.setBackgroundImage = function (_path) {
   jeedomUtils.backgroundIMG = _path
 }
 
-jeedomUtils.transitionJeedomBackground = function (_path) {
+jeedomUtils.transitionJeedomBackground = function(_path) {
   _path = 'url("../../../../' + _path + '")'
   if (document.body.getAttribute('data-theme') == 'core2019_Dark') {
     var opacity = document.body.style.getPropertyValue('--bkg-opacity-dark')
@@ -603,18 +603,18 @@ jeedomUtils.transitionJeedomBackground = function (_path) {
   top.style.opacity = 0
   top.style.backgroundImage = _path
   top.fade(250, opacity)
-  bottom.fade(200, 0, function () {
+  bottom.fade(200, 0, function() {
     bottom.style.backgroundImage = _path
   })
 }
 
 
 //Jeedom UI__
-jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootbox
+jeedomUtils.initJeedomModals = function() { //Deprecated jQuery UI dilaog/bootbox
   if (typeof jQuery !== 'function') return
   if (typeof $.fn.modal !== 'function') return
 
-  $.fn.modal.Constructor.prototype.enforceFocus = function () { }
+  $.fn.modal.Constructor.prototype.enforceFocus = function() { }
 
   //Deprecated bootbox, keep for plugins
   if (isset(jeeFrontEnd.language)) {
@@ -629,14 +629,14 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
   }
 
   //Deprecated bootbox, keep for plugins
-  $('body').on('show', '.modal', function () {
+  $('body').on('show', '.modal', function() {
     document.activeElement.blur()
     $(this).find('.modal-body :input:visible').first().focus()
   })
-  $('body').on('focusin', '.bootbox-input', function (event) {
+  $('body').on('focusin', '.bootbox-input', function(event) {
     event.stopPropagation()
   })
-  $('.bootbox.modal').on('shown.bs.modal', function () {
+  $('.bootbox.modal').on('shown.bs.modal', function() {
     $(this).find(".bootbox-accept").focus()
   })
 
@@ -648,7 +648,7 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
     height: (window.innerHeight - 125),
     width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
     position: { my: 'center top+80', at: 'center top', of: window },
-    open: function () {
+    open: function() {
       document.body.style.overflow = 'hidden'
       this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
@@ -656,9 +656,9 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
         width: ((window.innerWidth - 50) < 1500) ? (window.innerWidth - 50) : 1500,
         position: { my: 'center top+80', at: 'center top', of: window }
       })
-      setTimeout(function () { jeedomUtils.initTooltips($('#md_modal')) }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal')) }, 500)
     },
-    beforeClose: function (event, ui) {
+    beforeClose: function(event, ui) {
       $(this).parent('.ui-dialog').removeClass('summaryActionMain')
       emptyModal('md_modal')
       $('#md_modal').off('dialogresize')
@@ -672,7 +672,7 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
     height: (window.innerHeight - 125),
     width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
     position: { my: 'center bottom-50', at: 'center bottom', of: window },
-    open: function () {
+    open: function() {
       document.body.style.overflow = 'hidden'
       this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
@@ -680,9 +680,9 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
         width: ((window.innerWidth - 150) < 1200) ? (window.innerWidth - 50) : 1200,
         position: { my: 'center bottom-50', at: 'center bottom', of: window },
       })
-      setTimeout(function () { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal2')) }, 500)
     },
-    beforeClose: function (event, ui) {
+    beforeClose: function(event, ui) {
       emptyModal('md_modal2')
       $('#md_modal2').off('dialogresize')
     }
@@ -695,7 +695,7 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
     height: (window.innerHeight - 125),
     width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
     position: { my: 'center bottom-50', at: 'center bottom', of: window },
-    open: function () {
+    open: function() {
       document.body.style.overflow = 'hidden'
       this.closest('.ui-dialog').querySelectorAll('button, input[type="button"]')?.forEach(el => { el.blur() })
       $(this).dialog({
@@ -703,9 +703,9 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
         width: ((window.innerWidth - 250) < 1000) ? (window.innerWidth - 50) : 1000,
         position: { my: 'center bottom-50', at: 'center bottom', of: window },
       })
-      setTimeout(function () { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
+      setTimeout(function() { jeedomUtils.initTooltips($('#md_modal3')) }, 500)
     },
-    beforeClose: function (event, ui) {
+    beforeClose: function(event, ui) {
       emptyModal('md_modal3')
       $('#md_modal3').off('dialogresize')
     }
@@ -718,7 +718,7 @@ jeedomUtils.initJeedomModals = function () { //Deprecated jQuery UI dilaog/bootb
   }
 }
 
-jeedomUtils.setButtonCtrlHandler = function (_buttonId, _title, _uri, _modal = 'jee_modal', _open = true) {
+jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = 'jee_modal', _open = true) {
   if (document.getElementById(_buttonId) === null) {
     return
   }
@@ -749,7 +749,7 @@ jeedomUtils.setButtonCtrlHandler = function (_buttonId, _title, _uri, _modal = '
   })
 }
 
-jeedomUtils.setJeedomGlobalUI = function () {
+jeedomUtils.setJeedomGlobalUI = function() {
   if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     jeeDialog.dialog({
       id: 'md_firstUse',
@@ -757,14 +757,14 @@ jeedomUtils.setJeedomGlobalUI = function () {
       width: window.innerWidth > 800 ? 720 : '80vw',
       height: window.innerHeight > 600 ? 400 : '80vw',
       zIndex: 1040,
-      onClose: function () {
+      onClose: function() {
         jeeDialog.get('#md_firstUse').destroy()
       },
       contentUrl: 'index.php?v=d&modal=first.use'
     })
   }
 
-  window.addEventListener('beforeunload', function (event) {
+  window.addEventListener('beforeunload', function(event) {
     //keep old root for plugins
     if (jeeFrontEnd.modifyWithoutSave == true || window.modifyWithoutSave == true) {
       event.preventDefault()
@@ -778,7 +778,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
   jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', 'jee_modal', false)
   jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', 'jee_modal')
 
-  document.getElementById('bt_gotoDashboard')?.addEventListener('click', function (event) {
+  document.getElementById('bt_gotoDashboard')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -790,7 +790,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
     jeedomUtils.loadPage('index.php?v=d&p=dashboard')
   })
 
-  document.getElementById('bt_gotoView')?.addEventListener('click', function (event) {
+  document.getElementById('bt_gotoView')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -798,7 +798,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
     jeedomUtils.loadPage('index.php?v=d&p=view')
   })
 
-  document.getElementById('bt_gotoPlan')?.addEventListener('click', function (event) {
+  document.getElementById('bt_gotoPlan')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -806,7 +806,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
     jeedomUtils.loadPage('index.php?v=d&p=plan')
   })
 
-  document.getElementById('bt_gotoPlan3d')?.addEventListener('click', function (event) {
+  document.getElementById('bt_gotoPlan3d')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -814,7 +814,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
     jeedomUtils.loadPage('index.php?v=d&p=plan3d')
   })
 
-  document.getElementById('bt_jeedomAbout')?.addEventListener('click', function (event) {
+  document.getElementById('bt_jeedomAbout')?.addEventListener('click', function(event) {
     jeedomUtils.closeJeedomMenu()
     jeeDialog.dialog({
       id: 'jee_modal3',
@@ -825,21 +825,21 @@ jeedomUtils.setJeedomGlobalUI = function () {
     })
   })
 
-  document.getElementById('bt_getHelpPage')?.addEventListener('click', function (event) {
+  document.getElementById('bt_getHelpPage')?.addEventListener('click', function(event) {
     jeedom.getDocumentationUrl({
       plugin: this.getAttribute('data-plugin'),
       page: this.getAttribute('data-page'),
       theme: document.body.getAttribute('data-theme'),
-      error: function (error) {
+      error: function(error) {
         jeedomUtils.showAlert({ message: error.message, level: 'danger' })
       },
-      success: function (url) {
+      success: function(url) {
         window.open(url, '_blank')
       }
     })
   })
 
-  document.querySelector('.bt_reportBug')?.addEventListener('click', function (event) {
+  document.querySelector('.bt_reportBug')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
       return
@@ -853,7 +853,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
     })
   })
 
-  document.getElementById('bt_messageModal')?.addEventListener('click', function (event) {
+  document.getElementById('bt_messageModal')?.addEventListener('click', function(event) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Centre de Messages}}",
@@ -861,7 +861,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
     })
   })
 
-  document.getElementById('bt_jsErrorModal')?.addEventListener('click', function (event) {
+  document.getElementById('bt_jsErrorModal')?.addEventListener('click', function(event) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Erreur Javascript}}",
@@ -869,20 +869,24 @@ jeedomUtils.setJeedomGlobalUI = function () {
     })
   })
 
-  document.body.addEventListener('keydown', function (event) {
-    //search input escape:
-    if (event.target.matches('input[id^="in_search"]')) {
-      if (event.key == 'Escape') {
+  document.body.addEventListener('keydown', function(event) {
+    if (event.key == 'Escape') {
+      if (event.target.matches('input[id^="in_search"]')) {
+        //search input escape
         event.stopPropagation()
-        var els = ((els = document.querySelectorAll('#categoryfilter li .catFilterKey')) != null ? els.forEach(function (item) { item.checked = true }) : null)
+        var els = ((els = document.querySelectorAll('#categoryfilter li .catFilterKey')) != null ? els.forEach(function(item) { item.checked = true }) : null)
         var els = ((els = document.querySelectorAll('#dashTopBar button.dropdown-toggle')) != null ? els.removeClass('warning') : null)
         event.target.value = ''
         return
       }
+      else if (event.target.matches('body')) {
+        //close active modal
+        document.querySelector('div.jeeDialog.active')?._jeeDialog.close()
+      }
     }
   })
 
-  document.body.addEventListener('click', function (event) {
+  document.body.addEventListener('click', function(event) {
     //Summary display:
     if (!event.ctrlKey && (event.target.matches('.objectSummaryParent') || event.target.closest('.objectSummaryParent') != null)) {
       event.stopPropagation()
@@ -922,7 +926,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
       event.stopPropagation()
       var input = event.target.closest('div').querySelector('input')
       if (input) {
-        jeedom.getCronSelectModal({}, function (result) {
+        jeedom.getCronSelectModal({}, function(result) {
           input.value = result.value
         })
       }
@@ -946,7 +950,7 @@ jeedomUtils.setJeedomGlobalUI = function () {
 }
 
 //Initiators__
-jeedomUtils.initPage = function () {
+jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
   if (typeof jQuery === 'function' && typeof $.initTableFilter === 'function') $.initTableFilter()
@@ -966,7 +970,7 @@ jeedomUtils.initPage = function () {
   })
   */
 
-  setTimeout(function () {
+  setTimeout(function() {
     jeedomUtils.initTooltips()
   }, 750)
   try {
@@ -975,7 +979,7 @@ jeedomUtils.initPage = function () {
   jeedomUtils.initDisplayAsTable()
 }
 
-jeedomUtils.initDisplayAsTable = function () {
+jeedomUtils.initDisplayAsTable = function() {
   var buttonAsTable = document.getElementById('bt_displayAsTable')
   if (buttonAsTable != null) {
     if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
@@ -991,7 +995,7 @@ jeedomUtils.initDisplayAsTable = function () {
       }
     }
 
-    buttonAsTable.addEventListener('click', function (event) {
+    buttonAsTable.addEventListener('click', function(event) {
       if (this.dataset.state == '0') {
         this.dataset.state = '1'
         this.addClass('active')
@@ -1037,7 +1041,7 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   //trigger: 'click',
   //hideOnClick: false
 }
-jeedomUtils.initTooltips = function (_el) {
+jeedomUtils.initTooltips = function(_el) {
   var selector = '[tooltip]:not(.tippied), [title]:not(.tippied):not(.ui-button)'
   var items = null
 
@@ -1063,26 +1067,26 @@ jeedomUtils.initTooltips = function (_el) {
 }
 
 
-jeedomUtils.disableTooltips = function () {
+jeedomUtils.disableTooltips = function() {
   document.querySelectorAll('.tippied').forEach(_tip => {
     if (_tip._tippy) _tip._tippy.disable()
   })
 }
-jeedomUtils.enableTooltips = function () {
+jeedomUtils.enableTooltips = function() {
   document.querySelectorAll('.tippied').forEach(_tip => {
     if (_tip._tippy) _tip._tippy.enable()
   })
 }
 
-jeedomUtils.initTextArea = function () {
+jeedomUtils.initTextArea = function() {
   if (typeof jQuery === 'function') {
-    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function () {
+    $('body').on('change keyup keydown paste cut', 'textarea.autogrow', function() {
       $(this).height(0).height(this.scrollHeight)
     })
   }
 }
 
-jeedomUtils.initReportMode = function () {
+jeedomUtils.initReportMode = function() {
   if (getUrlVars('report') == 1) {
     document.querySelectorAll('header')?.unseen()
     document.querySelectorAll('footer')?.unseen()
@@ -1095,9 +1099,9 @@ jeedomUtils.initReportMode = function () {
   }
 }
 
-jeedomUtils.initTableSorter = function (filter) {
+jeedomUtils.initTableSorter = function(filter) {
   if (typeof jQuery !== 'function') return
-  if (typeof $.tablesorter !== 'function') return
+  // if (typeof $.tablesorter !== 'function') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
@@ -1122,13 +1126,13 @@ jeedomUtils.initTableSorter = function (filter) {
       stickyHeaders_offset: $('header.navbar-fixed-top').height()
     },
     cssIcon: 'tablesorter-icon',
-    initialized: function (table) {
+    initialized: function(table) {
       $(table).find('thead .tablesorter-header-inner').append('<i class="tablesorter-icon"></i>')
     }
   }).css('width', '')
 }
 
-jeedomUtils.initDataTables = function (_selector, _paging, _searching) {
+jeedomUtils.initDataTables = function(_selector, _paging, _searching) {
   if (!isset(_selector)) _selector = 'body'
   if (!_paging) _paging = false
   if (!_searching) _searching = false
@@ -1147,7 +1151,7 @@ jeedomUtils.initDataTables = function (_selector, _paging, _searching) {
 }
 
 
-jeedomUtils.initHelp = function () {
+jeedomUtils.initHelp = function() {
   document.querySelectorAll('.help').forEach(element => {
     if (element.getAttribute('data-help') != undefined) {
       element.insertAdjacentHTML('beforeend', ' <sup><i class="fas fa-question-circle tooltips" title="' + element.getAttribute('data-help') + '"></i></sup>')
@@ -1156,11 +1160,11 @@ jeedomUtils.initHelp = function () {
 }
 
 //Deprecated, plugins may use, old jQuery ui autocomplete
-jeedomUtils.autocompleteDestroy = function () {
+jeedomUtils.autocompleteDestroy = function() {
   document.querySelectorAll('ul.ui-autocomplete, div.ui-helper-hidden-accessible')?.remove()
 }
 
-jeedomUtils.datePickerInit = function (_format, _selector) {
+jeedomUtils.datePickerInit = function(_format, _selector) {
   if (!isset(_format)) _format = 'Y-m-d'
   let _enableTime = _format.includes(' ') ? true : false
 
@@ -1180,7 +1184,7 @@ jeedomUtils.datePickerInit = function (_format, _selector) {
   })
 }
 
-jeedomUtils.dateTimePickerInit = function (_step) {
+jeedomUtils.dateTimePickerInit = function(_step) {
   if (!isset(_step)) _step = 5
   let lang = jeeFrontEnd.language.substring(0, 2)
   if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
@@ -1198,7 +1202,7 @@ jeedomUtils.dateTimePickerInit = function (_step) {
   })
 }
 
-jeedomUtils.datePickerDestroy = function () {
+jeedomUtils.datePickerDestroy = function() {
   document.querySelectorAll('input.isdatepicker, input.in_datepicker').forEach(_input => {
     if (isset(_input._flatpickr)) _input._flatpickr.destroy()
   })
@@ -1207,7 +1211,7 @@ jeedomUtils.datePickerDestroy = function () {
   })
 }
 
-jeedomUtils.initSpinners = function () {
+jeedomUtils.initSpinners = function() {
   if (typeof jQuery === 'function') {
     $('input[type="number"].ui-spinner').spinner({
       icons: {
@@ -1235,7 +1239,7 @@ jeedomUtils.initSpinners = function () {
   })
 }
 
-jeedomUtils.jeeCtxMenuDestroy = function () {
+jeedomUtils.jeeCtxMenuDestroy = function() {
   document.querySelectorAll('div.jeeCtxMenu').forEach(_ctx => {
     if (isset(_ctx._jeeCtxMenu)) {
       _ctx._jeeCtxMenu.destroy()
@@ -1246,7 +1250,7 @@ jeedomUtils.jeeCtxMenuDestroy = function () {
 }
 
 //General functions__
-jeedomUtils.normTextLower = function (_text) {
+jeedomUtils.normTextLower = function(_text) {
   try {
     var result = _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
   } catch (error) {
@@ -1255,7 +1259,7 @@ jeedomUtils.normTextLower = function (_text) {
   return result
 }
 
-jeedomUtils.linkify = function (inputText) {
+jeedomUtils.linkify = function(inputText) {
   if (!inputText || inputText == '' || inputText === null) {
     return ''
   }
@@ -1268,7 +1272,7 @@ jeedomUtils.linkify = function (inputText) {
   return replacedText
 }
 
-jeedomUtils.sleep = function (milliseconds) {
+jeedomUtils.sleep = function(milliseconds) {
   var start = new Date().getTime()
   for (var i = 0; i < 1e7; i++) {
     if ((new Date().getTime() - start) > milliseconds) {
@@ -1278,7 +1282,7 @@ jeedomUtils.sleep = function (milliseconds) {
 }
 
 jeedomUtils.uniqId_count = 0
-jeedomUtils.uniqId = function (_prefix) {
+jeedomUtils.uniqId = function(_prefix) {
   if (typeof _prefix == 'undefined') {
     _prefix = 'jee-uniq'
   }
@@ -1290,7 +1294,7 @@ jeedomUtils.uniqId = function (_prefix) {
   return result
 }
 
-jeedomUtils.taAutosize = function (_el) {
+jeedomUtils.taAutosize = function(_el) {
   //http://www.jacklmoore.com/autosize/
   if (isset(_el)) {
     var doOn = _el
@@ -1301,7 +1305,7 @@ jeedomUtils.taAutosize = function (_el) {
   autosize.update(doOn)
 }
 
-jeedomUtils.hexToRgb = function (hex) {
+jeedomUtils.hexToRgb = function(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result ? {
     r: parseInt(result[1], 16),
@@ -1310,12 +1314,12 @@ jeedomUtils.hexToRgb = function (hex) {
   } : null
 }
 
-jeedomUtils.componentToHex = function (c) {
+jeedomUtils.componentToHex = function(c) {
   var hex = c.toString(16)
   return hex.length == 1 ? "0" + hex : hex
 }
 
-jeedomUtils.rgbToHex = function (r, g, b) {
+jeedomUtils.rgbToHex = function(r, g, b) {
   if (typeof r === 'string' && !g) {
     r = r.trim()
     if (r.startsWith('rgb')) {
@@ -1335,7 +1339,7 @@ jeedomUtils.rgbToHex = function (r, g, b) {
   return "#" + jeedomUtils.componentToHex(r) + jeedomUtils.componentToHex(g) + jeedomUtils.componentToHex(b)
 }
 
-jeedomUtils.addOrUpdateUrl = function (_param, _value, _title) {
+jeedomUtils.addOrUpdateUrl = function(_param, _value, _title) {
   var url = new URL(window.location.href)
   var query_string = url.search
   var search_params = new URLSearchParams(query_string)
@@ -1366,9 +1370,9 @@ jeedomUtils.addOrUpdateUrl = function (_param, _value, _title) {
 }
 
 //Global UI functions__
-jeedomUtils.setJeedomMenu = function () {
+jeedomUtils.setJeedomMenu = function() {
   //Listener on body to catch Jeedom links for loadpage() instead of reloading url
-  document.body.addEventListener('click', function (event) {
+  document.body.addEventListener('click', function(event) {
     var _target = null
     if (_target = event.target.closest('a')) {
       if (_target.hasClass('noOnePageLoad')) return
@@ -1445,9 +1449,9 @@ jeedomUtils.setJeedomMenu = function () {
   }
 }
 
-jeedomUtils.closeJeedomMenu = function () {
+jeedomUtils.closeJeedomMenu = function() {
   document.querySelectorAll('#jeedomMenuBar .navbar-nav')?.addClass('disabled')
-  setTimeout(function () {
+  setTimeout(function() {
     document.querySelectorAll('#jeedomMenuBar .navbar-nav')?.removeClass('disabled')
   }, 250)
 
@@ -1456,7 +1460,7 @@ jeedomUtils.closeJeedomMenu = function () {
   }
 }
 
-jeedomUtils.positionEqLogic = function (_id, _preResize, _scenario) {
+jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var margin = '0px ' + jeedom.theme['widget::margin'] + 'px ' + jeedom.theme['widget::margin'] + 'px 0'
 
   //Get full width, step columns, to fill right space:
@@ -1468,7 +1472,7 @@ jeedomUtils.positionEqLogic = function (_id, _preResize, _scenario) {
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep)
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols)
-  var widthSteps = Array.apply(null, { length: 50 }).map(function (value, index) { return (index + 1) * widthStep })
+  var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
@@ -1510,15 +1514,15 @@ jeedomUtils.positionEqLogic = function (_id, _preResize, _scenario) {
     }
   }
 }
-jeedomUtils.getClosestInArray = function (_num, _refAr) {
-  return _refAr.reduce(function (prev, curr) {
+jeedomUtils.getClosestInArray = function(_num, _refAr) {
+  return _refAr.reduce(function(prev, curr) {
     //return (Math.abs(curr - _num) < Math.abs(prev - _num) ? curr : prev) // old
     return (Math.abs(_num) > Math.abs(prev) ? curr : prev) // new
   })
 }
 
 //Deprecated 4.4, obsolete 4.6
-jeedomUtils.showHelpModal = function (_name, _plugin) {
+jeedomUtils.showHelpModal = function(_name, _plugin) {
   var url_helpWebsite
   var url_helpSpe
   if (init(_plugin) != '' && _plugin != undefined) {
@@ -1529,7 +1533,7 @@ jeedomUtils.showHelpModal = function (_name, _plugin) {
     url_helpSpe = 'index.php?v=d&modal=help.' + init(_name)
   }
 
-  document.getElementById('div_helpWebsite').load(url_helpWebsite, function () {
+  document.getElementById('div_helpWebsite').load(url_helpWebsite, function() {
     if (document.getElementById('div_helpWebsite').querySelectorAll('.alert.alert-danger').length > 0 || document.getElementById('div_helpWebsite').textContent.trim() == '') {
       document.querySelector('a[href="#div_helpSpe"]').click()
       document.querySelector('a[href="#div_helpWebsite"]').unseen()
@@ -1540,7 +1544,7 @@ jeedomUtils.showHelpModal = function (_name, _plugin) {
   document.getElementById('div_helpSpe').load(url_helpSpe)
 }
 
-jeedomUtils.reloadPagePrompt = function (_title) {
+jeedomUtils.reloadPagePrompt = function(_title) {
   jeeDialog.confirm({
     title: '<i class="success fas fa-check-circle"></i> ' + _title,
     message: '{{Voulez vous recharger la page maintenant ?}}',
@@ -1554,7 +1558,7 @@ jeedomUtils.reloadPagePrompt = function (_title) {
         className: 'info'
       }
     },
-    callback: function (result) {
+    callback: function(result) {
       if (result) {
         window.location.reload(true)
       }
@@ -1562,7 +1566,7 @@ jeedomUtils.reloadPagePrompt = function (_title) {
   })
 }
 
-jeedomUtils.chooseIcon = function (_callback, _params) {
+jeedomUtils.chooseIcon = function(_callback, _params) {
   var url = 'index.php?v=d&modal=icon.selector'
   if (_params && _params.img && _params.img === true) {
     url += '&showimg=1'
@@ -1570,7 +1574,7 @@ jeedomUtils.chooseIcon = function (_callback, _params) {
   if (_params && _params.icon) {
     var icon = _params.icon
     var replaceAr = ['icon_blue', 'icon_green', 'icon_orange', 'icon_red', 'icon_yellow']
-    replaceAr.forEach(function (element) {
+    replaceAr.forEach(function(element) {
       if (icon.includes(element)) {
         icon = icon.replace(element, '')
         _params.color = (!_params.color) ? element : _params.color
@@ -1598,10 +1602,10 @@ jeedomUtils.chooseIcon = function (_callback, _params) {
         label: '{{Appliquer}}',
         className: 'success',
         callback: {
-          click: function (event) {
+          click: function(event) {
             if (document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel') === null) {
               jeeDialog.get('#mod_selectIcon').close()
-              return;
+              return
             }
             var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
             if (icon == undefined) {
@@ -1617,20 +1621,20 @@ jeedomUtils.chooseIcon = function (_callback, _params) {
         label: '{{Annuler}}',
         className: 'warning',
         callback: {
-          click: function (event) {
+          click: function(event) {
             jeeDialog.get('#mod_selectIcon').close()
           }
         }
       }
     },
-    onClose: function () {
+    onClose: function() {
       jeeDialog.get('#mod_selectIcon').destroy() //No twice footer select/search
     },
     contentUrl: url
   })
 }
 
-jeedomUtils.getOpenedModal = function () {
+jeedomUtils.getOpenedModal = function() {
   var _return = false
   document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
     if (_dialog.isVisible()) _return = true
@@ -1643,7 +1647,7 @@ jeedomUtils.getOpenedModal = function () {
 }
 
 //Deprecated 4.4 keep for plugins
-jeedomUtils.closeModal = function (_modals = '') {
+jeedomUtils.closeModal = function(_modals = '') {
   if (typeof jQuery != 'function') return
   if (_modals == '') {
     _modals = ['md_modal', 'md_modal2', 'md_modal3']
@@ -1651,7 +1655,7 @@ jeedomUtils.closeModal = function (_modals = '') {
   if (!Array.isArray(_modals)) {
     _modals = [_modals]
   }
-  _modals.forEach(function (_modal) {
+  _modals.forEach(function(_modal) {
     try {
       $('#' + _modal).dialog('close')
     } catch (error) { }
@@ -1659,7 +1663,7 @@ jeedomUtils.closeModal = function (_modals = '') {
   })
 }
 
-jeedomUtils.closeJeeDialogs = function () {
+jeedomUtils.closeJeeDialogs = function() {
   document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
     //uninitialized modal doesn't have _jeeDialog
     if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
@@ -1667,21 +1671,21 @@ jeedomUtils.closeJeeDialogs = function () {
 }
 
 //Deprecated jQuery UI ui-dialog
-jeedomUtils.cleanModals = function (_modals = '') {
-  document.querySelectorAll('.ui-dialog .cleanableModal')?.forEach(function (element) {
+jeedomUtils.cleanModals = function(_modals = '') {
+  document.querySelectorAll('.ui-dialog .cleanableModal')?.forEach(function(element) {
     element.closest('.ui-dialog')?.remove()
   })
 }
 
 //Context menu on checkbox
-jeedomUtils.setCheckboxStateByType = function (_type, _state, _callback) {
+jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
   if (!isset(_type)) return false
   if (!isset(_state)) _state = -1
   var checkboxes = document.querySelectorAll(_type)
   if (checkboxes == null) return
   var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
   var execCallback = false
-  checkboxes.forEach(function (checkbox) {
+  checkboxes.forEach(function(checkbox) {
     execCallback = false
     if (_state == -1) {
       checkbox.checked = !checkbox.checked
@@ -1697,7 +1701,7 @@ jeedomUtils.setCheckboxStateByType = function (_type, _state, _callback) {
     }
   })
 }
-jeedomUtils.getElementType = function (_el) {
+jeedomUtils.getElementType = function(_el) {
   let thisType = ''
   if (_el.tagName === 'INPUT') thisType = 'input[type="' + _el.getAttribute('type') + '"]'
 
@@ -1713,7 +1717,7 @@ jeedomUtils.getElementType = function (_el) {
   }
   return thisType
 }
-jeedomUtils.setCheckContextMenu = function (_callback) {
+jeedomUtils.setCheckContextMenu = function(_callback) {
   let ctxSelector = 'input[type="checkbox"].checkContext, input[type="radio"].checkContext'
   try {
     document.querySelector('.contextmenu-checkbox')._jeeCtxMenu.destroy()
@@ -1728,21 +1732,21 @@ jeedomUtils.setCheckContextMenu = function (_callback) {
     items: {
       all: {
         name: "{{Sélectionner tout}}",
-        callback: function (key, opt) {
+        callback: function(key, opt) {
           let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, 1, _callback)
         }
       },
       none: {
         name: "{{Désélectionner tout}}",
-        callback: function (key, opt) {
+        callback: function(key, opt) {
           let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, 0, _callback)
         }
       },
       invert: {
         name: "{{Inverser la sélection}}",
-        callback: function (key, opt) {
+        callback: function(key, opt) {
           let thisType = jeedomUtils.getElementType(opt.trigger)
           jeedomUtils.setCheckboxStateByType(thisType, -1, _callback)
         }
@@ -1753,11 +1757,11 @@ jeedomUtils.setCheckContextMenu = function (_callback) {
 
 //Need jQuery and jQuery UI plugin loaded:
 if (typeof jQuery === 'function') {
-  jQuery.fn.setCursorPosition = function (position) {
+  jQuery.fn.setCursorPosition = function(position) {
     if (this.lengh == 0) return this
     return $(this).setSelection(position, position)
   }
-  jQuery.fn.setSelection = function (selectionStart, selectionEnd) {
+  jQuery.fn.setSelection = function(selectionStart, selectionEnd) {
     if (this.lengh == 0) return this
     input = this[0]
     if (input.createTextRange) {
@@ -1783,7 +1787,7 @@ if (typeof jQuery === 'function') {
  * @param {string} _to
  * @param {string} _line
  */
-jeedomUtils.deprecatedFunc = function (_oldFnName, _newFnName, _since, _to, _line) {
+jeedomUtils.deprecatedFunc = function(_oldFnName, _newFnName, _since, _to, _line) {
   if (jeeFrontEnd.coreBranch == 'V4-stable') return
   var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
 
@@ -1791,13 +1795,13 @@ jeedomUtils.deprecatedFunc = function (_oldFnName, _newFnName, _since, _to, _lin
     var _pluginId = $('body').attr('data-page')
     jeedom.plugin.get({
       id: _pluginId,
-      error: function (error) {
+      error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function (data) {
+      success: function(data) {
         msg += ' plugin: ' + _pluginId + ' | require: ' + data.require
       }
     })

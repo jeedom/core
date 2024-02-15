@@ -281,12 +281,13 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 - ``#smonth#`` : Nombre del mes. Ex : Enero.
 - ``#IP#`` : IP interna de Jeedom.
 - ``#hostname#`` : Nombre de la máquina Jeedom.
+- ``#jeedomName#`` : Nombre de Jeedom.
 - ``#trigger#`` (en desuso, mejor usar ``trigger()``) : Quizás el nombre del comando que inició el escenario :
     - ``api`` si el lanzamiento fue activado por la API,
     - ``schedule`` si se inició programando,
     - ``user`` si se inició manualmente,
     - ``start`` para un lanzamiento al inicio de Jeedom.
-- ``#trigger_value#`` (en desuso, mejor usar triggerValue()) : Por el valor del comando que activó el escenario
+- ``#triggerValue#`` (en desuso, mejor usar triggerValue()) : Por el valor del comando que activó el escenario
 - ``#latitude#`` : Le permite recuperar la información de latitud ingresada en la configuración de jeedom
 - ``#longitude#`` : Le permite recuperar la información de longitud ingresada en la configuración de jeedom
 - ``#altitude#`` : Le permite recuperar la información de altitud ingresada en la configuración de jeedom

@@ -73,3 +73,9 @@ La sauvegarde dans le cloud permet à Jeedom d’envoyer vos sauvegardes directe
 # Fréquence des sauvegardes automatiques
 
 Jeedom effectue une sauvegarde automatique tous les jours à la même heure. Il est possible de modifier celle-ci, à partir du "Moteur de tâches" (la tâche est nommée **Jeedom backup**), mais ce n’est pas recommandé. En effet, elle est calculée par rapport à la charge du Market.
+
+# FAQ
+
+>**Je n'arrive pas a restorer ma sauvegarde que j'ai récuperée depuis Safari**
+>
+>Par defaut Safari décompresse les tar.gz (en tar) ce qui fait que la sauvegarde n'est plus exploitable par jeedom, il faut la recompresser (gzip) en tar.gz

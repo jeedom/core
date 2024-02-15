@@ -284,7 +284,7 @@ jeedom.user.removeRegisterDevice = function(_params) {
   paramsAJAX.url = 'core/ajax/user.ajax.php';
   paramsAJAX.data = {
     action: 'removeRegisterDevice',
-    key: _params.key,
+    key: _params.key || '',
     user_id: _params.user_id || ''
   };
   domUtils.ajax(paramsAJAX);

@@ -74,8 +74,6 @@ Vous pouvez ajouter un plugin à Jeedom à partir d’un fichier ou depuis un d�
 
 Attention, dans le cas de l’ajout par un fichier zip, le nom du zip doit être le même que l’ID du plugin et dès l’ouverture du ZIP un dossier plugin\_info doit être présent.
 
-
-
 ## Mes plugins
 
 En cliquant sur l'icône d'un plugin, vous ouvrez sa page de configuration.
@@ -86,9 +84,10 @@ En cliquant sur l'icône d'un plugin, vous ouvrez sa page de configuration.
 
 ### En haut à droite, quelques boutons :
 
+- **Détails** : Permet de retrouver la page du plugin sur le market.
 - **Documentation** : Permet d’accéder directement à la page de documentation du plugin.
 - **Changelog** : Permet de voir le changelog du plugin si il existe.
-- **Détails** : Permet de retrouver la page du plugin sur le market.
+- **Assistance** : Permet de créer automatiquement une demande d'aide sur le forum.
 - **Supprimer** : Supprime le plugin de votre Jeedom. Attention, cela supprime également définitivement tous les équipements de ce plugin.
 
 ### En dessous à gauche, on retrouve une zone **état** avec :
@@ -154,5 +153,3 @@ Si le plugin possède des dépendances et/ou un démon, ces zones supplémentair
 ### Panel
 
 On peut retrouver une section Panel qui permettra d’activer ou désactiver l’affichage du panel sur le dashboard ou en mobile si le plugin en propose un.
-
-

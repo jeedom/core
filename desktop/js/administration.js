@@ -205,7 +205,7 @@ if (!jeeFrontEnd.administration) {
             if (data == '' || typeof data != 'object') return
             jeeP.actionOptions = []
             for (var i in data) {
-              jeeP.addActionOnMessage(data[i],channel)
+              jeeP.addActionOnMessage(data[i], channel)
             }
             jeedom.cmd.displayActionsOption({
               params: jeeP.actionOptions,
@@ -226,7 +226,7 @@ if (!jeeFrontEnd.administration) {
             })
           }
         })
-      });
+      })
     },
     addActionOnMessage: function(_action, _channel) {
       if (!isset(_channel)) _channel = ''
@@ -260,7 +260,7 @@ if (!jeeFrontEnd.administration) {
       let newDiv = document.createElement('div')
       newDiv.innerHTML = div
       newDiv.setJeeValues(_action, '.expressionAttr')
-      document.getElementById('div_actionOnMessage'+_channel).appendChild(newDiv.childNodes[0])
+      document.getElementById('div_actionOnMessage' + _channel).appendChild(newDiv.childNodes[0])
 
       jeeP.actionOptions.push({
         expression: init(_action.cmd, ''),
@@ -269,7 +269,7 @@ if (!jeeFrontEnd.administration) {
       })
 
       jeedom.scenario.setAutoComplete({
-        parent: document.getElementById('div_actionOnMessage'+_channel),
+        parent: document.getElementById('div_actionOnMessage' + _channel),
         type: 'cmd'
       })
     },
@@ -278,7 +278,7 @@ if (!jeeFrontEnd.administration) {
       jeedom.cache.flush({
         error: function(error) {
           jeedomUtils.showAlert({
-            message: data.result,
+            message: error.message,
             level: 'danger'
           })
         },
@@ -295,7 +295,7 @@ if (!jeeFrontEnd.administration) {
       jeedom.cache.flushWidget({
         error: function(error) {
           jeedomUtils.showAlert({
-            message: data.result,
+            message: error.message,
             level: 'danger'
           })
         },
@@ -312,7 +312,7 @@ if (!jeeFrontEnd.administration) {
       jeedom.cache.clean({
         error: function(error) {
           jeedomUtils.showAlert({
-            message: data.result,
+            message: error.message,
             level: 'danger'
           })
         },
@@ -329,7 +329,7 @@ if (!jeeFrontEnd.administration) {
       jeedom.cache.stats({
         error: function(error) {
           jeedomUtils.showAlert({
-            message: data.result,
+            message: error.message,
             level: 'danger'
           })
         },
@@ -385,7 +385,7 @@ if (!jeeFrontEnd.administration) {
     saveConvertColor: function() {
       var value = {}
       var colors = {}
-      document.querySelectorAll('#table_convertColor tbody tr').forEach(function (element) {
+      document.querySelectorAll('#table_convertColor tbody tr').forEach(function(element) {
         colors[element.querySelector('.color').jeeValue()] = element.querySelector('.html').jeeValue()
       })
       value.convertColor = colors
@@ -416,27 +416,27 @@ if (!jeeFrontEnd.administration) {
     //Global:
     loadConfig: function() {
       jeedom.config.load({
-      configuration: document.getElementById('config').getJeeValues('.configKey:not(.noSet)')[0],
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        document.getElementById('config').setJeeValues(data, '.configKey')
-        //document.querySelector('.configKey[data-l1key="market::allowDNS"]').triggerEvent('change')
-        //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
-        jeeP.loadActionOnMessage()
+        configuration: document.getElementById('config').getJeeValues('.configKey:not(.noSet)')[0],
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(data) {
+          document.getElementById('config').setJeeValues(data, '.configKey')
+          //document.querySelector('.configKey[data-l1key="market::allowDNS"]').triggerEvent('change')
+          //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
+          jeeP.loadActionOnMessage()
 
-        if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
-        if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
-        if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
-        jeeFrontEnd.modifyWithoutSave = false
+          if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
+          if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
+          if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
+          jeeFrontEnd.modifyWithoutSave = false
 
-        jeeP.configReload = document.getElementById('config').getJeeValues('.configKey[data-reload="1"]')[0]
-      }
-    })
+          jeeP.configReload = document.getElementById('config').getJeeValues('.configKey[data-reload="1"]')[0]
+        }
+      })
     },
     saveConfig: function() {
       jeedomUtils.hideAlert()
@@ -753,7 +753,7 @@ document.getElementById('interfacetab').addEventListener('click', function(event
 /**************************NETWORK***********************************/
 /*Events delegations
 */
-document.getElementById('networktab').addEventListener('click', function(event) {
+document.getElementById('tablist').addEventListener('click', function(event) {
   var _target = null
   if (_target = event.target.closest('#bt_networkTab')) {
     var tableBody = document.getElementById('networkInterfacesTable').tBodies[0]
@@ -780,6 +780,12 @@ document.getElementById('networktab').addEventListener('click', function(event) 
     }
     return
   }
+})
+
+
+
+document.getElementById('networktab').addEventListener('click', function(event) {
+  var _target = null
 
   if (_target = event.target.closest('#bt_restartDns')) {
     jeedomUtils.hideAlert()
@@ -999,7 +1005,7 @@ document.getElementById('summarytab').addEventListener('click', function(event) 
     jeedomUtils.chooseIcon(function(_icon) {
       objectSummary.querySelector('span[data-l1key="icon"]').innerHTML = _icon
       jeeFrontEnd.modifyWithoutSave = true
-    }, {icon: icon})
+    }, { icon: icon })
     return
   }
 
@@ -1014,7 +1020,7 @@ document.getElementById('summarytab').addEventListener('click', function(event) 
     jeedomUtils.chooseIcon(function(_icon) {
       objectSummary.querySelector('span[data-l1key="iconnul"]').innerHTML = _icon
       jeeFrontEnd.modifyWithoutSave = true
-    }, {icon: icon})
+    }, { icon: icon })
     return
   }
 
@@ -1374,9 +1380,9 @@ document.getElementById('apitab').addEventListener('click', function(event) {
     return
   }
   if (_target = event.target.closest('.bt_copyPass')) {
-    _target.closest('.input-group').querySelector('.span_apikey').select();
-    document.execCommand('copy');
-    window.getSelection()?.removeAllRanges();
+    _target.closest('.input-group').querySelector('.span_apikey').select()
+    document.execCommand('copy')
+    window.getSelection()?.removeAllRanges()
   }
 })
 

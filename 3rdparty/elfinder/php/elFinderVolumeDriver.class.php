@@ -280,6 +280,8 @@ abstract class elFinderVolumeDriver
             'php4:*' => 'text/x-php',
             'php5:*' => 'text/x-php',
             'php7:*' => 'text/x-php',
+            'php8:*' => 'text/x-php',
+            'php9:*' => 'text/x-php',
             'phtml:*' => 'text/x-php',
             'phar:*' => 'text/x-php',
             'cgi:*' => 'text/x-httpd-cgi',
@@ -4917,7 +4919,13 @@ abstract class elFinderVolumeDriver
             $pinfo = pathinfo($path);
             $ext = isset($pinfo['extension']) ? strtolower($pinfo['extension']) : '';
         }
-        return ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
+        $res = ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
+        // Recursive check if MIME type is unknown with multiple extensions
+        if ($res === 'unknown' && strpos($pinfo['filename'], '.')) {
+            return elFinderVolumeDriver::mimetypeInternalDetect($pinfo['filename']);
+        } else {
+            return $res;
+        }
     }
 
     /**

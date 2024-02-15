@@ -72,7 +72,7 @@ if (!jeeFrontEnd.view_edit) {
         }
         view.zones.push(viewZoneInfo)
       })
-      
+
       jeedom.view.save({
         id: document.querySelector(".li_view.active").getAttribute('data-view_id'),
         view: view,
@@ -410,7 +410,7 @@ Sortable.create(document.getElementById('div_viewZones'), {
   preventOnFilter: false,
   removeCloneOnHide: true,
   onStart: function (event) {
-    console.log('div_viewZones onStart', event, event.oldIndex)
+    // console.log('div_viewZones onStart', event, event.oldIndex)
   },
 })
 
@@ -718,4 +718,3 @@ document.getElementById('div_pageContainer').addEventListener('change', function
     return
   }
 })
-

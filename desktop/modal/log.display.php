@@ -70,7 +70,7 @@ if(init('log','event') == 'event'){
   })
 
   document.getElementById('bt_resetLogSearch').addEventListener('click', function (event) {
-    document.getElementById('in_eventLogSearch').jeeValue('')
+    document.getElementById('in_eventLogSearch').jeeValue('').triggerEvent('keyup')
   })
 
   document.getElementById("bt_logdisplayclearLog").addEventListener('click', function(event) {

@@ -174,8 +174,9 @@ try {
 		$infoPost .= 'Version : ' . $update->getLocalVersion() . ' (' . ($isBeta ? 'beta' : 'stable') . ')<br/>';
 
 		if ($plugin->getHasOwnDeamon()) {
-			$daemon_info = $plugin_id::deamon_info();
-			$infoPost .= 'Statut Démon : ' . ($daemon_info['state'] == 'ok' ? 'Démarré ' : 'Stoppé') . ' - (' . ($daemon_info['last_launch'] ?? 'NA') . ')<br/>';
+			$daemon_info = $plugin->deamon_info();
+			$infoPost .= 'Statut Démon : ' . ($daemon_info['state'] == 'ok' ?  __('Démarré', __FILE__) :  __('Stoppé', __FILE__));
+			$infoPost .= ' - (' . ($daemon_info['last_launch'] ?? __('Inconnue', __FILE__)) . ')<br/>';
 		}
 
 		$infoPlugin = '';

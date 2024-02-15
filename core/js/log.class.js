@@ -60,7 +60,9 @@ jeedom.log.removeAll = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+// DEPRECATED: jeedom.log.getScTranslations -> remove in 4.6?
 jeedom.log.getScTranslations = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.log.getScTranslations', 'none', '4.6', '4.4')
   var paramsSpecifics = {};
   var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   var paramsAJAX = jeedom.private.getParamsAJAX(params);
@@ -71,7 +73,9 @@ jeedom.log.getScTranslations = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+// DEPRECATED: jeedom.log.get -> remove in 4.6?
 jeedom.log.get = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.log.get', 'jeedom.log.getDelta', '4.6', '4.4')
   var paramsRequired = ['log'];
   var paramsSpecifics = {
     global: _params.global || true,
@@ -180,7 +184,9 @@ jeedom.log.clear = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
+// DEPRECATED: jeedom.log.autoupdate -> remove in 4.6?
 jeedom.log.autoupdate = function(_params) {
+  jeedomUtils.deprecatedFunc('jeedom.log.autoupdate', 'jeedom.log.autoUpdateDelta', '4.6', '4.4')
   if (!isset(_params.once)) _params['once'] = 0
   if (!isset(_params.callNumber)) _params.callNumber = 0
   if (!isset(_params.log)) return
@@ -357,11 +363,19 @@ jeedom.log.autoUpdateDelta = function(_params) {
   if (!_params.display.isVisible()) return
 
   // Exit if Paused
-  if (_params.callNumber > 0 && isset(_params.control) && _params.control.getAttribute('data-state') != 1) {
+  if (
+    _params.callNumber > 0
+    && isset(_params.control)
+    && _params.control.getAttribute('data-state') != 1
+  ) {
     return
   }
   // Exit if a newer instance on another log is running
-  if (_params.callNumber > 0 && isset(jeedom.log.currentAutoupdate[_params.display.getAttribute('id')]) && jeedom.log.currentAutoupdate[_params.display.getAttribute('id')].log != _params.log) {
+  if (
+    _params.callNumber > 0
+    && isset(jeedom.log.currentAutoupdate[_params.display.getAttribute('id')])
+    && jeedom.log.currentAutoupdate[_params.display.getAttribute('id')].log != _params.log
+  ) {
     return
   }
 
@@ -396,7 +410,7 @@ jeedom.log.autoUpdateDelta = function(_params) {
     })
 
     // Setup callback: On search field update
-    _params.search.unRegisterEvent('keypress').registerEvent('keypress', function (event) {
+    _params.search.unRegisterEvent('keyup').registerEvent('keyup', function (event) {
       // Reset log position and empty view
       _params.position = 0;
       _params.lineNum = 0;
@@ -414,29 +428,34 @@ jeedom.log.autoUpdateDelta = function(_params) {
   }
 
   // Disable auto update if log is scrolled
-  if (_params.callNumber > 1 && (_params.display.scrollTop + _params.display.offsetHeight + 10) < _params.display.scrollHeight) {
+  if (
+    _params.callNumber > 1
+    && (_params.display.scrollTop + _params.display.offsetHeight + 10) < _params.display.scrollHeight
+  ) {
     if (_params.control.getAttribute('data-state') == 1) {
       _params.control.click()
     }
     return
   }
 
-  var dom_brutlogcheck = document.getElementById('brutlogcheck')
+  let dom_brutlogcheck = document.getElementById('brutlogcheck')
   // If element does NOT exists OR is disabled, Then colored
-  var colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
+  let colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
 
   jeedom.log.getDelta({
     log: _params.log,
     slaveId: _params.slaveId,
     position: _params.position,
     search: (!isset(_params.search)) ? '' : _params.search.value.toLowerCase(),
-    colored: (colorMe ? ((_params.display.id == 'pre_scenariolog') ? 2 : 1) : 0), // 0: no color ; 1: global log colors ; 2: Scenario colors
-    numbered: (_params.display.id == 'pre_globallog'),
+    colored: (colorMe ? 1 : 0),
+    numbered: (_params.display.id == 'pre_globallog' ? 1 : 0),
     numberStart: _params.lineNum,
     global: (_params.callNumber == 1),
     success: function(result) {
-      // Optimise search operation
-      var searchString = (!isset(_params.search)) ? '' : _params.search.value.toLowerCase()
+      // Reset display if start at position 0 (log file has been truncated/altered)
+      if (result.position == 0) {
+        _params.display.empty()
+      }
       // Store log file current position
       _params.position = result.position;
       // Store log file current line
@@ -470,7 +489,8 @@ jeedom.log.autoUpdateDelta = function(_params) {
   });
 }
 
-//Standard log replacement:
+// Standard log replacement:
+// DEPRECATED: jeedom.log.colorReplacement -> remove in 4.6?
 jeedom.log.colorReplacement = {
   'WARNING:': '--startTg--span class="warning"--endTg--WARNING--startTg--/span--endTg--:',
   'Erreur': '--startTg--span class="danger"--endTg--Erreur--startTg--/span--endTg--',
@@ -481,7 +501,10 @@ jeedom.log.colorReplacement = {
   '[ALERT]': '--startTg--span class="label label-xs label-warning"--endTg--ALERT--startTg--/span--endTg--',
   '[ERROR]': '--startTg--span class="label label-xs label-danger"--endTg--ERROR--startTg--/span--endTg--',
 }
+
+// DEPRECATED: jeedom.log.stringColorReplace -> remove in 4.6?
 jeedom.log.stringColorReplace = function(_str) {
+  jeedomUtils.deprecatedFunc('jeedom.log.stringColorReplace', 'none', '4.6', '4.4')
   for (var re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
   }
@@ -492,31 +515,37 @@ jeedom.log.stringColorReplace = function(_str) {
   return _str
 }
 
-//scenario log replacement:
+// Scenario log replacement:
+// DEPRECATED: jeedom.log.colorScReplacement -> remove in 4.6?
 jeedom.log.colorScReplacement = null
-jeedom.log.getScTranslations({
-  global: false,
-  success: function(result) {
-    jeedom.log.colorScReplacement = JSON.parse(result)
-    jeedom.log.colorScReplacement[' Start : '] = {
-      'txt': ' Start : ',
-      'replace': '<strong> -- Start : </strong>'
-    }
-    jeedom.log.colorScReplacement['Log :'] = {
-      'txt': 'Log :',
-      'replace': '<span class="success">&ensp;&ensp;&ensp;Log :</span>'
-    }
-  },
-  error: function() {
-    console.log('Unable to get jeedom scenario translations')
-  }
-})
 
+// DEPRECATED: jeedom.log.scenarioColorReplace -> remove in 4.6?
 jeedom.log.scenarioColorReplace = function(_str) {
+  jeedomUtils.deprecatedFunc('jeedom.log.scenarioColorReplace', 'none', '4.6', '4.4')
+  if (jeedom.log.colorScReplacement == null) {
+    // Only load translations if we are going to use them
+    jeedom.log.getScTranslations({
+      global: false,
+      success: function(result) {
+        jeedom.log.colorScReplacement = JSON.parse(result)
+        jeedom.log.colorScReplacement[' Start : ']  = {
+          'txt': ' Start : ',
+          'replace':  '<strong> -- Start : </strong>'
+        }
+        jeedom.log.colorScReplacement['Log :'] = {
+          'txt': 'Log :',
+          'replace':  '<span class="success">&ensp;&ensp;&ensp;Log :</span>'
+        }
+      },
+      error: function() {
+        console.log('Unable to get jeedom scenario translations')
+      }
+    })
+
+  }
   if (jeedom.log.colorScReplacement == null) return _str
   for (var item in jeedom.log.colorScReplacement) {
     _str = _str.split(jeedom.log.colorScReplacement[item]['txt']).join(jeedom.log.colorScReplacement[item]['replace'].replace('::', jeedom.log.colorScReplacement[item]['txt']))
   }
   return _str
 }
-

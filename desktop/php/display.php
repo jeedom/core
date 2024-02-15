@@ -40,6 +40,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		$objectName = '{{Aucun}}';
 		$objecUseCustomColor = 0;
 		$objectIcon = '<i class="far fa-circle"></i>';
+		$objectSortable = '';
 	} else {
 		if (!is_object($object)) return;
 		$_index = $object->getId();
@@ -49,6 +50,7 @@ function jeedom_displayObjectGroup($object = -1) {
 		$objectName = $object->getName();
 		$objecUseCustomColor = $object->getConfiguration('useCustomColor');
 		$objectIcon = $object->getDisplay('icon');
+		$objectSortable = 'objectSortable';
 	}
 
 	$div = '';
@@ -58,10 +60,10 @@ function jeedom_displayObjectGroup($object = -1) {
 	} else {
 		$aStyle = ' style="margin-left:5px"';
 	}
-	$div .= '<div class="panel panel-default objectSortable" ' . $aStyle . '>';
+	$div .= '<div class="panel panel-default ' . $objectSortable . '" ' . $aStyle . '>';
 	$div .= '<div class="panel-heading" data-id="' . $objectId . '">';
 	//custom colors panel-title:
-	if ($objecUseCustomColor == 1) {
+	if ($objecUseCustomColor == 1 && is_object($object)) {
 		$aStyle = 'style="color:' . $object->getDisplay('tagTextColor') . '!important"';
 		$div .= '<h3 class="panel-title" style="background-color:' . $object->getDisplay('tagColor') . '; width:calc(100% - 50px);display: inline-block;">';
 		$div .= '<a ' . $aStyle . 'class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '" style="color:' . $object->getDisplay('tagTextColor') . '!important">' . $objectIcon . ' ' . $objectName;
@@ -92,15 +94,16 @@ function jeedom_displayObjectGroup($object = -1) {
 		}
 		$translate_category = trim($translate_category, ',');
 		$div .= '<li class="eqLogic cursor" data-id="' . $eqLogic->getId() . '" data-translate-category="' . $translate_category . '" data-enable="' . $eqLogic->getIsEnable() . '" data-name="' . $eqLogic->getName() . '" data-type="' . $eqLogic->getEqType_name() . '">';
-		$div .= '<i class="bt_sortable fas fa-arrows-alt-v cursor"></i> ';
+		$div .= '<i class="fas fa-sort bt_sortable" style="cursor:move!important;"></i> ';
 		$div .= '<input type="checkbox" class="cb_selEqLogic checkContext" data-context="objectId' . $objectId . '"/> ';
 		$div .= $eqLogic->getId() . ' | ' . $eqLogic->getEqType_name() . ' | ' . $eqLogic->getName();
+
 		if ($eqLogic->getIsEnable() != 1) {
-			$div .= '<i class="fas fa-times" title="{{Non actif}}"></i> ';
-		}
-		if ($eqLogic->getIsVisible() != 1) {
+			$div .= '<i class="fas fa-power-off" title="{{Désactivé}}"></i> ';
+		} else if ($eqLogic->getIsVisible() != 1) {
 			$div .= '<i class="fas fa-eye-slash" title="{{Non visible}}"></i> ';
 		}
+
 		if (!isset($plugin_enable[$eqLogic->getEqType_name()]) || $plugin_enable[$eqLogic->getEqType_name()] == 1) {
 			$div .= '<i class="fas fa-cog pull-right configureEqLogic" title="{{Configuration avancée}}"></i>';
 			$div .= '<a href="' . $eqLogic->getLinkToConfiguration() . '" target="_blank" class="pull-right" title="{{Aller sur la configuration de l\'équipement}}"><i class="fas fa-external-link-alt"></i></a>';

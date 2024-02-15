@@ -539,9 +539,15 @@ sendVarToJS([
         }
       },
       synchModalToEq: function() {
-        document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]').value = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="name"').value
-        document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isEnable"').checked
-        document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
+        if(document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]')){
+          document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]').value = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="name"').value
+        }
+        if(document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]')){
+          document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isEnable"').checked
+        }
+        if(document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]')){
+          document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
+        }
       },
       setTableLayoutSortable: function() {
         let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')

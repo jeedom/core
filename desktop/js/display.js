@@ -35,13 +35,12 @@ if (!jeeFrontEnd.display) {
     setSortables: function() {
       //Accordion set objects order:
       Sortable.create(document.getElementById('accordionObject'), {
-        delay: 100,
-        delayOnTouchOnly: true,
+        delay: 50,
         draggable: '.objectSortable',
-        filter: 'a, input, textarea',
+        filter: '.eqLogic',
         preventOnFilter: false,
         direction: 'vertical',
-        removeCloneOnHide: true,
+        chosenClass: 'dragSelected',
         onEnd: function(event) {
           var objects = []
           document.querySelectorAll('.objectSortable .panel-heading').forEach(_panel => {
@@ -63,22 +62,36 @@ if (!jeeFrontEnd.display) {
       let eqLogicContainers = document.querySelectorAll('#accordionObject ul.eqLogicSortable')
       eqLogicContainers.forEach(_Sortcontainer => {
         var sorty = new Sortable(_Sortcontainer, {
-          delay: 100,
-          delayOnTouchOnly: true,
+          delay: 50,
           draggable: 'li.eqLogic',
           direction: 'vertical',
           group: 'eqLogicSorting',
-          handle: 'i.bt_sortable',
+          handle: 'i.bt_sortable, .cb_selEqLogic',
+          filter: 'ul.cmdSortable',
           multiDrag: true,
           selectedClass: 'dragSelected',
-          multiDragKey: 'CTRL',
           avoidImplicitDeselect: true,
-          removeCloneOnHide: true,
+          onSelect: function(evt) {
+            if (!evt.item.querySelector('.cb_selEqLogic').checked) {
+              setTimeout(function() { evt.item.querySelector('.cb_selEqLogic').checked = true }, 10)
+            }
+          },
+          onDeselect: function(evt) {
+            if (evt.originalEvent == undefined) {
+              setTimeout(function() { Sortable.utils.select(evt.item) }, 10)
+
+            } else if (evt.item.querySelector('.cb_selEqLogic').checked) {
+              setTimeout(function() { evt.item.querySelector('.cb_selEqLogic').checked = false }, 10)
+            }
+          },
           onEnd: function(event) {
             //set new parent and order:
             var eqLogics = []
-            var object = event.item.closest('.objectSortable')
+            var object = event.item.closest('.panel')
             var objectId = object.querySelector('.panel-heading').getAttribute('data-id')
+            if (objectId == -1) {
+              objectId = null
+            }
             var order = 1
             var eqLogic
             object.querySelectorAll('.eqLogic').forEach(_eq => {
@@ -106,13 +119,10 @@ if (!jeeFrontEnd.display) {
       let cmdContainers = document.querySelectorAll('#accordionObject ul.cmdSortable')
       cmdContainers.forEach(_Sortcontainer => {
         var sorty = new Sortable(_Sortcontainer, {
-          delay: 100,
-          delayOnTouchOnly: true,
+          delay: 50,
           draggable: '.cmd',
-          filter: 'a, input, textarea',
-          preventOnFilter: false,
           direction: 'vertical',
-          removeCloneOnHide: true,
+          chosenClass: 'dragSelected',
           onEnd: function(event) {
             var cmds = []
             var eqLogic = event.item.closest('.eqLogic')
@@ -187,9 +197,6 @@ document.getElementById('in_search').addEventListener('keyup', function(event) {
     var search = event.target.value
     var searchID = search
     if (isNaN(search)) searchID = false
-
-      console.log('search:', search, searchID)
-
     document.querySelectorAll('.panel-collapse.in').removeClass('in')
     document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
     document.querySelectorAll('.cmd').seen().removeClass('alert-success').addClass('alert-info')
@@ -244,7 +251,6 @@ document.getElementById('in_search').addEventListener('keyup', function(event) {
           cmdName = _cmd.getAttribute('data-name')
           cmdName = jeedomUtils.normTextLower(cmdName)
           if (cmdName.includes(search)) {
-            console.log('got cmd: ',cmdName, _cmd)
             _cmd.closestAll('.panel-collapse').forEach(_panel => { _panel.setAttribute('data-show', '1') })
             _cmd.seen()
             _cmd.closest('ul.cmdSortable')?.seen()
@@ -302,13 +308,11 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_removeEqlogic')) {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer tous ces équipements ?}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?}}', function(result) {
       if (result) {
         var eqLogics = []
-        document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
-          if (_cb.checked) {
-            eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
-          }
+        document.querySelectorAll('li.eqLogic.dragSelected').forEach(_sel => {
+          eqLogics.push(_sel.getAttribute('data-id'))
         })
         jeedom.eqLogic.removes({
           eqLogics: eqLogics,
@@ -330,10 +334,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('.bt_setIsVisible')) {
     if (jeeP.actionMode == 'eqLogic') {
       var eqLogics = []
-      document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
-        if (_cb.checked) {
-          eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
-        }
+      document.querySelectorAll('li.eqLogic.dragSelected').forEach(_sel => {
+        eqLogics.push(_sel.getAttribute('data-id'))
       })
       jeedom.eqLogic.setIsVisibles({
         eqLogics: eqLogics,
@@ -354,7 +356,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       var cmds = []
       document.querySelectorAll('.cb_selCmd').forEach(_cb => {
         if (_cb.checked) {
-          eqLogics.push(_cb.closest('.cmd').getAttribute('data-id'))
+          cmds.push(_cb.closest('.cmd').getAttribute('data-id'))
         }
       })
       jeedom.cmd.setIsVisibles({
@@ -376,10 +378,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('.bt_setIsEnable')) {
     var eqLogics = []
-    document.querySelectorAll('.cb_selEqLogic').forEach(_cb => {
-      if (_cb.checked) {
-        eqLogics.push(_cb.closest('.eqLogic').getAttribute('data-id'))
-      }
+    document.querySelectorAll('li.eqLogic.dragSelected').forEach(_sel => {
+      eqLogics.push(_sel.getAttribute('data-id'))
     })
     jeedom.eqLogic.setIsEnables({
       eqLogics: eqLogics,
@@ -450,7 +450,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('.bt_exportcsv')) {
     var fullFile = ''
-    var eqParent, cmd
+    var eqParent
     document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
       eqParent = _eqlogic.closest('.panel.panel-default')
       eqParent = eqParent.querySelector('a.accordion-toggle').textContent
@@ -464,9 +464,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.eqLogicSortable > li.eqLogic')) {
-    if (_target.tagName.toUpperCase() == 'I') return
-    if (_target.tagName.toUpperCase() == 'INPUT') return
-    if (_target.hasClass('cmd')) return
+    if (event.target.closest('ul.cmdSortable')) return
     var el = _target.querySelector('ul.cmdSortable')
     if (el.isVisible()) {
       el.unseen()
@@ -479,10 +477,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
   var _target = null
-  if (_target = event.target.closest('.cb_selEqLogic')) {
-    jeeP.setEqActions()
-    return
-  }
   if (_target = event.target.closest('.cb_selEqLogic')) {
     jeeP.setEqActions()
     return

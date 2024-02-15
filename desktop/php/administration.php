@@ -30,7 +30,7 @@ user::isBan();
 			</form>
 		</div>
 
-		<ul class="nav nav-tabs nav-primary" role="tablist">
+		<ul class="nav nav-tabs nav-primary" role="tablist" id="tablist">
 			<li role="presentation" class="active"><a data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 			<li role="presentation"><a data-target="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
 			<li role="presentation"><a id="bt_networkTab" data-target="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
@@ -444,7 +444,7 @@ user::isBan();
 							</div>
 
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes sur écran large/moyen/petit}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonne sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<select class="form-control configKey" data-l1key="dahsboard::column::size" data-reload="1">
@@ -462,7 +462,7 @@ user::isBan();
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1" />
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par defaut}}
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par défaut}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prendront toute la largeur par défaut en mobile}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
@@ -657,7 +657,8 @@ user::isBan();
 				</fieldset>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{Accès interne}}</legend>
+						<legend>{{Accès interne (sur lui meme)}}</legend>
+						<div class="alert alert-warning">{{La configuration réseaux interne n'est la que pour la communication interne de }} <?php echo config::byKey('product_name'); ?> {{ avec lui meme}}</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
 							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
@@ -665,7 +666,6 @@ user::isBan();
 									<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
 										<option value="">{{Aucun}}</option>
 										<option value="http://">{{HTTP}}</option>
-										<option value="https://">{{HTTPS}}</option>
 									</select>
 									<span class="input-group-addon">://</span>
 									<input type="text" class="configKey form-control" data-l1key="internalAddr" />
@@ -966,6 +966,7 @@ user::isBan();
 												<option value="local5">local5</option>
 												<option value="local6">local6</option>
 												<option value="local7">local7</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -1635,7 +1636,7 @@ user::isBan();
 								</div>
 								<div class="form-group">
 									<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Port}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP:389, LDAPS:636)}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)}}"></i></sup>
 									</label>
 									<div class="col-md-3 col-sm-4 col-xs-12">
 										<input type="text" class="configKey form-control" data-l1key="ldap:port" />
@@ -1840,6 +1841,12 @@ user::isBan();
 										<input type="checkbox" class="configKey" data-l1key="update::autocheck" />
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core}}</label>
+									<div class="col-sm-1">
+										<input type="checkbox" class="configKey" data-l1key="update::composerUpdate" />
+									</div>
+								</div>
 							</fieldset>
 						</form>
 					</div>
@@ -1902,6 +1909,11 @@ user::isBan();
 													$div .= '<div class="input-group">';
 													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													$div .= '<span class="input-group-btn"><a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a></span>';
+													$div .= '</div>';
+													break;
+												case 'password_noshow':
+													$div .= '<div class="input-group">';
+													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '" />';
 													$div .= '</div>';
 													break;
 												case 'select':
@@ -2242,14 +2254,10 @@ user::isBan();
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="form-group">
 							<div class="row">
-								<div class="col-md-3 col-xs-12">
 									<div class="alert alert-danger">
 										{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
 										{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 									</div>
-								</div>
-
-								<div class="col-md-9 col-xs-12">
 									<div class="form-group">
 										<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 										<div class="col-md-5 col-xs-6">
@@ -2307,7 +2315,6 @@ user::isBan();
 										</div>
 
 									</div>
-								</div>
 							</div>
 					</fieldset>
 					<br />

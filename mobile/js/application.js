@@ -14,7 +14,7 @@ jeedomUtils.showLoading = function() {
   jeedomUtils.loadingTimeout = setTimeout(() => {
     if (!document.getElementById('div_jeedomLoading').isHidden()) {
       jeedomUtils.hideLoading()
-      $.fn.showAlert({level: 'danger', message: 'Operation Timeout: Something has gone wrong!'})
+      $.fn.showAlert({ level: 'danger', message: 'Operation Timeout: Something has gone wrong!' })
     }
   }, 20 * 1000)
 }
@@ -25,12 +25,12 @@ jeedomUtils.hideLoading = function() {
 
 $(function() {
   $(document)
-  .ajaxStart(function () {
-    jeedomUtils.showLoading()
-  })
-  .ajaxStop(function () {
-    jeedomUtils.hideLoading()
-  })
+    .ajaxStart(function() {
+      jeedomUtils.showLoading()
+    })
+    .ajaxStop(function() {
+      jeedomUtils.hideLoading()
+    })
 })
 
 window.addEventListener('error', function(event) {
@@ -41,8 +41,8 @@ window.addEventListener('error', function(event) {
 var delayedExec = function(after, fn) {
   var timer
   return function() {
-      timer && clearTimeout(timer)
-      timer = setTimeout(fn, after)
+    timer && clearTimeout(timer)
+    timer = setTimeout(fn, after)
   }
 }
 
@@ -84,11 +84,11 @@ $(function() {
 
   if (getUrlVars('app_mode') == 1 || window.ReactNativeWebView != undefined) {
     APP_MODE = true
-    jeedomUtils._elBackground.height('100%').css('top','0')
+    jeedomUtils._elBackground.height('100%').css('top', '0')
     $('#pagecontainer').prepend($('#searchContainer'))
     $('div[data-role=header]').hide()
-    $('#searchContainer').css('top',0)
-    $('#bt_eraseSearchInput').css('top',0)
+    $('#searchContainer').css('top', 0)
+    $('#bt_eraseSearchInput').css('top', 0)
     $('#pagecontainer').append('<a href="#bottompanel" id="bt_bottompanel" class="ui-btn ui-btn-inline ui-btn-fab ui-btn-raised clr-primary waves-effect waves-button waves-effect waves-button" style="position:fixed;bottom:10px;right:10px;display:none;"><i class="fas fa-bars" style="position:relative;top:-3px"></i></a>')
   }
 
@@ -102,7 +102,7 @@ $(function() {
     $('#bottompanel_objectList').panel('close')
     let object_id = this.getAttribute('data-object_id')
     let summary = this.getAttribute('data-summary')
-    jeedomUtils.loadModal('mobile/modal/summary.action.html',function() {
+    jeedomUtils.loadModal('mobile/modal/summary.action.html', function() {
       initSummaryAction(object_id, summary)
     })
   })
@@ -122,15 +122,15 @@ $(function() {
   $('body').on('click', '.cmd[data-type=info],.cmd .history[data-type=info]', function(event) {
     let mainOpt = $('#bottompanel_mainoption')
     mainOpt.empty()
-    mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="'+$(this).data('cmd_id')+'"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
-    mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="'+$(this).data('cmd_id')+'"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
+    mainOpt.append('<a class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="history" data-title="{{Historique}}" data-option="' + $(this).data('cmd_id') + '"><i class="fas fa-chart-bar"></i> {{Historique}}</a>')
+    mainOpt.append('<a class="ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" id="bt_warnmeCmd" data-cmd_id="' + $(this).data('cmd_id') + '"><i class="fas fa-bell"></i> {{Préviens moi}}</a>')
 
     mainOpt.panel('open')
     $(document).scrollTop(PANEL_SCROLL)
   })
 
   $('body').on('click', '#bt_warnmeCmd', function() {
-    jeedomUtils.loadPage('warnme','{{Me prévenir si}}',{cmd_id : $(this).data('cmd_id')}, null, true)
+    jeedomUtils.loadPage('warnme', '{{Me prévenir si}}', { cmd_id: $(this).data('cmd_id') }, null, true)
   })
 
   $('body').on('click', '#bt_switchTheme', function() {
@@ -249,7 +249,7 @@ jeedomUtils.triggerThemechange = function() {
     $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_light)
   }
   //trigger event for widgets:
-  if ( $('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page')) ) {
+  if ($('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page'))) {
     if (currentTheme.endsWith('Light')) {
       $('body').trigger('changeThemeEvent', ['Light'])
     } else {
@@ -274,10 +274,10 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight) {
         return
       }
       let theme = jeedom.theme.mobile_theme_color
-      let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+      let themeCss = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/' + jeedom.theme.mobile_theme_color + '.css'
       if (sensor.illuminance < 50) {
         theme = jeedom.theme.mobile_theme_color_night
-        themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+        themeCss = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
       }
       if (cssTag.attributes.href.value != themeCss) {
         setTimeout(function() {
@@ -285,10 +285,10 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight) {
             return
           }
           let theme = jeedom.theme.mobile_theme_color
-          let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+          let themeCss = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/' + jeedom.theme.mobile_theme_color + '.css'
           if (sensor.illuminance < 50) {
             theme = jeedom.theme.mobile_theme_color_night
-            themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night+'/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+            themeCss = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
           }
           if (cssTag.attributes.href.value != themeCss) {
             $('body').attr('data-theme', theme)
@@ -316,11 +316,11 @@ jeedomUtils.checkThemechange = function() {
   if (jeedom.theme.theme_changeAccordingTime == "0" && defaultThemeCss == cssTag.attributes.href.value) return
 
   let theme = jeedom.theme.mobile_theme_color_night
-  let themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
-  let currentTime = parseInt((new Date()).getHours()*100 + (new Date()).getMinutes())
-  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) <  currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':','')) >  currentTime) {
+  let themeCss = 'core/themes/' + jeedom.theme.mobile_theme_color_night + '/mobile/' + jeedom.theme.mobile_theme_color_night + '.css'
+  let currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
+  if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
     theme = jeedom.theme.mobile_theme_color
-    themeCss = 'core/themes/'+jeedom.theme.mobile_theme_color+'/mobile/' + jeedom.theme.mobile_theme_color + '.css'
+    themeCss = 'core/themes/' + jeedom.theme.mobile_theme_color + '/mobile/' + jeedom.theme.mobile_theme_color + '.css'
   }
   if (cssTag.attributes.href.value != themeCss) {
     document.body.setAttribute('data-theme', theme)
@@ -331,7 +331,7 @@ jeedomUtils.checkThemechange = function() {
 }
 
 
-jeedomUtils.insertHeader = function(rel, href, size=null, media=null, id=null, type=null) {
+jeedomUtils.insertHeader = function(rel, href, size = null, media = null, id = null, type = null) {
   let link = document.createElement('link')
   link.rel = rel
   link.href = href
@@ -353,13 +353,13 @@ jeedomUtils.insertHeader = function(rel, href, size=null, media=null, id=null, t
 function isset() {
   let a = arguments, b = a.length, d = 0
   if (0 === b)
-  throw Error("Empty isset")
-  for (; d !== b; ) {
+    throw Error("Empty isset")
+  for (; d !== b;) {
     if (void 0 === a[d] || null === a[d])
-    return!1
+      return !1
     d++
   }
-  return!0
+  return !0
 }
 
 var user_id
@@ -377,13 +377,13 @@ jeedomUtils.initApplication = function(_reinit) {
       auth: getUrlVars('auth'),
     },
     dataType: 'json',
-    error: function (request, status, error) {
+    error: function(request, status, error) {
       confirm('Erreur de communication. Etes-vous connecté à Internet ? Voulez-vous réessayer ?')
     },
-    success: function (data) {
+    success: function(data) {
       /* SEND SUMMARY TO APP */
       jeedom.appMobile.postToApp('initSummary', data.result.summary)
-	    
+
       jeedom.theme = data.result
       jeeFrontEnd.language = data.result.language
 
@@ -419,7 +419,7 @@ jeedomUtils.initApplication = function(_reinit) {
         jeedomUtils.loadPanel(false)
 
         /*************Initialisation environement********************/
-        jeeFrontEnd.serverDatetime  = data.result.serverDatetime
+        jeeFrontEnd.serverDatetime = data.result.serverDatetime
         jeeFrontEnd.clientDatetime = new Date()
         jeeFrontEnd.clientServerDiffDatetime = jeeFrontEnd.serverDatetime * 1000 - jeeFrontEnd.clientDatetime.getTime()
         jeeFrontEnd.serverTZoffsetMin = data.result.serverTZoffsetMin
@@ -433,8 +433,8 @@ jeedomUtils.initApplication = function(_reinit) {
 
         let include = []
         if (typeof jeedom.theme != 'undefined' && typeof jeedom.theme.css != 'undefined' && Object.keys(jeedom.theme.css).length > 0) {
-          for(let i in jeedom.theme.css) {
-            document.body.style.setProperty(i,jeedom.theme.css[i])
+          for (let i in jeedom.theme.css) {
+            document.body.style.setProperty(i, jeedom.theme.css[i])
           }
         }
         if (typeof jeedom.theme.mobile_theme_useAmbientLight == undefined) {
@@ -502,107 +502,111 @@ jeedomUtils.initApplication = function(_reinit) {
         }
 
         jeedomUtils.triggerThemechange()
-        for(let i in plugins){
+        // hide changeTheme button if theme change is not possible
+        if (jeedom.theme.mobile_theme_color == jeedom.theme.mobile_theme_color_night) {
+          $('#bt_changeTheme').hide()
+        }
+        for (let i in plugins) {
           if (plugins[i].eventjs == 1) {
-            include.push('plugins/'+plugins[i].id+'/mobile/js/event.js')
+            include.push('plugins/' + plugins[i].id + '/mobile/js/event.js')
           }
         }
 
         //load some css, then ...
-        $.get("core/php/icon.inc.php", function (data) {
+        $.get("core/php/icon.inc.php", function(data) {
           document.head.insertAdjacentHTML('beforeend', data)
           $.include(include, function() {
-            jeedom.object.summaryUpdate([{object_id:'global'}])
-	      //store default mobile page user preference:
-	      if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
-		let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
-		if (res[0] == 'core') {
-		  switch (res[1]) {
-		    case 'overview':
-		      defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
-		      break
-		    case 'dashboard':
-		      defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
-		      break
-		    case 'view':
-		      defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
-		      break
-		  }
-		}
-	      }
+            jeedom.object.summaryUpdate([{ object_id: 'global' }])
+            //store default mobile page user preference:
+            if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
+              let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
+              if (res[0] == 'core') {
+                switch (res[1]) {
+                  case 'overview':
+                    defaultMobilePage = ['overview', "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"]
+                    break
+                  case 'dashboard':
+                    defaultMobilePage = ['equipment', jeeFrontEnd.userProfils.defaultMobileObjectName, jeeFrontEnd.userProfils.defaultMobileObject]
+                    break
+                  case 'view':
+                    defaultMobilePage = ['view', jeeFrontEnd.userProfils.defaultMobileViewName, jeeFrontEnd.userProfils.defaultMobileView]
+                    break
+                }
+              }
+            }
 
-	      let redirect = getUrlVars('p')
-	      let redirections = [
-		{page: 'timeline', title: '{{Timeline}}'},
-		{page: 'health', title: '{{Santé}}'},
-		{page: 'log', title: '{{Logs}}'},
-		{page: 'eqAnalyse', title: '{{Analyse équipement}}'},
-		{page: 'notes', title: '{{Notes}}'},
-		{page: 'cron', title: '{{Crons}}'},
-		{page: 'deamon', title: '{{Démons}}'},
-		{page: 'message', title: '{{Message}}'},
-		{page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}"},
-		{page: 'scenario', title: "{{Scenario}}"},
-		{page: 'home', title: "{{Accueil}}"},
-	      ]
-	      window.redirected = false
-	      if (redirect && redirections.map(i => i.page).includes(redirect)) {
-		for (let redir of redirections) {
-		  if (redir.page == redirect) {
-		    window.redirected = true
-		    jeedomUtils.loadPage(redir.page, redir.title)
-		  }
-		}
-	      } else if (redirect == 'view') {
-		jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'));
-	      } else if (redirect == 'dashboard' || redirect == 'equipment') {
-		 jeedomUtils.loadPage('equipment', '{{Dashboard}}',getUrlVars('object_id'));
-	      }
-              else if (redirect == 'plan') {
-               window.location.href = 'index.php?v=d&p=plan&fullscreen=1&plan_id='+getUrlVars('plan_id');
-	      } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
-		let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
-		if (res[0] == 'core') {
-		  switch (res[1]) {
-		    case 'overview':
-		      jeedomUtils.loadPage(defaultMobilePage)
-		      break
-		    case 'dashboard':
-		      jeedomUtils.loadPage(defaultMobilePage)
-		      break
-		    case 'plan':
-		      window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
-		      break
-		    case 'view':
-		      jeedomUtils.loadPage(defaultMobilePage)
-		      break
-		  }
-		} else {
-		  jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
-		}
-	      } else {
-		   if (redirect != '' && APP_MODE == true) {
-                           jeedom.plugin.get({
-                             id : redirect,
-                             async:false,
-                             error: function (error) {
-                               jeedomUtils.showAlert({
-                                 message: 'Erreur sur affichage du panel',
-                                 level: 'danger'
-                               })
-                             },
-                             success: function (data) {
-                               if (data.mobile != '') {
-                                 jeedomUtils.loadPage(data.mobile, 'Plugin', '', redirect)
-                               }else{
-                                 jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
-                               }
-                             }
-                           })
-                   }else{
-                      jeedomUtils.loadPage('home', '{{Accueil}}') 
+            let redirect = getUrlVars('p')
+            let redirections = [
+              { page: 'timeline', title: '{{Timeline}}' },
+              { page: 'health', title: '{{Santé}}' },
+              { page: 'log', title: '{{Logs}}' },
+              { page: 'eqAnalyse', title: '{{Analyse équipement}}' },
+              { page: 'notes', title: '{{Notes}}' },
+              { page: 'cron', title: '{{Crons}}' },
+              { page: 'deamon', title: '{{Démons}}' },
+              { page: 'message', title: '{{Message}}' },
+              { page: 'overview', title: "<i class=\'fab fa-hubspot\'></i> {{Synthèse}}" },
+              { page: 'scenario', title: "{{Scenario}}" },
+              { page: 'home', title: "{{Accueil}}" },
+            ]
+            window.redirected = false
+            if (redirect && redirections.map(i => i.page).includes(redirect)) {
+              for (let redir of redirections) {
+                if (redir.page == redirect) {
+                  window.redirected = true
+                  jeedomUtils.loadPage(redir.page, redir.title)
+                }
+              }
+            } else if (redirect == 'view') {
+              jeedomUtils.loadPage('view', '{{Vue}}', getUrlVars('view_id'))
+            } else if (redirect == 'dashboard' || redirect == 'equipment') {
+              jeedomUtils.loadPage('equipment', '{{Dashboard}}', getUrlVars('object_id'))
+            }
+            else if (redirect == 'plan') {
+              window.location.href = 'index.php?v=d&p=plan&fullscreen=1&plan_id=' + getUrlVars('plan_id')
+            } else if (isset(jeeFrontEnd.userProfils) && jeeFrontEnd.userProfils != null && isset(jeeFrontEnd.userProfils.homePageMobile) && jeeFrontEnd.userProfils.homePageMobile != 'home') {
+              let res = jeeFrontEnd.userProfils.homePageMobile.split("::")
+              if (res[0] == 'core') {
+                switch (res[1]) {
+                  case 'overview':
+                    jeedomUtils.loadPage(defaultMobilePage)
+                    break
+                  case 'dashboard':
+                    jeedomUtils.loadPage(defaultMobilePage)
+                    break
+                  case 'plan':
+                    window.location.href = 'index.php?v=d&p=plan&plan_id=' + jeeFrontEnd.userProfils.defaultMobilePlan
+                    break
+                  case 'view':
+                    jeedomUtils.loadPage(defaultMobilePage)
+                    break
+                }
+              } else {
+                jeedomUtils.loadPage(res[1], 'Plugin', '', res[0])
+              }
+            } else {
+              if (redirect != '' && APP_MODE == true) {
+                jeedom.plugin.get({
+                  id: redirect,
+                  async: false,
+                  error: function(error) {
+                    jeedomUtils.showAlert({
+                      message: 'Erreur sur affichage du panel',
+                      level: 'danger'
+                    })
+                  },
+                  success: function(data) {
+                    if (data.mobile != '') {
+                      jeedomUtils.loadPage(data.mobile, 'Plugin', '', redirect)
+                    } else {
+                      jeedomUtils.loadPage(redirect, 'Plugin', '', redirect)
+                    }
                   }
-	      }
+                })
+              } else {
+                jeedomUtils.loadPage('home', '{{Accueil}}')
+              }
+            }
 
             if (APP_MODE) {
               document.getElementById('pagecontainer').style.paddingTop = '0'
@@ -616,8 +620,8 @@ jeedomUtils.initApplication = function(_reinit) {
   })
   document.body.addEventListener('jeeObject::summary::update', function(_event) {
     for (var i in _event.detail) {
-      if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
-      if(_event.detail[i].object_id == 'global') {
+      if (isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+      if (_event.detail[i].object_id == 'global') {
         /* SEND UPDATE SUMMARY TO APP */
         jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
       }
@@ -641,7 +645,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     PAGE_HISTORY[PAGE_HISTORY.length - 1].scroll = $(document).scrollTop()
   }
   if (!isset(_dialog) || !_dialog) {
-    PAGE_HISTORY.push({page: _page, title: _title, option: _option, plugin: _plugin})
+    PAGE_HISTORY.push({ page: _page, title: _title, option: _option, plugin: _plugin })
   }
 
   jeedomUtils.showLoading()
@@ -656,7 +660,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
     if (!isset(_dialog) || !_dialog) {
       document.getElementById('pageTitle')?.empty().insertAdjacentHTML('beforeend', _title)
     } else {
-      document.getElementById('popupDialog').getElementsByClassName('nd-title').insertAdjacentHTML('beforeend', _title)
+      document.getElementById('popupDialog').querySelector('.nd-title')?.empty().insertAdjacentHTML('beforeend', _title)
     }
   }
 
@@ -666,12 +670,12 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       document.body.setAttribute('data-page', 'connection')
       $('#page').trigger('create')
       if (APP_MODE) {
-        $('div[data-role=header]').remove();
-        $('#pagecontainer').css('padding-top',0)
+        $('div[data-role=header]').remove()
+        $('#pagecontainer').css('padding-top', 0)
       } else {
-        $('#pagecontainer').css('padding-top','72px')
+        $('#pagecontainer').css('padding-top', '72px')
         setTimeout(function() {
-          $('#pagecontainer').css('padding-top','72px')
+          $('#pagecontainer').css('padding-top', '72px')
         }, 100)
       }
     })
@@ -680,7 +684,7 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
 
   let page = 'index.php?v=m&ajax=1'
   if (isset(_dialog) && _dialog) {
-    page += '&modal='+_page
+    page += '&modal=' + _page
   } else {
     //Alternate between defaultMobilePage and home:
     if (window.redirected === false && defaultMobilePage != null && defaultMobilePage[0] != document.body.getAttribute('data-page') && _page == 'home') {
@@ -785,7 +789,7 @@ jeedomUtils.loadModal = function(_name, _callback) {
         if ('function' == typeof (_callback)) {
           _callback()
         }
-        setTimeout(function(){
+        setTimeout(function() {
           $('#div_popup-popup').css({
             'position': 'absolute',
             'top': 105,
@@ -795,11 +799,11 @@ jeedomUtils.loadModal = function(_name, _callback) {
         }, 100)
       })
     }
-  } catch(e) {}
+  } catch (e) { }
 }
 
 jeedomUtils.loadPanel = function(_content) {
-  try{
+  try {
     if (_content === false) {
       $('#bottompanel').empty().trigger('create')
       $('#bt_bottompanel').hide()
@@ -808,7 +812,7 @@ jeedomUtils.loadPanel = function(_content) {
       $('#bottompanel').empty().append(_content).trigger('create')
       $('#bt_bottompanel').show()
     }
-  } catch(e) {}
+  } catch (e) { }
 }
 
 $(document).on('panelbeforeopen', function(event) {
@@ -830,29 +834,29 @@ $(document).on('panelclose', function(event) {
 
 jeedomUtils.postToApp = function(_action, _options) {
   let message = {}
-	if (window.ReactNativeWebView != undefined) {
-		message.action = _action
-		message.options = _options
-		window.ReactNativeWebView.postMessage(JSON.stringify(message))
-	}
+  if (window.ReactNativeWebView != undefined) {
+    message.action = _action
+    message.options = _options
+    window.ReactNativeWebView.postMessage(JSON.stringify(message))
+  }
 }
 
-jeedomUtils.appMobile = {};
+jeedomUtils.appMobile = {}
 
-jeedomUtils.appMobile.vibration = function(type = "impactMedium"){
-  jeedomUtils.postToApp('vibration', {type: type})
+jeedomUtils.appMobile.vibration = function(type = "impactMedium") {
+  jeedomUtils.postToApp('vibration', { type: type })
 }
-jeedomUtils.appMobile.notifee = function(title,body, time){
-  jeedomUtils.postToApp('notifee',{title:title,body:body,time:time});
+jeedomUtils.appMobile.notifee = function(title, body, time) {
+  jeedomUtils.postToApp('notifee', { title: title, body: body, time: time })
 }
 jeedomUtils.appMobile.modal = function(_options) {
-  jeedomUtils.postToApp('modal', _options);
+  jeedomUtils.postToApp('modal', _options)
 }
 
 jeedom.MESSAGE_NUMBER = null
 jeedom.refreshMessageNumber = function() {
   jeedom.message.number({
-    success: function (_number) {
+    success: function(_number) {
       jeedom.MESSAGE_NUMBER = _number
       $('.span_nbMessage').html(_number)
       if (_number > 0) {
@@ -865,12 +869,12 @@ jeedom.refreshMessageNumber = function() {
 }
 
 jeedom.notify = function(_title, _text) {
-  if(window.ReactNativeWebView != undefined){
-    jeedomUtils.appMobile.notifee(_title, _text, 3000);
-  }else{
+  if (window.ReactNativeWebView != undefined) {
+    jeedomUtils.appMobile.notifee(_title, _text, 3000)
+  } else {
     new $.nd2Toast({
-      message :  _title + ':  ' + _text,
-      ttl : 3000
+      message: _title + ':  ' + _text,
+      ttl: 3000
     })
   }
 }
@@ -881,8 +885,8 @@ jeedomUtils.setTileSize = function(_filter) {
   }
   let bsize = jeedomUtils.userDevice.bSize
 
-  document.querySelectorAll(_filter)?.forEach( function(node) {
-    Object.assign(node.style, {margin:"0px", padding:"0px"})
+  document.querySelectorAll(_filter)?.forEach(function(node) {
+    Object.assign(node.style, { margin: "0px", padding: "0px" })
     if (node.hasClass('col2')) {
       node.style.width = (bsize * 2) + 'px'
     } else if (node.hasClass('col1')) {
@@ -909,4 +913,3 @@ function init(_value, _default) {
 jeedomUtils.normTextLower = function(_text) {
   return _text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
 }
-

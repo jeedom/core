@@ -401,7 +401,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             </fieldset>
           </form>
           <form class="form-horizontal">
-            <legend><i class="fas fa-exclamation-triangle"></i> {{Ne pas exécuter la commande si l'équipement est déjà dans le bonne état (alpha)}}</legend>
+            <legend><i class="fas fa-exclamation-triangle"></i> {{Ne pas exécuter la commande si l'équipement est déjà dans le bon état (alpha)}}</legend>
             <div class="form-group">
               <label class="col-md-3 col-sm-3 control-label">{{Confirmer l'action}}</label>
               <div class="col-sm-6">
@@ -527,7 +527,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <option value="-1 year">{{1 an}}</option>
                     <option value="-2 years">{{2 ans}}</option>
                     <option value="-3 years">{{3 ans}}</option>
-                    <option value="" selected>{{Jamais}}</option>
+                    <option value="never" selected>{{Jamais}}</option>
+                    <option value="" selected>{{Défaut}}</option>
                   </select>
                 </div>
               </div>

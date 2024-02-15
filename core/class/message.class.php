@@ -305,6 +305,7 @@ class message {
 	}
 
 	public function setLogicalId($_logicalId) {
+		$_logicalId = substr($_logicalId,0,126);
 		$this->_changed = utils::attrChanged($this->_changed, $this->logicalId, $_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;

@@ -82,7 +82,7 @@ class repo_market {
 				),
 				'password' => array(
 					'name' => __('Mot de passe', __FILE__),
-					'type' => 'password',
+					'type' => 'password_noshow',
 				),
 				'no_ssl_verify' => array(
 					'name' => __('Pas de validation SSL (non recommandé)', __FILE__),

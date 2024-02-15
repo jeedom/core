@@ -19,35 +19,46 @@
 try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
-	
+
 	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-	
+
 	ajax::init();
-	
+
+	if (init('action') == 'set') {
+		unautorizedInDemo();
+		cache::set(init('key'), init('value'), init('lifetime', 0), init('options', null));
+		ajax::success();
+	}
+
+	if (init('action') == 'byKey') {
+		unautorizedInDemo();
+		ajax::success(utils::o2a(cache::byKey(init('key'))));
+	}
+
 	if (init('action') == 'flush') {
 		unautorizedInDemo();
 		cache::flush();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'flushWidget') {
 		unautorizedInDemo();
 		cache::flushWidget();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'clean') {
 		unautorizedInDemo();
 		cache::clean();
 		ajax::success();
 	}
-	
+
 	if (init('action') == 'stats') {
 		ajax::success(cache::stats());
 	}
-	
+
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
 	/*     * *********Catch exeption*************** */
 } catch (Exception $e) {

@@ -428,6 +428,7 @@ class scenarioExpression {
 		$RedOrigin = hexdec(substr($startcol, 1, 2));
 		$GrnOrigin = hexdec(substr($startcol, 3, 2));
 		$BluOrigin = hexdec(substr($startcol, 5, 2));
+		$RetVal = array();
 		if ($graduations >= 2) {
 			$GradientSizeRed = (hexdec(substr($endcol, 1, 2)) - $RedOrigin) / $graduations;
 			$GradientSizeGrn = (hexdec(substr($endcol, 3, 2)) - $GrnOrigin) / $graduations;
@@ -1064,10 +1065,10 @@ class scenarioExpression {
 				$dureeAbs %= 60;
 				$s = $dureeAbs;
 				$ret = '';
-				if ($j > 0) $ret .= "${j}j ";
-				if ($h > 0) $ret .= "${h}h ";
-				if ($m > 0) $ret .= "${m}min ";
-				if ($s > 0) $ret .= "${s}s";
+				if ($j > 0) $ret .= $j . 'j ';
+				if ($h > 0) $ret .= $h . 'h ';
+				if ($m > 0) $ret .= $m . 'min ';
+				if ($s > 0) $ret .= $s . 's';
 				return (trim($ret));
 			case 'df':
 				return round($duree / 86400, $_rnd); // en jours decimaux avec signe
@@ -1151,24 +1152,27 @@ class scenarioExpression {
 		);
 		foreach ($matches as &$tag) {
 			$tag = str_replace(array_keys($replace), $replace, $tag);
+			if(isset($return[$tag])){
+				continue;
+			}
 			switch ($tag) {
 				case '#seconde#':
-					$return['#seconde#'] = (int) date('s');
+					$return[$tag] = (int) date('s');
 					break;
 				case '#hour#':
-					$return['#hour#'] = (int) date('G');
+					$return[$tag] = (int) date('G');
 					break;
 				case '#hour12#':
-					$return['#hour12#'] = (int) date('g');
+					$return[$tag] = (int) date('g');
 					break;
 				case '#minute#':
-					$return['#minute#'] = (int) date('i');
+					$return[$tag] = (int) date('i');
 					break;
 				case '#day#':
-					$return['#day#'] = (int) date('d');
+					$return[$tag] = (int) date('d');
 					break;
 				case '#month#':
-					$return['#month#'] = (int) date('m');
+					$return[$tag] = (int) date('m');
 					break;
 				case '#year#':
 					$return['#year#'] = (int) date('Y');
@@ -1177,49 +1181,49 @@ class scenarioExpression {
 					$return['#time#'] = date('Gi');
 					break;
 				case '#timestamp#':
-					$return['#timestamp#'] = time();
+					$return[$tag] = time();
 					break;
 				case '#seconde#':
-					$return['#seconde#'] = (int) date('s');
+					$return[$tag] = (int) date('s');
 					break;
 				case '#date#':
-					$return['#date#'] = date('md');
+					$return[$tag] = date('md');
 					break;
 				case '#week#':
-					$return['#week#'] = date('W');
+					$return[$tag] = date('W');
 					break;
 				case '#sday#':
-					$return['#sday#'] = date_fr(date('l'));
+					$return[$tag] = date_fr(date('l'));
 					break;
 				case '#smonth#':
-					$return['#smonth#'] = date_fr(date('F'));
+					$return[$tag] = date_fr(date('F'));
 					break;
 				case '#nday#':
-					$return['#nday#'] = (int) date('w');
+					$return[$tag] = (int) date('w');
 					break;
-				case '#jeedom_name#':
-					$return['#jeedom_name#'] = config::byKey('name');
+				case '#jeedomName#':
+					$return[$tag] = config::byKey('name');
 					break;
 				case '#hostname#':
-					$return['#hostname#'] = gethostname();
+					$return[$tag] = gethostname();
 					break;
 				case '#IP#':
-					$return['#IP#'] = network::getNetworkAccess('internal', 'ip', '', false);
+					$return[$tag] = network::getNetworkAccess('internal', 'ip', '', false);
 					break;
 				case '#trigger#':
-					$return['#trigger#'] = '';
+					$return[$tag] = '';
 					break;
-				case '#trigger_value#':
-					$return['#trigger_value#'] = '';
+				case '#triggerValue#':
+					$return[$tag] = '';
 					break;
 				case '#latitude#':
-					$return['#latitude#'] = config::byKey('info::latitude');
+					$return[$tag] = config::byKey('info::latitude');
 					break;
 				case '#longitude#':
-					$return['#longitude#'] = config::byKey('info::longitude');
+					$return[$tag] = config::byKey('info::longitude');
 					break;
 			 	case '#altitude#':
-					$return['#altitude#'] = config::byKey('info::altitude');
+					$return[$tag] = config::byKey('info::altitude');
 					break;
 			}
 		}
@@ -1230,7 +1234,13 @@ class scenarioExpression {
 		return array_merge($return, $new);
 	}
 
-	public static function tag(&$_scenario = null, $_name, $_default = '') {
+	/**
+	 * @param null|scenario $_scenario
+	 * @param string $_name
+	 * @param string $_default
+	 * @return string
+	 */
+	public static function tag(&$_scenario, $_name, $_default = '') {
 		if ($_scenario == null) {
 			return $_default;
 		}
@@ -1265,6 +1275,7 @@ class scenarioExpression {
 			if (is_object($cmd)) {
 				$replace1['#trigger#'] = $cmd->getHumanName();
 				$replace1['#trigger_value#'] = $cmd->execCmd();
+				$replace1['#triggerValue#'] = $cmd->execCmd();
 			} else {
 				$replace1['#trigger#'] = $_scenario->getRealTrigger();
 			}
@@ -1722,13 +1733,21 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
-					$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
-					$scenario->persistLog();
+					if(is_object($scenario)){
+						$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
+						$scenario->persistLog();
+					} else {
+						log::add('cmd', 'info', __('Lancement de l\'arret de jeedom', __FILE__));
+					}
 					jeedom::haltSystem();
 					return;
 				} elseif ($this->getExpression() == 'jeedom_reboot') {
-					$this->setLog($scenario, __('Lancement du reboot de jeedom', __FILE__));
-					$scenario->persistLog();
+					if(is_object($scenario)){
+						$this->setLog($scenario, __('Lancement du reboot de jeedom', __FILE__));
+						$scenario->persistLog();
+					} else {
+						log::add('cmd', 'info', __('Lancement du reboot de jeedom', __FILE__));
+					}
 					jeedom::rebootSystem();
 					return;
 				} elseif ($this->getExpression() == 'scenario_return') {

@@ -74,8 +74,6 @@ Sie können Jeedom ein Plugin aus einer Datei oder einem Github-Repository hinzu
 
 Achtung, beim Hinzufügen durch eine Zip-Datei muss der Name der Zip mit der ID des Plugins übereinstimmen und beim Öffnen der ZIP muss ein Plugin\_info-Ordner vorhanden sein.
 
-
-
 ## Meine Plugins
 
 Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseite.
@@ -86,9 +84,10 @@ Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseit
 
 ### Oben rechts einige Schaltflächen :
 
+- **Details** : Ermöglicht es Ihnen, die Plugin-Seite auf dem Markt zu finden.
 - **Dokumentation** : Ermöglicht den direkten Zugriff auf die Plugin-Dokumentationsseite.
 - **Änderungsprotokoll** : Sehen wir uns das Plugin-Änderungsprotokoll an, falls vorhanden.
-- **Details** : Ermöglicht es Ihnen, die Plugin-Seite auf dem Markt zu finden.
+- **Hilfe** : Ermöglicht Ihnen, automatisch eine Hilfeanfrage im Forum zu erstellen.
 - **Löschen** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
 
 ### Unten links befindet sich ein Bereich **Zustand** mit :
@@ -154,5 +153,3 @@ Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusät
 ### Panel
 
 Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
-
-

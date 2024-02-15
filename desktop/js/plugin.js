@@ -32,7 +32,7 @@ if (!jeeFrontEnd.plugin) {
     },
     postInit: function() {
       //is plugin id in url to go to configuration:
-      if (typeof(jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
+      if (typeof (jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
         let modal = jeeDialog.get('#div_confPlugin', 'dialog')
         let dom_container = null
         if (modal != null) {
@@ -109,9 +109,12 @@ if (!jeeFrontEnd.plugin) {
           } else {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
-
           if (isset(data.source)) {
-            self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
+            if (isset(data.update.configuration.user)){
+                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source +' - '+data.update.configuration.user
+            } else {
+                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
+            }
           } else {
             self.dom_container.querySelector('#span_plugin_source').innerHTML = ''
           }
@@ -161,29 +164,42 @@ if (!jeeFrontEnd.plugin) {
 
           //top right buttons:
           var spanRightButton = self.dom_container.querySelector('#span_right_button')
-          spanRightButton.empty().insertAdjacentHTML('beforeend', '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo"><i class="fas fa-sync"></i><span class="hidden-768" {{Rafraichir}}</span></a>')
-          if(jeedom.theme.mbState == 0) {
-          if (data.update.configuration && data.update.configuration.version == 'beta') {
-            if (isset(data.documentation_beta) && data.documentation_beta != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
+          let title = '{{Rafraichir la page}}'
+          let button = '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo" title="' + title + '"><i class="fas fa-sync"></i><span class="hidden-768"> {{Rafraichir}}</span></a>'
+          spanRightButton.empty().insertAdjacentHTML('beforeend', button)
+          if (jeedom.theme.mbState == 0) {
+            if (isset(data.info.display) && data.info.display != '') {
+              title = '{{Voir sur le market}}'
+              button = '<a class="btn btn-sm" target="_blank" href="' + data.info.display + '" title="' + title + '"><i class="fas fa-search"></i><span class="hidden-768"> {{Détails}}</span></a>'
+              spanRightButton.insertAdjacentHTML('beforeend', button)
             }
-            if (isset(data.changelog_beta) && data.changelog_beta != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog_beta + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
+            if (data.update.configuration) {
+              title = '{{Accéder à la documentation du plugin}}'
+              if (isset(data.documentation_beta) && data.documentation_beta != '' && data.update.configuration.version == 'beta') {
+                button = '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation_beta + '" title="' + title + '"><i class="fas fa-book"></i> {{Documentation}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
+              }
+              else if (isset(data.documentation) && data.documentation != '') {
+                button = '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '" title="' + title + '"><i class="fas fa-book"></i> {{Documentation}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
+              }
+              title = '{{Consulter le journal des modifications du plugin}}'
+              if (isset(data.changelog_beta) && data.changelog_beta != '' && data.update.configuration.version == 'beta') {
+                button = '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog_beta + '" title="' + title + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
+              }
+              else if (isset(data.changelog) && data.changelog != '') {
+                button = '<a class="btn btn-info btn-sm" target="_blank" href="' + data.changelog + '" title="' + title + '"><i class="fas fa-file-code"></i> {{Changelog}}</a>'
+                spanRightButton.insertAdjacentHTML('beforeend', button)
+              }
             }
-          } else {
-            if (isset(data.documentation) && data.documentation != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.documentation + '"><i class="fas fa-book"></i> {{Documentation}}</a>')
-            }
-            if (isset(data.changelog) && data.changelog != '') {
-              spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.changelog + '"><i class="fas fa-book"></i> {{Changelog}}</a>')
-            }
+            title = '{{Ouvrir une demande d\'aide sur le forum communautaire}}'
+            button = '<a class="btn btn-warning btn-sm" id="createCommunityPost" data-plugin_id="' + data.id + '" title="' + title + '"><i class="fas fa-ambulance"></i><span class="hidden-768"> {{Assistance}}</span></a>'
+            spanRightButton.insertAdjacentHTML('beforeend', button)
           }
-
-          if (isset(data.info.display) && data.info.display != '') {
-            spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-primary btn-sm" target="_blank" href="' + data.info.display + '"><i class="fas fa-book"></i> {{Détails}}</a>')
-          }
-        }
-          spanRightButton.insertAdjacentHTML('beforeend', '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '"><i class="fas fa-trash"></i> {{Supprimer}}</a>');
+          title = '{{Supprimer le plugin}}'
+          button = '<a class="btn btn-danger btn-sm removePlugin roundedRight" data-market_logicalId="' + data.id + '" title="' + title + '"><i class="fas fa-trash"></i><span class="hidden-768"> {{Supprimer}}</span></a>'
+          spanRightButton.insertAdjacentHTML('beforeend', button)
 
           self.dom_container.querySelector('#div_configPanel').unseen()
           self.dom_container.querySelector('#div_plugin_panel').empty()
@@ -408,7 +424,7 @@ if (!jeeFrontEnd.plugin) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
-          });
+          })
         },
         success: function() {
           if (!isset(_param)) {
@@ -418,7 +434,7 @@ if (!jeeFrontEnd.plugin) {
             message: '{{Sauvegarde effectuée}}',
             level: 'success'
           })
-          jeeFrontEnd.modifyWithoutSave = false;
+          jeeFrontEnd.modifyWithoutSave = false
           var postSave = document.getElementById('span_plugin_id').innerHTML + '_postSaveConfiguration'
           if (typeof window[postSave] == 'function') {
             window[postSave]()
@@ -475,7 +491,7 @@ document.getElementById('in_searchPlugin')?.addEventListener('keyup', function(e
 
   document.querySelectorAll('.pluginDisplayCard').unseen()
   var text
-  document.querySelectorAll('.pluginDisplayCard .name').forEach( _name => {
+  document.querySelectorAll('.pluginDisplayCard .name').forEach(_name => {
     text = jeedomUtils.normTextLower(_name.textContent)
     if (text.includes(search)) {
       _name.closest('.pluginDisplayCard').seen()
@@ -515,7 +531,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('click', funct
           jeedomUtils.reloadPagePrompt('{{De nouveaux plugins ont été installés}} (' + data.number + ').')
         } else {
           jeedomUtils.showAlert({
-            message: '{{Synchronisation réussi. Aucun nouveau plugin installé.}}',
+            message: '{{Synchronisation réussie. Aucun nouveau plugin installé.}}',
             level: 'success'
           })
         }
@@ -571,7 +587,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('mouseup', fun
     if (event.which == 2) {
       event.preventDefault()
       var pluginId = _target.getAttribute('data-plugin_id')
-      document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
   }
@@ -736,6 +752,29 @@ document.getElementById('div_confPlugin')?.addEventListener('click', function(ev
   if (_target = event.target.closest('.bt_openPluginPage')) {
     event.stopPropagation()
     jeeFrontEnd.plugin.openPluginPage(event)
+    return
+  }
+
+  if (_target = event.target.closest('#createCommunityPost')) {
+    jeedom.plugin.createCommunityPost({
+      type: _target.getAttribute('data-plugin_id'),
+      error: function(error) {
+        domUtils.hideLoading()
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        let element = document.createElement('a')
+        element.setAttribute('href', data.url)
+        element.setAttribute('target', '_blank')
+        element.style.display = 'none'
+        document.body.appendChild(element)
+        element.click()
+        document.body.removeChild(element)
+      }
+    })
     return
   }
 })

@@ -56,10 +56,10 @@ if (!jeeFrontEnd.cron) {
       jeedom.cron.all({
         success: function(data) {
           domUtils.showLoading()
-          if (jeeFrontEnd.cron.cronDataTable){
+          if (jeeFrontEnd.cron.cronDataTable) {
             jeeFrontEnd.cron.cronDataTable.destroy()
-            delete jeeFrontEnd.cron.cronDataTable;
-          } 
+            delete jeeFrontEnd.cron.cronDataTable
+          }
           var table = document.getElementById('table_cron').querySelector('tbody')
           table.empty()
           for (var i in data) {
@@ -154,10 +154,10 @@ if (!jeeFrontEnd.cron) {
       return tr
     },
     setCronTable: function() {
-     if (jeeFrontEnd.cron.cronDataTable){
+      if (jeeFrontEnd.cron.cronDataTable) {
         jeeFrontEnd.cron.cronDataTable.destroy()
-        delete jeeFrontEnd.cron.cronDataTable;
-      } 
+        delete jeeFrontEnd.cron.cronDataTable
+      }
       jeeFrontEnd.cron.cronDataTable = new DataTable(jeeFrontEnd.cron.tableCron, {
         columns: [
           { select: 0, sort: "asc" },
@@ -354,7 +354,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 
 //Table cron
 document.getElementById('table_cron')?.tBodies[0].addEventListener('click', function(event) {
-  console.log('click:', event.target)
+  // console.log('click:', event.target)
   var _target = null
   if (_target = event.target.closest('.remove')) {
     _target.closest('tr').remove()
@@ -433,8 +433,9 @@ document.getElementById('table_listener')?.tBodies[0].addEventListener('click', 
   }
 
   if (_target = event.target.closest('.removeListener')) {
+    var tr = _target.closest('tr')
     jeedom.listener.remove({
-      id: _target.getAttribute('id'),
+      id: tr.querySelector('span[data-l1key="id"]').innerHTML,
       success: function() {
         tr.remove()
       }

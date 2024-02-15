@@ -36,8 +36,8 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
 	}
 }
-$logUpdate = log::get('update', 0, -1);
-if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
+$logUpdate = log::getLastLine('update');
+if (strpos($logUpdate, 'END UPDATE')) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
 } else {
 	sendVarToJS('jeephp2js.isUpdating', '1');
@@ -131,7 +131,7 @@ if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
-						{{Avant toute mise à jour, merci de consulter le}} <span id="bt_changelogCore" class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
+						{{Avant toute mise à jour, merci de consulter le}} <span class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
 					</div>
 					<?php if (config::byKey('core::branch') == 'beta' || config::byKey('core::branch') == 'alpha') { ?>
 						<div class="alert alert-danger">

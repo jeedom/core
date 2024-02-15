@@ -58,6 +58,7 @@ try {
 		ajax::success();
 	}
 
+	// DEPRECATED -> remove in 4.6?
 	if (init('action') == 'get') {
 		ajax::success(log::get(init('log'), init('start', 0), init('nbLine', 99999)));
 	}
@@ -68,8 +69,8 @@ try {
 				init('log'),
 				intval(init('position', 0)),
 				init('search'),
-				intval(init('colored', 0)),
-				init('numbered', true),
+				boolval(init('colored', 0)),
+				boolval(init('numbered', 1)),
 				intval(init('numberStart', 0))
 			)
 		);
