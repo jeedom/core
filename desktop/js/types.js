@@ -384,64 +384,6 @@ if (!jeeFrontEnd.types) {
 
 jeeFrontEnd.types.init()
 
-
-//searching:
-document.getElementById('in_searchTypes')?.addEventListener('keyup', function(event) {
-  try {
-    var search = event.target.value
-    var searchID = search
-    if (isNaN(search)) searchID = false
-
-    document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
-    document.querySelectorAll('.eqLogic').seen()
-    document.querySelectorAll('.eqLogicCmds').unseen()
-
-    if (search == '') {
-      document.querySelectorAll('.panel-collapse.in').removeClass('in')
-      return
-    }
-
-    search = jeedomUtils.normTextLower(search)
-    var eqLogic, eqParent, eqId
-    var eqName, type, category, cmdName
-    document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
-      eqParent = _eqlogic.closest('.panel.panel-default')
-      if (searchID) {
-        eqId = _eqlogic.getAttribute('data-id')
-        if (eqId != searchID) {
-          _eqlogic.unseen()
-        } else {
-          _eqlogic.closest('.panel-collapse').setAttribute('data-show', '1')
-          return
-        }
-      } else {
-        eqName = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-name'))
-        type = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-type'))
-        category = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-translate-category'))
-        if (!eqName.includes(search) && !type.includes(search) && !category.includes(search)) {
-          _eqlogic.unseen()
-        } else {
-          _eqlogic.closest('.panel-collapse').setAttribute('data-show', '1')
-        }
-      }
-    })
-    document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
-    document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
-  } catch (error) {
-    console.warn(error)
-  }
-})
-document.getElementById('bt_resetypeSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchTypes').jeeValue('').triggerEvent('keyup')
-  document.querySelectorAll('.cb_selEqLogic').forEach(_check => {
-    if (_check.checked) {
-      _check.checked = false
-      Sortable.utils.deselect(_check.closest('li.eqLogic.dragSelected'))
-    }
-  })
-})
-
-
 //Sortable:
 var sortLists = document.getElementById('genericsContainer').querySelectorAll('.eqLogicSortable')
 sortLists.forEach(_group => {
@@ -618,12 +560,59 @@ new jeeCtxMenu({
   }
 })
 
+//searching:
+document.getElementById('in_searchTypes')?.addEventListener('keyup', function(event) {
+  try {
+    var search = this.value
+    var searchID = search
+    if (isNaN(search)) searchID = false
+
+    document.querySelectorAll('#genericsContainer .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
+    document.querySelectorAll('.eqLogic').seen()
+    document.querySelectorAll('.eqLogicCmds').unseen()
+
+    if (search == '') {
+      document.querySelectorAll('#genericsContainer .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
+      return
+    }
+
+    search = jeedomUtils.normTextLower(search)
+    var eqParent, eqId
+    var eqName, type, category
+    document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
+      eqParent = _eqlogic.closest('.panel.panel-default')
+      if (searchID) {
+        eqId = _eqlogic.getAttribute('data-id')
+        if (eqId != searchID) {
+          _eqlogic.unseen()
+        } else {
+          _eqlogic.closest('.panel-collapse').setAttribute('data-show', '1')
+          return
+        }
+      } else {
+        eqName = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-name'))
+        type = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-type'))
+        category = jeedomUtils.normTextLower(_eqlogic.getAttribute('data-translate-category'))
+        if (!eqName.includes(search) && !type.includes(search) && !category.includes(search)) {
+          _eqlogic.unseen()
+        } else {
+          _eqlogic.closest('.panel').querySelector('.accordion-toggle').setAttribute('data-show', 1)
+        }
+      }
+    })
+    document.querySelectorAll('.accordion-toggle.collapsed[data-show="1"]').forEach(_panel => { _panel.click() })
+    document.querySelectorAll('.accordion-toggle:not(.collapsed)[data-show="0"]').forEach(_panel => { _panel.click() })
+  } catch (error) {
+    console.warn(error)
+  }
+})
+
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   var _target = null
   if (_target = event.target.closest('#bt_openAll')) {
-    document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
+    document.querySelectorAll('#genericsContainer .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
     if (event.ctrlKey || event.metaKey) {
       document.querySelectorAll('ul.eqLogicCmds').seen()
     }
@@ -631,10 +620,21 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_closeAll')) {
-    document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
+    document.querySelectorAll('#genericsContainer .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     if (event.ctrlKey || event.metaKey) {
       document.querySelectorAll('ul.eqLogicCmds').unseen()
     }
+    return
+  }
+
+  if (_target = event.target.closest('#bt_resetypeSearch')) {
+    document.getElementById('in_searchTypes').jeeValue('').triggerEvent('keyup')
+    document.querySelectorAll('.cb_selEqLogic').forEach(_check => {
+      if (_check.checked) {
+        _check.checked = false
+        Sortable.utils.deselect(_check.closest('li.eqLogic.dragSelected'))
+      }
+    })
     return
   }
 

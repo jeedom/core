@@ -31,7 +31,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 	$thisDiv .= '<div class="panel panel-default">';
 	$thisDiv .= '<div class="panel-heading">';
 	$thisDiv .= '<h3 class="panel-title">';
-	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
+	$thisDiv .= '<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
 	$c = count($interacts[$groupName]);
 	$thisDiv .= $c . ($c > 1 ? ' {{interactions}}' : ' {{interaction}}') . '</a>';
 	$thisDiv .= '</h3>';
