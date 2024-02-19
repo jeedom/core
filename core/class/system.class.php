@@ -586,8 +586,16 @@ class system {
 					case 'apt':
 						if ($_foreground) {
 							echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/lib/apt/lists/lock 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/cache/apt/archives/lock 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/lib/dpkg/lock* 2>&1");
+							echo shell_exec(self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef 2>&1");
 						} else {
 							$cmd .= self::getCmdSudo() . " apt update\n";
+							$cmd .= self::getCmdSudo() . " rm /var/lib/apt/lists/lock\n";
+							$cmd .= self::getCmdSudo() . " rm /var/cache/apt/archives/lock\n";
+							$cmd .= self::getCmdSudo() . " rm /var/lib/dpkg/lock*\n";
+							$cmd .= self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef\n";
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
