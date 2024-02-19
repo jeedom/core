@@ -38,7 +38,7 @@ function jeedom_displayScenarioGroup($_group = '', $_index = -1) {
 	$thisDiv .= '<div class="panel panel-default">';
 	$thisDiv .= '<div class="panel-heading">';
 	$thisDiv .= '<h3 class="panel-title">';
-	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
+	$thisDiv .= '<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
 	$c = count($scenarios[$groupName]);
 	$thisDiv .= $c . ($c > 1 ? ' {{scénarios}}' : ' {{scénario}}') . '</a>';
 	$thisDiv .= '</h3>';
