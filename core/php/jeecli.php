@@ -51,6 +51,7 @@ switch ($argv[1]) {
                     die();
                 }
                 $plugin->setIsEnable(1);
+                $plugin->dependancy_install(true,true);
                 break;
             case 'dependancy_end':
                 if (!isset($argv[3])) {
