@@ -921,7 +921,7 @@ class plugin {
 		}
 	}
 
-	public function setIsEnable($_state) {
+	public function setIsEnable($_state,$_force = false,$_foreground = false) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
@@ -987,7 +987,7 @@ class plugin {
 				$dependancy_info = $this->dependancy_info(true);
 				if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $this->getId(), 1) == 1) {
 					try {
-						$this->dependancy_install();
+						$this->dependancy_install($_force,$_foreground);
 					} catch (Exception $e) {
 					}
 				}

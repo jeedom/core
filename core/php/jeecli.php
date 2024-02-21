@@ -50,8 +50,7 @@ switch ($argv[1]) {
                     echo "Error plugin not found";
                     die();
                 }
-                $plugin->setIsEnable(1);
-                $plugin->dependancy_install(true,true);
+                $plugin->setIsEnable(1,true,true);
                 break;
             case 'dependancy_end':
                 if (!isset($argv[3])) {
