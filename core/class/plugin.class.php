@@ -736,7 +736,7 @@ class plugin {
 	 */
 	public function dependancy_install($_force = false,$_foreground  = false) {
 		$plugin_id = $this->getId();
-		if (config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
+		if (!$_force && config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
 			throw new Exception(__('Vous devez attendre au moins 60 secondes entre deux lancements d\'installation de dépendances', __FILE__));
