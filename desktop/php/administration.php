@@ -96,7 +96,6 @@ $productName = config::byKey('product_name');
 								</select>
 							</div>
 						</div>
-
 						<hr class="hrPrimary">
 						<div class="form-group">
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Version}}
@@ -124,7 +123,6 @@ $productName = config::byKey('product_name');
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHwKey" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
-
 						<hr class="hrPrimary">
 						<div class="form-group">
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Fuseau horaire}}
@@ -257,13 +255,23 @@ $productName = config::byKey('product_name');
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Dernière date connue}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
-							<div class=" col-md-6 col-xs-8">
+							<div class="col-md-6 col-xs-8">
 								<?php
 								$cache = cache::byKey('hour');
 								$lastKnowDate = $cache->getDatetime();
 								?>
 								<span class="label label-info"><?php echo $lastKnowDate ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
+							</div>
+						</div>
+
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Core js (dev)}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery/Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode)}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="checkbox" class="configKey form-control" data-l1key="core::jqueryless">
 							</div>
 						</div>
 					</fieldset>
@@ -338,321 +346,319 @@ $productName = config::byKey('product_name');
 
 			<div role="tabpanel" class="tab-pane" id="interfacetab">
 				<br>
-				<form class="form-horizontal">
+				<form class="form-horizontal col-md-6 col-xs-12">
 					<fieldset>
-						<legend>{{Thèmes}}</legend>
+						<legend>{{Thème}}</legend>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop principal}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="jeedom_theme_main" data-reload="1">
-									<?php
-									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
-										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-											echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Desktop}}</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Principal}}</span>
+									<select class="form-control configKey roundedRight" data-l1key="jeedom_theme_main" data-reload="1">
+										<?php
+										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+											}
 										}
-									}
-									?>
-								</select>
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Desktop alternatif}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="jeedom_theme_alternate" data-reload="1">
-									<?php
-									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
-										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-											echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+										?>
+									</select>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Alternatif}}</span>
+									<select class="form-control configKey roundedRight" data-l1key="jeedom_theme_alternate" data-reload="1">
+										<?php
+										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+											}
 										}
-									}
-									?>
-								</select>
+										?>
+									</select>
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile principal}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="mobile_theme_color">
-									<?php
-									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
-										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-											echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Mobile}}</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Principal}}</span>
+									<select class="form-control configKey roundedRight" data-l1key="mobile_theme_color">
+										<?php
+										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+											}
 										}
-									}
-									?>
-								</select>
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème Mobile alternatif}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="mobile_theme_color_night">
-									<?php
-									foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
-										if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-											echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+										?>
+									</select>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Alternatif}}</span>
+									<select class="form-control configKey roundedRight" data-l1key="mobile_theme_color_night">
+										<?php
+										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
+											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+											}
 										}
-									}
-									?>
-								</select>
+										?>
+									</select>
+								</div>
 							</div>
 						</div>
+						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Thème principal de}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_start_day_hour">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{à}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_end_day_hour">
-							</div>
-							<div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
-								<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control" tooltip="{{Supprimer le cookie de thème.}}"><i class="fas fa-eraser"></i>&nbsp;&nbsp;{{Cookie}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Basculer le thème en fonction de l'heure}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Activer pour basculer automatiquement en thème alternatif aux heures choisies.}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Basculer de thème}}
 							</label>
-							<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime">
-							</div>
-							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Capteur de luminosité (mobile)}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight">
+							<div class="col-md-6 col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime">{{en fonction de l'heure}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Basculer automatiquement de thème en fonction des horaires définis ci-dessous}}"></i></sup>
+								</label>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Principal de}}</span>
+									<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_start_day_hour">
+									<span class="input-group-addon">{{à}}</span>
+									<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_end_day_hour">
+									<span class="input-group-btn">
+										<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control roundedRight" tooltip="{{Supprimer le cookie de thème}}"><i class="fas fa-eraser"></i></a>
+									</span>
+								</div>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight">{{en fonction de la luminosité}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Basculer automatiquement de thème en fonction du capteur de luminosité sur mobile}}"></i></sup>
+								</label>
 							</div>
 						</div>
 
+						<legend>{{Affichage}}</legend>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-4 col-sm-3 col-xs-6 control-label">{{Désactiver l'interface mobile}}
-								<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la même que la version desktop}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nombre de colonnes}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes selon la taille de l'écran (1 colonne = 1 objet)}}"></i></sup>
 							</label>
-							<div class="col-lg-1 col-md-1 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey" data-l1key="disableMobileUi">
+							<div class="col-md-6 col-xs-8">
+								<select class="form-control configKey" data-l1key="dahsboard::column::size" data-reload="1">
+									<option value="col-lg-3 col-md-4 col-sm-12">{{Grand écran = 4 colonnes, moyen = 3 colonnes}}</option>
+									<option value="col-lg-4 col-md-6 col-sm-12">{{Grand écran = 3 colonnes, moyen = 2 colonnes}}</option>
+									<option value="col-lg-6 col-md-12">{{Grand écran = 2 colonnes}}</option>
+									<option value="col-sm-12">{{1 colonne}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Options}}</label>
+							<div class="col-md-6 col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" data-reload="1">{{Affichage tableau}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Affiche les pages du menu Outils et des plugins supportés en mode tableau}}"></i></sup>
+								</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" data-reload="1">{{Icônes colorées}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Coloration des icônes (modifiable par scénario: setColoredIcon => Coloration des icônes)}}"></i></sup>
+								</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="disableMobileUi">{{Désactiver la version mobile}}
+									<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la même que la version desktop}}"></i></sup>
+								</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="disableMobileUi">{{Désactiver l'auto-complétion des scénarios}}</label>
+							</div>
+						</div>
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Notifications}}</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Position}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Position d'affichage des notifications}}"></i></sup>
+									</span>
+									<select class="form-control configKey roundedRight" data-l1key="interface::toast::position" data-reload="1">
+										<option value="toast-top-left">{{En haut à gauche}}</option>
+										<option value="toast-top-center">{{En haut au centre}}</option>
+										<option value="toast-top-right">{{En haut à droite}}</option>
+										<option value="toast-bottom-right">{{En bas à droite}}</option>
+										<option value="toast-bottom-left">{{En bas à gauche}}</option>
+									</select>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Durée}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en secondes (0 = infini)}}"></i></sup>
+									</span>
+									<input type="number" min="0" max="30" step="1" class="configKey form-control ispin roundedRight" data-l1key="interface::toast::duration" data-reload="1">
+								</div>
 							</div>
 						</div>
 
+						<legend>{{Personnalisation}}</legend>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Basique}}</label>
+							<div class="col-md-6 col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable">{{Activer}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour modifier les paramètres d'interface ci-dessous}}"></i></sup>
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Transparence}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ispin" data-l1key="css::background-opacity" data-reload="1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Arrondi}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments d'interface (0 = pas d'arrondi)}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ispin" data-l1key="css::border-radius" data-reload="1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Désactiver les ombres}}</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" data-reload="1">
+							</div>
+						</div>
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Avancée}}</label>
+							<div class="col-md-6 col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss">{{Activer}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour activer la personnalisation avancée}}"></i></sup>
+								</label>
+								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i>{{Personnalisation avancée}}</a>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+
+				<form class="form-horizontal col-md-6 col-xs-12">
+					<fieldset>
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas vertical}}
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Pas vertical}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<div class="col-md-6 col-xs-8">
 								<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1">
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pas horizontal}}
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Pas horizontal}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<div class="col-md-6 col-xs-8">
 								<input type="number" min="80" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Marge}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Espace vertical et horizontal entre les tuiles, en pixel}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Marge}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Espace entre les tuiles en pixels}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<div class="col-md-6 col-xs-8">
 								<input type="number" min="0" step="1" max="50" class="configKey form-control ispin" data-l1key="widget::margin" data-reload="1">
 							</div>
-
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Dashboard colonnes sur écran large/moyen/petit}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes sur le dashboard (1 colonne = 1 objet)}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="dahsboard::column::size" data-reload="1">
-									<option value="col-lg-3 col-md-4 col-sm-12">4/3/1</option>
-									<option value="col-lg-4 col-md-6 col-sm-12">3/2/1</option>
-									<option value="col-lg-6 col-md-12">2/1/1</option>
-									<option value="col-sm-12">1/1/1</option>
-								</select>
-							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Centrage vertical des tuiles}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Centre verticalement le contenu des tuiles}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Mobile : une colonne par défaut}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prendront toute la largeur par défaut en mobile}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::mobile::onecolumn">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Options}}</label>
+							<div class="col-md-6 col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1">{{Centrage vertical}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Centre verticalement le contenu des tuiles}}"></i></sup>
+								</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" data-reload="1">{{Catégories colorées}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Colore le titre des tuiles en fonction de la catégorie}}"></i></sup>
+								</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::mobile::onecolumn" data-reload="1">{{Pleine largeur sur mobile}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Les tuiles prennent toute la largeur de l'écran en version mobile}}"></i></sup>
+								</label>
 							</div>
 						</div>
+						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Icônes widgets colorées}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Coloration des icônes de widgets en fonction de leur état.<br>Modifiable par scénario, setColoredIcon ('Coloration des icônes').}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredIcons" data-reload="1">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Catégories colorées}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Colorisation du titre des tuiles en fonction de la catégorie.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::coloredcats" data-reload="1">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Réorganisation automatique}}</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Actions humaines}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions humaines dans la réorganisation des tuiles}}"></i></sup>
+									</span>
+									<input type="number" min="0" step="1" max="10" class="configKey form-control ispin roundedRight" data-l1key="autoreorder::weight_human_action">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Actions automatiques}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions automatiques dans la réorganisation des tuiles}}"></i></sup>
+									</span>
+									<input type="number" min="0" step="1" max="10" class="configKey form-control ispin roundedRight" data-l1key="autoreorder::weight_automation_action">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Consultation historique}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions de consultation de l'historique dans la réorganisation des tuiles}}"></i></sup>
+									</span>
+									<input type="number" min="0" step="1" max="10" class="configKey form-control ispin roundedRight" data-l1key="autoreorder::weight_history">
+								</div>
 							</div>
 						</div>
 
 						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher les images de fond}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Afficher}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour afficher les images de fond}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
 								<input type="checkbox" class="configKey" data-l1key="showBackgroundImg" data-reload="1">
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Flou des fonds des objets}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard.}}"></i></sup>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Images}}</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Dashboard}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet)}}"></i></sup>
+									</span>
+									<span class="btn btn-success btn-file">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="dashboard">
+									</span>
+									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Analyse}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse}}"></i></sup>
+									</span>
+									<span class="btn btn-success btn-file">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
+									</span>
+									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Outils}}
+										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils}}"></i></sup>
+									</span>
+									<span class="btn btn-success btn-file">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
+									</span>
+									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Opacité}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond à ajuster en fonction de la luminosité}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Thème Light}}</span>
+									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin roundedRight" data-l1key="interface::background::opacitylight" data-reload="1">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Thème Dark}}</span>
+									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin roundedRight" data-l1key="interface::background::opacitydark" data-reload="1">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Flou}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
 								<input type="number" min="0" step="0.25" max="20" class="configKey form-control ispin" data-l1key="css::objectBackgroundBlur" data-reload="1">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Dashboard}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet).}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<span class="btn btn-default btn-file btn-xs">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="dashboard">
-								</span>
-								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="dashboard"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Analyse}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse.}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<span class="btn btn-default btn-file btn-xs">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
-								</span>
-								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="analysis"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Image Outils}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils.}}"></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<span class="btn btn-default btn-file btn-xs">
-									<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
-								</span>
-								<a class="btn btn-warning btn-xs bt_removeBackgroundImage" data-page="tools"><i class="fas fa-trash"></i> {{Supprimer l'image}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Light}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Light. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitylight" data-reload="1">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Opacité thème Dark}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en thème Dark. Ajuster en fonction de la luminosité des images de fond.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitydark" data-reload="1">
-							</div>
-						</div>
 
-						<legend>{{Options}}</legend>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Affichage tableau}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Affiche en mode tableau les pages du menu Outils et les plugins supportés.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" data-reload="1">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Position des notifications}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<select class="form-control configKey" data-l1key="interface::toast::position" data-reload="1">
-									<option value="toast-top-left">{{En haut à gauche}}</option>
-									<option value="toast-top-center">{{En haut au centre}}</option>
-									<option value="toast-top-right">{{En haut à droite}}</option>
-									<option value="toast-bottom-right">{{En bas à droite}}</option>
-									<option value="toast-bottom-left">{{En bas à gauche}}</option>
-								</select>
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Durée des notifications}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en seconde (0: infini)}}."></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="30" step="1" class="configKey form-control ispin" data-l1key="interface::toast::duration" data-reload="1">
-							</div>
-						</div>
-
-						<legend>{{Widget de commande par défaut}}</legend>
-						<?php
-						$widgets_list = cmd::availableWidget('dashboard');
-						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) { //info or action
-							$icon = '';
-							if ($type == 'info') $icon = '<i class="info fas fa-info-circle"></i> ';
-							if ($type == 'action') $icon = '<i class="warning fas fa-terminal"></i> ';
-							foreach ($subtypes['subtype'] as $subtype => $value) { //Each subtype per info or action
-								$div = '';
-								$div .= '<div class="form-group">';
-								$div .= '<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">' . $icon . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
-								$div .= '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">';
-								$div .= '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
-								$div .= cmd::getSelectOptionsByTypeAndSubtype($type, $subtype, 'dashboard', $widgets_list);
-								$div .= '</select>';
-								$div .= '</div>';
-								$div .= '</div>';
-								echo $div;
-							}
-						}
-						?>
-
-						<legend>{{Personnalisation}}</legend>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Activer}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet de modifier les paramètres par défaut des thèmes}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-1 col-sm-1 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable">
-							</div>
-							<span class="col-lg-1 col-sm-1 col-xs-6"></span>
-							<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
-								<a class="btn btn-sm btn-warning form-control" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i>&nbsp;&nbsp;{{Personnalisation avancée}}</a>
-							</div>
-
-							<label class="col-lg-1 col-sm-2 col-xs-3 control-label">{{Activer}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Activer la Personnalisation avancée.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-sm-2 col-xs-3">
-								<input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss" data-reload="1">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Transparence}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface.}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ispin" data-l1key="css::background-opacity" data-reload="1">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Arrondi}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments de l'interface (Tuiles, boutons etc).<br>0 : pas d'arrondi}}"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="number" min="0" max="1" step="0.1" class="configKey form-control ispin" data-l1key="css::border-radius" data-reload="1">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver les ombres}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" data-reload="1">
-							</div>
-						</div>
-
-						<legend>{{Scénario}}</legend>
-						<div class="form-group">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Désactiver l'autocompletion}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="scenario::disableAutocomplete">
-							</div>
-						</div>
 					</fieldset>
 				</form>
 			</div>
@@ -1206,6 +1212,32 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
+				<legend>{{Widgets par défaut}}</legend>
+				<form class="form-horizontal">
+					<fieldset>
+						<?php
+						$widgets_list = cmd::availableWidget('dashboard');
+						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) { //info or action
+							$icon = '';
+							if ($type == 'info') $icon = '<i class="info fas fa-info-circle"></i> ';
+							if ($type == 'action') $icon = '<i class="warning fas fa-terminal"></i> ';
+							foreach ($subtypes['subtype'] as $subtype => $value) { //Each subtype per info or action
+								$div = '';
+								$div .= '<div class="form-group">';
+								$div .= '<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">' . $icon . $JEEDOM_INTERNAL_CONFIG['cmd']['type'][$type]['name'] . ' ' . $value['name'] . '</label>';
+								$div .= '<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">';
+								$div .= '<select class="configKey form-control" data-l1key="widget::default::cmd::' . $type . '::' . $subtype . '" >';
+								$div .= cmd::getSelectOptionsByTypeAndSubtype($type, $subtype, 'dashboard', $widgets_list);
+								$div .= '</select>';
+								$div .= '</div>';
+								$div .= '</div>';
+								echo $div;
+							}
+						}
+						?>
+					</fieldset>
+				</form>
+
 				<legend>{{Push}}</legend>
 				<form class="form-horizontal">
 					<fieldset>
@@ -1259,29 +1291,6 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<legend>{{Réorganisation automatique des tuiles}}</legend>
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions humaines}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_human_action">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids des actions automatiques}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_automation_action">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Poids de la consultation des historiques}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="number" min="0" step="1" max="10" class="configKey form-control ispin" data-l1key="autoreorder::weight_history">
-							</div>
-						</div>
-					</fieldset>
-				</form>
 
 				<legend>{{Spécial}}</legend>
 				<form class="form-horizontal">
@@ -1298,14 +1307,6 @@ $productName = config::byKey('product_name');
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Core js (dev)}}
-								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery / Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode.)}}."></i></sup>
-							</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="core::jqueryless">
 							</div>
 						</div>
 					</fieldset>
