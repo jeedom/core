@@ -532,19 +532,18 @@ $productName = config::byKey('product_name');
 					<fieldset>
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Pas vertical}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur des tuiles tous les x pixels}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Pas}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur et la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Pas horizontal}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la largeur des tuiles tous les x pixels}}"></i></sup>
-							</label>
-							<div class="col-md-6 col-xs-8">
-								<input type="number" min="80" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::width" data-reload="1">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Hauteur}}</span>
+									<input type="number" min="60" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::height" data-reload="1">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Largeur}}</span>
+									<input type="number" min="80" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::width" data-reload="1">
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
