@@ -698,7 +698,7 @@ class system {
 			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
 		}
 		file_put_contents('/tmp/jeedom_fix_package', $cmd);
-		self::launchScriptPackage($_plugin);
+		self::launchScriptPackage($_plugin,$_force);
 	}
 
 	public static function installPackageInProgress($_plugin = ''): bool {
@@ -727,8 +727,8 @@ class system {
 		return false;
 	}
 
-	public static function launchScriptPackage($_plugin = '') {
-		if (self::installPackageInProgress($_plugin)) {
+	public static function launchScriptPackage($_plugin = '',$_force = false) {
+		if (!$_force && self::installPackageInProgress($_plugin)) {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours', __FILE__));
 		}
 		shell_exec(system::getCmdSudo() . ' chmod +x /tmp/jeedom_fix_package');
