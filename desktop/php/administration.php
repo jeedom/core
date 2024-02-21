@@ -779,6 +779,7 @@ user::isBan();
 								<input type="text" class="configKey form-control" data-l1key="network::localip">
 							</div>
 						</div>
+
 						<hr class="hrPrimary">
 					</fieldset>
 				</form>
@@ -787,34 +788,34 @@ user::isBan();
 					<fieldset>
 						<legend>{{Proxy Market}}</legend>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Activer le proxy}}
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Activer le proxy}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Utiliser un proxy pour accéder au Market}}"></i></sup>
 							</label>
-							<div class="col-md-6 col-sm-7 col-xs-8">
+							<div class="col-lg-8 col-md-6 col-xs-8">
 								<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Adresse du proxy}}</label>
-							<div class="col-md-6 col-sm-7 col-xs-8">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Adresse du proxy}}</label>
+							<div class="col-lg-8 col-md-6 col-xs-8">
 								<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Port du proxy}}</label>
-							<div class="col-md-6 col-sm-7 col-xs-8">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Port du proxy}}</label>
+							<div class="col-lg-8 col-md-6 col-xs-8">
 								<input class="configKey form-control" data-l1key="proxyPort" type="text">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
-							<div class="col-md-6 col-sm-7 col-xs-8">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nom d'utilisateur}}</label>
+							<div class="col-lg-8 col-md-6 col-xs-8">
 								<input class="configKey form-control" type="text" data-l1key="proxyLogins">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Mot de passe}}</label>
-							<div class="col-md-6 col-sm-7 col-xs-8">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Mot de passe}}</label>
+							<div class="col-lg-8 col-md-6 col-xs-8">
 								<div class="input-group">
 									<input class="inputPassword configKey form-control roundedLeft" type="text" data-l1key="proxyPassword">
 									<span class="input-group-btn">
