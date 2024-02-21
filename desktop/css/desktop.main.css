@@ -2690,6 +2690,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 3px 6px !important;
     min-width: 40px !important;
     font-weight: 500 !important;
+    white-space: unset;
   }
   .control-label {
     font-weight: 500;

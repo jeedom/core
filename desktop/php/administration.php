@@ -11,6 +11,7 @@ foreach ($repos as $key => $value) {
 global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
 user::isBan();
+$productName = config::byKey('product_name');
 ?>
 
 <div class="row row-overflow">
@@ -49,32 +50,23 @@ user::isBan();
 
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
-				<legend>{{Général}}</legend>
-				<form class="form-horizontal">
+				<br>
+				<form class="form-horizontal col-md-6 col-xs-12">
 					<fieldset>
+						<legend>{{Général}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help">{{Version}}</label>
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-								<span class="label label-info"><?php echo jeedom::version(); ?></span>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nom de votre}} <?php echo config::byKey('product_name'); ?>
-								<sup><i class="fas fa-question-circle" tooltip="{{Nom de votre}} <?php echo config::byKey('product_name'); ?> {{(utilisé notamment par le market)}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nom de votre}} <?php echo $productName; ?>
+								<sup><i class="fas fa-question-circle" tooltip="{{Utilisé notamment par le market}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<div class="col-md-6 col-xs-8">
 								<input type="text" class="configKey form-control" data-l1key="name">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Afficher sur la page de connexion}}</label>
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="display_name_login">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="display_name_login">{{Afficher sur la page de connexion}}</label>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Langue}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
-							</label>
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Langue}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Sélection de la langue d'affichage}}"></i></sup></label>
+							<div class="col-md-6 col-xs-8">
 								<select class="form-control configKey" data-l1key="language" data-reload="1">
 									<option value="fr_FR">{{Français}}</option>
 									<option value="en_US">{{Anglais}}</option>
@@ -86,8 +78,10 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Moteur TTS}}</label>
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Moteur TTS}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Sélection du moteur text-to-speech}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
 								<select class="form-control configKey" data-l1key="tts::engine">
 									<option value="pico">Pico</option>
 									<option value="espeak">Espeak</option>
@@ -102,225 +96,240 @@ user::isBan();
 								</select>
 							</div>
 						</div>
+
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Date et heure}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Version}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Version de}} <?php echo $productName; ?>"></i></sup>
 							</label>
-							<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-								<select class="form-control configKey" data-l1key="timezone">
-									<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
-									<option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>
-									<option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
-									<option value="Etc/GMT+10">(GMT-10:00) Hawaii</option>
-									<option value="Pacific/Marquesas">(GMT-09:30) Marquesas Islands</option>
-									<option value="Pacific/Gambier">(GMT-09:00) Gambier Islands</option>
-									<option value="America/Anchorage">(GMT-09:00) Alaska</option>
-									<option value="America/Ensenada">(GMT-08:00) Tijuana, Baja California</option>
-									<option value="Etc/GMT+8">(GMT-08:00) Pitcairn Islands</option>
-									<option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
-									<option value="America/Denver">(GMT-07:00) Mountain Time (US & Canada)</option>
-									<option value="America/Chihuahua">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
-									<option value="America/Dawson_Creek">(GMT-07:00) Arizona</option>
-									<option value="America/Belize">(GMT-06:00) Saskatchewan, Central America</option>
-									<option value="America/Cancun">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
-									<option value="Chile/EasterIsland">(GMT-06:00) Easter Island</option>
-									<option value="America/Chicago">(GMT-06:00) Central Time (US & Canada)</option>
-									<option value="America/New_York">(GMT-05:00) Eastern Time (US & Canada)</option>
-									<option value="America/Havana">(GMT-05:00) Cuba</option>
-									<option value="America/Bogota">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
-									<option value="America/Caracas">(GMT-04:30) Caracas</option>
-									<option value="America/Santiago">(GMT-04:00) Santiago</option>
-									<option value="America/La_Paz">(GMT-04:00) La Paz</option>
-									<option value="Atlantic/Stanley">(GMT-04:00) Faukland Islands</option>
-									<option value="America/Campo_Grande">(GMT-04:00) Brazil</option>
-									<option value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</option>
-									<option value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</option>
-									<option value="America/Guadeloupe">(GMT-04:00) Guadeloupe</option>
-									<option value="America/St_Johns">(GMT-03:30) Newfoundland</option>
-									<option value="America/Araguaina">(GMT-03:00) UTC-3</option>
-									<option value="America/Montevideo">(GMT-03:00) Montevideo</option>
-									<option value="America/Miquelon">(GMT-03:00) Miquelon, St. Pierre</option>
-									<option value="America/Godthab">(GMT-03:00) Greenland</option>
-									<option value="America/Argentina/Buenos_Aires">(GMT-03:00) Buenos Aires</option>
-									<option value="America/Sao_Paulo">(GMT-03:00) Brasilia</option>
-									<option value="America/Noronha">(GMT-02:00) Mid-Atlantic</option>
-									<option value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde Is.</option>
-									<option value="Atlantic/Azores">(GMT-01:00) Azores</option>
-									<option value="Europe/Belfast">(GMT) Greenwich Mean Time : Belfast</option>
-									<option value="Europe/Dublin">(GMT) Greenwich Mean Time : Dublin</option>
-									<option value="Europe/Lisbon">(GMT) Greenwich Mean Time : Lisbon</option>
-									<option value="Europe/London">(GMT) Greenwich Mean Time : London</option>
-									<option value="Africa/Abidjan">(GMT) Monrovia, Reykjavik</option>
-									<option value="Africa/Casablanca">(GMT) Greenwich Mean Time : Casablanca</option>
-									<option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
-									<option value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-									<option value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
-									<option value="Africa/Algiers">(GMT+01:00) West Central Africa</option>
-									<option value="Africa/Windhoek">(GMT+01:00) Windhoek</option>
-									<option value="Asia/Beirut">(GMT+02:00) Beirut</option>
-									<option value="Africa/Cairo">(GMT+02:00) Cairo</option>
-									<option value="Asia/Gaza">(GMT+02:00) Gaza</option>
-									<option value="Africa/Blantyre">(GMT+02:00) Harare, Pretoria</option>
-									<option value="Asia/Jerusalem">(GMT+02:00) Jerusalem</option>
-									<option value="Europe/Minsk">(GMT+02:00) Minsk</option>
-									<option value="Asia/Damascus">(GMT+02:00) Syria</option>
-									<option value="Europe/Moscow">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
-									<option value="Africa/Addis_Ababa">(GMT+03:00) Nairobi</option>
-									<option value="Asia/Tehran">(GMT+03:30) Tehran</option>
-									<option value="Asia/Dubai">(GMT+04:00) Abu Dhabi, Muscat</option>
-									<option value="Asia/Yerevan">(GMT+04:00) Yerevan</option>
-									<option value="Asia/Kabul">(GMT+04:30) Kabul</option>
-									<option value="Asia/Yekaterinburg">(GMT+05:00) Ekaterinburg</option>
-									<option value="Asia/Tashkent">(GMT+05:00) Tashkent</option>
-									<option value="Asia/Kolkata">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
-									<option value="Asia/Katmandu">(GMT+05:45) Kathmandu</option>
-									<option value="Asia/Dhaka">(GMT+06:00) Astana, Dhaka</option>
-									<option value="Asia/Novosibirsk">(GMT+06:00) Novosibirsk</option>
-									<option value="Asia/Rangoon">(GMT+06:30) Yangon (Rangoon)</option>
-									<option value="Asia/Bangkok">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
-									<option value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
-									<option value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
-									<option value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
-									<option value="Australia/Perth">(GMT+08:00) Perth</option>
-									<option value="Australia/Eucla">(GMT+08:45) Eucla</option>
-									<option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
-									<option value="Asia/Seoul">(GMT+09:00) Seoul</option>
-									<option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
-									<option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
-									<option value="Australia/Broken_Hill">(GMT+09:30) Broken Hill</option>
-									<option value="Australia/Darwin">(GMT+09:30) Darwin</option>
-									<option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
-									<option value="Australia/Hobart">(GMT+10:00) Hobart</option>
-									<option value="Australia/Lindeman">(GMT+10:00) Lindeman</option>
-									<option value="Australia/Melbourne">(GMT+10:00) Melbourne</option>
-									<option value="Australia/Sydney">(GMT+10:00) Sydney</option>
-									<option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
-									<option value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</option>
-									<option value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</option>
-									<option value="Asia/Magadan">(GMT+11:00) Magadan</option>
-									<option value="Pacific/Norfolk">(GMT+11:30) Norfolk Island</option>
-									<option value="Asia/Anadyr">(GMT+12:00) Anadyr, Kamchatka</option>
-									<option value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</option>
-									<option value="Etc/GMT-12">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
-									<option value="Pacific/Chatham">(GMT+12:45) Chatham Islands</option>
-									<option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
-									<option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
-								</select>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<a class="btn btn-primary form-control" id="bt_forceSyncHour"><i class="far fa-clock"></i> {{Forcer la synchronisation de l'heure}}</a>
+							<div class="col-md-6 col-xs-8">
+								<span class="label label-info"><?php echo jeedom::version(); ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Serveur de temps optionnel}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Système}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Type de matériel utilisé}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+							<div class="col-md-6 col-xs-8">
+								<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
+								<a class="btn btn-sm btn-default pull-right" id="bt_resetHardwareType" tooltip="{{Rafraîchir}}"><i class="fas fa-sync"></i></a>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Clé d'installation}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Identifie votre}} <?php echo $productName; ?> {{sur le market}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
+								<a class="btn btn-sm btn-default pull-right" id="bt_resetHwKey" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
+							</div>
+						</div>
+
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Fuseau horaire}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Sélection du fuseau horaire}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<select class="form-control configKey roundedLeft" data-l1key="timezone">
+										<option value="Pacific/Midway">(GMT-11:00) Midway Island, Samoa</option>
+										<option value="Pacific/Tahiti">(GMT-10:00) Pacific/Tahiti</option>
+										<option value="America/Adak">(GMT-10:00) Hawaii-Aleutian</option>
+										<option value="Etc/GMT+10">(GMT-10:00) Hawaii</option>
+										<option value="Pacific/Marquesas">(GMT-09:30) Marquesas Islands</option>
+										<option value="Pacific/Gambier">(GMT-09:00) Gambier Islands</option>
+										<option value="America/Anchorage">(GMT-09:00) Alaska</option>
+										<option value="America/Ensenada">(GMT-08:00) Tijuana, Baja California</option>
+										<option value="Etc/GMT+8">(GMT-08:00) Pitcairn Islands</option>
+										<option value="America/Los_Angeles">(GMT-08:00) Pacific Time (US & Canada)</option>
+										<option value="America/Denver">(GMT-07:00) Mountain Time (US & Canada)</option>
+										<option value="America/Chihuahua">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
+										<option value="America/Dawson_Creek">(GMT-07:00) Arizona</option>
+										<option value="America/Belize">(GMT-06:00) Saskatchewan, Central America</option>
+										<option value="America/Cancun">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
+										<option value="Chile/EasterIsland">(GMT-06:00) Easter Island</option>
+										<option value="America/Chicago">(GMT-06:00) Central Time (US & Canada)</option>
+										<option value="America/New_York">(GMT-05:00) Eastern Time (US & Canada)</option>
+										<option value="America/Havana">(GMT-05:00) Cuba</option>
+										<option value="America/Bogota">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
+										<option value="America/Caracas">(GMT-04:30) Caracas</option>
+										<option value="America/Santiago">(GMT-04:00) Santiago</option>
+										<option value="America/La_Paz">(GMT-04:00) La Paz</option>
+										<option value="Atlantic/Stanley">(GMT-04:00) Faukland Islands</option>
+										<option value="America/Campo_Grande">(GMT-04:00) Brazil</option>
+										<option value="America/Goose_Bay">(GMT-04:00) Atlantic Time (Goose Bay)</option>
+										<option value="America/Glace_Bay">(GMT-04:00) Atlantic Time (Canada)</option>
+										<option value="America/Guadeloupe">(GMT-04:00) Guadeloupe</option>
+										<option value="America/St_Johns">(GMT-03:30) Newfoundland</option>
+										<option value="America/Araguaina">(GMT-03:00) UTC-3</option>
+										<option value="America/Montevideo">(GMT-03:00) Montevideo</option>
+										<option value="America/Miquelon">(GMT-03:00) Miquelon, St. Pierre</option>
+										<option value="America/Godthab">(GMT-03:00) Greenland</option>
+										<option value="America/Argentina/Buenos_Aires">(GMT-03:00) Buenos Aires</option>
+										<option value="America/Sao_Paulo">(GMT-03:00) Brasilia</option>
+										<option value="America/Noronha">(GMT-02:00) Mid-Atlantic</option>
+										<option value="Atlantic/Cape_Verde">(GMT-01:00) Cape Verde Is.</option>
+										<option value="Atlantic/Azores">(GMT-01:00) Azores</option>
+										<option value="Europe/Belfast">(GMT) Greenwich Mean Time : Belfast</option>
+										<option value="Europe/Dublin">(GMT) Greenwich Mean Time : Dublin</option>
+										<option value="Europe/Lisbon">(GMT) Greenwich Mean Time : Lisbon</option>
+										<option value="Europe/London">(GMT) Greenwich Mean Time : London</option>
+										<option value="Africa/Abidjan">(GMT) Monrovia, Reykjavik</option>
+										<option value="Africa/Casablanca">(GMT) Greenwich Mean Time : Casablanca</option>
+										<option value="Europe/Amsterdam">(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+										<option value="Europe/Belgrade">(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+										<option value="Europe/Brussels">(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</option>
+										<option value="Africa/Algiers">(GMT+01:00) West Central Africa</option>
+										<option value="Africa/Windhoek">(GMT+01:00) Windhoek</option>
+										<option value="Asia/Beirut">(GMT+02:00) Beirut</option>
+										<option value="Africa/Cairo">(GMT+02:00) Cairo</option>
+										<option value="Asia/Gaza">(GMT+02:00) Gaza</option>
+										<option value="Africa/Blantyre">(GMT+02:00) Harare, Pretoria</option>
+										<option value="Asia/Jerusalem">(GMT+02:00) Jerusalem</option>
+										<option value="Europe/Minsk">(GMT+02:00) Minsk</option>
+										<option value="Asia/Damascus">(GMT+02:00) Syria</option>
+										<option value="Europe/Moscow">(GMT+03:00) Moscow, St. Petersburg, Volgograd</option>
+										<option value="Africa/Addis_Ababa">(GMT+03:00) Nairobi</option>
+										<option value="Asia/Tehran">(GMT+03:30) Tehran</option>
+										<option value="Asia/Dubai">(GMT+04:00) Abu Dhabi, Muscat</option>
+										<option value="Asia/Yerevan">(GMT+04:00) Yerevan</option>
+										<option value="Asia/Kabul">(GMT+04:30) Kabul</option>
+										<option value="Asia/Yekaterinburg">(GMT+05:00) Ekaterinburg</option>
+										<option value="Asia/Tashkent">(GMT+05:00) Tashkent</option>
+										<option value="Asia/Kolkata">(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi</option>
+										<option value="Asia/Katmandu">(GMT+05:45) Kathmandu</option>
+										<option value="Asia/Dhaka">(GMT+06:00) Astana, Dhaka</option>
+										<option value="Asia/Novosibirsk">(GMT+06:00) Novosibirsk</option>
+										<option value="Asia/Rangoon">(GMT+06:30) Yangon (Rangoon)</option>
+										<option value="Asia/Bangkok">(GMT+07:00) Bangkok, Hanoi, Jakarta</option>
+										<option value="Asia/Krasnoyarsk">(GMT+07:00) Krasnoyarsk</option>
+										<option value="Asia/Hong_Kong">(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi</option>
+										<option value="Asia/Irkutsk">(GMT+08:00) Irkutsk, Ulaan Bataar</option>
+										<option value="Australia/Perth">(GMT+08:00) Perth</option>
+										<option value="Australia/Eucla">(GMT+08:45) Eucla</option>
+										<option value="Asia/Tokyo">(GMT+09:00) Osaka, Sapporo, Tokyo</option>
+										<option value="Asia/Seoul">(GMT+09:00) Seoul</option>
+										<option value="Asia/Yakutsk">(GMT+09:00) Yakutsk</option>
+										<option value="Australia/Adelaide">(GMT+09:30) Adelaide</option>
+										<option value="Australia/Broken_Hill">(GMT+09:30) Broken Hill</option>
+										<option value="Australia/Darwin">(GMT+09:30) Darwin</option>
+										<option value="Australia/Brisbane">(GMT+10:00) Brisbane</option>
+										<option value="Australia/Hobart">(GMT+10:00) Hobart</option>
+										<option value="Australia/Lindeman">(GMT+10:00) Lindeman</option>
+										<option value="Australia/Melbourne">(GMT+10:00) Melbourne</option>
+										<option value="Australia/Sydney">(GMT+10:00) Sydney</option>
+										<option value="Asia/Vladivostok">(GMT+10:00) Vladivostok</option>
+										<option value="Australia/Lord_Howe">(GMT+10:30) Lord Howe Island</option>
+										<option value="Etc/GMT-11">(GMT+11:00) Solomon Is., New Caledonia</option>
+										<option value="Asia/Magadan">(GMT+11:00) Magadan</option>
+										<option value="Pacific/Norfolk">(GMT+11:30) Norfolk Island</option>
+										<option value="Asia/Anadyr">(GMT+12:00) Anadyr, Kamchatka</option>
+										<option value="Pacific/Auckland">(GMT+12:00) Auckland, Wellington</option>
+										<option value="Etc/GMT-12">(GMT+12:00) Fiji, Kamchatka, Marshall Is.</option>
+										<option value="Pacific/Chatham">(GMT+12:45) Chatham Islands</option>
+										<option value="Pacific/Tongatapu">(GMT+13:00) Nuku'alofa</option>
+										<option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
+									</select>
+									<span class="input-group-btn">
+										<a class="btn btn-primary form-control roundedRight" id="bt_forceSyncHour" tooltip="{{Forcer la synchronisation de l'heure}}"><i class="fas fa-clock"></i></a>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Serveur de temps optionnel}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'ajouter un serveur de temps pour la synchronisation de l'heure}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
 								<input type="text" class="configKey form-control" data-l1key="ntp::optionalServer">
 							</div>
-
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}"></i></sup>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Ignorer la vérification de l'heure}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Cochez la case pour ne pas prendre en compte l'heure du système}}"></i></sup>
 							</label>
-							<div class="col-lg-2 col-md-3 col-sm-2 col-xs-6">
+							<div class="col-md-6 col-xs-8">
 								<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck">
 							</div>
 						</div>
-						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Système}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Indique votre type de matériel}}"></i></sup>
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Dernière date connue}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
-							<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-								<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<a class="btn btn-default form-control" id="bt_resetHardwareType"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Clé d'installation}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
-							</label>
-							<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
-								<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<a class="btn btn-default form-control" id="bt_resetHwKey"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label help">{{Dernière date connue}}</label>
-							<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
+							<div class=" col-md-6 col-xs-8">
 								<?php
 								$cache = cache::byKey('hour');
 								$lastKnowDate = $cache->getDatetime();
 								?>
 								<span class="label label-info"><?php echo $lastKnowDate ?></span>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<a class="btn btn-default form-control" id="bt_resetHour"><i class="fas fa-sync"></i> {{Remise à zéro}}</a>
+								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
 					</fieldset>
 				</form>
-				<br>
-				<hr class="hrPrimary">
-				<form class="form-horizontal">
-					<div class="alert" style="margin-bottom: 0;">
-						<i class="far fa-comment"></i>
-						<i>{{Les informations suivantes peuvent être utilisées par les plugins.}}</i>
-						<i>{{Pour obtenir vos coordonnées GPS, vous pouvez utiliser ce <a href="https://www.torop.net/coordonnees-gps.php" target="_blank">site.</a>}}</i>
-					</div>
+
+				<form class="form-horizontal col-md-6 col-xs-12">
 					<fieldset>
 						<legend>{{Coordonnées}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Latitude}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::latitude">
-							</div>
-
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Longitude}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::longitude">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Altitude}} <sub>m</sub></label>
-							<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::altitude">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{GPS}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Coordonnées GPS du bâtiment. De nombreux sites internet permettent de connaitre les coordonnées GPS d'une adresse}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Latitude}}</span>
+									<input type="number" class="configKey form-control" data-l1key="info::latitude">
+									<span class="input-group-addon">{{Longitude}}</span>
+									<input type="number" class="configKey form-control roundedRight" data-l1key="info::longitude">
+								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Adresse}}</label>
-							<div class="col-lg-6 col-md-5 col-sm-6 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::address">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Postales}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Adresse postale du bâtiment}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Adresse}}</span>
+									<input type="text" class="configKey form-control roundedRight" data-l1key="info::address">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{CP}}</span>
+									<input type="text" class="configKey form-control" data-l1key="info::postalCode">
+									<span class="input-group-addon">{{Ville}}</span>
+									<input type="number" class="configKey form-control roundedRight" data-l1key="info::city">
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Pays}}</span>
+									<input type="text" class="configKey form-control roundedRight" data-l1key="info::stateCode" placeholder="FR">
+								</div>
 							</div>
 						</div>
 
+						<legend>{{Informations diverses}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Code postal}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::postalCode">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Ville}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::city">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Pays (FR,US...)}}</label>
-							<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::stateCode">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Altitude}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Altitude du bâtiment en mètres}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="number" class="configKey form-control" data-l1key="info::altitude">
 							</div>
 						</div>
-
-						<legend>{{Divers}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Surface habitable}} <sub>m²</sub></label>
-							<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::livingSpace">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Surface habitable}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Surface habitable du bâtiment en mètres carrés}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="number" class="configKey form-control" data-l1key="info::livingSpace">
 							</div>
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nombre d'occupants}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="info::nbOccupant">
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nombre d'occupants}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'occupants du bâtiment}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="number" class="configKey form-control" data-l1key="info::nbOccupant">
 							</div>
 						</div>
 					</fieldset>
@@ -669,7 +678,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Adresse}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement utilisée pour la communication interne avec}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement utilisée pour la communication interne avec}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-sm-8 col-xs-12">
 								<div class="input-group">
@@ -748,7 +757,7 @@ user::isBan();
 								echo $div;
 								continue;
 							}
-							$div .= '<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS">{{Activer DNS}} ' . config::byKey('product_name') . '</label>';
+							$div .= '<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS">{{Activer DNS}} ' . $productName . '</label>';
 							$div .= '<div class="input-group">';
 							$div .= '<span class="input-group-addon roundedLeft">{{Mode}}</span>';
 							$div .= '<select class="configKey form-control roundedRight" data-l1key="dns::mode">';
@@ -791,31 +800,31 @@ user::isBan();
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Activer le proxy}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Utiliser un proxy pour accéder au Market}}"></i></sup>
 							</label>
-							<div class="col-lg-8 col-md-6 col-xs-8">
+							<div class="col-md-6 col-xs-8">
 								<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Adresse du proxy}}</label>
-							<div class="col-lg-8 col-md-6 col-xs-8">
+							<div class="col-md-6 col-xs-8">
 								<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Port du proxy}}</label>
-							<div class="col-lg-8 col-md-6 col-xs-8">
+							<div class="col-md-6 col-xs-8">
 								<input class="configKey form-control" data-l1key="proxyPort" type="text">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nom d'utilisateur}}</label>
-							<div class="col-lg-8 col-md-6 col-xs-8">
+							<div class="col-md-6 col-xs-8">
 								<input class="configKey form-control" type="text" data-l1key="proxyLogins">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Mot de passe}}</label>
-							<div class="col-lg-8 col-md-6 col-xs-8">
+							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<input class="inputPassword configKey form-control roundedLeft" type="text" data-l1key="proxyPassword">
 									<span class="input-group-btn">
@@ -1803,7 +1812,7 @@ user::isBan();
 					<div class="col-sm-12">
 						<form class="form-horizontal">
 							<fieldset>
-								<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
+								<legend>{{Mise à jour de}} <?php echo $productName; ?></legend>
 								<div class="form-group">
 									<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
@@ -1952,7 +1961,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="alert alert-info">
-							{{Attention : toute modification du moteur de cache nécessite un redémarrage de}} <?php echo config::byKey('product_name'); ?>
+							{{Attention : toute modification du moteur de cache nécessite un redémarrage.}}
 						</div>
 						<?php
 						$stats = cache::stats();
@@ -2009,7 +2018,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{vérifie si il y a des événements en attente.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Fréquence de vérification des événements en attente.}}"></i></sup>
 								<sub>s</sub>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -2018,7 +2027,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{le fait automatiquement toutes les nuits.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.}}<br>{{Exécuté automatiquement toutes les nuits.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
@@ -2055,7 +2064,7 @@ user::isBan();
 					<fieldset>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Clé API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Clé API globale}}"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
@@ -2108,7 +2117,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro}}"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
@@ -2134,7 +2143,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé Market}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Clé Market de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Clé Market}}"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
@@ -2212,7 +2221,7 @@ user::isBan();
 						<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name') ?>."></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'exécuter le test de consistence}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
@@ -2255,8 +2264,8 @@ user::isBan();
 						<div class="form-group">
 							<div class="row">
 								<div class="alert alert-danger">
-									{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br>
-									{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
+									{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo $productName; ?>. <br>
+									{{L'équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 								</div>
 								<div class="form-group">
 									<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
