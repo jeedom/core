@@ -412,7 +412,7 @@ $productName = config::byKey('product_name');
 							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Basculer de thème}}
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime">{{en fonction de l'heure}}
+								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime">{{Selon l'heure}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Basculer automatiquement de thème en fonction des horaires définis ci-dessous}}"></i></sup>
 								</label>
 								<div class="input-group">
@@ -424,7 +424,7 @@ $productName = config::byKey('product_name');
 										<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control roundedRight" tooltip="{{Supprimer le cookie de thème}}"><i class="fas fa-eraser"></i></a>
 									</span>
 								</div>
-								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight">{{en fonction de la luminosité}}
+								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight">{{Selon la luminosité}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Basculer automatiquement de thème en fonction du capteur de luminosité sur mobile}}"></i></sup>
 								</label>
 							</div>
