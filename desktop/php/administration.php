@@ -761,8 +761,8 @@ user::isBan();
 								$div .= '<span class="label label-warning">{{Arrêté}}</span> ';
 							}
 							$div .= '<span>';
-							$div .= '<a class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
-							$div .= '<a class="btn btn-sm btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
+							$div .= '<a class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fas fa-play\'></i> {{(Re)démarrer}}</a> ';
+							$div .= '<a class="btn btn-sm btn-danger" id="bt_haltDns"><i class=\'fas fa-stop\'></i> {{Arrêter}}</a>';
 							$div .= '</span>';
 							$div .= '</div>';
 							$div .= '</div>';
