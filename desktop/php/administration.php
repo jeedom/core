@@ -742,7 +742,7 @@ user::isBan();
 							$div .= '<label class="col-lg-2 col-md-3 col-xs-4 control-label">{{DNS}} ' . $value['name'] . '</label>';
 							$div .= '<div class="col-xs-8">';
 							if ($configs['dns::token'] == '') {
-								$div .= '<div class="alert alert-warning">{{Cette fonctionnalité n\'est pas disponible avec votrte service Pack (voir profil Market)}}</div>';
+								$div .= '<div class="alert alert-warning">{{Cette fonctionnalité n\'est pas incluse avec votre service Pack (voir profil Market)}}</div>';
 								$div .= '</div>';
 								$div .= '</div>';
 								echo $div;

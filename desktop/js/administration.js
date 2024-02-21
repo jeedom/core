@@ -893,8 +893,8 @@ document.getElementById('networktab').addEventListener('change', function(event)
       if (autoInterface != 'auto') {
         document.querySelector('.configKey[data-l1key="internalAddr"]').value = document.querySelector('#networkInterfacesTable td[data-interface="' + autoInterface + '"]').innerText
       } else {
-        for (var _interface of document.querySelectorAll('#networkInterfacesTable td[data-interface]')) {
-          let autoInterface = _interface.getAttribute('data-interface')
+        for (let _interface of document.querySelectorAll('#networkInterfacesTable td[data-interface]')) {
+          autoInterface = _interface.getAttribute('data-interface')
           if (autoInterface == 'lo' || autoInterface.startsWith('docker') || autoInterface.startsWith('tun') || autoInterface.startsWith('br')) {
             continue
           }
