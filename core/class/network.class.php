@@ -221,12 +221,12 @@ class network {
 			config::save($_mode . 'Complement', '');
 		}
 		if ($_mode == 'internal') {
-			if (config::byKey('network::disableInternalAuto',0) == 0) {
+			if (config::byKey('network::disableInternalAuto','core',0) == 0) {
 				foreach ((self::getInterfacesInfo()) as $interface) {
-					if (config::byKey('network::internalAutoInterface','auto') != 'auto' && $interface['ifname'] != config::byKey('network::internalAutoInterface','auto')){
+					if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false  || strpos($interface['ifname'], 'tun') !== false || strpos($interface['ifname'], 'br') !== false) {
 						continue;
 					}
-					if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false  || strpos($interface['ifname'], 'tun') !== false || strpos($interface['ifname'], 'br') !== false) {
+					if (config::byKey('network::internalAutoInterface','core','auto') != 'auto' && $interface['ifname'] != config::byKey('network::internalAutoInterface','core','auto')){
 						continue;
 					}
 					$ip = null;
