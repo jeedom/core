@@ -888,7 +888,7 @@ div.eqLogicZone {
   }
   .eqLogic-widget .btn,
   .eqLogic-widget .btn-default,
-  .eqLogic-widget input[type=text],
+  .eqLogic-widget input[type="text"],
   .scenario-widget .btn,
   .scenario-widget .btn-default {
     min-width: 32px !important;
@@ -2696,7 +2696,7 @@ div.eqLogic-widget.editingMode .panelLink {
     line-height: 28px;
   }
 
-  .form-group input[type=text] {
+  .form-group input[type="text"] {
     margin-bottom: 0.7px !important;
   }
 
@@ -2861,6 +2861,9 @@ div.eqLogic-widget.editingMode .panelLink {
   .input-group {
     margin-bottom: 1.2px;
   }
+  .input-group input[type="text"] {
+    margin-bottom: unset !important;
+  }
   .form-horizontal .checkbox-inline,
   .form-horizontal .radio-inline {
     padding-top: 0 !important;
@@ -2916,8 +2919,8 @@ div.eqLogic-widget.editingMode .panelLink {
     -webkit-transform: translateZ(0px);
   }
   select,
-  input[type=text],
-  input[type=password]{
+  input[type="text"],
+  input[type="password"]{
     border: 0 !important;
     background-color: var(--form-bg-color) !important;
     padding: 6px 12px !important;
