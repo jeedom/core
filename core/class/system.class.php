@@ -688,11 +688,17 @@ class system {
 				}
 			}
 		}
+		if ($_plugin != '') {
+			if ($_foreground) {
+				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin .' 2>&1');
+			}else{
+				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+				$count++;
+				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+			}
+		}
 		if ($_foreground || !$has_something_todo) {
 			return;
-		}
-		if ($_plugin != '') {
-			$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
 		}
 		$cmd .= "rm $progress_file\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
