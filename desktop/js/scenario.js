@@ -44,7 +44,7 @@ if (!jeeFrontEnd.scenario) {
       this.undoStack = []
       this.bt_undo = document.getElementById('bt_undo')
       this.bt_redo = document.getElementById('bt_redo')
-      this.dom_divScenario= document.getElementById('div_editScenario')
+      this.dom_divScenario = document.getElementById('div_editScenario')
       window.jeeP = this
 
       jeeP.loadId = getUrlVars('id')
@@ -73,7 +73,7 @@ if (!jeeFrontEnd.scenario) {
       jeedom.timeline.autocompleteFolder()
       //autocomplete group input:
       document.querySelector('.scenarioAttr[data-l1key="group"]')?.jeeComplete({
-          source: function(request, response, url) {
+        source: function(request, response, url) {
           domUtils.ajax({
             type: 'POST',
             url: 'core/ajax/scenario.ajax.php',
@@ -107,8 +107,8 @@ if (!jeeFrontEnd.scenario) {
     },
     checkNoTriggeringMode: function() {
       if (document.querySelectorAll('div.scheduleDisplay .schedule').length > 0 ||
-          document.querySelectorAll('div.provokeDisplay .trigger').length > 0 ||
-          document.querySelectorAll('div.defined_actions .action_link:not(.cross)').length > 0) {
+        document.querySelectorAll('div.provokeDisplay .trigger').length > 0 ||
+        document.querySelectorAll('div.defined_actions .action_link:not(.cross)').length > 0) {
         document.getElementById('emptyModeWarning').unseen()
       } else {
         document.getElementById('emptyModeWarning').seen()
@@ -132,46 +132,46 @@ if (!jeeFrontEnd.scenario) {
       var selector = '.subElementACTION > .expressions, .subElementDO > .expressions, .subElementTHEN > .expressions, .subElementELSE > .expressions'
       var containers = document.getElementById('div_scenarioElement').querySelectorAll(selector)
       var commonOptions = {
-          group: {
-            name: 'expressionSorting',
-          },
-          delay: 250,
-          delayOnTouchOnly: true,
-          animation: 100,
-          draggable: '.sortable',
-          handle: '.bt_sortable',
-          direction: 'vertical',
-          swapThreshold: 0.07,
-          removeCloneOnHide: true,
-          onStart: function(event) {
-            jeeFrontEnd.scenario.setUndoStack()
-            document.querySelectorAll('.dropdown.open').removeClass('open')
-            document.querySelectorAll('.subElementCODE .expressions .expression').addClass('disabled') //Prevent paste dragged element into code
-            setTimeout(() => {
-              document.querySelectorAll('div[data-tippy-root]').remove()
-            }, 100)
-          },
-          onMove: function(event, originalEvent) { //Prevent actions on root
-            if (event.dragged.hasClass('expressionACTION') && event.to.getAttribute('id') == 'root') {
-              return false
-            }
-          },
-          onEnd: function(event) {
-            document.querySelectorAll('.subElementCODE .expressions .expression').removeClass('disabled')
+        group: {
+          name: 'expressionSorting',
+        },
+        delay: 250,
+        delayOnTouchOnly: true,
+        animation: 100,
+        draggable: '.sortable',
+        handle: '.bt_sortable',
+        direction: 'vertical',
+        swapThreshold: 0.07,
+        removeCloneOnHide: true,
+        onStart: function(event) {
+          jeeFrontEnd.scenario.setUndoStack()
+          document.querySelectorAll('.dropdown.open').removeClass('open')
+          document.querySelectorAll('.subElementCODE .expressions .expression').addClass('disabled') //Prevent paste dragged element into code
+          setTimeout(() => {
+            document.querySelectorAll('div[data-tippy-root]').remove()
+          }, 100)
+        },
+        onMove: function(event, originalEvent) { //Prevent actions on root
+          if (event.dragged.hasClass('expressionACTION') && event.to.getAttribute('id') == 'root') {
+            return false
+          }
+        },
+        onEnd: function(event) {
+          document.querySelectorAll('.subElementCODE .expressions .expression').removeClass('disabled')
 
-            if (event.from.getAttribute('id') == 'root') {
-              if (event.to.getAttribute('id') != 'root') {
-                event.item.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element"/>')
-              }
+          if (event.from.getAttribute('id') == 'root') {
+            if (event.to.getAttribute('id') != 'root') {
+              event.item.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element"/>')
             }
-            if (event.to.getAttribute('id') == 'root') {
-              if (event.from.getAttribute('id') != 'root') {
-                event.item.querySelector(':scope > input[data-l1key="type"]')?.remove()
-              }
+          }
+          if (event.to.getAttribute('id') == 'root') {
+            if (event.from.getAttribute('id') != 'root') {
+              event.item.querySelector(':scope > input[data-l1key="type"]')?.remove()
             }
+          }
 
-            jeeFrontEnd.modifyWithoutSave = true
-          },
+          jeeFrontEnd.modifyWithoutSave = true
+        },
       }
       containers.forEach(_Sortcontainer => {
         if (Sortable.get(_Sortcontainer)) Sortable.get(_Sortcontainer).destroy()
@@ -218,7 +218,7 @@ if (!jeeFrontEnd.scenario) {
       })
     },
     updateElementCollapse: function() {
-      document.querySelectorAll('a.bt_collapse').forEach( _bt => {
+      document.querySelectorAll('a.bt_collapse').forEach(_bt => {
         if (_bt.getAttribute('value') == '0') {
           _bt.closest('.element').removeClass('elementCollapse')
         } else {
@@ -246,7 +246,7 @@ if (!jeeFrontEnd.scenario) {
         }
       })
     },
-    updateDefinedActions: function(cmdModal=false) {
+    updateDefinedActions: function(cmdModal = false) {
       //cmdModal called from cmd.configure modal to update ui list!
       if (cmdModal) {
         var scId = document.querySelector('div#div_editScenario span[data-l1key="id"]').textContent
@@ -364,7 +364,7 @@ if (!jeeFrontEnd.scenario) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
-          });
+          })
         },
         success: function(data) {
           document.querySelectorAll('.scenarioAttr').jeeValue('')
@@ -596,7 +596,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
           break
         case 'element':
-          retour += '<div class="col-xs-12" >';
+          retour += '<div class="col-xs-12" >'
           if (isset(_expression.element) && isset(_expression.element.html)) {
             retour += _expression.element.html
           } else {
@@ -648,8 +648,8 @@ if (!jeeFrontEnd.scenario) {
         case 'code':
           retour += '<div>'
           retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>'
-          retour += '</div>';
-          break;
+          retour += '</div>'
+          break
         case 'comment':
           retour += '<textarea class="expressionAttr form-control" data-l1key="expression">' + init(_expression.expression) + '</textarea>'
           break
@@ -736,7 +736,7 @@ if (!jeeFrontEnd.scenario) {
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
             expression = _subElement.expressions[0]
           }
-          retour += this.addExpression(expression);
+          retour += this.addExpression(expression)
           retour += '  </div>'
           retour = this.addElButtons(retour)
           break
@@ -745,7 +745,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="action"/>'
           retour += '<div class="subElementFields">'
           retour += '<legend >{{ALORS}}</legend>'
-          retour += this.getAddButton(_subElement.type,true)
+          retour += this.getAddButton(_subElement.type, true)
           retour += '</div>'
           retour += '<div class="expressions">'
           if (isset(_subElement.expressions)) {
@@ -962,7 +962,7 @@ if (!jeeFrontEnd.scenario) {
             if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
               retour += '<div class="blocPreview">' + expression.element.subElements[0].expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
             } else {
-              try { retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'} catch(e) { }
+              try { retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>' } catch (e) { }
             }
           } else {
             retour += '<div class="blocPreview"></div>'
@@ -1054,7 +1054,7 @@ if (!jeeFrontEnd.scenario) {
               type: 'do'
             })
           }
-          break;
+          break
         case 'in':
           if (isset(_element.subElements) && isset(_element.subElements)) {
             for (var j in _element.subElements) {
@@ -1161,7 +1161,7 @@ if (!jeeFrontEnd.scenario) {
       })
       return element
     },
-    getAddButton: function(_type,_caret) {
+    getAddButton: function(_type, _caret) {
       if (!isset(_caret)) _caret = false
       var retour = ''
       if (_caret) {
@@ -1184,8 +1184,8 @@ if (!jeeFrontEnd.scenario) {
       retour += '<ul class="dropdown-menu">'
       retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
-      if(_type != 'action' && _type != 'if'  && _type != 'in'  && _type != 'for'  && _type != 'at'){
-          retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
+      if (_type != 'action' && _type != 'if' && _type != 'in' && _type != 'for' && _type != 'at') {
+        retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
       }
       retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
@@ -1270,10 +1270,10 @@ if (!jeeFrontEnd.scenario) {
       message += '<div class="col-xs-3">'
       message += '  <select class="conditionAttr form-control" data-l1key="next">'
       message += '    <option value="">{{rien}}</option>'
-      if (jeeFrontEnd.language == "fr_FR"){
+      if (jeeFrontEnd.language == "fr_FR") {
         message += '    <option value="&&">&& {{et}}</option>'
         message += '    <option value="||">|| {{ou}}</option>'
-      }else{
+      } else {
         message += '    <option value="&&">&& (AND)</option>'
         message += '    <option value="||">|| (OR)</option>'
       }
@@ -1415,7 +1415,7 @@ if (!jeeFrontEnd.scenario) {
     resetEditors: function() {
       this.editors = []
       var expression, code
-      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach( elCode => {
+      document.querySelectorAll('.expressionAttr[data-l1key="type"][value="code"]').forEach(elCode => {
         expression = elCode.closest('.expression')
         code = expression.querySelector('.expressionAttr[data-l1key="expression"]')
         code.removeAttribute('id')
@@ -1488,7 +1488,7 @@ document.getElementById('bt_addScenario').addEventListener('click', function(eve
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
-          });
+          })
         },
         success: function(data) {
           var vars = getUrlVars()
@@ -1561,7 +1561,7 @@ document.getElementById('bt_showScenarioSummary').addEventListener('click', func
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Vue d'ensemble des scénarios}}",
-    contentUrl:'index.php?v=d&modal=scenario.summary'
+    contentUrl: 'index.php?v=d&modal=scenario.summary'
   })
 })
 
@@ -1620,11 +1620,11 @@ document.getElementById('in_addElementType').addEventListener('change', function
 document.getElementById('in_searchInsideScenario').addEventListener('keyup', function(event) {
   var search = this.value
   document.querySelectorAll('#div_scenarioElement .insideSearch').removeClass('insideSearch')
-  document.querySelectorAll('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').forEach( _code => {
+  document.querySelectorAll('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').forEach(_code => {
     _code.CodeMirror.setCursor(0)
   })
   if (search == '' || search.length < 3) {
-    document.querySelectorAll('i.fa-eye-slash').forEach( _bt => {
+    document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
       _bt.closest('.element')?.addClass('elementCollapse')
     })
     return
@@ -1633,7 +1633,7 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
 
   //search code blocks:
   var cmEditor, code, cursor
-  document.querySelectorAll('#div_scenarioElement div.elementCODE').forEach( _code => {
+  document.querySelectorAll('#div_scenarioElement div.elementCODE').forEach(_code => {
     try {
       cmEditor = _code.querySelector('div.CodeMirror.CodeMirror-wrap').CodeMirror
       code = jeedomUtils.normTextLower(cmEditor.getValue())
@@ -1650,15 +1650,15 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
         _code.addClass('elementCollapse')
         cmEditor.setCursor(0)
       }
-    } catch {}
+    } catch { }
   })
   //search in expressions:
   var text
-  document.querySelectorAll('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').forEach( _expr => {
+  document.querySelectorAll('#div_scenarioElement div.element:not(.elementCODE) .expressionAttr').forEach(_expr => {
     text = jeedomUtils.normTextLower(_expr.value)
     if (text.includes(search)) {
       _expr.addClass('insideSearch')
-      _expr.closestAll('.element').forEach( _parent => {
+      _expr.closestAll('.element').forEach(_parent => {
         _parent.removeClass('elementCollapse')
       })
     }
@@ -1670,10 +1670,10 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
 */
 
 //_________________Root page events:
-document.getElementById('in_searchScenario').addEventListener('keyup', function(event) {
+document.getElementById('in_searchScenario').addEventListener('keyup', function() {
   var search = this.value
   if (search == '') {
-    document.querySelectorAll('.panel-collapse.in').removeClass('in')
+    document.querySelectorAll('#accordionScenario .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     document.querySelectorAll('.scenarioDisplayCard').seen()
     return
   }
@@ -1682,7 +1682,7 @@ document.getElementById('in_searchScenario').addEventListener('keyup', function(
   if (not) {
     search = search.replace(':not(', '')
   }
-  document.querySelectorAll('.panel-collapse').forEach(panel => { panel.setAttribute('data-show', 0) })
+  document.querySelectorAll('#accordionScenario .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
   document.querySelectorAll('.scenarioDisplayCard').unseen()
   var match, text
 
@@ -1696,12 +1696,12 @@ document.getElementById('in_searchScenario').addEventListener('keyup', function(
     if (not) match = !match
     if (match) {
       scName.closest('.scenarioDisplayCard').seen()
-      scName.closest('.panel-collapse').setAttribute('data-show', 1)
+      scName.closest('.panel').querySelector('.accordion-toggle').setAttribute('data-show', 1)
     }
 
   })
-  document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
-  document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
+  document.querySelectorAll('.accordion-toggle.collapsed[data-show="1"]').forEach(_panel => { _panel.click() })
+  document.querySelectorAll('.accordion-toggle:not(.collapsed)[data-show="0"]').forEach(_panel => { _panel.click() })
 })
 
 document.getElementById('scenarioThumbnailDisplay').addEventListener('click', function(event) {
@@ -1713,12 +1713,12 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
   }
 
   if (_target = event.target.closest('#bt_openAll')) {
-    document.querySelectorAll('#accordionScenario .panel-collapse').forEach(_panel => { _panel.addClass('in') })
+    document.querySelectorAll('#accordionScenario .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
     return
   }
 
   if (_target = event.target.closest('#bt_closeAll')) {
-    document.querySelectorAll('#accordionScenario .panel-collapse').forEach(_panel => { _panel.removeClass('in') })
+    document.querySelectorAll('#accordionScenario .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     return
   }
 
@@ -1756,9 +1756,9 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', 
     if (event.which == 2) {
       event.preventDefault()
       var id = _target.getAttribute('data-scenario_id')
-      document.querySelector('.scenarioDisplayCard[data-scenario_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.scenarioDisplayCard[data-scenario_id="' + id + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
     }
-  return
+    return
   }
 })
 
@@ -1777,8 +1777,8 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
 
   if (_target = event.target.closest('#bt_copyScenario')) {
     jeeDialog.prompt({
-      title : "{{Nom du scénario}} ?",
-      value : document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + ' {{copie}}'
+      title: "{{Nom du scénario}} ?",
+      value: document.querySelector('.scenarioAttr[data-l1key="name"]').jeeValue() + ' {{copie}}'
     }, function(result) {
       if (result !== null) {
         jeedom.scenario.copy({
@@ -1973,7 +1973,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       _target.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
       _target.setAttribute('data-state', '1')
       //open code blocks for later search:
-      document.querySelectorAll('#div_scenarioElement div.elementCODE.elementCollapse').forEach(_code =>  {
+      document.querySelectorAll('#div_scenarioElement div.elementCODE.elementCollapse').forEach(_code => {
         _code.removeClass('elementCollapse')
         _code.querySelector('textarea[data-l1key="expression"]').show()
       })
@@ -1981,7 +1981,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       document.querySelectorAll('textarea[data-l1key="expression"]').unseen()
       searchField.focus()
     } else {
-      if (searchField.value  == '') {
+      if (searchField.value == '') {
         document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
           _bt.closest('.element').addClass('elementCollapse')
         })
@@ -2126,7 +2126,7 @@ document.getElementById('generaltab').addEventListener('mouseup', function(event
     if (event.which == 2) {
       event.preventDefault()
       var id = event.target.getAttribute('data-scenario_id')
-      document.querySelector('.scenario_link[data-scenario_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.scenario_link[data-scenario_id="' + id + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
     }
   }
 })
@@ -2148,16 +2148,16 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     jeeFrontEnd.modifyWithoutSave = true
     if (jeeP.addElementSave.expression) {
       var newEL = domUtils.parseHTML(jeeP.addExpression({
-          type: 'element',
-          element: {
-            type: document.getElementById("in_addElementType").jeeValue()
-          }
-        })
+        type: 'element',
+        element: {
+          type: document.getElementById("in_addElementType").jeeValue()
+        }
+      })
       )
     } else {
       var newEL = domUtils.parseHTML(jeeP.addElement({
-          type: document.getElementById("in_addElementType").jeeValue()
-        })
+        type: document.getElementById("in_addElementType").jeeValue()
+      })
       )
     }
 
@@ -2175,7 +2175,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     jeeP.updateElseToggle()
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
     setTimeout(() => {
-      if (!isInWindow(newEL)) newEL.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+      if (!isInWindow(newEL)) newEL.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     }, 250)
     jeedomUtils.initTooltips()
     jeedom.scenario.setAutoComplete()
@@ -2185,7 +2185,11 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     return
   }
 
-  if (_target = event.target.closest('#bt_cancelElementSave')) {
+  if (_target = event.target.closest('#bt_cancelElementSave'))  {
+    jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
+  }
+
+  if (_target = event.target.closest('#bt_crossElementSave'))  {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
   }
 
@@ -2257,7 +2261,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
   if (_target = event.target.closest('.bt_addAction')) {
     jeeP.setUndoStack()
-    _target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression( {type: 'action'} ))
+    _target.closest('.subElement').querySelector(':scope > .expressions').insertAdjacentHTML('beforeend', jeeP.addExpression({ type: 'action' }))
     jeedom.scenario.setAutoComplete()
     jeeP.setSortables()
     jeedomUtils.initTooltips()
@@ -2453,7 +2457,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
   if (_target = event.target.closest('.bt_selectGenericExpression')) {
     var expression = _target.closest('.expression')
-    jeedom.config.getGenericTypeModal({type: 'info', object: true}, function(result) {
+    jeedom.config.getGenericTypeModal({ type: 'info', object: true }, function(result) {
       expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
     })
     return
@@ -2623,7 +2627,7 @@ document.getElementById('scenariotab').addEventListener('mouseenter', function(e
       _target.closest('div.dropdown').removeClass('dropup')
     }
   }
-}, {capture: true})
+}, { capture: true })
 
 document.getElementById('scenariotab').addEventListener('mouseout', function(event) {
   var _target = null
@@ -2660,62 +2664,62 @@ domUtils(function() {
 
 //tabs context menu
 try {
-    jeedom.scenario.allOrderedByGroupObjectName({
-      asGroup: 1,
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(scenarioGroupedList) {
-        if (scenarioGroupedList.length == 0) return
+  jeedom.scenario.allOrderedByGroupObjectName({
+    asGroup: 1,
+    error: function(error) {
+      jeedomUtils.showAlert({
+        message: error.message,
+        level: 'danger'
+      })
+    },
+    success: function(scenarioGroupedList) {
+      if (scenarioGroupedList.length == 0) return
 
-        var contextmenuitems = {}
-        var uniqId = 0
-        var items, scName, scId
-        for (var group in scenarioGroupedList) {
-          items = {}
-          for (var i in scenarioGroupedList[group]) {
-            scName = scenarioGroupedList[group][i].humanName.replace('[' + group + ']', '')
-            scId = scenarioGroupedList[group][i].id
-            items[uniqId] = {
-              'name': scName,
-              'id': scId
-            }
-            uniqId++
+      var contextmenuitems = {}
+      var uniqId = 0
+      var items, scName, scId
+      for (var group in scenarioGroupedList) {
+        items = {}
+        for (var i in scenarioGroupedList[group]) {
+          scName = scenarioGroupedList[group][i].humanName.replace('[' + group + ']', '')
+          scId = scenarioGroupedList[group][i].id
+          items[uniqId] = {
+            'name': scName,
+            'id': scId
           }
-          contextmenuitems[group] = {
-            'name': group,
-            'items': items
-          }
+          uniqId++
         }
-
-        if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
-          new jeeCtxMenu({
-            selector: '.nav.nav-tabs li',
-            appendTo: 'div#div_pageContainer',
-            zIndex: 9999,
-            className: 'scenarioTab-context-menu',
-            callback: function(key, options, event) {
-              if (!jeedomUtils.checkPageModified()) {
-                if (event.ctrlKey || event.metaKey || event.which == 2) {
-                  var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-                  if (window.location.hash != '') {
-                    url += window.location.hash
-                  }
-                  window.open(url).focus()
-                } else {
-                  jeeP.printScenario(options.commands[key].id)
-                }
-              }
-            },
-            items: contextmenuitems
-          })
+        contextmenuitems[group] = {
+          'name': group,
+          'items': items
         }
       }
-    })
-  } catch (err) {}
+
+      if (Object.entries(contextmenuitems).length > 0 && contextmenuitems.constructor === Object) {
+        new jeeCtxMenu({
+          selector: '.nav.nav-tabs li',
+          appendTo: 'div#div_pageContainer',
+          zIndex: 9999,
+          className: 'scenarioTab-context-menu',
+          callback: function(key, options, event) {
+            if (!jeedomUtils.checkPageModified()) {
+              if (event.ctrlKey || event.metaKey || event.which == 2) {
+                var url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
+                if (window.location.hash != '') {
+                  url += window.location.hash
+                }
+                window.open(url).focus()
+              } else {
+                jeeP.printScenario(options.commands[key].id)
+              }
+            }
+          },
+          items: contextmenuitems
+        })
+      }
+    }
+  })
+} catch (err) { }
 
 
 //general context menu
@@ -2735,11 +2739,11 @@ try {
       var isActive = !trigger.hasClass('inactive')
 
       var contextmenuitems = {}
-      contextmenuitems['scId'] = {'name': scName + '(id: ' + scId + ')', 'id': 'scId', 'disabled': true}
+      contextmenuitems['scId'] = { 'name': scName + '(id: ' + scId + ')', 'id': 'scId', 'disabled': true }
       if (isActive) {
-        contextmenuitems['disable'] = {'name': '{{Rendre inactif}}', 'id': 'disable', 'icon': 'fas fa-toggle-on'}
+        contextmenuitems['disable'] = { 'name': '{{Rendre inactif}}', 'id': 'disable', 'icon': 'fas fa-toggle-on' }
       } else {
-        contextmenuitems['enable'] = {'name': '{{Rendre actif}}', 'id': 'enable', 'icon': 'fas fa-toggle-off'}
+        contextmenuitems['enable'] = { 'name': '{{Rendre actif}}', 'id': 'enable', 'icon': 'fas fa-toggle-off' }
       }
 
       //group submenu:
@@ -2801,9 +2805,9 @@ try {
               group: key
             }
             jeedom.scenario.save({
-              scenario : scenario,
+              scenario: scenario,
               error: function(error) {
-                jeedomUtils.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({ message: error.message, level: 'danger' })
               },
               success: function(data) {
                 document.querySelector('div.scenarioListContainer[data-groupName="' + key + '"]').appendChild(document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]'))
@@ -2824,9 +2828,9 @@ try {
               object_id: objectId
             }
             jeedom.scenario.save({
-              scenario : scenario,
+              scenario: scenario,
               error: function(error) {
-                jeedomUtils.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({ message: error.message, level: 'danger' })
               },
               success: function(data) {
                 let dispCard = document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]')
@@ -2844,9 +2848,9 @@ try {
               isActive: "0"
             }
             jeedom.scenario.save({
-              scenario : scenario,
+              scenario: scenario,
               error: function(error) {
-                jeedomUtils.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({ message: error.message, level: 'danger' })
               },
               success: function(data) {
                 document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').addClass('inactive')
@@ -2861,9 +2865,9 @@ try {
               isActive: "1"
             }
             jeedom.scenario.save({
-              scenario : scenario,
+              scenario: scenario,
               error: function(error) {
-                jeedomUtils.showAlert({message: error.message, level: 'danger'})
+                jeedomUtils.showAlert({ message: error.message, level: 'danger' })
               },
               success: function(data) {
                 document.querySelector('.scenarioDisplayCard[data-scenario_id="' + data.id + '"]').removeClass('inactive')
@@ -2876,4 +2880,4 @@ try {
       }
     }
   })
-  } catch (err) {}
+} catch (err) { }

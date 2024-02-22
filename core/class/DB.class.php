@@ -21,8 +21,8 @@
 class DB {
 	/*     * **************  Constantes  ***************** */
 
-	const FETCH_TYPE_ROW = 0;
-	const FETCH_TYPE_ALL = 1;
+	public const FETCH_TYPE_ROW = 0;
+	public const FETCH_TYPE_ALL = 1;
 
 	/*     * **************  Attributs  ***************** */
 

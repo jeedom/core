@@ -77,7 +77,7 @@ if (!jeeFrontEnd.interact) {
           }
           if (isset(data.actions) && isset(data.actions.cmd) && Array.isArray(data.actions.cmd) && data.actions.cmd.length != null) {
             for (var i in data.actions.cmd) {
-              jeeP.addAction(data.actions.cmd[i], 'action', '{{Action}}');
+              jeeP.addAction(data.actions.cmd[i], 'action', '{{Action}}')
             }
           }
           jeedomUtils.taAutosize()
@@ -227,7 +227,7 @@ if (!jeeFrontEnd.interact) {
             }
           }
         })
-      } catch (err) {}
+      } catch (err) { }
     },
     setAutoComplete: function() {
       document.querySelector('.interactAttr[data-l1key="group"]').jeeComplete({
@@ -297,50 +297,6 @@ if (!jeeFrontEnd.interact) {
 
 jeeFrontEnd.interact.init()
 
-//searching
-document.getElementById('in_searchInteract')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
-  if (search == '') {
-    document.querySelectorAll('.panel-collapse.in').removeClass('in')
-    document.querySelectorAll('.interactDisplayCard').seen()
-    return
-  }
-  search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
-  if (not) {
-    search = search.replace(':not(', '')
-  }
-  document.querySelectorAll('.panel-collapse.in').removeClass('in')
-  document.querySelectorAll('.interactDisplayCard').unseen()
-  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
-  var match, text
-  document.querySelectorAll('.interactDisplayCard .name').forEach(_name => {
-    match = false
-    text = jeedomUtils.normTextLower(_name.textContent)
-    if (text.includes(search)) {
-      match = true
-    }
-
-    if (not) match = !match
-    if (match) {
-      _name.closest('.interactDisplayCard').seen()
-      _name.closest('.panel-collapse').setAttribute('data-show', 1)
-    }
-  })
-  document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
-  document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
-})
-document.getElementById('bt_resetInteractSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchInteract').jeeValue('').triggerEvent('keyup')
-})
-document.getElementById('bt_openAll')?.addEventListener('click', function(event) {
-  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
-})
-document.getElementById('bt_closeAll')?.addEventListener('click', function(event) {
-  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
-})
-
-
 //Set sortable:
 Sortable.create(document.getElementById('div_action'), {
   delay: 100,
@@ -351,7 +307,6 @@ Sortable.create(document.getElementById('div_action'), {
   direction: 'vertical',
   removeCloneOnHide: true,
 })
-
 
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
@@ -364,6 +319,38 @@ document.registerEvent('keydown', function(event) {
   }
 })
 
+//searching
+document.getElementById('in_searchInteract')?.addEventListener('keyup', function(event) {
+  var search = event.target.value
+  if (search == '') {
+    document.querySelectorAll('#accordionInteract .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
+    document.querySelectorAll('.interactDisplayCard').seen()
+    return
+  }
+  search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+  document.querySelectorAll('#accordionInteract .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
+  document.querySelectorAll('.interactDisplayCard').unseen()
+  var match, text
+  document.querySelectorAll('.interactDisplayCard .name').forEach(_name => {
+    match = false
+    text = jeedomUtils.normTextLower(_name.textContent)
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
+      _name.closest('.interactDisplayCard').seen()
+      _name.closest('.panel').querySelector('.accordion-toggle').setAttribute('data-show', 1)
+    }
+  })
+  document.querySelectorAll('.accordion-toggle.collapsed[data-show="1"]').forEach(_panel => { _panel.click() })
+  document.querySelectorAll('.accordion-toggle:not(.collapsed)[data-show="0"]').forEach(_panel => { _panel.click() })
+})
 
 /*Events delegations
 */
@@ -378,6 +365,21 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 //ThumbnailDisplay
 document.getElementById('interactThumbnailDisplay').addEventListener('click', function(event) {
   var _target = null
+  if (_target = event.target.closest('#bt_openAll')) {
+    document.querySelectorAll('#accordionInteract .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_closeAll')) {
+    document.querySelectorAll('#accordionInteract .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_resetInteractSearch')) {
+    document.getElementById('in_searchInteract').jeeValue('').triggerEvent('keyup')
+    return
+  }
+
   if (_target = event.target.closest('.interactDisplayCard')) {
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       var url = '/index.php?v=d&p=interact&id=' + _target.getAttribute('data-interact_id')
@@ -452,7 +454,7 @@ document.getElementById('interactThumbnailDisplay').addEventListener('mouseup', 
     if (event.which == 2) {
       event.preventDefault()
       let id = _target.getAttribute('data-interact_id')
-      document.querySelector('.interactDisplayCard[data-interact_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.interactDisplayCard[data-interact_id="' + id + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
   }
@@ -480,7 +482,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
     jeedomUtils.chooseIcon(function(_icon) {
       document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
       jeeFrontEnd.modifyWithoutSave = true
-    }, {icon: _icon})
+    }, { icon: _icon })
     return
   }
 

@@ -353,113 +353,69 @@ if (!jeeFrontEnd.widgets) {
 
 jeeFrontEnd.widgets.init()
 
-
-
-//searching
-document.getElementById('in_searchWidgets')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
-  if (search == '') {
-    document.querySelectorAll('.panel-collapse.in').removeClass('in')
-    document.querySelectorAll('.widgetsDisplayCard').seen()
-    return
-  }
-  search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
-  if (not) {
-    search = search.replace(':not(', '')
-  }
-  document.querySelectorAll('.panel-collapse.in').removeClass('in')
-  document.querySelectorAll('.widgetsDisplayCard').unseen()
-  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
-  var match, text
-  document.querySelectorAll('.widgetsDisplayCard .search').forEach(_search => {
-    match = false
-    text = jeedomUtils.normTextLower(_search.textContent)
-    if (text.includes(search)) match = true
-
-    if (not) match = !match
-    if (match) {
-      _search.closest('.widgetsDisplayCard').seen()
-      _search.closest('.panel-collapse').setAttribute('data-show', 1)
-    }
-  })
-  document.querySelectorAll('.panel-collapse[data-show="1"]').addClass('in')
-  document.querySelectorAll('.panel-collapse[data-show="0"]').removeClass('in')
-})
-document.getElementById('bt_resetWidgetsSearch')?.addEventListener('click', function(event) {
-  document.getElementById('in_searchWidgets').jeeValue('')
-})
-document.getElementById('bt_openAll')?.addEventListener('click', function(event) {
-  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in') })
-})
-document.getElementById('bt_closeAll')?.addEventListener('click', function(event) {
-  document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.removeClass('in') })
-})
-
-
 //context menu
 try {
-    jeedom.widgets.all({
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(_widgets) {
-        if (_widgets.length == 0) return
+  jeedom.widgets.all({
+    error: function(error) {
+      jeedomUtils.showAlert({
+        message: error.message,
+        level: 'danger'
+      })
+    },
+    success: function(_widgets) {
+      if (_widgets.length == 0) return
 
-        var widgetsList = []
-        widgetsList['info'] = []
-        widgetsList['action'] = []
-        for (var i = 0; i < _widgets.length; i++) {
-          wg = _widgets[i]
-          if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
-          if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
-        }
-
-        //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0
-        var groupWidgets, items, wg, wgName, wgId
-        for (var group in widgetsList) {
-          groupWidgets = widgetsList[group]
-          items = {}
-          for (var index in groupWidgets) {
-            wg = groupWidgets[index]
-            wgName = wg[0]
-            wgId = wg[1]
-            items[uniqId] = {
-              'name': wgName,
-              'id': wgId
-            }
-            uniqId++
-          }
-          contextmenuitems[group] = {
-            'name': group,
-            'items': items
-          }
-        }
-
-        new jeeCtxMenu({
-          selector: '.nav.nav-tabs > li',
-          autoHide: true,
-          zIndex: 9999,
-          className: 'widget-context-menu',
-          callback: function(key, options, event) {
-            if (!jeedomUtils.checkPageModified()) {
-              if (event.ctrlKey || event.metaKey || event.which == 2) {
-                window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
-              } else {
-                jeeP.printWidget(options.commands[key].id)
-              }
-            }
-          },
-          items: contextmenuitems
-        })
+      var widgetsList = []
+      widgetsList['info'] = []
+      widgetsList['action'] = []
+      for (var i = 0; i < _widgets.length; i++) {
+        wg = _widgets[i]
+        if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
+        if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
       }
-    })
-  } catch (err) { }
+
+      //set context menu!
+      var contextmenuitems = {}
+      var uniqId = 0
+      var groupWidgets, items, wg, wgName, wgId
+      for (var group in widgetsList) {
+        groupWidgets = widgetsList[group]
+        items = {}
+        for (var index in groupWidgets) {
+          wg = groupWidgets[index]
+          wgName = wg[0]
+          wgId = wg[1]
+          items[uniqId] = {
+            'name': wgName,
+            'id': wgId
+          }
+          uniqId++
+        }
+        contextmenuitems[group] = {
+          'name': group,
+          'items': items
+        }
+      }
+
+      new jeeCtxMenu({
+        selector: '.nav.nav-tabs > li',
+        autoHide: true,
+        zIndex: 9999,
+        className: 'widget-context-menu',
+        callback: function(key, options, event) {
+          if (!jeedomUtils.checkPageModified()) {
+            if (event.ctrlKey || event.metaKey || event.which == 2) {
+              window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
+            } else {
+              jeeP.printWidget(options.commands[key].id)
+            }
+          }
+        },
+        items: contextmenuitems
+      })
+    }
+  })
+} catch (err) { }
 
 
 //Register events on top of page container:
@@ -471,12 +427,61 @@ document.registerEvent('keydown', function(event) {
   }
 })
 
+//searching
+document.getElementById('in_searchWidgets').addEventListener('keyup', function() {
+  var search = this.value
+  if (search == '') {
+    document.querySelectorAll('#accordionWidgets .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
+    document.querySelectorAll('.widgetsDisplayCard').seen()
+    return
+  }
+  search = jeedomUtils.normTextLower(search)
+  var not = search.startsWith(":not(")
+  if (not) {
+    search = search.replace(':not(', '')
+  }
+  document.querySelectorAll('#accordionWidgets .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
+  document.querySelectorAll('.widgetsDisplayCard').unseen()
+  var match, text
+
+  document.querySelectorAll('.widgetsDisplayCard .name').forEach(scName => {
+    match = false
+    text = jeedomUtils.normTextLower(scName.textContent)
+    if (text.includes(search)) {
+      match = true
+    }
+
+    if (not) match = !match
+    if (match) {
+      scName.closest('.widgetsDisplayCard').seen()
+      scName.closest('.panel').querySelector('.accordion-toggle').setAttribute('data-show', 1)
+    }
+
+  })
+  document.querySelectorAll('.accordion-toggle.collapsed[data-show="1"]').forEach(_panel => { _panel.click() })
+  document.querySelectorAll('.accordion-toggle:not(.collapsed)[data-show="0"]').forEach(_panel => { _panel.click() })
+})
 
 /*Events delegations
 */
 //ThumbnailDisplay
 document.getElementById('div_widgetsList').addEventListener('click', function(event) {
   var _target = null
+  if (_target = event.target.closest('#bt_openAll')) {
+    document.querySelectorAll('#accordionWidgets .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_closeAll')) {
+    document.querySelectorAll('#accordionWidgets .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_resetWidgetsSearch')) {
+    document.getElementById('in_searchWidgets').jeeValue('').triggerEvent('keyup')
+    return
+  }
+
   if (_target = event.target.closest('#bt_addWidgets')) {
     jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
       if (result !== null) {
@@ -543,7 +548,7 @@ document.getElementById('div_widgetsList').addEventListener('mouseup', function(
     if (event.which == 2) {
       event.preventDefault()
       var id = _target.getAttribute('data-widgets_id')
-      document.querySelector('.widgetsDisplayCard[data-widgets_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.widgetsDisplayCard[data-widgets_id="' + id + '"] .name').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
   }
@@ -694,14 +699,14 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
     jeedomUtils.chooseIcon(function(_icon) {
       document.querySelector('div[data-l2key="icon"]').innerHTML = _icon
       jeeFrontEnd.modifyWithoutSave = true
-    }, {icon: _icon})
+    }, { icon: _icon })
     return
   }
 
   if (_target = event.target.closest('#div_templateReplace .chooseIcon')) {
-    var params = {img: true};
-    let input = _target.closest('div').querySelector('input').value;
-    if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6);
+    var params = { img: true }
+    let input = _target.closest('div').querySelector('input').value
+    if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6)
     jeedomUtils.chooseIcon(function(_icon) {
       _target.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
     }, params)
@@ -710,9 +715,9 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#div_templateTest .chooseIcon')) {
-    var params = {img: true};
-    let input = _target.closest('div').querySelector('input').value;
-    if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6);
+    var params = { img: true }
+    let input = _target.closest('div').querySelector('input').value
+    if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6)
     jeedomUtils.chooseIcon(function(_icon) {
       _target.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
     }, params)

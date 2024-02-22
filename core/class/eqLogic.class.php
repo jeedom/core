@@ -238,7 +238,7 @@ class eqLogic {
 			if ($_onlyEnable) {
 				$sql .= ' AND isEnable=1';
 			}
-            if ($_onlyVisible) {
+             		if ($_onlyVisible) {
 				$sql .= ' AND isVisible=1';
 			}  
 			$sql .= ' AND JSON_CONTAINS(configuration,:configuration)
@@ -255,10 +255,10 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic
 		WHERE eqType_name=:eqType_name';
-        if ($_onlyEnable) {
+        	if ($_onlyEnable) {
 				$sql .= ' AND isEnable=1';
 		}
-        if ($_onlyVisible) {
+        	if ($_onlyVisible) {
 				$sql .= ' AND isVisible=1';
 		}                   
 		$sql .= ' 

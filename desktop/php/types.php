@@ -36,7 +36,7 @@ function jeedom_displayGenFamily($_family, $_familyId = '') {
 	$div .= '<div class="panel panel-default eqlogicSortable" data-id="' . $_index . '">';
 	$div .= '<div class="panel-heading">';
 	$div .= '<h3 class="panel-title">';
-	$div .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" aria-expanded="false" href="#gen_' . $_index . '">' . $_family;
+	$div .= '<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="" aria-expanded="false" href="#gen_' . $_index . '">' . $_family;
 	$div .= '<span class="spanNumber"> (#num#)</span></a></h3>';
 	$div .= '</div>';
 
