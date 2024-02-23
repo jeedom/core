@@ -692,6 +692,12 @@ class plugin {
 			}
 			$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
 			$return['auto'] = config::byKey('dependancyAutoMode', $this->getId(), 1);
+			if (!method_exists($plugin_id, 'additionnalDependancyCheck')){
+				$additionnal = $plugin_id::additionnalDependancyCheck();
+				if (isset($additionnal['state'])) {
+					$return['state'] = $additionnal['state'];
+				}
+			}
 			if ($return['state'] == 'ok') {
 				cache::set('dependancy' . $this->getID(), $return);
 			}
