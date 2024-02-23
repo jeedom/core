@@ -572,30 +572,26 @@ class plugin {
 	}
 
 	public static function checkDeamon() {
-		for ($i = 0; $i < 3; ++$i) {
-			foreach (self::listPlugin(true) as $plugin) {
-				if (config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
-					continue;
-				}
-				$dependancy_info = $plugin->dependancy_info();
-				if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $plugin->getId(), 1) == 1) {
-					try {
-						$plugin->dependancy_install();
-					} catch (Exception $e) {
-					}
-				} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
-					if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
-						shell_exec('rm ' . $dependancy_info['progress_file']);
-					}
-					log::add($plugin->getId(), 'error', __('Attention : l\'installation des dépendances a dépassé le temps maximum autorisé :', __FILE__) . ' ' . $plugin->getMaxDependancyInstallTime() . 'min');
-				}
+		foreach (self::listPlugin(true) as $plugin) {
+			if (config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
+				continue;
+			}
+			$dependancy_info = $plugin->dependancy_info();
+			if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $plugin->getId(), 1) == 1) {
 				try {
-					$plugin->deamon_start(false, true);
+					$plugin->dependancy_install();
 				} catch (Exception $e) {
 				}
+			} else if ($dependancy_info['state'] == 'in_progress' && $dependancy_info['duration'] > $plugin->getMaxDependancyInstallTime()) {
+				if (isset($dependancy_info['progress_file']) && file_exists($dependancy_info['progress_file'])) {
+					shell_exec('rm ' . $dependancy_info['progress_file']);
+				}
+				log::add($plugin->getId(), 'error', __('Attention : l\'installation des dépendances a dépassé le temps maximum autorisé :', __FILE__) . ' ' . $plugin->getMaxDependancyInstallTime() . 'min');
 			}
-			$i+=1;
-			sleep(60);
+			try {
+				$plugin->deamon_start(false, true);
+			} catch (Exception $e) {
+			}
 		}
 	}
 
