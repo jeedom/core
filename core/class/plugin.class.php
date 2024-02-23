@@ -572,7 +572,7 @@ class plugin {
 	}
 
 	public static function checkDeamon() {
-		for($i = 0; $i < 3; ++$i) {
+		for ($i = 0; $i < 3; ++$i) {
 			foreach (self::listPlugin(true) as $plugin) {
 				if (config::byKey('deamonAutoMode', $plugin->getId(), 1) != 1) {
 					continue;
