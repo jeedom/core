@@ -798,7 +798,7 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-lg-6">
+				<form class="form-horizontal col-lg-6 col-xs-12">
 					<fieldset>
 						<legend>{{Proxy Market}}</legend>
 						<div class="form-group">
