@@ -274,6 +274,7 @@ $productName = config::byKey('product_name');
 								<input type="checkbox" class="configKey form-control" data-l1key="core::jqueryless">
 							</div>
 						</div>
+						<br>
 					</fieldset>
 				</form>
 
@@ -525,9 +526,9 @@ $productName = config::byKey('product_name');
 								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i>{{Personnalisation avancée}}</a>
 							</div>
 						</div>
+						<br>
 					</fieldset>
 				</form>
-
 				<form class="form-horizontal col-lg-6">
 					<fieldset>
 						<legend>{{Tuiles}}</legend>
@@ -838,6 +839,7 @@ $productName = config::byKey('product_name');
 								</div>
 							</div>
 						</div>
+						<br>
 					</fieldset>
 				</form>
 			</div>
