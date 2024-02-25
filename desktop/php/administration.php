@@ -51,7 +51,7 @@ $productName = config::byKey('product_name');
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
 				<br>
-				<form class="form-horizontal col-lg-6 col-xs-12">
+				<form class="form-horizontal col-lg-6">
 					<fieldset>
 						<legend>{{Général}}</legend>
 						<div class="form-group">
@@ -277,7 +277,7 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-lg-6 col-xs-12">
+				<form class="form-horizontal col-lg-6">
 					<fieldset>
 						<legend>{{Coordonnées}}</legend>
 						<div class="form-group">
@@ -346,7 +346,7 @@ $productName = config::byKey('product_name');
 
 			<div role="tabpanel" class="tab-pane" id="interfacetab">
 				<br>
-				<form class="form-horizontal col-lg-6 col-xs-12">
+				<form class="form-horizontal col-lg-6">
 					<fieldset>
 						<legend>{{Thème}}</legend>
 						<div class="form-group">
@@ -528,7 +528,7 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-lg-6 col-xs-12">
+				<form class="form-horizontal col-lg-6">
 					<fieldset>
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
@@ -798,7 +798,7 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-lg-6 col-xs-12">
+				<form class="form-horizontal col-lg-6">
 					<fieldset>
 						<legend>{{Proxy Market}}</legend>
 						<div class="form-group">
