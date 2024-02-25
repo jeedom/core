@@ -51,11 +51,11 @@ $productName = config::byKey('product_name');
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
 				<br>
-				<form class="form-horizontal col-md-6 col-xs-12">
+				<form class="form-horizontal col-lg-6 col-xs-12">
 					<fieldset>
 						<legend>{{Général}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nom de votre}} <?php echo $productName; ?>
+							<label class="col-xs-4 control-label">{{Nom de votre}} <?php echo $productName; ?>
 								<sup><i class="fas fa-question-circle" tooltip="{{Utilisé notamment par le market}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -64,7 +64,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Langue}}
+							<label class="col-xs-4 control-label">{{Langue}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Sélection de la langue d'affichage}}"></i></sup></label>
 							<div class="col-md-6 col-xs-8">
 								<select class="form-control configKey" data-l1key="language" data-reload="1">
@@ -78,7 +78,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Moteur TTS}}
+							<label class="col-xs-4 control-label">{{Moteur TTS}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Sélection du moteur text-to-speech}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -98,7 +98,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Version}}
+							<label class="col-xs-4 control-label">{{Version}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Version de}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -106,7 +106,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Système}}
+							<label class="col-xs-4 control-label">{{Système}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Type de matériel utilisé}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -115,7 +115,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Clé d'installation}}
+							<label class="col-xs-4 control-label">{{Clé d'installation}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Identifie votre}} <?php echo $productName; ?> {{sur le market}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -125,7 +125,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Fuseau horaire}}
+							<label class="col-xs-4 control-label">{{Fuseau horaire}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Sélection du fuseau horaire}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -236,7 +236,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Serveur de temps optionnel}}
+							<label class="col-xs-4 control-label">{{Serveur de temps optionnel}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'ajouter un serveur de temps pour la synchronisation de l'heure}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -244,7 +244,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Ignorer la vérification de l'heure}}
+							<label class="col-xs-4 control-label">{{Ignorer la vérification de l'heure}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Cochez la case pour ne pas prendre en compte l'heure du système}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -252,7 +252,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Dernière date connue}}
+							<label class="col-xs-4 control-label">{{Dernière date connue}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -267,7 +267,7 @@ $productName = config::byKey('product_name');
 
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Core js (dev)}}
+							<label class="col-xs-4 control-label">{{Core js (dev)}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery/Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode)}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -277,11 +277,11 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-md-6 col-xs-12">
+				<form class="form-horizontal col-lg-6 col-xs-12">
 					<fieldset>
 						<legend>{{Coordonnées}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{GPS}}
+							<label class="col-xs-4 control-label">{{GPS}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Coordonnées GPS du bâtiment. De nombreux sites internet permettent de connaitre les coordonnées GPS d'une adresse}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -294,7 +294,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Postales}}
+							<label class="col-xs-4 control-label">{{Postales}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Adresse postale du bâtiment}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -317,7 +317,7 @@ $productName = config::byKey('product_name');
 
 						<legend>{{Informations diverses}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Altitude}}
+							<label class="col-xs-4 control-label">{{Altitude}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Altitude du bâtiment en mètres}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -325,7 +325,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Surface habitable}}
+							<label class="col-xs-4 control-label">{{Surface habitable}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Surface habitable du bâtiment en mètres carrés}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -333,7 +333,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nombre d'occupants}}
+							<label class="col-xs-4 control-label">{{Nombre d'occupants}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'occupants du bâtiment}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -346,11 +346,11 @@ $productName = config::byKey('product_name');
 
 			<div role="tabpanel" class="tab-pane" id="interfacetab">
 				<br>
-				<form class="form-horizontal col-md-6 col-xs-12">
+				<form class="form-horizontal col-lg-6 col-xs-12">
 					<fieldset>
 						<legend>{{Thème}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Desktop}}</label>
+							<label class="col-xs-4 control-label">{{Desktop}}</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Principal}}</span>
@@ -379,7 +379,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Mobile}}</label>
+							<label class="col-xs-4 control-label">{{Mobile}}</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Principal}}</span>
@@ -409,7 +409,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Basculer de thème}}
+							<label class="col-xs-4 control-label">{{Basculer de thème}}
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="theme_changeAccordingTime">{{Selon l'heure}}
@@ -432,7 +432,7 @@ $productName = config::byKey('product_name');
 
 						<legend>{{Affichage}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nombre de colonnes}}
+							<label class="col-xs-4 control-label">{{Nombre de colonnes}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes selon la taille de l'écran (1 colonne = 1 objet)}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -445,7 +445,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Options}}</label>
+							<label class="col-xs-4 control-label">{{Options}}</label>
 							<div class="col-md-6 col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="theme_displayAsTable" data-reload="1">{{Affichage tableau}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Affiche les pages du menu Outils et des plugins supportés en mode tableau}}"></i></sup>
@@ -461,7 +461,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Notifications}}</label>
+							<label class="col-xs-4 control-label">{{Notifications}}</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Position}}
@@ -486,7 +486,7 @@ $productName = config::byKey('product_name');
 
 						<legend>{{Personnalisation}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Basique}}</label>
+							<label class="col-xs-4 control-label">{{Basique}}</label>
 							<div class="col-md-6 col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::advance::enable">{{Activer}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour modifier les paramètres d'interface ci-dessous}}"></i></sup>
@@ -494,7 +494,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Transparence}}
+							<label class="col-xs-4 control-label">{{Transparence}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Transparence (Opacité) des tuiles et de certains éléments d'interface}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -502,7 +502,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Arrondi}}
+							<label class="col-xs-4 control-label">{{Arrondi}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Arrondi des éléments d'interface (0 = pas d'arrondi)}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -510,14 +510,14 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Désactiver les ombres}}</label>
+							<label class="col-xs-4 control-label">{{Désactiver les ombres}}</label>
 							<div class="col-md-6 col-xs-8">
 								<input type="checkbox" class="configKey form-control" data-l1key="widget::shadow" data-reload="1">
 							</div>
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Avancée}}</label>
+							<label class="col-xs-4 control-label">{{Avancée}}</label>
 							<div class="col-md-6 col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss">{{Activer}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour activer la personnalisation avancée}}"></i></sup>
@@ -528,11 +528,11 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-md-6 col-xs-12">
+				<form class="form-horizontal col-lg-6 col-xs-12">
 					<fieldset>
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Pas}}
+							<label class="col-xs-4 control-label">{{Pas}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur et la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -547,7 +547,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Marge}}
+							<label class="col-xs-4 control-label">{{Marge}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Espace entre les tuiles en pixels}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -555,7 +555,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Options}}</label>
+							<label class="col-xs-4 control-label">{{Options}}</label>
 							<div class="col-md-6 col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="interface::advance::vertCentering" data-reload="1">{{Centrage vertical}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Centre verticalement le contenu des tuiles}}"></i></sup>
@@ -570,7 +570,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Réorganisation automatique}}</label>
+							<label class="col-xs-4 control-label">{{Réorganisation automatique}}</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Actions humaines}}
@@ -595,7 +595,7 @@ $productName = config::byKey('product_name');
 
 						<legend>{{Images de fond}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Afficher}}
+							<label class="col-xs-4 control-label">{{Afficher}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour afficher les images de fond}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -603,7 +603,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Images}}</label>
+							<label class="col-xs-4 control-label">{{Images}}</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Dashboard}}
@@ -635,7 +635,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Opacité}}
+							<label class="col-xs-4 control-label">{{Opacité}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond à ajuster en fonction de la luminosité}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -650,7 +650,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Flou}}
+							<label class="col-xs-4 control-label">{{Flou}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Valeur de flou pour les images de fond sur les pages Dashboard}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -668,7 +668,7 @@ $productName = config::byKey('product_name');
 					<fieldset>
 						<legend>{{Accès interne}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-xs-4 control-label">{{Gestion automatique}}</label>
+							<label class="col-lg-2 col-xs-4 control-label">{{Gestion automatique}}</label>
 							<div class="col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="network::disableInternalAuto">{{Désactiver}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Désactiver la gestion automatique de l'adresse d'accès interne}}"></i></sup>
@@ -682,10 +682,10 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Adresse}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Adresse}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement utilisée pour la communication interne avec}} <?php echo $productName; ?>"></i></sup>
 							</label>
-							<div class="col-sm-8 col-xs-12">
+							<div class="col-xs-8">
 								<div class="input-group">
 									<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
 										<option value="http://">{{HTTP}}</option>
@@ -700,7 +700,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-xs-4 control-label">{{Interfaces}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Interfaces}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Liste des interfaces d'accès interne}}"></i></sup>
 							</label>
 							<div class="col-xs-8">
@@ -719,7 +719,7 @@ $productName = config::byKey('product_name');
 
 						<legend>{{Accès externe}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-xs-4 control-label">{{Gestion automatique}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Gestion automatique}}
 							</label>
 							<div class="col-xs-8">
 								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="network::disableMangement">{{Désactiver}}
@@ -728,8 +728,8 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Adresse}}</label>
-							<div class="col-sm-8 col-xs-12">
+							<label class="col-lg-2 col-xs-4 control-label">{{Adresse}}</label>
+							<div class="col-xs-8">
 								<div class="input-group">
 									<select class="roundedLeft configKey form-control" data-l1key="externalProtocol">
 										<option value="http://">{{HTTP}}</option>
@@ -753,7 +753,7 @@ $productName = config::byKey('product_name');
 								continue;
 							}
 							$div = '<div class="form-group">';
-							$div .= '<label class="col-lg-2 col-md-3 col-xs-4 control-label">{{DNS}} ' . $value['name'] . '</label>';
+							$div .= '<label class="col-lg-2 col-xs-4 control-label">{{DNS}} ' . $value['name'] . '</label>';
 							$div .= '<div class="col-xs-8">';
 							if ($configs['dns::token'] == '') {
 								$div .= '<div class="alert alert-warning">{{Cette fonctionnalité n\'est pas incluse avec votre service Pack (voir profil Market)}}</div>';
@@ -786,7 +786,7 @@ $productName = config::byKey('product_name');
 
 						<legend>{{Accès Docker}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-xs-4 control-label">{{Masque IP locales}}
+							<label class="col-lg-2 col-xs-4 control-label">{{Masque IP locales}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement pour les installations sous Docker (format: 192.168.1.*)}}"></i></sup>
 							</label>
 							<div class="col-xs-8">
@@ -798,11 +798,11 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-md-6 col-xs-12">
+				<form class="form-horizontal col-lg-6 col-xs-12">
 					<fieldset>
 						<legend>{{Proxy Market}}</legend>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Activer le proxy}}
+							<label class="col-xs-4 control-label">{{Activer le proxy}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Utiliser un proxy pour accéder au Market}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
@@ -810,25 +810,25 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Adresse du proxy}}</label>
+							<label class="col-xs-4 control-label">{{Adresse du proxy}}</label>
 							<div class="col-md-6 col-xs-8">
 								<input class="configKey form-control" type="text" data-l1key="proxyAddress">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Port du proxy}}</label>
+							<label class="col-xs-4 control-label">{{Port du proxy}}</label>
 							<div class="col-md-6 col-xs-8">
 								<input class="configKey form-control" data-l1key="proxyPort" type="text">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Nom d'utilisateur}}</label>
+							<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
 							<div class="col-md-6 col-xs-8">
 								<input class="configKey form-control" type="text" data-l1key="proxyLogins">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-6 col-xs-4 control-label">{{Mot de passe}}</label>
+							<label class="col-xs-4 control-label">{{Mot de passe}}</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<input class="inputPassword configKey form-control roundedLeft" type="text" data-l1key="proxyPassword">
