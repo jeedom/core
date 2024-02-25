@@ -1043,7 +1043,8 @@ div.eqLogicZone {
   }
   .counterReorderJeedom {
     position: absolute;
-    left: 3px;
+    top: 2px;
+    left: 10px;
     color: var(--eqTitle-color);
   }
   .editingMode {
@@ -1729,7 +1730,7 @@ div.eqLogic-widget.editingMode .panelLink {
   div.eqLogic-widget .cmd.editOptions {
     position: absolute;
     top: 0;
-    right: 5px;
+    right: 10px;
     width: 15px;
     height: 22px;
     padding: 5px 7px;
