@@ -429,9 +429,9 @@ if (!jeeFrontEnd.administration) {
           //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
           jeeP.loadActionOnMessage()
 
-          if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
-          if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
-          if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
+          if (!jeedom.theme['interface::background::dashboard'].includes('/data/backgrounds/config_dashboard')) document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
+          if (!jeedom.theme['interface::background::analysis'].includes('/data/backgrounds/config_analysis')) document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
+          if (!jeedom.theme['interface::background::tools'].includes('/data/backgrounds/config_tools')) document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
           jeeFrontEnd.modifyWithoutSave = false
 
           jeeP.configReload = document.getElementById('config').getJeeValues('.configKey[data-reload="1"]')[0]
