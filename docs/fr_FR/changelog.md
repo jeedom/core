@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.3
 
+## 4.3.23
+
+- Création d'une fonction additionnalDependancyCheck qui permet aux plugins de définir des vérifications supplémentaires pour le statut des dépendances. [PR #2405](https://github.com/jeedom/core/pull/2405)
+- modification du processus de séquençage des dépendances par package.json [PR #2405](https://github.com/jeedom/core/pull/2405)
+-  Gestion automatique de l’adresse d’accès interne après le démarrage, la mise à jour ou la restauration de Jeedom. (Optionnel) [PR #2406](https://github.com/jeedom/core/pull/2406)
+- Remise à plat du nom du dossier Salle à manger [PR #2407](https://github.com/jeedom/core/pull/2407)
+
+
 ## 4.3.22
 
 - Correction de bugs
