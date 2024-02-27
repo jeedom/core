@@ -677,7 +677,7 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Interface}}</span>
 									<span class="configKey hidden" data-l1key="network::internalAutoInterface"></span>
-									<select class="roundedRight configKey form-control" data-l1key="network::internalAutoInterface">
+									<select class="roundedRight configKey form-control">
 									</select>
 								</div>
 							</div>
