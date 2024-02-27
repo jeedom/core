@@ -215,22 +215,27 @@ class network {
 			config::save($_mode . 'Complement', '');
 		}
 		if ($_mode == 'internal') {
-			foreach ((self::getInterfacesInfo()) as $interface) {
-				if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false  || strpos($interface['ifname'], 'tun') !== false || strpos($interface['ifname'], 'br') !== false) {
-					continue;
-				}
-				$ip = null;
-				foreach ($interface['addr_info'] as $addr_info) {
-					if (isset($addr_info['family']) && $addr_info['family'] == 'inet') {
-						$ip = $addr_info['local'];
+			if (config::byKey('network::disableInternalAuto','core',0) == 0) {
+				foreach ((self::getInterfacesInfo()) as $interface) {
+					if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false  || strpos($interface['ifname'], 'tun') !== false || strpos($interface['ifname'], 'br') !== false) {
+						continue;
 					}
-				}
-				if ($ip == null) {
-					continue;
-				}
-				if (!netMatch('127.0.*.*', $ip) && $ip != '' && filter_var($ip, FILTER_VALIDATE_IP)) {
-					config::save('internalAddr', $ip);
-					break;
+					if (config::byKey('network::internalAutoInterface','core','auto') != 'auto' && $interface['ifname'] != config::byKey('network::internalAutoInterface','core','auto')){
+						continue;
+					}
+					$ip = null;
+					foreach ($interface['addr_info'] as $addr_info) {
+						if (isset($addr_info['family']) && $addr_info['family'] == 'inet') {
+							$ip = $addr_info['local'];
+						}
+					}
+					if ($ip == null) {
+						continue;
+					}
+					if (!netMatch('127.0.*.*', $ip) && !netMatch('169.*.*.*', $ip) && $ip != '' && filter_var($ip, FILTER_VALIDATE_IP)) {
+						config::save('internalAddr', $ip);
+						break;
+					}
 				}
 			}
 		}

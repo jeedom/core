@@ -595,183 +595,184 @@ user::isBan();
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="networktab">
-				<br />
-				<fieldset>
-					<div class="alert alert-warning">{{Attention : cette configuration n'est là que pour informer}} <?php echo config::byKey('product_name'); ?> {{de sa configuration réseau et n'a aucun impact sur les ports ou l'IP réellement utilisés pour joindre}} <?php echo config::byKey('product_name'); ?>
-					</div>
-				</fieldset>
-				<form class="form-horizontal">
+				<br>
+				<form class="form-horizontal col-xs-12">
 					<fieldset>
 						<legend>{{Accès interne}}</legend>
-						<div class="alert alert-warning">{{La configuration réseaux interne n'est la que pour la communication interne de }} <?php echo config::byKey('product_name'); ?> {{ avec lui meme}}</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
-							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
+							<label class="col-lg-2 col-xs-4 control-label">{{Gestion automatique}}</label>
+							<div class="col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="network::disableInternalAuto">{{Désactiver}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Désactiver la gestion automatique de l'adresse d'accès interne}}"></i></sup>
+								</label>
 								<div class="input-group">
-									<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
-										<option value="">{{Aucun}}</option>
-										<option value="http://">{{HTTP}}</option>
+									<span class="input-group-addon roundedLeft">{{Interface}}</span>
+									<span class="configKey hidden" data-l1key="network::internalAutoInterface"></span>
+									<select class="roundedRight configKey form-control">
 									</select>
-									<span class="input-group-addon">://</span>
-									<input type="text" class="configKey form-control" data-l1key="internalAddr" />
-									<span class="input-group-addon">:</span>
-									<input type="text" class="configKey form-control" data-l1key="internalPort" />
-									<span class="input-group-addon">/</span>
-									<input type="text" class="configKey form-control roundedRight" data-l1key="internalComplement" />
 								</div>
 							</div>
 						</div>
-					</fieldset>
-				</form>
-				<form class="form-horizontal">
-					<fieldset>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Adresse}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement utilisée pour la communication interne avec}} <?php echo $productName; ?>"></i></sup>
+							</label>
+							<div class="col-xs-8">
+								<div class="input-group">
+									<select class="roundedLeft configKey form-control" data-l1key="internalProtocol">
+										<option value="http://">{{HTTP}}</option>
+									</select>
+									<span class="input-group-addon">://</span>
+									<input type="text" class="configKey form-control" data-l1key="internalAddr">
+									<span class="input-group-addon">:</span>
+									<input type="text" class="configKey form-control" data-l1key="internalPort">
+									<span class="input-group-addon">/</span>
+									<input type="text" class="configKey form-control roundedRight" data-l1key="internalComplement">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Interfaces}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Liste des interfaces d'accès interne}}"></i></sup>
+							</label>
+							<div class="col-xs-8">
+								<table id="networkInterfacesTable" class="table table-condensed" style="margin-bottom: unset;">
+									<thead>
+										<tr>
+											<th>{{Nom}}</th>
+											<th>{{IP}}</th>
+											<th>{{MAC}}</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+
 						<legend>{{Accès externe}}</legend>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Protocole}}</label>
-							<div class="col-lg-8 col-md-9 col-sm-8 col-xs-6">
+							<label class="col-lg-2 col-xs-4 control-label">{{Gestion automatique}}
+							</label>
+							<div class="col-xs-8">
+								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="network::disableMangement">{{Désactiver}}
+									<sup><i class="fas fa-question-circle" tooltip="{{Désactiver la gestion automatique de l'adresse d'accès externe}}"></i></sup>
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Adresse}}</label>
+							<div class="col-xs-8">
 								<div class="input-group">
 									<select class="roundedLeft configKey form-control" data-l1key="externalProtocol">
-										<option value="">{{Aucun}}</option>
 										<option value="http://">{{HTTP}}</option>
 										<option value="https://">{{HTTPS}}</option>
 									</select>
 									<span class="input-group-addon">://</span>
-									<input type="text" class="configKey form-control" data-l1key="externalAddr" />
+									<input type="text" class="configKey form-control" data-l1key="externalAddr">
 									<span class="input-group-addon">:</span>
-									<input type="text" class="configKey form-control" data-l1key="externalPort" />
+									<input type="text" class="configKey form-control" data-l1key="externalPort">
 									<span class="input-group-addon">/</span>
-									<input type="text" class="configKey form-control roundedRight" data-l1key="externalComplement" />
+									<input type="text" class="configKey form-control roundedRight" data-l1key="externalComplement">
 								</div>
 							</div>
 						</div>
+						<?php
+						foreach ($repos as $key => $value) {
+							if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
+								continue;
+							}
+							if ($configs[$key . '::enable'] == 0) {
+								continue;
+							}
+							$div = '<div class="form-group">';
+							$div .= '<label class="col-lg-2 col-xs-4 control-label">{{DNS}} ' . $value['name'] . '</label>';
+							$div .= '<div class="col-xs-8">';
+							if ($configs['dns::token'] == '') {
+								$div .= '<div class="alert alert-warning">{{Cette fonctionnalité n\'est pas incluse avec votre service Pack (voir profil Market)}}</div>';
+								$div .= '</div>';
+								$div .= '</div>';
+								echo $div;
+								continue;
+							}
+							$div .= '<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS">{{Activer DNS}} ' . $productName . '</label>';
+							$div .= '<div class="input-group">';
+							$div .= '<span class="input-group-addon roundedLeft">{{Mode}}</span>';
+							$div .= '<select class="configKey form-control roundedRight" data-l1key="dns::mode">';
+							$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
+							$div .= '</select>';
+							$div .= '</div>';
+							if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
+								$div .= '<span class="label label-success">{{Démarré :}} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span> ';
+							} else {
+								$div .= '<span class="label label-warning">{{Arrêté}}</span> ';
+							}
+							$div .= '<span>';
+							$div .= '<a class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fas fa-play\'></i> {{(Re)démarrer}}</a> ';
+							$div .= '<a class="btn btn-sm btn-danger" id="bt_haltDns"><i class=\'fas fa-stop\'></i> {{Arrêter}}</a>';
+							$div .= '</span>';
+							$div .= '</div>';
+							$div .= '</div>';
+							echo $div;
+						}
+						?>
+
+						<legend>{{Accès Docker}}</legend>
+						<div class="form-group">
+							<label class="col-lg-2 col-xs-4 control-label">{{Masque IP locales}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement pour les installations sous Docker (format: 192.168.1.*)}}"></i></sup>
+							</label>
+							<div class="col-xs-8">
+								<input type="text" class="configKey form-control" data-l1key="network::localip">
+							</div>
+						</div>
+
+						<hr class="hrPrimary">
 					</fieldset>
 				</form>
 
-				<div class="row">
-					<div class="col-sm-6">
-						<fieldset>
-							<legend>{{Gestion avancée}}</legend>
-							<table id="networkInterfacesTable" class="table table-condensed table-bordered">
-								<thead>
-									<tr>
-										<th>{{Interface}}</th>
-										<th>{{IP}}</th>
-										<th>{{Mac}}</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-							</table>
-							<form class="form-horizontal">
-								<div class="form-group has-error">
-									<label class="col-xs-6 control-label">{{Désactiver la gestion du réseau par}} <?php echo config::byKey('product_name'); ?></label>
-									<div class="col-xs-4">
-										<input type="checkbox" class="configKey" data-l1key="network::disableMangement" />
-									</div>
+				<form class="form-horizontal col-lg-6 col-xs-12">
+					<fieldset>
+						<legend>{{Proxy Market}}</legend>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Activer le proxy}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Utiliser un proxy pour accéder au Market}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Adresse du proxy}}</label>
+							<div class="col-md-6 col-xs-8">
+								<input class="configKey form-control" type="text" data-l1key="proxyAddress">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Port du proxy}}</label>
+							<div class="col-md-6 col-xs-8">
+								<input class="configKey form-control" data-l1key="proxyPort" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
+							<div class="col-md-6 col-xs-8">
+								<input class="configKey form-control" type="text" data-l1key="proxyLogins">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Mot de passe}}</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<input class="inputPassword configKey form-control roundedLeft" type="text" data-l1key="proxyPassword">
+									<span class="input-group-btn">
+										<a class="btn btn-default form-control bt_showPass roundedRight" data-plugin="core"><i class="fas fa-eye"></i></a>
+									</span>
 								</div>
-								<div class="form-group">
-									<label class="col-xs-6 control-label">{{Masque IP local (uniquement pour des installations type docker, sous la forme 192.168.1.*)}}</label>
-									<div class="col-xs-6">
-										<input type="text" class="configKey form-control" data-l1key="network::localip" />
-									</div>
-								</div>
-							</form>
-						</fieldset>
-					</div>
-					<div class="col-sm-6">
-						<form class="form-horizontal">
-							<fieldset>
-								<?php
-								foreach ($repos as $key => $value) {
-									if (!isset($value['scope']['proxy']) || $value['scope']['proxy'] === false) {
-										continue;
-									}
-									if ($configs[$key . '::enable'] == 0) {
-										continue;
-									}
-									echo '<legend>{{Gestion DNS}} ' . $value['name'] . '</legend>';
-									if ($configs['dns::token'] == '') {
-										echo '<div class="alert alert-warning">{{Attention : cette fonctionnalité n\'est pas disponible dans le service pack community (voir votre service pack sur votre page profil sur le}} <a href="https://market.jeedom.com/index.php?v=d&p=connection" target="_blanck"> market</a>)</div>';
-										continue;
-									}
-									$div = '<div class="form-group col-xs-12">';
-									$div .= '<label class="col-xs-4 control-label">{{Utiliser les DNS}} ' . config::byKey('product_name') . '</label>';
-									$div .= '<div class="col-xs-8">';
-									$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS" />';
-									$div .= '</div>';
-									$div .= '</div>';
-									$div .= '<div class="form-group col-xs-12">';
-									$div .= '<label class="col-xs-4 control-label">{{Mode}}</label>';
-									$div .= '<div class="col-xs-8">';
-									$div .= '<select class="configKey" data-l1key="dns::mode">';
-									$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
-									$div .= '<option value="wireguard">{{Wireguard (alpha)}}</option>';
-									$div .= '</select>';
-									$div .= '</div>';
-									$div .= '</div>';
-									$div .= '<div class="form-group col-xs-12">';
-									$div .= '<label class="col-xs-4 control-label">{{Statut DNS}}</label>';
-									$div .= '<div class="col-xs-8">';
-									if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
-										$div .= '<span class="label label-success">{{Démarré :}} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="color:white;text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span>';
-									} else {
-										$div .= '<span class="label label-warning" tooltip="{{Normal si vous n\'avez pas coché la case : Utiliser les DNS}} ' . config::byKey('product_name') . '">{{Arrêté}}</span>';
-									}
-									$div .= '</div>';
-									$div .= '</div>';
-									$div .= '<div class="form-group col-xs-12">';
-									$div .= '<label class="col-xs-4 control-label">{{Gestion}}</label>';
-									$div .= '<div class="col-xs-8">';
-									$div .= '<a class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fa fa-play\'></i> {{(Re)démarrer}}</a> ';
-									$div .= '<a class="btn btn-sm btn-danger" id="bt_haltDns"><i class=\'fa fa-stop\'></i> {{Arrêter}}</a>';
-									$div .= '</div>';
-									$div .= '</div>';
-									echo $div;
-								}
-								?>
-							</fieldset>
-						</form>
-						<form class="form-horizontal">
-							<fieldset>
-								<legend>{{Utiliser un proxy pour le Market}}</legend>
-								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Activer le proxy}}</label>
-									<div class="col-xs-1">
-										<input type="checkbox" data-l1key="proxyEnabled" class="configKey">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Addresse proxy}}</label>
-									<div class="col-xs-4">
-										<input class="configKey form-control" type="text" data-l1key="proxyAddress">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Port du proxy}}</label>
-									<div class="col-xs-4">
-										<input class="configKey form-control" data-l1key="proxyPort" type="text">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Nom d'utilisateur}}</label>
-									<div class="col-xs-4">
-										<input class="configKey form-control" type="text" data-l1key="proxyLogins">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-xs-4 control-label">{{Mot de passe}}</label>
-									<div class="col-xs-4">
-										<div class="input-group">
-											<input class="inputPassword configKey form-control" type="text" data-l1key="proxyPassword">
-											<span class="input-group-btn">
-												<a class="btn btn-default form-control bt_showPass roundedRight" data-plugin="core"><i class="fas fa-eye"></i></a>
-											</span>
-										</div>
-									</div>
-								</div>
-							</fieldset>
-						</form>
-					</div>
-				</div>
+							</div>
+						</div>
+						<br>
+					</fieldset>
+				</form>
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="logtab">
@@ -2166,8 +2167,8 @@ user::isBan();
 							</label>
 							<span class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<?php
-									global $CONFIG;
-									echo $CONFIG['db']['username'];
+								global $CONFIG;
+								echo $CONFIG['db']['username'];
 								?>
 								<div class="input-group">
 									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />
