@@ -608,7 +608,7 @@ user::isBan();
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Interface}}</span>
 									<span class="configKey hidden" data-l1key="network::internalAutoInterface"></span>
-									<select class="roundedRight configKey form-control" data-l1key="network::internalAutoInterface">
+									<select class="roundedRight configKey form-control">
 									</select>
 								</div>
 							</div>
@@ -2167,8 +2167,8 @@ user::isBan();
 							</label>
 							<span class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<?php
-									global $CONFIG;
-									echo $CONFIG['db']['username'];
+								global $CONFIG;
+								echo $CONFIG['db']['username'];
 								?>
 								<div class="input-group">
 									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>" />

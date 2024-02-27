@@ -363,7 +363,7 @@ if (!jeeFrontEnd.administration) {
       var colors = {}
       $('#table_convertColor tbody tr').each(function() {
         colors[$(this).find('.color').value()] = $(this).find('.html').value()
-      });
+      })
       value.convertColor = colors
       $.ajax({
         type: "POST",
@@ -728,14 +728,24 @@ jeeP.$divConfig.on({
         $('.configKey[data-l1key=externalProtocol]').attr('disabled', true)
         $('.configKey[data-l1key=externalAddr]').attr('disabled', true).value('')
         $('.configKey[data-l1key=externalPort]').attr('disabled', true).value('')
+        $('.configKey[data-l1key=externalComplement]').attr('disabled', true).value('')
       } else {
         $('.configKey[data-l1key=externalProtocol]').attr('disabled', false)
         $('.configKey[data-l1key=externalAddr]').attr('disabled', false)
         $('.configKey[data-l1key=externalPort]').attr('disabled', false)
+        $('.configKey[data-l1key=externalComplement]').attr('disabled', false)
+      }
+
+      if ($('.configKey[data-l1key="network::disableInternalAuto"]').value() == 1) {
+        $('.configKey[data-l1key="network::internalAutoInterface"]').parent().hide()
+        $('.configKey[data-l1key="internalAddr"]').attr('disabled', false)
+      } else {
+        $('.configKey[data-l1key="network::internalAutoInterface"]').trigger('change').parent().show()
+        $('.configKey[data-l1key="internalAddr"]').attr('disabled', true)
       }
     }, 100)
   }
-}, '.configKey[data-l1key="market::allowDNS"], .configKey[data-l1key="network::disableMangement"]')
+}, '.configKey[data-l1key="market::allowDNS"], .configKey[data-l1key="network::disableMangement"], .configKey[data-l1key="network::disableInternalAuto"]')
 
 $('#bt_networkTab').on('click', function() {
   var tableBody = $('#networkInterfacesTable tbody')
@@ -748,15 +758,55 @@ $('#bt_networkTab').on('click', function() {
         })
       },
       success: function(_interfaces) {
-        var div = ''
+        let div = ''
+        let options = '<option value="auto">{{Automatique}}</option>'
+
         for (var i in _interfaces) {
           div += '<tr>'
           div += '<td>' + _interfaces[i].ifname + '</td>'
-          div += '<td>' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
+          div += '<td data-interface="' + _interfaces[i].ifname + '">' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
           div += '<td>' + (_interfaces[i].address ? _interfaces[i].address : '') + '</td>'
           div += '</tr>'
+
+          options += '<option value="' + _interfaces[i].ifname + '">' + _interfaces[i].ifname + '</option>'
         }
         tableBody.empty().append(div)
+
+        let internalAutoInterface = document.querySelector('.configKey[data-l1key="network::internalAutoInterface"]')
+        let value = (internalAutoInterface.value != '') ? internalAutoInterface.value : 'auto'
+        if (internalAutoInterface.tagName.toLowerCase() === 'span') {
+          let selectInterface = internalAutoInterface.nextElementSibling
+          selectInterface.setAttribute('data-l1key', 'network::internalAutoInterface')
+          internalAutoInterface.remove()
+          internalAutoInterface = selectInterface
+        }
+        internalAutoInterface.innerHTML = ''
+        internalAutoInterface.insertAdjacentHTML('beforeend', options)
+        internalAutoInterface.value = value
+
+        jQuery(internalAutoInterface).on('change', function(event) {
+          let autoInterface = this.value
+          if ($('.configKey[data-l1key="network::disableInternalAuto"]').value() == 0 && autoInterface != '') {
+            if (autoInterface != 'auto') {
+              document.querySelector('.configKey[data-l1key="internalAddr"]').value = document.querySelector('#networkInterfacesTable td[data-interface="' + autoInterface + '"]').innerText
+            } else {
+              for (var _interface of document.querySelectorAll('#networkInterfacesTable td[data-interface]')) {
+                let autoInterface = _interface.getAttribute('data-interface')
+                if (autoInterface == 'lo' || autoInterface.startsWith('docker') || autoInterface.startsWith('tun') || autoInterface.startsWith('br')) {
+                  continue
+                }
+                let interfaceIP = _interface.innerText
+                if (interfaceIP == '' || interfaceIP.startsWith('127.0') || interfaceIP.startsWith('169')) {
+                  continue
+                }
+                if (/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(interfaceIP)) {
+                  document.querySelector('.configKey[data-l1key="internalAddr"]').value = interfaceIP
+                  break
+                }
+              }
+            }
+          }
+        })
       }
     })
   }
@@ -790,7 +840,7 @@ $('#bt_restartDns').on('click', function() {
 })
 
 $('#bt_haltDns').on('click', function() {
-  $.hideAlert();
+  $.hideAlert()
   jeedom.config.save({
     configuration: $('#config').getValues('.configKey')[0],
     error: function(error) {
@@ -1343,7 +1393,7 @@ $('#table_convertColor tbody').off('click', '.removeConvertColor').on('click', '
 
 //CMD color
 $('.bt_resetColor').on('click', function() {
-  var el = $(this);
+  var el = $(this)
   jeedom.getConfiguration({
     key: $(this).attr('data-l1key'),
     default: 1,
