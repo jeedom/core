@@ -627,6 +627,18 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'name' => __('Consommation Electrique', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric')
 			),
+			'DAILY_CONSUMPTION' => array(
+				'name' => __('Consommation Electrique Journalière', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric')
+			),
+			'PRODUCTION' => array(
+				'name' => __('Production Electrique', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric')
+			),
+			'DAILY_PRODUCTION' => array(
+				'name' => __('Production Electrique Journalière', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric')
+			),
 			'VOLTAGE' => array(
 				'name' => __('Tension', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
