@@ -585,8 +585,18 @@ class system {
 				switch ($info['type']) {
 					case 'apt':
 						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . " killall apt apt-get unattended-upgr 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/lib/apt/lists/lock 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/cache/apt/archives/lock 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/lib/dpkg/lock* 2>&1");
+							echo shell_exec(self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef 2>&1");
 							echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
 						} else {
+							$cmd .= self::getCmdSudo() . " killall apt apt-get unattended-upgr\n";
+							$cmd .= self::getCmdSudo() . " rm /var/lib/apt/lists/lock\n";
+							$cmd .= self::getCmdSudo() . " rm /var/cache/apt/archives/lock\n";
+							$cmd .= self::getCmdSudo() . " rm /var/lib/dpkg/lock*\n";
+							$cmd .= self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef\n";
 							$cmd .= self::getCmdSudo() . " apt update\n";
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
@@ -678,11 +688,17 @@ class system {
 				}
 			}
 		}
+		if ($_plugin != '') {
+			if ($_foreground) {
+				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin .' 2>&1');
+			}else{
+				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+				$count++;
+				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+			}
+		}
 		if ($_foreground || !$has_something_todo) {
 			return;
-		}
-		if ($_plugin != '') {
-			$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
 		}
 		$cmd .= "rm $progress_file\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
@@ -690,7 +706,7 @@ class system {
 			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
 		}
 		file_put_contents('/tmp/jeedom_fix_package', $cmd);
-		self::launchScriptPackage($_plugin);
+		self::launchScriptPackage($_plugin,$_force);
 	}
 
 	public static function installPackageInProgress($_plugin = ''): bool {
@@ -713,11 +729,14 @@ class system {
 			}
 			return true;
 		}
+		if(shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l') > 0){
+			return true;
+		}
 		return false;
 	}
 
-	public static function launchScriptPackage($_plugin = '') {
-		if (self::installPackageInProgress($_plugin)) {
+	public static function launchScriptPackage($_plugin = '',$_force = false) {
+		if (!$_force && self::installPackageInProgress($_plugin)) {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours', __FILE__));
 		}
 		shell_exec(system::getCmdSudo() . ' chmod +x /tmp/jeedom_fix_package');

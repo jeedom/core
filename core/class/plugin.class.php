@@ -692,6 +692,12 @@ class plugin {
 			}
 			$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
 			$return['auto'] = config::byKey('dependancyAutoMode', $this->getId(), 1);
+			if (method_exists($plugin_id, 'additionnalDependancyCheck')) {
+				$additionnal = $plugin_id::additionnalDependancyCheck();
+				if (isset($additionnal['state'])) {
+					$return['state'] = $additionnal['state'];
+				}
+			}
 			if ($return['state'] == 'ok') {
 				cache::set('dependancy' . $this->getID(), $return);
 			}
@@ -734,9 +740,9 @@ class plugin {
 	 * @return null
 	 * @throws Exception
 	 */
-	public function dependancy_install($_force = false) {
+	public function dependancy_install($_force = false, $_foreground  = false) {
 		$plugin_id = $this->getId();
-		if (config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
+		if (!$_force && config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
 			throw new Exception(__('Vous devez attendre au moins 60 secondes entre deux lancements d\'installation de dépendances', __FILE__));
@@ -748,7 +754,7 @@ class plugin {
 		if (file_exists(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json')) {
 			$this->deamon_stop();
 			config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
-			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), true, false, $plugin_id, $_force);
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), true, $_foreground, $plugin_id, $_force);
 			$cache = cache::byKey('dependancy' . $this->getID());
 			$cache->remove();
 			return;
@@ -921,7 +927,7 @@ class plugin {
 		}
 	}
 
-	public function setIsEnable($_state) {
+	public function setIsEnable($_state, $_force = false, $_foreground = false) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
@@ -953,7 +959,7 @@ class plugin {
 				}
 			}
 		} else if ($alreadyActive == 0 && $_state == 1) {
-			try{
+			try {
 				include_file('core', $this->getId(), 'class', $this->getId());
 			} catch (Exception $e) {
 			} catch (Error $e) {
@@ -987,7 +993,7 @@ class plugin {
 				$dependancy_info = $this->dependancy_info(true);
 				if ($dependancy_info['state'] == 'nok' && config::byKey('dependancyAutoMode', $this->getId(), 1) == 1) {
 					try {
-						$this->dependancy_install();
+						$this->dependancy_install($_force, $_foreground);
 					} catch (Exception $e) {
 					}
 				}
@@ -1085,15 +1091,15 @@ class plugin {
 		return 'index.php?v=d&p=plugin&id=' . $this->getId();
 	}
 
-	public static function getConfigForCommunity($separator = '<br/>') {
-
+	public static function getConfigForCommunity($_separator = '<br>') {
 		// retrieve core version and branch
-		$infoCore = 'Core : ' . config::byKey('version', 'core', '#NA#') . ' (' . config::byKey('core::branch') . ')' . $separator;
+		$infoCore = 'Core : ' . config::byKey('version', 'core', '#NA#') . ' (' . config::byKey('core::branch') . ')' . $_separator;
 
-		// check if connexion used jeedom DNS 
+		// check if connexion used jeedom DNS
 		$url =  network::getNetworkAccess('external');
 		$hasDns  = ((strpos($url, 'jeedom.com') !== false || strpos($url, 'eu.jeedom.link')) !== false);
-		$infoCore .= 'DNS Jeedom : ' . ($hasDns ? 'oui' : 'non') . $separator;
+		$infoCore .= 'DNS ' . config::byKey('product_name') . ' : ' . ($hasDns ? __('oui', __FILE__) : __('non', __FILE__));
+		$infoCore .= $_separator;
 
 		return $infoCore;
 	}

@@ -983,6 +983,10 @@ class jeedom {
 			echo "Enable task : ";
 			config::save('enableCron', 1);
 			echo "OK\n";
+			/*             * *********Check Network Conf**************** */
+			echo "Check Network Conf : ";
+			network::checkConf('internal');
+			echo "OK\n";
 		} catch (Exception $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;

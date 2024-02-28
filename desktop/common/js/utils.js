@@ -1236,6 +1236,12 @@ jeedomUtils.initSpinners = function() {
       wrapOverflow: true,
       parse: Number
     })
+    if (_spin.hasClass('roundedLeft')) {
+      _spin.closest('.ispin-wrapper').addClass('roundedLeft')
+    }
+    if (_spin.hasClass('roundedRight')) {
+      _spin.closest('.ispin-wrapper').addClass('roundedRight')
+    }
   })
 }
 
