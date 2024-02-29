@@ -325,7 +325,7 @@ sendVarToJS('market_display_info', $market_array);
               refreshListAfterMarketObjectInstall()
             }
             jeedomUtils.showAlert({
-              message: '{{Objet installé avec succès}}',
+              message: '{{Plugin installé avec succès}}',
               level: 'success'
             })
           }
