@@ -548,10 +548,13 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
 /* _________________3rdparty ispin*/
 div.ispin-wrapper {
   display: block;
-  padding-right: 30px;
+  padding-right: 20px;
   background: var(--form-bg-color);
   border-radius: var(--border-radius);
   line-height: 100%;
+}
+.input-group .ispin-wrapper {
+  border-radius: 0 !important;
 }
 div.ispin-wrapper button.ispin-button {
   width: 20px !important;

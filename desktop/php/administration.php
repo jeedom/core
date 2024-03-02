@@ -634,14 +634,14 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Opacité}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond à ajuster en fonction de la luminosité}}"></i></sup>
+							<label class="col-xs-4 control-label">{{Opacité thème}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en fonction du thème}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Thème Light}}</span>
+									<span class="input-group-addon roundedLeft">{{Light}}</span>
 									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitylight" data-reload="1">
-									<span class="input-group-addon">{{Thème Dark}}</span>
+									<span class="input-group-addon">{{Dark}}</span>
 									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin roundedRight" data-l1key="interface::background::opacitydark" data-reload="1">
 								</div>
 							</div>
