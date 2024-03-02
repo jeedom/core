@@ -2048,7 +2048,8 @@ div.eqLogic-widget.editingMode .panelLink {
     display: inline-block !important;
   }
   body[data-page="administration"] div#config div#div_actionOnMessage,
-  body[data-page="administration"] div#config div#div_actionOnMessagealerting{
+  body[data-page="administration"] div#config div#div_actionOnMessagealerting,
+  body[data-page="administration"] div#config div#div_actionOnMessagealertingReturnBack{
     width:  98%;
   }
 
