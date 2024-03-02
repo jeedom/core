@@ -54,7 +54,7 @@ jeedom.cmd.execute = function(_params) {
   if (jeedom.cmd.disableExecute) {
     return
   }
-  var notify = _params.notify || true
+  var notify = _params.notify ?? true
   if (notify) {
     var eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget')
     if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
