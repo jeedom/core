@@ -4128,8 +4128,8 @@
     "core\/repo\/github.repo.php": {
         "Utilisateur ou organisation du dépôt": "Utilizador ou organização do repositório",
         "Nom du dépôt": "Nome do repositório",
-        "Branche": "Caminho",
         "Token (facultatif)": "Token (opcional)",
+        "Branche": "Caminho",
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilizador ou organização do repositório do core Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nome do repositório para o core Jeedom",
         "Branche pour le core Jeedom": "Caminho para o  core Jeedom",

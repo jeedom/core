@@ -171,7 +171,7 @@ if (!jeeFrontEnd.dashboard) {
         jeedom.cmd.disableExecute = true
         this.resetCategoryFilter()
         document.querySelectorAll('#dashTopBar .btn:not(#bt_editDashboardWidgetOrder)').addClass('disabled')
-        
+
         //set resizables:
         new jeeResize('div.eqLogic-widget, div.scenario-widget', {
           handles: ['right', 'bottom-right', 'bottom'],
@@ -421,7 +421,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   var match, text
   document.querySelectorAll('div.eqLogic-widget').forEach(function(element) {
     match = false
-    text = jeedomUtils.normTextLower(element.querySelector('div.widget-name > a')?.textContent)
+    text = jeedomUtils.normTextLower(element.querySelector('.widget-name > a')?.textContent)
     if (text.includes(search)) match = true
 
     if (element.getAttribute('data-tags') != undefined) {
@@ -736,4 +736,3 @@ window.registerEvent('resize', function dashboard(event) {
   if (event.isTrigger) return
   jeedomUtils.positionEqLogic()
 })
-

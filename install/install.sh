@@ -62,7 +62,6 @@ step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
   apt-get -y install software-properties-common
-  add-apt-repository -y non-free
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
@@ -76,7 +75,6 @@ step_2_mainpackage() {
   apt-get -y install at
   apt-get -y install mariadb-client
   apt-get -y install libav-tools
-  apt-get -y install libsox-fmt-mp3 sox libttspico-utils
   apt-get -y install espeak
   apt-get -y install mbrola
   apt-get -y install net-tools
@@ -194,7 +192,7 @@ step_7_jeedom_customization_mariadb() {
     fi
   fi
 
-  rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
+  #rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
   
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf

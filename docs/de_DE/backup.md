@@ -73,3 +73,9 @@ Mit Cloud-Backups kann Jeedom Ihre Backups direkt an den Markt senden. Auf diese
 # Häufigkeit der automatischen Sicherungen
 
 Jeedom führt jeden Tag zur gleichen Zeit eine automatische Sicherung durch. Es ist möglich, es über die &quot;Task-Engine&quot; zu ändern (die Task wird benannt **Jeedom Backup**), aber es wird nicht empfohlen. In der Tat wird es in Bezug auf die Belastung des Marktes berechnet.
+
+# FAQ
+
+>**Ich kann mein Backup, das ich von Safari abgerufen habe, nicht wiederherstellen**
+>
+>Standardmäßig dekomprimiert Safari tars.gz (in tar), was bedeutet, dass das Backup nicht mehr von jeedom verwendet werden kann, es muss in tar.gz neu komprimiert (gzip) werden

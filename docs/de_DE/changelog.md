@@ -6,7 +6,7 @@
 
 ## 4.4.1
 
-- Debian12/PHP8-Unterstützung.
+- PHP8-Unterstützung.
 - Überprüfen Sie die erforderliche Mindestkernversion, bevor Sie ein Plugin installieren oder aktualisieren.
 - Hinzufügen einer Schaltfläche **Hilfe** auf der Plugin-Konfigurationsseite *(Automatische Erstellung einer Hilfeanfrage im Forum)*
 

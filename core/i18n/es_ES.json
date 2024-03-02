@@ -4128,8 +4128,8 @@
     "core\/repo\/github.repo.php": {
         "Utilisateur ou organisation du dépôt": "Usuario u organización del depósito",
         "Nom du dépôt": "Nombre del deposito",
-        "Branche": "Rama",
         "Token (facultatif)": "Token (opcional)",
+        "Branche": "Rama",
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Usuario u organización del repositorio principal de Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nombre del repositorio para el núcleo Jeedom",
         "Branche pour le core Jeedom": "Rama para el núcleo Jeedom",

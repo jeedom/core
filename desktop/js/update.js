@@ -238,7 +238,11 @@ if (!jeeFrontEnd.update) {
             default:
               updClass = 'label-danger'
           }
-          tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
+          if (typeof _update.configuration.user!== 'undefined'){
+            tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version +' - '+ _update.configuration.user + '</span>'
+          } else {
+            tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
+          }
         }
       }
       tr += '<span class="hidden">' + _update.name + '</span><span class="updateAttr hidden" data-l1key="id"></span>'

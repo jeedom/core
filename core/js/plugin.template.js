@@ -588,6 +588,7 @@ domUtils(function() {
     filter: 'a, input, textarea',
     preventOnFilter: false,
     direction: 'vertical',
+    chosenClass: 'dragSelected',
     onEnd: function(event) {
       jeeFrontEnd.modifyWithoutSave = true
     },
