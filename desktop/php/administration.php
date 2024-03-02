@@ -305,7 +305,7 @@ $productName = config::byKey('product_name');
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{CP}}</span>
-									<input type="number" class="configKey form-control" data-l1key="info::postalCode">
+									<input type="text" class="configKey form-control" data-l1key="info::postalCode">
 									<span class="input-group-addon">{{Ville}}</span>
 									<input type="text" class="configKey form-control roundedRight" data-l1key="info::city">
 								</div>
