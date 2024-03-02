@@ -515,7 +515,7 @@ $productName = config::byKey('product_name');
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss">{{Activer}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour activer la personnalisation avancée}}"></i></sup>
 								</label>
-								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i>{{Personnalisation avancée}}</a>
+								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a>
 							</div>
 						</div>
 						<br>
