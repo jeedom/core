@@ -50,12 +50,13 @@ div.eqLogic-widget div.cmd-widget {
   display: none !important;
 }
 
+ /* commented for test from 2024-02-25
 div.cmd-widget .title>.cmdName {
   max-width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
+} */
 
 div.cmd-widget .cmdName {
   color: var(--txt-color);

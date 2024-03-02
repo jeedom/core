@@ -6,7 +6,7 @@
 
 ## 4.4.1
 
-- Soporte para Debian12/PHP8.
+- Soporte PHP8.
 - Verificar la versión básica mínima requerida antes de instalar o actualizar un complemento.
 - Agregar un botón **Asistencia** en la página de configuración del complemento *(Creación automática de una solicitud de ayuda en el foro)*
 

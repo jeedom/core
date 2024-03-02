@@ -4,11 +4,15 @@
 >
 >Même si elles ne sont pas forcément visibles au premier abord, la version 4.4 de Jeedom apporte des modifications majeures avec une interface qui a été complètement réécrite pour une maitrise complète et surtout un gain de fluidité de navigation inégalé. La gestion des dépendances PHP à également été revue afin de pouvoir les maintenir à jour automatiquement. Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez [ouvrir un sujet sur le forum avec l'étiquette `v4_4`](https://community.jeedom.com/) ou contacter le support depuis votre profil market *(sous condition d'être détenteur d'un service pack ou supérieur)*.
 
+## 4.4.2
+
+- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
+
 ## 4.4.1
 
-- Prise en charge Debian12/PHP8.
+- Prise en charge PHP8.
 - Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin.
-- Ajout d'un bouton **Assistance** sur la page de configuration des plugins *(Création automatique d'une demande d'aide sur le forum)*
+- Ajout d'un bouton **Assistance** sur la page de configuration des plugins *(Création automatique d'une demande d'aide sur le forum)*.
 
 ### 4.4 : Pré-requis
 

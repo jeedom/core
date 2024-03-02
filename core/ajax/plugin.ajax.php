@@ -151,17 +151,18 @@ try {
 	}
 
 	if (init('action') == 'createCommunityPost') {
-
-		$header = '< Ajoutez un titre puis rédigez votre question/problème ici, sans effacer les infos de config indiquées ci-dessous ><br/><br/><br/><br/>';
-		$header .= '--- <br/>**Mes infos de config** : <br/>```<br/>';
-		$footer = '<br/>```<br/>';
+		$header = __('Remplacez ce texte par votre demande en prenant soin de ne pas effacer les informations renseignées ci-dessous.', __FILE__) . '<br><br><br><br>';
+		$header .= '<br>---<br>';
+		$header .= '**' . __('Informations', __FILE__) . ' ' . config::byKey('product_name') . '**';
+		$header .= '<br>```<br>';
+		$footer = '<br>```<br>';
 
 		$infoPost = plugin::getConfigForCommunity();
 
 		/** @var plugin $plugin */
 		$plugin = plugin::byId(init('type'));
 		$plugin_id = $plugin->getId();
-		$infoPost .= '<br/>Plugin : ' . $plugin->getName() . '<br/>';
+		$infoPost .= '<br>Plugin : ' . $plugin->getName() . '<br>';
 
 		/** @var update $update */
 		$update = $plugin->getUpdate();
@@ -171,26 +172,25 @@ try {
 			$isBeta = ($version && $version != 'stable');
 		}
 
-		$infoPost .= 'Version : ' . $update->getLocalVersion() . ' (' . ($isBeta ? 'beta' : 'stable') . ')<br/>';
+		$infoPost .= __('Version', __FILE__) . ' : ' . $update->getLocalVersion() . ' (' . ($isBeta ? 'beta' : 'stable') . ')';
 
 		if ($plugin->getHasOwnDeamon()) {
 			$daemon_info = $plugin->deamon_info();
-			$infoPost .= 'Statut Démon : ' . ($daemon_info['state'] == 'ok' ?  __('Démarré', __FILE__) :  __('Stoppé', __FILE__));
-			$infoPost .= ' - (' . ($daemon_info['last_launch'] ?? __('Inconnue', __FILE__)) . ')<br/>';
+			$infoPost .= '<br>' . __('Statut Démon', __FILE__) . ' : ' . ($daemon_info['state'] == 'ok' ?  __('Démarré', __FILE__) :  __('Stoppé', __FILE__));
+			$infoPost .= ' - (' . ($daemon_info['last_launch'] ?? __('Inconnue', __FILE__)) . ')';
 		}
 
 		$infoPlugin = '';
 		if (method_exists($plugin_id, 'getConfigForCommunity')) {
-			$infoPlugin .= '<br/>Informations complémentaires du plugin :<br/>';
+			$infoPlugin .= '**' . __('Informations complémentaires', __FILE__) .  '**<br>';
 			$infoPlugin .= $plugin_id::getConfigForCommunity();
 		}
-
 
 		// GENERATE URL with Query Param to create a new post
 		$communitUrl = 'https://community.jeedom.com';
 		$ressource = '/new-topic?';
 
-		$finalBody = br2nl($header . $infoPost . $infoPlugin . $footer);
+		$finalBody = br2nl($header . $infoPost . $footer . $infoPlugin);
 
 		$data = array(
 			'category' => 'plugins/' . $plugin->getCategory(),
@@ -198,11 +198,8 @@ try {
 			'body' => $finalBody
 		);
 
-
 		$query = http_build_query($data);
-
 		$url = $communitUrl . $ressource . $query;
-
 		ajax::success(array('url' => $url, 'plugin' => $plugin->getName()));
 	}
 

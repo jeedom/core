@@ -36,8 +36,8 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
 	}
 }
-$logUpdate = log::get('update', 0, -1);
-if ((!isset($logUpdate[0])) || strpos($logUpdate[0], 'END UPDATE')) {
+$logUpdate = log::getLastLine('update');
+if (strpos($logUpdate, 'END UPDATE')) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
 } else {
 	sendVarToJS('jeephp2js.isUpdating', '1');

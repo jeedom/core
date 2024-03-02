@@ -46,6 +46,10 @@ class repo_github {
 					'name' =>  __('Nom du dépôt',__FILE__),
 					'type' => 'input',
 				),
+				'token' => array(
+					'name' =>  __('Token (facultatif)',__FILE__),
+					'type' => 'input'
+				),
 				'version' => array(
 					'name' =>  __('Branche',__FILE__),
 					'type' => 'input',
@@ -76,13 +80,13 @@ class repo_github {
 		);
 	}
 	
-	public static function getGithubClient() {
+	public static function getGithubClient($_token=null) {
 		$client = new \Github\Client();
-		if (config::byKey('github::token') != '') {
+		if (!is_null($_token) && $_token!=''){
 			if(defined('Github\Client::AUTH_ACCESS_TOKEN')){
-				$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_ACCESS_TOKEN);
+				$client->authenticate($_token, '', Github\Client::AUTH_ACCESS_TOKEN);
 			}else{
-				$client->authenticate(config::byKey('github::token'), '', Github\Client::AUTH_HTTP_TOKEN);
+				$client->authenticate($_token, '', Github\Client::AUTH_HTTP_TOKEN);
 			}
 		}
 		return $client;
@@ -98,7 +102,7 @@ class repo_github {
 			}
 			return;
 		}
-		$client = self::getGithubClient();
+		$client = self::getGithubClient($_update->getConfiguration('token',config::byKey('github::token','core','')));
 		try {
 			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
 		} catch (Exception $e) {
@@ -123,7 +127,8 @@ class repo_github {
 	}
 	
 	public static function downloadObject($_update) {
-		$client = self::getGithubClient();
+		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
+		$client = self::getGithubClient($token);
 		try {
 			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
 		} catch (Exception $e) {
@@ -143,10 +148,10 @@ class repo_github {
 		
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $_update->getLogicalId() . '...');
-		if (config::byKey('github::token') == '') {
+		if ($token == '') {
 			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
 		} else {
-			$result = shell_exec('curl -s -H "Authorization: token ' . config::byKey('github::token') . '" -L ' . $url . ' > ' . $tmp);
+			$result = shell_exec('curl -s -H "Authorization: token ' . $token . '" -L ' . $url . ' > ' . $tmp);
 		}
 		log::add('update', 'alert', $result);
 		
@@ -168,7 +173,7 @@ class repo_github {
 	}
 	
 	public static function downloadCore($_path) {
-		$client = self::getGithubClient();
+		$client = self::getGithubClient(config::byKey('github::token','core',''));
 		try {
 			$client->api('repo')->branches(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), config::byKey('github::core::branch', 'core', 'stable'));
 		} catch (Exception $e) {
@@ -186,7 +191,7 @@ class repo_github {
 	
 	public static function versionCore() {
 		try {
-			$client = self::getGithubClient();
+			$client = self::getGithubClient(config::byKey('github::token','core',''));
 			$fileContent = $client->api('repo')->contents()->download(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), 'core/config/version', config::byKey('github::core::branch', 'core', 'stable'));
 			return trim($fileContent);
 		} catch (Exception $e) {

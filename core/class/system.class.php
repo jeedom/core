@@ -463,10 +463,9 @@ class system {
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
 						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l'); 
-                          if ($output == 0) {
-							   $found = 1;
-							}
-						
+	                          		if ($output == 0) {
+							$found = 1;
+						}
 					} else {
 						$version = __('Erreur', __FILE__);
 					}
@@ -586,30 +585,50 @@ class system {
 				switch ($info['type']) {
 					case 'apt':
 						if ($_foreground) {
+							echo shell_exec(self::getCmdSudo() . " killall apt apt-get unattended-upgr 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/lib/apt/lists/lock 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/cache/apt/archives/lock 2>&1");
+							echo shell_exec(self::getCmdSudo() . " rm /var/lib/dpkg/lock* 2>&1");
+							echo shell_exec(self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef 2>&1");
 							echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
 						} else {
+							$cmd .= self::getCmdSudo() . " killall apt apt-get unattended-upgr\n";
+							$cmd .= self::getCmdSudo() . " rm /var/lib/apt/lists/lock\n";
+							$cmd .= self::getCmdSudo() . " rm /var/cache/apt/archives/lock\n";
+							$cmd .= self::getCmdSudo() . " rm /var/lib/dpkg/lock*\n";
+							$cmd .= self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef\n";
 							$cmd .= self::getCmdSudo() . " apt update\n";
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
 						break;
 					case 'pip3':
-						$cmd_cleaning_pip =  'RESULTTODELETE=$(find /usr/local/lib/python*/dist-packages/ -mindepth 1 -maxdepth 1 -type d -exec du -ks {} + | awk \'$1 <= 4\' | cut -f 2-);';
-						$cmd_cleaning_pip .= 'RESULTTODELETE2=$(echo "$RESULTTODELETE" | sed \'s, ,\\ ,g\'); echo "$RESULTTODELETE2" | xargs rm -rf';
-						if ($_foreground) {
-							echo shell_exec($cmd_cleaning_pip . " 2>&1");
-							echo shell_exec(self::getCmdSudo() . " pip3 cache purge 2>&1");
-							echo shell_exec(self::getCmdSudo() . " pip3 install --upgrade pip 2>&1");
-						} else {
-							$cmd .= $cmd_cleaning_pip . "\n";
-							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
-							$cmd .= self::getCmdSudo() . " pip3 cache purge\n";
-							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
-							$cmd .= self::getCmdSudo() . " pip3 install --upgrade pip\n";
-							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+						if (version_compare(self::getOsVersion(), '12', '<')) {
+							$cmd_cleaning_pip =  'RESULTTODELETE=$(find /usr/local/lib/python*/dist-packages/ -mindepth 1 -maxdepth 1 -type d -exec du -ks {} + | awk \'$1 <= 4\' | cut -f 2-);';
+							$cmd_cleaning_pip .= 'RESULTTODELETE2=$(echo "$RESULTTODELETE" | sed \'s, ,\\ ,g\'); echo "$RESULTTODELETE2" | xargs rm -rf';
+							if ($_foreground) {
+								echo shell_exec($cmd_cleaning_pip . " 2>&1");
+								echo shell_exec(self::getCmdSudo() . " pip3 cache purge 2>&1");
+								echo shell_exec(self::getCmdSudo() . " pip3 install --upgrade pip 2>&1");
+							} else {
+								$cmd .= $cmd_cleaning_pip . "\n";
+								$count++;
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= self::getCmdSudo() . " pip3 cache purge\n";
+								$count++;
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= self::getCmdSudo() . " pip3 install --upgrade pip\n";
+								$count++;
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							}
+						}else{
+							if ($_foreground) {
+								echo shell_exec(self::getCmdSudo() . ' apt update;'.self::getCmdSudo() .' apt install -y pipx');
+							}else{
+								$cmd .= self::getCmdSudo() . " apt update;\n".self::getCmdSudo() ." apt install -y pipx\n";
+								$count++;
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							}
 						}
 						break;
 					case 'npm':
@@ -669,11 +688,17 @@ class system {
 				}
 			}
 		}
+		if ($_plugin != '') {
+			if ($_foreground) {
+				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin .' 2>&1');
+			}else{
+				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+				$count++;
+				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+			}
+		}
 		if ($_foreground || !$has_something_todo) {
 			return;
-		}
-		if ($_plugin != '') {
-			$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
 		}
 		$cmd .= "rm $progress_file\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
@@ -681,7 +706,7 @@ class system {
 			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
 		}
 		file_put_contents('/tmp/jeedom_fix_package', $cmd);
-		self::launchScriptPackage($_plugin);
+		self::launchScriptPackage($_plugin,$_force);
 	}
 
 	public static function installPackageInProgress($_plugin = ''): bool {
@@ -704,11 +729,14 @@ class system {
 			}
 			return true;
 		}
+		if(shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l') > 0){
+			return true;
+		}
 		return false;
 	}
 
-	public static function launchScriptPackage($_plugin = '') {
-		if (self::installPackageInProgress($_plugin)) {
+	public static function launchScriptPackage($_plugin = '',$_force = false) {
+		if (!$_force && self::installPackageInProgress($_plugin)) {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours', __FILE__));
 		}
 		shell_exec(system::getCmdSudo() . ' chmod +x /tmp/jeedom_fix_package');
@@ -748,6 +776,9 @@ class system {
 			case 'pip3':
 				if ($_version != '') {
 					$_package .= '==' . $_version;
+				}
+				if (version_compare(self::getOsVersion(), '12', '>=')) {
+					return self::getCmdSudo() . ' pipx install --force-reinstall --upgrade ' . $_package;
 				}
 				return self::getCmdSudo() . ' pip3 install --force-reinstall --upgrade ' . $_package;
 			case 'npm':

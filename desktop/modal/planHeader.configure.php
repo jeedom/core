@@ -200,7 +200,7 @@ if (!jeeFrontEnd.md_planHeaderConfigure) {
           planBckg = document.createElement('div')
           planBckg.setAttribute('id', 'planHeaderImage')
           var parent = document.querySelector('div.div_backgroundPlan > div.div_displayObject')
-          console.log('parent:', parent)
+          // console.log('parent:', parent)
           parent.insertBefore(planBckg, parent.querySelector('#div_grid'))
 
         }

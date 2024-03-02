@@ -141,7 +141,7 @@ try {
 		'.gitignore',
 		'.log',
 		'core/config/common.config.php',
-		'/var/www/html/data/imgOs/',
+		'data/imgOs',
 		config::byKey('backup::path'),
 	);
 	if(version_compare(PHP_VERSION, '8.0.0') >= 0){

@@ -4128,8 +4128,8 @@
     "core\/repo\/github.repo.php": {
         "Utilisateur ou organisation du dépôt": "Utilisateur ou organisation du dépôt",
         "Nom du dépôt": "Nom du dépôt",
-        "Branche": "филиал",
         "Token (facultatif)": "Token (facultatif)",
+        "Branche": "филиал",
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilisateur ou organisation du dépôt pour le core Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nom du dépôt pour le core Jeedom",
         "Branche pour le core Jeedom": "Branche pour le core Jeedom",

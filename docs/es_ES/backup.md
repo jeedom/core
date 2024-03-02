@@ -73,3 +73,9 @@ La copia de seguridad en la nube le permite a Jeedom enviar sus copias de seguri
 # Frecuencia de respaldos automáticos
 
 Jeedom realiza una copia de seguridad automática todos los días a la misma hora. Es posible modificarlo, desde el &quot;Motor de tareas&quot; (la tarea se denomina **Copia de seguridad de Jeedom**), pero no es recomendable. De hecho, se calcula en relación con la carga del mercado.
+
+# FAQ
+
+>**No puedo restaurar mi copia de seguridad que recuperé de Safari**
+>
+>Por defecto, Safari descomprime tars.gz (en tar), lo que significa que jeedom ya no puede utilizar la copia de seguridad, debe recomprimirse (gzip) en tar.gz

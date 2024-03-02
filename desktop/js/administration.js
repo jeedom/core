@@ -429,9 +429,9 @@ if (!jeeFrontEnd.administration) {
           //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
           jeeP.loadActionOnMessage()
 
-          if (jeedom.theme['interface::background::dashboard'] != '/data/backgrounds/config_dashboard.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
-          if (jeedom.theme['interface::background::analysis'] != '/data/backgrounds/config_analysis.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
-          if (jeedom.theme['interface::background::tools'] != '/data/backgrounds/config_tools.jpg') document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
+          if (!jeedom.theme['interface::background::dashboard'].includes('/data/backgrounds/config_dashboard')) document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
+          if (!jeedom.theme['interface::background::analysis'].includes('/data/backgrounds/config_analysis')) document.querySelector('a.bt_removeBackgroundImage[data-page="analysis"]').addClass('disabled')
+          if (!jeedom.theme['interface::background::tools'].includes('/data/backgrounds/config_tools')) document.querySelector('a.bt_removeBackgroundImage[data-page="tools"]').addClass('disabled')
           jeeFrontEnd.modifyWithoutSave = false
 
           jeeP.configReload = document.getElementById('config').getJeeValues('.configKey[data-reload="1"]')[0]
@@ -766,15 +766,30 @@ document.getElementById('tablist').addEventListener('click', function(event) {
           })
         },
         success: function(_interfaces) {
-          var div = ''
+          let div = ''
+          let options = '<option value="auto">{{Automatique}}</option>'
+
           for (var i in _interfaces) {
             div += '<tr>'
             div += '<td>' + _interfaces[i].ifname + '</td>'
-            div += '<td>' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
+            div += '<td data-interface="' + _interfaces[i].ifname + '">' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
             div += '<td>' + (_interfaces[i].address ? _interfaces[i].address : '') + '</td>'
             div += '</tr>'
+
+            options += '<option value="' + _interfaces[i].ifname + '">' + _interfaces[i].ifname + '</option>'
           }
           tableBody.empty().insertAdjacentHTML('beforeend', div)
+
+          let internalAutoInterface = document.querySelector('.configKey[data-l1key="network::internalAutoInterface"]')
+          let value = (internalAutoInterface.jeeValue() != '') ? internalAutoInterface.jeeValue() : 'auto'
+          if (internalAutoInterface.tagName.toLowerCase() === 'span') {
+            let selectInterface = internalAutoInterface.nextElementSibling
+            selectInterface.setAttribute('data-l1key', 'network::internalAutoInterface')
+            internalAutoInterface.remove()
+            internalAutoInterface = selectInterface
+          }
+          internalAutoInterface.empty().insertAdjacentHTML('beforeend', options)
+          internalAutoInterface.value = value
         }
       })
     }
@@ -847,24 +862,53 @@ document.getElementById('networktab').addEventListener('click', function(event) 
 document.getElementById('networktab').addEventListener('change', function(event) {
   var _target = null
   if ((_target = event.target.closest('.configKey[data-l1key="market::allowDNS"]')) || (_target = event.target.closest('.configKey[data-l1key="network::disableMangement"]'))) {
-    let externalAddr = document.querySelector('.configKey[data-l1key="externalAddr"]')
-    let externalPort = document.querySelector('.configKey[data-l1key="externalPort"]')
-    let externalComplement = document.querySelector('.configKey[data-l1key="externalComplement"]')
-    setTimeout(function() {
-      if (document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]')?.jeeValue() == 0) {
-        document.querySelector('.configKey[data-l1key="externalProtocol"]').removeAttribute('disabled')
-        externalAddr.removeAttribute('disabled')
-        externalAddr.jeeValue('')
-        externalPort.removeAttribute('disabled')
-        externalPort.jeeValue('')
-        externalComplement.removeAttribute('disabled')
-        externalComplement.jeeValue('')
+    if (document.querySelector('.configKey[data-l1key="market::allowDNS"]').jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]').jeeValue() == 0) {
+      document.querySelector('.configKey[data-l1key="externalProtocol"]').setAttribute('disabled', true)
+      document.querySelector('.configKey[data-l1key="externalAddr"]').jeeValue('').setAttribute('disabled', true)
+      document.querySelector('.configKey[data-l1key="externalPort"]').jeeValue('').setAttribute('disabled', true)
+      document.querySelector('.configKey[data-l1key="externalComplement"]').jeeValue('').setAttribute('disabled', true)
+    } else {
+      document.querySelector('.configKey[data-l1key="externalProtocol"]').removeAttribute('disabled')
+      document.querySelector('.configKey[data-l1key="externalAddr"]').removeAttribute('disabled')
+      document.querySelector('.configKey[data-l1key="externalPort"]').removeAttribute('disabled')
+      document.querySelector('.configKey[data-l1key="externalComplement"]').removeAttribute('disabled')
+    }
+    return
+  }
+
+  if ((_target = event.target.closest('.configKey[data-l1key="network::disableInternalAuto"]'))) {
+    if (_target.checked) {
+      document.querySelector('.configKey[data-l1key="network::internalAutoInterface"]').parentNode.unseen()
+      document.querySelector('.configKey[data-l1key="internalAddr"]').removeAttribute('disabled')
+    } else {
+      document.querySelector('.configKey[data-l1key="network::internalAutoInterface"]').triggerEvent('change').parentNode.seen()
+      document.querySelector('.configKey[data-l1key="internalAddr"]').setAttribute('disabled', true)
+    }
+    return
+  }
+
+  if ((_target = event.target.closest('select.configKey[data-l1key="network::internalAutoInterface"]'))) {
+    let autoInterface = _target.jeeValue()
+    if (document.querySelector('.configKey[data-l1key="network::disableInternalAuto"]').jeeValue() == 0 && autoInterface != '') {
+      if (autoInterface != 'auto') {
+        document.querySelector('.configKey[data-l1key="internalAddr"]').value = document.querySelector('#networkInterfacesTable td[data-interface="' + autoInterface + '"]').innerText
       } else {
-        externalAddr.removeAttribute('disabled')
-        externalPort.removeAttribute('disabled')
-        externalComplement.removeAttribute('disabled')
+        for (let _interface of document.querySelectorAll('#networkInterfacesTable td[data-interface]')) {
+          autoInterface = _interface.getAttribute('data-interface')
+          if (autoInterface == 'lo' || autoInterface.startsWith('docker') || autoInterface.startsWith('tun') || autoInterface.startsWith('br')) {
+            continue
+          }
+          let interfaceIP = _interface.innerText
+          if (interfaceIP == '' || interfaceIP.startsWith('127.0') || interfaceIP.startsWith('169')) {
+            continue
+          }
+          if (/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(interfaceIP)) {
+            document.querySelector('.configKey[data-l1key="internalAddr"]').value = interfaceIP
+            break
+          }
+        }
       }
-    }, 100)
+    }
     return
   }
 })

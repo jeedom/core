@@ -343,7 +343,7 @@ if (!jeeFrontEnd.history) {
     setHistoryOptions: function(_mode) {
       if (!isset(_mode)) _mode = true
       document.getElementById('div_historyOptions').querySelectorAll('input, select, a').forEach(_ctrl => {
-        if (_ctrl.getAttribute('id') != 'bt_compare') {
+        if (_ctrl.getAttribute('id') != 'in_startDate' && _ctrl.getAttribute('id') != 'in_endDate' && _ctrl.getAttribute('id') != 'bt_validChangeDate' && _ctrl.getAttribute('id') != 'bt_compare' && _ctrl.getAttribute('id') != 'bt_clearGraph') {
           if (_mode) {
             _ctrl.removeClass('disabled')
           } else {

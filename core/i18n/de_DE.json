@@ -4128,8 +4128,8 @@
     "core\/repo\/github.repo.php": {
         "Utilisateur ou organisation du dépôt": "Benutzer oder Organisation des Repositorys",
         "Nom du dépôt": "Repository-Name",
-        "Branche": "Zweig",
         "Token (facultatif)": "Token (optional)",
+        "Branche": "Zweig",
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Jeedom Core Repository Benutzer oder Organisation",
         "Nom du dépôt pour le core Jeedom": "Repository-Name für den Jeedom-Kern",
         "Branche pour le core Jeedom": "Jeedom Kernindustrie",

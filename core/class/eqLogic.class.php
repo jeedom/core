@@ -226,7 +226,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeAndSearchConfiguration($_eqType_name, $_configuration) {
+	public static function byTypeAndSearchConfiguration($_eqType_name, $_configuration, $_onlyEnable=false, $_onlyVisible=false) {
 		if (is_array($_configuration)) {
 			$values = array(
 				'eqType_name' => $_eqType_name,
@@ -234,8 +234,14 @@ class eqLogic {
 			);
 			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 			FROM eqLogic
-			WHERE eqType_name=:eqType_name
-			AND JSON_CONTAINS(configuration,:configuration)
+			WHERE eqType_name=:eqType_name';
+			if ($_onlyEnable) {
+				$sql .= ' AND isEnable=1';
+			}
+             		if ($_onlyVisible) {
+				$sql .= ' AND isVisible=1';
+			}  
+			$sql .= ' AND JSON_CONTAINS(configuration,:configuration)
 			ORDER BY name';
 			if ($_eqType_name != null && class_exists($_eqType_name)) {
 				return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, $_eqType_name);
@@ -248,7 +254,14 @@ class eqLogic {
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic
-		WHERE eqType_name=:eqType_name
+		WHERE eqType_name=:eqType_name';
+        	if ($_onlyEnable) {
+				$sql .= ' AND isEnable=1';
+		}
+        	if ($_onlyVisible) {
+				$sql .= ' AND isVisible=1';
+		}                   
+		$sql .= ' 
 		AND configuration LIKE :configuration
 		ORDER BY name';
 		if ($_eqType_name != null && class_exists($_eqType_name)) {
@@ -257,9 +270,9 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration) {
+	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration,  $_onlyEnable=false, $_onlyVisible=false) {
 		trigger_error('eqLogic::byTypeAndSearhConfiguration() is deprecated since Core v4.4, eqLogic::byTypeAndSearchConfiguration() has been introduced since Core v4.1', E_USER_DEPRECATED);
-		return self::byTypeAndSearchConfiguration($_eqType_name, $_configuration);
+		return self::byTypeAndSearchConfiguration($_eqType_name, $_configuration, $_onlyEnable, $_onlyVisible);
 	}
 
 	public static function searchByString($_search) {

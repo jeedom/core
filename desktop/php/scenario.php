@@ -38,7 +38,7 @@ function jeedom_displayScenarioGroup($_group = '', $_index = -1) {
 	$thisDiv .= '<div class="panel panel-default">';
 	$thisDiv .= '<div class="panel-heading">';
 	$thisDiv .= '<h3 class="panel-title">';
-	$thisDiv .= '<a class="accordion-toggle" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
+	$thisDiv .= '<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="" data-groupName="' . $groupName . '" aria-expanded="false" href="' . $href . '">' . $groupName . ' - ';
 	$c = count($scenarios[$groupName]);
 	$thisDiv .= $c . ($c > 1 ? ' {{scénarios}}' : ' {{scénario}}') . '</a>';
 	$thisDiv .= '</h3>';
@@ -371,7 +371,7 @@ sendVarToJS([
 
 				<div id="md_addElement" class="jeeDialog jeeDialogPrompt" style="display:none;">
 					<div class="jeeDialogTitle">
-						<span class="title">{{Ajouter un bloc}}</span><button class="btClose" type="button">×</button>
+						<span class="title">{{Ajouter un bloc}}</span><button class="btClose" id="bt_crossElementSave" type="button"></button>
 					</div>
 					<br />
 					<div class="jeeDialogContent">

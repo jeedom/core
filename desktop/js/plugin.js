@@ -109,9 +109,12 @@ if (!jeeFrontEnd.plugin) {
           } else {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
-
           if (isset(data.source)) {
-            self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
+            if (isset(data.update.configuration.user)){
+                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source +' - '+data.update.configuration.user
+            } else {
+                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
+            }
           } else {
             self.dom_container.querySelector('#span_plugin_source').innerHTML = ''
           }

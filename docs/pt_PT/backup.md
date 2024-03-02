@@ -73,3 +73,9 @@ O backup na nuvem permite que a Jeedom envie seus backups diretamente ao mercado
 # Frequência de backups automáticos
 
 Jeedom executa um backup automático todos os dias no mesmo horário. É possível modificá-lo, no "Mecanismo de tarefas" (a tarefa é denominada **Backup Jeedom**), mas não é recomendado. De fato, é calculado em relação à carga do mercado.
+
+# FAQ
+
+>**Não consigo restaurar meu backup que recuperei do Safari**
+>
+>Por padrão, o Safari descompacta tars.gz (em tar) o que significa que o backup não pode mais ser usado pelo jeedom, ele deve ser recompactado (gzip) em tar.gz
