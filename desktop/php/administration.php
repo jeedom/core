@@ -539,10 +539,8 @@ $productName = config::byKey('product_name');
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Hauteur}}</span>
-									<input type="number" min="60" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::height" data-reload="1">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Largeur}}</span>
+									<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1">
+									<span class="input-group-addon ">{{Largeur}}</span>
 									<input type="number" min="80" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::width" data-reload="1">
 								</div>
 							</div>
@@ -604,37 +602,45 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Images}}</label>
+							<label class="col-xs-4 control-label">{{Dashboard}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet)}}"></i></sup>
+							</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Dashboard}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet)}}"></i></sup>
-									</span>
-									<span class="btn btn-success btn-file">
+									<span class="btn btn-sm btn-success btn-file roundedLeft">
 										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="dashboard">
 									</span>
-									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Analyse}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse}}"></i></sup>
-									</span>
-									<span class="btn btn-success btn-file">
-										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
-									</span>
-									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Outils}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils}}"></i></sup>
-									</span>
-									<span class="btn btn-success btn-file">
-										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
-									</span>
-									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Analyse}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="btn btn-sm btn-success btn-file roundedLeft">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
+									</span>
+									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Outils}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="btn btn-sm btn-success btn-file roundedLeft">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
+									</span>
+									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+								</div>
+							</div>
+						</div>
+						<hr class="hrPrimary">
 						<div class="form-group">
 							<label class="col-xs-4 control-label">{{Opacité}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond à ajuster en fonction de la luminosité}}"></i></sup>
