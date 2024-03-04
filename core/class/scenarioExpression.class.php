@@ -256,7 +256,7 @@ class scenarioExpression {
 		return $eqLogic->getIsEnable();
 	}
 
-	public static function average($_cmd_id, $_period = '1 hour') {
+	public static function average($_cmd_id, $_period = '1 hour',$_round = 1) {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -294,11 +294,11 @@ class scenarioExpression {
 			if (!isset($historyStatistique['avg']) || $historyStatistique['avg'] == '') {
 				return $cmd->execCmd();
 			}
-			return round($historyStatistique['avg'], 1);
+			return round($historyStatistique['avg'], $_round);
 		}
 	}
 
-	public static function averageBetween($_cmd_id, $_startDate, $_endDate) {
+	public static function averageBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -309,10 +309,10 @@ class scenarioExpression {
 		if (!isset($historyStatistique['avg'])) {
 			return '';
 		}
-		return round($historyStatistique['avg'], 1);
+		return round($historyStatistique['avg'], $_round);
 	}
 
-	public static function averageTemporal($_cmd_id, $_period = '1 hour') {
+	public static function averageTemporal($_cmd_id, $_period = '1 hour',$_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -320,7 +320,7 @@ class scenarioExpression {
 		$dates = self::getDatesFromPeriod($_period);
 		$_startTime = $dates[0];
 		$_endTime = $dates[1];
-		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
+		return round($cmd->getTemporalAvg($_startTime, $_endTime), $_round);
 	}
 
 	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate) {
@@ -330,10 +330,10 @@ class scenarioExpression {
 		}
 		$_startTime = date('Y-m-d H:i:s', strtotime(self::setTags($_startDate)));
 		$_endTime = date('Y-m-d H:i:s', strtotime(self::setTags($_endDate)));
-		return round($cmd->getTemporalAvg($_startTime, $_endTime), 1);
+		return round($cmd->getTemporalAvg($_startTime, $_endTime), $_round);
 	}
 
-	public static function max($_cmd_id, $_period = '1 hour') {
+	public static function max($_cmd_id, $_period = '1 hour',$_round = 1) {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -370,11 +370,11 @@ class scenarioExpression {
 			if (!isset($historyStatistique['max']) || $historyStatistique['max'] == '') {
 				return round($cmd->execCmd(), 1);
 			}
-			return round($historyStatistique['max'], 1);
+			return round($historyStatistique['max'], $_round);
 		}
 	}
 
-	public static function min($_cmd_id, $_period = '1 hour') {
+	public static function min($_cmd_id, $_period = '1 hour',$_round = 1) {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -411,7 +411,7 @@ class scenarioExpression {
 			if (!isset($historyStatistique['min']) || $historyStatistique['min'] == '') {
 				return round($cmd->execCmd(), 1);
 			}
-			return round($historyStatistique['min'], 1);
+			return round($historyStatistique['min'], $_round);
 		}
 	}
 
