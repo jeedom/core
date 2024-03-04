@@ -449,7 +449,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 									</a>
 									<input type="checkbox" id="drop-tools">
 									<ul>
-										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets}}</a></li>
+										<li><a href="index.php?v=d&p=object"><i class="far fa-object-group"></i> {{Objets/Pieces/Groupes}}</a></li>
 										<li><a href="index.php?v=d&p=scenario"><i class="fas fa-cogs"></i> {{Scénarios}}</a></li>
 										<li><a href="index.php?v=d&p=interact"><i class="far fa-comments"></i> {{Interactions}}</a></li>
 										<li><a href="index.php?v=d&p=widgets"><i class="fas fa-camera-retro"></i> {{Widgets}}</a></li>
