@@ -50,7 +50,7 @@ div.eqLogic-widget div.cmd-widget {
   display: none !important;
 }
 
- /* commented for test from 2024-02-25
+/* commented for test from 2024-02-25
 div.cmd-widget .title>.cmdName {
   max-width: 100px;
   overflow: hidden;
@@ -396,6 +396,10 @@ div.cmd-widget[data-type="info"][data-template="tile"] .state {
 
 div.cmd-widget[data-type="info"][data-subtype="numeric"][data-template="badge"] .state {
   padding: 6px;
+}
+
+div.cmd-widget[data-type="info"][data-subtype="string"][data-template="color"] .color {
+  border-radius: var(--border-radius);
 }
 
 div.cmd-widget[data-type="info"][data-subtype="string"][data-template="multiline"] {
