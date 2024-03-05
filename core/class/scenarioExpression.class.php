@@ -323,7 +323,7 @@ class scenarioExpression {
 		return round($cmd->getTemporalAvg($_startTime, $_endTime), $_round);
 	}
 
-	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate) {
+	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -453,7 +453,7 @@ class scenarioExpression {
 		return $RetVal[count($RetVal) - 1];
 	}
 
-	public static function maxBetween($_cmd_id, $_startDate, $_endDate) {
+	public static function maxBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -464,7 +464,7 @@ class scenarioExpression {
 		if (!isset($historyStatistique['max'])) {
 			return '';
 		}
-		return round($historyStatistique['max'], 1);
+		return round($historyStatistique['max'], $_round);
 	}
 
 	public static function wait($_condition, $_timeout = 7200) {
@@ -484,7 +484,7 @@ class scenarioExpression {
 		return 1;
 	}
 
-	public static function minBetween($_cmd_id, $_startDate, $_endDate) {
+	public static function minBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -495,7 +495,7 @@ class scenarioExpression {
 		if (!isset($historyStatistique['min'])) {
 			return '';
 		}
-		return round($historyStatistique['min'], 1);
+		return round($historyStatistique['min'], $_round);
 	}
 
 	public static function median() {
