@@ -27,6 +27,7 @@ ul.jeeComplete > li.jeeCompleteItem.active {
 #jeeToastContainer, div.jeeToastContainer {
   position: absolute;
   width: 30%;
+  min-width: 250px;
   overflow: hidden;
   z-index: 9999;
 }
