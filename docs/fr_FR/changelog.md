@@ -7,6 +7,7 @@
 ## 4.4.2
 
 - Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
+- Ajout du widget info/string color.
 
 ## 4.4.1
 
