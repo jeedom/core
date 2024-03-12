@@ -43,7 +43,7 @@
 - **Thème** : Suppression du thème **Core2019 Legacy** *(alpha)*.
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
-- **Systeme** : Possibilitée d'ajout des commandes personalisées (voir documentation)
+- **Administration Système** : Possibilité d'ajouter des commandes shell personnalisées dans le menu de gauche *(via un fichier `/data/systemCustomCmd.json`)*.
 
 
 ### 4.4 : Autre
