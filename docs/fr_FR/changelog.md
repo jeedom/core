@@ -38,11 +38,11 @@
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
 - **Dashboard** : possibilité sur la page de configuration des objets de demander à Jeedom de réordonner les équipements en fonction de leur utilisation.
-- **Thème** : Possibilité de choisir le thème directement depuis l'url (en ajoutant &theme=Dark ou &theme=Light).
-- **Thème** : Suppression du thème **Core2019 Legacy** *(alpha)*.
+- **Thème** : Possibilité de choisir le thème directement depuis l'url *(en ajoutant ``&theme=Dark`` ou ``&theme=Light``)*.
+- **Thème** : Suppression du thème **Core2019 Legacy**.
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
-- **Systeme** : Possibilitée d'ajout des commandes personalisées (voir documentation)
+- **Système** : Possibilité d'ajout de commandes personnalisées *(voir documentation)*.
 
 
 ### 4.4 : Autre
