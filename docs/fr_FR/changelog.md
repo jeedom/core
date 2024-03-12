@@ -7,7 +7,7 @@
 ## 4.4.2
 
 - Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
-- Ajout du widget info/string color. [[PR #2421](https://github.com/jeedom/core/pull/2421)]
+- Ajout du widget info/string color. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
 
 ## 4.4.1
 
