@@ -7,6 +7,7 @@
 ## 4.4.2
 
 - Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
+- Ajout du widget info/string color. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
 
 ## 4.4.1
 
@@ -42,7 +43,7 @@
 - **Thème** : Suppression du thème **Core2019 Legacy**.
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
-- **Système** : Possibilité d'ajout de commandes personnalisées *(voir documentation)*.
+- **Administration Système** : Possibilité d'ajouter des commandes shell personnalisées dans le menu de gauche *(via un fichier `/data/systemCustomCmd.json`)*.
 
 
 ### 4.4 : Autre
