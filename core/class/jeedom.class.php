@@ -90,6 +90,15 @@ class jeedom {
 		);
 
 		$return = config::byKeys($key);
+		// Legacy theme removed 4.4, switch to Light theme
+		$themeConf = array('jeedom_theme_main', 'jeedom_theme_alternate', 'mobile_theme_color', 'mobile_theme_color_night');
+		foreach ($themeConf as $confKey) {
+			if (stripos($return[$confKey], 'legacy') !== false) {
+				$return[$confKey] = 'core2019_Light';
+				config::save($confKey, 'core2019_Light');
+			}
+		}
+
 		$return['current_desktop_theme'] = $return['jeedom_theme_main'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
 		if ($return['theme_changeAccordingTime'] == 1 && (date('Gi') < intval(str_replace(':', '', $return['theme_start_day_hour'])) || date('Gi') > intval(str_replace(':', '', $return['theme_end_day_hour'])))) {
@@ -446,7 +455,7 @@ class jeedom {
 			'key' => 'node::version'
 		);
 
-		if(shell_exec('which python') != ''){
+		if (shell_exec('which python') != '') {
 			$value = shell_exec('python --version');
 			$return[] = array(
 				'name' => __('Python', __FILE__),
@@ -457,7 +466,7 @@ class jeedom {
 			);
 		}
 
-		if(shell_exec('which python3') != ''){
+		if (shell_exec('which python3') != '') {
 			$value = shell_exec('python3 --version');
 			$return[] = array(
 				'name' => __('Python 3', __FILE__),
@@ -486,7 +495,7 @@ class jeedom {
 		}
 		$return[] = $cache_health;
 
-		if(jeedom::getHardwareName() != 'docker'){
+		if (jeedom::getHardwareName() != 'docker') {
 			$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
 			$return[] = array(
 				'name' => __('Apache private tmp', __FILE__),
