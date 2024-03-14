@@ -6,19 +6,19 @@
 
 ## 4.4.2
 
-- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
+- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom *(optionnel)*.
 - Ajout du widget info/string color. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
 
 ## 4.4.1
 
-- Prise en charge PHP8.
+- Prise en charge de PHP 8.
 - Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin.
 - Ajout d'un bouton **Assistance** sur la page de configuration des plugins *(Création automatique d'une demande d'aide sur le forum)*.
 
 ### 4.4 : Pré-requis
 
-- Debian 10 Buster
-- Php 7.3
+- Debian 11 "Bullseye"
+- Php 7.4
 
 ### 4.4 : Nouveautés / Améliorations
 
