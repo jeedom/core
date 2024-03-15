@@ -289,7 +289,7 @@ class plugin {
 		foreach (self::listPlugin(true) as $plugin) {
 			try {
 				$heartbeat = config::byKey('heartbeat::delay::' . $plugin->getId(), 'core', 0);
-				if ($heartbeat == 0 || is_nan($heartbeat)) {
+				if ($heartbeat == 0 || !is_numeric($heartbeat)) {
 					continue;
 				}
 				$eqLogics = eqLogic::byType($plugin->getId());
