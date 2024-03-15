@@ -332,7 +332,7 @@ class config {
 		if ($_max !== null && $_value > $_max) {
 			return $_max;
 		}
-		if (is_nan($_value) || $_value === '') {
+		if (!is_numeric($_value) || $_value === '') {
 			return ($_min !== 0) ? $_min : 0;
 		}
 		return $_value;

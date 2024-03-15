@@ -1897,7 +1897,7 @@ class scenario {
 	 * @return $this
 	 */
 	public function setTimeout($_timeout) {
-		if ($_timeout === '' || is_nan(intval($_timeout)) || $_timeout < 1) {
+		if ($_timeout === '' || !is_numeric($_timeout) || $_timeout < 1) {
 			$_timeout = 0;
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->timeout, $_timeout);
