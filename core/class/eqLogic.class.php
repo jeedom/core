@@ -1923,7 +1923,7 @@ class eqLogic {
 	}
 
 	public function setTimeout($_timeout) {
-		if ($_timeout == '' || is_nan(intval($_timeout)) || $_timeout < 1) {
+		if ($_timeout == '' || !is_numeric($_timeout) || $_timeout < 1) {
 			$_timeout = null;
 		}
 		if ($_timeout != $this->getTimeout()) {
