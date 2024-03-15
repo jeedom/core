@@ -11,6 +11,7 @@ foreach ($repos as $key => $value) {
 global $JEEDOM_INTERNAL_CONFIG;
 $configs = config::byKeys($keys);
 user::isBan();
+$productName = config::byKey('product_name');
 ?>
 
 <div class="row row-overflow">
@@ -60,8 +61,8 @@ user::isBan();
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nom de votre}} <?php echo config::byKey('product_name'); ?>
-								<sup><i class="fas fa-question-circle" tooltip="{{Nom de votre}} <?php echo config::byKey('product_name'); ?> {{(utilisé notamment par le market)}}"></i></sup>
+							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Nom de votre}} <?php echo $productName; ?>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nom de votre}} <?php echo $productName; ?> {{(utilisé notamment par le market)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="name" />
@@ -69,7 +70,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Langue}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Langue de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Langue de votre}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<select class="form-control configKey" data-l1key="language" data-reload="1">
@@ -106,7 +107,7 @@ user::isBan();
 						<hr class="hrPrimary">
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Date et heure}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Fuseau horaire de votre}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Fuseau horaire de votre}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 								<select class="form-control configKey" data-l1key="timezone">
@@ -211,14 +212,14 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Serveur de temps optionnel}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'ajouter un serveur de temps à}} <?php echo config::byKey('product_name'); ?> {{utilisé lorsque}} <?php echo config::byKey('product_name'); ?> {{force la synchronisation de l'heure}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'ajouter un serveur de temps à}} <?php echo $productName; ?> {{utilisé lorsque}} <?php echo $productName; ?> {{force la synchronisation de l'heure}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
 								<input type="text" class="configKey form-control" data-l1key="ntp::optionalServer" />
 							</div>
 
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-6 control-label">{{Ignorer la vérification de l'heure}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Indique à}} <?php echo config::byKey('product_name'); ?> {{de ne pas prendre en compte l'heure du système}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Indique à}} <?php echo $productName; ?> {{de ne pas prendre en compte l'heure du système}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-3 col-sm-2 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="ignoreHourCheck" />
@@ -238,7 +239,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-3 col-xs-6 control-label">{{Clé d'installation}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'identifier votre}} <?php echo config::byKey('product_name'); ?> {{quand il communique avec le market}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'identifier votre}} <?php echo $productName; ?> {{quand il communique avec le market}}"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
 								<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
@@ -1695,7 +1696,7 @@ user::isBan();
 					<div class="col-sm-12">
 						<form class="form-horizontal">
 							<fieldset>
-								<legend>{{Mise à jour de}} <?php echo config::byKey('product_name'); ?></legend>
+								<legend>{{Mise à jour de}} <?php echo $productName; ?></legend>
 								<div class="form-group">
 									<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Source de mise à jour du core}}</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
@@ -1833,7 +1834,7 @@ user::isBan();
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="alert alert-info">
-							{{Attention : toute modification du moteur de cache nécessite un redémarrage de}} <?php echo config::byKey('product_name'); ?>
+							{{Attention : toute modification du moteur de cache nécessite un redémarrage de}} <?php echo $productName; ?>
 						</div>
 						<?php
 						$stats = cache::stats();
@@ -1890,7 +1891,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Temps de pause pour le long polling}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{vérifie si il y a des événements en attente.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Fréquence à laquelle}} <?php echo ' ' . $productName . ' '; ?> {{vérifie si il y a des événements en attente.}}"></i></sup>
 								<sub>s</sub>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -1899,7 +1900,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Nettoyer le cache}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{le fait automatiquement toutes les nuits.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.<br>}} <?php echo ' ' . $productName . ' '; ?> {{le fait automatiquement toutes les nuits.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
@@ -1936,7 +1937,7 @@ user::isBan();
 					<fieldset>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Clé API globale de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Clé API globale de}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
@@ -1983,7 +1984,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé API Pro}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Clé API Pro de}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
@@ -2006,7 +2007,7 @@ user::isBan();
 						</div>
 						<div class="form-group">
 							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Clé Market}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Clé Market de}} <?php echo config::byKey('product_name'); ?>"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Clé Market de}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12">
 								<div class="input-group">
@@ -2078,7 +2079,7 @@ user::isBan();
 						<legend><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</legend>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-recycle"></i> {{Vérification générale}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . config::byKey('product_name') . ' '; ?>{{.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet de lancer le test de consistence de}} <?php echo ' ' . $productName . ' '; ?>{{.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
@@ -2119,8 +2120,8 @@ user::isBan();
 
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="alert alert-danger">
-							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo config::byKey('product_name'); ?>. <br />
-							{{L'équipe}} <?php echo config::byKey('product_name'); ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
+							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo $productName; ?>. <br />
+							{{L'équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 						</div>
 
 						<div class="form-group">
