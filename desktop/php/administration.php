@@ -119,8 +119,8 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Identifie votre}} <?php echo $productName; ?> {{sur le market}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<span class="label label-info"><?php echo jeedom::getHardwareKey() ?></span>
-								<a class="btn btn-sm btn-default pull-right" id="bt_resetHwKey" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
+								<span class="label label-info" style="width:calc(100% - 40px);"><?php echo jeedom::getHardwareKey() ?></span>
+								<a class=" btn btn-sm btn-default pull-right" id="bt_resetHwKey" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
 						<hr class="hrPrimary">
@@ -307,7 +307,7 @@ $productName = config::byKey('product_name');
 									<span class="input-group-addon roundedLeft">{{CP}}</span>
 									<input type="text" class="configKey form-control" data-l1key="info::postalCode">
 									<span class="input-group-addon">{{Ville}}</span>
-									<input type="number" class="configKey form-control roundedRight" data-l1key="info::city">
+									<input type="text" class="configKey form-control roundedRight" data-l1key="info::city">
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Pays}}</span>
@@ -355,23 +355,21 @@ $productName = config::byKey('product_name');
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Principal}}</span>
-									<select class="form-control configKey roundedRight" data-l1key="jeedom_theme_main" data-reload="1">
+									<select class="form-control configKey" data-l1key="jeedom_theme_main" data-reload="1">
 										<?php
 										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('core2019_', ' ', trim($dir, '/'))) . '</option>';
 											}
 										}
 										?>
 									</select>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Alternatif}}</span>
+									<span class="input-group-addon">{{Alternatif}}</span>
 									<select class="form-control configKey roundedRight" data-l1key="jeedom_theme_alternate" data-reload="1">
 										<?php
 										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/desktop')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('core2019_', ' ', trim($dir, '/'))) . '</option>';
 											}
 										}
 										?>
@@ -384,23 +382,21 @@ $productName = config::byKey('product_name');
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Principal}}</span>
-									<select class="form-control configKey roundedRight" data-l1key="mobile_theme_color">
+									<select class="form-control configKey" data-l1key="mobile_theme_color">
 										<?php
 										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('core2019_', ' ', trim($dir, '/'))) . '</option>';
 											}
 										}
 										?>
 									</select>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Alternatif}}</span>
+									<span class="input-group-addon">{{Alternatif}}</span>
 									<select class="form-control configKey roundedRight" data-l1key="mobile_theme_color_night">
 										<?php
 										foreach ((ls(__DIR__ . '/../../core/themes')) as $dir) {
 											if (is_dir(__DIR__ . '/../../core/themes/' . $dir . '/mobile')) {
-												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('_', ' ', trim($dir, '/'))) . '</option>';
+												echo '<option value="' . trim($dir, '/') . '">' . ucfirst(str_replace('core2019_', ' ', trim($dir, '/'))) . '</option>';
 											}
 										}
 										?>
@@ -462,24 +458,20 @@ $productName = config::byKey('product_name');
 						</div>
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Notifications}}</label>
+							<label class="col-xs-4 control-label">{{Notifications}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Position et durée d'affichage des notifications en secondes (0 = infini)}}"></i></sup>
+							</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Position}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Position d'affichage des notifications}}"></i></sup>
-									</span>
-									<select class="form-control configKey roundedRight" data-l1key="interface::toast::position" data-reload="1">
+									<span class="input-group-addon roundedLeft">{{Position}}</span>
+									<select class="form-control configKey" data-l1key="interface::toast::position" data-reload="1">
 										<option value="toast-top-left">{{En haut à gauche}}</option>
 										<option value="toast-top-center">{{En haut au centre}}</option>
 										<option value="toast-top-right">{{En haut à droite}}</option>
 										<option value="toast-bottom-right">{{En bas à droite}}</option>
 										<option value="toast-bottom-left">{{En bas à gauche}}</option>
 									</select>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Durée}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Durée d'affichage des notifications en secondes (0 = infini)}}"></i></sup>
-									</span>
+									<span class="input-group-addon">{{Durée}}</span>
 									<input type="number" min="0" max="30" step="1" class="configKey form-control ispin roundedRight" data-l1key="interface::toast::duration" data-reload="1">
 								</div>
 							</div>
@@ -523,7 +515,7 @@ $productName = config::byKey('product_name');
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss">{{Activer}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour activer la personnalisation avancée}}"></i></sup>
 								</label>
-								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i>{{Personnalisation avancée}}</a>
+								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a>
 							</div>
 						</div>
 						<br>
@@ -539,10 +531,8 @@ $productName = config::byKey('product_name');
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Hauteur}}</span>
-									<input type="number" min="60" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::height" data-reload="1">
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Largeur}}</span>
+									<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1">
+									<span class="input-group-addon ">{{Largeur}}</span>
 									<input type="number" min="80" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::width" data-reload="1">
 								</div>
 							</div>
@@ -575,19 +565,19 @@ $productName = config::byKey('product_name');
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Actions humaines}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions humaines dans la réorganisation des tuiles}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions humaines dans la réorganisation automatique des tuiles}}"></i></sup>
 									</span>
 									<input type="number" min="0" step="1" max="10" class="configKey form-control ispin roundedRight" data-l1key="autoreorder::weight_human_action">
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Actions automatiques}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions automatiques dans la réorganisation des tuiles}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions automatiques dans la réorganisation automatique des tuiles}}"></i></sup>
 									</span>
 									<input type="number" min="0" step="1" max="10" class="configKey form-control ispin roundedRight" data-l1key="autoreorder::weight_automation_action">
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Consultation historique}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions de consultation de l'historique dans la réorganisation des tuiles}}"></i></sup>
+										<sup><i class="fas fa-question-circle" tooltip="{{Poids des actions de consultation de l'historique dans la réorganisation automatique des tuiles}}"></i></sup>
 									</span>
 									<input type="number" min="0" step="1" max="10" class="configKey form-control ispin roundedRight" data-l1key="autoreorder::weight_history">
 								</div>
@@ -604,48 +594,54 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Images}}</label>
+							<label class="col-xs-4 control-label">{{Dashboard}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet)}}"></i></sup>
+							</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Dashboard}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du Dashboard (En fonction des options de l'objet)}}"></i></sup>
-									</span>
-									<span class="btn btn-success btn-file">
+									<span class="btn btn-sm btn-success btn-file roundedLeft">
 										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="dashboard">
 									</span>
-									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Analyse}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse}}"></i></sup>
-									</span>
-									<span class="btn btn-success btn-file">
-										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
-									</span>
-									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
-								</div>
-								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Outils}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils}}"></i></sup>
-									</span>
-									<span class="btn btn-success btn-file">
-										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
-									</span>
-									<a class="btn btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Opacité}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond à ajuster en fonction de la luminosité}}"></i></sup>
+							<label class="col-xs-4 control-label">{{Analyse}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Analyse}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Thème Light}}</span>
-									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin roundedRight" data-l1key="interface::background::opacitylight" data-reload="1">
+									<span class="btn btn-sm btn-success btn-file roundedLeft">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
+									</span>
+									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
 								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Outils}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Image de fond pour les pages du menu Outils}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
-									<span class="input-group-addon roundedLeft">{{Thème Dark}}</span>
+									<span class="btn btn-sm btn-success btn-file roundedLeft">
+										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
+									</span>
+									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+								</div>
+							</div>
+						</div>
+						<hr class="hrPrimary">
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Opacité thème}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Opacité des images de fond en fonction du thème}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<div class="input-group">
+									<span class="input-group-addon roundedLeft">{{Light}}</span>
+									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin" data-l1key="interface::background::opacitylight" data-reload="1">
+									<span class="input-group-addon">{{Dark}}</span>
 									<input type="number" min="0.1" max="1" step="0.05" class="configKey form-control ispin roundedRight" data-l1key="interface::background::opacitydark" data-reload="1">
 								</div>
 							</div>

@@ -2048,7 +2048,8 @@ div.eqLogic-widget.editingMode .panelLink {
     display: inline-block !important;
   }
   body[data-page="administration"] div#config div#div_actionOnMessage,
-  body[data-page="administration"] div#config div#div_actionOnMessagealerting{
+  body[data-page="administration"] div#config div#div_actionOnMessagealerting,
+  body[data-page="administration"] div#config div#div_actionOnMessagealertingReturnBack{
     width:  98%;
   }
 
@@ -2948,12 +2949,12 @@ div.eqLogic-widget.editingMode .panelLink {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(115, 115, 115)'><polygon points='0,0 100,0 50,50'/></svg>") !important;
     background-repeat: no-repeat !important;
     background-position: calc(100% - 7px) center !important;
-    background-size: 12px !important;
+    background-size: 10px !important;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    padding-right: 30px !important;
+    padding-right: 25px !important;
   }
   body[data-theme*="Dark"] select:not(.expressionAttr) {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>") !important;

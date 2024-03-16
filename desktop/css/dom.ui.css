@@ -27,6 +27,7 @@ ul.jeeComplete > li.jeeCompleteItem.active {
 #jeeToastContainer, div.jeeToastContainer {
   position: absolute;
   width: 30%;
+  min-width: 250px;
   overflow: hidden;
   z-index: 9999;
 }
@@ -46,15 +47,13 @@ div.jeeToastContainer > div.jeeToast:hover div.toastProgress {
 div.jeeToastContainer > div.jeeToast {
   width: auto !important;
   color: var(--linkHoverLight-color);
-  margin-top: 7px;
 }
 div.jeeToastContainer div.jeeToast.toastTitle {
   font-weight: 500;
   padding: 2px 5px;
-  margin-top: 12px;
 }
 div.jeeToastContainer div.jeeToast.toastMessage {
-  padding: 8px 5px;
+  padding: 6px 8px;
 }
 div.jeeToastContainer > div.jeeToast div.toastProgress {
   position: relative;
@@ -64,31 +63,25 @@ div.jeeToastContainer > div.jeeToast div.toastProgress {
   background-color: var(--sc-formTxt-color);
   opacity: 1;
 }
-div.jeeToastContainer.toast-top-left,
-div.jeeToastContainer.toast-top-center,
-div.jeeToastContainer.toast-top-right {
-  top: 60px;
+div.jeeToastContainer[class*="toast-top-"] {
+  top: 50px;
+}
+div.jeeToastContainer[class*="toast-bottom-"] {
+  bottom: 20px;
 }
 div.jeeToastContainer.toast-top-center {
   left: 0;
+  right: 0;
   margin-left: auto;
   margin-right: auto;
 }
-div.jeeToastContainer.toast-top-left {
- top:12px;
+div.jeeToastContainer.toast-top-left,
+div.jeeToastContainer.toast-bottom-left {
  left:12px
 }
-div.jeeToastContainer.toast-top-right {
- top:12px;
- right:12px
-}
+div.jeeToastContainer.toast-top-right,
 div.jeeToastContainer.toast-bottom-right {
  right:12px;
- bottom:12px
-}
-div.jeeToastContainer.toast-bottom-left {
- bottom:12px;
- left:12px
 }
 div.jeeToastContainer > div.jeeToast.toast-info {
   background-color: var(--al-info-color);
@@ -547,10 +540,14 @@ div.jeeCtxMenu div.ctxItem.inlineItem {
 
 /* _________________3rdparty ispin*/
 div.ispin-wrapper {
-  padding-right: 30px;
+  display: block;
+  padding-right: 20px;
   background: var(--form-bg-color);
   border-radius: var(--border-radius);
   line-height: 100%;
+}
+.input-group .ispin-wrapper {
+  border-radius: 0 !important;
 }
 div.ispin-wrapper button.ispin-button {
   width: 20px !important;
