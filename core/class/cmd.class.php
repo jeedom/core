@@ -1974,7 +1974,7 @@ class cmd {
 	}
 
 	public function checkCmdAlert($_value) {
-		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || is_nan($this->getConfiguration('jeedomCheckCmdTime', 0))) {
+		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || !is_numeric($this->getConfiguration('jeedomCheckCmdTime', 0))) {
 			return;
 		}
 		$checkCmdValue = $this->getConfiguration('jeedomCheckCmdTest');

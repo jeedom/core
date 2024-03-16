@@ -6,18 +6,19 @@
 
 ## 4.4.2
 
-- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
+- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom *(optionnel)*.
+- Ajout du widget info/string color. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
 
 ## 4.4.1
 
-- Prise en charge PHP8.
+- Prise en charge de PHP 8.
 - Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin.
 - Ajout d'un bouton **Assistance** sur la page de configuration des plugins *(Création automatique d'une demande d'aide sur le forum)*.
 
 ### 4.4 : Pré-requis
 
-- Debian 10 Buster
-- Php 7.3
+- Debian 11 "Bullseye"
+- Php 7.4
 
 ### 4.4 : Nouveautés / Améliorations
 
@@ -38,11 +39,11 @@
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
 - **Dashboard** : possibilité sur la page de configuration des objets de demander à Jeedom de réordonner les équipements en fonction de leur utilisation.
-- **Thème** : Possibilité de choisir le thème directement depuis l'url (en ajoutant &theme=Dark ou &theme=Light).
-- **Thème** : Suppression du thème **Core2019 Legacy** *(alpha)*.
+- **Thème** : Possibilité de choisir le thème directement depuis l'url *(en ajoutant ``&theme=Dark`` ou ``&theme=Light``)*.
+- **Thème** : Suppression du thème **Core2019 Legacy**.
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
-- **Systeme** : Possibilitée d'ajout des commandes personalisées (voir documentation)
+- **Administration Système** : Possibilité d'ajouter des commandes shell personnalisées dans le menu de gauche *(via un fichier `/data/systemCustomCmd.json`)*.
 
 
 ### 4.4 : Autre
