@@ -23,9 +23,9 @@
 ### 4.4 : Nouveautés / Améliorations
 
 - **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger dynamiquement un historique plus large.
-- **Fenêtre de sélection d'image** : Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
+- **Fenêtre de sélection d'image** : Ajout de boutons et d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
 - **Fenêtre de sélection d'icône** : Possibilité d'ajouter un paramètre `path` lors de l'appel à `jeedomUtils.chooseIcon` par un plugin pour afficher uniquement ses icônes.
-- **Dashboard** : Possibilité d'afficher plusieurs objets côte à côte *(Réglages → Système → Configuration / Interface)*.
+- **Dashboard** : Possibilité d'afficher les objets sur plusieurs colonnes *(Réglages → Système → Configuration / Interface)*.
 - **Dashboard** : La fenêtre d'édition des tuiles en Mode Edition permet de renommer les commandes.
 - **Dashboard** : En disposition tableau, possibilité d'insérer des attributs HTML *(colspan/rowspan notamment)* pour chaque cellule.
 - **Equipements** : Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom *(fenêtre de configuration de l'équipement)*.
@@ -33,13 +33,13 @@
 - **Equipements** : Les équipements rendus non visibles disparaissent automatiquement du dashboard. Les équipements ré-affichés réapparaissent sur le dashboard si l'objet parent est déjà présent.
 - **Analyse > Equipements / Equipements en alerte** : Les équipements qui passent en alerte apparaissent automatiquement et ceux qui sortent d'une alerte disparaissent automatiquement.
 - **Centre de message** : Les messages du Core sur anomalie renseignent maintenant une action, par exemple un lien pour ouvrir le scénario incriminé, ou l'équipement, la configuration du plugin, etc.
-- **Objet** : La suppression ou la création d'un résumé entraîne l'update du résumé global et de l'objet.
+- **Objet** : La suppression ou la création d'un résumé entraîne la mise à jour du résumé global et de l'objet.
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
 - **Timeline** : La Timeline charge maintenant les 35 premiers événements. Les événements suivant sont chargés au scroll en bas de page.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
-- **Dashboard** : possibilité sur la page de configuration des objets de demander à Jeedom de réordonner les équipements en fonction de leur utilisation.
-- **Thème** : Possibilité de choisir le thème directement depuis l'url *(en ajoutant ``&theme=Dark`` ou ``&theme=Light``)*.
+- **Dashboard** : Possibilité de réordonner les équipements en fonction de leur utilisation depuis la page de configuration des objets.
+- **Thème** : Possibilité de choisir le thème directement depuis l'adresse *(en ajoutant ``&theme=Dark`` ou ``&theme=Light``)*.
 - **Thème** : Suppression du thème **Core2019 Legacy**.
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
