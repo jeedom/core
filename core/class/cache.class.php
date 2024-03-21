@@ -148,7 +148,13 @@ class cache {
 	 * @return object
 	 */
 	public static function byKey($_key) {
-		$cache = self::getCache()->fetch($_key);
+		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
+		try {
+			$cache = self::getCache()->fetch($_key);
+		} catch (Error $e) {
+			log::add(__CLASS__, 'debug', 'Error in ' . __FUNCTION__ . '(): ' . $e->getMessage() . ', trace: ' . $e->getTraceAsString());
+			$cache = null;
+		}
 		if (!is_object($cache)) {
 			$cache = (new self())
 				->setKey($_key)
@@ -158,7 +164,13 @@ class cache {
 	}
 
 	public static function exist($_key) {
-		return is_object(self::getCache()->fetch($_key));
+		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
+		try {
+			return is_object(self::getCache()->fetch($_key));
+		} catch (Error $e) {
+			log::add(__CLASS__, 'debug', 'Error in ' . __FUNCTION__ . '(): ' . $e->getMessage() . ', trace: ' . $e->getTraceAsString());
+			return false;
+		}
 	}
 
 	public static function flush() {
