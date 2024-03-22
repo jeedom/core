@@ -29,7 +29,7 @@ class config {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getDefaultConfiguration($_plugin = 'core') {
+	public static function getDefaultConfiguration(string $_plugin = 'core') {
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			if ($_plugin == 'core') {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
@@ -114,7 +114,7 @@ class config {
 	 * @param string $_key nom de la clef à supprimer
 	 * @return boolean vrai si ok faux sinon
 	 */
-	public static function remove($_key, $_plugin = 'core') {
+	public static function remove(string $_key, string $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(
 				'plugin' => $_plugin,
@@ -332,7 +332,7 @@ class config {
 		if ($_max !== null && $_value > $_max) {
 			return $_max;
 		}
-		if (is_nan($_value) || $_value === '') {
+		if (!is_numeric($_value) || $_value === '') {
 			return ($_min !== 0) ? $_min : 0;
 		}
 		return $_value;

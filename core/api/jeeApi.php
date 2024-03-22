@@ -1374,7 +1374,7 @@ try {
 		$return[$idBox]['apikeyUser'] = $_USER_GLOBAL->getHash();
 		$return[$idBox]['configs'] = 'undefined';
 		$return[$idBox]['appMobile'] = false;
-		$return[$idBox]['externalIp'] = network::getNetworkAccess('external');;
+		$return[$idBox]['externalIp'] = network::getNetworkAccess('external');
 		$return[$idBox]['hardware'] = jeedom::getHardwareName();
 		$return[$idBox]['hwkey'] = jeedom::getHardwareKey();
 		$return[$idBox]['informations']['hardware'] = jeedom::getHardwareName();

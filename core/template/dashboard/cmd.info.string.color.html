@@ -1,0 +1,36 @@
+<div class="cmd cmd-widget #history#" data-type="info" data-subtype="string" data-template="color" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div class="cmdName">#name_display#</div>
+  </div>
+  <div class="content color">
+    <span class="value"></span>
+  </div>
+  <div class="timeCmd label label-default #history#" data-type="info"></div>
+  <template>
+    <div>showValue : 1 ({{Affiche la valeur textuelle}})</div>
+    <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
+  </template>
+  <script>
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+        cmd.querySelector('.content').setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+        if ('#time#' == 'duration' || '#time#' == 'date') {
+          jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+        }
+
+        cmd.querySelector('.color').style.backgroundColor = _options.display_value
+        if ('#showValue#' == 1) {
+          cmd.querySelector('.value').innerHTML = _options.display_value
+        }
+
+        if (_options.alertLevel == 'warning') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+        } else if (_options.alertLevel == 'danger') {
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+        }
+      }
+    })
+
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#' }])
+  </script>
+</div>

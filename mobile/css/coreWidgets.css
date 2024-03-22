@@ -56,7 +56,11 @@ Mobile WebApp
     position: relative;
     top: -20px;
   }
-
+  
+  div.cmd-widget[data-type="info"][data-subtype="string"][data-template="color"] .color {
+    max-width: 150px;
+    border-radius: var(--border-radius);
+  }
 
   div.eqlogicbackgraph {
     width: 100%;

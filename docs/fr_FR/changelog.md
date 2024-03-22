@@ -6,25 +6,26 @@
 
 ## 4.4.2
 
-- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom.
+- Gestion automatique de l'adresse d'accès interne après le démarrage, la mise à jour ou la restauration de Jeedom *(optionnel)*.
+- Ajout du widget info/string color. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
 
 ## 4.4.1
 
-- Prise en charge PHP8.
+- Prise en charge de PHP 8.
 - Vérification de la version minimale du core requise avant installation ou mise à jour d'un plugin.
 - Ajout d'un bouton **Assistance** sur la page de configuration des plugins *(Création automatique d'une demande d'aide sur le forum)*.
 
 ### 4.4 : Pré-requis
 
-- Debian 10 Buster
-- Php 7.3
+- Debian 11 "Bullseye"
+- Php 7.4
 
 ### 4.4 : Nouveautés / Améliorations
 
 - **Historique** : La modale d'historique et la page Historique permettent d'utiliser les boutons *Week, Month, Year* pour recharger dynamiquement un historique plus large.
-- **Fenêtre de sélection d'image** : Ajout d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
+- **Fenêtre de sélection d'image** : Ajout de boutons et d'un menu contextuel permettant d'envoyer des images et de créer, renommer ou supprimer un dossier.
 - **Fenêtre de sélection d'icône** : Possibilité d'ajouter un paramètre `path` lors de l'appel à `jeedomUtils.chooseIcon` par un plugin pour afficher uniquement ses icônes.
-- **Dashboard** : Possibilité d'afficher plusieurs objets côte à côte *(Réglages → Système → Configuration / Interface)*.
+- **Dashboard** : Possibilité d'afficher les objets sur plusieurs colonnes *(Réglages → Système → Configuration / Interface)*.
 - **Dashboard** : La fenêtre d'édition des tuiles en Mode Edition permet de renommer les commandes.
 - **Dashboard** : En disposition tableau, possibilité d'insérer des attributs HTML *(colspan/rowspan notamment)* pour chaque cellule.
 - **Equipements** : Possibilité de désactiver les templates de widget des plugins qui en utilisent pour revenir à l'affichage par défaut Jeedom *(fenêtre de configuration de l'équipement)*.
@@ -32,17 +33,17 @@
 - **Equipements** : Les équipements rendus non visibles disparaissent automatiquement du dashboard. Les équipements ré-affichés réapparaissent sur le dashboard si l'objet parent est déjà présent.
 - **Analyse > Equipements / Equipements en alerte** : Les équipements qui passent en alerte apparaissent automatiquement et ceux qui sortent d'une alerte disparaissent automatiquement.
 - **Centre de message** : Les messages du Core sur anomalie renseignent maintenant une action, par exemple un lien pour ouvrir le scénario incriminé, ou l'équipement, la configuration du plugin, etc.
-- **Objet** : La suppression ou la création d'un résumé entraîne l'update du résumé global et de l'objet.
+- **Objet** : La suppression ou la création d'un résumé entraîne la mise à jour du résumé global et de l'objet.
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
 - **Timeline** : La Timeline charge maintenant les 35 premiers événements. Les événements suivant sont chargés au scroll en bas de page.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
-- **Dashboard** : possibilité sur la page de configuration des objets de demander à Jeedom de réordonner les équipements en fonction de leur utilisation.
-- **Thème** : Possibilité de choisir le thème directement depuis l'url (en ajoutant &theme=Dark ou &theme=Light).
-- **Thème** : Suppression du thème **Core2019 Legacy** *(alpha)*.
+- **Dashboard** : Possibilité de réordonner les équipements en fonction de leur utilisation depuis la page de configuration des objets.
+- **Thème** : Possibilité de choisir le thème directement depuis l'adresse *(en ajoutant ``&theme=Dark`` ou ``&theme=Light``)*.
+- **Thème** : Suppression du thème **Core2019 Legacy**.
 - **Rapport** : Possibilité de choisir le thème lors d'un rapport sur une page Jeedom.
 - **Menu Jeedom** : Un délai de 0.25s a été introduit sur l'ouverture des sous-menus.
-- **Systeme** : Possibilitée d'ajout des commandes personalisées (voir documentation)
+- **Administration Système** : Possibilité d'ajouter des commandes shell personnalisées dans le menu de gauche *(via un fichier `/data/systemCustomCmd.json`)*.
 
 
 ### 4.4 : Autre
