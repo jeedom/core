@@ -585,7 +585,7 @@ domUtils(function() {
     delayOnTouchOnly: true,
     touchStartThreshold: 20,
     draggable: 'tr.cmd',
-    filter: 'a, input, textarea',
+    filter: 'a, input, textarea, label, select',
     preventOnFilter: false,
     direction: 'vertical',
     chosenClass: 'dragSelected',
