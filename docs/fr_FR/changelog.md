@@ -17,7 +17,7 @@
 
 ### 4.4 : Pré-requis
 
-- Debian 11 "Bullseye"
+- Debian 11 "Bullseye" *(très fortement recommandé, Jeedom reste fonctionnel en version précédente)*
 - Php 7.4
 
 ### 4.4 : Nouveautés / Améliorations
