@@ -215,7 +215,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1; rm ' . $path . ' 2>&1 > /dev/null');
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;cat /dev/null > ' . $path.';rm ' . $path . ' 2>&1 > /dev/null');
 			return true;
 		}
 	}
