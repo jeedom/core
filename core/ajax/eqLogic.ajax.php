@@ -372,9 +372,9 @@ try {
 			} catch (Exception $e) {
 				if (strpos($e->getMessage(), '[MySQL] Error code : 23000') !== false) {
 					if ($e->getTrace()[2]['class'] == 'eqLogic') {
-						throw new Exception(__('Un équipement portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet objet', __FILE__));
+						throw new Exception(__('Un équipement portant ce nom (', __FILE__) . $eqLogicSave['name'] . __(') existe déjà pour cet objet', __FILE__));
 					} elseif ($e->getTrace()[2]['class'] == 'cmd') {
-						throw new Exception(__('Une commande portant ce nom (', __FILE__) . $e->getTrace()[0]['args'][1]['name'] . __(') existe déjà pour cet équipement', __FILE__));
+						throw new Exception(__('Une commande portant ce nom (', __FILE__) . $cmd_info['name'] . __(') existe déjà pour cet équipement', __FILE__));
 					}
 				} else {
 					throw new Exception($e->getMessage());
