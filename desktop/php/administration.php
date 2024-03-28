@@ -453,7 +453,7 @@ $productName = config::byKey('product_name');
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="disableMobileUi">{{Désactiver la version mobile}}
 									<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la même que la version desktop}}"></i></sup>
 								</label>
-								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="disableMobileUi">{{Désactiver l'auto-complétion des scénarios}}</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="scenario::disableAutocomplete">{{Désactiver l'auto-complétion des scénarios}}</label>
 							</div>
 						</div>
 						<hr class="hrPrimary">
