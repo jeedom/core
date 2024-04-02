@@ -90,15 +90,6 @@ class jeedom {
 		);
 
 		$return = config::byKeys($key);
-		// Legacy theme removed 4.4, switch to Light theme
-		$themeConf = array('jeedom_theme_main', 'jeedom_theme_alternate', 'mobile_theme_color', 'mobile_theme_color_night');
-		foreach ($themeConf as $confKey) {
-			if (stripos($return[$confKey], 'legacy') !== false) {
-				$return[$confKey] = 'core2019_Light';
-				config::save($confKey, 'core2019_Light');
-			}
-		}
-
 		$return['current_desktop_theme'] = $return['jeedom_theme_main'];
 		$return['current_mobile_theme'] = $return['mobile_theme_color'];
 		if ($return['theme_changeAccordingTime'] == 1 && (date('Gi') < intval(str_replace(':', '', $return['theme_start_day_hour'])) || date('Gi') > intval(str_replace(':', '', $return['theme_end_day_hour'])))) {
