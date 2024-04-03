@@ -425,7 +425,7 @@ if (!jeeFrontEnd.administration) {
         },
         success: function(data) {
           document.getElementById('config').setJeeValues(data, '.configKey')
-          //document.querySelector('.configKey[data-l1key="market::allowDNS"]').triggerEvent('change')
+          //document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.triggerEvent('change')
           //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
           jeeP.loadActionOnMessage()
 
@@ -862,7 +862,7 @@ document.getElementById('networktab').addEventListener('click', function(event) 
 document.getElementById('networktab').addEventListener('change', function(event) {
   var _target = null
   if ((_target = event.target.closest('.configKey[data-l1key="market::allowDNS"]')) || (_target = event.target.closest('.configKey[data-l1key="network::disableMangement"]'))) {
-    if (document.querySelector('.configKey[data-l1key="market::allowDNS"]').jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]').jeeValue() == 0) {
+    if (document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]').jeeValue() == 0) {
       document.querySelector('.configKey[data-l1key="externalProtocol"]').setAttribute('disabled', true)
       document.querySelector('.configKey[data-l1key="externalAddr"]').jeeValue('').setAttribute('disabled', true)
       document.querySelector('.configKey[data-l1key="externalPort"]').jeeValue('').setAttribute('disabled', true)

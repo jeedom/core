@@ -19,14 +19,20 @@ if (config::byKey('widget::step::height', 'core', 0) < 60) {
     config::save('widget::step::height', 60, 'core');
 }
 
-//Theme config renamed:
-if (config::byKey('default_bootstrap_theme', 'core', 0) !== 0) {
-    $value = config::byKey('default_bootstrap_theme', 'core');
-    config::save('jeedom_theme_main', $value, 'core');
+//Theme config renamed & legacy removed:
+foreach (['default_bootstrap_theme' => 'jeedom_theme_main', 'default_bootstrap_theme_night' => 'jeedom_theme_alternate'] as $oldTheme => $newTheme) {
+    if (($value = config::byKey($oldTheme, 'core')) !== '') {
+        if (stripos($value, 'legacy') !== false) {
+            $value = 'core2019_Light';
+        }
+        config::save($newTheme, $value, 'core');
+    }
 }
-if (config::byKey('default_bootstrap_theme_night', 'core', 0) !== 0) {
-    $value = config::byKey('default_bootstrap_theme_night', 'core');
-    config::save('jeedom_theme_alternate', $value, 'core');
+
+foreach (['mobile_theme_color', 'mobile_theme_color_night'] as $mobileTheme) {
+    if (stripos(config::byKey($mobileTheme, 'core'), 'legacy') !== false) {
+        config::save($mobileTheme, 'core2019_Light', 'core');
+    }
 }
 
 //Previous bug alpha:

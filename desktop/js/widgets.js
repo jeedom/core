@@ -428,7 +428,7 @@ document.registerEvent('keydown', function(event) {
 })
 
 //searching
-document.getElementById('in_searchWidgets').addEventListener('keyup', function() {
+document.getElementById('in_searchWidgets')?.addEventListener('keyup', function() {
   var search = this.value
   if (search == '') {
     document.querySelectorAll('#accordionWidgets .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
