@@ -22,11 +22,11 @@
 domUtils.showLoading = function(_timeout) {
   document.getElementById('div_jeedomLoading')?.seen()
   //Hanging timeout:
-  if(domUtils.loadingTimeout && domUtils.loadingTimeout != null){
+  if (domUtils.loadingTimeout && domUtils.loadingTimeout != null) {
     clearTimeout(domUtils.loadingTimeout)
     domUtils.loadingTimeout = null
   }
-  if(_timeout && typeof _timeout == 'number'){
+  if (_timeout && typeof _timeout == 'number') {
     domUtils.loadingTimeout = setTimeout(() => {
       if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
         domUtils.hideLoading()
@@ -38,7 +38,7 @@ domUtils.showLoading = function(_timeout) {
 }
 domUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading')?.unseen()
-  if(domUtils.loadingTimeout && domUtils.loadingTimeout != null){
+  if (domUtils.loadingTimeout && domUtils.loadingTimeout != null) {
     clearTimeout(domUtils.loadingTimeout)
     domUtils.loadingTimeout = null
   }
@@ -193,11 +193,12 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
 }
 
 Element.prototype.insertAtCursor = function(_valueString) {
-  if (this.selectionStart || this.selectionStart == '0') {
+  if (this.selectionStart >= 0) {
     this.value = this.value.substring(0, this.selectionStart) + _valueString + this.value.substring(this.selectionEnd, this.value.length)
   } else {
     this.value += _valueString
   }
+  this.focus()
   return this
 }
 
