@@ -194,11 +194,12 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
 
 Element.prototype.insertAtCursor = function(_valueString) {
   if (this.selectionStart >= 0) {
-    this.value = this.value.substring(0, this.selectionStart) + _valueString + this.value.substring(this.selectionEnd, this.value.length)
+    let value = this.value.substring(0, this.selectionStart) + _valueString
+    this.value = value + this.value.substring(this.selectionEnd, this.value.length)
+    this.setSelectionRange(value.length, value.length)
   } else {
     this.value += _valueString
   }
-  this.focus()
   return this
 }
 
