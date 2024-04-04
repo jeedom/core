@@ -687,7 +687,7 @@ class jeedom {
 		} else {
 			$name = trim($vendor . ' ' . $model);
 			$number = 2;
-			while (isset($result[$name])) {
+			while (isset($_usbMapping[$name])) {
 				$name = trim($vendor . ' ' . $model . ' ' . $number);
 				$number++;
 			}
