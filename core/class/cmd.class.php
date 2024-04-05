@@ -1639,6 +1639,7 @@ class cmd {
 			'#history#' => '',
 			'#hide_history#' => 'hidden',
 			'#unite#' => $this->getUnite(),
+			'#raw_unite#' => $this->getUnite(),
 			'#minValue#' => $this->getConfiguration('minValue', 0),
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
