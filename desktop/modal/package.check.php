@@ -22,7 +22,7 @@ $result = array();
 $result['core'] = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../install/packages.json'), true));
 foreach ((plugin::listPlugin(true, false, false, true)) as $plugin) {
   if (file_exists(__DIR__ . '/../../plugins/' . $plugin . '/plugin_info/packages.json')) {
-    $result[$plugin] = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin . '/plugin_info/packages.json'), true));
+    $result[$plugin] = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin . '/plugin_info/packages.json'), true), false, false, $plugin);
   }
 }
 $datas = array();
@@ -43,8 +43,8 @@ foreach ($result as $key => $packages) {
       if ($info['remark'] != '') {
         $datas[$package]['remark'] .= '. ' . $info['remark'];
       }
-      if($info['needUpdate']){
-      	$canFix = true; 
+      if ($info['needUpdate']) {
+        $canFix = true;
       }
       $datas[$package]['needBy'][] = $key;
     }
@@ -60,7 +60,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
       <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
-      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight'. (!$canFix ? ' disabled' : '').'" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>'; ?>
+      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight' . (!$canFix ? ' disabled' : '') . '" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>'; ?>
     </span>
   </div>
   <br /><br />

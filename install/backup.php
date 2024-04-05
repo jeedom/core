@@ -142,9 +142,10 @@ try {
 		'.log',
 		'core/config/common.config.php',
 		'data/imgOs',
+		'python_venv',
 		config::byKey('backup::path'),
 	);
-	if(version_compare(PHP_VERSION, '8.0.0') >= 0){
+	if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
 		$excludes[] = '/vendor';
 	}
 
