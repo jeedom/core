@@ -82,15 +82,6 @@ if (!jeeFrontEnd.plan) {
             jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
           }
         })
-      } else {
-        document.registerEvent('keydown', function(event) {
-          if (jeedomUtils.getOpenedModal()) return
-
-          if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-            event.preventDefault()
-            jeeP.savePlan()
-          }
-        })
       }
     },
     createNewDesign: function() {
@@ -707,7 +698,9 @@ if (!jeeFrontEnd.plan) {
 
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
-        jeeP.savePlan(false, false)
+        if(_state != jeeFrontEnd.planEditOption.state){
+          jeeP.savePlan(false, false)
+        }
         if (jeeP.elementContexMenu) {
           jeeP.elementContexMenu.disable()
         }
