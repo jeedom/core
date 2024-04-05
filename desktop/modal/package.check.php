@@ -158,7 +158,6 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
       }
 
       if (_target = event.target.closest('#table_packages .bt_correctPackage')) {
-        _target = event.target.closest('.bt_correctPackage')
         if (_target.dataset.package == 'all') {
           var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
         } else {
