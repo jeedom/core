@@ -41,7 +41,7 @@ else
 		service_mariadb restart
 		DB_PASSWORD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 		echo "DROP USER 'jeedom'@'localhost';" | mysql > /dev/null 2>&1
-		echo  "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
+		echo  "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';" | mysql
 		echo  "DROP DATABASE IF EXISTS jeedom;" | mysql
 		echo  "CREATE DATABASE jeedom;" | mysql
 		echo  "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
