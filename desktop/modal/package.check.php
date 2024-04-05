@@ -147,49 +147,49 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 
 <script>
   document.getElementById('md_packageCheck').addEventListener('click', function(event) {
-      var _target = null
-      if (_target = event.target.closest('#bt_refreshPackage')) {
-           jeeDialog.dialog({
-              id: 'jee_modal',
-              title: "{{Vérification des packages}}",
-              contentUrl: 'index.php?v=d&modal=package.check'
-            })
-        return
-      }
+    var _target = null
+    if (_target = event.target.closest('#bt_refreshPackage')) {
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Vérification des packages}}",
+        contentUrl: 'index.php?v=d&modal=package.check'
+      })
+      return
+    }
 
-      if (_target = event.target.closest('#table_packages .bt_correctPackage')) {
-        if (_target.dataset.package == 'all') {
-          var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
-        } else {
-          var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.dataset.package + ' ?'
-        }
-        jeeDialog.confirm(text, function(result) {
-          if (result) {
-            jeedom.systemCorrectPackage({
-              package: el.dataset.package,
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
-                  message: error.message,
-                  level: 'danger'
-                })
-              },
-              success: function() {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
-                  message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
-                  level: 'success'
-                })
-                jeeDialog.dialog({
-                  id: 'jee_modal2',
-                  title: "{{Vérification des packages}}",
-                  contentUrl: 'index.php?v=d&modal=log.display&log=packages'
-                })
-              }
-            })
-          }
-        })
-        return
+    if (_target = event.target.closest('#table_packages .bt_correctPackage')) {
+      if (_target.dataset.package == 'all') {
+        var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
+      } else {
+        var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + _target.dataset.package + ' ?'
       }
+      jeeDialog.confirm(text, function(result) {
+        if (result) {
+          jeedom.systemCorrectPackage({
+            package: _target.dataset.package,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function() {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
+                message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
+                level: 'success'
+              })
+              jeeDialog.dialog({
+                id: 'jee_modal2',
+                title: "{{Vérification des packages}}",
+                contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+              })
+            }
+          })
+        }
+      })
+      return
+    }
   })
 </script>
