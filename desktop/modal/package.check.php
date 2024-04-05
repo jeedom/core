@@ -147,16 +147,18 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 
 <script>
   document.getElementById('md_packageCheck').addEventListener('click', function(event) {
+      var _target = null
       if (_target = event.target.closest('#bt_refreshPackage')) {
            jeeDialog.dialog({
               id: 'jee_modal',
               title: "{{Vérification des packages}}",
               contentUrl: 'index.php?v=d&modal=package.check'
             })
+        return
       }
 
       if (_target = event.target.closest('#table_packages .bt_correctPackage')) {
-        var _target = event.target.closest('.bt_correctPackage')
+        _target = event.target.closest('.bt_correctPackage')
         if (_target.dataset.package == 'all') {
           var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
         } else {
@@ -188,6 +190,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
             })
           }
         })
+        return
       }
   })
 </script>
