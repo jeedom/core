@@ -331,7 +331,7 @@ class update {
 							}
 						}
 						if (is_file($cibDir . '/plugin_info/info.json') && is_array($data = json_decode(file_get_contents($cibDir . '/plugin_info/info.json'), true)) && isset($data['require'])) {
-							$vJeedom = update::byLogicalId('jeedom')->getLocalVersion();
+							$vJeedom = jeedom::version();
 							if (version_compare($data['require'], $vJeedom, '>')) {
 								log::add(__CLASS__, 'alert', 'KO ' . __("Version minimale requise", __FILE__) . ' (' . $data['require'] . ') > ' . __("Version Jeedom", __FILE__) . ' (' . $vJeedom . ')');
 								rrmdir($cibDir);
