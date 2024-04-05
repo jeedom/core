@@ -154,38 +154,40 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
     })
   })
 
-  document.querySelector('#md_packageCheck .bt_correctPackage').addEventListener('click', function(event) {
-    var el = event.target.closest('.bt_correctPackage')
-    if (el.dataset.package == 'all') {
-      var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
-    } else {
-      var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.dataset.package + ' ?'
-    }
-    jeeDialog.confirm(text, function(result) {
-      if (result) {
-        jeedom.systemCorrectPackage({
-          package: el.dataset.package,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function() {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
-              message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
-              level: 'success'
-            })
-            jeeDialog.dialog({
-              id: 'jee_modal2',
-              title: "{{Vérification des packages}}",
-              contentUrl: 'index.php?v=d&modal=log.display&log=packages'
-            })
-          }
-        })
+  document.querySelectorAll('#md_packageCheck .bt_correctPackage').forEach(button => 
+    button.addEventListener('click', function(event) {
+      var el = event.target.closest('.bt_correctPackage')
+      if (el.dataset.package == 'all') {
+        var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
+      } else {
+        var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.dataset.package + ' ?'
       }
+      jeeDialog.confirm(text, function(result) {
+        if (result) {
+          jeedom.systemCorrectPackage({
+            package: el.dataset.package,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function() {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
+                message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
+                level: 'success'
+              })
+              jeeDialog.dialog({
+                id: 'jee_modal2',
+                title: "{{Vérification des packages}}",
+                contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+              })
+            }
+          })
+        }
+      })
     })
-  })
+   )                                                                        
 </script>
