@@ -515,7 +515,7 @@ jeedomUtils.triggerThemechange = function() {
   }
 
   //trigger event for widgets:
-  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
+  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets', 'panel'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Dark')) {
       document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
     } else {
