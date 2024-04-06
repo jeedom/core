@@ -325,8 +325,16 @@ class system {
 		}
 	}
 
-	public static function getInstallPackage($_type, $_plugin) {
+	private static function splitpackageByPlugin($_type, $_plugin = '') {
 		if (version_compare(self::getOsVersion(), '12', '>=') && in_array($_type, ['pip3']) && $_plugin != '') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static function getInstallPackage($_type, $_plugin) {
+		if (self::splitpackageByPlugin($_type, $_plugin)) {
 			$type_key = $_type . '::' . $_plugin;
 		} else {
 			$type_key = $_type;
@@ -554,7 +562,7 @@ class system {
 					$found = 0;
 					$needUpdate = true;
 				}
-				$return[$type . '::' . $package . '::' . $_plugin . '::' . (isset($info['version']) ? $info['version'] : '')] = array(
+				$return[$type . '::' . $package . '::' . (self::splitpackageByPlugin($type, $_plugin) ? $_plugin : '') . '::' . (isset($info['version']) ? $info['version'] : '')] = array(
 					'name' => $package,
 					'status' => $found,
 					'version' => $version,
