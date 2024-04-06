@@ -32,6 +32,9 @@ foreach ($result as $key => $packages) {
     if (!isset($datas[$package])) {
       $datas[$package] = $info;
       $datas[$package]['needBy'] = array($key);
+      if ($info['needUpdate']) {
+        $canFix = true;
+      }
     } else {
       if (isset($datas[$package]['level']) && $info['level'] < $datas[$package]['level']) {
         $datas[$package]['level'] = $info['level'];
