@@ -326,10 +326,16 @@ class system {
 	}
 
 	public static function getInstallPackage($_type, $_plugin) {
-		if (isset(self::$_installPackage[$_type])) {
-			return self::$_installPackage[$_type];
+		if (version_compare(self::getOsVersion(), '12', '>=') && in_array($_type, ['pip3']) && $_plugin != '') {
+			$type_key = $_type . '::' . $_plugin;
+		} else {
+			$type_key = $_type;
 		}
-		self::$_installPackage[$_type] = array();
+
+		if (isset(self::$_installPackage[$type_key])) {
+			return self::$_installPackage[$type_key];
+		}
+		self::$_installPackage[$type_key] = array();
 		switch ($_type) {
 			case 'apt':
 				$lines = explode("\n", shell_exec('dpkg -l | grep "^ii"'));
@@ -341,24 +347,24 @@ class system {
 					if (strpos($infos[1], ':') !== false) {
 						$infos[1] = explode(':', $infos[1])[0];
 					}
-					self::$_installPackage[$_type][mb_strtolower($infos[1])] = array(
+					self::$_installPackage[$type_key][mb_strtolower($infos[1])] = array(
 						'version' => $infos[2]
 					);
 				}
 				$npm = shell_exec('npm -v 2>/dev/null');
 				if ($npm != '') {
-					self::$_installPackage[$_type]['npm'] = array(
+					self::$_installPackage[$type_key]['npm'] = array(
 						'version' => $npm
 					);
 				}
 				break;
 			case 'pip2':
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
-					return self::$_installPackage[$_type];
+					return self::$_installPackage[$type_key];
 				}
 				$datas = json_decode(shell_exec(self::getCmdSudo() . ' pip2 list --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
 					);
 				}
@@ -369,7 +375,7 @@ class system {
 					break;
 				}
 				foreach ($datas as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
 					);
 				}
@@ -377,18 +383,18 @@ class system {
 			case 'npm':
 				$datas = json_decode(shell_exec(self::getCmdSudo() . ' npm -g ls -json -depth 1 2>/dev/null'), true);
 				if (isset($datas['dependencies']['yarn'])) {
-					self::$_installPackage[$_type]['yarn'] = array(
+					self::$_installPackage[$type_key]['yarn'] = array(
 						'version' => $datas['dependencies']['yarn']['version']
 					);
 				}
 				if (isset($datas['dependencies']) && is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
 					foreach ($datas['dependencies'] as $key => $value) {
-						self::$_installPackage[$_type][mb_strtolower($key)] = array(
+						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 							'version' => $value['version']
 						);
 						if (isset($value['dependencies'])) {
 							foreach ($value['dependencies'] as $key2 => $value2) {
-								self::$_installPackage[$_type][mb_strtolower($key2)] = array(
+								self::$_installPackage[$type_key][mb_strtolower($key2)] = array(
 									'version' => $value2['version']
 								);
 							}
@@ -399,7 +405,7 @@ class system {
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
 				foreach ($datas['dependencies'] as $key => $value) {
-					self::$_installPackage[$_type][mb_strtolower($key)] = array(
+					self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 						'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
 					);
 				}
@@ -407,17 +413,17 @@ class system {
 			case 'composer':
 				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'));
 				foreach ($datas['installed'] as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array('version' => $value['version']);
+					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 				}
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
 				foreach ($updates as $update) {
-					self::$_installPackage[$_type][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+					self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
 				}
 				break;
 		}
-		return self::$_installPackage[$_type];
+		return self::$_installPackage[$type_key];
 	}
 
 	public static function os_incompatible($_type, $_package, $_info): bool {
@@ -548,7 +554,7 @@ class system {
 					$found = 0;
 					$needUpdate = true;
 				}
-				$return[$type . '::' . $package] = array(
+				$return[$type . '::' . $package . '::' . $_plugin . '::' . (isset($info['version']) ? $info['version'] : '')] = array(
 					'name' => $package,
 					'status' => $found,
 					'version' => $version,
@@ -558,7 +564,7 @@ class system {
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
 					'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
-					'fix' => ($found == 0) ? self::installPackage($type, $package, $_plugin) : '',
+					'fix' => ($found == 0) ? self::installPackage($type, $package, isset($info['version']) ? $info['version'] : '', $_plugin) : '',
 					'remark' => isset($info['remark']) ? __($info['remark'], 'install/packages.json') : '',
 				);
 			}
