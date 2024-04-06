@@ -63,7 +63,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
       <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
-      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight' . (!$canFix ? ' disabled' : '') . '" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>'; ?>
+      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight' . (!$canFix ? ' disabled' : '') . '" data-package="all"><i class="fas fa-screwdriver"></i> {{Installer tous les packages du core}}</a>'; ?>
     </span>
   </div>
   <br /><br />
