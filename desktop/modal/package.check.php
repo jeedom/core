@@ -137,7 +137,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
         $_echo .= '</td>';
         $_echo .= '<td>';
         if (!$info['status']) {
-          $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="' . $package . '"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
+          $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="' . $package . '" data-description="' . $info['name'] . ' (' . $package . ') "><i class="fas fa-wrench"></i> {{Corriger}}</a>';
         }
         $_echo .= '</td>';
         $_echo .= '</tr>';
@@ -160,11 +160,11 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
       return
     }
 
-    if (_target = event.target.closest('#table_packages .bt_correctPackage')) {
+    if (_target = event.target.closest('#md_packageCheck .bt_correctPackage')) {
       if (_target.dataset.package == 'all') {
         var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
       } else {
-        var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + _target.dataset.package + ' ?'
+        var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + _target.dataset.description + ' ?'
       }
       jeeDialog.confirm(text, function(result) {
         if (result) {
