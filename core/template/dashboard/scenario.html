@@ -59,12 +59,12 @@
           scEl.querySelector('.changeScenarioState[data-state=stop]').seen()
           scEl.querySelector('.changeScenarioState[data-state=deactivate]').seen()
         } else {
-          scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '<i class="fas fa-check"></i>')
+          scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '#icon#')
           scEl.querySelector('.changeScenarioState[data-state=start]').seen()
           scEl.querySelector('.changeScenarioState[data-state=deactivate]').seen()
         }
       } else {
-        scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '<i class="fas fa-times"></i>')
+        scEl.querySelector('.iconCmd').empty().insertAdjacentHTML('beforeend', '#icon#')
         scEl.querySelector('.changeScenarioState[data-state=activate]').seen()
         scEl.addClass('inactive')
       }
