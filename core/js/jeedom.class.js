@@ -99,6 +99,9 @@ jeedom.changes = function() {
         document.body.dispatchEvent(new CustomEvent('cmd::update', { detail: cmd_update }))
       }
       if (eqLogic_update.length > 0) {
+        if(jeedomUI?.isEditing){
+          continue
+        }
         document.body.dispatchEvent(new CustomEvent('eqLogic::update', { detail: eqLogic_update }))
       }
       if (object_summary_update.length > 0) {
