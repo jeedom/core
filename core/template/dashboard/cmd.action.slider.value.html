@@ -59,8 +59,8 @@
         jeedom.cmd.execute({ id: '#id#', value: { slider: values[handle] } })
       })
 
-      window['mySlider#id#'].addEventListener("keyup", function(event) {
-        if (event.keyCode !== 13) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] #sliderInput#id#').addEventListener("keyup", function(event) {
+        if (event.which != 13) {
           return;
         }
         jeedom.cmd.execute({ id: '#id#', value: { slider: parseFloat(this.value) } })
