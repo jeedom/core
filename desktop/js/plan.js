@@ -698,7 +698,7 @@ if (!jeeFrontEnd.plan) {
 
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
-        if(_state != jeeFrontEnd.planEditOption.state){
+        if(user_isAdmin == 1){
           jeeP.savePlan(false, false)
         }
         if (jeeP.elementContexMenu) {
