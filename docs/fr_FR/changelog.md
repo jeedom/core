@@ -7,6 +7,8 @@
 ## 4.4.3
 
 - Correction de l'erreur 401 lors de l'ouverture d'un design avec un utilisateur non administrateur
+- Correction de bug diverse (sur les widgets en particulier)
+- Suppression des minimums sur les pas des widgets
 
 ## 4.4.2
 
