@@ -274,6 +274,7 @@ if (!jeeFrontEnd.history) {
         },
         onShown: function() {
           jeeDialog.get('#md_historyCompare', 'content').querySelector('#md_getCompareRange').removeClass('hidden')
+          jeedomUtils.datePickerInit()
         },
         buttons: {
           confirm: {
