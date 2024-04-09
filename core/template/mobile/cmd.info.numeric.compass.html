@@ -20,7 +20,7 @@
       cmd#id#.find('.winDir').html(windDir#id#)
     });
 
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
 
     if ($.issetWidgetOptParam('#needle_color#', 'needle_color')) {
       cmd#id#.find('.widget-compass-needle').css('border-top-color','#needle_color#')

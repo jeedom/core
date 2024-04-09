@@ -21,8 +21,8 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80) + parseInt(jeedom.theme['widget::margin']) // with margin
-jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 1 ? parseInt(jeedom.theme['widget::step::width']) : 1) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 1 ? parseInt(jeedom.theme['widget::step::height']) : 1) + parseInt(jeedom.theme['widget::margin']) // with margin
 jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
@@ -515,7 +515,7 @@ jeedomUtils.triggerThemechange = function() {
   }
 
   //trigger event for widgets:
-  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
+  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets', 'panel'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Dark')) {
       document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
     } else {

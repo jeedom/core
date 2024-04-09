@@ -7,6 +7,8 @@
 ## 4.4.3
 
 - Correction de l'erreur 401 lors de l'ouverture d'un design avec un utilisateur non administrateur
+- Correction de bug diverse (sur les widgets en particulier)
+- Suppression des minimums sur les pas des widgets
 
 ## 4.4.2
 
@@ -62,7 +64,7 @@
 
 > **Dashboard**
 >
-> Sur le **Dashboard** et les **Vues**, le Core v4.4 redimensionne maintenant automatiquement les tuiles pour construire une grille homogène. Les unités (plus petite hauteur et plus petit largeur d'une tuile) de cette grille sont définies dans **Réglages → Système → Configuration / Interface** par les valeurs *Pas vertical (mini 100)* et *Pas horizontal (mini 110)*. La valeur *Marge* définissant l'espace entre les tuiles.
+> Sur le **Dashboard** et les **Vues**, le Core v4.4 redimensionne maintenant automatiquement les tuiles pour construire une grille homogène. Les unités (plus petite hauteur et plus petite largeur d'une tuile) de cette grille sont définies dans **Réglages → Système → Configuration / Interface** par les valeurs *Pas:Hauteur (mini 60px)* et *Pas:Largeur (mini 80px)*. La valeur *Marge* définissant l'espace entre les tuiles.
 > Les tuiles s'adaptent aux dimensions de la grille et peuvent faire une fois, deux fois etc. ces valeurs en hauteur ou largeur. Il faudra certainement passer en [mode Edition du Dashboard](https://doc.jeedom.com/fr_FR/core/4.4/dashboard#Mode%20%C3%A9dition) pour affiner la taille de certaines tuiles après la mise à jour.
 
 

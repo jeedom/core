@@ -739,7 +739,7 @@ class jeeObject {
 			$usage = $eqLogic->getUsage();
 			$eqLogics[$eqLogic->getId()] = array(
 				'eqLogic' => $eqLogic,
-				'usage' => config::byKey('autoreorder::weight_automation_action') * $usage['automation'] + config::byKey('autoreorder::weight_human_actio') * $usage['ui'] + config::byKey('autoreorder::weight_history') * $usage['history'],
+				'usage' => config::byKey('autoreorder::weight_automation_action') * $usage['automation'] + config::byKey('autoreorder::weight_human_action') * $usage['ui'] + config::byKey('autoreorder::weight_history') * $usage['history'],
 			);
 		}
 		usort($eqLogics, function ($a, $b) {
