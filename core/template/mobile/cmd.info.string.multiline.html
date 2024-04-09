@@ -22,7 +22,7 @@
       }
     });
     
-    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
     
     if (!isNaN(parseInt('#maxHeight#'))) {
       $('.cmd[data-cmd_id=#id#]').css('max-height', parseInt('#maxHeight#')+'px')

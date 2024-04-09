@@ -354,6 +354,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           foreach (($eqLogic->getCmd()) as $cmd) {
             $thisclassAttrib = 'cmdAttr' . $cmd->getId();
             $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
+            $display .= '<i class="fas fa-sort bt_sortable pull-right" style="margin-top: 5px; cursor: move !important;"></i>';
             $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
 
             if ($cmd->getType() == 'info') {
@@ -520,10 +521,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           delay: 100,
           delayOnTouchOnly: true,
           draggable: 'div.cmdConfig',
-          filter: 'a, input, textarea',
+          filter: 'a, input, textarea, table',
           preventOnFilter: false,
           direction: 'vertical',
           removeCloneOnHide: true,
+          chosenClass: 'dragSelected',
         })
       },
       setTableLayoutSortable: function() {

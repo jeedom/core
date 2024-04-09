@@ -77,18 +77,9 @@ if (!jeeFrontEnd.plan) {
 
           if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 69) { //e
             event.preventDefault()
-            jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
-            jeeP.pageContainer.dataset.planEditState = jeeFrontEnd.planEditOption.state
-            jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
-          }
-        })
-      } else {
-        document.registerEvent('keydown', function(event) {
-          if (jeedomUtils.getOpenedModal()) return
-
-          if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
-            event.preventDefault()
-            jeeP.savePlan()
+            //jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
+            jeeP.pageContainer.dataset.planEditState = !jeeFrontEnd.planEditOption.state
+            jeeP.initEditOption(!jeeFrontEnd.planEditOption.state)
           }
         })
       }
@@ -707,7 +698,9 @@ if (!jeeFrontEnd.plan) {
 
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
-        jeeP.savePlan(false, false)
+        if(jeeFrontEnd.planEditOption.state === true){
+          jeeP.savePlan(false, false)
+        }
         if (jeeP.elementContexMenu) {
           jeeP.elementContexMenu.disable()
         }
@@ -974,9 +967,9 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
         name: "{{Edition}}",
         icon: 'fas fa-pencil-alt',
         callback: function(key, opt) {
-          jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
-          this.setAttribute('data-jeeFrontEnd.planEditOption.state', jeeFrontEnd.planEditOption.state)
-          jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
+          //jeeFrontEnd.planEditOption.state = !jeeFrontEnd.planEditOption.state
+          this.setAttribute('data-jeeFrontEnd.planEditOption.state', !jeeFrontEnd.planEditOption.state)
+          jeeP.initEditOption(!jeeFrontEnd.planEditOption.state)
         }
       },
       fullscreen: {

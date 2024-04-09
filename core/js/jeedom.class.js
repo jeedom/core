@@ -74,6 +74,9 @@ jeedom.changes = function() {
           continue
         }
         if (data.result[i].name == 'eqLogic::update') {
+          if(jeedomUI?.isEditing){
+            continue
+          }
           eqLogic_update.push(data.result[i].option)
           continue
         }
