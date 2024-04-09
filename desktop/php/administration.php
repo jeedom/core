@@ -526,7 +526,7 @@ $productName = config::byKey('product_name');
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
 							<label class="col-xs-4 control-label">{{Pas}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur et la largeur des tuiles tous les x pixels (minimum 60*80px)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur et la largeur des tuiles tous les x pixels}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
