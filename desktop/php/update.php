@@ -9,7 +9,6 @@ if (strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))) 
 		echo '<div class="alert alert-danger">{{Erreur sur la vérification des mises à jour :}}' . ' ' . $e->getMessage() . '</div>';
 	}
 }
-
 $hardware = jeedom::getHardwareName();
 $distrib = system::getDistrib();
 $coreRemoteVersion = update::byLogicalId('jeedom')->getRemoteVersion();
@@ -37,7 +36,7 @@ if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
 	}
 }
 $logUpdate = log::getLastLine('update');
-if (strpos($logUpdate, 'END UPDATE')) {
+if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', 'sudo')) == 0) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
 } else {
 	sendVarToJS('jeephp2js.isUpdating', '1');
