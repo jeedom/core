@@ -44,7 +44,7 @@ sendVarToJs('jeephp2js.md_objectMassEdit_type',$type);
   <table class="table table-condensed dataTable" id="table_massEdit">
     <thead>
       <tr>
-        <th style="width: 120px;">#</th>
+        <th style="width: 120px;">{{ID unique}}</th>
         <?php
         if (method_exists($type,'getEqType_name')) {
           echo '  <th>{{Type}}</th>';
