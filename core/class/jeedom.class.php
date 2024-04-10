@@ -276,7 +276,7 @@ class jeedom {
 
 		$apaches = count(system::ps('apache2'));
 		$return[] = array(
-			'name' => __('Nombre de process Apache', __FILE__),
+			'name' => __('Nombre de processus Apache', __FILE__),
 			'state' => ($apaches > 0),
 			'result' => $apaches,
 			'comment' => '',
