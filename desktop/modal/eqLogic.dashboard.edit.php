@@ -367,7 +367,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             $display .= '<table class="table table-condensed">';
 
             //Editable name:
-            $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
+            $display .= '<tr><td>{{Nom}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
 
             //visible and td widths:
             $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
