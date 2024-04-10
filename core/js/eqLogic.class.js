@@ -399,9 +399,6 @@ jeedom.eqLogic.refreshValue = function(_params) {
   for (var i in _params) {
     eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]')
     if (eqLogic != null) {
-      if(eqLogic.classList.contains("is-dragging")){
-        continue;
-      }
       if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') { //Remove it
         let parent = eqLogic.parentNode
         eqLogic.remove()
@@ -443,6 +440,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
         eqLogic = eqLogics[i].eqLogic
         if (isElement_jQuery(eqLogic)) eqLogic = eqLogic[0]
         if (eqLogic == null) {
+          if(jeedomUI?.isEditing === true){
+            continue;
+          }
           if (page == 'dashboard') {
             if ((object_div = document.getElementById('div_ob' + result[i].object_id)) != null) {
               if (object_div.querySelector('.eqLogic')?.getAttribute('data-order') >= result[i].order) {
@@ -505,7 +505,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (jeedomUtils.userDevice.type == undefined) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
-        } else if (jeeFrontEnd.dashboard && jeeFrontEnd.dashboard.editWidgetMode && typeof jeeFrontEnd.dashboard.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
+        } else if (typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && jeedomUI?.isEditing === false && document.getElementById('bt_editDashboardWidgetOrder') != null) {
           jeeFrontEnd.dashboard.editWidgetMode()
         }
       }
