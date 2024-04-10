@@ -611,7 +611,7 @@ div.cmd-widget.widget-compass .widget-compass-needle-placer {
 }
 
 div.cmd-widget.widget-compass .widget-compass-needle {
-  position: relative;
+  position: fixed;
   width: 0px;
   height: 0px;
   border: 8px solid transparent;
