@@ -398,6 +398,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
 
   for (var i in _params) {
     eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]')
+    if(eqLogic.classList.contains("is-dragging")){
+      continue;
+    }
     if (eqLogic != null) {
       if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') { //Remove it
         let parent = eqLogic.parentNode
