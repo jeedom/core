@@ -138,10 +138,10 @@ sendVarToJS([
                 $tr .= $plan->getLink_id();
                 $tr .= '</td>';
                 $tr .= '<td>';
-                if (in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone'))) {
+                if (in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone','image'))) {
                   $tr .= '<span class="label label-default">N/A</span>';
                 } else {
-                  $link = $plan-> getLink();
+                  $link = $plan->getLink();
                   if(is_object($link)){
                     $tr .= $link->getHumanName();
                   }else{
