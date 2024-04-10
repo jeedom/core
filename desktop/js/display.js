@@ -28,7 +28,7 @@ if (!jeeFrontEnd.display) {
 
       this.setSortables()
       var checkContextMenuCallback = function(_el) {
-        _el.trigger('change')
+        _el.triggerEvent('change')
       }
       jeedomUtils.setCheckContextMenu(checkContextMenuCallback)
     },
