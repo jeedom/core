@@ -289,7 +289,7 @@ $synthToActions = array(
 							<div class="form-group">
 								<div class="col-sm-7 col-sm-offset-3 objectImg">
 									<a class="btn btn-sm btn-danger" id="bt_removeBackgroundImage" style="position:absolute;bottom:0;"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
-									<img class="img-responsive" src="" width="240px" />
+									<img class="img-responsive" src="" width="240px" style="min-height : 50px" />
 								</div>
 							</div>
 							<div class="form-group">
