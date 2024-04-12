@@ -1430,6 +1430,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
             inserted.style = inserted.style.cssText + _target.getAttribute('data-position')
             inserted.style.position = 'absolute'
             jeedomUtils.positionEqLogic(_target.getAttribute('data-eqLogic_id'), false)
+            jeedomUtils.initTooltips(inserted)
           }
         }
       })
@@ -1455,6 +1456,7 @@ document.querySelector('.div_displayObject').addEventListener('mouseenter', func
             inserted.style = inserted.style.cssText + el.getAttribute('data-position')
             inserted.style.position = 'absolute'
             jeedomUtils.positionEqLogic(el.getAttribute('data-eqLogic_id'), false)
+            jeedomUtils.initTooltips(inserted)
           }
         }
       })
