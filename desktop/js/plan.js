@@ -276,7 +276,7 @@ if (!jeeFrontEnd.plan) {
         }
         css_selector = '.div_displayObject .graph-widget[data-graph_id="' + _plan.link_id + '"]'
         document.querySelector(css_selector)?.remove()
-        if (init(_plan.display.transparentBackground, false)) {
+        if (init(_plan.display.transparentBackground, 0) == 1) {
           _html = _html.replace('class="graph-widget"', 'class="graph-widget transparent"')
         }
       }
@@ -429,8 +429,8 @@ if (!jeeFrontEnd.plan) {
         }
       }
 
-      document.querySelector('#style_' + _plan.link_type + '_' + _plan.link_id)?.remove()
-      var style_el = '<style id="style_' + _plan.link_type + '_' + _plan.link_id + '">'
+      document.querySelector('#style_' + _plan.link_type + '_' + _plan.id)?.remove()
+      var style_el = '<style id="style_' + _plan.link_type + '_' + _plan.id + '">'
       if (_plan.display.css && _plan.display.css != '') {
         if (_plan.display.cssApplyOn && _plan.display.cssApplyOn != '') {
           var cssApplyOn = _plan.display.cssApplyOn.split(',')
@@ -478,8 +478,8 @@ if (!jeeFrontEnd.plan) {
                 success: function() {
                   done -= 1
                   if (done == 0) {
-                    if (init(_plan.display.transparentBackground, false)) {
-                      document.getElementById('div_designGraph' + _plan.link_id).querySelector('.highcharts-background').style.fillOpacity = '0 !important'
+                    if (init(_plan.display.transparentBackground, true) == 1) {
+                      document.getElementById('div_designGraph' + _plan.link_id).querySelector('.highcharts-background').style.fillOpacity = '0'
                     }
                   }
                 }
