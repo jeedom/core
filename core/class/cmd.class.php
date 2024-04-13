@@ -2155,7 +2155,7 @@ class cmd {
 				}
 			}
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
-			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
+			$message = __('Retour à la normale de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack');
