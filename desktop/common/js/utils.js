@@ -1038,6 +1038,7 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   allowHTML: true,
   distance: 10,
   delay: [50, 0],
+  touch: ['hold', 200],
   //trigger: 'click',
   //hideOnClick: false
 }
