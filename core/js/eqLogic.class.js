@@ -465,6 +465,34 @@ jeedom.eqLogic.refreshValue = function(_params) {
             let container = document.querySelector('.alertListContainer')
             Packery.data(container).destroy()
             new Packery(container, { itemSelector: "#alertEqlogic .eqLogic-widget", isLayoutInstant: true, transitionDuration: 0 })
+          } else if (page == 'plan' && !jeeFrontEnd.planEditOption.state) { //no create if plan is in edition
+            jeedom.plan.byPlanHeader({
+              id: jeephp2js.planHeader_id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(plans) {
+                try {
+                  var object
+                  for (var ii in plans) {
+                    if (plans[ii].plan.link_id == result[i].id) {
+                      object = jeeP.displayObject(plans[ii].plan, plans[ii].html, true)
+                      if (object != undefined) {
+                        jeeFrontEnd.plan.planContainer.appendChild(object)
+                        if (jeeFrontEnd.plan.cssStyleString != '') {
+                          jeeFrontEnd.plan.pageContainer.insertAdjacentHTML('beforeend', jeeFrontEnd.plan.cssStyleString)
+                          jeeFrontEnd.plan.cssStyleString = ''
+                        }
+                      }
+                      break;
+                    }
+                  }
+                } catch (e) { console.error(e) }
+              }
+            })
           }
         } else {
           if (page == 'eqAnalyse' && result[i].alert == '') {
