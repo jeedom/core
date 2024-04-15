@@ -134,9 +134,6 @@ function initEquipment(_object_id) {
       }
     })
     document.querySelectorAll('.objectHtml').forEach(_div => { Packery.data(_div).layout() })
-    setTimeout(function () {
-       document.querySelectorAll('.objectHtml').forEach(_div => { Packery.data(_div).layout() })
-    }, 1000);
     $('.objectHtml').each(function() {
       let count = $(this).find('.scenario-widget:visible').length + $(this).find('.eqLogic-widget:visible').length
       if (count == 0) {
@@ -211,9 +208,6 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
     complete: function() {
       jeedomUtils.hideLoading()
       window.triggerEvent('resize')
-      setTimeout(function () {
-      window.triggerEvent('resize')
-    }, 500);
     }
   })
 }
