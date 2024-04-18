@@ -927,7 +927,7 @@ class plugin {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
-		$osVersion = $this->getrequireOsVersion();
+		$osVersion = $this->getRequireOsVersion();
 		$distrib = 'debian';
 		if(isset($osVersion)){
 			if ($distrib == 'debian' && version_compare(system::getOsVersion(), $osVersion) == -1 && $_state == 1) {
@@ -1158,7 +1158,7 @@ class plugin {
 		return $this->require;
 	}
 
-	public function getrequireOsVersion() {
+	public function getRequireOsVersion() {
 		return $this->requireOsVersion;
 	}
 
