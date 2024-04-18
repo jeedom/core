@@ -928,7 +928,7 @@ class plugin {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
 		$osVersion = $this->getRequireOsVersion();
-		$distrib = 'debian';
+		$distrib = system::getDistrib();
 		if(isset($osVersion)){
 			if ($distrib == 'debian' && version_compare(system::getOsVersion(), $osVersion) == -1 && $_state == 1) {
 				throw new Exception(__('Votre version Debian n\'est pas assez récente pour activer ce plugin', __FILE__));
