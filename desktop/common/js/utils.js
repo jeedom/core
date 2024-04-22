@@ -431,7 +431,7 @@ jeedomUtils.setJeedomTheme = function() {
     }
     setCookie('currentTheme', themeCook, 30)
     cssTag.setAttribute('href', theme)
-    document.getElementById('bt_switchTheme').innerHTML = themeButton
+    if (document.getElementById('bt_switchTheme') != null) document.getElementById('bt_switchTheme').innerHTML = themeButton
     if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').href = themeShadows
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage
@@ -1038,6 +1038,7 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   allowHTML: true,
   distance: 10,
   delay: [50, 0],
+  touch: ['hold', 200],
   //trigger: 'click',
   //hideOnClick: false
 }
