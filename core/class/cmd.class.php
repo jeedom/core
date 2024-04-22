@@ -2956,6 +2956,7 @@ class cmd {
 	 */
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$_name = trim($_name);
 		if ($this->name != $_name) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
