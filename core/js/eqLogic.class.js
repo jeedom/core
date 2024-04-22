@@ -468,6 +468,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
           } else if (page == 'plan' && !jeeFrontEnd.planEditOption.state) { //no create if plan is in edition
             jeedom.plan.byPlanHeader({
               id: jeephp2js.planHeader_id,
+              global: false,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
