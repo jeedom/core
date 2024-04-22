@@ -1706,8 +1706,8 @@ var jeeDialog = (function() {
           }
         }
         function resizing(event) {
-          let clientX = event.clientX || event.targetTouches[0].pageX
-          let clientY = event.clientY || event.targetTouches[0].pageY
+          let clientX = (typeof event.clientX == 'number') ? event.clientX : event.targetTouches[0].pageX
+          let clientY = (typeof event.clientY == 'number') ? event.clientY : event.targetTouches[0].pageY
           if (resizer.includes('top')) {
             dialogContainer.style.top = clientY + 'px'
             let height = initialHeight + (initialTop - clientY)
