@@ -264,7 +264,8 @@ jeedom.eqLogic.toHtml = function(_params) {
   paramsAJAX.data = {
     action: 'toHtml',
     id: _params.id,
-    version: _params.version
+    version: _params.version,
+    global : _params.global || false
   }
   domUtils.ajax(paramsAJAX)
 }
@@ -532,7 +533,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
         } else if (jeedomUI && typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
-          jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing)
+          jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing,false)
         }
       }
     }
