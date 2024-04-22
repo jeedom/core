@@ -153,7 +153,6 @@ if (!jeeFrontEnd.update) {
           })
           jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
 
-
           if (jeeP.hasUpdate) {
             document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
           } else {
