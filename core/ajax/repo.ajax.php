@@ -62,6 +62,9 @@ try {
 		if (!is_object($update)) {
 			$update = new update();
 		}
+		if ($update->getConfiguration('doNotUpdate') == 1) {
+			throw new Exception(__('Mise à jour et réinstallation désactivées sur ', __FILE__) . ' ' . $repo->getLogicalId());
+		}		
 		$update->setSource(init('repo'));
 		$update->setLogicalId($repo->getLogicalId());
 		$update->setType($repo->getType());
