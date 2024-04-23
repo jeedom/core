@@ -318,6 +318,9 @@ class update {
 					$zip = new ZipArchive;
 					$res = $zip->open($tmp);
 					if ($res === TRUE) {
+						for($i=0; $i<$zip->numFiles; $i++){
+			                            $zip->setMtimeIndex($i, strtotime('now'));
+			                        }
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
 							throw new Exception(__("Impossible d'installer le plugin. Les fichiers n'ont pas pu être décompressés", __FILE__) . ' : ' . substr($content, 255));
