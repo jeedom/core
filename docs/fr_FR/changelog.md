@@ -8,6 +8,8 @@
 
 - Corrections de bugs 
 - Mise à jour de la documentation
+- Correciton d'un bug en php8 sur l'installation et/ou la mise à jour des plugins
+- Correction d'un bug sur le dashboard ou dans de rare cas les équipements pouvaient se déplacer ou changer de taille tout seul
 
 ## 4.4.4
 
