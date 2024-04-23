@@ -1956,7 +1956,7 @@ var jeeCtxMenu = function(_options) {
     appendTo: 'body',
     items: false,
     className: '',
-    autoHide: true,
+    autoHide: false,
     zIndex: 12000,
     isDisable: false,
     callback: false, //Default item callback
@@ -2081,7 +2081,16 @@ var jeeCtxMenu = function(_options) {
         if (!event.target.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
         ctxInstance.hide(event)
       }, 100)
-
+    })
+  }else{
+    document.addEventListener('click', event => {
+      if (ctxMenuContainer.contains(event.target)) {
+        return;
+      }
+      setTimeout(function() {
+        if (!ctxMenuContainer.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
+        ctxInstance.hide(event)
+      }, 100)
     })
   }
 
