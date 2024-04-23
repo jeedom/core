@@ -29,6 +29,7 @@ class plugin {
 	private $installation;
 	private $author;
 	private $require;
+	private $requireOsVersion;
 	private $category;
 	private $filepath;
 	private $index;
@@ -95,6 +96,7 @@ class plugin {
 		$plugin->maxDependancyInstallTime = (isset($data['maxDependancyInstallTime'])) ? $data['maxDependancyInstallTime'] : 30;
 		$plugin->eventjs = (isset($data['eventjs'])) ? $data['eventjs'] : 0;
 		$plugin->require = (isset($data['require'])) ? $data['require'] : '';
+		$plugin->requireOsVersion = (isset($data['requireOsVersion'])) ? $data['requireOsVersion'] : '';
 		$plugin->category = (isset($data['category'])) ? $data['category'] : '';
 		$plugin->filepath = $path;
 		$plugin->index = (isset($data['index'])) ? $data['index'] : $data['id'];
@@ -931,6 +933,13 @@ class plugin {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
 		}
+		$osVersion = $this->getRequireOsVersion();
+		$distrib = system::getDistrib();
+		if(isset($osVersion)){
+			if ($distrib == 'debian' && version_compare(system::getOsVersion(), $osVersion) == -1 && $_state == 1) {
+				throw new Exception(__('Votre version Debian n\'est pas assez récente pour activer cette version du plugin, '.$osVersion.' minimum demandé', __FILE__));
+			}
+		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {
 			config::save('active', $_state, $this->getId());
@@ -1153,6 +1162,10 @@ class plugin {
 
 	public function getRequire() {
 		return $this->require;
+	}
+
+	public function getRequireOsVersion() {
+		return $this->requireOsVersion;
 	}
 
 	public function getCategory() {

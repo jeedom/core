@@ -61,3 +61,11 @@ div.cmd-widget .content-xs {
   min-height: unset !important;
 }
 ```
+
+### Ajout de marge entre le nom des objets et les équipements sur le dashboard 
+
+```
+.div_object legend .objectDashLegend {
+  margin-bottom: 5px;
+}
+```

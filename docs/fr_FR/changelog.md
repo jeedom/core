@@ -4,6 +4,13 @@
 >
 >Même si elles ne sont pas forcément visibles au premier abord, la version 4.4 de Jeedom apporte des modifications majeures avec une interface qui a été complètement réécrite pour une maitrise complète et surtout un gain de fluidité de navigation inégalé. La gestion des dépendances PHP à également été revue afin de pouvoir les maintenir à jour automatiquement. Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez [ouvrir un sujet sur le forum avec l'étiquette `v4_4`](https://community.jeedom.com/) ou contacter le support depuis votre profil market *(sous condition d'être détenteur d'un service pack ou supérieur)*.
 
+## 4.4.5
+
+- Corrections de bugs 
+- Mise à jour de la documentation
+- Correciton d'un bug en php8 sur l'installation et/ou la mise à jour des plugins
+- Correction d'un bug sur le dashboard ou dans de rare cas les équipements pouvaient se déplacer ou changer de taille tout seul
+
 ## 4.4.4
 
 - Ajout d'exemple de code sur la documentation de personnalisation de jeedom (a consulter pour ceux voulant pousser la personnalisation)
