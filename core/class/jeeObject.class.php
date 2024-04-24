@@ -1267,14 +1267,14 @@ class jeeObject {
 	}
 
 	public function getFather_id($_default = null) {
-		if ($this->father_id == '' || !is_numeric($this->father_id)) {
+		if (!is_numeric($this->father_id)) {
 			return $_default;
 		}
 		return $this->father_id;
 	}
 
 	public function getIsVisible($_default = null) {
-		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
+		if (!is_numeric($this->isVisible)) {
 			return $_default;
 		}
 		return $this->isVisible;
