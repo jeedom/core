@@ -631,9 +631,9 @@ class eqLogic {
 
 		$eqName = $this->getName();
 		if ($_version == 'mobile') {
-			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span><span class="object">' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><span>' . $object_name . '</span></div>';
+			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a></div>';
 		}
 		$html .= '<div class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
