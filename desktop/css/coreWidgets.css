@@ -478,6 +478,16 @@ label.binarySwitch>input:checked+span.binarySwitch {
 }
 
 /* ____________________others */
+
+div.arcgauge {
+  height: 55px;
+}
+
+div.arcgauge .state {
+  position: relative;
+  top : -12px;
+}
+
 div.arcgauge .content {
   position: relative;
 }
