@@ -685,7 +685,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <fieldset>
               <legend><i class="fas fa-plus"></i> {{Autres}}</legend>
               <div class="form-group">
-                <label class="col-md-2 col-sm-3 control-label">{{M'alerter au retour à la normal}}</label>
+                <label class="col-md-2 col-sm-3 control-label">{{M'alerter au retour à la normale}}</label>
                 <div class="col-sm-6">
                   <input type="checkbox" class="cmdAttr form-control tooltips" data-l1key="configuration" data-l2key="alert::messageReturnBack" />
                 </div>

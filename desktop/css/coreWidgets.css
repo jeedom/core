@@ -480,7 +480,6 @@ label.binarySwitch>input:checked+span.binarySwitch {
 /* ____________________others */
 div.arcgauge .content {
   position: relative;
-  clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
 }
 
 div.arcgauge .gauge,
@@ -611,7 +610,7 @@ div.cmd-widget.widget-compass .widget-compass-needle-placer {
 }
 
 div.cmd-widget.widget-compass .widget-compass-needle {
-  position: relative;
+  position: fixed;
   width: 0px;
   height: 0px;
   border: 8px solid transparent;

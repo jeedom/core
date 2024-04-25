@@ -1730,6 +1730,7 @@ class scenario {
 	 */
 	public function setName($_name) {
 		$_name = cleanComponanteName($_name);
+		$_name = trim($_name);
 		if ($_name != $this->getName()) {
 			$this->_changeState = true;
 			$this->_changed = true;

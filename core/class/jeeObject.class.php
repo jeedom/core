@@ -1267,14 +1267,14 @@ class jeeObject {
 	}
 
 	public function getFather_id($_default = null) {
-		if ($this->father_id == '' || !is_numeric($this->father_id)) {
+		if (!is_numeric($this->father_id)) {
 			return $_default;
 		}
 		return $this->father_id;
 	}
 
 	public function getIsVisible($_default = null) {
-		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
+		if (!is_numeric($this->isVisible)) {
 			return $_default;
 		}
 		return $this->isVisible;
@@ -1288,6 +1288,7 @@ class jeeObject {
 
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$_name = trim($_name);
 		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;

@@ -73,7 +73,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 
 > **Tip**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard. Dans la vue d'ensemble (ou par le Résumé Domotique), sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
+> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard, par le Résumé Domotique (outils -> résumé domotique) , sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
 
 > **Tip**
 >

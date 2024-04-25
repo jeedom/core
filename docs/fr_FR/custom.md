@@ -35,3 +35,37 @@ Dans ce cas, deux solutions:
 - Ouvrez un navigateur en mode rescue : `IP/index.php?rescue=1`
 - Se connecter en SSH et supprimer les fichiers de customisation : `desktop/custom` et `mobile/custom`
 
+## Exemple de personalisation avancée dans le CSS
+
+Tous ces exemple sont a mettre dans le fichier CSS (n'oubliez pas d'activer la personnalisation avancée en haut)
+
+### Suppression des barres de defilement sur les widgets
+
+```
+.eqLogic-widget .cmds{
+ overflow-x: hidden !important;
+ overflow-y: hidden !important;
+}
+```
+
+### Supprimer la largeur/hauteur minimal des widgets
+
+Ca permets d'avoir des widgets plus petit (largeur [min-width], hauteur [min-height]) mais attention cela peut rendre l'affichage moins jolie
+
+```
+div.cmd-widget .content,
+div.cmd-widget .content-sm,
+div.cmd-widget .content-lg,
+div.cmd-widget .content-xs {
+  min-width: unset !important;
+  min-height: unset !important;
+}
+```
+
+### Ajout de marge entre le nom des objets et les équipements sur le dashboard 
+
+```
+.div_object legend .objectDashLegend {
+  margin-bottom: 5px;
+}
+```
