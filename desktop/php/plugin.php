@@ -21,26 +21,24 @@ $plugins_list = plugin::listPlugin(false, true);
         if (!$value['enable']) {
           continue;
         }
-        if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
-          continue;
-        }
-        $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
-        $div .= '<div class="center"><i class="fas fa-sync"></i></div>';
-        $div .= '<span class="txtColor">{{Synchroniser}} ' . $value['name'] . '</span>';
-        $div .= '</div>';
-        if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
-          continue;
-        }
-        if(isset($value['scope']['urlStore'])){
-          $div .= '<div class="cursor success gotoUrlStore" data-href="'.config::byKey($key.'::'.$value['scope']['urlStore']).'">';
-          $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
-          $div .= '<span class="txtColor">' . $value['name'] . '</span>';
+        if (isset($value['scope']['pullInstall']) && $value['scope']['pullInstall']) {
+          $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
+          $div .= '<div class="center"><i class="fas fa-sync"></i></div>';
+          $div .= '<span class="txtColor">{{Synchroniser}} ' . $value['name'] . '</span>';
           $div .= '</div>';
-        }else{
-          $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
-          $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
-          $div .= '<span class="txtColor">' . $value['name'] . '</span>';
-          $div .= '</div>';
+        }
+        if (isset($value['scope']['hasStore']) && $value['scope']['hasStore']) {
+          if(isset($value['scope']['urlStore'])){
+            $div .= '<div class="cursor success gotoUrlStore" data-href="'.config::byKey($key.'::'.$value['scope']['urlStore']).'">';
+            $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
+            $div .= '<span class="txtColor">' . $value['name'] . '</span>';
+            $div .= '</div>';
+          }else{
+            $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
+            $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
+            $div .= '<span class="txtColor">' . $value['name'] . '</span>';
+            $div .= '</div>';
+          }
         }
       }
       echo $div;
