@@ -13,11 +13,11 @@
 
 ## 4.4.4
 
-- Ajout d'exemple de code sur la documentation de personnalisation de jeedom (a consulter pour ceux voulant pousser la personnalisation)
-- Correction d'un bug sur la fenetre de choix des dates pour la comparaison d'historique
-- Correction d'un bug sur le dashboard sur le déplacement des commandes qui n'était pas immediatement refleté sur le widget
-- Correction de bugs diverse (affichage et texte)
-- Correction d'un bug sur la page de mise à jour qui indiqué qu'une mise à jour était en cours alors que non
+- Ajout d'exemple de code sur la documentation de  [personnalisation de jeedom](https://doc.jeedom.com/fr_FR/core/4.4/custom) (à consulter pour ceux voulant pousser la personnalisation)
+- Correction d'un bug sur la fenêtre de choix des dates pour la comparaison d'historique
+- Correction d'un bug sur le dashboard sur le déplacement des commandes qui n'étaient pas immediatement refleté sur le widget
+- Correction de bugs divers (affichage et texte)
+- Correction d'un bug sur la page de mise à jour qui indiquait qu'une mise à jour était en cours alors que non
 
 ## 4.4.3
 
