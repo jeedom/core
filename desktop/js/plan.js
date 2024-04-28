@@ -162,6 +162,7 @@ if (!jeeFrontEnd.plan) {
           }
         },
         success: function(data) {
+          jeedom.cmd.resetUpdateFunction()
           jeeFrontEnd.plan.planContainer.empty().insertAdjacentHTML('beforeend', '<div id="div_grid" class="container-fluid" style="display:none;"></div>')
           Object.assign(jeeFrontEnd.plan.planContainer.style, {height:"auto", width:"auto"})
           //general design configuration:
