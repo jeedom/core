@@ -840,10 +840,15 @@ class system {
 			$log = '/tmp/jeedom_fix_package_log';
 		}
 		if (file_exists($log)) {
+			$fix = '';
 			$data = file_get_contents($log);
 			if (strpos($data, 'dpkg configure -a')) {
-				return "sudo dpkg --configure -a --force-confdef\n";
+				$fix .= "sudo dpkg --configure -a --force-confdef\n";
 			}
+			if (strpos($data, 'oldstable')) {
+				$fix .= "sudo apt-get --allow-releaseinfo-change\n";
+			}
+			return $fix;
 		}
 		return '';
 	}
