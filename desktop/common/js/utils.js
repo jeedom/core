@@ -1181,6 +1181,7 @@ jeedomUtils.datePickerInit = function(_format, _selector) {
       enableTime: _enableTime,
       dateFormat: _format,
       time_24hr: true,
+      allowInput: true,
     })
   })
 }
