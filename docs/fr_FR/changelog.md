@@ -4,6 +4,15 @@
 >
 >Même si elles ne sont pas forcément visibles au premier abord, la version 4.4 de Jeedom apporte des modifications majeures avec une interface qui a été complètement réécrite pour une maitrise complète et surtout un gain de fluidité de navigation inégalé. La gestion des dépendances PHP à également été revue afin de pouvoir les maintenir à jour automatiquement. Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez [ouvrir un sujet sur le forum avec l'étiquette `v4_4`](https://community.jeedom.com/) ou contacter le support depuis votre profil market *(sous condition d'être détenteur d'un service pack ou supérieur)*.
 
+# 4.4.6
+
+- Correction d'un bug sur la mise àn jour des graphique en fond de widget [ISSUE2594](https://github.com/jeedom/core/issues/2594)
+- Correciton d'un bug sur le widget gauge [PR2592](https://github.com/jeedom/core/pull/2582)
+- Possibilité de rentrer les dates manuellement sur les sélecteur de date [PR2593](https://github.com/jeedom/core/pull/2593)
+- Correction d'un bug lors d'un changement de design (les fonctions de mise à jour des commandes n'était pas supprimées) [PR2588](https://github.com/jeedom/core/pull/2588)
+- Correction de bugs [PR2592](https://github.com/jeedom/core/pull/2592)
+
+
 ## 4.4.5
 
 - Corrections de bugs 
