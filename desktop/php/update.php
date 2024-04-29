@@ -79,9 +79,9 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<tr>
 							<th>{{Etat}}</th>
 							<th>{{Nom}}</th>
-							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Version installée}}</th>
-							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Dernière version}}</th>
-							<th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Mise à jour faite le}}</th>
+							<th>{{Version installée}}</th>
+							<th>{{Dernière version}}</th>
+							<th>{{Mise à jour faite le}}</th>
 							<th data-type="checkbox">{{Options}}</th>
 							<th data-sortable="false">{{Actions}}</th>
 						</tr>
