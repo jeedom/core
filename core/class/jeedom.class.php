@@ -1293,6 +1293,13 @@ class jeedom {
 		} catch (Error $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
+		try{
+			log::chunk('', 'hourly');
+		}catch (Exception $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
 	}
 
 	/*************************************************************************************/

@@ -124,13 +124,14 @@ class log {
 		}
 	}
 
-	public static function chunk($_log = '') {
+	public static function chunk($_log = '', $_callCronHourly = '') {
 		$paths = array();
 		if ($_log != '') {
 			$paths = array(self::getPathToLog($_log));
 		} else {
 			$relativeLogPaths = array('', 'scenarioLog/');
 			foreach ($relativeLogPaths as $relativeLogPath) {
+
 				$logPath = self::getPathToLog($relativeLogPath);
 				$logs = ls($logPath, '*');
 				foreach ($logs as $log) {
@@ -140,18 +141,28 @@ class log {
 		}
 		foreach ($paths as $path) {
 			if (is_file($path)) {
-				self::chunkLog($path);
+				self::chunkLog($path, $_callCronHourly = '');	
 			}
 		}
 	}
 
-	public static function chunkLog($_path) {
+	public static function chunkLog($_path, $_callCronHourly = '') {
 		if (strpos($_path, '.htaccess') !== false) {
 			return;
 		}
 		$maxLineLog = self::getConfig('maxLineLog');
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
+		}
+		if($_callCronHourly){
+			$maxSizeLog = self::getConfig('maxSizeLog');
+			if (filesize($_path) >= $maxSizeLog) {
+				try {
+					com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+				} catch (\Exception $e) {
+				}
+			}
+			return;
 		}
 		try {
 			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
