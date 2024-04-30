@@ -124,7 +124,7 @@ class log {
 		}
 	}
 
-	public static function chunk($_log = '', $_onlyIfSizeExceeded = '') {
+	public static function chunk($_log = '', $_onlyIfSizeExceeded = False) {
 		$paths = array();
 		if ($_log != '') {
 			$paths = array(self::getPathToLog($_log));
@@ -140,19 +140,12 @@ class log {
 			}
 		}
 		foreach ($paths as $path) {
-			if (is_file($path)) {
-				if($_onlyIfSizeExceeded){
-					$maxSizeLog = self::getConfig('maxSizeLog');
-					if (filesize($_path) >= $maxSizeLog) {
-						try {
-							com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
-						} catch (\Exception $e) {
-						}
+				if (is_file($path)) {
+					if($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024) ){
 						continue;
-					}	
-				}					
-				self::chunkLog($path);	
-			}
+					}					
+					self::chunkLog($path);	
+				}
 		}
 	}
 

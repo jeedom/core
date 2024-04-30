@@ -1294,7 +1294,7 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
 		try{
-			log::chunk('', $_onlyIfSizeExceeded = true);
+			log::chunk('', True);
 		}catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
