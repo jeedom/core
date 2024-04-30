@@ -6,26 +6,26 @@
 
 # 4.4.6
 
-- Correction d'un bug sur la mise àn jour des graphique en fond de widget [LIEN](https://github.com/jeedom/core/issues/2594)
-- Correciton d'un bug sur le widget gauge [LIEN](https://github.com/jeedom/core/pull/2582)
-- Possibilité de rentrer les dates manuellement sur les sélecteur de date [LIEN](https://github.com/jeedom/core/pull/2593)
+- Correction d'un bug sur la mise à jour des graphiques en fond de widget [LIEN](https://github.com/jeedom/core/issues/2594)
+- Correction d'un bug sur le widget gauge [LIEN](https://github.com/jeedom/core/pull/2582)
+- Possibilité de rentrer les dates manuellement sur les sélecteurs de date [LIEN](https://github.com/jeedom/core/pull/2593)
 - Correction d'un bug lors d'un changement de design (les fonctions de mise à jour des commandes n'était pas supprimées) [LIEN](https://github.com/jeedom/core/pull/2588)
 - Correction de bugs [LIEN](https://github.com/jeedom/core/pull/2592)
-- Correction du trie par date sur la page des mises à jour [LIEN](https://github.com/jeedom/core/pull/2595)
+- Correction du tri par date sur la page des mises à jour [LIEN](https://github.com/jeedom/core/pull/2595)
 
 
 ## 4.4.5
 
 - Corrections de bugs 
 - Mise à jour de la documentation
-- Correciton d'un bug en php8 sur l'installation et/ou la mise à jour des plugins
+- Correction d'un bug en php8 sur l'installation et/ou la mise à jour des plugins
 - Correction d'un bug sur le dashboard ou dans de rare cas les équipements pouvaient se déplacer ou changer de taille tout seul
 
 ## 4.4.4
 
-- Ajout d'exemple de code sur la documentation de  [personnalisation de jeedom](https://doc.jeedom.com/fr_FR/core/4.4/custom) (à consulter pour ceux voulant pousser la personnalisation)
+- Ajout d'exemple de code sur la documentation de [personnalisation de jeedom](https://doc.jeedom.com/fr_FR/core/4.4/custom) (à consulter pour ceux voulant pousser la personnalisation)
 - Correction d'un bug sur la fenêtre de choix des dates pour la comparaison d'historique
-- Correction d'un bug sur le dashboard sur le déplacement des commandes qui n'étaient pas immediatement refleté sur le widget
+- Correction d'un bug sur le dashboard sur le déplacement des commandes qui n'étaient pas immédiatement reflété sur le widget
 - Correction de bugs divers (affichage et texte)
 - Correction d'un bug sur la page de mise à jour qui indiquait qu'une mise à jour était en cours alors que non
 
@@ -66,7 +66,7 @@
 - **Centre de message** : Les messages du Core sur anomalie renseignent maintenant une action, par exemple un lien pour ouvrir le scénario incriminé, ou l'équipement, la configuration du plugin, etc.
 - **Objet** : La suppression ou la création d'un résumé entraîne la mise à jour du résumé global et de l'objet.
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
-- **Timeline** : La Timeline charge maintenant les 35 premiers événements. Les événements suivant sont chargés au scroll en bas de page.
+- **Timeline** : La Timeline charge maintenant les 35 premiers événements. Les événements suivants sont chargés au scroll en bas de page.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
 - **Dashboard** : Possibilité de réordonner les équipements en fonction de leur utilisation depuis la page de configuration des objets.
