@@ -783,12 +783,12 @@ class system {
 				return self::getCmdSudo() . ' pip3 install --force-reinstall --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
+					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' yarn global add ' . $_package;
