@@ -70,18 +70,20 @@ $plugins_list = plugin::listPlugin(false, true);
             $update = $plugin->getUpdate();
             if (is_object($update)) {
               $version = $update->getConfiguration('version');
-              switch($version) {
-                case 'alpha':
-                  $div .= '<span class="name"><sub style="font-size:22px" class="danger">&#8226</sub>' . $plugin->getName() . '</span>';
-                  break;
-                case 'beta':
-                  $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
-                  break;
-                default:
-                  $div .= '<span class="name">' . $plugin->getName() . '</span>';
-              }
+              if (!$version) $version = 'master'; // plugin without version out of market or github
             } else {
-              $div .= '<span class="name">' . $plugin->getName() . '</span>';
+              $version = 'master'; // plugin not found in DB update table
+            }
+            switch($version) {
+              case 'stable':
+              case 'master':
+                $div .= '<span class="name">' . $plugin->getName() . '</span>';
+                break;
+              case 'beta':
+                $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
+                break;
+              default:
+                $div .= '<span class="name"><sub style="font-size:22px" class="danger">&#8226</sub>' . $plugin->getName() . '</span>';
             }
 
             $div .= '<span class="hiddenAsCard displayTableRight">';
