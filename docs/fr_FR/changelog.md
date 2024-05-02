@@ -9,7 +9,7 @@
 - Correction d'un bug sur la mise à jour des graphiques en fond de widget [LIEN](https://github.com/jeedom/core/issues/2594)
 - Correction d'un bug sur le widget gauge [LIEN](https://github.com/jeedom/core/pull/2582)
 - Possibilité de rentrer les dates manuellement sur les sélecteurs de date [LIEN](https://github.com/jeedom/core/pull/2593)
-- Correction d'un bug lors d'un changement de design (les fonctions de mise à jour des commandes n'était pas supprimées) [LIEN](https://github.com/jeedom/core/pull/2588)
+- Correction d'un bug lors d'un changement de design (les fonctions de mise à jour des commandes n'étaient pas supprimées) [LIEN](https://github.com/jeedom/core/pull/2588)
 - Correction de bugs [LIEN](https://github.com/jeedom/core/pull/2592)
 - Correction du tri par date sur la page des mises à jour [LIEN](https://github.com/jeedom/core/pull/2595)
 
