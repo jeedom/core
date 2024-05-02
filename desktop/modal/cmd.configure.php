@@ -839,7 +839,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     $tr .= '<input class="form-control key" value="' . $key . '" />';
                     $tr .= '</td>';
                     $tr .= '<td>';
-                    $tr .= '<input class="form-control value" value="' . $value . '" />';
+                    $tr .= '<input class="form-control value" value="' . htmlspecialchars($value, ENT_QUOTES) . '" />';
                     $tr .= '</td>';
                     $tr .= '<td>';
                     $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
