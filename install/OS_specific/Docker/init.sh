@@ -65,7 +65,6 @@ if [ $(which mysqld | wc -l) -ne 0 ]; then
 	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 	service_mariadb restart
 	if [ $? -ne 0 ]; then
-		 rm /var/lib/mysql/ib_logfile*
 		 service_mariadb restart
 	fi
 fi
