@@ -1795,7 +1795,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #battery .eqLogic-widget {
     width: 240px !important;
-    height: 155px !important;
+    height: 175px !important;
     margin: 3px !important;
   }
   #battery .eqLogic-widget .widget-name span {
@@ -1853,7 +1853,9 @@ div.eqLogic-widget.editingMode .panelLink {
   #battery .eqLogic-widget .batteryTime i {
     font-size: 16px !important;
   }
-
+  #battery .widget-name {
+    height: 45px;
+  }
   pre {
     color: var(--link-color);
     background-color: rgba(var(--panel-bg-color), var(--opacity))!important;
