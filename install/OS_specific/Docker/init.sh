@@ -1,4 +1,3 @@
-root@majordome03:/docker/z2m# cat jeedom/init.sh
 #!/bin/bash
 
 VERT="\\033[1;32m"
