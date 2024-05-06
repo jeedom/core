@@ -580,7 +580,18 @@ class eqLogic {
 				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : '';
 				$styletd = $_options['styletd'] . $styletd;
 				$classTd = ($styletd != '') ? 'tableCmdcss' : '';
-				$return['html'] .= '<td class="' . $classTd . (($_options['center'] == 1) ? ' tableCenter' : '') . '" ' . ((strpos($styletd, '=') !== false) ? $styletd : 'style="' . $styletd . '"') . ' data-line="' . $i . '" data-column="' . $j . '">';
+				$attrs = '';
+				$style = '';
+				if(trim($styletd) != ''){
+					foreach (explode(';',$styletd) as $value) {
+						if(strpos($value, '=') !== false){
+							$attrs .= $value;
+						}else{
+							$style .= $value.';';
+						}
+					}
+				}
+				$return['html'] .= '<td class="' . $classTd . (($_options['center'] == 1) ? ' tableCenter' : '') . '" style="' . $style . '" '.$attrs.' data-line="' . $i . '" data-column="' . $j . '">';
 				if (isset($_options['text::td::' . $i . '::' . $j])) {
 					$return['html'] .= $_options['text::td::' . $i . '::' . $j];
 				}
