@@ -12,7 +12,8 @@
 - Correction d'un bug lors d'un changement de design (les fonctions de mise à jour des commandes n'étaient pas supprimées) [LIEN](https://github.com/jeedom/core/pull/2588)
 - Correction de bugs [LIEN](https://github.com/jeedom/core/pull/2592)
 - Correction du tri par date sur la page des mises à jour [LIEN](https://github.com/jeedom/core/pull/2595)
-
+- Correction d'un bug sur la copie des droits d'utilisateur limité [LIEN](https://github.com/jeedom/core/issues/2612)
+- Correction d'un bug sur les widgets table avec du style et des attribut [LIEN](https://github.com/jeedom/core/issues/2609)
 
 ## 4.4.5
 
