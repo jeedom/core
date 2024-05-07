@@ -14,6 +14,7 @@
 - Correction du tri par date sur la page des mises à jour [LIEN](https://github.com/jeedom/core/pull/2595)
 - Correction d'un bug sur la copie des droits d'utilisateur limité [LIEN](https://github.com/jeedom/core/issues/2612)
 - Correction d'un bug sur les widgets table avec du style et des attribut [LIEN](https://github.com/jeedom/core/issues/2609)
+- Correction d'un bug sur docker pouvant entrainer la corruption de la base de données [LIEN](https://github.com/jeedom/core/pull/2611)
 
 ## 4.4.5
 
