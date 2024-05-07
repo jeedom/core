@@ -31,8 +31,7 @@ class repo_market {
 		'hasConfiguration' => true,
 		'proxy' => true,
 		'hasStore' => true,
-		'test' => true,
-		'pullInstall' => true,
+		'test' => true
 	);
 
 	private $id;

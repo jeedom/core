@@ -4,20 +4,31 @@
 >
 >Même si elles ne sont pas forcément visibles au premier abord, la version 4.4 de Jeedom apporte des modifications majeures avec une interface qui a été complètement réécrite pour une maitrise complète et surtout un gain de fluidité de navigation inégalé. La gestion des dépendances PHP à également été revue afin de pouvoir les maintenir à jour automatiquement. Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez [ouvrir un sujet sur le forum avec l'étiquette `v4_4`](https://community.jeedom.com/) ou contacter le support depuis votre profil market *(sous condition d'être détenteur d'un service pack ou supérieur)*.
 
+# 4.4.6
+
+- Correction d'un bug sur la mise à jour des graphiques en fond de widget [LIEN](https://github.com/jeedom/core/issues/2594)
+- Correction d'un bug sur le widget gauge [LIEN](https://github.com/jeedom/core/pull/2582)
+- Possibilité de rentrer les dates manuellement sur les sélecteurs de date [LIEN](https://github.com/jeedom/core/pull/2593)
+- Correction d'un bug lors d'un changement de design (les fonctions de mise à jour des commandes n'étaient pas supprimées) [LIEN](https://github.com/jeedom/core/pull/2588)
+- Correction de bugs [LIEN](https://github.com/jeedom/core/pull/2592)
+- Correction du tri par date sur la page des mises à jour [LIEN](https://github.com/jeedom/core/pull/2595)
+- Correction d'un bug sur la copie des droits d'utilisateur limité [LIEN](https://github.com/jeedom/core/issues/2612)
+- Correction d'un bug sur les widgets table avec du style et des attribut [LIEN](https://github.com/jeedom/core/issues/2609)
+
 ## 4.4.5
 
 - Corrections de bugs 
 - Mise à jour de la documentation
-- Correciton d'un bug en php8 sur l'installation et/ou la mise à jour des plugins
+- Correction d'un bug en php8 sur l'installation et/ou la mise à jour des plugins
 - Correction d'un bug sur le dashboard ou dans de rare cas les équipements pouvaient se déplacer ou changer de taille tout seul
 
 ## 4.4.4
 
-- Ajout d'exemple de code sur la documentation de personnalisation de jeedom (a consulter pour ceux voulant pousser la personnalisation)
-- Correction d'un bug sur la fenetre de choix des dates pour la comparaison d'historique
-- Correction d'un bug sur le dashboard sur le déplacement des commandes qui n'était pas immediatement refleté sur le widget
-- Correction de bugs diverse (affichage et texte)
-- Correction d'un bug sur la page de mise à jour qui indiqué qu'une mise à jour était en cours alors que non
+- Ajout d'exemple de code sur la documentation de [personnalisation de jeedom](https://doc.jeedom.com/fr_FR/core/4.4/custom) (à consulter pour ceux voulant pousser la personnalisation)
+- Correction d'un bug sur la fenêtre de choix des dates pour la comparaison d'historique
+- Correction d'un bug sur le dashboard sur le déplacement des commandes qui n'étaient pas immédiatement reflété sur le widget
+- Correction de bugs divers (affichage et texte)
+- Correction d'un bug sur la page de mise à jour qui indiquait qu'une mise à jour était en cours alors que non
 
 ## 4.4.3
 
@@ -56,7 +67,7 @@
 - **Centre de message** : Les messages du Core sur anomalie renseignent maintenant une action, par exemple un lien pour ouvrir le scénario incriminé, ou l'équipement, la configuration du plugin, etc.
 - **Objet** : La suppression ou la création d'un résumé entraîne la mise à jour du résumé global et de l'objet.
 - **Outils > Remplacer** : Cet outil propose maintenant un mode *Copier*, permettant de copier les configurations d'équipements et de commandes, sans les remplacer dans les scénarios et autres.
-- **Timeline** : La Timeline charge maintenant les 35 premiers événements. Les événements suivant sont chargés au scroll en bas de page.
+- **Timeline** : La Timeline charge maintenant les 35 premiers événements. Les événements suivants sont chargés au scroll en bas de page.
 - **Administration** : Possibilité de différencier les actions sur erreur ou sur alerte de commande.
 - **Administration** : Possibilité de paramétrer les widgets par défaut des commandes.
 - **Dashboard** : Possibilité de réordonner les équipements en fonction de leur utilisation depuis la page de configuration des objets.
