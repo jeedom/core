@@ -161,12 +161,12 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
         if (_target.dataset.package == 'all') {
           var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
         } else {
-          var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.dataset.package + ' ?'
+          var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + _target.dataset.package + ' ?'
         }
         jeeDialog.confirm(text, function(result) {
           if (result) {
             jeedom.systemCorrectPackage({
-              package: el.dataset.package,
+              package: _target.dataset.package,
               error: function(error) {
                 jeedomUtils.showAlert({
                   attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
