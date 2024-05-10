@@ -136,7 +136,6 @@ try {
 		'support',
 		'backup',
 		'script/tunnel',
-		'node_modules',
 		'.git',
 		'.gitignore',
 		'.log',

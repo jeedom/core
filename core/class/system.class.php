@@ -430,10 +430,10 @@ class system {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
 						if ($type == 'npm') {
 							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules')) {
-							        exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var); 
+							    exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var); 
 								if ($return_var == 0) {
 								   $found = 1;
-							        }
+							    }
 							}
 						} else {
 							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' yarn check', $output, $return_var);
