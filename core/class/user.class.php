@@ -343,6 +343,7 @@ class user {
 			if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
 				continue;
 			}
+			jeedom::event('ip_ban', false, ['ip' => $value['ip'], 'datetime' => $value['datetime']]);
 			return true;
 		}
 		return false;
