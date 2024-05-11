@@ -314,6 +314,7 @@ class user {
 			}
 		}
 		$values = $values_tmp;
+		@session_start();
 		if (isset($_SESSION['failed_count']) && $_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
 			$values_tmp = array();
 			foreach ($values as $value) {
@@ -324,7 +325,6 @@ class user {
 			}
 			$values = $values_tmp;
 			$values[] = array('datetime' => strtotime('now'), 'ip' => getClientIp());
-			@session_start();
 			$_SESSION['failed_count'] = 0;
 			$_SESSION['failed_datetime'] = -1;
 			@session_write_close();
