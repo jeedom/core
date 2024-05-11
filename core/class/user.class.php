@@ -325,7 +325,6 @@ class user {
 			}
 			$values = $values_tmp;
 			$values[] = array('datetime' => strtotime('now'), 'ip' => getClientIp());
-			@session_start();
 			$_SESSION['failed_count'] = 0;
 			$_SESSION['failed_datetime'] = -1;
 			@session_write_close();
