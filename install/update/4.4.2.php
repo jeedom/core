@@ -11,14 +11,6 @@ foreach ((cmd::all()) as $cmd) {
     }
 }
 
-//New grid steps:
-if (config::byKey('widget::step::width', 'core', 0) < 80) {
-    config::save('widget::step::width', 80, 'core');
-}
-if (config::byKey('widget::step::height', 'core', 0) < 60) {
-    config::save('widget::step::height', 60, 'core');
-}
-
 //Theme config renamed & legacy removed:
 foreach (['default_bootstrap_theme' => 'jeedom_theme_main', 'default_bootstrap_theme_night' => 'jeedom_theme_alternate'] as $oldTheme => $newTheme) {
     if (($value = config::byKey($oldTheme, 'core')) !== '') {

@@ -59,6 +59,13 @@
         jeedom.cmd.execute({ id: '#id#', value: { slider: values[handle] } })
       })
 
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] #sliderInput#id#').addEventListener("keyup", function(event) {
+        if (event.which != 13) {
+          return;
+        }
+        jeedom.cmd.execute({ id: '#id#', value: { slider: parseFloat(this.value) } })
+      })
+
       if (domUtils.issetWidgetOptParam('#color#', 'color')) {
         document.querySelector('.cmd[data-cmd_uid="#uid#"] .noUi-handle').style.setProperty('background-color', '#color#', 'important')
         document.querySelector('.cmd[data-cmd_uid="#uid#"] .noUi-connect').style.setProperty('background-color', '#color#', 'important')

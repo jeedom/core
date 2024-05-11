@@ -31,8 +31,7 @@ class repo_market {
 		'hasConfiguration' => true,
 		'proxy' => true,
 		'hasStore' => true,
-		'test' => true,
-		'pullInstall' => true,
+		'test' => true
 	);
 
 	private $id;
@@ -145,6 +144,7 @@ class repo_market {
 				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
 				$update->setConfiguration('version', $plugin['version']);
+				$update->setConfiguration('user',null);
 				$update->save();
 				$update->doUpdate();
 				$nbInstall++;

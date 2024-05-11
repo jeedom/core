@@ -131,7 +131,7 @@ function template_replace($_array, $_subject) {
 		$_array['#uid#'] = '';
 	}
 	if (strpos($_array['#uid#'], 'eqLogic') !== false && (!isset($_array['#calledFrom#']) || $_array['#calledFrom#'] != 'eqLogic')) {
-		if (is_object($eqLogic = eqLogic::byId($_array['#id#'])) && $eqLogic->getDisplay('widgetTmpl', 1) == 0) {
+		if (is_object($eqLogic = eqLogic::byId($_array['#id#'])) && ($eqLogic->getDisplay('widgetTmpl', 1) == 0 || $_subject == '')) {
 			$reflected = new ReflectionClass($eqLogic->getEqType_name());
 			$method = $reflected->getParentClass()->getMethod('toHtml');
 			return $method->invokeArgs($eqLogic, [$_array['#version#']]);

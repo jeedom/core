@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <div id="wrap">
 	<div class="bodyLogin">
 		<div class="veen animated zoomIn">

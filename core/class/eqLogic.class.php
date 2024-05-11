@@ -578,9 +578,21 @@ class eqLogic {
 			$return['html'] .= '<tr>';
 			for ($j = 1; $j <= $_nbColumn; $j++) {
 				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : '';
-				$styletd = $_options['styletd'] . $styletd;
-				$classTd = ($styletd != '') ? 'tableCmdcss' : '';
-				$return['html'] .= '<td class="' . $classTd . (($_options['center'] == 1) ? ' tableCenter' : '') . '" ' . ((strpos($styletd, '=') !== false) ? $styletd : 'style="' . $styletd . '"') . ' data-line="' . $i . '" data-column="' . $j . '">';
+				$attrs = '';
+				$style = '';
+				if(trim($styletd) != ''){
+					foreach (explode(';',$styletd) as $value) {
+						if($value == '') continue;
+						if(strpos($value, '=') !== false){
+							$attrs .= $value;
+						}else{
+							$style .= $value.';';
+						}
+					}
+				}
+				$style = $_options['styletd'] . $style;
+				$classTd = ($style != '') ? 'tableCmdcss' : '';
+				$return['html'] .= '<td class="' . $classTd . (($_options['center'] == 1) ? ' tableCenter' : '') . '" style="' . $style . '" '.$attrs.' data-line="' . $i . '" data-column="' . $j . '">';
 				if (isset($_options['text::td::' . $i . '::' . $j])) {
 					$return['html'] .= $_options['text::td::' . $i . '::' . $j];
 				}
@@ -633,8 +645,8 @@ class eqLogic {
 		if ($_version == 'mobile') {
 			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span><span class="object">' . $object_name . '</span></div>';
 		} else {
-			$html .= '<div class="widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><span>' . $object_name . '</span></div>';
-		}
+        $html .= '<div class="#battery widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><br><span>' . $object_name . '</span></div>';
+          }
 		$html .= '<div class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
 		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
@@ -1837,6 +1849,7 @@ class eqLogic {
 
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$_name = trim($_name);
 		if ($_name != $this->name) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;

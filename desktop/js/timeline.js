@@ -231,7 +231,7 @@ document.getElementById('bt_refreshTimeline').addEventListener('click', function
   jeeP.displayTimeline()
 })
 
-document.getElementById('bt_removeTimelineEvent').addEventListener('click', function(event) {
+document.getElementById('bt_removeTimelineEvent')?.addEventListener('click', function(event) {
   jeedom.timeline.deleteAll({
     error: function(error) {
       jeedomUtils.showAlert({
@@ -249,7 +249,7 @@ document.getElementById('bt_removeTimelineEvent').addEventListener('click', func
   })
 })
 
-document.getElementById('bt_openCmdHistoryConfigure').addEventListener('click', function(event) {
+document.getElementById('bt_openCmdHistoryConfigure')?.addEventListener('click', function(event) {
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration de l'historique des commandes}}",

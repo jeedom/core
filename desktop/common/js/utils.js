@@ -21,9 +21,9 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80) + parseInt(jeedom.theme['widget::margin']) // with margin
-jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60) + parseInt(jeedom.theme['widget::margin']) // with margin
-jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 1 ? parseInt(jeedom.theme['widget::step::width']) : 1) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 1 ? parseInt(jeedom.theme['widget::step::height']) : 1) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 500 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 /*Hijack jQuery ready function, still used in plugins
@@ -431,7 +431,7 @@ jeedomUtils.setJeedomTheme = function() {
     }
     setCookie('currentTheme', themeCook, 30)
     cssTag.setAttribute('href', theme)
-    document.getElementById('bt_switchTheme').innerHTML = themeButton
+    if (document.getElementById('bt_switchTheme') != null) document.getElementById('bt_switchTheme').innerHTML = themeButton
     if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').href = themeShadows
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage
@@ -515,7 +515,7 @@ jeedomUtils.triggerThemechange = function() {
   }
 
   //trigger event for widgets:
-  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
+  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets', 'panel'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Dark')) {
       document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
     } else {
@@ -1038,6 +1038,7 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   allowHTML: true,
   distance: 10,
   delay: [50, 0],
+  touch: ['hold', 200],
   //trigger: 'click',
   //hideOnClick: false
 }
@@ -1101,7 +1102,7 @@ jeedomUtils.initReportMode = function() {
 
 jeedomUtils.initTableSorter = function(filter) {
   if (typeof jQuery !== 'function') return
-  // if (typeof $.tablesorter !== 'function') return
+  if (typeof $.tablesorter !== 'function') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
@@ -1180,6 +1181,7 @@ jeedomUtils.datePickerInit = function(_format, _selector) {
       enableTime: _enableTime,
       dateFormat: _format,
       time_24hr: true,
+      allowInput: true,
     })
   })
 }
@@ -1478,7 +1480,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep)
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols)
-  var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
+  var widthSteps = Array.apply(null, { length: 500 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')

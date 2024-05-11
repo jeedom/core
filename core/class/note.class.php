@@ -93,6 +93,7 @@ class note {
 	}
 
 	public function setName($_name) {
+		$_name = trim($_name);
 		$this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
 		$this->name = $_name;
 		return $this;

@@ -826,12 +826,12 @@ class system {
 				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
+					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' yarn global add ' . $_package;
@@ -883,10 +883,15 @@ class system {
 			$log = '/tmp/jeedom_fix_package_log';
 		}
 		if (file_exists($log)) {
+			$fix = '';
 			$data = file_get_contents($log);
 			if (strpos($data, 'dpkg configure -a')) {
-				return "sudo dpkg --configure -a --force-confdef\n";
+				$fix .= "sudo dpkg --configure -a --force-confdef\n";
 			}
+			if (strpos($data, 'oldstable')) {
+				$fix .= "sudo apt-get --allow-releaseinfo-change\n";
+			}
+			return $fix;
 		}
 		return '';
 	}

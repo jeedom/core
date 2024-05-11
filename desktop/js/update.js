@@ -153,7 +153,6 @@ if (!jeeFrontEnd.update) {
           })
           jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
 
-
           if (jeeP.hasUpdate) {
             document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
           } else {
@@ -254,9 +253,9 @@ if (!jeeFrontEnd.update) {
       }
 
       tr += '</td>'
-      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">' + _update.localVersion + '</span></td>'
-      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">' + _update.remoteVersion + '</span></td>'
-      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
+      tr += '<td style="width:160px;" data-order="' + Date.parse(_update.localVersion) + '"><span class="label label-primary" data-l1key="localVersion">' + _update.localVersion + '</span></td>'
+      tr += '<td style="width:160px;" data-order="' + Date.parse(_update.remoteVersion) + '"><span class="label label-primary" data-l1key="remoteVersion">' + _update.remoteVersion + '</span></td>'
+      tr += '<td style="width:160px;" data-order="' + Date.parse(_update.updateDate) + '"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
       if (_update.type != 'core') {
         tr += '<i class="fas fa-pencil-ruler" title="{{Ne pas mettre à jour}}"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'

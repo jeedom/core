@@ -124,14 +124,16 @@ class widgets {
     }
     $return = array('test' => false);
     if ($iscustom) {
-      $template = file_get_contents(__DIR__ . '/../../data/customTemplates/dashboard/'.$_template.'.html');
+      $templateDashboard = file_get_contents(__DIR__ . '/../../data/customTemplates/dashboard/'.$_template.'.html');
+      $templateMobile = file_get_contents(__DIR__ . '/../../data/customTemplates/mobile/'.$_template.'.html');
     } else {
-      $template = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
+      $templateDashboard = file_get_contents(__DIR__ . '/../template/dashboard/'.$_template.'.html');
+      $templateMobile = file_get_contents(__DIR__ . '/../template/mobile/'.$_template.'.html');
     }
-    if(strpos($template,'#test#') !== false){
+    if(strpos($templateDashboard,'#test#') !== false && strpos($templateMobile,'#test#') !== false){
       $return['test'] = true;
     }
-    preg_match_all("/#_([a-zA-Z_]*)_#/", $template, $matches);
+    preg_match_all("/#_([a-zA-Z_]*)_#/", $templateDashboard.$templateMobile, $matches);
     if (count($matches[1]) == 0) {
       return $return ;
     }
@@ -279,6 +281,7 @@ class widgets {
 
   public function setName($_name) {
     $_name = str_replace(array('&', '#', ']', '[', '%', "'"), '', $_name);
+    $_name = trim($_name);
     $this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
     $this->name = $_name;
     return $this;

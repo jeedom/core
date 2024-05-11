@@ -1527,8 +1527,8 @@ class cmd {
 					if (!isset($test['state_dark'])) {
 						$test['state_dark'] = '';
 					}
-					$test['state_light'] = str_replace('#value#', '"+_options.value+"', str_replace('"', "'", $test['state_light']));
-					$test['state_dark'] = str_replace('#value#', '"+_options.value+"', str_replace('"', "'", $test['state_dark']));
+					$test['state_light'] = str_replace(array('#value#', '#state#', '#unite#', '#raw_unite#'), array('"+_options.value+"', '"+_options.display_value+"', '"+_options.unit+"', '"+_options.raw_unit+"'), str_replace('"', "'", $test['state_light']));
+					$test['state_dark'] = str_replace(array('#value#', '#state#', '#unite#', '#raw_unite#'), array('"+_options.value+"', '"+_options.display_value+"', '"+_options.unit+"', '"+_options.raw_unit+"'), str_replace('"', "'", $test['state_dark']));
 					$test['operation'] = str_replace('"', "'", str_replace('#value#', '_options.value', $test['operation']));
 
 					//ltrim avoid js variable starting with # error
@@ -1639,6 +1639,7 @@ class cmd {
 			'#history#' => '',
 			'#hide_history#' => 'hidden',
 			'#unite#' => $this->getUnite(),
+			'#raw_unite#' => $this->getUnite(),
 			'#minValue#' => $this->getConfiguration('minValue', 0),
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
@@ -1867,6 +1868,7 @@ class cmd {
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		$unit = $this->getUnite();
+		$raw_unit = $this->getUnite();
 		$display_value = $value;
 		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
 			$display_value = ($display_value == 1) ? 0 : 1;
@@ -1886,7 +1888,7 @@ class cmd {
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
 			$eqLogic->emptyCacheWidget();
-			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
+			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
 			return;
 		}
 		$_loop++;
@@ -1903,7 +1905,7 @@ class cmd {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this, false, $this->getGeneric_type(), $object, $value);
 			$level = $this->checkAlertLevel($value);
-			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
+			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
 			$value_cmd = self::byValue($this->getId(), null, true);
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
@@ -1923,7 +1925,7 @@ class cmd {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
 		} else {
-			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
@@ -2153,7 +2155,7 @@ class cmd {
 				}
 			}
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
-			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
+			$message = __('Retour à la normale de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack');
@@ -2954,6 +2956,7 @@ class cmd {
 	 */
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$_name = trim($_name);
 		if ($this->name != $_name) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
