@@ -21,8 +21,6 @@
     <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    var step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 1
-
     window['mySlider#id#'] = domUtils.createWidgetSlider({
       sliderDiv: document.getElementById('widget_slider#id#'),
       vertical: true,
