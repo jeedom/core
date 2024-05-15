@@ -406,7 +406,7 @@ document.getElementById('div_administration').addEventListener('click', function
   if (_target = event.target.closest('#table_user .bt_copy_user_rights')) {
     let from = _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
     let select_list = []
-    document.querySelectorAll('table_user tbody tr').forEach(_tr => {
+    document.querySelectorAll('#table_user tbody tr').forEach(_tr => {
       if (_tr.querySelector('.userAttr[data-l1key="login"]').value == 'internal_report') {
         return
       }
