@@ -34,6 +34,11 @@ if (!isset(jeedom.eqLogic.cache.byId)) {
   jeedom.eqLogic.cache.byId = Array()
 }
 
+if(!isset(jeedom.eqLogic.cache.byLogical)){
+  jeedom.eqLogic.cache.byLogical = Array()
+
+}
+
 jeedom.eqLogic.save = function(_params) {
   var paramsRequired = ['type', 'eqLogics']
   var paramsSpecifics = {
@@ -322,6 +327,36 @@ jeedom.eqLogic.byId = function(_params) {
   paramsAJAX.data = {
     action: 'byId',
     id: _params.id
+  }
+  domUtils.ajax(paramsAJAX)
+}
+
+
+jeedom.eqLogic.byLogical = function(_params) {
+  var paramsRequired = ['logical', 'type']
+  var paramsSpecifics = {
+    pre_success: function(data) {
+      jeedom.eqLogic.cache.byLogical[data.result.logical, data.result.type] = data.result
+      return data
+    }
+  }
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  if (init(_params.noCache, false) == false && isset(jeedom.eqLogic.cache.byLogical[_params.logical, _params.type]) && 'function' == typeof (_params.success)) {
+    _params.success(jeedom.eqLogic.cache.byLogical[_params.logical, _params.type])
+    return
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
+  paramsAJAX.data = {
+    action: 'byLogical',
+    logical: _params.logical,
+    type: _params.type
   }
   domUtils.ajax(paramsAJAX)
 }
