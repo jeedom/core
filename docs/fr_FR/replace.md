@@ -163,7 +163,7 @@ Ici, cet équipement n’est plus référencé que par son objet d’appartenanc
 
 ## Conclusion
 
-Cet outil est pratique, mais il est tout aussi dangereux s’il est mal utilisé de part son implication multi-bniveaux.<br>
+Cet outil est pratique, mais il est tout aussi dangereux s’il est mal utilisé de part son implication multi-niveaux.<br>
 Aussi, gardez bien à l'esprit ces fondamentaux :
 
 - Effectuer systématiquement une sauvegarde de précaution, et ce avant même d'utiliser l'outil <kbd>Remplacer</kbd>,
