@@ -2,7 +2,7 @@
 
 ## Pourquoi un tel outil ?
 
-![e99379df60ec9621d056709131876267787dec9f](https://github.com/jngdan/core/alpha/docs/images/replace1.png)
+![1](https://github.com/jngdan/core/alpha/docs/images/replace1.png)
 
 Jeedom propose depuis la version 4.3.2 un nouvel outil <kbd>Remplacer</kbd> qui, en cas de problème ou de la nécessité de remplacer d’un équipement physique ou virtuel (un capteur de température, de présence, une commande de volume, un niveau d’eau,…), assurera la recopie de l’ensemble des commandes, informations, paramètres avancés et historique de cet équipement vers un nouvel équipement.<br>
 Il se chargera également de remplacer l’ID de l’ancien équipement par le nouveau dans tous les scénarios, designs, virtuels, etc… qui y faisait référence.
