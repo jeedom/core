@@ -52,7 +52,7 @@ On obtient ainsi deux équipements :
 
 Ouvrir l’outil <kbd>Remplacer</kbd>, dans le menu <kbd>Outils</kbd>.
 
-![6](h../images/replace6.png)
+![6](../images/replace6.png)
 <br>
 
 Dans le champ *Objet*, sélectionner le ou les objets parents.
@@ -88,7 +88,7 @@ Cliquer sur la ligne pour faire apparaître les différents champs rattachés.
 
 Dans la partie *Cible* à droite, dérouler la liste et sélectionner le nouvel équipement qui va le remplacer, c’est à dire [Chambre ami][T° chambre] dans notre exemple.
 
-![12](../images/images/replace12.png)
+![12](../images/replace12.png)
 <br>
 
 Dans les listes déroulantes qui s’affichent ensuite à droite, les informations sont présentées sur fond bleu, les actions sur fond orange (ci-dessous un autre exemple sur un luminaire où il y a des actions et des infos).
@@ -109,7 +109,7 @@ Sinon, le champ sera vide, et il faudra sélectionner manuellement dans la liste
 
 Cliquer sur <kbd>Remplacer</kbd>,
 
-![16](../images/images/replace16.png)
+![16](../images/replace16.png)
 <br>
 
 Valider le remplacement, en vérifiant qu’une sauvegarde ait bien été faite auparavant (attention, il n’y a pas de retour en arrière possible !).
