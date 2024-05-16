@@ -164,6 +164,7 @@ if (!jeeFrontEnd.plan) {
         success: function(data) {
           jeedom.cmd.resetUpdateFunction()
           jeeFrontEnd.plan.planContainer.empty().insertAdjacentHTML('beforeend', '<div id="div_grid" class="container-fluid" style="display:none;"></div>')
+          document.querySelectorAll('.style_plan_specific').remove();
           Object.assign(jeeFrontEnd.plan.planContainer.style, {height:"auto", width:"auto"})
           //general design configuration:
           if (isset(data.image)) {
@@ -431,7 +432,7 @@ if (!jeeFrontEnd.plan) {
       }
 
       document.querySelector('#style_' + _plan.link_type + '_' + _plan.id)?.remove()
-      var style_el = '<style id="style_' + _plan.link_type + '_' + _plan.id + '">'
+      var style_el = '<style class="style_plan_specific" id="style_' + _plan.link_type + '_' + _plan.id + '">'
       if (_plan.display.css && _plan.display.css != '') {
         if (_plan.display.cssApplyOn && _plan.display.cssApplyOn != '') {
           var cssApplyOn = _plan.display.cssApplyOn.split(',')
