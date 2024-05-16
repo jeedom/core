@@ -10,6 +10,7 @@
 - Ajout du status du service fail2ban [LIEN](https://github.com/jeedom/core/pull/2620)
 - Amélioration de l'affichage de la page santé [LIEN](https://github.com/jeedom/core/pull/2619)
 - Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va augmenter la taille des backups
+- Correction d'un bug sur les designs [LIEN](https://github.com/jeedom/core/issues/2634)
 
 # 4.4.6
 
