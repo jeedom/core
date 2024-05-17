@@ -318,7 +318,7 @@ sendVarToJS([
                     $echo .= '<input class="form-control input-sm key" value="' . $key . '">';
                     $echo .= '</td>';
                     $echo .= '<td>';
-                    $echo .= '<input class="form-control input-sm value" value="' . $value . '">';
+                    $echo .= '<input class="form-control input-sm value" value="' . htmlspecialchars($value, ENT_QUOTES) . '">';
                     $echo .= '</td>';
                     $echo .= '<td class="text-right">';
                     $echo .= '<a class="btn btn-danger btn-xs removeWidgetParameter"><i class="far fa-trash-alt"></i> {{Supprimer}}</a>';
