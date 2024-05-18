@@ -255,7 +255,7 @@ function mySqlIsHere() {
 function displayException($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
 	if (DEBUG !== 0) {
-		$message .= "<a class=\"pull-right bt_errorShowTrace cursor\" onclick=\"toggle('pre_errorTrace', event);\">Show traces</a>";
+		$message .= "<a class=\"pull-right bt_errorShowTrace cursor\" onclick=\"event.stopPropagation(); document.getElementById('pre_errorTrace').toggle()\">Show traces</a>";
 		$message .= '<br/><pre id="pre_errorTrace" style="display : none;">' . print_r($e->getTraceAsString(), true) . '</pre>';
 	}
 	return $message;

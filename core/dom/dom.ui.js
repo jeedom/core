@@ -77,7 +77,20 @@ NodeList.prototype.unseen = function() {
   }
   return this
 }
-
+Element.prototype.toggle = function() {
+  if (this.offsetParent === null){
+    this.style.display = ''
+  } else {
+    this.style.display = 'none'
+  }
+  return this
+}
+NodeList.prototype.toggle = function() {
+  for (var idx = 0; idx < this.length; idx++) {
+    this[idx].toggle()
+  }
+  return this
+}
 Element.prototype.empty = function() {
   while (this.firstChild) {
     this.removeChild(this.lastChild)
