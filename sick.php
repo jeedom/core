@@ -75,7 +75,7 @@ try {
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}
-} catch (Exeption $e) {
+} catch (Exception $e) {
 	echo "ERROR\n";
 	echo "Description : " . $e->getMessage();
 	echo "\n";
