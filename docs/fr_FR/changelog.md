@@ -11,6 +11,7 @@
 - Amélioration de l'affichage de la page santé [LIEN](https://github.com/jeedom/core/pull/2619)
 - Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va augmenter la taille des backups
 - Correction d'un bug sur les designs [LIEN](https://github.com/jeedom/core/issues/2634)
+- Correction de l'affichage des select sur la page de remplacement [LIEN](https://github.com/jeedom/core/pull/2639)
 
 # 4.4.6
 
