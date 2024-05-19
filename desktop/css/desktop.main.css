@@ -690,7 +690,7 @@ Desktop
   [data-page=replace] #div_pageContainer #eqSource ul li.cmd div.replacer select {
     line-height: 12px;
     margin-top: -10px;
-    width: unset;
+    width: 300px! important;
   }
 
 
