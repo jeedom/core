@@ -113,6 +113,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     jeedom.log.clear({
       log: document.querySelector('.li_log.active').getAttribute('data-log'),
       success: function(data) {
+        document.querySelector('li.li_log.active a').innerHTML = '<i class="fas fa-check"></i> ' + document.querySelector('.li_log.active').getAttribute('data-log')
         document.querySelector('li.li_log.active').click()
       }
     })

@@ -162,6 +162,7 @@ if (!jeeFrontEnd.plan) {
           }
         },
         success: function(data) {
+          jeedom.cmd.resetUpdateFunction()
           jeeFrontEnd.plan.planContainer.empty().insertAdjacentHTML('beforeend', '<div id="div_grid" class="container-fluid" style="display:none;"></div>')
           Object.assign(jeeFrontEnd.plan.planContainer.style, {height:"auto", width:"auto"})
           //general design configuration:
@@ -364,7 +365,7 @@ if (!jeeFrontEnd.plan) {
       if (_plan.link_type == 'eqLogic') {
         if (isset(_plan.display.hideName) && _plan.display.hideName == 1) {
           node.addClass('hideEqLogicName')
-          another_css += css_selector + ' .verticalAlign{top: 50% !important;\n}'
+          another_css += css_selector + ' .verticalAlign{height: 100% !important;\n}'
         }
         if (isset(_plan.display.showObjectName) && _plan.display.showObjectName == 1) {
           node.addClass('displayObjectName')

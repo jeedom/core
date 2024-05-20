@@ -480,6 +480,8 @@ label.binarySwitch>input:checked+span.binarySwitch {
 /* ____________________others */
 div.arcgauge .content {
   position: relative;
+  clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
+  min-width: 80px;
 }
 
 div.arcgauge .gauge,

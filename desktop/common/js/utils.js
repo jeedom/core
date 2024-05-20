@@ -1102,7 +1102,7 @@ jeedomUtils.initReportMode = function() {
 
 jeedomUtils.initTableSorter = function(filter) {
   if (typeof jQuery !== 'function') return
-  // if (typeof $.tablesorter !== 'function') return
+  if (typeof $.tablesorter !== 'function') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
@@ -1181,6 +1181,7 @@ jeedomUtils.datePickerInit = function(_format, _selector) {
       enableTime: _enableTime,
       dateFormat: _format,
       time_24hr: true,
+      allowInput: true,
     })
   })
 }

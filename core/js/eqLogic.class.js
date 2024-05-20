@@ -532,7 +532,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (jeedomUtils.userDevice.type == undefined) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
-        } else if (jeedomUI && typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
+        } else if (typeof jeedomUI !== 'undefined' && typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
           jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing,false)
         }
       }
