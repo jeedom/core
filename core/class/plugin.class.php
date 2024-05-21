@@ -669,7 +669,7 @@ class plugin {
 		}
 		if (file_exists(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json')) {
 			$return = array('log' => $plugin_id . '_packages');
-			$packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true));
+			$packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), false, false, $plugin_id);
 			$has_dep_to_install = false;
 			foreach ($packages as $package => $info) {
 				if ($info['status'] != 0 || $info['optional']) {
