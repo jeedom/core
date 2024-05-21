@@ -51,6 +51,7 @@ class plugin {
 	private $info = array();
 	private $include = array();
 	private $functionality = array();
+	private $usedSpace = 0;
 	private static $_cache = array();
 	private static $_enable = null;
 
@@ -152,6 +153,7 @@ class plugin {
 				}
 			}
 		}
+		$plugin->usedSpace = getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']);
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
 	}
