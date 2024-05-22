@@ -298,7 +298,8 @@ jeedom.eqLogic.getCmd = function(_params) {
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'byEqLogic',
-    eqLogic_id: _params.id
+    eqLogic_id: _params.id,
+    ...(_params.typeCmd ? { typeCmd: _params.typeCmd } : {}) 
   }
   domUtils.ajax(paramsAJAX)
 }
