@@ -6,6 +6,7 @@
 
 # 4.4.7
 
+- Possibilité de choisir une fréquence maximum de données historisé (1min/5min/10min) depuis la configuration avancée de la commande [LIEN](https://github.com/jeedom/core/issues/2610)
 - Mémorisation des options sur les grilles lors de l'édition des designs [LIEN](https://github.com/jeedom/core/issues/2545)
 - Mémorisation de l'état du menu (déplié ou non) lors de l'affichage des historiques [LIEN](https://github.com/jeedom/core/issues/2538)
 - Gestion des dépendances python en venv (pour etre compatible debian 12) [LIEN](https://github.com/jeedom/core/pull/2566). Note : le support est que coté core il faudra ensuite des mises à jour coté plugin pour que ca marche
