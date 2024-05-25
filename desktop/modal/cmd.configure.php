@@ -573,17 +573,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <option value="high::year">{{Maximum par année}}</option>
                   </select>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
                     <option value="line">{{Ligne}}</option>
                     <option value="area">{{Aire}}</option>
                     <option value="column">{{Barre}}</option>
                   </select>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
                   </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
                 </div>
               </div>
