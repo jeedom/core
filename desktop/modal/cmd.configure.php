@@ -511,6 +511,19 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   </select>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
+                <sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
+                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="smooth">
+                    <option value="0">{{Aucun}}</option>
+                    <option value="60">{{1 min}}</option>
+                    <option value="300">{{5 min}}</option>
+                    <option value="600">{{10 min}}</option>
+                  </select>
+                </div>
+              </div>
               <?php }
               ?>
               <div class="form-group">
