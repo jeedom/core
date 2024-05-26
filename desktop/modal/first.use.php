@@ -21,9 +21,9 @@ if (!isConnect()) {
 }
 
 $pluginJeeEasy = false;
-try {
-	$pluginJeeEasy = plugin::byId('jeeasy');
-} catch (Exception $e) { }
+if(is_object(plugin::byId('jeeasy'))) {
+	$pluginJeeEasy = true;
+}
 
 $showDoc = false;
 if (config::byKey('doc::base_url', 'core') != '') {

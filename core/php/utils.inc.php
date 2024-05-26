@@ -855,21 +855,14 @@ function calculPath($_path) {
 }
 
 function getDirectorySize($path) {
-	$totalsize = 0;
-	if ($handle = opendir($path)) {
-		while (false !== ($file = readdir($handle))) {
-			$nextpath = $path . '/' . $file;
-			if ($file != '.' && $file != '..' && !is_link($nextpath)) {
-				if (is_dir($nextpath)) {
-					$totalsize += getDirectorySize($nextpath);
-				} elseif (is_file($nextpath)) {
-					$totalsize += filesize($nextpath);
-				}
-			}
+	$bytestotal = 0;
+ 	$path = realpath($path);
+  	if($path!==false && $path!='' && file_exists($path) && !is_link($path)){
+		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+			$bytestotal += $object->getSize();
 		}
-		closedir($handle);
 	}
-	return $totalsize;
+	return $bytestotal;
 }
 
 function sizeFormat($size) {

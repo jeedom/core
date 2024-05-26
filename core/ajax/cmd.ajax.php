@@ -246,8 +246,12 @@ try {
 	}
 
 	if (init('action') == 'byEqLogic') {
-		ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
-	}
+        if (init('typeCmd')) {
+            ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'), init('typeCmd'))));
+        } else {
+            ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+        }
+     }
 
 	if (init('action') == 'getCmd') {
 		$cmd = cmd::byId(init('id'));

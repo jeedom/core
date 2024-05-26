@@ -6,11 +6,18 @@
 
 # 4.4.7
 
+- Possibilité de choisir une fréquence maximum de données historisé (1min/5min/10min) depuis la configuration avancée de la commande [LIEN](https://github.com/jeedom/core/issues/2610)
+- Mémorisation des options sur les grilles lors de l'édition des designs [LIEN](https://github.com/jeedom/core/issues/2545)
+- Mémorisation de l'état du menu (déplié ou non) lors de l'affichage des historiques [LIEN](https://github.com/jeedom/core/issues/2538)
+- Gestion des dépendances python en venv (pour etre compatible debian 12) [LIEN](https://github.com/jeedom/core/pull/2566). Note : le support est que coté core il faudra ensuite des mises à jour coté plugin pour que ca marche
+- Affichage de la taille prise par les plugins (depuis Plugin -> Gestion de plugin -> plugin voulu) [LIEN](https://github.com/jeedom/core/issues/2642)
 - Correction d'un bug sur la découverte des parametres des widgets mobile [LIEN](https://github.com/jeedom/core/issues/2615)
 - Ajout du status du service fail2ban [LIEN](https://github.com/jeedom/core/pull/2620)
 - Amélioration de l'affichage de la page santé [LIEN](https://github.com/jeedom/core/pull/2619)
 - Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va augmenter la taille des backups
 - Correction d'un bug sur les designs [LIEN](https://github.com/jeedom/core/issues/2634)
+- Correction de l'affichage des select sur la page de remplacement [LIEN](https://github.com/jeedom/core/pull/2639)
+- Correction d'un bug sur la progression des dépendances (plugin zwavejs notament) [LIEN](https://github.com/jeedom/core/issues/2644)
 
 # 4.4.6
 

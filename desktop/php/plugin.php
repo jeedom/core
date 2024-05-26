@@ -138,7 +138,7 @@ $plugins_list = plugin::listPlugin(false, true);
                 <div class="form-group">
                   <label class="col-sm-2 col-xs-6 control-label">{{Auteur}}</label>
                   <div class="col-sm-4 col-xs-6">
-                    <span id="span_plugin_author"></span>
+                    <span id="span_plugin_author"></span> - <span id="span_plugin_license"></span>
                   </div>
                   <label class="col-sm-2 col-xs-6 control-label">{{Version}}
                     <sup><i class="fas fa-question-circle" title="{{Version installée du plugin.}}"></i></sup>
@@ -149,9 +149,9 @@ $plugins_list = plugin::listPlugin(false, true);
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 col-xs-6 control-label">{{License}}</label>
+                   <label class="col-sm-2 col-xs-6 control-label">{{Espace utilisé}}</label>
                   <div class="col-sm-4 col-xs-6">
-                    <span id="span_plugin_license"></span>
+                    <span id="span_plugin_usedSpace"></span>
                   </div>
                   <label class="col-sm-2 col-xs-6 control-label">{{Prérequis}}
                     <sup><i class="fas fa-question-circle" title="{{Version minimale du Core supportée par le plugin.}}"></i></sup>
@@ -160,7 +160,6 @@ $plugins_list = plugin::listPlugin(false, true);
                     <span id="span_plugin_require"></span>
                   </div>
                 </div>
-
               </fieldset>
             </form>
           </div>

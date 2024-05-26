@@ -39,6 +39,10 @@ if (!jeeFrontEnd.plan) {
           gridSize: false,
           highlight: true
         }
+      } else if (jeedomUtils.userDevice.type == 'desktop') {
+        if (getCookie('plan_gridSize') != '') jeeFrontEnd.planEditOption.gridSize = getCookie('plan_gridSize').split(',')
+        if (getCookie('plan_grid') != '') jeeFrontEnd.planEditOption.grid = (getCookie('plan_grid') == '1')
+        if (getCookie('plan_highlight') != '') jeeFrontEnd.planEditOption.highlight = (getCookie('plan_highlight') == '1')
       }
       jeedom.getInfoApplication({
         version: 'dashboard',
@@ -729,6 +733,10 @@ if (!jeeFrontEnd.plan) {
         document.getElementById('div_grid').unseen()
       }
     },
+    //save Options
+    saveOptions: function(_option, _value) {
+      setCookie('plan_' + _option, _value, 7)
+    },
     //save
     savePlan: function(_refreshDisplay, _async) {
       if (jeephp2js.planHeader_id == -1) return
@@ -1155,10 +1163,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             type: 'radio',
             radio: 'radio',
             value: '0',
-            selected: true,
+            selected: (jeeFrontEnd.planEditOption.gridSize == false) ? true : false,
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = false
+                jeeP.saveOptions('gridSize', '')
                 jeeP.initEditOption(1)
                 return false
               }
@@ -1169,9 +1178,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             type: 'radio',
             radio: 'radio',
             value: '10',
+            selected: (jeeFrontEnd.planEditOption.gridSize && jeeFrontEnd.planEditOption.gridSize.includes('10')),
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [10, 10]
+                jeeP.saveOptions('gridSize', [10, 10])
                 jeeP.initEditOption(1)
                 return false
               }
@@ -1182,9 +1193,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             type: 'radio',
             radio: 'radio',
             value: '15',
+            selected: (jeeFrontEnd.planEditOption.gridSize && jeeFrontEnd.planEditOption.gridSize.includes('15')),
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [15, 15]
+                jeeP.saveOptions('gridSize', [15, 15])
                 jeeP.initEditOption(1)
                 return false
               }
@@ -1195,9 +1208,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             type: 'radio',
             radio: 'radio',
             value: '20',
+            selected: (jeeFrontEnd.planEditOption.gridSize && jeeFrontEnd.planEditOption.gridSize.includes('20')),
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.gridSize = [20, 20]
+                jeeP.saveOptions('gridSize', [20, 20])
                 jeeP.initEditOption(1)
                 return false
               }
@@ -1212,6 +1227,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.grid = this.jeeValue()
+                jeeP.saveOptions('grid', this.jeeValue())
                 jeeP.initEditOption(1)
                 return false
               }
@@ -1221,10 +1237,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
             name: "{{Masquer surbrillance des éléments}}",
             type: 'checkbox',
             radio: 'radio',
-            selected: jeeFrontEnd.planEditOption.highlight,
+            selected: !jeeFrontEnd.planEditOption.highlight,
             events: {
               click: function(e) {
                 jeeFrontEnd.planEditOption.highlight = (this.jeeValue() == 1) ? false : true
+                jeeP.saveOptions('highlight', ((this.jeeValue() == 1) ? 0 : 1))
                 jeeP.initEditOption(1)
                 return false
               }

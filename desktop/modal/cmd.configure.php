@@ -511,6 +511,19 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   </select>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
+                <sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+                </label>
+                <div class="col-sm-6">
+                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="smooth">
+                    <option value="0">{{Aucun}}</option>
+                    <option value="60">{{1 min}}</option>
+                    <option value="300">{{5 min}}</option>
+                    <option value="600">{{10 min}}</option>
+                  </select>
+                </div>
+              </div>
               <?php }
               ?>
               <div class="form-group">
@@ -560,17 +573,17 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <option value="high::year">{{Maximum par année}}</option>
                   </select>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
                     <option value="line">{{Ligne}}</option>
                     <option value="area">{{Aire}}</option>
                     <option value="column">{{Barre}}</option>
                   </select>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
                   </div>
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                   {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
                 </div>
               </div>
