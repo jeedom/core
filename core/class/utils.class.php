@@ -226,7 +226,7 @@ class utils {
 	}
 
 	public static function decrypt($ciphertext, $password = null) {
-		if ($ciphertext === '') {
+		if (empty($ciphertext)) {
 			return null;
 		}
 		if ($password == null) {
