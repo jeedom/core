@@ -353,7 +353,7 @@
         }
       ],
       "indexes": {
-        "logicalId_Type": {
+        "class": {
           "Key_name": "class",
           "Non_unique": "1",
           "columns": {
@@ -363,7 +363,7 @@
             }
           }
         },
-        "logicalId_Type": {
+        "function": {
           "Key_name": "function",
           "Non_unique": "1",
           "columns": {
