@@ -229,7 +229,7 @@
         "ft_logicalID": {
           "Key_name": "ft_logicalID",
           "Non_unique": "1",
-          "fulltext" : 1,
+          "Index_type" : "FULLTEXT",
           "columns": {
             "1": {
               "column": "logicalId",
