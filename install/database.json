@@ -229,6 +229,7 @@
         "logicalID": {
           "Key_name": "logicalID",
           "Non_unique": "1",
+          "fulltext" : 1,
           "columns": {
             "1": {
               "column": "logicalId",

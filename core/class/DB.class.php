@@ -818,6 +818,8 @@ class DB {
 	public static function buildDefinitionIndex($_index, $_table_name) {
 		if ($_index['Non_unique'] == 0) {
 			$return = 'CREATE UNIQUE INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
+		} else if ($_index['fulltext'] == 1) {
+			$return = 'CREATE FULLTEXT INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
 		} else {
 			$return = 'CREATE INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
 		}
