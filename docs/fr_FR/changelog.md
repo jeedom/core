@@ -21,6 +21,7 @@
 - Correction d'un soucis de largeur sur le widget liste en mode design [LIEN](https://github.com/jeedom/core/issues/2647)
 - Amélioration de l'affichage de widgets [LIEN](https://github.com/jeedom/core/pull/2631)
 - Mise à jour de la documentation sur de l'outils remplacer [LIEN](https://github.com/jeedom/core/pull/2638)
+- Correction d'un soucis d'incoherence sur les valeurs minimales des tailles de rapport [LIEN](https://github.com/jeedom/core/issues/2449)
 
 # 4.4.6
 
