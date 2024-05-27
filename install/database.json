@@ -226,8 +226,8 @@
             }
           }
         },
-        "ft_logicalID": {
-          "Key_name": "ft_logicalID",
+        "logicalID": {
+          "Key_name": "logicalID",
           "Non_unique": "1",
           "Index_type" : "FULLTEXT",
           "columns": {
