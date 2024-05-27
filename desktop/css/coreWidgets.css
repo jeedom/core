@@ -369,6 +369,7 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
   width: 70px;
+  text-align: center;
 }
 
 div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
