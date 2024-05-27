@@ -22,6 +22,7 @@
 - Amélioration de l'affichage de widgets [LIEN](https://github.com/jeedom/core/pull/2631)
 - Mise à jour de la documentation sur de l'outils remplacer [LIEN](https://github.com/jeedom/core/pull/2638)
 - Correction d'un soucis d'incoherence sur les valeurs minimales des tailles de rapport [LIEN](https://github.com/jeedom/core/issues/2449)
+- Correction d'un bug sur la verfication de la base de données ou il pouvait toujours manquer un index [LIEN](https://github.com/jeedom/core/issues/2655)
 
 # 4.4.6
 
