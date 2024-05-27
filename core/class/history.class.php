@@ -1026,7 +1026,10 @@ class history {
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('smooth', 0) > 0 && $cmd->getConfiguration('historizeMode', 'none') =! 'none' && $this->getValue() !== null) {
+		if ( $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] 
+		    && $cmd->getConfiguration('smooth', 0) > 0 
+			&& $cmd->getConfiguration('historizeMode', 'none') != 'none' 
+			&& $this->getValue() !== null ) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
 				$time -= $time % $cmd->getConfiguration('smooth', 0);
