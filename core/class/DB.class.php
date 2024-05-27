@@ -742,6 +742,7 @@ class DB {
 			if (!isset($return[$index['Key_name']])) {
 				$return[$index['Key_name']] = array(
 					'Key_name' => $index['Key_name'],
+					'Index_type' => $index['Index_type'],
 					'Non_unique' => 0,
 					'columns' => array(),
 				);
