@@ -324,6 +324,7 @@ jeedom.refreshMessageNumber = function() {
 jeedom.UPDATE_NUMBER
 jeedom.refreshUpdateNumber = function() {
   if (jeedom.update == undefined) return //mobile
+  if (document.getElementById('span_nbUpdate') === null) return // for a not admin profil
   jeedom.update.number({
     error: function(error) {
       jeedomUtils.showAlert({
