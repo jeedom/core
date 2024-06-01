@@ -14,21 +14,6 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-function toggle(id, event = null) {
-  if(event !== null){
-    event.stopPropagation(); 
-  }
-  var x = document.getElementById(id);
-  console.debug(x.style.display);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-  return false;
-}
-
 function getTemplate(_folder, _version, _filename, _replace) {
   if (_folder == 'core') {
     var path = _folder + '/template/' + _version + '/' + _filename;
