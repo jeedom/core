@@ -1658,7 +1658,7 @@ class cmd {
 				$coupleArray = explode('|', $element);
 				$cmdValue = $this->getCmdValue();
 				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
-					if ($cmdValue->execCmd() == $coupleArray[0]) {
+					if ($cmdValue->execCmd() == $coupleArray[1]) {
 						$listOption .= '<option value="' . $coupleArray[0] . '" selected>' . $coupleArray[1] . '</option>';
 						$foundSelect = true;
 					} else {
