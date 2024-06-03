@@ -702,7 +702,6 @@ class DB {
 				if ($showIndex['Key_name'] != $index['Key_name']) {
 					continue;
 				}
-
 				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'], static::compareIndex($index, $showIndex, $_table['name'], $forceRebuildIndex));
 				$found = true;
 			}
@@ -743,6 +742,7 @@ class DB {
 			if (!isset($return[$index['Key_name']])) {
 				$return[$index['Key_name']] = array(
 					'Key_name' => $index['Key_name'],
+					'Index_type' => $index['Index_type'],
 					'Non_unique' => 0,
 					'columns' => array(),
 				);
@@ -788,6 +788,10 @@ class DB {
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
 		}
+		if (isset($_ref_index['Index_type']) && $_ref_index['Index_type'] != $_real_index['Index_type']) {
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Index type nok';
+		}
 		if ($_forceRebuild) {
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Force rebuild';
@@ -818,6 +822,8 @@ class DB {
 	public static function buildDefinitionIndex($_index, $_table_name) {
 		if ($_index['Non_unique'] == 0) {
 			$return = 'CREATE UNIQUE INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
+		} else if (isset($_index['Index_type']) && $_index['Index_type'] == 'FULLTEXT') {
+			$return = 'CREATE FULLTEXT INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
 		} else {
 			$return = 'CREATE INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
 		}

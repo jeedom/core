@@ -168,6 +168,7 @@ if (!jeeFrontEnd.md_history) {
         })
       }
       this.resizeHighChartModal()
+      if (getCookie('md_history_toggleOptions') == 1) this.toggleOptions(true)
     },
     reloadModal: function() {
       let url = 'index.php?v=d&modal=cmd.history&id='
@@ -183,7 +184,26 @@ if (!jeeFrontEnd.md_history) {
           
         }
       })
-    }
+    },
+    toggleOptions: function(_value) {
+      let btIcon = document.querySelector('#bt_toggleOptions i')
+      if(_value){
+        btIcon.removeClass('fa-arrow-down').addClass('fa-arrow-up')
+        document.querySelectorAll('#md_history div.options')?.seen()
+        document.querySelector('#md_history g.highcharts-range-selector-group')?.seen()
+        document.querySelectorAll('.highcharts-button')?.seen()
+        jeeFrontEnd.md_history.resizeHighChartModal(true)
+      } else {
+        btIcon.removeClass('fa-arrow-up').addClass('fa-arrow-down')
+        document.querySelectorAll('#md_history div.options')?.unseen()
+        document.querySelector('#md_history g.highcharts-range-selector-group')?.unseen()
+        document.querySelectorAll('.highcharts-button')?.unseen()
+        jeeFrontEnd.md_history.resizeHighChartModal(false)
+      }
+    },
+    saveOptions: function(_option, _value) {
+      setCookie('md_history_' + _option, _value, 7)
+    },
   }
 }
 
@@ -198,17 +218,11 @@ if (!jeeFrontEnd.md_history) {
   document.getElementById('bt_toggleOptions').addEventListener('click', function(event) {
     let btIcon = document.querySelector('#bt_toggleOptions i')
     if (btIcon.hasClass('fa-arrow-down')) {
-      btIcon.removeClass('fa-arrow-down').addClass('fa-arrow-up')
-      document.querySelectorAll('#md_history div.options')?.seen()
-      document.querySelector('#md_history g.highcharts-range-selector-group')?.seen()
-      document.querySelectorAll('.highcharts-button')?.seen()
-      jeeM.resizeHighChartModal(true)
+      jeeM.toggleOptions(true)
+      jeeM.saveOptions('toggleOptions', 1)
     } else {
-      btIcon.removeClass('fa-arrow-up').addClass('fa-arrow-down')
-      document.querySelectorAll('#md_history div.options')?.unseen()
-      document.querySelector('#md_history g.highcharts-range-selector-group')?.unseen()
-      document.querySelectorAll('.highcharts-button')?.unseen()
-      jeeM.resizeHighChartModal(false)
+      jeeM.toggleOptions(false)
+      jeeM.saveOptions('toggleOptions', 0)
     }
   })
 

@@ -55,17 +55,6 @@ window.addEventListener('scroll', function(e) {
   scrollStopper()
 })
 
-//allow shortcut as app:
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js').then(function(registration) {
-      console.info('ServiceWorker registration successful with scope: ', registration.scope)
-    }, function(err) {
-      console.info('ServiceWorker registration failed: ', err)
-    })
-  })
-}
-
 var PANEL_SCROLL = 0
 var APP_MODE = false
 var TAPHOLD = false

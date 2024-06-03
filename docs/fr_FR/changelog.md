@@ -4,6 +4,28 @@
 >
 >Même si elles ne sont pas forcément visibles au premier abord, la version 4.4 de Jeedom apporte des modifications majeures avec une interface qui a été complètement réécrite pour une maitrise complète et surtout un gain de fluidité de navigation inégalé. La gestion des dépendances PHP à également été revue afin de pouvoir les maintenir à jour automatiquement. Même si l'équipe Jeedom et les beta testeurs ont fait énormément de tests, il y a autant de version de jeedom qu'il y a de jeedom... Il n'est donc pas possible de garantir un bon fonctionnement dans 100% des cas cependant en cas de souci vous pouvez [ouvrir un sujet sur le forum avec l'étiquette `v4_4`](https://community.jeedom.com/) ou contacter le support depuis votre profil market *(sous condition d'être détenteur d'un service pack ou supérieur)*.
 
+# 4.4.7
+
+- Possibilité de choisir une fréquence maximum de données historisé (1min/5min/10min) depuis la configuration avancée de la commande [LIEN](https://github.com/jeedom/core/issues/2610)
+- Mémorisation des options sur les grilles lors de l'édition des designs [LIEN](https://github.com/jeedom/core/issues/2545)
+- Mémorisation de l'état du menu (déplié ou non) lors de l'affichage des historiques [LIEN](https://github.com/jeedom/core/issues/2538)
+- Gestion des dépendances python en venv (pour etre compatible debian 12) [LIEN](https://github.com/jeedom/core/pull/2566). Note : le support est que coté core il faudra ensuite des mises à jour coté plugin pour que ca marche
+- Affichage de la taille prise par les plugins (depuis Plugin -> Gestion de plugin -> plugin voulu) [LIEN](https://github.com/jeedom/core/issues/2642)
+- Correction d'un bug sur la découverte des parametres des widgets mobile [LIEN](https://github.com/jeedom/core/issues/2615)
+- Ajout du status du service fail2ban [LIEN](https://github.com/jeedom/core/pull/2620)
+- Amélioration de l'affichage de la page santé [LIEN](https://github.com/jeedom/core/pull/2619)
+- Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va augmenter la taille des backups
+- Correction d'un bug sur les designs [LIEN](https://github.com/jeedom/core/issues/2634)
+- Correction de l'affichage des select sur la page de remplacement [LIEN](https://github.com/jeedom/core/pull/2639)
+- Correction d'un bug sur la progression des dépendances (plugin zwavejs notament) [LIEN](https://github.com/jeedom/core/issues/2644)
+- Correction d'un soucis de largeur sur le widget liste en mode design [LIEN](https://github.com/jeedom/core/issues/2647)
+- Amélioration de l'affichage de widgets [LIEN](https://github.com/jeedom/core/pull/2631)
+- Mise à jour de la documentation sur de l'outils remplacer [LIEN](https://github.com/jeedom/core/pull/2638)
+- Correction d'un soucis d'incoherence sur les valeurs minimales des tailles de rapport [LIEN](https://github.com/jeedom/core/issues/2449)
+- Correction d'un bug sur la verfication de la base de données ou il pouvait toujours manquer un index [LIEN](https://github.com/jeedom/core/issues/2655)
+- Correction d'un bug sur le graphique des liens [LIEN](https://github.com/jeedom/core/issues/2659)
+- Suppression sur service worker en mobile (plus utilisé) [LIEN](https://github.com/jeedom/core/issues/2660)
+
 # 4.4.6
 
 - Correction d'un bug sur la mise à jour des graphiques en fond de widget [LIEN](https://github.com/jeedom/core/issues/2594)

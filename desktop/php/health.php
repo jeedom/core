@@ -68,7 +68,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</tr>';
 		}
 	} catch (Exception $e) {
-		
+
 	}
 	try {
 		if ($plugin->getHasOwnDeamon() == 1) {
@@ -119,9 +119,9 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</tr>';
 		}
 	} catch (Exception $e) {
-		
+
 	}
-	
+
 	try {
 		if (method_exists($plugin->getId(), 'health')) {
 			foreach (($plugin_id::health()) as $result) {
@@ -144,7 +144,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			}
 		}
 	} catch (Exception $e) {
-		
+
 	}
 	if ($plugin->getHasDependency() == 1 || $plugin->getHasOwnDeamon() == 1 || method_exists($plugin->getId(), 'health')) {
 		$html .= '</tbody>';
@@ -204,7 +204,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 							$count = 0;
 							$echo = '';
 							foreach ((jeedom::health()) as $datas) {
-								if ($count == 0) $echo .= '<tr>';
+								if ($count % 2 == 0) $echo .= '<tr>';
 								$echo .= '<td>';
 								$echo .= $datas['name'];
 								if ($datas['comment'] != '') {
@@ -220,16 +220,14 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 								}
 								$echo .= $datas['result'];
 								$echo .= '</td>';
-								$count ++;
-								if ($count == 2) $count = 0;
-								if ($count == 0) $echo .= '</tr>';
+								if (++$count % 2 == 0 || $globalhtml == '') $echo .= '</tr>';
 							}
-							$echo .= '</tr>';
 							echo $echo;
 
 							if ($globalhtml != '') {
 								$echo = '';
-								$echo .= '<tr><td>{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
+								if ($count % 2 == 0) $echo .= '<tr>';
+								$echo .= '<td>{{Plugins}} <sup><i class="fas fa-question-circle" title="{{Vous pouvez voir les détails des plugins sur la partie basse de cette page}}"></i></sup></td>';
 								if ($totalNok == 0 && $totalPending == 0) {
 									$echo .= '<td class="alert alert-success">{{OK}}</td>';
 									$echo .= '<td></td>';
@@ -264,16 +262,16 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 				<table id="jeedomTable" class="table table-condensed">
 					<tbody>
 						<?php
+						$count = 0;
 						$tr = '';
 						foreach ((get_loaded_extensions()) as $name) {
-							if ($count == 0) $tr .= '<tr>';
+							if ($count % 10 == 0) $tr .= '<tr>';
 							$tr .= '<td>';
 							$tr .= $name;
 							$tr .= '</td>';
-							$count ++;
-							if ($count == 10) $count = 0;
-							if ($count == 0) $tr .= '</tr>';
+							if (++$count % 10 == 0) $tr .= '</tr>';
 						}
+						if ($count % 10 != 0) $tr .= '</tr>';
 						echo $tr;
 						?>
 					</tbody>

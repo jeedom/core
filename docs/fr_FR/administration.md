@@ -172,6 +172,10 @@ En dessous vous retrouvez un tableau permettant de gérer finement le niveau de 
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Historique, vous obtenez des graphiques représentant leur utilisation. Cet onglet permet de fixer des paramètres globaux à l’historisation des commandes.
 
+>**InfluxDB**
+>
+>Si vous voulez utilisez InfluxDB pour le moment il faut installer vous meme la librairie InfluxDB, Jeedom ne le faisant plus car elle n'est plus maintenu (nous prévoyons de migrer sur la nouvelle version mais cela ne sera pas pour tout de suite). Pour faire l'installation manuel voila comment faire : `cd /var/www/html;composer require influxdb/influxdb-php` depuis configuration puis onglet OS/DB puis la console d'administration OS
+
 ### Historique des commandes
 
 - **Afficher les statistiques sur les widgets** : Permet d’afficher les statistiques sur les widgets. Il faut que le widget soit compatible, ce qui est le cas pour la plupart. Il faut aussi que la commande soit de type numérique.
