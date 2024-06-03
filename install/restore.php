@@ -144,7 +144,7 @@ try {
 	}
 
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
-		throw new Exception('Cannot find databse backup file : DB_backup.sql');
+		throw new Exception('Cannot find database backup file : DB_backup.sql');
 	}
 	echo "Deleting database...";
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
@@ -186,7 +186,7 @@ try {
 	echo "OK\n";
 	
 	if (!file_exists(__DIR__ . '/../core/config/common.config.php')) {
-		echo "Restoring databse configuration file...";
+		echo "Restoring database configuration file...";
 		copy('/tmp/common.config.php', __DIR__ . '/../core/config/common.config.php');
 		echo "OK\n";
 	}
