@@ -1176,7 +1176,7 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-sm-6">
 							<select class="form-control configKey" data-l1key="history::smooth">
-								<option value="-1">{{Aucun}}</option>
+								<option value=-2">{{Aucun}}</option>
 								<option value="60">{{1 min}}</option>
 								<option value="300">{{5 min}}</option>
 								<option value="600">{{10 min}}</option>
