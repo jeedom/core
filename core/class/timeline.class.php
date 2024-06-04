@@ -122,11 +122,8 @@ class timeline {
      if($delete_number <= 0){
        return;
      }
-     $values = array(
-       'number' => $delete_number,
-     );
      $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
-     DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+     DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 
     //ensure no duplicates:
     $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
