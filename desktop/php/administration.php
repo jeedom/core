@@ -1171,10 +1171,10 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Limiter à une valeur toute les}}
 							<sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeur historisé par les commandes en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
 							</label>
-							<div class="col-sm-6">
+							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 							<select class="form-control configKey" data-l1key="history::smooth">
 								<option value="-2">{{Aucun}}</option>
 								<option value="60">{{1 min}}</option>
