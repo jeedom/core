@@ -1027,14 +1027,14 @@ class history {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
 		if ( $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] 
-		    && $cmd->getConfiguration('smooth', 0) > 0 
+		    && $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0)) > 0 
 			&& $cmd->getConfiguration('historizeMode', 'none') != 'none' 
 			&& $this->getValue() !== null ) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
-				$time -= $time % $cmd->getConfiguration('smooth', 0);
+				$time -= $time % $cmd->getConfiguration('smooth', config::byKey('history::smooth','core',0));
 				if ($this->getValue() == 0) {
-					$this->setDatetime(date('Y-m-d H:i:00', $time + $cmd->getConfiguration('smooth', 0)));
+					$this->setDatetime(date('Y-m-d H:i:00', $time + $cmd->getConfiguration('smooth', config::byKey('history::smooth','core',0))));
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
