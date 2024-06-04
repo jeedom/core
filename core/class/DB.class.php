@@ -34,10 +34,19 @@ class DB {
 
 	private static function initConnection() {
 		global $CONFIG;
+		$_options = [
+			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci',
+			PDO::ATTR_PERSISTENT => true,
+			// silent mode, default for php7: https://www.php.net/manual/fr/pdo.error-handling.php
+			// exception mode for debug
+			PDO::ATTR_ERRMODE => (DEBUG ? PDO::ERRMODE_EXCEPTION : PDO::ERRMODE_SILENT),
+		];
 		if (isset($CONFIG['db']['unix_socket'])) {
-			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'],
+			 $CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
 		} else {
-			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], 
+			$CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
 		}
 	}
 
