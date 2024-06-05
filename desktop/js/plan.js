@@ -248,6 +248,7 @@ if (!jeeFrontEnd.plan) {
               jeedomUtils.addOrUpdateUrl('plan_id', jeephp2js.planHeader_id, data.name + ' - ' + JEEDOM_PRODUCT_NAME)
               jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
               jeedomUtils.initReportMode()
+              jeedomUtils.initTooltips()
               window.scrollTo({top: 0, behavior: "smooth"})
               jeeFrontEnd.plan.setGraphResizes()
               jeeFrontEnd.modifyWithoutSave = false
