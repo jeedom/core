@@ -183,7 +183,7 @@ try {
 		$infoPlugin = '';
 		if (method_exists($plugin_id, 'getConfigForCommunity')) {
 			$infoPlugin .= '**' . __('Informations complémentaires', __FILE__) .  '**<br>';
-			$infoPlugin .= $plugin_id::getConfigForCommunity();
+			$infoPlugin .= '<br>```<br>' . $plugin_id::getConfigForCommunity() . '<br>```<br>';
 		}
 
 		// GENERATE URL with Query Param to create a new post
