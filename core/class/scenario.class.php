@@ -660,6 +660,9 @@ class scenario {
 	 * @return string|object|array return value will depends on $_input received
 	 */
 	public static function fromHumanReadable($_input) {
+		if(empty($_input)){
+			return $_input;
+		}
 		$isJson = false;
 		if (is_json($_input)) {
 			$isJson = true;
