@@ -881,7 +881,6 @@ function sizeFormat($size) {
  * @return boolean
  */
 function netMatch($network, $ip) {
-
 	$ip = trim($ip);
 	if ($ip == trim($network)) {
 		return true;
@@ -1551,7 +1550,9 @@ function pageTitle($_page) {
 }
 
 function cleanComponanteName($_name) {
-	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
+	$return =  strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
+	$return = preg_replace('/\s+/', ' ', $return);
+	return $return;
 }
 
 function startsWith($haystack, $needle) {
