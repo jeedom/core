@@ -1010,7 +1010,7 @@ class history {
 		if ($this->getValue() === null) {
 			return;
 		}
-		//global $JEEDOM_INTERNAL_CONFIG;
+		global $JEEDOM_INTERNAL_CONFIG;
 		if ($_cmd === null) {
 			$cmd = $this->getCmd();
 			if (!is_object($cmd)) {
