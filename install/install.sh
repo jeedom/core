@@ -336,17 +336,21 @@ step_9_jeedom_configuration() {
 step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
+  // install composer
   chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
   ${WEBSERVER_HOME}/resources/install_composer.sh
+  export COMPOSER_ALLOW_SUPERUSER=1
+  cd ${WEBSERVER_HOME}
+
   PHP_VERSION=$(php -r "echo PHP_VERSION;")
   if [ $(version $PHP_VERSION) -ge $(version "8.0.0") ]; then
-    echo "PHP version highter than 8.0.0, need to reinstall composer dependancy"
-    rm -rf ${WEBSERVER_HOME}/vendor
-    rm -rf ${WEBSERVER_HOME}/composer.lock
-    export COMPOSER_ALLOW_SUPERUSER=1
-    cd ${WEBSERVER_HOME}
-    composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+    echo "PHP version highter than 8.0.0, need to update composer dependancy"
+    composer update --no-progress --no-interaction --no-dev 
+  else
+    echo "PHP version less than 8.0.0, install composer dependancy"
+    composer install --no-progress --no-interaction --no-dev 
   fi
+
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
