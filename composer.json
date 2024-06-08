@@ -1,4 +1,9 @@
 {
+  "name": "jeedom/jeedom",
+  "description": "Software for home automation",
+  "type": "project",
+  "homepage": "https://jeedom.com/fr/",
+  "license": "GPL-2.0",
   "require": {
     "dragonmantank/cron-expression": "^3",
     "symfony/expression-language": "5 - 7",
