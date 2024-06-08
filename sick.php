@@ -29,7 +29,7 @@ echo "Load Jeedom environment...";
 try {
 	require_once __DIR__ . "/core/php/core.inc.php";
 	echo "OK\n";
-} catch (Exeption $e) {
+} catch (Exception $e) {
 	echo "ERROR\n";
 	echo "Cannot load Jeedom environment : " . $e->getMessage();
 	echo "\n";
@@ -37,7 +37,7 @@ try {
 }
 
 /* Check log dir */
-echo "Checl write mode on log files ...";
+echo "Check write mode on log files ...";
 if (!file_exists($install_dir . '/log')) {
 	echo "unfound /log folder\n";
 	echo "Required command : mkdir " . $install_dir . "/log\n";
@@ -49,6 +49,86 @@ if (!is_writable($install_dir . '/log')) {
 	die();
 }
 echo "OK\n";
+
+echo "
+**************************************************
+*               DATABASE CONNECTION              *
+**************************************************
+";
+
+// check that mysql exists as available driver
+if( !in_array( 'mysql', PDO::getAvailableDrivers())){
+  die( "Driver mysql non installé !\n");
+}else{
+  echo "Driver mysql disponible.\n";
+}
+// check database configuration
+if(!file_exists(__DIR__ . '/core/config/common.config.php')){
+  die('Configuration manquante ! core/config/common.config.php non généré.');
+}
+
+require_once __DIR__ . '/core/config/common.config.php';
+
+// check local socket if localhost is configured
+if(isset($CONFIG['db']['unix_socket']) || (isset($CONFIG['db']['host']) && $CONFIG['db']['host'] == 'localhost')) {
+
+  // check default socket configuration for mysql
+  $default_socket = ini_get('pdo_mysql.default_socket');
+  if(empty($default_socket)){
+    die( "pdo_mysql.default_socket = VIDE !
+	 vérifier /usr/local/etc/php/php.ini
+	 et ajouter dans la section [Pdo_mysql]
+	 pdo_mysql.default_socket=/var/run/mysqld/mysqld.sock");
+  } else {
+	if(!file_exists($default_socket)){
+		die( "Pas de socker: $default_socket");
+	}
+	if(!is_readable($default_socket)){
+		die( "Fichier inaccessible en lecture ! $default_socket");
+	}
+	if(!is_writeable($default_socket)){
+		die( "Fichier inaccessible en écriture ! $default_socket");
+	}
+  }
+
+}
+
+// TODO: check env var MYSQL_HOST ?
+
+if (isset($CONFIG['db']['unix_socket'])) {
+  try {
+    $connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+  } catch (Exception $e) {
+    echo $e->getMessage();  
+  }
+} else {
+  try {
+    $connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+  } catch (Exception $e) {
+    echo $e->getMessage();  
+  }
+}
+
+if( !isset($connection)) {
+  die( 'ECHEC ! impossible de se connecter à la bdd mariadb');
+}else{
+  $result = $connection->query('SHOW TABLES;');
+  $arr = $result->fetchAll();
+  if(count($arr) == 0){
+    die( "Aucune table ! relancer l'installation: php instal.php --force");
+  }else{
+    echo 'Connection OK - ' . count($arr) . ' tables.
+	';
+  }
+}
+
+if(empty(session_save_path())) {
+	echo "Paramètre session.save_path manquant dans /usr/local/etc/php/php.ini
+	[Session]
+	session.save_path = \"/tmp/jeedom\"
+	";
+}
+
 
 echo "\n**************************************************\n";
 echo "*                     USERS                      *";
