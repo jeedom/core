@@ -6,14 +6,14 @@ JEEDOM_SHORT_VERSION="$(echo "$JEEDOM_VERSION" | awk -F. '{print $1"."$2}')"
 # Docker hub repository may be overriden
 REPO=${DOCKER_HUB_REPO:-"jeedom"}
 
-if [[ "${GITHUB_REF_NAME}" == "V4-stable" ]]; then
+if [[ "${GITHUB_REF_NAME}" == "master" ]]; then
   JEEDOM_TAGS="${REPO}/jeedom:latest,${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
   GITHUB_BRANCH=${GITHUB_REF_NAME};
 elif [[ "${GITHUB_REF_NAME}" == "beta" ]]; then
-  JEEDOM_TAGS="${REPO}/jeedom:beta,${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
+  JEEDOM_TAGS="${REPO}/jeedom:beta"; # ${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
   GITHUB_BRANCH=${GITHUB_REF_NAME};
 else
-  JEEDOM_TAGS="${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
+  JEEDOM_TAGS="${REPO}/jeedom:alpha";
   GITHUB_BRANCH=alpha;
 fi
 
