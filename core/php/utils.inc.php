@@ -859,7 +859,11 @@ function getDirectorySize($path) {
  	$path = realpath($path);
   	if($path!==false && $path!='' && file_exists($path) && !is_link($path)){
 		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
-			$bytestotal += $object->getSize();
+			try {
+				$bytestotal += $object->getSize();
+			} catch (\Throwable $th) {
+
+			}
 		}
 	}
 	return $bytestotal;
