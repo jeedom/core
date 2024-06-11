@@ -42,7 +42,7 @@ Object.assign(domUtils, {
   registeredEvents: [],
   registeredFuncs: [],
   headInjexted: [],
- // controller : new AbortController()
+  controller : new AbortController()
 })
 
 window.addEventListener('beforeunload', function(event) {
@@ -580,7 +580,7 @@ domUtils.ajax = function(_params) {
       referrerPolicy: 'no-referrer',
       mode: 'cors',
       credentials: 'same-origin',
-      //signal: domUtils.controller.signal,
+      signal: domUtils.controller.signal,
       //Safari AbortSignal.timeout not a function
       //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
