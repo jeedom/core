@@ -17,6 +17,27 @@
   <textarea class="tags expressionAttr form-control ta_autosize roundedRight" data-l1key="options" data-l2key="tags" rows="1" data-cmd_id="#id#" data-uid="#uid#" style="resize:vertical;" placeholder="{{Tags}}">#tags#</textarea>
 </div>
 <script>
+  function addScenariosFilter(selectElm) {
+    const searchInput = document.createElement('input');
+    searchInput.classList.add('form-control', 'rounded-left');
+    searchInput.placeholder = `Filtre de scénarios`;
+    selectElm.parentElement.insertBefore(searchInput, selectElm.nextSibling);
+  
+    searchInput.addEventListener("keyup", function (e) {
+      const text = e.target.value;
+      const options = Array.from(selectElm.options);
+      options.forEach (function(option) {
+        const optionText = option.text; 
+        const lowerOptionText = optionText.toLowerCase();
+        const lowerText = text.toLowerCase(); 
+        const regex = new RegExp("^" + text, "i");
+        const match = optionText.match(regex); 
+        const contains = lowerOptionText.indexOf(lowerText) != -1;
+        option.hidden = match || contains ? false: true ;
+      })
+    });
+  }
+  
   if ('#action#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"] option[value="#action#"]')?.innerHTML != '') {
     document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="action"]').value = '#action#'
   }
@@ -34,6 +55,8 @@
         newOption.value = scenarios[i].id
         select.appendChild(newOption)
       }
+
+      addScenariosFilter(select);
 
       if ('#scenario_id#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
         document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]').value = '#scenario_id#'
