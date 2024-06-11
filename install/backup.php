@@ -87,11 +87,7 @@ try {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
 	}
-	if (isset($CONFIG['db']['unix_socket'])) {
-		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
-	} else {
-		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
-	}
+	system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
 	echo "OK" . "\n";
 
 	echo 'Backing up database...';
@@ -104,11 +100,8 @@ try {
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('can\'t delete database backup. Check rights');
 	}
-	if (isset($CONFIG['db']['unix_socket'])) {
-		system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
-	} else {
-		system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
-	}
+	system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
+	
 	if ($rc != 0) {
 		throw new Exception('Backing up database failed. Check mysqldump installation. Code: ' . $rc);
 	}
@@ -136,15 +129,15 @@ try {
 		'support',
 		'backup',
 		'script/tunnel',
-		'node_modules',
 		'.git',
 		'.gitignore',
 		'.log',
 		'core/config/common.config.php',
 		'data/imgOs',
+		'python_venv',
 		config::byKey('backup::path'),
 	);
-	if(version_compare(PHP_VERSION, '8.0.0') >= 0){
+	if (version_compare(PHP_VERSION, '8.0.0') >= 0) {
 		$excludes[] = '/vendor';
 	}
 

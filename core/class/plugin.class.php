@@ -51,6 +51,7 @@ class plugin {
 	private $info = array();
 	private $include = array();
 	private $functionality = array();
+	private $usedSpace = 0;
 	private static $_cache = array();
 	private static $_enable = null;
 
@@ -152,6 +153,7 @@ class plugin {
 				}
 			}
 		}
+		$plugin->usedSpace = getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']);
 		self::$_cache[$plugin->id] = $plugin;
 		return $plugin;
 	}
@@ -669,7 +671,7 @@ class plugin {
 		}
 		if (file_exists(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json')) {
 			$return = array('log' => $plugin_id . '_packages');
-			$packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true));
+			$packages = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), false, false, $plugin_id);
 			$has_dep_to_install = false;
 			foreach ($packages as $package => $info) {
 				if ($info['status'] != 0 || $info['optional']) {
@@ -694,7 +696,7 @@ class plugin {
 			}
 			$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
 			$return['auto'] = config::byKey('dependancyAutoMode', $this->getId(), 1);
-			if (method_exists($plugin_id, 'additionnalDependancyCheck')) {
+			if ($return['state'] != 'in_progress' && method_exists($plugin_id, 'additionnalDependancyCheck')) {
 				$additionnal = $plugin_id::additionnalDependancyCheck();
 				if (isset($additionnal['state'])) {
 					$return['state'] = $additionnal['state'];

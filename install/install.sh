@@ -92,7 +92,7 @@ step_2_mainpackage() {
 
 step_3_database() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 3 - databse${NORMAL}"
+  echo "${YELLOW}Starting step 3 - database${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
   
   service_action status mariadb

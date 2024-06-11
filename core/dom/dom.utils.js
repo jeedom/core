@@ -41,7 +41,12 @@ Object.assign(domUtils, {
   },
   registeredEvents: [],
   registeredFuncs: [],
-  headInjexted: []
+  headInjexted: [],
+  controller : new AbortController()
+})
+
+window.addEventListener('beforeunload', function(event) {
+    domUtils.controller.abort()
 })
 
 domUtils.DOMReady = function() {
@@ -521,6 +526,8 @@ domUtils.getUrlString = function(params, keys = [], isArray = false) {
   return p
 }
 
+
+
 domUtils.ajax = function(_params) {
   _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
@@ -573,6 +580,7 @@ domUtils.ajax = function(_params) {
       referrerPolicy: 'no-referrer',
       mode: 'cors',
       credentials: 'same-origin',
+	    signal: domUtils.controller.signal,
       //Safari AbortSignal.timeout not a function
       //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
@@ -595,6 +603,9 @@ domUtils.ajax = function(_params) {
         return
       })
       .catch(error => {
+        if(domUtils.controller.signal.aborted){
+          return;
+        }  
         if (_params.global) domUtils.DOMloading -= 1
         if (typeof error.text === 'function') { //Catched from fetch return
           error.text().then(errorMessage => {
