@@ -9,6 +9,8 @@
 - Amélioration des trace en debug [LIEN](https://github.com/jeedom/core/pull/2654)
 - Suppression de message de warning [LIEN](https://github.com/jeedom/core/pull/2657)
 - Correction d'un soucis sur la page des logs sur les petits ecran ou les boutons étaient non visible [LIEN](https://github.com/jeedom/core/issues/2671). Une autre amélioration est prévu plus tard pour avoir les boutons mieux placé [LIEN](https://github.com/jeedom/core/issues/2672)
+- Amélioration de la gestion des select [LIEN](https://github.com/jeedom/core/pull/2675)
+- Augmentation de la taille du champs pour la valeur du sleep dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2682)
 
 # 4.4.7
 
