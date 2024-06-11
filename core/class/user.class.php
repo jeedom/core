@@ -314,8 +314,8 @@ class user {
 			}
 		}
 		$values = $values_tmp;
-		@session_start();
 		if (isset($_SESSION['failed_count']) && $_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
+		        @session_start();
 			$values_tmp = array();
 			foreach ($values as $value) {
 				if ($value['ip'] == $ip) {
