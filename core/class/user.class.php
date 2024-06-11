@@ -327,8 +327,8 @@ class user {
 			$values[] = array('datetime' => strtotime('now'), 'ip' => getClientIp());
 			$_SESSION['failed_count'] = 0;
 			$_SESSION['failed_datetime'] = -1;
-			@session_write_close();
 		}
+		@session_write_close();
 		cache::set('security::banip', json_encode($values));
 		if (!is_array($values)) {
 			$values = array();
