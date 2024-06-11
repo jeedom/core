@@ -42,7 +42,7 @@ Object.assign(domUtils, {
   registeredEvents: [],
   registeredFuncs: [],
   headInjexted: [],
-  controller : new AbortController()
+ // controller : new AbortController()
 })
 
 window.addEventListener('beforeunload', function(event) {
