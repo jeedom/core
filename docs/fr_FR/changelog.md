@@ -32,7 +32,7 @@
 - Correction d'un soucis d'incoherence sur les valeurs minimales des tailles de rapport [LIEN](https://github.com/jeedom/core/issues/2449)
 - Correction d'un bug sur la verfication de la base de données ou il pouvait toujours manquer un index [LIEN](https://github.com/jeedom/core/issues/2655)
 - Correction d'un bug sur le graphique des liens [LIEN](https://github.com/jeedom/core/issues/2659)
-- Suppression sur service worker en mobile (plus utilisé) [LIEN](https://github.com/jeedom/core/issues/2660)
+- Suppression du service worker en mobile (plus utilisé) [LIEN](https://github.com/jeedom/core/issues/2660)
 - Correction d'un bug pouvant affecter la limitation du nombre d'evenement dans la timeline [LIEN](https://github.com/jeedom/core/issues/2663)
 - Correction d'un bug sur l'affichage des tooltips sur les designs [LIEN](https://github.com/jeedom/core/pull/2667)
 - Amélioration de la gestion des trace de PDO avec php8 [LIEN](https://github.com/jeedom/core/pull/2661)
