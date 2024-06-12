@@ -59,13 +59,13 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
             <option value="never">{{Jamais}}</option>
           </select> {{Purge}}</th>
           <th data-filter="false" data-type="select-custom">
-        <select id="smoothTimeSelectAll" class="input-xs">
+          <select id="smoothTimeSelectAll" class="input-xs">
             <option value="">{{Default}}</option>
             <option value="-1">{{Aucun}}</option>
             <option value="60">{{1 min}}</option>
             <option value="300">{{5 min}}</option>
             <option value="600">{{10 min}}</option>
-          </select> {{Limier à}}</th>
+          </select> {{Limiter à}}</th>
         <th data-filter="false" style="width:100px;">{{Action}}</th>
       </tr>
     </thead>
@@ -207,7 +207,7 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
       jeeFrontEnd.md_cmdConfigureHistory.vDataTable = new DataTable(jeeFrontEnd.md_cmdConfigureHistory.tableConfig, {
         columns: [
           { select: 0, sort: "asc" },
-          { select: [8], sortable: false }
+          { select: [9], sortable: false }
         ],
         paging: true,
         perPage: 20,
