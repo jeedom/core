@@ -57,6 +57,14 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
             <option value="-3 years">{{3 ans}}</option>
             <option value="">{{Jamais}}</option>
           </select> {{Purge}}</th>
+          <th data-filter="false" data-type="select-custom">
+        <select id="smoothTimeSelectAll" class="input-xs">
+            <option value="">{{Default}}</option>
+            <option value="-1">{{Aucun}}</option>
+            <option value="60">{{1 min}}</option>
+            <option value="300">{{5 min}}</option>
+            <option value="600">{{10 min}}</option>
+          </select> {{Limier à}}</th>
         <th data-filter="false" style="width:100px;">{{Action}}</th>
       </tr>
     </thead>
@@ -143,6 +151,20 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
           $tr .= '<option data-sorton="6" value="-2 years" ' . (($confHistoryPurge == '-2 years') ? 'selected' : '') . '>{{2 ans}}</option>';
           $tr .= '<option data-sorton="7" value="-3 years" ' . (($confHistoryPurge == '-3 years') ? 'selected' : '') . '>{{3 ans}}</option>';
           $tr .= '<option data-sorton="8" value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Jamais}}</option>';
+          $tr .= '</select>';
+        }
+        $tr .= '</td>';
+
+        //smoothTime
+        $tr .= '<td>';
+        if ($cmd->getType() == 'info') {
+          $confHistoryPurge = $cmd->getConfiguration('history::smooth');
+          $tr .= '<select class="form-control cmdAttr input-xs" data-l1key="configuration" data-l2key="history::smooth" ' .  (($right != 'x') ? 'disabled' : '') .  '>';
+          $tr .= '<option data-sorton="0"  value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Default}}</option>';
+          $tr .= '<option data-sorton="1"  value="-1" ' . (($confHistoryPurge == '-1') ? 'selected' : '') . '>{{Aucun}}</option>';
+          $tr .= '<option data-sorton="2" value="60" ' . (($confHistoryPurge == '60') ? 'selected' : '') . '>{{1 min}}</option>';
+          $tr .= '<option data-sorton="3" value="300" ' . (($confHistoryPurge == '300') ? 'selected' : '') . '>{{5 min}}</option>';
+          $tr .= '<option data-sorton="4" value="600" ' . (($confHistoryPurge == '600') ? 'selected' : '') . '>{{10 min}}</option>';
           $tr .= '</select>';
         }
         $tr .= '</td>';
