@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.5
+
+- Correction d'un soucis sur l'ordre des messages dans le centre des messages [LIEN](https://github.com/jeedom/core/issues/2686)
+
 # 4.4.8
 
 - Amélioration des trace en debug [LIEN](https://github.com/jeedom/core/pull/2654)
