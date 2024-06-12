@@ -55,7 +55,8 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
             <option value="-1 year">{{1 an}}</option>
             <option value="-2 years">{{2 ans}}</option>
             <option value="-3 years">{{3 ans}}</option>
-            <option value="">{{Jamais}}</option>
+            <option value="">{{Default}}</option>
+            <option value="never">{{Jamais}}</option>
           </select> {{Purge}}</th>
           <th data-filter="false" data-type="select-custom">
         <select id="smoothTimeSelectAll" class="input-xs">
@@ -150,7 +151,8 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
           $tr .= '<option data-sorton="5" value="-1 year" ' . (($confHistoryPurge == '-1 year') ? 'selected' : '') . '>{{1 an}}</option>';
           $tr .= '<option data-sorton="6" value="-2 years" ' . (($confHistoryPurge == '-2 years') ? 'selected' : '') . '>{{2 ans}}</option>';
           $tr .= '<option data-sorton="7" value="-3 years" ' . (($confHistoryPurge == '-3 years') ? 'selected' : '') . '>{{3 ans}}</option>';
-          $tr .= '<option data-sorton="8" value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Jamais}}</option>';
+          $tr .= '<option data-sorton="8" value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Default}}</option>';
+          $tr .= '<option data-sorton="9" value="" ' . (($confHistoryPurge == 'never') ? 'selected' : '') . '>{{Jamais}}</option>';
           $tr .= '</select>';
         }
         $tr .= '</td>';
@@ -321,6 +323,17 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
       event.stopPropagation()
       event.preventDefault()
       var cells = Array.from(document.querySelectorAll('#table_cmdConfigureHistory select.cmdAttr[data-l2key="historyPurge"]')).filter(c => c.isVisible() && c.disabled == false )
+      cells.forEach(_cell => {
+        _cell.value = _target.value
+        _cell.closest('tr').setAttribute('data-change', '1')
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#smoothTimeSelectAll')) {
+      event.stopPropagation()
+      event.preventDefault()
+      var cells = Array.from(document.querySelectorAll('#table_cmdConfigureHistory select.cmdAttr[data-l2key="history::smooth"]')).filter(c => c.isVisible() && c.disabled == false )
       cells.forEach(_cell => {
         _cell.value = _target.value
         _cell.closest('tr').setAttribute('data-change', '1')
