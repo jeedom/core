@@ -68,7 +68,7 @@ if (!jeeFrontEnd.plugin) {
       domUtils.showLoading()
       jeedom.plugin.get({
         id: _pluginId,
-        full: true,
+        full: 1,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,

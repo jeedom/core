@@ -57,7 +57,7 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id,$_full = true) {
+	public static function byId($_id,$_full = false) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		if (is_string($_id) && isset(self::$_cache[$_id.'::'.$_full])) {
 			return self::$_cache[$_id.'::'.$_full];

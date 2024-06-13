@@ -80,7 +80,7 @@ jeedom.plugin.get = function (_params) {
   paramsAJAX.data = {
     action: 'getConf',
     id: _params.id,
-    full: _params.full || false,
+    full: _params.full || 0,
   };
   domUtils.ajax(paramsAJAX);
 }
