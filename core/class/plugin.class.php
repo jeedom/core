@@ -57,10 +57,10 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id) {
+	public static function byId($_id,$_full = true) {
 		global $JEEDOM_INTERNAL_CONFIG;
-		if (is_string($_id) && isset(self::$_cache[$_id])) {
-			return self::$_cache[$_id];
+		if (is_string($_id) && isset(self::$_cache[$_id.'::'.$_full])) {
+			return self::$_cache[$_id.'::'.$_full];
 		}
 		if (!file_exists($_id) || strpos($_id, '/') === false) {
 			$path = self::getPathById($_id);
@@ -109,7 +109,6 @@ class plugin {
 		$plugin->changelog_beta = (isset($data['changelog_beta'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['changelog_beta']) : '';
 		$plugin->documentation_beta = (isset($data['documentation_beta'])) ? str_replace('#language#', config::byKey('language', 'core', 'fr_FR'), $data['documentation_beta']) : '';
 		if (isset($data['specialAttributes'])) {
-
 			if (isset($data['specialAttributes']['object'])) {
 				$plugin->specialAttributes['object'] = $data['specialAttributes']['object'];
 			}
@@ -132,16 +131,18 @@ class plugin {
 				'type' => 'class',
 			);
 		}
-		$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
-		$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);
-		$plugin->functionality['cron5'] = array('exists' => method_exists($plugin->getId(), 'cron5'), 'controlable' => 1);
-		$plugin->functionality['cron10'] = array('exists' => method_exists($plugin->getId(), 'cron10'), 'controlable' => 1);
-		$plugin->functionality['cron15'] = array('exists' => method_exists($plugin->getId(), 'cron15'), 'controlable' => 1);
-		$plugin->functionality['cron30'] = array('exists' => method_exists($plugin->getId(), 'cron30'), 'controlable' => 1);
-		$plugin->functionality['cronHourly'] = array('exists' => method_exists($plugin->getId(), 'cronHourly'), 'controlable' => 1);
-		$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
-		$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
-		$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
+		if($_full){
+			$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
+			$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);
+			$plugin->functionality['cron5'] = array('exists' => method_exists($plugin->getId(), 'cron5'), 'controlable' => 1);
+			$plugin->functionality['cron10'] = array('exists' => method_exists($plugin->getId(), 'cron10'), 'controlable' => 1);
+			$plugin->functionality['cron15'] = array('exists' => method_exists($plugin->getId(), 'cron15'), 'controlable' => 1);
+			$plugin->functionality['cron30'] = array('exists' => method_exists($plugin->getId(), 'cron30'), 'controlable' => 1);
+			$plugin->functionality['cronHourly'] = array('exists' => method_exists($plugin->getId(), 'cronHourly'), 'controlable' => 1);
+			$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
+			$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
+			$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
+		}
 		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
 				if (!isset($value['alias'])) {
@@ -153,8 +154,10 @@ class plugin {
 				}
 			}
 		}
-		$plugin->usedSpace = getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']);
-		self::$_cache[$plugin->id] = $plugin;
+		if($_full){
+			$plugin->usedSpace = getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']);
+		}
+		self::$_cache[$plugin->id.'::'.$_full] = $plugin;
 		return $plugin;
 	}
 
