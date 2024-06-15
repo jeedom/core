@@ -54,7 +54,7 @@ Desktop
   pre,
   p.state,
   .objectSummaryglobal {
-    scrollbar-width: thin;
+    scrollbar-width: auto;
   }
 
   a:link,
