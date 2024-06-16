@@ -4685,7 +4685,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #pre_scenariolog {
     width: 100%;
-    height: calc(100% - 30px);
+    height: calc(100% - 36px);
     overflow: auto;
   }
   #pre_globallog,
