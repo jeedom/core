@@ -10,6 +10,8 @@
 - Augmentation de la taille du champs pour la valeur du sleep dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2682)
 - Correction d'un soucis sur l'ordre des messages dans le centre des messages [LIEN](https://github.com/jeedom/core/issues/2686)
 - Optimisation du chargement des plugins [LIEN](https://github.com/jeedom/core/issues/2689)
+- Augmentation de la taille des barres de defilements sur certain page [LIEN](https://github.com/jeedom/core/pull/2691)
+- Amélioration de la page de redemarrage de jeedom [LIEN](https://github.com/jeedom/core/pull/2685)
 
 # 4.4.7
 
