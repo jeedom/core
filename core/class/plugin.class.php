@@ -142,7 +142,7 @@ class plugin {
 			$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
 			$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
 			$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
-			if($plugin->getCache('usedSpace',-1) != -1){
+			if($plugin->getCache('usedSpace',-1) == -1){
 				$plugin->setCache('usedSpace',getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']),86400);
 			}
 			$plugin->usedSpace = $plugin->getCache('usedSpace',-1);
