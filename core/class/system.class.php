@@ -467,7 +467,7 @@ class system {
 					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
 						if ($type == 'npm') {
-							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules')) {
+							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules') && isset(scandir(__DIR__ . '/../../' . $package . '/node_modules', SCANDIR_SORT_NONE )[2])) {
 								exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var);
 								if ($return_var == 0) {
 									$found = 1;
