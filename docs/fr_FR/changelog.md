@@ -12,6 +12,7 @@
 - Optimisation du chargement des plugins [LIEN](https://github.com/jeedom/core/issues/2689)
 - Augmentation de la taille des barres de defilements sur certain page [LIEN](https://github.com/jeedom/core/pull/2691)
 - Amélioration de la page de redemarrage de jeedom [LIEN](https://github.com/jeedom/core/pull/2685)
+- Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va réduire la taille des backups
 
 # 4.4.7
 
