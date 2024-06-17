@@ -142,6 +142,10 @@ class plugin {
 			$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
 			$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
 			$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
+			if($plugin->getCache('usedSpace',-1) != -1){
+				$plugin->setCache('usedSpace',getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']),86400);
+			}
+			$plugin->usedSpace = $plugin->getCache('usedSpace',-1);
 		}
 		if (!isset($JEEDOM_INTERNAL_CONFIG['plugin']['category'][$plugin->category])) {
 			foreach ($JEEDOM_INTERNAL_CONFIG['plugin']['category'] as $key => $value) {
@@ -153,9 +157,6 @@ class plugin {
 					break;
 				}
 			}
-		}
-		if($_full){
-			$plugin->usedSpace = getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']);
 		}
 		self::$_cache[$plugin->id.'::'.$_full] = $plugin;
 		return $plugin;
@@ -1334,5 +1335,14 @@ class plugin {
 	public function setWhiteListFolders($paths) {
 		$this->whiteListFolders = (array) $paths;
 		return $this;
+	}
+
+	public function getCache($_key = '', $_default = '') {
+		$cache = cache::byKey('pluginCacheAttr' . $this->getId())->getValue();
+		return utils::getJsonAttr($cache, $_key, $_default);
+	}
+
+	public function setCache($_key, $_value = null, $_lifetime = 0) {
+		cache::set('pluginCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('pluginCacheAttr' . $this->getId())->getValue(), $_key, $_value), $_lifetime);
 	}
 }
