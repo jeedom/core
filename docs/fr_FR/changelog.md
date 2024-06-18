@@ -14,6 +14,7 @@
 - Amélioration de la page de redemarrage de jeedom [LIEN](https://github.com/jeedom/core/pull/2685)
 - Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va réduire la taille des backups
 - Correction d'un bug sur le système de mise à jour de la base de données [LIEN](https://github.com/jeedom/core/issues/2693)
+- Correction d'un soucis d'indexe manquant pour les interactions [LIEN](https://github.com/jeedom/core/issues/2694)
 
 # 4.4.7
 
