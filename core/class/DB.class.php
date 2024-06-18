@@ -91,6 +91,15 @@ class DB {
 		$stmt = static::getConnection()->prepare($_query);
 		$res = NULL;
 		if ($stmt != false && $stmt->execute($_params) != false) {
+			if(strpos(strtolower($_query), 'select') !== 0){
+				$errorInfo = $stmt->errorInfo();
+				if ($errorInfo[0] != 0000) {
+					static::$lastConnection = 0;
+					throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
+				}
+				static::$lastConnection = strtotime('now');
+				return $res;
+			}
 			if ($_fetchType == static::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
