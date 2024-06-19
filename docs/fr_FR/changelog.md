@@ -18,6 +18,7 @@
 - Amélioration du script sick.php pour mieux détecter les soucis de base de données [LIEN](https://github.com/jeedom/core/pull/2677)
 - Meilleurs gestion de python2 sur la page santé [LIEN](https://github.com/jeedom/core/pull/2674)
 - Amélioration du champs de selection des scénarios (avec recherche) dans les actions sur scénario [LIEN](https://github.com/jeedom/core/pull/2688)
+- Amélioration de la gestion des cron en prevision de php8 [LIEN](https://github.com/jeedom/core/issues/2698)
 
 # 4.4.7
 
