@@ -1443,6 +1443,22 @@ function checkAndFixCron($_cron) {
 	return $return;
 }
 
+function cronIsDue($_cron){
+	$schedule = explode(' ',$_cron);
+	if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
+		return false;
+	}
+	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
+	try {
+		return $c->isDue();
+	} catch (Exception $e) {
+
+	} catch (Error $e) {
+
+	}
+	return false;
+}
+
 function getTZoffsetMin() {
 	$tz = date_default_timezone_get();
 	date_default_timezone_set("UTC");
