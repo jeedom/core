@@ -459,7 +459,7 @@ class jeedom {
 		);
 
 		if (shell_exec('which python') != '') {
-			$value = shell_exec('python --version');
+			$value = shell_exec('python --version 2>&1'); // prior python 3.4, 'python --version' output was on stderr
 			$return[] = array(
 				'name' => __('Python', __FILE__),
 				'state' => true,
