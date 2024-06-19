@@ -91,7 +91,7 @@ class DB {
 		$stmt = static::getConnection()->prepare($_query);
 		$res = NULL;
 		if ($stmt != false && $stmt->execute($_params) != false) {
-			if(preg_match('/^update|replace|delete/i', $_query)){
+			if(preg_match('/^update|^replace|^delete|^create|^drop|^alter|^truncate/i', $_query)){
 				$errorInfo = $stmt->errorInfo();
 				if ($errorInfo[0] != 0000) {
 					static::$lastConnection = 0;
