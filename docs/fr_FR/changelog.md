@@ -20,6 +20,7 @@
 - Amélioration du champs de selection des scénarios (avec recherche) dans les actions sur scénario [LIEN](https://github.com/jeedom/core/pull/2688)
 - Amélioration de la gestion des cron en prevision de php8 [LIEN](https://github.com/jeedom/core/issues/2698)
 - Amélioration de la fonction de gestion de l'arret des demons par le numero de port [LIEN](https://github.com/jeedom/core/pull/2697)
+- Correction d'un soucis sur certain navigateur avec les filtres [LIEN](https://github.com/jeedom/core/issues/2699)
 
 # 4.4.7
 
