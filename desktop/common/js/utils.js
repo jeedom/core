@@ -953,7 +953,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
-  if (typeof jQuery === 'function' && typeof $.initTableFilter === 'object') $.initTableFilter()
+  if (typeof jQuery === 'function' && (typeof $.initTableFilter === 'object' || typeof $.initTableFilter === 'function')) $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
