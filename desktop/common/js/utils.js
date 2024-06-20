@@ -953,7 +953,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
 jeedomUtils.initPage = function() {
   jeedomUtils.initTableSorter()
   jeedomUtils.initReportMode()
-  if (typeof jQuery === 'function' && (typeof $.initTableFilter === 'object' || typeof $.initTableFilter === 'function')) $.initTableFilter()
+  if (typeof jQuery === 'function' && typeof $.initTableFilter === 'function') $.initTableFilter()
   jeedomUtils.initHelp()
   jeedomUtils.initTextArea()
 
@@ -1102,7 +1102,7 @@ jeedomUtils.initReportMode = function() {
 
 jeedomUtils.initTableSorter = function(filter) {
   if (typeof jQuery !== 'function') return
-  if (typeof $.tablesorter !== 'function') return
+  if (typeof $.tablesorter !== 'object') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
