@@ -382,6 +382,13 @@ class system {
 			case 'pip3':
 				$datas = json_decode(shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list --format=json 2>/dev/null'), true);
 				if (!is_array($datas)) {
+					// patch mainly for debian 11 because python3-gpg is on version '1.14.0-unknown' and pip>24.1 raise error with non-standard version format
+					// no check on os version in case this issue occurs also with debian 12 (hopefully not)
+					// the awk command transforms the output of 'pip list' (multiline columns) to a "json string" to reproduce the result of '--format=json' argument
+					$listToJson = self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list 2>/dev/null | awk \'BEGIN{print "["} NR>2 {printf "%s{\"name\": \"%s\", \"version\": \"%s\"}",sep,$1,$2; sep=", "} END{print "]\n"}\' ORS=\'\'';
+					$datas = json_decode(shell_exec($listToJson), true);
+				}
+				if (!is_array($datas)) {
 					break;
 				}
 				foreach ($datas as $value) {
