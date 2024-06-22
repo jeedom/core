@@ -275,7 +275,7 @@ class network {
 				return false;
 			}
 		}
-		curl_close($ch);
+		unset($ch);
 		if (trim($data) != 'ok') {
 			log::add('network', 'debug', 'Retour NOK sur ' . $url . ' => ' . $data);
 			return false;
