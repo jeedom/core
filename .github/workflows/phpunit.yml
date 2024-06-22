@@ -1,0 +1,35 @@
+# tests unitaires exécutés directement dans le contexte courant
+# Aucune bdd, Jeedom non démarré
+name: Standalone PHPUnit
+
+on:
+  push:
+    # only trigger CI when push on following branches
+    branches:
+    - feat/run_phpunit
+    - alpha
+  pull_request:
+    branches:
+    - alpha
+    
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # checkout repo
+    # https://github.com/marketplace/actions/checkout
+    - uses: actions/checkout@v4
+    # composer installation
+    # https://github.com/marketplace/actions/composer-php-actions
+    - name: composer installation
+      uses: php-actions/composer@v6
+    # trigger phpunit using custom xml configuration
+    # https://github.com/marketplace/actions/phpunit-php-actions
+    - name: run standalone phpunit
+      uses: php-actions/phpunit@v4
+      with:
+        php_version: 7.4
+        testsuite: unit
+        php_extensions: xdebug pdo_mysql
+        coverage_clover: coverage/clover.xml

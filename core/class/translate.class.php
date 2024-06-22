@@ -16,25 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* * ***************************Includes********************************* */
-require_once __DIR__ . '/../php/core.inc.php';
-
-/*
-//DEBUG ONLY
-require_once  'utils.class.php';
-require_once  'jeeObject.class.php';
-require_once  'eqLogic.class.php';
-require_once  'cmd.class.php';
-require_once  'scenario.class.php';
-require_once  'scenarioExpression.class.php';
-require_once  'log.class.php';
-require_once  'message.class.php';
-require_once  'cache.class.php';
-require_once  'event.class.php';
-
-//log::add('debug_translate', 'error', $_content);
-*/
-
 class translate {
 	/*     * *************************Attributs****************************** */
 

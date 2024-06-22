@@ -19,13 +19,41 @@
 use PHPUnit\Framework\TestCase;
 
 class utilsTest extends TestCase {
-	public function getTemplates() {
+	public static function getTemplates() {
 		return array(
 			array('Vous êtes sur {{Nom}} version {{Version}}', 'Vous êtes sur Jeedom version 1.2.3'),
 			array('{{La poule}} {{pond}}', 'L\'oeuf est pondu'),
 		);
 	}
+		
+	public static function getTimes() {
+		return array(
+			array(0, '0s'),
+			array(60, '1min 0s'),
+			array(65, '1min 5s'),
+			array(186, '3min 6s'),
+			array(3600, '1h 0min 0s'),
+			array(86400, '1j 0h 0min 0s'),
+			array(86401, '1j 0h 0min 1s'),
+			array(259199, '2j 23h 59min 59s'),
+		);
+	}
 	
+	public static function getJsons() {
+		return array(
+			array(json_encode(array('foo','bar')), true),
+			array(json_encode(array('foo'=>'bar')), true),
+			array('{"foo":"bar"}', true),
+			array('foo bar', false),
+		);
+	}
+
+	public static function getPaths() {
+		return array(
+			array('/home/user/doc/../../me/docs', '/home/me/docs'),
+		);
+	}
+
 	/**
 	* @dataProvider getTemplates
 	*/
@@ -49,20 +77,7 @@ class utilsTest extends TestCase {
 		$this->assertSame('baz', init('request'));
 		$this->assertSame('foobar', init('default','foobar'));
 	}
-	
-	public function getTimes() {
-		return array(
-			array(0, '0s'),
-			array(60, '1min 0s'),
-			array(65, '1min 5s'),
-			array(186, '3min 6s'),
-			array(3600, '1h 0min 0s'),
-			array(86400, '1j 0h 0min 0s'),
-			array(86401, '1j 0h 0min 1s'),
-			array(259199, '2j 23h 59min 59s'),
-		);
-	}
-	
+
 	/**
 	* @dataProvider getTimes
 	*/
@@ -70,26 +85,11 @@ class utilsTest extends TestCase {
 		$this->assertSame($out, convertDuration($in));
 	}
 	
-	public function getJsons() {
-		return array(
-			array(json_encode(array('foo','bar')), true),
-			array(json_encode(array('foo'=>'bar')), true),
-			array('{"foo":"bar"}', true),
-			array('foo bar', false),
-		);
-	}
-	
 	/**
 	* @dataProvider getJsons
 	*/
 	public function testIs_json($in, $out) {
 		$this->assertSame($out, is_json($in));
-	}
-	
-	public function getPaths() {
-		return array(
-			array('/home/user/doc/../../me/docs', '/home/me/docs'),
-		);
 	}
 	
 	/**
