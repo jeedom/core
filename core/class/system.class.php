@@ -54,7 +54,7 @@ class system {
 			return 'custom';
 		}
 		if (self::$_distrib === null) {
-			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
+			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 ') ?? '');
 			if (self::$_distrib == '') {
 				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
 			}
@@ -421,7 +421,7 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'));
+				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
 				foreach ($datas['installed'] as $value) {
 					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 				}
