@@ -21,9 +21,14 @@ if (!isConnect()) {
 }
 
 $pluginJeeEasy = false;
-if(is_object(plugin::byId('jeeasy'))) {
-	$pluginJeeEasy = true;
+try {
+	if(is_object(plugin::byId('jeeasy'))) {
+		$pluginJeeEasy = true;
+	}
+} catch (\Throwable $th) {
+	
 }
+
 
 $showDoc = false;
 if (config::byKey('doc::base_url', 'core') != '') {
