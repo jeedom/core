@@ -96,46 +96,60 @@ class cache {
 	 * @name getCache()
 	 * @access public
 	 * @static
+	 * @param string $_engine to override the current cache defined in configuration
 	 * @return \Doctrine\Common\Cache\CacheProvider
 	 */
-	public static function getCache() {
-		if (self::$cache !== null) {
+	public static function getCache($_engine = null) {
+		if ($_engine === null && self::$cache !== null) {
 			return self::$cache;
 		}
-		$engine = config::byKey('cache::engine');
-		if ($engine == 'MemcachedCache' && !class_exists('memcached')) {
-			$engine = 'FilesystemCache';
-			config::save('cache::engine', 'FilesystemCache');
-		}
-		if ($engine == 'RedisCache' && !class_exists('redis')) {
-			$engine = 'FilesystemCache';
-			config::save('cache::engine', 'FilesystemCache');
+		if( $_engine === null){
+			// get current cache
+			$engine = config::byKey('cache::engine');
+		}else{
+			// override existing configuration
+			$engine = $_engine;
+			config::save('cache::engine', $_engine);
 		}
 		switch ($engine) {
-			case 'FilesystemCache':
-				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
-				break;
 			case 'PhpFileCache':
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 			case 'MemcachedCache':
+				// check if memcached extention is available
+				if (!class_exists('memcached')) {
+					log::add( __CLASS__, 'error', 'memcached extension not installed, fall back to FilesystemCache.');
+					return self::getCache( 'FilesystemCache');
+				}
 				$memcached = new Memcached();
 				$memcached->addServer(config::byKey('cache::memcacheaddr'), config::byKey('cache::memcacheport'));
 				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
 				self::$cache->setMemcached($memcached);
 				break;
 			case 'RedisCache':
+				// check if redis extension is available
+				if (!class_exists('redis')) {
+					log::add( __CLASS__, 'error', 'redis extension not installed, fall back to FilesystemCache.');
+					return self::getCache( 'FilesystemCache');
+				}
 				$redis = new Redis();
 				$redisAddr = config::byKey('cache::redisaddr');
-				if (strncmp($redisAddr, '/', 1) === 0) {
-					$redis->connect($redisAddr);
-				} else {
-					$redis->connect($redisAddr, config::byKey('cache::redisport'));
+				try{
+					// try to connect to redis
+					if (strncmp($redisAddr, '/', 1) === 0) {
+						$redis->connect($redisAddr);
+					} else {
+						$redis->connect($redisAddr, config::byKey('cache::redisport'));
+					}	
+				}catch( Exception $e){
+					// error : fall back to FilesystemCache
+					log::add( __CLASS__, 'error', 'Unable to connect to redis instance, fall back to FilesystemCache.'."\n".$e->getMessage());
+					return self::getCache( 'FilesystemCache');
 				}
 				self::$cache = new \Doctrine\Common\Cache\RedisCache();
 				self::$cache->setRedis($redis);
 				break;
-			default:
+			default: // default is FilesystemCache
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
 		}
