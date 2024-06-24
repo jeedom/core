@@ -190,7 +190,7 @@ class jeedom {
 			'comment' => '',
 			'key' => 'uptodate'
 		);
-		if (version_compare(self::getOsVersion(), '12', '<')) {
+		if (version_compare(system::getOsVersion(), '12', '<')) {
 			$status = shell_exec('systemctl status fail2ban.service');
 			$failed = stripos($status, 'failed') !== false;
 			$running = stripos($status, 'running') !== false;
