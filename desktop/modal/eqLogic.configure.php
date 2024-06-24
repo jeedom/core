@@ -50,7 +50,7 @@ sendVarToJS([
       }
       ?>
       <li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
-      <li role="presentation"><a href="#eqLogic_specialAttributesPlugin" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa-solid fa-gears"></i> {{Informations complémentaires}}</a></li>
+      <li role="presentation"><a href="#eqLogic_specialAttributesPlugin" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Informations complémentaires}}</a></li>
     </ul>
 
     <div class="tab-content" id="div_displayEqLogicConfigure">
@@ -470,6 +470,8 @@ sendVarToJS([
 
       <div role="tabpanel" class="tab-pane" id="eqLogic_specialAttributesPlugin">
         <form class="form-horizontal">
+        <br/>
+          <div class="alert alert-info">{{Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom}}</div>
           <?php
             try {
               $plugins = plugin::listPlugin(true);
