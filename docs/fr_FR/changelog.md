@@ -26,6 +26,7 @@
 - Correction d'un bug sur la gestion des dépendances composer [LIEN](https://github.com/jeedom/core/pull/2703)
 - Amélioration du systeme de gestion du cache [LIEN](https://github.com/jeedom/core/pull/2706)
 - Meilleurs gestion des droits utilisateurs sur les appels API [LIEN](https://github.com/jeedom/core/pull/2695)
+- Correction de warning [LIEN](https://github.com/jeedom/core/pull/2701)
 
 # 4.4.7
 
