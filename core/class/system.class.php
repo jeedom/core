@@ -54,7 +54,7 @@ class system {
 			return 'custom';
 		}
 		if (self::$_distrib === null) {
-			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
+			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 ') ?? '');
 			if (self::$_distrib == '') {
 				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
 			}
