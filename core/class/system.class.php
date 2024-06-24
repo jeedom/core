@@ -428,7 +428,7 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'));
+				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
 				foreach ($datas['installed'] as $value) {
 					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 				}
