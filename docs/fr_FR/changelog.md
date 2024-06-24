@@ -2,6 +2,7 @@
 
 # 4.4.8
 
+- Ajout d'options avancées pour interdire certaines mehtodes api ou n'autoriser que certain [LIEN](https://github.com/jeedom/core/issues/2707)
 - Amélioration de la fenetre de configuration des historiques [LIEN](https://github.com/jeedom/core/issues/2687)
 - Amélioration des trace en debug [LIEN](https://github.com/jeedom/core/pull/2654)
 - Suppression de message de warning [LIEN](https://github.com/jeedom/core/pull/2657)
@@ -21,6 +22,10 @@
 - Amélioration de la gestion des cron en prevision de php8 [LIEN](https://github.com/jeedom/core/issues/2698)
 - Amélioration de la fonction de gestion de l'arret des demons par le numero de port [LIEN](https://github.com/jeedom/core/pull/2697)
 - Correction d'un soucis sur certain navigateur avec les filtres [LIEN](https://github.com/jeedom/core/issues/2699)
+- Amélioration du support de curl [LIEN](https://github.com/jeedom/core/pull/2702)
+- Correction d'un bug sur la gestion des dépendances composer [LIEN](https://github.com/jeedom/core/pull/2703)
+- Amélioration du systeme de gestion du cache [LIEN](https://github.com/jeedom/core/pull/2706)
+- Meilleurs gestion des droits utilisateurs sur les appels API [LIEN](https://github.com/jeedom/core/pull/2695)
 
 # 4.4.7
 
