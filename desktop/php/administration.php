@@ -2178,6 +2178,20 @@ $productName = config::byKey('product_name');
 								</select>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Interdire les methodes api (regexp)}}</label>
+							<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
+								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
+							<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
+								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
+							</div>
+						</div>
+
 						<hr class="hrPrimary">
 						<?php
 						if (init('rescue', 0) == 0) {

@@ -33,8 +33,11 @@ $_USER_GLOBAL = null;
 /** @var bool $_RESTRICTED */
 global $_RESTRICTED;
 $_RESTRICTED = false;
+
+
 if (init('type') != '') {
 	try {
+		
 		if (init('type') == 'ask') {
 			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
 				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
@@ -59,6 +62,13 @@ if (init('type') != '') {
 			user::failedLogin();
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
+		}
+
+		if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), init('type'))){
+			throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
+		}
+		if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), init('type'))){
+			throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 		}
 		$type = init('type');
 		log::add('api', 'debug', __('Demande sur l\'api http venant de :', __FILE__) . ' ' . getClientIp() . ' => ' . json_encode($_GET));
@@ -267,6 +277,13 @@ try {
 	if ($jsonrpc->getJsonrpc() != '2.0') {
 		user::failedLogin();
 		throw new Exception(__('Requête invalide. Version JSON-RPC invalide :', __FILE__) . ' ' . $jsonrpc->getJsonrpc(), -32001);
+	}
+
+	if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), $jsonrpc->getMethod())){
+		throw new Exception(__('Cette demande n\'est autorisée', __FILE__));
+	}
+	if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), $jsonrpc->getMethod())){
+		throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 	}
 
 	$params = $jsonrpc->getParams();
