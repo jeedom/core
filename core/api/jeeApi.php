@@ -67,7 +67,7 @@ if (init('type') != '') {
 		if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), init('type'))){
 			throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 		}
-		if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allowonly::method', 'core', ''), init('type'))){
+		if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), init('type'))){
 			throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 		}
 		$type = init('type');
@@ -282,7 +282,7 @@ try {
 	if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), $jsonrpc->getMethod())){
 		throw new Exception(__('Cette demande n\'est autorisée', __FILE__));
 	}
-	if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allowonly::method', 'core', ''), $jsonrpc->getMethod())){
+	if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), $jsonrpc->getMethod())){
 		throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 	}
 
