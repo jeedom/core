@@ -225,7 +225,7 @@ if (init('type') != '') {
 		if ($type == 'fullData') {
 			log::add('api', 'debug', __('Demande API pour les commandes', __FILE__));
 			header('Content-Type: application/json');
-			echo json_encode(jeeObject::fullData(), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
+			echo json_encode(jeeObject::fullData(null,$_USER_GLOBAL), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'variable') {
