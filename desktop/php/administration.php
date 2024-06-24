@@ -2180,15 +2180,15 @@ $productName = config::byKey('product_name');
 						</div>
 
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Interdire les methodes api (regexp)}}</label>
-							<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les methodes api (regexp)}}</label>
+							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
-							<div class="col-lg-8 col-md-7 col-sm-6 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
+							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="api::allowonly::method">
 							</div>
 						</div>
 
