@@ -47,7 +47,7 @@ class plugin {
 	private $documentation_beta = '';
 	private $source = '';
 	private $whiteListFolders = array();
-	private $specialAttributes = array('object' => array(), 'user' => array());
+	private $specialAttributes = array('object' => array(), 'user' => array(), 'eqLogic' => array());
 	private $info = array();
 	private $include = array();
 	private $functionality = array();
@@ -112,8 +112,11 @@ class plugin {
 			if (isset($data['specialAttributes']['object'])) {
 				$plugin->specialAttributes['object'] = $data['specialAttributes']['object'];
 			}
-			if (isset($data['specialAttributes']['user'])) {
+			if (isset($data['specialAttributes']['eqLogic'])) {
 				$plugin->specialAttributes['user'] = $data['specialAttributes']['user'];
+			}
+			if (isset($data['specialAttributes']['eqLogic'])) {
+				$plugin->specialAttributes['eqLogic'] = $data['specialAttributes']['eqLogic'];
 			}
 		}
 		$plugin->mobile = '';
