@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.9
+
+- Un plugin peut maintenant ajouter des champs dans la configuration avancée de tous les équipements de jeedom [LIEN](https://github.com/jeedom/core/issues/2711)
+
 # 4.4.8
 
 - Ajout d'options avancées pour interdire certaines mehtodes api ou n'autoriser que certain [LIEN](https://github.com/jeedom/core/issues/2707)
