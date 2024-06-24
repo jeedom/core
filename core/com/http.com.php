@@ -128,7 +128,7 @@ class com_http {
 		if (!isset($response)) {
 			$response = '';
 		}
-		if (isset($ch) && is_resource($ch)) {
+		if (isset($ch) && $ch !== false) {
 			if (curl_errno($ch)) {
 				$curl_error = curl_error($ch);
 				curl_close($ch);
@@ -142,7 +142,7 @@ class com_http {
 					throw new Exception(__('Echec de la requête HTTP :', __FILE__) . ' ' . $this->url . ' cURL error : ' . $curl_error, 404);
 				}
 			} else {
-				curl_close($ch);
+				unset($ch);
 			}
 		}
 		$ch = null;
