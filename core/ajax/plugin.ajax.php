@@ -30,7 +30,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin = plugin::byId(init('id'));
+		$plugin = plugin::byId(init('id'),init('full',0));
 		$update = update::byLogicalId(init('id'));
 		$return = utils::o2a($plugin);
 		$return['activate'] = $plugin->isActive();

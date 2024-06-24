@@ -174,7 +174,7 @@ class utils {
 			if ($_key == '') {
 				return is_json($_attr, array());
 			}
-			if ($_attr === '') {
+			if (empty($_attr)) {
 				if (is_array($_key)) {
 					foreach ($_key as $key) {
 						$return[$key] = $_default;
@@ -226,7 +226,7 @@ class utils {
 	}
 
 	public static function decrypt($ciphertext, $password = null) {
-		if ($ciphertext === '') {
+		if (empty($ciphertext)) {
 			return null;
 		}
 		if ($password == null) {

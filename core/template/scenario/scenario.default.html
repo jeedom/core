@@ -2,6 +2,7 @@
 <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft">{{Scénario}}</span>
   <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+  <input class="expressionAttr form-control rounded-left" data-l1key="options" data-l2key="filter" placeholder="{{Filtre de scénario}}" data-cmd_id="#id#" data-uid="#uid#">
   <span class="input-group-addon">{{Action}}</span>
   <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="action" data-cmd_id="#id#" data-uid="#uid#">
     <option value="start">{{Démarrer}}</option>
@@ -26,14 +27,29 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'});
     },
     success: function (scenarios) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
-      var newOption
-      for (var i in scenarios) {
+      const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
+      let newOption
+      for (let i in scenarios) {
         newOption = document.createElement('option')
         newOption.text = scenarios[i].humanName
         newOption.value = scenarios[i].id
         select.appendChild(newOption)
       }
+
+      const filter = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter"]')
+      filter.addEventListener('keyup', function(event) {
+        const text = event.target.value
+        const options = Array.from(select.options)
+        options.forEach (function(option) {
+          const optionText = option.text
+          const lowerOptionText = optionText.toLowerCase()
+          const lowerText = text.toLowerCase()
+          const regex = new RegExp("^" + text, "i")
+          const match = optionText.match(regex)
+          const contains = lowerOptionText.indexOf(lowerText) != -1
+          option.hidden = match || contains ? false: true
+        })
+      })
 
       if ('#scenario_id#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
         document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]').value = '#scenario_id#'

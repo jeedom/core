@@ -494,6 +494,9 @@ class eqLogic {
 	}
 
 	public static function fromHumanReadable($_input) {
+		if(empty($_input)){
+			return $_input;
+		}
 		$isJson = false;
 		if (is_json($_input)) {
 			$isJson = true;
@@ -525,7 +528,7 @@ class eqLogic {
 			return $_input;
 		}
 		$text = $_input;
-		preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
+		preg_match_all( "/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 3) {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {

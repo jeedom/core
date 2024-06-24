@@ -16,12 +16,6 @@ natcasesort($list_logfile);
 
 <div class="row row-overflow">
 	<div class="hasfloatingbar col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="input-group pull-left col-lg-2 col-md-3 col-sm-12 col-xs-12" style="top: 7px;">
-			<span class="input-group-btn pull-left">
-				<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="Rechercher | nom | :not(nom" style="width:250px;">
-				<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
-			</span>
-		</div>
 		<div class="floatingbar">
 			<div class="input-group">
 				<span class="input-group-btn">
@@ -37,6 +31,12 @@ natcasesort($list_logfile);
 					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="fas fa-trash"></i><span class="hidden-768"> {{Supprimer tout}}</span></a>
 				</span>
 			</div>
+		</div>
+		<div class="input-group pull-left col-lg-2 col-md-3 col-sm-12 col-xs-12" style="top: 7px;">
+			<span class="input-group-btn pull-left">
+				<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="Rechercher | nom | :not(nom" style="width:250px;">
+				<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
+			</span>
 		</div>
 	</div>
 	<br /><br />

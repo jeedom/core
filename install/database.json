@@ -909,8 +909,19 @@
         }
       ],
       "indexes": {
-        "fk_sarahQuery_sarahDef1_idx": {
-          "Key_name": "fk_sarahQuery_sarahDef1_idx",
+        "logicalID": {
+          "Key_name": "query",
+          "Non_unique": "1",
+          "Index_type" : "FULLTEXT",
+          "columns": {
+            "1": {
+              "column": "query",
+              "Sub_part": null
+            }
+          }
+        },
+        "interactDef_id": {
+          "Key_name": "interactDef_id",
           "Non_unique": "1",
           "columns": {
             "1": {

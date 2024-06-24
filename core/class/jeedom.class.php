@@ -190,18 +190,19 @@ class jeedom {
 			'comment' => '',
 			'key' => 'uptodate'
 		);
-
-		$status = shell_exec('systemctl status fail2ban.service');
-		$failed = stripos($status, 'failed') !== false;
-		$running = stripos($status, 'running') !== false;
-		$state = $failed ? 0 : ($running ? 1 : 2);
-		$return[] = array(
-			'name' => __('Etat du service fail2ban', __FILE__),
-			'state' => $failed ? 0 : ($running ? 1 : 2),
-			'result' => $failed ? __('En échec', __FILE__) : ($running ? __('Actif', __FILE__) : __('Désactivé', __FILE__)),
-			'comment' => ($failed || !$running) ? __("Le service Linux fail2ban est désactivé ou en échec : les tentatives d'accès infructueuses à Jeedom ne résulteront pas en un bannissement des IP concernées. Vérifiez l'état du service si vous souhaitez réactiver fail2ban.", __FILE__) : '',
-			'key' => 'service::fail2ban'
-		);
+		if (version_compare(self::getOsVersion(), '12', '<')) {
+			$status = shell_exec('systemctl status fail2ban.service');
+			$failed = stripos($status, 'failed') !== false;
+			$running = stripos($status, 'running') !== false;
+			$state = $failed ? 0 : ($running ? 1 : 2);
+			$return[] = array(
+				'name' => __('Etat du service fail2ban', __FILE__),
+				'state' => $failed ? 0 : ($running ? 1 : 2),
+				'result' => $failed ? __('En échec', __FILE__) : ($running ? __('Actif', __FILE__) : __('Désactivé', __FILE__)),
+				'comment' => ($failed || !$running) ? __("Le service Linux fail2ban est désactivé ou en échec : les tentatives d'accès infructueuses à Jeedom ne résulteront pas en un bannissement des IP concernées. Vérifiez l'état du service si vous souhaitez réactiver fail2ban.", __FILE__) : '',
+				'key' => 'service::fail2ban'
+			);
+		}
 
 		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
 		$return[] = array(
@@ -459,7 +460,7 @@ class jeedom {
 		);
 
 		if (shell_exec('which python') != '') {
-			$value = shell_exec('python --version');
+			$value = shell_exec('python --version 2>&1'); // prior python 3.4, 'python --version' output was on stderr
 			$return[] = array(
 				'name' => __('Python', __FILE__),
 				'state' => true,

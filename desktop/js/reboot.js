@@ -21,7 +21,7 @@ function redirectIP() {
   new ping(ip, function (status, e) {
       // console.log(status)
       if (redirect == 100) {
-        document.getElementById('div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{Impossible de trouver la box suite au redémarrage ...}}</h6>')
+        document.getElementById('div_reboot_jeedom_texte').empty().html('<h6>' + JEEDOM_PRODUCT_NAME + ' {{Impossible de trouver la box suite au redémarrage ...}}</h6>')
       } else {
         if (status == 'timeout') {
           document.getElementById('progressbar_reboot').style.width = redirect + '%'
@@ -29,7 +29,7 @@ function redirectIP() {
             redirectIP()
           }, 2000)
         } else if(status == 'responded') {
-          document.getElementById('div_reboot_jeedom_texte').empty().html('<h6><?php echo config::byKey("product_name"); ?> {{est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.}}</h6>')
+          document.getElementById('div_reboot_jeedom_texte').empty().html('<h6>' + JEEDOM_PRODUCT_NAME + ' {{est de nouveau opérationnel. Vous allez être redirigé vers votre dashboard. Cela peut prendre environ 30 secondes.}}</h6>')
           document.getElementById('progressbar_reboot').addClass('progress-bar-success').removeClass('progress-bar-danger')
           document.getElementById('progressbar_reboot').style.width = '75%'
           setTimeout(function() {
@@ -46,7 +46,7 @@ function returnToJeedom() {
 }
 
 function reboot_jeedom() {
-  document.getElementById('div_reboot_jeedom_texte').empty().html('<h6>{{Merci de patienter...}}<br /><?php echo config::byKey("product_name"); ?> {{est en cours de redémarrage.}}</h6>')
+  document.getElementById('div_reboot_jeedom_texte').empty().html('<h6>{{Merci de patienter...}}<br />' + JEEDOM_PRODUCT_NAME + ' {{est en cours de redémarrage.}}</h6>')
   document.getElementById('progressbar_reboot').style.width = '25%'
   redirectIP()
 }
