@@ -112,7 +112,7 @@ class plugin {
 			if (isset($data['specialAttributes']['object'])) {
 				$plugin->specialAttributes['object'] = $data['specialAttributes']['object'];
 			}
-			if (isset($data['specialAttributes']['eqLogic'])) {
+			if (isset($data['specialAttributes']['user'])) {
 				$plugin->specialAttributes['user'] = $data['specialAttributes']['user'];
 			}
 			if (isset($data['specialAttributes']['eqLogic'])) {
