@@ -134,7 +134,7 @@ class plugin {
 				'type' => 'class',
 			);
 		}
-		if($_full){
+		
 			$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
 			$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);
 			$plugin->functionality['cron5'] = array('exists' => method_exists($plugin->getId(), 'cron5'), 'controlable' => 1);
@@ -145,6 +145,7 @@ class plugin {
 			$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
 			$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
 			$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
+		if($_full){
 			if($plugin->getCache('usedSpace',-1) == -1){
 				$plugin->setCache('usedSpace',getDirectorySize(__DIR__ . '/../../plugins/' . $data['id']),86400);
 			}
