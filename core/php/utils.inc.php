@@ -254,9 +254,9 @@ function mySqlIsHere() {
 
 function displayException($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
-	if (DEBUG) {
-		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
-		$message .= '<br/><pre class="pre_errorTrace" style="display : none;">' . print_r($e->getTrace(), true) . '</pre>';
+	if (DEBUG !== 0) {
+		$message .= "<a class=\"pull-right bt_errorShowTrace cursor\" onclick=\"event.stopPropagation(); document.getElementById('pre_errorTrace').toggle()\">Show traces</a>";
+		$message .= '<br/><pre id="pre_errorTrace" style="display : none;">' . print_r($e->getTraceAsString(), true) . '</pre>';
 	}
 	return $message;
 }
@@ -885,7 +885,6 @@ function sizeFormat($size) {
  * @return boolean
  */
 function netMatch($network, $ip) {
-
 	$ip = trim($ip);
 	if ($ip == trim($network)) {
 		return true;
@@ -1444,6 +1443,22 @@ function checkAndFixCron($_cron) {
 	return $return;
 }
 
+function cronIsDue($_cron){
+	$schedule = explode(' ',$_cron);
+	if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
+		return false;
+	}
+	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
+	try {
+		return $c->isDue();
+	} catch (Exception $e) {
+
+	} catch (Error $e) {
+
+	}
+	return false;
+}
+
 function getTZoffsetMin() {
 	$tz = date_default_timezone_get();
 	date_default_timezone_set("UTC");
@@ -1555,7 +1570,9 @@ function pageTitle($_page) {
 }
 
 function cleanComponanteName($_name) {
-	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
+	$return =  strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
+	$return = preg_replace('/\s+/', ' ', $return);
+	return $return;
 }
 
 function startsWith($haystack, $needle) {

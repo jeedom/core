@@ -483,6 +483,7 @@ class update {
 				if (is_object($plugin) && $plugin->isActive()) {
 					$plugin->setIsEnable(1);
 				}
+				$plugin->setCache('usedSpace',null);
 				break;
 		}
 		if (isset($_infos['localVersion'])) {

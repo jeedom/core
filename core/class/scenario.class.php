@@ -660,6 +660,9 @@ class scenario {
 	 * @return string|object|array return value will depends on $_input received
 	 */
 	public static function fromHumanReadable($_input) {
+		if(empty($_input)){
+			return $_input;
+		}
 		$isJson = false;
 		if (is_json($_input)) {
 			$isJson = true;
@@ -1191,6 +1194,12 @@ class scenario {
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
+					if(count($schedule) == 6 && $schedule[5] != $c->getPreviousRunDate()->format('Y')){
+						$calculatedDate['prevDate'] = '';
+					}
+					if(count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')){
+						$calculatedDate['nextDate'] = '';
+					}
 				} catch (Exception $exc) {
 				} catch (Error $exc) {
 				}
@@ -1206,10 +1215,18 @@ class scenario {
 				$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 				$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 				$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
+				$schedule = explode(' ',$this->getSchedule());
+				if(count($schedule) == 6 && $schedule[5] != $c->getPreviousRunDate()->format('Y')){
+					$calculatedDate['prevDate'] = '';
+				}
+				if(count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')){
+					$calculatedDate['nextDate'] = '';
+				}
 			} catch (Exception $exc) {
 			} catch (Error $exc) {
 			}
 		}
+		
 		return $calculatedDate;
 	}
 	/**
@@ -1230,6 +1247,10 @@ class scenario {
 		if (is_array($this->getSchedule())) {
 			foreach (($this->getSchedule()) as $schedule) {
 				try {
+					$schedule = explode(' ',$this->getSchedule());
+					if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
+						return false;
+					}
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					try {
 						if ($c->isDue()) {

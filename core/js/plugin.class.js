@@ -79,7 +79,8 @@ jeedom.plugin.get = function (_params) {
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getConf',
-    id: _params.id
+    id: _params.id,
+    full: _params.full || 0,
   };
   domUtils.ajax(paramsAJAX);
 }

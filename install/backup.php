@@ -131,6 +131,7 @@ try {
 		'script/tunnel',
 		'.git',
 		'.gitignore',
+		'node_modules',
 		'.log',
 		'core/config/common.config.php',
 		'data/imgOs',

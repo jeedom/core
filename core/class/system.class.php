@@ -54,7 +54,7 @@ class system {
 			return 'custom';
 		}
 		if (self::$_distrib === null) {
-			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
+			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 ') ?? '');
 			if (self::$_distrib == '') {
 				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
 			}
@@ -94,6 +94,8 @@ class system {
 	}
 
 	public static function fuserk($_port, $_protocol = 'tcp'): void {
+		if (!is_string($_port)) return;
+
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
@@ -380,6 +382,13 @@ class system {
 			case 'pip3':
 				$datas = json_decode(shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list --format=json 2>/dev/null'), true);
 				if (!is_array($datas)) {
+					// patch mainly for debian 11 because python3-gpg is on version '1.14.0-unknown' and pip>24.1 raise error with non-standard version format
+					// no check on os version in case this issue occurs also with debian 12 (hopefully not)
+					// the awk command transforms the output of 'pip list' (multiline columns) to a "json string" to reproduce the result of '--format=json' argument
+					$listToJson = self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list 2>/dev/null | awk \'BEGIN{print "["} NR>2 {printf "%s{\"name\": \"%s\", \"version\": \"%s\"}",sep,$1,$2; sep=", "} END{print "]\n"}\' ORS=\'\'';
+					$datas = json_decode(shell_exec($listToJson), true);
+				}
+				if (!is_array($datas)) {
 					break;
 				}
 				foreach ($datas as $value) {
@@ -419,7 +428,7 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'));
+				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
 				foreach ($datas['installed'] as $value) {
 					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 				}
@@ -467,7 +476,7 @@ class system {
 					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
 						if ($type == 'npm') {
-							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules')) {
+							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules') && isset(scandir(__DIR__ . '/../../' . $package . '/node_modules', SCANDIR_SORT_NONE)[2])) {
 								exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var);
 								if ($return_var == 0) {
 									$found = 1;

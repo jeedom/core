@@ -372,6 +372,10 @@ class cron {
 			return false;
 		}
 		try {
+			$schedule = explode(' ',$this->getSchedule());
+			if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
+				return false;
+			}
 			$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 			try {
 				if ($c->isDue()) {
@@ -551,7 +555,7 @@ class cron {
 	}
 
 	public function getOption() {
-		return json_decode($this->option, true);
+		return json_decode($this->option ?? '', true);
 	}
 
 	public function getOnce($_default = 0) {
