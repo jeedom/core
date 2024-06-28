@@ -1247,7 +1247,7 @@ class scenario {
 		if (is_array($this->getSchedule())) {
 			foreach (($this->getSchedule()) as $schedule) {
 				try {
-					$schedule_exp = explode(' ',$schedule);
+					$schedule_exp = explode(' ',trim($schedule));
 					if(count($schedule_exp) == 6 && $schedule_exp[5] != strtotime('Y')){
 						return false;
 					}
