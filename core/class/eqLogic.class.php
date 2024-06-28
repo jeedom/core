@@ -710,9 +710,12 @@ class eqLogic {
 		return false;
 	}
 
-	public function copy($_name) {
+	public function copy($_name, $_logicalId = null) {
 		$eqLogicCopy = clone $this;
 		$eqLogicCopy->setName($_name);
+		if($_logicalId){
+			$eqLogicCopy->setLogicalId($_logicalId);
+		}
 		$eqLogicCopy->setId('');
 		$eqLogicCopy->save();
 		foreach (($eqLogicCopy->getCmd()) as $cmd) {
