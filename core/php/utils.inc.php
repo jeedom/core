@@ -1445,7 +1445,7 @@ function checkAndFixCron($_cron) {
 
 function cronIsDue($_cron){
 	$schedule = explode(' ',trim($_cron));
-	if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
+	if(count($schedule) == 6 && $schedule[5] != date('Y')){
 		return false;
 	}
 	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
