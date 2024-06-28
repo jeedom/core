@@ -1,33 +1,38 @@
 # Changelog Jeedom V4.4
 
+
+# 4.4.8.1
+
+- Correction d'un bug sur les scénarios avec multiple programmation [LIEN](https://github.com/jeedom/core/issues/2698)
+
 # 4.4.8
 
-- Ajout d'options avancées pour interdire certaines mehtodes api ou n'autoriser que certain [LIEN](https://github.com/jeedom/core/issues/2707)
+- Ajout d'options avancées pour interdire certaines méthodes api ou n'autoriser que certaines [LIEN](https://github.com/jeedom/core/issues/2707)
 - Amélioration de la fenetre de configuration des historiques [LIEN](https://github.com/jeedom/core/issues/2687)
-- Amélioration des trace en debug [LIEN](https://github.com/jeedom/core/pull/2654)
+- Amélioration des traces en debug [LIEN](https://github.com/jeedom/core/pull/2654)
 - Suppression de message de warning [LIEN](https://github.com/jeedom/core/pull/2657)
-- Correction d'un soucis sur la page des logs sur les petits ecran ou les boutons étaient non visible [LIEN](https://github.com/jeedom/core/issues/2671). Une autre amélioration est prévu plus tard pour avoir les boutons mieux placé [LIEN](https://github.com/jeedom/core/issues/2672)
+- Correction d'un souci sur la page des logs sur les petits écrans ou les boutons étaient non visible [LIEN](https://github.com/jeedom/core/issues/2671). Une autre amélioration est prévue plus tard pour avoir les boutons mieux placé [LIEN](https://github.com/jeedom/core/issues/2672)
 - Amélioration de la gestion des select [LIEN](https://github.com/jeedom/core/pull/2675)
 - Augmentation de la taille du champs pour la valeur du sleep dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2682)
-- Correction d'un soucis sur l'ordre des messages dans le centre des messages [LIEN](https://github.com/jeedom/core/issues/2686)
+- Correction d'un souci sur l'ordre des messages dans le centre des messages [LIEN](https://github.com/jeedom/core/issues/2686)
 - Optimisation du chargement des plugins [LIEN](https://github.com/jeedom/core/issues/2689)
 - Augmentation de la taille des barres de defilements sur certain page [LIEN](https://github.com/jeedom/core/pull/2691)
 - Amélioration de la page de redemarrage de jeedom [LIEN](https://github.com/jeedom/core/pull/2685)
-- Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va réduire la taille des backups
+- Correction d'un soucis sur les dépendances nodejs lors des restaurations [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va réduire la taille des backups
 - Correction d'un bug sur le système de mise à jour de la base de données [LIEN](https://github.com/jeedom/core/issues/2693)
-- Correction d'un soucis d'indexe manquant pour les interactions [LIEN](https://github.com/jeedom/core/issues/2694)
+- Correction d'un soucis d'index manquant pour les interactions [LIEN](https://github.com/jeedom/core/issues/2694)
 - Amélioration du script sick.php pour mieux détecter les soucis de base de données [LIEN](https://github.com/jeedom/core/pull/2677)
 - Meilleurs gestion de python2 sur la page santé [LIEN](https://github.com/jeedom/core/pull/2674)
 - Amélioration du champs de selection des scénarios (avec recherche) dans les actions sur scénario [LIEN](https://github.com/jeedom/core/pull/2688)
 - Amélioration de la gestion des cron en prevision de php8 [LIEN](https://github.com/jeedom/core/issues/2698)
-- Amélioration de la fonction de gestion de l'arret des demons par le numero de port [LIEN](https://github.com/jeedom/core/pull/2697)
-- Correction d'un soucis sur certain navigateur avec les filtres [LIEN](https://github.com/jeedom/core/issues/2699)
+- Amélioration de la fonction de gestion de l'arrêt des demons par le numero de port [LIEN](https://github.com/jeedom/core/pull/2697)
+- Correction d'un souci sur certains navigateurs avec les filtres [LIEN](https://github.com/jeedom/core/issues/2699)
 - Amélioration du support de curl [LIEN](https://github.com/jeedom/core/pull/2702)
 - Correction d'un bug sur la gestion des dépendances composer [LIEN](https://github.com/jeedom/core/pull/2703)
 - Amélioration du systeme de gestion du cache [LIEN](https://github.com/jeedom/core/pull/2706)
 - Meilleurs gestion des droits utilisateurs sur les appels API [LIEN](https://github.com/jeedom/core/pull/2695)
 - Correction de warning [LIEN](https://github.com/jeedom/core/pull/2701)
-- Correction d'un soucis avec l'installation des dépendances python [LIEN](https://github.com/jeedom/core/pull/2700/files)
+- Correction d'un souci avec l'installation des dépendances python [LIEN](https://github.com/jeedom/core/pull/2700/files)
 
 # 4.4.7
 
