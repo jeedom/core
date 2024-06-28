@@ -1277,6 +1277,10 @@ class scenario {
 			}
 		} else {
 			try {
+				$schedule_exp = explode(' ',trim($this->getSchedule()));
+				if(count($schedule_exp) == 6 && $schedule_exp[5] != strtotime('Y')){
+					return false;
+				}
 				$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 				try {
 					if ($c->isDue()) {
