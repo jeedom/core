@@ -372,7 +372,7 @@ class cron {
 			return false;
 		}
 		try {
-			$schedule = explode(' ',$this->getSchedule());
+			$schedule = explode(' ',trim($this->getSchedule()));
 			if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
 				return false;
 			}
