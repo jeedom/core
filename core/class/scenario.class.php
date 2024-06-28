@@ -1247,8 +1247,8 @@ class scenario {
 		if (is_array($this->getSchedule())) {
 			foreach (($this->getSchedule()) as $schedule) {
 				try {
-					$schedule = explode(' ',$this->getSchedule());
-					if(count($schedule) == 6 && $schedule[5] != strtotime('Y')){
+					$schedule_exp = explode(' ',$schedule);
+					if(count($schedule_exp) == 6 && $schedule_exp[5] != strtotime('Y')){
 						return false;
 					}
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);

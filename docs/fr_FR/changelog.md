@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.4
 
+
+# 4.4.8.1
+
+- Correction d'un bug sur les scénarios avec multiple programmation [LIEN](https://github.com/jeedom/core/issues/2698)
+
 # 4.4.8
 
 - Ajout d'options avancées pour interdire certaines mehtodes api ou n'autoriser que certain [LIEN](https://github.com/jeedom/core/issues/2707)
