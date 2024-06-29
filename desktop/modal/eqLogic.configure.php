@@ -50,6 +50,7 @@ sendVarToJS([
       }
       ?>
       <li role="presentation"><a href="#eqLogic_alert" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-exclamation-triangle"></i> {{Alertes}}</a></li>
+      <li role="presentation"><a href="#eqLogic_specialAttributesPlugin" aria-controls="messages" role="tab" data-toggle="tab"><i class="fas fa-cogs"></i> {{Informations complémentaires}}</a></li>
     </ul>
 
     <div class="tab-content" id="div_displayEqLogicConfigure">
@@ -334,8 +335,7 @@ sendVarToJS([
         </div>
       <?php } ?>
 
-      <?php if ($eqLogic->widgetPossibility('custom::layout')) {
-      ?>
+      <?php if ($eqLogic->widgetPossibility('custom::layout')) { ?>
         <div role="tabpanel" class="tab-pane" id="eqLogic_layout">
           <form class="form-horizontal">
             <legend><i class="fas fa-table"></i> {{Mise en forme générale}}</legend>
@@ -467,6 +467,53 @@ sendVarToJS([
           </div>
         </form>
       </div>
+
+      <div role="tabpanel" class="tab-pane" id="eqLogic_specialAttributesPlugin">
+        <form class="form-horizontal">
+        <br/>
+          <div class="alert alert-info">{{Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom}}</div>
+          <?php
+            try {
+              $plugins = plugin::listPlugin(true);
+              foreach ($plugins as $plugin) {
+                $specialAttributes = $plugin->getSpecialAttributes();
+                if (!isset($specialAttributes['eqLogic']) || !is_array($specialAttributes['eqLogic']) || count($specialAttributes['eqLogic']) == 0) {
+                  continue;
+                }
+                $spAttr = '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} ' . $plugin->getName() . '</legend>';
+                foreach ($specialAttributes['eqLogic'] as $key => $config) {
+                  $spAttr .= '<div class="form-group">';
+                  $spAttr .= '<label class="col-sm-3 control-label">' . $config['name'][translate::getLanguage()] . '</label>';
+                  $spAttr .= '<div class="col-sm-7">';
+                  switch ($config['type']) {
+                    case 'input':
+                      $spAttr .= '<input class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+                      break;
+                    case 'checkbox':
+                        $spAttr .= '<input type="checkbox" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+                        break;
+                    case 'number':
+                      $spAttr .= '<input type="number" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '" min="' . (isset($config['min']) ? $config['min'] : '') . '" max="' . (isset($config['max']) ? $config['max'] : '') . '" />';
+                      break;
+                    case 'select':
+                      $spAttr .= '<select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '">';
+                      foreach ($config['values'] as $value) {
+                        $spAttr .= '<option value="' . $value['value'] . '">' . $value['name'] . '</option>';
+                      }
+                      $spAttr .= '</select>';
+                      break;
+                  }
+                  $spAttr .= '</div>';
+                  $spAttr .= '</div>';
+                }
+                echo $spAttr;
+              }
+            } catch (\Exception $e) {
+            }
+            ?>
+          </form>
+      </div>
+
 
     </div>
   </div>

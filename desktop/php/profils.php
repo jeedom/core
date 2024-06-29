@@ -245,6 +245,9 @@ $objectOptions = jeeObject::getUISelectList(false);
 										case 'input':
 											$div .= '<input class="form-control userAttr" data-l1key="options" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
 											break;
+										case 'checkbox':
+											$div .= '<input type="checkbox" class="form-control userAttr" data-l1key="options" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+											break;
 										case 'number':
 											$div .= '<input type="number" class="form-control userAttr" data-l1key="options" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '" min="' . (isset($config['min']) ? $config['min'] : '') . '" max="' . (isset($config['max']) ? $config['max'] : '') . '" />';
 											break;

@@ -363,9 +363,7 @@ class cron {
 		//check if already sent on that minute
 		$last = strtotime($this->getLastRun());
 		$now = time();
-		$now = ($now - $now % 60);
-		$last = ($last - $last % 60);
-		if ($now == $last) {
+		if (($now - $now % 60) == ($last - $last % 60)) {
 			return false;
 		}
 		return cronIsDue($this->getSchedule());

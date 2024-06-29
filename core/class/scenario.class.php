@@ -1229,6 +1229,7 @@ class scenario {
 		
 		return $calculatedDate;
 	}
+
 	/**
 	 *
 	 * @return boolean
@@ -1236,9 +1237,7 @@ class scenario {
 	public function isDue() {
 		$last = strtotime($this->getLastLaunch());
 		$now = time();
-		$now = ($now - $now % 60);
-		$last = ($last - $last % 60);
-		if ($now == $last) {
+		if (($now - $now % 60) == ($last - $last % 60)) {
 			return false;
 		}
 		$schedules = $this->getSchedule();

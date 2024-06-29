@@ -251,7 +251,7 @@ class listener {
 				if (function_exists($function)) {
 					$function($option);
 				} else {
-					log::add('listener', 'error', __('[Erreur] Non trouvée', __FILE__) . ' ' . json_encode(utils::o2a($this)));
+					log::add('listener', 'error', __('[Erreur] Fonction non trouvée', __FILE__) . ' ' . json_encode(utils::o2a($this)));
 					return;
 				}
 			}
