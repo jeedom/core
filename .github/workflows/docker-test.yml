@@ -1,0 +1,57 @@
+# build docker image based on debian bullseye and bookworm
+# start both containers and run sick.php
+# stop & clean
+name: Docker Build and Test Image
+
+on:
+  # only trigger CI when pull request on following branches
+  pull_request:
+    branches:
+      - 'alpha'
+  # this is to manually trigger the worklow
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Reason'     
+        default: 'Manual launch'
+
+jobs:
+  buildAndTestDockerImg:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Check Out Repo
+        # Check out the repo, using current branch
+        # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@v4
+
+      - name: Build jeedom:bullseye
+        # build current image for bullseye
+        run: |
+          docker build -t jeedom:bullseye --build-arg DEBIAN=bullseye .
+
+      - name: run jeedom:bullseye and check
+        # build current image for bullseye and check it
+        run: |
+          docker run -p 80:80 -d --rm --name jeedom_bullseye jeedom:bullseye
+          sleep 60
+          docker exec jeedom_bullseye php sick.php
+
+      - name: Build jeedom:bookworm
+        # build current image for bookworm
+        run: |
+          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm .
+
+      - name: run jeedom:bookworm and check
+        # build current image for bookworm and check it
+        run: |
+          docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
+          sleep 60
+          docker exec jeedom_bookworm php sick.php
+    
+      - name: Clean docker image
+        continue-on-error: true
+        run: |
+          docker stop jeedom_bullseye jeedom_bookworm 
+          docker rm jeedom_bullseye jeedom_bookworm 
+          docker rmi jeedom:bullseye jeedom:bookworm
