@@ -360,9 +360,6 @@ class cron {
 	* @return boolean
 	*/
 	public function isDue() {
-		if(((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('I') == 1 && date('Gi') > 159) {
-			return false;
-		}
 		//check if already sent on that minute
 		$last = strtotime($this->getLastRun());
 		$now = time();
@@ -371,38 +368,7 @@ class cron {
 		if ($now == $last) {
 			return false;
 		}
-		try {
-			$schedule = explode(' ',trim($this->getSchedule()));
-			if(count($schedule) == 6 && $schedule[5] != date('Y')){
-				return false;
-			}
-			$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
-			try {
-				if ($c->isDue()) {
-					return true;
-				}
-			} catch (Exception $e) {
-
-			} catch (Error $e) {
-
-			}
-			try {
-				$prev = $c->getPreviousRunDate()->getTimestamp();
-			} catch (Exception $e) {
-				return false;
-			} catch (Error $e) {
-				return false;
-			}
-			$diff = abs((strtotime('now') - $prev) / 60);
-			if (strtotime($this->getLastRun()) < $prev && ($diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1)) {
-				return true;
-			}
-		} catch (Exception $e) {
-			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
-		} catch (Error $e) {
-			log::add('cron', 'debug', 'Error on isDue : ' . $e->getMessage() . ', cron : ' . $this->getSchedule());
-		}
-		return false;
+		return cronIsDue($this->getSchedule());
 	}
 
 	public function getNextRunDate() {

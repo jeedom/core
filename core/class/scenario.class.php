@@ -1234,9 +1234,6 @@ class scenario {
 	 * @return boolean
 	 */
 	public function isDue() {
-		if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4) {
-			return false;
-		}
 		$last = strtotime($this->getLastLaunch());
 		$now = time();
 		$now = ($now - $now % 60);
@@ -1244,65 +1241,13 @@ class scenario {
 		if ($now == $last) {
 			return false;
 		}
-		if (is_array($this->getSchedule())) {
-			foreach (($this->getSchedule()) as $schedule) {
-				try {
-					$schedule_exp = explode(' ',trim($schedule));
-					if(count($schedule_exp) == 6 && $schedule_exp[5] != date('Y')){
-						return false;
-					}
-					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
-					try {
-						if ($c->isDue()) {
-							return true;
-						}
-					} catch (Exception $e) {
-					} catch (Error $e) {
-					}
-					try {
-						$prev = $c->getPreviousRunDate()->getTimestamp();
-					} catch (Exception $e) {
-						continue;
-					} catch (Error $e) {
-						continue;
-					}
-					$lastCheck = strtotime($this->getLastLaunch());
-					$diff = abs((strtotime('now') - $prev) / 60);
-					if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-						return true;
-					}
-				} catch (Exception $e) {
-				} catch (Error $e) {
-				}
-			}
-		} else {
-			try {
-				$schedule_exp = explode(' ',trim($this->getSchedule()));
-				if(count($schedule_exp) == 6 && $schedule_exp[5] != date('Y')){
-					return false;
-				}
-				$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
-				try {
-					if ($c->isDue()) {
-						return true;
-					}
-				} catch (Exception $e) {
-				} catch (Error $e) {
-				}
-				try {
-					$prev = $c->getPreviousRunDate()->getTimestamp();
-				} catch (Exception $e) {
-					return false;
-				} catch (Error $e) {
-					return false;
-				}
-				$lastCheck = strtotime($this->getLastLaunch());
-				$diff = abs((strtotime('now') - $prev) / 60);
-				if ($lastCheck <= $prev && $diff <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
-					return true;
-				}
-			} catch (Exception $exc) {
-			} catch (Error $exc) {
+		$schedules = $this->getSchedule();
+		if(!is_array($schedules)){
+			$schedules = [$schedules];
+		}
+		foreach ($schedules as $schedule) {
+			if(cronIsDue($schedule)){
+				return true;
 			}
 		}
 		return false;
