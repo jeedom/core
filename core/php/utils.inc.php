@@ -1443,7 +1443,10 @@ function checkAndFixCron($_cron) {
 	return $return;
 }
 
-function cronIsDue($_cron){
+ffunction cronIsDue($_cron){
+	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4) {
+		return false;
+	}
 	$schedule = explode(' ',trim($_cron));
 	if(count($schedule) == 6 && $schedule[5] != date('Y')){
 		return false;
