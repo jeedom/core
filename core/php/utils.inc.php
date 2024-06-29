@@ -1443,7 +1443,7 @@ function checkAndFixCron($_cron) {
 	return $return;
 }
 
-ffunction cronIsDue($_cron){
+function cronIsDue($_cron){
 	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4) {
 		return false;
 	}
