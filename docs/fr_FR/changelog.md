@@ -4,6 +4,9 @@
 
 - Un plugin peut maintenant ajouter des champs dans la configuration avancée de tous les équipements de jeedom [LIEN](https://github.com/jeedom/core/issues/2711)
 - Ajout d'un parametre optionnel logicalId lors de la copie d'un équipement [LIEN](https://github.com/jeedom/core/pull/2715)
+- Amélioration du systeme de gestion des crons [LIEN](https://github.com/jeedom/core/issues/2719)
+- Correction d'un bug qui pouvait faire perdre toute les informations de la page de mise a jour [LIEN](https://github.com/jeedom/core/issues/2718)
+
 
 # 4.4.8
 
