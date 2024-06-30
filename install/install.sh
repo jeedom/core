@@ -87,6 +87,7 @@ step_2_mainpackage() {
   apt-get -y install librsync-dev
   apt-get -y install ssl-cert
   apt-get -y remove brltty
+  apt-get -y iputils-ping
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
