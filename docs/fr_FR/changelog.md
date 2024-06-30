@@ -7,6 +7,7 @@
 - Amélioration du systeme de gestion des crons [LIEN](https://github.com/jeedom/core/issues/2719)
 - Correction d'un bug qui pouvait faire perdre toute les informations de la page de mise a jour [LIEN](https://github.com/jeedom/core/issues/2718)
 - Suppression de l'état du service fail2ban de la santé Jeedom [LIEN](https://github.com/jeedom/core/issues/2721)
+- Correction d'un soucis sur la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2723)
 
 # 4.4.8.1
 
