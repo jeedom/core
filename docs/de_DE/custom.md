@@ -35,3 +35,37 @@ In diesem Fall zwei Lösungen:
 - Öffnen Sie einen Browser im Rettungsmodus : `IP / index.php?rescue=1`
 - Stellen Sie eine Verbindung in SSH her und löschen Sie die Anpassungsdateien : `Desktop/Benutzerdefiniert` und`Mobil/Benutzerdefiniert`
 
+## Beispiel für erweiterte Personalisierung in CSS
+
+Alle diese Beispiele müssen in die CSS-Datei eingefügt werden (vergessen Sie nicht, oben die erweiterte Anpassung zu aktivieren))
+
+### Bildlaufleisten in Widgets entfernen
+
+„
+.eqLogic-widget.cmds{
+ overflow-x: versteckt !important;
+ overflow-y: versteckt !important;
+}
+„
+
+### Mindestbreite/-höhe von Widgets entfernen
+
+Dies ermöglicht Ihnen kleinere Widgets (Breite [min-width], Höhe [min-height]), aber seien Sie vorsichtig, da dies die Anzeige weniger attraktiv machen kann
+
+„
+div.cmd-widget.content,
+div.cmd-widget .content-sm,
+div.cmd-widget .content-lg,
+div.cmd-widget.content-xs {
+  min-width: ein Satz !important;
+  min-height: ein Satz !important;
+}
+„
+
+### Zwischen den Namen von Objekten und Geräten im Dashboard wurde ein Abstand hinzugefügt 
+
+„
+.div_object-Legende .objectDashLegend {
+  margin-bottom: 5px;
+}
+„

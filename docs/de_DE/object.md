@@ -73,7 +73,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 > **Tipp**
 >
-> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern. Wählen Sie in der Übersicht (oder in der Zusammenfassung der Hausautomation) Ihr Objekt mit der Maus per Drag & Drop aus, um ihm einen neuen Platz zu geben.
+> Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern, indem Sie über die Home-Automation-Zusammenfassung (Extras -> Home-Automation-Zusammenfassung) Ihr Objekt mit der Maus per Drag/Drop auswählen, um ihm einen neuen Platz zuzuweisen.
 
 > **Tipp**
 >

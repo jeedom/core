@@ -73,7 +73,7 @@ Aqui estão as diferentes características para configurar um objeto :
 
 > **Dica**
 >
-> Você pode alterar a ordem de exibição dos objetos no Painel. Na visão geral (ou no Resumo da automação residencial), selecione seu objeto com o mouse, arrastando e soltando, para dar um novo local.
+> Você pode alterar a ordem de exibição dos objetos no Dashboard, através do Resumo de Automação Residencial (ferramentas -> resumo de automação residencial), selecione seu objeto com o mouse arrastando/soltando para dar-lhe um novo lugar.
 
 > **Dica**
 >
