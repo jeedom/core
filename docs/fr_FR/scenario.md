@@ -1,4 +1,5 @@
 # Scénarios
+
 **Outils → Scénarios**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -20,11 +21,13 @@ Vous trouverez dans cette partie-là **liste des scénarios** que vous avez cré
 > **Tip**
 >
 > Vous pouvez ouvrir un scénario en faisant :
+>
 > - Clic sur l'un d'entre eux.
 > - Ctrl Clic ou Clic Centre pour l'ouvrir dans un nouvel onglet du navigateur.
 
 Vous disposez d'un moteur de recherche permettant de filtrer l'affichage des scénarios. La touche Echap annule la recherche.
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits de Jeedom :
+
 - La croix pour annuler la recherche.
 - Le dossier ouvert pour déplier tous les panneaux et afficher tous les scénarios.
 - Le dossier fermé pour replier tous les panneaux.
@@ -71,9 +74,11 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 - **Objet parent** : Affectation à un objet parent. Il sera alors visible ou non selon ce parent.
 - **Timeout en secondes (0 = illimité)** : La durée d’exécution maximale autorisée pour ce scénario. Au-delà de ce temps, l'exécution du scénario est interrompue.
 - **Multi lancement** : Cochez cette case si vous souhaitez que le scénario puisse être lancé plusieurs fois en même temps.
+
 >**IMPORTANT**
 >
 >Le multi lancement marche à la seconde, c'est à dire que si vous avez 2 lancements dans la même seconde sans la case cochée il y aura quand même 2 lancements du scénario (alors qu'il ne devrait pas). De même lors de plusieurs lancements dans la même seconde il se peut que certains lancements perdent les tags. Conclusion il faut ABSOLUMENT éviter de multiples lancements dans la même seconde.
+
 - **Mode synchrone** : Lance le scénario dans le thread courant au lieu d'un thread dédié. Permet d'augmenter la vitesse de lancement du scénario, mais peut rendre le système instable. Attention a ne surtout pas mettre de scénario complexe ou avec des pauses (sleep) ou wait en synchrone, cela engendre un comportement instable de jeedom et ne pourra être couvert par le support.
 - **Log** : Le type de log souhaité pour le scénario. Vous pouvez couper les logs du scénario ou au contraire le faire apparaître dans Analyse → Temps réel.
 - **Timeline** : Permet de garder un suivi du scénario dans la timeline (voir doc Historique).
@@ -120,14 +125,14 @@ Voici les différents types de blocs disponibles :
 Chaque bloc a ses options pour mieux les manipuler :
 
 - Sur la gauche :
-    - La flèche bidirectionnelle permet de déplacer un bloc ou une action pour les réordonner dans le scénario.
-    - L’œil permet de réduire un bloc (*collapse*) pour réduire son impact visuel. Ctrl Clic sur l’œil les réduit ou les affiche tous.
-    - La case à cocher permet de désactiver complètement le bloc sans pour autant le supprimer. Il ne sera donc pas exécuté.
+  - La flèche bidirectionnelle permet de déplacer un bloc ou une action pour les réordonner dans le scénario.
+  - L’œil permet de réduire un bloc (*collapse*) pour réduire son impact visuel. Ctrl Clic sur l’œil les réduit ou les affiche tous.
+  - La case à cocher permet de désactiver complètement le bloc sans pour autant le supprimer. Il ne sera donc pas exécuté.
 
 - Sur la droite :
-    - L’icône Copier permet de copier le bloc pour en faire une copie ailleurs. Ctrl Clic sur l’icône coupe le bloc (copie puis suppression).
-    - L’icône Coller permet de coller une copie du bloc précédemment copié après le bloc sur lequel vous utilisez cette fonction.  Ctrl Clic sur l’icône remplace le bloc par le bloc copié.
-    - L'icône - permet de supprimer le bloc, avec une demande de confirmation. Ctrl Clic supprime le bloc sans confirmation.
+  - L’icône Copier permet de copier le bloc pour en faire une copie ailleurs. Ctrl Clic sur l’icône coupe le bloc (copie puis suppression).
+  - L’icône Coller permet de coller une copie du bloc précédemment copié après le bloc sur lequel vous utilisez cette fonction.  Ctrl Clic sur l’icône remplace le bloc par le bloc copié.
+  - L'icône - permet de supprimer le bloc, avec une demande de confirmation. Ctrl Clic supprime le bloc sans confirmation.
 
 ### Blocs Si/Alors/Sinon | Boucle | Dans | A
 
@@ -151,29 +156,28 @@ Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionn
 
 Une fois la condition renseignée, vous devez utiliser le bouton "ajouter", à gauche, afin d’ajouter un nouveau **bloc** ou une **action** dans le bloc actuel.
 
-
 ### Bloc Code
 
 Le bloc Code permet d’exécuter du code PHP. Il est donc très puissant mais nécessite une bonne connaissance du langage PHP.
 
 #### Accès aux commandes (capteurs et actionneurs)
 
--  ``cmd::byString($string);`` : Retourne l’objet commande correspondant.
-    -   ``$string``: Lien vers la commande voulue : ``#[objet][equipement][commande]#`` (ex : ``#[Appartement][Alarme][Actif]#``)
--  ``cmd::byId($id);`` : Retourne l’objet commande correspondant.
-    -  ``$id`` : ID de la commande voulue.
--  ``$cmd->execCmd($options = null);`` : Exécute la commande et retourne le résultat.
-    - ``$options`` : Options pour l’exécution de la commande (peut être spécifique au plugin). Options de base (sous-type de la commande) :
-        -  ``message`` : ``$option = array('title' => 'titre du message , 'message' => 'Mon message');``
-        -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
-        -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
+- ``cmd::byString($string);`` : Retourne l’objet commande correspondant.
+  - ``$string``: Lien vers la commande voulue : ``#[objet][equipement][commande]#`` (ex : ``#[Appartement][Alarme][Actif]#``)
+- ``cmd::byId($id);`` : Retourne l’objet commande correspondant.
+  - ``$id`` : ID de la commande voulue.
+- ``$cmd->execCmd($options = null);`` : Exécute la commande et retourne le résultat.
+  - ``$options`` : Options pour l’exécution de la commande (peut être spécifique au plugin). Options de base (sous-type de la commande) :
+    - ``message`` : ``$option = array('title' => 'titre du message , 'message' => 'Mon message');``
+    - ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
+    - ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
 #### Accès aux logs
 
--  ``log::add('filename','level','message');``
-    - ``filename`` : Nom du fichier de log.
-    - ``level`` : [debug], [info], [error], [event].
-    - ``message`` : Message à écrire dans les logs.
+- ``log::add('filename','level','message');``
+  - ``filename`` : Nom du fichier de log.
+  - ``level`` : [debug], [info], [error], [event].
+  - ``message`` : Message à écrire dans les logs.
 
 #### Accès aux scénarios
 
@@ -181,14 +185,14 @@ Le bloc Code permet d’exécuter du code PHP. Il est donc très puissant mais n
 - ``$scenario->getGroup();`` : Retourne le groupe du scénario.
 - ``$scenario->getIsActive();`` : Retourne l’état du scénario.
 - ``$scenario->setIsActive($active);`` : Permet d’activer ou non le scénario.
-    - ``$active`` : 1 actif , 0 non actif.
+  - ``$active`` : 1 actif , 0 non actif.
 - ``$scenario->running();`` : Permet de savoir si le scénario est en cours d'exécution ou non (true / false).
 - ``$scenario->save();`` : Sauvegarde les modifications.
 - ``$scenario->setData($key, $value);`` : Sauvegarde une donnée (variable).
-    - ``$key`` : clé de la valeur (int ou string).
-    - ``$value`` : valeur à stocker (``int``, ``string``, ``array`` ou ``object``).
+  - ``$key`` : clé de la valeur (int ou string).
+  - ``$value`` : valeur à stocker (``int``, ``string``, ``array`` ou ``object``).
 - ``$scenario->getData($key);`` : Récupère une donnée (variable).
-    - ``$key => 1`` : clé de la valeur (int ou string).
+  - ``$key => 1`` : clé de la valeur (int ou string).
 - ``$scenario->removeData($key);`` : Supprime une donnée.
 - ``$scenario->setLog($message);`` : Écrit un message dans le log du scénario.
 - ``$scenario->persistLog();`` : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
@@ -283,15 +287,16 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 - ``#hostname#`` : Nom de la machine Jeedom.
 - ``#jeedomName#`` : Nom du Jeedom.
 - ``#trigger#`` (déprecié, mieux vaut utiliser ``trigger()``) : Peut être le nom de la commande qui a déclenché le scénario :
-    - ``api`` si le lancement a été déclenché par l'API,
-    - ``schedule`` s'il a été lancé par une programmation,
-    - ``user`` s'il a été lancé manuellement,
-    - ``start`` pour un lancement au démarrage de Jeedom.
+  - ``api`` si le lancement a été déclenché par l'API,
+  - ``schedule`` s'il a été lancé par une programmation,
+  - ``user`` s'il a été lancé manuellement,
+  - ``start`` pour un lancement au démarrage de Jeedom.
 - ``#triggerValue#`` (déprecié, mieux vaut utiliser triggerValue()) : Pour la valeur de la commande ayant déclenché le scénario
 - ``#latitude#`` : Permet de récuperer l'information de latitude mise dans la configuration de jeedom
 - ``#longitude#`` : Permet de récuperer l'information de longitude mise dans la configuration de jeedom
 - ``#altitude#`` : Permet de récuperer l'information de altitude mise dans la configuration de jeedom
-
+- ``#sunrise#`` : Permet de récupérer l'heure du lever du soleil à condition que la latitude et la longitude soient renseignées dans la configuration de jeedom
+- ``#sunset#`` : Permet de récupérer l'heure du coucher du soleil à condition que la latitude et la longitude soient renseignées dans la configuration de jeedom
 
 Vous avez aussi les tags suivants en plus si votre scénario a été déclenché par une interaction :
 
@@ -419,7 +424,6 @@ Voici des exemples pratiques pour comprendre les valeurs retournées par ces dif
 | ``tag(montag,toto)``                   | Renvoie la valeur de "montag" si il existe sinon renvoie la valeur "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Renvoie Hydrometrie                  |
 
-
 ### Les fonctions mathématiques
 
 Une boîte à outils de fonctions génériques peut également servir à effectuer des conversions ou des calculs :
@@ -442,7 +446,6 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 
 Et les exemples pratiques :
 
-
 | Exemple de fonction                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
@@ -459,7 +462,6 @@ Et les exemples pratiques :
 | ``convertDuration(3600)``             | Renvoie 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Renvoie le temps d'allumage en Jours/Heures/minutes du temps de passage à l'état 1 du module depuis le 1er jour du mois |
 
-
 ### Les fonctions diverses
 
 - ``sun(elevation)`` : Donne en ° l'élevation du soleil (attention il faut avoir renseigné vos coordonées géographique dans la configuration de jeedom)
@@ -474,12 +476,12 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **Supprimer variable** (delete_variable) : Permet de supprimer une variable.
 - **genericType(GENERIC, #[Object]#)** : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
 - **Scénario** (scenario) : Permet de contrôler des scénarios. La partie tags permet d’envoyer des tags au scénario, ex : montag=2 (attention il ne faut utiliser que des lettre de a à z. Pas de majuscules, pas d’accents et pas de caractères spéciaux). On récupère le tag dans le scénario cible avec la fonction tag(montag).
-    - Démarrer : Démarre le scenario dans un thread diffèrent. Le scenario démarré s’exécute indépendamment du scénario appelant.
-    - Démarrer (Sync) : Démarre le scénario appelé et met en pause le scénario appelant, le temps que le scénario appelé ait fini de s’exécuter.
-    - Arrêter : Arrête le scenario.
-    - Activer : Active un scénario désactivé.
-    - Désactiver : Désactive le scénario. Il ne se lance plus quelque soit les déclencheurs.
-    - Remise à zéro des SI : Permet de remettre à zéro le statut des **SI**. Ce statut est utilisé pour la non répétition des actions d’un **SI**, si l’évaluation de la condition donne le même résultat que la précédente évaluation.
+  - Démarrer : Démarre le scenario dans un thread diffèrent. Le scenario démarré s’exécute indépendamment du scénario appelant.
+  - Démarrer (Sync) : Démarre le scénario appelé et met en pause le scénario appelant, le temps que le scénario appelé ait fini de s’exécuter.
+  - Arrêter : Arrête le scenario.
+  - Activer : Active un scénario désactivé.
+  - Désactiver : Désactive le scénario. Il ne se lance plus quelque soit les déclencheurs.
+  - Remise à zéro des SI : Permet de remettre à zéro le statut des **SI**. Ce statut est utilisé pour la non répétition des actions d’un **SI**, si l’évaluation de la condition donne le même résultat que la précédente évaluation.
 - **Stop** (stop) : Arrête le scénario.
 - **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s).
 - **Aller au design** (gotodesign) : Change le design affiché sur tous les navigateurs par le design demandé.
