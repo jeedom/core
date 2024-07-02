@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Tags hinzufügen #sunrise# und #sunset# in den Szenarien, um die Zeiten für Sonnenaufgang und Sonnenuntergang zu haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2725)
 - Ein Plugin kann jetzt Felder in der erweiterten Konfiguration aller Jeedom-Geräte hinzufügen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2711)
 - Hinzufügung eines optionalen logicalId-Parameters beim Kopieren von Geräten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2715)
 - Verbesserung des Crons-Managementsystems [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2719)

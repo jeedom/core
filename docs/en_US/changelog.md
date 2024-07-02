@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Adding tags #sunrise# and #sunset# in the scenarios to have the sunrise and sunset times [LINK](https://github.com/jeedom/core/pull/2725)
 - A plugin can now add fields in the advanced configuration of all jeedom equipment [LINK](https://github.com/jeedom/core/issues/2711)
 - Addition of an optional logicalId parameter when copying equipment [LINK](https://github.com/jeedom/core/pull/2715)
 - Improvement of the crons management system [LINK](https://github.com/jeedom/core/issues/2719)

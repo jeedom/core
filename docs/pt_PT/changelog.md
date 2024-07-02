@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Adicionando tags #sunrise# e #sunset# nos cenários para ter os horários do nascer e do pôr do sol [LINK](https://github.com/jeedom/core/pull/2725)
 - Um plugin agora pode adicionar campos na configuração avançada de todos os equipamentos jeedom [LINK](https://github.com/jeedom/core/issues/2711)
 - Adição de um parâmetro opcional logicId ao copiar equipamentos [LINK](https://github.com/jeedom/core/pull/2715)
 - Melhoria do sistema de gerenciamento de crons [LINK](https://github.com/jeedom/core/issues/2719)
