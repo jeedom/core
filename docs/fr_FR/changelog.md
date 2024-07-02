@@ -10,6 +10,7 @@
 - Suppression de l'état du service fail2ban de la santé Jeedom [LIEN](https://github.com/jeedom/core/issues/2721)
 - Correction d'un soucis sur la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2723)
 - Suppression de la mise en cache des widgets (le gain d'affichage est pas interessant et cela apporte pas mal de soucis) [LIEN](https://github.com/jeedom/core/issues/2726)
+- Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien [LIEN](https://github.com/jeedom/core/issues/2728)
 
 # 4.4.8.1
 
