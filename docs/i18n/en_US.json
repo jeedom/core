@@ -1295,6 +1295,7 @@
         "Correction d'un bug qui pouvait faire perdre toute les informations de la page de mise a jour": "Fixed a bug that could cause all information on the update page to be lost",
         "Suppression de l'état du service fail2ban de la santé Jeedom": "Deleting fail2ban service status from Jeedom health",
         "Correction d'un soucis sur la purge des historiques": "Fixed a problem with purging history",
+        "Suppression de la mise en cache des widgets (le gain d'affichage est pas interessant et cela apporte pas mal de soucis": "Removal of widget caching (the display gain is not interesting and this causes a lot of problems",
         "4.4.8.1": "4.4.8.1",
         "Correction d'un bug sur les scénarios avec multiple programmation": "Fixed a bug on scenarios with multiple programming",
         "4.4.8": "4.4.8",

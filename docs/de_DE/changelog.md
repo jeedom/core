@@ -8,6 +8,7 @@
 - Es wurde ein Fehler behoben, der dazu führen konnte, dass alle Informationen auf der Update-Seite verloren gingen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2718)
 - Fail2ban-Dienststatus wird aus dem Jeedom-Zustand gelöscht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2721)
 - Ein Problem beim Löschen des Verlaufs wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2723)
+- Entfernung des Widget-Cachings (der Anzeigegewinn ist nicht interessant und verursacht viele Probleme) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2726)
 
 # 4.4.8.1
 

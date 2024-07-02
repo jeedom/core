@@ -8,6 +8,7 @@
 - Fixed a bug that could cause all information on the update page to be lost [LINK](https://github.com/jeedom/core/issues/2718)
 - Deleting fail2ban service status from Jeedom health [LINK](https://github.com/jeedom/core/issues/2721)
 - Fixed a problem with purging history [LINK](https://github.com/jeedom/core/issues/2723)
+- Removal of widget caching (the display gain is not interesting and this causes a lot of problems) [LINK](https://github.com/jeedom/core/issues/2726)
 
 # 4.4.8.1
 

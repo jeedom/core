@@ -8,6 +8,7 @@
 - Se corrigió un error que podía causar que se perdiera toda la información en la página de actualización [ENLACE](https://github.com/jeedom/core/issues/2718)
 - Eliminar el estado del servicio fail2ban de Jeedom Health [ENLACE](https://github.com/jeedom/core/issues/2721)
 - Se solucionó un problema con la purga del historial [ENLACE](https://github.com/jeedom/core/issues/2723)
+- Eliminación del almacenamiento en caché de widgets (la ganancia de visualización no es interesante y esto causa muchos problemas)) [ENLACE](https://github.com/jeedom/core/issues/2726)
 
 # 4.4.8.1
 

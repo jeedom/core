@@ -769,6 +769,7 @@
         "Correction d'un bug qui pouvait faire perdre toute les informations de la page de mise a jour": "Correction d'un bug qui pouvait faire perdre toute les informations de la page de mise a jour",
         "Suppression de l'état du service fail2ban de la santé Jeedom": "Suppression de l'état du service fail2ban de la santé Jeedom",
         "Correction d'un soucis sur la purge des historiques": "Correction d'un soucis sur la purge des historiques",
+        "Suppression de la mise en cache des widgets (le gain d'affichage est pas interessant et cela apporte pas mal de soucis": "Suppression de la mise en cache des widgets (le gain d'affichage est pas interessant et cela apporte pas mal de soucis",
         "4.4.8.1": "4.4.8.1",
         "Correction d'un bug sur les scénarios avec multiple programmation": "Correction d'un bug sur les scénarios avec multiple programmation",
         "4.4.8": "4.4.8",
