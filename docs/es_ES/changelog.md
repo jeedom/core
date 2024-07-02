@@ -10,6 +10,7 @@
 - Eliminar el estado del servicio fail2ban de Jeedom Health [ENLACE](https://github.com/jeedom/core/issues/2721)
 - Se solucionó un problema con la purga del historial [ENLACE](https://github.com/jeedom/core/issues/2723)
 - Eliminación del almacenamiento en caché de widgets (la ganancia de visualización no es interesante y esto causa muchos problemas)) [ENLACE](https://github.com/jeedom/core/issues/2726)
+- Se corrigió un error en las opciones de edición de diseño (cuadrícula y magnetización) al cambiar un diseño con un enlace [ENLACE](https://github.com/jeedom/core/issues/2728)
 
 # 4.4.8.1
 

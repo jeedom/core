@@ -1298,6 +1298,7 @@
         "Suppression de l'état du service fail2ban de la santé Jeedom": "Excluindo o status do serviço fail2ban do Jeedom Health",
         "Correction d'un soucis sur la purge des historiques": "Corrigido um problema com a limpeza do histórico",
         "Suppression de la mise en cache des widgets (le gain d'affichage est pas interessant et cela apporte pas mal de soucis": "Remoção do cache de widgets (o ganho de exibição não é interessante e isso causa muitos problemas",
+        "Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien": "Corrigido bug nas opções de edição do desenho (grade e magnetização) ao alterar um desenho com link",
         "4.4.8.1": "4.4.8.1",
         "Correction d'un bug sur les scénarios avec multiple programmation": "Corrigido um bug em cenários com programação múltipla",
         "4.4.8": "4.4.8",

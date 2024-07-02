@@ -10,6 +10,7 @@
 - Excluindo o status do serviço fail2ban do Jeedom Health [LINK](https://github.com/jeedom/core/issues/2721)
 - Corrigido um problema com a limpeza do histórico [LINK](https://github.com/jeedom/core/issues/2723)
 - Remoção do cache de widgets (o ganho de exibição não é interessante e isso causa muitos problemas) [LINK](https://github.com/jeedom/core/issues/2726)
+- Corrigido bug nas opções de edição do desenho (grade e magnetização) ao alterar um desenho com link [LINK](https://github.com/jeedom/core/issues/2728)
 
 # 4.4.8.1
 

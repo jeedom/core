@@ -1298,6 +1298,7 @@
         "Suppression de l'état du service fail2ban de la santé Jeedom": "Fail2ban-Dienststatus wird aus dem Jeedom-Zustand gelöscht",
         "Correction d'un soucis sur la purge des historiques": "Ein Problem beim Löschen des Verlaufs wurde behoben",
         "Suppression de la mise en cache des widgets (le gain d'affichage est pas interessant et cela apporte pas mal de soucis": "Entfernung des Widget-Cachings (der Anzeigegewinn ist nicht interessant und verursacht viele Probleme",
+        "Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien": "Ein Fehler in den Designbearbeitungsoptionen (Raster und Magnetisierung) beim Ändern eines Designs mit einem Link wurde behoben",
         "4.4.8.1": "4.4.8.1",
         "Correction d'un bug sur les scénarios avec multiple programmation": "Ein Fehler bei Szenarios mit mehreren Programmierungen wurde behoben",
         "4.4.8": "4.4.8",
