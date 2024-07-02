@@ -983,12 +983,6 @@ class scenario {
 		if (!$this->hasRight('r')) {
 			return '';
 		}
-		if (config::byKey('widget::disableCache', 'core', 0) == 0) {
-			$mc = cache::byKey('scenarioHtml' . $_version . $this->getId());
-			if ($mc->getValue() != '') {
-				return $mc->getValue();
-			}
-		}
 		$version = jeedom::versionAlias($_version);
 		$name = ($this->getDisplay('name') != '') ? $this->getDisplay('name') : $this->getName();
 		$replace = array(
@@ -1021,9 +1015,6 @@ class scenario {
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
 		$html =  translate::exec($html, 'core/template/widgets.html');
-		if (config::byKey('widget::disableCache', 'core', 0) == 0) {
-			cache::set('scenarioHtml' . $version . $this->getId(), $html);
-		}
 		return $html;
 	}
 	/**

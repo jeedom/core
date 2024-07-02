@@ -557,12 +557,6 @@ class eqLogic {
 		return $eqLogic;
 	}
 
-	public static function clearCacheWidget() {
-		foreach ((self::all()) as $eqLogic) {
-			$eqLogic->emptyCacheWidget();
-		}
-	}
-
 	public static function generateHtmlTable($_nbLine, $_nbColumn, $_options = array()) {
 		$return = array('html' => '', 'replace' => array());
 		if (!isset($_options['styletd'])) {
@@ -757,12 +751,6 @@ class eqLogic {
 		if (!$this->hasRight('r') || !$this->getIsEnable()) {
 			return '';
 		}
-		if (!$_noCache && config::byKey('widget::disableCache', 'core', 0) == 0) {
-			$mc = cache::byKey('widgetHtml' . $this->getId() . $_version);
-			if (trim($mc->getValue()) != '') {
-				return preg_replace("/" . preg_quote(self::UIDDELIMITER) . "(.*?)" . preg_quote(self::UIDDELIMITER) . "/", self::UIDDELIMITER . mt_rand() . self::UIDDELIMITER, $mc->getValue());
-			}
-		}
 		$translate_category = '';
 		foreach ($JEEDOM_INTERNAL_CONFIG['eqLogic']['category'] as $key => $value) {
 			if ($this->getCategory($key, 0) == 1) {
@@ -916,7 +904,6 @@ class eqLogic {
 				}
 				$replace['#cmd#'] = template_replace($table['tag'], $table['html']);
 				break;
-
 			default:
 				$replace['#eqLogic_class#'] = 'eqLogic_layout_default';
 				$cmd_html = '';
@@ -942,19 +929,11 @@ class eqLogic {
 	}
 
 	public function postToHtml($_version, $_html) {
-		if (config::byKey('widget::disableCache', 'core', 0) == 0) {
-			cache::set('widgetHtml' . $this->getId() . $_version, $_html);
-		}
 		return $_html;
 	}
 
 	public function emptyCacheWidget() {
-		if (config::byKey('widget::disableCache', 'core', 0) == 0) {
-			$mc = cache::byKey('widgetHtml' . $this->getId() . 'mobile');
-			$mc->remove();
-			$mc = cache::byKey('widgetHtml' . $this->getId() . 'dashboard');
-			$mc->remove();
-		}
+		
 	}
 
 	public function getAlert() {
@@ -997,7 +976,6 @@ class eqLogic {
 		}
 		viewData::removeByTypeLinkId('eqLogic', $this->getId());
 		dataStore::removeByTypeLinkId('eqLogic', $this->getId());
-		$this->emptyCacheWidget();
 		cache::delete('eqLogicCacheAttr' . $this->getId());
 		cache::delete('eqLogicStatusAttr' . $this->getId());
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getHumanName(), 'date' => date('Y-m-d H:i:s'), 'type' => 'eqLogic'));
@@ -1010,7 +988,6 @@ class eqLogic {
 		}
 		if ($this->getChanged()) {
 			if ($this->getId() != '') {
-				$this->emptyCacheWidget();
 				$this->setConfiguration('updatetime', date('Y-m-d H:i:s'));
 			} else {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
@@ -1243,7 +1220,6 @@ class eqLogic {
 
 	public function refreshWidget() {
 		$this->_needRefreshWidget = false;
-		$this->emptyCacheWidget();
 		event::add('eqLogic::update', array('eqLogic_id' => $this->getId(), 'visible' => $this->getIsVisible(), 'enable' => $this->getIsEnable()));
 	}
 
