@@ -226,7 +226,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeAndSearchConfiguration($_eqType_name, $_configuration, $_onlyEnable=false, $_onlyVisible=false) {
+	public static function byTypeAndSearchConfiguration($_eqType_name, $_configuration, $_onlyEnable = false, $_onlyVisible = false) {
 		if (is_array($_configuration)) {
 			$values = array(
 				'eqType_name' => $_eqType_name,
@@ -238,9 +238,9 @@ class eqLogic {
 			if ($_onlyEnable) {
 				$sql .= ' AND isEnable=1';
 			}
-             		if ($_onlyVisible) {
+			if ($_onlyVisible) {
 				$sql .= ' AND isVisible=1';
-			}  
+			}
 			$sql .= ' AND JSON_CONTAINS(configuration,:configuration)
 			ORDER BY name';
 			if ($_eqType_name != null && class_exists($_eqType_name)) {
@@ -255,13 +255,13 @@ class eqLogic {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM eqLogic
 		WHERE eqType_name=:eqType_name';
-        	if ($_onlyEnable) {
-				$sql .= ' AND isEnable=1';
+		if ($_onlyEnable) {
+			$sql .= ' AND isEnable=1';
 		}
-        	if ($_onlyVisible) {
-				$sql .= ' AND isVisible=1';
-		}                   
-		$sql .= ' 
+		if ($_onlyVisible) {
+			$sql .= ' AND isVisible=1';
+		}
+		$sql .= '
 		AND configuration LIKE :configuration
 		ORDER BY name';
 		if ($_eqType_name != null && class_exists($_eqType_name)) {
@@ -270,7 +270,7 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
-	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration,  $_onlyEnable=false, $_onlyVisible=false) {
+	public static function byTypeAndSearhConfiguration($_eqType_name, $_configuration,  $_onlyEnable = false, $_onlyVisible = false) {
 		trigger_error('eqLogic::byTypeAndSearhConfiguration() is deprecated since Core v4.4, eqLogic::byTypeAndSearchConfiguration() has been introduced since Core v4.1', E_USER_DEPRECATED);
 		return self::byTypeAndSearchConfiguration($_eqType_name, $_configuration, $_onlyEnable, $_onlyVisible);
 	}
@@ -494,7 +494,7 @@ class eqLogic {
 	}
 
 	public static function fromHumanReadable($_input) {
-		if(empty($_input)){
+		if (empty($_input)) {
 			return $_input;
 		}
 		$isJson = false;
@@ -528,7 +528,7 @@ class eqLogic {
 			return $_input;
 		}
 		$text = $_input;
-		preg_match_all( "/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
+		preg_match_all("/#\[(.*?)\]\[(.*?)\]#/", $text, $matches);
 		if (count($matches) == 3) {
 			$countMatches = count($matches[0]);
 			for ($i = 0; $i < $countMatches; $i++) {
@@ -577,19 +577,19 @@ class eqLogic {
 				$styletd = (isset($_options['style::td::' . $i . '::' . $j]) && $_options['style::td::' . $i . '::' . $j] != '') ? $_options['style::td::' . $i . '::' . $j] : '';
 				$attrs = '';
 				$style = '';
-				if(trim($styletd) != ''){
-					foreach (explode(';',$styletd) as $value) {
-						if($value == '') continue;
-						if(strpos($value, '=') !== false){
+				if (trim($styletd) != '') {
+					foreach (explode(';', $styletd) as $value) {
+						if ($value == '') continue;
+						if (strpos($value, '=') !== false) {
 							$attrs .= $value;
-						}else{
-							$style .= $value.';';
+						} else {
+							$style .= $value . ';';
 						}
 					}
 				}
 				$style = $_options['styletd'] . $style;
 				$classTd = ($style != '') ? 'tableCmdcss' : '';
-				$return['html'] .= '<td class="' . $classTd . (($_options['center'] == 1) ? ' tableCenter' : '') . '" style="' . $style . '" '.$attrs.' data-line="' . $i . '" data-column="' . $j . '">';
+				$return['html'] .= '<td class="' . $classTd . (($_options['center'] == 1) ? ' tableCenter' : '') . '" style="' . $style . '" ' . $attrs . ' data-line="' . $i . '" data-column="' . $j . '">';
 				if (isset($_options['text::td::' . $i . '::' . $j])) {
 					$return['html'] .= $_options['text::td::' . $i . '::' . $j];
 				}
@@ -642,8 +642,8 @@ class eqLogic {
 		if ($_version == 'mobile') {
 			$html .= '<div class="widget-name"><span class="name">' . $eqName . '</span><span class="object">' . $object_name . '</span></div>';
 		} else {
-        $html .= '<div class="#battery widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><br><span>' . $object_name . '</span></div>';
-          }
+			$html .= '<div class="#battery widget-name"><a href="' . $this->getLinkToConfiguration() . '">' . $eqName . '</a><br><span>' . $object_name . '</span></div>';
+		}
 		$html .= '<div class="jeedom-batterie">';
 		$html .= '<i class="icon jeedom-batterie' . $niveau . '"></i>';
 		$html .= '<span>' . $this->getStatus('battery', -2) . '%</span>';
@@ -707,7 +707,7 @@ class eqLogic {
 	public function copy($_name, $_logicalId = null) {
 		$eqLogicCopy = clone $this;
 		$eqLogicCopy->setName($_name);
-		if($_logicalId){
+		if ($_logicalId) {
 			$eqLogicCopy->setLogicalId($_logicalId);
 		}
 		$eqLogicCopy->setId('');
@@ -732,6 +732,13 @@ class eqLogic {
 				$cmd_link[$cmd->getId()]->save();
 			}
 		}
+
+		$backGraphCmd = $this->getDisplay('backGraph::info', 0);
+		if ($backGraphCmd != 0 && isset($cmd_link[$backGraphCmd])) {
+			$eqLogicCopy->setDisplay('backGraph::info', $cmd_link[$backGraphCmd]->getId());
+			$eqLogicCopy->save(true);
+		}
+
 		return $eqLogicCopy;
 	}
 
@@ -933,7 +940,6 @@ class eqLogic {
 	}
 
 	public function emptyCacheWidget() {
-		
 	}
 
 	public function getAlert() {
