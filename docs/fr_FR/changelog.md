@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Lors de la copie d'un équipemement si le widgets avaiet un graphique en fond celui-ci est correctement transformé [LIEN](https://github.com/jeedom/core/issues/2540)
 - Ajout des tags #sunrise# et #sunset# dans les scénarios pour avoir les heures de levé et couché du soleil [LIEN](https://github.com/jeedom/core/pull/2725)
 - Un plugin peut maintenant ajouter des champs dans la configuration avancée de tous les équipements de jeedom [LIEN](https://github.com/jeedom/core/issues/2711)
 - Ajout d'un parametre optionnel logicalId lors de la copie d'un équipement [LIEN](https://github.com/jeedom/core/pull/2715)
