@@ -1289,6 +1289,7 @@
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.4": "Changelog Jeedom V4.4",
         "4.4.9": "4.4.9",
+        "Lors de la copie d'un équipemement si le widgets avaiet un graphique en fond celui-ci est correctement transformé": "When copying a piece of equipment if the widget had a graphic in the background it is correctly transformed",
         "Ajout des tags": "Adding tags",
         "dans les scénarios pour avoir les heures de levé et couché du soleil": "in the scenarios to have the sunrise and sunset times",
         "Un plugin peut maintenant ajouter des champs dans la configuration avancée de tous les équipements de jeedom": "A plugin can now add fields in the advanced configuration of all jeedom equipment",

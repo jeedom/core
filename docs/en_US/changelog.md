@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- When copying a piece of equipment if the widget had a graphic in the background it is correctly transformed [LINK](https://github.com/jeedom/core/issues/2540)
 - Adding tags #sunrise# and #sunset# in the scenarios to have the sunrise and sunset times [LINK](https://github.com/jeedom/core/pull/2725)
 - A plugin can now add fields in the advanced configuration of all jeedom equipment [LINK](https://github.com/jeedom/core/issues/2711)
 - Addition of an optional logicalId parameter when copying equipment [LINK](https://github.com/jeedom/core/pull/2715)

@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Al copiar un equipo si el widget tenía un gráfico de fondo se transforma correctamente [ENLACE](https://github.com/jeedom/core/issues/2540)
 - Agregar etiquetas #sunrise# y #sunset# en los escenarios para tener las horas de salida y puesta del sol [ENLACE](https://github.com/jeedom/core/pull/2725)
 - Un complemento ahora puede agregar campos en la configuración avanzada de todos los equipos jeedom [ENLACE](https://github.com/jeedom/core/issues/2711)
 - Adición de un parámetro logicId opcional al copiar equipos [ENLACE](https://github.com/jeedom/core/pull/2715)

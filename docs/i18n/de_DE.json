@@ -1289,6 +1289,7 @@
         "Répéter les valeurs identiques (Oui": "Identische Werte wiederholen (Ja",
         "Changelog Jeedom V4.4": "Änderungsprotokoll Jeedom V4.4",
         "4.4.9": "4.4.9",
+        "Lors de la copie d'un équipemement si le widgets avaiet un graphique en fond celui-ci est correctement transformé": "Wenn beim Kopieren eines Geräts das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert",
         "Ajout des tags": "Tags hinzufügen",
         "dans les scénarios pour avoir les heures de levé et couché du soleil": "in den Szenarien, um die Zeiten für Sonnenaufgang und Sonnenuntergang zu haben",
         "Un plugin peut maintenant ajouter des champs dans la configuration avancée de tous les équipements de jeedom": "Ein Plugin kann jetzt Felder in der erweiterten Konfiguration aller Jeedom-Geräte hinzufügen",
