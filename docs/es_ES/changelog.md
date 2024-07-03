@@ -2,7 +2,7 @@
 
 # 4.4.9
 
-- Al copiar un equipo si el widget tenía un gráfico de fondo se transforma correctamente [ENLACE](https://github.com/jeedom/core/issues/2540)
+- Al copiar equipo, si el widget tenía un gráfico de fondo, se transforma correctamente [ENLACE](https://github.com/jeedom/core/issues/2540)
 - Agregar etiquetas #sunrise# y #sunset# en los escenarios para tener las horas de salida y puesta del sol [ENLACE](https://github.com/jeedom/core/pull/2725)
 - Un complemento ahora puede agregar campos en la configuración avanzada de todos los equipos jeedom [ENLACE](https://github.com/jeedom/core/issues/2711)
 - Adición de un parámetro logicId opcional al copiar equipos [ENLACE](https://github.com/jeedom/core/pull/2715)
@@ -64,7 +64,7 @@
 - Visualización de widgets mejorada [ENLACE](https://github.com/jeedom/core/pull/2631)
 - Se actualizó la documentación sobre la herramienta de reemplazo [ENLACE](https://github.com/jeedom/core/pull/2638)
 - Se solucionó un problema de inconsistencia con los valores mínimos de los tamaños de los informes [ENLACE](https://github.com/jeedom/core/issues/2449)
-- Se corrigió un error al verificar la base de datos donde aún podría faltar un índice [ENLACE](https://github.com/jeedom/core/issues/2655)
+- Se corrigió un error en la verificación de la base de datos donde aún podría faltar un índice [ENLACE](https://github.com/jeedom/core/issues/2655)
 - Se corrigió un error en el gráfico de enlaces [ENLACE](https://github.com/jeedom/core/issues/2659)
 - Eliminación del trabajador del servicio en móvil (ya no se usa)) [ENLACE](https://github.com/jeedom/core/issues/2660)
 - Se corrigió un error que podía afectar la limitación del número de eventos en la línea de tiempo [ENLACE](https://github.com/jeedom/core/issues/2663)
@@ -85,7 +85,7 @@
 
 ## 4.4.5
 
-- Correcciones de errores 
+- Correcciones de errores
 - Actualización de documentación
 - Se corrigió un error en php8 al instalar y/o actualizar complementos
 - Se corrigió un error en el tablero donde, en casos excepcionales, el equipo podía moverse o cambiar de tamaño por sí solo
@@ -149,7 +149,6 @@
 - **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
 - **Administracion del sistema** : Posibilidad de agregar comandos de shell personalizados en el menú de la izquierda *(a través de un archivo `/data/systemCustomCmd.json`)*.
 
-
 ### 4.4 : Autre
 
 - **Centro** : Inicio de desarrollo en js puro, sin jQuery. Ver [Desarrollador de documentos](https://doc.jeedom.com/es_ES/dev/core4.4).
@@ -165,7 +164,6 @@
 > Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (alto más pequeño y ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Pas:Altura (mínimo 60 px)* y *Pas:Ancho (mínimo 80 px)*. El valor *Margen* definiendo el espacio entre las baldosas.
 > Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
 
-
 > **Widgets**
 >
 > Los widgets principales se han reescrito en js/css puro. Tendrás que editar el Dashboard *(Editar luego botón ⁝ en los mosaicos)* y usa la opcion *Ajuste de línea después* en ciertos comandos para encontrar el mismo aspecto visual.
@@ -174,7 +172,6 @@
 > **Cuadros de diálogo**
 >
 > Todos los cuadros de diálogo (bootstrap, bootbox, jQuery UI) se han migrado a una Core lib interna (jeeDialog) especialmente desarrollada. Los cuadros de diálogo redimensionables ahora tienen un botón para cambiar *pantalla completa*.
-
 
 # Registro de cambios Jeedom V4.3
 
@@ -227,7 +224,6 @@
 - Se mejoró la seguridad de las preguntas al usar la función generateAskResponseLink mediante complementos : uso de un token único (no más envío de la clave API central) y bloqueo de la respuesta solo entre las opciones posibles.
 - Se corrigió un error que impedía la instalación de jeedom.
 - Se corrigió un error en influxdb.
-
 
 ## 4.3.7
 
@@ -444,9 +440,9 @@ Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
 - **Guión** : Agregar funciones de cálculo ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` permitiendo obtener la media ponderada por la duración del período.
 - **Guión** : Se agregó soporte para tipos genéricos en escenarios.
-	- Desencadenar : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- SI ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Valores ``genericType``
+  - Desencadenar : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - SI ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Valores ``genericType``
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
 - **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
@@ -462,7 +458,7 @@ Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuración** : Configuración de OSDB: Agregar un constructor de consultas SQL dinámico.
 - **Configuración**: Capacidad para deshabilitar el monitoreo en la nube (Administración / Actualizaciones / Mercado).
 - **jeeCLI** : Además de ``jeeCli.php`` en la carpeta core / php de Jeedom para administrar algunas funciones de la línea de comandos.
-- *Grandes mejoras en la interfaz en términos de rendimiento / capacidad de respuesta. jeedomUtils {}, jeedomUI {}, menú principal reescrito en CSS puro, eliminación de initRowWorflow (), simplificación del código, correcciones de CSS para pantallas pequeñas, etc.*
+- *Grandes mejoras en la interfaz en términos de rendimiento / capacidad de respuesta. jeedomUtils{}, jeedomUI{}, menú principal reescrito en CSS puro, eliminación de initRowWorflow(), simplificación de código, correcciones de CSS para pantallas pequeñas, etc.*
 
 ### 4.2 : Widgets principales
 
@@ -502,7 +498,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 ## 4.1.27
 
-- Corrección de una brecha de seguridad gracias @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+- Corrección de una vulnerabilidad de seguridad gracias a @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (>)
 
 ## 4.1.26
 
@@ -622,15 +618,16 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Equipo** : Posibilidad de agregar clase css a un mosaico (consulte la documentación del widget).
 - **Sobre ventana** : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Widgets / Objetos / Escenarios / Interacciones / Páginas de complementos :
-	- Ctrl Clic / Clic Center en un widget, objeto, escenarios, interacción, equipo de complemento : Se abre en una pestaña nueva.
-	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
+  - Ctrl Clic / Clic Center en un widget, objeto, escenarios, interacción, equipo de complemento : Se abre en una pestaña nueva.
+  - Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay :
-	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigar* : Abra la ventana en una pestaña nueva, en pantalla completa.
+  - Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
+  - Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigar* : Abra la ventana en una pestaña nueva, en pantalla completa.
 - Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
 - Ventana de selección de imágenes mejorada.
 
 ### 4.1 : WebApp
+
 - Integración de la nueva página de resumen.
 - Página de escenarios, un clic en el título del escenario muestra su registro.
 - Ahora podemos seleccionar / copiar parte de un registro.
@@ -642,6 +639,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).
 
 ### 4.1 : Autres
+
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - **Liberación** : Actualizar HighStock v7.1.2 a v8.2.0.
@@ -654,10 +652,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
 
 ### 4.1 : Changements
-- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* pero *[grupo] [objeto] [nombre]*.
-- La funcion **escenario-> byString()** ahora debe llamarse con la estructura *[grupo] [objeto] [nombre]*.
-- Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
 
+- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* pero *[grupo] [objeto] [nombre]*.
+- La funcion **escenario-> byString()** ahora debe ser llamado con la estructura *[grupo] [objeto] [nombre]*.
+- Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
 
 # Registro de cambios Jeedom V4.0
 
@@ -665,7 +663,6 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 - Nueva migración de kernel buster + para smart y Pro v2
 - Verificación de la versión del sistema operativo durante las actualizaciones importantes de Jeedom
-
 
 ## 4.0.61
 
@@ -677,7 +674,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 ## 4.0.60
 
-- Eliminación del nuevo sistema DNS en eu.jeedom.enlace siguiendo demasiados operadores que prohíben flujos http2 permanentes
+- Eliminación del nuevo sistema DNS en eu.jeedom.enlace que sigue a demasiados operadores que prohíben los flujos http2 permanentes
 
 ## 4.0.59
 

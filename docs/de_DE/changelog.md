@@ -2,7 +2,7 @@
 
 # 4.4.9
 
-- Wenn beim Kopieren eines Geräts das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2540)
+- Wenn beim Kopieren von Geräten das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2540)
 - Tags hinzufügen #sunrise# und #sunset# in den Szenarien, um die Zeiten für Sonnenaufgang und Sonnenuntergang zu haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2725)
 - Ein Plugin kann jetzt Felder in der erweiterten Konfiguration aller Jeedom-Geräte hinzufügen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2711)
 - Hinzufügung eines optionalen logicalId-Parameters beim Kopieren von Geräten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2715)
@@ -64,7 +64,7 @@
 - Verbesserte Widget-Anzeige [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2631)
 - Die Dokumentation zum Ersetzungstool wurde aktualisiert [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2638)
 - Ein Inkonsistenzproblem mit den Mindestwerten der Berichtsgrößen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2449)
-- Es wurde ein Fehler beim Überprüfen der Datenbank behoben, bei dem noch ein Index fehlen konnte [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2655)
+- Es wurde ein Fehler bei der Datenbankprüfung behoben, bei dem möglicherweise noch ein Index fehlte [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2655)
 - Ein Fehler im Linkdiagramm wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2659)
 - Entfernung des Servicemitarbeiters im Mobil (nicht mehr verwendet)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2660)
 - Es wurde ein Fehler behoben, der sich auf die Begrenzung der Anzahl der Ereignisse in der Zeitleiste auswirken konnte [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2663)
@@ -85,7 +85,7 @@
 
 ## 4.4.5
 
-- Fehlerbehebungen 
+- Fehlerbehebungen
 - Aktualisierung der Dokumentation
 - Ein Fehler in PHP8 beim Installieren und/oder Aktualisieren von Plugins wurde behoben
 - Es wurde ein Fehler im Dashboard behoben, durch den sich Geräte in seltenen Fällen von selbst bewegen oder ihre Größe ändern konnten
@@ -149,7 +149,6 @@
 - **Jeedom-Menü** : Eine Verzögerung von 0.25s wurde beim Öffnen von Untermenüs eingeführt.
 - **Systemadministration** : Möglichkeit, benutzerdefinierte Shell-Befehle im linken Menü hinzuzufügen *(über eine Datei „/data/systemCustomCmd.json“)*.
 
-
 ### 4.4 : Autre
 
 - **Kern** : Beginn der Entwicklung in reinem js, ohne jQuery. Sehen [Doc-Entwickler](https://doc.jeedom.com/de_DE/dev/core4.4).
@@ -165,7 +164,6 @@
 > Auf der **Armaturenbrett** und die **Ansichten**, Kern v4.4 ändert jetzt automatisch die Größe von Kacheln, um ein nahtloses Raster zu erstellen. Die Einheiten (kleinste Höhe und kleinste Breite einer Kachel) dieses Rasters werden in definiert **Einstellungen → System → Konfiguration / Schnittstelle** nach Werten *Pas:Höhe (mindestens 60 Pixel))* und *Pas:Breite (mindestens 80 Pixel)*. Der Wert *Rand* Definieren des Raums zwischen den Kacheln.
 > Die Fliesen passen sich den Abmessungen des Rasters an und können einmal, zweimal usw. diese Werte in Höhe oder Breite. Es wird sicherlich notwendig sein, zu bestehen [Dashboard-Bearbeitungsmodus](https://doc.jeedom.com/de_DE/core/4.4/dashboard#Mode%20%C3%A9dition) um die Größe einiger Kacheln nach dem Update zu optimieren.
 
-
 > **Widgets**
 >
 > Kern-Widgets wurden in reinem js/css neu geschrieben. Sie müssen das Dashboard bearbeiten *(Bearbeiten Sie dann die Schaltfläche ⁝ auf den Kacheln)* und nutzen Sie die Möglichkeit *Zeilenumbruch danach* bei bestimmten Befehlen, um denselben visuellen Aspekt zu finden.
@@ -174,7 +172,6 @@
 > **Dialogboxen**
 >
 > Alle Dialogboxen (Bootstrap, Bootbox, jQuery UI) wurden auf eine eigens entwickelte interne Core lib (jeeDialog) migriert. In der Größe anpassbare Dialoge haben jetzt eine Schaltfläche zum Wechseln *ganzer Bildschirm*.
-
 
 # Änderungsprotokoll Jeedom V4.3
 
@@ -227,7 +224,6 @@
 - Verbesserte Ask-Sicherheit bei Verwendung der generateAskResponseLink-Funktion durch Plugins : Verwendung eines eindeutigen Tokens (kein Senden des Kern-API-Schlüssels mehr) und Sperren der Antwort nur unter den möglichen Optionen.
 - Es wurde ein Fehler behoben, der die Installation von jeedom verhinderte.
 - Fehler in influxdb behoben.
-
 
 ## 4.3.7
 
@@ -444,9 +440,9 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
 - **Szenario** : Berechnungsfunktionen hinzufügen ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
 - **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
-	- Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- WENN ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Aktie ``genericType``
+  - Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - WENN ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Aktie ``genericType``
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
 - **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
@@ -462,7 +458,7 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Aufbau** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
 - **Aufbau**: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
 - **jeeCLI** : Zugabe von ``jeeCli.php`` im core / php-Ordner von Jeedom, um einige Kommandozeilenfunktionen zu verwalten.
-- *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils {}, jeedomUI {}, Hauptmenü in reinem CSS umgeschrieben, Entfernung von initRowWorflow(), Vereinfachung des Codes, CSS-Fixes für kleine Bildschirme usw.*
+- *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils{}, jeedomUI{}, Hauptmenü in reinem CSS neu geschrieben, Entfernung von initRowWorflow(), Code-Vereinfachung, CSS-Korrekturen für kleine Bildschirme usw.*
 
 ### 4.2 : Kern-Widgets
 
@@ -502,7 +498,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 ## 4.1.27
 
-- Korrektur einer Sicherheitsverletzung danke @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (www.synacktiv.com)
+- Behebung einer Sicherheitslücke dank @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (>)
 
 ## 4.1.26
 
@@ -622,15 +618,16 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Ausrüstung** : Möglichkeit, einer Kachel Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
 - Widgets / Objekte / Szenarien / Interaktionen / Plugins Seiten :
-	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
-	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs (auf den Registerkarten) verfügbar).
+  - Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
+  - Ctrl Clic / Clic Center ist auch in den Kontextmenüs (auf den Registerkarten) verfügbar).
 - Neue ModalDisplay-Seite :
-	- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
-	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Bewertungen*, *Expressionstester*, *Variablen*, *Forschung* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+  - Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+  - Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Bewertungen*, *Expressionstester*, *Variablen*, *Forschung* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
 - Codeblock, Datei-Editor, Erweiterte Anpassung : Dunkle Themenanpassung.
 - Verbessertes Bildauswahlfenster.
 
 ### 4.1 : WebApp
+
 - Integration der neuen Übersichtsseite.
 - Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
@@ -642,6 +639,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).
 
 ### 4.1 : Autres
+
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
@@ -654,10 +652,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
 ### 4.1 : Changements
-- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* aber *[Gruppe] [Objekt] [Name]*.
+
+- Die Funktion **Szenario-> getHumanName()** der PHP-Szenarioklasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* aber *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
-
 
 # Änderungsprotokoll Jeedom V4.0
 
@@ -665,7 +663,6 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 - Neue Buster + Kernel-Migration für Smart und Pro v2
 - Überprüfung der Betriebssystemversion bei wichtigen Jeedom-Updates
-
 
 ## 4.0.61
 
@@ -677,7 +674,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 ## 4.0.60
 
-- Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die permanente http2-Flows verbieten
+- Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die dauerhafte http2-Flows verbieten
 
 ## 4.0.59
 

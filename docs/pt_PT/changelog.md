@@ -2,7 +2,7 @@
 
 # 4.4.9
 
-- Ao copiar um equipamento se o widget tiver um gráfico em segundo plano ele é corretamente transformado [LINK](https://github.com/jeedom/core/issues/2540)
+- Ao copiar um equipamento, se o widget possui um gráfico em segundo plano, ele é corretamente transformado [LINK](https://github.com/jeedom/core/issues/2540)
 - Adicionando tags #sunrise# e #sunset# nos cenários para ter os horários do nascer e do pôr do sol [LINK](https://github.com/jeedom/core/pull/2725)
 - Um plugin agora pode adicionar campos na configuração avançada de todos os equipamentos jeedom [LINK](https://github.com/jeedom/core/issues/2711)
 - Adição de um parâmetro opcional logicId ao copiar equipamentos [LINK](https://github.com/jeedom/core/pull/2715)
@@ -64,7 +64,7 @@
 - Exibição de widget aprimorada [LINK](https://github.com/jeedom/core/pull/2631)
 - Atualizada a documentação da ferramenta de substituição [LINK](https://github.com/jeedom/core/pull/2638)
 - Corrigido um problema de inconsistência com os valores mínimos dos tamanhos dos relatórios [LINK](https://github.com/jeedom/core/issues/2449)
-- Corrigido um bug ao verificar o banco de dados onde um índice ainda poderia estar faltando [LINK](https://github.com/jeedom/core/issues/2655)
+- Corrigido um bug na verificação do banco de dados onde um índice ainda poderia estar faltando [LINK](https://github.com/jeedom/core/issues/2655)
 - Corrigido um bug no gráfico de links [LINK](https://github.com/jeedom/core/issues/2659)
 - Remoção do trabalhador de serviço no celular (não é mais usado) [LINK](https://github.com/jeedom/core/issues/2660)
 - Corrigido um bug que poderia afetar a limitação do número de eventos na linha do tempo [LINK](https://github.com/jeedom/core/issues/2663)
@@ -85,7 +85,7 @@
 
 ## 4.4.5
 
-- Correções de bugs 
+- Correções de bugs
 - Atualização da documentação
 - Corrigido um bug no php8 ao instalar e/ou atualizar plugins
 - Corrigido um bug no painel onde, em casos raros, o equipamento poderia se mover ou mudar de tamanho por conta própria
@@ -149,7 +149,6 @@
 - **Menu Jeedom** : Um atraso de 0.25s foi introduzido na abertura de submenus.
 - **Administração do Sistema** : Capacidade de adicionar comandos shell personalizados no menu esquerdo *(por meio de um arquivo `/data/systemCustomCmd.json`)*.
 
-
 ### 4.4 : Autre
 
 - **Essencial** : Início do desenvolvimento em js puro, sem jQuery. Ver [Desenvolvedor de documentos](https://doc.jeedom.com/pt_PT/dev/core4.4).
@@ -165,7 +164,6 @@
 > No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Pas:Altura (mín. 60px)* e *Pas:Largura (mín. 80px)*. O valor que *Margem* definindo o espaço entre as telhas.
 > Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
 
-
 > **Widgets**
 >
 > Widgets principais foram reescritos em js/css puro. Você terá que editar o Painel *(Edite, em seguida, botão ⁝ nos ladrilhos)* e use a opção *Quebra de linha depois* em certos comandos para encontrar o mesmo aspecto visual.
@@ -174,7 +172,6 @@
 > **Caixa de diálogo**
 >
 > Todas as caixas de diálogo (bootstrap, bootbox, jQuery UI) foram migradas para uma Core lib interna (jeeDialog) especialmente desenvolvida. Caixas de diálogo redimensionáveis agora têm um botão para alternar *tela cheia*.
-
 
 # Changelog Jeedom V4.3
 
@@ -227,7 +224,6 @@
 - Segurança de perguntas aprimorada ao usar a função generateAskResponseLink por plugins : uso de um token exclusivo (não há mais envio da chave da API principal) e bloqueio da resposta apenas entre as opções possíveis.
 - Corrigido um bug que impedia a instalação do jeedom.
 - Corrigido um bug no influxdb.
-
 
 ## 4.3.7
 
@@ -444,9 +440,9 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Cenas** : Adicionando funções de cálculo ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` permitindo obter a média ponderada pela duração ao longo do período.
 - **Cenas** : Adicionado suporte para tipos genéricos em cenários.
-	- Desencadear : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- E SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Ações ``genericType``
+  - Desencadear : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - E SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Ações ``genericType``
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Usuários** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Usuários** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
@@ -462,7 +458,7 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuração** : Configurações OSDB: Adicionar um construtor de consulta SQL dinâmica.
 - **Configuração**: Capacidade de desabilitar o monitoramento de nuvem (Administração / Atualizações / Mercado).
 - **jeeCLI** : Adição de ``jeeCli.php`` na pasta core / php do Jeedom para gerenciar algumas funções de linha de comando.
-- *Grandes melhorias na interface em termos de desempenho / capacidade de resposta. jeedomUtils {}, jeedomUI {}, menu principal reescrito em css puro, remoção de initRowWorflow (), simplificação do código, correções de css para telas pequenas, etc.*
+- *Grandes melhorias na interface em termos de desempenho / capacidade de resposta. jeedomUtils{}, jeedomUI{}, menu principal reescrito em CSS puro, remoção de initRowWorflow(), simplificação de código, correções de CSS para telas pequenas, etc.*
 
 ### 4.2 : Widgets principais
 
@@ -502,7 +498,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 ## 4.1.27
 
-- Correção de uma violação de segurança, obrigado @Maxime Rinaudo e @Antoine Cervoise da Synacktiv (www.synacktiv.com)
+- Correção de uma vulnerabilidade de segurança graças a @Maxime Rinaudo e @Antoine Cervoise da Synacktiv (>)
 
 ## 4.1.26
 
@@ -622,15 +618,16 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Equipamento** : Possibilidade de adicionar css de classe a um bloco (consulte a documentação do widget).
 - **Sobre a janela** : Adição de atalhos ao Changelog e FAQ.
 - Páginas de Widgets / Objetos / Cenários / Interações / Plugins :
-	- Ctrl Clic / Clic Center em um equipamento de widget, objeto, cenário, interação, plug-in : Abre em uma nova guia.
-	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
+  - Ctrl Clic / Clic Center em um equipamento de widget, objeto, cenário, interação, plug-in : Abre em uma nova guia.
+  - Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay :
-	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
+  - Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
+  - Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
 ### 4.1 : WebApp
+
 - Integração da nova página Resumo.
 - Na página Cenários, um clique no título do cenário exibe seu log.
 - Agora podemos selecionar / copiar parte de um log.
@@ -642,6 +639,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).
 
 ### 4.1 : Autres
+
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **Livre** : Atualizar o HighStock v7.1.2 a v8.2.0.
@@ -654,10 +652,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
 
 ### 4.1 : Changements
+
 - A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* mas *[grupo] [objeto] [nome]*.
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
-
 
 # Changelog Jeedom V4.0
 
@@ -665,7 +663,6 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 - Nova migração buster + kernel para smart e Pro v2
 - Verificação da versão do sistema operacional durante atualizações importantes do Jeedom
-
 
 ## 4.0.61
 

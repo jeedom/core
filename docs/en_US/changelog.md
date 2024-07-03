@@ -2,7 +2,7 @@
 
 # 4.4.9
 
-- When copying a piece of equipment if the widget had a graphic in the background it is correctly transformed [LINK](https://github.com/jeedom/core/issues/2540)
+- When copying equipment, if the widget had a graphic in the background, it is correctly transformed [LINK](https://github.com/jeedom/core/issues/2540)
 - Adding tags #sunrise# and #sunset# in the scenarios to have the sunrise and sunset times [LINK](https://github.com/jeedom/core/pull/2725)
 - A plugin can now add fields in the advanced configuration of all jeedom equipment [LINK](https://github.com/jeedom/core/issues/2711)
 - Addition of an optional logicalId parameter when copying equipment [LINK](https://github.com/jeedom/core/pull/2715)
@@ -64,7 +64,7 @@
 - Improved widget display [LINK](https://github.com/jeedom/core/pull/2631)
 - Updated the documentation on the replace tool [LINK](https://github.com/jeedom/core/pull/2638)
 - Fixed an inconsistency issue with the minimum values of report sizes [LINK](https://github.com/jeedom/core/issues/2449)
-- Fixed a bug when checking the database where an index could still be missing [LINK](https://github.com/jeedom/core/issues/2655)
+- Fixed a bug on the database check where an index could still be missing [LINK](https://github.com/jeedom/core/issues/2655)
 - Fixed a bug on the links graph [LINK](https://github.com/jeedom/core/issues/2659)
 - Removal of the service worker in mobile (no longer used) [LINK](https://github.com/jeedom/core/issues/2660)
 - Fixed a bug that could affect the limitation of the number of events in the timeline [LINK](https://github.com/jeedom/core/issues/2663)
@@ -85,7 +85,7 @@
 
 ## 4.4.5
 
-- Bug fixes 
+- Bug fixes
 - Documentation update
 - Fixed a bug in php8 when installing and/or updating plugins
 - Fixed a bug on the dashboard where in rare cases equipment could move or change size on its own
@@ -149,7 +149,6 @@
 - **Jeedom menu** : A delay of 0.25s was introduced on opening submenus.
 - **System Administration** : Ability to add custom shell commands in the left menu *(via a `/data/systemCustomCmd.json` file)*.
 
-
 ### 4.4 : Autre
 
 - **Core** : Start of development in pure js, without jQuery. See [doc dev](https://doc.jeedom.com/en_US/dev/core4.4).
@@ -165,7 +164,6 @@
 > On the **Dashboard** and the **Views**, Core v4.4 now automatically resizes tiles to build a seamless grid. The units (smallest height and smallest width of a tile) of this grid are defined in **Settings → System → Configuration / Interface** by values *Pas:Height (min 60px)* and *Pas:Width (min 80px)*. The value *Margin* defining the space between the tiles.
 > The tiles adapt to the dimensions of the grid and can be done once, twice etc. these values in height or width. It will certainly be necessary to pass [Dashboard edit mode](https://doc.jeedom.com/en_US/core/4.4/dashboard#Mode%20%C3%A9dition) to fine-tune the size of some tiles after the update.
 
-
 > **Widgets**
 >
 > Core widgets have been rewritten in pure js/css. You will have to edit the Dashboard *(Edit then button ⁝ on the tiles)* and use the option *Line wrap after* on certain commands to find the same visual aspect.
@@ -174,7 +172,6 @@
 > **Dialog boxes**
 >
 > All dialog boxes (bootstrap, bootbox, jQuery UI) have been migrated to an internal Core lib (jeeDialog) specially developed. Resizable dialogs now have a button to switch to *fullscreen*.
-
 
 # Changelog Jeedom V4.3
 
@@ -227,7 +224,6 @@
 - Improved ask security when using the generateAskResponseLink function by plugins : use of a unique token (no more sending of the core api key) and locking of the response only among the possible choices.
 - Fixed a bug preventing the installation of jeedom.
 - Fixed a bug on influxdb.
-
 
 ## 4.3.7
 
@@ -444,9 +440,9 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Scenario** : Copy / paste and undo / redo bugfix (complete rewrite).
 - **Scenario** : Adding calculation functions ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` allowing to obtain the average weighted by the duration over the period.
 - **Scenario** : Added support for Generic Types in scenarios.
-	- Trigger : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- IF ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Stock ``genericType``
+  - Trigger : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - IF ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Stock ``genericType``
 - **Objects** : Plugins can now request specific parameters specific to objects.
 - **Users** : Plugins can now request specific parameters specific to users.
 - **Users** : Ability to manage the profiles of different Jeedom users from the user management page.
@@ -462,7 +458,7 @@ Blog post [here](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuration** : OSDB settings: Adding a dynamic SQL query constructor.
 - **Configuration**: Ability to disable cloud monitoring (Administration / Updates / Market).
 - **jeeCLI** : Addition of ``jeeCli.php`` in the core / php folder of Jeedom to manage some command line functions.
-- *Big improvements to the interface in terms of performance / responsiveness. jeedomUtils {}, jeedomUI {}, main menu rewritten in pure css, removal of initRowWorflow (), simplification of the code, css fixes for small screens, etc.*
+- *Big improvements to the interface in terms of performance / responsiveness. jeedomUtils{}, jeedomUI{}, main menu rewritten in pure css, removal of initRowWorflow(), code simplification, css fixes for small screens, etc.*
 
 ### 4.2 : Core Widgets
 
@@ -502,7 +498,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 
 ## 4.1.27
 
-- Correction of a security breach thank you @Maxime Rinaudo and @Antoine Cervoise from Synacktiv (www.synacktiv.com)
+- Correction of a security vulnerability thanks @Maxime Rinaudo and @Antoine Cervoise from Synacktiv (>)
 
 ## 4.1.26
 
@@ -622,15 +618,16 @@ The plugins must respect the recommendations on the tree structure of folders an
 - **Equipment** : Possibility to add class css to a tile (see widget documentation).
 - **About window** : Addition of links to Changelog and FAQ.
 - Widgets / Objects / Scenarios / Interactions / Plugins Pages :
-	- Ctrl Clic / Clic Center on a Widget, Object, Scenarios, Interaction, plugin equipment : Opens in a new tab.
-	- Ctrl Clic / Clic Center also available in their context menus (on the tabs).
+  - Ctrl Clic / Clic Center on a Widget, Object, Scenarios, Interaction, plugin equipment : Opens in a new tab.
+  - Ctrl Clic / Clic Center also available in their context menus (on the tabs).
 - New ModalDisplay page :
-	- Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
-	- Tools menu : Ctrl Click / Click Center on *Ratings*, *Expression tester*, *Variables*, *Research* : Open the window in a new tab, in full screen.
+  - Analysis menu : Ctrl Click / Click Center on *Real time* : Open the window in a new tab, in full screen.
+  - Tools menu : Ctrl Click / Click Center on *Ratings*, *Expression tester*, *Variables*, *Research* : Open the window in a new tab, in full screen.
 - Code Block, File Editor, Advanced Customization : Dark theme adaptation.
 - Improved image selection window.
 
 ### 4.1 : WebApp
+
 - Integration of the new Synthesis page.
 - Scenarios page, a click on the scenario title displays its log.
 - We can now select / copy part of a log.
@@ -642,6 +639,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Many bug-fix (UI, portrait / landscape iOS, etc.).
 
 ### 4.1 : Autres
+
 - **Documentation** : Adaptations in line with v4 and v4.1.
 - **Documentation** : New page *Keyboard / mouse shortcuts* including a summary of all shortcuts in Jeedom. Accessible from the Dashboard doc or the FAQ.
 - **Lib** : Update HighStock v7.1.2 to v8.2.0.
@@ -654,10 +652,10 @@ The plugins must respect the recommendations on the tree structure of folders an
 - Numerous desktop / mobile performance optimizations.
 
 ### 4.1 : Changements
+
 - Function **scenario-> getHumanName()** of the php scenario class no longer returns *[object] [group] [name]* but *[group] [object] [name]*.
 - Function **scenario-> byString()** must now be called with the structure *[group] [object] [name]*.
 - Functions **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** have been replaced by **network-> getInterfacesInfo()**
-
 
 # Changelog Jeedom V4.0
 
@@ -665,7 +663,6 @@ The plugins must respect the recommendations on the tree structure of folders an
 
 - New buster + kernel migration for smart and Pro v2
 - Verification of the OS version during important Jeedom updates
-
 
 ## 4.0.61
 
@@ -677,7 +674,7 @@ The plugins must respect the recommendations on the tree structure of folders an
 
 ## 4.0.60
 
-- Removal of the new DNS system in eu.jeedom.link following too many operators which forbid permanent http2 flows
+- Removal of new DNS system in eu.jeedom.link following too many operators who prohibit permanent http2 flows
 
 ## 4.0.59
 
