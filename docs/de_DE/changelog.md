@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Verbesserte Anzeige der Szenarioliste bei der Bearbeitung von Szenarios (Hinzufügen von Gruppen)) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2729)
 - Wenn beim Kopieren von Geräten das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2540)
 - Tags hinzufügen #sunrise# und #sunset# in den Szenarien, um die Zeiten für Sonnenaufgang und Sonnenuntergang zu haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2725)
 - Ein Plugin kann jetzt Felder in der erweiterten Konfiguration aller Jeedom-Geräte hinzufügen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2711)
@@ -12,6 +13,8 @@
 - Ein Problem beim Löschen des Verlaufs wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2723)
 - Entfernung des Widget-Cachings (der Anzeigegewinn ist nicht interessant und verursacht viele Probleme) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2726)
 - Ein Fehler in den Designbearbeitungsoptionen (Raster und Magnetisierung) beim Ändern eines Designs mit einem Link wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2728)
+- Ein Javascript-Fehler bei Schaltflächen in Modalitäten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2734)
+- Ein Fehler bei der Anzahl der Nachrichten beim Löschen aller Nachrichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2735)
 
 # 4.4.8.1
 
