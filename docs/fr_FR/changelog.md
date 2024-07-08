@@ -15,6 +15,7 @@
 - Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien [LIEN](https://github.com/jeedom/core/issues/2728)
 - Correction d'un bug javascript sur les boutons dans les modal [LIEN](https://github.com/jeedom/core/pull/2734)
 - Correction d'un bug sur le nombre de message lors de la suppression de tous les message [LIEN](https://github.com/jeedom/core/issues/2735)
+- Exclusion du répertoire venv des backups [LIEN](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 
