@@ -15,6 +15,7 @@
 - Se corrigió un error en las opciones de edición de diseño (cuadrícula y magnetización) al cambiar un diseño con un enlace [ENLACE](https://github.com/jeedom/core/issues/2728)
 - Se corrigió un error de JavaScript en los botones en modales [ENLACE](https://github.com/jeedom/core/pull/2734)
 - Se corrigió un error en la cantidad de mensajes al eliminar todos los mensajes [ENLACE](https://github.com/jeedom/core/issues/2735)
+- Excluir el directorio venv de las copias de seguridad [ENLACE](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 

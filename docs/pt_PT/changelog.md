@@ -15,6 +15,7 @@
 - Corrigido bug nas opções de edição do desenho (grade e magnetização) ao alterar um desenho com link [LINK](https://github.com/jeedom/core/issues/2728)
 - Corrigido um bug de javascript em botões em modais [LINK](https://github.com/jeedom/core/pull/2734)
 - Corrigido um bug no número de mensagens ao excluir todas as mensagens [LINK](https://github.com/jeedom/core/issues/2735)
+- Excluindo o diretório venv dos backups [LINK](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 

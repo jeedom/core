@@ -15,6 +15,7 @@
 - Fixed a bug on the design editing options (grid and magnetization) when changing a design with a link [LINK](https://github.com/jeedom/core/issues/2728)
 - Fixed a javascript bug on buttons in modals [LINK](https://github.com/jeedom/core/pull/2734)
 - Fixed a bug on the number of messages when deleting all messages [LINK](https://github.com/jeedom/core/issues/2735)
+- Excluding the venv directory from backups [LINK](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 

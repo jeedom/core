@@ -778,6 +778,7 @@
         "Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien": "Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien",
         "Correction d'un bug javascript sur les boutons dans les modal": "Correction d'un bug javascript sur les boutons dans les modal",
         "Correction d'un bug sur le nombre de message lors de la suppression de tous les message": "Correction d'un bug sur le nombre de message lors de la suppression de tous les message",
+        "Exclusion du répertoire venv des backups": "Exclusion du répertoire venv des backups",
         "4.4.8.1": "4.4.8.1",
         "Correction d'un bug sur les scénarios avec multiple programmation": "Correction d'un bug sur les scénarios avec multiple programmation",
         "4.4.8": "4.4.8",

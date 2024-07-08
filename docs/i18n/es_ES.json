@@ -1303,6 +1303,7 @@
         "Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien": "Se corrigió un error en las opciones de edición de diseño (cuadrícula y magnetización) al cambiar un diseño con un enlace",
         "Correction d'un bug javascript sur les boutons dans les modal": "Se corrigió un error de JavaScript en los botones en modales",
         "Correction d'un bug sur le nombre de message lors de la suppression de tous les message": "Se corrigió un error en la cantidad de mensajes al eliminar todos los mensajes",
+        "Exclusion du répertoire venv des backups": "Excluir el directorio venv de las copias de seguridad",
         "4.4.8.1": "4.4.8.1",
         "Correction d'un bug sur les scénarios avec multiple programmation": "Se corrigió un error en escenarios con programación múltiple",
         "4.4.8": "4.4.8",

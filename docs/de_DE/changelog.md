@@ -15,6 +15,7 @@
 - Ein Fehler in den Designbearbeitungsoptionen (Raster und Magnetisierung) beim Ändern eines Designs mit einem Link wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2728)
 - Ein Javascript-Fehler bei Schaltflächen in Modalitäten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2734)
 - Ein Fehler bei der Anzahl der Nachrichten beim Löschen aller Nachrichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2735)
+- Ausschließen des venv-Verzeichnisses von Sicherungen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 
