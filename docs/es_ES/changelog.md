@@ -1,26 +1,139 @@
 # Registro de cambios Jeedom V4.4
 
+# 4.4.9
+
+- Visualización mejorada de la lista de escenarios al actuar sobre escenarios (adición de grupos) [ENLACE](https://github.com/jeedom/core/pull/2729)
+- Al copiar equipo, si el widget tenía un gráfico de fondo, se transforma correctamente [ENLACE](https://github.com/jeedom/core/issues/2540)
+- Agregar etiquetas #sunrise# y #sunset# en los escenarios para tener las horas de salida y puesta del sol [ENLACE](https://github.com/jeedom/core/pull/2725)
+- Un complemento ahora puede agregar campos en la configuración avanzada de todos los equipos jeedom [ENLACE](https://github.com/jeedom/core/issues/2711)
+- Adición de un parámetro logicId opcional al copiar equipos [ENLACE](https://github.com/jeedom/core/pull/2715)
+- Mejora del sistema de gestión de crons [ENLACE](https://github.com/jeedom/core/issues/2719)
+- Se corrigió un error que podía causar que se perdiera toda la información en la página de actualización [ENLACE](https://github.com/jeedom/core/issues/2718)
+- Eliminar el estado del servicio fail2ban de Jeedom Health [ENLACE](https://github.com/jeedom/core/issues/2721)
+- Se solucionó un problema con la purga del historial [ENLACE](https://github.com/jeedom/core/issues/2723)
+- Eliminación del almacenamiento en caché de widgets (la ganancia de visualización no es interesante y esto causa muchos problemas)) [ENLACE](https://github.com/jeedom/core/issues/2726)
+- Se corrigió un error en las opciones de edición de diseño (cuadrícula y magnetización) al cambiar un diseño con un enlace [ENLACE](https://github.com/jeedom/core/issues/2728)
+- Se corrigió un error de JavaScript en los botones en modales [ENLACE](https://github.com/jeedom/core/pull/2734)
+- Se corrigió un error en la cantidad de mensajes al eliminar todos los mensajes [ENLACE](https://github.com/jeedom/core/issues/2735)
+- Excluir el directorio venv de las copias de seguridad [ENLACE](https://github.com/jeedom/core/pull/2736)
+
+# 4.4.8.1
+
+- Se corrigió un error en escenarios con programación múltiple [ENLACE](https://github.com/jeedom/core/issues/2698)
+
+# 4.4.8
+
+- Se agregaron opciones avanzadas para no permitir ciertos métodos de API o solo permitir ciertos [ENLACE](https://github.com/jeedom/core/issues/2707)
+- Mejora de la ventana de configuración del registro [ENLACE](https://github.com/jeedom/core/issues/2687)
+- Mejora de los rastros de depuración [ENLACE](https://github.com/jeedom/core/pull/2654)
+- Eliminación del mensaje de advertencia [ENLACE](https://github.com/jeedom/core/pull/2657)
+- Se solucionó un problema en la página de registros en pantallas pequeñas donde los botones no eran visibles [ENLACE](https://github.com/jeedom/core/issues/2671). Más adelante está prevista otra mejora para tener los botones mejor colocados [ENLACE](https://github.com/jeedom/core/issues/2672)
+- Gestión de selección mejorada [ENLACE](https://github.com/jeedom/core/pull/2675)
+- Mayor tamaño de campo para el valor de suspensión en escenarios [ENLACE](https://github.com/jeedom/core/pull/2682)
+- Se solucionó un problema con el orden de los mensajes en el centro de mensajes [ENLACE](https://github.com/jeedom/core/issues/2686)
+- Optimización de la carga de complementos [ENLACE](https://github.com/jeedom/core/issues/2689)
+- Aumento del tamaño de las barras de desplazamiento en determinadas páginas [ENLACE](https://github.com/jeedom/core/pull/2691)
+- Página de reinicio de jeedom mejorada [ENLACE](https://github.com/jeedom/core/pull/2685)
+- Se solucionó un problema con las dependencias de nodejs durante las restauraciones [ENLACE](https://github.com/jeedom/core/issues/2621). Nota : esto reducirá el tamaño de las copias de seguridad
+- Se corrigió un error en el sistema de actualización de la base de datos [ENLACE](https://github.com/jeedom/core/issues/2693)
+- Se solucionó un problema de índice faltante para las interacciones [ENLACE](https://github.com/jeedom/core/issues/2694)
+- Guión enfermo mejorado.php para detectar mejor problemas en la base de datos [ENLACE](https://github.com/jeedom/core/pull/2677)
+- Mejor gestión de python2 en la página de salud [ENLACE](https://github.com/jeedom/core/pull/2674)
+- Mejora del campo de selección de escenarios (con búsqueda) en acciones de escenarios [ENLACE](https://github.com/jeedom/core/pull/2688)
+- Gestión cron mejorada en preparación para php8 [ENLACE](https://github.com/jeedom/core/issues/2698)
+- Se mejoró la función de gestión de apagado de demonios por número de puerto [ENLACE](https://github.com/jeedom/core/pull/2697)
+- Se solucionó un problema en ciertos navegadores con filtros [ENLACE](https://github.com/jeedom/core/issues/2699)
+- Soporte de rizo mejorado [ENLACE](https://github.com/jeedom/core/pull/2702)
+- Se corrigió un error en la gestión de dependencias del compositor [ENLACE](https://github.com/jeedom/core/pull/2703)
+- Mejora del sistema de gestión de caché [ENLACE](https://github.com/jeedom/core/pull/2706)
+- Mejor gestión de los derechos de los usuarios en llamadas API [ENLACE](https://github.com/jeedom/core/pull/2695)
+- Arreglar advertencia [ENLACE](https://github.com/jeedom/core/pull/2701)
+- Se solucionó un problema con la instalación de dependencias de Python [ENLACE](https://github.com/jeedom/core/pull/2700/files)
+
+# 4.4.7
+
+- Posibilidad de elegir una frecuencia máxima de datos grabados (1min/5min/10min) desde la configuración avanzada del mando [ENLACE](https://github.com/jeedom/core/issues/2610)
+- Memorizar opciones en cuadrículas al editar diseños [ENLACE](https://github.com/jeedom/core/issues/2545)
+- Memorización del estado del menú (ampliado o no) al visualizar historiales [ENLACE](https://github.com/jeedom/core/issues/2538)
+- Gestión de dependencias de python en venv (para ser compatible con debian 12) [ENLACE](https://github.com/jeedom/core/pull/2566). Nota : el soporte es que en el lado central necesitará actualizaciones en el lado del complemento para que funcione
+- Visualización del tamaño que toman los complementos (desde Complemento -> Gestión de complementos -> complemento deseado) [ENLACE](https://github.com/jeedom/core/issues/2642)
+- Se corrigió un error en el descubrimiento de parámetros de widgets móviles [ENLACE](https://github.com/jeedom/core/issues/2615)
+- Estado del servicio fail2ban agregado [ENLACE](https://github.com/jeedom/core/pull/2620)
+- Visualización mejorada de la página de salud [ENLACE](https://github.com/jeedom/core/pull/2619)
+- Se solucionó un problema con las dependencias de nodejs durante las restauraciones [ENLACE](https://github.com/jeedom/core/issues/2621). Nota : esto aumentará el tamaño de las copias de seguridad
+- Se corrigió un error en los diseños [ENLACE](https://github.com/jeedom/core/issues/2634)
+- Se corrigió la visualización de selecciones en la página de reemplazo [ENLACE](https://github.com/jeedom/core/pull/2639)
+- Se corrigió un error en la progresión de las dependencias (complemento zwavejs en particular)) [ENLACE](https://github.com/jeedom/core/issues/2644)
+- Se solucionó un problema de ancho en el widget de lista en modo de diseño [ENLACE](https://github.com/jeedom/core/issues/2647)
+- Visualización de widgets mejorada [ENLACE](https://github.com/jeedom/core/pull/2631)
+- Se actualizó la documentación sobre la herramienta de reemplazo [ENLACE](https://github.com/jeedom/core/pull/2638)
+- Se solucionó un problema de inconsistencia con los valores mínimos de los tamaños de los informes [ENLACE](https://github.com/jeedom/core/issues/2449)
+- Se corrigió un error en la verificación de la base de datos donde aún podría faltar un índice [ENLACE](https://github.com/jeedom/core/issues/2655)
+- Se corrigió un error en el gráfico de enlaces [ENLACE](https://github.com/jeedom/core/issues/2659)
+- Eliminación del trabajador del servicio en móvil (ya no se usa)) [ENLACE](https://github.com/jeedom/core/issues/2660)
+- Se corrigió un error que podía afectar la limitación del número de eventos en la línea de tiempo [ENLACE](https://github.com/jeedom/core/issues/2663)
+- Se corrigió un error en la visualización de información sobre herramientas en los diseños [ENLACE](https://github.com/jeedom/core/pull/2667)
+- Gestión de seguimiento de PDO mejorada con php8 [ENLACE](https://github.com/jeedom/core/pull/2661)
+
+# 4.4.6
+
+- Se corrigió un error al actualizar los gráficos de fondo del widget [ENLACE](https://github.com/jeedom/core/issues/2594)
+- Se corrigió un error en el widget de indicador [ENLACE](https://github.com/jeedom/core/pull/2582)
+- Posibilidad de ingresar fechas manualmente en los selectores de fechas [ENLACE](https://github.com/jeedom/core/pull/2593)
+- Se corrigió un error al cambiar diseños (las funciones de actualización de pedidos no se eliminaron)) [ENLACE](https://github.com/jeedom/core/pull/2588)
+- Arreglo del fallo [ENLACE](https://github.com/jeedom/core/pull/2592)
+- Se corrigió la clasificación por fecha en la página de actualizaciones [ENLACE](https://github.com/jeedom/core/pull/2595)
+- Se corrigió un error al copiar derechos de usuario limitados [ENLACE](https://github.com/jeedom/core/issues/2612)
+- Se corrigió un error en los widgets de tabla con estilo y atributos [ENLACE](https://github.com/jeedom/core/issues/2609)
+- Se corrigió un error en la ventana acoplable que podía causar corrupción de la base de datos [ENLACE](https://github.com/jeedom/core/pull/2611)
+
+## 4.4.5
+
+- Correcciones de errores
+- Actualización de documentación
+- Se corrigió un error en php8 al instalar y/o actualizar complementos
+- Se corrigió un error en el tablero donde, en casos excepcionales, el equipo podía moverse o cambiar de tamaño por sí solo
+
+## 4.4.4
+
+- Se agregó código de muestra a la documentación [personalización jeedom](https://doc.jeedom.com/es_ES/core/4.4/custom) (consultar para aquellos que quieran impulsar la personalización)
+- Se corrigió un error en la ventana de selección de fecha para comparar el historial
+- Se corrigió un error en el tablero cuando los comandos en movimiento no se reflejaban inmediatamente en el widget
+- Se corrigieron varios errores (visualización y texto))
+- Se corrigió un error en la página de actualización que indicaba que había una actualización en progreso cuando no lo estaba
+
+## 4.4.3
+
+- Solucionar el error 401 al abrir un diseño con un usuario que no es administrador
+- Varias correcciones de errores (en los widgets en particular))
+- Eliminar mínimos en los pasos del widget
+
+## 4.4.2
+
+- Gestión automática de la dirección de acceso interno después de iniciar, actualizar o restaurar Jeedom *(optionnel)*.
+- Widget de información/color de cadena agregado. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
+
+## 4.4.1
+
+- Soporte PHP 8.
+- Verificar la versión básica mínima requerida antes de instalar o actualizar un complemento.
+- Agregar un botón **Asistencia** en la página de configuración del complemento *(Creación automática de una solicitud de ayuda en el foro)*.
+
 >**IMPORTANTE**
 >
 >Aunque no sean necesariamente visibles a primera vista, la versión 4.4 de Jeedom trae cambios importantes con una interfaz que ha sido completamente reescrita para un control total y, sobre todo, una ganancia inigualable en fluidez de navegación. También se ha revisado la gestión de dependencias PHP para poder mantenerlas actualizadas automáticamente. Incluso si el equipo de Jeedom y los probadores beta han hecho muchas pruebas, hay tantas versiones de jeedom como jeedom... Por lo tanto, no es posible garantizar el correcto funcionamiento en el 100% de los casos. Sin embargo, en caso de problema puede [abrir un tema en el foro con la etiqueta `v4_4`](https://community.jeedom.com/) o contacta con soporte desde tu perfil de mercado *(siempre que tenga un paquete de servicio o superior)*.
 
-## 4.4.1
-
-- Soporte PHP8.
-- Verificar la versión básica mínima requerida antes de instalar o actualizar un complemento.
-- Agregar un botón **Asistencia** en la página de configuración del complemento *(Creación automática de una solicitud de ayuda en el foro)*
-
 ### 4.4 : Prerrequisitos
 
-- Debian 10 Buster
-- PHP 7.3
+- Debian 11 "Diana" *(Muy recomendable, Jeedom sigue siendo funcional en la versión anterior)*
+- PHP 7.4
 
 ### 4.4 : Noticias / Mejoras
 
 - **Histórico** : El modal de historial y la página de historial permiten usar botones *Semana, Mes, Año* para recargar dinámicamente un historial más grande.
-- **Ventana de selección de imagen** : Se agregó un menú contextual para enviar imágenes y crear, renombrar o eliminar una carpeta.
+- **Ventana de selección de imagen** : Se agregaron botones y un menú contextual para enviar imágenes y crear, cambiar el nombre o eliminar una carpeta.
 - **Ventana de selección de iconos** : Posibilidad de agregar un parámetro `ruta` al llamar a `jeedomUtils.chooseIcon` por un complemento para mostrar solo sus iconos.
-- **Tablero** : Capacidad para mostrar varios objetos uno al lado del otro *(Ajustes → Sistema → Configuración / Interfaz)*.
+- **Tablero** : Capacidad para mostrar objetos en múltiples columnas *(Ajustes → Sistema → Configuración / Interfaz)*.
 - **Tablero** : La ventana de edición de mosaicos del modo de edición permite cambiar el nombre de los comandos.
 - **Tablero** : En el diseño de la tabla, posibilidad de insertar atributos HTML *(colspan/rowspan en particular)* para cada celda.
 - **Equipo** : Capacidad para deshabilitar las plantillas de widgets de los complementos que los usan para volver a la pantalla predeterminada de Jeedom *(ventana de configuración del dispositivo)*.
@@ -28,18 +141,17 @@
 - **Equipo** : El equipo invisible desaparece automáticamente del tablero. El equipo que se vuelve a mostrar vuelve a aparecer en el tablero si el objeto principal ya está presente.
 - **Análisis > Equipos / Equipos en alerta** : Los dispositivos que entran en alerta aparecen automáticamente y los que salen de alerta desaparecen automáticamente.
 - **Centro de mensajes** : Los mensajes centrales sobre anomalías ahora informan una acción, por ejemplo, un enlace para abrir el escenario ofensivo, o equipo, configuración de complemento, etc.
-- **Objeto** : Eliminar o crear un resumen da como resultado la actualización del resumen global y el tema.
+- **Objeto** : Eliminar o crear un resumen actualiza el resumen general y el tema.
 - **Herramientas > Reemplazar** : Esta herramienta ahora ofrece un modo *Copiar*, permitiendo copiar las configuraciones de equipos y comandos, sin reemplazarlos en los escenarios y otros.
-- **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. Los siguientes eventos se cargan en el desplazamiento en la parte inferior de la página.
+- **Línea de tiempo** : La línea de tiempo ahora carga los primeros 35 eventos. Los siguientes eventos se cargan desplazándose hacia la parte inferior de la página.
 - **Administración** : Posibilidad de diferenciar acciones en caso de error o de alerta de comando.
 - **Administración** : Capacidad para establecer widgets de comando predeterminados.
-- **Tablero** : posibilidad en la página de configuración del objeto de pedirle a jeedom que reordene el equipo de acuerdo con su uso.
-- **Temática** : Posibilidad de elegir el tema directamente desde la url (agregando &theme=Dark o &theme=Light).
-- **Temática** : Eliminación del tema **Legado Core2019** *(alpha)*.
+- **Tablero** : Posibilidad de reordenar equipos según su uso desde la página de configuración del objeto.
+- **Temática** : Posibilidad de elegir el tema directamente desde la dirección *(añadiendo ``Ytheme=Dark`` Dónde ``Ytheme=Light``)*.
+- **Temática** : Eliminación del tema **Legado Core2019**.
 - **Relación** : Posibilidad de elegir el tema durante un informe en una página de jeedom.
 - **Menú Jeedom** : Un retraso de 0.25s se introdujo en la apertura de submenús.
-- **Sistema** : Posibilidad de añadir comandos personalizados (ver documentación)
-
+- **Administracion del sistema** : Posibilidad de agregar comandos de shell personalizados en el menú de la izquierda *(a través de un archivo `/data/systemCustomCmd.json`)*.
 
 ### 4.4 : Autre
 
@@ -53,9 +165,8 @@
 
 > **Tablero**
 >
-> Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (la altura más pequeña y el ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Paso vertical (mínimo 100)* y *Paso horizontal (mínimo 110)*. El valor *Margen* definiendo el espacio entre las baldosas.
+> Sobre **Tablero** y los **Puntos de vista**, Núcleo v4.4 ahora cambia automáticamente el tamaño de los mosaicos para crear una cuadrícula perfecta. Las unidades (alto más pequeño y ancho más pequeño de un mosaico) de esta cuadrícula se definen en **Ajustes → Sistema → Configuración / Interfaz** por valores *Pas:Altura (mínimo 60 px)* y *Pas:Ancho (mínimo 80 px)*. El valor *Margen* definiendo el espacio entre las baldosas.
 > Los mosaicos se adaptan a las dimensiones de la cuadrícula y se pueden hacer una, dos veces, etc. estos valores en alto o ancho. Sin duda será necesario pasar [Modo de edición del tablero](https://doc.jeedom.com/es_ES/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar el tamaño de algunos mosaicos después de la actualización.
-
 
 > **Widgets**
 >
@@ -65,7 +176,6 @@
 > **Cuadros de diálogo**
 >
 > Todos los cuadros de diálogo (bootstrap, bootbox, jQuery UI) se han migrado a una Core lib interna (jeeDialog) especialmente desarrollada. Los cuadros de diálogo redimensionables ahora tienen un botón para cambiar *pantalla completa*.
-
 
 # Registro de cambios Jeedom V4.3
 
@@ -118,7 +228,6 @@
 - Se mejoró la seguridad de las preguntas al usar la función generateAskResponseLink mediante complementos : uso de un token único (no más envío de la clave API central) y bloqueo de la respuesta solo entre las opciones posibles.
 - Se corrigió un error que impedía la instalación de jeedom.
 - Se corrigió un error en influxdb.
-
 
 ## 4.3.7
 
@@ -335,9 +444,9 @@ Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Guión** : Copiar / pegar y deshacer / rehacer la corrección de errores (reescritura completa).
 - **Guión** : Agregar funciones de cálculo ``averageTemporal(commande,période)`` Y ``averageTemporalBetween(commande,start,end)`` permitiendo obtener la media ponderada por la duración del período.
 - **Guión** : Se agregó soporte para tipos genéricos en escenarios.
-	- Desencadenar : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- SI ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Valores ``genericType``
+  - Desencadenar : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - SI ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Valores ``genericType``
 - **Objetos** : Los complementos ahora pueden solicitar parámetros específicos específicos de los objetos.
 - **Usuarios** : Los complementos ahora pueden solicitar parámetros específicos específicos para los usuarios.
 - **Usuarios** : Capacidad para gestionar los perfiles de diferentes usuarios de Jeedom desde la página de gestión de usuarios.
@@ -353,7 +462,7 @@ Entrada en el blog [aquí](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuración** : Configuración de OSDB: Agregar un constructor de consultas SQL dinámico.
 - **Configuración**: Capacidad para deshabilitar el monitoreo en la nube (Administración / Actualizaciones / Mercado).
 - **jeeCLI** : Además de ``jeeCli.php`` en la carpeta core / php de Jeedom para administrar algunas funciones de la línea de comandos.
-- *Grandes mejoras en la interfaz en términos de rendimiento / capacidad de respuesta. jeedomUtils {}, jeedomUI {}, menú principal reescrito en CSS puro, eliminación de initRowWorflow (), simplificación del código, correcciones de CSS para pantallas pequeñas, etc.*
+- *Grandes mejoras en la interfaz en términos de rendimiento / capacidad de respuesta. jeedomUtils{}, jeedomUI{}, menú principal reescrito en CSS puro, eliminación de initRowWorflow(), simplificación de código, correcciones de CSS para pantallas pequeñas, etc.*
 
 ### 4.2 : Widgets principales
 
@@ -393,7 +502,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 ## 4.1.27
 
-- Corrección de una brecha de seguridad gracias @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (www.synacktiv.com)
+- Corrección de una vulnerabilidad de seguridad gracias a @Maxime Rinaudo y @Antoine Cervoise de Synacktiv (>)
 
 ## 4.1.26
 
@@ -513,15 +622,16 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - **Equipo** : Posibilidad de agregar clase css a un mosaico (consulte la documentación del widget).
 - **Sobre ventana** : Adición de accesos directos al registro de cambios y preguntas frecuentes.
 - Widgets / Objetos / Escenarios / Interacciones / Páginas de complementos :
-	- Ctrl Clic / Clic Center en un widget, objeto, escenarios, interacción, equipo de complemento : Se abre en una pestaña nueva.
-	- Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
+  - Ctrl Clic / Clic Center en un widget, objeto, escenarios, interacción, equipo de complemento : Se abre en una pestaña nueva.
+  - Ctrl Clic / Clic Center también disponible en sus menús contextuales (en las pestañas).
 - Nueva página ModalDisplay :
-	- Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
-	- Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigar* : Abra la ventana en una pestaña nueva, en pantalla completa.
+  - Menú de análisis : Ctrl Click / Click Center en *Tiempo real* : Abra la ventana en una pestaña nueva, en pantalla completa.
+  - Menú de herramientas : Ctrl Click / Click Center en *Calificaciones*, *Probador de expresión*, *Variables*, *Investigar* : Abra la ventana en una pestaña nueva, en pantalla completa.
 - Bloque de código, Editor de archivos, Personalización avanzada : Adaptación del tema oscuro.
 - Ventana de selección de imágenes mejorada.
 
 ### 4.1 : WebApp
+
 - Integración de la nueva página de resumen.
 - Página de escenarios, un clic en el título del escenario muestra su registro.
 - Ahora podemos seleccionar / copiar parte de un registro.
@@ -533,6 +643,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Muchas correcciones de errores (UI, vertical / horizontal iOS, etc.).
 
 ### 4.1 : Autres
+
 - **Documentación** : Adaptaciones en línea con v4 y v4.1.
 - **Documentación** : Nueva página *Atajos de teclado / mouse* incluyendo un resumen de todos los atajos en Jeedom. Accesible desde el Dashboard doc o las preguntas frecuentes.
 - **Liberación** : Actualizar HighStock v7.1.2 a v8.2.0.
@@ -545,10 +656,10 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 - Numerosas optimizaciones de rendimiento de escritorio / móvil.
 
 ### 4.1 : Changements
-- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* pero *[grupo] [objeto] [nombre]*.
-- La funcion **escenario-> byString()** ahora debe llamarse con la estructura *[grupo] [objeto] [nombre]*.
-- Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
 
+- La funcion **escenario-> getHumanName()** de la clase de escenario php ya no regresa *[objeto] [grupo] [nombre]* pero *[grupo] [objeto] [nombre]*.
+- La funcion **escenario-> byString()** ahora debe ser llamado con la estructura *[grupo] [objeto] [nombre]*.
+- Las funciones **red-> getInterfaceIp () red-> getInterfaceMac () red-> getInterfaces()** han sido reemplazados por **network-> getInterfacesInfo()**
 
 # Registro de cambios Jeedom V4.0
 
@@ -556,7 +667,6 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 - Nueva migración de kernel buster + para smart y Pro v2
 - Verificación de la versión del sistema operativo durante las actualizaciones importantes de Jeedom
-
 
 ## 4.0.61
 
@@ -568,7 +678,7 @@ Los complementos deben respetar las recomendaciones sobre la estructura de árbo
 
 ## 4.0.60
 
-- Eliminación del nuevo sistema DNS en eu.jeedom.enlace siguiendo demasiados operadores que prohíben flujos http2 permanentes
+- Eliminación del nuevo sistema DNS en eu.jeedom.enlace que sigue a demasiados operadores que prohíben los flujos http2 permanentes
 
 ## 4.0.59
 

@@ -172,6 +172,10 @@ A continuación encontrará una tabla para administrar con precisión el nivel d
 
 Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obtiene gráficos que representan su uso. Esta pestaña le permite establecer parámetros globales para el registro de comandos.
 
+>**InflujoDB**
+>
+>Si desea utilizar InfluxDB por el momento, debe instalar la biblioteca InfluxDB usted mismo, Jeedom ya no lo hace porque ya no se mantiene (planeamos migrar a la nueva versión, pero esto no sucederá de inmediato)). Para realizar la instalación manualmente aquí se explica cómo hacerlo : `cd /var/www/html;composer requiere influxdb/influxdb-php` desde la configuración, luego la pestaña OS/DB y luego la consola de administración del sistema operativo
+
 ### Historial de pedidos
 
 - **Ver las estadísticas de los widgets** : Ver estadísticas sobre widgets. El widget debe ser compatible, que es el caso para la mayoría. El comando también debe ser de tipo numérico.

@@ -352,10 +352,6 @@ class config {
 		}
 	}
 
-	public static function postConfig_interface_advance_vertCentering($_value) {
-		cache::flushWidget();
-	}
-
 	public static function postConfig_theme_start_day_hour($_value) {
 		event::add('checkThemechange', array('theme_start_day_hour' => $_value));
 	}

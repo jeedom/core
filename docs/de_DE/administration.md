@@ -172,6 +172,10 @@ Im Folgenden finden Sie eine Tabelle zur Feinverwaltung der Protokollstufe der w
 
 Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse → Verlauf Diagramme, die ihre Verwendung darstellen. Auf dieser Registerkarte können Sie globale Parameter für die Befehlsprotokollierung festlegen.
 
+>**InfluxDB**
+>
+>Wenn Sie InfluxDB im Moment verwenden möchten, müssen Sie die InfluxDB-Bibliothek selbst installieren. Jeedom tut dies nicht mehr, da sie nicht mehr gepflegt wird (wir planen eine Migration auf die neue Version, dies wird jedoch nicht sofort geschehen)). Hier erfahren Sie, wie Sie die Installation manuell durchführen : „cd /var/www/html;composer require influxdb/influxdb-php“ aus der Konfiguration, dann auf der Registerkarte „OS/DB“ und dann in der Betriebssystem-Verwaltungskonsole
+
 ### Bestellhistorie
 
 - **Zeige Statistiken über Widgets** : Statistiken zu Widgets anzeigen. Das Widget muss kompatibel sein, was bei den meisten der Fall ist. Der Befehl muss auch vom numerischen Typ sein.

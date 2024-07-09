@@ -35,3 +35,37 @@ En este caso, dos soluciones:
 - Abrir un navegador en modo rescate : `IP / index.php?rescue=1`
 - Conéctese en SSH y elimine los archivos de personalización : `escritorio / personalizado` y` móvil / personalizado`
 
+## Ejemplo de personalización avanzada en CSS
+
+Todos estos ejemplos deben colocarse en el archivo CSS (no olvide activar la personalización avanzada en la parte superior)
+
+### Eliminar barras de desplazamiento en widgets
+
+```
+.eqLogic-widget.cmds{
+ overflow-x: oculto !important;
+ overflow-y: oculto !important;
+}
+```
+
+### Eliminar el ancho/alto mínimo de los widgets
+
+Esto le permite tener widgets más pequeños (ancho [ancho mínimo], alto [alto mínimo]), pero tenga cuidado, esto puede hacer que la visualización sea menos atractiva
+
+```
+div.cmd-widget.content,
+div.cmd-widget .content-sm,
+div.cmd-widget .content-lg,
+div.cmd-widget.content-xs {
+  min-width: un conjunto !important;
+  min-height: un conjunto !important;
+}
+```
+
+### Margen agregado entre los nombres de objetos y equipos en el tablero 
+
+```
+.leyenda div_object .objetoDashLegend {
+  margin-bottom: 5px;
+}
+```

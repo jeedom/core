@@ -256,7 +256,7 @@ class scenarioExpression {
 		return $eqLogic->getIsEnable();
 	}
 
-	public static function average($_cmd_id, $_period = '1 hour',$_round = 1) {
+	public static function average($_cmd_id, $_period = '1 hour', $_round = 1) {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -298,7 +298,7 @@ class scenarioExpression {
 		}
 	}
 
-	public static function averageBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
+	public static function averageBetween($_cmd_id, $_startDate, $_endDate, $_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -312,7 +312,7 @@ class scenarioExpression {
 		return round($historyStatistique['avg'], $_round);
 	}
 
-	public static function averageTemporal($_cmd_id, $_period = '1 hour',$_round = 1) {
+	public static function averageTemporal($_cmd_id, $_period = '1 hour', $_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -323,7 +323,7 @@ class scenarioExpression {
 		return round($cmd->getTemporalAvg($_startTime, $_endTime), $_round);
 	}
 
-	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
+	public static function averageTemporalBetween($_cmd_id, $_startDate, $_endDate, $_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -333,7 +333,7 @@ class scenarioExpression {
 		return round($cmd->getTemporalAvg($_startTime, $_endTime), $_round);
 	}
 
-	public static function max($_cmd_id, $_period = '1 hour',$_round = 1) {
+	public static function max($_cmd_id, $_period = '1 hour', $_round = 1) {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -374,7 +374,7 @@ class scenarioExpression {
 		}
 	}
 
-	public static function min($_cmd_id, $_period = '1 hour',$_round = 1) {
+	public static function min($_cmd_id, $_period = '1 hour', $_round = 1) {
 		$args = func_get_args();
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
@@ -453,7 +453,7 @@ class scenarioExpression {
 		return $RetVal[count($RetVal) - 1];
 	}
 
-	public static function maxBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
+	public static function maxBetween($_cmd_id, $_startDate, $_endDate, $_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -484,7 +484,7 @@ class scenarioExpression {
 		return 1;
 	}
 
-	public static function minBetween($_cmd_id, $_startDate, $_endDate,$_round = 1) {
+	public static function minBetween($_cmd_id, $_startDate, $_endDate, $_round = 1) {
 		$cmd = cmd::byId(trim(str_replace('#', '', $_cmd_id)));
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
@@ -1150,9 +1150,14 @@ class scenarioExpression {
 			'annee' => 'year',
 			'semaine' => 'week'
 		);
+		// Calcul sunrise & sunset
+		$latitude = floatval(config::byKey('info::latitude'));
+		$longitude = floatval(config::byKey('info::longitude'));
+		$sun_info = date_sun_info(time(), $latitude, $longitude);
+
 		foreach ($matches as &$tag) {
 			$tag = str_replace(array_keys($replace), $replace, $tag);
-			if(isset($return[$tag])){
+			if (isset($return[$tag])) {
 				continue;
 			}
 			switch ($tag) {
@@ -1222,8 +1227,14 @@ class scenarioExpression {
 				case '#longitude#':
 					$return[$tag] = config::byKey('info::longitude');
 					break;
-			 	case '#altitude#':
+				case '#altitude#':
 					$return[$tag] = config::byKey('info::altitude');
+					break;
+				case "#sunrise#":
+					$return[$tag] = date('Gi', $sun_info['sunrise']);
+					break;
+				case "#sunset#":
+					$return[$tag] = date('Gi', $sun_info['sunset']);
 					break;
 			}
 		}
@@ -1734,7 +1745,7 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
-					if(is_object($scenario)){
+					if (is_object($scenario)) {
 						$this->setLog($scenario, __('Lancement de l\'arret de jeedom', __FILE__));
 						$scenario->persistLog();
 					} else {
@@ -1743,7 +1754,7 @@ class scenarioExpression {
 					jeedom::haltSystem();
 					return;
 				} elseif ($this->getExpression() == 'jeedom_reboot') {
-					if(is_object($scenario)){
+					if (is_object($scenario)) {
 						$this->setLog($scenario, __('Lancement du reboot de jeedom', __FILE__));
 						$scenario->persistLog();
 					} else {

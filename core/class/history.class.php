@@ -284,6 +284,8 @@ class history {
 					);
 					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
 					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					$sql = 'DELETE FROM history WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 				}
 				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
 					$values = array(

@@ -73,7 +73,7 @@ Here are the different characteristics to configure an object :
 
 > **Tip**
 >
-> You can change the display order of objects in the Dashboard. In the overview (or by the Home Automation Summary), select your object with the mouse with a drag and drop to give it a new place.
+> You can change the display order of objects in the Dashboard, through the Home Automation Summary (tools -> home automation summary), select your object with the mouse with drag/drop to give it a new place.
 
 > **Tip**
 >

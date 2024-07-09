@@ -1448,7 +1448,7 @@ function cronIsDue($_cron){
 		return false;
 	}
 	$schedule = explode(' ',trim($_cron));
-	if(count($schedule) == 6 && $schedule[5] != date('Y')){
+	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
 		return false;
 	}
 	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
