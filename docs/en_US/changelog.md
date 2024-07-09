@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Improved display of the list of scenarios when acting on scenarios (addition of groups) [LINK](https://github.com/jeedom/core/pull/2729)
 - When copying equipment, if the widget had a graphic in the background, it is correctly transformed [LINK](https://github.com/jeedom/core/issues/2540)
 - Adding tags #sunrise# and #sunset# in the scenarios to have the sunrise and sunset times [LINK](https://github.com/jeedom/core/pull/2725)
 - A plugin can now add fields in the advanced configuration of all jeedom equipment [LINK](https://github.com/jeedom/core/issues/2711)
@@ -12,6 +13,9 @@
 - Fixed a problem with purging history [LINK](https://github.com/jeedom/core/issues/2723)
 - Removal of widget caching (the display gain is not interesting and this causes a lot of problems) [LINK](https://github.com/jeedom/core/issues/2726)
 - Fixed a bug on the design editing options (grid and magnetization) when changing a design with a link [LINK](https://github.com/jeedom/core/issues/2728)
+- Fixed a javascript bug on buttons in modals [LINK](https://github.com/jeedom/core/pull/2734)
+- Fixed a bug on the number of messages when deleting all messages [LINK](https://github.com/jeedom/core/issues/2735)
+- Excluding the venv directory from backups [LINK](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 

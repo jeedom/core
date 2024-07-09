@@ -2,6 +2,7 @@
 
 # 4.4.9
 
+- Exibição aprimorada da lista de cenários ao atuar em cenários (adição de grupos) [LINK](https://github.com/jeedom/core/pull/2729)
 - Ao copiar um equipamento, se o widget possui um gráfico em segundo plano, ele é corretamente transformado [LINK](https://github.com/jeedom/core/issues/2540)
 - Adicionando tags #sunrise# e #sunset# nos cenários para ter os horários do nascer e do pôr do sol [LINK](https://github.com/jeedom/core/pull/2725)
 - Um plugin agora pode adicionar campos na configuração avançada de todos os equipamentos jeedom [LINK](https://github.com/jeedom/core/issues/2711)
@@ -12,6 +13,9 @@
 - Corrigido um problema com a limpeza do histórico [LINK](https://github.com/jeedom/core/issues/2723)
 - Remoção do cache de widgets (o ganho de exibição não é interessante e isso causa muitos problemas) [LINK](https://github.com/jeedom/core/issues/2726)
 - Corrigido bug nas opções de edição do desenho (grade e magnetização) ao alterar um desenho com link [LINK](https://github.com/jeedom/core/issues/2728)
+- Corrigido um bug de javascript em botões em modais [LINK](https://github.com/jeedom/core/pull/2734)
+- Corrigido um bug no número de mensagens ao excluir todas as mensagens [LINK](https://github.com/jeedom/core/issues/2735)
+- Excluindo o diretório venv dos backups [LINK](https://github.com/jeedom/core/pull/2736)
 
 # 4.4.8.1
 
