@@ -239,6 +239,7 @@ Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 - ``#user_connect#`` : Login do usuário
 - ``#variable(nom_variable)#`` : Alterando o valor da variável name_name.
 - ``#genericType (GENERIC, #[Object]#)#`` : Alteração de um comando de informação do tipo GENÉRICO genérico, no objeto Object.
+- ``#new_eqLogic#`` : Evento enviado ao criar um novo equipamento, você tem nas tags id (id do equipamento criado), name (nome do equipamento criado) e eqType (tipo/plugin do equipamento criado)
 
 Você também pode acionar um cenário usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.4/api_http).
 

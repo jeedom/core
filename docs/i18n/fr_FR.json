@@ -4607,6 +4607,7 @@
         "Connexion d'un utilisateur": "Connexion d'un utilisateur",
         "Changement de valeur de la variable nom_variable": "Changement de valeur de la variable nom_variable",
         "Changement d'une commande info de Type Generic GENERIC, dans l'objet Object": "Changement d'une commande info de Type Generic GENERIC, dans l'objet Object",
+        "Événement envoyé lors de la création d'un nouvelle équipement, vous avez dans les tags id (id de l'équipement crée), name (nom de l'équipement crée) et eqType (type\/plugin de l'équipement crée": "Événement envoyé lors de la création d'un nouvelle équipement, vous avez dans les tags id (id de l'équipement crée), name (nom de l'équipement crée) et eqType (type\/plugin de l'équipement crée",
         "ici": "ici",
         "Vous pouvez aussi déclencher un scénario en utilisant l'API HTTP décrite": "Vous pouvez aussi déclencher un scénario en utilisant l'API HTTP décrite",
         "Opérateurs de comparaison et liens entre les conditions": "Opérateurs de comparaison et liens entre les conditions",
