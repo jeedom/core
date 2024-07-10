@@ -518,7 +518,7 @@ class MariadbCache {
 			'lifetime' =>$_lifetime,
 			'datetime' => date('Y-m-d H:i:s')
 		);
-		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`eol`=:eol';
+		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime';
 		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
 	}
 
