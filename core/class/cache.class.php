@@ -150,7 +150,7 @@ class cache {
 				self::$cache->setRedis($redis);
 				break;
 			case 'MariadbCache':
-				self::$cache = MariadbCache();
+				self::$cache = new MariadbCache();
 			default: // default is FilesystemCache
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
@@ -502,7 +502,7 @@ class MariadbCache {
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public function save($_key,$_value,$_lifetime = -1){
+	public function save($_key,$_value,$_lifetime = 9999999999){
 		if($_lifetime < 1){
 			$_lifetime = 9999999999;
 		}
