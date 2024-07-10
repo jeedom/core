@@ -504,7 +504,7 @@ class MariadbCache {
 
 	public function save($_key,$_value,$_lifetime = -1){
 		if($_lifetime < 1){
-			$_lifetime = 9999999999
+			$_lifetime = 9999999999;
 		}
 		$value = array(
 			'key' => $_key,
