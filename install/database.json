@@ -259,8 +259,16 @@
           "extra": ""
         },
         {
-          "name": "eol",
+          "name": "datetime",
           "type": "datetime",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "lifetime",
+          "type": "int",
           "null": "YES",
           "key": "",
           "default": null,

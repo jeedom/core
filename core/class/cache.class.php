@@ -472,17 +472,23 @@ class MariadbCache {
 	public static function clean(){
 		$sql = 'DELETE 
 		FROM cache
-		WHERE `datetime`<NOW()';
+		WHERE (UNIX_TIMESTAMP(`datetime`)+`lifetime`) <UNIX_TIMESTAMP()';
 		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
 	public function fetch($_key){
 		$sql = 'SELECT *
 		FROM cache
-		WHERE key=:key';
-		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
-		if(strtotime($return->eol) < strtotime('now')){
+		WHERE `key`=:key';
+		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
+		if($return === false){
 			return null;
+		}
+		if($return->lifetime > 0 && (strtotime($return->datetime) + $return->lifetime) < strtotime('now')){
+			return null;
+		}
+		if(is_json($return->value)){
+			$return->value = json_decode($return->value);
 		}
 		return $return;
 	}
@@ -490,7 +496,7 @@ class MariadbCache {
 	public function delete($_key){
 		$sql = 'DELETE 
 		FROM cache
-		WHERE key=:key';
+		WHERE `key`=:key';
 		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
@@ -502,14 +508,15 @@ class MariadbCache {
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public function save($_key,$_value,$_lifetime = 9999999999){
-		if($_lifetime < 1){
-			$_lifetime = 9999999999;
+	public function save($_key,$_value,$_lifetime = -1){
+		if(is_array($_value) || is_object($_value)){
+			$_value = json_encode($_value);
 		}
 		$value = array(
 			'key' => $_key,
 			'value' => $_value,
-			'eol' => date('Y-m-d H:i:s',strtotime('now') + $_lifetime)
+			'lifetime' =>$_lifetime,
+			'datetime' => date('Y-m-d H:i:s')
 		);
 		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`eol`=:eol';
 		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
