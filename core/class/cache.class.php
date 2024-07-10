@@ -149,6 +149,8 @@ class cache {
 				self::$cache = new \Doctrine\Common\Cache\RedisCache();
 				self::$cache->setRedis($redis);
 				break;
+			case 'MariadbCache':
+				self::$cache = MariadbCache();
 			default: // default is FilesystemCache
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
@@ -462,4 +464,55 @@ class cache {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
+}
+
+
+class MariadbCache {
+
+	public static function clean(){
+		$sql = 'DELETE 
+		FROM cache
+		WHERE `datetime`<NOW()';
+		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+	}
+
+	public function fetch($_key){
+		$sql = 'SELECT *
+		FROM cache
+		WHERE key=:key';
+		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+		if(strtotime($return->eol) < strtotime('now')){
+			return null;
+		}
+		return $return;
+	}
+
+	public function delete($_key){
+		$sql = 'DELETE 
+		FROM cache
+		WHERE key=:key';
+		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+	}
+
+	public function getStats(){
+
+	}
+
+	public function deleteAll(){
+		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+	}
+
+	public function save($_key,$_value,$_lifetime = -1){
+		if($_lifetime < 1){
+			$_lifetime = 9999999999
+		}
+		$value = array(
+			'key' => $_key,
+			'value' => $_value,
+			'eol' => date('Y-m-d H:i:s',strtotime('now') + $_lifetime)
+		);
+		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`eol`=:eol';
+		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
+	}
+
 }

@@ -240,6 +240,36 @@
       }
     },
     {
+      "name": "cache",
+      "fields": [
+        {
+          "name": "key",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "PRI",
+          "default": "core",
+          "extra": ""
+        },
+        {
+          "name": "value",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "eol",
+          "type": "datetime",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": []
+    },
+    {
       "name": "config",
       "fields": [
         {
