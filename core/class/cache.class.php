@@ -484,11 +484,11 @@ class MariadbCache {
 		if($return === false){
 			return null;
 		}
-		if($return->lifetime > 0 && (strtotime($return->datetime) + $return->lifetime) < strtotime('now')){
+		if($return->getLifetime() > 0 && (strtotime($return->getDatetime()) + $return->getLifetime()) < strtotime('now')){
 			return null;
 		}
-		if(is_json($return->value)){
-			$return->value = json_decode($return->value);
+		if(is_json($return->getValue())){
+			$return->setValue(json_decode($return->getValue()));
 		}
 		return $return;
 	}
