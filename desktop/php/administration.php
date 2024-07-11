@@ -1974,17 +1974,6 @@ $productName = config::byKey('product_name');
 						<div class="alert alert-info">
 							{{Attention : toute modification du moteur de cache nécessite un redémarrage.}}
 						</div>
-						<?php
-						$stats = cache::stats();
-						?>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<?php
-								echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> {{objets}}</span>';
-								?>
-							</div>
-						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
@@ -1996,6 +1985,7 @@ $productName = config::byKey('product_name');
 									<?php if (class_exists('redis')) { ?>
 										<option value="RedisCache">{{Redis}}</option>
 									<?php } ?>
+										<option value="MariadbCache">{{Mysql}}</option>
 								</select>
 							</div>
 						</div>
