@@ -1288,6 +1288,8 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Identische Werte wiederholen (Ja",
         "Changelog Jeedom V4.4": "Änderungsprotokoll Jeedom V4.4",
+        "4.4.10": "4.4.10",
+        "Debut de la mise en place d'un nouveau systeme de cache, en beta pour le moment": "Beginn der Implementierung eines neuen Caching-Systems, derzeit in der Betaphase",
         "4.4.9": "4.4.9",
         "Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe": "Verbesserte Anzeige der Szenarioliste bei der Bearbeitung von Szenarios (Hinzufügen von Gruppen)",
         "Lors de la copie d'un équipement si le widgets avait un graphique en fond celui-ci est correctement transformé": "Wenn beim Kopieren von Geräten das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert",

@@ -1,5 +1,9 @@
 # Registro de cambios Jeedom V4.4
 
+# 4.4.10
+
+- Inicio de la implementación de un nuevo sistema de caché, por el momento en fase beta [ENLACE](https://github.com/jeedom/core/issues/2416)
+
 # 4.4.9
 
 - Visualización mejorada de la lista de escenarios al actuar sobre escenarios (adición de grupos) [ENLACE](https://github.com/jeedom/core/pull/2729)
