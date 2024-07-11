@@ -477,10 +477,17 @@ class MariadbCache {
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public static function save($_key,$_value,$_lifetime = -1,$_options = null){
+	public static function save($_key, $_value, $_lifetime = -1, $_options = null){
 		$options = null;
 		if(is_array($_value)){
 			$_value = json_encode($_value);
+		}
+		if(is_array($_options)){
+			if(count($_options) == 0){
+				$_options = null;
+			}else{
+				$_options = json_encode($_options);
+			}
 		}
 		$value = array(
 			'key' => $_key,
