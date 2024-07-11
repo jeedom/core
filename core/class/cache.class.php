@@ -232,7 +232,7 @@ class cache {
 	}
 
 	public static function clean() {
-		if (config::byKey('cache::engine') != 'MariadbCache') {
+		if (config::byKey('cache::engine') == 'MariadbCache') {
 			MariadbCache::clean();
 		}
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
