@@ -391,10 +391,6 @@ class cache {
 		}
 	}
 
-	public function hasExpired(): bool {
-		return true;
-	}
-
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function getKey() {
