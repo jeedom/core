@@ -232,6 +232,9 @@ class cache {
 	}
 
 	public static function clean() {
+		if (config::byKey('cache::engine') != 'MariadbCache') {
+			MariadbCache::clean();
+		}
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
 		}
@@ -450,7 +453,7 @@ class MariadbCache {
 		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public function fetch($_key){
+	public static function fetch($_key){
 		$sql = 'SELECT *
 		FROM cache
 		WHERE `key`=:key';
@@ -467,22 +470,18 @@ class MariadbCache {
 		return $return;
 	}
 
-	public function delete($_key){
+	public static function delete($_key){
 		$sql = 'DELETE 
 		FROM cache
 		WHERE `key`=:key';
 		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public function getStats(){
-
-	}
-
-	public function deleteAll(){
+	public static function deleteAll(){
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public function save($_key,$_value,$_lifetime = -1,$_options = null){
+	public static function save($_key,$_value,$_lifetime = -1,$_options = null){
 		$options = null;
 		if(is_array($_value)){
 			$_value = json_encode($_value);
