@@ -33,6 +33,7 @@ if (!isConnect()) {
         <select class='form-control'>
           <?php echo jeeObject::getUISelectList(); ?>
         </select>
+        <input class="form-control" placeholder="{{Filtre des objets}}">
       </td>
       <td class="mod_insertCmdValue_eqLogic"></td>
       <td class="mod_insertCmdValue_cmd"></td>
@@ -80,6 +81,22 @@ if (!isConnect()) {
       })
     }
 
+    document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object input').addEventListener('keyup', function(event) {
+        const text = event.target.value
+        const options = Array.from(_selectObject.options)
+        const regex = new RegExp("^" + text, "i")
+        const lowerText = text.toLowerCase()
+
+        options.forEach(option => {
+            const optionText = option.text
+            const lowerOptionText = optionText.toLowerCase()
+            const match = optionText.match(regex)
+            const contains = lowerOptionText.indexOf(lowerText) !== -1
+            option.hidden = !(match || contains)
+        });
+      })
+    }
+
     mod_insertCmd.getValue = function() {
       let object = document.querySelector('#table_mod_insertCmdValue_valueEqLogicToMessage .mod_insertCmdValue_object > select')?.selectedOptions
       let eqlogic = document.querySelector('#table_mod_insertCmdValue_valueEqLogicToMessage .mod_insertCmdValue_eqLogic > select')?.selectedOptions
@@ -118,8 +135,8 @@ if (!isConnect()) {
         },
         success: function(eqLogics) {
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').empty()
-          var selectEqLogic = '<select class="form-control">'
-          for (var i in eqLogics) {
+          let selectEqLogic = '<select class="form-control">'
+          for (let i in eqLogics) {
             if (init(mod_insertCmd.options.eqLogic.eqType_name, 'all') == 'all' || eqLogics[i].eqType_name == mod_insertCmd.options.eqLogic.eqType_name) {
               selectEqLogic += '<option value="' + eqLogics[i].id + '">' + eqLogics[i].name + '</option>'
             }
@@ -131,6 +148,22 @@ if (!isConnect()) {
           }
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').addEventListener('change', function() {
             mod_insertCmd.changeEqLogic(this, mod_insertCmd.options)
+          })
+
+          _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic input').addEventListener('keyup', function(event) {
+            const select = _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select')
+            const text = event.target.value
+            const options = Array.from(select.options)
+            const regex = new RegExp("^" + text, "i")
+            const lowerText = text.toLowerCase()
+
+            options.forEach(option => {
+              const optionText = option.text
+              const lowerOptionText = optionText.toLowerCase()
+              const match = optionText.match(regex)
+              const contains = lowerOptionText.indexOf(lowerText) !== -1
+              option.hidden = !(match || contains)
+            });
           })
           mod_insertCmd.changeEqLogic(_select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options)
         }
@@ -154,6 +187,24 @@ if (!isConnect()) {
             selectCmd += html
             selectCmd += '</select>'
             _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', selectCmd)
+          	let inputCmd = '<input class="form-control" placeholder="{{Filtre des commandes}}">'
+            _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', inputCmd)
+              
+            _select.closest('tr').querySelector('.mod_insertCmdValue_cmd input').addEventListener('keyup', function(event) {
+              const select = _select.closest('tr').querySelector('.mod_insertCmdValue_cmd select')
+              const text = event.target.value
+              const options = Array.from(select.options)
+              const regex = new RegExp("^" + text, "i")
+              const lowerText = text.toLowerCase()
+
+              options.forEach(option => {
+                const optionText = option.text
+                const lowerOptionText = optionText.toLowerCase()
+                const match = optionText.match(regex)
+                const contains = lowerOptionText.indexOf(lowerText) !== -1
+                option.hidden = !(match || contains)
+              });
+            })
           } catch (error) {}
         }
       })
