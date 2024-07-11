@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.10
+
+- Debut de la mise en place d'un nouveau systeme de cache, en beta pour le moment [LIEN](https://github.com/jeedom/core/issues/2416)
+
 # 4.4.9
 
 - Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe) [LIEN](https://github.com/jeedom/core/pull/2729)
