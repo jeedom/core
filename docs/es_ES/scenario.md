@@ -239,6 +239,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - ``#user_connect#`` : Inicio de sesión de usuario
 - ``#variable(nom_variable)#`` : Cambiar el valor de la variable name_name.
 - ``#genericType (GENÉRICO, #[Object]#)#`` : Cambio de un comando de información de tipo GENÉRICO genérico, en el objeto Objeto.
+- ``#new_eqLogic#`` : Evento enviado al crear un nuevo equipo, tienes en las etiquetas id (id del equipo creado), name (nombre del equipo creado) y eqType (tipo/plugin del equipo creado))
 
 También puede activar un escenario utilizando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.4/ /api_http).
 

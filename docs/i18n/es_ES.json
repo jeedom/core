@@ -8251,6 +8251,7 @@
         "Connexion d'un utilisateur": "Inicio de sesión de usuario",
         "Changement de valeur de la variable nom_variable": "Cambiar el valor de la variable name_name",
         "Changement d'une commande info de Type Generic GENERIC, dans l'objet Object": "Cambio de un comando de información de tipo GENÉRICO genérico, en el objeto Objeto",
+        "Événement envoyé lors de la création d'un nouvelle équipement, vous avez dans les tags id (id de l'équipement crée), name (nom de l'équipement crée) et eqType (type\/plugin de l'équipement crée": "Evento enviado al crear un nuevo equipo, tienes en las etiquetas id (id del equipo creado), name (nombre del equipo creado) y eqType (tipo\/plugin del equipo creado)",
         "Vous pouvez aussi déclencher un scénario en utilisant l'API HTTP décrite": "También puede activar un escenario utilizando la API HTTP descrita",
         "Opérateurs de comparaison et liens entre les conditions": "Operadores de comparación y enlaces entre condiciones",
         "Vous pouvez utiliser n'importe lequel des symboles suivants pour les comparaisons dans les conditions": "Puede utilizar cualquiera de los siguientes símbolos para realizar comparaciones en condiciones",

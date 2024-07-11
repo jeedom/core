@@ -239,6 +239,7 @@ There are specific triggers (other than those provided by commands) :
 - ``#user_connect#`` : User login
 - ``#variable(nom_variable)#`` : Changing the value of the variable name_name.
 - ``#genericType (GENERIC, #[Object]#)#`` : Change of a Generic GENERIC type info command, in the Object object.
+- ``#new_eqLogic#`` : Event sent when creating new equipment, you have in the tags id (id of the equipment created), name (name of the equipment created) and eqType (type/plugin of the equipment created)
 
 You can also trigger a scenario using the HTTP API described [here](https://doc.jeedom.com/en_US/core/4.4/api_http).
 
