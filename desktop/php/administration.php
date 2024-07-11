@@ -1972,7 +1972,7 @@ $productName = config::byKey('product_name');
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="alert alert-info">
-							{{Attention : toute modification du moteur de cache nécessite un redémarrage.}}
+							{{Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.}}
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
@@ -1985,7 +1985,7 @@ $productName = config::byKey('product_name');
 									<?php if (class_exists('redis')) { ?>
 										<option value="RedisCache">{{Redis}}</option>
 									<?php } ?>
-										<option value="MariadbCache">{{Mysql}}</option>
+										<option value="MariadbCache">{{Mysql (beta)}}</option>
 								</select>
 							</div>
 						</div>
