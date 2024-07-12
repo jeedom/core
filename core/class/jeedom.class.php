@@ -1224,6 +1224,7 @@ class jeedom {
 			cron::clean();
 			report::clean();
 			DB::optimize();
+			cache::clean();
 			listener::clean();
 			user::regenerateHash();
 			jeeObject::cronDaily();
@@ -1250,13 +1251,6 @@ class jeedom {
 	public static function cronHourly() {
 		try {
 			cache::set('hour', strtotime('UTC'));
-		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
-		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
-		}
-		try {
-			cache::clean();
 		} catch (Exception $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {

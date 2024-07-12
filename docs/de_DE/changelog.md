@@ -1,9 +1,5 @@
 # Änderungsprotokoll Jeedom V4.4
 
-# 4.4.10
-
-- Beginn der Implementierung eines neuen Caching-Systems, derzeit in der Betaphase [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2416)
-
 # 4.4.9
 
 - Verbesserte Anzeige der Szenarioliste bei der Bearbeitung von Szenarios (Hinzufügen von Gruppen)) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2729)

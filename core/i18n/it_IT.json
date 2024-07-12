@@ -2016,12 +2016,13 @@
         "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "Test \/ Sincronizza",
         "Tester": "Prova",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Attention : toute modification du moteur de cache nécessite un redémarrage",
+        "Statistiques": "Statistiche",
+        "objets": "oggetti",
         "Moteur de cache": "Coperchio del motore",
         "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcached",
         "Redis": "Redis",
-        "Mysql (beta)": "Mysql (beta)",
         "Adresse Memcache": "Indirizzo Memcache",
         "Port Memcache": "Port memcached",
         "Adresse Redis": "Indirizzo Redis",
@@ -4689,6 +4690,9 @@
     },
     "core\/class\/log.class.php": {
         "Log": "Log"
+    },
+    "core\/class\/cache.class.php": {
+        "Inconnu": "Sconosciuto"
     },
     "core\/class\/message.class.php": {
         "Message de": "Messaggio da"

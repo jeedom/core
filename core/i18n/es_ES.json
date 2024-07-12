@@ -2016,12 +2016,13 @@
         "Configuration des dépôts": "Configuración de repositorios",
         "Tester\/Synchroniser": "Prueba \/ Sincronizar",
         "Tester": "Prueba",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Advertencia: cualquier modificación en el motor de caché requiere un reinicio y hará que pierda temporalmente información sobre los valores de los comandos y cualquier otra información almacenada en caché mientras se devuelve todo",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Advertencia: cualquier modificación en el motor de caché requiere un reinicio",
+        "Statistiques": "Estadísticas",
+        "objets": "objetos",
         "Moteur de cache": "Motor de caché",
         "Système de fichiers": "Sistema de archivos",
         "Memcached": "Memcaché",
         "Redis": "Dilo otra vez",
-        "Mysql (beta)": "MySQL (beta)",
         "Adresse Memcache": "Dirección Memcache",
         "Port Memcache": "Puerto Memcache",
         "Adresse Redis": "Dirección Redis",
@@ -4689,6 +4690,9 @@
     },
     "core\/class\/log.class.php": {
         "Log": "Registro"
+    },
+    "core\/class\/cache.class.php": {
+        "Inconnu": "Desconocido"
     },
     "core\/class\/message.class.php": {
         "Message de": "Mensaje de"
