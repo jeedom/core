@@ -57,6 +57,41 @@ class cache {
 		}
 	}
 
+	public static function stats($_details = false) {
+		$return = self::getCache()->getStats();
+		$return['count'] = __('Inconnu', __FILE__);
+		$engine = config::byKey('cache::engine');
+		if ($engine == 'FilesystemCache') {
+			$return['count'] = 0;
+			foreach (ls(self::getFolder()) as $folder) {
+				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+					if (strpos($file, 'swap') !== false) {
+						continue;
+					}
+					$return['count']++;
+				}
+			}
+		} else if ($engine == 'RedisCache') {
+			$return['count'] = self::$cache->getRedis()->dbSize();
+		}
+		if ($_details) {
+			$re = '/s:\d*:(.*?);s:\d*:"(.*?)";s/';
+			$result = array();
+			foreach (ls(self::getFolder()) as $folder) {
+				foreach (ls(self::getFolder() . '/' . $folder) as $file) {
+					$path = self::getFolder() . '/' . $folder . '/' . $file;
+					$str = (string) str_replace("\n", '', file_get_contents($path));
+					preg_match_all($re, $str, $matches);
+					if (!isset($matches[2]) || !isset($matches[2][0]) || trim($matches[2][0]) == '') {
+						continue;
+					}
+					$result[] = $matches[2][0];
+				}
+			}
+			$return['details'] = $result;
+		}
+		return $return;
+	}
 	/**
 	 * @name getCache()
 	 * @access public
@@ -114,8 +149,6 @@ class cache {
 				self::$cache = new \Doctrine\Common\Cache\RedisCache();
 				self::$cache->setRedis($redis);
 				break;
-			case 'MariadbCache':
-				self::$cache = new MariadbCache();
 			default: // default is FilesystemCache
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
@@ -155,18 +188,12 @@ class cache {
 	}
 
 	public static function flush() {
-		switch (config::byKey('cache::engine')) {
-			case 'FilesystemCache':
-			case 'PhpFileCache':
-				self::getCache()->deleteAll();
-				shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
-				break;
-			case 'MariadbCache':
-				self::getCache()->deleteAll();
-			default:
-				return;
-		}
-		
+		self::getCache()->deleteAll();
+		shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
+	}
+
+	public static function search() {
+		return array();
 	}
 
 	public static function persist() {
@@ -232,9 +259,6 @@ class cache {
 	}
 
 	public static function clean() {
-		if (config::byKey('cache::engine') == 'MariadbCache') {
-			return MariadbCache::clean();
-		}
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
 		}
@@ -373,9 +397,6 @@ class cache {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
-		if(config::byKey('cache::engine') == 'MariadbCache'){
-			return MariadbCache::save($this->getKey(),$this->getValue(),$this->getLifetime(),$this->getOptions());
-		}
 		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
@@ -389,6 +410,10 @@ class cache {
 			self::getCache()->delete($this->getKey());
 		} catch (Exception $e) {
 		}
+	}
+
+	public function hasExpired(): bool {
+		return true;
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -437,67 +462,4 @@ class cache {
 		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
 		return $this;
 	}
-}
-
-
-class MariadbCache {
-
-	public static function clean(){
-		$sql = 'DELETE 
-		FROM cache
-		WHERE (UNIX_TIMESTAMP(`datetime`)+`lifetime`) < UNIX_TIMESTAMP()';
-		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
-	}
-
-	public static function fetch($_key){
-		$sql = 'SELECT *
-		FROM cache
-		WHERE `key`=:key';
-		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
-		if($return === false){
-			return null;
-		}
-		if($return->getLifetime() > 0 && (strtotime($return->getDatetime()) + $return->getLifetime()) < strtotime('now')){
-			return null;
-		}
-		if(is_json($return->getValue())){
-			$return->setValue(json_decode($return->getValue()));
-		}
-		return $return;
-	}
-
-	public static function delete($_key){
-		$sql = 'DELETE 
-		FROM cache
-		WHERE `key`=:key';
-		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
-	}
-
-	public static function deleteAll(){
-		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
-	}
-
-	public static function save($_key, $_value, $_lifetime = -1, $_options = null){
-		$options = null;
-		if(is_array($_value)){
-			$_value = json_encode($_value);
-		}
-		if(is_array($_options)){
-			if(count($_options) == 0){
-				$_options = null;
-			}else{
-				$_options = json_encode($_options);
-			}
-		}
-		$value = array(
-			'key' => $_key,
-			'value' => $_value,
-			'options' => $_options,
-			'lifetime' =>$_lifetime,
-			'datetime' => date('Y-m-d H:i:s')
-		);
-		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime,`options`=:options';
-		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
-	}
-
 }

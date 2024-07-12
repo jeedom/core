@@ -40,16 +40,6 @@ class event {
 	}
 
 	public static function add($_event, $_option = array()) {
-		if (config::byKey('cache::engine') == 'MariadbCache') {
-			$cache = cache::byKey('event');
-			$value = json_decode($cache->getValue('[]'), true);
-			if (!is_array($value)) {
-				$value = array();
-			}
-			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
-			cache::set('event', json_encode(self::cleanEvent($value)));
-			return;
-		}
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
 		if($fd === false){
@@ -68,19 +58,6 @@ class event {
 	}
 
 	public static function adds($_event, $_values = array()) {
-		if (config::byKey('cache::engine') == 'MariadbCache') {
-			$cache = cache::byKey('event');
-			$value_src = json_decode($cache->getValue('[]'), true);
-			if (!is_array($value_src)) {
-				$value_src = array();
-			}
-			$value = array();
-			foreach ($_values as $option) {
-				$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
-			}
-			cache::set('event', json_encode(self::cleanEvent(array_merge($value_src, $value))));
-			return;
-		}
 		$waitIfLocked = true;
 		$fd = self::getFileDescriptorLock();
 		if($fd === false){
