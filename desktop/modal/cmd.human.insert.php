@@ -53,9 +53,31 @@ if (!isConnect()) {
       document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select').jeeValue(mod_insertCmd.options.object.id)
     }
 
+    function filterOptions(select, input, allOptions) {
+      const text = input.value.trim().toLowerCase().stripAccents()
+      const currentSelection = select.value
+
+      select.innerHTML = ''
+
+      allOptions
+        .filter(option => {
+          const optionText = option.textContent.toLowerCase().stripAccents()
+          return text === '' || optionText.includes(text)
+        })
+        .forEach(option => {
+          select.add(option.cloneNode(true))
+        })
+
+        const selectedOption = allOptions.find(option => option.value === currentSelection)
+        if (selectedOption && !select.querySelector(`option[value="${currentSelection}"]`)) {
+          select.add(selectedOption.cloneNode(true))
+        }
+        select.value = currentSelection
+    }
+
     mod_insertCmd.setOptions = function(_options) {
       mod_insertCmd.options = _options
-      var _selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select')
+      const _selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select')
       if (!isset(mod_insertCmd.options.cmd)) {
         mod_insertCmd.options.cmd = {}
       }
@@ -79,21 +101,12 @@ if (!isConnect()) {
           mod_insertCmd.changeObjectCmd(_selectObject, mod_insertCmd.options)
         }
       })
-    }
 
-    document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object input').addEventListener('keyup', function(event) {
-        const text = event.target.value
-        const options = Array.from(_selectObject.options)
-        const regex = new RegExp("^" + text, "i")
-        const lowerText = text.toLowerCase()
+      const input = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object input')
+      const allOptions = Array.from(_selectObject.options)
 
-        options.forEach(option => {
-            const optionText = option.text
-            const lowerOptionText = optionText.toLowerCase()
-            const match = optionText.match(regex)
-            const contains = lowerOptionText.indexOf(lowerText) !== -1
-            option.hidden = !(match || contains)
-        });
+      input.addEventListener('input', function() {
+        filterOptions(_selectObject, input, allOptions)
       })
     }
 
@@ -143,28 +156,23 @@ if (!isConnect()) {
           }
           selectEqLogic += '</select>'
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').insertAdjacentHTML('beforeend', selectEqLogic)
+          let inputEqLogic = '<input class="form-control" placeholder="{{Filtre des équipements}}">'
+          _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').insertAdjacentHTML('beforeend', inputEqLogic)
           if (mod_insertCmd?.options?.eqLogic?.id && Array.from(_select.closest('tr').querySelectorAll('.mod_insertCmdValue_eqLogic select option')).filter(o => o.value === mod_insertCmd.options.eqLogic.id).length > 0) {
             _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').jeeValue(mod_insertCmd.options.eqLogic.id)
           }
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').addEventListener('change', function() {
             mod_insertCmd.changeEqLogic(this, mod_insertCmd.options)
           })
+            
+          const select = _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select')
+          const input = _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic input')
+          const allOptions = Array.from(select.options)
 
-          _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic input').addEventListener('keyup', function(event) {
-            const select = _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select')
-            const text = event.target.value
-            const options = Array.from(select.options)
-            const regex = new RegExp("^" + text, "i")
-            const lowerText = text.toLowerCase()
-
-            options.forEach(option => {
-              const optionText = option.text
-              const lowerOptionText = optionText.toLowerCase()
-              const match = optionText.match(regex)
-              const contains = lowerOptionText.indexOf(lowerText) !== -1
-              option.hidden = !(match || contains)
-            });
+          input.addEventListener('input', function() {
+            filterOptions(select, input, allOptions)
           })
+          
           mod_insertCmd.changeEqLogic(_select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options)
         }
       })
@@ -190,20 +198,12 @@ if (!isConnect()) {
           	let inputCmd = '<input class="form-control" placeholder="{{Filtre des commandes}}">'
             _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', inputCmd)
               
-            _select.closest('tr').querySelector('.mod_insertCmdValue_cmd input').addEventListener('keyup', function(event) {
-              const select = _select.closest('tr').querySelector('.mod_insertCmdValue_cmd select')
-              const text = event.target.value
-              const options = Array.from(select.options)
-              const regex = new RegExp("^" + text, "i")
-              const lowerText = text.toLowerCase()
+            const select = _select.closest('tr').querySelector('.mod_insertCmdValue_cmd select')
+            const input = _select.closest('tr').querySelector('.mod_insertCmdValue_cmd input')
+            const allOptions = Array.from(select.options)
 
-              options.forEach(option => {
-                const optionText = option.text
-                const lowerOptionText = optionText.toLowerCase()
-                const match = optionText.match(regex)
-                const contains = lowerOptionText.indexOf(lowerText) !== -1
-                option.hidden = !(match || contains)
-              });
+            input.addEventListener('input', function() {
+              filterOptions(select, input, allOptions)
             })
           } catch (error) {}
         }
