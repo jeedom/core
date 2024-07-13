@@ -47,7 +47,7 @@ if (!isConnect()) {
   <option value="genericType">{{Type générique}}</option>
   <option value="changeTheme">{{Changer de thème}}</option>
 </select>
-<input id="mod_actionValue_fil" class="form-control" placeholder="{{Filtre de commandes}}">
+<input id="mod_actionValue_fil" class="form-control" placeholder="{{Filtre des commandes}}">
 <br />
 <div class="alert alert-info mod_actionValue_selDescription sleep" style="display:none;">
   {{Pause de x seconde(s)}}
@@ -180,21 +180,26 @@ if (!isConnect()) {
       document.querySelectorAll('.mod_actionValue_selDescription').unseen()
       document.querySelector('.mod_actionValue_selDescription.' + value).seen()
     })
-                                                                                      
-    document.getElementById('mod_actionValue_fil').addEventListener('keyup', function(event) {
-      const select = document.getElementById('mod_actionValue_sel')
-      const text = event.target.value
-      const options = Array.from(select.options)
-      const regex = new RegExp("^" + text, "i")
-      const lowerText = text.toLowerCase()
 
-      options.forEach(option => {
-        const optionText = option.text
-        const lowerOptionText = optionText.toLowerCase()
-        const match = optionText.match(regex)
-        const contains = lowerOptionText.indexOf(lowerText) !== -1
-        option.hidden = !(match || contains)
-      });
-    })                                                                                      
+    const select = document.getElementById('mod_actionValue_sel')
+    const input = document.getElementById('mod_actionValue_fil')
+    const allOptions = Array.from(select.options)
+                                                                                      
+    function filterOptions() {
+      const text = input.value.trim().toLowerCase().stripAccents()
+
+      select.innerHTML = ''
+
+      allOptions
+        .filter(option => {
+          const optionText = option.textContent.toLowerCase().stripAccents()
+          return text === '' || optionText.includes(text)
+        })
+        .forEach(option => {
+          select.add(option.cloneNode(true))
+        })
+    }
+                                                                                      
+    input.addEventListener('input', filterOptions)                                                                                                                        
   })()
 </script>
