@@ -83,7 +83,7 @@ try {
 
 	if (init('action') == 'getApikey') {
 		if (!login(init('username'), init('password'), init('twoFactorCode'))) {
-			throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect'), __FILE__);
+			throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 		}
 		ajax::success($_SESSION['user']->getHash());
 	}
@@ -229,7 +229,6 @@ try {
 		$_SESSION['user']->setLogin($login);
 		$_SESSION['user']->save();
 		@session_write_close();
-		eqLogic::clearCacheWidget();
 		ajax::success();
 	}
 
