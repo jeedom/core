@@ -2,7 +2,7 @@
 <div class="input-group input-group-sm" style="width: 100%">
   <span class="input-group-addon roundedLeft">{{Scénario}}</span>
   <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
-  <input class="expressionAttr form-control rounded-left" data-l1key="options" data-l2key="filter" placeholder="{{Filtre de scénario}}" data-cmd_id="#id#" data-uid="#uid#">
+  <input class="expressionAttr form-control rounded-left" data-l1key="options" data-l2key="filter" placeholder="{{Filtre des scénarios}}" data-cmd_id="#id#" data-uid="#uid#">
   <span class="input-group-addon">{{Action}}</span>
   <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="action" data-cmd_id="#id#" data-uid="#uid#">
     <option value="start">{{Démarrer}}</option>
@@ -55,26 +55,25 @@
         select.appendChild(optgroup)
       }
 
-      const filter = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter"]')
-      filter.addEventListener('keyup', function(event) {
-        const text = event.target.value
-        const options = Array.from(select.options)
-        const regex = new RegExp("^" + text, "i")
-        const lowerText = text.toLowerCase()
+      const input = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter"]')
+      const allOptions = Array.from(select.options)
 
-        options.forEach(option => {
-          const optionText = option.text
-          const lowerOptionText = optionText.toLowerCase()
-          const match = optionText.match(regex)
-          const contains = lowerOptionText.indexOf(lowerText) !== -1
-          option.hidden = !(match || contains)
-        });
+      function filterOptions() {
+        const text = input.value.trim().toLowerCase().stripAccents()
 
-        Array.from(select.getElementsByTagName('optgroup')).forEach(optgroup => {
-          const visibleOptions = Array.from(optgroup.children).some(option => !option.hidden)
-          optgroup.hidden = !visibleOptions
-        })
-      })
+        select.innerHTML = ''
+
+        allOptions
+          .filter(option => {
+            const optionText = option.textContent.toLowerCase().stripAccents()
+            return text === '' || optionText.includes(text)
+          })
+          .forEach(option => {
+            select.add(option.cloneNode(true))
+          })
+      }      
+
+      input.addEventListener('input', filterOptions)
 
       if ('#scenario_id#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
         document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]').value = '#scenario_id#'
