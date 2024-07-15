@@ -117,7 +117,16 @@ class cache {
 				  ->setDatetime(date('Y-m-d H:i:s'));
 			  }
 			return $cache;
-		  }
+		}
+		if(config::byKey('cache::engine') == 'FileCache'){
+			$cache =  FileCache::fetch($_key);
+			if (!is_object($cache)) {
+			  $cache = (new self())
+				  ->setKey($_key)
+				  ->setDatetime(date('Y-m-d H:i:s'));
+			  }
+			return $cache;
+		}
 		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
 		try {
 			$cache = self::getCache()->fetch($_key);
@@ -144,6 +153,8 @@ class cache {
 				MariadbCache::deleteAll();
 			case 'RedisCache':
 				RedisCache::deleteAll();
+			case 'FileCache':
+				FileCache::deleteAll();
 			default:
 				return;
 		}
@@ -215,6 +226,9 @@ class cache {
 	public static function clean() {
 		if (config::byKey('cache::engine') == 'MariadbCache') {
 			return MariadbCache::clean();
+		}
+		if (config::byKey('cache::engine') == 'FileCache') {
+			return FileCache::clean();
 		}
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
@@ -360,6 +374,9 @@ class cache {
 		if(config::byKey('cache::engine') == 'RedisCache'){
 			return RedisCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
 		}
+		if(config::byKey('cache::engine') == 'FileCache'){
+			return FileCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
+		}
 		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
@@ -374,6 +391,9 @@ class cache {
 		}
 		if(config::byKey('cache::engine') == 'RedisCache'){
 			return RedisCache::delete($this->getKey());
+		}
+		if(config::byKey('cache::engine') == 'FileCache'){
+			return FileCache::delete($this->getKey());
 		}
 		try {
 			self::getCache()->delete($this->getKey());
@@ -471,7 +491,6 @@ class MariadbCache {
 
 }
 
-
 class RedisCache {
 
 	private static $connection = null;
@@ -491,10 +510,12 @@ class RedisCache {
 		if($value === false){
 			return null;
 		}
-		$cache = new cache();
+		$data = json_decode($value,true);
 		$cache = (new cache())
 			->setKey($_key)
-			->setValue($value);
+			->setLifetime($data['lifetime'])
+			->setDatetime($data['datetime'])
+			->setValue($data['value']);
 		return $cache;
 	}
 
@@ -507,14 +528,60 @@ class RedisCache {
 	}
 
 	public static function save($_key, $_value, $_lifetime = -1){
-		if(is_array($_value)){
-			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
-		}
+		$data = array(
+			'value' => $_value,
+			'lifetime' => $_lifetime,
+			'datetime' => strtotime('now'),
+		);
 		if($_lifetime > 0){
-			self::getConnection()->set($_key,$_value, $_lifetime);
+			self::getConnection()->set($_key,json_encode($data, JSON_UNESCAPED_UNICODE), $_lifetime);
 		}else{
-			self::getConnection()->set($_key,$_value);
+			self::getConnection()->set($_key,json_encode($data, JSON_UNESCAPED_UNICODE));
 		}
+	}
+
+}
+
+
+class FileCache {
+
+	public static function clean(){
+		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
+			$data = json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file),true);
+			if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
+				unlink(jeedom::getTmpFolder('cache').'/'.$file);
+			}
+		}
+	}
+
+	public static function fetch($_key){
+		$data = json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key)),true);
+		if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
+			self::delete($_key);
+			return null;
+		}
+		$cache = (new cache())
+			->setKey($_key)
+			->setLifetime($data['lifetime'])
+			->setDatetime($data['datetime'])
+			->setValue($data['value']);
+		return $cache;
+	}
+
+	public static function delete($_key){
+		unlink(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
+	}
+
+	public static function deleteAll(){
+		return shell_exec(system::getCmdSudo().' rm -rf '.jeedom::getTmpFolder('cache'));
+	}
+
+	public static function save($_key, $_value, $_lifetime = -1){
+		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key),json_encode(array(
+			'value' => $_value,
+			'lifetime' => $_lifetime,
+			'datetime' => strtotime('now'),
+		), JSON_UNESCAPED_UNICODE));
 	}
 
 }
