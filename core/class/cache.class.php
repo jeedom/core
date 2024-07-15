@@ -129,6 +129,15 @@ class cache {
 	 * @return object
 	 */
 	public static function byKey($_key) {
+        if(config::byKey('cache::engine') == 'MariadbCache'){
+		  $cache =  MariadbCache::fetch($_key);
+          if (!is_object($cache)) {
+			$cache = (new self())
+				->setKey($_key)
+				->setDatetime(date('Y-m-d H:i:s'));
+			}
+          return $cache;
+		}
 		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
 		try {
 			$cache = self::getCache()->fetch($_key);
@@ -459,9 +468,6 @@ class MariadbCache {
 		}
 		if($return->getLifetime() > 0 && (strtotime($return->getDatetime()) + $return->getLifetime()) < strtotime('now')){
 			return null;
-		}
-		if(is_json($return->getValue())){
-			$return->setValue(json_decode($return->getValue()));
 		}
 		return $return;
 	}
