@@ -474,12 +474,16 @@ class MariadbCache {
 
 class RedisCache {
 
+	private static $connection = null;
+
 	public static function getConnection(){
-		$redis = new Redis([
-			'host' => config::byKey('cache::redisaddr','core','127.0.0.1'),
-			'port' => intval(config::byKey('cache::redisport','core',6379))
-		]);
-		return $redis;
+		if(static::$connection !== null){
+			return static::$connection;
+		}
+		$redis = new Redis();
+		$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
+		static::$connection = $redis;
+		return static::$connection;
 	}
 
 	public static function fetch($_key){
