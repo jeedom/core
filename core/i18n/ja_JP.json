@@ -454,6 +454,7 @@
         "Coloration des icones": "アイコンの色付け",
         "Type générique": "Type générique",
         "Changer de thème": "Changer de thème",
+        "Filtre des commandes": "Filtre des commandes",
         "Pause de x seconde(s)": "X秒の一時停止（s）",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "条件が有効になるまで待ちます（最大2時間）",
         "Création\/modification d’une variable ou de la valeur d’une variable": "変数または変数の値の作成\/変更",
@@ -2016,13 +2017,12 @@
         "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "テスト\/同期",
         "Tester": "テスト",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Attention : toute modification du moteur de cache nécessite un redémarrage",
-        "Statistiques": "統計",
-        "objets": "オブジェクト",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "エンジンカバー",
         "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcachedの",
         "Redis": "Redisの",
+        "Mysql (beta)": "Mysql (beta)",
         "Adresse Memcache": "Memcachedの住所",
         "Port Memcache": "ポートのmemcached",
         "Adresse Redis": "Redisの住所",
@@ -4692,9 +4692,6 @@
     "core\/class\/log.class.php": {
         "Log": "Log"
     },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "不明"
-    },
     "core\/class\/message.class.php": {
         "Message de": "メッセージ"
     },
@@ -4881,7 +4878,8 @@
         "Sélectionner la commande": "コマンドを選択"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "設計"
+        "Design": "設計",
+        "Filtre des designs": "Filtre des designs"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "コマンドを選択"

@@ -454,6 +454,7 @@
         "Coloration des icones": "Coloration des icones",
         "Type générique": "Type générique",
         "Changer de thème": "Changer de thème",
+        "Filtre des commandes": "Filtre des commandes",
         "Pause de x seconde(s)": "Jeda x detik (s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Menunggu sampai kondisi ini berlaku (maksimum 2 jam)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Penciptaan \/ modifikasi variabel atau nilai dari variabel",
@@ -2016,13 +2017,12 @@
         "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "Tester\/Synchroniser",
         "Tester": "Coba",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Attention : toute modification du moteur de cache nécessite un redémarrage",
-        "Statistiques": "Statistika",
-        "objets": "Item",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "Penutup mesin",
         "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcached",
         "Redis": "Redis",
+        "Mysql (beta)": "Mysql (beta)",
         "Adresse Memcache": "Memcached Alamat",
         "Port Memcache": "Port memcached",
         "Adresse Redis": "Redis Alamat",
@@ -4692,9 +4692,6 @@
     "core\/class\/log.class.php": {
         "Log": "Log"
     },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Tidak diketahui"
-    },
     "core\/class\/message.class.php": {
         "Message de": "Pesan dari"
     },
@@ -4881,7 +4878,8 @@
         "Sélectionner la commande": "Pilih perintah"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Disain"
+        "Design": "Disain",
+        "Filtre des designs": "Filtre des designs"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Pilih perintah"

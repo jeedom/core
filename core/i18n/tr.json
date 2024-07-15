@@ -454,6 +454,7 @@
         "Coloration des icones": "Coloration des icones",
         "Type générique": "Type générique",
         "Changer de thème": "Changer de thème",
+        "Filtre des commandes": "Filtre des commandes",
         "Pause de x seconde(s)": "X saniye duraklama",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Şartın gerçekleşmesine kadar bekle (maximum 2saat)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Bir değişkenin veya değişkenin değerini oluşturulması\/değiştirilmesi",
@@ -2016,13 +2017,12 @@
         "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "Tester\/Synchroniser",
         "Tester": "Test et",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Attention : toute modification du moteur de cache nécessite un redémarrage",
-        "Statistiques": "İstatistik",
-        "objets": "Nesneler",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "Önbellek motoru",
         "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcached",
         "Redis": "Redis",
+        "Mysql (beta)": "Mysql (beta)",
         "Adresse Memcache": "Memcache adresi",
         "Port Memcache": "Mecache Portu",
         "Adresse Redis": "Redis adresi",
@@ -4692,9 +4692,6 @@
     "core\/class\/log.class.php": {
         "Log": "Log"
     },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Bilinmeyen"
-    },
     "core\/class\/message.class.php": {
         "Message de": "Dan mesaj"
     },
@@ -4881,7 +4878,8 @@
         "Sélectionner la commande": "Komutayı seçin"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Disayn"
+        "Design": "Disayn",
+        "Filtre des designs": "Filtre des designs"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Komutayı seçin"

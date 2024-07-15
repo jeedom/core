@@ -454,6 +454,7 @@
         "Coloration des icones": "Coloração de ícone",
         "Type générique": "Tipo genérico",
         "Changer de thème": "Mudar tema",
+        "Filtre des commandes": "Filtro de pedido",
         "Pause de x seconde(s)": "Pausa x segundo(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Esperar até que a condição seja válida (máximo de 2 horas)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Criação\/modificação de uma variável ou do valor de uma variável",
@@ -2016,13 +2017,12 @@
         "Configuration des dépôts": "Configuração de repositórios",
         "Tester\/Synchroniser": "Testar \/ Sincronizar",
         "Tester": "Testar",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Aviso: qualquer modificação no mecanismo de cache requer uma reinicialização",
-        "Statistiques": "Estatísticas",
-        "objets": "objetos",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Atenção: qualquer modificação no mecanismo de cache requer uma reinicialização e fará com que você perca temporariamente informações sobre os valores dos comandos e quaisquer outras informações armazenadas em cache enquanto tudo é retornado",
         "Moteur de cache": "Motor de cache",
         "Système de fichiers": "Sistema de arquivos",
         "Memcached": "Memcached",
         "Redis": "Diga de novo",
+        "Mysql (beta)": "MySQL (beta)",
         "Adresse Memcache": "Endereço memcached",
         "Port Memcache": "Porta Memcached",
         "Adresse Redis": "Repita o Endereço",
@@ -4692,9 +4692,6 @@
     "core\/class\/log.class.php": {
         "Log": "Registro"
     },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Desconhecido"
-    },
     "core\/class\/message.class.php": {
         "Message de": "Mensagem do"
     },
@@ -4881,7 +4878,8 @@
         "Sélectionner la commande": "Selecione o comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Projeto"
+        "Design": "Projeto",
+        "Filtre des designs": "Projetos de filtro"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Selecione o comando"

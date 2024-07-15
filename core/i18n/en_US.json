@@ -454,6 +454,7 @@
         "Coloration des icones": "Icon coloring",
         "Type générique": "Generic type",
         "Changer de thème": "Change theme",
+        "Filtre des commandes": "Order filter",
         "Pause de x seconde(s)": "Pause of x second (s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Wait until the condition is valid (maximum 2h)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Creation \/ modification of a variable or the value of a variable",
@@ -2016,13 +2017,12 @@
         "Configuration des dépôts": "Configuration of repositories",
         "Tester\/Synchroniser": "Test \/ Synchronize",
         "Tester": "Test",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Warning: any modification to the cache engine requires a restart",
-        "Statistiques": "Statistics",
-        "objets": "objects",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Warning: any modification to the cache engine requires a restart and will cause you to temporarily lose information on the values of the commands and any other cached information while everything is returned",
         "Moteur de cache": "Cache engine",
         "Système de fichiers": "File system",
         "Memcached": "Memory cached",
         "Redis": "Say it again",
+        "Mysql (beta)": "Mysql (beta)",
         "Adresse Memcache": "Memcache address",
         "Port Memcache": "Memcache port",
         "Adresse Redis": "Redis address",
@@ -4692,9 +4692,6 @@
     "core\/class\/log.class.php": {
         "Log": "Log"
     },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Unknown"
-    },
     "core\/class\/message.class.php": {
         "Message de": "Message from"
     },
@@ -4881,7 +4878,8 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Design"
+        "Design": "Design",
+        "Filtre des designs": "Filter designs"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Select command"
