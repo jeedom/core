@@ -24,21 +24,21 @@ class event {
 
 	protected $datetime;
 	protected $name;
-	protected $options;
+	protected $option;
 
 	/*     * ***********************Methode static*************************** */
 
 
-	public static function add($_event, $_options = array(),$_clean = true) {
-		if(is_array($_options)){
-			$_options = json_encode($_options, JSON_UNESCAPED_UNICODE);
+	public static function add($_event, $_option = array(),$_clean = true) {
+		if(is_array($_option)){
+			$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 		}
 		$value = array(
 			'datetime' => getmicrotime(),
 			'name' => $_event,
-			'options' => $_options
+			'option' => $_option
 		);
-		$sql = 'INSERT INTO `event` SET `datetime`=:datetime, `name`=:name,`options`=:options';
+		$sql = 'INSERT INTO `event` SET `datetime`=:datetime, `name`=:name,`option`=:option';
 		DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
 		if($_clean){
 			self::cleanEvent();
@@ -46,8 +46,8 @@ class event {
 	}
 
 	public static function adds($_event, $_values = array()) {
-		foreach ($_values as $options) {
-			self::add($_event,$options,false);
+		foreach ($_values as $option) {
+			self::add($_event,$option,false);
 		}
 		self::cleanEvent();
 	}
@@ -72,15 +72,15 @@ class event {
 				continue;
 			}
 			if ($event->getName() == 'eqLogic::update') {
-				$id = 'eqLogic::update::' . $event->getOptions('eqLogic_id');
+				$id = 'eqLogic::update::' . $event->getOption('eqLogic_id');
 			} elseif ($event->getName() == 'cmd::update') {
-				$id = 'cmd::update::' . $event->getOptions('cmd_id');
+				$id = 'cmd::update::' . $event->getOption('cmd_id');
 			} elseif ($event->getName() == 'scenario::update') {
-				$id = 'scenario::update::' . $event->getOptions('scenario_id');
+				$id = 'scenario::update::' . $event->getOption('scenario_id');
 			} elseif ($event->getName() == 'jeeObject::summary::update') {
-				$id = 'jeeObject::summary::update::' . $event->getOptions('object_id');
-				if (is_array($event->getOptions('keys')) && count($event->getOptions('keys')) > 0) {
-					foreach ($event->getOptions('keys') as $key2 => $value) {
+				$id = 'jeeObject::summary::update::' . $event->getOption('object_id');
+				if (is_array($event->getOption('keys')) && count($event->getOption('keys')) > 0) {
+					foreach ($event->getOption('keys') as $key2 => $value) {
 						$id .= $key2;
 					}
 				}
@@ -103,7 +103,7 @@ class event {
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return) > 0) {
-			return array('datetime' => getmicrotime(), 'results'=> utils::o2a($return));
+			return array('datetime' => getmicrotime(), 'result'=> utils::o2a($return));
 		}
 		$waitTime = config::byKey('event::waitPollingTime');
 		$i = 0;
@@ -118,7 +118,7 @@ class event {
 			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
-		return array('datetime' => getmicrotime(), 'results'=> utils::o2a($return));
+		return array('datetime' => getmicrotime(), 'result'=> utils::o2a($return));
 	}
 
 	private static function filterEvent($_events = array(), $_filter = null) {
@@ -131,7 +131,7 @@ class event {
 			if ($_filter !== null && isset($_filter::$_listenEvents) && !in_array($event->getName(), $_filter::$_listenEvents)) {
 				continue;
 			}
-			if (count($filters) != 0 && $event->getName() == 'cmd::update' && !in_array($event->getOptions('cmd_id'), $filters)) {
+			if (count($filters) != 0 && $event->getName() == 'cmd::update' && !in_array($event->getOption('cmd_id'), $filters)) {
 				continue;
 			}
 			$return[] = $event;
@@ -181,12 +181,12 @@ class event {
 		return $this;
 	}
 
-	public function getOptions($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->options, $_key, $_default);
+	public function getOption($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->option, $_key, $_default);
 	}
 
-	public function setOptions($_key, $_value) {
-		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+	public function setOption($_key, $_value) {
+		$this->option = utils::setJsonAttr($this->option, $_key, $_value);
 		return $this;
 	}
 }

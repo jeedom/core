@@ -737,7 +737,7 @@
           "extra": ""
         },
         {
-          "name": "options",
+          "name": "option",
           "type": "varchar(4095)",
           "null": "YES",
           "key": "",
