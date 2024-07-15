@@ -224,12 +224,46 @@ class cache {
 	}
 
 	public static function clean() {
-		if (config::byKey('cache::engine') == 'MariadbCache') {
-			return MariadbCache::clean();
+		$engine = config::byKey('cache::engine');
+		if(in_array($engine,array('MariadbCache','FileCache')))){
+			$engine::clean();
 		}
-		if (config::byKey('cache::engine') == 'FileCache') {
-			return FileCache::clean();
+		if(in_array($engine,array('MariadbCache','FileCache','RedisCache')))){
+			$caches = $engine::all();
+			foreach ($caches as $cache) {
+				$matches = null;
+				preg_match_all('/camera(\d*)(.*?)/',  $cache->getKey(), $matches);
+				if (isset($matches[1][0])) {
+					if (!is_numeric($matches[1][0])) {
+						continue;
+					}
+					$object = eqLogic::byId($matches[1][0]);
+					if (!is_object($object)) {
+						cache::delete($cache->getKey());
+					}
+				}
+				if (strpos($cache->getKey(), 'cmd') !== false) {
+					$id = str_replace('cmd', '', $cache->getKey());
+					if (is_numeric($id)) {
+						cache::delete($cache->getKey());
+					}
+					continue;
+				}
+				preg_match_all('/dependancy(.*)/', $cache->getKey(), $matches);
+				if (isset($matches[1][0])) {
+					try {
+						$plugin = plugin::byId($matches[1][0]);
+						if (!is_object($plugin)) {
+							cache::delete($cache->getKey());
+						}
+					} catch (Exception $e) {
+						cache::delete($cache->getKey());
+					}
+				}
+			}
 		}
+
+
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
 		}
@@ -250,52 +284,8 @@ class cache {
 				$result[] = $matches[2][0];
 			}
 		}
-		$cleanCache = array(
-			'cmdCacheAttr' => 'cmd',
-			'cmd' => 'cmd',
-			'eqLogicCacheAttr' => 'eqLogic',
-			'eqLogicStatusAttr' => 'eqLogic',
-			'scenarioCacheAttr' => 'scenario',
-			'cronCacheAttr' => 'cron',
-			'cron' => 'cron',
-		);
 		foreach ($result as $key) {
 			$matches = null;
-			if (strpos($key, '::lastCommunication') !== false) {
-				cache::delete($key);
-				continue;
-			}
-			if (strpos($key, '::state') !== false) {
-				cache::delete($key);
-				continue;
-			}
-			if (strpos($key, '::numberTryWithoutSuccess') !== false) {
-				cache::delete($key);
-				continue;
-			}
-			foreach ($cleanCache as $kClean => $value) {
-				if (strpos($key, $kClean) !== false) {
-					$id = str_replace($kClean, '', $key);
-					if (!is_numeric($id)) {
-						continue;
-					}
-					$object = $value::byId($id);
-					if (!is_object($object)) {
-						cache::delete($key);
-					}
-					continue;
-				}
-			}
-			preg_match_all('/widgetHtml(\d*)(.*?)/', $key, $matches);
-			if (isset($matches[1][0])) {
-				if (!is_numeric($matches[1][0])) {
-					continue;
-				}
-				$object = eqLogic::byId($matches[1][0]);
-				if (!is_object($object)) {
-					cache::delete($key);
-				}
-			}
 			preg_match_all('/camera(\d*)(.*?)/', $key, $matches);
 			if (isset($matches[1][0])) {
 				if (!is_numeric($matches[1][0])) {
@@ -305,44 +295,6 @@ class cache {
 				if (!is_object($object)) {
 					cache::delete($key);
 				}
-			}
-			preg_match_all('/scenarioHtml(.*?)(\d*)/', $key, $matches);
-			if (isset($matches[1][0])) {
-				if (!is_numeric($matches[1][0])) {
-					continue;
-				}
-				$object = scenario::byId($matches[1][0]);
-				if (!is_object($object)) {
-					cache::delete($key);
-				}
-			}
-			if (strpos($key, 'widgetHtmlmobile') !== false) {
-				$id = str_replace('widgetHtmlmobile', '', $key);
-				if (is_numeric($id)) {
-					cache::delete($key);
-				}
-				continue;
-			}
-			if (strpos($key, 'widgetHtmldashboard') !== false) {
-				$id = str_replace('widgetHtmldashboard', '', $key);
-				if (is_numeric($id)) {
-					cache::delete($key);
-				}
-				continue;
-			}
-			if (strpos($key, 'widgetHtmldplan') !== false) {
-				$id = str_replace('widgetHtmldplan', '', $key);
-				if (is_numeric($id)) {
-					cache::delete($key);
-				}
-				continue;
-			}
-			if (strpos($key, 'widgetHtml') !== false) {
-				$id = str_replace('widgetHtml', '', $key);
-				if (is_numeric($id)) {
-					cache::delete($key);
-				}
-				continue;
 			}
 			if (strpos($key, 'cmd') !== false) {
 				$id = str_replace('cmd', '', $key);
