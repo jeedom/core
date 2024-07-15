@@ -4,9 +4,10 @@
 
 - Addition of a new caching system (in beta) based on mysql [LINK](https://github.com/jeedom/core/pull/2748)
 - Adding a filter to the design list in gotodesign [LINK](https://github.com/jeedom/core/pull/2753)
-- Added a filter for the list on scenarios when acting on scenarios [text](https://github.com/jeedom/core/pull/2742)
+- Added a filter for the list on scenarios when acting on scenarios [LINK](https://github.com/jeedom/core/pull/2742)
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
-- On the login page possibility to display or name the password [text](https://github.com/jeedom/core/pull/2740)
+- On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
+- Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)
 
 # 4.4.9
 

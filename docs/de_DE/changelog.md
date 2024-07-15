@@ -4,9 +4,10 @@
 
 - Hinzufügung eines neuen Caching-Systems (in der Beta-Phase) basierend auf MySQL [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2748)
 - Hinzufügen eines Filters zur Designliste in gotodesign [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753)
-- Es wurde ein Filter für die Liste der Szenarien hinzugefügt, wenn auf Szenarien reagiert wird [Text](https://github.com/jeedom/core/pull/2742)
+- Es wurde ein Filter für die Liste der Szenarien hinzugefügt, wenn auf Szenarien reagiert wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742)
 - Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
-- Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [Text](https://github.com/jeedom/core/pull/2740)
+- Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2740)
+- Ein Fehler beim Verlassen der Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
 
 # 4.4.9
 
