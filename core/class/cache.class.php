@@ -443,6 +443,12 @@ class cache {
 
 class MariadbCache {
 
+	public static function all(){
+		$sql = 'SELECT `key`,`datetime`,`value`,`lifetime`
+		FROM cache';
+		return DB::Prepare($sql,array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS,'cache');
+	}
+
 	public static function clean(){
 		$sql = 'DELETE 
 		FROM cache
@@ -505,6 +511,15 @@ class RedisCache {
 		return static::$connection;
 	}
 
+	public static function all(){
+		$return  = array();
+		$keys = self::getConnection()->keys('*');
+		foreach ($keys as $key) {
+			$return[] = self::fetch($key);
+		}
+		return $return;
+	}
+
 	public static function fetch($_key){
 		$value = self::getConnection()->get($_key);
 		if($value === false){
@@ -544,6 +559,14 @@ class RedisCache {
 
 
 class FileCache {
+
+	public static function all(){
+		$return = array();
+		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
+			$return[] = self::fetch(base64_decode($file));
+		}
+		return $return;
+	}
 
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
