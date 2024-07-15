@@ -1021,10 +1021,7 @@ class scenario {
 	 *
 	 */
 	public function emptyCacheWidget() {
-		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('scenarioHtmlmobile' . $this->getId());
-		$mc->remove();
+		
 	}
 	/**
 	 *
@@ -1100,7 +1097,6 @@ class scenario {
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
 		}
 		DB::save($this);
-		$this->emptyCacheWidget();
 		if ($this->_changeState) {
 			$this->_changeState = false;
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'name' => $this->getName(), 'icon' => $this->getIcon()));
@@ -1118,7 +1114,6 @@ class scenario {
 		foreach (($this->getElement()) as $element) {
 			$element->remove();
 		}
-		$this->emptyCacheWidget();
 		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
 			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
 		}
@@ -1727,7 +1722,6 @@ class scenario {
 	 */
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
-			$this->emptyCacheWidget();
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $state, 'lastLaunch' => $this->getLastLaunch()));
 		}
 		$this->setCache('state', $state);
