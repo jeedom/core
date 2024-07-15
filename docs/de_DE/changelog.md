@@ -1,5 +1,13 @@
 # Änderungsprotokoll Jeedom V4.4
 
+# 4.4.10
+
+- Hinzufügung eines neuen Caching-Systems (in der Beta-Phase) basierend auf MySQL [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2748)
+- Hinzufügen eines Filters zur Designliste in gotodesign [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753)
+- Es wurde ein Filter für die Liste der Szenarien hinzugefügt, wenn auf Szenarien reagiert wird [Text](https://github.com/jeedom/core/pull/2742)
+- Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
+- Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [Text](https://github.com/jeedom/core/pull/2740)
+
 # 4.4.9
 
 - Verbesserte Anzeige der Szenarioliste bei der Bearbeitung von Szenarios (Hinzufügen von Gruppen)) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2729)

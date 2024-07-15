@@ -1,5 +1,13 @@
 # Registro de cambios Jeedom V4.4
 
+# 4.4.10
+
+- Adición de un nuevo sistema de almacenamiento en caché (en beta) basado en mysql [ENLACE](https://github.com/jeedom/core/pull/2748)
+- Agregar un filtro a la lista de diseños en gotodesign [ENLACE](https://github.com/jeedom/core/pull/2753)
+- Se agregó un filtro para la lista de escenarios al actuar en escenarios [texto](https://github.com/jeedom/core/pull/2742)
+- El precio del complemento está oculto si ya lo compró [ENLACE](https://github.com/jeedom/core/pull/2746)
+- En la página de inicio de sesión, posibilidad de mostrar o nombrar la contraseña [texto](https://github.com/jeedom/core/pull/2740)
+
 # 4.4.9
 
 - Visualización mejorada de la lista de escenarios al actuar sobre escenarios (adición de grupos) [ENLACE](https://github.com/jeedom/core/pull/2729)
