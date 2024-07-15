@@ -368,6 +368,7 @@ class cache {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
+		$this->setDatetime(date('Y-m-d H:i:s'));
 		if(config::byKey('cache::engine') == 'MariadbCache'){
 			return MariadbCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
 		}
@@ -376,8 +377,7 @@ class cache {
 		}
 		if(config::byKey('cache::engine') == 'FileCache'){
 			return FileCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
-		}
-		$this->setDatetime(date('Y-m-d H:i:s'));
+		}	
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
 		} else {
