@@ -431,7 +431,7 @@ class MariadbCache {
 	}
 
 	public static function fetch($_key){
-		$sql = 'SELECT ' . DB::buildField('cache') . '
+		$sql = 'SELECT `key`,`datetime`,`value`,`lifetime`
 		FROM cache
 		WHERE `key`=:key';
 		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
