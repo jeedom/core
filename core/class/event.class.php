@@ -22,105 +22,65 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class event {
 	/*     * *************************Attributs****************************** */
 
-	private static $limit = 250;
-	private static $_fd = null;
+	protected $datetime;
+	protected $name;
+	protected $options;
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getFileDescriptorLock() {
-		if (self::$_fd === null) {
-			@chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
-			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
-		}
-		if (self::$_fd === false) {
-			@chmod(jeedom::getTmpFolder() . '/event_cache_lock', 0777);
-			self::$_fd = fopen(jeedom::getTmpFolder() . '/event_cache_lock', 'w');
-		}
-		return self::$_fd;
-	}
 
-	public static function add($_event, $_option = array()) {
-		if (config::byKey('cache::engine') == 'MariadbCache') {
-			$cache = cache::byKey('event');
-			$value = json_decode($cache->getValue('[]'), true);
-			if (!is_array($value)) {
-				$value = array();
-			}
-			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
-			cache::set('event', json_encode(self::cleanEvent($value)));
-			return;
+	public static function add($_event, $_options = array(),$_clean = true) {
+		if(is_array($_options)){
+			$_options = json_encode($_options);
 		}
-		$waitIfLocked = true;
-		$fd = self::getFileDescriptorLock();
-		if($fd === false){
-			return;
-		}
-		if (@flock($fd, LOCK_EX, $waitIfLocked)) {
-			$cache = cache::byKey('event');
-			$value = json_decode($cache->getValue('[]'), true);
-			if (!is_array($value)) {
-				$value = array();
-			}
-			$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $_option);
-			cache::set('event', json_encode(self::cleanEvent($value)));
-			flock($fd, LOCK_UN);
+		$value = array(
+			'datetime' => getmicrotime(),
+			'name' => $_event,
+			'options' => $_options
+		);
+		$sql = 'INSERT INTO `event` SET `datetime`=:datetime, `name`=:name,`options`=:options';
+		DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
+		if($_clean){
+			self::cleanEvent();
 		}
 	}
 
 	public static function adds($_event, $_values = array()) {
-		if (config::byKey('cache::engine') == 'MariadbCache') {
-			$cache = cache::byKey('event');
-			$value_src = json_decode($cache->getValue('[]'), true);
-			if (!is_array($value_src)) {
-				$value_src = array();
-			}
-			$value = array();
-			foreach ($_values as $option) {
-				$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
-			}
-			cache::set('event', json_encode(self::cleanEvent(array_merge($value_src, $value))));
-			return;
+		foreach ($_values as $options) {
+			self::add($_event,$options,false);
 		}
-		$waitIfLocked = true;
-		$fd = self::getFileDescriptorLock();
-		if($fd === false){
-			return;
-		}
-		if (flock($fd, LOCK_EX, $waitIfLocked)) {
-			$cache = cache::byKey('event');
-			$value_src = json_decode($cache->getValue('[]'), true);
-			if (!is_array($value_src)) {
-				$value_src = array();
-			}
-			$value = array();
-			foreach ($_values as $option) {
-				$value[] = array('datetime' => getmicrotime(), 'name' => $_event, 'option' => $option);
-			}
-			cache::set('event', json_encode(self::cleanEvent(array_merge($value_src, $value))));
-			flock($fd, LOCK_UN);
-		}
+		self::cleanEvent();
 	}
 
-	public static function cleanEvent($_events) {
-		$_events = array_slice(array_values($_events), -self::$limit, self::$limit);
+	public static function cleanEvent() {
+		$sql = 'SELECT count(*) as number FROM `event`';
+		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$delete_number = $result['number'] - 250;
+		if($delete_number > 0){
+			$sql = 'DELETE FROM event ORDER BY `datetime` ASC LIMIT '.$delete_number;
+			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		}
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM event
+		ORDER BY `datetime`';
+		$events = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		$find = array();
-		$events = array_values($_events);
 		$now = strtotime('now') + 300;
-		foreach ($events as $key => $event) {
-			if ($event['datetime'] > $now) {
-				unset($events[$key]);
+		foreach ($events as $event) {
+			if ($event->getDatetime() > $now) {
+				$event->remove();
 				continue;
 			}
-			if ($event['name'] == 'eqLogic::update') {
-				$id = 'eqLogic::update::' . $event['option']['eqLogic_id'];
-			} elseif ($event['name'] == 'cmd::update') {
-				$id = 'cmd::update::' . $event['option']['cmd_id'];
-			} elseif ($event['name'] == 'scenario::update') {
-				$id = 'scenario::update::' . $event['option']['scenario_id'];
-			} elseif ($event['name'] == 'jeeObject::summary::update') {
-				$id = 'jeeObject::summary::update::' . $event['option']['object_id'];
-				if (is_array($event['option']['keys']) && count($event['option']['keys']) > 0) {
-					foreach ($event['option']['keys'] as $key2 => $value) {
+			if ($event->getName() == 'eqLogic::update') {
+				$id = 'eqLogic::update::' . $event->getOptions('eqLogic_id');
+			} elseif ($event->getName() == 'cmd::update') {
+				$id = 'cmd::update::' . $event->getOptions('cmd_id');
+			} elseif ($event->getName() == 'scenario::update') {
+				$id = 'scenario::update::' . $event->getOptions('scenario_id');
+			} elseif ($event->getName() == 'jeeObject::summary::update') {
+				$id = 'jeeObject::summary::update::' . $event->getOptions('object_id');
+				if (is_array($event->getOptions('keys')) && count($event->getOptions('keys')) > 0) {
+					foreach ($event->getOptions('keys') as $key2 => $value) {
 						$id .= $key2;
 					}
 				}
@@ -128,16 +88,15 @@ class event {
 				continue;
 			}
 			if (isset($find[$id])) {
-				if ($find[$id]['datetime'] > $event['datetime']) {
-					unset($events[$key]);
+				if ($find[$id]->getDatetime() > $event->getDatetime()) {
+					$event->remove();
 					continue;
 				} else {
-					unset($events[$find[$id]['key']]);
+					$find[$id]->remove();
 				}
 			}
-			$find[$id] = array('datetime' => $event['datetime'], 'key' => $key);
+			$find[$id] = $event;
 		}
-		return array_values($events);
 	}
 
 	public static function orderEvent($a, $b) {
@@ -146,13 +105,13 @@ class event {
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
-		if ($_longPolling === null || count($return['result']) > 0) {
-			return $return;
+		if ($_longPolling === null || count($return) > 0) {
+			return array('datetime' => getmicrotime(), 'results'=> utils::o2a($return));
 		}
 		$waitTime = config::byKey('event::waitPollingTime');
 		$i = 0;
 		$max_cycle = $_longPolling / $waitTime;
-		while (count($return['result']) == 0 && $i < $max_cycle) {
+		while (count($return) == 0 && $i < $max_cycle) {
 			if ($waitTime < 1) {
 				usleep(1000000 * $waitTime);
 			} else {
@@ -162,24 +121,23 @@ class event {
 			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}
-		$return['result'] = self::cleanEvent($return['result']);
-		return $return;
+		return array('datetime' => getmicrotime(), 'results'=> utils::o2a($return));
 	}
 
-	private static function filterEvent($_data = array(), $_filter = null) {
+	private static function filterEvent($_events = array(), $_filter = null) {
 		if ($_filter == null) {
-			return $_data;
+			return $_events;
 		}
 		$filters = ($_filter !== null) ? cache::byKey($_filter . '::event')->getValue(array()) : array();
-		$return = array('datetime' => $_data['datetime'], 'result' => array());
-		foreach ($_data['result'] as $value) {
-			if ($_filter !== null && isset($_filter::$_listenEvents) && !in_array($value['name'], $_filter::$_listenEvents)) {
+		$return = array();
+		foreach (_events as $event) {
+			if ($_filter !== null && isset($_filter::$_listenEvents) && !in_array($event->getName(), $_filter::$_listenEvents)) {
 				continue;
 			}
-			if (count($filters) != 0 && $value['name'] == 'cmd::update' && !in_array($value['option']['cmd_id'], $filters)) {
+			if (count($filters) != 0 && $event->getName() == 'cmd::update' && !in_array($event->getOptions('cmd_id'), $filters)) {
 				continue;
 			}
-			$return['result'][] = $value;
+			$return[] = $event;
 		}
 		return $return;
 	}
@@ -189,27 +147,49 @@ class event {
 		if ($_datetime > $now) {
 			$_datetime = $now;
 		}
-		$return = array('datetime' => $_datetime, 'result' => array());
-		$cache = cache::byKey('event');
-		$events = json_decode($cache->getValue('[]'), true);
-		if (!is_array($events)) {
-			$events = array();
-		}
-		$values = array_reverse($events);
-		if (count($values) > 0) {
-			$return['datetime'] = $values[0]['datetime'];
-			foreach ($values as $value) {
-				if ($value['datetime'] <= $_datetime) {
-					break;
-				}
-				$return['result'][] = $value;
-			}
-		}
-		$return['result'] = array_reverse($return['result']);
-		return $return;
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM event
+		WHERE `datetime` >= :datetime
+		ORDER BY `datetime`';
+		return DB::Prepare($sql, array('datetime' => $_datetime), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 	/*     * *********************Methode d'instance************************* */
 
+	public function save($_direct = false){
+		DB::save($this, $_direct);
+	}
+
+	public function remove() {
+		return DB::remove($this);
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
+
+	public function getDatetime() {
+		return $this->datetime;
+	}
+
+	public function setDatetime($_datetime) {
+		$this->datetime = $_datetime;
+		return $this;
+	}
+
+	public function getName() {
+		return $this->name;
+	}
+
+	public function setName($_name) {
+		$this->name = $_name;
+		return $this;
+	}
+
+	public function getOptions($_key = '', $_default = '') {
+		return utils::getJsonAttr($this->options, $_key, $_default);
+	}
+
+	public function setOptions($_key, $_value) {
+		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
+		return $this;
+	}
 }

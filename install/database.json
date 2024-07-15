@@ -276,7 +276,7 @@
         },
         {
           "name": "lifetime",
-          "type": "int",
+          "type": "int(11)",
           "null": "YES",
           "key": "",
           "default": null,
@@ -717,6 +717,48 @@
       }
     },
     {
+      "name": "event",
+      "engine" : "MEMORY",
+      "fields": [
+        {
+          "name": "datetime",
+          "type": "double(16,6)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "options",
+          "type": "varchar(4095)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "datetime": {
+          "Key_name": "datetime",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "datetime",
+              "Sub_part": null
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "history",
       "fields": [
         {
@@ -920,6 +962,7 @@
     },
     {
       "name": "interactQuery",
+      "engine" : "MyISAM",
       "fields": [
         {
           "name": "id",
