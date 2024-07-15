@@ -31,7 +31,7 @@ class event {
 
 	public static function add($_event, $_options = array(),$_clean = true) {
 		if(is_array($_options)){
-			$_options = json_encode($_options);
+			$_options = json_encode($_options, JSON_UNESCAPED_UNICODE);
 		}
 		$value = array(
 			'datetime' => getmicrotime(),
@@ -93,14 +93,11 @@ class event {
 					continue;
 				} else {
 					$find[$id]->remove();
+					unset($find[$id]);
 				}
 			}
 			$find[$id] = $event;
 		}
-	}
-
-	public static function orderEvent($a, $b) {
-		return ($a['datetime'] - $b['datetime']);
 	}
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
