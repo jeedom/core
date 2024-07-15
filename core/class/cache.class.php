@@ -28,7 +28,6 @@ class cache {
 	private $value = null;
 	private $lifetime = 0;
 	private $datetime;
-	private $options = null;
 
 	/*     * ***********************Methode static*************************** */
 
@@ -36,7 +35,7 @@ class cache {
 		return jeedom::getTmpFolder('cache');
 	}
 
-	public static function set($_key, $_value, $_lifetime = 0, $_options = null) {
+	public static function set($_key, $_value, $_lifetime = 0) {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}
@@ -44,9 +43,6 @@ class cache {
 			->setKey($_key)
 			->setValue($_value)
 			->setLifetime($_lifetime);
-		if ($_options != null) {
-			$cache->options = json_encode($_options, JSON_UNESCAPED_UNICODE);
-		}
 		return $cache->save();
 	}
 
@@ -91,31 +87,6 @@ class cache {
 				self::$cache = new \Doctrine\Common\Cache\MemcachedCache();
 				self::$cache->setMemcached($memcached);
 				break;
-			case 'RedisCache':
-				// check if redis extension is available
-				if (!class_exists('redis')) {
-					log::add( __CLASS__, 'error', 'redis extension not installed, fall back to FilesystemCache.');
-					return self::getCache( 'FilesystemCache');
-				}
-				$redis = new Redis();
-				$redisAddr = config::byKey('cache::redisaddr');
-				try{
-					// try to connect to redis
-					if (strncmp($redisAddr, '/', 1) === 0) {
-						$redis->connect($redisAddr);
-					} else {
-						$redis->connect($redisAddr, config::byKey('cache::redisport'));
-					}	
-				}catch( Exception $e){
-					// error : fall back to FilesystemCache
-					log::add( __CLASS__, 'error', 'Unable to connect to redis instance, fall back to FilesystemCache.'."\n".$e->getMessage());
-					return self::getCache( 'FilesystemCache');
-				}
-				self::$cache = new \Doctrine\Common\Cache\RedisCache();
-				self::$cache->setRedis($redis);
-				break;
-			case 'MariadbCache':
-				self::$cache = new MariadbCache();
 			default: // default is FilesystemCache
 				self::$cache = new \Doctrine\Common\Cache\FilesystemCache(self::getFolder());
 				break;
@@ -138,6 +109,15 @@ class cache {
 			}
           return $cache;
 		}
+		if(config::byKey('cache::engine') == 'RedisCache'){
+			$cache =  RedisCache::fetch($_key);
+			if (!is_object($cache)) {
+			  $cache = (new self())
+				  ->setKey($_key)
+				  ->setDatetime(date('Y-m-d H:i:s'));
+			  }
+			return $cache;
+		  }
 		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
 		try {
 			$cache = self::getCache()->fetch($_key);
@@ -153,16 +133,6 @@ class cache {
 		return $cache;
 	}
 
-	public static function exist($_key) {
-		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
-		try {
-			return is_object(self::getCache()->fetch($_key));
-		} catch (Error $e) {
-			log::add(__CLASS__, 'debug', 'Error in ' . __FUNCTION__ . '(): ' . $e->getMessage() . ', trace: ' . $e->getTraceAsString());
-			return false;
-		}
-	}
-
 	public static function flush() {
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
@@ -171,7 +141,9 @@ class cache {
 				shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
 				break;
 			case 'MariadbCache':
-				self::getCache()->deleteAll();
+				MariadbCache::deleteAll();
+			case 'RedisCache':
+				RedisCache::deleteAll();
 			default:
 				return;
 		}
@@ -383,7 +355,10 @@ class cache {
 
 	public function save() {
 		if(config::byKey('cache::engine') == 'MariadbCache'){
-			return MariadbCache::save($this->getKey(),$this->getValue(),$this->getLifetime(),$this->getOptions());
+			return MariadbCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
+		}
+		if(config::byKey('cache::engine') == 'RedisCache'){
+			return RedisCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
 		}
 		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
@@ -394,6 +369,12 @@ class cache {
 	}
 
 	public function remove() {
+		if(config::byKey('cache::engine') == 'MariadbCache'){
+			return MariadbCache::delete($this->getKey());
+		}
+		if(config::byKey('cache::engine') == 'RedisCache'){
+			return RedisCache::delete($this->getKey());
+		}
 		try {
 			self::getCache()->delete($this->getKey());
 		} catch (Exception $e) {
@@ -437,15 +418,6 @@ class cache {
 		$this->datetime = $datetime;
 		return $this;
 	}
-
-	public function getOptions($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->options, $_key, $_default);
-	}
-
-	public function setOptions($_key, $_value = null): self {
-		$this->options = utils::setJsonAttr($this->options, $_key, $_value);
-		return $this;
-	}
 }
 
 
@@ -459,7 +431,7 @@ class MariadbCache {
 	}
 
 	public static function fetch($_key){
-		$sql = 'SELECT *
+		$sql = 'SELECT ' . DB::buildField('cache') . '
 		FROM cache
 		WHERE `key`=:key';
 		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
@@ -483,27 +455,62 @@ class MariadbCache {
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public static function save($_key, $_value, $_lifetime = -1, $_options = null){
-		$options = null;
+	public static function save($_key, $_value, $_lifetime = -1){
 		if(is_array($_value)){
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
-		}
-		if(is_array($_options)){
-			if(count($_options) == 0){
-				$_options = null;
-			}else{
-				$_options = json_encode($_options, JSON_UNESCAPED_UNICODE);
-			}
 		}
 		$value = array(
 			'key' => $_key,
 			'value' => $_value,
-			'options' => $_options,
 			'lifetime' =>$_lifetime,
 			'datetime' => date('Y-m-d H:i:s')
 		);
-		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime,`options`=:options';
+		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime';
 		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
+	}
+
+}
+
+
+class RedisCache {
+
+	public static function getConnection(){
+		$redis = new Redis([
+			'host' => config::byKey('cache::redisaddr','core','127.0.0.1'),
+			'port' => intval(config::byKey('cache::redisport','core',6379))
+		]);
+		return $redis;
+	}
+
+	public static function fetch($_key){
+		$value = self::getConnection()->get($_key);
+		if($value === false){
+			return null;
+		}
+		$cache = new cache();
+		$cache = (new cache())
+			->setKey($_key)
+			->setValue($value);
+		return $cache;
+	}
+
+	public static function delete($_key){
+		self::getConnection()->del($_key);
+	}
+
+	public static function deleteAll(){
+		return  self::getConnection()->flushDb();
+	}
+
+	public static function save($_key, $_value, $_lifetime = -1){
+		if(is_array($_value)){
+			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
+		}
+		if($_lifetime > 0){
+			self::getConnection()->set($_key,$_value, $_lifetime);
+		}else{
+			self::getConnection()->set($_key,$_value);
+		}
 	}
 
 }
