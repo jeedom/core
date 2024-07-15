@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.4
 
+# 4.4.10
+
+- Ajout d'un nouveaux systeme de cache (en beta) basé sur mysql [LIEN](https://github.com/jeedom/core/pull/2748)
+- Ajout d'un filtre sur la liste des design dans gotodesign [LIEN](https://github.com/jeedom/core/pull/2753)
+- Ajout d'un filtre pour la liste sur les scénarios lors d'action sur des scnénarios [text](https://github.com/jeedom/core/pull/2742)
+- Le prix du plugin est masqué si vous l'avez deja acheté [LIEN](https://github.com/jeedom/core/pull/2746)
+- Sur la page de connexion possibilité d'afficher ou nom le mot de passe [text](https://github.com/jeedom/core/pull/2740)
+
 # 4.4.9
 
 - Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe) [LIEN](https://github.com/jeedom/core/pull/2729)
