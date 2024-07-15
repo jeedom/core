@@ -100,33 +100,17 @@ class cache {
 	 * @return object
 	 */
 	public static function byKey($_key) {
-        if(config::byKey('cache::engine') == 'MariadbCache'){
-		  $cache =  MariadbCache::fetch($_key);
-          if (!is_object($cache)) {
+		$engine = config::byKey('cache::engine');
+		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
+			$cache =  $engine::fetch($_key);
+			if (!is_object($cache)) {
 			$cache = (new self())
 				->setKey($_key)
 				->setDatetime(date('Y-m-d H:i:s'));
 			}
-          return $cache;
-		}
-		if(config::byKey('cache::engine') == 'RedisCache'){
-			$cache =  RedisCache::fetch($_key);
-			if (!is_object($cache)) {
-			  $cache = (new self())
-				  ->setKey($_key)
-				  ->setDatetime(date('Y-m-d H:i:s'));
-			  }
 			return $cache;
 		}
-		if(config::byKey('cache::engine') == 'FileCache'){
-			$cache =  FileCache::fetch($_key);
-			if (!is_object($cache)) {
-			  $cache = (new self())
-				  ->setKey($_key)
-				  ->setDatetime(date('Y-m-d H:i:s'));
-			  }
-			return $cache;
-		}
+
 		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
 		try {
 			$cache = self::getCache()->fetch($_key);
@@ -143,18 +127,16 @@ class cache {
 	}
 
 	public static function flush() {
+		$engine = config::byKey('cache::engine');
+		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
+			return $engine::deleteAll();
+		}
 		switch (config::byKey('cache::engine')) {
 			case 'FilesystemCache':
 			case 'PhpFileCache':
 				self::getCache()->deleteAll();
 				shell_exec('rm -rf ' . self::getFolder() . ' 2>&1 > /dev/null');
 				break;
-			case 'MariadbCache':
-				MariadbCache::deleteAll();
-			case 'RedisCache':
-				RedisCache::deleteAll();
-			case 'FileCache':
-				FileCache::deleteAll();
 			default:
 				return;
 		}
@@ -163,10 +145,9 @@ class cache {
 
 	public static function persist() {
 		switch (config::byKey('cache::engine')) {
-			case 'FilesystemCache':
-				$cache_dir = self::getFolder();
-				break;
+			case 'FileCache':
 			case 'PhpFileCache':
+			case 'FilesystemCache':
 				$cache_dir = self::getFolder();
 				break;
 			default:
@@ -185,7 +166,7 @@ class cache {
 	}
 
 	public static function isPersistOk(): bool {
-		if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
+		if(!in_array(config::byKey('cache::engine'),array('FilesystemCache','PhpFileCache','FileCache'))){
 			return true;
 		}
 		$filename = __DIR__ . '/../../cache.tar.gz';
@@ -200,9 +181,8 @@ class cache {
 
 	public static function restore() {
 		switch (config::byKey('cache::engine')) {
+			case 'FileCache':
 			case 'FilesystemCache':
-				$cache_dir = self::getFolder();
-				break;
 			case 'PhpFileCache':
 				$cache_dir = self::getFolder();
 				break;
@@ -225,10 +205,10 @@ class cache {
 
 	public static function clean() {
 		$engine = config::byKey('cache::engine');
-		if(in_array($engine,array('MariadbCache','FileCache')))){
+		if(in_array($engine,array('MariadbCache','FileCache'))){
 			$engine::clean();
 		}
-		if(in_array($engine,array('MariadbCache','FileCache','RedisCache')))){
+		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			$caches = $engine::all();
 			foreach ($caches as $cache) {
 				$matches = null;
@@ -262,7 +242,6 @@ class cache {
 				}
 			}
 		}
-
 
 		if (config::byKey('cache::engine') != 'FilesystemCache') {
 			return;
@@ -321,15 +300,10 @@ class cache {
 
 	public function save() {
 		$this->setDatetime(date('Y-m-d H:i:s'));
-		if(config::byKey('cache::engine') == 'MariadbCache'){
-			return MariadbCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
+		$engine = config::byKey('cache::engine');
+		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
+			return $engine::save($this->getKey(),$this->getValue(),$this->getLifetime());
 		}
-		if(config::byKey('cache::engine') == 'RedisCache'){
-			return RedisCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
-		}
-		if(config::byKey('cache::engine') == 'FileCache'){
-			return FileCache::save($this->getKey(),$this->getValue(),$this->getLifetime());
-		}	
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
 		} else {
@@ -338,14 +312,9 @@ class cache {
 	}
 
 	public function remove() {
-		if(config::byKey('cache::engine') == 'MariadbCache'){
-			return MariadbCache::delete($this->getKey());
-		}
-		if(config::byKey('cache::engine') == 'RedisCache'){
-			return RedisCache::delete($this->getKey());
-		}
-		if(config::byKey('cache::engine') == 'FileCache'){
-			return FileCache::delete($this->getKey());
+		$engine = config::byKey('cache::engine');
+		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
+			return $engine::delete($this->getKey());
 		}
 		try {
 			self::getCache()->delete($this->getKey());
