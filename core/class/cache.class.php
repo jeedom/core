@@ -480,13 +480,13 @@ class MariadbCache {
 	public static function save($_key, $_value, $_lifetime = -1, $_options = null){
 		$options = null;
 		if(is_array($_value)){
-			$_value = json_encode($_value);
+			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
 		}
 		if(is_array($_options)){
 			if(count($_options) == 0){
 				$_options = null;
 			}else{
-				$_options = json_encode($_options);
+				$_options = json_encode($_options, JSON_UNESCAPED_UNICODE);
 			}
 		}
 		$value = array(
