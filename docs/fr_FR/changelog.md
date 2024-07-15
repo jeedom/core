@@ -7,7 +7,7 @@
 - Ajout d'un filtre pour la liste sur les scénarios lors d'action sur des scnénarios [LIEN](https://github.com/jeedom/core/pull/2742)
 - Le prix du plugin est masqué si vous l'avez deja acheté [LIEN](https://github.com/jeedom/core/pull/2746)
 - Sur la page de connexion possibilité d'afficher ou nom le mot de passe [LIEN](https://github.com/jeedom/core/pull/2740)
-- Correction d'un bug lorsqu'on quitte la page sans avoir sauvegarder [LIEN](https://github.com/jeedom/core/pull/2745)
+- Correction d'un bug lorsqu'on quitte la page sans avoir sauvegardé [LIEN](https://github.com/jeedom/core/pull/2745)
 
 # 4.4.9
 
