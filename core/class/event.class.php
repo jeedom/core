@@ -57,8 +57,7 @@ class event {
 			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM event
-		ORDER BY `datetime`';
+		FROM event';
 		$events = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 		$find = array();
 		$now = strtotime('now') + 300;
