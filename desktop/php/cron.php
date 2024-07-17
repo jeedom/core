@@ -28,7 +28,7 @@ if (!isConnect('admin')) {
       <li id="tab_tableCron" role="presentation" class="active"><a data-target="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock"></i> {{Cron}}</a></li>
       <li role="presentation"><a data-target="#listener" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Listener}}</a></li>
       <li role="presentation"><a data-target="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug"></i> {{Démon}}</a></li>
-      <li role="presentation"><a data-target="#queue" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Queue}}</a></li>
+      <li role="presentation"><a data-target="#queue" role="tab" data-toggle="tab"><i class="fas fa-tasks"></i> {{Queue}}</a></li>
     </ul>
 
     <div class="tab-content">
