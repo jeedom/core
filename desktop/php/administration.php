@@ -1983,9 +1983,10 @@ $productName = config::byKey('product_name');
 										<option value="MemcachedCache">{{Memcached}}</option>
 									<?php } ?>
 									<?php if (class_exists('redis')) { ?>
-										<option value="RedisCache">{{Redis}}</option>
+										<option value="RedisCache">{{Redis (beta)}}</option>
 									<?php } ?>
 										<option value="MariadbCache">{{Mysql (beta)}}</option>
+										<option value="FileCache">{{Fichier (beta)}}</option>
 								</select>
 							</div>
 						</div>
