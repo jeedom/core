@@ -104,9 +104,9 @@ class cache {
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			$cache =  $engine::fetch($_key);
 			if (!is_object($cache)) {
-			$cache = (new self())
-				->setKey($_key)
-				->setDatetime(date('Y-m-d H:i:s'));
+				$cache = (new self())
+					->setKey($_key)
+					->setDatetime(date('Y-m-d H:i:s'));
 			}
 			return $cache;
 		}
@@ -299,11 +299,11 @@ class cache {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
-		$this->setDatetime(date('Y-m-d H:i:s'));
 		$engine = config::byKey('cache::engine');
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			return $engine::save($this->getKey(),$this->getValue(),$this->getLifetime());
 		}
+		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
 		} else {
@@ -467,7 +467,7 @@ class RedisCache {
 		$data = array(
 			'value' => $_value,
 			'lifetime' => $_lifetime,
-			'datetime' => strtotime('now'),
+			'datetime' => date('Y-m-d H:i:s')
 		);
 		if($_lifetime > 0){
 			self::getConnection()->set($_key,json_encode($data, JSON_UNESCAPED_UNICODE), $_lifetime);
@@ -527,7 +527,7 @@ class FileCache {
 		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key),json_encode(array(
 			'value' => $_value,
 			'lifetime' => $_lifetime,
-			'datetime' => strtotime('now'),
+			'datetime' => date('Y-m-d H:i:s')
 		), JSON_UNESCAPED_UNICODE));
 	}
 
