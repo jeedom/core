@@ -3881,7 +3881,6 @@
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Acesso do utilizador por REMOTE_USER:",
         "Double authentification requise": "Double authentification requise",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Senha ou nome de usuário inválido",
-        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Deve desativar a autenticação LDAP para adicionar um utilizador",
         "Utilisateur invalide": "Usuário Inválido",
