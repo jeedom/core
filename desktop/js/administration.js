@@ -283,7 +283,6 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          jeeP.updateCacheStats()
           jeedomUtils.showAlert({
             message: '{{Cache vidé}}',
             level: 'success'
@@ -300,24 +299,10 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          jeeP.updateCacheStats()
           jeedomUtils.showAlert({
             message: '{{Cache nettoyé}}',
             level: 'success'
           })
-        }
-      })
-    },
-    updateCacheStats: function() {
-      jeedom.cache.stats({
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function(data) {
-          document.getElementById('span_cacheObject').innerHTML = data.count
         }
       })
     },
