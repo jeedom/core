@@ -43,16 +43,9 @@ if (!jeeFrontEnd.editor) {
             width: 300,
             callback: function() {
               var contentEl = jeeDialog.get('#md_widgetCreation', 'content')
-              var newContent = document.getElementById('md_widgetCreate')
+              var newContent = document.getElementById('md_widgetCreate').cloneNode(true)
               contentEl.appendChild(newContent)
               newContent.removeClass('hidden')
-
-              $('#sel_widgetType').trigger('change')
-              $("#md_widgetCreate").keydown(function (event) {
-                if (event.keyCode == $.ui.keyCode.ENTER) {
-                  $('#bt_widgetCreate').trigger('click')
-                }
-              })
             },
             buttons: {
               confirm: {
@@ -108,7 +101,7 @@ if (!jeeFrontEnd.editor) {
       return options
     },
     setCommandCustom: function(options) {
-      $('#bt_getHelpPage').attr('data-page', 'custom')
+      document.getElementById('bt_getHelpPage').setAttribute('data-page', 'custom')
       //new custom command in elfinder:
       elFinder.prototype._options.commands.push('jee_onoffcustom')
       options.uiOptions.toolbar.push(['jee_onoffcustom'])
@@ -176,7 +169,7 @@ if (!jeeFrontEnd.editor) {
     killTooltips: function() {
       setTimeout(function() {
       try {
-        $('#elfinder [title]').removeAttr('title')
+        document.getElementById('elfinder').removeAttribute('title')
       } catch(error) {}
       }, 500)
     },
