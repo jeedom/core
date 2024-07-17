@@ -347,7 +347,7 @@ class cache {
 	}
 
 	public function setLifetime($lifetime): self {
-		$this->lifetime = $lifetime;
+		$this->lifetime = intval($lifetime);
 		return $this;
 	}
 
