@@ -273,6 +273,94 @@ if (!jeeFrontEnd.cron) {
         }
       })
     },
+    printQueue: function() {
+      jeedom.queue.all({
+        success: function(data) {
+          domUtils.showLoading()
+          if (jeeFrontEnd.queue.queueDataTable) {
+            jeeFrontEnd.queue.queueDataTable.destroy()
+            delete jeeFrontEnd.queue.queueDataTable
+          }
+          var table = document.getElementById('table_queue').querySelector('tbody')
+          table.empty()
+          for (var i in data) {
+            let newRow = document.createElement("tr")
+            newRow.innerHTML = jeeP.addqueue(data[i])
+            newRow.setJeeValues(data[i], '.queueAttr')
+            table.appendChild(newRow)
+          }
+          jeeFrontEnd.cron.setQueueTable()
+          jeeFrontEnd.modifyWithoutSave = false
+          setTimeout(function() {
+            jeeFrontEnd.modifyWithoutSave = false
+          }, 1000)
+          domUtils.hideLoading()
+        }
+      })
+    },
+    addQueue: function(_queue) {
+      jeedomUtils.hideAlert()
+      var tr = '<tr>'
+      tr += '<td><span class="queueAttr label label-info" data-l1key="id"></span></td>'
+      tr += '<td>'
+      tr += init(_queue.pid)
+      tr += '</td>'
+      tr += '<td><input class="form-control queueAttr input-sm" data-l1key="queueId" disabled /></td>'
+      tr += '<td><input class="form-control queueAttr input-sm" data-l1key="class" disabled /></td>'
+      tr += '<td><input class="form-control queueAttr input-sm" data-l1key="function" disabled /></td>'
+      tr += '<td>'
+      tr += '<input class="form-control queueAttr input-sm" data-l1key="timeout" />'
+      tr += '</td>'
+      tr += '<td>'
+      tr += init(_queue.lastRun)
+      tr += '</td>'
+      tr += '<td data-sorton="' + init(_queue.runtime, '0') + '">'
+      tr += init(_queue.runtime, '0') + 's'
+      tr += '</td>'
+      tr += '<td>'
+      var label = 'label label-info'
+      var state = init(_queue.state)
+      if (init(_queue.state) == 'run') {
+        label = 'label label-success'
+        state = '{{En cours}}'
+      }
+      if (init(_queue.state) == 'stop') {
+        label = 'label label-danger'
+        state = '{{Arrêté}}'
+      }
+      if (init(_queue.state) == 'starting') {
+        label = 'label label-warning'
+        state = '{{Démarrage}}'
+      }
+      if (init(_queue.state) == 'stoping') {
+        label = 'label label-warning'
+        state = '{{Arrêt}}'
+      }
+      tr += '<span class="' + label + '">' + state + '</span>'
+      tr += '</td>'
+
+      tr += '<td>'
+      if (init(_queue.id) != '') {
+        tr += '<a class="btn btn-xs displayQueue" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> '
+      }
+      tr += '</td>'
+      tr += '</tr>'
+      return tr
+    },
+    setQueueTable: function() {
+      if (jeeFrontEnd.queue.queueDataTable) {
+        jeeFrontEnd.queue.queueDataTable.destroy()
+        delete jeeFrontEnd.queue.queueDataTable
+      }
+      jeeFrontEnd.queue.queueDataTable = new DataTable(jeeFrontEnd.queue.tableQueue, {
+        columns: [
+          { select: 0, sort: "asc" },
+          { select: 8, sortable: false }
+        ],
+        searchable: false,
+        paging: false,
+      })
+    },
   }
 }
 
@@ -401,6 +489,15 @@ document.getElementById('table_cron')?.tBodies[0].addEventListener('click', func
       id: 'jee_modal',
       title: "{{Détails du cron}}",
       contentUrl: 'index.php?v=d&modal=object.display&class=cron&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+
+  if (_target = event.target.closest('.displayQueue')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails de la queue}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=queue&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
     })
     return
   }
