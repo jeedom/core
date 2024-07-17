@@ -3,7 +3,7 @@
 # 4.4.10
 
 - Se movió la gestión de eventos (evento) que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
-- Se agregó un filtro en muchas acciones en escenarios [ENLACE](https://github.com/jeedom/core/pull/2753), [ENLACE](https://github.com/jeedom/core/pull/2742), [ENLACE](https://github.com/jeedom/core/pull/2759), [ENLACE](https://github.com/jeedom/core/pull/2743)
+- Se agregó un filtro en muchas acciones en escenarios [ENLACE](https://github.com/jeedom/core/pull/2753), [ENLACE](https://github.com/jeedom/core/pull/2742), [ENLACE](https://github.com/jeedom/core/pull/2759), [ENLACE](https://github.com/jeedom/core/pull/2743), [ENLACE](https://github.com/jeedom/core/pull/2755)
 - El precio del complemento está oculto si ya lo compró [ENLACE](https://github.com/jeedom/core/pull/2746)
 - En la página de inicio de sesión, posibilidad de mostrar o nombrar la contraseña [ENLACE](https://github.com/jeedom/core/pull/2740)
 - Se corrigió un error al salir de la página sin guardar [ENLACE](https://github.com/jeedom/core/pull/2745)

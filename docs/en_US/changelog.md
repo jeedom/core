@@ -3,7 +3,7 @@
 # 4.4.10
 
 - Moved event management (event) which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
-- Added a filter on many actions in scenarios [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743)
+- Added a filter on many actions in scenarios [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743), [LINK](https://github.com/jeedom/core/pull/2755)
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
 - On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
 - Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)

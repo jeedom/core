@@ -3,7 +3,7 @@
 # 4.4.10
 
 - Die Ereignisverwaltung, die zum Aktualisieren der In-Memory-Datenbankschnittstelle verwendet wird, wurde verschoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2757)
-- Für viele Aktionen in Szenarien wurde ein Filter hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2759), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2743)
+- Für viele Aktionen in Szenarien wurde ein Filter hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2759), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2743), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2755)
 - Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
 - Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2740)
 - Ein Fehler beim Verlassen der Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
