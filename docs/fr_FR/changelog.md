@@ -10,7 +10,7 @@
 - Sur la page de connexion possibilité d'afficher ou nom le mot de passe [LIEN](https://github.com/jeedom/core/pull/2740)
 - Correction d'un bug lorsqu'on quitte la page sans avoir sauvegardé [LIEN](https://github.com/jeedom/core/pull/2745)
 - Création (en beta) d'un nouveau systeme de cache [LIEN](https://github.com/jeedom/core/pull/2758) :
-  - Fichier : systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce. Le plus performant mais sauevgardé toute les 30min
+  - Fichier : systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce. Le plus performant mais sauvegardé toute les 30min
   - Mysql : utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
   - Redis : réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
 

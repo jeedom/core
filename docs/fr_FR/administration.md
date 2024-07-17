@@ -381,12 +381,14 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 Permet de surveiller et d’agir sur le cache de Jeedom :
 
-- **Statistiques** : Nombre d’objets actuellement en cache.
+- **Moteur de cache** : choix du moteur de cache pour jeedom : 
+  - Systeme de fichier : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier, utilise une lib tierce. Il sera prochainement remplacé par Fichier (beta)
+  - Fichier (beta) : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier. Le plus performant mais sauvegardé toute les 30min
+  - Mysql (beta) : Utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
+  - Redis (beta) : Réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
 - **Nettoyer le cache** : Force la suppression des objets qui ne sont plus utiles. Jeedom le fait automatiquement toutes les nuits.
 - **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
-- **Vider le cache des widgets** : Vide le cache dédié aux widgets.
-- **Désactiver le cache des widgets** : Cocher la case pour désactiver le cache des widgets.
 - **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre-partie cela utilise plus de ressources et peut donc ralentir Jeedom.
 
 ## Onglet API
