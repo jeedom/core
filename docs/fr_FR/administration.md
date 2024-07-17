@@ -391,6 +391,10 @@ Permet de surveiller et d’agir sur le cache de Jeedom :
     Attention cela peut faire perdre des données !
 - **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre-partie cela utilise plus de ressources et peut donc ralentir Jeedom.
 
+>**IMPORTANT**
+>
+> Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
+
 ## Onglet API
 
 Vous trouvez ici la liste des différentes clés API disponibles dans votre Jeedom. De base, le core a deux clés API :
