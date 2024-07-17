@@ -2,12 +2,19 @@
 
 # 4.4.10
 
-- Addition of a new caching system (in beta) based on mysql [LINK](https://github.com/jeedom/core/pull/2748)
-- Adding a filter to the design list in gotodesign [LINK](https://github.com/jeedom/core/pull/2753)
-- Added a filter for the list on scenarios when acting on scenarios [LINK](https://github.com/jeedom/core/pull/2742)
+- Moved event management (event) which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
+- Added a filter on many actions in scenarios [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743)
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
 - On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
 - Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)
+- Creation (in beta) of a new cache system [LINK](https://github.com/jeedom/core/pull/2758) :
+  - File : system identical to that of before but taken internally to avoid dependencies on a third party lib. The most efficient but saved every 30 minutes
+  - Mysql : using a base cache table. The least efficient but saved in real time (no data loss possible)
+  - Redis : reserved for experts, relies on redis to manage the cache (requires you to install redis yourself and the php-redis dependencies)
+
+>**IMPORTANT**
+>
+> Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything
 
 # 4.4.9
 

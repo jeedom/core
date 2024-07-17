@@ -2,12 +2,19 @@
 
 # 4.4.10
 
-- Hinzufügung eines neuen Caching-Systems (in der Beta-Phase) basierend auf MySQL [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2748)
-- Hinzufügen eines Filters zur Designliste in gotodesign [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753)
-- Es wurde ein Filter für die Liste der Szenarien hinzugefügt, wenn auf Szenarien reagiert wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742)
+- Die Ereignisverwaltung, die zum Aktualisieren der In-Memory-Datenbankschnittstelle verwendet wird, wurde verschoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2757)
+- Für viele Aktionen in Szenarien wurde ein Filter hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2759), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2743)
 - Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
 - Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2740)
 - Ein Fehler beim Verlassen der Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
+- Erstellung (in Beta) eines neuen Cache-Systems [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2758) :
+  - Datei : System identisch mit dem vorherigen, aber intern übernommen, um Abhängigkeiten von einer Drittanbieter-Bibliothek zu vermeiden. Am effizientesten, aber alle 30 Minuten gespart
+  - MySQL : Verwendung einer Basis-Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
+  - Redis : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (erfordert die Installation von Redis selbst und der PHP-Redis-Abhängigkeiten))
+
+>**WICHTIG**
+>
+> Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
 
 # 4.4.9
 

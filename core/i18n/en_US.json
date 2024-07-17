@@ -493,8 +493,11 @@
         "Objet": "Object",
         "Equipement": "Equipment",
         "Commande": "Command",
+        "Filtre des objets": "Filter objects",
         "Commande info": "Info command",
-        "Commande action": "Action command"
+        "Commande action": "Action command",
+        "Filtre des équipements": "Equipment filter",
+        "Filtre des commandes": "Order filter"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -2021,8 +2024,9 @@
         "Moteur de cache": "Cache engine",
         "Système de fichiers": "File system",
         "Memcached": "Memory cached",
-        "Redis": "Say it again",
+        "Redis (beta)": "Redis (beta)",
         "Mysql (beta)": "Mysql (beta)",
+        "Fichier (beta)": "File (beta)",
         "Adresse Memcache": "Memcache address",
         "Port Memcache": "Memcache port",
         "Adresse Redis": "Redis address",
@@ -2358,6 +2362,7 @@
         "A": "At",
         "Code": "Code",
         "Commentaire": "Comment",
+        "Filtre des blocs": "Block filter",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Allows you to make conditions in your scenario. For example: If my door sensor is triggered Then turn on the light",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Allows you to launch an action, on one of your modules, scenarios or other. For example: Switch your siren to ON",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "A loop allows you to perform an action repeatedly a certain number of times. For example: Allows you to repeat an action from 1 to X, i.e. X times",

@@ -493,8 +493,11 @@
         "Objet": "Objekt",
         "Equipement": "Ausrüstung",
         "Commande": "Bestellt",
+        "Filtre des objets": "Objekte filtern",
         "Commande info": "Info Befehl",
-        "Commande action": "Aktionsbefehl"
+        "Commande action": "Aktionsbefehl",
+        "Filtre des équipements": "Gerätefilter",
+        "Filtre des commandes": "Bestellfilter"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2021,8 +2024,9 @@
         "Moteur de cache": "Cache Engine",
         "Système de fichiers": "Dateisystem",
         "Memcached": "Zwischengespeichert",
-        "Redis": "Sage es noch einmal",
+        "Redis (beta)": "Redis (Beta)",
         "Mysql (beta)": "MySQL (Beta)",
+        "Fichier (beta)": "Datei (Beta)",
         "Adresse Memcache": "Memcache Adresse",
         "Port Memcache": "Memcache Port",
         "Adresse Redis": "Addresse wiederholen",
@@ -2358,6 +2362,7 @@
         "A": "Bis",
         "Code": "CODE",
         "Commentaire": "Kommentar",
+        "Filtre des blocs": "Blockfilter",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Ermöglicht es Ihnen, Bedingungen in Ihrem Szenario festzulegen. Zum Beispiel: Wenn mein Türsensor ausgelöst wird Dann mach das Licht an",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Ermöglicht es Ihnen, eine Aktion in einem Ihrer Module, Szenarien oder anderen zu starten. Zum Beispiel: Schalten Sie Ihre Sirene auf EIN",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Eine Schleife ermöglicht es Ihnen, eine Aktion eine bestimmte Anzahl von Malen wiederholt auszuführen. Zum Beispiel: Ermöglicht es Ihnen, eine Aktion von 1 bis X zu wiederholen, d. h. X-mal",

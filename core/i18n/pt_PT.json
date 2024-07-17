@@ -493,8 +493,11 @@
         "Objet": "Objeto",
         "Equipement": "Equipamento",
         "Commande": "Ordenado",
+        "Filtre des objets": "Filtrar objetos",
         "Commande info": "Comando Info",
-        "Commande action": "Comando de ação"
+        "Commande action": "Comando de ação",
+        "Filtre des équipements": "Filtro de equipamento",
+        "Filtre des commandes": "Filtro de pedido"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2021,8 +2024,9 @@
         "Moteur de cache": "Motor de cache",
         "Système de fichiers": "Sistema de arquivos",
         "Memcached": "Memcached",
-        "Redis": "Diga de novo",
+        "Redis (beta)": "Redis (beta)",
         "Mysql (beta)": "MySQL (beta)",
+        "Fichier (beta)": "Arquivo (beta)",
         "Adresse Memcache": "Endereço memcached",
         "Port Memcache": "Porta Memcached",
         "Adresse Redis": "Repita o Endereço",
@@ -2358,6 +2362,7 @@
         "A": "À(s)",
         "Code": "Código",
         "Commentaire": "Comentário",
+        "Filtre des blocs": "Filtro de bloco",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Permite que você crie condições em seu cenário. Por exemplo: Se o sensor da minha porta for acionado Então acenda a luz",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Permite-lhe lançar uma ação, num dos seus módulos, cenários ou outros. Por exemplo: Ligue sua sirene",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Um loop permite que você execute uma ação repetidamente um determinado número de vezes. Por exemplo: Permite repetir uma ação de 1 a X, ou seja, X vezes",

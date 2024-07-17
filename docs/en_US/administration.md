@@ -381,13 +381,19 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 Allows monitoring and acting on the Jeedom cache :
 
-- **Statistics** : Number of objects currently cached.
+- **Cache engine** : choice of cache engine for jeedom : 
+  - File system : Storage of cache information /tmp/jeedom/cache (in RAM) in file mode, uses a third-party lib. It will soon be replaced by File (beta)
+  - File (beta) : Storage of cache information /tmp/jeedom/cache (in RAM) in file mode. The most efficient but saved every 30 minutes
+  - Mysql (beta)) : Using a basic cache table. The least efficient but saved in real time (no data loss possible)
+  - Redis (beta) : Reserved for experts, relies on redis to manage the cache (requires you to install redis yourself and the php-redis dependencies)
 - **Clean cache** : Force deletion of objects that are no longer useful. Jeedom does this automatically every night.
 - **Clear all cache data** : Empty the cover completely.
     Please note that this may cause data loss !
-- **Clear widget cache** : Clear the cache dedicated to widgets.
-- **Disable widget cache** : Check the box to disable the widget cache.
 - **Time of pause for long polling** : Frequency at which Jeedom checks if there are pending events for customers (web interface, mobile application, etc.)). The shorter this time, the faster the interface will update, in return it uses more resources and can therefore slow Jeedom.
+
+>**Important**
+>
+> Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything
 
 ## API tab
 

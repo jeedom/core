@@ -493,8 +493,11 @@
         "Objet": "Objet",
         "Equipement": "Equipement",
         "Commande": "Commande",
+        "Filtre des objets": "Filtre des objets",
         "Commande info": "Commande info",
-        "Commande action": "Commande action"
+        "Commande action": "Commande action",
+        "Filtre des équipements": "Filtre des équipements",
+        "Filtre des commandes": "Filtre des commandes"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2021,8 +2024,9 @@
         "Moteur de cache": "エンジンカバー",
         "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcachedの",
-        "Redis": "Redisの",
+        "Redis (beta)": "Redis (beta)",
         "Mysql (beta)": "Mysql (beta)",
+        "Fichier (beta)": "Fichier (beta)",
         "Adresse Memcache": "Memcachedの住所",
         "Port Memcache": "ポートのmemcached",
         "Adresse Redis": "Redisの住所",
@@ -2358,6 +2362,7 @@
         "A": "へ",
         "Code": "コード",
         "Commentaire": "コメント",
+        "Filtre des blocs": "Filtre des blocs",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois",

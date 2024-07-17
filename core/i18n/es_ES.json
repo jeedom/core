@@ -493,8 +493,11 @@
         "Objet": "Objeto",
         "Equipement": "Equipo",
         "Commande": "Ordenado",
+        "Filtre des objets": "Filtrar objetos",
         "Commande info": "Comando de información",
-        "Commande action": "Comando de acción"
+        "Commande action": "Comando de acción",
+        "Filtre des équipements": "Filtro de equipo",
+        "Filtre des commandes": "Filtro de orden"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2021,8 +2024,9 @@
         "Moteur de cache": "Motor de caché",
         "Système de fichiers": "Sistema de archivos",
         "Memcached": "Memcaché",
-        "Redis": "Dilo otra vez",
+        "Redis (beta)": "Redis (beta)",
         "Mysql (beta)": "MySQL (beta)",
+        "Fichier (beta)": "Archivo (beta)",
         "Adresse Memcache": "Dirección Memcache",
         "Port Memcache": "Puerto Memcache",
         "Adresse Redis": "Dirección Redis",
@@ -2358,6 +2362,7 @@
         "A": "PARA",
         "Code": "Código",
         "Commentaire": "Comentario",
+        "Filtre des blocs": "Filtro de bloque",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Le permite crear condiciones en su escenario. Por ejemplo: si se activa el sensor de mi puerta, entonces encienda la luz",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Te permite lanzar una acción, sobre uno de tus módulos, escenarios u otros. Por ejemplo: Encienda su sirena",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Un bucle le permite realizar una acción repetidamente un cierto número de veces. Por ejemplo: Le permite repetir una acción de 1 a X, es decir, X veces",

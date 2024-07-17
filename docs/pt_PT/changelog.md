@@ -2,12 +2,19 @@
 
 # 4.4.10
 
-- Adição de um novo sistema de cache (em beta) baseado em mysql [LINK](https://github.com/jeedom/core/pull/2748)
-- Adicionando um filtro à lista de designs em gotodesign [LINK](https://github.com/jeedom/core/pull/2753)
-- Adicionado um filtro para a lista de cenários ao atuar em cenários [LINK](https://github.com/jeedom/core/pull/2742)
+- Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória [LINK](https://github.com/jeedom/core/pull/2757)
+- Adicionado um filtro em muitas ações em cenários [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743)
 - O preço do plugin fica oculto se você já o comprou [LINK](https://github.com/jeedom/core/pull/2746)
 - Na página de login possibilidade de exibir ou nomear a senha [LINK](https://github.com/jeedom/core/pull/2740)
 - Corrigido bug ao sair da página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
+- Criação (em beta) de um novo sistema de cache [LINK](https://github.com/jeedom/core/pull/2758) :
+  - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
+  - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
+  - Redis : reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
+
+>**IMPORTANTE**
+>
+> Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo
 
 # 4.4.9
 

@@ -2,12 +2,19 @@
 
 # 4.4.10
 
-- Adición de un nuevo sistema de almacenamiento en caché (en beta) basado en mysql [ENLACE](https://github.com/jeedom/core/pull/2748)
-- Agregar un filtro a la lista de diseños en gotodesign [ENLACE](https://github.com/jeedom/core/pull/2753)
-- Se agregó un filtro para la lista de escenarios al actuar en escenarios [ENLACE](https://github.com/jeedom/core/pull/2742)
+- Se movió la gestión de eventos (evento) que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
+- Se agregó un filtro en muchas acciones en escenarios [ENLACE](https://github.com/jeedom/core/pull/2753), [ENLACE](https://github.com/jeedom/core/pull/2742), [ENLACE](https://github.com/jeedom/core/pull/2759), [ENLACE](https://github.com/jeedom/core/pull/2743)
 - El precio del complemento está oculto si ya lo compró [ENLACE](https://github.com/jeedom/core/pull/2746)
 - En la página de inicio de sesión, posibilidad de mostrar o nombrar la contraseña [ENLACE](https://github.com/jeedom/core/pull/2740)
 - Se corrigió un error al salir de la página sin guardar [ENLACE](https://github.com/jeedom/core/pull/2745)
+- Creación (en beta) de un nuevo sistema de caché [ENLACE](https://github.com/jeedom/core/pull/2758) :
+  - Archivo : sistema idéntico al anterior pero tomado internamente para evitar dependencias de una biblioteca de terceros. El más eficiente pero ahorrado cada 30 minutos
+  - Mysql : usando una tabla de caché base. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
+  - Redis : reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
+
+>**IMPORTANTE**
+>
+> Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
 
 # 4.4.9
 
