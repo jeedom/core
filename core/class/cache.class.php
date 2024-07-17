@@ -499,6 +499,9 @@ class FileCache {
 	}
 
 	public static function fetch($_key){
+		if(!file_exists(jeedom::getTmpFolder('cache').'/'.base64_encode($_key))){
+			return null;
+		}
 		$data = json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key)),true);
 		if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
 			self::delete($_key);
