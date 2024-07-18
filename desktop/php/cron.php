@@ -96,7 +96,7 @@ if (!isConnect('admin')) {
               <th data-type="input">{{Classe}}</th>
               <th data-type="input">{{Fonction}}</th>
               <th data-type="input">{{Timeout (min)}}</th>
-              <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Lancement}}</th>
+              <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Crée le}}</th>
               <th>{{Statut}}</th>
               <th style="width:100px;">{{Actions}}</th>
             </tr>

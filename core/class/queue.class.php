@@ -52,23 +52,32 @@ class queue {
 	}
 
     public static function allQueueId() {
-		$sql = 'SELECT distinct(queueId) as queueId FROM queue';
+		$sql = 'SELECT distinct(queueId) as queueId FROM queue WHERE queueId IS NOT NULL';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
     public static function byQueueId($_queueId) {
-        $value = array(
-			'queueId' => $_queueId,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM queue
-        ORDER BY name
-        WHERE queueId=:queueId';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if($_queueId === null){
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM queue
+			WHERE queueId IS NULL
+			ORDER BY createTime ASC, id ASC';
+			return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		}else{
+			$values = array(
+				'queueId' => $_queueId,
+			);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM queue
+			WHERE queueId=:queueId
+			ORDER BY createTime ASC, id ASC';
+			return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		}
+       
 	}
 
     public static function firstByQueueId($_queueId) {
-        $value = array(
+        $values = array(
 			'queueId' => $_queueId,
 		);
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -76,9 +85,8 @@ class queue {
         WHERE queueId=:queueId
         ORDER BY createTime ASC, id ASC
         LIMIT 1';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
-
 
     public static function cron(){
         $queues = self::byQueueId(null);
@@ -87,10 +95,10 @@ class queue {
                 continue;
             }
             try {
-                log::add('queue','debug',__('Lancement de '.$this->getHumanName(),__FILE__));
+                log::add('queue','debug',__('Lancement de '.$queue->getHumanName(),__FILE__));
                 $queue->run();
             } catch (\Throwable $th) {
-                log::add('queue','debug',__('Erreur sur le lancement de '.$this->getHumanName().' => '.$th->getMessage(),__FILE__));
+                log::add('queue','debug',__('Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage(),__FILE__));
             }
         }
         $queueIds = self::allQueueId();
@@ -101,10 +109,10 @@ class queue {
                 continue;
             }
             try {
-                log::add('queue','debug',__('Lancement de '.$this->getHumanName(),__FILE__));
+                log::add('queue','debug',__('Lancement de '.$queue->getHumanName(),__FILE__));
                 $queue->run();
             } catch (\Throwable $th) {
-                log::add('queue','debug',__('Erreur sur le lancement de '.$this->getHumanName().' => '.$th->getMessage(),__FILE__));
+                log::add('queue','debug',__('Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage(),__FILE__));
             }
         }
     }

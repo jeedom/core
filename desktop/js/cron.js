@@ -315,10 +315,7 @@ if (!jeeFrontEnd.cron) {
       tr += '<input class="form-control queueAttr input-sm" data-l1key="timeout" />'
       tr += '</td>'
       tr += '<td>'
-      tr += init(_queue.lastRun)
-      tr += '</td>'
-      tr += '<td data-sorton="' + init(_queue.runtime, '0') + '">'
-      tr += init(_queue.runtime, '0') + 's'
+      tr += init(_queue.createTime)
       tr += '</td>'
       tr += '<td>'
       var label = 'label label-info'

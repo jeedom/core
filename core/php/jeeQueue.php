@@ -91,7 +91,7 @@ try {
             die();
         }
     }
-    $this->remove();
+    $queue->remove();
     die();
 } catch (Exception $e) {
     jeeQueue_errorHandler($queue, $class, $function,$datetimeStart, $e);
