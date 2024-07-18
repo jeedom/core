@@ -217,6 +217,7 @@ class queue {
     }
 
     public function save($_direct = false){
+      var_dump($this);
 		DB::save($this, $_direct);
 	}
 
@@ -289,7 +290,7 @@ class queue {
 	}
 
     public function getArguments() {
-		return json_decode($this->_arguments,true);
+		return json_decode($this->arguments,true);
 	}
 
 	public function setArguments($_arguments) {

@@ -1606,7 +1606,7 @@
         {
           "name": "queueId",
           "type": "varchar(255)",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": null,
           "extra": ""
@@ -1614,7 +1614,7 @@
         {
           "name": "class",
           "type": "varchar(255)",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": null,
           "extra": ""
@@ -1630,7 +1630,7 @@
         {
           "name": "arguments",
           "type": "text",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": null,
           "extra": ""
@@ -1646,7 +1646,7 @@
         {
           "name": "options",
           "type": "text",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": null,
           "extra": ""
@@ -1654,7 +1654,7 @@
         {
           "name": "timeout",
           "type": "int(11)",
-          "null": "NO",
+          "null": "YES",
           "key": "",
           "default": null,
           "extra": ""
