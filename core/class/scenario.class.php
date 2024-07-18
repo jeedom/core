@@ -844,6 +844,7 @@ class scenario {
 		if ($state == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return false;
 		}
+		$instance_id = config::genKey(16);
 		if (is_array($_options) && count($_options) > 0) {
 			$tags = $this->getTags();
 			if (!is_array($tags)) {
@@ -855,17 +856,18 @@ class scenario {
 			$this->setTags($tags);
 		}
 		$this->setCache(array('startingTime' => strtotime('now'), 'state' => 'starting'));
+		cache::set('scenarioInstanceAttr'.$this->getId().'::'.$instance_id,array(
+			'tags' => $this->getTags(),
+			'trigger' => $_trigger,
+			'message' => $_message
+		));
 		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
-			return $this->execute($_trigger, $_message);
+			return $this->execute($instance_id);
 		} else {
-			if (count($this->getTags()) > 0) {
-				$this->setCache('tags', $this->getTags());
-			}
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' trigger=' . escapeshellarg($_trigger);
-			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent(addslashes($_message))) . '"';
+			$cmd .= ' intance_id='.$instance_id;
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}
@@ -876,17 +878,12 @@ class scenario {
 	 * @param string $_trigger
 	 * @param string $_message
 	 */
-	public function execute($_trigger = '', $_message = '') {
+	public function execute($instance_id = '') {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
-		$tags = $this->getCache('tags');
-		if ($tags != '') {
-			$this->setTags($tags);
-			$this->setCache('tags', '');
-		}
 		if ($this->getIsActive() != 1) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $_message . ' ' . __('car il est désactivé', __FILE__));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $instance_data['message'] . ' ' . __('car il est désactivé', __FILE__));
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();
@@ -902,7 +899,14 @@ class scenario {
 			}
 		}
 
-		$cmd = cmd::byId(str_replace('#', '', $_trigger));
+		$instance_data =cache::byKey('scenarioInstanceAttr'.$this->getId().'::'.$instance_id)->getValue();
+		cache::byKey('scenarioInstanceAttr'.$this->getId().'::'.$instance_id)->remove();
+		if(is_array($instance_data['tags']) && count($instance_data['tags']) > 0){
+			$this->setTags($instance_data['tags']);
+		}
+
+		$_triggerValue = 'none';
+		$cmd = cmd::byId(str_replace('#', '', $instance_data['trigger']));
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
@@ -916,30 +920,29 @@ class scenario {
 			}
 			$_triggerValue = $cmd->execCmd();
 		} else {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $instance_data['trigger']);
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
 				$timeline->setFolder($this->getConfiguration('timeline::folder'));
 				$timeline->setLink_id($this->getId());
 				$timeline->setName($this->getHumanName(true, true, true, true));
-				$timeline->setOptions(array('trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
+				$timeline->setOptions(array('trigger' => ($instance_data['trigger'] == 'schedule') ? 'programmation' : $instance_data['trigger']));
 				$timeline->save();
 			}
-			$_triggerValue = 'none';
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return;
 		}
 		if (count($this->getTags()) == 0) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . trim($_message, "'") . '.');
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $instance_data['message'] . '.');
 		} else {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $instance_data['message'] . '. Tags : ' . json_encode($this->getTags()));
 		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
-		$this->setRealTrigger($_trigger);
+		$this->setRealTrigger($instance_data['trigger']);
 		$this->setRealTriggerValue($_triggerValue);
 		foreach (($this->getElement()) as $element) {
 			if (!$this->getDo()) {
