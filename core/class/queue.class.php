@@ -77,24 +77,24 @@ class queue {
                 continue;
             }
             try {
-                log::add('queue','error',__('Lancement de '.$this->getHumanName());
+                log::add('queue','debug',__('Lancement de '.$this->getHumanName(),__FILE__));
                 $queue->run();
             } catch (\Throwable $th) {
-                log::add('queue','error',__('Erreur sur le lancement de '.$this->getHumanName().' => '.$th->getMessage()));
+                log::add('queue','debug',__('Erreur sur le lancement de '.$this->getHumanName().' => '.$th->getMessage(),__FILE__));
             }
         }
         $queueIds = self::allQueueId();
         foreach ($queueIds as $queueId) {
-            log::add('queue','error',__('Recherche des actions à faire pour '.$queueId));
+            log::add('queue','debug',__('Recherche des actions à faire pour '.$queueId,__FILE__));
             $queue = self::firstByQueueId($queueId);
             if(!$queue->canRun()){
                 continue;
             }
             try {
-                log::add('queue','error',__('Lancement de '.$this->getHumanName());
+                log::add('queue','debug',__('Lancement de '.$this->getHumanName(),__FILE__));
                 $queue->run();
             } catch (\Throwable $th) {
-                log::add('queue','error',__('Erreur sur le lancement de '.$this->getHumanName().' => '.$th->getMessage()));
+                log::add('queue','debug',__('Erreur sur le lancement de '.$this->getHumanName().' => '.$th->getMessage(),__FILE__));
             }
         }
     }
@@ -200,16 +200,16 @@ class queue {
 
     public function preSave(){
         if($this->getClass() == '' && $this->getFunction() == ''){
-            throw new Exception(__('La classe est la fonction ne peuvent etre vides',__FILE__);
+            throw new Exception(__('La classe est la fonction ne peuvent etre vides',__FILE__));
         }
         if($this->getClass() != '' && !class_exists($this->getClass())){
-            throw new Exception(__('La classe n\'existe pas',__FILE__);
+            throw new Exception(__('La classe n\'existe pas',__FILE__));
         }
         if($this->getClass() == '' && $this->getFunction() != '' && !function_exists($this->getFunction())){
-            throw new Exception(__('La fonction n\'existe pas',__FILE__);
+            throw new Exception(__('La fonction n\'existe pas',__FILE__));
         }
         if($this->getClass() != '' && $this->getFunction() != '' && !method_exists($this->getClass(),$this->getFunction())){
-            throw new Exception(__('La methode n\'existe pas',__FILE__);
+            throw new Exception(__('La methode n\'existe pas',__FILE__));
         }
         if($this->getCreateTime() == ''){
             $this->setCreateTime(date('Y-m-d H:i:s'));
@@ -288,13 +288,12 @@ class queue {
 		return $this;
 	}
 
-    public function getArguments($_key = '', $_default = '') {
-		return utils::getJsonAttr($this->arguments, $_key, $_default);
+    public function getArguments() {
+		return json_decode($this->_arguments,true);
 	}
 
 	public function setArguments($_arguments) {
-		$this->_changed = utils::attrChanged($this->_changed, $this->arguments, $_arguments);
-		$this->arguments = $_arguments;
+		$this->arguments = json_encode($_arguments, JSON_UNESCAPED_UNICODE);
 		return $this;
 	}
 
