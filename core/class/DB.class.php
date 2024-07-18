@@ -664,7 +664,7 @@ class DB {
 			}
 			if($primary_key != ''){
 				$return[$_table['name']]['sql'] .= "\n" . 'primary key(';
-				$return[$_table['name']]['sql'] = trim($primary_key, ',');
+				$return[$_table['name']]['sql'] .= trim($primary_key, ',');
 				$return[$_table['name']]['sql'] .= ')';
 			}
 			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
