@@ -1612,9 +1612,9 @@ document.querySelector('.scenarioAttr[data-l1key="mode"]').addEventListener('cha
   }
 })
 
-const select = document.getElementById('in_addElementType')
-const input = document.getElementById('in_addElementTypeFilter')
-const allOptions = Array.from(select.options)
+var select = document.getElementById('in_addElementType')
+var input = document.getElementById('in_addElementTypeFilter')
+var allOptions = Array.from(select.options)
 
 function filterOptions() {
   const text = input.value.trim().toLowerCase().stripAccents()
