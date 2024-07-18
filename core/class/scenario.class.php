@@ -375,7 +375,14 @@ class scenario {
 								$message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
 							}
 							$scenario->addTag('message',$message);
-							$scenario->addTag('trigger',$trigger);
+							$scenario->addTag('trigger_value',$_value);
+							if (is_object($_event)) {
+								$scenario->addTag('trigger_name',trim($_event->getHumanName(),'#'));
+								$scenario->addTag('trigger_id',$_event->getId());
+								$scenario->addTag('trigger',get_class($_event));
+							}else{
+								$scenario->addTag('trigger',trim($_event,'#'));
+							}
 							$scenario->launch($_forceSyncMode);
 						}
 					}
@@ -407,7 +414,15 @@ class scenario {
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
 				$scenario_->addTag('message',$message);
-				$scenario_->addTag('trigger',$trigger);
+				
+				$scenario_->addTag('trigger_value',$_value);
+				if (is_object($_event)) {
+					$scenario_->addTag('trigger_name',trim($_event->getHumanName(),'#'));
+					$scenario_->addTag('trigger_id',$_event->getId());
+					$scenario_->addTag('trigger','cmd');
+				}else{
+					$scenario_->addTag('trigger',get_class($_event));
+				}
 				if (is_array($_options) && count($_options) > 0) {
 					foreach ($_options as $key => $value) {
 						$scenario_->addTag($key,$value);
@@ -899,8 +914,7 @@ class scenario {
 				return;
 			}
 		}
-		$_triggerValue = 'none';
-		$cmd = cmd::byId(str_replace('#', '', $this->getTag('trigger')));
+		$cmd = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
@@ -912,7 +926,6 @@ class scenario {
 				$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
 				$timeline->save();
 			}
-			$_triggerValue = $cmd->execCmd();
 		} else {
 			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $this->getTag('trigger'));
 			if ($this->getConfiguration('timeline::enable')) {
@@ -936,8 +949,8 @@ class scenario {
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
-		$this->setRealTrigger($this->getTag('trigger'));
-		$this->setRealTriggerValue($this->getTag('triggerValue'));
+		$this->setRealTrigger($this->getTag('trigger_id',$this->getTag('trigger')));
+		$this->setRealTriggerValue($this->getTag('trigger_value'));
 		foreach (($this->getElement()) as $element) {
 			if (!$this->getDo()) {
 				break;
@@ -1630,6 +1643,7 @@ class scenario {
 
 	public function addTag($_key,$value){
 		$tag = $this->getTags();
+		$_key = '#'.trim($_key,'#').'#';
 		$tag[$_key] = $value;
 		$this->setTags($tag);
 	}

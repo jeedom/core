@@ -1215,12 +1215,6 @@ class scenarioExpression {
 				case '#IP#':
 					$return[$tag] = network::getNetworkAccess('internal', 'ip', '', false);
 					break;
-				case '#trigger#':
-					$return[$tag] = '';
-					break;
-				case '#triggerValue#':
-					$return[$tag] = '';
-					break;
 				case '#latitude#':
 					$return[$tag] = config::byKey('info::latitude');
 					break;
@@ -1279,17 +1273,6 @@ class scenarioExpression {
 		$replace1 = self::getRequestTags($_expression);
 		if ($_scenario !== null && count($_scenario->getTags()) > 0) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
-		}
-
-		if (is_object($_scenario)) {
-			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
-			if (is_object($cmd)) {
-				$replace1['#trigger#'] = $cmd->getHumanName();
-				$replace1['#trigger_value#'] = $cmd->execCmd();
-				$replace1['#triggerValue#'] = $cmd->execCmd();
-			} else {
-				$replace1['#trigger#'] = $_scenario->getRealTrigger();
-			}
 		}
 		if ($_quote) {
 			foreach ($replace1 as &$value) {
