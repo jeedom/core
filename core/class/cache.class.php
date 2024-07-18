@@ -516,6 +516,9 @@ class FileCache {
 	}
 
 	public static function delete($_key){
+		if(!file_exists(jeedom::getTmpFolder('cache').'/'.base64_encode($_key))){
+			return;
+		}
 		unlink(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
 	}
 
