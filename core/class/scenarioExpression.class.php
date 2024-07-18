@@ -1592,9 +1592,13 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch();
 							} else {
-								return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
+								$actionScenario->addTag('other','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch();
 							}
 							break;
 						case 'startsync':
@@ -1611,9 +1615,13 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName(), true);
+								$actionScenario->addTag('trigger','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch(true);
 							} else {
-								return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'], true);
+								$actionScenario->addTag('other','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch(true);
 							}
 							break;
 						case 'stop':

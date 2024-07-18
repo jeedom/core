@@ -287,12 +287,12 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 - ``#IP#`` : IP interne de Jeedom.
 - ``#hostname#`` : Nom de la machine Jeedom.
 - ``#jeedomName#`` : Nom du Jeedom.
-- ``#trigger#`` (déprecié, mieux vaut utiliser ``trigger()``) : Peut être le nom de la commande qui a déclenché le scénario :
+- ``#trigger#`` : Peut être le nom de la commande qui a déclenché le scénario :
   - ``api`` si le lancement a été déclenché par l'API,
   - ``schedule`` s'il a été lancé par une programmation,
   - ``user`` s'il a été lancé manuellement,
   - ``start`` pour un lancement au démarrage de Jeedom.
-- ``#triggerValue#`` (déprecié, mieux vaut utiliser triggerValue()) : Pour la valeur de la commande ayant déclenché le scénario
+- ``#triggerValue#`` : Pour la valeur de la commande ayant déclenché le scénario
 - ``#latitude#`` : Permet de récuperer l'information de latitude mise dans la configuration de jeedom
 - ``#longitude#`` : Permet de récuperer l'information de longitude mise dans la configuration de jeedom
 - ``#altitude#`` : Permet de récuperer l'information de altitude mise dans la configuration de jeedom
@@ -432,8 +432,8 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 - ``rand(1,10)`` : Donne un nombre aléatoire de 1 à 10.
 - ``randText(texte1;texte2;texte…​..)`` : Permet de retourner un des textes aléatoirement (séparer les texte par un ; ). Il n’y a pas de limite dans le nombre de texte.
 - ``randomColor(min,max)`` : Donne une couleur aléatoire comprise entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu).
-- ``trigger(commande)`` : Permet de connaître le déclencheur du scénario ou de savoir si c’est bien la commande passée en paramètre qui a déclenché le scénario.
-- ``triggerValue()`` : Permet de connaître la valeur du déclencheur du scénario.
+- ``trigger(commande)`` : Permet de connaître le déclencheur du scénario ou de savoir si c’est bien la commande passée en paramètre qui a déclenché le scénario. **=> Deprecated il vaut mieux utiliser le tag #trigger#**
+- ``triggerValue()`` : Permet de connaître la valeur du déclencheur du scénario. **=> Deprecated il vaut mieux utiliser le tag #triggerValue#**
 - ``round(valeur,[decimal])`` : Donne un arrondi au-dessus, [decimal] nombre de décimales après la virgule.
 - ``odd(valeur)`` : Permet de savoir si un nombre est impair ou non. Renvoie 1 si impair 0 sinon.
 - ``median(commande1,commande2…​.commandeN)`` : Renvoie la médiane des valeurs.
@@ -450,9 +450,7 @@ Et les exemples pratiques :
 | Exemple de fonction                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
-| ``randomColor(40,60)``                 | Retourne une couleur aléatoire  proche du vert.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 si c’est bien ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario sinon 0  |
-| ``triggerValue()`` | 80 si l’hydrométrie de ``#[Salle de bain][Hydrometrie][Humidité]#`` est de 80 % et que c'est ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario. Si le scénario n'a pas été déclenché par une commande, retourne `faux`.                         |
+| ``randomColor(40,60)``                 | Retourne une couleur aléatoire  proche du vert.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Renvoie 9 si le pourcentage d’humidité et 85                     |
 | ``odd(3)``                             | Renvoie 1                            |
 | ``median(15,25,20)``                   | Renvoie 20
