@@ -41,6 +41,16 @@ class queue {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	public static function byId($_id) {
+		$values = array(
+			'id' => $_id,
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+		FROM queue
+		WHERE id=:id';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
+
     public static function allQueueId() {
 		$sql = 'SELECT distinct(queueId) as queueId FROM queue';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
@@ -64,9 +74,9 @@ class queue {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM queue
         WHERE queueId=:queueId
-        ORDER BY createTime ASC
+        ORDER BY createTime ASC, id ASC
         LIMIT 1';
-		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
 

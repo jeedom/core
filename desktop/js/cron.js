@@ -19,13 +19,16 @@
 if (!jeeFrontEnd.cron) {
   jeeFrontEnd.cron = {
     cronDataTable: null,
+    queueDataTable: null,
     init: function() {
       window.jeeP = this
       this.tableCron = document.getElementById('table_cron')
       this.tableListener = document.getElementById('table_listener')
+      this.tableQueue = document.getElementById('table_queue')
       this.printCron()
       this.printListener()
       this.getDeamonState()
+      this.printQueue()
 
       //Global cron state:
       this.switchState()
@@ -277,15 +280,15 @@ if (!jeeFrontEnd.cron) {
       jeedom.queue.all({
         success: function(data) {
           domUtils.showLoading()
-          if (jeeFrontEnd.queue.queueDataTable) {
-            jeeFrontEnd.queue.queueDataTable.destroy()
-            delete jeeFrontEnd.queue.queueDataTable
+          if (jeeFrontEnd.cron.queueDataTable) {
+            jeeFrontEnd.cron.queueDataTable.destroy()
+            delete jeeFrontEnd.cron.queueDataTable
           }
           var table = document.getElementById('table_queue').querySelector('tbody')
           table.empty()
           for (var i in data) {
             let newRow = document.createElement("tr")
-            newRow.innerHTML = jeeP.addqueue(data[i])
+            newRow.innerHTML = jeeP.addQueue(data[i])
             newRow.setJeeValues(data[i], '.queueAttr')
             table.appendChild(newRow)
           }
@@ -348,11 +351,11 @@ if (!jeeFrontEnd.cron) {
       return tr
     },
     setQueueTable: function() {
-      if (jeeFrontEnd.queue.queueDataTable) {
-        jeeFrontEnd.queue.queueDataTable.destroy()
-        delete jeeFrontEnd.queue.queueDataTable
+      if (jeeFrontEnd.cron.queueDataTable) {
+        jeeFrontEnd.cron.queueDataTable.destroy()
+        delete jeeFrontEnd.cron.queueDataTable
       }
-      jeeFrontEnd.queue.queueDataTable = new DataTable(jeeFrontEnd.queue.tableQueue, {
+      jeeFrontEnd.cron.queueDataTable = new DataTable(jeeFrontEnd.cron.tableQueue, {
         columns: [
           { select: 0, sort: "asc" },
           { select: 8, sortable: false }
@@ -492,15 +495,6 @@ document.getElementById('table_cron')?.tBodies[0].addEventListener('click', func
     })
     return
   }
-
-  if (_target = event.target.closest('.displayQueue')) {
-    jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Détails de la queue}}",
-      contentUrl: 'index.php?v=d&modal=object.display&class=queue&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
-    })
-    return
-  }
 })
 
 document.getElementById('table_cron')?.tBodies[0].addEventListener('change', function(event) {
@@ -514,6 +508,22 @@ document.getElementById('table_cron')?.tBodies[0].addEventListener('change', fun
     return
   }
 })
+
+
+
+document.getElementById('table_queue')?.tBodies[0].addEventListener('click', function(event) {
+  // console.log('click:', event.target)
+  var _target = null
+  if (_target = event.target.closest('.displayQueue')) {
+    jeeDialog.dialog({
+      id: 'jee_modal',
+      title: "{{Détails de la queue}}",
+      contentUrl: 'index.php?v=d&modal=object.display&class=queue&id=' + _target.closest('tr').querySelector('span[data-l1key="id"]').innerHTML
+    })
+    return
+  }
+  
+});
 
 
 
