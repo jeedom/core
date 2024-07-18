@@ -1609,7 +1609,7 @@
           "null": "NO",
           "key": "",
           "default": null,
-          "extra": "auto_increment"
+          "extra": ""
         },
         {
           "name": "class",
