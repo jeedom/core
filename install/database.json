@@ -1629,7 +1629,7 @@
         },
         {
           "name": "arguments",
-          "type": "TEXT",
+          "type": "text",
           "null": "NO",
           "key": "",
           "default": null,
@@ -1645,7 +1645,7 @@
         },
         {
           "name": "options",
-          "type": "TEXT",
+          "type": "text",
           "null": "NO",
           "key": "",
           "default": null,
