@@ -40,12 +40,16 @@ class event {
 		);
 		$sql = 'INSERT INTO `event` SET `datetime`=:datetime, `name`=:name,`option`=:option';
 		DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
+		if($_clean){
+			self::cleanEvent();
+		}
 	}
 
 	public static function adds($_event, $_values = array()) {
 		foreach ($_values as $option) {
 			self::add($_event,$option,false);
 		}
+		self::cleanEvent();
 	}
 
 	public static function cleanEvent() {
@@ -96,7 +100,6 @@ class event {
 	}
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
-		self::cleanEvent();
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return) > 0) {
 			return array('datetime' => getmicrotime(), 'result'=> utils::o2a($return));
