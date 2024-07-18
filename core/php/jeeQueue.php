@@ -66,7 +66,6 @@ try {
                 $queue->setCache('numberFailed',$queue->getCache('numberFailed',0)+1);
                 die();
             }
-            
         } else {
             $queue->setState('Not found');
             $queue->setPID();

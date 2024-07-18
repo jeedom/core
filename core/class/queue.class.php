@@ -103,8 +103,8 @@ class queue {
         }
         $queueIds = self::allQueueId();
         foreach ($queueIds as $queueId) {
-            log::add('queue','debug',__('Recherche des actions à faire pour '.$queueId,__FILE__));
-            $queue = self::firstByQueueId($queueId);
+            log::add('queue','debug',__('Recherche des actions à faire pour '.$queueId['queueId'],__FILE__));
+            $queue = self::firstByQueueId($queueId['queueId']);
             if(!$queue->canRun()){
                 continue;
             }
@@ -206,7 +206,7 @@ class queue {
 
     public function running() {
 		if (($this->getState() == 'run' || $this->getState() == 'stoping') && $this->getPID() > 0) {
-			if (posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(@file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'cron_id=' . $this->getId()) !== false)) {
+			if (posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(@file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'queue_id=' . $this->getId()) !== false)) {
 				return true;
 			}
 		}
@@ -253,6 +253,15 @@ class queue {
         }
         return $this->getFunction();
     }
+
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		$return['state'] = $this->getState();
+		$return['lastRun'] = $this->getLastRun();
+		$return['pid'] = $this->getPID();
+		$return['runtime'] = $this->getCache('runtime');
+		return $return;
+	}
 
     /*     * **********************Getteur Setteur*************************** */
 
@@ -367,7 +376,7 @@ class queue {
 	}
 
 	public function setCache($_key, $_value = null) {
-		cache::set('queueCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cronCacheAttr' . $this->getId())->getValue(), $_key, $_value));
+		cache::set('queueCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('queueCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
 }
