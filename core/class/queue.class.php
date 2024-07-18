@@ -267,11 +267,11 @@ class queue {
 	}
 
     
-    public function getQueuId() {
+    public function getQueueId() {
 		return $this->queueId;
 	}
 
-    public function setQueuId($_queueId) {
+    public function setQueueId($_queueId) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->queueId,$_queueId);
 		$this->queueId = $_queueId;
 		return $this;
