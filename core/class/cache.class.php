@@ -208,26 +208,29 @@ class cache {
 		if(in_array($engine,array('MariadbCache','FileCache'))){
 			$engine::clean();
 		}
+		$cleanCaches = array(
+			'eqLogicCacheAttr' => 'eqLogic',
+			'cmdCacheAttr' => 'cmd',
+			'cronCacheAttr' => 'cron',
+			'scenarioCacheAttr' => 'scenario',
+			'objectCacheAttr' => 'jeeObject',
+		);
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			$caches = $engine::all();
 			foreach ($caches as $cache) {
 				$matches = null;
-				preg_match_all('/camera(\d*)(.*?)/',  $cache->getKey(), $matches);
-				if (isset($matches[1][0])) {
-					if (!is_numeric($matches[1][0])) {
+				foreach ($cleanCaches as $key => $class) {
+					if (strpos($cache->getKey(), $key) !== false) {
+						$id = str_replace($key, '', $cache->getKey());
+						$cmd = $class::byId($id);
+						if (!is_object($cmd)) {
+							$cache->remove();
+						}
 						continue;
 					}
-					$object = eqLogic::byId($matches[1][0]);
-					if (!is_object($object)) {
-						cache::delete($cache->getKey());
-					}
 				}
-				if (strpos($cache->getKey(), 'cmd') !== false) {
-					$id = str_replace('cmd', '', $cache->getKey());
-					if (is_numeric($id)) {
-						cache::delete($cache->getKey());
-					}
-					continue;
+				if (strpos($cache->getKey(), 'scenarioInstanceAttr') !== false && (strtotime($cache->getDatetime()) + 300) < strtotime('now')) {
+					$cache->remove();
 				}
 				preg_match_all('/dependancy(.*)/', $cache->getKey(), $matches);
 				if (isset($matches[1][0])) {
@@ -274,13 +277,6 @@ class cache {
 				if (!is_object($object)) {
 					cache::delete($key);
 				}
-			}
-			if (strpos($key, 'cmd') !== false) {
-				$id = str_replace('cmd', '', $key);
-				if (is_numeric($id)) {
-					cache::delete($key);
-				}
-				continue;
 			}
 			preg_match_all('/dependancy(.*)/', $key, $matches);
 			if (isset($matches[1][0])) {
