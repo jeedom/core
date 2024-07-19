@@ -64,11 +64,15 @@
         <div class="message"><?php echo date('Y-m-d H:i:s') ?></div>
     </div>
     <?php 
-        require_once __DIR__ . "/core/php/core.inc.php";
-        if(network::getUserLocation() == 'internal'){
-            echo '<div class="logs" id="logs">';
-            echo str_replace("\n","<br/>",file_get_contents(__DIR__.'/log/restore'));
-            echo '</div>';
+        try {
+            require_once __DIR__ . "/core/php/core.inc.php";
+            if(network::getUserLocation() == 'internal'){
+                echo '<div class="logs" id="logs">';
+                echo str_replace("\n","<br/>",file_get_contents(__DIR__.'/log/restore'));
+                echo '</div>';
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     ?>
     <script>
