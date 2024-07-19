@@ -111,7 +111,7 @@ try {
 			try {
 				if (config::byKey('core::repo::provider') == 'default') {
 					if(strpos('tag::',config::byKey('core::branch')) === 0){
-						$url = 'https://github.com/jeedom/core/archive/refs/tags/'.str_replace('tag::',config::byKey('core::branch')).'.zip';
+						$url = 'https://github.com/jeedom/core/archive/refs/tags/'.str_replace('tag::','',config::byKey('core::branch')).'.zip';
 					}else{
 						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
 					}
