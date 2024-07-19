@@ -1873,20 +1873,24 @@ $productName = config::byKey('product_name');
 													cache::set('core::branch::default::list',$lists,86400);
 												  }
                                                   if(isset($lists['branchs']) && is_array($lists['branchs'])){
-                                                      foreach ($lists['branchs'] as $branch) {
-                                                          if(in_array($branch['name'],array('V4-stable'))){
-                                                              continue;
-                                                          }
-                                                          echo '<option value="'.$branch['name'].'">'.$branch['name'].' {{(Pas de support)}}</option>';
-                                                      }
+													echo '<optgroup label="{{Branches}}">';
+													foreach ($lists['branchs'] as $branch) {
+														if(in_array($branch['name'],array('V4-stable'))){
+															continue;
+														}
+														echo '<option value="'.$branch['name'].'">'.$branch['name'].' {{(Pas de support)}}</option>';
+													}
+													echo '</optgroup>';
                                                   }
 												  if(isset($lists['tags']) && is_array($lists['tags'])){
+													echo '<optgroup label="{{Tags}}">';
 													foreach ($lists['tags'] as $tag) {
 														if(in_array($branch['name'],array('V4-stable'))){
 															continue;
 														}
-														echo '<option value="'.$tag['name'].'">{{Version}} '.$tag['name'].' {{(Pas de support)}}</option>';
+														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].' {{(Pas de support)}}</option>';
 													}
+													echo '</optgroup>';
 												}
                                               }
                                               ?>
