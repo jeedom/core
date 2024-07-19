@@ -12,7 +12,7 @@
   - Mysql : utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
   - Redis : réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
 
-- Jeedom liste maintenant toute les branches du repos github pour permettre de tester des fonctionnalitées en avance [LIEN](https://github.com/jeedom/core/issues/2500)
+- Jeedom liste maintenant toute les branches et tags du repos github pour permettre de tester des fonctionnalitées en avance ou de revenir à une version précdente du core (attention cela est trés risqué) [LIEN](https://github.com/jeedom/core/issues/2500)
 
 >**IMPORTANT**
 >
