@@ -39,7 +39,7 @@ try {
 
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
-		ajax::success(cache::remove(init('key')));
+		ajax::success(cache::delete(init('key')));
 	}
 
 	if (init('action') == 'flush') {
