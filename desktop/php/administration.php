@@ -1853,27 +1853,41 @@ $productName = config::byKey('product_name');
                                               <option value="V4-stable">{{Stable v4}}</option>
                                               <?php 
                                               if(config::byKey('core::repo::provider') == 'default'){
-                                                  $listBranch = cache::byKey('core::branch::default::list')->getValue();
-                                                  if(!is_array($listBranch)){
+                                                  $lists = cache::byKey('core::branch::default::list')->getValue();
+                                                  if(!isset($lists['branch']) || !is_array($lists['branch'])){
                                                       $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
-                                                      $request_http->setHeader(array(
-                                                          'User-agent: jeedom',
-                                                      ));
+                                                      $request_http->setHeader(array('User-agent: jeedom'));
                                                       try {
-                                                          $listBranch = json_decode($request_http->exec(10, 1), true);
-                                                          cache::set('core::branch::default::list',$listBranch,86400);
+                                                        $lists['branchs'] = json_decode($request_http->exec(10, 1), true);
                                                       } catch (\Exception $e) {
-
                                                       }
+													  cache::set('core::branch::default::list',$lists,86400);
                                                   }
-                                                  if(is_array($listBranch)){
-                                                      foreach ($listBranch as $branch) {
+												  if(!isset($lists['tags']) || !is_array($lists['tags'])){
+													$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
+													$request_http->setHeader(array('User-agent: jeedom'));
+													try {
+														$lists['tags'] = json_decode($request_http->exec(10, 1), true);
+													} catch (\Exception $e) {
+													}
+													cache::set('core::branch::default::list',$lists,86400);
+												  }
+                                                  if(isset($lists['branch']) && is_array($lists['branch'])){
+                                                      foreach ($lists['branch'] as $branch) {
                                                           if(in_array($branch['name'],array('V4-stable'))){
                                                               continue;
                                                           }
                                                           echo '<option value="'.$branch['name'].'">'.$branch['name'].' {{(Pas de support)}}</option>';
                                                       }
                                                   }
+												  if(isset($lists['tags']) && is_array($lists['tags'])){
+													foreach ($lists['tags'] as $tag) {
+														if(in_array($branch['name'],array('V4-stable'))){
+															continue;
+														}
+														echo '<option value="'.$tag['name'].'">{{Version}} '.$tag['name'].' {{(Pas de support)}}</option>';
+													}
+												}
                                               }
                                               ?>
                                           </select>
