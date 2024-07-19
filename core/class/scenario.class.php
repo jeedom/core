@@ -949,8 +949,6 @@ class scenario {
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
-		$this->setRealTrigger($this->getTag('trigger_id',$this->getTag('trigger')));
-		$this->setRealTriggerValue($this->getTag('trigger_value'));
 		foreach (($this->getElement()) as $element) {
 			if (!$this->getDo()) {
 				break;
@@ -1650,10 +1648,16 @@ class scenario {
 
 	public function getTag($_key,$_default = ''){
 		$tag = $this->getTags();
-		if(!isset($tag[$_key])){
-			return $_default;
+		if(isset($tag[$_key])){
+			return $tag[$_key];
 		}
-		return $tag[$_key];
+		if(isset($tag[trim($_key,'#')])){
+			return $tag[trim($_key,'#')];
+		}
+		if(isset($tag['#'.trim($_key,'#').'#'])){
+			return $tag['#'.trim($_key,'#').'#'];
+		}
+		return $_default;
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -1981,40 +1985,7 @@ class scenario {
 		$this->configuration = $configuration;
 		return $this;
 	}
-	/**
-	 *
-	 * @return string
-	 */
-	public function getRealTrigger() {
-		return $this->_realTrigger;
-	}
-	/**
-	 *
-	 * @param string $_realTrigger
-	 * @return $this
-	 */
-	public function setRealTrigger($_realTrigger) {
-		$this->_realTrigger = $_realTrigger;
-		return $this;
-	}
-	/**
-	 *
-	 * @return string
-	 */
-	public function getRealTriggerValue() {
-		return $this->_realTriggerValue;
-	}
-	/**
-	 *
-	 * @param string $_realTriggerValue
-	 * @return $this
-	 */
-	public function setRealTriggerValue($_realTriggerValue) {
-		$this->_realTriggerValue = $_realTriggerValue;
-		return $this;
-	}
-
-
+	
 	/**
 	 * getReturn
 	 *

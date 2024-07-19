@@ -930,7 +930,7 @@ class scenarioExpression {
 		$limit = 60;
 		$during = jeedom::evaluateExpression($_during);
 		$limit = (is_numeric($during)) ? $during : 60;
-		$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+		$cmd = cmd::byId(str_replace('#', '', $_scenario->getTag('trigger')));
 		if (!is_object($cmd)) {
 			return -1;
 		}
@@ -950,7 +950,7 @@ class scenarioExpression {
 
 	public static function triggerId(&$_scenario = null) {
 		if ($_scenario !== null) {
-			return str_replace('#', '', $_scenario->getRealTrigger());
+			return str_replace('#', '', $_scenario->getTag('trigger'));
 		}
 		return 0;
 	}
@@ -958,9 +958,9 @@ class scenarioExpression {
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
-				return str_replace('#', '', jeedom::toHumanReadable($_scenario->getRealTrigger()));
+				return str_replace('#', '', jeedom::toHumanReadable($_scenario->getTag('trigger')));
 			}
-			if ($_name == $_scenario->getRealTrigger()) {
+			if ($_name == jeedom::toHumanReadable($_scenario->getTag('trigger'))) {
 				return 1;
 			}
 		}
@@ -969,7 +969,7 @@ class scenarioExpression {
 
 	public static function triggerValue(&$_scenario = null) {
 		if ($_scenario !== null) {
-			return $_scenario->getRealTriggerValue();
+			return $_scenario->getTag('trigger_value');
 		}
 		return false;
 	}
