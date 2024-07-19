@@ -1850,7 +1850,9 @@ $productName = config::byKey('product_name');
 									<div class="col-lg-3 col-md-4 col-xs-5">
                                       <div class="input-group">
                                           <select class="form-control configKey" data-l1key="core::branch">
-                                              <option value="V4-stable">{{Stable v4}}</option>
+										  	  <optgroup label="{{Defaut (support)}}">
+                                              	<option value="V4-stable">{{Stable v4}}</option>
+											  </optgroup>
                                               <?php 
                                               if(config::byKey('core::repo::provider') == 'default'){
                                                   $lists = cache::byKey('core::branch::default::list')->getValue();
@@ -1873,22 +1875,22 @@ $productName = config::byKey('product_name');
 													cache::set('core::branch::default::list',$lists,86400);
 												  }
                                                   if(isset($lists['branchs']) && is_array($lists['branchs'])){
-													echo '<optgroup label="{{Branches}}">';
+													echo '<optgroup label="{{Branches (Pas de support)}}">';
 													foreach ($lists['branchs'] as $branch) {
 														if(in_array($branch['name'],array('V4-stable'))){
 															continue;
 														}
-														echo '<option value="'.$branch['name'].'">'.$branch['name'].' {{(Pas de support)}}</option>';
+														echo '<option value="'.$branch['name'].'">'.$branch['name'].'</option>';
 													}
 													echo '</optgroup>';
                                                   }
 												  if(isset($lists['tags']) && is_array($lists['tags'])){
-													echo '<optgroup label="{{Tags}}">';
+													echo '<optgroup label="{{Tags (Pas de support)}}">';
 													foreach ($lists['tags'] as $tag) {
 														if(in_array($branch['name'],array('V4-stable'))){
 															continue;
 														}
-														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].' {{(Pas de support)}}</option>';
+														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
 													}
 													echo '</optgroup>';
 												}
