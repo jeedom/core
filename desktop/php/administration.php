@@ -1848,11 +1848,39 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 									</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
-										<select class="form-control configKey" data-l1key="core::branch">
-											<option value="V4-stable">{{Stable v4}}</option>
-											<option value="beta">{{Beta (Pas de support)}}</option>
-											<option value="alpha">{{Alpha (Pas de support)}}</option>
-										</select>
+                                      <div class="input-group">
+                                          <select class="form-control configKey" data-l1key="core::branch">
+                                              <option value="V4-stable">{{Stable v4}}</option>
+                                              <?php 
+                                              if(config::byKey('core::repo::provider') == 'default'){
+                                                  $listBranch = cache::byKey('core::branch::default::list')->getValue();
+                                                  if(!is_array($listBranch)){
+                                                      $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
+                                                      $request_http->setHeader(array(
+                                                          'User-agent: jeedom',
+                                                      ));
+                                                      try {
+                                                          $listBranch = json_decode($request_http->exec(10, 1), true);
+                                                          cache::set('core::branch::default::list',$listBranch,86400);
+                                                      } catch (\Exception $e) {
+
+                                                      }
+                                                  }
+                                                  if(is_array($listBranch)){
+                                                      foreach ($listBranch as $branch) {
+                                                          if(in_array($branch['name'],array('V4-stable'))){
+                                                              continue;
+                                                          }
+                                                          echo '<option value="'.$branch['name'].'">'.$branch['name'].' {{(Pas de support)}}</option>';
+                                                      }
+                                                  }
+                                              }
+                                              ?>
+                                          </select>
+                                          <span class="input-group-btn">
+                                              <a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>
+                                          </span>
+                                      </div>
 									</div>
 								</div>
 								<div class="form-group">
