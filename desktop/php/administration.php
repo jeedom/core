@@ -856,6 +856,12 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline qui sont dans le futur}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
+								<a type="text" class="btn btn-sm btn-warning" id="bt_removeTimelineFuturEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
@@ -1217,6 +1223,12 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="history::allowFuture">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les historiques qui sont dans le futur}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
+								<a type="text" class="btn btn-sm btn-warning" id="bt_removeHistoryInFutur"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 							</div>
 						</div>
 					</fieldset>
