@@ -1854,7 +1854,7 @@ $productName = config::byKey('product_name');
                                               <?php 
                                               if(config::byKey('core::repo::provider') == 'default'){
                                                   $lists = cache::byKey('core::branch::default::list')->getValue();
-                                                  if(!isset($lists['branch']) || !is_array($lists['branch'])){
+                                                  if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
                                                       $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
                                                       $request_http->setHeader(array('User-agent: jeedom'));
                                                       try {
@@ -1872,8 +1872,8 @@ $productName = config::byKey('product_name');
 													}
 													cache::set('core::branch::default::list',$lists,86400);
 												  }
-                                                  if(isset($lists['branch']) && is_array($lists['branch'])){
-                                                      foreach ($lists['branch'] as $branch) {
+                                                  if(isset($lists['branchs']) && is_array($lists['branchs'])){
+                                                      foreach ($lists['branchs'] as $branch) {
                                                           if(in_array($branch['name'],array('V4-stable'))){
                                                               continue;
                                                           }
