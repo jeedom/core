@@ -419,9 +419,9 @@ class scenario {
 				if (is_object($_event)) {
 					$scenario_->addTag('trigger_name',trim($_event->getHumanName(),'#'));
 					$scenario_->addTag('trigger_id',$_event->getId());
-					$scenario_->addTag('trigger','cmd');
-				}else{
 					$scenario_->addTag('trigger',get_class($_event));
+				}else{
+					$scenario_->addTag('trigger',$_event);
 				}
 				if (is_array($_options) && count($_options) > 0) {
 					foreach ($_options as $key => $value) {
