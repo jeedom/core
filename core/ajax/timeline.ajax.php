@@ -55,6 +55,11 @@ try {
     unautorizedInDemo();
     ajax::success(timeline::listFolder());
   }
+
+  if (init('action') == 'removeEventInFutur') {
+    unautorizedInDemo();
+    ajax::success(timeline::removeEventInFutur());
+  }
   
   throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
   /*     * *********Catch exeption*************** */
