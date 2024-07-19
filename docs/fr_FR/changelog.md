@@ -12,6 +12,8 @@
   - Mysql : utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
   - Redis : réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
 
+- [DEV] Mise en place d'un systeme de queue pour l'éxecution d'action [LIEN](https://github.com/jeedom/core/issues/2489)
+
 >**IMPORTANT**
 >
 > Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
