@@ -12,6 +12,22 @@
   - Mysql : utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
   - Redis : réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
 
+- Les tags des scénarios sont maintenant propre a l'instance du scénario (si vous avez deux lancement très proche de scénario les tags du derniers n'écrase plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
+- Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` est maintenant deprecated et sera retiré dans les futurs mises a jour du core
+  - ``trigger()`` est maintenant deprecated et sera retiré dans les futurs mises a jour du core
+  - ``triggerValue()`` est maintenant deprecated et sera retiré dans les futurs mises a jour du core
+  - ``#trigger#`` : Peut être :
+    - ``api`` si le lancement a été déclenché par l'API,
+    - ``TYPEcmd`` si le lancement a été déclenché par une commande, avec TYPE remplacé l'id du plugin (ex virtualCmd),
+    - ``schedule`` s'il a été lancé par une programmation,
+    - ``user`` s'il a été lancé manuellement,
+    - ``start`` pour un lancement au démarrage de Jeedom.
+  - ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché
+  - ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande])
+  - ``#trigger_value#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario
+
+
 >**IMPORTANT**
 >
 > Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver

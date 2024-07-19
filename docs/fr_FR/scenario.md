@@ -289,7 +289,7 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 - ``#jeedomName#`` : Nom du Jeedom.
 - ``#trigger#`` : Peut être :
   - ``api`` si le lancement a été déclenché par l'API,
-  - ``cmd`` si le lancement a été déclenché par l'API,
+  - ``TYPEcmd`` si le lancement a été déclenché par une commande, avec TYPE remplacé l'id du plugin (ex virtualCmd),
   - ``schedule`` s'il a été lancé par une programmation,
   - ``user`` s'il a été lancé manuellement,
   - ``start`` pour un lancement au démarrage de Jeedom.
