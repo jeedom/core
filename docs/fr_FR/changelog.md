@@ -63,6 +63,8 @@
 
 - Ajout d'un nom d'affichage (display name) pour les objets [LIEN](https://github.com/jeedom/core/issues/2484)
 
+- Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur [LIEN](https://github.com/jeedom/core/issues/2415)
+
 >**IMPORTANT**
 >
 > Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même. Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur. A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur.
