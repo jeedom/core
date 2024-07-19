@@ -110,7 +110,11 @@ try {
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
 				if (config::byKey('core::repo::provider') == 'default') {
-					$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
+					if(strpos('tag::',config::byKey('core::branch')) === 0){
+						$url = 'https://github.com/jeedom/core/archive/refs/tags/'.str_replace('tag::',config::byKey('core::branch')).'.zip';
+					}else{
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
+					}
 					echo "Download url : " . $url . "\n";
 					echo "Download in progress...";
 					if (!is_writable($tmp_dir)) {
