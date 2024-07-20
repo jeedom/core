@@ -1248,6 +1248,10 @@ class jeedom {
 		} catch (Error $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
+		$disk_space = self::checkSpaceLeft();
+		if($disk_space < 10){
+			log::add('jeedom', 'error',__('Espace disque disponible faible : ',__FILE__).$disk_space.'%.'.__('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)',__FILE__));
+		}
 	}
 
 	public static function cronHourly() {
