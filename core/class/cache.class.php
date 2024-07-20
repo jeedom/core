@@ -110,7 +110,6 @@ class cache {
 			}
 			return $cache;
 		}
-
 		// Try/catch/debug to address issue https://github.com/jeedom/core/issues/2426
 		try {
 			$cache = self::getCache()->fetch($_key);
@@ -124,6 +123,10 @@ class cache {
 				->setDatetime(date('Y-m-d H:i:s'));
 		}
 		return $cache;
+	}
+
+	public static function exist(){
+		return (self::byKey($_key)->getValue() !== null);
 	}
 
 	public static function flush() {
