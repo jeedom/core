@@ -1404,7 +1404,7 @@ class scenarioExpression {
 		}
 		$this->checkBackground();
 		if ($this->getOptions('background', 0) == 1) {
-			$key = 'scenarioElement'.$this->getId() . config::genKey(16).strtotime('now');
+			$key = 'scenarioElement'.$this->getId().'::' . config::genKey(16).'::'.strtotime('now');
 			cache::set($key, array('scenarioExpression' => $this, 'scenario' => $scenario), 60);
 			$cmd = __DIR__ . '/../php/jeeScenarioExpression.php';
 			$cmd .= ' key=' . $key;
