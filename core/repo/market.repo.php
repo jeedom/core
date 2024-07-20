@@ -238,11 +238,11 @@ class repo_market {
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
-		foreach ($child->response as $files) {
-			if($files->propstat->prop->getcontenttype){
+		foreach ($child->response as $file) {
+			if($file->propstat->prop->getcontenttype){
 				continue;
 			}
-			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$files->href),'/'));
+			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$file->href),'/'));
 			if($folder == ''){
 				continue;
 			}
@@ -307,40 +307,18 @@ class repo_market {
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
-		$folders = array();
-		foreach ($child->response as $files) {
-			if($files->propstat->prop->getcontenttype){
-				continue;
-			}
-			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$files->href),'/'));
-			if($folder == ''){
-				continue;
-			}
-			$folders[] = $folder;
-		}
 		$total_size = 0;
-		$files = array();
-		foreach ($folders as $folder) {
-			$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode($folder),config::byKey('market::username'),config::byKey('market::password'));
-			$request_http->setCURLOPT(array(
-					CURLOPT_CUSTOMREQUEST => "PROPFIND"
-			));
-			$xml = simplexml_load_string($request_http->exec());
-			$ns = $xml->getNamespaces(true);
-			$child = $xml->children($ns['D']);
-			$result = array();
-			foreach ($child->response as $file) {
-				if(!$file->propstat->prop->getcontenttype){
-					continue;
-				}
-				$files[] = array(
-					'folder' => $folder,
-					'name' => (string) $file->propstat->prop->displayname,
-					'size' => (int) $file->propstat->prop->getcontentlength,
-					'timestamp' => strtotime($file->propstat->prop->getlastmodified)
-				);
-				$total_size += $file->propstat->prop->getcontentlength;
+		foreach ($child->response as $file) {
+			if(!$file->propstat->prop->getcontenttype){
+				continue;
 			}
+			$files[] = array(
+				'href' => (string) $file->href,
+				'name' => (string) $file->propstat->prop->displayname,
+				'size' => (int) $file->propstat->prop->getcontentlength,
+				'timestamp' => strtotime($file->propstat->prop->getlastmodified)
+			);
+			$total_size += $file->propstat->prop->getcontentlength;
 		}
 		if (($total_size / 1024 / 1024) < $limit - (filesize($_path) / 1024 / 1024)) {
 			return;
@@ -355,9 +333,8 @@ class repo_market {
 				throw new \Exception(__('Pas assez de place et aucun backup à supprimer', __FILE__));
 			}
 			$file = array_shift($files);
-			$path = $file['folder'].'/'.$file['name'];
-			echo __('Supression du backup cloud :', __FILE__) . ' ' . $path . "\n";
-			$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode($path),config::byKey('market::username'),config::byKey('market::password'));
+			echo __('Supression du backup cloud :', __FILE__) . ' ' . $file['name'] . "\n";
+			$request_http = new com_http($file['href'],config::byKey('market::username'),config::byKey('market::password'));
 			$request_http->setCURLOPT(array(
 					CURLOPT_CUSTOMREQUEST => "DELETE"
 			));
