@@ -5097,3 +5097,24 @@ div.eqLogic-widget.editingMode .panelLink {
     }
 
   }
+
+  .filter-input {
+    position: relative;
+    display: inline-block;
+  }
+  .filter-input input[type="text"] {
+    width: 100% !important;
+  }
+  .filter-input .clear-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: gray;
+  }
+  .filter-input input[type="text"]:valid + .clear-btn {
+    display: block;
+  }

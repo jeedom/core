@@ -352,8 +352,12 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 											<label class="drop-icon" for="drop-dashboard"><i class="fas fa-chevron-down fa-2x"></i></label>
 										</a>
 										<input type="checkbox" id="drop-dashboard">
-										<ul>
-											<?php
+										<ul id="bt_dashboardList">
+											<li class="filter-input">
+                                              <input type="text" id="bt_dashboardFilter" placeholder="{{Filtre des objets}}">
+                                              <span class="clear-btn" id="dashboardClearFilter"><i class="fas fa-times"></i></span>
+                                            </li>
+                                            <?php
 											$echo = '';
 											foreach ((jeeObject::buildTree(null, false)) as $object_li) {
 												$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';
@@ -375,7 +379,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 											$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon', '<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 										}
 										if ($echo != '') {
-											echo '<ul>' . $echo . '</ul>';
+											echo '<ul id="bt_viewList"><li class="filter-input"><input type="text" id="bt_viewFilter" placeholder="{{Filtre des vues}}"><span class="clear-btn" id="viewClearFilter"><i class="fas fa-times"></i></span></li>' . $echo . '</ul>';
 										}
 										?>
 									</li>
@@ -392,7 +396,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 											$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon', '<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
-											echo '<ul>' . $echo . '</ul>';
+											echo '<ul id="bt_planList"><li class="filter-input"><input type="text" id="bt_planFilter" placeholder="{{Filtre des designs}}"><span class="clear-btn" id="planClearFilter"><i class="fas fa-times"></i></span></li>' . $echo . '</ul>';
 										}
 										?>
 									</li>
@@ -409,7 +413,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 											$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
 										}
 										if ($echo != '') {
-											echo '<ul>' . $echo . '</ul>';
+											echo '<ul id="bt_plan3DList"><li class="filter-input"><input type="text" id="bt_plan3DFilter" placeholder="{{Filtre des designs 3D}}"><span class="clear-btn" id="plan3DClearFilter"><i class="fas fa-times"></i></span></li>' . $echo . '</ul>';
 										}
 										?>
 									</li>
