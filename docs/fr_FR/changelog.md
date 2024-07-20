@@ -16,6 +16,8 @@
 - Correction d'un bug javascript sur les boutons dans les modal [LIEN](https://github.com/jeedom/core/pull/2734)
 - Correction d'un bug sur le nombre de message lors de la suppression de tous les message [LIEN](https://github.com/jeedom/core/issues/2735)
 - Exclusion du répertoire venv des backups [LIEN](https://github.com/jeedom/core/pull/2736)
+- Correction d'un bug sur la page de configuration avancée d'une commande ou le champs pour choisir le dossier de la timeline n'apparaissait pas [LIEN](https://github.com/jeedom/core/issues/2547)
+- Correction d'un bug sur la fenetre de selection d'une commande suite a la sauvegarde d'un équipement [LIEN](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 
