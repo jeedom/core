@@ -7,7 +7,6 @@
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
 - On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
 - Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)
-- Fixed a bug on the advanced configuration page of a command where the field to choose the timeline folder did not appear [LINK](https://github.com/jeedom/core/issues/2547)
 - Creation (in beta) of a new cache system [LINK](https://github.com/jeedom/core/pull/2758) :
   - File : system identical to that of before but taken internally to avoid dependencies on a third party lib. The most efficient but saved every 30 minutes
   - Mysql : using a base cache table. The least efficient but saved in real time (no data loss possible)
@@ -23,7 +22,6 @@
 - When copying equipment, if the widget had a graphic in the background, it is correctly transformed [LINK](https://github.com/jeedom/core/issues/2540)
 - Adding tags #sunrise# and #sunset# in the scenarios to have the sunrise and sunset times [LINK](https://github.com/jeedom/core/pull/2725)
 - A plugin can now add fields in the advanced configuration of all jeedom equipment [LINK](https://github.com/jeedom/core/issues/2711)
-- Addition of an optional logicalId parameter when copying equipment [LINK](https://github.com/jeedom/core/pull/2715)
 - Improvement of the crons management system [LINK](https://github.com/jeedom/core/issues/2719)
 - Fixed a bug that could cause all information on the update page to be lost [LINK](https://github.com/jeedom/core/issues/2718)
 - Deleting fail2ban service status from Jeedom health [LINK](https://github.com/jeedom/core/issues/2721)
@@ -33,6 +31,8 @@
 - Fixed a javascript bug on buttons in modals [LINK](https://github.com/jeedom/core/pull/2734)
 - Fixed a bug on the number of messages when deleting all messages [LINK](https://github.com/jeedom/core/issues/2735)
 - Excluding the venv directory from backups [LINK](https://github.com/jeedom/core/pull/2736)
+- Fixed a bug on the advanced configuration page of a command where the field to choose the timeline folder did not appear [LINK](https://github.com/jeedom/core/issues/2547)
+- Fixed a bug in the command selection window following saving equipment [LINK](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 

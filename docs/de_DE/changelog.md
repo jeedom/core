@@ -7,7 +7,6 @@
 - Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
 - Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2740)
 - Ein Fehler beim Verlassen der Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
-- Es wurde ein Fehler auf der erweiterten Konfigurationsseite eines Befehls behoben, bei dem das Feld zur Auswahl des Timeline-Ordners nicht angezeigt wurde [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2547)
 - Erstellung (in Beta) eines neuen Cache-Systems [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2758) :
   - Datei : System identisch mit dem vorherigen, aber intern übernommen, um Abhängigkeiten von einer Drittanbieter-Bibliothek zu vermeiden. Am effizientesten, aber alle 30 Minuten gespart
   - MySQL : Verwendung einer Basis-Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
@@ -23,7 +22,6 @@
 - Wenn beim Kopieren von Geräten das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2540)
 - Tags hinzufügen #sunrise# und #sunset# in den Szenarien, um die Zeiten für Sonnenaufgang und Sonnenuntergang zu haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2725)
 - Ein Plugin kann jetzt Felder in der erweiterten Konfiguration aller Jeedom-Geräte hinzufügen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2711)
-- Hinzufügung eines optionalen logicalId-Parameters beim Kopieren von Geräten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2715)
 - Verbesserung des Crons-Managementsystems [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2719)
 - Es wurde ein Fehler behoben, der dazu führen konnte, dass alle Informationen auf der Update-Seite verloren gingen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2718)
 - Fail2ban-Dienststatus wird aus dem Jeedom-Zustand gelöscht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2721)
@@ -33,6 +31,8 @@
 - Ein Javascript-Fehler bei Schaltflächen in Modalitäten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2734)
 - Ein Fehler bei der Anzahl der Nachrichten beim Löschen aller Nachrichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2735)
 - Ausschließen des venv-Verzeichnisses von Sicherungen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2736)
+- Es wurde ein Fehler auf der erweiterten Konfigurationsseite eines Befehls behoben, bei dem das Feld zur Auswahl des Timeline-Ordners nicht angezeigt wurde [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2547)
+- Ein Fehler im Auftragsauswahlfenster nach dem Speichern von Ausrüstung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 

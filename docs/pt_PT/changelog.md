@@ -7,7 +7,6 @@
 - O preço do plugin fica oculto se você já o comprou [LINK](https://github.com/jeedom/core/pull/2746)
 - Na página de login possibilidade de exibir ou nomear a senha [LINK](https://github.com/jeedom/core/pull/2740)
 - Corrigido bug ao sair da página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
-- Corrigido bug na página de configuração avançada de um comando onde não aparecia o campo para escolha da pasta da linha do tempo [LINK](https://github.com/jeedom/core/issues/2547)
 - Criação (em beta) de um novo sistema de cache [LINK](https://github.com/jeedom/core/pull/2758) :
   - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
   - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
@@ -23,7 +22,6 @@
 - Ao copiar um equipamento, se o widget possui um gráfico em segundo plano, ele é corretamente transformado [LINK](https://github.com/jeedom/core/issues/2540)
 - Adicionando tags #sunrise# e #sunset# nos cenários para ter os horários do nascer e do pôr do sol [LINK](https://github.com/jeedom/core/pull/2725)
 - Um plugin agora pode adicionar campos na configuração avançada de todos os equipamentos jeedom [LINK](https://github.com/jeedom/core/issues/2711)
-- Adição de um parâmetro opcional logicId ao copiar equipamentos [LINK](https://github.com/jeedom/core/pull/2715)
 - Melhoria do sistema de gerenciamento de crons [LINK](https://github.com/jeedom/core/issues/2719)
 - Corrigido um bug que poderia causar a perda de todas as informações na página de atualização [LINK](https://github.com/jeedom/core/issues/2718)
 - Excluindo o status do serviço fail2ban do Jeedom Health [LINK](https://github.com/jeedom/core/issues/2721)
@@ -33,6 +31,8 @@
 - Corrigido um bug de javascript em botões em modais [LINK](https://github.com/jeedom/core/pull/2734)
 - Corrigido um bug no número de mensagens ao excluir todas as mensagens [LINK](https://github.com/jeedom/core/issues/2735)
 - Excluindo o diretório venv dos backups [LINK](https://github.com/jeedom/core/pull/2736)
+- Corrigido bug na página de configuração avançada de um comando onde não aparecia o campo para escolha da pasta da linha do tempo [LINK](https://github.com/jeedom/core/issues/2547)
+- Corrigido um bug na janela de seleção de comandos após salvar equipamentos [LINK](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 
