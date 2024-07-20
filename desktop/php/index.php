@@ -354,7 +354,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 										<input type="checkbox" id="drop-dashboard">
 										<ul id="bt_dashboardList">
 											<li class="filter-input">
-                                              <input type="text" id="bt_dashboardFilter" placeholder="{{Filtre des objets}}">
+                                              <input type="text" id="bt_dashboardFilter" placeholder="{{Filtre du dashboard}}">
                                               <span class="clear-btn" id="dashboardClearFilter"><i class="fas fa-times"></i></span>
                                             </li>
                                             <?php
