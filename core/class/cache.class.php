@@ -104,7 +104,7 @@ class cache {
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			$cache =  $engine::fetch($_key);
 			if (!is_object($cache)) {
-				$cache = (new self())
+				return (new self())
 					->setKey($_key)
 					->setDatetime(date('Y-m-d H:i:s'));
 			}
@@ -502,27 +502,23 @@ class FileCache {
 	}
 
 	public static function fetch($_key){
-		if(!file_exists(jeedom::getTmpFolder('cache').'/'.base64_encode($_key))){
-			return null;
-		}
-		$data = json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key)),true);
+		$data = @json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key)),true);
+        if($data === null){
+        	return null;
+        }
 		if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
 			self::delete($_key);
 			return null;
 		}
-		$cache = (new cache())
+		return (new cache())
 			->setKey($_key)
 			->setLifetime($data['lifetime'])
 			->setDatetime($data['datetime'])
 			->setValue($data['value']);
-		return $cache;
 	}
 
 	public static function delete($_key){
-		if(!file_exists(jeedom::getTmpFolder('cache').'/'.base64_encode($_key))){
-			return;
-		}
-		unlink(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
+		@unlink(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
 	}
 
 	public static function deleteAll(){
