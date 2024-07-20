@@ -7,6 +7,7 @@
 - O preço do plugin fica oculto se você já o comprou [LINK](https://github.com/jeedom/core/pull/2746)
 - Na página de login possibilidade de exibir ou nomear a senha [LINK](https://github.com/jeedom/core/pull/2740)
 - Corrigido bug ao sair da página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
+- Corrigido bug na página de configuração avançada de um comando onde não aparecia o campo para escolha da pasta da linha do tempo [LINK](https://github.com/jeedom/core/issues/2547)
 - Criação (em beta) de um novo sistema de cache [LINK](https://github.com/jeedom/core/pull/2758) :
   - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
   - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)

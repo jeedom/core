@@ -7,6 +7,7 @@
 - El precio del complemento está oculto si ya lo compró [ENLACE](https://github.com/jeedom/core/pull/2746)
 - En la página de inicio de sesión, posibilidad de mostrar o nombrar la contraseña [ENLACE](https://github.com/jeedom/core/pull/2740)
 - Se corrigió un error al salir de la página sin guardar [ENLACE](https://github.com/jeedom/core/pull/2745)
+- Se corrigió un error en la página de configuración avanzada de un comando donde no aparecía el campo para elegir la carpeta de la línea de tiempo [ENLACE](https://github.com/jeedom/core/issues/2547)
 - Creación (en beta) de un nuevo sistema de caché [ENLACE](https://github.com/jeedom/core/pull/2758) :
   - Archivo : sistema idéntico al anterior pero tomado internamente para evitar dependencias de una biblioteca de terceros. El más eficiente pero ahorrado cada 30 minutos
   - Mysql : usando una tabla de caché base. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))

@@ -777,6 +777,7 @@
         "Le prix du plugin est masqué si vous l'avez deja acheté": "Le prix du plugin est masqué si vous l'avez deja acheté",
         "Sur la page de connexion possibilité d'afficher ou nom le mot de passe": "Sur la page de connexion possibilité d'afficher ou nom le mot de passe",
         "Correction d'un bug lorsqu'on quitte la page sans avoir sauvegardé": "Correction d'un bug lorsqu'on quitte la page sans avoir sauvegardé",
+        "Correction d'un bug sur la page de configuration avancée d'une commande ou le champs pour choisir le dossier de la timeline n'apparaissait pas": "Correction d'un bug sur la page de configuration avancée d'une commande ou le champs pour choisir le dossier de la timeline n'apparaissait pas",
         "Création (en beta) d'un nouveau systeme de cache": "Création (en beta) d'un nouveau systeme de cache",
         "Fichier": "Fichier",
         "systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce": "systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce",

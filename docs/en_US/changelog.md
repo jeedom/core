@@ -7,6 +7,7 @@
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
 - On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
 - Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)
+- Fixed a bug on the advanced configuration page of a command where the field to choose the timeline folder did not appear [LINK](https://github.com/jeedom/core/issues/2547)
 - Creation (in beta) of a new cache system [LINK](https://github.com/jeedom/core/pull/2758) :
   - File : system identical to that of before but taken internally to avoid dependencies on a third party lib. The most efficient but saved every 30 minutes
   - Mysql : using a base cache table. The least efficient but saved in real time (no data loss possible)

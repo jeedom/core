@@ -1303,6 +1303,7 @@
         "Le prix du plugin est masqué si vous l'avez deja acheté": "O preço do plugin fica oculto se você já o comprou",
         "Sur la page de connexion possibilité d'afficher ou nom le mot de passe": "Na página de login possibilidade de exibir ou nomear a senha",
         "Correction d'un bug lorsqu'on quitte la page sans avoir sauvegardé": "Corrigido bug ao sair da página sem salvar",
+        "Correction d'un bug sur la page de configuration avancée d'une commande ou le champs pour choisir le dossier de la timeline n'apparaissait pas": "Corrigido bug na página de configuração avançada de um comando onde não aparecia o campo para escolha da pasta da linha do tempo",
         "Création (en beta) d'un nouveau systeme de cache": "Criação (em beta) de um novo sistema de cache",
         "systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce": "sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros",
         "Le plus performant mais sauvegardé toute les 30min": "O mais eficiente, mas economizado a cada 30 minutos",

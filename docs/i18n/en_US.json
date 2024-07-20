@@ -1303,6 +1303,7 @@
         "Le prix du plugin est masqué si vous l'avez deja acheté": "The price of the plugin is hidden if you have already purchased it",
         "Sur la page de connexion possibilité d'afficher ou nom le mot de passe": "On the login page possibility to display or name the password",
         "Correction d'un bug lorsqu'on quitte la page sans avoir sauvegardé": "Fixed a bug when leaving the page without saving",
+        "Correction d'un bug sur la page de configuration avancée d'une commande ou le champs pour choisir le dossier de la timeline n'apparaissait pas": "Fixed a bug on the advanced configuration page of a command where the field to choose the timeline folder did not appear",
         "Création (en beta) d'un nouveau systeme de cache": "Creation (in beta) of a new cache system",
         "systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce": "system identical to that of before but taken internally to avoid dependencies on a third party lib",
         "Le plus performant mais sauvegardé toute les 30min": "The most efficient but saved every 30 minutes",
