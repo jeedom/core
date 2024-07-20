@@ -445,17 +445,15 @@ class RedisCache {
 	}
 
 	public static function fetch($_key){
-		$value = self::getConnection()->get($_key);
-		if($value === false){
+		$data = json_decode(self::getConnection()->get($_key));
+		if($data === null){
 			return null;
 		}
-		$data = json_decode($value,true);
-		$cache = (new cache())
+		return (new cache())
 			->setKey($_key)
 			->setLifetime($data['lifetime'])
 			->setDatetime($data['datetime'])
 			->setValue($data['value']);
-		return $cache;
 	}
 
 	public static function delete($_key){
