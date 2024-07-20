@@ -294,9 +294,6 @@ class repo_market {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
-		}
 		$limit = 3700;
 		self::backup_createFolderIsNotExist();
 
@@ -350,9 +347,6 @@ class repo_market {
 	public static function backup_list() {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return array();
-		}
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
 		}
 		self::backup_createFolderIsNotExist();
 		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
