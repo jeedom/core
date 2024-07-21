@@ -304,7 +304,7 @@ class cache {
 	public function save() {
 		$engine = config::byKey('cache::engine');
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
-			return $engine::save($this->getKey(),$this->getValue(),$this->getLifetime());
+			return $engine::save($this);
 		}
 		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
@@ -410,11 +410,11 @@ class MariadbCache {
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW);
 	}
 
-	public static function save($_key, $_value, $_lifetime = -1){
+	public static function save($_cache){
 		$value = array(
-			'key' => $_key,
-			'value' => serialize($_value),
-			'lifetime' =>$_lifetime,
+			'key' => $_cache->getKey(),
+			'value' => serialize($_cache->getValue()),
+			'lifetime' =>$_cache->getLifetime(),
 			'datetime' => date('Y-m-d H:i:s')
 		);
 		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime';
@@ -451,12 +451,7 @@ class RedisCache {
 		if($data === false){
 			return null;
 		}
-		$data = unserialize($data);
-		return (new cache())
-			->setKey($_key)
-			->setLifetime($data['lifetime'])
-			->setDatetime($data['datetime'])
-			->setValue($data['value']);
+		return unserialize($data);
 	}
 
 	public static function delete($_key){
@@ -467,16 +462,11 @@ class RedisCache {
 		return  self::getConnection()->flushDb();
 	}
 
-	public static function save($_key, $_value, $_lifetime = -1){
-		$data = array(
-			'value' => $_value,
-			'lifetime' => $_lifetime,
-			'datetime' => date('Y-m-d H:i:s')
-		);
-		if($_lifetime > 0){
-			self::getConnection()->set($_key,serialize($data), $_lifetime);
+	public static function save($_cache){
+		if($_cache->getLifetime() > 0){
+			self::getConnection()->set($_cache->getKey(),serialize($_cache), $_cache->getLifetime());
 		}else{
-			self::getConnection()->set($_key,serialize($data));
+			self::getConnection()->set($_cache->getKey(),serialize($_cache));
 		}
 	}
 
@@ -494,8 +484,8 @@ class FileCache {
 
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
-			$data = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
-			if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
+			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
+			if($cache->getLifetime() > 0 && (strtotime($cache->getDatetime()) + $cache->getLifetime()) < strtotime('now')){
 				unlink(jeedom::getTmpFolder('cache').'/'.$file);
 			}
 		}
@@ -506,16 +496,12 @@ class FileCache {
         if($data === false){
         	return null;
         }
-	    $data = unserialize($data);
-		if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
+	    $cache = unserialize($data);
+		if($cache->getLifetime() > 0 && (strtotime($cache->getDatetime()) + $cache->getLifetime()) < strtotime('now')){
 			self::delete($_key);
 			return null;
 		}
-		return (new cache())
-			->setKey($_key)
-			->setLifetime($data['lifetime'])
-			->setDatetime($data['datetime'])
-			->setValue($data['value']);
+		return $cache;
 	}
 
 	public static function delete($_key){
@@ -526,11 +512,7 @@ class FileCache {
 		return shell_exec(system::getCmdSudo().' rm -rf '.jeedom::getTmpFolder('cache'));
 	}
 
-	public static function save($_key, $_value, $_lifetime = -1){
-		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key),serialize(array(
-			'value' => $_value,
-			'lifetime' => $_lifetime,
-			'datetime' => date('Y-m-d H:i:s')
-		)));
+	public static function save($_cache){
+		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_cache->getKey()),serialize($_cache));
 	}
 }
