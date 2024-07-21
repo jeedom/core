@@ -317,11 +317,11 @@ class queue {
 	}
 
     public function getArguments() {
-		return json_decode($this->arguments,true);
+		return unserialize($this->arguments);
 	}
 
 	public function setArguments($_arguments) {
-		$this->arguments = json_encode($_arguments, JSON_UNESCAPED_UNICODE);
+		$this->arguments = serialize($_arguments);
 		return $this;
 	}
 
