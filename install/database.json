@@ -260,7 +260,7 @@
         },
         {
           "name": "datetime",
-          "type": "datetime",
+          "type": "int(11)",
           "null": "YES",
           "key": "",
           "default": null,
