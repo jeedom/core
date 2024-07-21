@@ -302,11 +302,11 @@ class cache {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
+		$this->setDatetime(date('Y-m-d H:i:s'));
 		$engine = config::byKey('cache::engine');
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			return $engine::save($this);
 		}
-		$this->setDatetime(date('Y-m-d H:i:s'));
 		if ($this->getLifetime() == 0) {
 			return self::getCache()->save($this->getKey(), $this);
 		} else {
