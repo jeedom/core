@@ -39,11 +39,11 @@ class cache {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
 		}
-		$cache = (new self())
+		return (new self())
 			->setKey($_key)
 			->setValue($_value)
-			->setLifetime($_lifetime);
-		return $cache->save();
+			->setLifetime($_lifetime)
+		    ->save();
 	}
 
 	public static function delete($_key) {
