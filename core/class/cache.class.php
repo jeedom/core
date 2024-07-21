@@ -494,7 +494,7 @@ class FileCache {
 
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
-			$data = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file),true);
+			$data = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
 			if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
 				unlink(jeedom::getTmpFolder('cache').'/'.$file);
 			}
