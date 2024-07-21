@@ -370,7 +370,11 @@ class MariadbCache {
 	public static function all(){
 		$sql = 'SELECT `key`,`datetime`,`value`,`lifetime`
 		FROM cache';
-		return DB::Prepare($sql,array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS,'cache');
+		$results =  DB::Prepare($sql,array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS,'cache');
+		foreach ($results as $cache) {
+			$cache->setValue(unserialize($cache->getValue()));
+		}
+		return $results;
 	}
 
 	public static function clean(){
@@ -384,34 +388,32 @@ class MariadbCache {
 		$sql = 'SELECT `key`,`datetime`,`value`,`lifetime`
 		FROM cache
 		WHERE `key`=:key';
-		$return = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
-		if($return === false){
+		$cache = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
+		if($cache === false){
 			return null;
 		}
-		if($return->getLifetime() > 0 && (strtotime($return->getDatetime()) + $return->getLifetime()) < strtotime('now')){
+		if($cache->getLifetime() > 0 && (strtotime($cache->getDatetime()) + $cache->getLifetime()) < strtotime('now')){
 			return null;
 		}
-		return $return;
+		$cache->setValue(unserialize($cache->getValue()));
+		return $cache;
 	}
 
 	public static function delete($_key){
 		$sql = 'DELETE 
 		FROM cache
 		WHERE `key`=:key';
-		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW);
 	}
 
 	public static function deleteAll(){
-		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW);
 	}
 
 	public static function save($_key, $_value, $_lifetime = -1){
-		if(is_array($_value)){
-			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
-		}
 		$value = array(
 			'key' => $_key,
-			'value' => $_value,
+			'value' => serialize($_value),
 			'lifetime' =>$_lifetime,
 			'datetime' => date('Y-m-d H:i:s')
 		);
@@ -445,10 +447,11 @@ class RedisCache {
 	}
 
 	public static function fetch($_key){
-		$data = json_decode(self::getConnection()->get($_key));
-		if($data === null){
+		$data = self::getConnection()->get($_key);
+		if($data === false){
 			return null;
 		}
+		$data = unserialize($data);
 		return (new cache())
 			->setKey($_key)
 			->setLifetime($data['lifetime'])
@@ -471,14 +474,13 @@ class RedisCache {
 			'datetime' => date('Y-m-d H:i:s')
 		);
 		if($_lifetime > 0){
-			self::getConnection()->set($_key,json_encode($data, JSON_UNESCAPED_UNICODE), $_lifetime);
+			self::getConnection()->set($_key,serialize($data), $_lifetime);
 		}else{
-			self::getConnection()->set($_key,json_encode($data, JSON_UNESCAPED_UNICODE));
+			self::getConnection()->set($_key,serialize($data));
 		}
 	}
 
 }
-
 
 class FileCache {
 
@@ -492,7 +494,7 @@ class FileCache {
 
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
-			$data = json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file),true);
+			$data = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file),true);
 			if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
 				unlink(jeedom::getTmpFolder('cache').'/'.$file);
 			}
@@ -500,10 +502,11 @@ class FileCache {
 	}
 
 	public static function fetch($_key){
-		$data = @json_decode(file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key)),true);
-        if($data === null){
+		$data = file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
+        if($data === false){
         	return null;
         }
+	    $data = unserialize($data);
 		if($data['lifetime'] > 0 && (strtotime($data['datetime']) + $data['lifetime']) < strtotime('now')){
 			self::delete($_key);
 			return null;
@@ -524,11 +527,10 @@ class FileCache {
 	}
 
 	public static function save($_key, $_value, $_lifetime = -1){
-		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key),json_encode(array(
+		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key),serialize(array(
 			'value' => $_value,
 			'lifetime' => $_lifetime,
 			'datetime' => date('Y-m-d H:i:s')
-		), JSON_UNESCAPED_UNICODE));
+		)));
 	}
-
 }
