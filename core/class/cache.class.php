@@ -502,7 +502,7 @@ class FileCache {
 	}
 
 	public static function fetch($_key){
-		$data = file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
+		$data = @file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
         if($data === false){
         	return null;
         }
