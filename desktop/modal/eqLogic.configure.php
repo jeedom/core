@@ -75,6 +75,7 @@ sendVarToJS([
             <div class="col-sm-3">
               <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked>{{Activer}}</label>
               <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked>{{Visible}}</label>
+              <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="hideOnMain">{{Masquer sur la vue principale}}</label>
               <?php
               $class = new ReflectionClass($eqLogic->getEqType_name());
               $method_toHtml = $class->getMethod('toHtml');
