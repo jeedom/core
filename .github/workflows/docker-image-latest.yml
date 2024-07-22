@@ -4,7 +4,7 @@ on:
   push:
     # only trigger CI when push on following branches
     branches:
-      - 'V4-stable'
+      - 'master'
       - 'beta'
   # this is to manually trigger the worklow
   workflow_dispatch:

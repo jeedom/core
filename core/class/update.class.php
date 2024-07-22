@@ -497,7 +497,7 @@ class update {
 
 	public static function getLastAvailableVersion() {
 		try {
-			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'V4-stable') . '/core/config/version';
+			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec(30));
 		} catch (Exception $e) {

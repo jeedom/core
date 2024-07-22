@@ -1851,7 +1851,8 @@ $productName = config::byKey('product_name');
                                       <div class="input-group">
                                           <select class="form-control configKey" data-l1key="core::branch">
 										  	  <optgroup label="{{Defaut (support)}}">
-                                              	<option value="V4-stable">{{Stable v4}}</option>
+												<option value="master">{{Stable}}</option>
+                                              	<option value="V4-stable">{{Stable}}</option>
 											  </optgroup>
                                               <?php 
                                               if(config::byKey('core::repo::provider') == 'default'){
@@ -1877,7 +1878,7 @@ $productName = config::byKey('product_name');
                                                   if(isset($lists['branchs']) && is_array($lists['branchs'])){
 													echo '<optgroup label="{{Branches (Pas de support)}}">';
 													foreach ($lists['branchs'] as $branch) {
-														if(in_array($branch['name'],array('V4-stable'))){
+														if(in_array($branch['name'],array('V4-stable','master'))){
 															continue;
 														}
 														echo '<option value="'.$branch['name'].'">'.$branch['name'].'</option>';
@@ -1887,7 +1888,7 @@ $productName = config::byKey('product_name');
 												  if(isset($lists['tags']) && is_array($lists['tags'])){
 													echo '<optgroup label="{{Tags (Pas de support)}}">';
 													foreach ($lists['tags'] as $tag) {
-														if(in_array($branch['name'],array('V4-stable'))){
+														if(in_array($branch['name'],array('V4-stable','master'))){
 															continue;
 														}
 														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
