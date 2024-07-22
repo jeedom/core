@@ -11,6 +11,8 @@
   - Datei : System identisch mit dem vorherigen, aber intern übernommen, um Abhängigkeiten von einer Drittanbieter-Bibliothek zu vermeiden. Am effizientesten, aber alle 30 Minuten gespart
   - MySQL : Verwendung einer Basis-Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
   - Redis : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (erfordert die Installation von Redis selbst und der PHP-Redis-Abhängigkeiten))
+- Ein Fehler bei Ausrüstungswarnungen beim Löschen der alarmierten Bestellung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2775)
+- In der erweiterten Konfiguration besteht die Möglichkeit, ein Gerät auszublenden, wenn mehrere Objekte auf dem Dashboard angezeigt werden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2553)
 
 >**WICHTIG**
 >

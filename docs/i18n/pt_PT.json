@@ -1309,6 +1309,8 @@
         "utilisation d'une table de cache en base": "usando uma tabela de cache base",
         "Le moins performant mais sauvegardé en temps réel (aucune perte de données possible": "O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados",
         "réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis": "reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis",
+        "Correction d'un bug sur les alertes des équipements lors de la suppression de la commande en alerte": "Corrigido um bug nos alertas de equipamentos ao excluir o pedido alertado",
+        "Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets": "Possibilidade na configuração avançada de um equipamento de ocultá-lo ao exibir vários objetos no painel",
         "Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver": "Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo",
         "4.4.9": "4.4.9",
         "Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe": "Exibição aprimorada da lista de cenários ao atuar em cenários (adição de grupos",

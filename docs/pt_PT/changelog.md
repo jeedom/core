@@ -11,6 +11,8 @@
   - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
   - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
   - Redis : reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
+- Corrigido um bug nos alertas de equipamentos ao excluir o pedido alertado [LINK](https://github.com/jeedom/core/issues/2775)
+- Possibilidade na configuração avançada de um equipamento de ocultá-lo ao exibir vários objetos no painel [LINK](https://github.com/jeedom/core/issues/2553)
 
 >**IMPORTANTE**
 >

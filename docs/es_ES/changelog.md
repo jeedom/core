@@ -11,6 +11,8 @@
   - Archivo : sistema idéntico al anterior pero tomado internamente para evitar dependencias de una biblioteca de terceros. El más eficiente pero ahorrado cada 30 minutos
   - Mysql : usando una tabla de caché base. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
   - Redis : reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
+- Se corrigió un error en las alertas de equipos al eliminar la orden alertada [ENLACE](https://github.com/jeedom/core/issues/2775)
+- Posibilidad en la configuración avanzada de un equipo de ocultarlo al visualizar varios objetos en el salpicadero [ENLACE](https://github.com/jeedom/core/issues/2553)
 
 >**IMPORTANTE**
 >

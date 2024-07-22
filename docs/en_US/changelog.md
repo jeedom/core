@@ -11,6 +11,8 @@
   - File : system identical to that of before but taken internally to avoid dependencies on a third party lib. The most efficient but saved every 30 minutes
   - Mysql : using a base cache table. The least efficient but saved in real time (no data loss possible)
   - Redis : reserved for experts, relies on redis to manage the cache (requires you to install redis yourself and the php-redis dependencies)
+- Fixed a bug on equipment alerts when deleting the alerted order [LINK](https://github.com/jeedom/core/issues/2775)
+- Possibility in the advanced configuration of a piece of equipment to hide it when displaying several objects on the dashboard [LINK](https://github.com/jeedom/core/issues/2553)
 
 >**IMPORTANT**
 >
