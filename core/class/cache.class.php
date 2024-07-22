@@ -36,9 +36,6 @@ class cache {
 	}
 
 	public static function set($_key, $_value, $_lifetime = 0) {
-		if ($_lifetime < 0) {
-			$_lifetime = 0;
-		}
 		return (new self())
 			->setKey($_key)
 			->setValue($_value)
@@ -102,7 +99,7 @@ class cache {
 	public static function byKey($_key) {
 		$engine = config::byKey('cache::engine');
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
-			$cache =  $engine::fetch($_key);
+			$cache = $engine::fetch($_key);
 			if (!is_object($cache)) {
 				return (new self())
 					->setKey($_key)
@@ -350,6 +347,9 @@ class cache {
 	}
 
 	public function setLifetime($lifetime): self {
+		if ($lifetime < 0) {
+			$lifetime = 0;
+		}
 		$this->lifetime = intval($lifetime);
 		return $this;
 	}
@@ -497,6 +497,9 @@ class FileCache {
         	return null;
         }
 	    $cache = unserialize($data);
+		if(!is_object($cache)){
+			return null;
+		}
 		if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
 			self::delete($_key);
 			return null;
