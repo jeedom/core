@@ -1617,6 +1617,10 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
             if (icon == undefined) {
               icon = ''
             }
+            if(icon.indexOf('<img') === 0){
+              let height = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel img').naturalHeight
+              icon = icon.replace(/\<img/g, "<img style=\"height:"+height+"px\" ")
+            }
             icon = icon.replace(/"/g, "'")
             _callback(icon)
             jeeDialog.get('#mod_selectIcon').close()
