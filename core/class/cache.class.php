@@ -125,7 +125,7 @@ class cache {
 		return $cache;
 	}
 
-	public static function exist(){
+	public static function exist($_key){
 		return (self::byKey($_key)->getValue() !== null);
 	}
 
