@@ -1125,6 +1125,10 @@ class cmd {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$eqLogic = $this->getEqLogic();
+		$eqLogic->setStatus(array(
+			'warning' => 0,
+			'danger' => 0,
+		));
 		$this->emptyHistory();
 		cache::delete('cmdCacheAttr' . $this->getId());
 		cache::delete('cmd' . $this->getId());
@@ -2128,7 +2132,6 @@ class cmd {
 			}
 			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
 			log::add('event', 'info', $message);
-			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting');
