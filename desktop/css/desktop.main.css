@@ -817,7 +817,6 @@ body[data-page="panel"] #div_pageContainer legend {
 div.div_viewZone legend.lg_viewZone {
   font-size: 18px;
   font-weight: 500;
-  text-align: center !important;
   margin: 5px !important;
 }
 
