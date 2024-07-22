@@ -1849,7 +1849,7 @@ $productName = config::byKey('product_name');
 									</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
 										<select class="form-control configKey" data-l1key="core::branch">
-											<option value="V4-stable">{{Stable v4}}</option>
+											<option value="master">{{Stable v4}}</option>
 											<option value="beta">{{Beta (Pas de support)}}</option>
 											<option value="alpha">{{Alpha (Pas de support)}}</option>
 										</select>

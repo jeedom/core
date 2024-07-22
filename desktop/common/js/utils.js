@@ -1804,7 +1804,7 @@ if (typeof jQuery === 'function') {
  * @param {string} _line
  */
 jeedomUtils.deprecatedFunc = function(_oldFnName, _newFnName, _since, _to, _line) {
-  if (jeeFrontEnd.coreBranch == 'V4-stable') return
+  if (jeeFrontEnd.coreBranch == 'master') return
   var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
 
   if (document.body.getAttribute('data-type') == 'plugin') {
