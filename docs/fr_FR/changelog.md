@@ -61,7 +61,7 @@
 - Possibilité de choisir le port d'écoute d'Apache en mode docker [LIEN](https://github.com/jeedom/core/pull/2847)
 - Correction d'un warning lors d'une sauvegarde sur la table event [LIEN](https://github.com/jeedom/core/issues/2851)
 
-- Ajout d'un nom d'afficgafe (display name) pour les objets [LIEN](https://github.com/jeedom/core/issues/2484)
+- Ajout d'un nom d'affichage (display name) pour les objets [LIEN](https://github.com/jeedom/core/issues/2484)
 
 >**IMPORTANT**
 >
