@@ -314,7 +314,7 @@ step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 9 - Jeedom configuration${NORMAL}"
 
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     echo "DROP USER 'jeedom'@'localhost';" | mariadb -uroot > /dev/null 2>&1
     mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MARIADB_JEEDOM_PASSWD}';"
     mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
