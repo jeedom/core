@@ -216,6 +216,9 @@ $synthToActions = array(
 											case 'input':
 												$spAttr .= '<input class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
 												break;
+											case 'checkbox':
+												$spAttr .= '<input type="checkbox" class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+												break;
 											case 'number':
 												$spAttr .= '<input type="number" class="form-control objectAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '" min="' . (isset($config['min']) ? $config['min'] : '') . '" max="' . (isset($config['max']) ? $config['max'] : '') . '" />';
 												break;

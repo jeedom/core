@@ -35,3 +35,37 @@ Nesse caso, duas soluções:
 - Abra um navegador no modo de recuperação : `IP / index.php?rescue=1`
 - Conecte-se no SSH e exclua os arquivos de personalização : `desktop / custom` e` mobile / custom`
 
+## Exemplo de personalização avançada em CSS
+
+Todos estes exemplos devem ser colocados no arquivo CSS (não se esqueça de ativar a personalização avançada no topo)
+
+### Removendo barras de rolagem em widgets
+
+```
+.eqLogic-widget.cmds{
+ overflow-x: escondido !important;
+ overflow-y: escondido !important;
+}
+```
+
+### Remover largura/altura mínima dos widgets
+
+Isso permite que você tenha widgets menores (largura [largura mínima], altura [altura mínima]), mas tome cuidado, pois isso pode tornar a exibição menos atraente
+
+```
+div.cmd-widget.content,
+div.cmd-widget .content-sm,
+div.cmd-widget .content-lg,
+div.cmd-widget.content-xs {
+  min-width: um conjunto !important;
+  min-height: um conjunto !important;
+}
+```
+
+### Adicionada margem entre o nome dos objetos e equipamentos no painel 
+
+```
+.legenda div_object .objectDashLegend {
+  margin-bottom: 5px;
+}
+```

@@ -53,6 +53,10 @@ if (!isConnect()) {
     }
 
     mod_insertCmd.setOptions = function(_options) {
+      if(document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage') === null){
+           setTimeout(function(){mod_insertCmd.setOptions(_options)}, 10);
+           return;
+      }
       mod_insertCmd.options = _options
       var _selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select')
       if (!isset(mod_insertCmd.options.cmd)) {

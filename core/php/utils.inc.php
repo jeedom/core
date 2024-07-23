@@ -1444,12 +1444,15 @@ function checkAndFixCron($_cron) {
 }
 
 function cronIsDue($_cron){
-	$schedule = explode(' ',trim($_cron));
-	if(count($schedule) == 6 && $schedule[5] != date('Y')){
+	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4) {
 		return false;
 	}
-	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
+	$schedule = explode(' ',trim($_cron));
+	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
+		return false;
+	}
 	try {
+		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 		return $c->isDue();
 	} catch (Exception $e) {
 

@@ -47,7 +47,7 @@ class plugin {
 	private $documentation_beta = '';
 	private $source = '';
 	private $whiteListFolders = array();
-	private $specialAttributes = array('object' => array(), 'user' => array());
+	private $specialAttributes = array('object' => array(), 'user' => array(), 'eqLogic' => array());
 	private $info = array();
 	private $include = array();
 	private $functionality = array();
@@ -115,6 +115,9 @@ class plugin {
 			if (isset($data['specialAttributes']['user'])) {
 				$plugin->specialAttributes['user'] = $data['specialAttributes']['user'];
 			}
+			if (isset($data['specialAttributes']['eqLogic'])) {
+				$plugin->specialAttributes['eqLogic'] = $data['specialAttributes']['eqLogic'];
+			}
 		}
 		$plugin->mobile = '';
 		if (file_exists(__DIR__ . '/../../plugins/' . $data['id'] . '/mobile/html')) {
@@ -131,6 +134,18 @@ class plugin {
 				'type' => 'class',
 			);
 		}
+		
+
+			$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
+			$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);
+			$plugin->functionality['cron5'] = array('exists' => method_exists($plugin->getId(), 'cron5'), 'controlable' => 1);
+			$plugin->functionality['cron10'] = array('exists' => method_exists($plugin->getId(), 'cron10'), 'controlable' => 1);
+			$plugin->functionality['cron15'] = array('exists' => method_exists($plugin->getId(), 'cron15'), 'controlable' => 1);
+			$plugin->functionality['cron30'] = array('exists' => method_exists($plugin->getId(), 'cron30'), 'controlable' => 1);
+			$plugin->functionality['cronHourly'] = array('exists' => method_exists($plugin->getId(), 'cronHourly'), 'controlable' => 1);
+			$plugin->functionality['cronDaily'] = array('exists' => method_exists($plugin->getId(), 'cronDaily'), 'controlable' => 1);
+			$plugin->functionality['deadcmd'] = array('exists' => method_exists($plugin->getId(), 'deadCmd'), 'controlable' => 0);
+			$plugin->functionality['health'] = array('exists' => method_exists($plugin->getId(), 'health'), 'controlable' => 0);
 		
 		$plugin->functionality['interact'] = array('exists' => method_exists($plugin->getId(), 'interact'), 'controlable' => 1);
 		$plugin->functionality['cron'] = array('exists' => method_exists($plugin->getId(), 'cron'), 'controlable' => 1);

@@ -190,19 +190,6 @@ class jeedom {
 			'comment' => '',
 			'key' => 'uptodate'
 		);
-		if (version_compare(system::getOsVersion(), '12', '<')) {
-			$status = shell_exec('systemctl status fail2ban.service');
-			$failed = stripos($status, 'failed') !== false;
-			$running = stripos($status, 'running') !== false;
-			$state = $failed ? 0 : ($running ? 1 : 2);
-			$return[] = array(
-				'name' => __('Etat du service fail2ban', __FILE__),
-				'state' => $failed ? 0 : ($running ? 1 : 2),
-				'result' => $failed ? __('En échec', __FILE__) : ($running ? __('Actif', __FILE__) : __('Désactivé', __FILE__)),
-				'comment' => ($failed || !$running) ? __("Le service Linux fail2ban est désactivé ou en échec : les tentatives d'accès infructueuses à Jeedom ne résulteront pas en un bannissement des IP concernées. Vérifiez l'état du service si vous souhaitez réactiver fail2ban.", __FILE__) : '',
-				'key' => 'service::fail2ban'
-			);
-		}
 
 		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
 		$return[] = array(

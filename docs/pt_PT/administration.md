@@ -172,6 +172,10 @@ Abaixo, você encontrará uma tabela para gerenciar com precisão o nível de lo
 
 Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você obtém gráficos representando seu uso. Essa guia permite definir parâmetros globais para o log de comandos.
 
+>**InfluxoDB**
+>
+>Se você quiser usar o InfluxDB no momento, terá que instalar você mesmo a biblioteca InfluxDB, o Jeedom não faz mais isso porque ela não é mais mantida (planejamos migrar para a nova versão, mas isso não acontecerá imediatamente). Para fazer a instalação manual, veja como fazer : `cd /var/www/html;composer require influxdb/influxdb-php` da configuração, depois na guia OS/DB e depois no console de administração do sistema operacional
+
 ### Histórico de pedidos
 
 - **Mostrar estatísticas sobre os widgets** : Ver estatísticas sobre widgets. O widget deve ser compatível, como é o caso da maioria. O comando também deve ser do tipo numérico.
