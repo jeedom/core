@@ -28,26 +28,51 @@
     },
     success: function (scenarios) {
       const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
-      let newOption
+
+      const groupedScenarios = {}
       for (let i in scenarios) {
-        newOption = document.createElement('option')
-        newOption.text = scenarios[i].humanName
-        newOption.value = scenarios[i].id
-        select.appendChild(newOption)
+        const match = scenarios[i].humanName.match(/^\[(.*?)\]/)
+        if (match) {
+          const obj = match[1]
+          if (!groupedScenarios[obj]) {
+            groupedScenarios[obj] = []
+          }
+          groupedScenarios[obj].push(scenarios[i])
+        }
+      }
+
+      for (let group in groupedScenarios) {
+        const optgroup = document.createElement('optgroup')
+        optgroup.label = group
+
+        groupedScenarios[group].forEach(scenario => {
+          const newOption = document.createElement('option')
+          newOption.text = scenario.humanName.replace(/^\[.*?\]/, '').trim()
+          newOption.value = scenario.id
+          optgroup.appendChild(newOption)
+        })
+
+        select.appendChild(optgroup)
       }
 
       const filter = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter"]')
       filter.addEventListener('keyup', function(event) {
         const text = event.target.value
         const options = Array.from(select.options)
-        options.forEach (function(option) {
+        const regex = new RegExp("^" + text, "i")
+        const lowerText = text.toLowerCase()
+
+        options.forEach(option => {
           const optionText = option.text
           const lowerOptionText = optionText.toLowerCase()
-          const lowerText = text.toLowerCase()
-          const regex = new RegExp("^" + text, "i")
           const match = optionText.match(regex)
-          const contains = lowerOptionText.indexOf(lowerText) != -1
-          option.hidden = match || contains ? false: true
+          const contains = lowerOptionText.indexOf(lowerText) !== -1
+          option.hidden = !(match || contains)
+        });
+
+        Array.from(select.getElementsByTagName('optgroup')).forEach(optgroup => {
+          const visibleOptions = Array.from(optgroup.children).some(option => !option.hidden)
+          optgroup.hidden = !visibleOptions
         })
       })
 

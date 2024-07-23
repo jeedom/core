@@ -1,4 +1,5 @@
 # Scenarios
+
 **Tools → Scenarios**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -20,11 +21,13 @@ You will find in this part **list of scenarios** that you created. They are clas
 > **Tip**
 >
 > You can open a scenario by doing :
+>
 > - Click on one of them.
 > - Ctrl Clic or Clic Center to open it in a new browser tab.
 
 You have a search engine to filter the display of scenarios. The Escape key cancels the search.
 To the right of the search field, three buttons found in several places in Jeedom :
+
 - The cross to cancel the search.
 - The open folder to unfold all panels and display all scenarios.
 - The closed backrest to fold all the panels.
@@ -71,9 +74,11 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Parent object** : Assignment to a parent object. It will then be visible or not according to this parent.
 - **Timeout in seconds (0 = unlimited)** : The maximum execution time allowed for this scenario. Beyond this time, the execution of the scenario is interrupted.
 - **Multi launch** : Check this box if you want the scenario to be able to be launched several times at the same time.
+
 >**IMPORTANT**
 >
 >The multi launch works per second, that is to say that if you have 2 launches in the same second without the box checked, there will still be 2 launches of the scenario (although it should not). Likewise, during several launches in the same second, some launches may lose the tags. Conclusion it is ABSOLUTELY necessary to avoid multiple launches in the same second.
+
 - **Synchronous mode** : Start the scenario in the current thread instead of a dedicated thread. Increases the speed at which the scenario is launched, but can make the system unstable. Be careful not to put a complex scenario or with pauses (sleep) or wait synchronously, this generates an unstable behavior of jeedom and cannot be covered by the support.
 - **Log** : The type of log desired for the scenario. You can cut the scenario logs or on the contrary show it in Analysis → Real time.
 - **Timeline** : Keep a follow-up of the scenario in the timeline (see History doc).
@@ -120,14 +125,14 @@ Here are the different types of blocks available :
 Each block has its options to better handle them :
 
 - On the left :
-    - The bidirectional arrow allows you to move a block or an action to reorder them in the scenario.
-    - The eye reduces a block (*collapse*) to reduce its visual impact. Ctrl Click on the eye reduces them or displays them all.
-    - The check box allows you to completely deactivate the block without deleting it. It will therefore not be executed.
+  - The bidirectional arrow allows you to move a block or an action to reorder them in the scenario.
+  - The eye reduces a block (*collapse*) to reduce its visual impact. Ctrl Click on the eye reduces them or displays them all.
+  - The check box allows you to completely deactivate the block without deleting it. It will therefore not be executed.
 
 - On the right :
-    - The Copy icon allows you to copy the block to make a copy elsewhere. Ctrl Click on the icon cuts the block (copy then delete).
-    - The Paste icon allows you to paste a copy of the block previously copied after the block on which you use this function.  Ctrl Click on the icon replaces the block with the copied block.
-    - The icon - allows you to delete the block, with a confirmation request. Ctrl Click deletes the block without confirmation.
+  - The Copy icon allows you to copy the block to make a copy elsewhere. Ctrl Click on the icon cuts the block (copy then delete).
+  - The Paste icon allows you to paste a copy of the block previously copied after the block on which you use this function.  Ctrl Click on the icon replaces the block with the copied block.
+  - The icon - allows you to delete the block, with a confirmation request. Ctrl Click deletes the block without confirmation.
 
 ### If / Then / Otherwise blocks | Loop | In | A
 
@@ -151,29 +156,28 @@ Three buttons are available on the right of this type of block to select an item
 
 Once the condition is completed, you must use the &quot;add&quot; button on the left to add a new **block** or a **stock** in the current block.
 
-
 ### Block Code
 
 The Code block allows you to execute php code. It is therefore very powerful but requires a good knowledge of the php language.
 
 #### Access to controls (sensors and actuators)
 
--  ``cmd::byString($string);`` : Returns the corresponding command object.
-    -   ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Asset]#``)
--  ``cmd::byId($id);`` : Returns the corresponding command object.
-    -  ``$id`` : Command ID.
--  ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
-    - ``$options`` : Options for the execution of the command (can be specific to the plugin). Basic options (command subtype) :
-        -  ``message`` : ``$option = array('title' => 'titre du message , 'message' => 'Mon message');``
-        -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
-        -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
+- ``cmd::byString($string);`` : Returns the corresponding command object.
+  - ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Asset]#``)
+- ``cmd::byId($id);`` : Returns the corresponding command object.
+  - ``$id`` : Command ID.
+- ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
+  - ``$options`` : Options for the execution of the command (can be specific to the plugin). Basic options (command subtype) :
+    - ``message`` : ``$option = array('title' => 'titre du message , 'message' => 'Mon message');``
+    - ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
+    - ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
 #### Access to logs
 
--  ``log::add('filename','level','message');``
-    - ``filename`` : Log file name.
-    - ``level`` : [debug], [info], [error], [event].
-    - ``message`` : Message to write in the logs.
+- ``log::add('filename','level','message');``
+  - ``filename`` : Log file name.
+  - ``level`` : [debug], [info], [error], [event].
+  - ``message`` : Message to write in the logs.
 
 #### Access to scenarios
 
@@ -181,14 +185,14 @@ The Code block allows you to execute php code. It is therefore very powerful but
 - ``$scenario->getGroup();`` : Returns the scenario group.
 - ``$scenario->getIsActive();`` : Returns the state of the scenario.
 - ``$scenario->setIsActive($active);`` : Allows you to activate or not the scenario.
-    - ``$active`` : 1 active, 0 not active.
+  - ``$active`` : 1 active, 0 not active.
 - ``$scenario->running();`` : Used to find out if the scenario is running or not (true / false).
 - ``$scenario->save();`` : Save changes.
 - ``$scenario->setData($key, $value);`` : Save a data (variable).
-    - ``$key`` : value key (int or string).
-    - ``$value`` : value to store (``int``, ``string``, ``array`` Where ``object``).
+  - ``$key`` : value key (int or string).
+  - ``$value`` : value to store (``int``, ``string``, ``array`` Where ``object``).
 - ``$scenario->getData($key);`` : Get data (variable).
-    - ``$key => 1`` : value key (int or string).
+  - ``$key => 1`` : value key (int or string).
 - ``$scenario->removeData($key);`` : Delete data.
 - ``$scenario->setLog($message);`` : Write a message in the script log.
 - ``$scenario->persistLog();`` : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
@@ -283,15 +287,16 @@ A tag is replaced during the execution of the scenario by its value. You can use
 - ``#hostname#`` : Jeedom machine name.
 - ``#jeedomName#`` : Name of Jeedom.
 - ``#trigger#`` (deprecated, better to use ``trigger()``) : Maybe the name of the command that started the scenario :
-    - ``api`` if the launch was triggered by the API,
-    - ``schedule`` if it was started by programming,
-    - ``user`` if it was started manually,
-    - ``start`` for a launch at startup of Jeedom.
+  - ``api`` if the launch was triggered by the API,
+  - ``schedule`` if it was started by programming,
+  - ``user`` if it was started manually,
+  - ``start`` for a launch at startup of Jeedom.
 - ``#triggerValue#`` (deprecated, better to use triggerValue()) : For the value of the command that triggered the scenario
 - ``#latitude#`` : Allows you to retrieve the latitude information put in the jeedom configuration
 - ``#longitude#`` : Allows you to retrieve the longitude information put in the jeedom configuration
 - ``#altitude#`` : Allows you to retrieve the altitude information put in the jeedom configuration
-
+- ``#sunrise#`` : Allows you to retrieve the sunrise time provided that the latitude and longitude are entered in the jeedom configuration
+- ``#sunset#`` : Allows you to retrieve the sunset time provided that the latitude and longitude are entered in the jeedom configuration
 
 You also have the following additional tags if your scenario was triggered by an interaction :
 
@@ -419,7 +424,6 @@ Here are practical examples to understand the values returned by these different
 | ``tag(montag,toto)``                   | Returns the value of "montag" if it exists otherwise returns the value "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Returns Hydrometry                  |
 
-
 ### Mathematical functions
 
 A generic function toolbox can also be used to perform conversions or calculations :
@@ -442,7 +446,6 @@ A generic function toolbox can also be used to perform conversions or calculatio
 
 And practical examples :
 
-
 | Example of function                  | Returned result                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | the function will return one of these texts randomly at each execution.                           |
@@ -459,7 +462,6 @@ And practical examples :
 | ``convertDuration(3600)``             | Returns 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Returns the ignition time in Days / Hours / minutes of the time of transition to state 1 of the module since the 1st day of the month |
 
-
 ### Miscellaneous functions
 
 - ``sun(elevation)`` : Gives in ° the elevation of the sun (be careful, you must have entered your geographical coordinates in the configuration of jeedom)
@@ -474,12 +476,12 @@ In addition to home automation commands, you have access to the following action
 - **Remove variable** (delete_variable) : Allows you to delete a variable.
 - **genericType (GENERIC, #[Object]#)** : Modification of an info (event) or action (execCmd) command by Generic Type, in an object. For example, turn off all the lights in the Living Room.
 - **Scenario** (scenario) : Allows you to control scenarios. The tags part allows you to send tags to the scenario, ex : montag = 2 (be careful, only use letters from a to z. No capital letters, no accents and no special characters). We recover the tag in the target scenario with the tag function (montag).
-    - To start up : Start the scenario in a different thread. The started scenario runs independently of the calling scenario.
-    - Start (Sync) : Starts the called scenario and pauses the calling scenario, while the called scenario has finished running.
-    - Stop : Stop the scenario.
-    - Enable : Activate a disabled scenario.
-    - Deactivate : Disable scenario. It no longer launches regardless of the triggers.
-    - Resetting the ISs : Used to reset the status of **IF**. This status is used for the non-repetition of the actions of a **IF**, if the evaluation of the condition gives the same result as the previous evaluation.
+  - To start up : Start the scenario in a different thread. The started scenario runs independently of the calling scenario.
+  - Start (Sync) : Starts the called scenario and pauses the calling scenario, while the called scenario has finished running.
+  - Stop : Stop the scenario.
+  - Enable : Activate a disabled scenario.
+  - Deactivate : Disable scenario. It no longer launches regardless of the triggers.
+  - Resetting the ISs : Used to reset the status of **IF**. This status is used for the non-repetition of the actions of a **IF**, if the evaluation of the condition gives the same result as the previous evaluation.
 - **Stop** (stop) : Stop the scenario.
 - **Expect** (wait) : Wait until the condition is valid (maximum 2h), the timeout is in seconds (s).
 - **Go to design** (gotodesign) : Change the design displayed on all browsers by the requested design.

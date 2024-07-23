@@ -73,7 +73,7 @@ Aquí están las diferentes características para configurar un objeto :
 
 > **Consejo**
 >
-> Puede cambiar el orden de visualización de los objetos en el Tablero. En la descripción general (o en el Resumen de automatización del hogar), seleccione su objeto con el mouse arrastrando y soltando para darle un nuevo lugar.
+> Puede cambiar el orden de visualización de los objetos en el Panel, a través del Resumen de automatización del hogar (herramientas -> resumen de automatización del hogar), seleccione su objeto con el mouse arrastrando/soltando para darle un nuevo lugar.
 
 > **Consejo**
 >

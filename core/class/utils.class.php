@@ -114,7 +114,7 @@ class utils {
 		}
 	}
 
-	public static function processJsonObject($_class, $_ajaxList, $_dbList = null) {
+	public static function processJsonObject($_class, $_ajaxList, $_dbList = null,$_remove = true) {
 		if (!is_array($_ajaxList)) {
 			if (is_json($_ajaxList)) {
 				$_ajaxList = json_decode($_ajaxList, true);
@@ -139,9 +139,11 @@ class utils {
 			$object->save();
 			$enableList[$object->getId()] = true;
 		}
-		foreach ($_dbList as $dbObject) {
-			if (!isset($enableList[$dbObject->getId()])) {
-				$dbObject->remove();
+		if($_remove){
+			foreach ($_dbList as $dbObject) {
+				if (!isset($enableList[$dbObject->getId()])) {
+					$dbObject->remove();
+				}
 			}
 		}
 	}

@@ -391,15 +391,7 @@ try {
 			echo "Remove unused ngrok folder...\n";
 			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 		}
-		try {
-			if (method_exists('cache', 'flushWidget')) {
-				echo "Flush cache widget...\n";
-				cache::flushWidget();
-			}
-		} catch (Exception $e) {
-		} catch (Error $e) {
-		}
-
+		
 		echo "Check jeedom object...";
 		foreach (jeeObject::all() as $object) {
 			try {

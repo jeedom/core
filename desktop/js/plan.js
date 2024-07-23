@@ -1399,13 +1399,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       var linkId = _target.getAttribute('data-link_id')
       if (linkId == undefined) return
       jeephp2js.planHeader_id = linkId
-      jeeFrontEnd.planEditOption = {
-        state: false,
-        snap: false,
-        grid: false,
-        gridSize: jeeFrontEnd.planEditOption.gridSize,
-        highlight: true
-      }
       jeeP.displayPlan()
     }
     return

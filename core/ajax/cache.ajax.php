@@ -43,12 +43,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'flushWidget') {
-		unautorizedInDemo();
-		cache::flushWidget();
-		ajax::success();
-	}
-
 	if (init('action') == 'clean') {
 		unautorizedInDemo();
 		cache::clean();

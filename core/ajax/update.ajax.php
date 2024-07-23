@@ -160,7 +160,7 @@ try {
 
 	if (init('action') == 'saves') {
 		unautorizedInDemo();
-		utils::processJsonObject('update', init('updates'));
+		utils::processJsonObject('update', init('updates'),null,false);
 		ajax::success();
 	}
 

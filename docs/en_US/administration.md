@@ -172,6 +172,10 @@ Below you will find a table for finely managing the log level of essential eleme
 
 Many command can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
 
+>**InfluxDB**
+>
+>If you want to use InfluxDB for the moment you have to install the InfluxDB library yourself, Jeedom no longer does it because it is no longer maintained (we plan to migrate to the new version but this will not happen right away). To do the installation manually here is how to do it : `cd /var/www/html;composer require influxdb/influxdb-php` from configuration then OS/DB tab then the OS administration console
+
 ### Command history
 
 - **Display widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
