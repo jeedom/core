@@ -241,7 +241,7 @@ function getClientIp() {
 			if (strpos($_SERVER[$source], ',') !== false) {
 				return explode(',', $_SERVER[$source])[0];
 			}
-			return $_SERVER[$source];
+			return str_replace(' ','',$_SERVER[$source]);
 		}
 	}
 	return '';

@@ -1790,21 +1790,20 @@ $productName = config::byKey('product_name');
 							</thead>
 							<tbody>
 								<?php
-								$cache = cache::byKey('security::banip');
-								$values = json_decode($cache->getValue('[]'), true);
-								if (!is_array($values)) {
-									$values = array();
+								$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+								if (!is_array($ban_ips)) {
+									$ban_ips = array();
 								}
-								if (count($values) != 0) {
+								if (count($ban_ips) != 0) {
 									$div = '';
-									foreach ($values as $value) {
+									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
-										$div .= '<td>' . $value['ip'] . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
+										$div .= '<td>' . $ip . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s', $datetime) . '</td>';
 										if (config::byKey('security::bantime') < 0) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s', $datetime + config::byKey('security::bantime')) . '</td>';
 										}
 										$div .= '</tr>';
 									}
