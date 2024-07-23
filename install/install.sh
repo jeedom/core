@@ -182,7 +182,7 @@ step_7_jeedom_customization_mariadb() {
   echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
 
   # do not start oany new service during docker build sequence
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
     
     service_action stop mariadb > /dev/null 2>&1
@@ -221,7 +221,7 @@ step_7_jeedom_customization_mariadb() {
    # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     service_action start mariadb > /dev/null 2>&1
     if [ $? -ne 0 ]; then
       service_action status mariadb
@@ -265,7 +265,7 @@ step_8_jeedom_customization() {
   echo "Restart=always" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "RestartSec=10" >> /etc/systemd/system/apache2.service.d/override.conf
 
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
   fi
   
@@ -288,7 +288,7 @@ step_8_jeedom_customization() {
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
   
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     service_action restart apache2 > /dev/null 2>&1
   fi
   
@@ -302,7 +302,7 @@ step_8_jeedom_customization() {
   echo 'Restart=always' >> /lib/systemd/system/fail2ban.service.d/override.conf
   echo 'RestartSec=10' >> /lib/systemd/system/fail2ban.service.d/override.conf
 
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
     service_action restart fail2ban > /dev/null 2>&1
   fi
@@ -351,7 +351,7 @@ step_10_jeedom_installation() {
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
 
-  if [ "${INSTALLATION_TYPE}" -ne "docker" ];then
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
     php ${WEBSERVER_HOME}/install/install.php mode=force
     if [ $? -ne 0 ]; then
       echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
