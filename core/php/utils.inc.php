@@ -1451,8 +1451,8 @@ function cronIsDue($_cron){
 	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
 		return false;
 	}
-	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 	try {
+		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 		return $c->isDue();
 	} catch (Exception $e) {
 
