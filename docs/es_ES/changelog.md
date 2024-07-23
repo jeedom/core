@@ -14,6 +14,8 @@
 - Se corrigió un error en las alertas de equipos al eliminar la orden alertada [ENLACE](https://github.com/jeedom/core/issues/2775)
 - Posibilidad en la configuración avanzada de un equipo de ocultarlo al visualizar varios objetos en el salpicadero [ENLACE](https://github.com/jeedom/core/issues/2553)
 
+- Rediseño del sistema fail2ban de Jeedom para que consuma menos recursos [ENLACE](https://github.com/jeedom/core/issues/2684)
+
 >**IMPORTANTE**
 >
 > Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo

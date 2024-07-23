@@ -14,6 +14,8 @@
 - Fixed a bug on equipment alerts when deleting the alerted order [LINK](https://github.com/jeedom/core/issues/2775)
 - Possibility in the advanced configuration of a piece of equipment to hide it when displaying several objects on the dashboard [LINK](https://github.com/jeedom/core/issues/2553)
 
+- Redesign of Jeedom's fail2ban system so that it consumes less resources [LINK](https://github.com/jeedom/core/issues/2684)
+
 >**IMPORTANT**
 >
 > Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything

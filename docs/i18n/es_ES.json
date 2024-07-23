@@ -1311,6 +1311,7 @@
         "réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis": "reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis",
         "Correction d'un bug sur les alertes des équipements lors de la suppression de la commande en alerte": "Se corrigió un error en las alertas de equipos al eliminar la orden alertada",
         "Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets": "Posibilidad en la configuración avanzada de un equipo de ocultarlo al visualizar varios objetos en el salpicadero",
+        "Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource": "Rediseño del sistema fail2ban de Jeedom para que consuma menos recursos",
         "Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver": "Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo",
         "4.4.9": "4.4.9",
         "Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe": "Visualización mejorada de la lista de escenarios al actuar sobre escenarios (adición de grupos",

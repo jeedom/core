@@ -14,6 +14,8 @@
 - Ein Fehler bei Ausrüstungswarnungen beim Löschen der alarmierten Bestellung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2775)
 - In der erweiterten Konfiguration besteht die Möglichkeit, ein Gerät auszublenden, wenn mehrere Objekte auf dem Dashboard angezeigt werden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2553)
 
+- Neugestaltung des fail2ban-Systems von Jeedom, damit es weniger Ressourcen verbraucht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2684)
+
 >**WICHTIG**
 >
 > Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
