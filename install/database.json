@@ -730,7 +730,7 @@
         },
         {
           "name": "option",
-          "type": "varchar(4095)",
+          "type": "varchar(8192)",
           "null": "YES",
           "key": "",
           "default": null,
