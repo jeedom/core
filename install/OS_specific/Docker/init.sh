@@ -22,8 +22,6 @@ docker_stop(){
 	service mariadb stop
 	echo "${VERT}Stopping ATD gracefully${NORMAL}"
 	service atd stop
-	echo "${VERT}Stopping fail2ban gracefully${NORMAL}"
-	service fail2ban stop
 	echo "${ROUGE}Requesting stop on init.sh${NORMAL}"
 	touch ${FILE_STOP}
 	exit 0
@@ -60,9 +58,6 @@ Start mariadb service
 	sed -i "s/#USERNAME#/${DB_USERNAME:-jeedom}/g" ${WEBSERVER_HOME}/core/config/common.config.php
 	sed -i "s/#PORT#/${DB_PORT:-3306}/g" ${WEBSERVER_HOME}/core/config/common.config.php
 	sed -i "s/#HOST#/${DB_HOST:-localhost}/g" ${WEBSERVER_HOME}/core/config/common.config.php
-
-	# remove default fail2ban, contains useless sshd check
-	rm /etc/fail2ban/jail.d/defaults-debian.conf
 
     echo "************************
 start JEEDOM PHP script installation
@@ -108,11 +103,6 @@ chmod 755 -R ${WEBSERVER_HOME}
 echo 'Start apache2'
 service apache2 start
 service apache2 status
-
-echo 'Start fail2ban'
-service fail2ban start
-service fail2ban status
-
 echo 'Start CRON daemon'
 cron
 
