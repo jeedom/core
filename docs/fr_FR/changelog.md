@@ -2,7 +2,7 @@
 
 # 4.4.10
 
-- Déplacement de la gestion des evenements (event) qui sert pour la mise à jour de l'interface en base de données en mémoire [LIEN](https://github.com/jeedom/core/pull/2757)
+- Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire [LIEN](https://github.com/jeedom/core/pull/2757)
 - Ajout d'un filtre sur de nombreuses action dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2753), [LIEN](https://github.com/jeedom/core/pull/2742), [LIEN](https://github.com/jeedom/core/pull/2759), [LIEN](https://github.com/jeedom/core/pull/2743), [LIEN](https://github.com/jeedom/core/pull/2755)
 - Le prix du plugin est masqué si vous l'avez deja acheté [LIEN](https://github.com/jeedom/core/pull/2746)
 - Sur la page de connexion possibilité d'afficher ou nom le mot de passe [LIEN](https://github.com/jeedom/core/pull/2740)
