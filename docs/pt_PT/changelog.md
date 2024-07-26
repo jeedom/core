@@ -6,13 +6,14 @@
 - Adicionado um filtro em muitas ações em cenários [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743), [LINK](https://github.com/jeedom/core/pull/2755)
 - O preço do plugin fica oculto se você já o comprou [LINK](https://github.com/jeedom/core/pull/2746)
 - Na página de login possibilidade de exibir ou nomear a senha [LINK](https://github.com/jeedom/core/pull/2740)
-- Corrigido bug ao sair da página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
+- Corrigido um bug ao sair de uma página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
 - Criação (em beta) de um novo sistema de cache [LINK](https://github.com/jeedom/core/pull/2758) :
   - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
   - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
   - Redis : reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
 - Corrigido um bug nos alertas de equipamentos ao excluir o pedido alertado [LINK](https://github.com/jeedom/core/issues/2775)
 - Possibilidade na configuração avançada de um equipamento de ocultá-lo ao exibir vários objetos no painel [LINK](https://github.com/jeedom/core/issues/2553)
+- Corrigido bug ao exibir a pasta da linha do tempo na configuração avançada de um comando [LINK](https://github.com/jeedom/core/issues/2791)
 
 - Redesenho do sistema fail2ban de Jeedom para que consuma menos recursos [LINK](https://github.com/jeedom/core/issues/2684)
 

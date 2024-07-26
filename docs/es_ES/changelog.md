@@ -2,17 +2,18 @@
 
 # 4.4.10
 
-- Se movió la gestión de eventos (evento) que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
+- Se movió la gestión de eventos que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
 - Se agregó un filtro en muchas acciones en escenarios [ENLACE](https://github.com/jeedom/core/pull/2753), [ENLACE](https://github.com/jeedom/core/pull/2742), [ENLACE](https://github.com/jeedom/core/pull/2759), [ENLACE](https://github.com/jeedom/core/pull/2743), [ENLACE](https://github.com/jeedom/core/pull/2755)
 - El precio del complemento está oculto si ya lo compró [ENLACE](https://github.com/jeedom/core/pull/2746)
 - En la página de inicio de sesión, posibilidad de mostrar o nombrar la contraseña [ENLACE](https://github.com/jeedom/core/pull/2740)
-- Se corrigió un error al salir de la página sin guardar [ENLACE](https://github.com/jeedom/core/pull/2745)
+- Se corrigió un error al salir de una página sin guardar [ENLACE](https://github.com/jeedom/core/pull/2745)
 - Creación (en beta) de un nuevo sistema de caché [ENLACE](https://github.com/jeedom/core/pull/2758) :
   - Archivo : sistema idéntico al anterior pero tomado internamente para evitar dependencias de una biblioteca de terceros. El más eficiente pero ahorrado cada 30 minutos
   - Mysql : usando una tabla de caché base. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
   - Redis : reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
 - Se corrigió un error en las alertas de equipos al eliminar la orden alertada [ENLACE](https://github.com/jeedom/core/issues/2775)
 - Posibilidad en la configuración avanzada de un equipo de ocultarlo al visualizar varios objetos en el salpicadero [ENLACE](https://github.com/jeedom/core/issues/2553)
+- Se corrigió un error al mostrar la carpeta de la línea de tiempo en la configuración avanzada de un comando [ENLACE](https://github.com/jeedom/core/issues/2791)
 
 - Rediseño del sistema fail2ban de Jeedom para que consuma menos recursos [ENLACE](https://github.com/jeedom/core/issues/2684)
 

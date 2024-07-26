@@ -2,17 +2,18 @@
 
 # 4.4.10
 
-- Moved event management (event) which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
+- Moved event management which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
 - Added a filter on many actions in scenarios [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743), [LINK](https://github.com/jeedom/core/pull/2755)
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
 - On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
-- Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)
+- Fixed a bug when leaving a page without saving [LINK](https://github.com/jeedom/core/pull/2745)
 - Creation (in beta) of a new cache system [LINK](https://github.com/jeedom/core/pull/2758) :
   - File : system identical to that of before but taken internally to avoid dependencies on a third party lib. The most efficient but saved every 30 minutes
   - Mysql : using a base cache table. The least efficient but saved in real time (no data loss possible)
   - Redis : reserved for experts, relies on redis to manage the cache (requires you to install redis yourself and the php-redis dependencies)
 - Fixed a bug on equipment alerts when deleting the alerted order [LINK](https://github.com/jeedom/core/issues/2775)
 - Possibility in the advanced configuration of a piece of equipment to hide it when displaying several objects on the dashboard [LINK](https://github.com/jeedom/core/issues/2553)
+- Fixed a bug when displaying the timeline folder in the advanced configuration of a command [LINK](https://github.com/jeedom/core/issues/2791)
 
 - Redesign of Jeedom's fail2ban system so that it consumes less resources [LINK](https://github.com/jeedom/core/issues/2684)
 

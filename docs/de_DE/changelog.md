@@ -6,13 +6,14 @@
 - Für viele Aktionen in Szenarien wurde ein Filter hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2759), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2743), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2755)
 - Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
 - Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2740)
-- Ein Fehler beim Verlassen der Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
+- Ein Fehler beim Verlassen einer Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
 - Erstellung (in Beta) eines neuen Cache-Systems [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2758) :
   - Datei : System identisch mit dem vorherigen, aber intern übernommen, um Abhängigkeiten von einer Drittanbieter-Bibliothek zu vermeiden. Am effizientesten, aber alle 30 Minuten gespart
   - MySQL : Verwendung einer Basis-Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
   - Redis : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (erfordert die Installation von Redis selbst und der PHP-Redis-Abhängigkeiten))
 - Ein Fehler bei Ausrüstungswarnungen beim Löschen der alarmierten Bestellung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2775)
 - In der erweiterten Konfiguration besteht die Möglichkeit, ein Gerät auszublenden, wenn mehrere Objekte auf dem Dashboard angezeigt werden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2553)
+- Ein Fehler bei der Anzeige des Timeline-Ordners in der erweiterten Konfiguration eines Befehls wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2791)
 
 - Neugestaltung des fail2ban-Systems von Jeedom, damit es weniger Ressourcen verbraucht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2684)
 
