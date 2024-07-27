@@ -14,8 +14,8 @@
 - Correction d'un bug sur les alertes des équipements lors de la suppression de la commande en alerte [LIEN](https://github.com/jeedom/core/issues/2775)
 - Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets [LIEN](https://github.com/jeedom/core/issues/2553)
 - Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande [LIEN](https://github.com/jeedom/core/issues/2791)
-
 - Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource [LIEN](https://github.com/jeedom/core/issues/2684)
+- Correction d'un bug sur l'archivage et la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2793)
 
 >**IMPORTANT**
 >
