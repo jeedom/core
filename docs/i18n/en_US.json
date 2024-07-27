@@ -1313,6 +1313,7 @@
         "Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets": "Possibility in the advanced configuration of a piece of equipment to hide it when displaying several objects on the dashboard",
         "Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande": "Fixed a bug when displaying the timeline folder in the advanced configuration of a command",
         "Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource": "Redesign of Jeedom's fail2ban system so that it consumes less resources",
+        "Correction d'un bug sur l'archivage et la purge des historiques": "Fixed a bug on archiving and purging histories",
         "Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver": "Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything",
         "4.4.9": "4.4.9",
         "Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe": "Improved display of the list of scenarios when acting on scenarios (addition of groups",

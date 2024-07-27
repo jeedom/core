@@ -14,8 +14,8 @@
 - Fixed a bug on equipment alerts when deleting the alerted order [LINK](https://github.com/jeedom/core/issues/2775)
 - Possibility in the advanced configuration of a piece of equipment to hide it when displaying several objects on the dashboard [LINK](https://github.com/jeedom/core/issues/2553)
 - Fixed a bug when displaying the timeline folder in the advanced configuration of a command [LINK](https://github.com/jeedom/core/issues/2791)
-
 - Redesign of Jeedom's fail2ban system so that it consumes less resources [LINK](https://github.com/jeedom/core/issues/2684)
+- Fixed a bug on archiving and purging histories [LINK](https://github.com/jeedom/core/issues/2793)
 
 >**IMPORTANT**
 >

@@ -790,6 +790,7 @@
         "Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets": "Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets",
         "Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande": "Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande",
         "Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource": "Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource",
+        "Correction d'un bug sur l'archivage et la purge des historiques": "Correction d'un bug sur l'archivage et la purge des historiques",
         "IMPORTANT": "IMPORTANT",
         "Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver": "Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver",
         "4.4.9": "4.4.9",

@@ -14,8 +14,8 @@
 - Se corrigió un error en las alertas de equipos al eliminar la orden alertada [ENLACE](https://github.com/jeedom/core/issues/2775)
 - Posibilidad en la configuración avanzada de un equipo de ocultarlo al visualizar varios objetos en el salpicadero [ENLACE](https://github.com/jeedom/core/issues/2553)
 - Se corrigió un error al mostrar la carpeta de la línea de tiempo en la configuración avanzada de un comando [ENLACE](https://github.com/jeedom/core/issues/2791)
-
 - Rediseño del sistema fail2ban de Jeedom para que consuma menos recursos [ENLACE](https://github.com/jeedom/core/issues/2684)
+- Se corrigió un error al archivar y purgar historiales [ENLACE](https://github.com/jeedom/core/issues/2793)
 
 >**IMPORTANTE**
 >

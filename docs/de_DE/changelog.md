@@ -14,8 +14,8 @@
 - Ein Fehler bei Ausrüstungswarnungen beim Löschen der alarmierten Bestellung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2775)
 - In der erweiterten Konfiguration besteht die Möglichkeit, ein Gerät auszublenden, wenn mehrere Objekte auf dem Dashboard angezeigt werden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2553)
 - Ein Fehler bei der Anzeige des Timeline-Ordners in der erweiterten Konfiguration eines Befehls wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2791)
-
 - Neugestaltung des fail2ban-Systems von Jeedom, damit es weniger Ressourcen verbraucht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2684)
+- Ein Fehler beim Archivieren und Löschen von Historien wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2793)
 
 >**WICHTIG**
 >

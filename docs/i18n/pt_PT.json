@@ -1313,6 +1313,7 @@
         "Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets": "Possibilidade na configuração avançada de um equipamento de ocultá-lo ao exibir vários objetos no painel",
         "Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande": "Corrigido bug ao exibir a pasta da linha do tempo na configuração avançada de um comando",
         "Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource": "Redesenho do sistema fail2ban de Jeedom para que consuma menos recursos",
+        "Correction d'un bug sur l'archivage et la purge des historiques": "Corrigido um bug no arquivamento e limpeza de históricos",
         "Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver": "Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo",
         "4.4.9": "4.4.9",
         "Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe": "Exibição aprimorada da lista de cenários ao atuar em cenários (adição de grupos",
