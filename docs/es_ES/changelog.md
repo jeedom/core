@@ -16,6 +16,9 @@
 - Se corrigió un error al mostrar la carpeta de la línea de tiempo en la configuración avanzada de un comando [ENLACE](https://github.com/jeedom/core/issues/2791)
 - Rediseño del sistema fail2ban de Jeedom para que consuma menos recursos [ENLACE](https://github.com/jeedom/core/issues/2684)
 - Se corrigió un error al archivar y purgar historiales [ENLACE](https://github.com/jeedom/core/issues/2793)
+- Parche mejorado para el error gpg en las dependencias de Python [ENLACE](https://github.com/jeedom/core/pull/2798)
+- Se solucionó un problema al cambiar la hora después de la revisión de la gestión cron [ENLACE](https://github.com/jeedom/core/issues/2794)
+- Se corrigió un error en la página de resumen de domótica al buscar un pedido por identificación [ENLACE](https://github.com/jeedom/core/issues/2795)
 
 >**IMPORTANTE**
 >

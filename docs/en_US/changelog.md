@@ -16,6 +16,9 @@
 - Fixed a bug when displaying the timeline folder in the advanced configuration of a command [LINK](https://github.com/jeedom/core/issues/2791)
 - Redesign of Jeedom's fail2ban system so that it consumes less resources [LINK](https://github.com/jeedom/core/issues/2684)
 - Fixed a bug on archiving and purging histories [LINK](https://github.com/jeedom/core/issues/2793)
+- Improved patch for gpg bug on python dependencies [LINK](https://github.com/jeedom/core/pull/2798)
+- Fixed a problem when changing the time following the overhaul of cron management [LINK](https://github.com/jeedom/core/issues/2794)
+- Fixed a bug on the home automation summary page when searching for an order by id [LINK](https://github.com/jeedom/core/issues/2795)
 
 >**IMPORTANT**
 >

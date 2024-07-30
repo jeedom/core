@@ -16,6 +16,9 @@
 - Ein Fehler bei der Anzeige des Timeline-Ordners in der erweiterten Konfiguration eines Befehls wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2791)
 - Neugestaltung des fail2ban-Systems von Jeedom, damit es weniger Ressourcen verbraucht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2684)
 - Ein Fehler beim Archivieren und Löschen von Historien wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2793)
+- Verbesserter Patch für GPG-Fehler bei Python-Abhängigkeiten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2798)
+- Ein Problem beim Ändern der Zeit nach der Überarbeitung der Cron-Verwaltung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2794)
+- Es wurde ein Fehler auf der Zusammenfassungsseite der Hausautomation behoben, der bei der Suche nach einer Bestellung anhand der ID auftrat [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2795)
 
 >**WICHTIG**
 >
