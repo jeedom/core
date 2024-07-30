@@ -704,12 +704,9 @@ class eqLogic {
 		return false;
 	}
 
-	public function copy($_name, $_logicalId = null) {
+	public function copy($_name) {
 		$eqLogicCopy = clone $this;
 		$eqLogicCopy->setName($_name);
-		if ($_logicalId) {
-			$eqLogicCopy->setLogicalId($_logicalId);
-		}
 		$eqLogicCopy->setId('');
 		$eqLogicCopy->save();
 		foreach (($eqLogicCopy->getCmd()) as $cmd) {
@@ -738,7 +735,6 @@ class eqLogic {
 			$eqLogicCopy->setDisplay('backGraph::info', $cmd_link[$backGraphCmd]->getId());
 			$eqLogicCopy->save(true);
 		}
-
 		return $eqLogicCopy;
 	}
 

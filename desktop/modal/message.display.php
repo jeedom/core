@@ -101,6 +101,8 @@ if ($selectPlugin != '') {
         },
         success: function() {
           document.querySelector("#table_message tbody").empty()
+          document.getElementById("table_message").triggerEvent('update')
+          msgDataTable.refresh()
           jeedom.refreshMessageNumber()
         }
       })

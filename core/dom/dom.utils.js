@@ -562,9 +562,8 @@ domUtils.ajax = function(_params) {
       isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
       if (_params.global) domUtils.DOMloading -= 1
-      domUtils.handleAjaxError(response, response.status, response.statusText)
-      if (_params.onError) _params.onError(error)
-      _params.onError('', '', error)
+      domUtils.handleAjaxError(request, request.status, request.responseText)
+      if (_params.onError) _params.onError(request)
     }
     _params.complete()
   } else { //Asynchronous request:
