@@ -241,7 +241,7 @@ function getClientIp() {
 			if (strpos($_SERVER[$source], ',') !== false) {
 				return explode(',', $_SERVER[$source])[0];
 			}
-			return $_SERVER[$source];
+			return str_replace(' ','',$_SERVER[$source]);
 		}
 	}
 	return '';
@@ -1451,8 +1451,8 @@ function cronIsDue($_cron){
 	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
 		return false;
 	}
-	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 	try {
+		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 		return $c->isDue();
 	} catch (Exception $e) {
 

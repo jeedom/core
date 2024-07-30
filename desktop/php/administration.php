@@ -1790,21 +1790,20 @@ $productName = config::byKey('product_name');
 							</thead>
 							<tbody>
 								<?php
-								$cache = cache::byKey('security::banip');
-								$values = json_decode($cache->getValue('[]'), true);
-								if (!is_array($values)) {
-									$values = array();
+								$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+								if (!is_array($ban_ips)) {
+									$ban_ips = array();
 								}
-								if (count($values) != 0) {
+								if (count($ban_ips) != 0) {
 									$div = '';
-									foreach ($values as $value) {
+									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
-										$div .= '<td>' . $value['ip'] . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
+										$div .= '<td>' . $ip . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s', $datetime) . '</td>';
 										if (config::byKey('security::bantime') < 0) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s', $datetime + config::byKey('security::bantime')) . '</td>';
 										}
 										$div .= '</tr>';
 									}
@@ -1972,18 +1971,7 @@ $productName = config::byKey('product_name');
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="alert alert-info">
-							{{Attention : toute modification du moteur de cache nécessite un redémarrage.}}
-						</div>
-						<?php
-						$stats = cache::stats();
-						?>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<?php
-								echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> {{objets}}</span>';
-								?>
-							</div>
+							{{Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.}}
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
@@ -1994,8 +1982,10 @@ $productName = config::byKey('product_name');
 										<option value="MemcachedCache">{{Memcached}}</option>
 									<?php } ?>
 									<?php if (class_exists('redis')) { ?>
-										<option value="RedisCache">{{Redis}}</option>
+										<option value="RedisCache">{{Redis (beta)}}</option>
 									<?php } ?>
+										<option value="MariadbCache">{{Mysql (beta)}}</option>
+										<option value="FileCache">{{Fichier (beta)}}</option>
 								</select>
 							</div>
 						</div>

@@ -656,14 +656,18 @@ class DB {
 				$return[$_table['name']]['sql']	.= static::buildDefinitionField($field);
 				$return[$_table['name']]['sql'] .= ',';
 			}
-			$return[$_table['name']]['sql'] .= "\n" . 'primary key(';
+			$primary_key = '';
 			foreach ($_table['fields'] as $field) {
 				if (isset($field['key']) && $field['key'] == 'PRI') {
-					$return[$_table['name']]['sql'] .= '`' . $field['name'] . '`,';
+					$primary_key .= '`' . $field['name'] . '`,';
 				}
 			}
-			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'], ',');
-			$return[$_table['name']]['sql'] .= ')';
+			if($primary_key != ''){
+				$return[$_table['name']]['sql'] .= "\n" . 'primary key(';
+				$return[$_table['name']]['sql'] .= trim($primary_key, ',');
+				$return[$_table['name']]['sql'] .= ')';
+			}
+			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
 			$return[$_table['name']]['sql'] .= ')' . "\n";
 			if (!isset($_table['engine'])) {
 				$_table['engine'] = 'InnoDB';
@@ -676,6 +680,17 @@ class DB {
 			return $return;
 		}
 		$forceRebuildIndex = false;
+		try {
+			$status = DB::Prepare('show table status where name="' . $_table['name'] . '"', array(), DB::FETCH_TYPE_ROW);
+		} catch (\Exception $e) {
+			$status = array();
+		}
+	    if(!isset($_table['engine'])){
+       		$_table['engine'] = 'InnoDB';
+      	}
+		if(isset($status['Engine']) && $status['Engine'] != $_table['engine']){ 
+			$return[$_table['name']]['sql'] = 'ALTER TABLE `' . $_table['name'] . '` ENGINE = '.$_table['engine'];
+		}
 		foreach ($_table['fields'] as $field) {
 			$found = false;
 			foreach ($describes as $describe) {

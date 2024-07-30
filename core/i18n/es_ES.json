@@ -454,6 +454,7 @@
         "Coloration des icones": "Coloración de icono",
         "Type générique": "Tipo genérico",
         "Changer de thème": "Cambiar de tema",
+        "Filtre des commandes": "Filtro de orden",
         "Pause de x seconde(s)": "Pausa de x segundo(s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Espera hasta que la condición sea válida (máximo 2 horas)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Crear\/modificar una variable o valor de una variable",
@@ -492,8 +493,11 @@
         "Objet": "Objeto",
         "Equipement": "Equipo",
         "Commande": "Ordenado",
+        "Filtre des objets": "Filtrar objetos",
         "Commande info": "Comando de información",
-        "Commande action": "Comando de acción"
+        "Commande action": "Comando de acción",
+        "Filtre des équipements": "Filtro de equipo",
+        "Filtre des commandes": "Filtro de orden"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -1053,6 +1057,7 @@
         "Options": "Opciones",
         "Activer": "Activar",
         "Visible": "Visible",
+        "Masquer sur la vue principale": "Ocultar en la vista principal",
         "Template de widget": "Plantilla de widget",
         "ID logique": "ID logical",
         "Création - Sauvegarde": "Creación - Copia de seguridad",
@@ -2016,13 +2021,13 @@
         "Configuration des dépôts": "Configuración de repositorios",
         "Tester\/Synchroniser": "Prueba \/ Sincronizar",
         "Tester": "Prueba",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Advertencia: cualquier modificación en el motor de caché requiere un reinicio",
-        "Statistiques": "Estadísticas",
-        "objets": "objetos",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Advertencia: cualquier modificación en el motor de caché requiere un reinicio y hará que pierda temporalmente información sobre los valores de los comandos y cualquier otra información almacenada en caché mientras se devuelve todo",
         "Moteur de cache": "Motor de caché",
         "Système de fichiers": "Sistema de archivos",
         "Memcached": "Memcaché",
-        "Redis": "Dilo otra vez",
+        "Redis (beta)": "Redis (beta)",
+        "Mysql (beta)": "MySQL (beta)",
+        "Fichier (beta)": "Archivo (beta)",
         "Adresse Memcache": "Dirección Memcache",
         "Port Memcache": "Puerto Memcache",
         "Adresse Redis": "Dirección Redis",
@@ -2358,6 +2363,7 @@
         "A": "PARA",
         "Code": "Código",
         "Commentaire": "Comentario",
+        "Filtre des blocs": "Filtro de bloque",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Le permite crear condiciones en su escenario. Por ejemplo: si se activa el sensor de mi puerta, entonces encienda la luz",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Te permite lanzar una acción, sobre uno de tus módulos, escenarios u otros. Por ejemplo: Encienda su sirena",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Un bucle le permite realizar una acción repetidamente un cierto número de veces. Por ejemplo: Le permite repetir una acción de 1 a X, es decir, X veces",
@@ -3876,7 +3882,6 @@
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Inicio de sesión de usuario por REMOTE_USER:",
         "Double authentification requise": "Double authentification requise",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Contraseña o nombre de usuario no válido",
-        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Debe desactivar la autenticación LDAP para agregar un usuario",
         "Utilisateur invalide": "Usuario invalido",
@@ -4206,6 +4211,7 @@
         "Acheter": "Comprar",
         "Nous Contacter": "Contáctenos",
         "Supprimer": "Eliminar",
+        "Plugin deja acheté et\/ou inclus dans votre service Pack": "Complemento ya comprado y\/o incluido en su Service Pack",
         "Gratuit": "Gratis",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Tenga en cuenta que este plugin no es un plugin oficial en caso de problemas con él (directo o indirecto), cualquier solicitud de soporte puede ser rechazada",
         "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Tenga en cuenta que este complemento solo está disponible en versión beta, por lo que puede tener muchos errores y perderá toda posibilidad de solicitar soporte (independientemente del complemento) al instalarlo",
@@ -4691,9 +4697,6 @@
     "core\/class\/log.class.php": {
         "Log": "Registro"
     },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Desconocido"
-    },
     "core\/class\/message.class.php": {
         "Message de": "Mensaje de"
     },
@@ -4880,7 +4883,8 @@
         "Sélectionner la commande": "Seleccionar el comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Diseño"
+        "Design": "Diseño",
+        "Filtre des designs": "Diseños de filtros"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Seleccione el comando"
@@ -4948,7 +4952,11 @@
         "Santé": "Salud",
         "Timeline": "Cronología",
         "URL": "URL",
+        "Filtre des types": "Tipo de filtro",
+        "Filtre des vues": "Filtrar vistas",
+        "Filtre des designs": "Diseños de filtros",
         "Panel": "Panel",
+        "Filtre des plugins": "Filtro de complemento",
         "Exporter en": "Exportar a",
         "PNG": "PNG",
         "PDF": "PDF",

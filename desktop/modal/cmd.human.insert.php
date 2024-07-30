@@ -33,6 +33,7 @@ if (!isConnect()) {
         <select class='form-control'>
           <?php echo jeeObject::getUISelectList(); ?>
         </select>
+        <input class="form-control" placeholder="{{Filtre des objets}}">
       </td>
       <td class="mod_insertCmdValue_eqLogic"></td>
       <td class="mod_insertCmdValue_cmd"></td>
@@ -52,9 +53,35 @@ if (!isConnect()) {
       document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select').jeeValue(mod_insertCmd.options.object.id)
     }
 
+    function filterOptions(select, input, allOptions) {
+      const text = input.value.trim().toLowerCase().stripAccents()
+      const currentSelection = select.value
+
+      select.innerHTML = ''
+
+      allOptions
+        .filter(option => {
+          const optionText = option.textContent.toLowerCase().stripAccents()
+          return text === '' || optionText.includes(text)
+        })
+        .forEach(option => {
+          select.add(option.cloneNode(true))
+        })
+
+        const selectedOption = allOptions.find(option => option.value === currentSelection)
+        if (selectedOption && !select.querySelector(`option[value="${currentSelection}"]`)) {
+          select.add(selectedOption.cloneNode(true))
+        }
+        select.value = currentSelection
+    }
+
     mod_insertCmd.setOptions = function(_options) {
+      if(document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage') === null){
+           setTimeout(function(){mod_insertCmd.setOptions(_options)}, 10);
+           return;
+      }
       mod_insertCmd.options = _options
-      var _selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select')
+      const _selectObject = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object select')
       if (!isset(mod_insertCmd.options.cmd)) {
         mod_insertCmd.options.cmd = {}
       }
@@ -77,6 +104,13 @@ if (!isConnect()) {
         if (event.target.matches('td.mod_insertCmdValue_object select')) {
           mod_insertCmd.changeObjectCmd(_selectObject, mod_insertCmd.options)
         }
+      })
+
+      const input = document.getElementById('table_mod_insertCmdValue_valueEqLogicToMessage').querySelector('td.mod_insertCmdValue_object input')
+      const allOptions = Array.from(_selectObject.options)
+
+      input.addEventListener('input', function() {
+        filterOptions(_selectObject, input, allOptions)
       })
     }
 
@@ -118,20 +152,31 @@ if (!isConnect()) {
         },
         success: function(eqLogics) {
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').empty()
-          var selectEqLogic = '<select class="form-control">'
-          for (var i in eqLogics) {
+          let selectEqLogic = '<select class="form-control">'
+          for (let i in eqLogics) {
             if (init(mod_insertCmd.options.eqLogic.eqType_name, 'all') == 'all' || eqLogics[i].eqType_name == mod_insertCmd.options.eqLogic.eqType_name) {
               selectEqLogic += '<option value="' + eqLogics[i].id + '">' + eqLogics[i].name + '</option>'
             }
           }
           selectEqLogic += '</select>'
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').insertAdjacentHTML('beforeend', selectEqLogic)
+          let inputEqLogic = '<input class="form-control" placeholder="{{Filtre des équipements}}">'
+          _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic').insertAdjacentHTML('beforeend', inputEqLogic)
           if (mod_insertCmd?.options?.eqLogic?.id && Array.from(_select.closest('tr').querySelectorAll('.mod_insertCmdValue_eqLogic select option')).filter(o => o.value === mod_insertCmd.options.eqLogic.id).length > 0) {
             _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').jeeValue(mod_insertCmd.options.eqLogic.id)
           }
           _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select').addEventListener('change', function() {
             mod_insertCmd.changeEqLogic(this, mod_insertCmd.options)
           })
+            
+          const select = _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select')
+          const input = _select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic input')
+          const allOptions = Array.from(select.options)
+
+          input.addEventListener('input', function() {
+            filterOptions(select, input, allOptions)
+          })
+          
           mod_insertCmd.changeEqLogic(_select.closest('tr').querySelector('.mod_insertCmdValue_eqLogic select'), mod_insertCmd.options)
         }
       })
@@ -154,6 +199,16 @@ if (!isConnect()) {
             selectCmd += html
             selectCmd += '</select>'
             _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', selectCmd)
+          	let inputCmd = '<input class="form-control" placeholder="{{Filtre des commandes}}">'
+            _select.closest('tr').querySelector('.mod_insertCmdValue_cmd').insertAdjacentHTML('beforeend', inputCmd)
+              
+            const select = _select.closest('tr').querySelector('.mod_insertCmdValue_cmd select')
+            const input = _select.closest('tr').querySelector('.mod_insertCmdValue_cmd input')
+            const allOptions = Array.from(select.options)
+
+            input.addEventListener('input', function() {
+              filterOptions(select, input, allOptions)
+            })
           } catch (error) {}
         }
       })

@@ -381,13 +381,19 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 
 Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
 
-- **Statistiken** : Anzahl der aktuell zwischengespeicherten Objekte.
+- **Cache-Engine** : Wahl der Cache-Engine für Jeedom : 
+  - Dateisystem : Speicherung der Cache-Informationen /tmp/jeedom/cache (im RAM) im Dateimodus, verwendet eine Drittanbieter-Bibliothek. Es wird bald durch File (Beta) ersetzt)
+  - Datei (Beta) : Speicherung der Cache-Informationen /tmp/jeedom/cache (im RAM) im Dateimodus. Am effizientesten, aber alle 30 Minuten gespart
+  - MySQL (Beta)) : Verwendung einer einfachen Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
+  - Redis (Beta) : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (erfordert die Installation von Redis selbst und der PHP-Redis-Abhängigkeiten))
 - **Cache Reinigung** : Erzwingen Sie das Löschen von Objekten, die nicht mehr nützlich sind. Jeedom macht das automatisch jede Nacht.
 - **Alle Daten aus dem Cache entfernen** : Leeren Sie den Deckel vollständig.
     Bitte beachten Sie, dass dies zu Datenverlust führen kann !
-- **Leeren Sie den Widget-Cache** : Leeren Sie den Cache für Widgets.
-- **Widget-Cache deaktivieren** : Aktivieren Sie das Kontrollkästchen, um den Widget-Cache zu deaktivieren.
 - **Pausenzeit für das lange Polling** : Häufigkeit, mit der Jeedom prüft, ob Ereignisse für Kunden ausstehen (Weboberfläche, mobile Anwendung usw.)). Je kürzer diese Zeit ist, desto schneller wird die Schnittstelle aktualisiert. Im Gegenzug verbraucht sie mehr Ressourcen und kann daher Jeedom verlangsamen.
+
+>**Wichtig**
+>
+> Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
 
 ## Registerkarte API
 

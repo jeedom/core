@@ -137,7 +137,7 @@ try {
 		ajax::success($return);
 	}
 
-	function jeeAjax_objectToHtml($_id = -1, $_version = 'dashboard', $_category = 'all', $_tag = 'all', $_summary = '') {
+	function jeeAjax_objectToHtml($_id = -1, $_version = 'dashboard', $_category = 'all', $_tag = 'all', $_summary = '',$_hideOnMain = 0) {
 		$html = array();
 		if ($_summary == '') {
 			$eqLogics = eqLogic::byObjectId($_id, true, true);
@@ -151,6 +151,9 @@ try {
 					continue;
 				}
 				if ($_tag != 'all' && strpos($eqLogic->getTags(), init('tag')) === false) {
+					continue;
+				}
+				if ($_hideOnMain == 1 && $eqLogic->getConfiguration('hideOnMain',0) == 1) {
 					continue;
 				}
 				$order = $eqLogic->getOrder();
@@ -197,13 +200,13 @@ try {
 			$return = array();
 			$i = 0;
 			foreach ($objects as $id) {
-				$html = jeeAjax_objectToHtml($id, init('version'), init('category', 'all'), init('tag', 'all'), init('summary'));
+				$html = jeeAjax_objectToHtml($id, init('version'), init('category', 'all'), init('tag', 'all'), init('summary'),init('hideOnMain',0));
 				$return[$i . '::' . $id] = $html;
 				$i++;
 			}
 			ajax::success($return);
 		} else {
-			$html = jeeAjax_objectToHtml(init('id'), init('version'), init('category', 'all'), init('tag', 'all'), init('summary'));
+			$html = jeeAjax_objectToHtml(init('id'), init('version'), init('category', 'all'), init('tag', 'all'), init('summary'),init('hideOnMain',0));
 			ajax::success($html);
 		}
 	}

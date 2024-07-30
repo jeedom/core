@@ -239,6 +239,7 @@ Il existe des déclencheurs spécifiques (autre que ceux fournis par les command
 - ``#user_connect#`` : Connexion d'un utilisateur
 - ``#variable(nom_variable)#`` : Changement de valeur de la variable nom_variable.
 - ``#genericType(GENERIC, #[Object]#)#`` : Changement d'une commande info de Type Generic GENERIC, dans l'objet Object.
+- ``#new_eqLogic#`` : Événement envoyé lors de la création d'un nouvelle équipement, vous avez dans les tags id (id de l'équipement crée), name (nom de l'équipement crée) et eqType (type/plugin de l'équipement crée)
 
 Vous pouvez aussi déclencher un scénario en utilisant l’API HTTP décrite [ici](https://doc.jeedom.com/fr_FR/core/4.4/api_http).
 

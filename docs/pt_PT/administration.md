@@ -381,13 +381,19 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 
 Permite monitorar e agir no cache Jeedom :
 
-- **Estatisticas** : Número de objetos atualmente armazenados em cache.
+- **Mecanismo de cache** : escolha do mecanismo de cache para jeedom : 
+  - Sistema de arquivo : Armazenamento de informações de cache /tmp/jeedom/cache (em RAM) no modo de arquivo, usa uma biblioteca de terceiros. Em breve será substituído por Arquivo (beta)
+  - Arquivo (beta) : Armazenamento de informações de cache /tmp/jeedom/cache (em RAM) no modo de arquivo. O mais eficiente, mas economizado a cada 30 minutos
+  - MySQL (beta)) : Usando uma tabela de cache básica. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
+  - Redis (beta) : Reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
 - **Cache de limpo** : Forçar a exclusão de objetos que não são mais úteis. Jeedom faz isso automaticamente todas as noites.
 - **Vazio todos os dados de cache** : Esvazie a tampa completamente.
     Observe que isso pode causar perda de dados !
-- **Limpe o cache do widget** : Limpe o cache dedicado aos widgets.
-- **Desativar cache do widget** : Marque a caixa para desativar o cache do widget.
 - **Tempo de pausa para o longo polling** : Frequência com que o Jeedom verifica se há eventos pendentes para os clientes (interface da web, aplicativo móvel etc.)). Quanto menor o tempo, mais rápida será a atualização da interface. Em troca, ela usa mais recursos e, portanto, pode retardar o Jeedom.
+
+>**Importante**
+>
+> Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo
 
 ## Guia API
 

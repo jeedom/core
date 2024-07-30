@@ -1206,9 +1206,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   (function() { // Self Isolation!
     var jeeM = jeeFrontEnd.md_displayCmdConfigure
-    jeeM.init()
-
-
+    
     //Manage events outside parents delegations:
     document.getElementById('bt_cmdConfigureTest')?.addEventListener('click', function(event) {
       jeedom.cmd.test({
@@ -1466,7 +1464,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     document.getElementById('cmd_information')?.addEventListener('change', function(event) {
       var _target = null
       if (_target = event.target.closest('.cmdAttr[data-l2key="timeline::enable"]')) {
-        if (this.jeeValue() == 1) {
+        if (_target.jeeValue() == 1) {
           document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').seen()
         } else {
           document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').unseen()
@@ -1592,6 +1590,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         return
       }
     })
+
+    jeeM.init()
 
     jeeM.postInit()
   })()

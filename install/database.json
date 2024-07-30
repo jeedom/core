@@ -240,6 +240,44 @@
       }
     },
     {
+      "name": "cache",
+      "fields": [
+        {
+          "name": "key",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "PRI",
+          "default": "core",
+          "extra": ""
+        },
+        {
+          "name": "value",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "datetime",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "lifetime",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": []
+    },
+    {
       "name": "config",
       "fields": [
         {
@@ -671,6 +709,48 @@
       }
     },
     {
+      "name": "event",
+      "engine" : "MEMORY",
+      "fields": [
+        {
+          "name": "datetime",
+          "type": "double(16,6)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "option",
+          "type": "varchar(8192)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "datetime": {
+          "Key_name": "datetime",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "datetime",
+              "Sub_part": null
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "history",
       "fields": [
         {
@@ -874,6 +954,7 @@
     },
     {
       "name": "interactQuery",
+      "engine" : "MyISAM",
       "fields": [
         {
           "name": "id",

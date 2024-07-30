@@ -931,7 +931,7 @@ var jeeDialog = (function() {
         }
       }
 
-      for (var button of Object.entries(_params.defaultButtons)) {
+      for (var button of Object.entries(buttons)) {
         var buttonEL = exports.addButton(button, dialogFooter)
         if (buttonEL.getAttribute('data-type') === 'confirm') {
           _container.addEventListener('keyup', function(event) {

@@ -467,11 +467,11 @@ class update {
 					exec($cmd);
 					log::add(__CLASS__, 'alert', __("OK", __FILE__) . "\n");
 					log::add(__CLASS__, 'alert',  __('Suppression des fichiers inutiles...', __FILE__));
-					foreach (array('3rdparty', '3rparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor', 'plugin_info') as $folder) {
+					foreach (array('3rdparty', '3rparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'plugin_info') as $folder) {
 						if (!file_exists($cibDir . '/' . $folder)) {
 							continue;
 						}
-						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" ! -path "./vendor/*" -delete 2>/dev/null');
+						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" ! -path "./vendor/*"  -delete 2>/dev/null');
 					}
 				} catch (Exception $e) {
 					$this->remove();
