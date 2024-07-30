@@ -1444,7 +1444,7 @@ function checkAndFixCron($_cron) {
 }
 
 function cronIsDue($_cron){
-	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4) {
+	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('I') == 1 && date('Gi') > 159) {
 		return false;
 	}
 	$schedule = explode(' ',trim($_cron));
