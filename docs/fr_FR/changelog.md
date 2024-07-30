@@ -16,6 +16,7 @@
 - Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande [LIEN](https://github.com/jeedom/core/issues/2791)
 - Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource [LIEN](https://github.com/jeedom/core/issues/2684)
 - Correction d'un bug sur l'archivage et la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2793)
+- Amélioration du patch pour le bug gpg sur les dépendances python [LIEN](https://github.com/jeedom/core/pull/2798)
 
 >**IMPORTANT**
 >
