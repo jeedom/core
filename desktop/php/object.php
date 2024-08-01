@@ -102,6 +102,12 @@ $synthToActions = array(
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label">{{Nom à afficher (si vide alors le nom de l'objet sera utilisé)}}</label>
+								<div class="col-sm-7">
+									<input class="form-control objectAttr" type="text" data-l1key="configuration" data-l2key="display_name" placeholder="{{Nom à afficher}}" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Objet parent}}</label>
 								<div class="col-sm-7">
 									<select class="form-control objectAttr" data-l1key="father_id">

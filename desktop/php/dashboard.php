@@ -125,7 +125,7 @@ $columns = config::byKey('dahsboard::column::size');
 			}
 			$div .= '<div class="objectPreview cursor shadowed fullCorner" style="background:url(' . $backUrl . ')" data-object_id="' . $_object->getId() . '">';
 			$div .= '<div class="topPreview topCorner nocursor">';
-			$div .= '<span class="name cursor">' . $_object->getDisplay('icon') . ' ' . $_object->getName() . '</span>';
+			$div .= '<span class="name cursor">' . $_object->getDisplay('icon') . ' ' . $_object->getConfiguration('display_name',$_object->getName()) . '</span>';
 			$div .= '</div>';
 			$div .= '</div>';
 
@@ -161,7 +161,7 @@ $columns = config::byKey('dahsboard::column::size');
 		} else {
 			$div .= '<a href="index.php?v=d&p=dashboard&object_id=' . $objectId . '&childs=0"><i class="icon jeedomapp-fleche-haut-line"></i></a>';
 		}
-		$div .= '<a href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getName()) . '</a>';
+		$div .= '<a href="index.php?v=d&p=object&id=' . $objectId . '">' . $object->getDisplay('icon') . ' ' . ucfirst($object->getConfiguration('display_name',$object->getName())) . '</a>';
 		if (isset($summaryCache[$objectId])) {
 			$div .= '<span>' . $summaryCache[$objectId] . '</span>';
 		}

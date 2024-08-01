@@ -55,8 +55,9 @@ function initEquipment(_object_id) {
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
+          let name = (objects[i].configuration.display_name && objects[i].configuration.display_name != '') ? objects[i].configuration.display_name : objects[i].name;
           li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '">'
-          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name
+          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + name
           li += ' <span class="summaryMenu"><span class="objectSummaryContainer objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
           summaries.push({object_id : objects[i].id})
         }
