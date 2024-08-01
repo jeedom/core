@@ -131,6 +131,7 @@ if (!jeeFrontEnd.md_datastore) {
             paging: false,
             searchable: true,
           })
+          jeedomUtils.resizableTable(document.getElementById('table_dataStore'));
         }
       })
     },
