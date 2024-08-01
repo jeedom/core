@@ -1851,7 +1851,7 @@ $productName = config::byKey('product_name');
                                           <select class="form-control configKey" data-l1key="core::branch">
 										  	  <optgroup label="{{Defaut (support)}}">
 												<option value="master">{{Stable}}</option>
-                                              	<option value="V4-stable">{{Stable}}</option>
+                                              	<option value="V4-stable">{{Stable (old)}}</option>
 											  </optgroup>
                                               <?php 
                                               if(config::byKey('core::repo::provider') == 'default'){
