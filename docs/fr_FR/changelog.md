@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
+- Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour) [LIEN](https://github.com/jeedom/core/issues/2438)
+
 # 4.4.10
 
 - Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire [LIEN](https://github.com/jeedom/core/pull/2757)
@@ -23,10 +28,6 @@
 - Jeedom liste maintenant toute les branches et tags du repos github pour permettre de tester des fonctionnalitées en avance ou de revenir à une version précdente du core (attention cela est trés risqué) [LIEN](https://github.com/jeedom/core/issues/2500)
 - Amélioration des sous types de commandes supportées sur les génériques type [LIEN](https://github.com/jeedom/core/pull/2797)
 - Correction d'un bug sur l'affichage des scénario et les commentaires lorsqu'on veut les masquer [LIEN](https://github.com/jeedom/core/pull/2790)
-
-- Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [text](https://github.com/jeedom/core/issues/2499)
-
-- Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour) [LIEN](https://github.com/jeedom/core/issues/2438)
 
 >**IMPORTANT**
 >
