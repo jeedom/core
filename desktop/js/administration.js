@@ -1301,6 +1301,20 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
     return
   }
 
+  if (_target = event.target.closest('#bt_refreshListBranch')) {
+    jeedom.cache.remove({
+      key: 'core::branch::default::list',
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        window.location.reload();
+      }
+    })
+  }
 })
 
 document.getElementById('updatetab').addEventListener('change', function(event) {

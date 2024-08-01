@@ -416,7 +416,7 @@ distrib_1_spe(){
 }
 
 STEP=0
-VERSION=V4-stable
+VERSION=master
 WEBSERVER_HOME=/var/www/html
 MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
