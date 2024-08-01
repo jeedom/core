@@ -26,6 +26,8 @@
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [text](https://github.com/jeedom/core/issues/2499)
 
+- Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour) [LIEN](https://github.com/jeedom/core/issues/2438)
+
 >**IMPORTANT**
 >
 > Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
