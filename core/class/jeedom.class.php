@@ -335,6 +335,15 @@ class jeedom {
 			'key' => 'database::connexion'
 		);
 
+		$size = DB::Prepare('SELECT SUM(data_length + index_length) as size FROM information_schema.tables WHERE table_schema = \'jeedom\' GROUP BY table_schema;', array(), DB::FETCH_TYPE_ROW);
+		$return[] = array(
+			'name' => __('Taille base de données', __FILE__),
+			'state' => true,
+			'result' => sizeFormat($size['size']),
+			'comment' => '',
+			'key' => 'database::size'
+		);
+
 		$value = self::checkSpaceLeft(self::getTmpFolder());
 		$return[] = array(
 			'name' => __('Espace disque libre tmp', __FILE__),
