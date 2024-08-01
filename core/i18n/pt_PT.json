@@ -4525,7 +4525,7 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Atenção",
         "n\\'a pas envoyé de message depuis plus de": "não enviou uma mensagem por mais de",
-        "min (vérifiez les piles)": "min (verifique as pilhas)",
+        "min": "min",
         "Equipement": "Equipamento",
         "Aucun": "Nenhum",
         "L\\'équipement n\\'a pas pu être trouvé :": "Não foi possível encontrar o equipamento:",

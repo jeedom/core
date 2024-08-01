@@ -4525,7 +4525,7 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Warning",
         "n\\'a pas envoyé de message depuis plus de": "has not sent a message for more than",
-        "min (vérifiez les piles)": "min (check batteries)",
+        "min": "min",
         "Equipement": "Equipment",
         "Aucun": "None",
         "L\\'équipement n\\'a pas pu être trouvé :": "The equipment could not be found:",
@@ -4649,7 +4649,7 @@
         "Autre": "Other",
         "Attention le plugin": "Warning the plugin",
         "n\\'a pas recu de message depuis": "haven't received a message since",
-        "min": "minimum",
+        "min": "min",
         "Configuration": "Configuration",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "The plugin :: cron task cannot finish because of the plugin:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "we advise you to deactivate the plugin and contact the author",

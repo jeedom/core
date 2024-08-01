@@ -4525,7 +4525,7 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Atención",
         "n\\'a pas envoyé de message depuis plus de": "no ha enviado un mensaje por más de",
-        "min (vérifiez les piles)": "min (comprobar pilas)",
+        "min": "mín.",
         "Equipement": "Dispositivos",
         "Aucun": "No",
         "L\\'équipement n\\'a pas pu être trouvé :": "No se pudo encontrar el equipo:",
@@ -4649,7 +4649,7 @@
         "Autre": "Otro",
         "Attention le plugin": "Atención el complemento",
         "n\\'a pas recu de message depuis": "no he recibido un mensaje desde",
-        "min": "min",
+        "min": "mín.",
         "Configuration": "Configuración",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "La tarea plugin :: cron no puede finalizar debido al complemento:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "le recomendamos que desactive el complemento y se ponga en contacto con el autor",
