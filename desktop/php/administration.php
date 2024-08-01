@@ -1855,7 +1855,7 @@ $productName = config::byKey('product_name');
 											  </optgroup>
                                               <?php 
                                               if(config::byKey('core::repo::provider') == 'default'){
-                                                  $lists = cache::byKey('core::branch::default::list')->getValue();
+                                                  $lists = cache::byKey('core::branch::default::list')->getValue(array());
                                                   if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
                                                       $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
                                                       $request_http->setHeader(array('User-agent: jeedom'));
