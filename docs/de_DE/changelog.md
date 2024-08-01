@@ -1,5 +1,10 @@
 # Änderungsprotokoll Jeedom V4.4
 
+# 4.4.11
+
+- Möglichkeit, die Größe von Tabellenspalten anzupassen (im Moment nur die Liste der Variablen, sie wird bei Bedarf auf andere Tabellen ausgeweitet)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2499)
+- Es wurde eine Warnung hinzugefügt, wenn der Jeedom-Speicherplatz zu gering ist (die Überprüfung erfolgt einmal täglich)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2438)
+
 # 4.4.10
 
 - Die Ereignisverwaltung, die zum Aktualisieren der In-Memory-Datenbankschnittstelle verwendet wird, wurde verschoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +24,10 @@
 - Verbesserter Patch für GPG-Fehler bei Python-Abhängigkeiten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2798)
 - Ein Problem beim Ändern der Zeit nach der Überarbeitung der Cron-Verwaltung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2794)
 - Es wurde ein Fehler auf der Zusammenfassungsseite der Hausautomation behoben, der bei der Suche nach einer Bestellung anhand der ID auftrat [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2795)
+- Datenbankgröße zur Gesundheitsseite hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom listet jetzt alle Zweige und Tags des Github-Repositorys auf, damit Sie die Funktionalitäten vorab testen oder zu einer früheren Version des Kerns zurückkehren können (Achtung, das ist sehr riskant)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2500)
+- Verbesserung der Untertypen von Befehlen, die von generischen Typen unterstützt werden [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2797)
+- Es wurde ein Fehler bei der Anzeige von Szenarien und Kommentaren behoben, wenn diese ausgeblendet werden sollten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2790)
 
 >**WICHTIG**
 >

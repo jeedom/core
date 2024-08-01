@@ -1,5 +1,10 @@
 # Registro de cambios Jeedom V4.4
 
+# 4.4.11
+
+- Posibilidad de cambiar el tamaño de las columnas de la tabla (por el momento sólo la lista de variables, se ampliará a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
+- Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)) [ENLACE](https://github.com/jeedom/core/issues/2438)
+
 # 4.4.10
 
 - Se movió la gestión de eventos que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +24,10 @@
 - Parche mejorado para el error gpg en las dependencias de Python [ENLACE](https://github.com/jeedom/core/pull/2798)
 - Se solucionó un problema al cambiar la hora después de la revisión de la gestión cron [ENLACE](https://github.com/jeedom/core/issues/2794)
 - Se corrigió un error en la página de resumen de domótica al buscar un pedido por identificación [ENLACE](https://github.com/jeedom/core/issues/2795)
+- Se agregó tamaño de base de datos a la página de salud [ENLACE](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom ahora enumera todas las ramas y etiquetas del repositorio de github para permitirle probar las funcionalidades por adelantado o volver a una versión anterior del núcleo (tenga cuidado, esto es muy arriesgado)) [ENLACE](https://github.com/jeedom/core/issues/2500)
+- Mejora de subtipos de comandos soportados en tipos genéricos [ENLACE](https://github.com/jeedom/core/pull/2797)
+- Se corrigió un error en la visualización de escenarios y comentarios cuando desea ocultarlos [ENLACE](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANTE**
 >

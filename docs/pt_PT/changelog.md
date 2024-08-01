@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, será estendida a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
+- Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
+
 # 4.4.10
 
 - Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória [LINK](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +24,10 @@
 - Patch aprimorado para bug gpg em dependências python [LINK](https://github.com/jeedom/core/pull/2798)
 - Corrigido um problema ao alterar a hora após a revisão do gerenciamento do cron [LINK](https://github.com/jeedom/core/issues/2794)
 - Corrigido bug na página de resumo da automação residencial ao pesquisar um pedido por id [LINK](https://github.com/jeedom/core/issues/2795)
+- Adicionado tamanho do banco de dados à página de integridade [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom agora lista todas as ramificações e tags do repositório github para permitir que você teste funcionalidades com antecedência ou reverta para uma versão anterior do núcleo (tenha cuidado, isso é muito arriscado) [LINK](https://github.com/jeedom/core/issues/2500)
+- Melhoria de subtipos de comandos suportados em tipos genéricos [LINK](https://github.com/jeedom/core/pull/2797)
+- Corrigido bug na exibição de cenários e comentários quando você deseja ocultá-los [LINK](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANTE**
 >

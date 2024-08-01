@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary) [LINK](https://github.com/jeedom/core/issues/2499)
+- Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
+
 # 4.4.10
 
 - Moved event management which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +24,10 @@
 - Improved patch for gpg bug on python dependencies [LINK](https://github.com/jeedom/core/pull/2798)
 - Fixed a problem when changing the time following the overhaul of cron management [LINK](https://github.com/jeedom/core/issues/2794)
 - Fixed a bug on the home automation summary page when searching for an order by id [LINK](https://github.com/jeedom/core/issues/2795)
+- Added database size to health page [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom now lists all the branches and tags of the github repository to allow you to test functionalities in advance or to revert to a previous version of the core (be careful this is very risky) [LINK](https://github.com/jeedom/core/issues/2500)
+- Improvement of subtypes of commands supported on generic types [LINK](https://github.com/jeedom/core/pull/2797)
+- Fixed a bug in the display of scenarios and comments when you want to hide them [LINK](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANT**
 >
