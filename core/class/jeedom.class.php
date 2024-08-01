@@ -24,6 +24,7 @@ class jeedom {
 
 	private static $jeedomConfiguration;
 	private static $jeedom_encryption = null;
+	private static $cache = array();
 
 	/*     * ***********************Methode static*************************** */
 
@@ -1730,9 +1731,12 @@ class jeedom {
 		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 
-	public static function getTmpFolder($_plugin = null) {
+	public static function getTmpFolder($_plugin = '') {
+		if(isset(self::$cache['getTmpFolder::' . $_plugin])){
+			return self::$cache['getTmpFolder::' . $_plugin];
+		}
 		$return = '/' . trim(config::byKey('folder::tmp'), '/');
-		if ($_plugin !== null) {
+		if ($_plugin !== '') {
 			$return .= '/' . $_plugin;
 		}
 		if (!file_exists($return)) {
@@ -1740,6 +1744,7 @@ class jeedom {
 			$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
 			com_shell::execute($cmd);
 		}
+		self::$cache['getTmpFolder::' . $_plugin] = $return;
 		return $return;
 	}
 
