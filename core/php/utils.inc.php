@@ -1079,6 +1079,16 @@ function isConnect($_right = '') {
 	return true;
 }
 
+function hasRight($_name = '',$_right = 'r',$_default = 'r') {
+	if ($_SESSION['user']->getProfils() == 'admin' || $_SESSION['user']->getProfils() == 'user') {
+		return true;
+	}
+	if (strpos($_SESSION['user']->getRights($_name,$_default), $_right) !== false) {
+		return true;
+	}
+	return false;
+}
+
 function ZipErrorMessage($code) {
 	switch ($code) {
 		case 0:
