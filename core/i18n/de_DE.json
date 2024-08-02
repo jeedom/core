@@ -30,7 +30,7 @@
         "Designs 3D": "3D-Designs"
     },
     "mobile\/js\/overview.js": {
-        "Vue": "Sicht",
+        "Vue": "Gesehen",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Tous": "Alle"
@@ -72,7 +72,7 @@
     },
     "mobile\/js\/application.js": {
         "Résumé": "Zusammenfassung",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "Préviens moi": "Lassen Sie mich wissen",
         "Me prévenir si": "Warne mich, wenn",
         "Synthèse": "Synthese",
@@ -86,8 +86,8 @@
         "Message": "Nachricht",
         "Scenario": "Szenario",
         "Accueil": "Mein Haus",
-        "Vue": "Sicht",
-        "Dashboard": "Armaturenbrett"
+        "Vue": "Gesehen",
+        "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Nein"
@@ -645,13 +645,13 @@
         "Mot": "Wort",
         "ID": "Identifikation",
         "Rechercher un équipement": "Suche nach Ausrüstung",
-        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
+        "Rechercher une commande": "Befehl suchen",
         "Type Générique": "Generischer Typ",
         "Résultats": "Ergebnisse",
         "Scénario": "Szenario",
         "Actions": "Lager",
         "Design": "Entwurf",
-        "Vue": "Sicht",
+        "Vue": "Aussicht",
         "Interaction": "Interaktion",
         "Note": "Notiz",
         "Voir les logs": "Siehe die Protokolle",
@@ -753,7 +753,7 @@
         "Envoyer Historique": "Verlauf senden",
         "Interdire dans les interactions automatiques": "In automatischen Interaktionen verbieten",
         "Icône": "Symbol",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "Voir": "Sehen",
         "Utilisé par": "Verwendet von",
         "Cette commande remplace l'ID": "Dieser Befehl ersetzt die ID",
@@ -1268,7 +1268,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Dashboard": "Armaturenbrett",
+        "Dashboard": "Instrumententafel",
         "Remplacer le widget": "Widget ersetzen",
         "Par": "Durch",
         "Remplacer": "Ersetzen",
@@ -1311,18 +1311,18 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warnung : Ein zu großer Datumsbereich benötigt eine sehr lange Zeit zum berechnen oder kann auch nicht angezeigt werden",
         "Ouvrir dans Analyse \/ Historique.": "Öffnen Sie in Analyse \/ Verlauf",
-        "Historique": "Historisch"
+        "Historique": "Chronik"
     },
     "desktop\/modal\/expression.test.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Test": "Prüfung",
-        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
+        "Rechercher une commande": "Befehl suchen",
         "Rechercher un type générique": "Finden Sie einen generischen Typ",
         "Rechercher un scénario": "Suchen Sie ein Szenario",
         "Rechercher un équipement": "Suche nach Ausrüstung",
         "Exécuter": "Ausführen",
         "Résultat": "Ergebnis",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "L\\'expression de test ne peut être vide": "Testausdruck darf nicht leer sein",
         "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Achtung: Es muss ein Problem bestehen, da das Ergebnis mit dem Ausdruck übereinstimmt",
         "Je vais évaluer :": "Ich werde beurteilen:",
@@ -1496,8 +1496,8 @@
         "Toggle navigation": "Schalter Steuerung",
         "Accueil": "Mein Haus",
         "Synthèse": "Synthese",
-        "Dashboard": "Armaturenbrett",
-        "Vue": "Sicht",
+        "Dashboard": "Instrumententafel",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Analyse": "Analysieren",
@@ -1506,7 +1506,7 @@
         "Equipements": "Geräte",
         "Résumé domotique": "Übersicht Haus-Automatisierung",
         "Timeline": "Zeitleiste",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "Rapport": "Bericht",
         "Santé": "Gesundheit",
         "Outils": "Werkzeuge",
@@ -1533,9 +1533,9 @@
         "Editeur de fichiers": "Datei-Editor",
         "Redémarrer": "Neu starten",
         "Eteindre": "Ausschalten",
-        "Préférences": "Präferenzen",
+        "Préférences": "Vorlieben",
         "Thème alternatif": "Alternatives Thema",
-        "Version mobile": "Mobile Version",
+        "Version mobile": "Mobil Version",
         "Rapport de bug": "Fehlerbericht",
         "Demande de support": "Supportanfrage",
         "Se déconnecter": "Abmelden",
@@ -1854,7 +1854,7 @@
         "Niveau de Logs": "Protokollebene",
         "Ajouter un message à chaque": "Fügen eine Nachricht an jeden an",
         "Commande sur": "Befehl auf",
-        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
+        "Rechercher une commande": "Befehl suchen",
         "Moteur de log": "Protokoll Engine",
         "Défaut": "Standard",
         "Syslog": "Syslog",
@@ -2163,13 +2163,13 @@
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
-        "Dashboard": "Armaturenbrett",
+        "Dashboard": "Instrumententafel",
         "Synthèse": "Synthese",
-        "Vue": "Sicht",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Sauvegarder": "Speichern",
-        "Préférences": "Präferenzen",
+        "Préférences": "Vorlieben",
         "Sécurité": "Sicherheit",
         "Interface": "Schnittstelle",
         "Page par défaut": "Standardseite",
@@ -2192,7 +2192,7 @@
         "Notifications": "Benachrichtigungen",
         "Commande de notification utilisateur": "Benutzerbenachrichtigungsbefehl",
         "Commande par défaut pour vous joindre (commande de type message).": "Standardbefehl, um Sie zu erreichen (Nachrichtentyp Befehl)",
-        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
+        "Rechercher une commande": "Finden Sie eine Bestellung",
         "Informations complémentaires demandées par": "Zusätzliche Informationen angefordert von",
         "Utilisateur": "Nutzer",
         "Authentification en 2 étapes": "2-stufige Authentifizierung",
@@ -2459,7 +2459,7 @@
         "Synonyme": "Synonym",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Ersetzen Sie Wörter durch ihre Synonyme, wenn Sie Befehle generieren",
         "Réponse": "Antwort",
-        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
+        "Rechercher une commande": "Finden Sie eine Bestellung",
         "Attendre avant de répondre (s)": "Warten Sie, bevor Sie antworten",
         "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Warten Sie beispielsweise, bis der Status einer Lampe aktualisiert wurde",
         "Conversion binaire": "Binäre Konvertierung",
@@ -2595,8 +2595,8 @@
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
-        "Dashboard": "Armaturenbrett",
-        "Vue": "Sicht",
+        "Dashboard": "Instrumententafel",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Design 3D": "3D-Design",
         "Gestion": "Management",
@@ -2958,7 +2958,7 @@
         "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/overview.js": {
-        "Historique": "Historisch"
+        "Historique": "Chronik"
     },
     "desktop\/js\/cron.js": {
         "Activer le système cron": "Aktivieren Sie das Cron-System",
@@ -3101,7 +3101,7 @@
         "Evénements de la timeline supprimés avec succès": "Timeline-Ereignisse erfolgreich gelöscht",
         "Configuration de l'historique des commandes": "Die Konfigurations-Chronik der Befehle",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "Configuration de la commande": "Befehl Konfiguration"
     },
     "desktop\/js\/report.js": {
@@ -3280,7 +3280,7 @@
         "Choisir un Type Générique": "Wählen Sie einen generischen Typ",
         "Choisir une variable": "Wählen Sie eine Variable",
         "Programmation": "Programmierung",
-        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
+        "Rechercher une commande": "Befehl suchen",
         "Rechercher un type générique": "Finden Sie einen generischen Typ",
         "Rechercher un scénario": "Suchen Sie ein Szenario",
         "Rechercher un équipement": "Suche nach Ausrüstung",
@@ -3367,7 +3367,7 @@
         "Objet parent": "übergeordnetes Objekt"
     },
     "desktop\/common\/js\/ui.js": {
-        "Historique": "Historisch"
+        "Historique": "Chronik"
     },
     "desktop\/common\/js\/utils.js": {
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Fehler der Inhaltssicherheitsrichtlinienrichtlinie für Ressource \"${uri}",
@@ -3409,7 +3409,7 @@
         "Designs 3D": "3D-Designs",
         "Equipements": "Geräte",
         "Résumé": "Zusammenfassung",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "Timeline": "Zeitleiste",
         "Rapports": "Verhältnis",
         "Remplacement": "Ersatz",
@@ -3426,7 +3426,7 @@
         "Moteur de tâches": "Task Engine",
         "Personnalisation": "Personalisierung",
         "Utilisateurs": "Benutzer",
-        "Préférences": "Präferenzen",
+        "Préférences": "Vorlieben",
         "Logs": "Protokolle",
         "Mises à jour": "Updates",
         "Panel": "Platte",
@@ -3940,7 +3940,7 @@
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
     "core\/ajax\/jeedom.ajax.php": {
-        "Vue": "Sicht",
+        "Vue": "Aussicht",
         "Objet": "Objekt",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune documentation trouvée": "Keine Dokumentation gefunden",
@@ -4477,7 +4477,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "Der Ansichtsname darf nicht leer sein",
-        "Vue": "Sicht",
+        "Vue": "Aussicht",
         "Vue :": "Ansicht:"
     },
     "core\/class\/system.class.php": {
@@ -4720,7 +4720,7 @@
     },
     "core\/class\/timeline.class.php": {
         "Configuration de la commande": "Befehl Konfiguration",
-        "Historique": "Historisch",
+        "Historique": "Chronik",
         "Scénario déclenché par": "Szenario ausgelöst durch",
         "Aller au scénario": "Gehe zum Szenario",
         "Log du scénario": "Szenario-Protokoll"
@@ -4962,7 +4962,7 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Export",
-        "Vue": "Sicht",
+        "Vue": "Aussicht",
         "Design": "Entwurf",
         "Plugin": "Plugin",
         "Batteries": "Batterien",

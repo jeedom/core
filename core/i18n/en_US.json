@@ -30,7 +30,7 @@
         "Designs 3D": "3D designs"
     },
     "mobile\/js\/overview.js": {
-        "Vue": "View",
+        "Vue": "Seen",
         "Design": "Design",
         "Design 3D": "3D design",
         "Tous": "All"
@@ -72,7 +72,7 @@
     },
     "mobile\/js\/application.js": {
         "Résumé": "Summary",
-        "Historique": "Historical",
+        "Historique": "History",
         "Préviens moi": "Notify me",
         "Me prévenir si": "Notify me if",
         "Synthèse": "Synthesis",
@@ -86,7 +86,7 @@
         "Message": "Message",
         "Scenario": "Scenario",
         "Accueil": "Home",
-        "Vue": "View",
+        "Vue": "Seen",
         "Dashboard": "Dashboard"
     },
     "mobile\/js\/scenario.js": {
@@ -645,7 +645,7 @@
         "Mot": "Word",
         "ID": "ID",
         "Rechercher un équipement": "Search an equipment",
-        "Rechercher une commande": "Search for an order",
+        "Rechercher une commande": "Search a command",
         "Type Générique": "Generic Type",
         "Résultats": "Results",
         "Scénario": "Scenario",
@@ -753,7 +753,7 @@
         "Envoyer Historique": "Send History",
         "Interdire dans les interactions automatiques": "Forbid in automatic interactions",
         "Icône": "Icon",
-        "Historique": "Historical",
+        "Historique": "History",
         "Voir": "View",
         "Utilisé par": "Used by",
         "Cette commande remplace l'ID": "This command replaces the ID",
@@ -1311,18 +1311,18 @@
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Warning: A large date range can take a very long time to calculate or even not be shown",
         "Ouvrir dans Analyse \/ Historique.": "Open in Analysis \/ History",
-        "Historique": "Historical"
+        "Historique": "History"
     },
     "desktop\/modal\/expression.test.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Test": "Test",
-        "Rechercher une commande": "Search for an order",
+        "Rechercher une commande": "Search a command",
         "Rechercher un type générique": "Search a genericType",
         "Rechercher un scénario": "Search a scenario",
         "Rechercher un équipement": "Search an equipment",
         "Exécuter": "Execute",
         "Résultat": "Result",
-        "Historique": "Historical",
+        "Historique": "History",
         "L\\'expression de test ne peut être vide": "Test expression cannot be empty",
         "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Attention: there must be a problem, because the result is the same as the expression",
         "Je vais évaluer :": "I will test:",
@@ -1506,7 +1506,7 @@
         "Equipements": "Equipments",
         "Résumé domotique": "Domotic overview",
         "Timeline": "Timeline",
-        "Historique": "Historical",
+        "Historique": "History",
         "Rapport": "Report",
         "Santé": "Health",
         "Outils": "Tools",
@@ -1854,7 +1854,7 @@
         "Niveau de Logs": "Log level",
         "Ajouter un message à chaque": "Add a message for each",
         "Commande sur": "Command on",
-        "Rechercher une commande": "Search for an order",
+        "Rechercher une commande": "Search a command",
         "Moteur de log": "Log engine",
         "Défaut": "Default",
         "Syslog": "Syslog",
@@ -2192,7 +2192,7 @@
         "Notifications": "Notifications",
         "Commande de notification utilisateur": "User notification command",
         "Commande par défaut pour vous joindre (commande de type message).": "Default command to reach you (message type command)",
-        "Rechercher une commande": "Search for an order",
+        "Rechercher une commande": "Find a command",
         "Informations complémentaires demandées par": "Additional information requested by",
         "Utilisateur": "User",
         "Authentification en 2 étapes": "2-step authentication",
@@ -2459,7 +2459,7 @@
         "Synonyme": "Synonymous",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Replace words with their synonyms when generating commands",
         "Réponse": "Reply",
-        "Rechercher une commande": "Search for an order",
+        "Rechercher une commande": "Find a command",
         "Attendre avant de répondre (s)": "Wait before answering (s)",
         "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Allow to wait for the time that the state of a lamp is updated for example",
         "Conversion binaire": "Binary conversion",
@@ -2958,7 +2958,7 @@
         "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/overview.js": {
-        "Historique": "Historical"
+        "Historique": "History"
     },
     "desktop\/js\/cron.js": {
         "Activer le système cron": "Activate the cron system",
@@ -3101,7 +3101,7 @@
         "Evénements de la timeline supprimés avec succès": "Timeline events deleted successfully",
         "Configuration de l'historique des commandes": "Commands history setup",
         "Log d'exécution du scénario": "Scenario execution log",
-        "Historique": "Historical",
+        "Historique": "History",
         "Configuration de la commande": "Command setup"
     },
     "desktop\/js\/report.js": {
@@ -3280,7 +3280,7 @@
         "Choisir un Type Générique": "Choose a Generic Type",
         "Choisir une variable": "Choose a variable",
         "Programmation": "Programming",
-        "Rechercher une commande": "Search for an order",
+        "Rechercher une commande": "Search a command",
         "Rechercher un type générique": "Search a genericType",
         "Rechercher un scénario": "Search a scenario",
         "Rechercher un équipement": "Search an equipment",
@@ -3367,7 +3367,7 @@
         "Objet parent": "Parent object"
     },
     "desktop\/common\/js\/ui.js": {
-        "Historique": "Historical"
+        "Historique": "History"
     },
     "desktop\/common\/js\/utils.js": {
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Content Security Policy directive error on resource \"${uri}",
@@ -3409,7 +3409,7 @@
         "Designs 3D": "3D designs",
         "Equipements": "Equipments",
         "Résumé": "Summary",
-        "Historique": "Historical",
+        "Historique": "History",
         "Timeline": "Timeline",
         "Rapports": "Reports",
         "Remplacement": "Replacement",
@@ -4720,7 +4720,7 @@
     },
     "core\/class\/timeline.class.php": {
         "Configuration de la commande": "Command setup",
-        "Historique": "Historical",
+        "Historique": "History",
         "Scénario déclenché par": "Scenario triggered by",
         "Aller au scénario": "Go to scenario",
         "Log du scénario": "Scenario log"
