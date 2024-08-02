@@ -4,6 +4,10 @@
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
 - Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour) [LIEN](https://github.com/jeedom/core/issues/2438)
+- Ajout d'un bouton sur la fenetre de configuration d'une commande au niveau du champ de calcul de valeur pour aller chercher une commande [LIEN](https://github.com/jeedom/core/issues/2776)
+- Possibilité de maquer certain menu pour les utilisateurs limités [LIEN](https://github.com/jeedom/core/issues/2651)
+- Les graphiques se mettent à jour automatiquement lors de l'arrivées de nouvelles valeur [LIEN](https://github.com/jeedom/core/issues/2749)
+- Jeedom ajoute automatiquement la hauteur de l'image lors de la création des widgets pour eviter les soucis de chevauchement en mobile [LIEN](https://github.com/jeedom/core/issues/2539)
 
 # 4.4.10
 
@@ -28,14 +32,6 @@
 - Jeedom liste maintenant toute les branches et tags du repos github pour permettre de tester des fonctionnalitées en avance ou de revenir à une version précdente du core (attention cela est trés risqué) [LIEN](https://github.com/jeedom/core/issues/2500)
 - Amélioration des sous types de commandes supportées sur les génériques type [LIEN](https://github.com/jeedom/core/pull/2797)
 - Correction d'un bug sur l'affichage des scénario et les commentaires lorsqu'on veut les masquer [LIEN](https://github.com/jeedom/core/pull/2790)
-
-- Ajout d'un bouton sur la fenetre de configuration d'une commande au niveau du champ de calcul de valeur pour aller chercher une commande [LIEN](https://github.com/jeedom/core/issues/2776)
-
-- Possibilité de maquer certain menu pour les utilisateurs limités [LIEN](https://github.com/jeedom/core/issues/2651)
-
-- Les graphiques se mettent à jour automatiquement lors de l'arrivées de nouvelles valeur [LIEN](https://github.com/jeedom/core/issues/2749)
-
-- Jeedom ajoute automatiquement la hauteur de l'image lors de la création des widgets pour eviter les soucis de chevauchement en mobile [LIEN](https://github.com/jeedom/core/issues/2539)
 
 >**IMPORTANT**
 >
