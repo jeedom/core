@@ -4,6 +4,10 @@
 
 - Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary) [LINK](https://github.com/jeedom/core/issues/2499)
 - Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
+- Added a button to the order configuration window at the value calculation field to fetch an order [LINK](https://github.com/jeedom/core/issues/2776)
+- Ability to hide certain menus for limited users [LINK](https://github.com/jeedom/core/issues/2651)
+- The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
+- Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
 
 # 4.4.10
 

@@ -11,7 +11,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs ?": "¿Seguro que quieres eliminar todos los registros?"
     },
     "mobile\/js\/home.js": {
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "Logs": "Registros",
         "Analyse équipement": "Análisis dispositivo",
         "Notes": "Calificaciones",
@@ -30,7 +30,7 @@
         "Designs 3D": "Diseños en 3D"
     },
     "mobile\/js\/overview.js": {
-        "Vue": "Visto",
+        "Vue": "Vista",
         "Design": "Diseño",
         "Design 3D": "Diseño 3D",
         "Tous": "Todos"
@@ -72,7 +72,7 @@
     },
     "mobile\/js\/application.js": {
         "Résumé": "Resumen",
-        "Historique": "Historial",
+        "Historique": "Histórico",
         "Préviens moi": "Avísame",
         "Me prévenir si": "Notifícame si",
         "Synthèse": "Síntesis",
@@ -86,8 +86,8 @@
         "Message": "Mensaje",
         "Scenario": "Guión",
         "Accueil": "Inicio",
-        "Vue": "Visto",
-        "Dashboard": "Dashboard"
+        "Vue": "Vista",
+        "Dashboard": "Panel"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Ninguno"
@@ -381,14 +381,25 @@
     },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "No se puede encontrar el usuario:",
+        "Synthèse": "Síntesis",
+        "Dashboard": "Panel",
+        "Vue": "Vista",
+        "Design": "Diseño",
+        "Design 3D": "Diseño 3d",
+        "[Globale] Analyse": "Análisis [general]",
+        "Timeline": "Línea de tiempo",
+        "Historique": "Histórico",
+        "[Globale] Réglages": "[Ajustes globales",
+        "Préférences": "Preferencias",
+        "Version mobile": "Version móvil",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Sauvegarder": "Guardar",
         "Equipements": "Dispositivos",
         "Scénarios": "Escenarios",
         "Objets": "Objetos",
         "Vues": "Puntos de vista",
-        "Design": "Diseño",
         "Design 3d": "Diseño 3d",
+        "Menu": "Menú",
         "Appliquer aux éléments visibles": "Aplicar a elementos visibles",
         "Aucun": "No",
         "Visualisation": "Visualización",
@@ -396,6 +407,8 @@
         "Equipement": "Dispositivos",
         "Droits": "Permisos",
         "Scénario": "Escenario",
+        "Masqué": "Mascarilla",
+        "Visible": "Visible",
         "Sauvegarde effectuée": "Guardado correctamente"
     },
     "desktop\/modal\/object.display.php": {
@@ -632,7 +645,7 @@
         "Mot": "Palabra",
         "ID": "IDENTIFICACIÓN",
         "Rechercher un équipement": "Busca un dispositivo",
-        "Rechercher une commande": "Buscar un comando",
+        "Rechercher une commande": "Buscar un pedido",
         "Type Générique": "Tipo genérico",
         "Résultats": "Resultados",
         "Scénario": "Escenario",
@@ -740,7 +753,7 @@
         "Envoyer Historique": "Enviar historial",
         "Interdire dans les interactions automatiques": "Prohibir en interacciones automáticas",
         "Icône": "Icono",
-        "Historique": "Historial",
+        "Historique": "Histórico",
         "Voir": "Ver",
         "Utilisé par": "Utilizado por",
         "Cette commande remplace l'ID": "Este comando reemplaza el ID",
@@ -754,6 +767,7 @@
         "Calcul et arrondi": "Cálculo y redondeo",
         "Formule de calcul": "Algoritmo",
         "valeur de la commande": "valor del pedido",
+        "Rechercher une commande": "Buscar un pedido",
         "Arrondi": "Redondeo",
         "Nombre de décimales": "Número de decimales",
         "Type générique": "Tipo genérico",
@@ -952,7 +966,7 @@
         "Plugin": "Enchufar",
         "Type": "Tipo",
         "Historisé": "Historizado",
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "Inversée": "Invertida",
         "Aucun": "No",
         "Moyenne": "Media",
@@ -1201,7 +1215,7 @@
         "Multi": "Multi",
         "Sync": "Sincronizar",
         "Log": "Registro",
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "Actions": "Acciones",
         "Erreur": "Error",
         "En cours": "En curso",
@@ -1254,7 +1268,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Remplacer le widget": "Reemplazar widget",
         "Par": "Por",
         "Remplacer": "Reemplazar",
@@ -1297,18 +1311,18 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.": "Precaución: Un rango de fechas demasiado grande puede tardar mucho tiempo en ser calculado o incluso no ser mostrado",
         "Ouvrir dans Analyse \/ Historique.": "Abierto en Análisis\/Historial",
-        "Historique": "Historial"
+        "Historique": "Histórico"
     },
     "desktop\/modal\/expression.test.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Test": "Prueba",
-        "Rechercher une commande": "Buscar un comando",
+        "Rechercher une commande": "Buscar un pedido",
         "Rechercher un type générique": "Encuentra un tipo genérico",
         "Rechercher un scénario": "Buscar un escenario",
         "Rechercher un équipement": "Buscar un dispositivo",
         "Exécuter": "Ejecutar",
         "Résultat": "Resultado",
-        "Historique": "Guardar historial",
+        "Historique": "Histórico",
         "L\\'expression de test ne peut être vide": "Expresión de la prueba L \\'no puede estar vacía",
         "Attention : il doit y avoir un souci, car le résultat est le même que l\\'expression": "Advertencia: debe ser una preocupación, ya que el resultado es el mismo que el expresión",
         "Je vais évaluer :": "Voy a evaluar:",
@@ -1463,7 +1477,7 @@
     "desktop\/php\/editor.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Version": "Versión",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Mobile": "Móvil",
         "Type": "Escribe",
         "Sous-type": "Subtipo",
@@ -1482,8 +1496,8 @@
         "Toggle navigation": "Cambiar la navegación",
         "Accueil": "Inicio",
         "Synthèse": "Síntesis",
-        "Dashboard": "Tablero",
-        "Vue": "Ver",
+        "Dashboard": "Panel",
+        "Vue": "Vista",
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
         "Analyse": "Análisis",
@@ -1491,8 +1505,8 @@
         "Temps réel": "Tiempo real",
         "Equipements": "Dispositivos",
         "Résumé domotique": "Resumen de domótica",
-        "Timeline": "Cronología",
-        "Historique": "Historial",
+        "Timeline": "Línea de tiempo",
+        "Historique": "Histórico",
         "Rapport": "Informe",
         "Santé": "Salud",
         "Outils": "Herramientas",
@@ -1521,7 +1535,7 @@
         "Eteindre": "Apagar",
         "Préférences": "Preferencias",
         "Thème alternatif": "Tema alternativo",
-        "Version mobile": "Versión móvil",
+        "Version mobile": "Version móvil",
         "Rapport de bug": "Informe de error",
         "Demande de support": "Solicitud de soporte",
         "Se déconnecter": "Desconectarse",
@@ -1827,7 +1841,7 @@
         "Port du proxy": "Puerto proxy",
         "Nom d'utilisateur": "Nombre de usuario",
         "Mot de passe": "Contraseña",
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "Nombre maximum d'évènements sur chaque Timeline": "Número máximo de eventos en cada línea de tiempo",
         "Evènements actuels": "Eventos actuales",
         "Supprimer tous les évènements de la Timeline": "Eliminar todos los eventos de la línea de tiempo",
@@ -1840,7 +1854,7 @@
         "Niveau de Logs": "Nivel de registro",
         "Ajouter un message à chaque": "Añadir un mensaje a cada uno",
         "Commande sur": "Comando sobre",
-        "Rechercher une commande": "Buscar una orden",
+        "Rechercher une commande": "Buscar un pedido",
         "Moteur de log": "Motor de registro",
         "Défaut": "General",
         "Syslog": "Registro del sistema",
@@ -2149,7 +2163,7 @@
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 no autorizado",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Synthèse": "Síntesis",
         "Vue": "Vista",
         "Design": "Diseño",
@@ -2178,7 +2192,7 @@
         "Notifications": "Notificaciones",
         "Commande de notification utilisateur": "Comando de notificación usuario",
         "Commande par défaut pour vous joindre (commande de type message).": "Comando por defecto para comunicarse contigo (comando de tipo de mensaje)",
-        "Rechercher une commande": "Buscar un comando",
+        "Rechercher une commande": "Buscar un pedido",
         "Informations complémentaires demandées par": "Informaciones adicionales solicitadas por",
         "Utilisateur": "Usuario",
         "Authentification en 2 étapes": "Autenticación en 2 pasos",
@@ -2265,7 +2279,7 @@
         "Rechercher": "Buscar",
         "Analyse Equipements": "Análisis Dispositivos",
         "Santé": "Salud",
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "URL": "URL",
         "Rapport(s)": "Informe(s)",
         "Télécharger": "Descargar",
@@ -2337,7 +2351,7 @@
         "Le scénario pourra s'éxécuter plusieurs fois en même temps.": "El escenario se puede ejecutar varias veces al mismo tiempo",
         "Synchrone": "Sincrónico",
         "Le scénario est en mode synchrone. Attention, cela peut rendre le système instable.": "El escenario está en modo síncrono. Ten cuidado, esto puede hacer que el sistema sea inestable",
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "Les exécutions du scénario pourront être vues dans la timeline.": "Las ejecuciones del escenario se pueden ver en la cronología",
         "Dossier": "Carpeta",
         "Dernier lancement": "Última ejecución",
@@ -2445,7 +2459,7 @@
         "Synonyme": "Sinónimo",
         "Remplace les mots par leurs synonymes lors de la génération des commandes": "Sustituir las palabras con sus sinónimos cuando se generan órdenes",
         "Réponse": "Respuesta",
-        "Rechercher une commande": "Encuentra un pedido",
+        "Rechercher une commande": "Buscar un pedido",
         "Attendre avant de répondre (s)": "Espere antes de responder",
         "Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple": "Permita esperar el tiempo que se actualiza el estado de una lámpara, por ejemplo",
         "Conversion binaire": "Conversión binaria",
@@ -2581,8 +2595,8 @@
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Tablero",
-        "Vue": "Ver",
+        "Dashboard": "Panel",
+        "Vue": "Vista",
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
         "Gestion": "Administración",
@@ -2944,7 +2958,7 @@
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/overview.js": {
-        "Historique": "Historial"
+        "Historique": "Histórico"
     },
     "desktop\/js\/cron.js": {
         "Activer le système cron": "Activar sistema cron",
@@ -3087,7 +3101,7 @@
         "Evénements de la timeline supprimés avec succès": "Eventos de la línea de tiempo eliminados con éxito",
         "Configuration de l'historique des commandes": "Configuración del historial de comandos",
         "Log d'exécution du scénario": "Log de ejecución de la escena",
-        "Historique": "Historial",
+        "Historique": "Histórico",
         "Configuration de la commande": "Configuración del comando"
     },
     "desktop\/js\/report.js": {
@@ -3266,7 +3280,7 @@
         "Choisir un Type Générique": "Elija un tipo genérico",
         "Choisir une variable": "Elija una variable",
         "Programmation": "Programación",
-        "Rechercher une commande": "Buscar un comando",
+        "Rechercher une commande": "Buscar un pedido",
         "Rechercher un type générique": "Encuentra un tipo genérico",
         "Rechercher un scénario": "Buscar un escenario",
         "Rechercher un équipement": "Buscar un dispositivo",
@@ -3353,7 +3367,7 @@
         "Objet parent": "Objeto principal"
     },
     "desktop\/common\/js\/ui.js": {
-        "Historique": "Historial"
+        "Historique": "Histórico"
     },
     "desktop\/common\/js\/utils.js": {
         "Erreur de directive Content Security Policy sur la ressource \"${uri}": "Error de directiva de política de seguridad de contenido en el recurso \"${uri}",
@@ -3395,8 +3409,8 @@
         "Designs 3D": "Diseños en 3D",
         "Equipements": "Dispositivos",
         "Résumé": "Resumen",
-        "Historique": "Guardar historial",
-        "Timeline": "Cronología",
+        "Historique": "Histórico",
+        "Timeline": "Línea de tiempo",
         "Rapports": "Relaciones",
         "Remplacement": "Reemplazo",
         "Santé": "Salud",
@@ -4463,7 +4477,7 @@
     },
     "core\/class\/view.class.php": {
         "Le nom de la vue ne peut pas être vide": "El nombre de la vista no puede estar vacío",
-        "Vue": "Ver",
+        "Vue": "Vista",
         "Vue :": "Vista :"
     },
     "core\/class\/system.class.php": {
@@ -4706,7 +4720,7 @@
     },
     "core\/class\/timeline.class.php": {
         "Configuration de la commande": "Configuración del comando",
-        "Historique": "Historial",
+        "Historique": "Histórico",
         "Scénario déclenché par": "Escenario desencadenado por",
         "Aller au scénario": "Ir al escenario",
         "Log du scénario": "Registro de escenario"
@@ -4948,13 +4962,13 @@
     },
     "core\/template\/scenario\/report.default.html": {
         "Exporter": "Exportar",
-        "Vue": "Ver",
+        "Vue": "Vista",
         "Design": "Diseño",
         "Plugin": "Enchufar",
         "Batteries": "Baterías",
         "Alerte Equipements": "Alerta de equipo",
         "Santé": "Salud",
-        "Timeline": "Cronología",
+        "Timeline": "Línea de tiempo",
         "URL": "URL",
         "Filtre des types": "Tipo de filtro",
         "Filtre des vues": "Filtrar vistas",
