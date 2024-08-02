@@ -778,6 +778,26 @@ jeedomUtils.setJeedomGlobalUI = function() {
   jeedomUtils.setButtonCtrlHandler('bt_showDatastoreVariable', '{{Variables}}', 'dataStore.management&type=scenario', 'jee_modal', false)
   jeedomUtils.setButtonCtrlHandler('bt_showSearching', '{{Recherche}}', 'search', 'jee_modal')
 
+  document.getElementById('bt_gotoDashboard')?.addEventListener('mouseover', function(event) {
+    document.getElementById('bt_dashboardFilter').value = ''
+    document.getElementById('dashboardClearFilter')?.dispatchEvent(new Event('click'));
+  })
+                                                                
+  document.getElementById('bt_gotoView')?.addEventListener('mouseover', function(event) {
+    document.getElementById('bt_planFilter').value = '';
+    document.getElementById('planClearFilter')?.dispatchEvent(new Event('click'));    
+  })
+
+  document.getElementById('bt_gotoPlan')?.addEventListener('mouseover', function(event) {
+    document.getElementById('bt_planFilter').value = ''
+    document.getElementById('planClearFilter')?.dispatchEvent(new Event('click'));
+  })
+
+  document.getElementById('bt_gotoPlan3d')?.addEventListener('mouseover', function(event) {
+    document.getElementById('bt_plan3DFilter').value = ''
+    document.getElementById('plan3DClearFilter')?.dispatchEvent(new Event('click'));
+  })
+
   document.getElementById('bt_gotoDashboard')?.addEventListener('click', function(event) {
     if (!getDeviceType()['type'] == 'desktop' || window.innerWidth < 768) {
       event.stopPropagation()
@@ -813,7 +833,71 @@ jeedomUtils.setJeedomGlobalUI = function() {
     }
     jeedomUtils.loadPage('index.php?v=d&p=plan3d')
   })
+  
+  function filterMenus(filterValue, ul, lis) {
+    Array.from(lis).forEach((li, index) => {
+      if (index === 0) return;
+      const liValue = li.textContent.toLowerCase().stripAccents()
+      li.style.display = liValue.indexOf(filterValue) > -1 ? '' : 'none'
+    })
+  }
 
+  document.getElementById('bt_dashboardFilter')?.addEventListener('input', function() {
+    const filterValue = this.value.toLowerCase().stripAccents()
+    const ul = document.getElementById('bt_dashboardList')
+    const lis = ul.getElementsByTagName('li')
+    
+    filterMenus(filterValue, ul, lis)
+  })
+  
+  document.getElementById('bt_viewFilter')?.addEventListener('input', function() {
+    const filterValue = this.value.toLowerCase().stripAccents()
+    const ul = document.getElementById('bt_viewList')
+    const lis = ul.getElementsByTagName('li')
+    
+    filterMenus(filterValue, ul, lis)
+  })
+  
+  document.getElementById('bt_planFilter')?.addEventListener('input', function() {
+    const filterValue = this.value.toLowerCase().stripAccents()
+    const ul = document.getElementById('bt_planList')
+    const lis = ul.getElementsByTagName('li')
+    
+    filterMenus(filterValue, ul, lis)
+  })
+  
+  document.getElementById('bt_plan3DFilter')?.addEventListener('input', function() {
+    const filterValue = this.value.toLowerCase().stripAccents()
+    const ul = document.getElementById('bt_plan3DList')
+    const lis = ul.getElementsByTagName('li')
+    
+    filterMenus(filterValue, ul, lis)
+  })
+
+  document.getElementById('dashboardClearFilter')?.addEventListener('click', function() {
+    let input = document.getElementById('bt_dashboardFilter')
+    input.value = ''
+    input.dispatchEvent(new Event('input'))
+  })
+  
+  document.getElementById('viewClearFilter')?.addEventListener('click', function() {
+    let input = document.getElementById('bt_viewFilter')
+    input.value = ''
+    input.dispatchEvent(new Event('input'))
+  })
+  
+  document.getElementById('planClearFilter')?.addEventListener('click', function() {
+    let input = document.getElementById('bt_planFilter')
+    input.value = ''
+    input.dispatchEvent(new Event('input'))
+  })
+  
+  document.getElementById('plan3DClearFilter')?.addEventListener('click', function() {
+    let input = document.getElementById('bt_plan3DFilter')
+    input.value = ''
+    input.dispatchEvent(new Event('input'))
+  })
+  
   document.getElementById('bt_jeedomAbout')?.addEventListener('click', function(event) {
     jeedomUtils.closeJeedomMenu()
     jeeDialog.dialog({
