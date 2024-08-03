@@ -26,11 +26,23 @@ class cache {
 	private $value = null;
 	private $lifetime = 0;
 	private $datetime;
+	private static $_engine = null;
 
 	/*     * ***********************Methode static*************************** */
 
 	public static function getFolder() {
 		return jeedom::getTmpFolder('cache');
+	}
+
+	public static function getEngine(){
+		if(self::$_engine != null){
+			return self::$_engine;
+		}
+		self::$_engine = config::byKey('cache::engine');
+		if(!in_array(self::$_engine,array('MariadbCache','RedisCache','FileCache'))){
+			self::$_engine = 'FileCache';
+		}
+		return self::$_engine;
 	}
 
 	public static function set($_key, $_value, $_lifetime = 0) {
@@ -54,8 +66,7 @@ class cache {
 	 * @return object
 	 */
 	public static function byKey($_key) {
-		$engine = config::byKey('cache::engine');
-		$cache = $engine::fetch($_key);
+		$cache = self::getEngine()::fetch($_key);
 		if (!is_object($cache)) {
 			return (new self())
 				->setKey($_key)
@@ -69,11 +80,11 @@ class cache {
 	}
 
 	public static function flush() {
-		return $engine::deleteAll();
+		return self::getEngine()::deleteAll();
 	}
 
 	public static function persist() {
-		switch (config::byKey('cache::engine')) {
+		switch (self::getEngine()) {
 			case 'FileCache':
 				$cache_dir = self::getFolder();
 				break;
@@ -93,7 +104,7 @@ class cache {
 	}
 
 	public static function isPersistOk(): bool {
-		if(!in_array(config::byKey('cache::engine'),array('FileCache'))){
+		if(!in_array(self::getEngine(),array('FileCache'))){
 			return true;
 		}
 		$filename = __DIR__ . '/../../cache.tar.gz';
@@ -107,7 +118,7 @@ class cache {
 	}
 
 	public static function restore() {
-		switch (config::byKey('cache::engine')) {
+		switch (self::getEngine()) {
 			case 'FileCache':
 				$cache_dir = self::getFolder();
 				break;
@@ -129,11 +140,10 @@ class cache {
 	}
 
 	public static function clean() {
-		$engine = config::byKey('cache::engine');
-		if(in_array($engine,array('MariadbCache','FileCache'))){
-			$engine::clean();
+		if(in_array(self::getEngine(),array('MariadbCache','FileCache'))){
+			self::getEngine()::clean();
 		}
-		$caches = $engine::all();
+		$caches = self::getEngine()::all();
 		foreach ($caches as $cache) {
 			$matches = null;
 			preg_match_all('/camera(\d*)(.*?)/',  $cache->getKey(), $matches);
@@ -171,13 +181,11 @@ class cache {
 
 	public function save() {
 		$this->setDatetime(strtotime('now'));
-		$engine = config::byKey('cache::engine');
-		return $engine::save($this);
+		return self::getEngine()::save($this);
 	}
 
 	public function remove() {
-		$engine = config::byKey('cache::engine');
-		return $engine::delete($this->getKey());
+		return self::getEngine()::delete($this->getKey());
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
