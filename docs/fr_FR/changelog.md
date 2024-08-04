@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.4
 
+- Suppression de l'ancien systeme de cache. [LIEN](https://github.com/jeedom/core/pull/2799)
+
 # 4.4.11
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
