@@ -256,11 +256,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<?php
-								$cache = cache::byKey('hour');
-								$lastKnowDate = $cache->getDatetime();
-								?>
-								<span class="label label-info"><?php echo $lastKnowDate ?></span>
+								<span class="label label-info"><?php echo cache::byKey('hour')->getDatetime() ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
@@ -2025,30 +2021,12 @@ $productName = config::byKey('product_name');
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="cache::engine">
-									<option value="FilesystemCache">{{Système de fichiers}} (<?php echo cache::getFolder(); ?>)</option>
-									<?php if (class_exists('memcached')) { ?>
-										<option value="MemcachedCache">{{Memcached}}</option>
-									<?php } ?>
+									<option value="FileCache">{{Fichier}}</option>
 									<?php if (class_exists('redis')) { ?>
-										<option value="RedisCache">{{Redis (beta)}}</option>
+										<option value="RedisCache">{{Redis}}</option>
 									<?php } ?>
-										<option value="MariadbCache">{{Mysql (beta)}}</option>
-										<option value="FileCache">{{Fichier (beta)}}</option>
+									<option value="MariadbCache">{{Mysql}}</option>
 								</select>
-							</div>
-						</div>
-						<div class="cacheEngine MemcachedCache">
-							<div class="form-group">
-								<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Adresse Memcache}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<input type="text" class="configKey form-control" data-l1key="cache::memcacheaddr">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Port Memcache}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<input type="text" class="configKey form-control" data-l1key="cache::memcacheport">
-								</div>
 							</div>
 						</div>
 						<div class="cacheEngine RedisCache">

@@ -30,16 +30,17 @@ class cache {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getFolder() {
-		return jeedom::getTmpFolder('cache');
-	}
-
 	public static function getEngine(){
 		if(self::$_engine != null){
 			return self::$_engine;
 		}
 		self::$_engine = config::byKey('cache::engine');
 		if(!in_array(self::$_engine,array('MariadbCache','RedisCache','FileCache'))){
+			config::save('cache::engine','FileCache');
+			self::$_engine = 'FileCache';
+		}
+		if(self::$_engine == 'RedisCache' && !class_exists('redis')){
+			config::save('cache::engine','FileCache');
 			self::$_engine = 'FileCache';
 		}
 		return self::$_engine;
@@ -84,59 +85,22 @@ class cache {
 	}
 
 	public static function persist() {
-		switch (self::getEngine()) {
-			case 'FileCache':
-				$cache_dir = self::getFolder();
-				break;
-			default:
-				return;
-		}
-		try {
-			$cmd = system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';';
-			$cmd .= system::getCmdSudo() . 'tar cfz ' . __DIR__ . '/../../cache.tar.gz * 2>&1 > /dev/null;';
-			$cmd .= system::getCmdSudo() . 'chmod 774 ' . __DIR__ . '/../../cache.tar.gz;';
-			$cmd .= system::getCmdSudo() . 'chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;';
-			$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
-			$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . $cache_dir . ' 2>&1 > /dev/null';
-			com_shell::execute($cmd);
-		} catch (Exception $e) {
+		if(method_exists(self::getEngine(),'persist')){
+			self::getEngine()::persist();
 		}
 	}
 
 	public static function isPersistOk(): bool {
-		if(!in_array(self::getEngine(),array('FileCache'))){
-			return true;
-		}
-		$filename = __DIR__ . '/../../cache.tar.gz';
-		if (!file_exists($filename)) {
-			return false;
-		}
-		if (filemtime($filename) < strtotime('-65min')) {
-			return false;
+		if(method_exists(self::getEngine(),'isPersistOk')){
+			return self::getEngine()::isPersistOk();
 		}
 		return true;
 	}
 
 	public static function restore() {
-		switch (self::getEngine()) {
-			case 'FileCache':
-				$cache_dir = self::getFolder();
-				break;
-			default:
-				return;
+		if(method_exists(self::getEngine(),'restore')){
+			self::getEngine()::restore();
 		}
-		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
-			$cmd = 'mkdir ' . $cache_dir . ';';
-			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
-			com_shell::execute($cmd);
-			return;
-		}
-		$cmd = 'rm -rf ' . $cache_dir . ';';
-		$cmd .= 'mkdir ' . $cache_dir . ';';
-		$cmd .= 'cd ' . $cache_dir . ';';
-		$cmd .= 'tar xfz ' . __DIR__ . '/../../cache.tar.gz;';
-		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
-		com_shell::execute($cmd);
 	}
 
 	public static function clean() {
@@ -384,4 +348,46 @@ class FileCache {
 	public static function save($_cache){
 		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_cache->getKey()),serialize($_cache));
 	}
+
+	public static function persist() {
+		$cache_dir = jeedom::getTmpFolder('cache');
+		try {
+			$cmd = system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';';
+			$cmd .= system::getCmdSudo() . 'tar cfz ' . __DIR__ . '/../../cache.tar.gz * 2>&1 > /dev/null;';
+			$cmd .= system::getCmdSudo() . 'chmod 774 ' . __DIR__ . '/../../cache.tar.gz;';
+			$cmd .= system::getCmdSudo() . 'chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;';
+			$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
+			$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . $cache_dir . ' 2>&1 > /dev/null';
+			com_shell::execute($cmd);
+		} catch (Exception $e) {
+		}
+	}
+
+	public static function isPersistOk(): bool {
+		$filename = __DIR__ . '/../../cache.tar.gz';
+		if (!file_exists($filename)) {
+			return false;
+		}
+		if (filemtime($filename) < strtotime('-65min')) {
+			return false;
+		}
+		return true;
+	}
+
+	public static function restore() {
+		$cache_dir = jeedom::getTmpFolder('cache');
+		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
+			$cmd = 'mkdir ' . $cache_dir . ';';
+			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
+			com_shell::execute($cmd);
+			return;
+		}
+		$cmd = 'rm -rf ' . $cache_dir . ';';
+		$cmd .= 'mkdir ' . $cache_dir . ';';
+		$cmd .= 'cd ' . $cache_dir . ';';
+		$cmd .= 'tar xfz ' . __DIR__ . '/../../cache.tar.gz;';
+		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
+		com_shell::execute($cmd);
+	}
+
 }
