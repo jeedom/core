@@ -39,7 +39,11 @@ class cache {
 			config::save('cache::engine','FileCache');
 			self::$_engine = 'FileCache';
 		}
-		if(self::$_engine == 'RedisCache' && !class_exists('redis')){
+		if(!class_exists(self::$_engine)){
+			config::save('cache::engine','FileCache');
+			self::$_engine = 'FileCache';
+		}
+		if(method_exists(self::$_engine,'isOk') && !self::$_engine::isOk()){
 			config::save('cache::engine','FileCache');
 			self::$_engine = 'FileCache';
 		}
@@ -256,6 +260,10 @@ class MariadbCache {
 class RedisCache {
 
 	private static $connection = null;
+
+	public static function isOk(){
+		return class_exists('redis');
+	}
 
 	public static function getConnection(){
 		if(static::$connection !== null){
