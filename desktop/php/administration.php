@@ -256,11 +256,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<?php
-								$cache = cache::byKey('hour');
-								$lastKnowDate = $cache->getDatetime();
-								?>
-								<span class="label label-info"><?php echo $lastKnowDate ?></span>
+								<span class="label label-info"><?php echo cache::byKey('hour')->getDatetime() ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
@@ -1790,21 +1786,20 @@ $productName = config::byKey('product_name');
 							</thead>
 							<tbody>
 								<?php
-								$cache = cache::byKey('security::banip');
-								$values = json_decode($cache->getValue('[]'), true);
-								if (!is_array($values)) {
-									$values = array();
+								$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+								if (!is_array($ban_ips)) {
+									$ban_ips = array();
 								}
-								if (count($values) != 0) {
+								if (count($ban_ips) != 0) {
 									$div = '';
-									foreach ($values as $value) {
+									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
-										$div .= '<td>' . $value['ip'] . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
+										$div .= '<td>' . $ip . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s', $datetime) . '</td>';
 										if (config::byKey('security::bantime') < 0) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s', $datetime + config::byKey('security::bantime')) . '</td>';
 										}
 										$div .= '</tr>';
 									}
@@ -1848,11 +1843,59 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 									</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
-										<select class="form-control configKey" data-l1key="core::branch">
-											<option value="V4-stable">{{Stable v4}}</option>
-											<option value="beta">{{Beta (Pas de support)}}</option>
-											<option value="alpha">{{Alpha (Pas de support)}}</option>
-										</select>
+                                      <div class="input-group">
+                                          <select class="form-control configKey" data-l1key="core::branch">
+										  	  <optgroup label="{{Defaut (support)}}">
+												<option value="master">{{Stable}}</option>
+											  </optgroup>
+                                              <?php 
+                                              if(config::byKey('core::repo::provider') == 'default'){
+                                                  $lists = cache::byKey('core::branch::default::list')->getValue(array());
+                                                  if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
+                                                      $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
+                                                      $request_http->setHeader(array('User-agent: jeedom'));
+                                                      try {
+                                                        $lists['branchs'] = json_decode($request_http->exec(10, 1), true);
+                                                      } catch (\Exception $e) {
+                                                      }
+													  cache::set('core::branch::default::list',$lists,86400);
+                                                  }
+												  if(!isset($lists['tags']) || !is_array($lists['tags'])){
+													$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
+													$request_http->setHeader(array('User-agent: jeedom'));
+													try {
+														$lists['tags'] = json_decode($request_http->exec(10, 1), true);
+													} catch (\Exception $e) {
+													}
+													cache::set('core::branch::default::list',$lists,86400);
+												  }
+                                                  if(isset($lists['branchs']) && is_array($lists['branchs'])){
+													echo '<optgroup label="{{Branches (Pas de support)}}">';
+													foreach ($lists['branchs'] as $branch) {
+														if(in_array($branch['name'],array('V4-stable','master'))){
+															continue;
+														}
+														echo '<option value="'.$branch['name'].'">'.$branch['name'].'</option>';
+													}
+													echo '</optgroup>';
+                                                  }
+												  if(isset($lists['tags']) && is_array($lists['tags'])){
+													echo '<optgroup label="{{Tags (Pas de support)}}">';
+													foreach ($lists['tags'] as $tag) {
+														if(in_array($branch['name'],array('V4-stable','master'))){
+															continue;
+														}
+														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
+													}
+													echo '</optgroup>';
+												}
+                                              }
+                                              ?>
+                                          </select>
+                                          <span class="input-group-btn">
+                                              <a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>
+                                          </span>
+                                      </div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -1978,30 +2021,12 @@ $productName = config::byKey('product_name');
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="cache::engine">
-									<option value="FilesystemCache">{{Système de fichiers}} (<?php echo cache::getFolder(); ?>)</option>
-									<?php if (class_exists('memcached')) { ?>
-										<option value="MemcachedCache">{{Memcached}}</option>
-									<?php } ?>
+									<option value="FileCache">{{Fichier}}</option>
 									<?php if (class_exists('redis')) { ?>
-										<option value="RedisCache">{{Redis (beta)}}</option>
+										<option value="RedisCache">{{Redis}}</option>
 									<?php } ?>
-										<option value="MariadbCache">{{Mysql (beta)}}</option>
-										<option value="FileCache">{{Fichier (beta)}}</option>
+									<option value="MariadbCache">{{Mysql}}</option>
 								</select>
-							</div>
-						</div>
-						<div class="cacheEngine MemcachedCache">
-							<div class="form-group">
-								<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Adresse Memcache}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<input type="text" class="configKey form-control" data-l1key="cache::memcacheaddr">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Port Memcache}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<input type="text" class="configKey form-control" data-l1key="cache::memcacheport">
-								</div>
 							</div>
 						</div>
 						<div class="cacheEngine RedisCache">

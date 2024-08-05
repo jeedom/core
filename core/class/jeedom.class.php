@@ -24,6 +24,7 @@ class jeedom {
 
 	private static $jeedomConfiguration;
 	private static $jeedom_encryption = null;
+	private static $cache = array();
 
 	/*     * ***********************Methode static*************************** */
 
@@ -333,6 +334,15 @@ class jeedom {
 			'result' => $nb_active_connection['Value'] . '/' . $max_used_connection['Value'] . '/' . $allow_connection['Value'],
 			'comment' => '',
 			'key' => 'database::connexion'
+		);
+
+		$size = DB::Prepare('SELECT SUM(data_length + index_length) as size FROM information_schema.tables WHERE table_schema = \'jeedom\' GROUP BY table_schema;', array(), DB::FETCH_TYPE_ROW);
+		$return[] = array(
+			'name' => __('Taille base de données', __FILE__),
+			'state' => true,
+			'result' => sizeFormat($size['size']),
+			'comment' => '',
+			'key' => 'database::size'
 		);
 
 		$value = self::checkSpaceLeft(self::getTmpFolder());
@@ -1248,6 +1258,10 @@ class jeedom {
 		} catch (Error $e) {
 			log::add('jeedom', 'error', $e->getMessage());
 		}
+		$disk_space = self::checkSpaceLeft();
+		if($disk_space < 10){
+			log::add('jeedom', 'error',__('Espace disque disponible faible : ',__FILE__).$disk_space.'%.'.__('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)',__FILE__));
+		}
 	}
 
 	public static function cronHourly() {
@@ -1730,9 +1744,12 @@ class jeedom {
 		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 
-	public static function getTmpFolder($_plugin = null) {
+	public static function getTmpFolder($_plugin = '') {
+		if(isset(self::$cache['getTmpFolder::' . $_plugin])){
+			return self::$cache['getTmpFolder::' . $_plugin];
+		}
 		$return = '/' . trim(config::byKey('folder::tmp'), '/');
-		if ($_plugin !== null) {
+		if ($_plugin !== '') {
 			$return .= '/' . $_plugin;
 		}
 		if (!file_exists($return)) {
@@ -1740,6 +1757,7 @@ class jeedom {
 			$cmd = system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $return . ';';
 			com_shell::execute($cmd);
 		}
+		self::$cache['getTmpFolder::' . $_plugin] = $return;
 		return $return;
 	}
 

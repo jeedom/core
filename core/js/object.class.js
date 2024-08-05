@@ -120,6 +120,7 @@ jeedom.object.toHtml = function(_params) {
   paramsAJAX.data = {
     action: 'toHtml',
     id: (Array.isArray(_params.id)) ? JSON.stringify(_params.id) : _params.id,
+    hideOnMain: _params.hideOnMain || 0,
     version: _params.version || 'dashboard',
     category: _params.category || 'all',
     summary: _params.summary || '',

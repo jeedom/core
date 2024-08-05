@@ -241,7 +241,7 @@ function getClientIp() {
 			if (strpos($_SERVER[$source], ',') !== false) {
 				return explode(',', $_SERVER[$source])[0];
 			}
-			return $_SERVER[$source];
+			return str_replace(' ','',$_SERVER[$source]);
 		}
 	}
 	return '';
@@ -1079,6 +1079,16 @@ function isConnect($_right = '') {
 	return true;
 }
 
+function hasRight($_name = '',$_right = 'r',$_default = 'r') {
+	if ($_SESSION['user']->getProfils() == 'admin' || $_SESSION['user']->getProfils() == 'user') {
+		return true;
+	}
+	if (strpos($_SESSION['user']->getRights($_name,$_default), $_right) !== false) {
+		return true;
+	}
+	return false;
+}
+
 function ZipErrorMessage($code) {
 	switch ($code) {
 		case 0:
@@ -1444,15 +1454,15 @@ function checkAndFixCron($_cron) {
 }
 
 function cronIsDue($_cron){
-	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('G') > 0 && date('G') < 4) {
+	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('I') == 1 && date('Gi') > 159) {
 		return false;
 	}
 	$schedule = explode(' ',trim($_cron));
 	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
 		return false;
 	}
-	$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 	try {
+		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 		return $c->isDue();
 	} catch (Exception $e) {
 

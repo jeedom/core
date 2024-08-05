@@ -343,103 +343,119 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 								</a>
 								<input type="checkbox" id="drop-home">
 								<ul>
+									<?php if (hasRight('menu::overview')) { ?>
+										<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
+									<?php } ?>
 
-									<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
+									<?php if (hasRight('menu::dashboard')) { ?>
+										<li>
+											<a id="bt_gotoDashboard" class="submenu">
+												<i class="fas fa-tachometer-alt"></i> {{Dashboard}}
+												<label class="drop-icon" for="drop-dashboard"><i class="fas fa-chevron-down fa-2x"></i></label>
+											</a>
+											<input type="checkbox" id="drop-dashboard">
+											<ul>
+												<?php
+												$echo = '';
+												foreach ((jeeObject::buildTree(null, false)) as $object_li) {
+													$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';
+												}
+												echo $echo;
+												?>
+											</ul>
+										</li>
+									<?php } ?>
 
-									<li>
-										<a id="bt_gotoDashboard" class="submenu">
-											<i class="fas fa-tachometer-alt"></i> {{Dashboard}}
-											<label class="drop-icon" for="drop-dashboard"><i class="fas fa-chevron-down fa-2x"></i></label>
-										</a>
-										<input type="checkbox" id="drop-dashboard">
-										<ul>
+									<?php if (hasRight('menu::view')) { ?>
+										<li>
+											<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu'; ?>">
+												<i class="far fa-image"></i> {{Vue}}
+												<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
+											</a>
+											<input type="checkbox" id="drop-view">
 											<?php
 											$echo = '';
-											foreach ((jeeObject::buildTree(null, false)) as $object_li) {
-												$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';
+											foreach ($allUserViews as $view_menu) {
+												$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon', '<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
 											}
-											echo $echo;
+											if ($echo != '') {
+												echo '<ul>' . $echo . '</ul>';
+											}
 											?>
-										</ul>
-									</li>
+										</li>
+									<?php } ?>
 
-									<li>
-										<a id="bt_gotoView" class="<?php if (count($allUserViews) > 0) echo 'submenu'; ?>">
-											<i class="far fa-image"></i> {{Vue}}
-											<?php if (count($allUserViews) > 0) echo '<label class="drop-icon" for="drop-view"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
-										</a>
-										<input type="checkbox" id="drop-view">
-										<?php
-										$echo = '';
-										foreach ($allUserViews as $view_menu) {
-											$echo .= '<li><a href="index.php?v=d&p=view&view_id=' . $view_menu->getId() . '">' . trim($view_menu->getDisplay('icon', '<i class="far fa-image"></i>')) . ' ' . $view_menu->getName() . '</a></li>';
-										}
-										if ($echo != '') {
-											echo '<ul>' . $echo . '</ul>';
-										}
-										?>
-									</li>
+									<?php if (hasRight('menu::plan')) { ?>
+										<li>
+											<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu'; ?>">
+												<i class="fas fa-paint-brush"></i> {{Design}}
+												<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
+											</a>
+											<input type="checkbox" id="drop-design">
+											<?php
+											$echo = '';
+											foreach ($allPlanHeaderViews as $plan_menu) {
+												$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon', '<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
+											}
+											if ($echo != '') {
+												echo '<ul>' . $echo . '</ul>';
+											}
+											?>
+										</li>
+									<?php } ?>		
 
-									<li>
-										<a id="bt_gotoPlan" class="<?php if (count($allPlanHeaderViews) > 0) echo 'submenu'; ?>">
-											<i class="fas fa-paint-brush"></i> {{Design}}
-											<?php if (count($allPlanHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
-										</a>
-										<input type="checkbox" id="drop-design">
-										<?php
-										$echo = '';
-										foreach ($allPlanHeaderViews as $plan_menu) {
-											$echo .= '<li><a href="index.php?v=d&p=plan&plan_id=' . $plan_menu->getId() . '">' . trim($plan_menu->getConfiguration('icon', '<i class="fas fa-paint-brush"></i>') . ' ' . $plan_menu->getName()) . '</a></li>';
-										}
-										if ($echo != '') {
-											echo '<ul>' . $echo . '</ul>';
-										}
-										?>
-									</li>
+									<?php if (hasRight('menu::plan3d')) { ?>
+										<li>
+											<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu'; ?>">
+												<i class="fas fa-cubes"></i> {{Design 3D}}
+												<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
+											</a>
+											<input type="checkbox" id="drop-design3d">
+											<?php
+											$echo = '';
+											foreach ($allPlan3dHeaderViews as $plan3d_menu) {
+												$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
+											}
+											if ($echo != '') {
+												echo '<ul>' . $echo . '</ul>';
+											}
+											?>
+										</li>
+									<?php } ?>		
 
-									<li>
-										<a id="bt_gotoPlan3d" class="<?php if (count($allPlan3dHeaderViews) > 0) echo 'submenu'; ?>">
-											<i class="fas fa-cubes"></i> {{Design 3D}}
-											<?php if (count($allPlan3dHeaderViews) > 0) echo '<label class="drop-icon" for="drop-design3d"><i class="fas fa-chevron-down fa-2x"></i></label>'; ?>
-										</a>
-										<input type="checkbox" id="drop-design3d">
-										<?php
-										$echo = '';
-										foreach ($allPlan3dHeaderViews as $plan3d_menu) {
-											$echo .= '<li><a href="index.php?v=d&p=plan3d&plan3d_id=' . $plan3d_menu->getId() . '">' . trim($plan3d_menu->getConfiguration('icon') . ' ' . $plan3d_menu->getName()) . '</a></li>';
-										}
-										if ($echo != '') {
-											echo '<ul>' . $echo . '</ul>';
-										}
-										?>
-									</li>
 									<?php echo $panel_menu; ?>
 								</ul>
 							</li>
 
-							<li class="cursor">
-								<a>
-									<i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b>
-									<label class="drop-icon" for="drop-analysis"><i class="fas fa-chevron-down fa-2x"></i></label>
-								</a>
-								<input type="checkbox" id="drop-analysis">
-								<ul>
-									<?php if (isConnect('admin')) { ?>
-										<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
-										<li><a id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
-										<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
-										<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
-									<?php } ?>
-									<li class="divider"></li>
-									<li><a href="index.php?v=d&p=timeline"><i class="far fa-clock"></i> {{Timeline}}</a></li>
-									<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
-									<?php if (isConnect('admin')) { ?>
-										<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
+							<?php if(hasRight('menu::analyze')){ ?>
+								<li class="cursor">
+									<a>
+										<i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b>
+										<label class="drop-icon" for="drop-analysis"><i class="fas fa-chevron-down fa-2x"></i></label>
+									</a>
+									<input type="checkbox" id="drop-analysis">
+									<ul>
+										<?php if (isConnect('admin')) { ?>
+											<li><a href="index.php?v=d&p=log"><i class="far fa-file"></i> {{Logs}}</a></li>
+											<li><a id="bt_showEventInRealTime"><i class="fas fa-tachometer-alt"></i> {{Temps réel}}</a></li>
+											<li><a href="index.php?v=d&p=eqAnalyse"><i class="fas fa-battery-full"></i> {{Equipements}}</a></li>
+											<li><a href="index.php?v=d&p=display"><i class="fas fa-th"></i> {{Résumé domotique}}</a></li>
+										<?php } ?>
 										<li class="divider"></li>
-										<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
-									<?php } ?>
-								</ul>
-							</li>
+										<?php if (hasRight('menu::timeline')) { ?>
+											<li><a href="index.php?v=d&p=timeline"><i class="far fa-clock"></i> {{Timeline}}</a></li>
+										<?php } ?>
+										<?php if (hasRight('menu::history')) { ?>
+											<li><a href="index.php?v=d&p=history"><i class="fas fa-chart-line"></i> {{Historique}}</a></li>
+										<?php } ?>
+										<?php if (isConnect('admin')) { ?>
+											<li><a href="index.php?v=d&p=report"><i class="far fa-newspaper"></i> {{Rapport}}</a></li>
+											<li class="divider"></li>
+											<li><a href="index.php?v=d&p=health"><i class="fas fa-medkit"></i> {{Santé}}</a></li>
+										<?php } ?>
+									</ul>
+								</li>
+							<?php } ?>
 
 							<?php if (isConnect('admin')) { ?>
 								<li class="cursor">
@@ -479,68 +495,74 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 								</li>
 							<?php } ?>
 
-							<li class="cursor">
-								<a>
-									<i class="fas fa-cog"></i> <span class="hidden-sm hidden-md">{{Réglages}}</span> <b class="caret"></b>
-									<label class="drop-icon" for="drop-settings"><i class="fas fa-chevron-down fa-2x"></i></label>
-								</a>
-								<input type="checkbox" id="drop-settings">
-								<ul>
-									<?php if (isConnect('admin')) { ?>
-										<li>
-											<a class="submenu">
-												<i class="fas fa-cog"></i> {{Système}}
-												<label class="drop-icon" for="drop-system"><i class="fas fa-chevron-down fa-2x"></i></label>
-											</a>
-											<input type="checkbox" id="drop-system">
-											<ul>
-												<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
-												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
-												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
-												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
-												<li class="divider"></li>
-												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
-												<li><a href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt warning"></i> {{Personnalisation avancée}}</a></li>
-												<?php if (isConnect('admin')) {
-													echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichiers}}</a></li>';
-												} ?>
-												<li class="divider"></li>
-												<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {
-													echo '<li class="cursor"><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
-													echo '<li class="cursor"><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
-												} ?>
-											</ul>
-										</li>
-									<?php } ?>
-									<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
-									<li class="divider"></li>
-									<?php if ($jeedom_theme['jeedom_theme_main'] != $jeedom_theme['jeedom_theme_alternate']) { ?>
-										<li><a id="bt_switchTheme"><i class="fas fa-adjust"></i> {{Thème alternatif}}</a></li>
-									<?php } ?>
-									<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
-									<li class="divider"></li>
-									<?php $mbState = config::byKey('mbState'); ?>
-									<?php if (isConnect('admin')) {
-										if ($mbState == 0) { ?>
+							<?php if (hasRight('menu::settings')) { ?>
+								<li class="cursor">
+									<a>
+										<i class="fas fa-cog"></i> <span class="hidden-sm hidden-md">{{Réglages}}</span> <b class="caret"></b>
+										<label class="drop-icon" for="drop-settings"><i class="fas fa-chevron-down fa-2x"></i></label>
+									</a>
+									<input type="checkbox" id="drop-settings">
+									<ul>
+										<?php if (isConnect('admin')) { ?>
 											<li>
-												<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
-													<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
-												<?php } else { ?>
-													<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
-												<?php } ?>
+												<a class="submenu">
+													<i class="fas fa-cog"></i> {{Système}}
+													<label class="drop-icon" for="drop-system"><i class="fas fa-chevron-down fa-2x"></i></label>
+												</a>
+												<input type="checkbox" id="drop-system">
+												<ul>
+													<li><a href="index.php?v=d&p=administration" tabindex="0"><i class="fas fa-wrench"></i> {{Configuration}}</a></li>
+													<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
+													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
+													<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
+													<li class="divider"></li>
+													<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
+													<li><a href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt warning"></i> {{Personnalisation avancée}}</a></li>
+													<?php if (isConnect('admin')) {
+														echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichiers}}</a></li>';
+													} ?>
+													<li class="divider"></li>
+													<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {
+														echo '<li class="cursor"><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
+														echo '<li class="cursor"><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+													} ?>
+												</ul>
 											</li>
-									<?php }
-									} ?>
-									<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
-									<li class="nocursor"><a class="disabled"><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
-									<?php
-									if ($mbState == 0) { ?>
-										<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
-									<?php } else { ?>
-										<li><a><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
-									<?php } ?>
-								</ul>
-							</li>
+										<?php } ?>
+										<?php if (hasRight('menu::profils')) { ?>
+											<li><a href="index.php?v=d&p=profils"><i class="fas fa-briefcase"></i> {{Préférences}}</a></li>
+										<?php } ?>
+										<li class="divider"></li>
+										<?php if (hasRight('menu::switchTheme') && $jeedom_theme['jeedom_theme_main'] != $jeedom_theme['jeedom_theme_alternate']) { ?>
+											<li><a id="bt_switchTheme"><i class="fas fa-adjust"></i> {{Thème alternatif}}</a></li>
+										<?php } ?>
+										<?php if (hasRight('menu::mobile')) { ?>
+											<li><a href="index.php?v=m" class="noOnePageLoad"><i class="fas fa-mobile"></i> {{Version mobile}}</a></li>
+										<?php } ?>
+										<li class="divider"></li>
+										<?php $mbState = config::byKey('mbState'); ?>
+										<?php if (isConnect('admin')) {
+											if ($mbState == 0) { ?>
+												<li>
+													<?php if (isset($plugin) && is_object($plugin) && $plugin->getIssue() != '') { ?>
+														<a target="_blank" href="<?php echo $plugin->getIssue() ?>"><i class="fas fa-exclamation-circle"></i> {{Rapport de bug}}</a>
+													<?php } else { ?>
+														<a class="bt_reportBug"><i class="fas fa-exclamation-circle"></i> {{Demande de support}}</a>
+													<?php } ?>
+												</li>
+										<?php }
+										} ?>
+										<li><a href="index.php?v=d&logout=1" class="noOnePageLoad"><i class="fas fa-sign-out-alt"></i> {{Se déconnecter}}</a></li>
+										<li class="nocursor"><a class="disabled"><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
+										<?php
+										if ($mbState == 0) { ?>
+											<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+										<?php } else { ?>
+											<li><a><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+										<?php } ?>
+									</ul>
+								</li>
+							<?php } ?>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							<?php

@@ -1,16 +1,37 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary) [LINK](https://github.com/jeedom/core/issues/2499)
+- Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
+- Added a button to the order configuration window at the value calculation field to fetch an order [LINK](https://github.com/jeedom/core/issues/2776)
+- Ability to hide certain menus for limited users [LINK](https://github.com/jeedom/core/issues/2651)
+- The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
+- Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
+
 # 4.4.10
 
-- Moved event management (event) which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
+- Moved event management which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
 - Added a filter on many actions in scenarios [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743), [LINK](https://github.com/jeedom/core/pull/2755)
 - The price of the plugin is hidden if you have already purchased it [LINK](https://github.com/jeedom/core/pull/2746)
 - On the login page possibility to display or name the password [LINK](https://github.com/jeedom/core/pull/2740)
-- Fixed a bug when leaving the page without saving [LINK](https://github.com/jeedom/core/pull/2745)
+- Fixed a bug when leaving a page without saving [LINK](https://github.com/jeedom/core/pull/2745)
 - Creation (in beta) of a new cache system [LINK](https://github.com/jeedom/core/pull/2758) :
   - File : system identical to that of before but taken internally to avoid dependencies on a third party lib. The most efficient but saved every 30 minutes
   - Mysql : using a base cache table. The least efficient but saved in real time (no data loss possible)
   - Redis : reserved for experts, relies on redis to manage the cache (requires you to install redis yourself and the php-redis dependencies)
+- Fixed a bug on equipment alerts when deleting the alerted order [LINK](https://github.com/jeedom/core/issues/2775)
+- Possibility in the advanced configuration of a piece of equipment to hide it when displaying several objects on the dashboard [LINK](https://github.com/jeedom/core/issues/2553)
+- Fixed a bug when displaying the timeline folder in the advanced configuration of a command [LINK](https://github.com/jeedom/core/issues/2791)
+- Redesign of Jeedom's fail2ban system so that it consumes less resources [LINK](https://github.com/jeedom/core/issues/2684)
+- Fixed a bug on archiving and purging histories [LINK](https://github.com/jeedom/core/issues/2793)
+- Improved patch for gpg bug on python dependencies [LINK](https://github.com/jeedom/core/pull/2798)
+- Fixed a problem when changing the time following the overhaul of cron management [LINK](https://github.com/jeedom/core/issues/2794)
+- Fixed a bug on the home automation summary page when searching for an order by id [LINK](https://github.com/jeedom/core/issues/2795)
+- Added database size to health page [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom now lists all the branches and tags of the github repository to allow you to test functionalities in advance or to revert to a previous version of the core (be careful this is very risky) [LINK](https://github.com/jeedom/core/issues/2500)
+- Improvement of subtypes of commands supported on generic types [LINK](https://github.com/jeedom/core/pull/2797)
+- Fixed a bug in the display of scenarios and comments when you want to hide them [LINK](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANT**
 >
@@ -22,7 +43,6 @@
 - When copying equipment, if the widget had a graphic in the background, it is correctly transformed [LINK](https://github.com/jeedom/core/issues/2540)
 - Adding tags #sunrise# and #sunset# in the scenarios to have the sunrise and sunset times [LINK](https://github.com/jeedom/core/pull/2725)
 - A plugin can now add fields in the advanced configuration of all jeedom equipment [LINK](https://github.com/jeedom/core/issues/2711)
-- Addition of an optional logicalId parameter when copying equipment [LINK](https://github.com/jeedom/core/pull/2715)
 - Improvement of the crons management system [LINK](https://github.com/jeedom/core/issues/2719)
 - Fixed a bug that could cause all information on the update page to be lost [LINK](https://github.com/jeedom/core/issues/2718)
 - Deleting fail2ban service status from Jeedom health [LINK](https://github.com/jeedom/core/issues/2721)
@@ -32,6 +52,8 @@
 - Fixed a javascript bug on buttons in modals [LINK](https://github.com/jeedom/core/pull/2734)
 - Fixed a bug on the number of messages when deleting all messages [LINK](https://github.com/jeedom/core/issues/2735)
 - Excluding the venv directory from backups [LINK](https://github.com/jeedom/core/pull/2736)
+- Fixed a bug on the advanced configuration page of a command where the field to choose the timeline folder did not appear [LINK](https://github.com/jeedom/core/issues/2547)
+- Fixed a bug in the command selection window following saving equipment [LINK](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 

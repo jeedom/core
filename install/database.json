@@ -260,7 +260,7 @@
         },
         {
           "name": "datetime",
-          "type": "datetime",
+          "type": "int(11)",
           "null": "YES",
           "key": "",
           "default": null,
@@ -730,7 +730,7 @@
         },
         {
           "name": "option",
-          "type": "varchar(4095)",
+          "type": "varchar(8192)",
           "null": "YES",
           "key": "",
           "default": null,
@@ -1591,6 +1591,76 @@
           }
         }
       }
+    },
+    {
+      "name": "queue",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "queueId",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "class",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "function",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "arguments",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "createTime",
+          "type": "datetime",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "timeout",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": []
     },
     {
       "name": "scenario",
