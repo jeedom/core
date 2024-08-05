@@ -33,6 +33,8 @@
 - Amélioration des sous types de commandes supportées sur les génériques type [LIEN](https://github.com/jeedom/core/pull/2797)
 - Correction d'un bug sur l'affichage des scénario et les commentaires lorsqu'on veut les masquer [LIEN](https://github.com/jeedom/core/pull/2790)
 
+- Refonte de la partie backup cloud [LIEN](https://github.com/jeedom/core/issues/2765)
+
 >**IMPORTANT**
 >
 > Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
