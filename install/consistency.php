@@ -270,6 +270,18 @@ try {
 		$cron->setDeamon(0);
 		$cron->save();
 
+		$cron = cron::byClassAndFunction('queue', 'cron');
+		if (!is_object($cron)) {
+			echo "Create queue::cron\n";
+			$cron = new cron();
+		}
+		$cron->setClass('queue');
+		$cron->setFunction('cron');
+		$cron->setSchedule('* * * * *');
+		$cron->setTimeout(2);
+		$cron->setDeamon(0);
+		$cron->save();
+
 		$cron = cron::byClassAndFunction('plugin', 'cron5');
 		if (!is_object($cron)) {
 			echo "Create plugin::cron5\n";

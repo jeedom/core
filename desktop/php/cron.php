@@ -28,6 +28,7 @@ if (!isConnect('admin')) {
       <li id="tab_tableCron" role="presentation" class="active"><a data-target="#cron" role="tab" data-toggle="tab"><i class="fas fa-clock"></i> {{Cron}}</a></li>
       <li role="presentation"><a data-target="#listener" role="tab" data-toggle="tab"><i class="fas fa-assistive-listening-systems"></i> {{Listener}}</a></li>
       <li role="presentation"><a data-target="#deamon" role="tab" data-toggle="tab"><i class="fas fa-bug"></i> {{Démon}}</a></li>
+      <li role="presentation"><a data-target="#queue" role="tab" data-toggle="tab"><i class="fas fa-tasks"></i> {{Queue}}</a></li>
     </ul>
 
     <div class="tab-content">
@@ -84,6 +85,26 @@ if (!isConnect('admin')) {
           <tbody></tbody>
         </table>
       </div>
+
+      <div role="tabpanel" class="tab-pane" id="queue">
+        <table id="table_queue" class="ui-table-reflow table table-condensed">
+          <thead>
+            <tr>
+              <th>{{ID}}</th>
+              <th data-type="number">{{PID}}</th>
+              <th data-type="input">{{Queue id}}</th>
+              <th data-type="input">{{Classe}}</th>
+              <th data-type="input">{{Fonction}}</th>
+              <th data-type="input">{{Timeout (min)}}</th>
+              <th data-type="date" data-format="YYYY-MM-DD hh:mm:ss">{{Crée le}}</th>
+              <th>{{Statut}}</th>
+              <th style="width:100px;">{{Actions}}</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
     </div>
 
   </div>

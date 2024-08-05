@@ -37,6 +37,8 @@
 
 - Refonte de la partie backup cloud [LIEN](https://github.com/jeedom/core/issues/2765)
 
+- [DEV] Mise en place d'un systeme de queue pour l'éxecution d'action [LIEN](https://github.com/jeedom/core/issues/2489)
+
 >**IMPORTANT**
 >
 > Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
