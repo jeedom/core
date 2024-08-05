@@ -3,7 +3,6 @@
     "dragonmantank/cron-expression": "^3.3",
     "symfony/expression-language": "^5.4",
     "monolog/monolog": "^2.9",
-    "knplabs/github-api": "^3",
     "pragmarx/google2fa-qrcode": "^3.0",
     "abbadon1334/sun-position-spa-php": "^2.0",
     "league/oauth2-client": "~2.3",
