@@ -35,10 +35,6 @@ class cache {
 			return self::$_engine;
 		}
 		self::$_engine = config::byKey('cache::engine');
-		if(!in_array(self::$_engine,array('MariadbCache','RedisCache','FileCache'))){
-			config::save('cache::engine','FileCache');
-			self::$_engine = 'FileCache';
-		}
 		if(!class_exists(self::$_engine)){
 			config::save('cache::engine','FileCache');
 			self::$_engine = 'FileCache';
