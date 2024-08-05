@@ -290,9 +290,9 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 - ``#trigger#`` : Puede ser :
   - ``api`` si el lanzamiento fue activado por la API,
   - ``TYPEcmd`` si el inicio fue activado por un comando, con TYPE reemplazó la identificación del complemento (por ejemplo, virtualCmd),
-  - ``schedule`` si fue lanzado por programación,
+  - ``schedule`` si se inició programando,
   - ``user`` si se inició manualmente,
-  - ``start`` para un lanzamiento en la startup Jeedom.
+  - ``start`` para un lanzamiento al inicio de Jeedom.
 - ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó.
 - ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando])
 - ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta tiene el valor del comando que desencadenó el escenario. Consejo: si desea conocer el valor actual del comando que desencadenó el escenario (y no su valor en el momento de la activación), puede utilizar : ``##trigger_id##`` (doble #)

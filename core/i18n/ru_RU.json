@@ -4851,7 +4851,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Сценарий",
-        "Filtre de scénario": "Filtre de scénario",
+        "Filtre des scénarios": "Filtre des scénarios",
         "Action": "Действие",
         "Démarrer": "Démarrer",
         "Démarrer (sync)": "Démarrer (sync)",

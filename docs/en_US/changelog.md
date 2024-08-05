@@ -27,6 +27,7 @@
 - Improved plugin management on github (no more dependencies on a third-party library) [LINK](https://github.com/jeedom/core/issues/2567)
 - Removing the old cache system. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibility of deleting the IN and A blocks while waiting for another scenario [LINK](https://github.com/jeedom/core/pull/2379)
+- Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
 
 # 4.4.10
 

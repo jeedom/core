@@ -27,6 +27,7 @@
 - Gerenciamento aprimorado de plug-ins no github (sem mais dependências de uma biblioteca de terceiros) [LINK](https://github.com/jeedom/core/issues/2567)
 - Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
+- Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
 
 # 4.4.10
 

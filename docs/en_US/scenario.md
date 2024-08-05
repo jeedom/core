@@ -290,9 +290,9 @@ A tag is replaced during the execution of the scenario by its value. You can use
 - ``#trigger#`` : Maybe :
   - ``api`` if the launch was triggered by the API,
   - ``TYPEcmd`` if the launch was triggered by a command, with TYPE replaced the plugin id (ex virtualCmd),
-  - ``schedule`` if it was launched by programming,
+  - ``schedule`` if it was started by programming,
   - ``user`` if it was started manually,
-  - ``start`` for a launch at Jeedom startup.
+  - ``start`` for a launch at startup of Jeedom.
 - ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it.
 - ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command])
 - ``#trigger_value#`` : If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario. Tip if you want the current value of the command which triggered the scenario (and not its value at triggering) you can use : ``##trigger_id##`` (double #)

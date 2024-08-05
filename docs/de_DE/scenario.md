@@ -288,11 +288,11 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 - ``#hostname#`` : Name der Jeedom-Maschine.
 - ``#jeedomName#`` : Name von Jeedom.
 - ``#trigger#`` : Vielleicht :
-  - ``api`` wenn der Start durch die API ausgelöst wurde,
+  - ``api`` wenn der Start von der API ausgelöst wurde,
   - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
   - ``schedule`` wenn es durch Programmierung gestartet wurde,
   - ``user`` wenn es manuell gestartet wurde,
-  - ``start`` für einen Start beim Jeedom-Startup.
+  - ``start`` für einen Start beim Start von Jeedom.
 - ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat.
 - ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
 - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat. Tipp: Wenn Sie den aktuellen Wert des Befehls möchten, der das Szenario ausgelöst hat (und nicht seinen Wert zum Zeitpunkt der Auslösung), können Sie diesen verwenden : ``##trigger_id##`` (doppelt #)

@@ -27,6 +27,7 @@
 - Gestión de complementos mejorada en github (no más dependencias de una biblioteca de terceros)) [ENLACE](https://github.com/jeedom/core/issues/2567)
 - Eliminando el antiguo sistema de caché. [ENLACE](https://github.com/jeedom/core/pull/2799)
 - Posibilidad de borrar los bloques IN y A mientras se espera otro escenario [ENLACE](https://github.com/jeedom/core/pull/2379)
+- Se corrigió un error en Safari en filtros con acentos [ENLACE](https://github.com/jeedom/core/pull/2754)
 
 # 4.4.10
 

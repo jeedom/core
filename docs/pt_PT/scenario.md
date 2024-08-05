@@ -290,9 +290,9 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 - ``#trigger#`` : Talvez :
   - ``api`` se o lançamento foi acionado pela API,
   - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
-  - ``schedule`` se foi lançado por programação,
+  - ``schedule`` se foi iniciado por programação,
   - ``user`` se foi iniciado manualmente,
-  - ``start`` para um lançamento na startup Jeedom.
+  - ``start`` para um lançamento na inicialização do Jeedom.
 - ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou.
 - ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
 - ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário. Dica se você quiser o valor atual do comando que disparou o cenário (e não seu valor no disparo), você pode usar : ``##trigger_id##`` (dobro #)

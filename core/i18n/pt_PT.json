@@ -406,7 +406,7 @@
         "Visualisation et exécution": "Visualização e execução",
         "Equipement": "Equipamento",
         "Droits": "Direitos",
-        "Scénario": "Cenário",
+        "Scénario": "Cenários",
         "Masqué": "Mascarar",
         "Visible": "Visível",
         "Sauvegarde effectuée": "Backup feito"
@@ -648,7 +648,7 @@
         "Rechercher une commande": "Procurar um comando",
         "Type Générique": "Tipo Genérico",
         "Résultats": "Resultados",
-        "Scénario": "Cenário",
+        "Scénario": "Cenários",
         "Actions": "Ações",
         "Design": "Projeto",
         "Vue": "Vista",
@@ -912,7 +912,7 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Rafraichir": "Recarregar",
         "Vider": "Apagar",
-        "Fichier": "Arquivo",
+        "Fichier": "Ficheiro",
         "Ligne": "Linha",
         "Message": "Mensagem"
     },
@@ -1207,7 +1207,7 @@
         "Rafraîchir": "Recarregar",
         "Sauvegarder": "Guardar",
         "ID": "EU IRIA",
-        "Scénario": "Cenário",
+        "Scénario": "Cenários",
         "Statut": "Estado",
         "Dernier lancement": "Último lançamento",
         "Actif": "Ativo",
@@ -2750,7 +2750,7 @@
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$valor['nome']",
-        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "401 - Accès non autorisé": "Nenhum autorizado",
         "Aucun": "Não",
         "Configuration avancée": "Configuração avançada",
         "Aller sur la configuration de l\\'objet": "Ir para a configuração do objeto",
@@ -3344,7 +3344,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "Tem a certeza de que deseja excluir todos os registos dos cenários?",
         "Logs des scénarios supprimés.": "Registos dos cenários excluídos",
         "Vue d'ensemble des scénarios": "Vista geral dos cenários",
-        "Scénario": "Cenário",
+        "Scénario": "Cenários",
         "copie": "cópia de",
         "Graphique de lien(s)": "Gráfico do(s) link(s)",
         "Edition texte scénarios": "Edição de texto do cenário",
@@ -3460,11 +3460,11 @@
         "Connexion de l\\'utilisateur par clef :": "Login do utilizador por chave:"
     },
     "core\/php\/jeeCron.php": {
-        "Erreur sur": "Erro ativado",
+        "Erreur sur": "Erro",
         "[Erreur master]": "[Erro no mestre]",
         "Tous les crons sont actuellement désactivés": "Todos os cron estão desativados",
         "[Erreur] Classe ou fonction non trouvée": "[Erro] Classe ou função não encontrada",
-        "[Erreur] Non trouvée": "[Erro não encontrado"
+        "[Erreur] Non trouvée": "[Erro] Não encontrada"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  :": "Cenário:",
@@ -4073,7 +4073,7 @@
         "Extension du fichier non valide (autorisé .jpg .png) :": "Extensão de arquivo inválida (permitida .jpg .png):",
         "Le fichier est trop gros (maximum 5Mo)": "O arquivo é muito grande (máximo de 5 MB)",
         "Impossible de sauvegarder l\\'image": "Incapaz de salvar a imagem",
-        "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
+        "Aucune méthode correspondante à :": "Nenhum método corresponde a:"
     },
     "core\/ajax\/cmd.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -4211,7 +4211,7 @@
         "Téléchargement de": "Transferir"
     },
     "core\/repo\/file.repo.php": {
-        "Fichier": "Arquivo",
+        "Fichier": "Ficheiro",
         "Chemin": "Caminho"
     },
     "core\/repo\/url.repo.php": {
@@ -4591,11 +4591,11 @@
         "La fonction ne peut pas être vide": "A função não pode estar vazia",
         "La programmation ne peut pas être vide :": "A programação não pode estar vazia:",
         "Impossible d\\'exécuter la tâche car elle est déjà en cours d\\'exécution (": "Não foi possível executar a tarefa porque ela já está em execução (",
-        "Arrêt de": "Parar",
+        "Arrêt de": "Paragem",
         "() : Impossible d\\'arrêter la tâche": "(): Não foi possível parar a tarefa"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Cenário",
+        "Scénario": "Cenários",
         "Variable": "Variável",
         "Activation de": "Ativação de",
         "Désactivation de": "Desativação de",
@@ -4851,7 +4851,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Cenário",
-        "Filtre de scénario": "Filtro de cenário",
+        "Filtre des scénarios": "Filtro de cenário",
         "Action": "Ação",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sincronização)",
