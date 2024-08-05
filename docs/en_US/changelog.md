@@ -8,6 +8,25 @@
 - Ability to hide certain menus for limited users [LINK](https://github.com/jeedom/core/issues/2651)
 - The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
+- Redesign of the cloud backup part [LINK](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementation of a queuing system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
+- The scenario tags are now specific to the scenario instance (if you have two scenarios launched very close together, the tags of the latter no longer overwrite the first) [LINK](https://github.com/jeedom/core/issues/2763)
+- Change to the trigger part of the scenarios : [LINK](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` is now deprecated and will be removed in future core updates
+  - ``trigger()`` is now deprecated and will be removed in future core updates
+  - ``triggerValue()`` is now deprecated and will be removed in future core updates
+  - ``#trigger#`` : Maybe :
+    - ``api`` if the launch was triggered by the API,
+    - ``TYPEcmd`` if the launch was triggered by a command, with TYPE replaced the plugin id (ex virtualCmd),
+    - ``schedule`` if it was launched by programming,
+    - ``user`` if it was started manually,
+    - ``start`` for a launch at Jeedom startup.
+  - ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it
+  - ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command])
+  - ``#trigger_value#`` : If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario
+- Improved plugin management on github (no more dependencies on a third-party library) [LINK](https://github.com/jeedom/core/issues/2567)
+- Removing the old cache system. [LINK](https://github.com/jeedom/core/pull/2799)
+- Possibility of deleting the IN and A blocks while waiting for another scenario [LINK](https://github.com/jeedom/core/pull/2379)
 
 # 4.4.10
 

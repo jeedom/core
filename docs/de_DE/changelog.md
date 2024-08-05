@@ -8,6 +8,25 @@
 - Möglichkeit, bestimmte Menüs für eingeschränkte Benutzer auszublenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2651)
 - Die Diagramme werden automatisch aktualisiert, wenn neue Werte eintreffen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2749)
 - Jeedom fügt beim Erstellen von Widgets automatisch die Höhe des Bildes hinzu, um Überlappungsprobleme auf Mobilgeräten zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2539)
+- Neugestaltung des Cloud-Backup-Teils [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementierung eines Warteschlangensystems zur Aktionsausführung [LINK](https://github.com/jeedom/core/issues/2489)
+- Die Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei Szenarios sehr nahe beieinander gestartet haben, überschreiben die Tags des letzteren nicht mehr das erste)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2763)
+- Wechseln Sie zum Auslöserteil der Szenarien : [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``#trigger#`` : Vielleicht :
+    - ``api`` wenn der Start durch die API ausgelöst wurde,
+    - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
+    - ``schedule`` wenn es durch Programmierung gestartet wurde,
+    - ``user`` wenn es manuell gestartet wurde,
+    - ``start`` für einen Start beim Jeedom-Startup.
+  - ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat
+  - ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
+  - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat
+- Verbesserte Plugin-Verwaltung auf Github (keine Abhängigkeiten mehr von einer Drittanbieter-Bibliothek)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2567)
+- Entfernen des alten Cache-Systems. [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2799)
+- Möglichkeit, die Blöcke IN und A zu löschen, während auf ein anderes Szenario gewartet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2379)
 
 # 4.4.10
 

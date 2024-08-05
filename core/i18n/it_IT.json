@@ -494,7 +494,7 @@
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page",
         "ouverte.": "ouverte.",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Invia, un posto di comando, un rapporto di vista, un disegno o un pannello PNG \/ PDF \/ JPEG \/ SVG",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Cancellare la programmazione di tutti i blocchi IN e A Scenario",
+        "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario": "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Permet de pousser une valeur dans une commande de type information de maniere arbitraire",
         "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)",
         "Permet d'activer ou non la coloration des icones sur le dashboard": "Permet d'activer ou non la coloration des icones sur le dashboard",
@@ -2038,13 +2038,9 @@
         "Tester": "Prova",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "Coperchio del motore",
-        "Système de fichiers": "Système de fichiers",
-        "Memcached": "Memcached",
-        "Redis (beta)": "Redis (beta)",
-        "Mysql (beta)": "Mysql (beta)",
-        "Fichier (beta)": "Fichier (beta)",
-        "Adresse Memcache": "Indirizzo Memcache",
-        "Port Memcache": "Port memcached",
+        "Fichier": "Fichier",
+        "Redis": "Redis",
+        "Mysql": "Mysql",
         "Adresse Redis": "Indirizzo Redis",
         "Port redis": "Ripetere Port",
         "Temps de pause pour le long polling": "Tempo di pausa per il lungo polling",
@@ -2575,6 +2571,7 @@
         "Cron": "Cron",
         "Listener": "Ascoltatore",
         "Démon": "Demone",
+        "Queue": "Queue",
         "ID": "ID",
         "Actif": "Beni",
         "PID": "PID",
@@ -2591,7 +2588,9 @@
         "Nom": "Nome",
         "Status": "Stato",
         "Date lancement": "Data di avvio",
-        "Action": "Azione"
+        "Action": "Azione",
+        "Queue id": "Queue id",
+        "Crée le": "Crée le"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -2976,6 +2975,7 @@
         "Activer la gestion automatique du démon": "Attiva la gestione automatica del demone",
         "Désactiver la gestion automatique du démon": "Disabilita la gestione automatica dei demoni",
         "Détails du cron": "Dettagli cron",
+        "Détails de la queue": "Détails de la queue",
         "Détails du listener": "Dettagli dell'ascoltatore"
     },
     "desktop\/js\/history.js": {
@@ -3471,6 +3471,12 @@
         "Erreur :": "Di errore:",
         "Scénario non trouvé. Vérifiez ID :": "Scenario non trovato. Verifica ID:"
     },
+    "core\/php\/jeeQueue.php": {
+        "Erreur sur": "Erreur sur",
+        "Tous les queues sont actuellement désactivés": "Tous les queues sont actuellement désactivés",
+        "[Erreur] ": "[Erreur] ",
+        "[Erreur] Non trouvée": "[Erreur] Non trouvée"
+    },
     "core\/php\/editor.connector.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
@@ -3889,6 +3895,11 @@
         "Impossible de sauvegarder l\\'image": "Impossibile salvare l'immagine",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
     },
+    "core\/ajax\/queue.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Queue id inconnu": "Queue id inconnu",
+        "Aucune méthode correspondante à :": "Aucune méthode correspondante à :"
+    },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Aucune méthode correspondante à :": "Nessun metodo corrispondente a:"
@@ -4150,9 +4161,9 @@
         "Lancement de l\\'installation de": "Lancio dell'installazione di",
         "en version": "en version",
         "Objet introuvable sur le market :": "Oggetto non trovato sul mercato:",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "È necessario disporre di una password per il backup su cloud (vai su Impostazioni -> Sistema -> Configurazione quindi scheda Aggiorna \/ Mercato)",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Besoin de faire de la place sur le stockage distant": "Besoin de faire de la place sur le stockage distant",
         "Pas assez de place et aucun backup à supprimer": "Pas assez de place et aucun backup à supprimer",
         "Supression du backup cloud :": "Supression du backup cloud :",
@@ -4195,7 +4206,6 @@
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilisateur ou organisation du dépôt pour le core Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nom du dépôt pour le core Jeedom",
         "Branche pour le core Jeedom": "Branche pour le core Jeedom",
-        "Dépot github non trouvé :": "Repository Github non trovato:",
         "Impossible d\\'écrire dans le répertoire :": "Impossibile scrivere nella directory:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Eseguire il comando seguente in SSH: sudo chmod 777 -R",
         "Téléchargement de": "Download di"
@@ -4653,6 +4663,18 @@
         "Vrai": "Vero",
         "Faux": "Falso"
     },
+    "core\/class\/queue.class.php": {
+        "Lancement de '.$queue->getHumanName()": "Lancement de '.$queue->getHumanName()",
+        "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()": "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()",
+        "Recherche des actions à faire pour '.$queueId['queueId']": "Recherche des actions à faire pour '.$queueId['queueId']",
+        "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (": "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (",
+        "Arrêt de": "Arrêt de",
+        " : Impossible d\\'arrêter la tâche en queue": ": Impossible d\\'arrêter la tâche en queue",
+        "La classe est la fonction ne peuvent etre vides": "La classe est la fonction ne peuvent etre vides",
+        "La classe n\\'existe pas": "La classe n\\'existe pas",
+        "La fonction n\\'existe pas": "La fonction n\\'existe pas",
+        "La methode n\\'existe pas": "La methode n\\'existe pas"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4928,6 +4950,10 @@
         "Message": "Messaggio",
         "Sélectionner la commande": "Seleziona comando"
     },
+    "core\/template\/scenario\/remove_inat.default.html": {
+        "Scénario": "Scénario",
+        "Scénario courant": "Scénario courant"
+    },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icona di ricerca"
     },
@@ -5084,7 +5110,7 @@
         "Aucun scénario correspondant à l\\'ID :": "Nessuno scenario corrispondente all'ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Non ti è permesso di agire in questo scenario",
         "Démarrage scénario de :": "Scenario iniziale di:",
-        "Exécution provoquée par un appel API": "Esecuzione causata da una chiamata API",
+        "Scénario exécuté sur appel API": "Scenario eseguito su chiamata API",
         "Arrêt scénario de :": "Stop allo scenario di:",
         "Désactivation scénario de :": "Scenario di disattivazione di:",
         "Activation scénario de :": "Attivazione dello scenario di:",
@@ -5110,7 +5136,6 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "Non ti è permesso fare questa azione",
         "Scénario introuvable :": "Scenario non trovato:",
         "Vous n\\'avez pas les droits sur ce scénario": "Vous n\\'avez pas les droits sur ce scénario",
-        "Scénario exécuté sur appel API": "Scenario eseguito su chiamata API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "Impossibile trovare l'oggetto associato:",

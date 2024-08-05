@@ -287,12 +287,15 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 - ``#IP#`` : IP interno da Jeedom.
 - ``#hostname#`` : Nome da máquina Jeedom.
 - ``#jeedomName#`` : Nome de Jeedom.
-- ``#trigger#`` (obsoleto, melhor usar ``trigger()``) : Talvez o nome do comando que iniciou o cenário :
+- ``#trigger#`` : Talvez :
   - ``api`` se o lançamento foi acionado pela API,
-  - ``schedule`` se foi iniciado por programação,
+  - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
+  - ``schedule`` se foi lançado por programação,
   - ``user`` se foi iniciado manualmente,
-  - ``start`` para um lançamento na inicialização do Jeedom.
-- ``#triggerValue#`` (descontinuado, melhor usar triggerValue()) : Para o valor do comando que acionou o cenário
+  - ``start`` para um lançamento na startup Jeedom.
+- ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou.
+- ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
+- ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário. Dica se você quiser o valor atual do comando que disparou o cenário (e não seu valor no disparo), você pode usar : ``##trigger_id##`` (dobro #)
 - ``#latitude#`` : Permite recuperar as informações de latitude colocadas na configuração do jeedom
 - ``#longitude#`` : Permite recuperar as informações de longitude colocadas na configuração do jeedom
 - ``#altitude#`` : Permite recuperar as informações de altitude colocadas na configuração do jeedom
@@ -432,8 +435,8 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 - ``rand(1,10)`` : Dê um número aleatório de 1 a 10.
 - ``randText(texte1;texte2;texte…​..)`` : Permite retornar um dos textos aleatoriamente (separe os textos por um; ). Não há limite no número de textos.
 - ``randomColor(min,max)`` : Dá uma cor aleatória entre 2 limites (0 => vermelho, 50 => verde, 100 => azul).
-- ``trigger(commande)`` : Permite descobrir o gatilho para o cenário ou saber se foi o comando passado como um parâmetro que acionou o cenário.
-- ``triggerValue()`` : Usado para descobrir o valor do gatilho do cenário.
+- ``trigger(commande)`` : Permite descobrir o gatilho para o cenário ou saber se foi o comando passado como um parâmetro que acionou o cenário. **=> Obsoleto é melhor usar a tag #trigger#**
+- ``triggerValue()`` : Usado para descobrir o valor do gatilho do cenário. **=> Obsoleto é melhor usar a tag #triggerValue#**
 - ``round(valeur,[decimal])`` : Arredonda acima, número [decimal] de casas decimais após o ponto decimal.
 - ``odd(valeur)`` : Permite saber se um número é ímpar ou não. Retorna 1 se ímpar 0, caso contrário.
 - ``median(commande1,commande2…​.commandeN)`` : Retorna a mediana dos valores.
@@ -450,9 +453,7 @@ E exemplos práticos :
 | Exemplo de função                  | Resultado retornado                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | a função retornará um desses textos aleatoriamente a cada execução.                           |
-| ``randomColor(40,60)``                 | Retorna uma cor aleatória próxima ao verde.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 se é bom ``#[Salle de bain][Hydrometrie][Humidité]#`` quem iniciou o cenário caso contrário 0  |
-| ``triggerValue()`` | 80 se a hidrometria de ``#[Salle de bain][Hydrometrie][Humidité]#`` é 80% e isso é ``#[Salle de bain][Hydrometrie][Humidité]#`` quem desencadeou o cenário. Se o cenário não foi disparado por um comando, retorna `falso`.                         |
+| ``randomColor(40,60)``                 | Retorna uma cor aleatória próxima ao verde.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Retorna 9 se a porcentagem de umidade e 85                     |
 | ``odd(3)``                             | Retorna 1                            |
 | ``median(15,25,20)``                   | Retorna 20
@@ -498,7 +499,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Alerta** (alert) : Exibe uma pequena mensagem de alerta em todos os navegadores que têm uma página Jeedom aberta. Além disso, você pode escolher 4 níveis de alerta.
 - **Aparecer** (popup) : Permite exibir um pop-up que deve ser absolutamente validado em todos os navegadores que possuem uma página jeedom aberta.
 - **Relatório** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário. O "atraso" é em milissegundos (ms).
-- **Excluir bloco IN / A agendado** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
+- **Excluir bloco IN / A agendado** (remove_inat) : Permite apagar a programação de todos os blocos IN e A de um cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
 - **Coloração de ícones do painel** (setColoredIcon) : Permite ativar ou não a coloração de ícones no painel.

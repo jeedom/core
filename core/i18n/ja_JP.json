@@ -494,7 +494,7 @@
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "ページを持つすべてのブラウザーで絶対に検証する必要があるポップアップを表示できます。",
         "ouverte.": "開かれました。",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "メッセージコマンドによって、ビュー、デザイン、またはパネルのレポートをPNG \/ PDF \/ JPEG \/ SVGで送信できます。",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "シナリオのすべてのINおよびAブロックのプログラミングを削除できます。",
+        "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario": "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "情報タイプコマンドの値を任意にプッシュできます。",
         "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)",
         "Permet d'activer ou non la coloration des icones sur le dashboard": "Permet d'activer ou non la coloration des icones sur le dashboard",
@@ -2038,13 +2038,9 @@
         "Tester": "テスト",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "エンジンカバー",
-        "Système de fichiers": "Système de fichiers",
-        "Memcached": "Memcachedの",
-        "Redis (beta)": "Redis (beta)",
-        "Mysql (beta)": "Mysql (beta)",
-        "Fichier (beta)": "Fichier (beta)",
-        "Adresse Memcache": "Memcachedの住所",
-        "Port Memcache": "ポートのmemcached",
+        "Fichier": "Fichier",
+        "Redis": "Redis",
+        "Mysql": "Mysql",
         "Adresse Redis": "Redisの住所",
         "Port redis": "ポートリピート",
         "Temps de pause pour le long polling": "長いポーリングのための時間を一時停止",
@@ -2575,6 +2571,7 @@
         "Cron": "Cronの",
         "Listener": "リスナー",
         "Démon": "悪魔",
+        "Queue": "Queue",
         "ID": "ID",
         "Actif": "財産",
         "PID": "PID",
@@ -2591,7 +2588,9 @@
         "Nom": "表題",
         "Status": "ステータス",
         "Date lancement": "打ち上げ日",
-        "Action": "アクション"
+        "Action": "アクション",
+        "Queue id": "Queue id",
+        "Crée le": "Crée le"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2976,6 +2975,7 @@
         "Activer la gestion automatique du démon": "デーモンの自動管理を有効にします",
         "Désactiver la gestion automatique du démon": "自動デーモン管理を無効にする",
         "Détails du cron": "Cronの詳細",
+        "Détails de la queue": "Détails de la queue",
         "Détails du listener": "リスナーの詳細"
     },
     "desktop\/js\/history.js": {
@@ -3471,6 +3471,12 @@
         "Erreur :": "エラー：",
         "Scénario non trouvé. Vérifiez ID :": "シナリオが見つかりません。チェックID："
     },
+    "core\/php\/jeeQueue.php": {
+        "Erreur sur": "Erreur sur",
+        "Tous les queues sont actuellement désactivés": "Tous les queues sont actuellement désactivés",
+        "[Erreur] ": "[Erreur] ",
+        "[Erreur] Non trouvée": "[Erreur] Non trouvée"
+    },
     "core\/php\/editor.connector.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
     },
@@ -3889,6 +3895,11 @@
         "Impossible de sauvegarder l\\'image": "画像を保存できません",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
     },
+    "core\/ajax\/queue.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Queue id inconnu": "Queue id inconnu",
+        "Aucune méthode correspondante à :": "Aucune méthode correspondante à :"
+    },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
@@ -4150,9 +4161,9 @@
         "Lancement de l\\'installation de": "インストールの開始",
         "en version": "en version",
         "Objet introuvable sur le market :": "市場で見つからないオブジェクト：",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "クラウドバックアップのパスワードが必要です（[設定]-> [システム]-> [構成]に移動し、[更新\/市場]タブに移動します）",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Besoin de faire de la place sur le stockage distant": "Besoin de faire de la place sur le stockage distant",
         "Pas assez de place et aucun backup à supprimer": "Pas assez de place et aucun backup à supprimer",
         "Supression du backup cloud :": "Supression du backup cloud :",
@@ -4195,7 +4206,6 @@
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilisateur ou organisation du dépôt pour le core Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nom du dépôt pour le core Jeedom",
         "Branche pour le core Jeedom": "Branche pour le core Jeedom",
-        "Dépot github non trouvé :": "Githubリポジトリが見つかりません：",
         "Impossible d\\'écrire dans le répertoire :": "ディレクトリに書き込めません：",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "。 SSHで次のコマンドを実行します。sudochmod 777 -R",
         "Téléchargement de": "のダウンロード"
@@ -4653,6 +4663,18 @@
         "Vrai": "リアル",
         "Faux": "偽"
     },
+    "core\/class\/queue.class.php": {
+        "Lancement de '.$queue->getHumanName()": "Lancement de '.$queue->getHumanName()",
+        "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()": "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()",
+        "Recherche des actions à faire pour '.$queueId['queueId']": "Recherche des actions à faire pour '.$queueId['queueId']",
+        "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (": "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (",
+        "Arrêt de": "Arrêt de",
+        " : Impossible d\\'arrêter la tâche en queue": ": Impossible d\\'arrêter la tâche en queue",
+        "La classe est la fonction ne peuvent etre vides": "La classe est la fonction ne peuvent etre vides",
+        "La classe n\\'existe pas": "La classe n\\'existe pas",
+        "La fonction n\\'existe pas": "La fonction n\\'existe pas",
+        "La methode n\\'existe pas": "La methode n\\'existe pas"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4928,6 +4950,10 @@
         "Message": "メッセージ",
         "Sélectionner la commande": "コマンドを選択"
     },
+    "core\/template\/scenario\/remove_inat.default.html": {
+        "Scénario": "Scénario",
+        "Scénario courant": "Scénario courant"
+    },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "検索アイコン"
     },
@@ -5084,7 +5110,7 @@
         "Aucun scénario correspondant à l\\'ID :": "Aucun scénario correspondant à l\\'ID :",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Vous n\\'avez pas le droit de faire une action sur ce scénario",
         "Démarrage scénario de :": "Démarrage scénario de :",
-        "Exécution provoquée par un appel API": "Exécution provoquée par un appel API",
+        "Scénario exécuté sur appel API": "API呼び出しで実行されるシナリオ",
         "Arrêt scénario de :": "Arrêt scénario de :",
         "Désactivation scénario de :": "Désactivation scénario de :",
         "Activation scénario de :": "Activation scénario de :",
@@ -5110,7 +5136,6 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "このアクションを実行することはできません",
         "Scénario introuvable :": "シナリオが見つかりません：",
         "Vous n\\'avez pas les droits sur ce scénario": "Vous n\\'avez pas les droits sur ce scénario",
-        "Scénario exécuté sur appel API": "API呼び出しで実行されるシナリオ",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "関連するオブジェクトが見つかりません：",

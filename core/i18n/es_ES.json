@@ -180,7 +180,7 @@
         "Vues": "Vistas",
         "Designs": "Diseños",
         "Scénarios": "Escenarios",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Analyse": "Análisis",
         "Autre": "Otro",
         "Plugins": "Complementos"
@@ -406,7 +406,7 @@
         "Visualisation et exécution": "Visualización y ejecución",
         "Equipement": "Dispositivos",
         "Droits": "Permisos",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Masqué": "Mascarilla",
         "Visible": "Visible",
         "Sauvegarde effectuée": "Guardado correctamente"
@@ -446,7 +446,7 @@
         "Pause": "Pausa",
         "Variable": "Variable",
         "Supprimer une variable": "Eliminar variable",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Stop": "Detener",
         "Attendre": "Esperar",
         "Aller au design": "Ir al diseño",
@@ -494,7 +494,7 @@
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Permite mostrar una ventana emergente que debe validarse absolutamente en todos los navegadores que tienen una página",
         "ouverte.": "abierta.",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permite enviar un informe de una vista, diseño o panel en PNG\/PDF\/JPEG\/SVG usando un comando de mensaje",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permite borrar la programación de todos los bloques Dentro de y A del escenario",
+        "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario": "Permite borrar la programación de todos los bloques IN y A de un escenario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Le permite insertar un valor en un comando de tipo de información arbitrariamente",
         "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Le permite agregar\/modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario)",
         "Permet d'activer ou non la coloration des icones sur le dashboard": "Le permite activar o no el coloreado de iconos en el tablero",
@@ -648,7 +648,7 @@
         "Rechercher une commande": "Buscar un comando",
         "Type Générique": "Tipo genérico",
         "Résultats": "Resultados",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Actions": "Acciones",
         "Design": "Diseño",
         "Vue": "Vista",
@@ -691,7 +691,7 @@
         "Catégorie": "Categoría",
         "Aucune": "Ninguno",
         "Général": "General",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Etape 4 : Demande de support": "Paso 4: Solicitud de soporte",
         "IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentation": "IMPORTANTE: para una respuesta rápida y precisa, lea esta <a target=\"_blank\" href=\"https:\/\/doc.jeedom.com\/fr_FR\/howto\/remonter_un_bug\">documentación<\/a>",
         "Titre": "Título",
@@ -912,7 +912,7 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Rafraichir": "Actualizar",
         "Vider": "Vacío",
-        "Fichier": "Expediente",
+        "Fichier": "Archivo",
         "Ligne": "Línea",
         "Message": "Mensaje"
     },
@@ -1207,7 +1207,7 @@
         "Rafraîchir": "Refrescar",
         "Sauvegarder": "Guardar",
         "ID": "IDENTIFICACIÓN",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Statut": "Estado",
         "Dernier lancement": "Última ejecución",
         "Actif": "Activo",
@@ -2038,13 +2038,9 @@
         "Tester": "Prueba",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Advertencia: cualquier modificación en el motor de caché requiere un reinicio y hará que pierda temporalmente información sobre los valores de los comandos y cualquier otra información almacenada en caché mientras se devuelve todo",
         "Moteur de cache": "Motor de caché",
-        "Système de fichiers": "Sistema de archivos",
-        "Memcached": "Memcaché",
-        "Redis (beta)": "Redis (beta)",
-        "Mysql (beta)": "MySQL (beta)",
-        "Fichier (beta)": "Archivo (beta)",
-        "Adresse Memcache": "Dirección Memcache",
-        "Port Memcache": "Puerto Memcache",
+        "Fichier": "Archivo",
+        "Redis": "Redis",
+        "Mysql": "Mysql",
         "Adresse Redis": "Dirección Redis",
         "Port redis": "Puerto Redis",
         "Temps de pause pour le long polling": "Tiempo de pausa para polling largo",
@@ -2145,7 +2141,7 @@
         "Filtre par catégorie": "Filtrar por categoría",
         "Toutes": "Todas",
         "Aucune": "Ninguna",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Édition du Dashboard": "Edición del tablero",
         "Régler toutes les tuiles à la hauteur de la moins haute.": "Ajuste todas las baldosas a la altura de la más baja",
         "Régler toutes les tuiles à la hauteur de la plus haute.": "Coloca todas las fichas a la altura de la más alta"
@@ -2332,7 +2328,7 @@
         "Sauvegarder": "Guardar",
         "Supprimer": "Eliminar",
         "Général": "General",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Paramètres": "Parámetros",
         "Nom du scénario": "Nombre de escenario",
         "Nom à afficher": "Nombre a mostrar",
@@ -2575,6 +2571,7 @@
         "Cron": "Cron",
         "Listener": "Oyente",
         "Démon": "Demonio",
+        "Queue": "Cola",
         "ID": "IDENTIFICACIÓN",
         "Actif": "Activo",
         "PID": "PID",
@@ -2591,7 +2588,9 @@
         "Nom": "Nombre",
         "Status": "Estado",
         "Date lancement": "Fecha Lanzamiento",
-        "Action": "Acción"
+        "Action": "Acción",
+        "Queue id": "Identificación de cola",
+        "Crée le": "Creó el"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -2976,6 +2975,7 @@
         "Activer la gestion automatique du démon": "Activa la gestión automática del demonio",
         "Désactiver la gestion automatique du démon": "Deshabilitar la gestión automática de demonios",
         "Détails du cron": "Detalles de Cron",
+        "Détails de la queue": "Detalles de la cola",
         "Détails du listener": "Detalles del oyente"
     },
     "desktop\/js\/history.js": {
@@ -3344,7 +3344,7 @@
         "Êtes-vous sûr de vouloir supprimer tous les logs des scénarios ?": "¿Está seguro de que desea eliminar todos los registros de escenarios?",
         "Logs des scénarios supprimés.": "Registros de escenarios eliminados",
         "Vue d'ensemble des scénarios": "Resumen de los escenarios",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "copie": "Copiar",
         "Graphique de lien(s)": "Gráfico de enlace",
         "Edition texte scénarios": "Edición texto escenarios",
@@ -3460,16 +3460,22 @@
         "Connexion de l\\'utilisateur par clef :": "Inicio de sesión de usuario por clave:"
     },
     "core\/php\/jeeCron.php": {
-        "Erreur sur": "Error en",
+        "Erreur sur": "Error activado",
         "[Erreur master]": "[Error maestro]",
         "Tous les crons sont actuellement désactivés": "Todos cron están desactivadas",
         "[Erreur] Classe ou fonction non trouvée": "[Error] Clase o función no encontrada",
-        "[Erreur] Non trouvée": "[Error] No encontrado"
+        "[Erreur] Non trouvée": "[Error no encontrado"
     },
     "core\/php\/jeeScenario.php": {
         "Scenario  :": "Escenario:",
         "Erreur :": "Error :",
         "Scénario non trouvé. Vérifiez ID :": "Escenario no encontrado. ID de verificación:"
+    },
+    "core\/php\/jeeQueue.php": {
+        "Erreur sur": "Error activado",
+        "Tous les queues sont actuellement désactivés": "Todas las colas están actualmente deshabilitadas",
+        "[Erreur] ": "[Error] ",
+        "[Erreur] Non trouvée": "[Error no encontrado"
     },
     "core\/php\/editor.connector.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
@@ -3889,9 +3895,14 @@
         "Impossible de sauvegarder l\\'image": "No se puede guardar la imagen",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
+    "core\/ajax\/queue.ajax.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Queue id inconnu": "ID de cola desconocida",
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
+    },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Inicio de sesión de usuario por REMOTE_USER:",
@@ -3917,7 +3928,7 @@
         "Stoppé": "Interrumpido",
         "Inconnue": "Desconocida",
         "Informations complémentaires": "Informaciones complementarias",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3979,13 +3990,13 @@
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Impossible de supprimer :": "No se puede eliminar :",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Impossible de trouver l\\'objet associé :": "No se puede encontrar el objeto asociado :",
         "Mise à jour et réinstallation désactivées sur ": "Actualización y reinstalación deshabilitadas en",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -4078,7 +4089,7 @@
         "Jeedom": "Jeedom",
         "Commande": "Comando",
         "Objet": "Objeto",
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Interaction": "Interacción",
         "Utilisateur": "Usuario",
         "Plugin": "Enchufar",
@@ -4150,9 +4161,9 @@
         "Lancement de l\\'installation de": "Lanzamiento de la instalación de",
         "en version": "en versión",
         "Objet introuvable sur le market :": "Objeto no encontrado en el market:",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "La contraseña de la nube de respaldo no es la misma que la confirmación",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "No se ha definido ningún servidor de respaldo. ¿Tiene una suscripción de respaldo en la nube?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Debe tener una contraseña para la copia de seguridad en la nube (vaya a Configuración -> Sistema -> Configuración y luego a la pestaña Actualizar \/ Market)",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "La contraseña de la nube de respaldo no es la misma que la confirmación",
         "Besoin de faire de la place sur le stockage distant": "Necesita hacer espacio en el almacenamiento remoto",
         "Pas assez de place et aucun backup à supprimer": "No hay suficiente espacio y no hay copia de seguridad para eliminar",
         "Supression du backup cloud :": "Eliminación de la copia de seguridad en la nube:",
@@ -4195,13 +4206,12 @@
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Usuario u organización del repositorio principal de Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nombre del repositorio para el núcleo Jeedom",
         "Branche pour le core Jeedom": "Rama para el núcleo Jeedom",
-        "Dépot github non trouvé :": "Repositorio de Github no encontrado:",
         "Impossible d\\'écrire dans le répertoire :": "No se puede escribir en el directorio:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Ejecute el siguiente comando en SSH: sudo chmod 777 -R",
         "Téléchargement de": "Descarga de"
     },
     "core\/repo\/file.repo.php": {
-        "Fichier": "Expediente",
+        "Fichier": "Archivo",
         "Chemin": "Ruta"
     },
     "core\/repo\/url.repo.php": {
@@ -4526,7 +4536,7 @@
         "Impossible d\\'arrêter la sous tâche :": "No se puede detener la subtarea:",
         "Impossible d\\'arrêter le scénario :": "Incapaz de detener el escenario:",
         "PID :": "PID:",
-        "Scénario": "Escenario"
+        "Scénario": "Guión"
     },
     "core\/class\/jsonrpcClient.class.php": {
         "renseigne l\\'adresse": "complete la dirección",
@@ -4581,11 +4591,11 @@
         "La fonction ne peut pas être vide": "La función no puede estar vacía",
         "La programmation ne peut pas être vide :": "La programación no puede estar vacía:",
         "Impossible d\\'exécuter la tâche car elle est déjà en cours d\\'exécution (": "No se puede ejecutar la tarea porque ya se está ejecutando (",
-        "Arrêt de": "Parada de",
+        "Arrêt de": "Detener",
         "() : Impossible d\\'arrêter la tâche": "(): No se puede detener la tarea"
     },
     "core\/class\/scenarioExpression.class.php": {
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Variable": "Variable",
         "Activation de": "Activación de",
         "Désactivation de": "Desactivación de",
@@ -4652,6 +4662,18 @@
         "Evaluation de la condition": "Evaluación de condición",
         "Vrai": "Verdadero",
         "Faux": "Falso"
+    },
+    "core\/class\/queue.class.php": {
+        "Lancement de '.$queue->getHumanName()": "Ejecutando '.$queue->getHumanName()",
+        "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()": "Error al iniciar '.$queue->getHumanName().' => '.$th->getMessage()",
+        "Recherche des actions à faire pour '.$queueId['queueId']": "Encontrar acciones para hacer para '.$queueId['queueId']",
+        "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (": "No se puede ejecutar la tarea en cola porque ya se está ejecutando (",
+        "Arrêt de": "Detener",
+        " : Impossible d\\'arrêter la tâche en queue": ": No se puede detener la tarea en cola",
+        "La classe est la fonction ne peuvent etre vides": "La clase es función no puede estar vacía",
+        "La classe n\\'existe pas": "La clase no existe",
+        "La fonction n\\'existe pas": "La función no existe",
+        "La methode n\\'existe pas": "El método no existe"
     },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Método no permitido en GET:"
@@ -4828,7 +4850,7 @@
         "Sélectionner la commande": "Seleccione el comando"
     },
     "core\/template\/scenario\/scenario.default.html": {
-        "Scénario": "Escenario",
+        "Scénario": "Guión",
         "Filtre de scénario": "Filtro de escenario",
         "Action": "Acción",
         "Démarrer": "Iniciar",
@@ -4927,6 +4949,10 @@
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensaje",
         "Sélectionner la commande": "Seleccione el comando"
+    },
+    "core\/template\/scenario\/remove_inat.default.html": {
+        "Scénario": "Guión",
+        "Scénario courant": "Escenario común"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Icono de búsqueda"
@@ -5084,7 +5110,7 @@
         "Aucun scénario correspondant à l\\'ID :": "Ningún escenario correspondiente a la ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "No tiene permiso para tomar medidas en este escenario",
         "Démarrage scénario de :": "Escenario inicial de:",
-        "Exécution provoquée par un appel API": "Ejecución causada por una llamada a la API",
+        "Scénario exécuté sur appel API": "Escenario ejecutado en llamada API",
         "Arrêt scénario de :": "Escenario de parada de:",
         "Désactivation scénario de :": "Escenario de desactivación de:",
         "Activation scénario de :": "Escenario de activación de:",
@@ -5110,7 +5136,6 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "No tienes permiso para hacer esta acción",
         "Scénario introuvable :": "Escenario no encontrado:",
         "Vous n\\'avez pas les droits sur ce scénario": "No tienes los derechos para este escenario",
-        "Scénario exécuté sur appel API": "Escenario ejecutado en llamada API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "El parámetro \"estado\" no puede estar vacío y debe tener el valor [ejecutar, detener, habilitar, deshabilitar]",
         "Impossible de trouver le message :": "No se puede encontrar el mensaje:",
         "Impossible de trouver l\\'objet associé :": "No se puede encontrar el objeto asociado:",

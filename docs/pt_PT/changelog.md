@@ -8,6 +8,25 @@
 - Capacidade de ocultar determinados menus para usuários limitados [LINK](https://github.com/jeedom/core/issues/2651)
 - Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
+- Redesenho da parte de backup em nuvem [LINK](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementação de sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
+- As tags do cenário agora são específicas para a instância do cenário (se você tiver dois cenários lançados muito próximos, as tags do último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
+- Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``trigger()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``triggerValue()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``#trigger#`` : Talvez :
+    - ``api`` se o lançamento foi acionado pela API,
+    - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
+    - ``schedule`` se foi lançado por programação,
+    - ``user`` se foi iniciado manualmente,
+    - ``start`` para um lançamento na startup Jeedom.
+  - ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou
+  - ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
+  - ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário
+- Gerenciamento aprimorado de plug-ins no github (sem mais dependências de uma biblioteca de terceiros) [LINK](https://github.com/jeedom/core/issues/2567)
+- Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
+- Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
 
 # 4.4.10
 

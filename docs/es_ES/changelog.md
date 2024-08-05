@@ -8,6 +8,25 @@
 - Posibilidad de ocultar ciertos menús para usuarios limitados [ENLACE](https://github.com/jeedom/core/issues/2651)
 - Los gráficos se actualizan automáticamente cuando llegan nuevos valores [ENLACE](https://github.com/jeedom/core/issues/2749)
 - Jeedom agrega automáticamente la altura de la imagen al crear widgets para evitar problemas de superposición en dispositivos móviles [ENLACE](https://github.com/jeedom/core/issues/2539)
+- Rediseño de la parte de copia de seguridad en la nube [ENLACE](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementación de un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
+- Las etiquetas del escenario ahora son específicas de la instancia del escenario (si tiene dos escenarios lanzados muy juntos, las etiquetas del último ya no sobrescriben al primero)) [ENLACE](https://github.com/jeedom/core/issues/2763)
+- Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``trigger()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``triggerValue()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``#trigger#`` : Puede ser :
+    - ``api`` si el lanzamiento fue activado por la API,
+    - ``TYPEcmd`` si el inicio fue activado por un comando, con TYPE reemplazó la identificación del complemento (por ejemplo, virtualCmd),
+    - ``schedule`` si fue lanzado por programación,
+    - ``user`` si se inició manualmente,
+    - ``start`` para un lanzamiento en la startup Jeedom.
+  - ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó
+  - ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando])
+  - ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta tiene el valor del comando que desencadenó el escenario
+- Gestión de complementos mejorada en github (no más dependencias de una biblioteca de terceros)) [ENLACE](https://github.com/jeedom/core/issues/2567)
+- Eliminando el antiguo sistema de caché. [ENLACE](https://github.com/jeedom/core/pull/2799)
+- Posibilidad de borrar los bloques IN y A mientras se espera otro escenario [ENLACE](https://github.com/jeedom/core/pull/2379)
 
 # 4.4.10
 
