@@ -239,7 +239,7 @@ try {
 				echo "[PROGRESS][53]\n";
 				if (exec('which composer | wc -l') == 0) {
 					echo "\nNeed to install composer...";
-					echo shell_exec('sudo ' . __DIR__ . '/../resources/install_composer.sh');
+					echo shell_exec(system::getCmdSudo().' ' . __DIR__ . '/../resources/install_composer.sh');
 					echo "OK\n";
 				}
 				echo "Update composer file...\n";
