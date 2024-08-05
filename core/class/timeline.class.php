@@ -157,6 +157,11 @@ class timeline {
     return $return;
   }
 
+  public static function removeEventInFutur(){
+    $sql = 'DELETE FROM timeline 
+    WHERE `datetime` > :datetime';
+    DB::Prepare($sql, array('datetime' => date('Y-m-d H:i:s')), DB::FETCH_TYPE_ROW);
+  }
 
   /*     * *********************M hodes d'instance************************* */
 

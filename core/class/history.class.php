@@ -30,6 +30,15 @@ class history {
 
 	/*     * ***********************Methode static*************************** */
 
+	public static function removeHistoryInFutur(){
+		$sql = 'DELETE FROM history 
+		WHERE `datetime` > :datetime';
+		DB::Prepare($sql, array('datetime' => date('Y-m-d H:i:s')), DB::FETCH_TYPE_ROW);
+		$sql = 'DELETE FROM historyArch 
+		WHERE `datetime` > :datetime';
+		DB::Prepare($sql, array('datetime' => date('Y-m-d H:i:s')), DB::FETCH_TYPE_ROW);
+	  }
+
 	public static function checkCurrentValueAndHistory() {
 		$sql = 'SELECT DISTINCT(cmd_id)
         FROM history';
