@@ -1,12 +1,11 @@
 {
   "require": {
-    "dragonmantank/cron-expression": "^3.3",
-    "symfony/expression-language": "^5.4",
-    "monolog/monolog": "^2.9",
-    "pragmarx/google2fa-qrcode": "^3.0",
-    "abbadon1334/sun-position-spa-php": "^2.0",
+    "dragonmantank/cron-expression": "*",
+    "symfony/expression-language": "*",
+    "monolog/monolog": "*",
+    "pragmarx/google2fa-qrcode": "*",
     "league/oauth2-client": "~2.3",
-    "bacon/bacon-qr-code": "^2.0",
+    "bacon/bacon-qr-code": "*",
     "guzzlehttp/guzzle" : "^6.5.8",
     "http-interop/http-factory-guzzle": "^1.2",
     "symfony/http-client": "^7.0",
