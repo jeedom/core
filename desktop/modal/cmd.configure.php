@@ -349,7 +349,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
-                  <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+                  <div class="col-sm-6 input-group input-group-sm">
+                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+                    <span class="input-group-btn">
+                      <a class="btn btn-default btn-sm cursor tooltips" id="bt_searchInfoCmdCalculValue" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
+                    </span>
+                  </div>
                 </div>
               </div>
               <?php if ($cmd->getSubType() == 'numeric') { ?>
@@ -1206,9 +1211,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   (function() { // Self Isolation!
     var jeeM = jeeFrontEnd.md_displayCmdConfigure
-    jeeM.init()
-
-
+    
     //Manage events outside parents delegations:
     document.getElementById('bt_cmdConfigureTest')?.addEventListener('click', function(event) {
       jeedom.cmd.test({
@@ -1466,7 +1469,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     document.getElementById('cmd_information')?.addEventListener('change', function(event) {
       var _target = null
       if (_target = event.target.closest('.cmdAttr[data-l2key="timeline::enable"]')) {
-        if (this.jeeValue() == 1) {
+        if (_target.jeeValue() == 1) {
           document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').seen()
         } else {
           document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').unseen()
@@ -1488,6 +1491,13 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     //cmd configuration tab
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
       var _target = null
+
+      if (_target = event.target.closest('#bt_searchInfoCmdCalculValue')) {
+        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+          document.querySelectorAll('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]')[0].insertAtCursor(result.human)
+        })
+      }
+
       if (_target = event.target.closest('.bt_removeAction')) {
         _target.closest('.' + _target.getAttribute('data-type')).remove()
         return
@@ -1558,6 +1568,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     //cmd display tab
     document.getElementById('cmd_display')?.addEventListener('click', function(event) {
       var _target = null
+
       if (_target = event.target.closest('#bt_addWidgetParametersCmd')) {
         var tr = '<tr>'
         tr += '<td>'
@@ -1592,6 +1603,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         return
       }
     })
+
+    jeeM.init()
 
     jeeM.postInit()
   })()

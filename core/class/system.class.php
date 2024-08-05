@@ -224,12 +224,13 @@ class system {
 					return array();
 				}
 				$ignore_package = array('dbus-python', 'gpg', 'pycairo', 'pycurl', 'PyGObject');
-				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json 2>/dev/null'), true);
+				$ignore_arg = '';
+				foreach ($ignore_package as $package) {
+					$ignore_arg .= " --exclude {$package}";
+				}
+				$datas = json_decode(shell_exec(system::getCmdSudo() . " pip3 list {$ignore_arg} --outdated --format=json 2>/dev/null"), true);
 				if (count($datas) > 0) {
 					foreach ($datas as $value) {
-						if (in_array($value['name'], $ignore_package)) {
-							continue;
-						}
 						$return[$_type][$value['name']] = array(
 							'name' => $value['name'],
 							'type' => 'pip3',
@@ -380,14 +381,8 @@ class system {
 				}
 				break;
 			case 'pip3':
-				$datas = json_decode(shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list --format=json 2>/dev/null'), true);
-				if (!is_array($datas)) {
-					// patch mainly for debian 11 because python3-gpg is on version '1.14.0-unknown' and pip>24.1 raise error with non-standard version format
-					// no check on os version in case this issue occurs also with debian 12 (hopefully not)
-					// the awk command transforms the output of 'pip list' (multiline columns) to a "json string" to reproduce the result of '--format=json' argument
-					$listToJson = self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list 2>/dev/null | awk \'BEGIN{print "["} NR>2 {printf "%s{\"name\": \"%s\", \"version\": \"%s\"}",sep,$1,$2; sep=", "} END{print "]\n"}\' ORS=\'\'';
-					$datas = json_decode(shell_exec($listToJson), true);
-				}
+				// exclude gpg because python3-gpg is on version '1.14.0-unknown' on debian 11 and pip>24.1 raise error with non-standard version format
+				$datas = json_decode(shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list --exclude gpg --format=json 2>/dev/null'), true);
 				if (!is_array($datas)) {
 					break;
 				}

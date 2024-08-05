@@ -22,6 +22,12 @@ try {
 	}
 
 	require_once __DIR__ . "/core/php/core.inc.php";
+
+	if ((!isset($_GET['ajax']) || $_GET['ajax'] != 1) && count(system::ps('install/restore.php', 'sudo')) > 0) {
+			require_once __DIR__.'/restoring.php';
+			die();
+	}
+
 	//dunno desktop or mobile:
 	if (!isset($_GET['v'])) {
 		if (config::byKey('disableMobileUi') == 1) {
@@ -47,7 +53,6 @@ try {
 			die();
 		}
 	}
-
 
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {

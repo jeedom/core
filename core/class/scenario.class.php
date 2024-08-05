@@ -374,7 +374,16 @@ class scenario {
 							} else {
 								$message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
 							}
-							$scenario->launch($trigger, $message, $_forceSyncMode);
+							$scenario->addTag('message',$message);
+							$scenario->addTag('trigger_value',$_value);
+							if (is_object($_event)) {
+								$scenario->addTag('trigger_name',trim($_event->getHumanName(),'#'));
+								$scenario->addTag('trigger_id',$_event->getId());
+								$scenario->addTag('trigger',get_class($_event));
+							}else{
+								$scenario->addTag('trigger',trim($_event,'#'));
+							}
+							$scenario->launch($_forceSyncMode);
 						}
 					}
 				}
@@ -404,7 +413,22 @@ class scenario {
 
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
-				$scenario_->launch($trigger, $message, $_forceSyncMode, $_options);
+				$scenario_->addTag('message',$message);
+				
+				$scenario_->addTag('trigger_value',$_value);
+				if (is_object($_event)) {
+					$scenario_->addTag('trigger_name',trim($_event->getHumanName(),'#'));
+					$scenario_->addTag('trigger_id',$_event->getId());
+					$scenario_->addTag('trigger',get_class($_event));
+				}else{
+					$scenario_->addTag('trigger',$_event);
+				}
+				if (is_array($_options) && count($_options) > 0) {
+					foreach ($_options as $key => $value) {
+						$scenario_->addTag($key,$value);
+					}
+				}
+				$scenario_->launch($_forceSyncMode);
 			}
 		}
 		return true;
@@ -451,7 +475,7 @@ class scenario {
 		$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['startSubTask']['txt']);
 		if (isset($_options['tags']) && is_array($_options['tags']) && count($_options['tags']) > 0) {
 			$scenario->setTags($_options['tags']);
-			$scenario->setLog(__('Tags :', __FILE__) . ' ' . json_encode($scenario->getTags()));
+			$scenario->setLog(__('Tags :', __FILE__) . ' ' . json_encode($scenario->getTags(), JSON_UNESCAPED_UNICODE));
 		}
 		if (!is_object($scenarioElement) || !is_object($scenario)) {
 			$scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['toStartUnfound']['txt']);
@@ -810,7 +834,7 @@ class scenario {
 	 * @param boolean $_forceSyncMode
 	 * @return boolean
 	 */
-	public function launch($_trigger = '', $_message = '', $_forceSyncMode = false, $_options = null) {
+	public function launch($_forceSyncMode = false) {
 		if (config::byKey('enableScenario') != 1 || $this->getIsActive() != 1) {
 			return false;
 		}
@@ -844,28 +868,18 @@ class scenario {
 		if ($state == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return false;
 		}
-		if (is_array($_options) && count($_options) > 0) {
-			$tags = $this->getTags();
-			if (!is_array($tags)) {
-				$tags = array();
-			}
-			foreach ($_options as $key => $value) {
-				$tags[$key] = $value;
-			}
-			$this->setTags($tags);
-		}
 		$this->setCache(array('startingTime' => strtotime('now'), 'state' => 'starting'));
 		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
-			return $this->execute($_trigger, $_message);
+			return $this->execute();
 		} else {
-			if (count($this->getTags()) > 0) {
-				$this->setCache('tags', $this->getTags());
-			}
+			$instance_id = config::genKey(16);
+			cache::set('scenarioInstanceAttr'.$this->getId().'::'.$instance_id,array(
+				'tags' => $this->getTags()
+			));
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' trigger=' . escapeshellarg($_trigger);
-			$cmd .= ' "message=' . escapeshellarg(sanitizeAccent(addslashes($_message))) . '"';
+			$cmd .= ' intance_id='.$instance_id;
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}
@@ -876,17 +890,16 @@ class scenario {
 	 * @param string $_trigger
 	 * @param string $_message
 	 */
-	public function execute($_trigger = '', $_message = '') {
+	public function execute($instance_id = '') {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
-		$tags = $this->getCache('tags');
-		if ($tags != '') {
-			$this->setTags($tags);
-			$this->setCache('tags', '');
+		if($instance_id != ''){
+			$this->setTags(cache::byKey('scenarioInstanceAttr'.$this->getId().'::'.$instance_id)->getValue()['tags']);
+			cache::byKey('scenarioInstanceAttr'.$this->getId().'::'.$instance_id)->remove();
 		}
 		if ($this->getIsActive() != 1) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $_message . ' ' . __('car il est désactivé', __FILE__));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $this->getTag('message') . ' ' . __('car il est désactivé', __FILE__));
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();
@@ -901,8 +914,7 @@ class scenario {
 				return;
 			}
 		}
-
-		$cmd = cmd::byId(str_replace('#', '', $_trigger));
+		$cmd = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
 		if (is_object($cmd)) {
 			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
@@ -914,33 +926,29 @@ class scenario {
 				$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
 				$timeline->save();
 			}
-			$_triggerValue = $cmd->execCmd();
 		} else {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $_trigger);
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $this->getTag('trigger'));
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
 				$timeline->setFolder($this->getConfiguration('timeline::folder'));
 				$timeline->setLink_id($this->getId());
 				$timeline->setName($this->getHumanName(true, true, true, true));
-				$timeline->setOptions(array('trigger' => ($_trigger == 'schedule') ? 'programmation' : $_trigger));
+				$timeline->setOptions(array('trigger' => ($this->getTag('trigger') == 'schedule') ? 'programmation' : $this->getTag('trigger')));
 				$timeline->save();
 			}
-			$_triggerValue = 'none';
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return;
 		}
 		if (count($this->getTags()) == 0) {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . trim($_message, "'") . '.');
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '.');
 		} else {
-			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . trim($_message, "'") . '. Tags : ' . json_encode($this->getTags()));
+			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '. Tags : ' . json_encode($this->getTags(), JSON_UNESCAPED_UNICODE));
 		}
 		$this->setLastLaunch(date('Y-m-d H:i:s'));
 		$this->setState('in progress');
 		$this->setPID(getmypid());
-		$this->setRealTrigger($_trigger);
-		$this->setRealTriggerValue($_triggerValue);
 		foreach (($this->getElement()) as $element) {
 			if (!$this->getDo()) {
 				break;
@@ -1264,7 +1272,7 @@ class scenario {
 						$cron->halt();
 						$cron->remove();
 					} catch (Exception $e) {
-						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche :', __FILE__) . ' ' . json_encode($cron->getOption()));
+						log::add('scenario', 'info', __('Impossible d\'arrêter la sous tâche :', __FILE__) . ' ' . json_encode($cron->getOption(), JSON_UNESCAPED_UNICODE));
 					}
 				}
 			}
@@ -1631,6 +1639,27 @@ class scenario {
 		}
 	}
 
+	public function addTag($_key,$value){
+		$tag = $this->getTags();
+		$_key = '#'.trim($_key,'#').'#';
+		$tag[$_key] = $value;
+		$this->setTags($tag);
+	}
+
+	public function getTag($_key,$_default = ''){
+		$tag = $this->getTags();
+		if(isset($tag[$_key])){
+			return $tag[$_key];
+		}
+		if(isset($tag[trim($_key,'#')])){
+			return $tag[trim($_key,'#')];
+		}
+		if(isset($tag['#'.trim($_key,'#').'#'])){
+			return $tag['#'.trim($_key,'#').'#'];
+		}
+		return $_default;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 	/**
 	 *
@@ -1956,40 +1985,7 @@ class scenario {
 		$this->configuration = $configuration;
 		return $this;
 	}
-	/**
-	 *
-	 * @return string
-	 */
-	public function getRealTrigger() {
-		return $this->_realTrigger;
-	}
-	/**
-	 *
-	 * @param string $_realTrigger
-	 * @return $this
-	 */
-	public function setRealTrigger($_realTrigger) {
-		$this->_realTrigger = $_realTrigger;
-		return $this;
-	}
-	/**
-	 *
-	 * @return string
-	 */
-	public function getRealTriggerValue() {
-		return $this->_realTriggerValue;
-	}
-	/**
-	 *
-	 * @param string $_realTriggerValue
-	 * @return $this
-	 */
-	public function setRealTriggerValue($_realTriggerValue) {
-		$this->_realTriggerValue = $_realTriggerValue;
-		return $this;
-	}
-
-
+	
 	/**
 	 * getReturn
 	 *
@@ -2014,6 +2010,9 @@ class scenario {
 	 * @return array
 	 */
 	public function getTags() {
+		if(!is_array($this->_tags)){
+			return [];
+		}
 		return $this->_tags;
 	}
 

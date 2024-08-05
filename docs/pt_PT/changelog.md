@@ -1,16 +1,37 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, será estendida a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
+- Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
+- Adicionado um botão na janela de configuração do pedido no campo de cálculo de valor para buscar um pedido [LINK](https://github.com/jeedom/core/issues/2776)
+- Capacidade de ocultar determinados menus para usuários limitados [LINK](https://github.com/jeedom/core/issues/2651)
+- Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
+- Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
+
 # 4.4.10
 
 - Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória [LINK](https://github.com/jeedom/core/pull/2757)
 - Adicionado um filtro em muitas ações em cenários [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743), [LINK](https://github.com/jeedom/core/pull/2755)
 - O preço do plugin fica oculto se você já o comprou [LINK](https://github.com/jeedom/core/pull/2746)
 - Na página de login possibilidade de exibir ou nomear a senha [LINK](https://github.com/jeedom/core/pull/2740)
-- Corrigido bug ao sair da página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
+- Corrigido um bug ao sair de uma página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
 - Criação (em beta) de um novo sistema de cache [LINK](https://github.com/jeedom/core/pull/2758) :
   - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
   - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
   - Redis : reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
+- Corrigido um bug nos alertas de equipamentos ao excluir o pedido alertado [LINK](https://github.com/jeedom/core/issues/2775)
+- Possibilidade na configuração avançada de um equipamento de ocultá-lo ao exibir vários objetos no painel [LINK](https://github.com/jeedom/core/issues/2553)
+- Corrigido bug ao exibir a pasta da linha do tempo na configuração avançada de um comando [LINK](https://github.com/jeedom/core/issues/2791)
+- Redesenho do sistema fail2ban de Jeedom para que consuma menos recursos [LINK](https://github.com/jeedom/core/issues/2684)
+- Corrigido um bug no arquivamento e limpeza de históricos [LINK](https://github.com/jeedom/core/issues/2793)
+- Patch aprimorado para bug gpg em dependências python [LINK](https://github.com/jeedom/core/pull/2798)
+- Corrigido um problema ao alterar a hora após a revisão do gerenciamento do cron [LINK](https://github.com/jeedom/core/issues/2794)
+- Corrigido bug na página de resumo da automação residencial ao pesquisar um pedido por id [LINK](https://github.com/jeedom/core/issues/2795)
+- Adicionado tamanho do banco de dados à página de integridade [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom agora lista todas as ramificações e tags do repositório github para permitir que você teste funcionalidades com antecedência ou reverta para uma versão anterior do núcleo (tenha cuidado, isso é muito arriscado) [LINK](https://github.com/jeedom/core/issues/2500)
+- Melhoria de subtipos de comandos suportados em tipos genéricos [LINK](https://github.com/jeedom/core/pull/2797)
+- Corrigido bug na exibição de cenários e comentários quando você deseja ocultá-los [LINK](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANTE**
 >
@@ -22,7 +43,6 @@
 - Ao copiar um equipamento, se o widget possui um gráfico em segundo plano, ele é corretamente transformado [LINK](https://github.com/jeedom/core/issues/2540)
 - Adicionando tags #sunrise# e #sunset# nos cenários para ter os horários do nascer e do pôr do sol [LINK](https://github.com/jeedom/core/pull/2725)
 - Um plugin agora pode adicionar campos na configuração avançada de todos os equipamentos jeedom [LINK](https://github.com/jeedom/core/issues/2711)
-- Adição de um parâmetro opcional logicId ao copiar equipamentos [LINK](https://github.com/jeedom/core/pull/2715)
 - Melhoria do sistema de gerenciamento de crons [LINK](https://github.com/jeedom/core/issues/2719)
 - Corrigido um bug que poderia causar a perda de todas as informações na página de atualização [LINK](https://github.com/jeedom/core/issues/2718)
 - Excluindo o status do serviço fail2ban do Jeedom Health [LINK](https://github.com/jeedom/core/issues/2721)
@@ -32,6 +52,8 @@
 - Corrigido um bug de javascript em botões em modais [LINK](https://github.com/jeedom/core/pull/2734)
 - Corrigido um bug no número de mensagens ao excluir todas as mensagens [LINK](https://github.com/jeedom/core/issues/2735)
 - Excluindo o diretório venv dos backups [LINK](https://github.com/jeedom/core/pull/2736)
+- Corrigido bug na página de configuração avançada de um comando onde não aparecia o campo para escolha da pasta da linha do tempo [LINK](https://github.com/jeedom/core/issues/2547)
+- Corrigido um bug na janela de seleção de comandos após salvar equipamentos [LINK](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 

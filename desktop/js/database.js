@@ -34,7 +34,9 @@ if (!jeeFrontEnd.database) {
         },
         success: function(result) {
           document.getElementById('h3_executeCommand').empty().innerHTML = '{{Commande :}} "' + _command + '"<br/>{{Temps d\'éxécution}} :' + ' ' + result.time + 's'
-          document.getElementById('div_commandResult').html(jeeFrontEnd.database.dbGenerateTableFromResponse(result.sql), true)
+          if(result.sql !== null){
+          	document.getElementById('div_commandResult').html(jeeFrontEnd.database.dbGenerateTableFromResponse(result.sql), true)
+          }
           document.getElementById('in_specificCommand').value = _command
 
           if (_addToList) {

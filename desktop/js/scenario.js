@@ -2334,7 +2334,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
           txt = '<i>Unfound</i>'
           _el = _blocPreview.closest('.element')
           if (_el.hasClass('elementACTION')) {
-            txt = _el.querySelector('.expressions .expression').querySelector('input.form-control').value
+            txt = _el.querySelector('.expressions .expression').querySelector('input.form-control')?.value
             if (!txt) txt = _el.querySelector('.expression textarea').value
           } else if (_el.hasClass('elementCODE')) {
             id = _el.querySelector('.expressionAttr[data-l1key="expression"]').getAttribute('id')

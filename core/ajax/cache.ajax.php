@@ -37,6 +37,11 @@ try {
 		ajax::success(utils::o2a(cache::byKey(init('key'))));
 	}
 
+	if (init('action') == 'remove') {
+		unautorizedInDemo();
+		ajax::success(cache::delete(init('key')));
+	}
+
 	if (init('action') == 'flush') {
 		unautorizedInDemo();
 		cache::flush();

@@ -35,6 +35,7 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
     <li role="presentation"><a href="#tab_view" aria-controls="tab_view" role="tab" data-toggle="tab"><i class="far fa-image"></i> {{Vues}}</a></li>
     <li role="presentation"><a href="#tab_plan" aria-controls="tab_plan" role="tab" data-toggle="tab"><i class="fas fa-paint-brush"></i> {{Design}}</a></li>
     <li role="presentation"><a href="#tab_plan3d" aria-controls="tab_plan3d" role="tab" data-toggle="tab"><i class="fas fa-cubes"></i> {{Design 3d}}</a></li>
+    <li role="presentation"><a href="#tab_menu" aria-controls="tab_menu" role="tab" data-toggle="tab"><i class="fas fa-bars"></i> {{Menu}}</a></li>
   </ul>
   <div class="tab-content" id="div_tabUserRights">
     <span class="userAttr" data-l1key="id" style="display:none;"></span>
@@ -252,6 +253,48 @@ sendVarToJs('jeephp2js.md_userRights_rights', utils::o2a($user));
         </tbody>
       </table>
     </div>
+
+    <div role="tabpanel" class="tab-pane" id="tab_menu">
+      <table class='table table-condensed dataTable'>
+        <thead>
+          <tr>
+            <th>{{Menu}}</th>
+            <th data-type="select-text" style="width:250px;">{{Droits}}</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+          $menus = array(
+            'overview' => __('Synthèse',__FILE__),
+            'dashboard' => __('Dashboard',__FILE__),
+            'view' => __('Vue',__FILE__),
+            'plan' => __('Design',__FILE__),
+            'plan3d' => __('Design 3D',__FILE__),
+            'analyze' => __('[Globale] Analyse',__FILE__),
+            'timeline' => __('Timeline',__FILE__),
+            'history' => __('Historique',__FILE__),
+            'settings' => __('[Globale] Réglages',__FILE__),
+            'profils' => __('Préférences',__FILE__),
+            'mobile' => __('Version mobile',__FILE__),
+          );
+          $html = '';
+          foreach ($menus as $key => $value) {
+            $html .= '<tr>';
+            $html .= '<td>' . $value . '</td>';
+            $html .= '<td>';
+            $html .= '<select class="form-control userAttr input-sm" data-l1key="rights" data-l2key="menu::' . $key . '">';
+            $html .= '<option value="n">{{Masqué}}</option>';
+            $html .= '<option value="r" selected>{{Visible}}</option>';
+            $html .= '</select>';
+            $html .= '</td>';
+            $html .= '</tr>';
+          }
+          echo $html;
+          ?>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 

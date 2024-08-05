@@ -277,11 +277,11 @@ class user {
 	public static function failedLogin(): void {
 		$current_ip = getClientIp();
 		$failed_login = cache::byKey('security::failed_login::'.$current_ip);
-		cache::set('security::failed_login::'.$current_ip,$failed_login->getValue(0)+1, config::byKey('security::timeLoginFailed'));
-		if($failed_login->getValue(0)+1 > config::byKey('security::maxFailedLogin')){
+		cache::set('security::failed_login::'.$current_ip,($failed_login->getValue(0)+1), config::byKey('security::timeLoginFailed'));
+		if(($failed_login->getValue(0)+1) > config::byKey('security::maxFailedLogin')){
 		    $ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
 			$ban_ips[$current_ip] = strtotime('now');
-			cache::set('security::banip', json_encode($values));
+			cache::set('security::banip', json_encode($ban_ips));
 		}
 	}
 
@@ -296,7 +296,7 @@ class user {
 			return false;
 		}
 		$whiteIps = explode(';', config::byKey('security::whiteips'));
-		if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
+		if (is_array($whiteIps) && count($whiteIps) > 0) {
 			foreach ($whiteIps as $whiteip) {
 				if (netMatch($whiteip, $current_ip)) {
 					return false;
@@ -310,7 +310,7 @@ class user {
 		$is_ban = false;
 		if (count($ban_ips) > 0 && config::byKey('security::bantime') >= 0) {
 			foreach ($ban_ips as $ip => $datetime) {
-				if ($datetime + config::byKey('security::bantime') < strtotime('now')) {
+				if ($datetime + config::byKey('security::bantime') > strtotime('now')) {
 					if ($ip == $current_ip) {
 						$is_ban = true;
 						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => $datetime]);
