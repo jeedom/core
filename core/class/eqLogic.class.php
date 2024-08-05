@@ -1544,6 +1544,9 @@ class eqLogic {
 	}
 
 	public function getImage() {
+		if(file_exists(__DIR__ . '/../../data/img/eqLogic'.$this->getId().'.png')){
+			return 'data/img/eqLogic' . $this->getId() . '.png';
+		}
 		$plugin = plugin::byId($this->getEqType_name());
 		return $plugin->getPathImgIcon();
 	}
