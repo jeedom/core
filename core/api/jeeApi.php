@@ -174,7 +174,9 @@ if (init('type') != '') {
 					} else if (is_array(init('tags'))) {
 						$scenario->setTags(init('tags'));
 					}
-					$scenario_return = $scenario->launch('api', __('Exécution provoquée par un appel API', __FILE__) . ' ');
+					$scenario->addTag('trigger','api');
+					$scenario->addTag('message',__('Scénario exécuté sur appel API', __FILE__));
+					$scenario_return = $scenario->launch();
 					if (is_string($scenario_return)) {
 						$return = $scenario_return;
 					}
@@ -907,7 +909,9 @@ try {
 			$jsonrpc->makeSuccess($scenario->stop());
 		}
 		if ($params['state'] == 'run') {
-			$jsonrpc->makeSuccess($scenario->launch('api', __('Scénario exécuté sur appel API', __FILE__)));
+			$scenario->addTag('trigger','api');
+					$scenario->addTag('message',__('Scénario exécuté sur appel API', __FILE__));
+			$jsonrpc->makeSuccess($scenario->launch());
 		}
 		if ($params['state'] == 'enable') {
 			$scenario->setIsActive(1);

@@ -930,7 +930,7 @@ class scenarioExpression {
 		$limit = 60;
 		$during = jeedom::evaluateExpression($_during);
 		$limit = (is_numeric($during)) ? $during : 60;
-		$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
+		$cmd = cmd::byId(str_replace('#', '', $_scenario->getTag('trigger')));
 		if (!is_object($cmd)) {
 			return -1;
 		}
@@ -950,7 +950,7 @@ class scenarioExpression {
 
 	public static function triggerId(&$_scenario = null) {
 		if ($_scenario !== null) {
-			return str_replace('#', '', $_scenario->getRealTrigger());
+			return str_replace('#', '', $_scenario->getTag('trigger'));
 		}
 		return 0;
 	}
@@ -958,9 +958,9 @@ class scenarioExpression {
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
-				return str_replace('#', '', jeedom::toHumanReadable($_scenario->getRealTrigger()));
+				return str_replace('#', '', jeedom::toHumanReadable($_scenario->getTag('trigger')));
 			}
-			if ($_name == $_scenario->getRealTrigger()) {
+			if ($_name == jeedom::toHumanReadable($_scenario->getTag('trigger'))) {
 				return 1;
 			}
 		}
@@ -969,7 +969,7 @@ class scenarioExpression {
 
 	public static function triggerValue(&$_scenario = null) {
 		if ($_scenario !== null) {
-			return $_scenario->getRealTriggerValue();
+			return $_scenario->getTag('trigger_value');
 		}
 		return false;
 	}
@@ -1215,12 +1215,6 @@ class scenarioExpression {
 				case '#IP#':
 					$return[$tag] = network::getNetworkAccess('internal', 'ip', '', false);
 					break;
-				case '#trigger#':
-					$return[$tag] = '';
-					break;
-				case '#triggerValue#':
-					$return[$tag] = '';
-					break;
 				case '#latitude#':
 					$return[$tag] = config::byKey('info::latitude');
 					break;
@@ -1279,17 +1273,6 @@ class scenarioExpression {
 		$replace1 = self::getRequestTags($_expression);
 		if ($_scenario !== null && count($_scenario->getTags()) > 0) {
 			$replace1 = array_merge($replace1, $_scenario->getTags());
-		}
-
-		if (is_object($_scenario)) {
-			$cmd = cmd::byId(str_replace('#', '', $_scenario->getRealTrigger()));
-			if (is_object($cmd)) {
-				$replace1['#trigger#'] = $cmd->getHumanName();
-				$replace1['#trigger_value#'] = $cmd->execCmd();
-				$replace1['#triggerValue#'] = $cmd->execCmd();
-			} else {
-				$replace1['#trigger#'] = $_scenario->getRealTrigger();
-			}
 		}
 		if ($_quote) {
 			foreach ($replace1 as &$value) {
@@ -1589,9 +1572,13 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch();
 							} else {
-								return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
+								$actionScenario->addTag('other','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch();
 							}
 							break;
 						case 'startsync':
@@ -1608,9 +1595,13 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								return $actionScenario->launch('scenario', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName(), true);
+								$actionScenario->addTag('trigger','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch(true);
 							} else {
-								return $actionScenario->launch('other', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'], true);
+								$actionScenario->addTag('other','scenario');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'] . $scenario->getHumanName());
+								return $actionScenario->launch(true);
 							}
 							break;
 						case 'stop':

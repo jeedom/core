@@ -51,7 +51,6 @@ class scenarioTest extends TestCase {
 			array('IsVisible', 5, 5),
 			array('IsVisible', 'foo', 0),
 			array('Description', 'foo', 'foo'),
-			array('RealTrigger', 'foo', 'foo'),
 		);
 	}
 	
