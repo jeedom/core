@@ -1,4 +1,5 @@
 # Escenarios
+
 **Herramientas → Escenarios**
 
 <small>[Raccourcis clavier/ /souris](shortcuts.md)</ /small>
@@ -20,11 +21,13 @@ Encontrarás en esta parte **lista de escenarios** que creaste. Se clasifican se
 > **Consejo**
 >
 > Puede abrir un escenario haciendo :
+>
 > - Haga clic en uno de ellos.
 > - Ctrl Clic o Clic Center para abrirlo en una nueva pestaña del navegador.
 
 Tiene un motor de búsqueda para filtrar la visualización de escenarios. La tecla Escape cancela la búsqueda.
 A la derecha del campo de búsqueda, se encuentran tres botones en varios lugares de Jeedom :
+
 - La cruz para cancelar la búsqueda.
 - La carpeta abierta para desplegar todos los paneles y mostrar todos los escenarios.
 - El respaldo cerrado para plegar todos los paneles.
@@ -71,9 +74,11 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 - **Objeto padre** : Asignación a un objeto padre. Entonces será visible o no según este padre.
 - **Tiempo de espera en segundos (0 = ilimitado)** : El tiempo máximo de ejecución permitido para este escenario. Pasado este tiempo, se interrumpe la ejecución del escenario.
 - **Lanzamiento múltiple** : Marque esta casilla si desea que el escenario se pueda iniciar varias veces al mismo tiempo.
+
 >**IMPORTANTE**
 >
 >El lanzamiento múltiple funciona por segundo, es decir que si tienes 2 lanzamientos en el mismo segundo sin marcar la casilla, aún habrá 2 lanzamientos del escenario (aunque no debería). Asimismo, durante varios lanzamientos en el mismo segundo, algunos lanzamientos pueden perder las etiquetas. Conclusión es ABSOLUTAMENTE necesario evitar múltiples lanzamientos en el mismo segundo.
+
 - **Modo síncrono** : Inicie el escenario en el hilo actual en lugar de un hilo dedicado. Aumenta la velocidad a la que se inicia el escenario, pero puede hacer que el sistema sea inestable. Tenga cuidado de no poner un escenario complejo o con pausas (dormir) o esperar sincrónicamente, esto genera un comportamiento inestable de jeedom y no puede ser cubierto por el soporte.
 - **Tronco** : El tipo de registro deseado para el escenario. Puede cortar los registros del escenario o por el contrario mostrarlo en Análisis → Tiempo real.
 - **Línea de tiempo** : Mantenga un seguimiento del escenario en la línea de tiempo (consulte el documento Historial).
@@ -120,14 +125,14 @@ Aquí están los diferentes tipos de bloques disponibles :
 Cada bloque tiene sus opciones para manejarlos mejor :
 
 - A la izquierda :
-    - La flecha bidireccional le permite mover un bloque o una acción para reordenarlos en el escenario.
-    - El ojo reduce un bloqueo (*colapsar*) para reducir su impacto visual. Ctrl Clic en el ojo los reduce o los muestra todos.
-    - La casilla de verificación le permite desactivar completamente el bloque sin eliminarlo. Por lo tanto, no se ejecutará.
+  - La flecha bidireccional le permite mover un bloque o una acción para reordenarlos en el escenario.
+  - El ojo reduce un bloqueo (*colapsar*) para reducir su impacto visual. Ctrl Clic en el ojo los reduce o los muestra todos.
+  - La casilla de verificación le permite desactivar completamente el bloque sin eliminarlo. Por lo tanto, no se ejecutará.
 
 - Sobre la derecha :
-    - El icono Copiar le permite copiar el bloque para hacer una copia en otro lugar. Ctrl clic en el icono corta el bloque (copiar y luego eliminar).
-    - El icono Pegar le permite pegar una copia del bloque copiado previamente después del bloque en el que utiliza esta función.  Ctrl Click en el icono reemplaza el bloque con el bloque copiado.
-    - El icono: le permite eliminar el bloque con una solicitud de confirmación. Ctrl Click elimina el bloque sin confirmación.
+  - El icono Copiar le permite copiar el bloque para hacer una copia en otro lugar. Ctrl clic en el icono corta el bloque (copiar y luego eliminar).
+  - El icono Pegar le permite pegar una copia del bloque copiado previamente después del bloque en el que utiliza esta función.  Ctrl Click en el icono reemplaza el bloque con el bloque copiado.
+  - El icono: le permite eliminar el bloque con una solicitud de confirmación. Ctrl Click elimina el bloque sin confirmación.
 
 ### Si / Entonces / De lo contrario bloquea | Círculo | Dentro | A
 
@@ -151,29 +156,28 @@ Hay tres botones disponibles a la derecha de este tipo de bloque para selecciona
 
 Una vez que se completa la condición, debe usar el botón &quot;Agregar&quot; a la izquierda para agregar un nuevo **bloquear** o un **Valores** en el bloque actual.
 
-
 ### Código de bloque
 
 El bloque de código le permite ejecutar código php. Por lo tanto, es muy potente pero requiere un buen conocimiento del lenguaje php.
 
 #### Acceso a controles (sensores y actuadores)
 
--  ``cmd::byString($string);`` : Devuelve el objeto de comando correspondiente.
-    -   ``$string``: Enlace al pedido deseado : ``#[objet][equipo][commande]#`` (Ex : ``#[Appartement][Alarme][Activo]#``)
--  ``cmd::byId($id);`` : Devuelve el objeto de comando correspondiente.
-    -  ``$id`` : ID de pedido.
--  ``$cmd->execCmd($options = null);`` : Ejecute el comando y devuelva el resultado.
-    - ``$options`` : Opciones para la ejecución del comando (puede ser específico del complemento). Opciones básicas (subtipo de comando) :
-        -  ``message`` : ``$option = array('title' => 'titre du mensaje , 'message' => 'Mon message');``
-        -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
-        -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
+- ``cmd::byString($string);`` : Devuelve el objeto de comando correspondiente.
+  - ``$string``: Enlace al pedido deseado : ``#[objet][equipo][commande]#`` (Ex : ``#[Appartement][Alarme][Activo]#``)
+- ``cmd::byId($id);`` : Devuelve el objeto de comando correspondiente.
+  - ``$id`` : ID de pedido.
+- ``$cmd->execCmd($options = null);`` : Ejecute el comando y devuelva el resultado.
+  - ``$options`` : Opciones para la ejecución del comando (puede ser específico del complemento). Opciones básicas (subtipo de comando) :
+    - ``message`` : ``$option = array('title' => 'titre du mensaje , 'message' => 'Mon message');``
+    - ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
+    - ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
 #### Acceso a registros
 
--  ``log::add('filename','level','message');``
-    - ``filename`` : Nombre del archivo de registro.
-    - ``level`` : [depuración], [información], [error], [evento].
-    - ``message`` : Mensaje para escribir en los registros.
+- ``log::add('filename','level','message');``
+  - ``filename`` : Nombre del archivo de registro.
+  - ``level`` : [depuración], [información], [error], [evento].
+  - ``message`` : Mensaje para escribir en los registros.
 
 #### Acceso a escenarios
 
@@ -181,14 +185,14 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 - ``$scenario->getGroup();`` : Devuelve el grupo de escenarios.
 - ``$scenario->getIsActive();`` : Devuelve el estado del escenario.
 - ``$scenario->setIsActive($active);`` : Le permite activar o no el escenario.
-    - ``$active`` : 1 activo, 0 no activo.
+  - ``$active`` : 1 activo, 0 no activo.
 - ``$scenario->running();`` : Se usa para averiguar si el escenario se está ejecutando o no (verdadero / falso).
 - ``$scenario->save();`` : Guardar cambios.
 - ``$scenario->setData($key, $value);`` : Guardar un dato (variable).
-    - ``$key`` : clave de valor (int o string).
-    - ``$value`` : valor para almacenar (``int``, ``string``, ``array`` Dónde ``object``).
+  - ``$key`` : clave de valor (int o string).
+  - ``$value`` : valor para almacenar (``int``, ``string``, ``array`` Dónde ``object``).
 - ``$scenario->getData($key);`` : Obtener datos (variable).
-    - ``$key => 1`` : clave de valor (int o string).
+  - ``$key => 1`` : clave de valor (int o string).
 - ``$scenario->removeData($key);`` : Eliminar datos.
 - ``$scenario->setLog($message);`` : Escribe un mensaje en el registro del script.
 - ``$scenario->persistLog();`` : Forzar la escritura del registro (de lo contrario, se escribe solo al final del escenario). Tenga cuidado, esto puede retrasar un poco el escenario.
@@ -235,6 +239,7 @@ Hay desencadenantes específicos (distintos de los proporcionados por los comand
 - ``#user_connect#`` : Inicio de sesión de usuario
 - ``#variable(nom_variable)#`` : Cambiar el valor de la variable name_name.
 - ``#genericType (GENÉRICO, #[Object]#)#`` : Cambio de un comando de información de tipo GENÉRICO genérico, en el objeto Objeto.
+- ``#new_eqLogic#`` : Evento enviado al crear un nuevo equipo, tienes en las etiquetas id (id del equipo creado), name (nombre del equipo creado) y eqType (tipo/plugin del equipo creado))
 
 También puede activar un escenario utilizando la API HTTP descrita [aquí](https:/ // /doc.jeedom.com/es_ES/core/ /4.4/ /api_http).
 
@@ -282,16 +287,20 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
 - ``#IP#`` : IP interna de Jeedom.
 - ``#hostname#`` : Nombre de la máquina Jeedom.
 - ``#jeedomName#`` : Nombre de Jeedom.
-- ``#trigger#`` (en desuso, mejor usar ``trigger()``) : Quizás el nombre del comando que inició el escenario :
-    - ``api`` si el lanzamiento fue activado por la API,
-    - ``schedule`` si se inició programando,
-    - ``user`` si se inició manualmente,
-    - ``start`` para un lanzamiento al inicio de Jeedom.
-- ``#triggerValue#`` (en desuso, mejor usar triggerValue()) : Por el valor del comando que activó el escenario
+- ``#trigger#`` : Puede ser :
+  - ``api`` si el lanzamiento fue activado por la API,
+  - ``TYPEcmd`` si el inicio fue activado por un comando, con TYPE reemplazó la identificación del complemento (por ejemplo, virtualCmd),
+  - ``schedule`` si se inició programando,
+  - ``user`` si se inició manualmente,
+  - ``start`` para un lanzamiento al inicio de Jeedom.
+- ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó.
+- ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando])
+- ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta tiene el valor del comando que desencadenó el escenario. Consejo: si desea conocer el valor actual del comando que desencadenó el escenario (y no su valor en el momento de la activación), puede utilizar : ``##trigger_id##`` (doble #)
 - ``#latitude#`` : Le permite recuperar la información de latitud ingresada en la configuración de jeedom
 - ``#longitude#`` : Le permite recuperar la información de longitud ingresada en la configuración de jeedom
 - ``#altitude#`` : Le permite recuperar la información de altitud ingresada en la configuración de jeedom
-
+- ``#sunrise#`` : Le permite recuperar la hora del amanecer siempre que se ingresen la latitud y la longitud en la configuración de jeedom
+- ``#sunset#`` : Le permite recuperar la hora del atardecer siempre que se ingresen la latitud y la longitud en la configuración de jeedom
 
 También tiene las siguientes etiquetas adicionales si su escenario fue desencadenado por una interacción :
 
@@ -419,7 +428,6 @@ Aquí hay ejemplos prácticos para comprender los valores devueltos por estas di
 | ``tag(montag,toto)``                   | Devuelve el valor de "montag" si existe, de lo contrario devuelve el valor "toto"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Hidrometría de devoluciones                  |
 
-
 ### Funciones matematicas
 
 También se puede usar una caja de herramientas de funciones genéricas para realizar conversiones o cálculos :
@@ -427,8 +435,8 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 - ``rand(1,10)`` : Dar un número aleatorio del 1 al 10.
 - ``randText(texte1;texte2;texte…​..)`` : Le permite devolver uno de los textos al azar (separe los textos por uno; ). No hay límite en el número de textos.
 - ``randomColor(min,max)`` : Da un color aleatorio entre 2 límites (0 => rojo, 50 => verde, 100 => azul).
-- ``trigger(commande)`` : Le permite descubrir el desencadenante del escenario o saber si es el comando pasado como parámetro el que desencadenó el escenario.
-- ``triggerValue()`` : Se usa para averiguar el valor del desencadenante del escenario.
+- ``trigger(commande)`` : Le permite descubrir el desencadenante del escenario o saber si es el comando pasado como parámetro el que desencadenó el escenario. **=> En desuso, es mejor usar la etiqueta #trigger#**
+- ``triggerValue()`` : Se usa para averiguar el valor del desencadenante del escenario. **=> En desuso, es mejor usar la etiqueta #triggerValue#**
 - ``round(valeur,[decimal])`` : Redondea arriba, número [decimal] de lugares decimales después del punto decimal.
 - ``odd(valeur)`` : Le permite saber si un número es impar o no. Devuelve 1 si es impar 0 de lo contrario.
 - ``median(commande1,commande2…​.commandeN)`` : Devuelve la mediana de los valores.
@@ -442,13 +450,10 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 
 Y ejemplos prácticos :
 
-
 | Ejemplo de funcion                  | Resultado devuelto                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | la función devolverá uno de estos textos al azar en cada ejecución.                           |
-| ``randomColor(40,60)``                 | Devuelve un color aleatorio cercano al verde.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 si es bueno ``#[Salle de bain][Hydrometrie][Humidité]#`` quien inició el escenario de lo contrario 0  |
-| ``triggerValue()`` | 80 si la hidrometría de ``#[Salle de bain][Hydrometrie][Humidité]#`` es 80% y eso es ``#[Salle de bain][Hydrometrie][Humidité]#`` quien desencadenó el escenario. Si el escenario no fue activado por un comando, devuelve "falso".                         |
+| ``randomColor(40,60)``                 | Devuelve un color aleatorio cercano al verde.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / / 10)`` | Devuelve 9 si el porcentaje de humedad y 85                     |
 | ``odd(3)``                             | Devuelve 1                            |
 | ``median(15,25,20)``                   | Devuelve 20
@@ -458,7 +463,6 @@ Y ejemplos prácticos :
 | ``floor(130/ /60)``                     | Devuelve 2 (minutos si 130 s, u horas si 130 m)                      |
 | ``convertDuration(3600)``             | Devuelve 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Devuelve el tiempo de encendido en días / horas / minutos del tiempo de transición al estado 1 del módulo desde el primer día del mes |
-
 
 ### Funciones misceláneas
 
@@ -474,12 +478,12 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Eliminar variable** (eliminar_variable) : Le permite eliminar una variable.
 - **genericType (GENÉRICO, #[Object]#)** : Modificación de un comando de información (evento) o acción (execCmd) por tipo genérico, en un objeto. Por ejemplo, apague todas las luces de la sala de estar.
 - **Guión** (scenario) : Te permite controlar escenarios. La parte de etiquetas le permite enviar etiquetas al escenario, ej : montag = 2 (ten cuidado, solo usa letras de la a a la z. Sin mayúsculas, sin acentos y sin caracteres especiales). Recuperamos la etiqueta en el escenario de destino con la función de etiqueta (montag).
-    - Comenzar : Inicie el escenario en un hilo diferente. El escenario iniciado se ejecuta independientemente del escenario de llamada.
-    - Iniciar (sincronizar) : Inicia el escenario llamado y pausa el escenario de llamada, mientras que el escenario llamado ha terminado de ejecutarse.
-    - Parar : Detener el escenario.
-    - Habilitar : Activar un escenario discapacitado.
-    - Desactivar : Desactivar escenario. Ya no se inicia independientemente de los desencadenantes.
-    - Restablecimiento de los IS : Se utiliza para restablecer el estado de **SI**. Este estado se utiliza para la no repetición de las acciones de un **SI**, si la evaluación de la condición da el mismo resultado que la evaluación anterior.
+  - Comenzar : Inicie el escenario en un hilo diferente. El escenario iniciado se ejecuta independientemente del escenario de llamada.
+  - Iniciar (sincronizar) : Inicia el escenario llamado y pausa el escenario de llamada, mientras que el escenario llamado ha terminado de ejecutarse.
+  - Parar : Detener el escenario.
+  - Habilitar : Activar un escenario discapacitado.
+  - Desactivar : Desactivar escenario. Ya no se inicia independientemente de los desencadenantes.
+  - Restablecimiento de los IS : Se utiliza para restablecer el estado de **SI**. Este estado se utiliza para la no repetición de las acciones de un **SI**, si la evaluación de la condición da el mismo resultado que la evaluación anterior.
 - **Deténgase** (stop) : Detener el escenario.
 - **Esperar** (wait) : Espere hasta que la condición sea válida (máximo 2 h), el tiempo de espera es en segundos (s).
 - **Ir al diseño** (gotodesign) : Cambie el diseño que se muestra en todos los navegadores por el diseño solicitado.
@@ -495,7 +499,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 - **Alerta** (alert) : Muestra un pequeño mensaje de alerta en todos los navegadores que tienen abierta una página de Jeedom. Además, puedes elegir 4 niveles de alerta.
 - **Surgir** (popup) : Permite mostrar una ventana emergente que debe validarse absolutamente en todos los navegadores que tienen una página abierta.
 - **Relación** (report) : Le permite exportar una vista en formato (PDF, PNG, JPEG o SVG) y enviarla utilizando un comando de tipo mensaje. Tenga en cuenta que si su acceso a Internet está en HTTPS sin firmar, esta funcionalidad no funcionará. Se requiere HTTP o HTTPS firmado. El "retraso" está en milisegundos (ms).
-- **Eliminar bloque IN / A programado** (eliminar_inat) : Le permite eliminar la programación de todos los bloques IN y A del escenario.
+- **Eliminar bloque IN / A programado** (eliminar_inat) : Permite borrar la programación de todos los bloques IN y A de un escenario.
 - **Evento** (event) : Le permite insertar un valor en un comando de tipo de información arbitrariamente.
 - **Etiquetas** (tag) : Le permite agregar / modificar una etiqueta (la etiqueta solo existe durante la ejecución actual del escenario a diferencia de las variables que sobreviven al final del escenario).
 - **Coloración de los iconos del tablero** (setColoredIcon) : Permite activar o no la coloración de iconos en el tablero.

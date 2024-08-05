@@ -175,7 +175,7 @@ class jsonrpcClient {
 		if (curl_errno($ch)) {
 			$this->error = 'Erreur curl sur : ' . $this->apiAddr . '. Détail :' . curl_error($ch);
 		}
-		curl_close($ch);
+		unset($ch);
 		return $response;
 	}
 

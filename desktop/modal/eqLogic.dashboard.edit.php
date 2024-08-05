@@ -213,7 +213,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     $echo .= '<input class="form-control input-sm key" value="' . $key . '">';
                     $echo .= '</td>';
                     $echo .= '<td>';
-                    $echo .= '<input class="form-control input-sm value" value="' . $value . '">';
+                    $echo .= '<input class="form-control input-sm value" value="' . htmlspecialchars($value, ENT_QUOTES) . '">';
                     $echo .= '</td>';
                     $echo .= '<td class="text-right">';
                     $echo .= '<a class="btn btn-danger btn-xs removeTileParameter"><i class="far fa-trash-alt"></i></a>';
@@ -354,6 +354,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           foreach (($eqLogic->getCmd()) as $cmd) {
             $thisclassAttrib = 'cmdAttr' . $cmd->getId();
             $display .= '<div class="cmdConfig" style="padding: 2px;" data-attribclass="' . $thisclassAttrib . '" data-id="' . $cmd->getId() . '">';
+            $display .= '<i class="fas fa-sort bt_sortable pull-right" style="margin-top: 5px; cursor: move !important;"></i>';
             $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
 
             if ($cmd->getType() == 'info') {
@@ -366,7 +367,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             $display .= '<table class="table table-condensed">';
 
             //Editable name:
-            $display .= '<tr><td>{{Name}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
+            $display .= '<tr><td>{{Nom}}</td><td colspan="2"><input class="input-sm ' . $thisclassAttrib . '" data-l1key="name" style="width: 100%;"></td>';
 
             //visible and td widths:
             $display .= '<tr><td>{{Visible}}<input type="checkbox" class="' . $thisclassAttrib . '" data-l1key="isVisible" style="float: right"></td>';
@@ -427,7 +428,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                 $display .= '<tr class="cmdoptparam text-center">';
                 $display .= '<td colspan="3">';
                 $display .= '<input class="key" value="' . $key . '" style="width:45%;">';
-                $display .= ' <input class="value" value="' . $value . '" style="width:45%;">';
+                $display .= ' <input class="value" value="' . htmlspecialchars($value, ENT_QUOTES) . '" style="width:45%;">';
                 $display .= '<a class="btn btn-danger btn-xs pull-right removeWidgetParameter"><i class="fas fa-trash-alt"></i></a>';
                 $display .= '</td>';
                 $display .= '</tr>';
@@ -520,10 +521,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           delay: 100,
           delayOnTouchOnly: true,
           draggable: 'div.cmdConfig',
-          filter: 'a, input, textarea',
+          filter: 'a, input, textarea, table',
           preventOnFilter: false,
           direction: 'vertical',
           removeCloneOnHide: true,
+          chosenClass: 'dragSelected',
         })
       },
       setTableLayoutSortable: function() {

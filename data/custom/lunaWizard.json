@@ -26,7 +26,7 @@
       "custom": "",
       "visible": 1
     },
-  
+
   "objects" : {
 
       "title": "Pièces",
@@ -36,12 +36,14 @@
       "visible": 1
 
   },
-"dnsGo" : {
+  "dnsGo" : {
+
       "title": "OpenVPN",
       "wizard": "dnsGo",
       "order": 4,
       "custom": "",
       "visible": 1
+
   },
   "pack" :
     {
@@ -60,7 +62,7 @@
       "custom": "",
       "visible": 1
     }
-  ,	
+  ,
   "services" :
     {
       "title": "Services",
@@ -70,29 +72,38 @@
       "visible": 1
     }
   ,
+  "backupCloud" :
+  {
+    "title": "BackupCloud",
+    "wizard": "backupCloud",
+    "order": 8,
+    "custom": "",
+    "visible": 1
+  }
+,
   "assistants" :
     {
       "title": "Assistants Vocaux",
       "wizard": "assistants",
-      "order": 8,
+      "order": 9,
       "custom": "",
       "visible": 1
     }
   ,
    "luna" :
-   	{
-	  "title": "Options Luna",
+    {
+    "title":  "Options Luna",
       "wizard": "luna",
-      "order": 9,
+      "order": 10,
       "custom": "",
       "visible": 1
-   	}
+    }
   ,
   "ready" :
     {
-      "title": "Prêt à commencer",
+      "title": "Prêt à démarrer",
       "wizard": "ready",
-      "order": 10,
+      "order": 11,
       "custom": "",
       "visible": 1
     }

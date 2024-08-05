@@ -1,26 +1,197 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, será estendida a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
+- Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
+- Adicionado um botão na janela de configuração do pedido no campo de cálculo de valor para buscar um pedido [LINK](https://github.com/jeedom/core/issues/2776)
+- Capacidade de ocultar determinados menus para usuários limitados [LINK](https://github.com/jeedom/core/issues/2651)
+- Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
+- Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
+- Redesenho da parte de backup em nuvem [LINK](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementação de sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
+- As tags do cenário agora são específicas para a instância do cenário (se você tiver dois cenários lançados muito próximos, as tags do último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
+- Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``trigger()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``triggerValue()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``#trigger#`` : Talvez :
+    - ``api`` se o lançamento foi acionado pela API,
+    - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
+    - ``schedule`` se foi lançado por programação,
+    - ``user`` se foi iniciado manualmente,
+    - ``start`` para um lançamento na startup Jeedom.
+  - ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou
+  - ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
+  - ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário
+- Gerenciamento aprimorado de plug-ins no github (sem mais dependências de uma biblioteca de terceiros) [LINK](https://github.com/jeedom/core/issues/2567)
+- Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
+- Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
+- Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
+
+# 4.4.10
+
+- Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória [LINK](https://github.com/jeedom/core/pull/2757)
+- Adicionado um filtro em muitas ações em cenários [LINK](https://github.com/jeedom/core/pull/2753), [LINK](https://github.com/jeedom/core/pull/2742), [LINK](https://github.com/jeedom/core/pull/2759), [LINK](https://github.com/jeedom/core/pull/2743), [LINK](https://github.com/jeedom/core/pull/2755)
+- O preço do plugin fica oculto se você já o comprou [LINK](https://github.com/jeedom/core/pull/2746)
+- Na página de login possibilidade de exibir ou nomear a senha [LINK](https://github.com/jeedom/core/pull/2740)
+- Corrigido um bug ao sair de uma página sem salvar [LINK](https://github.com/jeedom/core/pull/2745)
+- Criação (em beta) de um novo sistema de cache [LINK](https://github.com/jeedom/core/pull/2758) :
+  - Arquivo : sistema idêntico ao de antes, mas tomado internamente para evitar dependências de uma biblioteca de terceiros. O mais eficiente, mas economizado a cada 30 minutos
+  - MySQL : usando uma tabela de cache base. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
+  - Redis : reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
+- Corrigido um bug nos alertas de equipamentos ao excluir o pedido alertado [LINK](https://github.com/jeedom/core/issues/2775)
+- Possibilidade na configuração avançada de um equipamento de ocultá-lo ao exibir vários objetos no painel [LINK](https://github.com/jeedom/core/issues/2553)
+- Corrigido bug ao exibir a pasta da linha do tempo na configuração avançada de um comando [LINK](https://github.com/jeedom/core/issues/2791)
+- Redesenho do sistema fail2ban de Jeedom para que consuma menos recursos [LINK](https://github.com/jeedom/core/issues/2684)
+- Corrigido um bug no arquivamento e limpeza de históricos [LINK](https://github.com/jeedom/core/issues/2793)
+- Patch aprimorado para bug gpg em dependências python [LINK](https://github.com/jeedom/core/pull/2798)
+- Corrigido um problema ao alterar a hora após a revisão do gerenciamento do cron [LINK](https://github.com/jeedom/core/issues/2794)
+- Corrigido bug na página de resumo da automação residencial ao pesquisar um pedido por id [LINK](https://github.com/jeedom/core/issues/2795)
+- Adicionado tamanho do banco de dados à página de integridade [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom agora lista todas as ramificações e tags do repositório github para permitir que você teste funcionalidades com antecedência ou reverta para uma versão anterior do núcleo (tenha cuidado, isso é muito arriscado) [LINK](https://github.com/jeedom/core/issues/2500)
+- Melhoria de subtipos de comandos suportados em tipos genéricos [LINK](https://github.com/jeedom/core/pull/2797)
+- Corrigido bug na exibição de cenários e comentários quando você deseja ocultá-los [LINK](https://github.com/jeedom/core/pull/2790)
+
+>**IMPORTANTE**
+>
+> Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo
+
+# 4.4.9
+
+- Exibição aprimorada da lista de cenários ao atuar em cenários (adição de grupos) [LINK](https://github.com/jeedom/core/pull/2729)
+- Ao copiar um equipamento, se o widget possui um gráfico em segundo plano, ele é corretamente transformado [LINK](https://github.com/jeedom/core/issues/2540)
+- Adicionando tags #sunrise# e #sunset# nos cenários para ter os horários do nascer e do pôr do sol [LINK](https://github.com/jeedom/core/pull/2725)
+- Um plugin agora pode adicionar campos na configuração avançada de todos os equipamentos jeedom [LINK](https://github.com/jeedom/core/issues/2711)
+- Melhoria do sistema de gerenciamento de crons [LINK](https://github.com/jeedom/core/issues/2719)
+- Corrigido um bug que poderia causar a perda de todas as informações na página de atualização [LINK](https://github.com/jeedom/core/issues/2718)
+- Excluindo o status do serviço fail2ban do Jeedom Health [LINK](https://github.com/jeedom/core/issues/2721)
+- Corrigido um problema com a limpeza do histórico [LINK](https://github.com/jeedom/core/issues/2723)
+- Remoção do cache de widgets (o ganho de exibição não é interessante e isso causa muitos problemas) [LINK](https://github.com/jeedom/core/issues/2726)
+- Corrigido bug nas opções de edição do desenho (grade e magnetização) ao alterar um desenho com link [LINK](https://github.com/jeedom/core/issues/2728)
+- Corrigido um bug de javascript em botões em modais [LINK](https://github.com/jeedom/core/pull/2734)
+- Corrigido um bug no número de mensagens ao excluir todas as mensagens [LINK](https://github.com/jeedom/core/issues/2735)
+- Excluindo o diretório venv dos backups [LINK](https://github.com/jeedom/core/pull/2736)
+- Corrigido bug na página de configuração avançada de um comando onde não aparecia o campo para escolha da pasta da linha do tempo [LINK](https://github.com/jeedom/core/issues/2547)
+- Corrigido um bug na janela de seleção de comandos após salvar equipamentos [LINK](https://github.com/jeedom/core/issues/2773)
+
+# 4.4.8.1
+
+- Corrigido um bug em cenários com programação múltipla [LINK](https://github.com/jeedom/core/issues/2698)
+
+# 4.4.8
+
+- Adicionadas opções avançadas para proibir determinados métodos de API ou permitir apenas alguns [LINK](https://github.com/jeedom/core/issues/2707)
+- Melhoria da janela de configuração de log [LINK](https://github.com/jeedom/core/issues/2687)
+- Melhoria de rastreamentos de depuração [LINK](https://github.com/jeedom/core/pull/2654)
+- Exclusão de mensagem de aviso [LINK](https://github.com/jeedom/core/pull/2657)
+- Corrigido problema na página de logs em telas pequenas onde os botões não eram visíveis [LINK](https://github.com/jeedom/core/issues/2671). Outra melhoria está planejada posteriormente para que os botões fiquem melhor posicionados [LINK](https://github.com/jeedom/core/issues/2672)
+- Gerenciamento de seleção aprimorado [LINK](https://github.com/jeedom/core/pull/2675)
+- Aumento do tamanho do campo para o valor do sono em cenários [LINK](https://github.com/jeedom/core/pull/2682)
+- Corrigido um problema com a ordem das mensagens no centro de mensagens [LINK](https://github.com/jeedom/core/issues/2686)
+- Otimização do carregamento do plugin [LINK](https://github.com/jeedom/core/issues/2689)
+- Aumento no tamanho das barras de rolagem em determinadas páginas [LINK](https://github.com/jeedom/core/pull/2691)
+- Página de reinicialização do Jeedom aprimorada [LINK](https://github.com/jeedom/core/pull/2685)
+- Corrigido um problema com dependências do nodejs durante restaurações [LINK](https://github.com/jeedom/core/issues/2621). Observação : isso reduzirá o tamanho dos backups
+- Corrigido um bug no sistema de atualização do banco de dados [LINK](https://github.com/jeedom/core/issues/2693)
+- Corrigido um problema de índice ausente para interações [LINK](https://github.com/jeedom/core/issues/2694)
+- Roteiro doentio melhorado.php para detectar melhor problemas de banco de dados [LINK](https://github.com/jeedom/core/pull/2677)
+- Melhor gerenciamento de python2 na página de saúde [LINK](https://github.com/jeedom/core/pull/2674)
+- Melhoria do campo de seleção de cenário (com busca) nas ações de cenário [LINK](https://github.com/jeedom/core/pull/2688)
+- Gerenciamento aprimorado do cron em preparação para php8 [LINK](https://github.com/jeedom/core/issues/2698)
+- Melhorou a função de gerenciamento de desligamento de daemons por número de porta [LINK](https://github.com/jeedom/core/pull/2697)
+- Corrigido um problema em determinados navegadores com filtros [LINK](https://github.com/jeedom/core/issues/2699)
+- Suporte aprimorado para cachos [LINK](https://github.com/jeedom/core/pull/2702)
+- Corrigido um bug no gerenciamento de dependências do compositor [LINK](https://github.com/jeedom/core/pull/2703)
+- Melhoria do sistema de gerenciamento de cache [LINK](https://github.com/jeedom/core/pull/2706)
+- Melhor gerenciamento dos direitos do usuário em chamadas de API [LINK](https://github.com/jeedom/core/pull/2695)
+- Corrigir aviso [LINK](https://github.com/jeedom/core/pull/2701)
+- Corrigido um problema com a instalação de dependências python [LINK](https://github.com/jeedom/core/pull/2700/files)
+
+# 4.4.7
+
+- Possibilidade de escolher uma frequência máxima de dados gravados (1min/5min/10min) a partir da configuração avançada do comando [LINK](https://github.com/jeedom/core/issues/2610)
+- Memorizando opções em grades ao editar designs [LINK](https://github.com/jeedom/core/issues/2545)
+- Memorização do estado do menu (ampliado ou não) ao exibir históricos [LINK](https://github.com/jeedom/core/issues/2538)
+- Gerenciamento de dependências python em venv (para ser compatível com debian 12) [LINK](https://github.com/jeedom/core/pull/2566). Observação : o suporte é que no lado principal ele precisará de atualizações no lado do plugin para funcionar
+- Exibição do tamanho dos plugins (em Plugin -> Gerenciamento de plugins -> plugin desejado) [LINK](https://github.com/jeedom/core/issues/2642)
+- Corrigido um bug na descoberta de parâmetros de widgets móveis [LINK](https://github.com/jeedom/core/issues/2615)
+- Adicionado status do serviço fail2ban [LINK](https://github.com/jeedom/core/pull/2620)
+- Exibição aprimorada da página de saúde [LINK](https://github.com/jeedom/core/pull/2619)
+- Corrigido um problema com dependências do nodejs durante restaurações [LINK](https://github.com/jeedom/core/issues/2621). Observação : isso aumentará o tamanho dos backups
+- Corrigido um bug nos designs [LINK](https://github.com/jeedom/core/issues/2634)
+- Corrigida a exibição de seleções na página de substituição [LINK](https://github.com/jeedom/core/pull/2639)
+- Corrigido um bug na progressão de dependências (plugin zwavejs em particular) [LINK](https://github.com/jeedom/core/issues/2644)
+- Corrigido um problema de largura no widget de lista no modo de design [LINK](https://github.com/jeedom/core/issues/2647)
+- Exibição de widget aprimorada [LINK](https://github.com/jeedom/core/pull/2631)
+- Atualizada a documentação da ferramenta de substituição [LINK](https://github.com/jeedom/core/pull/2638)
+- Corrigido um problema de inconsistência com os valores mínimos dos tamanhos dos relatórios [LINK](https://github.com/jeedom/core/issues/2449)
+- Corrigido um bug na verificação do banco de dados onde um índice ainda poderia estar faltando [LINK](https://github.com/jeedom/core/issues/2655)
+- Corrigido um bug no gráfico de links [LINK](https://github.com/jeedom/core/issues/2659)
+- Remoção do trabalhador de serviço no celular (não é mais usado) [LINK](https://github.com/jeedom/core/issues/2660)
+- Corrigido um bug que poderia afetar a limitação do número de eventos na linha do tempo [LINK](https://github.com/jeedom/core/issues/2663)
+- Corrigido um bug na exibição de dicas de ferramentas em designs [LINK](https://github.com/jeedom/core/pull/2667)
+- Gerenciamento aprimorado de rastreamento de PDO com php8 [LINK](https://github.com/jeedom/core/pull/2661)
+
+# 4.4.6
+
+- Corrigido um bug ao atualizar os gráficos de fundo do widget [LINK](https://github.com/jeedom/core/issues/2594)
+- Corrigido um bug no widget do medidor [LINK](https://github.com/jeedom/core/pull/2582)
+- Capacidade de inserir datas manualmente nos seletores de data [LINK](https://github.com/jeedom/core/pull/2593)
+- Corrigido um bug ao alterar designs (as funções de atualização de pedidos não foram removidas) [LINK](https://github.com/jeedom/core/pull/2588)
+- Bugfix [LINK](https://github.com/jeedom/core/pull/2592)
+- Corrigida a classificação por data na página de atualizações [LINK](https://github.com/jeedom/core/pull/2595)
+- Corrigido um bug ao copiar direitos de usuário limitados [LINK](https://github.com/jeedom/core/issues/2612)
+- Corrigido um bug em widgets de tabela com estilo e atributos [LINK](https://github.com/jeedom/core/issues/2609)
+- Corrigido um bug no docker que poderia causar corrupção do banco de dados [LINK](https://github.com/jeedom/core/pull/2611)
+
+## 4.4.5
+
+- Correções de bugs
+- Atualização da documentação
+- Corrigido um bug no php8 ao instalar e/ou atualizar plugins
+- Corrigido um bug no painel onde, em casos raros, o equipamento poderia se mover ou mudar de tamanho por conta própria
+
+## 4.4.4
+
+- Adicionado código de exemplo à documentação [personalização jeedom](https://doc.jeedom.com/pt_PT/core/4.4/custom) (consultar para quem deseja impulsionar a personalização)
+- Corrigido um bug na janela de seleção de data para comparação de histórico
+- Corrigido um bug no painel quando a movimentação de comandos não era refletida imediatamente no widget
+- Corrigidos vários bugs (exibição e texto)
+- Corrigido um bug na página de atualização que indicava que uma atualização estava em andamento quando não estava
+
+## 4.4.3
+
+- Corrigir erro 401 ao abrir um design com um usuário não administrador
+- Várias correções de bugs (em widgets em particular)
+- Removendo mínimos nas etapas do widget
+
+## 4.4.2
+
+- Gerenciamento automático do endereço de acesso interno após iniciar, atualizar ou restaurar o Jeedom *(optionnel)*.
+- Adicionado widget de informações/cor de string. [[RP #2422](https://github.com/jeedom/core/pull/2422)]
+
+## 4.4.1
+
+- Suporte PHP 8.
+- Verificando a versão mínima do núcleo necessária antes de instalar ou atualizar um plugin.
+- Adicionando um botão **Assistência** na página de configuração do plugin *(Criação automática de um pedido de ajuda no fórum)*.
+
 >**IMPORTANTE**
 >
 >Mesmo que não sejam necessariamente visíveis à primeira vista, a versão 4.4 da Jeedom traz grandes mudanças com uma interface totalmente reescrita para controle total e acima de tudo um ganho incomparável em fluidez de navegação. A gestão das dependências do PHP também foi revisada para poder mantê-las atualizadas automaticamente. Mesmo que a equipe do Jeedom e os testadores beta tenham feito muitos testes, existem tantas versões do jeedom quanto jeedom... Portanto, não é possível garantir o funcionamento adequado em 100% do No entanto, em caso de problema você pode [abra um tópico no fórum com o rótulo `v4_4`](https://community.jeedom.com/) ou entre em contato com o suporte do seu perfil de mercado *(desde que você tenha um service pack ou superior)*.
 
-## 4.4.1
-
-- Suporte PHP8.
-- Verificando a versão mínima do núcleo necessária antes de instalar ou atualizar um plugin.
-- Adicionando um botão **Assistência** na página de configuração do plugin *(Criação automática de um pedido de ajuda no fórum)*
-
 ### 4.4 : Pré-requisitos
 
-- Debian 10 Buster
-- PHP 7.3
+- Debian 11 "Alvo" *(altamente recomendado, Jeedom permanece funcional na versão anterior)*
+- Php 7,4
 
 ### 4.4 : Notícias / Melhorias
 
 - **Histórico** : O modal de histórico e a página de histórico permitem usar botões *Semana, Mês, Ano* para recarregar dinamicamente um histórico maior.
-- **Janela de seleção de imagem** : Adicionado um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
+- **Janela de seleção de imagem** : Adicionados botões e um menu de contexto para enviar imagens e criar, renomear ou excluir uma pasta.
 - **Janela de seleção de ícones** : Capacidade de adicionar um parâmetro `path` ao chamar `jeedomUtils.chooseIcon` por um plug-in para exibir apenas seus ícones.
-- **Painel** : Capacidade de exibir vários objetos lado a lado *(Configurações → Sistema → Configuração / Interface)*.
+- **Painel** : Capacidade de exibir objetos em múltiplas colunas *(Configurações → Sistema → Configuração / Interface)*.
 - **Painel** : A janela de edição do bloco Edit Mode permite que os comandos sejam renomeados.
 - **Painel** : No layout da tabela, possibilidade de inserir atributos HTML *(colspan/rowspan em particular)* para cada célula.
 - **Equipamento** : Capacidade de desativar os modelos de widget de plug-ins que os utilizam para retornar à exibição padrão do Jeedom *(janela de configuração do dispositivo)*.
@@ -28,18 +199,17 @@
 - **Equipamento** : Equipamentos tornados invisíveis desaparecem automaticamente do painel. O equipamento reexibido reaparece no painel se o objeto pai já estiver presente.
 - **Análise > Equipamento / Equipamento em alerta** : Dispositivos que entram em alerta aparecem automaticamente e os que saem de alerta desaparecem automaticamente.
 - **Centro de mensagens** : Mensagens principais sobre anomalia agora informam uma ação, por exemplo, um link para abrir o cenário ofensivo, ou equipamento, configuração de plug-in, etc.
-- **Objeto** : Excluir ou criar um resumo resulta na atualização do resumo global e do assunto.
+- **Objeto** : Excluir ou criar um resumo atualiza o resumo geral e o assunto.
 - **Ferramentas > Substituir** : Esta ferramenta agora oferece um modo *Copiar*, permitindo copiar as configurações de equipamentos e comandos, sem substituí-los nos cenários e outros.
-- **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Os seguintes eventos são carregados na rolagem na parte inferior da página.
+- **Linha do tempo** : A linha do tempo agora carrega os primeiros 35 eventos. Os seguintes eventos são carregados rolando na parte inferior da página.
 - **Administração** : Possibilidade de diferenciar ações em caso de erro ou alerta de comando.
 - **Administração** : Capacidade de definir widgets de comando padrão.
-- **Painel** : possibilidade na página de configuração do objeto para pedir jeedom para reordenar o equipamento de acordo com seu uso.
-- **Tema** : Possibilidade de escolher o tema diretamente do url (adicionando &theme=Dark ou &theme=Light).
-- **Tema** : Remoção do tema **Legado Core2019** *(alpha)*.
+- **Painel** : Capacidade de reordenar equipamentos de acordo com seu uso na página de configuração do objeto.
+- **Tema** : Possibilidade de escolha do tema diretamente no endereço *(adicionando ``Etheme=Dark`` Onde ``Etheme=Light``)*.
+- **Tema** : Remoção do tema **Legado Core2019**.
 - **Relatório** : Possibilidade de escolher o tema durante um relatório em uma página jeedom.
 - **Menu Jeedom** : Um atraso de 0.25s foi introduzido na abertura de submenus.
-- **Sistema** : Possibilidade de adicionar comandos personalizados (ver documentação)
-
+- **Administração do Sistema** : Capacidade de adicionar comandos shell personalizados no menu esquerdo *(por meio de um arquivo `/data/systemCustomCmd.json`)*.
 
 ### 4.4 : Autre
 
@@ -53,9 +223,8 @@
 
 > **Painel**
 >
-> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Passo vertical (mínimo 100)* e *Passo horizontal (mínimo 110)*. O valor que *Margem* definindo o espaço entre as telhas.
+> No **Painel** e a **Visualizações**, Núcleo v4.4 agora redimensiona automaticamente os blocos para criar uma grade perfeita. As unidades (menor altura e menor largura de um ladrilho) desta grade são definidas em **Configurações → Sistema → Configuração / Interface** por valores *Pas:Altura (mín. 60px)* e *Pas:Largura (mín. 80px)*. O valor que *Margem* definindo o espaço entre as telhas.
 > Os ladrilhos se adaptam às dimensões da grade e podem ser feitos uma, duas vezes etc. esses valores em altura ou largura. Certamente será necessário passar [Modo de edição do painel](https://doc.jeedom.com/pt_PT/core/4.4/dashboard#Mode%20%C3%A9dition) para ajustar o tamanho de alguns blocos após a atualização.
-
 
 > **Widgets**
 >
@@ -65,7 +234,6 @@
 > **Caixa de diálogo**
 >
 > Todas as caixas de diálogo (bootstrap, bootbox, jQuery UI) foram migradas para uma Core lib interna (jeeDialog) especialmente desenvolvida. Caixas de diálogo redimensionáveis agora têm um botão para alternar *tela cheia*.
-
 
 # Changelog Jeedom V4.3
 
@@ -118,7 +286,6 @@
 - Segurança de perguntas aprimorada ao usar a função generateAskResponseLink por plugins : uso de um token exclusivo (não há mais envio da chave da API principal) e bloqueio da resposta apenas entre as opções possíveis.
 - Corrigido um bug que impedia a instalação do jeedom.
 - Corrigido um bug no influxdb.
-
 
 ## 4.3.7
 
@@ -335,9 +502,9 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Cenas** : Copiar / colar e desfazer / refazer correção de bug (reescrita completa).
 - **Cenas** : Adicionando funções de cálculo ``averageTemporal(commande,période)`` E ``averageTemporalBetween(commande,start,end)`` permitindo obter a média ponderada pela duração ao longo do período.
 - **Cenas** : Adicionado suporte para tipos genéricos em cenários.
-	- Desencadear : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- E SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Ações ``genericType``
+  - Desencadear : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - E SE ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Ações ``genericType``
 - **Objetos** : Plugins agora podem solicitar parâmetros específicos para objetos.
 - **Usuários** : Plugins agora podem solicitar parâmetros específicos para usuários.
 - **Usuários** : Capacidade de gerenciar os perfis de diferentes usuários Jeedom a partir da página de gerenciamento de usuários.
@@ -353,7 +520,7 @@ Postagem do blog [aqui](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Configuração** : Configurações OSDB: Adicionar um construtor de consulta SQL dinâmica.
 - **Configuração**: Capacidade de desabilitar o monitoramento de nuvem (Administração / Atualizações / Mercado).
 - **jeeCLI** : Adição de ``jeeCli.php`` na pasta core / php do Jeedom para gerenciar algumas funções de linha de comando.
-- *Grandes melhorias na interface em termos de desempenho / capacidade de resposta. jeedomUtils {}, jeedomUI {}, menu principal reescrito em css puro, remoção de initRowWorflow (), simplificação do código, correções de css para telas pequenas, etc.*
+- *Grandes melhorias na interface em termos de desempenho / capacidade de resposta. jeedomUtils{}, jeedomUI{}, menu principal reescrito em CSS puro, remoção de initRowWorflow(), simplificação de código, correções de CSS para telas pequenas, etc.*
 
 ### 4.2 : Widgets principais
 
@@ -393,7 +560,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 ## 4.1.27
 
-- Correção de uma violação de segurança, obrigado @Maxime Rinaudo e @Antoine Cervoise da Synacktiv (www.synacktiv.com)
+- Correção de uma vulnerabilidade de segurança graças a @Maxime Rinaudo e @Antoine Cervoise da Synacktiv (>)
 
 ## 4.1.26
 
@@ -513,15 +680,16 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - **Equipamento** : Possibilidade de adicionar css de classe a um bloco (consulte a documentação do widget).
 - **Sobre a janela** : Adição de atalhos ao Changelog e FAQ.
 - Páginas de Widgets / Objetos / Cenários / Interações / Plugins :
-	- Ctrl Clic / Clic Center em um equipamento de widget, objeto, cenário, interação, plug-in : Abre em uma nova guia.
-	- Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
+  - Ctrl Clic / Clic Center em um equipamento de widget, objeto, cenário, interação, plug-in : Abre em uma nova guia.
+  - Ctrl Clic / Clic Center também disponível em seus menus de contexto (nas guias).
 - Nova página ModalDisplay :
-	- Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
-	- Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
+  - Menu Análise : Ctrl Clique / Clique em Central no *Tempo real* : Abra a janela em uma nova guia, em tela cheia.
+  - Menu Ferramentas : Ctrl Clique / Clique em Central no *Classificações*, *Testador de expressão*, *Variáveis*, *Pesquisar* : Abra a janela em uma nova guia, em tela cheia.
 - Bloco de código, editor de arquivos, personalização avançada : Adaptação tema escuro.
 - Janela de seleção de imagem aprimorada.
 
 ### 4.1 : WebApp
+
 - Integração da nova página Resumo.
 - Na página Cenários, um clique no título do cenário exibe seu log.
 - Agora podemos selecionar / copiar parte de um log.
@@ -533,6 +701,7 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Muitas correções de bugs (UI, retrato / paisagem iOS, etc.).
 
 ### 4.1 : Autres
+
 - **Documentação** : Adaptações de acordo com v4 e v4.1.
 - **Documentação** : Nova página *Atalhos de teclado / mouse* incluindo um resumo de todos os atalhos no Jeedom. Acessível no documento do Painel ou nas Perguntas frequentes.
 - **Livre** : Atualizar o HighStock v7.1.2 a v8.2.0.
@@ -545,10 +714,10 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 - Inúmeras otimizações de desempenho de desktop / dispositivos móveis.
 
 ### 4.1 : Changements
+
 - A função **cenário-> getHumanName()** da classe de cenário php não retorna mais *[objeto] [grupo] [nome]* mas *[grupo] [objeto] [nome]*.
 - A função **cenário-> byString()** agora deve ser chamado com a estrutura *[grupo] [objeto] [nome]*.
 - Funções **rede-> getInterfaceIp () rede-> getInterfaceMac () rede-> getInterfaces()** foram substituídos por **rede-> getInterfacesInfo()**
-
 
 # Changelog Jeedom V4.0
 
@@ -556,7 +725,6 @@ Os plugins devem respeitar as recomendações sobre a estrutura em árvore de pa
 
 - Nova migração buster + kernel para smart e Pro v2
 - Verificação da versão do sistema operacional durante atualizações importantes do Jeedom
-
 
 ## 4.0.61
 

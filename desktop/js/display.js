@@ -28,7 +28,7 @@ if (!jeeFrontEnd.display) {
 
       this.setSortables()
       var checkContextMenuCallback = function(_el) {
-        _el.trigger('change')
+        _el.triggerEvent('change')
       }
       jeedomUtils.setCheckContextMenu(checkContextMenuCallback)
     },
@@ -228,7 +228,7 @@ document.getElementById('in_search').addEventListener('keyup', function(event) {
           return
         }
         _eq.querySelectorAll('.cmd').forEach(_cmd => {
-          cmdId = _cmd.getAttributes('data-id')
+          cmdId = _cmd.getAttribute('data-id')
           if (cmdId == searchID) {
             _cmd.closestAll('.panel-collapse').forEach(_panel => { _panel.setAttribute('data-show', '1') })
             _cmd.seen()

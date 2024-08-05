@@ -144,7 +144,7 @@ if (!jeeFrontEnd.history) {
         compare: 0,
         success: function(data) {
           if (isset(data.error)) {
-            document.querySelector('.li_history[data-cmd_id="' + _cmd_id + '"]').removeClass('active')
+            document.querySelector('.li_history[data-cmd_id="' + _cmd_id + '"]')?.removeClass('active')
             return
           }
           jeeP.__lastId__ = _cmd_id
@@ -223,9 +223,9 @@ if (!jeeFrontEnd.history) {
               var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + document.getElementById('sel_comparePeriod').selectedOptions[0].text
               _md.querySelector('.spanCompareDiffResult').textContent = text
               if (diffPeriod != cdiffPeriod) {
-                jeeDialog.get('#md_historyCompare').show()
+                _md.querySelector('.spanCompareDiff').seen()
               } else {
-                jeeDialog.get('#md_historyCompare').hide()
+                _md.querySelector('.spanCompareDiff').unseen()
               }
               return
             }
@@ -237,7 +237,7 @@ if (!jeeFrontEnd.history) {
 
               var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
               var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
-              document.getElementById('in_compareStart1').value = endDate
+              _md.querySelector('#in_compareStart1').value = endDate
 
               //range to compare with:
               num = _md.querySelector('#sel_comparePeriod').value.split('.')[0]
@@ -247,6 +247,7 @@ if (!jeeFrontEnd.history) {
               m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
               endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareStart2').value = endDate
+              _md.querySelector('input.in_datepicker').triggerEvent('change')
               return
             }
 
@@ -263,6 +264,7 @@ if (!jeeFrontEnd.history) {
               m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
               endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareStart2').value = endDate
+              _md.querySelector('input.in_datepicker').triggerEvent('change')
               return
             }
           })
@@ -274,6 +276,7 @@ if (!jeeFrontEnd.history) {
         },
         onShown: function() {
           jeeDialog.get('#md_historyCompare', 'content').querySelector('#md_getCompareRange').removeClass('hidden')
+          jeedomUtils.datePickerInit()
         },
         buttons: {
           confirm: {

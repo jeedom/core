@@ -172,6 +172,10 @@ A continuación encontrará una tabla para administrar con precisión el nivel d
 
 Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obtiene gráficos que representan su uso. Esta pestaña le permite establecer parámetros globales para el registro de comandos.
 
+>**InflujoDB**
+>
+>Si desea utilizar InfluxDB por el momento, debe instalar la biblioteca InfluxDB usted mismo, Jeedom ya no lo hace porque ya no se mantiene (planeamos migrar a la nueva versión, pero esto no sucederá de inmediato)). Para realizar la instalación manualmente aquí se explica cómo hacerlo : `cd /var/www/html;composer requiere influxdb/influxdb-php` desde la configuración, luego la pestaña OS/DB y luego la consola de administración del sistema operativo
+
 ### Historial de pedidos
 
 - **Ver las estadísticas de los widgets** : Ver estadísticas sobre widgets. El widget debe ser compatible, que es el caso para la mayoría. El comando también debe ser de tipo numérico.
@@ -377,13 +381,19 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 
 Permite monitorear y actuar en el caché Jeedom :
 
-- **Estadísticas** : Número de objetos actualmente en caché.
+- **Motor de caché** : elección del motor de caché para jeedom : 
+  - Sistema de archivos : Almacenamiento de información de caché /tmp/jeedom/cache (en RAM) en modo archivo, utiliza una biblioteca de terceros. Pronto será reemplazado por Archivo (beta)
+  - Archivo (beta) : Almacenamiento de información de caché /tmp/jeedom/cache (en RAM) en modo archivo. El más eficiente pero ahorrado cada 30 minutos
+  - MySQL (beta)) : Usando una tabla de caché básica. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
+  - Redis (beta)) : Reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
 - **Limpiar la caché** : Forzar la eliminación de objetos que ya no son útiles. Jeedom hace esto automáticamente todas las noches.
 - **Vaciar todos los datos de la caché** : Vacíe la tapa completamente.
     Tenga en cuenta que esto puede causar pérdida de datos !
-- **Borrar el caché del widget** : Borrar el caché dedicado a los widgets.
-- **Deshabilitar caché de widgets** : Marque la casilla para deshabilitar la caché del widget.
 - **Tiempo de pausa para polling largo** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, a cambio utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
+
+>**Importante**
+>
+> Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
 
 ## Pestaña API
 

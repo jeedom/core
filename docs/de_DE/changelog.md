@@ -1,26 +1,197 @@
 # Änderungsprotokoll Jeedom V4.4
 
+# 4.4.11
+
+- Möglichkeit, die Größe von Tabellenspalten anzupassen (im Moment nur die Liste der Variablen, sie wird bei Bedarf auf andere Tabellen ausgeweitet)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2499)
+- Es wurde eine Warnung hinzugefügt, wenn der Jeedom-Speicherplatz zu gering ist (die Überprüfung erfolgt einmal täglich)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2438)
+- Dem Bestellkonfigurationsfenster im Wertberechnungsfeld wurde eine Schaltfläche zum Abrufen einer Bestellung hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2776)
+- Möglichkeit, bestimmte Menüs für eingeschränkte Benutzer auszublenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2651)
+- Die Diagramme werden automatisch aktualisiert, wenn neue Werte eintreffen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2749)
+- Jeedom fügt beim Erstellen von Widgets automatisch die Höhe des Bildes hinzu, um Überlappungsprobleme auf Mobilgeräten zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2539)
+- Neugestaltung des Cloud-Backup-Teils [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementierung eines Warteschlangensystems zur Aktionsausführung [LINK](https://github.com/jeedom/core/issues/2489)
+- Die Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei Szenarios sehr nahe beieinander gestartet haben, überschreiben die Tags des letzteren nicht mehr das erste)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2763)
+- Wechseln Sie zum Auslöserteil der Szenarien : [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``#trigger#`` : Vielleicht :
+    - ``api`` wenn der Start durch die API ausgelöst wurde,
+    - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
+    - ``schedule`` wenn es durch Programmierung gestartet wurde,
+    - ``user`` wenn es manuell gestartet wurde,
+    - ``start`` für einen Start beim Jeedom-Startup.
+  - ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat
+  - ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
+  - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat
+- Verbesserte Plugin-Verwaltung auf Github (keine Abhängigkeiten mehr von einer Drittanbieter-Bibliothek)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2567)
+- Entfernen des alten Cache-Systems. [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2799)
+- Möglichkeit, die Blöcke IN und A zu löschen, während auf ein anderes Szenario gewartet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2379)
+- Ein Fehler in Safari bei Filtern mit Akzenten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2754)
+
+# 4.4.10
+
+- Die Ereignisverwaltung, die zum Aktualisieren der In-Memory-Datenbankschnittstelle verwendet wird, wurde verschoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2757)
+- Für viele Aktionen in Szenarien wurde ein Filter hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2753), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2742), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2759), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2743), [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2755)
+- Der Preis des Plugins wird ausgeblendet, wenn Sie es bereits gekauft haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2746)
+- Auf der Anmeldeseite besteht die Möglichkeit, das Passwort anzuzeigen oder zu benennen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2740)
+- Ein Fehler beim Verlassen einer Seite ohne Speichern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2745)
+- Erstellung (in Beta) eines neuen Cache-Systems [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2758) :
+  - Datei : System identisch mit dem vorherigen, aber intern übernommen, um Abhängigkeiten von einer Drittanbieter-Bibliothek zu vermeiden. Am effizientesten, aber alle 30 Minuten gespart
+  - MySQL : Verwendung einer Basis-Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
+  - Redis : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (erfordert die Installation von Redis selbst und der PHP-Redis-Abhängigkeiten))
+- Ein Fehler bei Ausrüstungswarnungen beim Löschen der alarmierten Bestellung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2775)
+- In der erweiterten Konfiguration besteht die Möglichkeit, ein Gerät auszublenden, wenn mehrere Objekte auf dem Dashboard angezeigt werden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2553)
+- Ein Fehler bei der Anzeige des Timeline-Ordners in der erweiterten Konfiguration eines Befehls wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2791)
+- Neugestaltung des fail2ban-Systems von Jeedom, damit es weniger Ressourcen verbraucht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2684)
+- Ein Fehler beim Archivieren und Löschen von Historien wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2793)
+- Verbesserter Patch für GPG-Fehler bei Python-Abhängigkeiten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2798)
+- Ein Problem beim Ändern der Zeit nach der Überarbeitung der Cron-Verwaltung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2794)
+- Es wurde ein Fehler auf der Zusammenfassungsseite der Hausautomation behoben, der bei der Suche nach einer Bestellung anhand der ID auftrat [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2795)
+- Datenbankgröße zur Gesundheitsseite hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom listet jetzt alle Zweige und Tags des Github-Repositorys auf, damit Sie die Funktionalitäten vorab testen oder zu einer früheren Version des Kerns zurückkehren können (Achtung, das ist sehr riskant)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2500)
+- Verbesserung der Untertypen von Befehlen, die von generischen Typen unterstützt werden [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2797)
+- Es wurde ein Fehler bei der Anzeige von Szenarien und Kommentaren behoben, wenn diese ausgeblendet werden sollten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2790)
+
+>**WICHTIG**
+>
+> Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
+
+# 4.4.9
+
+- Verbesserte Anzeige der Szenarioliste bei der Bearbeitung von Szenarios (Hinzufügen von Gruppen)) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2729)
+- Wenn beim Kopieren von Geräten das Widget eine Grafik im Hintergrund hatte, wird diese korrekt transformiert [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2540)
+- Tags hinzufügen #sunrise# und #sunset# in den Szenarien, um die Zeiten für Sonnenaufgang und Sonnenuntergang zu haben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2725)
+- Ein Plugin kann jetzt Felder in der erweiterten Konfiguration aller Jeedom-Geräte hinzufügen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2711)
+- Verbesserung des Crons-Managementsystems [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2719)
+- Es wurde ein Fehler behoben, der dazu führen konnte, dass alle Informationen auf der Update-Seite verloren gingen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2718)
+- Fail2ban-Dienststatus wird aus dem Jeedom-Zustand gelöscht [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2721)
+- Ein Problem beim Löschen des Verlaufs wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2723)
+- Entfernung des Widget-Cachings (der Anzeigegewinn ist nicht interessant und verursacht viele Probleme) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2726)
+- Ein Fehler in den Designbearbeitungsoptionen (Raster und Magnetisierung) beim Ändern eines Designs mit einem Link wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2728)
+- Ein Javascript-Fehler bei Schaltflächen in Modalitäten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2734)
+- Ein Fehler bei der Anzahl der Nachrichten beim Löschen aller Nachrichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2735)
+- Ausschließen des venv-Verzeichnisses von Sicherungen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2736)
+- Es wurde ein Fehler auf der erweiterten Konfigurationsseite eines Befehls behoben, bei dem das Feld zur Auswahl des Timeline-Ordners nicht angezeigt wurde [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2547)
+- Ein Fehler im Auftragsauswahlfenster nach dem Speichern von Ausrüstung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2773)
+
+# 4.4.8.1
+
+- Ein Fehler bei Szenarios mit mehreren Programmierungen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2698)
+
+# 4.4.8
+
+- Erweiterte Optionen hinzugefügt, um bestimmte API-Methoden nicht zuzulassen oder nur bestimmte zuzulassen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2707)
+- Verbesserung des Protokollkonfigurationsfensters [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2687)
+- Verbesserung der Debug-Traces [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2654)
+- Löschung der Warnmeldung [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2657)
+- Es wurde ein Problem auf der Protokollseite auf kleinen Bildschirmen behoben, bei dem die Schaltflächen nicht sichtbar waren [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2671). Eine weitere Verbesserung ist später geplant, um die Tasten besser platzieren zu können [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2672)
+- Verbesserte Auswahlverwaltung [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2675)
+- Erhöhte Feldgröße für den Schlafwert in Szenarien [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2682)
+- Ein Problem mit der Reihenfolge der Nachrichten im Nachrichtencenter wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2686)
+- Optimierung des Plugin-Ladens [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2689)
+- Vergrößerung der Bildlaufleisten auf bestimmten Seiten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2691)
+- Verbesserte Jeedom-Neustartseite [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2685)
+- Ein Problem mit NodeJS-Abhängigkeiten während Wiederherstellungen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2621). Notiz : Dadurch wird die Größe der Backups reduziert
+- Ein Fehler im Datenbankaktualisierungssystem wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2693)
+- Ein Problem mit fehlenden Indexen für Interaktionen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2694)
+- Verbessertes Sick-Skript.php, um Datenbankprobleme besser erkennen zu können [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2677)
+- Beste Verwaltung von Python2 auf der Gesundheitsseite [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2674)
+- Verbesserung des Szenario-Auswahlfelds (mit Suche) in Szenario-Aktionen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2688)
+- Verbessertes Cron-Management in Vorbereitung auf PHP8 [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2698)
+- Die Verwaltungsfunktion zum Herunterfahren von Daemons nach Portnummer wurde verbessert [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2697)
+- Ein Problem bei bestimmten Browsern mit Filtern wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2699)
+- Verbesserte Curl-Unterstützung [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2702)
+- Ein Fehler bei der Composer-Abhängigkeitsverwaltung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2703)
+- Verbesserung des Cache-Management-Systems [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2706)
+- Bessere Verwaltung der Benutzerrechte bei API-Aufrufen [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2695)
+- Warnung beheben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2701)
+- Ein Problem bei der Installation von Python-Abhängigkeiten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2700/files)
+
+# 4.4.7
+
+- Möglichkeit, in der erweiterten Konfiguration des Befehls eine maximale Häufigkeit der aufgezeichneten Daten (1 Min./5 Min./10 Min.) auszuwählen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2610)
+- Merken von Optionen in Rastern beim Bearbeiten von Designs [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2545)
+- Speicherung des Menüstatus (erweitert oder nicht) bei der Anzeige von Historien [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2538)
+- Verwaltung von Python-Abhängigkeiten in venv (um mit Debian 12 kompatibel zu sein) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2566). Notiz : Die Unterstützung besteht darin, dass auf der Kernseite dann Aktualisierungen auf der Plugin-Seite erforderlich sind, damit es funktioniert
+- Anzeige der von den Plugins eingenommenen Größe (aus Plugin -> Plugin-Verwaltung -> gewünschtes Plugin)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2642)
+- Ein Fehler bei der Erkennung mobiler Widget-Parameter wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2615)
+- Fail2ban-Dienststatus hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2620)
+- Verbesserte Darstellung der Gesundheitsseite [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2619)
+- Ein Problem mit NodeJS-Abhängigkeiten während Wiederherstellungen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2621). Notiz : Dadurch erhöht sich die Größe der Backups
+- Ein Fehler bei Designs wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2634)
+- Die Anzeige von Auswahlen auf der Ersatzseite wurde korrigiert [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2639)
+- Ein Fehler beim Fortschritt von Abhängigkeiten wurde behoben (insbesondere das Zwavejs-Plugin)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2644)
+- Ein Problem mit der Breite des Listen-Widgets im Designmodus wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2647)
+- Verbesserte Widget-Anzeige [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2631)
+- Die Dokumentation zum Ersetzungstool wurde aktualisiert [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2638)
+- Ein Inkonsistenzproblem mit den Mindestwerten der Berichtsgrößen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2449)
+- Es wurde ein Fehler bei der Datenbankprüfung behoben, bei dem möglicherweise noch ein Index fehlte [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2655)
+- Ein Fehler im Linkdiagramm wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2659)
+- Entfernung des Servicemitarbeiters im Mobil (nicht mehr verwendet)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2660)
+- Es wurde ein Fehler behoben, der sich auf die Begrenzung der Anzahl der Ereignisse in der Zeitleiste auswirken konnte [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2663)
+- Ein Fehler bei der Anzeige von Tooltips für Designs wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2667)
+- Verbessertes PDO-Trace-Management mit PHP8 [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2661)
+
+# 4.4.6
+
+- Ein Fehler beim Aktualisieren der Widget-Hintergrundgrafiken wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2594)
+- Ein Fehler im Messgerät-Widget wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2582)
+- Möglichkeit, Daten manuell in die Datumsauswahl einzugeben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2593)
+- Ein Fehler beim Ändern von Designs wurde behoben (Funktionen zur Auftragsaktualisierung wurden nicht entfernt) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2588)
+- Bug-Fix [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2592)
+- Die Sortierung nach Datum auf der Aktualisierungsseite wurde korrigiert [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2595)
+- Ein Fehler beim Kopieren eingeschränkter Benutzerrechte wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2612)
+- Ein Fehler bei Tabellen-Widgets mit Stil und Attributen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2609)
+- Es wurde ein Fehler im Docker behoben, der zu einer Beschädigung der Datenbank führen konnte [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2611)
+
+## 4.4.5
+
+- Fehlerbehebungen
+- Aktualisierung der Dokumentation
+- Ein Fehler in PHP8 beim Installieren und/oder Aktualisieren von Plugins wurde behoben
+- Es wurde ein Fehler im Dashboard behoben, durch den sich Geräte in seltenen Fällen von selbst bewegen oder ihre Größe ändern konnten
+
+## 4.4.4
+
+- Beispielcode zur Dokumentation hinzugefügt [Jeedom-Anpassung](https://doc.jeedom.com/de_DE/core/4.4/custom) (Anlaufstelle für diejenigen, die die Personalisierung vorantreiben möchten)
+- Ein Fehler im Datumsauswahlfenster für den Verlaufsvergleich wurde behoben
+- Es wurde ein Fehler im Dashboard behoben, der dazu führte, dass Bewegungsbefehle nicht sofort im Widget angezeigt wurden
+- Verschiedene Fehler (Anzeige und Text) behoben)
+- Es wurde ein Fehler auf der Update-Seite behoben, der anzeigte, dass ein Update ausgeführt wurde, obwohl dies nicht der Fall war
+
+## 4.4.3
+
+- Behebung des 401-Fehlers beim Öffnen eines Designs mit einem Benutzer ohne Administratorrechte
+- Diverse Fehlerbehebungen (insbesondere bei Widgets))
+- Mindestanforderungen für Widget-Schritte werden entfernt
+
+## 4.4.2
+
+- Automatische Verwaltung der internen Zugriffsadresse nach dem Starten, Aktualisieren oder Wiederherstellen von Jeedom *(optionnel)*.
+- Info-/String-Farb-Widget hinzugefügt. [[PR #2422](https://github.com/jeedom/core/pull/2422)]
+
+## 4.4.1
+
+- PHP 8-Unterstützung.
+- Überprüfen Sie die erforderliche Mindestkernversion, bevor Sie ein Plugin installieren oder aktualisieren.
+- Hinzufügen einer Schaltfläche **Hilfe** auf der Plugin-Konfigurationsseite *(Automatische Erstellung einer Hilfeanfrage im Forum)*.
+
 >**WICHTIG**
 >
 >Auch wenn sie auf den ersten Blick nicht unbedingt sichtbar sind, Version 4.4 von Jeedom bringt große Änderungen mit einer völlig neu geschriebenen Benutzeroberfläche für vollständige Kontrolle und vor allem einen unübertroffenen Gewinn an flüssiger Navigation. Auch die Verwaltung der PHP-Abhängigkeiten wurde überarbeitet, um diese automatisch auf dem neuesten Stand halten zu können. Auch wenn das Jeedom-Team und die Betatester viele Tests durchgeführt haben, gibt es so viele Versionen von Jeedom, wie es Jeedom gibt ... Es ist daher nicht möglich, die ordnungsgemäße Funktion in 100 % der Fälle zu garantieren du kannst [Öffnen Sie im Forum ein Thema mit der Bezeichnung „v4_4“](https://community.jeedom.com/) oder wenden Sie sich über Ihr Marktprofil an den Support *(vorausgesetzt, Sie verfügen über ein Service Pack oder höher)*.
 
-## 4.4.1
-
-- PHP8-Unterstützung.
-- Überprüfen Sie die erforderliche Mindestkernversion, bevor Sie ein Plugin installieren oder aktualisieren.
-- Hinzufügen einer Schaltfläche **Hilfe** auf der Plugin-Konfigurationsseite *(Automatische Erstellung einer Hilfeanfrage im Forum)*
-
 ### 4.4 : Voraussetzungen
 
-- Debian 10 Buster
-- PHP7.3
+- Debian 11 „Bullseye" *(Sehr zu empfehlen, Jeedom bleibt in der vorherigen Version funktionsfähig)*
+- PHP 7.4
 
 ### 4.4 : Neuigkeiten / Verbesserungen
 
 - **Historisch** : Verlaufsmodal und Verlaufsseite ermöglichen die Verwendung von Schaltflächen *Woche, Monat, Jahr* um einen größeren Verlauf dynamisch neu zu laden.
-- **Bildauswahlfenster** : Kontextmenü zum Senden von Bildern und Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
+- **Bildauswahlfenster** : Schaltflächen und ein Kontextmenü zum Senden von Bildern und zum Erstellen, Umbenennen oder Löschen eines Ordners hinzugefügt.
 - **Symbolauswahlfenster** : Möglichkeit zum Hinzufügen eines „Pfad“-Parameters beim Aufrufen von „jeedomUtils.chooseIcon` durch ein Plugin, um nur seine Symbole anzuzeigen.
-- **Armaturenbrett** : Möglichkeit, mehrere Objekte nebeneinander anzuzeigen *(Einstellungen → System → Konfiguration / Schnittstelle)*.
+- **Armaturenbrett** : Möglichkeit, Objekte in mehreren Spalten anzuzeigen *(Einstellungen → System → Konfiguration / Schnittstelle)*.
 - **Armaturenbrett** : Das Kachel-Bearbeitungsfenster des Bearbeitungsmodus ermöglicht das Umbenennen von Befehlen.
 - **Armaturenbrett** : Im Tabellenlayout Möglichkeit zum Einfügen von HTML-Attributen *(insbesondere colspan/rowspan)* für jede Zelle.
 - **Ausrüstung** : Möglichkeit, die Widget-Vorlagen von Plugins zu deaktivieren, die sie verwenden, um zur Jeedom-Standardanzeige zurückzukehren *(Gerätekonfigurationsfenster)*.
@@ -28,18 +199,17 @@
 - **Ausrüstung** : Unsichtbar gemachte Geräte verschwinden automatisch vom Dashboard. Die neu angezeigte Ausrüstung erscheint erneut auf dem Dashboard, wenn das übergeordnete Objekt bereits vorhanden ist.
 - **Analyse > Ausrüstung / Ausrüstung in Alarmbereitschaft** : Geräte, die in einen Alarmzustand versetzt werden, werden automatisch angezeigt, und Geräte, die einen Alarmzustand verlassen haben, verschwinden automatisch.
 - **Nachrichtenzentrum** : Kernmeldungen zu Anomalien informieren jetzt über eine Aktion, z. B. einen Link zum Öffnen des anstößigen Szenarios, oder Ausrüstung, Plugin-Konfiguration usw.
-- **Objekt** : Das Löschen oder Erstellen einer Zusammenfassung führt zur Aktualisierung der globalen Zusammenfassung und des Betreffs.
+- **Objekt** : Durch das Löschen oder Erstellen einer Zusammenfassung werden die Gesamtzusammenfassung und der Betreff aktualisiert.
 - **Extras > Ersetzen** : Dieses Tool bietet nun einen Modus *Kopieren*, ermöglicht das Kopieren der Konfigurationen von Geräten und Befehlen, ohne sie in den Szenarien und anderen zu ersetzen.
-- **Zeitleiste** : Die Timeline lädt jetzt die ersten 35 Ereignisse. Die folgenden Ereignisse werden beim Scrollen unten auf der Seite geladen.
+- **Zeitleiste** : Die Timeline lädt jetzt die ersten 35 Ereignisse. Die folgenden Ereignisse werden durch Scrollen am Ende der Seite geladen.
 - **Verwaltung** : Möglichkeit, Aktionen bei Fehler oder Befehlsalarm zu unterscheiden.
 - **Verwaltung** : Möglichkeit, Standardbefehls-Widgets festzulegen.
-- **Armaturenbrett** : Möglichkeit auf der Objektkonfigurationsseite, jeedom zu bitten, die Ausrüstung entsprechend ihrer Verwendung neu zu ordnen.
-- **Thema** : Möglichkeit, das Thema direkt aus der URL auszuwählen (durch Hinzufügen von &theme=Dark oder &theme=Light).
-- **Thema** : Entfernen des Themas **Core2019 Vermächtnis** *(alpha)*.
+- **Armaturenbrett** : Möglichkeit, Geräte entsprechend ihrer Verwendung auf der Objektkonfigurationsseite neu anzuordnen.
+- **Thema** : Möglichkeit, das Thema direkt aus der Adresse auszuwählen *(durch Hinzufügen ``&theme=Dark`` Wo ``&theme=Light``)*.
+- **Thema** : Entfernen des Themas **Core2019 Vermächtnis**.
 - **Bericht** : Möglichkeit, das Thema während eines Berichts auf einer Jeedom-Seite zu wählen.
 - **Jeedom-Menü** : Eine Verzögerung von 0.25s wurde beim Öffnen von Untermenüs eingeführt.
-- **System** : Möglichkeit zum Hinzufügen personalisierter Befehle (siehe Dokumentation))
-
+- **Systemadministration** : Möglichkeit, benutzerdefinierte Shell-Befehle im linken Menü hinzuzufügen *(über eine Datei „/data/systemCustomCmd.json“)*.
 
 ### 4.4 : Autre
 
@@ -53,9 +223,8 @@
 
 > **Armaturenbrett**
 >
-> Auf der **Armaturenbrett** und die **Ansichten**, Kern v4.4 ändert jetzt automatisch die Größe von Kacheln, um ein nahtloses Raster zu erstellen. Die Einheiten (kleinste Höhe und kleinste Breite einer Kachel) dieses Rasters sind in definiert **Einstellungen → System → Konfiguration / Schnittstelle** nach Werten *Vertikaler Abstand (mindestens 100)* und *Horizontaler Abstand (mindestens 110)*. Der Wert *Rand* Definieren des Raums zwischen den Kacheln.
+> Auf der **Armaturenbrett** und die **Ansichten**, Kern v4.4 ändert jetzt automatisch die Größe von Kacheln, um ein nahtloses Raster zu erstellen. Die Einheiten (kleinste Höhe und kleinste Breite einer Kachel) dieses Rasters werden in definiert **Einstellungen → System → Konfiguration / Schnittstelle** nach Werten *Pas:Höhe (mindestens 60 Pixel))* und *Pas:Breite (mindestens 80 Pixel)*. Der Wert *Rand* Definieren des Raums zwischen den Kacheln.
 > Die Fliesen passen sich den Abmessungen des Rasters an und können einmal, zweimal usw. diese Werte in Höhe oder Breite. Es wird sicherlich notwendig sein, zu bestehen [Dashboard-Bearbeitungsmodus](https://doc.jeedom.com/de_DE/core/4.4/dashboard#Mode%20%C3%A9dition) um die Größe einiger Kacheln nach dem Update zu optimieren.
-
 
 > **Widgets**
 >
@@ -65,7 +234,6 @@
 > **Dialogboxen**
 >
 > Alle Dialogboxen (Bootstrap, Bootbox, jQuery UI) wurden auf eine eigens entwickelte interne Core lib (jeeDialog) migriert. In der Größe anpassbare Dialoge haben jetzt eine Schaltfläche zum Wechseln *ganzer Bildschirm*.
-
 
 # Änderungsprotokoll Jeedom V4.3
 
@@ -118,7 +286,6 @@
 - Verbesserte Ask-Sicherheit bei Verwendung der generateAskResponseLink-Funktion durch Plugins : Verwendung eines eindeutigen Tokens (kein Senden des Kern-API-Schlüssels mehr) und Sperren der Antwort nur unter den möglichen Optionen.
 - Es wurde ein Fehler behoben, der die Installation von jeedom verhinderte.
 - Fehler in influxdb behoben.
-
 
 ## 4.3.7
 
@@ -335,9 +502,9 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Szenario** : Bugfix kopieren / einfügen und rückgängig machen / wiederholen (vollständiges Umschreiben)).
 - **Szenario** : Berechnungsfunktionen hinzufügen ``averageTemporal(commande,période)`` & ``averageTemporalBetween(commande,start,end)`` Damit kann der nach der Duration über den Zeitraum gewichtete Durchschnitt ermittelt werden.
 - **Szenario** : Unterstützung für generische Typen in Szenarien hinzugefügt.
-	- Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
-	- WENN ``genericType(LIGHT_STATE,#[Salon]#) > 0``
-	- Aktie ``genericType``
+  - Abzug : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
+  - WENN ``genericType(LIGHT_STATE,#[Salon]#) > 0``
+  - Aktie ``genericType``
 - **Objekte** : Plugins können jetzt bestimmte objektspezifische Parameter anfordern.
 - **Benutzer** : Plugins können jetzt bestimmte benutzerspezifische Parameter anfordern.
 - **Benutzer** : Möglichkeit zum Verwalten der Profile verschiedener Jeedom-Benutzer auf der Benutzerverwaltungsseite.
@@ -353,7 +520,7 @@ Blogeintrag [hier](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **Aufbau** : OSDB-Einstellungen: Hinzufügen eines dynamischen SQL-Abfragekonstruktors.
 - **Aufbau**: Möglichkeit zum Deaktivieren der Cloud-Überwachung (Administration / Updates / Market).
 - **jeeCLI** : Zugabe von ``jeeCli.php`` im core / php-Ordner von Jeedom, um einige Kommandozeilenfunktionen zu verwalten.
-- *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils {}, jeedomUI {}, Hauptmenü in reinem CSS umgeschrieben, Entfernung von initRowWorflow(), Vereinfachung des Codes, CSS-Fixes für kleine Bildschirme usw.*
+- *Große Verbesserungen der Benutzeroberfläche in Bezug auf Leistung / Reaktionsfähigkeit. jeedomUtils{}, jeedomUI{}, Hauptmenü in reinem CSS neu geschrieben, Entfernung von initRowWorflow(), Code-Vereinfachung, CSS-Korrekturen für kleine Bildschirme usw.*
 
 ### 4.2 : Kern-Widgets
 
@@ -393,7 +560,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 ## 4.1.27
 
-- Korrektur einer Sicherheitsverletzung danke @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (www.synacktiv.com)
+- Behebung einer Sicherheitslücke dank @Maxime Rinaudo und @Antoine Cervoise von Synacktiv (>)
 
 ## 4.1.26
 
@@ -513,15 +680,16 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - **Ausrüstung** : Möglichkeit, einer Kachel Klassen-CSS hinzuzufügen (siehe Widget-Dokumentation).
 - **Über Fenster** : Hinzufügen von Verknüpfungen zu Changelog und FAQ.
 - Widgets / Objekte / Szenarien / Interaktionen / Plugins Seiten :
-	- Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
-	- Ctrl Clic / Clic Center ist auch in den Kontextmenüs (auf den Registerkarten) verfügbar).
+  - Strg Clic / Clic Center auf einem Widget, Objekt, Szenarien, Interaktion, Plugin-Ausrüstung : Wird in einem neuen Tab geöffnet.
+  - Ctrl Clic / Clic Center ist auch in den Kontextmenüs (auf den Registerkarten) verfügbar).
 - Neue ModalDisplay-Seite :
-	- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
-	- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Bewertungen*, *Expressionstester*, *Variablen*, *Forschung* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+  - Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
+  - Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Bewertungen*, *Expressionstester*, *Variablen*, *Forschung* : Öffnen Sie das Fenster in einer neuen Registerkarte im Vollbildmodus.
 - Codeblock, Datei-Editor, Erweiterte Anpassung : Dunkle Themenanpassung.
 - Verbessertes Bildauswahlfenster.
 
 ### 4.1 : WebApp
+
 - Integration der neuen Übersichtsseite.
 - Auf der Seite &quot;Szenarien&quot; wird durch Klicken auf den Szenariotitel das Protokoll angezeigt.
 - Wir können jetzt einen Teil eines Protokolls auswählen / kopieren.
@@ -533,6 +701,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Viele Fehlerbehebungen (Benutzeroberfläche, Hoch- / Querformat iOS usw.).).
 
 ### 4.1 : Autres
+
 - **Dokumentation** : Anpassungen gemäß v4 und v4.1.
 - **Dokumentation** : Neue Seite *Tastatur- / Mausverknüpfungen* einschließlich einer Zusammenfassung aller Verknüpfungen in Jeedom. Zugriff über das Dashboard-Dokument oder die FAQ.
 - **Lib** : Aktualisieren Sie HighStock v7.1.2 bis v8.2.0.
@@ -545,10 +714,10 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 - Zahlreiche Leistungsoptimierungen für Desktop / Mobile.
 
 ### 4.1 : Changements
-- Die Funktion **Szenario-> getHumanName()** der PHP-Szenario-Klasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* aber *[Gruppe] [Objekt] [Name]*.
+
+- Die Funktion **Szenario-> getHumanName()** der PHP-Szenarioklasse wird nicht mehr zurückgegeben *[Objekt] [Gruppe] [Name]* aber *[Gruppe] [Objekt] [Name]*.
 - Die Funktion **Szenario-> byString()** muss nun mit der Struktur aufgerufen werden *[Gruppe] [Objekt] [Name]*.
 - Funktionen **network-> getInterfaceIp () network-> getInterfaceMac () network-> getInterfaces()** wurden ersetzt durch **network-> getInterfacesInfo()**
-
 
 # Änderungsprotokoll Jeedom V4.0
 
@@ -556,7 +725,6 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 - Neue Buster + Kernel-Migration für Smart und Pro v2
 - Überprüfung der Betriebssystemversion bei wichtigen Jeedom-Updates
-
 
 ## 4.0.61
 
@@ -568,7 +736,7 @@ Die Plugins müssen die Empfehlungen zur Baumstruktur von Ordnern und Dateien re
 
 ## 4.0.60
 
-- Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die permanente http2-Flows verbieten
+- Entfernung des neuen DNS-Systems in eu.jeedom.Link folgt zu vielen Betreibern, die dauerhafte http2-Flows verbieten
 
 ## 4.0.59
 

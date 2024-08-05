@@ -22,7 +22,7 @@ $result = array();
 $result['core'] = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../install/packages.json'), true));
 foreach ((plugin::listPlugin(true, false, false, true)) as $plugin) {
   if (file_exists(__DIR__ . '/../../plugins/' . $plugin . '/plugin_info/packages.json')) {
-    $result[$plugin] = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin . '/plugin_info/packages.json'), true));
+    $result[$plugin] = system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin . '/plugin_info/packages.json'), true), false, false, $plugin);
   }
 }
 $datas = array();
@@ -32,6 +32,9 @@ foreach ($result as $key => $packages) {
     if (!isset($datas[$package])) {
       $datas[$package] = $info;
       $datas[$package]['needBy'] = array($key);
+      if ($info['needUpdate']) {
+        $canFix = true;
+      }
     } else {
       if (isset($datas[$package]['level']) && $info['level'] < $datas[$package]['level']) {
         $datas[$package]['level'] = $info['level'];
@@ -43,8 +46,8 @@ foreach ($result as $key => $packages) {
       if ($info['remark'] != '') {
         $datas[$package]['remark'] .= '. ' . $info['remark'];
       }
-      if($info['needUpdate']){
-      	$canFix = true; 
+      if ($info['needUpdate']) {
+        $canFix = true;
       }
       $datas[$package]['needBy'][] = $key;
     }
@@ -60,7 +63,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
   <div class="input-group pull-right" style="display:inline-flex">
     <span class="input-group-btn">
       <a id="bt_refreshPackage" class="btn btn-sm btn-default roundedLeft"><i class="fas fa-sync"></i> {{Rafraichir}}</a>
-      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight'. (!$canFix ? ' disabled' : '').'" data-package="all"><i class="fas fa-screwdriver"></i> {{Corriger tout}}</a>'; ?>
+      <?php echo '<a class="btn btn-sm btn-warning bt_correctPackage roundedRight' . (!$canFix ? ' disabled' : '') . '" data-package="all"><i class="fas fa-screwdriver"></i> {{Installer tous les packages du core}}</a>'; ?>
     </span>
   </div>
   <br /><br />
@@ -134,7 +137,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
         $_echo .= '</td>';
         $_echo .= '<td>';
         if (!$info['status']) {
-          $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="' . $package . '"><i class="fas fa-wrench"></i> {{Corriger}}</a>';
+          $_echo .= '<a class="btn btn-xs btn-warning bt_correctPackage" data-package="' . $package . '" data-description="' . $info['name'] . ' (' . $package . ') "><i class="fas fa-wrench"></i> {{Corriger}}</a>';
         }
         $_echo .= '</td>';
         $_echo .= '</tr>';
@@ -146,46 +149,50 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
 </div>
 
 <script>
-  document.querySelector('#md_packageCheck #bt_refreshPackage').addEventListener('click', function(event) {
-    jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Vérification des packages}}",
-      contentUrl: 'index.php?v=d&modal=package.check'
-    })
-  })
-
-  document.querySelector('#md_packageCheck .bt_correctPackage').addEventListener('click', function(event) {
-    var el = event.target.closest('.bt_correctPackage')
-    if (el.dataset.package == 'all') {
-      var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
-    } else {
-      var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + el.dataset.package + ' ?'
+  document.getElementById('md_packageCheck').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('#bt_refreshPackage')) {
+      jeeDialog.dialog({
+        id: 'jee_modal',
+        title: "{{Vérification des packages}}",
+        contentUrl: 'index.php?v=d&modal=package.check'
+      })
+      return
     }
-    jeeDialog.confirm(text, function(result) {
-      if (result) {
-        jeedom.systemCorrectPackage({
-          package: el.dataset.package,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function() {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
-              message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
-              level: 'success'
-            })
-            jeeDialog.dialog({
-              id: 'jee_modal2',
-              title: "{{Vérification des packages}}",
-              contentUrl: 'index.php?v=d&modal=log.display&log=packages'
-            })
-          }
-        })
+
+    if (_target = event.target.closest('#md_packageCheck .bt_correctPackage')) {
+      if (_target.dataset.package == 'all') {
+        var text = '{{Êtes-vous sûr de vouloir installer tous les packages non optionnels ?}}'
+      } else {
+        var text = '{{Êtes-vous sûr de vouloir installer le package}} ' + _target.dataset.description + ' ?'
       }
-    })
+      jeeDialog.confirm(text, function(result) {
+        if (result) {
+          jeedom.systemCorrectPackage({
+            package: _target.dataset.package,
+            error: function(error) {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function() {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_packageCheck', 'dialog'),
+                message: '{{Installation lancée cela peut prendre plusieurs dizaines de minutes.}}',
+                level: 'success'
+              })
+              jeeDialog.dialog({
+                id: 'jee_modal2',
+                title: "{{Vérification des packages}}",
+                contentUrl: 'index.php?v=d&modal=log.display&log=packages'
+              })
+            }
+          })
+        }
+      })
+      return
+    }
   })
 </script>

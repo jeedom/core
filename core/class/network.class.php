@@ -267,15 +267,15 @@ class network {
 		}
 		$data = curl_exec($ch);
 		if (curl_errno($ch)) {
-			usleep(rand(1000, 100000));
+			usleep(rand(1000, 10000));
 			$data = curl_exec($ch);
 			if (curl_errno($ch)) {
-				log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_errno($ch));
+				log::add('network', 'debug', 'Erreur sur ' . $url . ' => ' . curl_error($ch));
 				curl_close($ch);
 				return false;
 			}
 		}
-		curl_close($ch);
+		unset($ch);
 		if (trim($data) != 'ok') {
 			log::add('network', 'debug', 'Retour NOK sur ' . $url . ' => ' . $data);
 			return false;

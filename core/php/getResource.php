@@ -42,7 +42,7 @@ if (file_exists($file)) {
 	header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $lastModified) . ' GMT');
 	header('Etag: ' . $etagFile);
 	header('Cache-Control: public');
-	if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $lastModified || $etagHeader == $etagFile) {
+	if (($ifModifiedSince !== false && $ifModifiedSince == $lastModified) || $etagHeader == $etagFile) {
 		header('HTTP/1.1 304 Not Modified');
 		exit;
 	}

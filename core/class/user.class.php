@@ -275,10 +275,14 @@ class user {
 	}
 
 	public static function failedLogin(): void {
-		@session_start();
-		$_SESSION['failed_count'] = (isset($_SESSION['failed_count'])) ? $_SESSION['failed_count'] + 1 : 1;
-		$_SESSION['failed_datetime'] = strtotime('now');
-		@session_write_close();
+		$current_ip = getClientIp();
+		$failed_login = cache::byKey('security::failed_login::'.$current_ip);
+		cache::set('security::failed_login::'.$current_ip,($failed_login->getValue(0)+1), config::byKey('security::timeLoginFailed'));
+		if(($failed_login->getValue(0)+1) > config::byKey('security::maxFailedLogin')){
+		    $ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+			$ban_ips[$current_ip] = strtotime('now');
+			cache::set('security::banip', json_encode($ban_ips));
+		}
 	}
 
 	public static function removeBanIp(): void {
@@ -287,65 +291,37 @@ class user {
 	}
 
 	public static function isBan(): bool {
-		$ip = getClientIp();
-		if ($ip == '') {
+		$current_ip = getClientIp();
+		if ($current_ip == '') {
 			return false;
 		}
 		$whiteIps = explode(';', config::byKey('security::whiteips'));
-		if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
+		if (is_array($whiteIps) && count($whiteIps) > 0) {
 			foreach ($whiteIps as $whiteip) {
-				if (netMatch($whiteip, $ip)) {
+				if (netMatch($whiteip, $current_ip)) {
 					return false;
 				}
 			}
 		}
-		$cache = cache::byKey('security::banip');
-		$values = json_decode($cache->getValue('[]'), true);
-		if (!is_array($values)) {
-			$values = array();
-		}
-		$values_tmp = array();
-		if (count($values) > 0) {
-			foreach ($values as $value) {
-				if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
-					continue;
-				}
-				$values_tmp[] = $value;
-			}
-		}
-		$values = $values_tmp;
-		if (isset($_SESSION['failed_count']) && $_SESSION['failed_count'] >= config::byKey('security::maxFailedLogin') && (strtotime('now') - config::byKey('security::timeLoginFailed')) < $_SESSION['failed_datetime']) {
-			$values_tmp = array();
-			foreach ($values as $value) {
-				if ($value['ip'] == $ip) {
-					continue;
-				}
-				$values_tmp[] = $value;
-			}
-			$values = $values_tmp;
-			$values[] = array('datetime' => strtotime('now'), 'ip' => getClientIp());
-			@session_start();
-			$_SESSION['failed_count'] = 0;
-			$_SESSION['failed_datetime'] = -1;
-			@session_write_close();
-		}
-		cache::set('security::banip', json_encode($values));
-		if (!is_array($values)) {
-			$values = array();
-		}
-		if (count($values) == 0) {
+		$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+		if (!is_array($ban_ips) || count($ban_ips) == 0) {
 			return false;
 		}
-		foreach ($values as $value) {
-			if ($value['ip'] != $ip) {
-				continue;
+		$is_ban = false;
+		if (count($ban_ips) > 0 && config::byKey('security::bantime') >= 0) {
+			foreach ($ban_ips as $ip => $datetime) {
+				if ($datetime + config::byKey('security::bantime') > strtotime('now')) {
+					if ($ip == $current_ip) {
+						$is_ban = true;
+						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => $datetime]);
+					}
+					continue;
+				}
+				unset($ban_ips[$ip]);
 			}
-			if (config::byKey('security::bantime') >= 0 && $value['datetime'] + config::byKey('security::bantime') < strtotime('now')) {
-				continue;
-			}
-			return true;
+			cache::set('security::banip', json_encode($ban_ips));
 		}
-		return false;
+		return $is_ban;
 	}
 
 	public static function getAccessKeyForReport(): string {

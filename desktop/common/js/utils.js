@@ -21,9 +21,9 @@ var jeedomUtils = {
   backgroundIMG: null,
   _elBackground: null
 }
-jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 80 ? parseInt(jeedom.theme['widget::step::width']) : 80) + parseInt(jeedom.theme['widget::margin']) // with margin
-jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 60 ? parseInt(jeedom.theme['widget::step::height']) : 60) + parseInt(jeedom.theme['widget::margin']) // with margin
-jeedomUtils.tileHeightSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
+jeedomUtils.tileWidthStep = (parseInt(jeedom.theme['widget::step::width']) > 1 ? parseInt(jeedom.theme['widget::step::width']) : 1) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightStep = (parseInt(jeedom.theme['widget::step::height']) > 1 ? parseInt(jeedom.theme['widget::step::height']) : 1) + parseInt(jeedom.theme['widget::margin']) // with margin
+jeedomUtils.tileHeightSteps = Array.apply(null, { length: 500 }).map(function(value, index) { return (index + 1) * jeedomUtils.tileHeightStep })
 
 
 /*Hijack jQuery ready function, still used in plugins
@@ -431,7 +431,7 @@ jeedomUtils.setJeedomTheme = function() {
     }
     setCookie('currentTheme', themeCook, 30)
     cssTag.setAttribute('href', theme)
-    document.getElementById('bt_switchTheme').innerHTML = themeButton
+    if (document.getElementById('bt_switchTheme') != null) document.getElementById('bt_switchTheme').innerHTML = themeButton
     if (document.getElementById('shadows_theme_css') != null) document.getElementById('shadows_theme_css').href = themeShadows
     jeedomUtils.triggerThemechange()
     let backgroundImgPath = jeedomUtils._elBackground.querySelector('#bottom').style.backgroundImage
@@ -515,7 +515,7 @@ jeedomUtils.triggerThemechange = function() {
   }
 
   //trigger event for widgets:
-  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets'].includes(document.body.getAttribute('data-page'))) {
+  if (document.body.hasAttribute('data-page') && ['dashboard', 'view', 'plan', 'widgets', 'panel'].includes(document.body.getAttribute('data-page'))) {
     if (currentTheme.endsWith('Dark')) {
       document.body.triggerEvent('changeThemeEvent', { detail: { theme: 'Dark' } })
     } else {
@@ -1038,6 +1038,7 @@ jeedomUtils.TOOLTIPSOPTIONS = {
   allowHTML: true,
   distance: 10,
   delay: [50, 0],
+  touch: ['hold', 200],
   //trigger: 'click',
   //hideOnClick: false
 }
@@ -1101,7 +1102,7 @@ jeedomUtils.initReportMode = function() {
 
 jeedomUtils.initTableSorter = function(filter) {
   if (typeof jQuery !== 'function') return
-  // if (typeof $.tablesorter !== 'function') return
+  if (typeof $.tablesorter !== 'object') return
   var widgets = ['uitheme', 'resizable']
   if (!filter) {
     filter = true
@@ -1132,23 +1133,90 @@ jeedomUtils.initTableSorter = function(filter) {
   }).css('width', '')
 }
 
-jeedomUtils.initDataTables = function(_selector, _paging, _searching) {
+jeedomUtils.initDataTables = function(_selector, _paging, _searching,_init) {
   if (!isset(_selector)) _selector = 'body'
   if (!_paging) _paging = false
   if (!_searching) _searching = false
   document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
     if (_table._dataTable) {
       _table._dataTable.destroy()
-    }
+    } 
     new DataTable(_table, {
-      columns: [
-        { select: 0, sort: "asc" }
-      ],
+      columns: _init || [{ select: 0, sort: "asc" }],
       paging: _paging,
       searchable: _searching,
     })
   })
 }
+
+jeedomUtils.resizableTable = function(table) {
+  var row = table.getElementsByTagName('tr')[0],
+  cols = row ? row.children : undefined;
+  if (!cols) return;
+  table.style.overflow = 'hidden';
+  var tableHeight = table.offsetHeight;
+  for (var i=0;i<cols.length;i++){
+   var div = createDiv(tableHeight);
+   cols[i].appendChild(div);
+   cols[i].style.position = 'relative';
+   setListeners(div);
+  }
+  function setListeners(div){
+   var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
+   div.addEventListener('mousedown', function (e) {
+    curCol = e.target.parentElement;
+    nxtCol = curCol.nextElementSibling;
+    pageX = e.pageX; 
+    var padding = paddingDiff(curCol);
+    curColWidth = curCol.offsetWidth - padding;
+    if (nxtCol)
+     nxtColWidth = nxtCol.offsetWidth - padding;
+   });
+   div.addEventListener('mouseover', function (e) {
+    e.target.style.borderRight = '2px solid var(--logo-primary-color)';
+   })
+   div.addEventListener('mouseout', function (e) {
+    e.target.style.borderRight = '';
+   })
+   document.addEventListener('mousemove', function (e) {
+    if (curCol) {
+     var diffX = e.pageX - pageX;
+     if (nxtCol)
+      nxtCol.style.width = (nxtColWidth - (diffX))+'px';
+     curCol.style.width = (curColWidth + diffX)+'px';
+    }
+   });
+   document.addEventListener('mouseup', function (e) { 
+    curCol = undefined;
+    nxtCol = undefined;
+    pageX = undefined;
+    nxtColWidth = undefined;
+    curColWidth = undefined
+   });
+  }
+  function createDiv(height){
+   var div = document.createElement('div');
+   div.style.top = 0;
+   div.style.right = 0;
+   div.style.width = '5px';
+   div.style.position = 'absolute';
+   div.style.cursor = 'col-resize';
+   div.style.userSelect = 'none';
+   div.style.height = height + 'px';
+   return div;
+  }
+  function paddingDiff(col){
+   if (getStyleVal(col,'box-sizing') == 'border-box'){
+    return 0;
+   }
+   var padLeft = getStyleVal(col,'padding-left');
+   var padRight = getStyleVal(col,'padding-right');
+   return (parseInt(padLeft) + parseInt(padRight));
+  }
+  function getStyleVal(elm,css){
+   return (window.getComputedStyle(elm, null).getPropertyValue(css))
+  }
+};
 
 
 jeedomUtils.initHelp = function() {
@@ -1180,6 +1248,7 @@ jeedomUtils.datePickerInit = function(_format, _selector) {
       enableTime: _enableTime,
       dateFormat: _format,
       time_24hr: true,
+      allowInput: true,
     })
   })
 }
@@ -1478,7 +1547,7 @@ jeedomUtils.positionEqLogic = function(_id, _preResize, _scenario) {
   var cols = Math.floor(containerWidth / jeedomUtils.tileWidthStep)
   var tileWidthAdd = containerWidth - (cols * jeedomUtils.tileWidthStep)
   var widthStep = jeedomUtils.tileWidthStep + (tileWidthAdd / cols)
-  var widthSteps = Array.apply(null, { length: 50 }).map(function(value, index) { return (index + 1) * widthStep })
+  var widthSteps = Array.apply(null, { length: 500 }).map(function(value, index) { return (index + 1) * widthStep })
 
   if (_id != undefined) {
     var tile = (_scenario) ? document.querySelector('.scenario-widget[data-scenario_id="' + _id + '"]') : document.querySelector('.eqLogic-widget[data-eqlogic_id="' + _id + '"]')
@@ -1616,6 +1685,10 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
             var icon = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel').innerHTML
             if (icon == undefined) {
               icon = ''
+            }
+            if(icon.indexOf('<img') === 0){
+              let height = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel img').naturalHeight
+              icon = icon.replace(/\<img/g, "<img style=\"height:"+height+"px\" ")
             }
             icon = icon.replace(/"/g, "'")
             _callback(icon)
@@ -1761,6 +1834,16 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
   })
 }
 
+jeedomUtils.readableFileSize = function(size) {
+  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  let i = 0;
+  while (size >= 1024 && i < units.length - 1) {
+      size /= 1024;
+      ++i;
+  }
+  return size.toFixed(1) + ' ' + units[i];
+}
+
 //Need jQuery and jQuery UI plugin loaded:
 if (typeof jQuery === 'function') {
   jQuery.fn.setCursorPosition = function(position) {
@@ -1794,7 +1877,7 @@ if (typeof jQuery === 'function') {
  * @param {string} _line
  */
 jeedomUtils.deprecatedFunc = function(_oldFnName, _newFnName, _since, _to, _line) {
-  if (jeeFrontEnd.coreBranch == 'V4-stable') return
+  if (jeeFrontEnd.coreBranch == 'master') return
   var msg = `!WARNING! Deprecated function ${_oldFnName} since Core v${_since}: Use new Core v${_to} ${_newFnName}() function.`
 
   if (document.body.getAttribute('data-type') == 'plugin') {

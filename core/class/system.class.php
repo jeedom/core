@@ -54,7 +54,7 @@ class system {
 			return 'custom';
 		}
 		if (self::$_distrib === null) {
-			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 '));
+			self::$_distrib = trim(shell_exec('grep CPE_NAME /etc/os-release | cut -d \'"\' -f 2 | cut -d : -f 3 ') ?? '');
 			if (self::$_distrib == '') {
 				self::$_distrib = trim(shell_exec('grep -e "^ID" /etc/os-release | cut -d \'=\' -f 2'));
 			}
@@ -94,6 +94,8 @@ class system {
 	}
 
 	public static function fuserk($_port, $_protocol = 'tcp'): void {
+		if (!is_string($_port)) return;
+
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
@@ -218,13 +220,17 @@ class system {
 				}
 				break;
 			case 'pip3':
+				if (version_compare(self::getOsVersion(), '12', '>=')) {
+					return array();
+				}
 				$ignore_package = array('dbus-python', 'gpg', 'pycairo', 'pycurl', 'PyGObject');
-				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip3 list --outdated --format=json 2>/dev/null'), true);
+				$ignore_arg = '';
+				foreach ($ignore_package as $package) {
+					$ignore_arg .= " --exclude {$package}";
+				}
+				$datas = json_decode(shell_exec(system::getCmdSudo() . " pip3 list {$ignore_arg} --outdated --format=json 2>/dev/null"), true);
 				if (count($datas) > 0) {
 					foreach ($datas as $value) {
-						if (in_array($value['name'], $ignore_package)) {
-							continue;
-						}
 						$return[$_type][$value['name']] = array(
 							'name' => $value['name'],
 							'type' => 'pip3',
@@ -267,6 +273,9 @@ class system {
 				}
 				break;
 			case 'pip3':
+				if (version_compare(self::getOsVersion(), '12', '>=')) {
+					return;
+				}
 				if ($_package == null) {
 					$packages = self::getUpgradablePackage($_type);
 					if (count($packages) == '') {
@@ -304,11 +313,40 @@ class system {
 		self::launchScriptPackage();
 	}
 
-	public static function getInstallPackage($_type) {
-		if (isset(self::$_installPackage[$_type])) {
-			return self::$_installPackage[$_type];
+	private static function getPython3VenvDir($_plugin) {
+		if ($_plugin == '') return '';
+		return __DIR__ . "/../../plugins/{$_plugin}/resources/python_venv";
+	}
+
+	public static function getCmdPython3($_plugin) {
+		if ($_plugin == '') return 'python3 ';
+
+		if (version_compare(self::getOsVersion(), '12', '<')) {
+			return 'python3 ';
+		} else {
+			return self::getPython3VenvDir($_plugin) . '/bin/python3 ';
 		}
-		self::$_installPackage[$_type] = array();
+	}
+
+	private static function splitpackageByPlugin($_type, $_plugin = '') {
+		if (version_compare(self::getOsVersion(), '12', '>=') && in_array($_type, ['pip3']) && $_plugin != '') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static function getInstallPackage($_type, $_plugin) {
+		if (self::splitpackageByPlugin($_type, $_plugin)) {
+			$type_key = $_type . '::' . $_plugin;
+		} else {
+			$type_key = $_type;
+		}
+
+		if (isset(self::$_installPackage[$type_key])) {
+			return self::$_installPackage[$type_key];
+		}
+		self::$_installPackage[$type_key] = array();
 		switch ($_type) {
 			case 'apt':
 				$lines = explode("\n", shell_exec('dpkg -l | grep "^ii"'));
@@ -320,32 +358,36 @@ class system {
 					if (strpos($infos[1], ':') !== false) {
 						$infos[1] = explode(':', $infos[1])[0];
 					}
-					self::$_installPackage[$_type][mb_strtolower($infos[1])] = array(
+					self::$_installPackage[$type_key][mb_strtolower($infos[1])] = array(
 						'version' => $infos[2]
 					);
 				}
 				$npm = shell_exec('npm -v 2>/dev/null');
 				if ($npm != '') {
-					self::$_installPackage[$_type]['npm'] = array(
+					self::$_installPackage[$type_key]['npm'] = array(
 						'version' => $npm
 					);
 				}
 				break;
 			case 'pip2':
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
-					return self::$_installPackage[$_type];
+					return self::$_installPackage[$type_key];
 				}
-				$datas = json_decode(shell_exec('pip2 list --format=json 2>/dev/null'), true);
+				$datas = json_decode(shell_exec(self::getCmdSudo() . ' pip2 list --format=json 2>/dev/null'), true);
 				foreach ($datas as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
 					);
 				}
 				break;
 			case 'pip3':
-				$datas = json_decode(shell_exec('pip3 list --format=json 2>/dev/null'), true);
+				// exclude gpg because python3-gpg is on version '1.14.0-unknown' on debian 11 and pip>24.1 raise error with non-standard version format
+				$datas = json_decode(shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip list --exclude gpg --format=json 2>/dev/null'), true);
+				if (!is_array($datas)) {
+					break;
+				}
 				foreach ($datas as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array(
+					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array(
 						'version' => $value['version']
 					);
 				}
@@ -353,18 +395,18 @@ class system {
 			case 'npm':
 				$datas = json_decode(shell_exec(self::getCmdSudo() . ' npm -g ls -json -depth 1 2>/dev/null'), true);
 				if (isset($datas['dependencies']['yarn'])) {
-					self::$_installPackage[$_type]['yarn'] = array(
+					self::$_installPackage[$type_key]['yarn'] = array(
 						'version' => $datas['dependencies']['yarn']['version']
 					);
 				}
 				if (isset($datas['dependencies']) && is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
 					foreach ($datas['dependencies'] as $key => $value) {
-						self::$_installPackage[$_type][mb_strtolower($key)] = array(
+						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 							'version' => $value['version']
 						);
 						if (isset($value['dependencies'])) {
 							foreach ($value['dependencies'] as $key2 => $value2) {
-								self::$_installPackage[$_type][mb_strtolower($key2)] = array(
+								self::$_installPackage[$type_key][mb_strtolower($key2)] = array(
 									'version' => $value2['version']
 								);
 							}
@@ -375,25 +417,25 @@ class system {
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
 				foreach ($datas['dependencies'] as $key => $value) {
-					self::$_installPackage[$_type][mb_strtolower($key)] = array(
+					self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 						'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
 					);
 				}
 				break;
-		        case 'composer':
-				$datas = shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null');
+			case 'composer':
+				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
 				foreach ($datas['installed'] as $value) {
-					self::$_installPackage[$_type][mb_strtolower($value['name'])] = array('version' => $value['version']);
+					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 				}
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
 				foreach ($updates as $update) {
-					self::$_installPackage[$_type][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+					self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
 				}
 				break;
 		}
-		return self::$_installPackage[$_type];
+		return self::$_installPackage[$type_key];
 	}
 
 	public static function os_incompatible($_type, $_package, $_info): bool {
@@ -414,13 +456,13 @@ class system {
 		return false;
 	}
 
-	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '',$_force = false) {
+	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '', $_force = false) {
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			if ($type == 'post-install' || $type == 'pre-install') {
 				continue;
 			}
-			$installPackage = self::getInstallPackage($type);
+			$installPackage = self::getInstallPackage($type, $_plugin);
 
 			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
@@ -429,11 +471,11 @@ class system {
 					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
 						if ($type == 'npm') {
-							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules')) {
-							        exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var); 
+							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules') && isset(scandir(__DIR__ . '/../../' . $package . '/node_modules', SCANDIR_SORT_NONE)[2])) {
+								exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var);
 								if ($return_var == 0) {
-								   $found = 1;
-							        }
+									$found = 1;
+								}
 							}
 						} else {
 							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' yarn check', $output, $return_var);
@@ -462,8 +504,8 @@ class system {
 				if ($type == 'composer' && strpos($package, '/') !== false) {
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
-						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l'); 
-	                          		if ($output == 0) {
+						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l');
+						if ($output == 0) {
 							$found = 1;
 						}
 					} else {
@@ -524,7 +566,7 @@ class system {
 					$found = 0;
 					$needUpdate = true;
 				}
-				$return[$type . '::' . $package] = array(
+				$return[$type . '::' . $package . '::' . (self::splitpackageByPlugin($type, $_plugin) ? $_plugin : '') . '::' . (isset($info['version']) ? $info['version'] : '')] = array(
 					'name' => $package,
 					'status' => $found,
 					'version' => $version,
@@ -534,7 +576,7 @@ class system {
 					'alternative_found' => $alternative_found,
 					'optional' => isset($info['optional']) ? $info['optional'] : false,
 					'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
-					'fix' => ($found == 0) ?  self::installPackage($type, $package) : '',
+					'fix' => ($found == 0) ? self::installPackage($type, $package, isset($info['version']) ? $info['version'] : '', $_plugin) : '',
 					'remark' => isset($info['remark']) ? __($info['remark'], 'install/packages.json') : '',
 				);
 			}
@@ -621,11 +663,19 @@ class system {
 								$count++;
 								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 							}
-						}else{
+						} else {
 							if ($_foreground) {
-								echo shell_exec(self::getCmdSudo() . ' apt update;'.self::getCmdSudo() .' apt install -y pipx');
-							}else{
-								$cmd .= self::getCmdSudo() . " apt update;\n".self::getCmdSudo() ." apt install -y pipx\n";
+								echo shell_exec(self::getCmdSudo() . ' apt update;' . self::getCmdSudo() . ' apt-get install -y python3 python3-pip python3-dev python3-venv');
+								echo shell_exec(self::getCmdSudo() . ' python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin));
+								echo shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --upgrade pip wheel');
+							} else {
+								$cmd .= self::getCmdSudo() . " apt update;\n" . self::getCmdSudo() . " apt-get install -y python3 python3-pip python3-dev python3-venv\n";
+								$count++;
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= self::getCmdSudo() . 'python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin) . "\n";
+								$count++;
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= self::getCmdSudo() . self::getCmdPython3($_plugin) . " -m pip install --upgrade pip wheel\n";
 								$count++;
 								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 							}
@@ -647,7 +697,7 @@ class system {
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
-				    case 'composer':
+					case 'composer':
 						if ($_foreground) {
 							echo shell_exec(self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_composer.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_composer.sh');
 						} else {
@@ -658,9 +708,9 @@ class system {
 				}
 			}
 			if ($_foreground) {
-				echo shell_exec(self::installPackage($info['type'], $info['name'], $info['needVersion']) . ' 2>&1');
+				echo shell_exec(self::installPackage($info['type'], $info['name'], $info['needVersion'], $_plugin) . ' 2>&1');
 			} else {
-				$cmd .= self::installPackage($info['type'], $info['name'], $info['needVersion']) . "\n";
+				$cmd .= self::installPackage($info['type'], $info['name'], $info['needVersion'], $_plugin) . "\n";
 				$count++;
 				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 			}
@@ -690,8 +740,8 @@ class system {
 		}
 		if ($_plugin != '') {
 			if ($_foreground) {
-				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin .' 2>&1');
-			}else{
+				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . ' 2>&1');
+			} else {
 				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
 				$count++;
 				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
@@ -706,7 +756,7 @@ class system {
 			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
 		}
 		file_put_contents('/tmp/jeedom_fix_package', $cmd);
-		self::launchScriptPackage($_plugin,$_force);
+		self::launchScriptPackage($_plugin, $_force);
 	}
 
 	public static function installPackageInProgress($_plugin = ''): bool {
@@ -729,13 +779,13 @@ class system {
 			}
 			return true;
 		}
-		if(shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l') > 0){
+		if (shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l') > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	public static function launchScriptPackage($_plugin = '',$_force = false) {
+	public static function launchScriptPackage($_plugin = '', $_force = false) {
 		if (!$_force && self::installPackageInProgress($_plugin)) {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours', __FILE__));
 		}
@@ -761,7 +811,7 @@ class system {
 		}
 	}
 
-	public static function installPackage($_type, $_package, $_version = '') {
+	public static function installPackage($_type, $_package, $_version = '', $_plugin = '') {
 		switch ($_type) {
 			case 'apt':
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
@@ -777,18 +827,15 @@ class system {
 				if ($_version != '') {
 					$_package .= '==' . $_version;
 				}
-				if (version_compare(self::getOsVersion(), '12', '>=')) {
-					return self::getCmdSudo() . ' pipx install --force-reinstall --upgrade ' . $_package;
-				}
-				return self::getCmdSudo() . ' pip3 install --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 			case 'npm':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' npm install --force -g ' . $_package;
+					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' yarn global add ' . $_package;
@@ -840,10 +887,15 @@ class system {
 			$log = '/tmp/jeedom_fix_package_log';
 		}
 		if (file_exists($log)) {
+			$fix = '';
 			$data = file_get_contents($log);
 			if (strpos($data, 'dpkg configure -a')) {
-				return "sudo dpkg --configure -a --force-confdef\n";
+				$fix .= "sudo dpkg --configure -a --force-confdef\n";
 			}
+			if (strpos($data, 'oldstable')) {
+				$fix .= "sudo apt-get --allow-releaseinfo-change\n";
+			}
+			return $fix;
 		}
 		return '';
 	}

@@ -64,7 +64,7 @@ step_2_mainpackage() {
   apt-get -y install software-properties-common
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
+  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
   apt-get -y install git python python-pip
@@ -87,12 +87,13 @@ step_2_mainpackage() {
   apt-get -y install librsync-dev
   apt-get -y install ssl-cert
   apt-get -y remove brltty
+  apt-get -y iputils-ping
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
 step_3_database() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 3 - databse${NORMAL}"
+  echo "${YELLOW}Starting step 3 - database${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
   
   service_action status mariadb
@@ -179,16 +180,20 @@ step_7_jeedom_customization_mariadb() {
   echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
   echo 'Restart=always' >> /lib/systemd/system/mariadb.service.d/override.conf
   echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
-  systemctl daemon-reload
-  
-  service_action stop mariadb > /dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    service_action status mariadb
-    service_action stop mysql > /dev/null 2>&1
+
+  # do not start oany new service during docker build sequence
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    systemctl daemon-reload
+    
+    service_action stop mariadb > /dev/null 2>&1
     if [ $? -ne 0 ]; then
-      service_action status mysql
-      echo "${RED}Cannot stop mariadb - Canceling${NORMAL}"
-      exit 1
+      service_action status mariadb
+      service_action stop mysql > /dev/null 2>&1
+      if [ $? -ne 0 ]; then
+        service_action status mysql
+        echo "${RED}Cannot stop mariadb - Canceling${NORMAL}"
+        exit 1
+      fi
     fi
   fi
 
@@ -216,14 +221,16 @@ step_7_jeedom_customization_mariadb() {
    # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
   
-  service_action start mariadb > /dev/null 2>&1
-  if [ $? -ne 0 ]; then
-    service_action status mariadb
-    service_action start mysql > /dev/null 2>&1
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    service_action start mariadb > /dev/null 2>&1
     if [ $? -ne 0 ]; then
-      service_action status mysql
-      echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
-      exit 1
+      service_action status mariadb
+      service_action start mysql > /dev/null 2>&1
+      if [ $? -ne 0 ]; then
+        service_action status mysql
+        echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
+        exit 1
+      fi
     fi
   fi
   
@@ -257,8 +264,10 @@ step_8_jeedom_customization() {
   echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "Restart=always" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "RestartSec=10" >> /etc/systemd/system/apache2.service.d/override.conf
-  
-  systemctl daemon-reload
+
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    systemctl daemon-reload
+  fi
   
   for file in $(find /etc/ -iname php.ini -type f); do
     echo "Update php file ${file}"
@@ -279,19 +288,12 @@ step_8_jeedom_customization() {
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
   
-  service_action restart apache2 > /dev/null 2>&1
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    service_action restart apache2 > /dev/null 2>&1
+  fi
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
-  
-  cp ${WEBSERVER_HOME}/install/fail2ban.jeedom.conf /etc/fail2ban/jail.d/jeedom.conf
-  
-  mkdir -p /lib/systemd/system/fail2ban.service.d
-  echo '[Service]' > /lib/systemd/system/fail2ban.service.d/override.conf
-  echo 'Restart=always' >> /lib/systemd/system/fail2ban.service.d/override.conf
-  echo 'RestartSec=10' >> /lib/systemd/system/fail2ban.service.d/override.conf
-  systemctl daemon-reload
-  service_action restart fail2ban > /dev/null 2>&1
   
   echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
 }
@@ -299,17 +301,21 @@ step_8_jeedom_customization() {
 step_9_jeedom_configuration() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 9 - Jeedom configuration${NORMAL}"
-  echo "DROP USER 'jeedom'@'localhost';" | mariadb -uroot > /dev/null 2>&1
-  mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MARIADB_JEEDOM_PASSWD}';"
-  mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
-  mariadb_sql "CREATE DATABASE jeedom;"
-  mariadb_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
-  cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-  sed -i "s/#PASSWORD#/${MARIADB_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
-  sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
-  sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
-  sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
-  sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
+
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    echo "DROP USER 'jeedom'@'localhost';" | mariadb -uroot > /dev/null 2>&1
+    mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MARIADB_JEEDOM_PASSWD}';"
+    mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
+    mariadb_sql "CREATE DATABASE jeedom;"
+    mariadb_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
+
+    cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
+    sed -i "s/#PASSWORD#/${MARIADB_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
+    sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
+    sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
+    sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
+    sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
+  fi
   chmod 775 -R ${WEBSERVER_HOME}
   chown -R www-data:www-data ${WEBSERVER_HOME}
   echo "${GREEN}Step 9 - Jeedom configuration done${NORMAL}"
@@ -320,23 +326,23 @@ step_10_jeedom_installation() {
   echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
   chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
   ${WEBSERVER_HOME}/resources/install_composer.sh
-  PHP_VERSION=$(php -r "echo PHP_VERSION;")
-  if [ $(version $PHP_VERSION) -ge $(version "8.0.0") ]; then
-    echo "PHP version highter than 8.0.0, need to reinstall composer dependancy"
-    rm -rf ${WEBSERVER_HOME}/vendor
-    rm -rf ${WEBSERVER_HOME}/composer.lock
-    export COMPOSER_ALLOW_SUPERUSER=1
-    cd ${WEBSERVER_HOME}
-    composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
-  fi
+  rm -rf ${WEBSERVER_HOME}/vendor
+  rm -rf ${WEBSERVER_HOME}/composer.lock
+  export COMPOSER_ALLOW_SUPERUSER=1
+  cd ${WEBSERVER_HOME}
+  composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom
-  php ${WEBSERVER_HOME}/install/install.php mode=force
-  if [ $? -ne 0 ]; then
-    echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
-    exit 1
+
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    php ${WEBSERVER_HOME}/install/install.php mode=force
+    if [ $? -ne 0 ]; then
+      echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
+      exit 1
+    fi
   fi
+  
   echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
 
@@ -406,9 +412,9 @@ distrib_1_spe(){
 }
 
 STEP=0
-VERSION=V4-stable
+VERSION=master
 WEBSERVER_HOME=/var/www/html
-MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+MARIADB_JEEDOM_PASSWD=$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
@@ -453,7 +459,6 @@ case ${STEP} in
   fi
   step_8_jeedom_customization
  
-
   if [ ${DATABASE} -eq 1 ]; then
     step_9_jeedom_configuration
     step_10_jeedom_installation

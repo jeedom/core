@@ -21,25 +21,25 @@ require_once __DIR__ . '/../php/core.inc.php';
 
 class utils {
 	/*     * *************************Attributs****************************** */
-	
+
 	private static $properties = array();
 	private static $jeedom_encryption = null;
-	
+
 	/*     * ***********************Methode static*************************** */
-	
-	public static function attrChanged($_changed,$_old,$_new){
-		if($_changed){
+
+	public static function attrChanged($_changed, $_old, $_new) {
+		if ($_changed) {
 			return true;
 		}
-		if(is_array($_old)){
+		if (is_array($_old)) {
 			$_old = json_encode($_old);
 		}
-		if(is_array($_new)){
+		if (is_array($_new)) {
 			$_new = json_encode($_new);
 		}
 		return ($_old != $_new);
 	}
-	
+
 	/**
 	 * @param object $_object
 	 * @param bool $_noToArray
@@ -80,7 +80,7 @@ class utils {
 		}
 		return $array;
 	}
-	
+
 	public static function a2o(&$_object, $_data) {
 		if (is_array($_data)) {
 			foreach ($_data as $key => $value) {
@@ -113,8 +113,8 @@ class utils {
 			}
 		}
 	}
-	
-	public static function processJsonObject($_class, $_ajaxList, $_dbList = null) {
+
+	public static function processJsonObject($_class, $_ajaxList, $_dbList = null,$_remove = true) {
 		if (!is_array($_ajaxList)) {
 			if (is_json($_ajaxList)) {
 				$_ajaxList = json_decode($_ajaxList, true);
@@ -128,7 +128,7 @@ class utils {
 			}
 			$_dbList = $_class::all();
 		}
-		
+
 		$enableList = array();
 		foreach ($_ajaxList as $ajaxObject) {
 			$object = $_class::byId($ajaxObject['id']);
@@ -139,13 +139,15 @@ class utils {
 			$object->save();
 			$enableList[$object->getId()] = true;
 		}
-		foreach ($_dbList as $dbObject) {
-			if (!isset($enableList[$dbObject->getId()])) {
-				$dbObject->remove();
+		if($_remove){
+			foreach ($_dbList as $dbObject) {
+				if (!isset($enableList[$dbObject->getId()])) {
+					$dbObject->remove();
+				}
 			}
 		}
 	}
-	
+
 	public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
 			if (!is_array($_attr)) {
@@ -164,7 +166,7 @@ class utils {
 		}
 		return $_attr;
 	}
-	
+
 	public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
 		if (is_array($_attr)) {
 			if ($_key == '') {
@@ -174,7 +176,7 @@ class utils {
 			if ($_key == '') {
 				return is_json($_attr, array());
 			}
-			if ($_attr === '') {
+			if (empty($_attr)) {
 				if (is_array($_key)) {
 					foreach ($_key as $key) {
 						$return[$key] = $_default;
@@ -194,53 +196,86 @@ class utils {
 		}
 		return (isset($_attr[$_key]) && $_attr[$_key] !== '') ? $_attr[$_key] : $_default;
 	}
-	
+
 	/*     * ******************Encrypt/decrypt*************************** */
-	public static function getEncryptionPassword(){
-		if(self::$jeedom_encryption == null){
-			if(!file_exists(__DIR__.'/../../data/jeedom_encryption.key')){
-				file_put_contents(__DIR__.'/../../data/jeedom_encryption.key',config::genKey());
+	public static function getEncryptionPassword() {
+		if (self::$jeedom_encryption == null) {
+			if (!file_exists(__DIR__ . '/../../data/jeedom_encryption.key')) {
+				file_put_contents(__DIR__ . '/../../data/jeedom_encryption.key', config::genKey());
 			}
-			self::$jeedom_encryption = file_get_contents(__DIR__.'/../../data/jeedom_encryption.key');
+			self::$jeedom_encryption = file_get_contents(__DIR__ . '/../../data/jeedom_encryption.key');
 		}
 		return self::$jeedom_encryption;
 	}
-	
+
 	public static function encrypt($plaintext, $password = null) {
-		if($plaintext === ''){
+		if ($plaintext === '') {
 			return null;
 		}
-		if($plaintext == ''){
+		if ($plaintext == '') {
 			return $plaintext;
 		}
-		if(strpos($plaintext,'crypt:') !== false){
+		if (strpos($plaintext, 'crypt:') !== false) {
 			return $plaintext;
 		}
-		if($password == null){
+		if ($password == null) {
 			$password = self::getEncryptionPassword();
 		}
 		$iv = openssl_random_pseudo_bytes(16);
 		$ciphertext = openssl_encrypt($plaintext, "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, $iv);
-		$hmac = hash_hmac('sha256', $ciphertext.$iv, hash('sha256', $password, true), true);
-		return 'crypt:'.base64_encode($iv.$hmac.$ciphertext);
+		$hmac = hash_hmac('sha256', $ciphertext . $iv, hash('sha256', $password, true), true);
+		return 'crypt:' . base64_encode($iv . $hmac . $ciphertext);
 	}
-	
+
 	public static function decrypt($ciphertext, $password = null) {
-		if($ciphertext === ''){
+		if (empty($ciphertext)) {
 			return null;
 		}
-		if($password == null){
+		if ($password == null) {
 			$password = self::getEncryptionPassword();
 		}
-		if(strpos($ciphertext,'crypt:') === false){
+		if (strpos($ciphertext, 'crypt:') === false) {
 			return $ciphertext;
 		}
-		$ciphertext = base64_decode(str_replace('crypt:','',$ciphertext));
-		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48).substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
+		$ciphertext = base64_decode(str_replace('crypt:', '', $ciphertext));
+		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48) . substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
 		return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
 	}
-	
+
+	/**
+	 * This function allows asynchronous execution of any class function.
+	 * A cron will be created to execute it immediately (by default) or at the given datetime.
+	 * To pass arguments to your function, you should pass an array of values in $options
+	 *
+	 * @param string $class A class name
+	 * @param string $method The method name
+	 * @param array|null $options An array of options that will be passed to the cron
+	 * @param string $datetime Any English textual datetime description that can be parsed by strtotime()
+	 * @return void
+	 *
+	 * @throws InvalidArgumentException if $class::$method does not exist
+	 */
+	public static function executeAsync($class, $method, $options = null, $datetime = 'now') {
+		if (!method_exists($class, $method)) {
+			throw new InvalidArgumentException("Method provided for executeAsync does not exist: {$class}::{$method}");
+		}
+
+		$cron = new cron();
+		$cron->setClass($class);
+		$cron->setFunction($method);
+		if (isset($options)) {
+			$cron->setOption($options);
+		}
+		$cron->setOnce(1);
+		$scheduleTime = strtotime($datetime);
+		$cron->setSchedule(cron::convertDateToCron($scheduleTime));
+		$cron->save();
+		if ($scheduleTime <= strtotime('now')) {
+			$cron->run();
+		}
+	}
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
 }

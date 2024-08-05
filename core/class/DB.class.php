@@ -34,10 +34,19 @@ class DB {
 
 	private static function initConnection() {
 		global $CONFIG;
+		$_options = [
+			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci',
+			PDO::ATTR_PERSISTENT => true,
+			// silent mode, default for php7: https://www.php.net/manual/fr/pdo.error-handling.php
+			// exception mode for debug
+			PDO::ATTR_ERRMODE => (DEBUG ? PDO::ERRMODE_EXCEPTION : PDO::ERRMODE_SILENT),
+		];
 		if (isset($CONFIG['db']['unix_socket'])) {
-			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'],
+			 $CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
 		} else {
-			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], $CONFIG['db']['username'], $CONFIG['db']['password'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci', PDO::ATTR_PERSISTENT => true));
+			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], 
+			$CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
 		}
 	}
 
@@ -82,6 +91,15 @@ class DB {
 		$stmt = static::getConnection()->prepare($_query);
 		$res = NULL;
 		if ($stmt != false && $stmt->execute($_params) != false) {
+			if(preg_match('/^update|^replace|^delete|^create|^drop|^alter|^truncate/i', $_query)){
+				$errorInfo = $stmt->errorInfo();
+				if ($errorInfo[0] != 0000) {
+					static::$lastConnection = 0;
+					throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
+				}
+				static::$lastConnection = strtotime('now');
+				return $res;
+			}
 			if ($_fetchType == static::FETCH_TYPE_ROW) {
 				if ($_fetch_opt === null) {
 					$res = $stmt->fetch($_fetch_param);
@@ -638,14 +656,18 @@ class DB {
 				$return[$_table['name']]['sql']	.= static::buildDefinitionField($field);
 				$return[$_table['name']]['sql'] .= ',';
 			}
-			$return[$_table['name']]['sql'] .= "\n" . 'primary key(';
+			$primary_key = '';
 			foreach ($_table['fields'] as $field) {
 				if (isset($field['key']) && $field['key'] == 'PRI') {
-					$return[$_table['name']]['sql'] .= '`' . $field['name'] . '`,';
+					$primary_key .= '`' . $field['name'] . '`,';
 				}
 			}
-			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'], ',');
-			$return[$_table['name']]['sql'] .= ')';
+			if($primary_key != ''){
+				$return[$_table['name']]['sql'] .= "\n" . 'primary key(';
+				$return[$_table['name']]['sql'] .= trim($primary_key, ',');
+				$return[$_table['name']]['sql'] .= ')';
+			}
+			$return[$_table['name']]['sql'] = trim($return[$_table['name']]['sql'],',');
 			$return[$_table['name']]['sql'] .= ')' . "\n";
 			if (!isset($_table['engine'])) {
 				$_table['engine'] = 'InnoDB';
@@ -658,6 +680,17 @@ class DB {
 			return $return;
 		}
 		$forceRebuildIndex = false;
+		try {
+			$status = DB::Prepare('show table status where name="' . $_table['name'] . '"', array(), DB::FETCH_TYPE_ROW);
+		} catch (\Exception $e) {
+			$status = array();
+		}
+	    if(!isset($_table['engine'])){
+       		$_table['engine'] = 'InnoDB';
+      	}
+		if(isset($status['Engine']) && $status['Engine'] != $_table['engine']){ 
+			$return[$_table['name']]['sql'] = 'ALTER TABLE `' . $_table['name'] . '` ENGINE = '.$_table['engine'];
+		}
 		foreach ($_table['fields'] as $field) {
 			$found = false;
 			foreach ($describes as $describe) {
@@ -702,7 +735,6 @@ class DB {
 				if ($showIndex['Key_name'] != $index['Key_name']) {
 					continue;
 				}
-
 				$return[$_table['name']]['indexes'] = array_merge($return[$_table['name']]['indexes'], static::compareIndex($index, $showIndex, $_table['name'], $forceRebuildIndex));
 				$found = true;
 			}
@@ -743,6 +775,7 @@ class DB {
 			if (!isset($return[$index['Key_name']])) {
 				$return[$index['Key_name']] = array(
 					'Key_name' => $index['Key_name'],
+					'Index_type' => $index['Index_type'],
 					'Non_unique' => 0,
 					'columns' => array(),
 				);
@@ -788,6 +821,10 @@ class DB {
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Columns nok';
 		}
+		if (isset($_ref_index['Index_type']) && $_ref_index['Index_type'] != $_real_index['Index_type']) {
+			$return[$_ref_index['Key_name']]['status'] = 'nok';
+			$return[$_ref_index['Key_name']]['message'] = 'Index type nok';
+		}
 		if ($_forceRebuild) {
 			$return[$_ref_index['Key_name']]['status'] = 'nok';
 			$return[$_ref_index['Key_name']]['message'] = 'Force rebuild';
@@ -818,6 +855,8 @@ class DB {
 	public static function buildDefinitionIndex($_index, $_table_name) {
 		if ($_index['Non_unique'] == 0) {
 			$return = 'CREATE UNIQUE INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
+		} else if (isset($_index['Index_type']) && $_index['Index_type'] == 'FULLTEXT') {
+			$return = 'CREATE FULLTEXT INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
 		} else {
 			$return = 'CREATE INDEX `' . $_index['Key_name'] . '` ON `' . $_table_name . '`' . ' (';
 		}

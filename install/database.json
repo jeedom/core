@@ -229,6 +229,7 @@
         "logicalID": {
           "Key_name": "logicalID",
           "Non_unique": "1",
+          "Index_type" : "FULLTEXT",
           "columns": {
             "1": {
               "column": "logicalId",
@@ -237,6 +238,44 @@
           }
         }
       }
+    },
+    {
+      "name": "cache",
+      "fields": [
+        {
+          "name": "key",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "PRI",
+          "default": "core",
+          "extra": ""
+        },
+        {
+          "name": "value",
+          "type": "mediumtext",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "datetime",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "lifetime",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": []
     },
     {
       "name": "config",
@@ -353,7 +392,7 @@
         }
       ],
       "indexes": {
-        "logicalId_Type": {
+        "class": {
           "Key_name": "class",
           "Non_unique": "1",
           "columns": {
@@ -363,7 +402,7 @@
             }
           }
         },
-        "logicalId_Type": {
+        "function": {
           "Key_name": "function",
           "Non_unique": "1",
           "columns": {
@@ -670,6 +709,48 @@
       }
     },
     {
+      "name": "event",
+      "engine" : "MEMORY",
+      "fields": [
+        {
+          "name": "datetime",
+          "type": "double(16,6)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "name",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "option",
+          "type": "varchar(8192)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": {
+        "datetime": {
+          "Key_name": "datetime",
+          "Non_unique": "1",
+          "columns": {
+            "1": {
+              "column": "datetime",
+              "Sub_part": null
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "history",
       "fields": [
         {
@@ -873,6 +954,7 @@
     },
     {
       "name": "interactQuery",
+      "engine" : "MyISAM",
       "fields": [
         {
           "name": "id",
@@ -908,8 +990,19 @@
         }
       ],
       "indexes": {
-        "fk_sarahQuery_sarahDef1_idx": {
-          "Key_name": "fk_sarahQuery_sarahDef1_idx",
+        "logicalID": {
+          "Key_name": "query",
+          "Non_unique": "1",
+          "Index_type" : "FULLTEXT",
+          "columns": {
+            "1": {
+              "column": "query",
+              "Sub_part": null
+            }
+          }
+        },
+        "interactDef_id": {
+          "Key_name": "interactDef_id",
           "Non_unique": "1",
           "columns": {
             "1": {
@@ -1498,6 +1591,76 @@
           }
         }
       }
+    },
+    {
+      "name": "queue",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int(11)",
+          "null": "NO",
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "queueId",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "class",
+          "type": "varchar(255)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "function",
+          "type": "varchar(255)",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "arguments",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "createTime",
+          "type": "datetime",
+          "null": "NO",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "options",
+          "type": "text",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "timeout",
+          "type": "int(11)",
+          "null": "YES",
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ],
+      "indexes": []
     },
     {
       "name": "scenario",

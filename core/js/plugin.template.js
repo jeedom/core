@@ -151,8 +151,10 @@ if (!jeeFrontEnd.pluginTemplate) {
           jeedomUtils.addOrUpdateUrl('id', data.id)
           domUtils.hideLoading()
           jeeFrontEnd.modifyWithoutSave = false
+          modifyWithoutSave = false
           setTimeout(function() {
             jeeFrontEnd.modifyWithoutSave = false
+            modifyWithoutSave = false
           }, 1000)
 
           if (window.location.hash == '') document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
@@ -278,6 +280,7 @@ if (!jeeFrontEnd.pluginTemplate) {
                 }
               }
               jeeFrontEnd.modifyWithoutSave = false
+              modifyWithoutSave = false
               url += 'id=' + _data.id + '&saveSuccessFull=1'
               jeedomUtils.loadPage(url)
             }
@@ -323,6 +326,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         },
         success: function(data) {
           jeeFrontEnd.modifyWithoutSave = false
+          modifyWithoutSave = false
           var vars = getUrlVars()
           var url = 'index.php?'
           for (var i in vars) {
@@ -345,6 +349,7 @@ if (!jeeFrontEnd.pluginTemplate) {
 
           jeedomUtils.loadPage(url)
           jeeFrontEnd.modifyWithoutSave = false
+          modifyWithoutSave = false
         }
       })
       return false
@@ -369,6 +374,7 @@ if (!jeeFrontEnd.pluginTemplate) {
                 },
                 success: function(data) {
                   jeeFrontEnd.modifyWithoutSave = false
+                  modifyWithoutSave = false
                   var vars = getUrlVars()
                   var url = 'index.php?'
                   for (var i in vars) {
@@ -585,12 +591,13 @@ domUtils(function() {
     delayOnTouchOnly: true,
     touchStartThreshold: 20,
     draggable: 'tr.cmd',
-    filter: 'a, input, textarea',
+    filter: 'a, input, textarea, label, select',
     preventOnFilter: false,
     direction: 'vertical',
     chosenClass: 'dragSelected',
     onEnd: function(event) {
       jeeFrontEnd.modifyWithoutSave = true
+      modifyWithoutSave = true
     },
   })
   tableCmd._sortable = jeeFrontEnd.pluginTemplate.cmdSortable
@@ -703,6 +710,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     }
     document.querySelectorAll('.cmdAttr[data-l1key="type"]').last().triggerEvent('change')
     jeeFrontEnd.modifyWithoutSave = true
+    modifyWithoutSave = true
     return
   }
 
@@ -714,6 +722,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     jeedomUtils.chooseIcon(function(_icon) {
       cmd.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
       jeeFrontEnd.modifyWithoutSave = true
+      modifyWithoutSave = true
     }, params)
     return
   }
@@ -721,6 +730,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('.cmd .cmdAction[data-action="remove"]')) {
     _target.closest('tr').remove()
     jeeFrontEnd.modifyWithoutSave = true
+    modifyWithoutSave = true
     return
   }
 
@@ -733,6 +743,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       jeeFrontEnd.pluginTemplate.addCmdToTableDefault(cmd)
     }
     jeeFrontEnd.modifyWithoutSave = true
+    modifyWithoutSave = true
     return
   }
 
@@ -785,6 +796,7 @@ document.getElementById('div_pageContainer').addEventListener('dblclick', functi
   if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
     _target.innerHTML = ''
     jeeFrontEnd.modifyWithoutSave = true
+    modifyWithoutSave = true
     return
   }
 
@@ -801,12 +813,18 @@ document.getElementById('div_pageContainer').addEventListener('dblclick', functi
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
   var _target = null
   if (_target = event.target.closest('.eqLogic .eqLogicAttr')) {
-    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+    if (_target.isVisible()) {
+      jeeFrontEnd.modifyWithoutSave = true
+      modifyWithoutSave = true
+    }
     return
   }
 
   if (_target = event.target.closest('.cmd .cmdAttr')) {
-    if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
+    if (_target.isVisible()) {
+      jeeFrontEnd.modifyWithoutSave = true
+      modifyWithoutSave = true
+    }
   }
 
   if (_target = event.target.closest('.cmd select.cmdAttr[data-l1key="type"]')) {

@@ -4,9 +4,9 @@
   }
 
   $type = init('type', null);
-  $categorie = init('categorie', null);
-  $name = init('name', null);
-  $author = init('author', null);
+  $categorie = init('categorie', null) === '' ? null : init('categorie', null);
+  $name = init('name', null) === '' ? null : init('name', null);
+  $author = init('author', null) === '' ? null : init('author', null);
 
   if ($name == 'false') {
     $name = null;
@@ -367,7 +367,7 @@
     var _target = null
     if (_target = event.target.closest('#sel_categorie')) {
       let content = jeeDialog.get('#in_search', 'content')
-    content.load(this.getAttribute('data-href') + '&categorie=' + encodeURI(this.value))
+    content.load(_target.getAttribute('data-href') + '&categorie=' + encodeURI(_target.value))
       return
     }
   })

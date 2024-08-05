@@ -17,9 +17,6 @@
 */
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use League\ColorExtractor\Color;
-use League\ColorExtractor\ColorExtractor;
-use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	if (strpos($_folder, '..') !== false || strpos($_fn, '..') !== false || strpos($_fn, '\\') !== false) {
@@ -131,7 +128,7 @@ function template_replace($_array, $_subject) {
 		$_array['#uid#'] = '';
 	}
 	if (strpos($_array['#uid#'], 'eqLogic') !== false && (!isset($_array['#calledFrom#']) || $_array['#calledFrom#'] != 'eqLogic')) {
-		if (is_object($eqLogic = eqLogic::byId($_array['#id#'])) && $eqLogic->getDisplay('widgetTmpl', 1) == 0) {
+		if (is_object($eqLogic = eqLogic::byId($_array['#id#'])) && ($eqLogic->getDisplay('widgetTmpl', 1) == 0 || $_subject == '')) {
 			$reflected = new ReflectionClass($eqLogic->getEqType_name());
 			$method = $reflected->getParentClass()->getMethod('toHtml');
 			return $method->invokeArgs($eqLogic, [$_array['#version#']]);
@@ -241,7 +238,7 @@ function getClientIp() {
 			if (strpos($_SERVER[$source], ',') !== false) {
 				return explode(',', $_SERVER[$source])[0];
 			}
-			return $_SERVER[$source];
+			return str_replace(' ','',$_SERVER[$source]);
 		}
 	}
 	return '';
@@ -254,9 +251,9 @@ function mySqlIsHere() {
 
 function displayException($e) {
 	$message = '<span id="span_errorMessage">' . $e->getMessage() . '</span>';
-	if (DEBUG) {
-		$message .= '<a class="pull-right bt_errorShowTrace cursor">Show traces</a>';
-		$message .= '<br/><pre class="pre_errorTrace" style="display : none;">' . print_r($e->getTrace(), true) . '</pre>';
+	if (DEBUG !== 0) {
+		$message .= "<a class=\"pull-right bt_errorShowTrace cursor\" onclick=\"event.stopPropagation(); document.getElementById('pre_errorTrace').toggle()\">Show traces</a>";
+		$message .= '<br/><pre id="pre_errorTrace" style="display : none;">' . print_r($e->getTraceAsString(), true) . '</pre>';
 	}
 	return $message;
 }
@@ -855,21 +852,18 @@ function calculPath($_path) {
 }
 
 function getDirectorySize($path) {
-	$totalsize = 0;
-	if ($handle = opendir($path)) {
-		while (false !== ($file = readdir($handle))) {
-			$nextpath = $path . '/' . $file;
-			if ($file != '.' && $file != '..' && !is_link($nextpath)) {
-				if (is_dir($nextpath)) {
-					$totalsize += getDirectorySize($nextpath);
-				} elseif (is_file($nextpath)) {
-					$totalsize += filesize($nextpath);
-				}
+	$bytestotal = 0;
+ 	$path = realpath($path);
+  	if($path!==false && $path!='' && file_exists($path) && !is_link($path)){
+		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+			try {
+				$bytestotal += $object->getSize();
+			} catch (\Throwable $th) {
+
 			}
 		}
-		closedir($handle);
 	}
-	return $totalsize;
+	return $bytestotal;
 }
 
 function sizeFormat($size) {
@@ -888,7 +882,6 @@ function sizeFormat($size) {
  * @return boolean
  */
 function netMatch($network, $ip) {
-
 	$ip = trim($ip);
 	if ($ip == trim($network)) {
 		return true;
@@ -1081,6 +1074,16 @@ function isConnect($_right = '') {
 		return ($_SESSION['user']->getProfils() == $_right);
 	}
 	return true;
+}
+
+function hasRight($_name = '',$_right = 'r',$_default = 'r') {
+	if ($_SESSION['user']->getProfils() == 'admin' || $_SESSION['user']->getProfils() == 'user') {
+		return true;
+	}
+	if (strpos($_SESSION['user']->getRights($_name,$_default), $_right) !== false) {
+		return true;
+	}
+	return false;
 }
 
 function ZipErrorMessage($code) {
@@ -1429,7 +1432,7 @@ function unautorizedInDemo($_user = null) {
 }
 
 function checkAndFixCron($_cron) {
-	$return = $_cron;
+	$return = trim($_cron);
 	$return = str_replace('*/ ', '* ', $return);
 	preg_match_all('/([0-9]*\/\*)/m', $return, $matches, PREG_SET_ORDER, 0);
 	if (count($matches) > 0) {
@@ -1445,6 +1448,25 @@ function checkAndFixCron($_cron) {
 		$return = implode(' ', $arrays);
 	}
 	return $return;
+}
+
+function cronIsDue($_cron){
+	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('I') == 1 && date('Gi') > 159) {
+		return false;
+	}
+	$schedule = explode(' ',trim($_cron));
+	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
+		return false;
+	}
+	try {
+		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
+		return $c->isDue();
+	} catch (Exception $e) {
+
+	} catch (Error $e) {
+
+	}
+	return false;
 }
 
 function getTZoffsetMin() {
@@ -1558,7 +1580,9 @@ function pageTitle($_page) {
 }
 
 function cleanComponanteName($_name) {
-	return strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
+	$return =  strip_tags(str_replace(array('&', '#', ']', '[', '%', "\\", "/", "'", '"', "*"), '', $_name));
+	$return = preg_replace('/\s+/', ' ', $return);
+	return $return;
 }
 
 function startsWith($haystack, $needle) {

@@ -22,11 +22,11 @@
 domUtils.showLoading = function(_timeout) {
   document.getElementById('div_jeedomLoading')?.seen()
   //Hanging timeout:
-  if(domUtils.loadingTimeout && domUtils.loadingTimeout != null){
+  if (domUtils.loadingTimeout && domUtils.loadingTimeout != null) {
     clearTimeout(domUtils.loadingTimeout)
     domUtils.loadingTimeout = null
   }
-  if(_timeout && typeof _timeout == 'number'){
+  if (_timeout && typeof _timeout == 'number') {
     domUtils.loadingTimeout = setTimeout(() => {
       if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
         domUtils.hideLoading()
@@ -38,7 +38,7 @@ domUtils.showLoading = function(_timeout) {
 }
 domUtils.hideLoading = function() {
   document.getElementById('div_jeedomLoading')?.unseen()
-  if(domUtils.loadingTimeout && domUtils.loadingTimeout != null){
+  if (domUtils.loadingTimeout && domUtils.loadingTimeout != null) {
     clearTimeout(domUtils.loadingTimeout)
     domUtils.loadingTimeout = null
   }
@@ -77,7 +77,20 @@ NodeList.prototype.unseen = function() {
   }
   return this
 }
-
+Element.prototype.toggle = function() {
+  if (this.offsetParent === null){
+    this.style.display = ''
+  } else {
+    this.style.display = 'none'
+  }
+  return this
+}
+NodeList.prototype.toggle = function() {
+  for (var idx = 0; idx < this.length; idx++) {
+    this[idx].toggle()
+  }
+  return this
+}
 Element.prototype.empty = function() {
   while (this.firstChild) {
     this.removeChild(this.lastChild)
@@ -193,8 +206,10 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
 }
 
 Element.prototype.insertAtCursor = function(_valueString) {
-  if (this.selectionStart || this.selectionStart == '0') {
-    this.value = this.value.substring(0, this.selectionStart) + _valueString + this.value.substring(this.selectionEnd, this.value.length)
+  if (this.selectionStart >= 0) {
+    let value = this.value.substring(0, this.selectionStart) + _valueString
+    this.value = value + this.value.substring(this.selectionEnd, this.value.length)
+    this.setSelectionRange(value.length, value.length)
   } else {
     this.value += _valueString
   }
@@ -905,14 +920,18 @@ var jeeDialog = (function() {
       dialogFooter.addClass('jeeDialogFooter')
       template.appendChild(dialogFooter)
 
-      for (var button of Object.entries(_params.defaultButtons)) {
-        //Get user buttons with merged default buttons callback:
-        if (isset(_params.buttons[button[0]])) {
-          button[1].label = _params.buttons[button[0]].label
-          button[1].className = _params.buttons[button[0]].className
-          button[1].callback = _params.buttons[button[0]].callback || _params.defaultButtons[button[0]].callback
-        }
+      let buttons = {}
+      for ( let button of Object.entries(_params.buttons)) {
+        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]],button[1])
+      }
 
+      for (let defaultButton of Object.entries(_params.defaultButtons)) {
+        if (! isset(buttons[defaultButton[0]])) {
+          buttons[defaultButton[0]] = defaultButton[1]
+        }
+      }
+
+      for (var button of Object.entries(buttons)) {
         var buttonEL = exports.addButton(button, dialogFooter)
         if (buttonEL.getAttribute('data-type') === 'confirm') {
           _container.addEventListener('keyup', function(event) {
@@ -1704,8 +1723,8 @@ var jeeDialog = (function() {
           }
         }
         function resizing(event) {
-          let clientX = event.clientX || event.targetTouches[0].pageX
-          let clientY = event.clientY || event.targetTouches[0].pageY
+          let clientX = (typeof event.clientX == 'number') ? event.clientX : event.targetTouches[0].pageX
+          let clientY = (typeof event.clientY == 'number') ? event.clientY : event.targetTouches[0].pageY
           if (resizer.includes('top')) {
             dialogContainer.style.top = clientY + 'px'
             let height = initialHeight + (initialTop - clientY)
@@ -1954,7 +1973,7 @@ var jeeCtxMenu = function(_options) {
     appendTo: 'body',
     items: false,
     className: '',
-    autoHide: true,
+    autoHide: false,
     zIndex: 12000,
     isDisable: false,
     callback: false, //Default item callback
@@ -2079,7 +2098,16 @@ var jeeCtxMenu = function(_options) {
         if (!event.target.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
         ctxInstance.hide(event)
       }, 100)
-
+    })
+  }else{
+    document.addEventListener('click', event => {
+      if (ctxMenuContainer.contains(event.target)) {
+        return;
+      }
+      setTimeout(function() {
+        if (!ctxMenuContainer.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
+        ctxInstance.hide(event)
+      }, 100)
     })
   }
 

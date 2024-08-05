@@ -71,7 +71,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         </label>
         <div class="col-lg-2">
           <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2" />
-          <sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : cette option crée des problèmes de placement sur les bords du design.}}"></i></sup>
+          <sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : cette option crée des problèmes de placement sur les bords du design et désactive la grille aimantée pour l'équipement en question}}"></i></sup>
         </div>
       </div>
       <legend>{{Spécifique}}</legend>

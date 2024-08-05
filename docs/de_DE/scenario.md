@@ -1,4 +1,5 @@
 # Szenarien
+
 **Werkzeuge → Szenarien**
 
 <small>[Raccourcis clavier/.souris](shortcuts.md)</.small>
@@ -20,11 +21,13 @@ Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie wer
 > **Tipp**
 >
 > Sie können ein Szenario öffnen, indem Sie dies tun :
+>
 > - Klicken Sie auf eine davon.
 > - Strg Clic oder Clic Center, um es in einem neuen Browser-Tab zu öffnen.
 
 Sie haben eine Suchmaschine, um die Anzeige von Szenarien zu filtern. Die Escape-Taste bricht die Suche ab.
 Rechts neben dem Suchfeld befinden sich drei Schaltflächen, die an mehreren Stellen in Jeedom gefunden wurden :
+
 - Das Kreuz, um die Suche abzubrechen.
 - Der geöffnete Ordner zum Entfalten aller Bedienfelder und Anzeigen aller Szenarien.
 - Die geschlossene Rückenlehne zum Umklappen aller Paneele.
@@ -71,9 +74,11 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 - **übergeordnetes Objekt** : Zuordnung zu einem übergeordneten Objekt. Es wird dann entsprechend diesem Elternteil sichtbar sein oder nicht.
 - **Zeitüberschreitung in Sekunden (0 = unbegrenzt)** : Die maximal zulässige Ausführungszeit für dieses Szenario. Nach dieser Zeit wird die Ausführung des Szenarios unterbrochen.
 - **Multi-Launch** : Aktivieren Sie dieses Kontrollkästchen, wenn das Szenario mehrmals gleichzeitig gestartet werden soll.
+
 >**WICHTIG**
 >
 >Der Mehrfachstart funktioniert pro Sekunde, dh wenn Sie zwei Starts in derselben Sekunde haben, ohne das Kontrollkästchen aktiviert zu haben, gibt es immer noch zwei Starts des Szenarios (obwohl dies nicht der Fall sein sollte)). Ebenso können bei mehreren Starts in derselben Sekunde einige Starts die Tags verlieren. Fazit Es ist ABSOLUT notwendig, mehrere Starts in derselben Sekunde zu vermeiden.
+
 - **Synchroner Modus** : Starten Sie das Szenario im aktuellen Thread anstelle eines dedizierten Threads. Erhöht die Geschwindigkeit, mit der das Szenario gestartet wird, kann jedoch das System instabil machen. Achten Sie darauf, ein komplexes Szenario nicht mit Pausen (sleep) oder synchronem Warten zu versehen, dies erzeugt ein instabiles Verhalten von Jeedom und kann nicht vom Support abgedeckt werden.
 - **Protokoll** : Der für das Szenario gewünschte Protokolltyp. Sie können die Szenarioprotokolle ausschneiden oder im Gegenteil unter Analyse → Echtzeit anzeigen.
 - **Zeitleiste** : Behalten Sie das Szenario in der Zeitleiste im Auge (siehe Verlaufsdokument)).
@@ -120,14 +125,14 @@ Hier sind die verschiedenen Arten von Blöcken verfügbar :
 Jeder Block hat seine Optionen, um besser damit umzugehen :
 
 - Links :
-    - Mit dem bidirektionalen Pfeil können Sie einen Block oder eine Aktion verschieben, um sie im Szenario neu anzuordnen.
-    - Das Auge reduziert eine Blockade (*Zusammenbruch*) um seine visuelle Wirkung zu reduzieren. Strg Klick auf das Auge verkleinert sie oder zeigt sie alle an.
-    - Mit dem Kontrollkästchen können Sie den Block vollständig deaktivieren, ohne ihn zu löschen. Es wird daher nicht ausgeführt.
+  - Mit dem bidirektionalen Pfeil können Sie einen Block oder eine Aktion verschieben, um sie im Szenario neu anzuordnen.
+  - Das Auge reduziert eine Blockade (*Zusammenbruch*) um seine visuelle Wirkung zu reduzieren. Strg Klick auf das Auge verkleinert sie oder zeigt sie alle an.
+  - Mit dem Kontrollkästchen können Sie den Block vollständig deaktivieren, ohne ihn zu löschen. Es wird daher nicht ausgeführt.
 
 - Rechts :
-    - Mit dem Symbol Kopieren können Sie den Block kopieren, um eine Kopie an einer anderen Stelle zu erstellen. Strg Klicken Sie auf das Symbol, um den Block zu schneiden (kopieren und löschen).
-    - Mit dem Symbol Einfügen können Sie eine Kopie des Blocks einfügen, der zuvor nach dem Block kopiert wurde, für den Sie diese Funktion verwenden.  Strg Klicken Sie auf das Symbol, um den Block durch den kopierten Block zu ersetzen.
-    - Das Symbol - ermöglicht es Ihnen, den Block mit einer Bestätigungsanforderung zu löschen. Strg Klicken löscht den Block ohne Bestätigung.
+  - Mit dem Symbol Kopieren können Sie den Block kopieren, um eine Kopie an einer anderen Stelle zu erstellen. Strg Klicken Sie auf das Symbol, um den Block zu schneiden (kopieren und löschen).
+  - Mit dem Symbol Einfügen können Sie eine Kopie des Blocks einfügen, der zuvor nach dem Block kopiert wurde, für den Sie diese Funktion verwenden.  Strg Klicken Sie auf das Symbol, um den Block durch den kopierten Block zu ersetzen.
+  - Das Symbol - ermöglicht es Ihnen, den Block mit einer Bestätigungsanforderung zu löschen. Strg Klicken löscht den Block ohne Bestätigung.
 
 ### Wenn / Dann / Sonst blockiert | Schleife | Im | A
 
@@ -151,29 +156,28 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 
 Sobald die Bedingung erfüllt ist, müssen Sie die Schaltfläche &quot;Hinzufügen&quot; auf der linken Seite verwenden, um eine neue hinzuzufügen **Block** oder ein **Lager** im aktuellen Block.
 
-
 ### Blockcode
 
 Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, erfordert aber gute Kenntnisse der PHP-Sprache.
 
 #### Zugang zu Steuerungen (Sensoren und Aktoren))
 
--  ``cmd::byString($string);`` : Gibt das entsprechende Befehlsobjekt zurück.
-    -   ``$string``: Link zur gewünschten Bestellung : ``#[objet][Ausrüstung][commande]#`` (Ex : ``#[Appartement][Alarme][Anlage]#``)
--  ``cmd::byId($id);`` : Gibt das entsprechende Befehlsobjekt zurück.
-    -  ``$id`` : Bestellnummer.
--  ``$cmd->execCmd($options = null);`` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
-    - ``$options`` : Optionen für die Ausführung des Befehls (können spezifisch für das Plugin sein). Grundlegende Optionen (Befehlssubtyp) :
-        -  ``message`` : ``$option = array('title' => 'titre du Botschaft , 'message' => 'Mon message');``
-        -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
-        -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
+- ``cmd::byString($string);`` : Gibt das entsprechende Befehlsobjekt zurück.
+  - ``$string``: Link zur gewünschten Bestellung : ``#[objet][Ausrüstung][commande]#`` (Ex : ``#[Appartement][Alarme][Anlage]#``)
+- ``cmd::byId($id);`` : Gibt das entsprechende Befehlsobjekt zurück.
+  - ``$id`` : Bestellnummer.
+- ``$cmd->execCmd($options = null);`` : Führen Sie den Befehl aus und geben Sie das Ergebnis zurück.
+  - ``$options`` : Optionen für die Ausführung des Befehls (können spezifisch für das Plugin sein). Grundlegende Optionen (Befehlssubtyp) :
+    - ``message`` : ``$option = array('title' => 'titre du Botschaft , 'message' => 'Mon message');``
+    - ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
+    - ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
 #### Zugriff auf Protokolle
 
--  ``log::add('filename','level','message');``
-    - ``filename`` : Name der Protokolldatei.
-    - ``level`` : [Debug], [Info], [Fehler], [Ereignis].
-    - ``message`` : Nachricht zum Schreiben in die Protokolle.
+- ``log::add('filename','level','message');``
+  - ``filename`` : Name der Protokolldatei.
+  - ``level`` : [Debug], [Info], [Fehler], [Ereignis].
+  - ``message`` : Nachricht zum Schreiben in die Protokolle.
 
 #### Zugriff auf Szenarien
 
@@ -181,14 +185,14 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->getGroup();`` : Gibt die Szenariogruppe zurück.
 - ``$scenario->getIsActive();`` : Gibt den Status des Szenarios zurück.
 - ``$scenario->setIsActive($active);`` : Ermöglicht das Aktivieren oder Nicht-Aktivieren des Szenarios.
-    - ``$active`` : 1 aktiv, 0 nicht aktiv.
+  - ``$active`` : 1 aktiv, 0 nicht aktiv.
 - ``$scenario->running();`` : Wird verwendet, um herauszufinden, ob das Szenario ausgeführt wird oder nicht (true / false)).
 - ``$scenario->save();`` : Änderungen speichern.
 - ``$scenario->setData($key, $value);`` : Speichern Sie eine Daten (Variable).
-    - ``$key`` : Werteschlüssel (int oder string).
-    - ``$value`` : Wert zu speichern (``int``, ``string``, ``array`` Wo ``object``).
+  - ``$key`` : Werteschlüssel (int oder string).
+  - ``$value`` : Wert zu speichern (``int``, ``string``, ``array`` Wo ``object``).
 - ``$scenario->getData($key);`` : Daten abrufen (variabel).
-    - ``$key => 1`` : Werteschlüssel (int oder string).
+  - ``$key => 1`` : Werteschlüssel (int oder string).
 - ``$scenario->removeData($key);`` : Daten löschen.
 - ``$scenario->setLog($message);`` : Schreiben Sie eine Nachricht in das Skriptprotokoll.
 - ``$scenario->persistLog();`` : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
@@ -235,6 +239,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#user_connect#`` : Benutzeranmeldung
 - ``#variable(nom_variable)#`` : Ändern des Wertes der Variablen name_name.
 - ``#GenericType (GENERIC, #[Object]#)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
+- ``#new_eqLogic#`` : Ereignis, das beim Erstellen neuer Geräte gesendet wird. Sie haben in den Tags id (ID des erstellten Geräts), name (Name des erstellten Geräts) und eqType (Typ/Plugin des erstellten Geräts))
 
 Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [hier](https:/./.doc.jeedom.com/de_DE/core/.4.4/.api_http).
 
@@ -282,16 +287,20 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 - ``#IP#`` : Jeedom&#39;s interne IP.
 - ``#hostname#`` : Name der Jeedom-Maschine.
 - ``#jeedomName#`` : Name von Jeedom.
-- ``#trigger#`` (veraltet, besser zu bedienen ``trigger()``) : Möglicherweise der Name des Befehls, der das Szenario gestartet hat :
-    - ``api`` wenn der Start von der API ausgelöst wurde,
-    - ``schedule`` wenn es durch Programmierung gestartet wurde,
-    - ``user`` wenn es manuell gestartet wurde,
-    - ``start`` für einen Start beim Start von Jeedom.
-- ``#triggerValue#`` (veraltet, besser TriggerValue zu verwenden()) : Für den Wert des Befehls, der das Szenario ausgelöst hat
+- ``#trigger#`` : Vielleicht :
+  - ``api`` wenn der Start von der API ausgelöst wurde,
+  - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
+  - ``schedule`` wenn es durch Programmierung gestartet wurde,
+  - ``user`` wenn es manuell gestartet wurde,
+  - ``start`` für einen Start beim Start von Jeedom.
+- ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat.
+- ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
+- ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat. Tipp: Wenn Sie den aktuellen Wert des Befehls möchten, der das Szenario ausgelöst hat (und nicht seinen Wert zum Zeitpunkt der Auslösung), können Sie diesen verwenden : ``##trigger_id##`` (doppelt #)
 - ``#latitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Breitengradinformationen abzurufen
 - ``#longitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Längengradinformationen abzurufen
 - ``#altitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Höheninformationen abzurufen
-
+- ``#sunrise#`` : Ermöglicht das Abrufen der Sonnenaufgangszeit, sofern Breiten- und Längengrad in der Jeedom-Konfiguration eingegeben wurden
+- ``#sunset#`` : Ermöglicht das Abrufen der Sonnenuntergangszeit, vorausgesetzt, dass Breiten- und Längengrad in der Jeedom-Konfiguration eingegeben wurden
 
 Sie haben auch die folgenden zusätzlichen Tags, wenn Ihr Szenario durch eine Interaktion ausgelöst wurde :
 
@@ -419,7 +428,6 @@ Hier finden Sie praktische Beispiele zum Verständnis der von diesen verschieden
 | ``tag(montag,toto)``                   | Gibt den Wert von "montag" zurück, falls vorhanden, andernfalls wird der Wert "toto" zurückgegeben"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Gibt Hydrometrie zurück                  |
 
-
 ### Mathematische Funktionen
 
 Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen oder Berechnungen verwendet werden :
@@ -427,8 +435,8 @@ Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen
 - ``rand(1,10)`` : Geben Sie eine Zufallszahl von 1 bis 10 an.
 - ``randText(texte1;texte2;texte…​..)`` : Ermöglicht es Ihnen, einen der Texte zufällig zurückzugeben (trennen Sie die Texte durch einen; ). Die Anzahl der Texte ist unbegrenzt.
 - ``randomColor(min,max)`` : Gibt eine zufällige Farbe zwischen 2 Grenzen (0 => Rot, 50 => Grün, 100 => Blau).
-- ``trigger(commande)`` : Ermöglicht es Ihnen, den Auslöser für das Szenario herauszufinden oder festzustellen, ob der als Parameter übergebene Befehl das Szenario ausgelöst hat.
-- ``triggerValue()`` : Wird verwendet, um den Wert des Szenario-Triggers herauszufinden.
+- ``trigger(commande)`` : Ermöglicht es Ihnen, den Auslöser für das Szenario herauszufinden oder festzustellen, ob der als Parameter übergebene Befehl das Szenario ausgelöst hat. **=> Veraltet, es ist besser, das Tag zu verwenden #trigger#**
+- ``triggerValue()`` : Wird verwendet, um den Wert des Szenario-Triggers herauszufinden. **=> Veraltet, es ist besser, das Tag zu verwenden #triggerValue#**
 - ``round(valeur,[decimal])`` : Runden oben, [Dezimal] Anzahl der Dezimalstellen nach dem Dezimalpunkt.
 - ``odd(valeur)`` : Lässt Sie wissen, ob eine Zahl ungerade ist oder nicht. Gibt 1 zurück, wenn sonst ungerade 0.
 - ``median(commande1,commande2…​.commandeN)`` : Gibt den Median der Werte zurück.
@@ -442,13 +450,10 @@ Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen
 
 Und praktische Beispiele :
 
-
 | Funktionsbeispiel                  | Zurückgegebenes Ergebnis                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | Die Funktion gibt bei jeder Ausführung zufällig einen dieser Texte zurück.                           |
-| ``randomColor(40,60)``                 | Gibt eine zufällige Farbe nahe Grün zurück.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 wenn es gut ist ``#[Salle de bain][Hydrometrie][Humidité]#`` Wer hat das Szenario sonst gestartet? 0  |
-| ``triggerValue()`` | 80 wenn die Hydrometrie von ``#[Salle de bain][Hydrometrie][Humidité]#`` ist 80% und das ist ``#[Salle de bain][Hydrometrie][Humidité]#`` wer hat das szenario ausgelöst. Wenn das Szenario nicht durch einen Befehl ausgelöst wurde, wird `false` zurückgegeben.                         |
+| ``randomColor(40,60)``                 | Gibt eine zufällige Farbe nahe Grün zurück.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# /. 10)`` | Gibt 9 zurück, wenn der Feuchtigkeitsprozentsatz und 85                     |
 | ``odd(3)``                             | Rückgabe 1                            |
 | ``median(15,25,20)``                   | Rückgabe 20
@@ -458,7 +463,6 @@ Und praktische Beispiele :
 | ``floor(130/.60)``                     | Gibt 2 zurück (Minuten bei 130 s oder Stunden bei 130 m)                      |
 | ``convertDuration(3600)``             | Gibt 1h 0min 0s zurück                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Gibt die Zündzeit in Tagen / Stunden / Minuten der Übergangszeit auf Zustand 1 des Moduls seit dem 1. Tag des Monats zurück |
-
 
 ### Diverse Funktionen
 
@@ -474,12 +478,12 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Variable entfernen** (delete_variable) : Ermöglicht das Löschen einer Variablen.
 - **GenericType (GENERIC, #[Object]#)** : Änderung eines Info- (Ereignis)- oder Aktions- (execCmd) Befehls nach generischem Typ in einem Objekt. Schalten Sie beispielsweise alle Lichter im Wohnzimmer aus.
 - **Szenario** (scenario) : Ermöglicht die Steuerung von Szenarien. Mit dem Tag-Teil können Sie Tags an das Szenario senden, z : montag = 2 (Vorsicht, verwenden Sie nur Buchstaben von a bis z. Keine Großbuchstaben, keine Akzente und keine Sonderzeichen). Wir stellen das Tag im Zielszenario mit der Tag-Funktion (montag) wieder her).
-    - Zum Starten : Starten Sie das Szenario in einem anderen Thread. Das gestartete Szenario läuft unabhängig vom aufrufenden Szenario.
-    - Starten (Synchronisieren)) : Startet das aufgerufene Szenario und pausiert das aufrufende Szenario, während die Ausführung des aufgerufenen Szenarios beendet ist.
-    - Halt : Stoppen Sie das Szenario.
-    - Ermöglichen : Aktivieren Sie ein deaktiviertes Szenario.
-    - Deaktivieren : Szenario deaktivieren. Es wird nicht mehr unabhängig von den Auslösern gestartet.
-    - Zurücksetzen der ISs : Wird verwendet, um den Status von . zurückzusetzen **WENN**. Dieser Status wird verwendet, um die Aktionen von a . nicht zu wiederholen **WENN**, wenn die Bewertung der Bedingung das gleiche Ergebnis wie die vorherige Bewertung ergibt.
+  - Zum Starten : Starten Sie das Szenario in einem anderen Thread. Das gestartete Szenario läuft unabhängig vom aufrufenden Szenario.
+  - Starten (Synchronisieren)) : Startet das aufgerufene Szenario und pausiert das aufrufende Szenario, während die Ausführung des aufgerufenen Szenarios beendet ist.
+  - Halt : Stoppen Sie das Szenario.
+  - Ermöglichen : Aktivieren Sie ein deaktiviertes Szenario.
+  - Deaktivieren : Szenario deaktivieren. Es wird nicht mehr unabhängig von den Auslösern gestartet.
+  - Zurücksetzen der ISs : Wird verwendet, um den Status von . zurückzusetzen **WENN**. Dieser Status wird verwendet, um die Aktionen von a . nicht zu wiederholen **WENN**, wenn die Bewertung der Bedingung das gleiche Ergebnis wie die vorherige Bewertung ergibt.
 - **Halt** (stop) : Stoppen Sie das Szenario.
 - **Erwarten von** (wait) : Warten Sie, bis die Bedingung gültig ist (maximal 2 Stunden). Die Zeitüberschreitung erfolgt in Sekunden (s)).
 - **Gehe zum Design** (gotodesign) : Ändern Sie das in allen Browsern angezeigte Design durch das angeforderte Design.
@@ -495,7 +499,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Alarm** (alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
 - **Aufpoppen** (popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
 - **Bericht** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich. Die „Verzögerung“ wird in Millisekunden (ms).
-- **Programmierten IN / A-Block löschen** (entfernen_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
+- **Programmierten IN / A-Block löschen** (entfernen_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke eines Szenarios.
 - **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **Stichworte** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
 - **Färbung von Dashboard-Symbolen** (setColoredIcon) : Ermöglicht das Aktivieren oder Nicht-Aktivieren der Farbgebung von Symbolen im Dashboard.

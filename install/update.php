@@ -110,7 +110,11 @@ try {
 			$tmp = $tmp_dir . '/jeedom_update.zip';
 			try {
 				if (config::byKey('core::repo::provider') == 'default') {
-					$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
+					if(strpos(config::byKey('core::branch'),'tag::') === 0){
+						$url = 'https://github.com/jeedom/core/archive/refs/tags/'.str_replace('tag::','',config::byKey('core::branch')).'.zip';
+					}else{
+						$url = 'https://github.com/jeedom/core/archive/' . config::byKey('core::branch') . '.zip';
+					}
 					echo "Download url : " . $url . "\n";
 					echo "Download in progress...";
 					if (!is_writable($tmp_dir)) {
@@ -224,31 +228,32 @@ try {
 				}
 				echo "OK\n";
 				echo "[PROGRESS][52]\n";
-				echo "Remove useless files...\n";
-				foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script') as $folder) {
-					echo 'Cleaning ' . $folder . "\n";
-					shell_exec('find ' . __DIR__ . '/../' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
-				}
-				echo "OK\n";
-				echo "[PROGRESS][53]\n";
-				if(config::byKey('update::composerUpdate') == 1 || version_compare(PHP_VERSION, '8.0.0') >= 0){
-					if (exec('which composer | wc -l') == 0) {
-						echo "\nNeed to install composer...";
-						echo shell_exec('sudo ' . __DIR__ . '/../resources/install_composer.sh');
-						echo "OK\n";
-					}
-					echo "Update composer file...\n";
-					if (exec('which composer | wc -l') > 0) {
-						shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
-						shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
-						shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
-						if(method_exists('jeedom','cleanFileSystemRight')){
-							jeedom::cleanFileSystemRight();
-						}
+				if(strpos(config::byKey('core::branch'),'tag::') !== 0){
+					echo "Remove useless files...\n";
+					foreach (array('3rdparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script') as $folder) {
+						echo 'Cleaning ' . $folder . "\n";
+						shell_exec('find ' . __DIR__ . '/../' . $folder . '/* -mtime +30 -type f ! -iname "custom.*" ! -iname "common.config.php" -delete');
 					}
 					echo "OK\n";
-					echo "[PROGRESS][58]\n";
 				}
+				echo "[PROGRESS][53]\n";
+				if (exec('which composer | wc -l') == 0) {
+					echo "\nNeed to install composer...";
+					echo shell_exec(system::getCmdSudo().' ' . __DIR__ . '/../resources/install_composer.sh');
+					echo "OK\n";
+				}
+				echo "Update composer file...\n";
+				if (exec('which composer | wc -l') > 0) {
+					shell_exec(system::getCmdSudo(). ' rm '. __DIR__ . '/../composer.lock');
+					shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
+					shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
+					shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
+					if(method_exists('jeedom','cleanFileSystemRight')){
+						jeedom::cleanFileSystemRight();
+					}
+				}
+				echo "OK\n";
+				echo "[PROGRESS][58]\n";
 				echo "Update jeedom information date...\n";
 				try {
 					$update = update::byLogicalId('jeedom');

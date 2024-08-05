@@ -147,6 +147,9 @@ class jeeObject {
 	}
 
 	public static function fromHumanReadable($_input) {
+		if(empty($_input)){
+			return $_input;
+		}
 		$isJson = false;
 		if (is_json($_input)) {
 			$isJson = true;
@@ -739,7 +742,7 @@ class jeeObject {
 			$usage = $eqLogic->getUsage();
 			$eqLogics[$eqLogic->getId()] = array(
 				'eqLogic' => $eqLogic,
-				'usage' => config::byKey('autoreorder::weight_automation_action') * $usage['automation'] + config::byKey('autoreorder::weight_human_actio') * $usage['ui'] + config::byKey('autoreorder::weight_history') * $usage['history'],
+				'usage' => config::byKey('autoreorder::weight_automation_action') * $usage['automation'] + config::byKey('autoreorder::weight_human_action') * $usage['ui'] + config::byKey('autoreorder::weight_history') * $usage['history'],
 			);
 		}
 		usort($eqLogics, function ($a, $b) {
@@ -1267,14 +1270,14 @@ class jeeObject {
 	}
 
 	public function getFather_id($_default = null) {
-		if ($this->father_id == '' || !is_numeric($this->father_id)) {
+		if (!is_numeric($this->father_id)) {
 			return $_default;
 		}
 		return $this->father_id;
 	}
 
 	public function getIsVisible($_default = null) {
-		if ($this->isVisible == '' || !is_numeric($this->isVisible)) {
+		if (!is_numeric($this->isVisible)) {
 			return $_default;
 		}
 		return $this->isVisible;
@@ -1288,6 +1291,7 @@ class jeeObject {
 
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$_name = trim($_name);
 		$this->_changed = utils::attrChanged($this->_changed, $this->name, $_name);
 		$this->name = $_name;
 		return $this;

@@ -22,6 +22,8 @@ Can also be called in modale, triggering plugin button click for direct access t
 
 "use strict"
 
+
+
 if (!jeeFrontEnd.plugin) {
   jeeFrontEnd.plugin = {
     init: function() {
@@ -66,6 +68,7 @@ if (!jeeFrontEnd.plugin) {
       domUtils.showLoading()
       jeedom.plugin.get({
         id: _pluginId,
+        full: 1,
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -104,6 +107,12 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#span_plugin_author').innerHTML = ''
           }
 
+          if (isset(data.usedSpace)) {
+            self.dom_container.querySelector('#span_plugin_usedSpace').innerHTML = jeedomUtils.readableFileSize(data.usedSpace)
+          } else {
+            self.dom_container.querySelector('#span_plugin_usedSpace').innerHTML = ''
+          }
+          
           if (isset(data.category) && isset(jeephp2js.pluginCategories[data.category])) {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = jeephp2js.pluginCategories[data.category].name
           } else {

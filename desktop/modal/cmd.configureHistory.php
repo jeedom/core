@@ -47,6 +47,7 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
           </select> {{Lissage}}</th>
         <th data-filter="false" data-type="select-custom">
         <select id="purgeSelectAll" class="input-xs">
+            <option value="">{{Default}}</option>
             <option value="-1 day">{{1 jour}}</option>
             <option value="-7 days">{{7 jours}}</option>
             <option value="-1 month">{{1 mois}}</option>
@@ -55,8 +56,16 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
             <option value="-1 year">{{1 an}}</option>
             <option value="-2 years">{{2 ans}}</option>
             <option value="-3 years">{{3 ans}}</option>
-            <option value="">{{Jamais}}</option>
+            <option value="never">{{Jamais}}</option>
           </select> {{Purge}}</th>
+          <th data-filter="false" data-type="select-custom">
+          <select id="smoothTimeSelectAll" class="input-xs">
+            <option value="">{{Default}}</option>
+            <option value="-1">{{Aucun}}</option>
+            <option value="60">{{1 min}}</option>
+            <option value="300">{{5 min}}</option>
+            <option value="600">{{10 min}}</option>
+          </select> {{Limiter à}}</th>
         <th data-filter="false" style="width:100px;">{{Action}}</th>
       </tr>
     </thead>
@@ -134,15 +143,30 @@ sendVarToJs('jeephp2js.md_cmdConfigureHistory_numCmds', count($cmds));
         if ($cmd->getType() == 'info') {
           $confHistoryPurge = $cmd->getConfiguration('historyPurge');
           $tr .= '<select class="form-control cmdAttr input-xs" data-l1key="configuration" data-l2key="historyPurge" ' .  (($right != 'x') ? 'disabled' : '') .  '>';
-          $tr .= '<option data-sorton="0" value="-1 day" ' . (($confHistoryPurge == '-1 day') ? 'selected' : '') . '>{{1 jour}}</option>';
-          $tr .= '<option data-sorton="1" value="-7 days" ' . (($confHistoryPurge == '-7 days') ? 'selected' : '') . '>{{7 jours}}</option>';
-          $tr .= '<option data-sorton="2" value="-1 month" ' . (($confHistoryPurge == '-1 month') ? 'selected' : '') . '>{{1 mois}}</option>';
-          $tr .= '<option data-sorton="3" value="-3 month" ' . (($confHistoryPurge == '-3 month') ? 'selected' : '') . '>{{3 mois}}</option>';
-          $tr .= '<option data-sorton="4" value="-6 month" ' . (($confHistoryPurge == '-6 month') ? 'selected' : '') . '>{{6 mois}}</option>';
-          $tr .= '<option data-sorton="5" value="-1 year" ' . (($confHistoryPurge == '-1 year') ? 'selected' : '') . '>{{1 an}}</option>';
-          $tr .= '<option data-sorton="6" value="-2 years" ' . (($confHistoryPurge == '-2 years') ? 'selected' : '') . '>{{2 ans}}</option>';
-          $tr .= '<option data-sorton="7" value="-3 years" ' . (($confHistoryPurge == '-3 years') ? 'selected' : '') . '>{{3 ans}}</option>';
-          $tr .= '<option data-sorton="8" value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Jamais}}</option>';
+          $tr .= '<option data-sorton="0" value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Default}}</option>';
+          $tr .= '<option data-sorton="1" value="-1 day" ' . (($confHistoryPurge == '-1 day') ? 'selected' : '') . '>{{1 jour}}</option>';
+          $tr .= '<option data-sorton="2" value="-7 days" ' . (($confHistoryPurge == '-7 days') ? 'selected' : '') . '>{{7 jours}}</option>';
+          $tr .= '<option data-sorton="3" value="-1 month" ' . (($confHistoryPurge == '-1 month') ? 'selected' : '') . '>{{1 mois}}</option>';
+          $tr .= '<option data-sorton="4" value="-3 month" ' . (($confHistoryPurge == '-3 month') ? 'selected' : '') . '>{{3 mois}}</option>';
+          $tr .= '<option data-sorton="5" value="-6 month" ' . (($confHistoryPurge == '-6 month') ? 'selected' : '') . '>{{6 mois}}</option>';
+          $tr .= '<option data-sorton="6" value="-1 year" ' . (($confHistoryPurge == '-1 year') ? 'selected' : '') . '>{{1 an}}</option>';
+          $tr .= '<option data-sorton="7" value="-2 years" ' . (($confHistoryPurge == '-2 years') ? 'selected' : '') . '>{{2 ans}}</option>';
+          $tr .= '<option data-sorton="8" value="-3 years" ' . (($confHistoryPurge == '-3 years') ? 'selected' : '') . '>{{3 ans}}</option>';
+          $tr .= '<option data-sorton="9" value="never" ' . (($confHistoryPurge == 'never') ? 'selected' : '') . '>{{Jamais}}</option>';
+          $tr .= '</select>';
+        }
+        $tr .= '</td>';
+
+        //smoothTime
+        $tr .= '<td>';
+        if ($cmd->getType() == 'info') {
+          $confHistoryPurge = $cmd->getConfiguration('history::smooth');
+          $tr .= '<select class="form-control cmdAttr input-xs" data-l1key="configuration" data-l2key="history::smooth" ' .  (($right != 'x') ? 'disabled' : '') .  '>';
+          $tr .= '<option data-sorton="0"  value="" ' . (($confHistoryPurge == '') ? 'selected' : '') . '>{{Default}}</option>';
+          $tr .= '<option data-sorton="1"  value="-1" ' . (($confHistoryPurge == '-1') ? 'selected' : '') . '>{{Aucun}}</option>';
+          $tr .= '<option data-sorton="2" value="60" ' . (($confHistoryPurge == '60') ? 'selected' : '') . '>{{1 min}}</option>';
+          $tr .= '<option data-sorton="3" value="300" ' . (($confHistoryPurge == '300') ? 'selected' : '') . '>{{5 min}}</option>';
+          $tr .= '<option data-sorton="4" value="600" ' . (($confHistoryPurge == '600') ? 'selected' : '') . '>{{10 min}}</option>';
           $tr .= '</select>';
         }
         $tr .= '</td>';
@@ -183,7 +207,7 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
       jeeFrontEnd.md_cmdConfigureHistory.vDataTable = new DataTable(jeeFrontEnd.md_cmdConfigureHistory.tableConfig, {
         columns: [
           { select: 0, sort: "asc" },
-          { select: [8], sortable: false }
+          { select: [9], sortable: false }
         ],
         paging: true,
         perPage: 20,
@@ -299,6 +323,17 @@ if (!jeeFrontEnd.md_cmdConfigureHistory) {
       event.stopPropagation()
       event.preventDefault()
       var cells = Array.from(document.querySelectorAll('#table_cmdConfigureHistory select.cmdAttr[data-l2key="historyPurge"]')).filter(c => c.isVisible() && c.disabled == false )
+      cells.forEach(_cell => {
+        _cell.value = _target.value
+        _cell.closest('tr').setAttribute('data-change', '1')
+      })
+      return
+    }
+
+    if (_target = event.target.closest('#smoothTimeSelectAll')) {
+      event.stopPropagation()
+      event.preventDefault()
+      var cells = Array.from(document.querySelectorAll('#table_cmdConfigureHistory select.cmdAttr[data-l2key="history::smooth"]')).filter(c => c.isVisible() && c.disabled == false )
       cells.forEach(_cell => {
         _cell.value = _target.value
         _cell.closest('tr').setAttribute('data-change', '1')

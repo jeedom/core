@@ -20,13 +20,12 @@
     <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
   </template>
   <script>
-    var step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 0.5
-
     document.querySelector('.cmd[data-cmd_uid="#uid#"] .bt_plus').addEventListener('click', function() {
+      let step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 0.5
       let input = document.querySelector('.cmd[data-cmd_uid="#uid#"] .in_value')
       let value = parseFloat(input.value.replace("#unite#", "").replace(" ", "")) + step
       if (value > parseFloat('#maxValue#')) value = parseFloat('#maxValue#')
-      input.value = value
+      input.value = value + ' #unite#'
       clearTimeout(window['timerHandle#id#'])
       window['timerHandle#id#'] = setTimeout(function() {
         jeedom.cmd.execute({ id: '#id#', value: { slider: value } })
@@ -34,10 +33,11 @@
     })
 
     document.querySelector('.cmd[data-cmd_uid="#uid#"] .bt_minus').addEventListener('click', function() {
+      let step = (domUtils.issetWidgetOptParam('#step#', 'step')) ? parseFloat('#step#') : 0.5
       let input = document.querySelector('.cmd[data-cmd_uid="#uid#"] .in_value')
       let value = parseFloat(input.value.replace("#unite#", "").replace(" ", "")) - step
       if (value < parseFloat('#minValue#')) value = parseFloat('#minValue#')
-      input.value = value
+      input.value = value + ' #unite#'
       clearTimeout(window['timerHandle#id#'])
       window['timerHandle#id#'] = setTimeout(function() {
         jeedom.cmd.execute({ id: '#id#', value: { slider: value } })

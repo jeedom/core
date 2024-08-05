@@ -172,6 +172,10 @@ En dessous vous retrouvez un tableau permettant de gérer finement le niveau de 
 
 De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Historique, vous obtenez des graphiques représentant leur utilisation. Cet onglet permet de fixer des paramètres globaux à l’historisation des commandes.
 
+>**InfluxDB**
+>
+>Si vous voulez utilisez InfluxDB pour le moment il faut installer vous meme la librairie InfluxDB, Jeedom ne le faisant plus car elle n'est plus maintenu (nous prévoyons de migrer sur la nouvelle version mais cela ne sera pas pour tout de suite). Pour faire l'installation manuel voila comment faire : `cd /var/www/html;composer require influxdb/influxdb-php` depuis configuration puis onglet OS/DB puis la console d'administration OS
+
 ### Historique des commandes
 
 - **Afficher les statistiques sur les widgets** : Permet d’afficher les statistiques sur les widgets. Il faut que le widget soit compatible, ce qui est le cas pour la plupart. Il faut aussi que la commande soit de type numérique.
@@ -377,13 +381,19 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 Permet de surveiller et d’agir sur le cache de Jeedom :
 
-- **Statistiques** : Nombre d’objets actuellement en cache.
+- **Moteur de cache** : choix du moteur de cache pour jeedom : 
+  - Systeme de fichier : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier, utilise une lib tierce. Il sera prochainement remplacé par Fichier (beta)
+  - Fichier (beta) : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier. Le plus performant mais sauvegardé toute les 30min
+  - Mysql (beta) : Utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
+  - Redis (beta) : Réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
 - **Nettoyer le cache** : Force la suppression des objets qui ne sont plus utiles. Jeedom le fait automatiquement toutes les nuits.
 - **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
-- **Vider le cache des widgets** : Vide le cache dédié aux widgets.
-- **Désactiver le cache des widgets** : Cocher la case pour désactiver le cache des widgets.
 - **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre-partie cela utilise plus de ressources et peut donc ralentir Jeedom.
+
+>**IMPORTANT**
+>
+> Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
 
 ## Onglet API
 

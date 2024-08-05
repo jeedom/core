@@ -41,7 +41,12 @@ Object.assign(domUtils, {
   },
   registeredEvents: [],
   registeredFuncs: [],
-  headInjexted: []
+  headInjexted: [],
+  controller : new AbortController()
+})
+
+window.addEventListener('beforeunload', function(event) {
+    domUtils.controller.abort()
 })
 
 domUtils.DOMReady = function() {
@@ -50,7 +55,7 @@ domUtils.DOMReady = function() {
     let f = domUtils.registeredFuncs.shift()
     try {
       f.apply(this)
-    } catch(e) { }
+    } catch (e) { }
   }
 }
 
@@ -291,17 +296,17 @@ domUtils.extend = function(_object /*, _object... */) {
   let i = 0
   let length = arguments.length
   // Check if a deep merge
-  if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+  if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
     deep = arguments[0]
     i++
   }
   // Merge the object into the extended object
-  let merge = function (obj) {
-    for (let prop in obj ) {
-      if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+  let merge = function(obj) {
+    for (let prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
         // If deep merge and property is an object, merge properties
-        if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
-          extended[prop] = extend( true, extended[prop], obj[prop] )
+        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+          extended[prop] = extend(true, extended[prop], obj[prop])
         } else {
           extended[prop] = obj[prop]
         }
@@ -309,7 +314,7 @@ domUtils.extend = function(_object /*, _object... */) {
     }
   }
   // Loop through each object and conduct a merge
-  for ( ; i < length; i++ ) {
+  for (; i < length; i++) {
     merge(arguments[i])
   }
   return extended
@@ -511,9 +516,9 @@ domUtils.getUrlString = function(params, keys = [], isArray = false) {
         tKey = tKeys.reduce((str, k) => { return '' === str ? k : `${str}[${k}]` }, '')
       }
       if (isArray) {
-        return `${ tKey }[]=${ encodeURIComponent(val) }`
+        return `${tKey}[]=${encodeURIComponent(val)}`
       } else {
-        return `${ tKey }=${ encodeURIComponent(val) }`
+        return `${tKey}=${encodeURIComponent(val)}`
       }
     }
   }).join('&')
@@ -522,13 +527,14 @@ domUtils.getUrlString = function(params, keys = [], isArray = false) {
 }
 
 
+
 domUtils.ajax = function(_params) {
   _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
   _params.dataType = isset(_params.dataType) ? _params.dataType : domUtils.ajaxSettings.dataType
   _params.type = isset(_params.type) ? _params.type : domUtils.ajaxSettings.type
   _params.noDisplayError = isset(_params.noDisplayError) ? _params.noDisplayError : domUtils.ajaxSettings.noDisplayError
-  _params.success = (typeof _params.success === 'function') ? _params.success : function() {return arguments}
+  _params.success = (typeof _params.success === 'function') ? _params.success : function() { return arguments }
   _params.complete = (typeof _params.complete === 'function') ? _params.complete : function() { }
   _params.onError = (typeof _params.error === 'function') ? _params.error : null
   _params.timeoutRetry = isset(_params.timeoutRetry) ? _params.timeoutRetry : 0
@@ -544,7 +550,7 @@ domUtils.ajax = function(_params) {
   if (isset(_params.data) && isJson && _params.processData === true) {
     sendData = domUtils.getUrlString(_params.data)
     sendData = new URLSearchParams(sendData)
-    postHeaders = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
+    postHeaders = { "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8" }
   }
 
   if (_params.async === false) { //Synchronous request:
@@ -556,9 +562,8 @@ domUtils.ajax = function(_params) {
       isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
     } else { //Weird thing happened
       if (_params.global) domUtils.DOMloading -= 1
-      domUtils.handleAjaxError(response, response.status, response.statusText)
-      if (_params.onError) _params.onError(error)
-      _params.onError('', '', error)
+      domUtils.handleAjaxError(request, request.status, request.responseText)
+      if (_params.onError) _params.onError(request)
     }
     _params.complete()
   } else { //Asynchronous request:
@@ -574,76 +579,76 @@ domUtils.ajax = function(_params) {
       referrerPolicy: 'no-referrer',
       mode: 'cors',
       credentials: 'same-origin',
-      //Safari AbortSignal.timeout not a functyion
+	    signal: domUtils.controller.signal,
+      //Safari AbortSignal.timeout not a function
       //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
-    .then( response => {
-      if (!response.ok) {
+      .then(response => {
+        if (!response.ok) {
+          if (_params.global) domUtils.DOMloading -= 1
+          throw response
+        }
+        if (isJson) {
+          return response.json()
+        } else {
+          return response.text()
+        }
+      })
+      .then(obj => {
+        return _params.success(obj)
+      }).then(async function() {
         if (_params.global) domUtils.DOMloading -= 1
-        throw response
-      }
-      if (isJson) {
-        return response.json()
-      } else {
-        return response.text()
-      }
-      return response
-    })
-    .then( obj => {
-      return _params.success(obj)
-    }).then(async function() {
-      if (_params.global) domUtils.DOMloading -= 1
-      _params.complete()
-      return
-    })
-    .catch( error => {
-      if (_params.global) domUtils.DOMloading -= 1
-      if (typeof error.text === 'function') { //Catched from fetch return
-        error.text().then(errorMessage => {
-          if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error
-            //Timeout, retry:
-            if (_params.timeoutRetry < 3) {
-              _params.timeoutRetry ++
-              setTimeout( () => {
-                domUtils.ajax(_params)
-              }, 100)
-              return
+        _params.complete()
+        return
+      })
+      .catch(error => {
+        if(domUtils.controller.signal.aborted){
+          return;
+        }  
+        if (_params.global) domUtils.DOMloading -= 1
+        if (typeof error.text === 'function') { //Catched from fetch return
+          error.text().then(errorMessage => {
+            if ((error.status == 504 || error.status == 500 || (error.status == 502 && error.headers.get('server') == 'openresty'))) { //Gateway Timeout or Internal Server Error
+              //Timeout, retry:
+              if (_params.timeoutRetry < 3) {
+                _params.timeoutRetry++
+                setTimeout(() => {
+                  domUtils.ajax(_params)
+                }, 100)
+                return
+              } else {
+                console.warn('[Timeout Error], retried two times:', error, errorMessage, _params)
+              }
             } else {
-              console.warn('[Timeout Error], retried two times:', error, errorMessage, _params)
+              console.warn('[Bad Fetch response]', error, errorMessage, _params)
             }
-          } else {
-            console.warn('[Bad Fetch response]', error, errorMessage, _params)
+          })
+        } else { //Catched from fetch error
+          if (error.code == 20) return //NetworkError when attempting to fetch resource.
+          if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
+          if (error.name == 'TypeError') {
+            console.warn('Error JS > TypeError > ', error)
           }
-        })
-      } else { //Catched from fetch error
-        if (error.code == 20) return //NetworkError when attempting to fetch resource.
-        if (error.name == 'TypeError' && error.message.includes('NetworkError')) return //The operation was aborted.
-        if (error.name == 'TypeError'){
-          console.warn('Error JS > TypeError > ',error)
-        }
-        if (error.name == 'ReferenceError'){
-          console.warn('Error Reference > ReferenceError > '+ error)
-        }
-        if (!_params.noDisplayError) {
-          domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+          if (error.name == 'ReferenceError') {
+            console.warn('Error Reference > ReferenceError > ' + error)
+          }
+          if (!_params.noDisplayError) {
+            domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+          }
           if (_params.onError) {
             _params.onError(error)
           }
+
+          //Alpha test code:
+          /*
+          console.warn('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
+          console.dir(error)
+          domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
+          */
         }
-
-
-        //Alpha test code:
-        /*
-        console.warn('[Fetch Server Error]', 'name:', error.name, ' | message:', error.message, ' | code:', error.code, ' | request:', _params.url, ' | action:', _params.data.action, _params)
-        console.dir(error)
-        domUtils.handleAjaxError(_params.url, error.name, error.message, _params)
-        */
-      }
-    })
+      })
   }
 }
-
-
 
 
 /* ____________Listeners Management____________
@@ -684,7 +689,7 @@ EventTarget.prototype.registerEvent = function(_type, _listener, _options) {
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
   var that = this
   var listeners = domUtils.registeredEvents.filter(function(listener) {
-    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == that )
+    return ((isset(_type) ? listener.type == _type : true) && (isset(_id) ? listener.id == _id : true) && listener.element == that)
   })
   for (var listener of listeners) {
     var result = that.removeEventListener(listener.type, listener.callback, listener.options)
@@ -696,7 +701,7 @@ EventTarget.prototype.unRegisterEvent = function(_type, _id) {
 EventTarget.prototype.getRegisteredEvent = function(_type, _id) {
   let self = this
   let listeners = domUtils.registeredEvents.filter(function(listener) {
-    return ( (isset(_type)? listener.type == _type : true) && (isset(_id)? listener.id == _id : true) && listener.element == self )
+    return ((isset(_type) ? listener.type == _type : true) && (isset(_id) ? listener.id == _id : true) && listener.element == self)
   })
   return listeners
 }
@@ -721,9 +726,9 @@ NodeList.prototype.triggerEvent = function(_eventName, _params) {
 
 domUtils.octetsToHumanSize = function(_size) {
   _size = Math.abs(parseInt(_size, 10))
-  var def = [[1, 'octets'], [1024, 'Ko'], [1024*1024, 'Mo'], [1024*1024*1024, 'Go'], [1024*1024*1024*1024, 'To']]
-  for (var i=0; i < def.length; i++) {
-    if (_size < def[i][0]) return (_size / def[i-1][0]).toFixed(2) +' '+ def[i-1][1]
+  var def = [[1, 'octets'], [1024, 'Ko'], [1024 * 1024, 'Mo'], [1024 * 1024 * 1024, 'Go'], [1024 * 1024 * 1024 * 1024, 'To']]
+  for (var i = 0; i < def.length; i++) {
+    if (_size < def[i][0]) return (_size / def[i - 1][0]).toFixed(2) + ' ' + def[i - 1][1]
   }
 
 }
@@ -766,7 +771,7 @@ function isset() {
 function getNearestMultiple(_value, _factor, _method) {
   if (!_factor) return _value
   _method = _method || 'round'
-  return Math[_method](_value/_factor) * _factor
+  return Math[_method](_value / _factor) * _factor
 }
 
 function json_decode(a) {
@@ -881,7 +886,7 @@ function isInWindow(_el) {
 function getBool(val) {
   if (val === undefined) return false
   var num = +val
-  return !isNaN(num) ? !!num : !!String(val).toLowerCase().replace(!!0,'')
+  return !isNaN(num) ? !!num : !!String(val).toLowerCase().replace(!!0, '')
 }
 
 //Prefer [array].includes()
@@ -932,7 +937,7 @@ function is_object(a) {
 }
 
 function isPlainObject(obj) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
+  return Object.prototype.toString.call(obj) === '[object Object]'
 }
 function is_real(a) {
   return this.is_float(a)

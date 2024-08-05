@@ -29,7 +29,7 @@ class config {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getDefaultConfiguration($_plugin = 'core') {
+	public static function getDefaultConfiguration(string $_plugin = 'core') {
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			if ($_plugin == 'core') {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
@@ -114,7 +114,7 @@ class config {
 	 * @param string $_key nom de la clef à supprimer
 	 * @return boolean vrai si ok faux sinon
 	 */
-	public static function remove($_key, $_plugin = 'core') {
+	public static function remove(string $_key, string $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(
 				'plugin' => $_plugin,
@@ -350,10 +350,6 @@ class config {
 				network::dns_stop();
 			}
 		}
-	}
-
-	public static function postConfig_interface_advance_vertCentering($_value) {
-		cache::flushWidget();
 	}
 
 	public static function postConfig_theme_start_day_hour($_value) {

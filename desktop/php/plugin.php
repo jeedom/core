@@ -21,26 +21,24 @@ $plugins_list = plugin::listPlugin(false, true);
         if (!$value['enable']) {
           continue;
         }
-        if (!isset($value['scope']['pullInstall']) || !$value['scope']['pullInstall']) {
-          continue;
-        }
-        $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
-        $div .= '<div class="center"><i class="fas fa-sync"></i></div>';
-        $div .= '<span class="txtColor">{{Synchroniser}} ' . $value['name'] . '</span>';
-        $div .= '</div>';
-        if (!isset($value['scope']['hasStore']) || !$value['scope']['hasStore']) {
-          continue;
-        }
-        if(isset($value['scope']['urlStore'])){
-          $div .= '<div class="cursor success gotoUrlStore" data-href="'.config::byKey($key.'::'.$value['scope']['urlStore']).'">';
-          $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
-          $div .= '<span class="txtColor">' . $value['name'] . '</span>';
+        if (isset($value['scope']['pullInstall']) && $value['scope']['pullInstall']) {
+          $div .= '<div class="cursor pullInstall success" data-repo="' . $key . '">';
+          $div .= '<div class="center"><i class="fas fa-sync"></i></div>';
+          $div .= '<span class="txtColor">{{Synchroniser}} ' . $value['name'] . '</span>';
           $div .= '</div>';
-        }else{
-          $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
-          $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
-          $div .= '<span class="txtColor">' . $value['name'] . '</span>';
-          $div .= '</div>';
+        }
+        if (isset($value['scope']['hasStore']) && $value['scope']['hasStore']) {
+          if(isset($value['scope']['urlStore'])){
+            $div .= '<div class="cursor success gotoUrlStore" data-href="'.config::byKey($key.'::'.$value['scope']['urlStore']).'">';
+            $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
+            $div .= '<span class="txtColor">' . $value['name'] . '</span>';
+            $div .= '</div>';
+          }else{
+            $div .= '<div class="cursor displayStore success" data-repo="' . $key . '">';
+            $div .= '<div class="center"><i class="fas fa-shopping-cart"></i></div>';
+            $div .= '<span class="txtColor">' . $value['name'] . '</span>';
+            $div .= '</div>';
+          }
         }
       }
       echo $div;
@@ -72,18 +70,20 @@ $plugins_list = plugin::listPlugin(false, true);
             $update = $plugin->getUpdate();
             if (is_object($update)) {
               $version = $update->getConfiguration('version');
-              switch($version) {
-                case 'alpha':
-                  $div .= '<span class="name"><sub style="font-size:22px" class="danger">&#8226</sub>' . $plugin->getName() . '</span>';
-                  break;
-                case 'beta':
-                  $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
-                  break;
-                default:
-                  $div .= '<span class="name">' . $plugin->getName() . '</span>';
-              }
+              if (!$version) $version = 'master'; // plugin without version out of market or github
             } else {
-              $div .= '<span class="name">' . $plugin->getName() . '</span>';
+              $version = 'master'; // plugin not found in DB update table
+            }
+            switch($version) {
+              case 'stable':
+              case 'master':
+                $div .= '<span class="name">' . $plugin->getName() . '</span>';
+                break;
+              case 'beta':
+                $div .= '<span class="name"><sub style="font-size:22px" class="warning">&#8226</sub>' . $plugin->getName() . '</span>';
+                break;
+              default:
+                $div .= '<span class="name"><sub style="font-size:22px" class="danger">&#8226</sub>' . $plugin->getName() . '</span>';
             }
 
             $div .= '<span class="hiddenAsCard displayTableRight">';
@@ -138,7 +138,7 @@ $plugins_list = plugin::listPlugin(false, true);
                 <div class="form-group">
                   <label class="col-sm-2 col-xs-6 control-label">{{Auteur}}</label>
                   <div class="col-sm-4 col-xs-6">
-                    <span id="span_plugin_author"></span>
+                    <span id="span_plugin_author"></span> - <span id="span_plugin_license"></span>
                   </div>
                   <label class="col-sm-2 col-xs-6 control-label">{{Version}}
                     <sup><i class="fas fa-question-circle" title="{{Version installée du plugin.}}"></i></sup>
@@ -149,9 +149,9 @@ $plugins_list = plugin::listPlugin(false, true);
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 col-xs-6 control-label">{{License}}</label>
+                   <label class="col-sm-2 col-xs-6 control-label">{{Espace utilisé}}</label>
                   <div class="col-sm-4 col-xs-6">
-                    <span id="span_plugin_license"></span>
+                    <span id="span_plugin_usedSpace"></span>
                   </div>
                   <label class="col-sm-2 col-xs-6 control-label">{{Prérequis}}
                     <sup><i class="fas fa-question-circle" title="{{Version minimale du Core supportée par le plugin.}}"></i></sup>
@@ -160,7 +160,6 @@ $plugins_list = plugin::listPlugin(false, true);
                     <span id="span_plugin_require"></span>
                   </div>
                 </div>
-
               </fieldset>
             </form>
           </div>

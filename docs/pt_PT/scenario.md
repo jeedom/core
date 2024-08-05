@@ -1,4 +1,5 @@
 # Cenários
+
 **Ferramentas → Cenários**
 
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
@@ -20,11 +21,13 @@ Você encontrará nesta parte **lista de cenários** que você criou. Eles são 
 > **Dica**
 >
 > Você pode abrir um cenário fazendo :
+>
 > - Clique em um deles.
 > - Ctrl Clic ou Clic Center para abri-lo em uma nova guia do navegador.
 
 Você tem um mecanismo de pesquisa para filtrar a exibição de cenários. A tecla Escape cancela a pesquisa.
 À direita do campo de pesquisa, três botões encontrados em vários lugares no Jeedom :
+
 - A cruz para cancelar a pesquisa.
 - A pasta aberta para desdobrar todos os painéis e exibir todos os cenários.
 - O encosto fechado para dobrar todos os painéis.
@@ -71,9 +74,11 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 - **Objeto pai** : Atribuição a um objeto pai. Será então visível ou não, de acordo com este pai.
 - **Tempo limite em segundos (0 = ilimitado)** : O tempo máximo de execução permitido para este cenário. Além desse tempo, a execução do cenário é interrompida.
 - **Multi lançamento** : Marque esta caixa se desejar que o cenário possa ser iniciado várias vezes ao mesmo tempo.
+
 >**IMPORTANTE**
 >
 >O multi lançamento funciona por segundo, ou seja, se você tiver 2 lançamentos no mesmo segundo sem a caixa marcada, ainda haverá 2 lançamentos do cenário (embora não deva). Da mesma forma, durante vários lançamentos no mesmo segundo, alguns lançamentos podem perder as tags. Conclusão é ABSOLUTAMENTE necessário evitar vários lançamentos no mesmo segundo.
+
 - **Sincronicamente** : Inicie o cenário no segmento atual em vez de um segmento dedicado. Aumenta a velocidade na qual o cenário é iniciado, mas pode tornar o sistema instável. Cuidado para não colocar um cenário complexo ou com pausas (sleep) ou esperar de forma síncrona, isso gera um comportamento instável de jeedom e não pode ser coberto pelo suporte.
 - **Registro** : O tipo de log desejado para o cenário. Você pode cortar os registros do cenário ou, ao contrário, mostrá-lo em Análise → Tempo real.
 - **Linha do tempo** : Mantenha um acompanhamento do cenário na linha do tempo (consulte Histórico doc).
@@ -120,14 +125,14 @@ Aqui estão os diferentes tipos de blocos disponíveis :
 Cada bloco tem suas opções para lidar melhor com eles :
 
 - À esquerda :
-    - A seta bidirecional permite mover um bloco ou uma ação para reordená-los no cenário.
-    - O olho reduz um bloqueio (*colapso*) para reduzir seu impacto visual. Ctrl Clique no olho reduz ou exibe todos eles.
-    - A caixa de seleção permite desativar completamente o bloco sem excluí-lo. Portanto, não será executado.
+  - A seta bidirecional permite mover um bloco ou uma ação para reordená-los no cenário.
+  - O olho reduz um bloqueio (*colapso*) para reduzir seu impacto visual. Ctrl Clique no olho reduz ou exibe todos eles.
+  - A caixa de seleção permite desativar completamente o bloco sem excluí-lo. Portanto, não será executado.
 
 - À direita :
-    - O ícone Copiar permite copiar o bloco para fazer uma cópia em outro lugar. Ctrl Clique no ícone corta o bloco (copie e exclua).
-    - O ícone Colar permite colar uma cópia do bloco copiado anteriormente após o bloco no qual você usa esta função.  Ctrl Clique no ícone substitui o bloco pelo bloco copiado.
-    - O ícone - permite excluir o bloco, com uma solicitação de confirmação. Ctrl Clique exclui o bloco sem confirmação.
+  - O ícone Copiar permite copiar o bloco para fazer uma cópia em outro lugar. Ctrl Clique no ícone corta o bloco (copie e exclua).
+  - O ícone Colar permite colar uma cópia do bloco copiado anteriormente após o bloco no qual você usa esta função.  Ctrl Clique no ícone substitui o bloco pelo bloco copiado.
+  - O ícone - permite excluir o bloco, com uma solicitação de confirmação. Ctrl Clique exclui o bloco sem confirmação.
 
 ### Se / Então / Caso contrário, bloqueia | Ciclo | Dentro | A
 
@@ -151,29 +156,28 @@ Três botões estão disponíveis à direita deste tipo de bloco para selecionar
 
 Depois que a condição estiver concluída, você deve usar o botão "adicionar" à esquerda para adicionar um novo **quadra** ou um **estoque** no bloco atual.
 
-
 ### Código de bloco
 
 O bloco Code permite executar código php. Portanto, é muito poderoso, mas requer um bom conhecimento da linguagem php.
 
 #### Acesso a controles (sensores e atuadores)
 
--  ``cmd::byString($string);`` : Retorna o objeto de comando correspondente.
-    -   ``$string``: Link para o pedido desejado : ``#[objet][equipamento][commande]#`` (Ex : ``#[Appartement][Alarme][De ativos]#``)
--  ``cmd::byId($id);`` : Retorna o objeto de comando correspondente.
-    -  ``$id`` : ID do pedido.
--  ``$cmd->execCmd($options = null);`` : Execute o comando e retorne o resultado.
-    - ``$options`` : Opções para a execução do comando (podem ser específicas para o plugin). Opções básicas (subtipo de comando) :
-        -  ``message`` : ``$option = array('title' => 'titre du mensagem , 'message' => 'Mon message');``
-        -  ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
-        -  ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
+- ``cmd::byString($string);`` : Retorna o objeto de comando correspondente.
+  - ``$string``: Link para o pedido desejado : ``#[objet][equipamento][commande]#`` (Ex : ``#[Appartement][Alarme][De ativos]#``)
+- ``cmd::byId($id);`` : Retorna o objeto de comando correspondente.
+  - ``$id`` : ID do pedido.
+- ``$cmd->execCmd($options = null);`` : Execute o comando e retorne o resultado.
+  - ``$options`` : Opções para a execução do comando (podem ser específicas para o plugin). Opções básicas (subtipo de comando) :
+    - ``message`` : ``$option = array('title' => 'titre du mensagem , 'message' => 'Mon message');``
+    - ``color`` : ``$option = array('color' => 'couleur en hexadécimal');``
+    - ``slider`` : ``$option = array('slider' => 'valeur voulue de 0 à 100');``
 
 #### Acesso a registros
 
--  ``log::add('filename','level','message');``
-    - ``filename`` : Nome do arquivo de log.
-    - ``level`` : [depuração], [informações], [erro], [evento].
-    - ``message`` : Mensagem para escrever nos logs.
+- ``log::add('filename','level','message');``
+  - ``filename`` : Nome do arquivo de log.
+  - ``level`` : [depuração], [informações], [erro], [evento].
+  - ``message`` : Mensagem para escrever nos logs.
 
 #### Acesso a cenários
 
@@ -181,14 +185,14 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 - ``$scenario->getGroup();`` : Retorna o grupo de cenários.
 - ``$scenario->getIsActive();`` : Retorna o estado do cenário.
 - ``$scenario->setIsActive($active);`` : Permite ativar ou não o cenário.
-    - ``$active`` : 1 ativo, 0 inativo.
+  - ``$active`` : 1 ativo, 0 inativo.
 - ``$scenario->running();`` : Usado para descobrir se o cenário está em execução ou não (verdadeiro / falso).
 - ``$scenario->save();`` : Salvar alterações.
 - ``$scenario->setData($key, $value);`` : Salvar um dado (variável).
-    - ``$key`` : chave de valor (int ou string).
-    - ``$value`` : valor para armazenar (``int``, ``string``, ``array`` Onde ``object``).
+  - ``$key`` : chave de valor (int ou string).
+  - ``$value`` : valor para armazenar (``int``, ``string``, ``array`` Onde ``object``).
 - ``$scenario->getData($key);`` : Obter dados (variável).
-    - ``$key => 1`` : chave de valor (int ou string).
+  - ``$key => 1`` : chave de valor (int ou string).
 - ``$scenario->removeData($key);`` : Excluir dados.
 - ``$scenario->setLog($message);`` : Escreva uma mensagem no log de script.
 - ``$scenario->persistLog();`` : Forçar a gravação do log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
@@ -235,6 +239,7 @@ Existem gatilhos específicos (além dos fornecidos pelos comandos) :
 - ``#user_connect#`` : Login do usuário
 - ``#variable(nom_variable)#`` : Alterando o valor da variável name_name.
 - ``#genericType (GENERIC, #[Object]#)#`` : Alteração de um comando de informação do tipo GENÉRICO genérico, no objeto Object.
+- ``#new_eqLogic#`` : Evento enviado ao criar um novo equipamento, você tem nas tags id (id do equipamento criado), name (nome do equipamento criado) e eqType (tipo/plugin do equipamento criado)
 
 Você também pode acionar um cenário usando a API HTTP descrita [aqui](https://doc.jeedom.com/pt_PT/core/4.4/api_http).
 
@@ -282,16 +287,20 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
 - ``#IP#`` : IP interno da Jeedom.
 - ``#hostname#`` : Nome da máquina Jeedom.
 - ``#jeedomName#`` : Nome de Jeedom.
-- ``#trigger#`` (obsoleto, melhor usar ``trigger()``) : Talvez o nome do comando que iniciou o cenário :
-    - ``api`` se o lançamento foi acionado pela API,
-    - ``schedule`` se foi iniciado por programação,
-    - ``user`` se foi iniciado manualmente,
-    - ``start`` para um lançamento na inicialização do Jeedom.
-- ``#triggerValue#`` (descontinuado, melhor usar triggerValue()) : Para o valor do comando que acionou o cenário
+- ``#trigger#`` : Talvez :
+  - ``api`` se o lançamento foi acionado pela API,
+  - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
+  - ``schedule`` se foi iniciado por programação,
+  - ``user`` se foi iniciado manualmente,
+  - ``start`` para um lançamento na inicialização do Jeedom.
+- ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou.
+- ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
+- ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário. Dica se você quiser o valor atual do comando que disparou o cenário (e não seu valor no disparo), você pode usar : ``##trigger_id##`` (dobro #)
 - ``#latitude#`` : Permite recuperar as informações de latitude colocadas na configuração do jeedom
 - ``#longitude#`` : Permite recuperar as informações de longitude colocadas na configuração do jeedom
 - ``#altitude#`` : Permite recuperar as informações de altitude colocadas na configuração do jeedom
-
+- ``#sunrise#`` : Permite recuperar a hora do nascer do sol, desde que a latitude e a longitude sejam inseridas na configuração do jeedom
+- ``#sunset#`` : Permite recuperar a hora do pôr do sol, desde que a latitude e a longitude sejam inseridas na configuração do jeedom
 
 Você também tem as seguintes tags adicionais se seu cenário foi acionado por uma interação :
 
@@ -419,7 +428,6 @@ Aqui estão exemplos práticos para entender os valores retornados por essas dif
 | ``tag(montag,toto)``                   | Retorna o valor de "montag" se existir, caso contrário, retorna o valor "para"                               |
 | ``name(eqLogic,#[Salle de bain][Hydrometrie][Humidité]#)``     | Retorna Hidrometria                  |
 
-
 ### Funções matemáticas
 
 Uma caixa de ferramentas de funções genéricas também pode ser usada para realizar conversões ou cálculos :
@@ -427,8 +435,8 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 - ``rand(1,10)`` : Dê um número aleatório de 1 a 10.
 - ``randText(texte1;texte2;texte…​..)`` : Permite retornar um dos textos aleatoriamente (separe os textos por um; ). Não há limite no número de textos.
 - ``randomColor(min,max)`` : Dá uma cor aleatória entre 2 limites (0 => vermelho, 50 => verde, 100 => azul).
-- ``trigger(commande)`` : Permite descobrir o gatilho para o cenário ou saber se foi o comando passado como um parâmetro que acionou o cenário.
-- ``triggerValue()`` : Usado para descobrir o valor do gatilho do cenário.
+- ``trigger(commande)`` : Permite descobrir o gatilho para o cenário ou saber se foi o comando passado como um parâmetro que acionou o cenário. **=> Obsoleto é melhor usar a tag #trigger#**
+- ``triggerValue()`` : Usado para descobrir o valor do gatilho do cenário. **=> Obsoleto é melhor usar a tag #triggerValue#**
 - ``round(valeur,[decimal])`` : Arredonda acima, número [decimal] de casas decimais após o ponto decimal.
 - ``odd(valeur)`` : Permite saber se um número é ímpar ou não. Retorna 1 se ímpar 0, caso contrário.
 - ``median(commande1,commande2…​.commandeN)`` : Retorna a mediana dos valores.
@@ -442,13 +450,10 @@ Uma caixa de ferramentas de funções genéricas também pode ser usada para rea
 
 E exemplos práticos :
 
-
 | Exemplo de função                  | Resultado retornado                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | a função retornará um desses textos aleatoriamente a cada execução.                           |
-| ``randomColor(40,60)``                 | Retorna uma cor aleatória próxima ao verde.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 se é bom ``#[Salle de bain][Hydrometrie][Humidité]#`` quem iniciou o cenário caso contrário 0  |
-| ``triggerValue()`` | 80 se a hidrometria de ``#[Salle de bain][Hydrometrie][Humidité]#`` é 80% e isso é ``#[Salle de bain][Hydrometrie][Humidité]#`` quem desencadeou o cenário. Se o cenário não foi disparado por um comando, retorna `falso`.                         |
+| ``randomColor(40,60)``                 | Retorna uma cor aleatória próxima ao verde.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Retorna 9 se a porcentagem de umidade e 85                     |
 | ``odd(3)``                             | Retorna 1                            |
 | ``median(15,25,20)``                   | Retorna 20
@@ -458,7 +463,6 @@ E exemplos práticos :
 | ``floor(130/60)``                     | Retorna 2 (minutos se 130s ou horas se 130m)                      |
 | ``convertDuration(3600)``             | Retorna 1h 0min 0s                      |
 | ``convertDuration(duration(#[Chauffage][Module chaudière][Etat]#,1, first day of this month)*60)`` | Retorna o tempo de ignição em Dias / Horas / minutos do tempo de transição para o estado 1 do módulo desde o 1º dia do mês |
-
 
 ### Funções diversas
 
@@ -474,12 +478,12 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Remover variável** (delete_variable) : Permite excluir uma variável.
 - **genericType (GENERIC, #[Object]#)** : Modificação de um comando info (evento) ou ação (execCmd) por tipo genérico, em um objeto. Por exemplo, desligue todas as luzes da sala de estar.
 - **Cenas** (scenario) : Permite controlar cenários. A parte de tags permite enviar tags para o cenário, ex : montag = 2 (tenha cuidado, use apenas letras de a a z. Sem letras maiúsculas, sem acentos e sem caracteres especiais). Recuperamos a tag no cenário de destino com a função tag (montag).
-    - Para iniciar : Comece o cenário em um tópico diferente. O cenário iniciado é executado independentemente do cenário de chamada.
-    - Iniciar (Sincronizar) : Inicia o cenário chamado e pausa o cenário chamado, enquanto o cenário chamado termina de ser executado.
-    - Pare : Pára o script.
-    - Permitir : Ative um cenário desativado.
-    - Desativar : Cenário de desativação. Ele não inicia mais, independentemente dos gatilhos.
-    - Reinicializando os ISs : Usado para redefinir o status de **E SE**. Este status é usado para a não repetição das ações de um **E SE**, se a avaliação da condição der o mesmo resultado da avaliação anterior.
+  - Para iniciar : Comece o cenário em um tópico diferente. O cenário iniciado é executado independentemente do cenário de chamada.
+  - Iniciar (Sincronizar) : Inicia o cenário chamado e pausa o cenário chamado, enquanto o cenário chamado termina de ser executado.
+  - Pare : Pára o script.
+  - Permitir : Ative um cenário desativado.
+  - Desativar : Cenário de desativação. Ele não inicia mais, independentemente dos gatilhos.
+  - Reinicializando os ISs : Usado para redefinir o status de **E SE**. Este status é usado para a não repetição das ações de um **E SE**, se a avaliação da condição der o mesmo resultado da avaliação anterior.
 - **Pare** (stop) : Pára o script.
 - **Espero** (wait) : Aguarde até que a condição seja válida (máximo de 2h), o tempo limite será em segundos (s).
 - **Vai o projeto** (gotodesign) : Alterar o design exibido em todos os navegadores pelo design solicitado.
@@ -495,7 +499,7 @@ Além dos comandos de automação residencial, você tem acesso às seguintes a�
 - **Alerta** (alert) : Exibe uma pequena mensagem de alerta em todos os navegadores que têm uma página Jeedom aberta. Além disso, você pode escolher 4 níveis de alerta.
 - **Aparecer** (popup) : Permite exibir um pop-up que deve ser absolutamente validado em todos os navegadores que possuem uma página jeedom aberta.
 - **Relatório** (report) : Permite exportar uma visualização em formato (PDF, PNG, JPEG ou SVG) e enviá-la usando um comando do tipo mensagem. Observe que, se seu acesso à Internet estiver em HTTPS não assinado, essa funcionalidade não funcionará. HTTP ou HTTPS assinado é necessário. O "atraso" é em milissegundos (ms).
-- **Excluir bloco IN / A agendado** (remove_inat) : Apagar a programação de todos os blocos dentro e A Cenário.
+- **Excluir bloco IN / A agendado** (remove_inat) : Permite apagar a programação de todos os blocos IN e A de um cenário.
 - **Evento** (event) : Permite inserir um valor em um comando de tipo de informação arbitrariamente.
 - **Tag** (tag) : Permite adicionar / modificar uma marca (a marca existe apenas durante a execução atual do cenário, diferentemente das variáveis que sobrevivem ao final do cenário).
 - **Coloração de ícones do painel** (setColoredIcon) : Permite ativar ou não a coloração de ícones no painel.

@@ -2,7 +2,6 @@
 if (!isConnect()) {
 	throw new Exception(__('401 - Accès non autorisé', __FILE__));
 }
-
 //DisplayByObject or display by summaries:
 $DisplayByObject = true;
 if (init('summary') != '') {

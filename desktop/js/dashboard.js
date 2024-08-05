@@ -126,14 +126,6 @@ if (!jeeFrontEnd.dashboard) {
     },
     editWidgetMode: function(_mode, _save) {
       if (document.getElementById('bt_editDashboardWidgetOrder') == null) return
-      if (!isset(_mode)) {
-        if (document.getElementById('bt_editDashboardWidgetOrder').getAttribute('data-mode') != undefined && document.getElementById('bt_editDashboardWidgetOrder').getAttribute('data-mode') == 1) {
-          this.editWidgetMode(0, false)
-          this.editWidgetMode(1, false)
-        }
-        return
-      }
-
       if (_mode == 0) { //Exit edit mode:
         document.getElementById('div_displayObject').style.height = 'auto'
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').removeClass('disabled')
@@ -314,6 +306,7 @@ if (!jeeFrontEnd.dashboard) {
       let self = this
       jeedom.object.toHtml({
         id: _object_id,
+        hideOnMain: (getUrlVars('childs') === false) ? 1 : 0,
         version: 'dashboard',
         category: 'all',
         summary: self.url_summary,

@@ -11,14 +11,17 @@
     <option value="timeline">{{Timeline}}</option>
     <option value="url">{{URL}}</option>
   </select>
+  <input class="expressionAttr form-control rounded-left" data-l1key="options" data-l2key="filter_type" placeholder="{{Filtre des types}}" data-cmd_id="#id#" data-uid="#uid#">
   <span class="input-group-addon type view" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;">{{Vue}}</span>
   <select class="expressionAttr form-control input-sm type view roundedRight" data-l1key="options" data-l2key="view_id" data-cmd_id="#id#" data-uid="#uid#"></select>
-
+  <input class="expressionAttr form-control filter view rounded-left" data-l1key="options" data-l2key="filter_view" placeholder="{{Filtre des vues}}" data-cmd_id="#id#" data-uid="#uid#">
   <span class="input-group-addon type plan" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Design}}</span>
   <select class="expressionAttr form-control input-sm type plan roundedRight" data-l1key="options" data-l2key="plan_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+  <input class="expressionAttr form-control filter plan rounded-left" data-l1key="options" data-l2key="filter_plan" placeholder="{{Filtre des designs}}" data-cmd_id="#id#" data-uid="#uid#" style="display:none;">
 
   <span class="input-group-addon type plugin" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Panel}}</span>
   <select class="expressionAttr form-control input-sm type plugin roundedRight" data-l1key="options" data-l2key="plugin_id" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
+  <input class="expressionAttr form-control filter plugin rounded-left" data-l1key="options" data-l2key="filter_plugin" placeholder="{{Filtre des plugins}}" data-cmd_id="#id#" data-uid="#uid#" style="display:none;">
 
   <span class="input-group-addon type timeline" data-cmd_id="#id#" data-uid="#uid#" style="width:100px;display:none;">{{Timeline}}</span>
   <select class="expressionAttr form-control input-sm type timeline roundedRight" data-l1key="options" data-l2key="timeline" data-cmd_id="#id#" data-uid="#uid#" style="display:none;"></select>
@@ -58,18 +61,25 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function (views) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="view_id"]')
-      var newOption = document.createElement('option')
+      const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="view_id"]')
+      let newOption = document.createElement('option')
       newOption.text = '{{Aucune}}'
       newOption.value = ''
       select.appendChild(newOption)
-      for (var i in views) {
+      for (let i in views) {
         newOption = document.createElement('option')
         newOption.text = views[i].name
         newOption.value = views[i].id
         select.appendChild(newOption)
       }
 
+      const input = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter_view"]')
+      const allOptions = Array.from(select.options)
+
+      input.addEventListener('input', function() {
+      	filterOptions(select, input, allOptions)
+      })
+      
       if ('#view_id#' != '' && select.querySelector('option[value="#view_id#"]')?.innerHTML != undefined) {
         select.value = '#view_id#'
       }
@@ -81,18 +91,25 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function (plans) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"]')
-      var newOption = document.createElement('option')
+      const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plan_id"]')
+      let newOption = document.createElement('option')
       newOption.text = '{{Aucun}}'
       newOption.value = ''
       select.appendChild(newOption)
-      for (var i in plans) {
+      for (let i in plans) {
         newOption = document.createElement('option')
         newOption.text = plans[i].name
         newOption.value = plans[i].id
         select.appendChild(newOption)
       }
 
+      const input = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter_plan"]')
+      const allOptions = Array.from(select.options)
+
+      input.addEventListener('input', function() {
+      	filterOptions(select, input, allOptions)
+      })
+      
       if ('#plan_id#' != '' && select.querySelector('option[value="#plan_id#"]')?.innerHTML != '') {
         select.value = '#plan_id#'
       }
@@ -104,18 +121,25 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function (plugins) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plugin_id"]')
-      var newOption = document.createElement('option')
+      const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="plugin_id"]')
+      let newOption = document.createElement('option')
       newOption.text = '{{Aucun}}'
       newOption.value = ''
       select.appendChild(newOption)
-      for (var i in plugins) {
+      for (let i in plugins) {
         newOption = document.createElement('option')
         newOption.text = plugins[i].name
         newOption.value = plugins[i].id
         select.appendChild(newOption)
       }
 
+      const input = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter_plugin"]')
+      const allOptions = Array.from(select.options)
+
+      input.addEventListener('input', function() {
+      	filterOptions(select, input, allOptions)
+      })
+      
       if ('#plugin_id#' != '' && select.querySelector('option[value="#plugin_id#"]')?.innerHTML != '') {
         select.value = '#plugin_id#'
       }
@@ -127,12 +151,12 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'})
     },
     success: function (timelines) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="timeline"]')
-      var newOption = document.createElement('option')
+      const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="timeline"]')
+      let newOption = document.createElement('option')
       newOption.text = '{{Principale}}'
       newOption.value = ''
       select.appendChild(newOption)
-      for (var i in timelines) {
+      for (let i in timelines) {
         if (timelines[i] == 'main') {
           continue
         }
@@ -148,14 +172,47 @@
     }
   })
 
-  document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]').addEventListener('change', function() {
+  const select#uid# = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="type"]')
+
+  select#uid#.addEventListener('change', function() {
     this.closest('select').removeClass('roundedRight')
     document.querySelectorAll('.type[data-uid="#uid#"]').unseen()
+    document.querySelectorAll('.filter[data-uid="#uid#"]').unseen()
     try { document.querySelector('span.' + this.value + '[data-uid="#uid#"]').style.display = 'table-cell'} catch (e) { }
     document.querySelectorAll('select.' + this.value + '[data-uid="#uid#"]')?.seen()
+    document.querySelectorAll('input.' + this.value + '[data-uid="#uid#"]')?.seen()
     if (this.value == 'eqAnalyse') {
       this.closest('select').addClass('roundedRight')
     }
+  })
+  
+  function filterOptions(select, input, allOptions) {
+    const text = input.value.trim().toLowerCase().stripAccents()
+    const currentSelection = select.value
+
+    select.innerHTML = ''
+
+    allOptions
+      .filter(option => {
+        const optionText = option.textContent.toLowerCase().stripAccents()
+        return text === '' || optionText.includes(text)
+      })
+      .forEach(option => {
+        select.add(option.cloneNode(true))
+      })
+  
+      const selectedOption = allOptions.find(option => option.value === currentSelection)
+      if (selectedOption && !select.querySelector(`option[value="${currentSelection}"]`)) {
+        select.add(selectedOption.cloneNode(true))
+      }
+      select.value = currentSelection
+  }      
+
+  const input#uid# = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter_type"]')
+  const allOptions#uid# = Array.from(select#uid#.options)
+
+  input#uid#.addEventListener('input', function() {
+  	filterOptions(select#uid#, input#uid#, allOptions#uid#)
   })
 
   document.querySelector('.listCmdMessage[data-uid="#uid#"]').addEventListener('click', function() {

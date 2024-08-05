@@ -215,7 +215,7 @@ class log {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1; rm ' . $path . ' 2>&1 > /dev/null');
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;cat /dev/null > ' . $path.';rm ' . $path . ' 2>&1 > /dev/null');
 			return true;
 		}
 	}
@@ -279,10 +279,10 @@ class log {
 	* @param int $_colored Should lines be colored (default false)
 	* @param boolean $_numbered Should lines be numbered (default true)
 	* @param int $_numStart At what number should lines number start (default 0)
-	* @param int $_max Max number of returned lines (default 4000)
+	* @param int $_max Max number of returned lines (default is config value "maxLineLog")
 	* @return array Array containing log to append to buffer and new position for next call
 	*/
-	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = false, $_numbered = true, $_numStart = 0, $_max = 4000) {
+	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = false, $_numbered = true, $_numStart = 0, $_max = -1) {
 		// Add path to file if needed
 		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
 		// Check if log file exists and is readable
@@ -326,6 +326,10 @@ class log {
 		if ($nbLogs == 0) {
 			return array('position' => $_position, 'line' => $_numStart, 'logText' => $logText);
 		}
+		// $_max default value is configured value of "maxLineLog"
+		$_max = ($_max < 0) ? self::getConfig('maxLineLog') : $_max;
+		// $_max value is always more than DEFAULT_MAX_LINE
+		$_max = max($_max, self::DEFAULT_MAX_LINE);
 		if ($nbLogs > $_max) {
 			// If logs must be TRUNCATED, then add a message
 			$logText .= "-------------------- TRUNCATED LOG --------------------\n";

@@ -31,8 +31,7 @@ class repo_market {
 		'hasConfiguration' => true,
 		'proxy' => true,
 		'hasStore' => true,
-		'test' => true,
-		'pullInstall' => true,
+		'test' => true
 	);
 
 	private $id;
@@ -145,6 +144,7 @@ class repo_market {
 				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
 				$update->setConfiguration('version', $plugin['version']);
+				$update->setConfiguration('user',null);
 				$update->save();
 				$update->doUpdate();
 				$nbInstall++;
@@ -230,34 +230,33 @@ class repo_market {
 
 	/*     * ***********************BACKUP*************************** */
 
-	public static function backup_flysystem() {
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
-		}
-		$client = new Sabre\DAV\Client(array(
-			'baseUri' => config::byKey('service::backup::url'),
-			'userName' => config::byKey('market::username'),
-			'password' => config::byKey('market::password'),
-			'authType' => Sabre\DAV\Client::AUTH_BASIC,
-		));
-		$adapter = new League\Flysystem\WebDAV\WebDAVAdapter($client);
-		return new League\Flysystem\Filesystem($adapter);
-	}
-
 	public static function backup_createFolderIsNotExist() {
-		$filesystem = self::backup_flysystem();
-		$folders = $filesystem->getAdapter()->listContents('/webdav/' . config::byKey('market::username'));
-		$found = false;
-		if (count($folders) > 0) {
-			foreach ($folders as $folder) {
-				if (basename($folder['path']) == config::byKey('market::cloud::backup::name')) {
-					$found = true;
-					break;
-				}
+		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http->setCURLOPT(array(
+				CURLOPT_CUSTOMREQUEST => "PROPFIND"
+		));
+		$xml = simplexml_load_string($request_http->exec());
+		$ns = $xml->getNamespaces(true);
+		$child = $xml->children($ns['D']);
+		foreach ($child->response as $file) {
+			if($file->propstat->prop->getcontenttype){
+				continue;
+			}
+			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$file->href),'/'));
+			if($folder == ''){
+				continue;
+			}
+			if($folder == config::byKey('market::cloud::backup::name')){
+				$found = true;
+				break;
 			}
 		}
 		if (!$found) {
-			$filesystem->createDir('/webdav/' . config::byKey('market::username') . '/' . rawurldecode(config::byKey('market::cloud::backup::name')));
+			$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
+			$request_http->setCURLOPT(array(
+					CURLOPT_CUSTOMREQUEST => "MKCOL"
+			));
+			$request_http->exec();
 		}
 	}
 
@@ -280,9 +279,8 @@ class repo_market {
 			com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
 			$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c ' . $_path;
 			com_shell::execute($cmd);
-			$filesystem = self::backup_flysystem();
-			$stream = fopen($_path . '.gpg', 'r+');
-			$response = $filesystem->writeStream('/webdav/' . config::byKey('market::username') . '/' . rawurldecode(config::byKey('market::cloud::backup::name')) . '/' . basename($_path) . '.gpg', $stream);
+            $cmd = "curl --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
+            com_shell::execute($cmd);
 			unlink($_path . '.gpg');
 			rrmdir('/tmp/jeedom_gnupg');
 		} catch (\Exception $e) {
@@ -296,23 +294,28 @@ class repo_market {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return;
 		}
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
-		}
 		$limit = 3700;
 		self::backup_createFolderIsNotExist();
-		$filesystem = self::backup_flysystem();
-		$folders = $filesystem->getAdapter()->listContents('/webdav/' . config::byKey('market::username'));
-		$files = array();
-		foreach ($folders as $folder) {
-			$files += $filesystem->getAdapter()->listContents('/webdav/' . config::byKey('market::username') . '/' . basename($folder['path']) . '/');
-		}
+
+		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http->setCURLOPT(array(
+				CURLOPT_CUSTOMREQUEST => "PROPFIND"
+		));
+		$xml = simplexml_load_string($request_http->exec());
+		$ns = $xml->getNamespaces(true);
+		$child = $xml->children($ns['D']);
 		$total_size = 0;
-		foreach ($files as $file) {
-			if ($file['type'] == 'dir') {
+		foreach ($child->response as $file) {
+			if(!$file->propstat->prop->getcontenttype){
 				continue;
 			}
-			$total_size += $file['size'];
+			$files[] = array(
+				'href' => (string) $file->href,
+				'name' => (string) $file->propstat->prop->displayname,
+				'size' => (int) $file->propstat->prop->getcontentlength,
+				'timestamp' => strtotime($file->propstat->prop->getlastmodified)
+			);
+			$total_size += $file->propstat->prop->getcontentlength;
 		}
 		if (($total_size / 1024 / 1024) < $limit - (filesize($_path) / 1024 / 1024)) {
 			return;
@@ -327,10 +330,12 @@ class repo_market {
 				throw new \Exception(__('Pas assez de place et aucun backup à supprimer', __FILE__));
 			}
 			$file = array_shift($files);
-			$filename = basename($file['path']);
-			$path = basename(str_replace($filename, '', $file['path'])) . '/' . $filename;
-			echo __('Supression du backup cloud :', __FILE__) . ' ' . $path . "\n";
-			$filesystem->delete('/webdav/' . config::byKey('market::username') . '/' . $path);
+			echo __('Supression du backup cloud :', __FILE__) . ' ' . $file['name'] . "\n";
+			$request_http = new com_http($file['href'],config::byKey('market::username'),config::byKey('market::password'));
+			$request_http->setCURLOPT(array(
+					CURLOPT_CUSTOMREQUEST => "DELETE"
+			));
+			$request_http->exec();
 			$total_size -= $file['size'];
 			$nb++;
 			if ($nb > 10) {
@@ -339,20 +344,35 @@ class repo_market {
 		}
 	}
 
-
 	public static function backup_list() {
 		if (!config::byKey('service::backup::enable') || config::byKey('market::cloud::backup::password') == '') {
 			return array();
 		}
-		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
-			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
-		}
 		self::backup_createFolderIsNotExist();
-		$filesystem = self::backup_flysystem();
-		$folders = $filesystem->getAdapter()->listContents('/webdav/' . config::byKey('market::username') . '/' . rawurldecode(config::byKey('market::cloud::backup::name')));
+		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http->setCURLOPT(array(
+				CURLOPT_CUSTOMREQUEST => "PROPFIND"
+		));
+		$xml = simplexml_load_string($request_http->exec());
+		$ns = $xml->getNamespaces(true);
+		$child = $xml->children($ns['D']);
+		$files = array();
+		foreach ($child->response as $file) {
+			if(!$file->propstat->prop->getcontenttype){
+				continue;
+			}
+			$files[] = array(
+            	'name' => (string) $file->propstat->prop->displayname,
+                'timestamp' => strtotime($file->propstat->prop->getlastmodified)
+            );
+		}
+		function cmp($a,$b){ // $a,$b are reference to first index of array
+			return strcmp($a["timestamp"], $b["timestamp"]);
+		}
+		usort($files, "cmp");
 		$result = array();
-		foreach ($folders as $folder) {
-			$result[] = basename($folder['path']);
+		foreach ($files as $file) {
+			$result[] = $file['name'];
 		}
 		return array_reverse($result);
 	}

@@ -1,79 +1,171 @@
  # Remplacer
-**Extras → Ersetzen**
 
-Dieses Tool ermöglicht den schnellen Austausch von Geräten und Befehlen, beispielsweise bei einem Plugin- oder Modulwechsel.
+## Warum so ein Tool ?
 
-Wie die Ersetzungsoptionen in der erweiterten Konfiguration eines Befehls ersetzt er die Befehle in den Szenarien und anderen, ermöglicht aber auch die Übertragung der Eigenschaften der Ausrüstung und der Befehle.
+![1](../images/replace1.png)
 
-## Filtres
+Jeedom bietet seit Version 4.3 an.2 ein neues <kbd>Austauschtool</kbd> , das im Falle eines Problems oder der Notwendigkeit, physische oder virtuelle Geräte (einen Temperatur- oder Anwesenheitssensor, einen Lautstärkeregler, einen Wasserstand usw.) zu ersetzen, das Kopieren aller Befehle, Informationen, erweiterte Parameter und Geschichte dieses Geräts bis hin zu neuen Geräten.<br>
+Es ist auch dafür verantwortlich, die ID der alten Ausrüstung in allen darauf verweisenden Szenarien, Designs, virtuellen usw. durch die neue zu ersetzen.
 
-Sie können zur besseren Lesbarkeit nur bestimmte Geräte anzeigen, nach Objekt oder nach Plugin filtern.
+Wenn das alte Gerät gelöscht wird, wird nämlich der Verweis auf seine ursprüngliche ID-Nummer dauerhaft gelöscht. Anschließend müssen alle Befehle neu erstellt und in alle Designs, Widgets usw. für das neue Modul integriert werden, auch wenn es genau vom gleichen Typ wie das Original ist oder sogar vom gleichen Typ, aber mit einer anderen ID.<br>
+Außerdem warnt Jeedom vor jeder Löschung von Geräten in einem Warnfenster vor den Folgen dieser Löschung :
 
-> Bei einem Gerätetausch durch ein anderes Plugin wählen Sie die beiden Plugins aus.
+![2](../images/replace2.png)
 
-## Options
+Hier führt das Entfernen dieses Vibrationssensors dazu :
 
-> **Anmerkung**
->
-> Wenn keine dieser Optionen aktiviert ist, läuft die Ersetzung auf die Verwendung der Funktion hinaus *Ersetzen Sie diesen Befehl durch den Befehl* in erweiterter Konfiguration.
+- Löschen der im Design „Alarmzonen“ definierten Anzeigen',
+- Löschen von Vibrationsinformationen, Batteriestand und Datum der letzten Kommunikation, einschließlich Verlauf,
+- La suppression de l'équipement dans le scénario ‘Alarme détection intru'.
 
-- **Konfiguration vom Quellgerät kopieren** :
-Für jedes Gerät wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
-	* Das übergeordnete Objekt,
-	* Die Kategorien,
-	* Eigenschaften *Anlage* und *sichtbar*,
-	* Kommentare und Tags,
-	* Bestellung (Dashboard),
-	* Breite und Höhe (Kachel-Dashboard),
-	* Kachelkurveneinstellungen,
-	* Optionale Parameter,
-	* Die Konfiguration der Tabellenanzeige,
-	* der generische Typ,
-	* Die Eigenschaft *Auszeit*
-	* Die Konfiguration *automatische Aktualisierung*,
-	* Batterie- und Kommunikationswarnungen,
+Und sobald dieses Gerät endgültig gelöscht wird, wird es in all diesen Einheiten durch seine alte ID-Nummer oder ein leeres Feld anstelle seines ursprünglichen Namens ersetzt :
 
-Das Quellgerät wird auch durch das Zielgerät auf dem ersetzt **Entwurf** und die **Ansichten**.
+![3](../images/replace3.png)
+<br><br>
 
+## Vor der Verwendung dieses Tools durchzuführende Vorgänge
 
-*Diese Ausrüstung wird auch durch die Zielausrüstung auf Designs und Ansichten ersetzt.*
+Auch wenn das <kbd>Ersetzen-</kbd> Tool Ihnen vorschlägt, zunächst eine vorsorgliche Sicherung zu erstellen, wird dringend empfohlen, vor Beginn dieses Austauschvorgangs eine solche Sicherung durchzuführen.<br>
+Bedenken Sie, dass dieses Tool in der Tat sehr leistungsstark ist, da es Ersetzungen auf allen Ebenen durchführt, auch auf solchen, an die Sie nicht gedacht oder die Sie einfach vergessen haben. Außerdem gibt es keine Funktion *rückgängig machen* abzubrechen oder zurückzukehren.<br><br>
 
-- **Quellgerät ausblenden** : Ermöglicht es, das Quellgerät unsichtbar zu machen, nachdem es durch das Zielgerät ersetzt wurde.
+Die nächste Phase wird die Umbenennung der alten Geräte sein. Ändern Sie dazu einfach den Namen und fügen Sie das Suffix hinzu '**_alt**' Zum Beispiel.
 
-- **Kopieren Sie die Konfiguration aus dem Quellbefehl** :
-Für jede Bestellung wird von der Quelle zum Ziel kopiert (nicht erschöpfende Liste) :
-	* Die Eigenschaft *sichtbar*,
-	* Bestellung (Dashboard),
-	* L'historisation,
-	* Die verwendeten Dashboard- und Mobile-Widgets,
-	* Der generische Typ,
-	* Optionale Parameter,
-	* Die Konfigurationen *jeedomPreExecCmd* und *jeedomPostExecCmd* (Aktion),
-	* Value Action Konfigurationen (info),
-	* Symbol,
-	* Die Aktivierung und das Verzeichnis in *Zeitleiste*,
-	* Die Konfigurationen von *Berechnung* und *runden*,
-	* Die influxDB-Konfiguration,
-	* Die Wiederholungswertkonfiguration,
-	* Warnungen,
+![4](../images/replace4.png)
+<br>
 
-- **Befehlshistorie des Ziels löschen** : Löscht Zielbefehlsverlaufsdaten.
+Vergessen Sie nicht zu speichern.
+<br>
 
-- **Quellbefehlshistorie kopieren** : Kopieren Sie den Quellbefehlsverlauf in den Zielbefehl.
+Sie müssen dann die Einbindung der neuen Ausrüstung, wenn es sich um eine physische Ausrüstung handelt, oder die Erstellung der neuen virtuellen Ausrüstung durchführen, indem Sie dem für jedes Plugin spezifischen Standardverfahren folgen.
+Dieses Gerät wird mit seinem endgültigen Namen benannt, dann wird das übergeordnete Objekt und seine Kategorie definiert, bevor es aktiviert wird. 
+<br>
+Wir erhalten somit zwei Ausrüstungsgegenstände :
 
+- Alte Ausrüstung, die möglicherweise nicht mehr physisch existiert, auf die aber dennoch in allen Jeedom-Strukturen mit ihren Geschichten Bezug genommen wird,
+- Und die neue Ausrüstung, auf der es notwendig sein wird, die Historien zu kopieren und sie anstelle der alten zu referenzieren.
+<br>
 
+![5](../images/replace5.png)
+<br><br>
 
-## Remplacements
+## Verwenden des <kbd>Ersetzen-</kbd> Tools>
 
-Die Taste **Filter** Oben rechts können Sie alle Geräte anzeigen, indem Sie den Filtern nach Objekt und Plugin folgen.
+Öffnen Sie das Werkzeug <kbd>„Ersetzen“</kbd> im Menü „ <kbd>Extras“</kbd>>.
 
-Für jedes Gerät :
+![6](../images/replace6.png)
+<br>
 
-- Aktivieren Sie das Kontrollkästchen am Anfang der Zeile, um den Ersatz zu aktivieren.
-- Wählen Sie rechts das Gerät aus, durch das es ersetzt werden soll.
-- Klicken Sie auf seinen Namen, um seine Befehle anzuzeigen, und geben Sie an, welche Befehle sie ersetzen. Bei der Auswahl eines Geräts füllt das Tool diese Auswahlmöglichkeiten vorab aus, wenn es auf dem Zielgerät einen Befehl desselben Typs und desselben Namens findet.
+Im Feld *Objekt*, Elternobjekt(e) auswählen.
 
+![7](../images/replace7.png)
+<br>
 
-> **Anmerkung**
->
-> Wenn Sie auf einem Quellgerät ein Zielgerät angeben, wird dieses Zielgerät in der Liste deaktiviert.
+Wählen Sie in den Optionen den gewünschten Modus aus (*Ersetzen* Oder *Kopieren*) in der Dropdown-Liste und je nach Bedarf die folgenden Optionen (die standardmäßig alle deaktiviert sind) oder zumindest :
+
+- Konfiguration vom Quellgerät kopieren,
+- Kopieren Sie die Konfiguration aus dem Quellbefehl.
+<br>
+
+![8](../images/replace8.png)
+<br>
+
+Klicken Sie dann auf <kbd>Filter</kbd>>
+
+![9](../images/replace9.png)
+<br>
+
+Im Feld *Ersatz*, Alle Entitäten, die sich auf das übergeordnete Objekt beziehen, werden angezeigt :
+
+![10](../images/replace10.png)
+<br>
+
+Überprüfen Sie das Quellgerät (umbenannt in '**_alt**'), das heißt diejenige, von der wir die Bestellungen, Informationen, Historie usw. kopieren möchten
+Hier wird also die Quellausrüstung sein : [Zimmer eines Freundes][T°Chambre_old](767 | z2m).<br>
+Klicken Sie auf die Zeile, um die verschiedenen zugehörigen Felder anzuzeigen.
+
+![11](../images/replace11.png)
+<br>
+
+Im Spiel *Ziel* Scrollen Sie rechts in der Liste nach unten und wählen Sie das neue Gerät aus, das es ersetzen soll, in unserem Beispiel also [Gästezimmer][Raumtemperatur].
+
+![12](../images/replace12.png)
+<br>
+
+In den Dropdown-Listen, die dann rechts angezeigt werden, werden die Informationen auf blauem Hintergrund dargestellt, die Aktionen auf orangem Hintergrund (unten ein weiteres Beispiel an einer Leuchte, bei der es Aktionen und Informationen gibt)).
+
+![13](../images/replace13.png)
+<br>
+
+Und wenn eine direkte Übereinstimmung vorliegt (insbesondere der gleiche Name), werden die verschiedenen Parameter automatisch festgelegt.
+
+![14](../images/replace14.png)
+<br>
+
+Hier wird alles automatisch erkannt.
+Andernfalls ist das Feld leer und Sie müssen die entsprechende Information/Aktion ggf. manuell aus der Dropdown-Liste auswählen.
+
+![15](../images/replace15.png)
+<br>
+
+Klicken Sie auf <kbd>Ersetzen</kbd>>,
+
+![16](../images/replace16.png)
+<br>
+
+Bestätigen Sie den Austausch und prüfen Sie, ob zuvor ein Backup erstellt wurde (Vorsicht, es gibt kein Zurück) !).
+
+![17](../images/replace17.png)
+<br>
+
+Darüber hinaus wird Ihnen das Tool dies zu diesem Zeitpunkt vorschlagen. Wenn Sie jedoch zu diesem Zeitpunkt diese Funktion verlassen, um dieses Backup zu erstellen, verwerfen Sie auch alle bereits vorgenommenen Einstellungen, weshalb das Interesse daran besteht, dieses Backup von Beginn des Vorgangs an zu erstellen.<br><br>
+
+Nach dem Starten des Befehls erscheint nach einer kurzen Wartezeit ein Warn-Popup, das den erfolgreichen Abschluss des Vorgangs anzeigt.<br><br>
+
+## Schecks
+
+Stellen Sie sicher, dass die neuen Geräte in den Designs, Szenarien, Widgets, Virtuals, Plug-Ins etc. mit ihrer Konfiguration (Layout, Darstellung, Zuordnung von Widgets etc.) und (sofern zutreffend) den damit verbundenen Berücksichtigung finden Geschichte.
+
+![18](../images/replace18.png)
+<br>
+
+Um ordnungsgemäß zu überprüfen, dass nach dieser Ersetzung keine weiteren Probleme aufgetreten sind, kann die Funktion zur Erkennung verwaister Befehle verwendet werden.
+Gehen Sie zu <kbd>Analyse</kbd> , <kbd>Ausrüstung</kbd> und klicken Sie auf die Registerkarte *Verwaiste Befehle*.
+
+![19](../images/replace19.png)
+<br>
+
+![20](../images/replace20.png)
+<br>
+
+Wenn alles gut gelaufen ist, sollten in diesem Bericht keine Zeilen vorhanden sein.
+ 
+![21](../images/replace21.png)
+<br>
+
+Andernfalls muss für jedes identifizierte Problem eine zeilenweise Analyse durchgeführt werden, um das Problem zu beheben.
+
+![22](../images/replace22.png)
+<br>
+
+Wenn verwaiste Befehle jedoch vom <kbd>Ersetzen-</kbd> Tool nicht berücksichtigt werden, ist es dennoch möglich, mit dieser Funktion Ersetzungen vorzunehmen <kbd>. Dieser Befehl ersetzt die hier im Befehlskonfigurationsfenster gefundene ID</kbd> :
+
+![23](../images/replace23.png)
+<br><br>
+
+## Finalisation
+
+Wenn alles korrekt ist, kann die alte Ausrüstung (im Beispiel T°Chambre_old) endgültig gelöscht werden. Während des Löschvorgangs sollten im Warn-Popup keine weiteren Verweise angezeigt werden, mit Ausnahme von Befehlen, die diesem Gerät eigen sind.
+
+![24](../images/replace24.png)
+<br>
+
+Hier wird dieses Gerät nur durch sein zugehöriges Objekt und seine eigenen Befehle referenziert, was normal ist. Wir können es daher ohne Reue löschen.<br><br>
+
+## Conclusion
+
+Dieses Tool ist praktisch, bei Missbrauch jedoch aufgrund seiner mehrstufigen Wirkungsweise ebenso gefährlich.<br>
+Beachten Sie auch diese Grundlagen :
+
+- Führen Sie systematisch eine vorsorgliche Sicherung durch, noch bevor Sie das <kbd>Ersetzen-</kbd> Tool verwenden>,
+- Nach der Ausführung dieses Befehls ist kein Rückgängigmachen oder Zurücksetzen möglich,
+- Und schließlich wird dringend empfohlen, sich zumindest mit der Verwendung dieses Tools vertraut zu machen.

@@ -8,13 +8,11 @@ on:
     branches:
       - alpha
       - beta
-      - V4-stable
+      - master
 
 name : 'Test Core Jeedom'
 
 jobs:
-  codeLintGlobal:
-    uses: jeedom/workflows/.github/workflows/codeLintGlobal.yml@main
   php73:
     uses: jeedom/workflows/.github/workflows/lint_Php73.yml@main
   php74:

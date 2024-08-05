@@ -114,6 +114,17 @@ class timeline {
       DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
       return;
     }
+
+     //clean:
+     $sql = 'SELECT count(id) as number FROM timeline';
+     $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+     $delete_number = $result['number'] - config::byKey('timeline::maxevent');
+     if($delete_number <= 0){
+       return;
+     }
+     $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
+     DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+
     //ensure no duplicates:
     $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
     $sql .= 't1.id < t2.id AND ';
@@ -124,19 +135,6 @@ class timeline {
     $sql .= 't1.folder = t2.folder AND ';
     $sql .= 't1.link_id = t2.link_id';
     DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-
-    //clean:
-    $sql = 'SELECT count(id) as number FROM timeline';
-    $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-    $delete_number = $result['number'] - config::byKey('timeline::maxevent');
-    if($delete_number <= 0){
-      return;
-    }
-    $values = array(
-      'number' => $delete_number,
-    );
-    $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
-    DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
   }
 
   public static function listFolder(){
@@ -303,6 +301,7 @@ class timeline {
   }
   
   public function setName($_name) {
+    $_name = trim($_name);
     $this->_changed = utils::attrChanged($this->_changed,$this->name,$_name);
     $this->name = $_name;
     return $this;

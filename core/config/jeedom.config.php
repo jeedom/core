@@ -205,7 +205,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'LIGHT_MODE' => array(
 				'name' => __('Lumière Mode', __FILE__), 'familyid' => 'Light', 'family' => __('Lumière', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'LIGHT_STATE_BOOL' => array(
 				'name' => __('Lumière Etat (Binaire)', __FILE__), 'familyid' => 'Light', 'family' => __('Lumière', __FILE__),
@@ -341,7 +341,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'THERMOSTAT_SET_MODE' => array(
 				'name' => __('Thermostat Mode', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'THERMOSTAT_MODE' => array(
 				'name' => __('Thermostat Mode', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
@@ -445,7 +445,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'MODE_SET_STATE' => array(
 				'name' => __('Changer Mode', __FILE__), 'familyid' => 'Mode', 'family' => __('Mode', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'SIREN_STATE' => array(
 				'name' => __('Sirène Etat', __FILE__), 'familyid' => 'Security', 'family' => __('Sécurité', __FILE__),
@@ -481,7 +481,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'ALARM_SET_MODE' => array(
 				'name' => __('Alarme Mode', __FILE__), 'familyid' => 'Security', 'family' => __('Sécurité', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'FLOOD' => array(
 				'name' => __('Inondation', __FILE__), 'familyid' => 'Security', 'family' => __('Sécurité', __FILE__),
@@ -627,6 +627,18 @@ $JEEDOM_INTERNAL_CONFIG = array(
 				'name' => __('Consommation Electrique', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric')
 			),
+			'DAILY_CONSUMPTION' => array(
+				'name' => __('Consommation Electrique Journalière', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric')
+			),
+			'PRODUCTION' => array(
+				'name' => __('Production Electrique', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric')
+			),
+			'DAILY_PRODUCTION' => array(
+				'name' => __('Production Electrique Journalière', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
+				'type' => 'Info', 'subtype' => array('numeric')
+			),
 			'VOLTAGE' => array(
 				'name' => __('Tension', __FILE__), 'familyid' => 'Electricity', 'family' => __('Electricité', __FILE__),
 				'type' => 'Info', 'subtype' => array('numeric'), 'calcul' => 'avg'
@@ -705,7 +717,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'GENERIC_ACTION' => array(
 				'name' => ' ' . __('Générique', __FILE__), 'familyid' => 'Generic', 'family' => __('Generic', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action'
 			),
 			'DONT' => array(
 				'name' => __('Ne pas tenir compte de cette commande', __FILE__), 'familyid' => 'Generic', 'family' => __('Generic', __FILE__),

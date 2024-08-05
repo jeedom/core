@@ -1,7 +1,8 @@
 <!--template/scenario/scenario.default-->
 <div class="input-group input-group-sm" style="width: 100%">
-  <span class="input-group-addon roundedLeft">{{Scénario}}</span>
+  <span class="input-group-addon roundedLeft" style="width: 100px">{{Scénario}}</span>
   <select class="expressionAttr form-control input-sm"  data-l1key="options" data-l2key="scenario_id" data-cmd_id="#id#" data-uid="#uid#"></select>
+  <input class="expressionAttr form-control rounded-left" data-l1key="options" data-l2key="filter" placeholder="{{Filtre des scénarios}}" data-cmd_id="#id#" data-uid="#uid#">
   <span class="input-group-addon">{{Action}}</span>
   <select class="expressionAttr form-control input-sm roundedRight" data-l1key="options" data-l2key="action" data-cmd_id="#id#" data-uid="#uid#">
     <option value="start">{{Démarrer}}</option>
@@ -26,14 +27,53 @@
       jeedomUtils.showAlert({message: error.message, level: 'danger'});
     },
     success: function (scenarios) {
-      var select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
-      var newOption
-      for (var i in scenarios) {
-        newOption = document.createElement('option')
-        newOption.text = scenarios[i].humanName
-        newOption.value = scenarios[i].id
-        select.appendChild(newOption)
+      const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
+
+      const groupedScenarios = {}
+      for (let i in scenarios) {
+        const match = scenarios[i].humanName.match(/^\[(.*?)\]/)
+        if (match) {
+          const obj = match[1]
+          if (!groupedScenarios[obj]) {
+            groupedScenarios[obj] = []
+          }
+          groupedScenarios[obj].push(scenarios[i])
+        }
       }
+
+      for (let group in groupedScenarios) {
+        const optgroup = document.createElement('optgroup')
+        optgroup.label = group
+
+        groupedScenarios[group].forEach(scenario => {
+          const newOption = document.createElement('option')
+          newOption.text = scenario.humanName.replace(/^\[.*?\]/, '').trim()
+          newOption.value = scenario.id
+          optgroup.appendChild(newOption)
+        })
+
+        select.appendChild(optgroup)
+      }
+
+      const input = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter"]')
+      const allOptions = Array.from(select.options)
+
+      function filterOptions() {
+        const text = input.value.trim().toLowerCase().stripAccents()
+
+        select.innerHTML = ''
+
+        allOptions
+          .filter(option => {
+            const optionText = option.textContent.toLowerCase().stripAccents()
+            return text === '' || optionText.includes(text)
+          })
+          .forEach(option => {
+            select.add(option.cloneNode(true))
+          })
+      }      
+
+      input.addEventListener('input', filterOptions)
 
       if ('#scenario_id#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"] option[value="#scenario_id#"]')?.innerHTML != '') {
         document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]').value = '#scenario_id#'

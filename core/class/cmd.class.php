@@ -1125,9 +1125,10 @@ class cmd {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$eqLogic = $this->getEqLogic();
-		if (is_object($eqLogic)) {
-			$eqLogic->emptyCacheWidget();
-		}
+		$eqLogic->setStatus(array(
+			'warning' => 0,
+			'danger' => 0,
+		));
 		$this->emptyHistory();
 		cache::delete('cmdCacheAttr' . $this->getId());
 		cache::delete('cmd' . $this->getId());
@@ -1527,8 +1528,8 @@ class cmd {
 					if (!isset($test['state_dark'])) {
 						$test['state_dark'] = '';
 					}
-					$test['state_light'] = str_replace('#value#', '"+_options.value+"', str_replace('"', "'", $test['state_light']));
-					$test['state_dark'] = str_replace('#value#', '"+_options.value+"', str_replace('"', "'", $test['state_dark']));
+					$test['state_light'] = str_replace(array('#value#', '#state#', '#unite#', '#raw_unite#'), array('"+_options.value+"', '"+_options.display_value+"', '"+_options.unit+"', '"+_options.raw_unit+"'), str_replace('"', "'", $test['state_light']));
+					$test['state_dark'] = str_replace(array('#value#', '#state#', '#unite#', '#raw_unite#'), array('"+_options.value+"', '"+_options.display_value+"', '"+_options.unit+"', '"+_options.raw_unit+"'), str_replace('"', "'", $test['state_dark']));
 					$test['operation'] = str_replace('"', "'", str_replace('#value#', '_options.value', $test['operation']));
 
 					//ltrim avoid js variable starting with # error
@@ -1639,6 +1640,7 @@ class cmd {
 			'#history#' => '',
 			'#hide_history#' => 'hidden',
 			'#unite#' => $this->getUnite(),
+			'#raw_unite#' => $this->getUnite(),
 			'#minValue#' => $this->getConfiguration('minValue', 0),
 			'#maxValue#' => $this->getConfiguration('maxValue', 100),
 			'#logicalId#' => $this->getLogicalId(),
@@ -1657,7 +1659,7 @@ class cmd {
 				$coupleArray = explode('|', $element);
 				$cmdValue = $this->getCmdValue();
 				if (is_object($cmdValue) && $cmdValue->getType() == 'info') {
-					if ($cmdValue->execCmd() == $coupleArray[0]) {
+					if ($cmdValue->execCmd() == $coupleArray[0] || $cmdValue->execCmd() == $coupleArray[1]) {
 						$listOption .= '<option value="' . $coupleArray[0] . '" selected>' . $coupleArray[1] . '</option>';
 						$foundSelect = true;
 					} else {
@@ -1739,9 +1741,9 @@ class cmd {
 					$replace['#hide_history#'] = '';
 					$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
 					if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
-						$replace['#averageHistoryValue#'] = round($replace['#state#'], 1);
-						$replace['#minHistoryValue#'] = round($replace['#state#'], 1);
-						$replace['#maxHistoryValue#'] = round($replace['#state#'], 1);
+						$replace['#averageHistoryValue#'] = round(intval($replace['#state#']), 1);
+						$replace['#minHistoryValue#'] = round(intval($replace['#state#']), 1);
+						$replace['#maxHistoryValue#'] = round(intval($replace['#state#']), 1);
 					} else {
 						$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
 						$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
@@ -1867,6 +1869,7 @@ class cmd {
 		$this->setValueDate(($repeat) ? $this->getValueDate() : $this->getCollectDate());
 		$eqLogic->setStatus(array('lastCommunication' => $this->getCollectDate(), 'timeout' => 0));
 		$unit = $this->getUnite();
+		$raw_unit = $this->getUnite();
 		$display_value = $value;
 		if ($this->getSubType() == 'binary' && $this->getDisplay('invertBinary') == 1) {
 			$display_value = ($display_value == 1) ? 0 : 1;
@@ -1885,8 +1888,7 @@ class cmd {
 		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
-			$eqLogic->emptyCacheWidget();
-			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
+			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
 			return;
 		}
 		$_loop++;
@@ -1903,13 +1905,13 @@ class cmd {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this, false, $this->getGeneric_type(), $object, $value);
 			$level = $this->checkAlertLevel($value);
-			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
+			$events[] = array('cmd_id' => $this->getId(), 'value' => substr($value,0,3096), 'display_value' => substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
 			$value_cmd = self::byValue($this->getId(), null, true);
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => $value, 'display_value' => $display_value, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => substr($value,0,3096), 'display_value' => substr($display_value,0,3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
@@ -1923,7 +1925,7 @@ class cmd {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
 		} else {
-			$events[] = array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+			$events[] = array('cmd_id' => $this->getId(), 'value' => substr($value,0,3096), 'display_value' => substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
@@ -1934,7 +1936,6 @@ class cmd {
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
 		$this->checkReturnState($value);
-		$eqLogic->emptyCacheWidget();
 		if (!$repeat) {
 			$this->checkCmdAlert($value);
 			if (isset($level) && $level != $this->getCache('alertLevel')) {
@@ -2131,7 +2132,6 @@ class cmd {
 			}
 			$message .= ' => ' . jeedom::toHumanReadable(str_replace('#value#', $_value, $this->getAlert($_level . 'if')));
 			log::add('event', 'info', $message);
-			$eqLogic = $this->getEqLogic();
 			if (config::byKey('alert::addMessageOn' . ucfirst($_level)) == 1) {
 				$action = '<a href="/' . $eqLogic->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 				message::add($eqLogic->getEqType_name(), $message, $action, 'alert_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alerting');
@@ -2153,7 +2153,7 @@ class cmd {
 				}
 			}
 		} elseif ($this->getConfiguration('alert::messageReturnBack') == 1) {
-			$message = __('Retour à la normal de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
+			$message = __('Retour à la normale de ', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('valeur :', __FILE__) . ' ' . $_value . trim(' ' . $this->getUnite());
 			log::add('event', 'info', $message);
 			$action = '<a href="/' . $this->getEqLogic()->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
 			message::add($this->getEqLogic()->getEqType_name(), $message, $action, 'alertReturnBack_' . $this->getId() . '_' . strtotime('now') . '_' . rand(0, 999), true, 'alertingReturnBack');
@@ -2514,22 +2514,21 @@ class cmd {
 	public function getHistory($_dateStart = null, $_dateEnd = null, $_groupingType = null, $_addFirstPreviousValue = false) {
 		return history::all($this->id, $_dateStart, $_dateEnd, $_groupingType, $_addFirstPreviousValue);
 	}
-        
-        public function getLastHistory($_time, $_previous = true){
-            $value = 0;
-            if($this->getIsHistorized() == 1){
-                if(!$this->getConfiguration('isHistorizedCalc', 0)){
-                    $result = history::byCmdIdAtDatetime($this->getId(), $_time, $_previous);
-                    if($result){
-                        $value = $result->getValue();
-                    }
-                }
-                else{
-                    $value = history::byCmdIdAtDatetimeFromCalcul (jeedom::fromHumanReadable($this->getConfiguration('calcul')), $_time, $_previous);
-                }
-            }
-            return(array('value'=>$value, 'unite'=>$this->getUnite()));
-        }
+
+	public function getLastHistory($_time, $_previous = true) {
+		$value = 0;
+		if ($this->getIsHistorized() == 1) {
+			if (!$this->getConfiguration('isHistorizedCalc', 0)) {
+				$result = history::byCmdIdAtDatetime($this->getId(), $_time, $_previous);
+				if ($result) {
+					$value = $result->getValue();
+				}
+			} else {
+				$value = history::byCmdIdAtDatetimeFromCalcul(jeedom::fromHumanReadable($this->getConfiguration('calcul')), $_time, $_previous);
+			}
+		}
+		return (array('value' => $value, 'unite' => $this->getUnite()));
+	}
 
 	public function getOldest() {
 		return history::getOldestValue($this->id);
@@ -2627,8 +2626,6 @@ class cmd {
 			'historyPurge' => '',
 			'historizeRound' => '',
 			'calcul' => '',
-			'returnStateValue' => '',
-			'returnStateTime' => '',
 			'calculValueOffset' => '',
 			'denyValues' => '',
 			'returnStateValue' => '',
@@ -2847,7 +2844,7 @@ class cmd {
 
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
-		$return['cmd'] = array_merge(self::searchConfiguration('#' . $this->getId() . '#'),cmd::byValue($this->getId()));
+		$return['cmd'] = array_merge(self::searchConfiguration('#' . $this->getId() . '#'), cmd::byValue($this->getId()));
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['object'] = jeeObject::searchConfiguration('#' . $this->getId() . '#');
 		$return['scenario'] = scenario::searchByUse(array(array('action' => '#' . $this->getId() . '#')));
@@ -2957,6 +2954,7 @@ class cmd {
 	 */
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
+		$_name = trim($_name);
 		if ($this->name != $_name) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;

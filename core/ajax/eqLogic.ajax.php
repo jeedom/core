@@ -55,6 +55,14 @@ try {
 		ajax::success(utils::o2a($eqLogic));
 	}
 
+	if (init('action') == 'byLogical') {
+		$eqLogic = eqLogic::byLogicalId(init('logical'), init('type'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu. Vérifiez le logicalId ou le type', __FILE__));
+		}
+		ajax::success(utils::o2a($eqLogic));
+	}
+
 	if (init('action') == 'toHtml') {
 		if (init('ids') != '') {
 			$return = array();

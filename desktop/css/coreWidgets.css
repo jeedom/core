@@ -369,6 +369,7 @@ div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"
 
 div.cmd-widget[data-type="action"][data-subtype="slider"][data-template="button"] .in_value {
   width: 70px;
+  text-align: center;
 }
 
 div.cmd-widget[data-type="action"][data-subtype="message"][data-template="default"] {
@@ -481,6 +482,7 @@ label.binarySwitch>input:checked+span.binarySwitch {
 div.arcgauge .content {
   position: relative;
   clip-path: polygon(0 -5px, 100% -5px, 100% 100%, 0 100%);
+  min-width: 80px;
 }
 
 div.arcgauge .gauge,
@@ -611,7 +613,7 @@ div.cmd-widget.widget-compass .widget-compass-needle-placer {
 }
 
 div.cmd-widget.widget-compass .widget-compass-needle {
-  position: relative;
+  position: fixed;
   width: 0px;
   height: 0px;
   border: 8px solid transparent;

@@ -174,6 +174,10 @@ jeedom.init = function() {
     jeedom.cmd.refreshValue(_event.detail)
   })
 
+  document.body.addEventListener('cmd::update', function(_event) {
+    jeedom.history.graphUpdate(_event.detail)
+  })
+
   document.body.addEventListener('eqLogic::update', function(_event) {
     jeedom.eqLogic.refreshValue(_event.detail)
   })
@@ -324,6 +328,7 @@ jeedom.refreshMessageNumber = function() {
 jeedom.UPDATE_NUMBER
 jeedom.refreshUpdateNumber = function() {
   if (jeedom.update == undefined) return //mobile
+  if (document.getElementById('span_nbUpdate') === null) return // for a not admin profil
   jeedom.update.number({
     error: function(error) {
       jeedomUtils.showAlert({

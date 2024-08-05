@@ -37,15 +37,14 @@ try {
 		ajax::success(utils::o2a(cache::byKey(init('key'))));
 	}
 
+	if (init('action') == 'remove') {
+		unautorizedInDemo();
+		ajax::success(cache::delete(init('key')));
+	}
+
 	if (init('action') == 'flush') {
 		unautorizedInDemo();
 		cache::flush();
-		ajax::success();
-	}
-
-	if (init('action') == 'flushWidget') {
-		unautorizedInDemo();
-		cache::flushWidget();
 		ajax::success();
 	}
 
@@ -53,10 +52,6 @@ try {
 		unautorizedInDemo();
 		cache::clean();
 		ajax::success();
-	}
-
-	if (init('action') == 'stats') {
-		ajax::success(cache::stats());
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

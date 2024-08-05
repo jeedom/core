@@ -217,9 +217,9 @@ class history {
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM historyArch WHERE `value` IS NULL';
 		DB::Prepare($sql, array());
-		$sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
+		$sql = 'DELETE FROM history WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2026-01-01 01:00:00"';
 		DB::Prepare($sql, array());
-		$sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2025-01-01 01:00:00"';
+		$sql = 'DELETE FROM historyArch WHERE `datetime` <= "2000-01-01 01:00:00" OR  `datetime` >= "2026-01-01 01:00:00"';
 		DB::Prepare($sql, array());
 		$sql = 'DELETE FROM history WHERE `value` IS NULL';
 		DB::Prepare($sql, array());
@@ -249,13 +249,8 @@ class history {
 		if ($archiveDatetime === false) {
 			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
 		}
-		$values = array(
-			'archiveDatetime' => $archiveDatetime,
-		);
-		$sql = 'SELECT DISTINCT(cmd_id)
-        FROM history
-        WHERE `datetime`<:archiveDatetime';
-		$list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+		$sql = '(SELECT DISTINCT(cmd_id) FROM history) UNION (SELECT DISTINCT(cmd_id) FROM historyArch)';
+		$list_sensors = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		foreach ($list_sensors as $sensors) {
 			try {
 				$cmd = cmd::byId($sensors['cmd_id']);
@@ -283,6 +278,8 @@ class history {
 						'datetime' => $purgeTime,
 					);
 					$sql = 'DELETE FROM historyArch WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
+					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+					$sql = 'DELETE FROM history WHERE cmd_id=:cmd_id AND `datetime` < :datetime';
 					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 				}
 				if (!$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] || $cmd->getConfiguration('historizeMode', 'avg') == 'none') {
@@ -1010,7 +1007,7 @@ class history {
 		if ($this->getValue() === null) {
 			return;
 		}
-		//global $JEEDOM_INTERNAL_CONFIG;
+		global $JEEDOM_INTERNAL_CONFIG;
 		if ($_cmd === null) {
 			$cmd = $this->getCmd();
 			if (!is_object($cmd)) {
@@ -1026,12 +1023,15 @@ class history {
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		/*if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] && $cmd->getConfiguration('historizeMode', 'avg') != 'none' && $this->getValue() !== null && $_direct === false) {
+		if ( $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] 
+		    && $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0)) > 0 
+			&& $cmd->getConfiguration('historizeMode', 'none') != 'none' 
+			&& $this->getValue() !== null ) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
-				$time -= $time % 300;
+				$time -= $time % $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0));
 				if ($this->getValue() == 0) {
-					$this->setDatetime(date('Y-m-d H:i:00', $time + 300));
+					$this->setDatetime(date('Y-m-d H:i:00', $time + $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0))));
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),
@@ -1072,7 +1072,7 @@ class history {
 					}
 				}
 			}
-		}*/
+		}
 		$values = array(
 			'cmd_id' => $this->getCmd_id(),
 			'datetime' => $this->getDatetime(),

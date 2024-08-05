@@ -57,6 +57,25 @@ jeedom.cache.byKey = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
+jeedom.cache.remove = function(_params) {
+  var paramsRequired = ['key']
+  var paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/cache.ajax.php'
+  paramsAJAX.data = {
+    action: 'remove',
+    key: _params.key
+  }
+  domUtils.ajax(paramsAJAX)
+}
+
 jeedom.cache.clean = function(_params) {
   var paramsRequired = []
   var paramsSpecifics = {}
@@ -89,42 +108,6 @@ jeedom.cache.flush = function(_params) {
   paramsAJAX.url = 'core/ajax/cache.ajax.php'
   paramsAJAX.data = {
     action: 'flush'
-  }
-  domUtils.ajax(paramsAJAX)
-}
-
-jeedom.cache.stats = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
-    return
-  }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/cache.ajax.php'
-  paramsAJAX.data = {
-    action: 'stats'
-  }
-  domUtils.ajax(paramsAJAX)
-}
-
-jeedom.cache.flushWidget = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
-    return
-  }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/cache.ajax.php'
-  paramsAJAX.data = {
-    action: 'flushWidget'
   }
   domUtils.ajax(paramsAJAX)
 }

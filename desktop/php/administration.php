@@ -256,11 +256,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<?php
-								$cache = cache::byKey('hour');
-								$lastKnowDate = $cache->getDatetime();
-								?>
-								<span class="label label-info"><?php echo $lastKnowDate ?></span>
+								<span class="label label-info"><?php echo cache::byKey('hour')->getDatetime() ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
@@ -453,7 +449,7 @@ $productName = config::byKey('product_name');
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="disableMobileUi">{{Désactiver la version mobile}}
 									<sup><i class="fas fa-question-circle" tooltip="{{La version mobile sera la même que la version desktop}}"></i></sup>
 								</label>
-								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="disableMobileUi">{{Désactiver l'auto-complétion des scénarios}}</label>
+								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="scenario::disableAutocomplete">{{Désactiver l'auto-complétion des scénarios}}</label>
 							</div>
 						</div>
 						<hr class="hrPrimary">
@@ -531,9 +527,9 @@ $productName = config::byKey('product_name');
 							<div class="col-md-6 col-xs-8">
 								<div class="input-group">
 									<span class="input-group-addon roundedLeft">{{Hauteur}}</span>
-									<input type="number" min="60" step="10" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1">
+									<input type="number" min="1" step="1" max="300" class="configKey form-control ispin" data-l1key="widget::step::height" data-reload="1" placeholder="60">
 									<span class="input-group-addon ">{{Largeur}}</span>
-									<input type="number" min="80" step="10" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::width" data-reload="1">
+									<input type="number" min="1" step="1" max="300" class="configKey form-control ispin roundedRight" data-l1key="widget::step::width" data-reload="1" placeholder="80">
 								</div>
 							</div>
 						</div>
@@ -1171,6 +1167,19 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Limiter à une valeur toute les}}
+							<sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeur historisé par les commandes en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+							</label>
+							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
+							<select class="form-control configKey" data-l1key="history::smooth">
+								<option value="-2">{{Aucun}}</option>
+								<option value="60">{{1 min}}</option>
+								<option value="300">{{5 min}}</option>
+								<option value="600">{{10 min}}</option>
+							</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Période d'affichage des graphiques par défaut}}</label>
 							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="history::defautShowPeriod">
@@ -1777,21 +1786,20 @@ $productName = config::byKey('product_name');
 							</thead>
 							<tbody>
 								<?php
-								$cache = cache::byKey('security::banip');
-								$values = json_decode($cache->getValue('[]'), true);
-								if (!is_array($values)) {
-									$values = array();
+								$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+								if (!is_array($ban_ips)) {
+									$ban_ips = array();
 								}
-								if (count($values) != 0) {
+								if (count($ban_ips) != 0) {
 									$div = '';
-									foreach ($values as $value) {
+									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
-										$div .= '<td>' . $value['ip'] . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime']) . '</td>';
+										$div .= '<td>' . $ip . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s', $datetime) . '</td>';
 										if (config::byKey('security::bantime') < 0) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s', $value['datetime'] + config::byKey('security::bantime')) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s', $datetime + config::byKey('security::bantime')) . '</td>';
 										}
 										$div .= '</tr>';
 									}
@@ -1835,11 +1843,59 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 									</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
-										<select class="form-control configKey" data-l1key="core::branch">
-											<option value="V4-stable">{{Stable v4}}</option>
-											<option value="beta">{{Beta (Pas de support)}}</option>
-											<option value="alpha">{{Alpha (Pas de support)}}</option>
-										</select>
+                                      <div class="input-group">
+                                          <select class="form-control configKey" data-l1key="core::branch">
+										  	  <optgroup label="{{Defaut (support)}}">
+												<option value="master">{{Stable}}</option>
+											  </optgroup>
+                                              <?php 
+                                              if(config::byKey('core::repo::provider') == 'default'){
+                                                  $lists = cache::byKey('core::branch::default::list')->getValue(array());
+                                                  if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
+                                                      $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
+                                                      $request_http->setHeader(array('User-agent: jeedom'));
+                                                      try {
+                                                        $lists['branchs'] = json_decode($request_http->exec(10, 1), true);
+                                                      } catch (\Exception $e) {
+                                                      }
+													  cache::set('core::branch::default::list',$lists,86400);
+                                                  }
+												  if(!isset($lists['tags']) || !is_array($lists['tags'])){
+													$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
+													$request_http->setHeader(array('User-agent: jeedom'));
+													try {
+														$lists['tags'] = json_decode($request_http->exec(10, 1), true);
+													} catch (\Exception $e) {
+													}
+													cache::set('core::branch::default::list',$lists,86400);
+												  }
+                                                  if(isset($lists['branchs']) && is_array($lists['branchs'])){
+													echo '<optgroup label="{{Branches (Pas de support)}}">';
+													foreach ($lists['branchs'] as $branch) {
+														if(in_array($branch['name'],array('V4-stable','master'))){
+															continue;
+														}
+														echo '<option value="'.$branch['name'].'">'.$branch['name'].'</option>';
+													}
+													echo '</optgroup>';
+                                                  }
+												  if(isset($lists['tags']) && is_array($lists['tags'])){
+													echo '<optgroup label="{{Tags (Pas de support)}}">';
+													foreach ($lists['tags'] as $tag) {
+														if(in_array($branch['name'],array('V4-stable','master'))){
+															continue;
+														}
+														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
+													}
+													echo '</optgroup>';
+												}
+                                              }
+                                              ?>
+                                          </select>
+                                          <span class="input-group-btn">
+                                              <a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>
+                                          </span>
+                                      </div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -1959,45 +2015,18 @@ $productName = config::byKey('product_name');
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="alert alert-info">
-							{{Attention : toute modification du moteur de cache nécessite un redémarrage.}}
-						</div>
-						<?php
-						$stats = cache::stats();
-						?>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Statistiques}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<?php
-								echo '<span class="label label-primary"><span id="span_cacheObject">' . $stats['count'] . '</span> {{objets}}</span>';
-								?>
-							</div>
+							{{Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.}}
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<select class="form-control configKey" data-l1key="cache::engine">
-									<option value="FilesystemCache">{{Système de fichiers}} (<?php echo cache::getFolder(); ?>)</option>
-									<?php if (class_exists('memcached')) { ?>
-										<option value="MemcachedCache">{{Memcached}}</option>
-									<?php } ?>
+									<option value="FileCache">{{Fichier}}</option>
 									<?php if (class_exists('redis')) { ?>
 										<option value="RedisCache">{{Redis}}</option>
 									<?php } ?>
+									<option value="MariadbCache">{{Mysql}}</option>
 								</select>
-							</div>
-						</div>
-						<div class="cacheEngine MemcachedCache">
-							<div class="form-group">
-								<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Adresse Memcache}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<input type="text" class="configKey form-control" data-l1key="cache::memcacheaddr">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Port Memcache}}</label>
-								<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-									<input type="text" class="configKey form-control" data-l1key="cache::memcacheport">
-								</div>
 							</div>
 						</div>
 						<div class="cacheEngine RedisCache">
@@ -2029,18 +2058,6 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Vider le cache des widgets}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-warning" id="bt_flushWidgetCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</a>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Désactiver le cache des widgets}}</label>
-							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<input type="checkbox" class="configKey form-control" data-l1key="widget::disableCache">
 							</div>
 						</div>
 						<hr>
@@ -2165,6 +2182,20 @@ $productName = config::byKey('product_name');
 								</select>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les methodes api (regexp)}}</label>
+							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
+							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="api::allow::method">
+							</div>
+						</div>
+
 						<hr class="hrPrimary">
 						<?php
 						if (init('rescue', 0) == 0) {
