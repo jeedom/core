@@ -108,7 +108,7 @@ class cache {
 	}
 
 	public static function clean() {
-		if(in_array(self::getEngine(),array('MariadbCache','FileCache'))){
+		if(method_exists(self::getEngine(),'clean')){
 			self::getEngine()::clean();
 		}
 		$caches = self::getEngine()::all();
