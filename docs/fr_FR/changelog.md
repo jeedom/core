@@ -1,4 +1,6 @@
-# Changelog Jeedom V4.5
+# Changelog Jeedom V4.4
+
+- Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre)
 
 # 4.5
 
