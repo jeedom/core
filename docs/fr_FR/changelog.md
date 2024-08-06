@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.4
 
+- Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre)
+
 # 4.4.11
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
