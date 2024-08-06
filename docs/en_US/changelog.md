@@ -28,6 +28,7 @@
 - Removing the old cache system. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibility of deleting the IN and A blocks while waiting for another scenario [LINK](https://github.com/jeedom/core/pull/2379)
 - Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
+- Fixed a bug on the generation of generic type information in scenarios [LINK](https://github.com/jeedom/core/pull/2806)
 
 # 4.4.10
 

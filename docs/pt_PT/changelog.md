@@ -28,6 +28,7 @@
 - Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
 - Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
+- Corrigido um bug na geração de informações de tipo genérico em cenários [LINK](https://github.com/jeedom/core/pull/2806)
 
 # 4.4.10
 

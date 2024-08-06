@@ -796,6 +796,7 @@
         "Suppression de l'ancien systeme de cache": "Suppression de l'ancien systeme de cache",
         "Possibilité de suppression les bloc DANS et A en attente d'un autre scénario": "Possibilité de suppression les bloc DANS et A en attente d'un autre scénario",
         "Correction d'un bug dans Safari sur les filtres avec accents": "Correction d'un bug dans Safari sur les filtres avec accents",
+        "Correction d'un bug sur la generation des informations generic type dans les scénarios": "Correction d'un bug sur la generation des informations generic type dans les scénarios",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Ajout d'un filtre sur de nombreuses action dans les scénarios",

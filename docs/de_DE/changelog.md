@@ -28,6 +28,7 @@
 - Entfernen des alten Cache-Systems. [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2799)
 - Möglichkeit, die Blöcke IN und A zu löschen, während auf ein anderes Szenario gewartet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2379)
 - Ein Fehler in Safari bei Filtern mit Akzenten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2754)
+- Ein Fehler bei der Generierung generischer Typinformationen in Szenarios wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2806)
 
 # 4.4.10
 
