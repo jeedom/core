@@ -28,6 +28,7 @@
 - Suppression de l'ancien systeme de cache. [LIEN](https://github.com/jeedom/core/pull/2799)
 - Possibilité de suppression les bloc DANS et A en attente d'un autre scénario [LIEN](https://github.com/jeedom/core/pull/2379)
 - Correction d'un bug dans Safari sur les filtres avec accents [LIEN](https://github.com/jeedom/core/pull/2754)
+- Correction d'un bug sur la generation des informations generic type dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2806)
 
 # 4.4.10
 
