@@ -64,7 +64,7 @@ class cache {
 	/**
 	 *
 	 * @param string $_key
-	 * @return object
+	 * @return cache
 	 */
 	public static function byKey($_key) {
 		$cache = self::getEngine()::fetch($_key);
@@ -77,7 +77,7 @@ class cache {
 	}
 
 	public static function exist($_key){
-		return (self::byKey($_key)->getValue() !== null);
+		return (self::byKey($_key)->getValue(null) !== null);
 	}
 
 	public static function flush() {
