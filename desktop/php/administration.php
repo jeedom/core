@@ -1877,6 +1877,9 @@ $productName = config::byKey('product_name');
                                                   if(isset($lists['branchs']) && is_array($lists['branchs'])){
 													echo '<optgroup label="{{Branches (Pas de support)}}">';
 													foreach ($lists['branchs'] as $branch) {
+														if(!is_array($branch) || !isset($branch['name'])){
+															continue;
+														}
 														if(in_array($branch['name'],array('V4-stable','master'))){
 															continue;
 														}
@@ -1887,7 +1890,7 @@ $productName = config::byKey('product_name');
 												  if(isset($lists['tags']) && is_array($lists['tags'])){
 													echo '<optgroup label="{{Tags (Pas de support)}}">';
 													foreach ($lists['tags'] as $tag) {
-														if(in_array($branch['name'],array('V4-stable','master'))){
+														if(!is_array($tag) || !isset($tag['name'])){
 															continue;
 														}
 														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
