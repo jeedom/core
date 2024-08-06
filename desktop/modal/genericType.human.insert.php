@@ -112,7 +112,7 @@ $displayNone = (isset($_GET['none'])) ? $_GET['none'] : true;
     if (!genericObject || genericObject.length == 0) {
       return 'genericType(' + genericType[0].value + ')'
     }
-    if (genericObject[0].text == '-1') {
+    if (genericObject[0].value == '-1') {
       return 'genericType(' + genericType[0].value + ')'
     }
     return 'genericType(' + genericType[0].value + ',#[' + genericObject[0].text + ']#)'
