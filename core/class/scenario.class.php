@@ -399,7 +399,7 @@ class scenario {
 		} else {
 			$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnShedule']['txt'];
 			$scenarios = scenario::schedule();
-			$trigger = 'schedule';
+			$_event = 'schedule';
 			if (jeedom::isDateOk()) {
 				foreach ($scenarios as $key => &$scenario) {
 					if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
