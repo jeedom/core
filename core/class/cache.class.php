@@ -123,7 +123,7 @@ class cache {
 	}
 
 	public static function exist($_key){
-		return (self::byKey($_key)->getValue() !== null);
+		return (self::byKey($_key)->getValue(null) !== null);
 	}
 
 	public static function flush() {
