@@ -284,7 +284,7 @@ document.getElementById('div_administration').addEventListener('click', function
     var enable = _target.getAttribute('data-enable');
     if (enable == '1') {
         bootbox.confirm({
-            message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installaion. Continuez ?}}",
+            message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
             buttons: {
                 confirm: {
                     label: "Oui",
