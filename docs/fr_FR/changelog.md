@@ -29,6 +29,7 @@
 - Possibilité de suppression les bloc DANS et A en attente d'un autre scénario [LIEN](https://github.com/jeedom/core/pull/2379)
 - Correction d'un bug dans Safari sur les filtres avec accents [LIEN](https://github.com/jeedom/core/pull/2754)
 - Correction d'un bug sur la generation des informations generic type dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2806)
+- Ajout d'une confirmation lors de l'ouverture de l'accès support depuis la page de gestion des utilisateurs [LIEN](https://github.com/jeedom/core/pull/2809)
 
 # 4.4.10
 
