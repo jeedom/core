@@ -1151,9 +1151,7 @@ class scenarioExpression {
 			'semaine' => 'week'
 		);
 		// Calcul sunrise & sunset
-		$latitude = floatval(config::byKey('info::latitude'));
-		$longitude = floatval(config::byKey('info::longitude'));
-		$sun_info = date_sun_info(time(), $latitude, $longitude);
+		$sun_info = date_sun_info(time(), floatval(config::byKey('info::latitude')), floatval(config::byKey('info::longitude')));
 
 		foreach ($matches as &$tag) {
 			$tag = str_replace(array_keys($replace), $replace, $tag);
