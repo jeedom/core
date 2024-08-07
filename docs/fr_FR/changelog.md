@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.4
 
-- Possibilité dans les déclencheurs programmés des scénarios d'utiliser des calculs/commande/tag/formule donnant en resultat l'heure de lancement sous la forme Gi (heure sans zero initial et minute, exemple pour 09h15 => 915 ou pour 23h40 => 2340)
+- Possibilité dans les déclencheurs programmés des scénarios d'utiliser des calculs/commande/tag/formule donnant en resultat l'heure de lancement sous la forme Gi (heure sans zero initial et minute, exemple pour 09h15 => 915 ou pour 23h40 => 2340) [LIEN](https://github.com/jeedom/core/pull/2808)
 
 # 4.4.11
 
