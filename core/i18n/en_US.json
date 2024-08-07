@@ -3024,6 +3024,7 @@
         "Sauvegarde effectuée": "Backup completed",
         "Identifiant": "ID",
         "Ajouter un utilisateur": "Add User",
+        "En activant l\\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?": "By activating support access, you authorize a Jeedom support technician to access your installation. Continue?",
         "Vous allez supprimer l\\'utilisateur :": "You will delete the user:",
         "L\\'utilisateur a bien été supprimé": "User has been deleted",
         "Quel est le nouveau mot de passe ?": "What is the new password?",

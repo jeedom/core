@@ -1323,6 +1323,7 @@
         "Possibilité de suppression les bloc DANS et A en attente d'un autre scénario": "Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário",
         "Correction d'un bug dans Safari sur les filtres avec accents": "Corrigido um bug no Safari em filtros com acentos",
         "Correction d'un bug sur la generation des informations generic type dans les scénarios": "Corrigido um bug na geração de informações de tipo genérico em cenários",
+        "Ajout d'une confirmation lors de l'ouverture de l'accès support depuis la page de gestion des utilisateurs": "Adicionada confirmação ao abrir o acesso ao suporte na página de gerenciamento de usuários",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Adicionado um filtro em muitas ações em cenários",

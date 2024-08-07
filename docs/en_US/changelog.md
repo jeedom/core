@@ -29,6 +29,7 @@
 - Possibility of deleting the IN and A blocks while waiting for another scenario [LINK](https://github.com/jeedom/core/pull/2379)
 - Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
 - Fixed a bug on the generation of generic type information in scenarios [LINK](https://github.com/jeedom/core/pull/2806)
+- Added confirmation when opening support access from the user management page [LINK](https://github.com/jeedom/core/pull/2809)
 
 # 4.4.10
 
