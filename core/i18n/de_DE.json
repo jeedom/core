@@ -4345,7 +4345,7 @@
         "Swap disponible": "Tausch möglich",
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go": "Der kostenlose Austausch reicht nicht aus oder es befinden sich weniger als 2 GB Arbeitsspeicher auf dem System und ein Austausch von weniger als 1 GB",
         "Inconnue": "Unbekannt",
-        "Swapiness": "Swappiness",
+        "Swappiness": "Tauschheit",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Für eine optimale Leistung sollte der Swapiness 20% nicht überschreiten, wenn Sie 1 GB oder weniger Speicher haben",
         "Charge": "Last",
         "Configuration réseau interne": "Interne Netzwerkkonfiguration",

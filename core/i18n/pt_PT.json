@@ -4345,7 +4345,7 @@
         "Swap disponible": "Swap disponível",
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go": "O swap livre não é suficiente ou há menos de 2GB de memória do sistema e um swap inferior a 1GB",
         "Inconnue": "Desconhecido",
-        "Swapiness": "Troca",
+        "Swappiness": "Troca",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Para um desempenho ideal, o swapiness não deve exceder 20% se tiver 1GB ou menos de memória",
         "Charge": "Carga",
         "Configuration réseau interne": "Configuração de rede interna",

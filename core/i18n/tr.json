@@ -4345,7 +4345,7 @@
         "Swap disponible": "Takas kullanılabilir",
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go": "Ücretsiz takas yeterli değil veya sistemde 2GB'tan az bellek ve 1GB'tan az takas var",
         "Inconnue": "Bilinmiyor",
-        "Swapiness": "Swappiness",
+        "Swappiness": "Swappiness",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "En iyi performans için 1 GB veya daha az belleğiniz varsa takas% 20'yi geçmemelidir",
         "Charge": "Yük",
         "Configuration réseau interne": "Dahili ağ yapılandırması",
