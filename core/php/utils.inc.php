@@ -1462,7 +1462,10 @@ function cronIsDue($_cron){
 		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
 		return $c->isDue();
 	} catch (Exception $e) {
-
+		$evaluate = jeedom::evaluateExpression($_cron);
+		if(is_numeric($evaluate)){
+		  return ($evaluate == date('Gi'));
+		}
 	} catch (Error $e) {
 
 	}

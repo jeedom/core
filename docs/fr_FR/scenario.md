@@ -93,7 +93,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 
 > **Tip Mode programmé**
 >
-> Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuter un scénario toutes les 20 minutes avec  ``*/20 * * * *``, ou à 5h du matin pour régler une multitude de choses pour la journée avec ``0 5 * * *``. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron.
+> Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuter un scénario toutes les 20 minutes avec  `*/20 * * * *`, ou à 5h du matin pour régler une multitude de choses pour la journée avec ``0 5 * * *``. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron. Il est aussi possible de mettre une heure de lancement sous la forme `Gi` (heure sans zero initial et minute, exemple pour `09h15` => `915` ou pour `23h40` => `2340`). Cette heure peut etre le résultat d'un calcul (utilisant une commande ou un tag), par exemple : `#sunset# + 10` pour un lancement 10 minutes après le couché du soleil. A noter que pour un lancement 1h30 après le couché du soleil il faut mettre `#sunset# + 130`. A noter que lors de l'utilisation d'une syntaxe autre qu'un cron jeedom ne sera pas en mesure de vous donner les dates des lancements précedent ou suivant.
 
 ## Onglet Scénario
 
