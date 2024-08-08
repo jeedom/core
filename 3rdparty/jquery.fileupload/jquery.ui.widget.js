@@ -79,11 +79,14 @@
       base = $.Widget;
     }
 
-    if ( $.isArray( prototype ) ) {
+    if ( Array.isArray( prototype ) ) {
       prototype = $.extend.apply( null, [ {} ].concat( prototype ) );
     }
 
     // Create selector for plugin
+    if ( ! $.expr[ ":" ] ){
+      	$.expr[ ":" ] = []
+    }
     $.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
       return !!$.data( elem, fullName );
     };
@@ -124,7 +127,7 @@
     // inheriting from
     basePrototype.options = $.widget.extend( {}, basePrototype.options );
     $.each( prototype, function( prop, value ) {
-      if ( !$.isFunction( value ) ) {
+      if ( typeof value  == 'function' ) {
         proxiedPrototype[ prop ] = value;
         return;
       }
@@ -697,7 +700,7 @@
       }
 
       this.element.trigger( event, data );
-      return !( $.isFunction( callback ) &&
+      return !( typeof callback == 'function' &&
         callback.apply( this.element[ 0 ], [ event ].concat( data ) ) === false ||
         event.isDefaultPrevented() );
     }
