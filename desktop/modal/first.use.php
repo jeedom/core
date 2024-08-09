@@ -38,9 +38,9 @@ try {
 			}
 		}
 
-		$plugin = plugin::byId('jeeasy');
-		if (!$plugin->isActive()) {
-			$plugin->setIsEnable(1);
+		$jeeasy = plugin::byId('jeeasy');
+		if (!$jeeasy->isActive()) {
+			$jeeasy->setIsEnable(1);
 		}
 	} catch (Exception $e) {
 		echo '<div class="alert alert-danger text-center">';
