@@ -1226,6 +1226,8 @@ if (!jeeFrontEnd.scenario) {
         message += '    <option value=">">{{supérieur}}</option>'
         message += '    <option value="<">{{inférieur}}</option>'
         message += '    <option value="!=">{{différent}}</option>'
+        message += '    <option value=">=">{{supérieur ou égale}}</option>'
+        message += '    <option value="<=">{{inférieur ou égale}}</option>'
         message += '  </select>'
         message += '</div>'
         message += '<div class="col-xs-4">'
