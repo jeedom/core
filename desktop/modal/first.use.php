@@ -19,6 +19,7 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
+$productName = config::byKey('product_name');
 
 try {
 	repo_market::test();
@@ -54,7 +55,7 @@ try {
 
 		jeeDialog.dialog({
 			id: 'md_firstConfig',
-			title: "{{Configuration de}} <?= config::byKey('product_name'); ?>",
+			title: "{{Configuration de}} <?= $productName ?>",
 			fullScreen: true,
 			onClose: function() {
 				jeeDialog.get('#md_firstConfig').destroy()
@@ -72,7 +73,7 @@ try {
 		<h3>{{Connexion au Market}}</h3>
 
 		<div class="alert alert-info col-md-10 col-md-offset-1">
-			<strong>{{L' assistant de configuration}} <?= config::byKey('product_name') ?> {{nécessite de pouvoir accéder au Market, merci de valider vos identifiants de connexion au Market}} <?= config::byKey('product_name') ?>.
+			<strong>{{L' assistant de configuration}} <?= $productName ?> {{nécessite de pouvoir accéder au Market, merci de valider vos identifiants de connexion au Market}} <?= $productName ?>.
 			</strong>
 			<br><br>
 			<form class="form-horizontal">
