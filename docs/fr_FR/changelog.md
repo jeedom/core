@@ -31,6 +31,7 @@
 - Correction d'un bug sur la generation des informations generic type dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2806)
 - Ajout d'une confirmation lors de l'ouverture de l'accès support depuis la page de gestion des utilisateurs [LIEN](https://github.com/jeedom/core/pull/2809)
 - Amélioration du systeme de cron pour eviter quelque raté de lancement [LIEN](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Ajout dans l'assistant de condition des scénarios des conditions supérieur ou égal et inferieur ou égal [LIEN](https://github.com/jeedom/core/issues/2810)
 
 # 4.4.10
 
