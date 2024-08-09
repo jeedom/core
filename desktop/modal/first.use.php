@@ -20,140 +20,146 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$pluginJeeEasy = false;
 try {
-	if(is_object(plugin::byId('jeeasy'))) {
-		$pluginJeeEasy = true;
+	repo_market::test();
+
+	try {
+		if (!is_object($jeeasy = update::byLogicalId('jeeasy'))) {
+			$jeeasy = (new update)
+				->setLogicalId('jeeasy')
+				->setSource('market')
+				->setConfiguration('version', 'stable');
+			$jeeasy->save();
+			$jeeasy->doUpdate();
+		} else {
+			$jeeasy->checkUpdate();
+			if ($jeeasy->getStatus() == 'update') {
+				$jeeasy->doUpdate();
+			}
+		}
+
+		$plugin = plugin::byId('jeeasy');
+		if (!$plugin->isActive()) {
+			$plugin->setIsEnable(1);
+		}
+	} catch (Exception $e) {
+		echo '<div class="alert alert-danger text-center">';
+		echo "{{Impossible de démarrer l'assistant de configuration}}";
+		echo '</div>';
+		return;
 	}
-} catch (\Throwable $th) {
-	
-}
-
-
-$showDoc = false;
-if (config::byKey('doc::base_url', 'core') != '') {
-	$showDoc = true;
-}
-
-$showButton = false;
-if (config::byKey('jeedom::firstUse') == 1) {
-	$showButton = true;
-}
-
-sendVarToJS([
-  'jeephp2js.md_firstuse_pluginJeeEasy' => $pluginJeeEasy,
-  'jeephp2js.md_firstuse_showDoc' => $showDoc,
-  'jeephp2js.md_firstuse_showButton' => $showButton
-]);
-
-
 ?>
+	<script>
+		jeeDialog.get('#md_firstUse').close()
 
-
-<div id="md_firstuse" data-modalType="md_firstuse">
-	<center>
-		{{Bienvenue dans}} <?php echo config::byKey('product_name'); ?> {{, merci d'avoir choisi cette solution pour votre habitat connecté.}}<br />
-		{{Voici 4 guides pour bien débuter avec}} <?php echo config::byKey('product_name'); ?> :
-	</center>
-	<br/><br/><br/>
-
-	<div class="row row-overflow">
-		<div class="col-xs-3">
-			<center>
-				<a href="https://start.jeedom.com/" target="_blank">
-					<i class="fas fa-image" style="font-size:40px;"></i><br />
-					{{Guide de démarrage}}
-				</a>
-			</center>
-		</div>
-		<div id="divDoc" style="display: none;">
-			<div class="col-xs-3">
-				<center>
-					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/concept/" target="_blank">
-						<i class="fas fa-cogs" style="font-size:40px;"></i><br />
-						{{Concept}}
-					</a>
-				</center>
-			</div>
-
-			<div class="col-xs-3">
-				<center>
-					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/premiers-pas/" target="_blank">
-						<i class="fas fa-check-square" style="font-size:40px;"></i><br />
-						{{Documentation de démarrage}}
-					</a>
-				</center>
-			</div>
-			<div class="col-xs-3">
-				<center>
-					<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>" target="_blank">
-						<i class="fas fa-book" style="font-size:40px;"></i><br />
-						{{Documentation}}
-					</a>
-				</center>
-			</div>
-		</div>
-	</div>
-
-	<br><br><br>
-	<center>
-		<a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
-		<a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
-		<a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-		<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
-	</center>
-
-	<div id="divButton" style="display: none;">
-		<br><br>
-		<div class="row">
-			<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>
-		</div>
-	</div>
-</div>
-
-<script>
-(function() {// Self Isolation!
-  	if (jeephp2js.md_firstuse_showDoc == "1") {
-  		document.querySelector('#md_firstuse #divDoc').seen()
-  	}
-
-  	if (jeephp2js.md_firstuse_showButton == "1") {
-  		document.querySelector('#md_firstuse #divButton').seen()
-  	}
-
-  	if (jeephp2js.md_firstuse_pluginJeeEasy != "") {
 		jeeDialog.dialog({
 			id: 'md_firstConfig',
-			title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
+			title: "{{Configuration de}} <?= config::byKey('product_name'); ?>",
 			fullScreen: true,
 			onClose: function() {
-		    	jeeDialog.get('#md_firstConfig').destroy()
-		    },
-			contentUrl: 'index.php?v=d&plugin=jeeasy&modal=wizard',
+				jeeDialog.get('#md_firstConfig').destroy()
+			},
+			contentUrl: 'index.php?v=d&plugin=jeeasy&modal=welcome',
 			callback: function() {
-		    	jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
-		    }
-		})
-	}
-
-	document.getElementById('bt_doNotDisplayFirstUse')?.addEventListener('click', function() {
-		jeedom.config.save({
-			configuration: {
-				'jeedom::firstUse': 0
-			},
-			error: function(error) {
-				jeedomUtils.showAlert({
-					message: error.message,
-					level: 'danger'
-				})
-			},
-			success: function() {
-				jeedomUtils.showAlert({
-					message: '{{Option enregistrée}}',
-					level: 'success'
-				})
+				jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
 			}
 		})
-	})
-})()
-</script>
+	</script>
+<?php
+} catch (Exception $e) {
+?>
+	<div class="text-center">
+		<h3>{{Connexion au Market}}</h3>
+
+		<div class="alert alert-info col-md-10 col-md-offset-1">
+			<strong>{{L' assistant de configuration}} <?= config::byKey('product_name') ?> {{nécessite de pouvoir accéder au Market, merci de valider vos identifiants de connexion au Market}} <?= config::byKey('product_name') ?>.
+			</strong>
+			<br><br>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-md-4">{{Utilisateur}} :</label>
+					<input type="text" class="form-control col-md-8 col-xs-12" id="in_username_market" placeholder="{{Nom d'utilisateur Market}}">
+				</div>
+				<div class="form-group">
+					<label class="control-label col-md-4">{{Mot de passe}} :</label>
+					<input type="password" class="form-control col-md-8 col-xs-12" autocomplete="new-password" id="in_password_market" placeholder="{{Mot de passe Market}}">
+				</div>
+			</form>
+			<?php
+			if (config::byKey('doc::base_url', 'core') != '') {
+				echo '<br>';
+				echo '<a class="btn btn-xs btn-default" href="https://market.jeedom.com/index.php?v=d&p=register" target="_blank">';
+				echo '<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market ? En créer un !}}';
+				echo '</a>';
+			}
+			?>
+		</div>
+
+		<button class="btn btn-success" id="bt_validate_market"><i class="fas fa-sign-in-alt"></i> {{Valider}}</button>
+		<?php
+		if (config::byKey('jeedom::firstUse') == 1) {
+			echo '<button class="btn btn-danger" id="bt_doNotDisplayFirstUse"><i class="fas fa-times"></i> {{Ne jamais redemander}}</button>';
+		}
+		if (config::byKey('doc::base_url', 'core') != '') {
+			echo '<br><br>';
+			echo '<div>';
+			echo "{{De plus amples informations sont disponibles à la lecture de}} ";
+			echo '<a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">{{la documentation de démarrage}}.</a></div>';
+		}
+		?>
+	</div>
+	<script>
+		document.getElementById('md_firstUse').addEventListener('click', function(event) {
+			var _target = null
+
+			if (_target = event.target.closest('#bt_doNotDisplayFirstUse')) {
+				jeedom.config.save({
+					configuration: {
+						'jeedom::firstUse': 0
+					},
+					error: function(error) {
+						jeedomUtils.showAlert({
+							message: error.message,
+							level: 'danger'
+						})
+					},
+					success: function() {
+						jeeDialog.get('#md_firstUse').close()
+						jeedomUtils.showAlert({
+							message: '{{Demande enregistrée}}',
+							level: 'success'
+						})
+					}
+				})
+				return
+			}
+
+			if (_target = event.target.closest('#bt_validate_market')) {
+				username = document.getElementById('in_username_market').value.trim()
+				password = document.getElementById('in_password_market').value.trim()
+
+				if (username != '' && password != '') {
+					jeedom.config.save({
+						configuration: {
+							'jeedom::firstUse': 1,
+							'market::username': username,
+							'market::password': password
+						},
+						error: function(error) {
+							jeedomUtils.showAlert({
+								message: error.message,
+								level: 'danger'
+							})
+						},
+						success: function() {
+							window.location.reload()
+						}
+					})
+				}
+				return
+			}
+		})
+	</script>
+<?php
+}
+?>
