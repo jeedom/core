@@ -44,7 +44,7 @@ try {
 		}
 	} catch (Exception $e) {
 		echo '<div class="alert alert-danger text-center">';
-		echo "{{Impossible de démarrer l'assistant de configuration}}";
+		echo "{{Impossible de démarrer l'assistant de configuration.}}";
 		echo '</div>';
 		return;
 	}
