@@ -30,6 +30,8 @@
 - Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
 - Fixed a bug on the generation of generic type information in scenarios [LINK](https://github.com/jeedom/core/pull/2806)
 - Added confirmation when opening support access from the user management page [LINK](https://github.com/jeedom/core/pull/2809)
+- Improved cron system to avoid some launch failures [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Added greater than or equal and less than or equal conditions to the scenario condition wizard [LINK](https://github.com/jeedom/core/issues/2810)
 
 # 4.4.10
 

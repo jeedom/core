@@ -1324,6 +1324,8 @@
         "Correction d'un bug dans Safari sur les filtres avec accents": "Fixed a bug in Safari on filters with accents",
         "Correction d'un bug sur la generation des informations generic type dans les scénarios": "Fixed a bug on the generation of generic type information in scenarios",
         "Ajout d'une confirmation lors de l'ouverture de l'accès support depuis la page de gestion des utilisateurs": "Added confirmation when opening support access from the user management page",
+        "Amélioration du systeme de cron pour eviter quelque raté de lancement": "Improved cron system to avoid some launch failures",
+        "Ajout dans l'assistant de condition des scénarios des conditions supérieur ou égal et inferieur ou égal": "Added greater than or equal and less than or equal conditions to the scenario condition wizard",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Moved event management which is used to update the in-memory database interface",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Added a filter on many actions in scenarios",

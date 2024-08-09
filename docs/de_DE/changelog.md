@@ -30,6 +30,8 @@
 - Ein Fehler in Safari bei Filtern mit Akzenten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2754)
 - Ein Fehler bei der Generierung generischer Typinformationen in Szenarios wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2806)
 - Bestätigung hinzugefügt, wenn der Support-Zugriff über die Benutzerverwaltungsseite geöffnet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2809)
+- Verbesserung des Cron-Systems, um Startfehler zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2810)
 
 # 4.4.10
 

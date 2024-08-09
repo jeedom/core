@@ -30,6 +30,8 @@
 - Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
 - Corrigido um bug na geração de informações de tipo genérico em cenários [LINK](https://github.com/jeedom/core/pull/2806)
 - Adicionada confirmação ao abrir o acesso ao suporte na página de gerenciamento de usuários [LINK](https://github.com/jeedom/core/pull/2809)
+- Melhoria do sistema cron para evitar falhas de inicialização [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Adição de cenários de condições maiores ou iguais e menores ou iguais ao assistente de condições [LINK](https://github.com/jeedom/core/issues/2810)
 
 # 4.4.10
 
