@@ -32,6 +32,7 @@
 - Bestätigung hinzugefügt, wenn der Support-Zugriff über die Benutzerverwaltungsseite geöffnet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2809)
 - Verbesserung des Cron-Systems, um Startfehler zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2810)
+- Möglichkeit, Aufträge von der Dead-Order-Analyse auszuschließen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2812)
 
 # 4.4.10
 

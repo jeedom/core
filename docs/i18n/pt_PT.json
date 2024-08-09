@@ -1326,6 +1326,7 @@
         "Ajout d'une confirmation lors de l'ouverture de l'accès support depuis la page de gestion des utilisateurs": "Adicionada confirmação ao abrir o acesso ao suporte na página de gerenciamento de usuários",
         "Amélioration du systeme de cron pour eviter quelque raté de lancement": "Melhoria do sistema cron para evitar falhas de inicialização",
         "Ajout dans l'assistant de condition des scénarios des conditions supérieur ou égal et inferieur ou égal": "Adição de cenários de condições maiores ou iguais e menores ou iguais ao assistente de condições",
+        "Possibilité d'exclure des commandes de l'analyse des commandes mortes": "Capacidade de excluir pedidos da análise de pedidos mortos",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Adicionado um filtro em muitas ações em cenários",

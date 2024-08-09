@@ -1326,6 +1326,7 @@
         "Ajout d'une confirmation lors de l'ouverture de l'accès support depuis la page de gestion des utilisateurs": "Bestätigung hinzugefügt, wenn der Support-Zugriff über die Benutzerverwaltungsseite geöffnet wird",
         "Amélioration du systeme de cron pour eviter quelque raté de lancement": "Verbesserung des Cron-Systems, um Startfehler zu vermeiden",
         "Ajout dans l'assistant de condition des scénarios des conditions supérieur ou égal et inferieur ou égal": "Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten",
+        "Possibilité d'exclure des commandes de l'analyse des commandes mortes": "Möglichkeit, Aufträge von der Dead-Order-Analyse auszuschließen",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Die Ereignisverwaltung, die zum Aktualisieren der In-Memory-Datenbankschnittstelle verwendet wird, wurde verschoben",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Für viele Aktionen in Szenarien wurde ein Filter hinzugefügt",

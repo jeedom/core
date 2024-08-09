@@ -32,6 +32,7 @@
 - Se agregó confirmación al abrir el acceso de soporte desde la página de administración de usuarios [ENLACE](https://github.com/jeedom/core/pull/2809)
 - Mejora del sistema cron para evitar fallos en el lanzamiento [ENLACE](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Adición de escenarios de condiciones mayores o iguales y menores o iguales al asistente de condiciones [ENLACE](https://github.com/jeedom/core/issues/2810)
+- Capacidad para excluir órdenes del análisis de órdenes muertas [ENLACE](https://github.com/jeedom/core/issues/2812)
 
 # 4.4.10
 
