@@ -941,6 +941,9 @@ class cmd {
 	public static function deadCmd() {
 		$return = array();
 		foreach ((cmd::all()) as $cmd) {
+			if($cmd->getConfiguration('core::cmd::noDeadAnalyze',0) == 1){
+				continue;
+			}
 			if (is_array($cmd->getConfiguration('actionCheckCmd', ''))) {
 				foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
 					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
