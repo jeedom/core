@@ -43,7 +43,6 @@ $productName = config::byKey('product_name');
 ?>
 
 <div class="text-center">
-
 	<h3 class="first_use">{{Bienvenue dans}} <?= $productName ?></h3>
 	<h3 class="market_connect hidden">{{Connexion au Market}}</h3>
 
