@@ -19,8 +19,6 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-$productName = config::byKey('product_name');
-
 try {
 	$jeeasy = plugin::byId('jeeasy');
 	if (!$jeeasy->isActive()) {
@@ -41,7 +39,7 @@ if (config::byKey('jeedom::firstUse') == 1) {
 	echo '<i class="fas fa-eye-slash"></i> {{Ne plus afficher}}';
 	echo '</button>';
 }
-
+$productName = config::byKey('product_name');
 ?>
 
 <div class="text-center">
