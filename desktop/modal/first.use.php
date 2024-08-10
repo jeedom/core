@@ -133,7 +133,19 @@ $productName = config::byKey('product_name');
 									})
 								},
 								success: function() {
-									window.location.reload()
+									jeedom.plugin.toggle({
+										id: 'jeeasy',
+										state: 1,
+										error: function(_error) {
+											jeedomUtils.showAlert({
+												message: _error.message,
+												level: 'danger'
+											})
+										},
+										success: function() {
+											jeedomUtils.loadPage('index.php?v=d&p=modaldisplay&plugin=jeeasy&loadmodal=welcome')
+										}
+									})
 								}
 							})
 						}
@@ -160,7 +172,9 @@ $productName = config::byKey('product_name');
 						})
 					},
 					success: function() {
-						window.location.reload()
+						document.querySelectorAll('.market_connect').addClass('hidden')
+						document.querySelectorAll('.first_use').seen()
+						document.getElementById('bt_install_jeeasy').triggerEvent('click')
 					}
 				})
 			}
