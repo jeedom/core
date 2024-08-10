@@ -126,9 +126,9 @@ $productName = config::byKey('product_name');
 						success: function(_jeeasy) {
 							jeedom.update.do({
 								id: _jeeasy.id,
-								error: function(error) {
+								error: function(_error) {
 									jeedomUtils.showAlert({
-										message: error.message,
+										message: _error.message,
 										level: 'danger'
 									})
 								},
