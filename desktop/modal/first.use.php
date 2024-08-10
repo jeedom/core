@@ -69,7 +69,7 @@ $productName = config::byKey('product_name');
 	<?php
 	if (config::byKey('doc::base_url', 'core') != '') {
 		echo '<a class="btn btn-default market_connect hidden" href="https://market.jeedom.com/index.php?v=d&p=register" target="_blank">';
-		echo '<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market ? En créer un !}}';
+		echo '<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market? En créer un!}}';
 		echo '</a>';
 	}
 	?>
