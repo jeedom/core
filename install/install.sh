@@ -294,7 +294,6 @@ step_8_jeedom_customization() {
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
-  
   echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
 }
 
