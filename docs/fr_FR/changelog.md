@@ -9,7 +9,7 @@
 - Les graphiques se mettent à jour automatiquement lors de l'arrivées de nouvelles valeur [LIEN](https://github.com/jeedom/core/issues/2749)
 - Jeedom ajoute automatiquement la hauteur de l'image lors de la création des widgets pour eviter les soucis de chevauchement en mobile [LIEN](https://github.com/jeedom/core/issues/2539)
 - Refonte de la partie backup cloud [LIEN](https://github.com/jeedom/core/issues/2765)
-- [DEV] Mise en place d'un systeme de queue pour l'éxecution d'action [LIEN](https://github.com/jeedom/core/issues/2489)
+- **DEV** Mise en place d'un systeme de queue pour l'éxecution d'action [LIEN](https://github.com/jeedom/core/issues/2489)
 - Les tags des scénarios sont maintenant propre a l'instance du scénario (si vous avez deux lancement très proche de scénario les tags du derniers n'écrase plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
 - Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` est maintenant deprecated et sera retiré dans les futurs mises a jour du core
