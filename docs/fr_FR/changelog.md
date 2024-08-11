@@ -10,7 +10,7 @@
 - Jeedom ajoute automatiquement la hauteur de l'image lors de la création des widgets pour eviter les soucis de chevauchement en mobile [LIEN](https://github.com/jeedom/core/issues/2539)
 - Refonte de la partie backup cloud [LIEN](https://github.com/jeedom/core/issues/2765)
 - **DEV** Mise en place d'un systeme de queue pour l'éxecution d'action [LIEN](https://github.com/jeedom/core/issues/2489)
-- Les tags des scénarios sont maintenant propre a l'instance du scénario (si vous avez deux lancement très proche de scénario les tags du derniers n'écrase plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
+- Les tags des scénarios sont maintenant propre à l'instance du scénario (si vous avez deux lancement très proche de scénario les tags du derniers n'écrase plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
 - Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` est maintenant deprecated et sera retiré dans les futurs mises a jour du core
   - ``trigger()`` est maintenant deprecated et sera retiré dans les futurs mises a jour du core
@@ -35,6 +35,10 @@
 - Possibilité d'exclure des commandes de l'analyse des commandes mortes [LIEN](https://github.com/jeedom/core/issues/2812)
 - Correction d'un bug sur la numérotation du nombre de ligne des tableaux [LIEN](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
 - Ajout d'openstreetmap.org dans les domaines externe autorisé par défaut [LIEN](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+
+>**IMPORTANT**
+>
+> Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme. Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur. A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur.
 
 # 4.4.10
 
