@@ -491,6 +491,8 @@ try {
 	if(strpos($apache_security,'jeedom.com') !== false){
 		echo "Apache is configure in security mode, I will update file....";
 		echo shell_exec('sudo cp '.__DIR__ . '/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl restart apache2" | sudo at now');
+		echo "Pause to wait restart of apache";
+		sleep(30);
 		echo "OK\n";
 	}
 } catch (Exception $e) {
