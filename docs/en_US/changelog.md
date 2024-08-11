@@ -9,7 +9,7 @@
 - The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
 - Redesign of the cloud backup part [LINK](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementation of a queuing system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
+- **DEV** Setting up a queue system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
 - The scenario tags are now specific to the scenario instance (if you have two scenarios launched very close together, the tags of the latter no longer overwrite the first) [LINK](https://github.com/jeedom/core/issues/2763)
 - Change to the trigger part of the scenarios : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` is now deprecated and will be removed in future core updates
@@ -33,6 +33,13 @@
 - Improved cron system to avoid some launch failures [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Added greater than or equal and less than or equal conditions to the scenario condition wizard [LINK](https://github.com/jeedom/core/issues/2810)
 - Ability to exclude orders from dead order analysis [LINK](https://github.com/jeedom/core/issues/2812)
+- Fixed a bug on the numbering of the number of rows of tables [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Added openstreetmap.org in external domains allowed by default [LINK](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Automatically update apache security file when updating core [LINK](https://github.com/jeedom/core/issues/2815)
+
+>**IMPORTANT**
+>
+> Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
 
 # 4.4.10
 

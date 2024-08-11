@@ -9,7 +9,7 @@
 - Los gráficos se actualizan automáticamente cuando llegan nuevos valores [ENLACE](https://github.com/jeedom/core/issues/2749)
 - Jeedom agrega automáticamente la altura de la imagen al crear widgets para evitar problemas de superposición en dispositivos móviles [ENLACE](https://github.com/jeedom/core/issues/2539)
 - Rediseño de la parte de copia de seguridad en la nube [ENLACE](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementación de un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
+- **DESARROLLO** Configurar un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
 - Las etiquetas del escenario ahora son específicas de la instancia del escenario (si tiene dos escenarios lanzados muy juntos, las etiquetas del último ya no sobrescriben al primero)) [ENLACE](https://github.com/jeedom/core/issues/2763)
 - Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
@@ -33,6 +33,13 @@
 - Mejora del sistema cron para evitar fallos en el lanzamiento [ENLACE](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Adición de escenarios de condiciones mayores o iguales y menores o iguales al asistente de condiciones [ENLACE](https://github.com/jeedom/core/issues/2810)
 - Capacidad para excluir órdenes del análisis de órdenes muertas [ENLACE](https://github.com/jeedom/core/issues/2812)
+- Se corrigió un error en la numeración del número de filas en las tablas [ENLACE](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Se agregó openstreetmap.org en dominios externos permitidos de forma predeterminada [ENLACE](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Actualización automática del archivo de seguridad de Apache al actualizar el núcleo [ENLACE](https://github.com/jeedom/core/issues/2815)
+
+>**IMPORTANTE**
+>
+> Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
 
 # 4.4.10
 

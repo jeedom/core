@@ -9,7 +9,7 @@
 - Die Diagramme werden automatisch aktualisiert, wenn neue Werte eintreffen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2749)
 - Jeedom fügt beim Erstellen von Widgets automatisch die Höhe des Bildes hinzu, um Überlappungsprobleme auf Mobilgeräten zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2539)
 - Neugestaltung des Cloud-Backup-Teils [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementierung eines Warteschlangensystems zur Aktionsausführung [LINK](https://github.com/jeedom/core/issues/2489)
+- **ENTW** Einrichten eines Warteschlangensystems für die Aktionsausführung [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2489)
 - Die Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei Szenarios sehr nahe beieinander gestartet haben, überschreiben die Tags des letzteren nicht mehr das erste)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2763)
 - Wechseln Sie zum Auslöserteil der Szenarien : [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
@@ -33,6 +33,13 @@
 - Verbesserung des Cron-Systems, um Startfehler zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2810)
 - Möglichkeit, Aufträge von der Dead-Order-Analyse auszuschließen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2812)
+- Ein Fehler bei der Nummerierung der Zeilenanzahl in Tabellen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Openstreetmap hinzugefügt.org in externen Domänen standardmäßig erlaubt [VERKNÜPFUNG](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Automatische Aktualisierung der Apache-Sicherheitsdatei beim Aktualisieren des Kerns [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2815)
+
+>**WICHTIG**
+>
+> Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, es handelt sich um den Cache, der sich selbst neu aufbaut. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
 
 # 4.4.10
 

@@ -9,7 +9,7 @@
 - Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
 - Redesenho da parte de backup em nuvem [LINK](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementação de sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
+- **DEV** Configurando um sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
 - As tags do cenário agora são específicas para a instância do cenário (se você tiver dois cenários lançados muito próximos, as tags do último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
 - Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais
@@ -33,6 +33,13 @@
 - Melhoria do sistema cron para evitar falhas de inicialização [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Adição de cenários de condições maiores ou iguais e menores ou iguais ao assistente de condições [LINK](https://github.com/jeedom/core/issues/2810)
 - Capacidade de excluir pedidos da análise de pedidos mortos [LINK](https://github.com/jeedom/core/issues/2812)
+- Corrigido um bug na numeração do número de linhas nas tabelas [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Adicionado mapa de rua aberto.org em domínios externos permitidos por padrão [LINK](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Atualização automática do arquivo de segurança do Apache ao atualizar o núcleo [LINK](https://github.com/jeedom/core/issues/2815)
+
+>**IMPORTANTE**
+>
+> Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho. O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor. Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor.
 
 # 4.4.10
 
