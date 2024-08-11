@@ -256,7 +256,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<span class="label label-info"><?php echo cache::byKey('hour')->getDatetime() ?></span>
+								<span class="label label-info"><?php echo date('Y-m-d H:i:s',cache::byKey('hour')->getDatetime()) ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
