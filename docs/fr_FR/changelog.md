@@ -33,6 +33,7 @@
 - Amélioration du systeme de cron pour eviter quelque raté de lancement [LIEN](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Ajout dans l'assistant de condition des scénarios des conditions supérieur ou égal et inferieur ou égal [LIEN](https://github.com/jeedom/core/issues/2810)
 - Possibilité d'exclure des commandes de l'analyse des commandes mortes [LIEN](https://github.com/jeedom/core/issues/2812)
+- Correction d'un bug sur la numérotation du nombre de ligne des tableaux [LIEN](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
 
 # 4.4.10
 
