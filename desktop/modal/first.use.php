@@ -66,13 +66,9 @@ $productName = config::byKey('product_name');
 		</form>
 	</div>
 
-	<?php
-	if (config::byKey('doc::base_url', 'core') != '') {
-		echo '<a class="btn btn-default market_connect hidden" href="https://market.jeedom.com/index.php?v=d&p=register" target="_blank">';
-		echo '<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market? En créer un!}}';
-		echo '</a>';
-	}
-	?>
+	<a class="btn btn-default market_connect hidden" href="https://market.jeedom.com/index.php?v=d&p=register" target="_blank">
+		<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market? En créer un!}}
+	</a>
 	<button class="btn btn-success market_connect hidden" id="bt_validate_market"><i class="fas fa-check"></i> {{Valider les identifiants Market}}</button>
 	<button class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant de configuration}}</button>
 
@@ -83,15 +79,15 @@ $productName = config::byKey('product_name');
 		echo '<a href="https://start.jeedom.com/" target="_blank">';
 		echo '<i class="fas fa-image"></i> {{Retrouvez le guide de démarrage}}';
 		echo '</a>';
-		echo " {{de votre box officielle Jeedom.}}";
+		echo ' {{de votre box officielle}} ' . $productName . '.';
 		echo '</div>';
 	}
-	if (config::byKey('doc::base_url', 'core') != '') {
+	if (($docURl = config::byKey('doc::base_url')) != '') {
 		echo '<div class="col-md-12">';
-		echo '<a href="https://doc.jeedom.com/fr_FR/premiers-pas/" target="_blank">';
+		echo '<a href="' . $docURl . '/fr_FR/premiers-pas/" target="_blank">';
 		echo '<i class="fas fa-book"></i> {{La documentation de démarrage}}';
 		echo '</a>';
-		echo " {{détaille les étapes de mise en service votre box Jeedom.}} ";
+		echo ' {{détaille les étapes de mise en service votre box}} ' . $productName . '.';
 		echo '</div>';
 	}
 	?>
