@@ -260,7 +260,7 @@ $productName = config::byKey('product_name');
 								$cache = cache::byKey('hour');
 								$lastKnowDate = $cache->getDatetime();
 								?>
-								<span class="label label-info"><?php echo $lastKnowDate ?></span>
+								<span class="label label-info"><?php echo date('Y-m-d H:i:s',$lastKnowDate) ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
@@ -2210,13 +2210,13 @@ $productName = config::byKey('product_name');
 						</div>
 
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les methodes api (regexp)}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les méthodes api (regexp)}}</label>
 							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les méthodes api (regexp)}}</label>
 							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::allow::method">
 							</div>
