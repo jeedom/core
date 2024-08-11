@@ -488,11 +488,9 @@ try {
 
 	echo "Check apache security file...";
 	$apache_security = file_get_contents('/etc/apache2/conf-available/security.conf');
-	if(strpos($apache_security,'jeedom.com') !== false){
-		echo "Apache is configure in security mode and need update I will update file....";
+	if(strpos($apache_security,'jeedom.com') !== false && md5_file(__DIR__ . '/apache_security') != md5_file('/etc/apache2/conf-available/security.conf')){
+		echo "\nApache is configure in security mode and need update I will update file....";
 		echo shell_exec('sudo cp '.__DIR__ . '/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl reload apache2" | sudo at now');
-		echo "Pauseof 15s to wait restart of apache";
-		sleep(15);
 		echo "OK\n";
 	}
 } catch (Exception $e) {
