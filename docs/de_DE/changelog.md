@@ -36,6 +36,8 @@
 - Ein Fehler bei der Nummerierung der Zeilenanzahl in Tabellen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
 - Openstreetmap hinzugefügt.org in externen Domänen standardmäßig erlaubt [VERKNÜPFUNG](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
 - Automatische Aktualisierung der Apache-Sicherheitsdatei beim Aktualisieren des Kerns [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2815)
+- Eine Warnung zu Ansichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2816)
+- Ein Fehler beim Standard-Widget-Auswahlwert wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2813)
 
 >**WICHTIG**
 >

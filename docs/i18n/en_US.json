@@ -1331,6 +1331,8 @@
         "Ajout d'openstreetmap": "Added openstreetmap",
         "org dans les domaines externe autorisé par défaut": "org in external domains allowed by default",
         "Mise à jour automatique du fichier de sécurité apache lors de la mise à jour du core": "Automatically update apache security file when updating core",
+        "Correction d'un warning sur les vues": "Fixed a warning on views",
+        "Correction d'un bug sur la valeur du select du widget par defaut": "Fixed bug on default widget select value",
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur": "Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value",

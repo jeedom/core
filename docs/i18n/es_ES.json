@@ -1331,6 +1331,8 @@
         "Ajout d'openstreetmap": "Se agregó openstreetmap",
         "org dans les domaines externe autorisé par défaut": "org en dominios externos permitidos de forma predeterminada",
         "Mise à jour automatique du fichier de sécurité apache lors de la mise à jour du core": "Actualización automática del archivo de seguridad de Apache al actualizar el núcleo",
+        "Correction d'un warning sur les vues": "Se corrigió una advertencia en las vistas",
+        "Correction d'un bug sur la valeur du select du widget par defaut": "Se corrigió un error en el valor de selección del widget predeterminado",
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur": "Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor",

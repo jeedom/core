@@ -36,6 +36,8 @@
 - Fixed a bug on the numbering of the number of rows of tables [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
 - Added openstreetmap.org in external domains allowed by default [LINK](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
 - Automatically update apache security file when updating core [LINK](https://github.com/jeedom/core/issues/2815)
+- Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
+- Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
 
 >**IMPORTANT**
 >
