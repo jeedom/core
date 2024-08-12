@@ -37,6 +37,7 @@
 - Ajout d'openstreetmap.org dans les domaines externe autorisé par défaut [LIEN](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
 - Mise à jour automatique du fichier de sécurité apache lors de la mise à jour du core [LIEN](https://github.com/jeedom/core/issues/2815)
 - Correction d'un warning sur les vues [LIEN](https://github.com/jeedom/core/pull/2816)
+- Correction d'un bug sur la valeur du select du widget par defaut [LIEN](https://github.com/jeedom/core/pull/2813)
 
 >**IMPORTANT**
 >
