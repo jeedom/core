@@ -38,6 +38,7 @@
 - Corrigido um aviso nas visualizações [LINK](https://github.com/jeedom/core/pull/2816)
 - Corrigido um bug no valor de seleção do widget padrão [LINK](https://github.com/jeedom/core/pull/2813)
 - Corrigido um bug se um comando excedesse seu mínimo ou máximo, o valor mudava para 0 (em vez de mínimo/máximo) [LINK](https://github.com/jeedom/core/issues/2819)
+- Corrigido um bug que permitia que você tivesse o mesmo ouvinte diversas vezes [LINK](https://github.com/jeedom/core/issues/2820)
 
 >**IMPORTANTE**
 >

@@ -808,6 +808,7 @@
         "Correction d'un warning sur les vues": "Correction d'un warning sur les vues",
         "Correction d'un bug sur la valeur du select du widget par defaut": "Correction d'un bug sur la valeur du select du widget par defaut",
         "Correction d'un bug si une commande dépasse son min ou son max la valeur passait à 0 (au lieu du min\/max": "Correction d'un bug si une commande dépasse son min ou son max la valeur passait à 0 (au lieu du min\/max",
+        "Correction d'un bug autorisant d'avoir plusieurs fois le meme listenner": "Correction d'un bug autorisant d'avoir plusieurs fois le meme listenner",
         "IMPORTANT": "IMPORTANT",
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",

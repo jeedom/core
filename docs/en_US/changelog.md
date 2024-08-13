@@ -38,6 +38,7 @@
 - Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
 - Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
 - Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
+- Fixed a bug allowing to have multiple times the same listener [LINK](https://github.com/jeedom/core/issues/2820)
 
 >**IMPORTANT**
 >

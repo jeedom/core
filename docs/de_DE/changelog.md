@@ -38,6 +38,7 @@
 - Eine Warnung zu Ansichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2816)
 - Ein Fehler beim Standard-Widget-Auswahlwert wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2813)
 - Es wurde ein Fehler behoben, bei dem der Wert auf 0 (anstelle von Min/Max) geändert wurde, wenn ein Befehl seine Mindest- oder Höchstgrenze überschritt) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2819)
+- Es wurde ein Fehler behoben, der es Ihnen ermöglichte, denselben Listener mehrmals zu verwenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2820)
 
 >**WICHTIG**
 >
