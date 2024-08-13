@@ -260,7 +260,7 @@ $productName = config::byKey('product_name');
 								$cache = cache::byKey('hour');
 								$lastKnowDate = $cache->getDatetime();
 								?>
-								<span class="label label-info"><?php echo date('Y-m-d H:i:s',$lastKnowDate) ?></span>
+								<span class="label label-info"><?php echo date('Y-m-d H:i:s',(int) $lastKnowDate) ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
