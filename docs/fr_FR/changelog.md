@@ -38,6 +38,7 @@
 - Mise à jour automatique du fichier de sécurité apache lors de la mise à jour du core [LIEN](https://github.com/jeedom/core/issues/2815)
 - Correction d'un warning sur les vues [LIEN](https://github.com/jeedom/core/pull/2816)
 - Correction d'un bug sur la valeur du select du widget par defaut [LIEN](https://github.com/jeedom/core/pull/2813)
+- Correction d'un bug si une commande dépasse son min ou son max la valeur passait à 0 (au lieu du min/max) [LIEN](https://github.com/jeedom/core/issues/2819)
 
 >**IMPORTANT**
 >

@@ -1038,10 +1038,10 @@ class cmd {
 					if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
 						$_value = round($_value, $this->getConfiguration('historizeRound'));
 					}
-					if ($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1) {
+					if ($_value > $this->getConfiguration('maxValue', $_value)) {
 						$_value = $this->getConfiguration('maxValue', $_value);
 					}
-					if ($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1) {
+					if ($_value < $this->getConfiguration('minValue', $_value)) {
 						$_value = $this->getConfiguration('minValue', $_value);
 					}
 					return floatval($_value);
