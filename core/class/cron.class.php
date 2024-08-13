@@ -359,15 +359,16 @@ class cron {
 	* Check if it's time to launch cron
 	* @return boolean
 	*/
-	public function isDue() {
+	public function isDue($_datetime = null) {
 		//check if already sent on that minute
 		$last = strtotime($this->getLastRun());
 		$now = time();
 		if (($now - $now % 60) == ($last - $last % 60)) {
 			return false;
 		}
-		return cronIsDue($this->getSchedule());
+		return cronIsDue($this->getSchedule(),$_datetime);
 	}
+
 
 	public function getNextRunDate() {
 		try {

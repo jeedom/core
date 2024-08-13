@@ -342,6 +342,7 @@ class scenario {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
+		$datetime = date('Y-m-d H:i:s');
 		$message = '';
 		if ($_event !== null) {
 			//check from a cmd event:
@@ -395,7 +396,7 @@ class scenario {
 				foreach ($scenarios as $key => &$scenario) {
 					if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
 						unset($scenarios[$key]);
-					} else if (!$scenario->isDue()) {
+					} else if (!$scenario->isDue($datetime)) {
 						unset($scenarios[$key]);
 					}
 				}
@@ -1220,7 +1221,7 @@ class scenario {
 	 *
 	 * @return boolean
 	 */
-	public function isDue() {
+	public function isDue($_datetime = null) {
 		$last = strtotime($this->getLastLaunch());
 		$now = time();
 		if (($now - $now % 60) == ($last - $last % 60)) {
@@ -1231,12 +1232,13 @@ class scenario {
 			$schedules = [$schedules];
 		}
 		foreach ($schedules as $schedule) {
-			if(cronIsDue($schedule)){
+			if(cronIsDue($schedule,$_datetime)){
 				return true;
 			}
 		}
 		return false;
 	}
+	
 	/**
 	 *
 	 * @return boolean
