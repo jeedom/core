@@ -38,6 +38,7 @@
 - Actualización automática del archivo de seguridad de Apache al actualizar el núcleo [ENLACE](https://github.com/jeedom/core/issues/2815)
 - Se corrigió una advertencia en las vistas [ENLACE](https://github.com/jeedom/core/pull/2816)
 - Se corrigió un error en el valor de selección del widget predeterminado [ENLACE](https://github.com/jeedom/core/pull/2813)
+- Se corrigió un error si un comando excedía su mínimo o máximo, el valor cambiaba a 0 (en lugar de mínimo/máximo)) [ENLACE](https://github.com/jeedom/core/issues/2819)
 
 >**IMPORTANTE**
 >
@@ -66,6 +67,7 @@
 - Jeedom ahora enumera todas las ramas y etiquetas del repositorio de github para permitirle probar las funcionalidades por adelantado o volver a una versión anterior del núcleo (tenga cuidado, esto es muy arriesgado)) [ENLACE](https://github.com/jeedom/core/issues/2500)
 - Mejora de subtipos de comandos soportados en tipos genéricos [ENLACE](https://github.com/jeedom/core/pull/2797)
 - Se corrigió un error en la visualización de escenarios y comentarios cuando desea ocultarlos [ENLACE](https://github.com/jeedom/core/pull/2790)
+- Se corrigió un error en las herramientas de reemplazo (no había ningún comando en la opción de reemplazo)) [ENLACE](https://github.com/jeedom/core/issues/2818)
 
 >**IMPORTANTE**
 >

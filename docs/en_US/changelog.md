@@ -38,6 +38,7 @@
 - Automatically update apache security file when updating core [LINK](https://github.com/jeedom/core/issues/2815)
 - Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
 - Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
+- Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
 
 >**IMPORTANT**
 >
@@ -66,6 +67,7 @@
 - Jeedom now lists all the branches and tags of the github repository to allow you to test functionalities in advance or to revert to a previous version of the core (be careful this is very risky) [LINK](https://github.com/jeedom/core/issues/2500)
 - Improvement of subtypes of commands supported on generic types [LINK](https://github.com/jeedom/core/pull/2797)
 - Fixed a bug in the display of scenarios and comments when you want to hide them [LINK](https://github.com/jeedom/core/pull/2790)
+- Fixed a bug on the replacement tool (no command in the replacement choice)) [LINK](https://github.com/jeedom/core/issues/2818)
 
 >**IMPORTANT**
 >

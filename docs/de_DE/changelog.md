@@ -38,6 +38,7 @@
 - Automatische Aktualisierung der Apache-Sicherheitsdatei beim Aktualisieren des Kerns [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2815)
 - Eine Warnung zu Ansichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2816)
 - Ein Fehler beim Standard-Widget-Auswahlwert wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2813)
+- Es wurde ein Fehler behoben, bei dem der Wert auf 0 (anstelle von Min/Max) geändert wurde, wenn ein Befehl seine Mindest- oder Höchstgrenze überschritt) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2819)
 
 >**WICHTIG**
 >
@@ -66,6 +67,7 @@
 - Jeedom listet jetzt alle Zweige und Tags des Github-Repositorys auf, damit Sie die Funktionalitäten vorab testen oder zu einer früheren Version des Kerns zurückkehren können (Achtung, das ist sehr riskant)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2500)
 - Verbesserung der Untertypen von Befehlen, die von generischen Typen unterstützt werden [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2797)
 - Es wurde ein Fehler bei der Anzeige von Szenarien und Kommentaren behoben, wenn diese ausgeblendet werden sollten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2790)
+- Ein Fehler bei den Ersatzwerkzeugen wurde behoben (kein Befehl in der Ersatzauswahl)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2818)
 
 >**WICHTIG**
 >
