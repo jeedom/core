@@ -38,7 +38,6 @@
 - Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
 - Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
 - Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
-- Fixed a bug allowing to have multiple times the same listener [LINK](https://github.com/jeedom/core/issues/2820)
 
 >**IMPORTANT**
 >
@@ -69,6 +68,7 @@
 - Fixed a bug in the display of scenarios and comments when you want to hide them [LINK](https://github.com/jeedom/core/pull/2790)
 - Fixed a bug on the replacement tool (no command in the replacement choice)) [LINK](https://github.com/jeedom/core/issues/2818)
 - Improved cron system to avoid some launch failures [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Fixed a bug allowing to have multiple times the same listener [LINK](https://github.com/jeedom/core/issues/2820)
 
 >**IMPORTANT**
 >

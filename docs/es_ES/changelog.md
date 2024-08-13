@@ -38,7 +38,6 @@
 - Se corrigió una advertencia en las vistas [ENLACE](https://github.com/jeedom/core/pull/2816)
 - Se corrigió un error en el valor de selección del widget predeterminado [ENLACE](https://github.com/jeedom/core/pull/2813)
 - Se corrigió un error si un comando excedía su mínimo o máximo, el valor cambiaba a 0 (en lugar de mínimo/máximo)) [ENLACE](https://github.com/jeedom/core/issues/2819)
-- Se corrigió un error que le permitía tener el mismo oyente varias veces [ENLACE](https://github.com/jeedom/core/issues/2820)
 
 >**IMPORTANTE**
 >
@@ -69,6 +68,7 @@
 - Se corrigió un error en la visualización de escenarios y comentarios cuando desea ocultarlos [ENLACE](https://github.com/jeedom/core/pull/2790)
 - Se corrigió un error en las herramientas de reemplazo (no había ningún comando en la opción de reemplazo)) [ENLACE](https://github.com/jeedom/core/issues/2818)
 - Mejora del sistema cron para evitar fallos en el lanzamiento [ENLACE](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Se corrigió un error que le permitía tener el mismo oyente varias veces [ENLACE](https://github.com/jeedom/core/issues/2820)
 
 >**IMPORTANTE**
 >

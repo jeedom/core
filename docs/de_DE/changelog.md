@@ -38,7 +38,6 @@
 - Eine Warnung zu Ansichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2816)
 - Ein Fehler beim Standard-Widget-Auswahlwert wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2813)
 - Es wurde ein Fehler behoben, bei dem der Wert auf 0 (anstelle von Min/Max) geändert wurde, wenn ein Befehl seine Mindest- oder Höchstgrenze überschritt) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2819)
-- Es wurde ein Fehler behoben, der es Ihnen ermöglichte, denselben Listener mehrmals zu verwenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2820)
 
 >**WICHTIG**
 >
@@ -69,6 +68,7 @@
 - Es wurde ein Fehler bei der Anzeige von Szenarien und Kommentaren behoben, wenn diese ausgeblendet werden sollten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2790)
 - Ein Fehler bei den Ersatzwerkzeugen wurde behoben (kein Befehl in der Ersatzauswahl)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2818)
 - Verbesserung des Cron-Systems, um Startfehler zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Es wurde ein Fehler behoben, der es Ihnen ermöglichte, denselben Listener mehrmals zu verwenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2820)
 
 >**WICHTIG**
 >
