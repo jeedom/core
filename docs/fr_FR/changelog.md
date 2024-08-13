@@ -23,6 +23,7 @@
 - Jeedom liste maintenant toute les branches et tags du repos github pour permettre de tester des fonctionnalitées en avance ou de revenir à une version précdente du core (attention cela est trés risqué) [LIEN](https://github.com/jeedom/core/issues/2500)
 - Amélioration des sous types de commandes supportées sur les génériques type [LIEN](https://github.com/jeedom/core/pull/2797)
 - Correction d'un bug sur l'affichage des scénario et les commentaires lorsqu'on veut les masquer [LIEN](https://github.com/jeedom/core/pull/2790)
+- Correction d'un bug sur l'outils de remplacement (pas de commande dans le choix de remplacement) [LIEN](https://github.com/jeedom/core/issues/2818)
 
 >**IMPORTANT**
 >
