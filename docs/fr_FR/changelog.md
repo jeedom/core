@@ -38,7 +38,7 @@
 
 >**IMPORTANT**
 >
->Pour tout ceux en PHP8 il faut ABSOLUMENT cocher la case de pre update avant de lancer la mise à jour de jeedom sinon il vous manquera des fichiers et celui-ci ne marchera plus.
+>Pour tout ceux utilisant PHP8 il est impératif de cocher la case de "pre-update" avant de lancer la mise à jour de jeedom. Sans cette précaution, des fichiers ssentiels pourraitent être manquants, ce qui empêcherait le bon fonctionnement de Jeedom.
 
 # 4.4.9
 
