@@ -72,10 +72,10 @@ $loadExtensions = get_loaded_extensions();
 	</center>
 	<?php
 $error = false;
-if (version_compare(PHP_VERSION, '5.6.0', '<')) {
+if (version_compare(PHP_VERSION, '7', '<')) {
 	$error = true;
 	echo '<div class="alert alert-danger" style="margin:15px;">';
-	echo '<center style="font-size:1.2em;">Jeedom requires PHP 5.6 or up (current : ' . PHP_VERSION . ')</center>';
+	echo '<center style="font-size:1.2em;">Jeedom requires PHP 7.X or up (current : ' . PHP_VERSION . ')</center>';
 	echo '</div>';
 }
 if (!file_exists('/etc/cron.d/jeedom')) {
@@ -111,8 +111,8 @@ foreach ($needphpextensions as $needphpextension) {
 	echo '<center style="font-size:1.2em;">Jeedom requires PHP extension ' . $needphpextension . ' . Run SSH cmd : </center>';
 	echo '<pre>';
 	echo "sudo su -\n";
-	echo system::get('cmd_install') . ' php5-' . $needphpextension . "\n";
-	echo 'systemctl reload php5-fpm <strong>or</strong> systemctl reload apache2';
+	echo system::get('cmd_install') . ' php-' . $needphpextension . "\n";
+	echo 'systemctl reload php-fpm <strong>or</strong> systemctl reload apache2';
 	echo '</pre>';
 	echo '</div>';
 }

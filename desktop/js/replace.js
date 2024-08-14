@@ -532,10 +532,14 @@ document.getElementById('eqSource').addEventListener('click', function(event) {
   }
 })
 
-document.getElementById('eqSource').addEventListener('mouseup', function(event) {
+document.getElementById('eqSource').addEventListener('change', function(event) {
   var _target = null
   if (_target = event.target.closest('select.selectEqReplace')) {
+    if(_target.closest('select.selectEqReplace').value == ''){
+     	return; 
+    }
     jeeP.selectReplacerEqlogic(_target.closest('select.selectEqReplace'))
     return
   }
 })
+

@@ -342,6 +342,7 @@ class scenario {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
+		$datetime = date('Y-m-d H:i:s');
 		$message = '';
 		if ($_event !== null) {
 			//check from a cmd event:
@@ -395,7 +396,7 @@ class scenario {
 				foreach ($scenarios as $key => &$scenario) {
 					if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
 						unset($scenarios[$key]);
-					} else if (!$scenario->isDue()) {
+					} else if (!$scenario->isDue($datetime)) {
 						unset($scenarios[$key]);
 					}
 				}
@@ -1021,10 +1022,7 @@ class scenario {
 	 *
 	 */
 	public function emptyCacheWidget() {
-		$mc = cache::byKey('scenarioHtmldashboard' . $this->getId());
-		$mc->remove();
-		$mc = cache::byKey('scenarioHtmlmobile' . $this->getId());
-		$mc->remove();
+		
 	}
 	/**
 	 *
@@ -1100,7 +1098,6 @@ class scenario {
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
 		}
 		DB::save($this);
-		$this->emptyCacheWidget();
 		if ($this->_changeState) {
 			$this->_changeState = false;
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'name' => $this->getName(), 'icon' => $this->getIcon()));
@@ -1118,7 +1115,6 @@ class scenario {
 		foreach (($this->getElement()) as $element) {
 			$element->remove();
 		}
-		$this->emptyCacheWidget();
 		if (file_exists(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log')) {
 			unlink(__DIR__ . '/../../log/scenarioLog/scenario' . $this->getId() . '.log');
 		}
@@ -1225,7 +1221,7 @@ class scenario {
 	 *
 	 * @return boolean
 	 */
-	public function isDue() {
+	public function isDue($_datetime = null) {
 		$last = strtotime($this->getLastLaunch());
 		$now = time();
 		if (($now - $now % 60) == ($last - $last % 60)) {
@@ -1236,12 +1232,13 @@ class scenario {
 			$schedules = [$schedules];
 		}
 		foreach ($schedules as $schedule) {
-			if(cronIsDue($schedule)){
+			if(cronIsDue($schedule,$_datetime)){
 				return true;
 			}
 		}
 		return false;
 	}
+	
 	/**
 	 *
 	 * @return boolean
@@ -1727,7 +1724,6 @@ class scenario {
 	 */
 	public function setState($state) {
 		if ($this->getCache('state') != $state) {
-			$this->emptyCacheWidget();
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'state' => $state, 'lastLaunch' => $this->getLastLaunch()));
 		}
 		$this->setCache('state', $state);

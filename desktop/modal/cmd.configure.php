@@ -1206,9 +1206,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   (function() { // Self Isolation!
     var jeeM = jeeFrontEnd.md_displayCmdConfigure
-    jeeM.init()
-
-
+    
     //Manage events outside parents delegations:
     document.getElementById('bt_cmdConfigureTest')?.addEventListener('click', function(event) {
       jeedom.cmd.test({
@@ -1592,6 +1590,8 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         return
       }
     })
+
+    jeeM.init()
 
     jeeM.postInit()
   })()

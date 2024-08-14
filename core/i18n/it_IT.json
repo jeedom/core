@@ -454,6 +454,7 @@
         "Coloration des icones": "Coloration des icones",
         "Type générique": "Type générique",
         "Changer de thème": "Changer de thème",
+        "Filtre des commandes": "Filtre des commandes",
         "Pause de x seconde(s)": "Pausa per x secondo(i)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Attendi affinché la condizione sia vera (massimo 2 ore)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Creazione \/ modifica di una variabile o il valore di una variabile",
@@ -492,8 +493,11 @@
         "Objet": "Objet",
         "Equipement": "Equipement",
         "Commande": "Commande",
+        "Filtre des objets": "Filtre des objets",
         "Commande info": "Commande info",
-        "Commande action": "Commande action"
+        "Commande action": "Commande action",
+        "Filtre des équipements": "Filtre des équipements",
+        "Filtre des commandes": "Filtre des commandes"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
@@ -1053,6 +1057,7 @@
         "Options": "Options",
         "Activer": "Attivare",
         "Visible": "Visibile",
+        "Masquer sur la vue principale": "Masquer sur la vue principale",
         "Template de widget": "Template de widget",
         "ID logique": "ID logico",
         "Création - Sauvegarde": "Création - Sauvegarde",
@@ -2016,13 +2021,13 @@
         "Configuration des dépôts": "Configuration des dépôts",
         "Tester\/Synchroniser": "Test \/ Sincronizza",
         "Tester": "Prova",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Attention : toute modification du moteur de cache nécessite un redémarrage",
-        "Statistiques": "Statistiche",
-        "objets": "oggetti",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "Coperchio del motore",
         "Système de fichiers": "Système de fichiers",
         "Memcached": "Memcached",
-        "Redis": "Redis",
+        "Redis (beta)": "Redis (beta)",
+        "Mysql (beta)": "Mysql (beta)",
+        "Fichier (beta)": "Fichier (beta)",
         "Adresse Memcache": "Indirizzo Memcache",
         "Port Memcache": "Port memcached",
         "Adresse Redis": "Indirizzo Redis",
@@ -2358,6 +2363,7 @@
         "A": "La",
         "Code": "Codice",
         "Commentaire": "Commento",
+        "Filtre des blocs": "Filtre des blocs",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois",
@@ -3876,7 +3882,6 @@
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Accesso utente tramite REMOTE_USER:",
         "Double authentification requise": "Double authentification requise",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Mot de passe ou nom d\\'utilisateur incorrect",
-        "Mot de passe ou nom d\\'utilisateur incorrect')": "Mot de passe ou nom d\\'utilisateur incorrect')",
         "401 - Accès non autorisé": "401 - Accesso non autorizzato",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "È necessario disattivare l'autenticazione LDAP per aggiungere un utente",
         "Utilisateur invalide": "Utilisateur invalide",
@@ -4206,6 +4211,7 @@
         "Acheter": "Comperare",
         "Nous Contacter": "Contattaci",
         "Supprimer": "Rimuovere",
+        "Plugin deja acheté et\/ou inclus dans votre service Pack": "Plugin deja acheté et\/ou inclus dans votre service Pack",
         "Gratuit": "Gratis",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Nota che questo plugin non è un plugin ufficiale in caso di problemi (diretti o indiretti), qualsiasi richiesta di supporto può essere rifiutata",
         "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant",
@@ -4519,7 +4525,7 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Ponere attenzione",
         "n\\'a pas envoyé de message depuis plus de": "n\\'a pas envoyé de message depuis plus de",
-        "min (vérifiez les piles)": "min (vérifiez les piles)",
+        "min": "min",
         "Equipement": "Dispositivo",
         "Aucun": "Nessuno",
         "L\\'équipement n\\'a pas pu être trouvé :": "Impossibile trovare l'apparecchiatura:",
@@ -4690,9 +4696,6 @@
     },
     "core\/class\/log.class.php": {
         "Log": "Log"
-    },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Sconosciuto"
     },
     "core\/class\/message.class.php": {
         "Message de": "Messaggio da"
@@ -4880,7 +4883,8 @@
         "Sélectionner la commande": "Seleziona comando"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Disegno"
+        "Design": "Disegno",
+        "Filtre des designs": "Filtre des designs"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Seleziona comando"
@@ -4948,7 +4952,11 @@
         "Santé": "Santé",
         "Timeline": "Cronologia",
         "URL": "URL",
+        "Filtre des types": "Filtre des types",
+        "Filtre des vues": "Filtre des vues",
+        "Filtre des designs": "Filtre des designs",
         "Panel": "Pannello",
+        "Filtre des plugins": "Filtre des plugins",
         "Exporter en": "Esporta in",
         "PNG": "PNG",
         "PDF": "PDF",

@@ -1,12 +1,35 @@
 # Registro de cambios Jeedom V4.4
 
+# 4.4.10
+
+- Se movió la gestión de eventos que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
+- Se agregó un filtro en muchas acciones en escenarios [ENLACE](https://github.com/jeedom/core/pull/2753), [ENLACE](https://github.com/jeedom/core/pull/2742), [ENLACE](https://github.com/jeedom/core/pull/2759), [ENLACE](https://github.com/jeedom/core/pull/2743), [ENLACE](https://github.com/jeedom/core/pull/2755)
+- El precio del complemento está oculto si ya lo compró [ENLACE](https://github.com/jeedom/core/pull/2746)
+- En la página de inicio de sesión, posibilidad de mostrar o nombrar la contraseña [ENLACE](https://github.com/jeedom/core/pull/2740)
+- Se corrigió un error al salir de una página sin guardar [ENLACE](https://github.com/jeedom/core/pull/2745)
+- Creación (en beta) de un nuevo sistema de caché [ENLACE](https://github.com/jeedom/core/pull/2758) :
+  - Archivo : sistema idéntico al anterior pero tomado internamente para evitar dependencias de una biblioteca de terceros. El más eficiente pero ahorrado cada 30 minutos
+  - Mysql : usando una tabla de caché base. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
+  - Redis : reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
+- Se corrigió un error en las alertas de equipos al eliminar la orden alertada [ENLACE](https://github.com/jeedom/core/issues/2775)
+- Posibilidad en la configuración avanzada de un equipo de ocultarlo al visualizar varios objetos en el salpicadero [ENLACE](https://github.com/jeedom/core/issues/2553)
+- Se corrigió un error al mostrar la carpeta de la línea de tiempo en la configuración avanzada de un comando [ENLACE](https://github.com/jeedom/core/issues/2791)
+- Rediseño del sistema fail2ban de Jeedom para que consuma menos recursos [ENLACE](https://github.com/jeedom/core/issues/2684)
+- Se corrigió un error al archivar y purgar historiales [ENLACE](https://github.com/jeedom/core/issues/2793)
+- Parche mejorado para el error gpg en las dependencias de Python [ENLACE](https://github.com/jeedom/core/pull/2798)
+- Se solucionó un problema al cambiar la hora después de la revisión de la gestión cron [ENLACE](https://github.com/jeedom/core/issues/2794)
+- Se corrigió un error en la página de resumen de domótica al buscar un pedido por identificación [ENLACE](https://github.com/jeedom/core/issues/2795)
+
+>**IMPORTANTE**
+>
+> Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
+
 # 4.4.9
 
 - Visualización mejorada de la lista de escenarios al actuar sobre escenarios (adición de grupos) [ENLACE](https://github.com/jeedom/core/pull/2729)
 - Al copiar equipo, si el widget tenía un gráfico de fondo, se transforma correctamente [ENLACE](https://github.com/jeedom/core/issues/2540)
 - Agregar etiquetas #sunrise# y #sunset# en los escenarios para tener las horas de salida y puesta del sol [ENLACE](https://github.com/jeedom/core/pull/2725)
 - Un complemento ahora puede agregar campos en la configuración avanzada de todos los equipos jeedom [ENLACE](https://github.com/jeedom/core/issues/2711)
-- Adición de un parámetro logicId opcional al copiar equipos [ENLACE](https://github.com/jeedom/core/pull/2715)
 - Mejora del sistema de gestión de crons [ENLACE](https://github.com/jeedom/core/issues/2719)
 - Se corrigió un error que podía causar que se perdiera toda la información en la página de actualización [ENLACE](https://github.com/jeedom/core/issues/2718)
 - Eliminar el estado del servicio fail2ban de Jeedom Health [ENLACE](https://github.com/jeedom/core/issues/2721)
@@ -16,6 +39,8 @@
 - Se corrigió un error de JavaScript en los botones en modales [ENLACE](https://github.com/jeedom/core/pull/2734)
 - Se corrigió un error en la cantidad de mensajes al eliminar todos los mensajes [ENLACE](https://github.com/jeedom/core/issues/2735)
 - Excluir el directorio venv de las copias de seguridad [ENLACE](https://github.com/jeedom/core/pull/2736)
+- Se corrigió un error en la página de configuración avanzada de un comando donde no aparecía el campo para elegir la carpeta de la línea de tiempo [ENLACE](https://github.com/jeedom/core/issues/2547)
+- Se corrigió un error en la ventana de selección de comandos después de guardar el equipo [ENLACE](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 

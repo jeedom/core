@@ -27,7 +27,7 @@
       },
       success: function(_objectsList) {
         _objectsList = '<option value="-1">{{Tous}}</option>' + _objectsList
-        document.querySelector('select.expressionAttr[data-uid="#uid#"]').insertAdjacentHTML('beforeend', _objectsList)
+        document.querySelector('select.expressionAttr[data-uid="#uid#"]')?.insertAdjacentHTML('beforeend', _objectsList)
         
         if ('#object#' != '' && document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="object"] option[value="#object#"]').innerHTML != '') {
           document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="object"]').value = '#object#'

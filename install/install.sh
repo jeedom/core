@@ -64,7 +64,7 @@ step_2_mainpackage() {
   apt-get -y install software-properties-common
   apt-get update
   apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate fail2ban dos2unix ntpdate htop iotop vim iftop smbclient
+  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
   apt-get -y install git python python-pip
@@ -294,19 +294,6 @@ step_8_jeedom_customization() {
   
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
-  
-  cp ${WEBSERVER_HOME}/install/fail2ban.jeedom.conf /etc/fail2ban/jail.d/jeedom.conf
-  
-  mkdir -p /lib/systemd/system/fail2ban.service.d
-  echo '[Service]' > /lib/systemd/system/fail2ban.service.d/override.conf
-  echo 'Restart=always' >> /lib/systemd/system/fail2ban.service.d/override.conf
-  echo 'RestartSec=10' >> /lib/systemd/system/fail2ban.service.d/override.conf
-
-  if [ "${INSTALLATION_TYPE}" != "docker" ];then
-    systemctl daemon-reload
-    service_action restart fail2ban > /dev/null 2>&1
-  fi
-  
   echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
 }
 
@@ -428,7 +415,7 @@ distrib_1_spe(){
 }
 
 STEP=0
-VERSION=V4-stable
+VERSION=master
 WEBSERVER_HOME=/var/www/html
 MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 INSTALLATION_TYPE='standard'
