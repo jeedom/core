@@ -180,8 +180,6 @@ try {
 						$cibDir = $cibDir . '/' . $files[0];
 					}
 				}
-
-				
 				
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
