@@ -39,6 +39,8 @@
 - Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
 - Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
 - Fixed a bug where the settings menu was not displayed in some languages [LINK](https://github.com/jeedom/core/issues/2821)
+- Possibility in the programmed triggers of the scenarios to use calculations/commands/tags/formulas giving as a result the launch time in the form Gi (hour without initial zero and minute, example for 09:15 => 915 or for 23:40 => 2340) [LINK](https://github.com/jeedom/core/pull/2808)
+- Possibility to put a custom image for equipment in plugins (if the plugin supports it), for this just put the image in `data/img` in the form `eqLogic#id#.png` with #id# the equipment id (you can find it in the advanced equipment configuration) [LINK](https://github.com/jeedom/core/pull/2802)
 
 >**IMPORTANT**
 >
@@ -70,6 +72,7 @@
 - Fixed a bug on the replacement tool (no command in the replacement choice)) [LINK](https://github.com/jeedom/core/issues/2818)
 - Improved cron system to avoid some launch failures [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Fixed a bug allowing to have multiple times the same listener [LINK](https://github.com/jeedom/core/issues/2820)
+- Fixed a bug in PHP8 with the update that deleted useful files [LINK](https://github.com/jeedom/core/issues/2822)
 
 >**IMPORTANT**
 >
@@ -78,6 +81,10 @@
 >**IMPORTANT**
 >
 > During the update it is possible that you have an error creating a unique index on the listener table, nothing serious it is due to duplicate listeners and jeedom will correct it itself after 24 hours (the index itself can be done either from the database verification in the jeedom configuration or just wait for the next updates).
+
+>**IMPORTANT**
+>
+>For all those using PHP8 it is imperative to check the "pre-update" box before launching the jeedom update. Without this precaution, essential files could be missing, which would prevent Jeedom from functioning properly.
 
 # 4.4.9
 

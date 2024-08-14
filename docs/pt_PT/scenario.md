@@ -93,7 +93,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 
 > **Modo de ponta programado**
 >
-> O modo agendado usa sintaxe **Cron**. Por exemplo, você pode executar um cenário a cada 20 minutos com  ``*/20 * * * *``, ou às 05:00 para resolver uma infinidade de coisas para o dia com ``0 5 * * *``. A ? à direita de um programa permite configurá-lo sem ser um especialista em sintaxe do Cron.
+> O modo agendado usa sintaxe **Cron**. Por exemplo, você pode executar um cenário a cada 20 minutos com `*/20 * * * *`, ou às 5 da manhã para resolver uma infinidade de coisas para o dia com ``0 5 * * *``. A ? à direita de um programa permite configurá-lo sem ser um especialista em sintaxe do Cron. Também é possível colocar um horário de lançamento no formato `Gi` (hora sem zero inicial e minuto, exemplo para `09h15` => `915` ou para `23h40` => `2340`). Este tempo pode ser o resultado de um cálculo (usando um comando ou tag), por exemplo : `#sunset# + 10` para lançamento 10 minutos após o pôr do sol. Observe que para um lançamento 1h30 após o pôr do sol você deve colocar `#sunset# + 130`. Observe que ao usar uma sintaxe diferente do cron jeedom não será possível fornecer as datas dos lançamentos anteriores ou seguintes.
 
 ## Guia Cenário
 

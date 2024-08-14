@@ -93,7 +93,7 @@ En la pestaña **General**, encontramos los principales parámetros del escenari
 
 > **Modo de punta programado**
 >
-> El modo programado usa sintaxis **Cron**. Por ejemplo, puede ejecutar un escenario cada 20 minutos con  ``*/ /20 * * * *``, o a las 5 a.m. para arreglar una multitud de cosas para el día con ``0 5 * * *``. La ? a la derecha de un programa le permite configurarlo sin ser un especialista en sintaxis de Cron.
+> El modo programado usa sintaxis **Cron**. Por ejemplo, puede ejecutar un escenario cada 20 minutos con `*/20 * * * *`, o a las 5 de la mañana para arreglar multitud de cosas del día con ``0 5 * * *``. La ? a la derecha de un programa le permite configurarlo sin ser un especialista en sintaxis de Cron. También es posible poner una hora de lanzamiento en el formato `Gi` (hora sin cero ni minutos iniciales, ejemplo para `09h15` => `915` o para `23h40` => `2340`). Este tiempo puede ser el resultado de un cálculo (mediante un comando o una etiqueta), por ejemplo : `#sunset# + 10` para un lanzamiento 10 minutos después del atardecer. Tenga en cuenta que para un lanzamiento 1h30 después del atardecer debe poner `#sunset# + 130`. Tenga en cuenta que cuando utilice una sintaxis distinta a cron, jeedom no podrá proporcionarle las fechas de los lanzamientos anteriores o siguientes.
 
 ## Pestaña Escenario
 
