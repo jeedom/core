@@ -160,7 +160,7 @@ try {
 				echo "[PROGRESS][35]\n";
 				echo "Unzip in progress...";
 				$zip = new ZipArchive;
-                                $open = $zip->open($tmp);
+                $open = $zip->open($tmp);
 				if ($open === TRUE) {
 					if (!$zip->extractTo($cibDir)) {
 						throw new Exception('Can not unzip file => '.$zip->getStatusString());
@@ -181,6 +181,8 @@ try {
 					}
 				}
 
+				
+				
 				if (init('preUpdate') == 1) {
 					echo "Update updater...";
 					rmove($cibDir . '/install/update.php', __DIR__ . '/update.php', false, array(), array('log' => true, 'ignoreFileSizeUnder' => 1));
@@ -209,9 +211,17 @@ try {
 				}
 				jeedom::stop();
 				echo "[PROGRESS][45]\n";
-				if(version_compare(PHP_VERSION, '8.0.0') >= 0 && file_exists($cibDir . '/vendor')){
-					shell_exec('rm -rf ' . $cibDir . '/vendor');
-				}
+
+				echo "Remove vendor folder (not use anymore)...";
+				shell_exec('rm -rf ' . $cibDir . '/vendor');
+				echo "OK\n";
+				echo "[PROGRESS][46]\n";
+				
+				echo "Update modification date of unzip file...";
+				shell_exec('find '.$cibDir.'/ -exec touch {} +');
+				echo "OK\n";
+				echo "[PROGRESS][47]\n";
+
 				echo "Moving files...";
 				$update_begin = true;
 				$file_copy = array();
