@@ -1144,6 +1144,7 @@ class cmd {
 	}
 
 	private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
+		
 		if (!is_array($this->getConfiguration($_type)) || count($this->getConfiguration($_type)) == 0) {
 			return;
 		}
