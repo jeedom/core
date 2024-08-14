@@ -1,7 +1,5 @@
 # Changelog Jeedom V4.4
 
-- Possibilité dans les déclencheurs programmés des scénarios d'utiliser des calculs/commande/tag/formule donnant en resultat l'heure de lancement sous la forme Gi (heure sans zero initial et minute, exemple pour 09h15 => 915 ou pour 23h40 => 2340) [LIEN](https://github.com/jeedom/core/pull/2808)
-
 # 4.4.11
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
@@ -41,6 +39,7 @@
 - Correction d'un bug sur la valeur du select du widget par defaut [LIEN](https://github.com/jeedom/core/pull/2813)
 - Correction d'un bug si une commande dépasse son min ou son max la valeur passait à 0 (au lieu du min/max) [LIEN](https://github.com/jeedom/core/issues/2819)
 - Correction d'un bug de sur l'affichage du menu réglage dans certaines langues [LIEN](https://github.com/jeedom/core/issues/2821)
+- Possibilité dans les déclencheurs programmés des scénarios d'utiliser des calculs/commande/tag/formule donnant en resultat l'heure de lancement sous la forme Gi (heure sans zero initial et minute, exemple pour 09h15 => 915 ou pour 23h40 => 2340) [LIEN](https://github.com/jeedom/core/pull/2808)
 
 >**IMPORTANT**
 >
