@@ -38,6 +38,7 @@
 - Correction d'un warning sur les vues [LIEN](https://github.com/jeedom/core/pull/2816)
 - Correction d'un bug sur la valeur du select du widget par defaut [LIEN](https://github.com/jeedom/core/pull/2813)
 - Correction d'un bug si une commande dépasse son min ou son max la valeur passait à 0 (au lieu du min/max) [LIEN](https://github.com/jeedom/core/issues/2819)
+- Correction d'un bug de sur l'affichage du menu réglage dans certaines langues [LIEN](https://github.com/jeedom/core/issues/2821)
 
 >**IMPORTANT**
 >
