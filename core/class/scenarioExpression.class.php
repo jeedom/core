@@ -1574,8 +1574,8 @@ class scenarioExpression {
 								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
 								return $actionScenario->launch();
 							} else {
-								$actionScenario->addTag('other','scenario');
-								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger','other');
+								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
 								return $actionScenario->launch();
 							}
 							break;
