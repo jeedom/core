@@ -38,6 +38,7 @@
 - Corrigido um aviso nas visualizações [LINK](https://github.com/jeedom/core/pull/2816)
 - Corrigido um bug no valor de seleção do widget padrão [LINK](https://github.com/jeedom/core/pull/2813)
 - Corrigido um bug se um comando excedesse seu mínimo ou máximo, o valor mudava para 0 (em vez de mínimo/máximo) [LINK](https://github.com/jeedom/core/issues/2819)
+- Corrigido um bug na exibição do menu de configurações em determinados idiomas [LINK](https://github.com/jeedom/core/issues/2821)
 
 >**IMPORTANTE**
 >
@@ -73,6 +74,10 @@
 >**IMPORTANTE**
 >
 > Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo
+
+>**IMPORTANTE**
+>
+> Durante a atualização é possível que você tenha um erro ao criar um índice único na tabela do listener, nada sério é devido a listeners duplicados e o jeedom irá corrigir isso sozinho após 24 horas (o indexado em si pode ser feito tanto a partir da verificação do banco de dados na configuração do jeedom ou apenas aguarde as próximas atualizações).
 
 # 4.4.9
 

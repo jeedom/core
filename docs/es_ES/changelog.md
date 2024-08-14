@@ -38,6 +38,7 @@
 - Se corrigió una advertencia en las vistas [ENLACE](https://github.com/jeedom/core/pull/2816)
 - Se corrigió un error en el valor de selección del widget predeterminado [ENLACE](https://github.com/jeedom/core/pull/2813)
 - Se corrigió un error si un comando excedía su mínimo o máximo, el valor cambiaba a 0 (en lugar de mínimo/máximo)) [ENLACE](https://github.com/jeedom/core/issues/2819)
+- Se corrigió un error en la visualización del menú de configuración en ciertos idiomas [ENLACE](https://github.com/jeedom/core/issues/2821)
 
 >**IMPORTANTE**
 >
@@ -73,6 +74,10 @@
 >**IMPORTANTE**
 >
 > Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
+
+>**IMPORTANTE**
+>
+> Durante la actualización, es posible que tenga un error al crear un índice único en la tabla de oyentes, nada grave, se debe a oyentes duplicados y jeedom corregirá esto por sí solo después de 24 horas (la indexación en sí misma se puede hacer verificando la base de datos en la configuración jeedom o simplemente espere las próximas actualizaciones).
 
 # 4.4.9
 

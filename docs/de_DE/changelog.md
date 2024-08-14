@@ -38,6 +38,7 @@
 - Eine Warnung zu Ansichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2816)
 - Ein Fehler beim Standard-Widget-Auswahlwert wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2813)
 - Es wurde ein Fehler behoben, bei dem der Wert auf 0 (anstelle von Min/Max) geändert wurde, wenn ein Befehl seine Mindest- oder Höchstgrenze überschritt) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2819)
+- Ein Fehler in der Anzeige des Einstellungsmenüs in bestimmten Sprachen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2821)
 
 >**WICHTIG**
 >
@@ -73,6 +74,10 @@
 >**WICHTIG**
 >
 > Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
+
+>**WICHTIG**
+>
+> Während des Updates ist es möglich, dass beim Erstellen eines eindeutigen Indexes für die Listener-Tabelle ein Fehler auftritt. Dies ist kein schwerwiegender Fehler, da es sich um doppelte Listener handelt. Jeedom korrigiert dies nach 24 Stunden selbst (die Indizierung selbst kann entweder durch Überprüfung der Datenbank erfolgen). in der Jeedom-Konfiguration oder warten Sie einfach auf die nächsten Updates).
 
 # 4.4.9
 

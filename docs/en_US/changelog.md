@@ -38,6 +38,7 @@
 - Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
 - Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
 - Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
+- Fixed a bug where the settings menu was not displayed in some languages [LINK](https://github.com/jeedom/core/issues/2821)
 
 >**IMPORTANT**
 >
@@ -73,6 +74,10 @@
 >**IMPORTANT**
 >
 > Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything
+
+>**IMPORTANT**
+>
+> During the update it is possible that you have an error creating a unique index on the listener table, nothing serious it is due to duplicate listeners and jeedom will correct it itself after 24 hours (the index itself can be done either from the database verification in the jeedom configuration or just wait for the next updates).
 
 # 4.4.9
 
