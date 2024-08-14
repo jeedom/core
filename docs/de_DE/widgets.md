@@ -263,4 +263,4 @@ jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', Anzeigewert: '#stat
 
 ### Exemples
 
- Sie werden finden [hier](https://github.com/Jeedom/core/tree/V4-stable/core/template) Beispiele für Widgets (in Dashboard- und mobilen Ordnern)
+ Sie werden finden [hier](https://github.com/Jeedom/core/tree/master/core/template) Beispiele für Widgets (in Dashboard- und mobilen Ordnern)
