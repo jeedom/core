@@ -318,11 +318,6 @@ class update {
 					$zip = new ZipArchive;
 					$res = $zip->open($tmp);
 					if ($res === TRUE) {
-						if(version_compare(PHP_VERSION, '8.0.0') >= 0){
-							for($i=0; $i<$zip->numFiles; $i++){
-				                            $zip->setMtimeIndex($i, strtotime('now'));
-				                        }
-						}
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
 							throw new Exception(__("Impossible d'installer le plugin. Les fichiers n'ont pas pu être décompressés", __FILE__) . ' : ' . substr($content, 255));
@@ -358,6 +353,7 @@ class update {
 							}
 						} catch (Exception $e) {
 						}
+						shell_exec('find '.$cibDir.'/ -exec touch {} +');
 						rmove($cibDir . '/', __DIR__ . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
 						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
