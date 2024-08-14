@@ -79,6 +79,10 @@
 >
 > Lors de la mise à jour il est possible que vous ayez une erreur de création d'indexe unique sur la table listener, rien de grave c'est du à des listener dupliqué et jeedom corrigera ca de lui meme au bout de 24h (l'indexe en lui meme pourra etre fait soit depuis la verification de la base de données dans la configuration de jeedom ou juste attendre les prochaines mises à jour).
 
+>**IMPORTANT**
+>
+>Pour tout ceux en PHP8 il faut ABSOLUMENT cocher la case de pre update avant de lancer la mise à jour de jeedom sinon il vous manquera des fichiers et celui-ci ne marchera plus.
+
 # 4.4.9
 
 - Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe) [LIEN](https://github.com/jeedom/core/pull/2729)
