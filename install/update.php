@@ -208,6 +208,12 @@ try {
 				if(version_compare(PHP_VERSION, '8.0.0') >= 0 && file_exists($cibDir . '/vendor')){
 					shell_exec('rm -rf ' . $cibDir . '/vendor');
 				}
+
+				echo "Update modification date of unzip file...";
+				shell_exec('find '.$cibDir.'/ -exec touch {} +');
+				echo "OK\n";
+				echo "[PROGRESS][47]\n";
+				
 				echo "Moving files...";
 				$update_begin = true;
 				$file_copy = array();
