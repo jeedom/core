@@ -454,6 +454,7 @@
         "Coloration des icones": "Icon coloring",
         "Type générique": "Generic type",
         "Changer de thème": "Change theme",
+        "Filtre des commandes": "Order filter",
         "Pause de x seconde(s)": "Pause of x second (s)",
         "Attend jusqu’à ce que la condition soit valide (maximum 2h)": "Wait until the condition is valid (maximum 2h)",
         "Création\/modification d’une variable ou de la valeur d’une variable": "Creation \/ modification of a variable or the value of a variable",
@@ -492,8 +493,11 @@
         "Objet": "Object",
         "Equipement": "Equipment",
         "Commande": "Command",
+        "Filtre des objets": "Filter objects",
         "Commande info": "Info command",
-        "Commande action": "Action command"
+        "Commande action": "Action command",
+        "Filtre des équipements": "Equipment filter",
+        "Filtre des commandes": "Order filter"
     },
     "desktop\/modal\/scenario.export.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
@@ -1053,6 +1057,7 @@
         "Options": "Options",
         "Activer": "Activate",
         "Visible": "Visible",
+        "Masquer sur la vue principale": "Hide on main view",
         "Template de widget": "Widget Template",
         "ID logique": "Logical ID",
         "Création - Sauvegarde": "Creation - Backup",
@@ -2016,13 +2021,13 @@
         "Configuration des dépôts": "Configuration of repositories",
         "Tester\/Synchroniser": "Test \/ Synchronize",
         "Tester": "Test",
-        "Attention : toute modification du moteur de cache nécessite un redémarrage.": "Warning: any modification to the cache engine requires a restart",
-        "Statistiques": "Statistics",
-        "objets": "objects",
+        "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Warning: any modification to the cache engine requires a restart and will cause you to temporarily lose information on the values of the commands and any other cached information while everything is returned",
         "Moteur de cache": "Cache engine",
         "Système de fichiers": "File system",
         "Memcached": "Memory cached",
-        "Redis": "Say it again",
+        "Redis (beta)": "Redis (beta)",
+        "Mysql (beta)": "Mysql (beta)",
+        "Fichier (beta)": "File (beta)",
         "Adresse Memcache": "Memcache address",
         "Port Memcache": "Memcache port",
         "Adresse Redis": "Redis address",
@@ -2358,6 +2363,7 @@
         "A": "At",
         "Code": "Code",
         "Commentaire": "Comment",
+        "Filtre des blocs": "Block filter",
         "Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Allows you to make conditions in your scenario. For example: If my door sensor is triggered Then turn on the light",
         "Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Allows you to launch an action, on one of your modules, scenarios or other. For example: Switch your siren to ON",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "A loop allows you to perform an action repeatedly a certain number of times. For example: Allows you to repeat an action from 1 to X, i.e. X times",
@@ -3876,7 +3882,6 @@
         "Connexion de l\\'utilisateur par REMOTE_USER :": "User login by REMOTE_USER:",
         "Double authentification requise": "Dual authentication required",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Password or invalid user name",
-        "Mot de passe ou nom d\\'utilisateur incorrect')": "Incorrect password or username')",
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "You must deactivate LDAP authentication to add a user",
         "Utilisateur invalide": "Invalid user",
@@ -4206,6 +4211,7 @@
         "Acheter": "Buy",
         "Nous Contacter": "Contact us",
         "Supprimer": "Delete",
+        "Plugin deja acheté et\/ou inclus dans votre service Pack": "Plugin already purchased and\/or included in your Service Pack",
         "Gratuit": "Free",
         "Attention ce plugin n\\'est pas un plugin officiel en cas de soucis avec celui-ci (direct ou indirect) toute demande de support peut être refusée": "Please note this plugin is not an official plugin in case of problems with it (direct or indirect) any request for support can be refused",
         "Attention ce plugin n\\'est disponible qu\\'en beta, il peut donc avoir de nombreux bugs et vous perdrez toute possibilité de demande de support (quel que soit le plugin) en l\\'installant": "Please note that this plugin is only available in beta, so it can have many bugs and you will lose all possibility of requesting support (regardless of the plugin) by installing it",
@@ -4519,7 +4525,7 @@
     "core\/class\/eqLogic.class.php": {
         "Attention": "Warning",
         "n\\'a pas envoyé de message depuis plus de": "has not sent a message for more than",
-        "min (vérifiez les piles)": "min (check batteries)",
+        "min": "min",
         "Equipement": "Equipment",
         "Aucun": "None",
         "L\\'équipement n\\'a pas pu être trouvé :": "The equipment could not be found:",
@@ -4643,7 +4649,7 @@
         "Autre": "Other",
         "Attention le plugin": "Warning the plugin",
         "n\\'a pas recu de message depuis": "haven't received a message since",
-        "min": "minimum",
+        "min": "min",
         "Configuration": "Configuration",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "The plugin :: cron task cannot finish because of the plugin:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "we advise you to deactivate the plugin and contact the author",
@@ -4690,9 +4696,6 @@
     },
     "core\/class\/log.class.php": {
         "Log": "Log"
-    },
-    "core\/class\/cache.class.php": {
-        "Inconnu": "Unknown"
     },
     "core\/class\/message.class.php": {
         "Message de": "Message from"
@@ -4880,7 +4883,8 @@
         "Sélectionner la commande": "Select command"
     },
     "core\/template\/scenario\/gotodesign.default.html": {
-        "Design": "Design"
+        "Design": "Design",
+        "Filtre des designs": "Filter designs"
     },
     "core\/template\/scenario\/cmd.action.slider.default.html": {
         "Sélectionner la commande": "Select command"
@@ -4948,7 +4952,11 @@
         "Santé": "Health",
         "Timeline": "Timeline",
         "URL": "Url",
+        "Filtre des types": "Type filter",
+        "Filtre des vues": "Filter views",
+        "Filtre des designs": "Filter designs",
         "Panel": "Panel",
+        "Filtre des plugins": "Plugin filter",
         "Exporter en": "Export to",
         "PNG": "PNG",
         "PDF": "PDF",

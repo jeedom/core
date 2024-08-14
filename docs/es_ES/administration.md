@@ -381,13 +381,19 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 
 Permite monitorear y actuar en el caché Jeedom :
 
-- **Estadísticas** : Número de objetos actualmente en caché.
+- **Motor de caché** : elección del motor de caché para jeedom : 
+  - Sistema de archivos : Almacenamiento de información de caché /tmp/jeedom/cache (en RAM) en modo archivo, utiliza una biblioteca de terceros. Pronto será reemplazado por Archivo (beta)
+  - Archivo (beta) : Almacenamiento de información de caché /tmp/jeedom/cache (en RAM) en modo archivo. El más eficiente pero ahorrado cada 30 minutos
+  - MySQL (beta)) : Usando una tabla de caché básica. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
+  - Redis (beta)) : Reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
 - **Limpiar la caché** : Forzar la eliminación de objetos que ya no son útiles. Jeedom hace esto automáticamente todas las noches.
 - **Vaciar todos los datos de la caché** : Vacíe la tapa completamente.
     Tenga en cuenta que esto puede causar pérdida de datos !
-- **Borrar el caché del widget** : Borrar el caché dedicado a los widgets.
-- **Deshabilitar caché de widgets** : Marque la casilla para deshabilitar la caché del widget.
 - **Tiempo de pausa para polling largo** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, a cambio utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
+
+>**Importante**
+>
+> Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
 
 ## Pestaña API
 

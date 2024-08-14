@@ -202,18 +202,6 @@ class widgets {
     return true;
   }
 
-  public function postSave(){
-    $usedBy = $this->getUsedBy();
-    if(is_array($usedBy) && count($usedBy) > 0){
-      foreach ($usedBy as $cmd) {
-        $eqLogic = $cmd->getEqLogic();
-        if(is_object($eqLogic)){
-          $eqLogic->emptyCacheWidget();
-        }
-      }
-    }
-  }
-
   public function remove() {
     $usedBy = $this->getUsedBy();
     if(is_array($usedBy) && count($usedBy) > 0){

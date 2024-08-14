@@ -239,6 +239,7 @@ Es gibt bestimmte Auslöser (außer denen, die durch Befehle bereitgestellt werd
 - ``#user_connect#`` : Benutzeranmeldung
 - ``#variable(nom_variable)#`` : Ändern des Wertes der Variablen name_name.
 - ``#GenericType (GENERIC, #[Object]#)#`` : Änderung eines Infobefehls vom Typ Generic GENERIC im Objektobjekt.
+- ``#new_eqLogic#`` : Ereignis, das beim Erstellen neuer Geräte gesendet wird. Sie haben in den Tags id (ID des erstellten Geräts), name (Name des erstellten Geräts) und eqType (Typ/Plugin des erstellten Geräts))
 
 Sie können ein Szenario auch über die beschriebene HTTP-API auslösen [hier](https:/./.doc.jeedom.com/de_DE/core/.4.4/.api_http).
 

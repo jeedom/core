@@ -249,13 +249,8 @@ class history {
 		if ($archiveDatetime === false) {
 			$archiveDatetime = date('Y-m-d H:i:s', strtotime('- 1 hours'));
 		}
-		$values = array(
-			'archiveDatetime' => $archiveDatetime,
-		);
-		$sql = 'SELECT DISTINCT(cmd_id)
-        FROM history
-        WHERE `datetime`<:archiveDatetime';
-		$list_sensors = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+		$sql = '(SELECT DISTINCT(cmd_id) FROM history) UNION (SELECT DISTINCT(cmd_id) FROM historyArch)';
+		$list_sensors = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		foreach ($list_sensors as $sensors) {
 			try {
 				$cmd = cmd::byId($sensors['cmd_id']);

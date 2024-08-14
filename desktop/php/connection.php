@@ -24,7 +24,13 @@
 						</div>
 						<div class="passwd">
 							<label>{{Mot de passe}}</label>
-							<input type="password" id="in_login_password">
+							<div class="input-group">
+								<!-- test -->
+								<input type="text" class="inputPassword" id="in_login_password">
+								<span class="input-group-btn">
+									<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+								</span>
+							</div>
 						</div>
 						<div class="passwd" id="div_twoFactorCode" style="display:none;">
 							<label>{{Code à 2 facteurs}}</label>
