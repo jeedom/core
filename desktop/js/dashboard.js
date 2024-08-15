@@ -324,7 +324,7 @@ if (!jeeFrontEnd.dashboard) {
               dom_divDisplayEq.closest('.div_object').parentNode.remove()
               return
             }
-            dom_divDisplayEq.html(html)
+            dom_divDisplayEq?.html(html)
           } catch (err) {
             console.warn(err)
           }
