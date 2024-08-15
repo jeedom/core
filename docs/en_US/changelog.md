@@ -48,6 +48,10 @@
 >
 > Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
 
+# 4.4.12
+
+- Fixed a bug on the event filter function (impacts homebridge type plugins)) [LINK](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+
 # 4.4.11
 
 - Fixed bug with gotodesign action [LINK](https://github.com/jeedom/core/issues/2825)

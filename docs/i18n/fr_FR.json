@@ -818,6 +818,8 @@
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur": "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur",
+        "4.4.12": "4.4.12",
+        "Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge": "Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge",
         "4.4.11": "4.4.11",
         "Correction d'un bug avec l'action gotodesign": "Correction d'un bug avec l'action gotodesign",
         "Correction de l'erreur sur certain plugin `Call to a member function getTimestamp()`": "Correction de l'erreur sur certain plugin `Call to a member function getTimestamp()`",

@@ -48,6 +48,10 @@
 >
 > Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, es handelt sich um den Cache, der sich selbst neu aufbaut. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
 
+# 4.4.12
+
+- Ein Fehler in der Ereignisfilterfunktion wurde behoben (Auswirkungen auf Plugins vom Typ Homebridge)) [VERKNÜPFUNG](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+
 # 4.4.11
 
 - Ein Fehler mit der Gotodesign-Aktion wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2825)

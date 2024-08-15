@@ -48,6 +48,10 @@
 >
 > Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho. O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor. Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor.
 
+# 4.4.12
+
+- Corrigido um bug na função de filtro de eventos (impacto em plugins do tipo homebridge) [LINK](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+
 # 4.4.11
 
 - Corrigido um bug com a ação gotodesign [LINK](https://github.com/jeedom/core/issues/2825)

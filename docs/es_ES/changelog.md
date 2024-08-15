@@ -48,6 +48,10 @@
 >
 > Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
 
+# 4.4.12
+
+- Se corrigió un error en la función de filtro de eventos (impacto en los complementos tipo homebridge)) [ENLACE](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+
 # 4.4.11
 
 - Se corrigió un error con la acción gotodesign [ENLACE](https://github.com/jeedom/core/issues/2825)

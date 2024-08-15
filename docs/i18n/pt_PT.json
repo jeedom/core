@@ -1342,6 +1342,8 @@
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur": "Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor",
+        "4.4.12": "4.4.12",
+        "Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge": "Corrigido um bug na função de filtro de eventos (impacto em plugins do tipo homebridge",
         "4.4.11": "4.4.11",
         "Correction d'un bug avec l'action gotodesign": "Corrigido um bug com a ação gotodesign",
         "Correction de l'erreur sur certain plugin `Call to a member function getTimestamp()`": "Corrigido o erro em determinado plugin `Chamar para uma função de membro getTimestamp()`",
