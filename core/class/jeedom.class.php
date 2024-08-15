@@ -228,7 +228,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
 			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) . ' ' . date('Y-m-d H:i:s') . ' (' . gmdate('Y-m-d H:i:s', $lastKnowDate) . ')' : date('Y-m-d H:i:s'),
+			'result' => ($state) ? __('OK', __FILE__) . ' ' . date('Y-m-d H:i:s') . ' (' .  $lastKnowDate . ')' : date('Y-m-d H:i:s'),
 			'comment' => ($state) ? '' : __('Si la dernière heure enregistrée est fausse, il faut la remettre à zéro', __FILE__),
 			'key' => 'hour'
 		);
