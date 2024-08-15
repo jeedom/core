@@ -158,8 +158,8 @@ class cache {
 		return $this->key;
 	}
 
-	public function setKey($key): self {
-		$this->key = $key;
+	public function setKey($_key): self {
+		$this->key = $_key;
 		return $this;
 	}
 
@@ -167,8 +167,8 @@ class cache {
 		return ($this->value === null || (is_string($this->value) && trim($this->value) === '')) ? $_default : $this->value;
 	}
 
-	public function setValue($value): self {
-		$this->value = $value;
+	public function setValue($_value): self {
+		$this->value = $_value;
 		return $this;
 	}
 
@@ -176,11 +176,11 @@ class cache {
 		return $this->lifetime;
 	}
 
-	public function setLifetime($lifetime): self {
-		if ($lifetime < 0) {
-			$lifetime = 0;
+	public function setLifetime($_lifetime): self {
+		if ($_lifetime < 0) {
+			$_lifetime = 0;
 		}
-		$this->lifetime = intval($lifetime);
+		$this->lifetime = intval($_lifetime);
 		return $this;
 	}
 
@@ -188,8 +188,8 @@ class cache {
 		return date('Y-m-d H:i:s',$this->timestamp);
 	}
 
-	public function setDatetime($datetime): self {
-		$this->timestamp = strtotime($datetime);
+	public function setDatetime($_datetime): self {
+		$this->timestamp = strtotime($_datetime);
 		return $this;
 	}
 
