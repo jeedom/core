@@ -1,6 +1,6 @@
 # Änderungsprotokoll Jeedom V4.4
 
-# 4.4.11
+# 4.5
 
 - Möglichkeit, die Größe von Tabellenspalten anzupassen (im Moment nur die Liste der Variablen, sie wird bei Bedarf auf andere Tabellen ausgeweitet)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2499)
 - Es wurde eine Warnung hinzugefügt, wenn der Jeedom-Speicherplatz zu gering ist (die Überprüfung erfolgt einmal täglich)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2438)
@@ -45,6 +45,10 @@
 >**WICHTIG**
 >
 > Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, es handelt sich um den Cache, der sich selbst neu aufbaut. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
+
+# 4.4.11
+
+- Ein Fehler mit der Gotodesign-Aktion wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2825)
 
 # 4.4.10
 

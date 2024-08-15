@@ -1297,7 +1297,6 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repita valores idénticos (Sí",
         "Changelog Jeedom V4.4": "Registro de cambios Jeedom V4.4",
-        "4.4.11": "4.4.11",
         "Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin": "Posibilidad de cambiar el tamaño de las columnas de la tabla (por el momento sólo la lista de variables, se ampliará a otras tablas si es necesario)",
         "Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour": "Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)",
         "Ajout d'un bouton sur la fenetre de configuration d'une commande au niveau du champ de calcul de valeur pour aller chercher une commande": "Se agregó un botón a la ventana de configuración del pedido en el campo de cálculo del valor para recuperar un pedido",
@@ -1341,6 +1340,8 @@
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur": "Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor",
+        "4.4.11": "4.4.11",
+        "Correction d'un bug avec l'action gotodesign": "Se corrigió un error con la acción gotodesign",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Se movió la gestión de eventos que se utiliza para actualizar la interfaz de la base de datos en memoria",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Se agregó un filtro en muchas acciones en escenarios",

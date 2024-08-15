@@ -1297,7 +1297,6 @@
     "changelog.md": {
         "Répéter les valeurs identiques (Oui": "Repeat identical values (Yes",
         "Changelog Jeedom V4.4": "Changelog Jeedom V4.4",
-        "4.4.11": "4.4.11",
         "Possibilité de rendre les colonnes des tableaux redimmensionnable (seulement la liste des variables pour le moment ca sera étendu à d'autre table si besoin": "Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary",
         "Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour": "Added an alert if jeedom disk space is too low (the check is done once a day",
         "Ajout d'un bouton sur la fenetre de configuration d'une commande au niveau du champ de calcul de valeur pour aller chercher une commande": "Added a button to the order configuration window at the value calculation field to fetch an order",
@@ -1341,6 +1340,8 @@
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur": "Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value",
+        "4.4.11": "4.4.11",
+        "Correction d'un bug avec l'action gotodesign": "Fixed bug with gotodesign action",
         "4.4.10": "4.4.10",
         "Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire": "Moved event management which is used to update the in-memory database interface",
         "Ajout d'un filtre sur de nombreuses action dans les scénarios": "Added a filter on many actions in scenarios",

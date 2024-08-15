@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.4
 
-# 4.4.11
+# 4.5
 
 - Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary) [LINK](https://github.com/jeedom/core/issues/2499)
 - Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
@@ -45,6 +45,10 @@
 >**IMPORTANT**
 >
 > Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
+
+# 4.4.11
+
+- Fixed bug with gotodesign action [LINK](https://github.com/jeedom/core/issues/2825)
 
 # 4.4.10
 

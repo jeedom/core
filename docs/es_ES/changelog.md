@@ -1,6 +1,6 @@
 # Registro de cambios Jeedom V4.4
 
-# 4.4.11
+# 4.5
 
 - Posibilidad de cambiar el tamaño de las columnas de la tabla (por el momento sólo la lista de variables, se ampliará a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
 - Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)) [ENLACE](https://github.com/jeedom/core/issues/2438)
@@ -45,6 +45,10 @@
 >**IMPORTANTE**
 >
 > Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
+
+# 4.4.11
+
+- Se corrigió un error con la acción gotodesign [ENLACE](https://github.com/jeedom/core/issues/2825)
 
 # 4.4.10
 

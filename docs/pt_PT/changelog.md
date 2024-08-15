@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.4
 
-# 4.4.11
+# 4.5
 
 - Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, será estendida a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
 - Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
@@ -45,6 +45,10 @@
 >**IMPORTANTE**
 >
 > Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho. O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor. Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor.
+
+# 4.4.11
+
+- Corrigido um bug com a ação gotodesign [LINK](https://github.com/jeedom/core/issues/2825)
 
 # 4.4.10
 
