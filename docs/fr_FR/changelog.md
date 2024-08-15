@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Correction d'un bug avec l'action gotodesign
+
 # 4.4.10
 
 - Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire [LIEN](https://github.com/jeedom/core/pull/2757)
