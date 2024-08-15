@@ -870,7 +870,6 @@ class scenario {
 			return false;
 		}
 		$this->setCache(array('startingTime' => strtotime('now'), 'state' => 'starting'));
-		$this->setCache('lastExecutionUser', (isset($_SESSION) && isset($_SESSION['user']) && $_SESSION['user'] != null) ? $_SESSION['user']->getLogin() : 'none');
 		if ($this->getConfiguration('syncmode') == 1 || $_forceSyncMode) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenarioSync']['txt']);
 			return $this->execute();
@@ -939,7 +938,6 @@ class scenario {
 				$timeline->setOptions(array('trigger' => ($this->getTag('trigger') == 'schedule') ? 'programmation' : $this->getTag('trigger')));
 				$timeline->save();
 			}
-			$_triggerValue = $this->getCache('lastExecutionUser', 'none');
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
 			return;
