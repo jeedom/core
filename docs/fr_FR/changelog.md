@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.12
+
+- Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge) [LIEN](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+
 # 4.4.11
 
 - Correction d'un bug avec l'action gotodesign [LIEN](https://github.com/jeedom/core/issues/2825)
