@@ -299,7 +299,7 @@ class cache {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
-		$this->setDatetime(strtotime('now'));
+		$this->setTimestamp(strtotime('now'));
 		$engine = config::byKey('cache::engine');
 		if(in_array($engine,array('MariadbCache','FileCache','RedisCache'))){
 			return $engine::save($this);
@@ -355,11 +355,20 @@ class cache {
 	}
 
 	public function getDatetime() {
-		return $this->datetime;
+		return date('Y-m-d H:i:s',$this->datetime);
 	}
 
 	public function setDatetime($datetime): self {
-		$this->datetime = $datetime;
+		$this->datetime = strtotime($datetime);
+		return $this;
+	}
+
+	public function getTimestamp(){
+		return $this->datetime;
+	}
+
+	public function setTimestamp($_timestamp){
+		$this->datetime = $timestamp;
 		return $this;
 	}
 }
@@ -392,7 +401,7 @@ class MariadbCache {
 		if($cache === false){
 			return null;
 		}
-		if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
+		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 			return null;
 		}
 		$cache->setValue(unserialize($cache->getValue()));
@@ -415,7 +424,7 @@ class MariadbCache {
 			'key' => $_cache->getKey(),
 			'value' => serialize($_cache->getValue()),
 			'lifetime' =>$_cache->getLifetime(),
-			'datetime' => $_cache->getDatetime()
+			'datetime' => $_cache->getTimestamp()
 		);
 		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime';
 		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
@@ -485,7 +494,7 @@ class FileCache {
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
 			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
-			if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
+			if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 				unlink(jeedom::getTmpFolder('cache').'/'.$file);
 			}
 		}
@@ -500,7 +509,7 @@ class FileCache {
 		if(!is_object($cache)){
 			return null;
 		}
-		if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
+		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 			self::delete($_key);
 			return null;
 		}
