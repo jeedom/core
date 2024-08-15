@@ -256,7 +256,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Dernière date système connue par}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
-								<span class="label label-info"><?php echo cache::byKey('hour')->getDatetime() ?></span>
+								<span class="label label-info"><?php echo date('Y-m-d H:i:s',cache::byKey('hour')->getDatetime()) ?></span>
 								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
 							</div>
 						</div>
@@ -1872,6 +1872,9 @@ $productName = config::byKey('product_name');
                                                   if(isset($lists['branchs']) && is_array($lists['branchs'])){
 													echo '<optgroup label="{{Branches (Pas de support)}}">';
 													foreach ($lists['branchs'] as $branch) {
+														if(!is_array($branch) || !isset($branch['name'])){
+															continue;
+														}
 														if(in_array($branch['name'],array('V4-stable','master'))){
 															continue;
 														}
@@ -1882,7 +1885,7 @@ $productName = config::byKey('product_name');
 												  if(isset($lists['tags']) && is_array($lists['tags'])){
 													echo '<optgroup label="{{Tags (Pas de support)}}">';
 													foreach ($lists['tags'] as $tag) {
-														if(in_array($branch['name'],array('V4-stable','master'))){
+														if(!is_array($tag) || !isset($tag['name'])){
 															continue;
 														}
 														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
@@ -2184,13 +2187,13 @@ $productName = config::byKey('product_name');
 						</div>
 
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les methodes api (regexp)}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les méthodes api (regexp)}}</label>
 							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les méthodes api (regexp)}}</label>
 							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::allow::method">
 							</div>

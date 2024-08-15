@@ -263,4 +263,4 @@ jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', mostrar_valor: '#st
 
 ### Exemples
 
- Encontraras [aquí](https://github.com/Jeedom/core/tree/V4-stable/core/template) ejemplos de widgets (en el tablero y carpetas móviles)
+ Encontraras [aquí](https://github.com/Jeedom/core/tree/master/core/template) ejemplos de widgets (en el tablero y carpetas móviles)

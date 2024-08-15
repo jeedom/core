@@ -263,4 +263,4 @@ jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#st
 
 ### Exemples
 
- You will find [here](https://github.com/Jeedom/core/tree/V4-stable/core/template) examples of widgets (in dashboard and mobile folders)
+ You will find [here](https://github.com/Jeedom/core/tree/master/core/template) examples of widgets (in dashboard and mobile folders)

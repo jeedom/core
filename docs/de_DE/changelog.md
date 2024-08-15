@@ -9,7 +9,7 @@
 - Die Diagramme werden automatisch aktualisiert, wenn neue Werte eintreffen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2749)
 - Jeedom fügt beim Erstellen von Widgets automatisch die Höhe des Bildes hinzu, um Überlappungsprobleme auf Mobilgeräten zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2539)
 - Neugestaltung des Cloud-Backup-Teils [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementierung eines Warteschlangensystems zur Aktionsausführung [LINK](https://github.com/jeedom/core/issues/2489)
+- **ENTW** Einrichten eines Warteschlangensystems für die Aktionsausführung [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2489)
 - Die Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei Szenarios sehr nahe beieinander gestartet haben, überschreiben die Tags des letzteren nicht mehr das erste)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2763)
 - Wechseln Sie zum Auslöserteil der Szenarien : [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
@@ -28,6 +28,23 @@
 - Entfernen des alten Cache-Systems. [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2799)
 - Möglichkeit, die Blöcke IN und A zu löschen, während auf ein anderes Szenario gewartet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2379)
 - Ein Fehler in Safari bei Filtern mit Akzenten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2754)
+- Ein Fehler bei der Generierung generischer Typinformationen in Szenarios wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2806)
+- Bestätigung hinzugefügt, wenn der Support-Zugriff über die Benutzerverwaltungsseite geöffnet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2809)
+- Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2810)
+- Möglichkeit, Aufträge von der Dead-Order-Analyse auszuschließen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2812)
+- Ein Fehler bei der Nummerierung der Zeilenanzahl in Tabellen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Openstreetmap hinzugefügt.org in externen Domänen standardmäßig erlaubt [VERKNÜPFUNG](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Automatische Aktualisierung der Apache-Sicherheitsdatei beim Aktualisieren des Kerns [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2815)
+- Eine Warnung zu Ansichten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2816)
+- Ein Fehler beim Standard-Widget-Auswahlwert wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2813)
+- Es wurde ein Fehler behoben, bei dem der Wert auf 0 (anstelle von Min/Max) geändert wurde, wenn ein Befehl seine Mindest- oder Höchstgrenze überschritt) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2819)
+- Ein Fehler in der Anzeige des Einstellungsmenüs in bestimmten Sprachen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2821)
+- Möglichkeit in den programmierten Szenario-Triggern, Berechnungen/Befehle/Tags/Formeln zu verwenden, die zu einer Startzeit in der Form Gi (Stunde ohne Anfangsnull und Minute) führen, Beispiel für 9:15 Uhr => 915 oder für 23:40 Uhr => 2340) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2808)
+- Möglichkeit, in den Plugins ein personalisiertes Bild für die Ausrüstung einzufügen (sofern das Plugin dies unterstützt), dazu einfach das Bild in „data/img“ in der Form „eqLogic“ einfügen#id#.png` mit #id# die Geräte-ID (Sie finden sie in der erweiterten Konfiguration des Geräts)) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2802)
+
+>**WICHTIG**
+>
+> Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, es handelt sich um den Cache, der sich selbst neu aufbaut. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
 
 # 4.4.10
 
@@ -52,10 +69,22 @@
 - Jeedom listet jetzt alle Zweige und Tags des Github-Repositorys auf, damit Sie die Funktionalitäten vorab testen oder zu einer früheren Version des Kerns zurückkehren können (Achtung, das ist sehr riskant)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2500)
 - Verbesserung der Untertypen von Befehlen, die von generischen Typen unterstützt werden [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2797)
 - Es wurde ein Fehler bei der Anzeige von Szenarien und Kommentaren behoben, wenn diese ausgeblendet werden sollten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2790)
+- Ein Fehler bei den Ersatzwerkzeugen wurde behoben (kein Befehl in der Ersatzauswahl)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2818)
+- Verbesserung des Cron-Systems, um Startfehler zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Es wurde ein Fehler behoben, der es Ihnen ermöglichte, denselben Listener mehrmals zu verwenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2820)
+- Mit dem Update wurde ein Fehler in PHP8 behoben, der nützliche Dateien löschte [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2822)
 
 >**WICHTIG**
 >
 > Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
+
+>**WICHTIG**
+>
+> Während des Updates ist es möglich, dass beim Erstellen eines eindeutigen Indexes für die Listener-Tabelle ein Fehler auftritt. Dies ist kein schwerwiegender Fehler, da es sich um doppelte Listener handelt. Jeedom korrigiert dies nach 24 Stunden selbst (die Indizierung selbst kann entweder durch Überprüfung der Datenbank erfolgen). in der Jeedom-Konfiguration oder warten Sie einfach auf die nächsten Updates).
+
+>**WICHTIG**
+>
+>Für alle, die PHP8 verwenden, ist es unbedingt erforderlich, das Kontrollkästchen „Vor dem Update“ zu aktivieren, bevor das Jeedom-Update gestartet wird. Ohne diese Vorsichtsmaßnahme könnten wichtige Dateien fehlen, was dazu führen würde, dass Jeedom nicht ordnungsgemäß funktioniert.
 
 # 4.4.9
 

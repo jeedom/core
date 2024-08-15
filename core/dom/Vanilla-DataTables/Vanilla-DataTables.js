@@ -1712,7 +1712,7 @@
                 }
                 else {   // CUSTOM LABELS
                   var string = this.config.labels.info
-                    .replace("{start}", f+1)
+                    .replace("{start}", f)
                     .replace("{end}", t)
                     .replace("{page}", this.currentPage)
                     .replace("{pages}", this.totalPages)

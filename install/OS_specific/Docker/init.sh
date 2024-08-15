@@ -64,9 +64,13 @@ start JEEDOM PHP script installation
 ************************"
 
 	php ${WEBSERVER_HOME}/install/install.php mode=force
-
 	# remove the flag file after the first successfull installation
 	rm ${WEBSERVER_HOME}/initialisation
+fi
+
+if [[ ${JEEDOM_INSTALL} == 0 ]] && [[ ! -z "${ADMIN_PASSWORD}" ]]; then
+	echo "Set admin password with env var"
+	php ${WEBSERVER_HOME}/core/php/jeecli.php user password admin ${ADMIN_PASSWORD}
 fi
 
 echo 'Start atd'

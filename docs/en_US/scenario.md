@@ -93,7 +93,7 @@ In the tab **General**, we find the main parameters of the scenario :
 
 > **Tip mode programmed**
 >
-> Scheduled mode uses syntax **Cron**. For example, you can run a scenario every 20 minutes with  ``*/20 * * * *``, or at 5 a.m. to settle a multitude of things for the day with ``0 5 * * *``. The ? to the right of a program allows you to set it without being a specialist in Cron syntax.
+> Scheduled mode uses syntax **Cron**. For example, you can run a scenario every 20 minutes with `*/20 * * * *`, or at 5am to sort out a multitude of things for the day with ``0 5 * * *``. The ? to the right of a program allows you to set it without being a specialist in Cron syntax. It is also possible to put a launch time in the form `Gi` (hour without initial zero and minute, example for `09h15` => `915` or for `23h40` => `2340`). This time can be the result of a calculation (using a command or a tag), for example : `#sunset# +10` for a launch 10 minutes after sunset. Note that for a launch 1h30 after sunset you must put `#sunset# + 130`. Please note that when using a syntax other than a cron, Jeedom will not be able to give you the dates of the previous or following launches.
 
 ## Scenario tab
 

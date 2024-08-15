@@ -485,6 +485,14 @@ try {
 	echo "Check nodejs...";
     echo shell_exec('sudo ' . __DIR__ . '/../resources/install_nodejs.sh');
 	echo "OK\n";
+
+	echo "Check apache security file...";
+	$apache_security = file_get_contents('/etc/apache2/conf-available/security.conf');
+	if(strpos($apache_security,'jeedom.com') !== false && md5_file(__DIR__ . '/apache_security') != md5_file('/etc/apache2/conf-available/security.conf')){
+		echo "\nApache is configure in security mode and need update I will update file....";
+		echo shell_exec('sudo cp '.__DIR__ . '/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl reload apache2" | sudo at now');
+		echo "OK\n";
+	}
 } catch (Exception $e) {
 	echo "\nError : ";
 	echo $e->getMessage();

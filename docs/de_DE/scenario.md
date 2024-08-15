@@ -93,7 +93,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 
 > **Tippmodus programmiert**
 >
-> Der geplante Modus verwendet die Syntax **Cron**. Sie können beispielsweise alle 20 Minuten ein Szenario mit ausführen  ``*/.20 * * * *``, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag mit zu erledigen ``0 5 * * *``. Das ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein.
+> Der geplante Modus verwendet die Syntax **Cron**. Sie können beispielsweise alle 20 Minuten ein Szenario mit „ ausführen*/20 * * * *`, oder um 5 Uhr morgens, um eine Vielzahl von Dingen für den Tag zu erledigen ``0 5 * * *``. Das ? Rechts neben einem Programm können Sie es einstellen, ohne Spezialist für Cron-Syntax zu sein. Es ist auch möglich, eine Startzeit in der Form „Gi“ (Stunde ohne anfängliche Null und Minute) einzugeben, beispielsweise für „09h15“ => „915“ oder für „23h40“ => „2340“). Diese Zeit kann beispielsweise das Ergebnis einer Berechnung (mittels eines Befehls oder eines Tags) sein : `#sunset# + 10` für einen Start 10 Minuten nach Sonnenuntergang. Beachten Sie, dass Sie für einen Start 1h30 nach Sonnenuntergang „“ eingeben müssen#sunset# + 130`. Beachten Sie, dass jeedom Ihnen bei Verwendung einer anderen Syntax als einem Cron nicht die Daten der vorherigen oder nächsten Starts anzeigen kann.
 
 ## Registerkarte &quot;Szenario&quot;
 

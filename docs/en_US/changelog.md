@@ -9,7 +9,7 @@
 - The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
 - Redesign of the cloud backup part [LINK](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementation of a queuing system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
+- **DEV** Setting up a queue system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
 - The scenario tags are now specific to the scenario instance (if you have two scenarios launched very close together, the tags of the latter no longer overwrite the first) [LINK](https://github.com/jeedom/core/issues/2763)
 - Change to the trigger part of the scenarios : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` is now deprecated and will be removed in future core updates
@@ -28,6 +28,23 @@
 - Removing the old cache system. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibility of deleting the IN and A blocks while waiting for another scenario [LINK](https://github.com/jeedom/core/pull/2379)
 - Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
+- Fixed a bug on the generation of generic type information in scenarios [LINK](https://github.com/jeedom/core/pull/2806)
+- Added confirmation when opening support access from the user management page [LINK](https://github.com/jeedom/core/pull/2809)
+- Added greater than or equal and less than or equal conditions to the scenario condition wizard [LINK](https://github.com/jeedom/core/issues/2810)
+- Ability to exclude orders from dead order analysis [LINK](https://github.com/jeedom/core/issues/2812)
+- Fixed a bug on the numbering of the number of rows of tables [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Added openstreetmap.org in external domains allowed by default [LINK](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Automatically update apache security file when updating core [LINK](https://github.com/jeedom/core/issues/2815)
+- Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
+- Fixed bug on default widget select value [LINK](https://github.com/jeedom/core/pull/2813)
+- Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
+- Fixed a bug where the settings menu was not displayed in some languages [LINK](https://github.com/jeedom/core/issues/2821)
+- Possibility in the programmed triggers of the scenarios to use calculations/commands/tags/formulas giving as a result the launch time in the form Gi (hour without initial zero and minute, example for 09:15 => 915 or for 23:40 => 2340) [LINK](https://github.com/jeedom/core/pull/2808)
+- Possibility to put a custom image for equipment in plugins (if the plugin supports it), for this just put the image in `data/img` in the form `eqLogic#id#.png` with #id# the equipment id (you can find it in the advanced equipment configuration) [LINK](https://github.com/jeedom/core/pull/2802)
+
+>**IMPORTANT**
+>
+> Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
 
 # 4.4.10
 
@@ -52,10 +69,22 @@
 - Jeedom now lists all the branches and tags of the github repository to allow you to test functionalities in advance or to revert to a previous version of the core (be careful this is very risky) [LINK](https://github.com/jeedom/core/issues/2500)
 - Improvement of subtypes of commands supported on generic types [LINK](https://github.com/jeedom/core/pull/2797)
 - Fixed a bug in the display of scenarios and comments when you want to hide them [LINK](https://github.com/jeedom/core/pull/2790)
+- Fixed a bug on the replacement tool (no command in the replacement choice)) [LINK](https://github.com/jeedom/core/issues/2818)
+- Improved cron system to avoid some launch failures [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Fixed a bug allowing to have multiple times the same listener [LINK](https://github.com/jeedom/core/issues/2820)
+- Fixed a bug in PHP8 with the update that deleted useful files [LINK](https://github.com/jeedom/core/issues/2822)
 
 >**IMPORTANT**
 >
 > Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything
+
+>**IMPORTANT**
+>
+> During the update it is possible that you have an error creating a unique index on the listener table, nothing serious it is due to duplicate listeners and jeedom will correct it itself after 24 hours (the index itself can be done either from the database verification in the jeedom configuration or just wait for the next updates).
+
+>**IMPORTANT**
+>
+>For all those using PHP8 it is imperative to check the "pre-update" box before launching the jeedom update. Without this precaution, essential files could be missing, which would prevent Jeedom from functioning properly.
 
 # 4.4.9
 

@@ -9,7 +9,7 @@
 - Los gráficos se actualizan automáticamente cuando llegan nuevos valores [ENLACE](https://github.com/jeedom/core/issues/2749)
 - Jeedom agrega automáticamente la altura de la imagen al crear widgets para evitar problemas de superposición en dispositivos móviles [ENLACE](https://github.com/jeedom/core/issues/2539)
 - Rediseño de la parte de copia de seguridad en la nube [ENLACE](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementación de un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
+- **DESARROLLO** Configurar un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
 - Las etiquetas del escenario ahora son específicas de la instancia del escenario (si tiene dos escenarios lanzados muy juntos, las etiquetas del último ya no sobrescriben al primero)) [ENLACE](https://github.com/jeedom/core/issues/2763)
 - Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
@@ -28,6 +28,23 @@
 - Eliminando el antiguo sistema de caché. [ENLACE](https://github.com/jeedom/core/pull/2799)
 - Posibilidad de borrar los bloques IN y A mientras se espera otro escenario [ENLACE](https://github.com/jeedom/core/pull/2379)
 - Se corrigió un error en Safari en filtros con acentos [ENLACE](https://github.com/jeedom/core/pull/2754)
+- Se corrigió un error en la generación de información de tipo genérico en escenarios [ENLACE](https://github.com/jeedom/core/pull/2806)
+- Se agregó confirmación al abrir el acceso de soporte desde la página de administración de usuarios [ENLACE](https://github.com/jeedom/core/pull/2809)
+- Adición de escenarios de condiciones mayores o iguales y menores o iguales al asistente de condiciones [ENLACE](https://github.com/jeedom/core/issues/2810)
+- Capacidad para excluir órdenes del análisis de órdenes muertas [ENLACE](https://github.com/jeedom/core/issues/2812)
+- Se corrigió un error en la numeración del número de filas en las tablas [ENLACE](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Se agregó openstreetmap.org en dominios externos permitidos de forma predeterminada [ENLACE](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Actualización automática del archivo de seguridad de Apache al actualizar el núcleo [ENLACE](https://github.com/jeedom/core/issues/2815)
+- Se corrigió una advertencia en las vistas [ENLACE](https://github.com/jeedom/core/pull/2816)
+- Se corrigió un error en el valor de selección del widget predeterminado [ENLACE](https://github.com/jeedom/core/pull/2813)
+- Se corrigió un error si un comando excedía su mínimo o máximo, el valor cambiaba a 0 (en lugar de mínimo/máximo)) [ENLACE](https://github.com/jeedom/core/issues/2819)
+- Se corrigió un error en la visualización del menú de configuración en ciertos idiomas [ENLACE](https://github.com/jeedom/core/issues/2821)
+- Posibilidad en el escenario programado de activar cálculos/comando/etiqueta/fórmula que resulten en la hora de lanzamiento en formato Gi (hora sin cero ni minuto inicial, ejemplo para las 9:15 a.m. => 915 o para las 11:40 p.m. => 2340) [ENLACE](https://github.com/jeedom/core/pull/2808)
+- Posibilidad de poner una imagen personalizada del equipo en los plugins (si el plugin lo soporta), para ello basta con poner la imagen en `data/img` en el formato `eqLogic#id#.png` con #id# el id del equipo (lo puedes encontrar en la configuración avanzada del equipo)) [ENLACE](https://github.com/jeedom/core/pull/2802)
+
+>**IMPORTANTE**
+>
+> Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
 
 # 4.4.10
 
@@ -52,10 +69,22 @@
 - Jeedom ahora enumera todas las ramas y etiquetas del repositorio de github para permitirle probar las funcionalidades por adelantado o volver a una versión anterior del núcleo (tenga cuidado, esto es muy arriesgado)) [ENLACE](https://github.com/jeedom/core/issues/2500)
 - Mejora de subtipos de comandos soportados en tipos genéricos [ENLACE](https://github.com/jeedom/core/pull/2797)
 - Se corrigió un error en la visualización de escenarios y comentarios cuando desea ocultarlos [ENLACE](https://github.com/jeedom/core/pull/2790)
+- Se corrigió un error en las herramientas de reemplazo (no había ningún comando en la opción de reemplazo)) [ENLACE](https://github.com/jeedom/core/issues/2818)
+- Mejora del sistema cron para evitar fallos en el lanzamiento [ENLACE](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Se corrigió un error que le permitía tener el mismo oyente varias veces [ENLACE](https://github.com/jeedom/core/issues/2820)
+- Se corrigió un error en PHP8 con la actualización que eliminaba archivos útiles [ENLACE](https://github.com/jeedom/core/issues/2822)
 
 >**IMPORTANTE**
 >
 > Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
+
+>**IMPORTANTE**
+>
+> Durante la actualización, es posible que tenga un error al crear un índice único en la tabla de oyentes, nada grave, se debe a oyentes duplicados y jeedom corregirá esto por sí solo después de 24 horas (la indexación en sí misma se puede hacer verificando la base de datos en la configuración jeedom o simplemente espere las próximas actualizaciones).
+
+>**IMPORTANTE**
+>
+>Para todos aquellos que usan PHP8 es imperativo marcar la casilla "actualización previa" antes de iniciar la actualización jeedom. Sin esta precaución, podrían faltar archivos esenciales, lo que impediría que Jeedom funcione correctamente.
 
 # 4.4.9
 

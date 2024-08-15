@@ -941,6 +941,9 @@ class cmd {
 	public static function deadCmd() {
 		$return = array();
 		foreach ((cmd::all()) as $cmd) {
+			if($cmd->getConfiguration('core::cmd::noDeadAnalyze',0) == 1){
+				continue;
+			}
 			if (is_array($cmd->getConfiguration('actionCheckCmd', ''))) {
 				foreach ($cmd->getConfiguration('actionCheckCmd', '') as $actionCmd) {
 					if ($actionCmd['cmd'] != '' && strpos($actionCmd['cmd'], '#') !== false) {
@@ -1024,7 +1027,7 @@ class cmd {
 						$binary = true;
 					} elseif ((is_numeric(intval($_value)) && intval($_value) >= 1)) { // Handle number and numeric string
 						$binary = true;
-					} elseif (in_array(strtolower($_value), array('on', 'true', 'high', 'enable', 'enabled'))) { // Handle common string boolean values
+					} elseif (in_array(strtolower($_value), array('on', 'true', 'high', 'enable', 'enabled','online'))) { // Handle common string boolean values
 						$binary = true;
 					} else { // Handle everything else as false
 						$binary = false;
@@ -1035,10 +1038,10 @@ class cmd {
 					if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
 						$_value = round($_value, $this->getConfiguration('historizeRound'));
 					}
-					if ($_value > $this->getConfiguration('maxValue', $_value) && $this->getConfiguration('maxValueReplace') == 1) {
+					if ($_value > $this->getConfiguration('maxValue', $_value)) {
 						$_value = $this->getConfiguration('maxValue', $_value);
 					}
-					if ($_value < $this->getConfiguration('minValue', $_value) && $this->getConfiguration('minValueReplace') == 1) {
+					if ($_value < $this->getConfiguration('minValue', $_value)) {
 						$_value = $this->getConfiguration('minValue', $_value);
 					}
 					return floatval($_value);
@@ -1141,6 +1144,7 @@ class cmd {
 	}
 
 	private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
+		
 		if (!is_array($this->getConfiguration($_type)) || count($this->getConfiguration($_type)) == 0) {
 			return;
 		}

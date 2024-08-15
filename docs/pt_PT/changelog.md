@@ -9,7 +9,7 @@
 - Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
 - Redesenho da parte de backup em nuvem [LINK](https://github.com/jeedom/core/issues/2765)
-- [DEV] Implementação de sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
+- **DEV** Configurando um sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
 - As tags do cenário agora são específicas para a instância do cenário (se você tiver dois cenários lançados muito próximos, as tags do último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
 - Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais
@@ -28,6 +28,23 @@
 - Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
 - Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
+- Corrigido um bug na geração de informações de tipo genérico em cenários [LINK](https://github.com/jeedom/core/pull/2806)
+- Adicionada confirmação ao abrir o acesso ao suporte na página de gerenciamento de usuários [LINK](https://github.com/jeedom/core/pull/2809)
+- Adição de cenários de condições maiores ou iguais e menores ou iguais ao assistente de condições [LINK](https://github.com/jeedom/core/issues/2810)
+- Capacidade de excluir pedidos da análise de pedidos mortos [LINK](https://github.com/jeedom/core/issues/2812)
+- Corrigido um bug na numeração do número de linhas nas tabelas [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Adicionado mapa de rua aberto.org em domínios externos permitidos por padrão [LINK](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
+- Atualização automática do arquivo de segurança do Apache ao atualizar o núcleo [LINK](https://github.com/jeedom/core/issues/2815)
+- Corrigido um aviso nas visualizações [LINK](https://github.com/jeedom/core/pull/2816)
+- Corrigido um bug no valor de seleção do widget padrão [LINK](https://github.com/jeedom/core/pull/2813)
+- Corrigido um bug se um comando excedesse seu mínimo ou máximo, o valor mudava para 0 (em vez de mínimo/máximo) [LINK](https://github.com/jeedom/core/issues/2819)
+- Corrigido um bug na exibição do menu de configurações em determinados idiomas [LINK](https://github.com/jeedom/core/issues/2821)
+- Possibilidade nos acionadores do cenário programado utilizar cálculos/comando/tag/fórmula resultando no horário de lançamento no formato Gi (hora sem zero inicial e minuto, exemplo para 9h15 => 9h15 ou para 23h40 => 23h40) [LINK](https://github.com/jeedom/core/pull/2808)
+- Possibilidade de colocar uma imagem personalizada do equipamento nos plugins (caso o plugin suporte), para isso basta colocar a imagem em `data/img` no formato `eqLogic`#id#.png` com #id# o id do equipamento (você pode encontrá-lo na configuração avançada do equipamento) [LINK](https://github.com/jeedom/core/pull/2802)
+
+>**IMPORTANTE**
+>
+> Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho. O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor. Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor.
 
 # 4.4.10
 
@@ -52,10 +69,22 @@
 - Jeedom agora lista todas as ramificações e tags do repositório github para permitir que você teste funcionalidades com antecedência ou reverta para uma versão anterior do núcleo (tenha cuidado, isso é muito arriscado) [LINK](https://github.com/jeedom/core/issues/2500)
 - Melhoria de subtipos de comandos suportados em tipos genéricos [LINK](https://github.com/jeedom/core/pull/2797)
 - Corrigido bug na exibição de cenários e comentários quando você deseja ocultá-los [LINK](https://github.com/jeedom/core/pull/2790)
+- Corrigido um bug nas ferramentas de substituição (nenhum comando na escolha de substituição) [LINK](https://github.com/jeedom/core/issues/2818)
+- Melhoria do sistema cron para evitar falhas de inicialização [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Corrigido um bug que permitia que você tivesse o mesmo ouvinte diversas vezes [LINK](https://github.com/jeedom/core/issues/2820)
+- Corrigido um bug no PHP8 com a atualização que excluía arquivos úteis [LINK](https://github.com/jeedom/core/issues/2822)
 
 >**IMPORTANTE**
 >
 > Qualquer alteração no mecanismo de cache resulta em uma redefinição dele, então você terá que esperar que os módulos enviem de volta as informações para encontrar tudo
+
+>**IMPORTANTE**
+>
+> Durante a atualização é possível que você tenha um erro ao criar um índice único na tabela do listener, nada sério é devido a listeners duplicados e o jeedom irá corrigir isso sozinho após 24 horas (o indexado em si pode ser feito tanto a partir da verificação do banco de dados na configuração do jeedom ou apenas aguarde as próximas atualizações).
+
+>**IMPORTANTE**
+>
+>Para todos aqueles que usam PHP8 é imperativo marcar a caixa "pré-atualização" antes de iniciar a atualização do jeedom. Sem esta precaução, arquivos essenciais poderiam desaparecer, o que impediria o funcionamento adequado do Jeedom.
 
 # 4.4.9
 
