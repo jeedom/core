@@ -42,6 +42,7 @@
 - Possibilité dans les déclencheurs programmés des scénarios d'utiliser des calculs/commande/tag/formule donnant en resultat l'heure de lancement sous la forme Gi (heure sans zero initial et minute, exemple pour 09h15 => 915 ou pour 23h40 => 2340) [LIEN](https://github.com/jeedom/core/pull/2808)
 - Possibilité de mettre une image personnalisé pour les équipements dans les plugins (si le plugin le support), pour cela il suffit de mettre l'image dans `data/img` sous la forme `eqLogic#id#.png` avec #id# l'id de l'équipement (vous pouvez le trouver dans la configuration avancée de l'équipement) [LIEN](https://github.com/jeedom/core/pull/2802)
 - Ajout du nom de l'utilisateur qui a lancer le scénario dans le tag ``#trigger_value#`` [LIEN](https://github.com/jeedom/core/pull/2382)
+- Correction d'une erreur qui pouvait arriver si vous quitter le dashboard avant la fin du chargement de celui-ci [LIEN](https://github.com/jeedom/core/pull/2827)
 
 >**IMPORTANT**
 >
