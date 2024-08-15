@@ -259,7 +259,7 @@
           "extra": ""
         },
         {
-          "name": "datetime",
+          "name": "timestamp",
           "type": "int(11)",
           "null": "YES",
           "key": "",

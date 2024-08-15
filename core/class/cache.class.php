@@ -25,7 +25,7 @@ class cache {
 	private $key;
 	private $value = null;
 	private $lifetime = 0;
-	private $datetime;
+	private $timestamp;
 	private static $_engine = null;
 
 	/*     * ***********************Methode static*************************** */
@@ -71,7 +71,7 @@ class cache {
 		if (!is_object($cache)) {
 			return (new self())
 				->setKey($_key)
-				->setDatetime(date('Y-m-d H:i:s'));
+				->setTimestamp(strtotime('now'));
 		}
 		return $cache;
 	}
@@ -144,7 +144,7 @@ class cache {
 	/*     * *********************Methode d'instance************************* */
 
 	public function save() {
-		$this->setDatetime(strtotime('now'));
+		$this->setTimestamp(strtotime('now'));
 		return self::getEngine()::save($this);
 	}
 
@@ -185,11 +185,20 @@ class cache {
 	}
 
 	public function getDatetime() {
-		return $this->datetime;
+		return date('Y-m-d H:i:s',$this->timestamp);
 	}
 
 	public function setDatetime($datetime): self {
-		$this->datetime = $datetime;
+		$this->timestamp = strtotime($datetime);
+		return $this;
+	}
+
+	public function getTimestamp(){
+		return $this->timestamp;
+	}
+
+	public function setTimestamp($_timestamp){
+		$this->timestamp = $timestamp;
 		return $this;
 	}
 }
@@ -198,7 +207,7 @@ class cache {
 class MariadbCache {
 
 	public static function all(){
-		$sql = 'SELECT `key`,`datetime`,`value`,`lifetime`
+		$sql = 'SELECT `key`,`timestamp`,`value`,`lifetime`
 		FROM cache';
 		$results =  DB::Prepare($sql,array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS,'cache');
 		foreach ($results as $cache) {
@@ -210,19 +219,19 @@ class MariadbCache {
 	public static function clean(){
 		$sql = 'DELETE 
 		FROM cache
-		WHERE (UNIX_TIMESTAMP(`datetime`)+`lifetime`) < UNIX_TIMESTAMP()';
+		WHERE (`timestamp`+`lifetime`) < UNIX_TIMESTAMP()';
 		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
 	public static function fetch($_key){
-		$sql = 'SELECT `key`,`datetime`,`value`,`lifetime`
+		$sql = 'SELECT `key`,`timestamp`,`value`,`lifetime`
 		FROM cache
 		WHERE `key`=:key';
 		$cache = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
 		if($cache === false){
 			return null;
 		}
-		if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
+		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 			return null;
 		}
 		$cache->setValue(unserialize($cache->getValue()));
@@ -245,9 +254,9 @@ class MariadbCache {
 			'key' => $_cache->getKey(),
 			'value' => serialize($_cache->getValue()),
 			'lifetime' =>$_cache->getLifetime(),
-			'datetime' => $_cache->getDatetime()
+			'timestamp' => $_cache->getTimestamp()
 		);
-		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`datetime`=:datetime,`lifetime`=:lifetime';
+		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`timestamp`=:timestamp,`lifetime`=:lifetime';
 		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
 	}
 
@@ -319,7 +328,7 @@ class FileCache {
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
 			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
-			if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
+			if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 				unlink(jeedom::getTmpFolder('cache').'/'.$file);
 			}
 		}
@@ -334,7 +343,7 @@ class FileCache {
 		if(!is_object($cache)){
 			return null;
 		}
-		if($cache->getLifetime() > 0 && ($cache->getDatetime() + $cache->getLifetime()) < strtotime('now')){
+		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 			self::delete($_key);
 			return null;
 		}
