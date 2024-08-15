@@ -48,7 +48,7 @@
 
 # 4.4.11
 
-- Correction d'un bug avec l'action gotodesign
+- Correction d'un bug avec l'action gotodesign [LIEN](https://github.com/jeedom/core/issues/2825)
 
 # 4.4.10
 
