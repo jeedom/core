@@ -3,6 +3,7 @@
 # 4.4.11
 
 - Correction d'un bug avec l'action gotodesign [LIEN](https://github.com/jeedom/core/issues/2825)
+- Correction de l'erreur sur certain plugin `Call to a member function getTimestamp()` [LIEN](https://github.com/jeedom/core/issues/2828)
 
 # 4.4.10
 
