@@ -41,6 +41,8 @@
 - Corrigido um bug na exibição do menu de configurações em determinados idiomas [LINK](https://github.com/jeedom/core/issues/2821)
 - Possibilidade nos acionadores do cenário programado utilizar cálculos/comando/tag/fórmula resultando no horário de lançamento no formato Gi (hora sem zero inicial e minuto, exemplo para 9h15 => 9h15 ou para 23h40 => 23h40) [LINK](https://github.com/jeedom/core/pull/2808)
 - Possibilidade de colocar uma imagem personalizada do equipamento nos plugins (caso o plugin suporte), para isso basta colocar a imagem em `data/img` no formato `eqLogic`#id#.png` com #id# o id do equipamento (você pode encontrá-lo na configuração avançada do equipamento) [LINK](https://github.com/jeedom/core/pull/2802)
+- Adicionando o nome do usuário que lançou o cenário na tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
+- Corrigido um erro que poderia ocorrer se você saísse do painel antes de ele terminar de carregar [LINK](https://github.com/jeedom/core/pull/2827)
 
 >**IMPORTANTE**
 >
@@ -49,6 +51,7 @@
 # 4.4.11
 
 - Corrigido um bug com a ação gotodesign [LINK](https://github.com/jeedom/core/issues/2825)
+- Corrigido o erro em determinado plugin `Chamar para uma função de membro getTimestamp()` [LINK](https://github.com/jeedom/core/issues/2828)
 
 # 4.4.10
 

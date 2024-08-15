@@ -41,6 +41,8 @@
 - Fixed a bug where the settings menu was not displayed in some languages [LINK](https://github.com/jeedom/core/issues/2821)
 - Possibility in the programmed triggers of the scenarios to use calculations/commands/tags/formulas giving as a result the launch time in the form Gi (hour without initial zero and minute, example for 09:15 => 915 or for 23:40 => 2340) [LINK](https://github.com/jeedom/core/pull/2808)
 - Possibility to put a custom image for equipment in plugins (if the plugin supports it), for this just put the image in `data/img` in the form `eqLogic#id#.png` with #id# the equipment id (you can find it in the advanced equipment configuration) [LINK](https://github.com/jeedom/core/pull/2802)
+- Added the name of the user who launched the scenario in the tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
+- Fixed an error that could occur if you exited the dashboard before it finished loading [LINK](https://github.com/jeedom/core/pull/2827)
 
 >**IMPORTANT**
 >
@@ -49,6 +51,7 @@
 # 4.4.11
 
 - Fixed bug with gotodesign action [LINK](https://github.com/jeedom/core/issues/2825)
+- Fixed the error on certain plugin `Call to a member function getTimestamp()` [LINK](https://github.com/jeedom/core/issues/2828)
 
 # 4.4.10
 

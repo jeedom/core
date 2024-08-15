@@ -41,6 +41,8 @@
 - Ein Fehler in der Anzeige des Einstellungsmenüs in bestimmten Sprachen wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2821)
 - Möglichkeit in den programmierten Szenario-Triggern, Berechnungen/Befehle/Tags/Formeln zu verwenden, die zu einer Startzeit in der Form Gi (Stunde ohne Anfangsnull und Minute) führen, Beispiel für 9:15 Uhr => 915 oder für 23:40 Uhr => 2340) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2808)
 - Möglichkeit, in den Plugins ein personalisiertes Bild für die Ausrüstung einzufügen (sofern das Plugin dies unterstützt), dazu einfach das Bild in „data/img“ in der Form „eqLogic“ einfügen#id#.png` mit #id# die Geräte-ID (Sie finden sie in der erweiterten Konfiguration des Geräts)) [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2802)
+- Hinzufügen des Namens des Benutzers, der das Szenario gestartet hat, im Tag ``#trigger_value#`` [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2382)
+- Es wurde ein Fehler behoben, der auftreten konnte, wenn Sie das Dashboard verlassen, bevor es vollständig geladen wurde [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2827)
 
 >**WICHTIG**
 >
@@ -49,6 +51,7 @@
 # 4.4.11
 
 - Ein Fehler mit der Gotodesign-Aktion wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2825)
+- Der Fehler bei bestimmten Plugins „Aufruf einer Mitgliedsfunktion getTimestamp()“ wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2828)
 
 # 4.4.10
 
