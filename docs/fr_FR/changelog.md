@@ -48,6 +48,10 @@
 >
 > Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme. Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur. A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ca ne change pas alors faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récuperer la valeur.
 
+# 4.4.12
+
+- Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge) [LIEN](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+
 # 4.4.11
 
 - Correction d'un bug avec l'action gotodesign [LIEN](https://github.com/jeedom/core/issues/2825)

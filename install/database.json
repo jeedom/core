@@ -1083,10 +1083,6 @@
             "3": {
               "column": "event",
               "Sub_part": null
-            },
-            "4": {
-              "column": "option",
-              "Sub_part": null
             }
           }
         }
