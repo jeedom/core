@@ -35,7 +35,7 @@ if (!jeeFrontEnd.replace) {
         if (_filter.checked) {
           key = _filter.getAttribute('data-key')
           if (key == '') key = null
-          jeeP.filteredObjects.push(key)
+          jeeP.filteredObjects.push(parseInt(key))
         }
       })
       var byPlugins = new Array()
@@ -532,9 +532,12 @@ document.getElementById('eqSource').addEventListener('click', function(event) {
   }
 })
 
-document.getElementById('eqSource').addEventListener('mouseup', function(event) {
+document.getElementById('eqSource').addEventListener('change', function(event) {
   var _target = null
   if (_target = event.target.closest('select.selectEqReplace')) {
+    if(_target.closest('select.selectEqReplace').value == ''){
+     	return; 
+    }
     jeeP.selectReplacerEqlogic(_target.closest('select.selectEqReplace'))
     return
   }

@@ -23,9 +23,9 @@ Essa API é muito fácil de usar por solicitações HTTP simples via URL.
 
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cenário & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cenário & id=#ID#&action=#ACTION#)
 
-- **Eu iria** : corresponde ao seu ID do cenário. O ID pode ser encontrado na página do cenário relevante, em "Ferramentas" → "Cenários", após a seleção do cenário, ao lado do nome da guia "Geral"". Outra maneira de encontrá-lo : em "Ferramentas" → "Cenários", clique em "Visão geral".
-- **estoque** : corresponde à ação que você deseja aplicar. Os comandos disponíveis são : "iniciar "," parar "," desabilitar "e" habilitar "para, respectivamente, iniciar, parar, desativar ou ativar o cenário.
-- **Tag** \ [opcional \] : se a ação for "iniciar", você pode passar as tags para o cenário (consulte a documentação sobre os cenários) nas tags de formulário = para% 3D1% 20tata% 3D2 (observe que% 20 corresponde a um espaço e% 3D para = ).
+- **eu ia** : corresponde ao seu ID do cenário. O ID pode ser encontrado na página do cenário relevante, em "Ferramentas" → "Cenários", após a seleção do cenário, ao lado do nome da guia "Geral"". Outra maneira de encontrá-lo : em "Ferramentas" → "Cenários", clique em "Visão geral".
+- **Ação** : corresponde à ação que você deseja aplicar. Os comandos disponíveis são : "iniciar "," parar "," desabilitar "e" habilitar "para, respectivamente, iniciar, parar, desativar ou ativar o cenário.
+- **etiquetas** \ [opcional \] : se a ação for "iniciar", você pode passar as tags para o cenário (consulte a documentação sobre os cenários) nas tags de formulário = para% 3D1% 20tata% 3D2 (observe que% 20 corresponde a um espaço e% 3D para = ).
 
 > **Observação**
 >
@@ -35,7 +35,7 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cmd & id=#ID#)
 
-- **Eu iria** : corresponde ao ID do que você deseja controlar ou do qual deseja receber informações.
+- **eu ia** : corresponde ao ID do que você deseja controlar ou do qual deseja receber informações.
 
 A maneira mais fácil de obter esse URL é ir para a página **Análise → Resumo da automação residencial**, para pesquisar o pedido e abrir sua configuração avançada (o ícone "engrenagem"), você verá um URL que já contém tudo o que precisa, dependendo do tipo e subtipo do pedido.
 
@@ -53,7 +53,7 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 - **consulta** : pergunta a Jeedom.
 - **utf8** \ [opcional \] : informa ao Jeedom se deve codificar a consulta no utf8 antes de tentar responder.
-- **vazioResponder** \ [opcional \] : 0 para Jeedom responder mesmo se ele não entendeu, 1 caso contrário.
+- **vazioResposta** \ [opcional \] : 0 para Jeedom responder mesmo se ele não entendeu, 1 caso contrário.
 - **perfil** \ [opcional \] : nome de usuário da pessoa que iniciou a interação.
 - **responder\_cmd** \ [opcional \] : ID do pedido a ser usado para responder à solicitação.
 

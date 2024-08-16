@@ -9,7 +9,7 @@ Você encontrará, à esquerda, os parâmetros e botões de ação. À direita e
 
 ## Sauvegardes
 
-- **Backups** : Permite iniciar um backup manual e imediatamente (útil se você quiser fazer uma alteração crítica. Isso permitirá que você volte). Você também tem um botão para iniciar um backup sem enviar o arquivo para a nuvem (requer uma assinatura, veja abaixo). O envio de um backup para a nuvem pode demorar um pouco. Esta opção evita, portanto, perda excessiva de tempo.
+- **Cópias de segurança** : Permite iniciar um backup manual e imediatamente (útil se você quiser fazer uma alteração crítica. Isso permitirá que você volte). Você também tem um botão para iniciar um backup sem enviar o arquivo para a nuvem (requer uma assinatura, veja abaixo). O envio de um backup para a nuvem pode demorar um pouco. Esta opção evita, portanto, perda excessiva de tempo.
 
 - **Backups Local** : Indica a pasta na qual o Jeedom copia os backups. Recomenda-se não alterá-lo. Se você estiver em um caminho relativo, sua origem é onde o Jeedom está instalado.
 

@@ -14,8 +14,8 @@ Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
 Im Menü (Rechtsklick) finden wir folgende Aktionen :
 
-- **Entwürfe** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
-- **Bearbeitung** : Wechseln Sie in den Bearbeitungsmodus.
+- **Designs** : Zeigt die Liste Ihrer Designs an und ermöglicht Ihnen den Zugriff darauf.
+- **Ausgabe** : Wechseln Sie in den Bearbeitungsmodus.
 - **Vollbild** : Ermöglicht die Verwendung der gesamten Webseite, wodurch das Jeedom-Menü von oben entfernt wird.
 - **Grafik hinzufügen** : Fügen Sie eine Grafik hinzu.
 - **Fügen Sie Text / HTML hinzu** : Ermöglicht das Hinzufügen von Text oder HTML / JavaScript-Code.
@@ -40,7 +40,7 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 - **Erstellen Sie ein Design** : Ermöglicht das Hinzufügen eines neuen Designs.
 - **Doppeltes Design** : Dupliziert das aktuelle Design.
 - **Konfigurieren Sie das Design** : Zugriff auf die Konfiguration des Designs.
-- **Zu schützen** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
+- **Zum Schutz** : Speichern Sie das Design (beachten Sie, dass bei bestimmten Aktionen auch automatische Sicherungen durchgeführt werden).
 
 > **Wichtig**
 >
@@ -51,14 +51,14 @@ Im Menü (Rechtsklick) finden wir folgende Aktionen :
 Hier gefunden :
 
 - **General**
-    - **Nachname** : Der Name Ihres Designs.
+    - **Name** : Der Name Ihres Designs.
     - **Position** : Die Position des Designs im Menü. Ermöglicht die Bestellung der Designs.
     - **Transparenter Hintergrund** : Macht den Hintergrund transparent. Achtung Wenn das Kontrollkästchen aktiviert ist, wird die Hintergrundfarbe nicht verwendet.
     - **Hintergrundfarbe** : Design Hintergrundfarbe.
     - **Zugangscode** : Zugriffscode für Ihr Design (falls leer, ist kein Code erforderlich).
     - **Symbol** : Ein Symbol dafür (erscheint im Designauswahlmenü).
     - **Bild**
-        - **Senden** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
+        - **Schicken** : Ermöglicht das Hinzufügen eines Hintergrundbilds zum Design.
         - **Bild löschen** : Bild löschen.
 - **Größen**
     - **Größe (BxH)** : Ermöglicht das Festlegen der Größe Ihres Designs in Pixel.
@@ -116,7 +116,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 - **Grenze** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
 - **Schriftgröße** : Mit dieser Option können Sie die Schriftgröße ändern (ab 50% müssen Sie das% -Zeichen eingeben).
 - **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
-- **Fett gedruckt** : fetter Text.
+- **Fett** : fetter Text.
 - **Text** : Text im HTML-Code, der sich im Element befindet.
 
 > **Wichtig**
@@ -131,15 +131,15 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Nachname** : Name des Links (angezeigter Text).
-- **Verknüpfung** : Link zum betreffenden Design oder zur betreffenden Ansicht.
+- **Name** : Name des Links (angezeigter Text).
+- **Link** : Link zum betreffenden Design oder zur betreffenden Ansicht.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
 - **Textausrichtung** : Mit dieser Option können Sie die Ausrichtung des Texts auswählen (links / rechts / zentriert)).
-- **Fett gedruckt** : Fetter Text.
+- **Fett** : Fetter Text.
 
 ## Equipement
 
@@ -178,7 +178,7 @@ Zeigt das Fenster zur erweiterten Gerätekonfiguration an (siehe Dokumentation *
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Zum Anzeigen** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
+- **Anzeige** : Definiert, was Sie anzeigen, Standbilder erstellen oder von einer Kamera streamen möchten.
 - **Bild** : Senden Sie das betreffende Bild (wenn Sie ein Bild ausgewählt haben).
 - **Kamera** : Zu zeigende Kamera (wenn Sie Kamera gewählt haben).
 
@@ -213,13 +213,13 @@ In diesem Modus wird beim Bewegen oder Klicken im Bereich Jeedom das betreffende
 
 ### Spezifische Anzeigeeinstellungen
 
-- **Verknüpfung** : Ermöglicht die Angabe der anzuzeigenden Zusammenfassung (Allgemein für die globale Angabe andernfalls das Thema).
+- **Link** : Ermöglicht die Angabe der anzuzeigenden Zusammenfassung (Allgemein für die globale Angabe andernfalls das Thema).
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
 - **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Runden Sie die Winkel ab (vergessen Sie nicht,%, ex 50%, anzugeben)** : Ermöglicht das Abrunden der Winkel. Vergessen Sie nicht, die% anzugeben.
 - **Rand (Aufmerksamkeit CSS-Syntax, z : festes 1px schwarz)** : Ermöglicht das Hinzufügen eines Rahmens. Beachten Sie, dass die Syntax HTML ist.
 - **Schriftgröße (ex 50%, Sie müssen das% -Zeichen setzen)** : Ermöglicht das Ändern der Schriftgröße.
-- **Fett gedruckt** : Fetter Text.
+- **Fett** : Fetter Text.
 
 ## FAQ
 

@@ -1079,7 +1079,7 @@ div.eqLogicZone {
     display: inline-block;
     top: 15px;
     right: 245px;
-    width: 100%;
+   /* width: 100%;*/
     max-height: 28px;
     text-align: right;
     word-break: break-word;

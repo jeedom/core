@@ -16,7 +16,7 @@ json
         "datetime": "0"
     }
 }
-`` ''
+```
 
 Divers
 ======
@@ -359,7 +359,7 @@ Configuraciones:
 
 -   int eqLogic\_id
 
--   int isHistorized = 0
+-   int estáHistorizado = 0
 
 -   unidad de cuerda = ''
 
@@ -789,7 +789,7 @@ Ejemplos de API JSON
 =================
 
 Aquí hay un ejemplo del uso de la API. Para el siguiente ejemplo
-yo suelo [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
+yo uso [esta clase de php](https://github.com/jeedom/core/blob/release/core/class/jsonrpcClient.class.php)
 lo que simplifica el uso de la API.
 
 Recuperando la lista de objetos :
@@ -801,7 +801,7 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;jeeObject::todo ', matriz())){
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-`` ''
+```
 
 Ejecución de una orden (con la opción de un título y un mensaje)
 
@@ -812,6 +812,6 @@ if ($ jsonrpc-&gt; sendRequest ( &#39;cmd::execCmd ', array (' id' => #cmd_id#, 
 }else{
     echo $ jsonrpc-&gt; getError ();
 }
-`` ''
+```
 
 Por supuesto, la API se puede usar con otros idiomas (solo una publicación en una página)

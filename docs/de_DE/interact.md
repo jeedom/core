@@ -7,7 +7,7 @@ Diese Bestellungen erhalten Sie von :
 
 - SMS : Senden Sie eine SMS, um Befehle zu starten (Aktion) oder stellen Sie eine Frage (Info)).
 - Katze : Telegramm, Slack usw.
-- Vokal : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. Befehle starten (Aktion) oder eine Frage stellen (Info).
+- Gesang : diktieren Sie eine Phrase mit Siri, Google Now, SARAH usw. Befehle starten (Aktion) oder eine Frage stellen (Info).
 - HTTP : Starten Sie eine HTTP-URL, die den Text enthält (z. Tasker, Slack), um Befehle zu starten (Aktion) oder eine Frage zu stellen (Info).
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw.
@@ -51,15 +51,15 @@ Wir können auch einen auszuführenden Befehl definieren, wenn beispielsweise di
 Die Konfigurationsseite besteht aus mehreren Registerkarten und Schaltflächen :
 
 - **Sätze** : Zeigt die Anzahl der Sätze der Interaktion an (ein Klick darauf zeigt Sie).
-- **Zur Anmeldung** : Notieren Sie die aktuelle Interaktion.
-- **Löschen** : Aktuelle Interaktion löschen.
+- **Speichern** : Notieren Sie die aktuelle Interaktion.
+- **LÖSCHEN** : Aktuelle Interaktion löschen.
 - **Duplikat** : Dupliziert die aktuelle Interaktion.
 
 ### Registerkarte &quot;Allgemein&quot;
 
-- **Nachname** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
+- **Name** : Interaktionsname (kann leer sein, der Name ersetzt den Anforderungstext in der Interaktionsliste).
 - **Band** : Interaktionsgruppe, dies ermöglicht es, sie zu organisieren (kann leer sein, wird daher in der Gruppe "keine" sein").
-- **Anlage** : Aktiviert oder deaktiviert die Interaktion.
+- **Aktiv** : Aktiviert oder deaktiviert die Interaktion.
 - **Anfrage** : Der generierende Modellsatz (erforderlich).
 - **Gleichbedeutend** : Ermöglicht das Definieren von Synonymen für die Namen der Befehle.
 - **Antwort** : Die Antwort zu geben.
@@ -111,7 +111,7 @@ In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus re
 
 Hier sehen wir das ganze Interesse und die ganze Kraft von Interaktionen. Mit einem Modellsatz können wir Sätze für eine ganze Gruppe von Befehlen generieren.
 
-Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\.#commande\.#** und **\.#equipement\.#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersetzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben).
+Wir werden das oben Gesagte fortsetzen, die Aktionen löschen, die wir hinzugefügt haben, und anstelle des festen Satzes in &quot;Anfrage&quot; die Tags verwenden **\.#commande\.#** Und **\.#equipement\.#**. Jeedom wird diese Tags daher durch den Namen der Befehle und den Namen des Geräts ersetzen (wir können sehen, wie wichtig es ist, konsistente Befehls- / Gerätenamen zu haben).
 
 ![interact006](../images/interact006.png)
 
@@ -242,7 +242,7 @@ In diesem Beispiel sehen wir einen einfachen Satz, der eine Antwort mit 3 versch
 
 ![interact017](../images/interact017.png)
 
-Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum" zu ersetzen *Julia*\.|Ja, da ist jemand im Raum *Julia*"
+Dieses Beispiel zielt speziell auf bestimmte Geräte ab, die eine personalisierte Antwort ermöglichen. Wir könnten uns also vorstellen, die Antwort des Beispiels durch "Nein, es ist niemand im Raum" zu ersetzen *Julie*\.|Ja, da ist jemand im Raum *Julie*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ Es ist möglich, eine Lampe als Prozentsatz (Dimmer) oder einen Thermostat mit d
 
 ![interact022](../images/interact022.png)
 
-Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktie : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *bestellen*.
+Wie wir sehen können, gibt es hier in der Anfrage das Tag **\.#consigne\.#** (Sie können eingeben, was Sie möchten), was in der Antriebssteuerung enthalten ist, um den gewünschten Wert anzuwenden. Dazu haben wir 3 Teile : \.* Anfrage : in dem wir ein Tag erstellen, das den Wert darstellt, der an die Interaktion gesendet wird. \* Antwort : Wir verwenden das Tag für die Antwort erneut, um sicherzustellen, dass Jeedom die Anfrage richtig verstanden hat. \* Aktion : Wir setzen eine Aktion auf die Lampe, die wir fahren möchten, und geben in dem Wert, den wir geben, unser Etikett an *Befehl*.
 
 > **Notiz**
 >

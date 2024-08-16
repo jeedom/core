@@ -13,12 +13,12 @@ Select a device with the icon to the right of the field.
 
 The engine will display in the tables below :
 
-- The **Scenarios** using this equipment.
-- The **designs** displaying this equipment.
-- The **views** displaying this equipment.
-- The **interactions** using this equipment.
+- THE **Scenarios** using this equipment.
+- THE **designs** displaying this equipment.
+- THE **views** displaying this equipment.
+- THE **interactions** using this equipment.
 - Others **equipment** using this equipment.
-- The **orders** using this equipment.
+- THE **orders** using this equipment.
 
 ## By order
 
@@ -26,11 +26,11 @@ Select an order with the icon to the right of the field.
 
 The engine will display in the tables below :
 
-- The **Scenarios** using this command.
-- The **designs** displaying this command.
-- The **views** displaying this command.
-- The **interactions** using this command.
-- The **equipment** using this command.
+- THE **Scenarios** using this command.
+- THE **designs** displaying this command.
+- THE **views** displaying this command.
+- THE **interactions** using this command.
+- THE **equipment** using this command.
 - Others **orders** using this command.
 
 ## By Variable
@@ -39,10 +39,10 @@ Select a variable from the drop-down list.
 
 The engine will display in the tables below :
 
-- The **Scenarios** using this variable.
-- The **interactions** using this variable.
-- The **equipment** using this variable.
-- The **orders** using this variable.
+- THE **Scenarios** using this variable.
+- THE **interactions** using this variable.
+- THE **equipment** using this variable.
+- THE **orders** using this variable.
 
 ## By Plugin
 
@@ -50,12 +50,12 @@ Select a plugin from the drop-down list.
 
 The engine will display in the tables below :
 
-- The **Scenarios** using this plugin.
-- The **designs** displaying this plugin.
-- The **views** displaying this plugin.
-- The **interactions** using this plugin.
-- The **equipment** using this plugin.
-- The **orders** using this plugin.
+- THE **Scenarios** using this plugin.
+- THE **designs** displaying this plugin.
+- THE **views** displaying this plugin.
+- THE **interactions** using this plugin.
+- THE **equipment** using this plugin.
+- THE **orders** using this plugin.
 
 ## By Word
 
@@ -63,15 +63,15 @@ Enter a character string in the search field. Validate with *enter* or with the 
 
 The engine will display in the tables below :
 
-- The **Scenarios** using this string.
+- THE **Scenarios** using this string.
 	Search in expressions, comments, code blocks.
-- The **interactions** using this string.
+- THE **interactions** using this string.
 	Search in fields *Request*.
-- The **equipment** using this string.
-	Search in fields *name*, *logicalId*, *eqType*, *How? 'Or' What*, *tags*.
-- The **orders** using this string.
+- THE **equipment** using this string.
+	Search in fields *name*, *logicalId*, *eqType*, *how*, *tags*.
+- THE **orders** using this string.
 	Search in fields *name*, *logicalId*, *eqType*, *generic_type*, .
-- The **grades** using this string.
+- THE **notes** using this string.
 	Notes text search.
 
 ## By ID
@@ -80,13 +80,13 @@ Enter a number corresponding to a searched Id in the search field. Validate with
 
 The engine will display in the tables below :
 
-- The **Scenario** having this Id.
-- The **design** having this Id.
-- The **seen** having this Id.
+- THE **Scenario** having this Id.
+- THE **design** having this Id.
+- There **view** having this Id.
 - L'**interaction** having this Id.
 - L'**equipment** having this Id.
-- The **ordered** having this Id.
-- The **note** having this Id.
+- There **order** having this Id.
+- There **note** having this Id.
 
 ## Results
 
@@ -97,7 +97,7 @@ For each type of result, it allows actions:
 - **interactions** : Open the interaction configuration page.
 - **equipment** : Open the equipment configuration page.
 - **orders** : Open the order configuration.
-- **grades** : Open Note.
+- **notes** : Open Note.
 
 Each of these options opens a different tab in your browser so as not to lose the current search.
 

@@ -54,6 +54,30 @@ class listener {
 				$listener->remove();
 			}
 		}
+		$sql = 'SELECT '.DB::buildField(__CLASS__).' 
+				FROM listener GROUP BY class, function, event, option 
+				HAVING count(*) > 1';
+		$duplicateds = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if(count($duplicateds) > 0){
+			foreach ($duplicateds as $duplicated) {
+				$value = array(
+					'class' => $duplicated->getClass(),
+					'function' => $duplicated->getFunction(),
+					'event' => json_encode($duplicated->getEvent(), JSON_UNESCAPED_UNICODE),
+					'option' => json_encode($duplicated->getOption(), JSON_UNESCAPED_UNICODE)
+				);
+				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+				FROM listener
+				WHERE class=:class
+				AND `function`=:function
+				AND `option`=:option
+				AND `event`=:event';
+				$listeners = DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				for($i=1;$i<count($listeners);$i++){
+					$listeners[$i]->remove();
+				}
+			}
+		}
 	}
 
 	public static function all() {

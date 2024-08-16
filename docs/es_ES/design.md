@@ -28,8 +28,8 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 - **Añadir imagen / cámara** : Le permite agregar una imagen o una transmisión desde una cámara.
 - **Agregar área** : Permite agregar una zona transparente en la que se puede hacer clic que podrá ejecutar una serie de acciones durante un clic (dependiendo o no del estado de otro comando)).
 - **Agregar resumen** : Agrega información de un objeto o resumen general.
-- **Monitor**
-    - **Ninguna** : No muestra ninguna cuadrícula.
+- **Mostrar**
+    - **Ninguno** : No muestra ninguna cuadrícula.
     - **10x10** : Muestra una cuadrícula de 10 por 10.
     - **15x15** : Muestra una cuadrícula de 15 por 15.
     - **20x20** : Muestra una cuadrícula de 20 por 20.
@@ -51,14 +51,14 @@ En el menú (clic derecho), encontramos las siguientes acciones :
 Encontrado aquí :
 
 - **General**
-    - **Apellido** : El nombre de su diseño.
+    - **Nombre** : El nombre de su diseño.
     - **Posición** : La posición del diseño en el menú. Le permite ordenar los diseños.
     - **Fondo transparente** : Hace el fondo transparente. Atención si la casilla está marcada, no se usa el color de fondo.
     - **Color de fondo** : Diseño de color de fondo.
     - **Código de acceso** : Código de acceso a su diseño (si está vacío, no se requiere código).
     - **Icono** : Un icono para ello (aparece en el menú de opciones de diseño).
     - **Imagen**
-        - **Enviar a** : Le permite agregar una imagen de fondo al diseño.
+        - **Enviar** : Le permite agregar una imagen de fondo al diseño.
         - **Eliminar imagen** : Eliminar imagen.
 - **Tallas**
     - **Tamaño (WxH)** : Le permite establecer el tamaño en píxeles de su diseño.
@@ -116,7 +116,7 @@ Le permite elegir los comandos para graficar.
 - **Borde** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 - **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
 - **Alineación de texto** : le permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Audaz** : texto en negrita.
+- **Gordo** : texto en negrita.
 - **Texto** : Texto en código HTML que estará en el elemento.
 
 > **Importante**
@@ -131,7 +131,7 @@ Le permite elegir los comandos para graficar.
 
 ### Configuraciones de pantalla específicas
 
-- **Apellido** : Nombre del enlace (texto mostrado).
+- **Nombre** : Nombre del enlace (texto mostrado).
 - **Enlace** : Enlace al diseño o vista en cuestión.
 - **Color de fondo** : Le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
 - **Color del texto** : Le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No).
@@ -139,7 +139,7 @@ Le permite elegir los comandos para graficar.
 - **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
 - **Alineación de texto** : Le permite elegir la alineación del texto (izquierda / derecha / centrado).
-- **Audaz** : Texto en negrita.
+- **Gordo** : Texto en negrita.
 
 ## Equipement
 
@@ -178,7 +178,7 @@ Muestra la ventana de configuración avanzada del equipo (ver documentación **R
 
 ### Configuraciones de pantalla específicas
 
-- **Para mostrar** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
+- **Mostrar** : Define lo que desea mostrar, imagen fija o transmisión desde una cámara.
 - **Imagen** : Enviar la imagen en cuestión (si ha elegido una imagen).
 - **Cámara** : Cámara para mostrar (si elige cámara).
 
@@ -219,7 +219,7 @@ En este modo, al pasar el mouse por encima o al hacer clic en el área Jeedom, s
 - **Redondee los ángulos (no olvide poner%, ex 50%)** : Permite redondear los ángulos, no olvides poner el%.
 - **Borde (sintaxis CSS de atención, ej : sólido 1px negro)** : Le permite agregar un borde, tenga cuidado con la sintaxis es HTML.
 - **Tamaño de fuente (ex 50%, debe poner el signo%)** : Le permite cambiar el tamaño de fuente.
-- **Audaz** : Texto en negrita.
+- **Gordo** : Texto en negrita.
 
 ## FAQ
 

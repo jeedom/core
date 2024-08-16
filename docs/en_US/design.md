@@ -15,7 +15,7 @@ It takes time but its only limit is your imagination.
 In the menu (right click), we find the following actions :
 
 - **Designs** : Displays the list of your designs and allows you to access them.
-- **Editing** : Switch to edit mode.
+- **Edition** : Switch to edit mode.
 - **Full screen** : Allows you to use the entire web page, which will remove the Jeedom menu from the top.
 - **Add graphic** : Add a graphic.
 - **Add text / html** : Allows you to add text or html / JavaScript code.
@@ -51,13 +51,13 @@ In the menu (right click), we find the following actions :
 Found here :
 
 - **General**
-    - **Last name** : The name of your design.
+    - **Name** : The name of your design.
     - **Position** : The position of the design in the menu. Allows you to order the designs.
     - **Transparent background** : Makes the background transparent. Attention if the box is checked, the background color is not used.
     - **Background color** : Design background color.
     - **Access code** : Access code to your design (if empty, no code is required).
     - **Icon** : An icon for it (appears in the design choice menu).
-    - **Image**
+    - **Picture**
         - **Send** : Allows you to add a background image to the design.
         - **Delete image** : Delete image.
 - **Sizes**
@@ -116,7 +116,7 @@ Allows you to choose the commands to grapher.
 - **Border** : allows you to add a border, beware the syntax is HTML (you must use CSS syntax, for example : solid 1px black).
 - **Font size** : allows you to change the font size (ex 50%, you must put the% sign).
 - **Text alignment** : allows you to choose the alignment of the text (left / right / centered).
-- **Bold** : bold text.
+- **Fat** : bold text.
 - **Text** : Text in HTML code that will be in the element.
 
 > **Important**
@@ -131,7 +131,7 @@ Allows you to choose the commands to grapher.
 
 ### Specific display settings
 
-- **Last name** : Name of the link (displayed text).
+- **Name** : Name of the link (displayed text).
 - **Link** : Link to the design or view in question.
 - **Background color** : Allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
 - **Text color** : Allows you to change the color of icons and texts (be careful to set Default to No).
@@ -139,7 +139,7 @@ Allows you to choose the commands to grapher.
 - **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
 - **Text alignment** : Allows you to choose the alignment of the text (left / right / centered).
-- **Bold** : Bold text.
+- **Fat** : Bold text.
 
 ## Equipement
 
@@ -178,8 +178,8 @@ Displays the advanced equipment configuration window (see documentation **Home a
 
 ### Specific display settings
 
-- **To display** : Defines what you want to display, still image or stream from a camera.
-- **Image** : Send the image in question (if you have chosen an image).
+- **Display** : Defines what you want to display, still image or stream from a camera.
+- **Picture** : Send the image in question (if you have chosen an image).
 - **Camera** : Camera to display (if you chose camera).
 
 ## Zone
@@ -219,7 +219,7 @@ In this mode, when hovering or clicking in the Jeedom area, you will display the
 - **Round off the angles (don't forget to put%, ex 50%)** : Allows to round the angles, do not forget to put the%.
 - **Border (attention CSS syntax, ex : solid 1px black)** : Allows you to add a border, beware the syntax is HTML.
 - **Font size (ex 50%, you must put the% sign)** : Allows you to change the font size.
-- **Bold** : Bold text.
+- **Fat** : Bold text.
 
 ## FAQ
 

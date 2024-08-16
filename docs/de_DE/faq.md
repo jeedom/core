@@ -1,5 +1,5 @@
 # FAQ
-**Einstellungen → Version : Häufig gestellte Fragen**
+**Einstellungen → Version : FAQs**
 
 ### Jeedom benötigt ein Abonnement ?
 Nein, Jeedom ist vollständig nutzbar, ohne dass ein Abonnement erforderlich ist. Es werden jedoch Dienste für Backups oder Anrufe / SMS angeboten, die jedoch wirklich optional sind.
@@ -14,13 +14,13 @@ Jeedom verfügt über eine mobile Version, die für Mobilgeräte und Tablets gee
 Wenn Sie sich zum ersten Mal bei Jeedom anmelden (und auch danach, wenn Sie sie nicht geändert haben), lauten der Standardbenutzername und das Standardkennwort admin / admin. Bei der ersten Verbindung wird dringend empfohlen, diese Kennungen zu ändern, um die Sicherheit zu erhöhen.
 
 ### Ich kann mich nicht mehr mit meinem Jeedom verbinden
-Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [hier](https://doc.jeedom.com/de_DE/howto/reset.password).
+Seit Jeedom 3.2 Aus offensichtlichen Sicherheitsgründen ist es nicht mehr möglich, eine Remoteverbindung mit admin / admin herzustellen. Admin / Admin-Anmeldeinformationen funktionieren nur lokal. Achtung, wenn Sie den DNS auch lokal durchlaufen, werden Sie notwendigerweise als remote identifiziert. Anderer Standardpunkt nur IP auf 192.168.*.* oder 127.0.0.1 werden als lokal anerkannt. Es wird in der Administration des Jeedom-Sicherheitsteils dann IP "weiß konfiguriert". Wenn Sie trotz allem immer noch keine Verbindung herstellen können, müssen Sie das Verfahren zum Zurücksetzen des Kennworts verwenden (siehe) [Hier](https://doc.jeedom.com/de_DE/howto/reset.password).
 
 ### Ich sehe nicht alle meine Geräte im Dashboard
 Dies liegt häufig daran, dass die Ausrüstung einem Objekt zugeordnet ist, das nicht der Sohn oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dieses in Ihrem Profil konfigurieren).
 
 ### Die Jeedom-Schnittstelle verfügt über Verknüpfungen ?
-Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [hier](shortcuts.md).
+Ja, die Liste der Tastatur- / Mausverknüpfungen lautet [Hier](shortcuts.md).
 
 ### Können wir Ausrüstungsbestellungen nachbestellen? ?
 Ja, es ist möglich, ziehen Sie einfach die Befehle Ihres Objekts in die Konfiguration und legen Sie sie dort ab.
@@ -47,8 +47,8 @@ benutze einfach die [Jeedom DNS](https://jeedom.github.io/documentation/howto/de
 ### So verbinden Sie sich in SSH ?
 Hier ist ein [Dokumentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". Der &quot;Hostname&quot; ist die IP Ihres Jeedom, die Bezeichner sind :
 
-- Nutzername : "root ", Passwort : "Mjeedom96"
-- Nutzername : "jeedom ", Passwort : "Mjeedom96"
+- Benutzername : "root ", Passwort : "Mjeedom96"
+- Benutzername : "jeedom ", Passwort : "Mjeedom96"
 - Oder was Sie in die Installation einfügen, wenn Sie in DIY sind
 
 Beachten Sie, dass beim Schreiben des Passworts nichts auf dem Bildschirm angezeigt wird. Dies ist normal.
@@ -57,7 +57,7 @@ Beachten Sie, dass beim Schreiben des Passworts nichts auf dem Bildschirm angeze
 In SSH tun :
 
 `` `{.bash}
-sudo su -
+Sudo su -
 chmod -R 775 / var / www / html
 chown -R www-Daten:www-data / var / www / html
 `` ''
@@ -66,7 +66,7 @@ chown -R www-Daten:www-data / var / www / html
 In SSH tun :
 
 `` `{.bash}
-sudo su -
+Sudo su -
 php /var/www/html/install/update.php
 chmod -R 775 / var / www / html
 chown -R www-Daten:www-data / var / www / html
@@ -134,7 +134,7 @@ Dies liegt an MySQL, das gestoppt wurde. Es ist nicht normal, die häufigsten F�
 
 Leider gibt es nicht viel Lösung, wenn es sich um den zweiten Fall handelt. Das Beste ist, ein Backup wiederherzustellen (standardmäßig in / var / www / html / backup verfügbar), Jeedom neu zu installieren und das Backup wiederherzustellen. Sie können auch sehen, warum MySQL nicht von einer SSH-Konsole booten möchte :
 `` `{.bash}
-sudo su -
+Sudo su -
 MySQL Stop Service
 mysqld --verbose
 `` ''
@@ -188,7 +188,7 @@ rm -rf / root / tmp / core-master
 ### Ich habe den Fehler in Szenario_Ausführung MYSQL_ATTR_INIT_COMMAND
 Bei der Verwaltung des Jeedom-Teils OS / DB muss dann in der Systemkonsole vorgenommen werden :
 `` ''
-Jawohl | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+Ja | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-seife php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 `` ''
 
 ### Ich kann die Plugin-Abhängigkeiten nicht installieren. Ich habe einen Fehler des Typs : "E: dpkg wurde eingestellt. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Lock / var / lib / dpkg / lock konnte nicht abgerufen werden"
@@ -207,10 +207,10 @@ Du musst :
 
 Es ist notwendig in der Systemkonsole von Jeedom oder in ssh zu machen
 
-`` ''``
+`` ''`
 sudo easy_install pip
 sudo easy_install3 pip
-`` ''``
+`` ''`
 
 Starten Sie dann die Abhängigkeiten neu
 
