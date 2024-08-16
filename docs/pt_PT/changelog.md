@@ -43,6 +43,7 @@
 - Possibilidade de colocar uma imagem personalizada do equipamento nos plugins (caso o plugin suporte), para isso basta colocar a imagem em `data/img` no formato `eqLogic`#id#.png` com #id# o id do equipamento (você pode encontrá-lo na configuração avançada do equipamento) [LINK](https://github.com/jeedom/core/pull/2802)
 - Adicionando o nome do usuário que lançou o cenário na tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Corrigido um erro que poderia ocorrer se você saísse do painel antes de ele terminar de carregar [LINK](https://github.com/jeedom/core/pull/2827)
+- Corrigido um bug na página de substituição ao filtrar objetos [LINK](https://github.com/jeedom/core/issues/2833)
 
 >**IMPORTANTE**
 >

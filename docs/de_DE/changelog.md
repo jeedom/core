@@ -43,6 +43,7 @@
 - Möglichkeit, in den Plugins ein personalisiertes Bild für die Ausrüstung einzufügen (sofern das Plugin dies unterstützt), dazu einfach das Bild in „data/img“ in der Form „eqLogic“ einfügen#id#.png` mit #id# die Geräte-ID (Sie finden sie in der erweiterten Konfiguration des Geräts)) [LINK](https://github.com/jeedom/core/pull/2802)
 - Hinzufügen des Namens des Benutzers, der das Szenario gestartet hat, im Tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Es wurde ein Fehler behoben, der auftreten konnte, wenn Sie das Dashboard verlassen, bevor es vollständig geladen wurde [LINK](https://github.com/jeedom/core/pull/2827)
+- Ein Fehler auf der Ersetzungsseite beim Filtern nach Objekten wurde behoben [LINK](https://github.com/jeedom/core/issues/2833)
 
 >**WICHTIG**
 >

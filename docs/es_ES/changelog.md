@@ -43,6 +43,7 @@
 - Posibilidad de poner una imagen personalizada del equipo en los plugins (si el plugin lo soporta), para ello basta con poner la imagen en `data/img` en el formato `eqLogic#id#.png` con #id# el id del equipo (lo puedes encontrar en la configuración avanzada del equipo)) [ENLACE](https://github.com/jeedom/core/pull/2802)
 - Agregar el nombre del usuario que lanzó el escenario en la etiqueta ``#trigger_value#`` [ENLACE](https://github.com/jeedom/core/pull/2382)
 - Se corrigió un error que podía ocurrir si abandonaba el panel antes de que terminara de cargarse [ENLACE](https://github.com/jeedom/core/pull/2827)
+- Se corrigió un error en la página de reemplazo al filtrar objetos [ENLACE](https://github.com/jeedom/core/issues/2833)
 
 >**IMPORTANTE**
 >

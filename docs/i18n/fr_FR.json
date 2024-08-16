@@ -812,6 +812,7 @@
         "l'id de l'équipement (vous pouvez le trouver dans la configuration avancée de l'équipement": "l'id de l'équipement (vous pouvez le trouver dans la configuration avancée de l'équipement",
         "Ajout du nom de l'utilisateur qui a lancer le scénario dans le tag": "Ajout du nom de l'utilisateur qui a lancer le scénario dans le tag",
         "Correction d'une erreur qui pouvait arriver si vous quitter le dashboard avant la fin du chargement de celui-ci": "Correction d'une erreur qui pouvait arriver si vous quitter le dashboard avant la fin du chargement de celui-ci",
+        "Correction d'un bug sur la page de remplacement lors d'un filtre sur les objets": "Correction d'un bug sur la page de remplacement lors d'un filtre sur les objets",
         "IMPORTANT": "IMPORTANT",
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
