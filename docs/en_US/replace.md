@@ -60,7 +60,7 @@ In the field *Object*, select parent object(s).
 ![7](../images/replace7.png)
 <br>
 
-In the options, select the desired mode (*Replace* Or *To copy*) in the drop-down list, and depending on the needs, the following options (which are all unchecked by default), or at least :
+In the options, select the desired mode (*Replace* Or *Copy*) in the drop-down list, and depending on the needs, the following options (which are all unchecked by default), or at least :
 
 - Copy configuration from source device,
 - Copy configuration from source command.

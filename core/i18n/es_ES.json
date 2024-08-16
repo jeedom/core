@@ -87,7 +87,7 @@
         "Scenario": "Guión",
         "Accueil": "Inicio",
         "Vue": "Visto",
-        "Dashboard": "Dashboard"
+        "Dashboard": "Panel"
     },
     "mobile\/js\/scenario.js": {
         "Aucun": "Ninguno"
@@ -1268,7 +1268,7 @@
     },
     "desktop\/modal\/widget.replace.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Remplacer le widget": "Reemplazar widget",
         "Par": "Por",
         "Remplacer": "Reemplazar",
@@ -1477,7 +1477,7 @@
     "desktop\/php\/editor.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Version": "Versión",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Mobile": "Móvil",
         "Type": "Escribe",
         "Sous-type": "Subtipo",
@@ -1496,7 +1496,7 @@
         "Toggle navigation": "Cambiar la navegación",
         "Accueil": "Inicio",
         "Synthèse": "Síntesis",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Vue": "Ver",
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
@@ -2159,7 +2159,7 @@
     },
     "desktop\/php\/profils.php": {
         "Error 401 Unauthorized": "Error 401 no autorizado",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Synthèse": "Síntesis",
         "Vue": "Vista",
         "Design": "Diseño",
@@ -2594,7 +2594,7 @@
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Dashboard": "Tablero",
+        "Dashboard": "Panel",
         "Vue": "Ver",
         "Design": "Diseño",
         "Design 3D": "Diseño 3d",
@@ -3909,14 +3909,14 @@
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Inicio de sesión de usuario por REMOTE_USER:",
-        "Double authentification requise": "Double authentification requise",
+        "Double authentification requise": "Se requiere doble autenticación",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Contraseña o nombre de usuario no válido",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Debe desactivar la autenticación LDAP para agregar un usuario",
         "Utilisateur invalide": "Usuario invalido",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Debe desactivar la autenticación LDAP para poder eliminar un usuario",
         "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "No puede eliminar la cuenta con la que está conectado",
-        "User ID inconnu": "User ID inconnu",
+        "User ID inconnu": "ID de usuario desconocido",
         "Utilisateur non trouvé :": "Usuario no encontrado:",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
@@ -4692,7 +4692,7 @@
         "Autre": "Otro",
         "Attention le plugin": "Atención el complemento",
         "n\\'a pas recu de message depuis": "no he recibido un mensaje desde",
-        "min": "min",
+        "min": "mín.",
         "Configuration": "Configuración",
         "La tâche plugin::cron n\\'arrive pas à finir à cause du plugin :": "La tarea plugin :: cron no puede finalizar debido al complemento:",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "le recomendamos que desactive el complemento y se ponga en contacto con el autor",

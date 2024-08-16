@@ -6,13 +6,13 @@ Auf dieser Seite können Sie die Liste der Benutzer definieren, die berechtigt s
 Auf der Seite haben Sie drei Schaltflächen :
 
 - Benutzer hinzufügen.
-- Zu schützen.
+- Zum Schutz.
 - Öffnen Sie den Support-Zugriff.
 
 ## Liste der Benutzer
 
 - **Benutzername** : Benutzer-ID.
-- **Anlage** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
+- **Aktiv** : Ermöglicht das Deaktivieren des Kontos, ohne es zu löschen.
 - **Lokal** : Ermöglicht die Verbindung des Benutzers nur, wenn er sich im lokalen Netzwerk von Jeedom befindet.
 - **Profil** : Ermöglicht die Auswahl des Benutzerprofils :
     - **Administrator** : Der Benutzer erhält alle Rechte (Bearbeitung / Beratung) an Jeedom.
@@ -23,7 +23,7 @@ Auf der Seite haben Sie drei Schaltflächen :
 - **Datum der letzten Verbindung** : Datum der letzten Benutzeranmeldung. Bitte beachten Sie, dass dies das tatsächliche Verbindungsdatum ist. Wenn Sie also Ihren Computer speichern, wird das Verbindungsdatum nicht bei jeder Rückkehr aktualisiert.
 - **Rechte** : Benutzerrechte ändern.
 - **Passwort** : Ermöglicht das Ändern des Benutzerpassworts.
-- **Löschen** : Benutzer entfernen.
+- **LÖSCHEN** : Benutzer entfernen.
 - **API-Schlüssel neu generieren** : Benutzer-API-Schlüssel neu generieren.
 - **Rechte verwalten** : Ermöglicht die Feinverwaltung von Benutzerrechten (beachten Sie, dass sich das Profil in "eingeschränkter Benutzer" befinden muss)").
 

@@ -11,11 +11,11 @@ A página Logs é bastante simples :
 À esquerda, uma lista de logs disponíveis, com um campo de pesquisa para filtrar o nome dos logs.
 5 botões superior direito :
 
-- **Pesquisar** : Permite filtrar a exibição do log atual.
+- **Para pesquisar** : Permite filtrar a exibição do log atual.
 - **Pausar / retomar** : Pausar / retomar a atualização em tempo real do log atual.
 - **Baixar** : Faça o download do log atual.
 - **Vazio** : Limpe o log atual.
-- **Deletar** : Excluir o log atual. Se o Jeedom precisar, ele será recriado automaticamente.
+- **EXCLUIR** : Excluir o log atual. Se o Jeedom precisar, ele será recriado automaticamente.
 - **Excluir todos os logs** : Excluir todos os logs presentes.
 
 > **Dica**

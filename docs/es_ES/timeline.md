@@ -3,17 +3,17 @@
 
 ## Timeline
 
-La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden *información*, disparadores de comando *Valores*, y ejecuciones de escenarios.
+La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden *información*, disparadores de comando *acción*, y ejecuciones de escenarios.
 
 Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
 
-- **Guion** : Ya sea directamente en una página de escenario o en *Visión general* escenarios.
-- **Ordenado** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
+- **Guión** : Ya sea directamente en una página de escenario o en *Visión general* escenarios.
+- **Orden** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
 
 ![Línea de tiempo](images/timeline_intro.jpg)
 
-La linea de tiempo *Importante* siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por *carpetas*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
-Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón *Actualizar*.
+La linea de tiempo *Principal* siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por *caso*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
+Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón *Refrescar*.
 
 > **Nota**
 >

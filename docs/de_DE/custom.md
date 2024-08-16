@@ -9,20 +9,20 @@ Hier können Sie Funktionen verwalten **Javascript** und Regeln **CSS** auf Desk
 
 Diese Funktion verwendet einen bestimmten Modus des Core-Dateieditors mit zwei Speicherorten:
 
-- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **custom.js** und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
-- mobil / benutzerdefiniert : Kann beide Dateien enthalten **custom.js** und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
+- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **custom.js** Und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
+- mobil / benutzerdefiniert : Kann beide Dateien enthalten **custom.js** Und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
 
-In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Ermöglicht** Wo **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
+In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Ermöglicht** Oder **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
 
-> **Anmerkung**
+> **Aufgefallen**
 >
 > Beim Aufruf dieser Seite wird automatisch die Baumstruktur erstellt, sowie die 4 Dateien mit einem Kommentar in der 1. Zeile inklusive der Version des Cores, der sie erstellt hat.
 
 ## Ressources
 
-[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: Kaskadierende Stylesheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Tipps zum Anpassen der Benutzeroberfläche](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 
@@ -57,8 +57,8 @@ div.cmd-widget.content,
 div.cmd-widget .content-sm,
 div.cmd-widget .content-lg,
 div.cmd-widget.content-xs {
-  min-width: ein Satz !important;
-  min-height: ein Satz !important;
+  min-width: nicht gesetzt !important;
+  min-height: nicht gesetzt !important;
 }
 „
 

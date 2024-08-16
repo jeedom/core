@@ -16,7 +16,7 @@ Aqui está um exemplo de configuração de um objeto Json que pode ser usado no 
         "datetime": "0"
     }
 }
-`` ''
+```
 
 Divers
 ======
@@ -75,7 +75,7 @@ Retorna a lista de alterações desde a data / hora passada no parâmetro (deve 
 
 Configurações Json :
 
--   int datetime
+-   int datahora
 
 API de plug-in JSON
 ===============
@@ -308,7 +308,7 @@ Configurações:
 
 -   string startTime : data de início do cálculo das estatísticas
 
--   string endTime : data final do cálculo das estatísticas
+-   string fimHora : data final do cálculo das estatísticas
 
 cmd::getTendance
 ----------------
@@ -321,7 +321,7 @@ Configurações:
 
 -   string startTime : data de início do cálculo de tendência
 
--   string endTime : data de término do cálculo de tendência
+-   string fimHora : data de término do cálculo de tendência
 
 cmd::getHistory
 ---------------
@@ -334,7 +334,7 @@ Configurações:
 
 -   string startTime : data de início do histórico
 
--   string endTime : data final do histórico
+-   string fimHora : data final do histórico
 
 cmd::save
 ---------
@@ -425,7 +425,7 @@ Configurações:
 
 -   id int : ID do cenário no qual importar (vazio se a criação)
 
--   string humanName : *nome humano* do cenário (vazio se a criação)
+-   string nomehumano : *nome humano* do cenário (vazio se a criação)
 
 -   importação de matriz : cenário (do campo cenário de exportação::export)
 
@@ -801,7 +801,7 @@ if ($ jsonrpc-> sendRequest ('jeeObject::tudo ', matriz())){
 }else{
     echo $ jsonrpc-> getError ();
 }
-`` ''
+```
 
 Execução de uma ordem (com a opção de um título e uma mensagem)
 
@@ -812,6 +812,6 @@ if ($ jsonrpc-> sendRequest ('cmd::execCmd ', array (' id' => #cmd_id#, 'options
 }else{
     echo $ jsonrpc-> getError ();
 }
-`` ''
+```
 
 É claro que a API pode ser usada com outros idiomas (apenas uma postagem em uma página)

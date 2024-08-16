@@ -26,7 +26,7 @@ Auf einer Ansicht finden wir :
 
 ## Hinzufügen / Bearbeiten einer Ansicht
 
-Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Diagramm*, *Widget* Wo *Bild*. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
+Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist vom Typ *Diagramm*, *Widget* Oder *Malerei *. Abhängig von diesem Typ können Sie Grafiken, Geräte oder Befehle hinzufügen.
 
 - Auf der linken Seite finden Sie die Liste der Ansichten sowie eine Schaltfläche zum Erstellen.
 - Über eine Schaltfläche oben rechts können Sie die aktuelle Ansicht (Konfiguration) bearbeiten).
@@ -41,10 +41,10 @@ Das Prinzip ist ganz einfach : Eine Ansicht besteht aus Bereichen. Jede Zone ist
 
 In jeder Zone haben Sie die folgenden allgemeinen Optionen :
 
-- **Länge** : Definiert die Breite des Bereichs (nur im Desktop-Modus). 1 für die Breite von 1/12 des Navigators, 12 für die Gesamtbreite.
+- **Breite** : Definiert die Breite des Bereichs (nur im Desktop-Modus). 1 für die Breite von 1/12 des Navigators, 12 für die Gesamtbreite.
 - Eine Schaltfläche zum Hinzufügen eines Elements zu dieser Zone, abhängig vom Zonentyp (siehe unten)).
 - **Bearbeiten** : Ermöglicht das Ändern des Namens der Zone.
-- **Löschen** : Löschen Sie die Zone.
+- **LÖSCHEN** : Löschen Sie die Zone.
 
 ### Gerätetypzone
 
@@ -71,9 +71,9 @@ In einem Grafikbereich können Sie Ihrer Ansicht Grafiken hinzufügen. Die folge
 Wenn Sie die Taste drücken **Kurve hinzufügen**, Jeedom zeigt die Liste der historischen Befehle an und Sie können den hinzuzufügenden auswählen. Sobald Sie fertig sind, haben Sie Zugriff auf die folgenden Optionen :
 
 - **Mülleimer** : Befehl aus Diagramm entfernen.
-- **Nachname** : Name des zu zeichnenden Befehls.
+- **Name** : Name des zu zeichnenden Befehls.
 - **Farbe** : Farbe der Kurve.
-- **Nett** : Art der Kurve.
+- **Art** : Art der Kurve.
 - **Gruppe** : Ermöglicht die Gruppierung von Daten (maximaler Typ pro Tag).
 - **Leiter** : Skalieren (rechts oder links) der Kurve.
 - **Treppe** : Zeigt die Treppenkurve an.

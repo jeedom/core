@@ -14,8 +14,8 @@ Leva tempo, mas seu único limite é a sua imaginação.
 
 No menu (clique direito), encontramos as seguintes ações :
 
-- **Desenhos** : Exibe a lista de seus designs e permite que você os acesse.
-- **Editando** : Mudar para o modo de edição.
+- **Projetos** : Exibe a lista de seus designs e permite que você os acesse.
+- **Edição** : Mudar para o modo de edição.
 - **Tela cheia** : Permite usar a página da Web inteira, o que removerá o menu Jeedom da parte superior.
 - **Adicionar gráfico** : Adicionar um gráfico.
 - **Adicionar text / html** : Permite adicionar texto ou código html / JavaScript.
@@ -28,7 +28,7 @@ No menu (clique direito), encontramos as seguintes ações :
 - **Adicionar imagem / câmera** : Permite adicionar uma imagem ou um fluxo de uma câmera.
 - **Adicionar área** : Permite adicionar uma zona transparente clicável que poderá executar uma série de ações durante um clique (dependendo ou não do status de outro comando).
 - **Adicionar resumo** : Adiciona informações de um objeto ou resumo geral.
-- **Exibição**
+- **Mostrar**
     - **Nenhum** : Não exibe nenhuma grade.
     - **10x10** : Exibe uma grade 10 por 10.
     - **15x15** : Exibe uma grade de 15 por 15.
@@ -51,14 +51,14 @@ No menu (clique direito), encontramos as seguintes ações :
 Encontrado aqui :
 
 - **Geral**
-    - **Sobrenome** : O nome do seu design.
+    - **Nome** : O nome do seu design.
     - **Posição** : A posição do design no menu. Permite que você encomende os desenhos.
     - **Fundo transparente** : Torna o plano de fundo transparente. Atenção, se a caixa estiver marcada, a cor do plano de fundo não será usada.
     - **Cor de fundo** : Cor do plano de fundo do design.
     - **Código de acesso** : Código de acesso ao seu design (se vazio, nenhum código é necessário).
     - **Ícone** : Um ícone para ele (aparece no menu de opções de design).
-    - **Imagem**
-        - **Mandar** : Permite adicionar uma imagem de plano de fundo ao design.
+    - **Foto**
+        - **Enviar** : Permite adicionar uma imagem de plano de fundo ao design.
         - **Excluir imagem** : Excluir imagem.
 - **Tamanhos**
     - **Tamanho (LxA))** : Permite definir o tamanho em pixels do seu design.
@@ -116,7 +116,7 @@ Permite escolher os comandos para grapher.
 - **Fronteira** : permite adicionar uma borda, cuidado com a sintaxe é HTML (você deve usar a sintaxe CSS, por exemplo : sólido 1px preto).
 - **Tamanho da fonte** : permite alterar o tamanho da fonte (ex 50%, você deve colocar o sinal de%).
 - **Alinhamento de texto** : permite escolher o alinhamento do texto (esquerda / direita / centralizado)).
-- **Audacioso** : texto em negrito.
+- **Gordo** : texto em negrito.
 - **Texto** : Texto em código HTML que estará no elemento.
 
 > **Importante**
@@ -131,7 +131,7 @@ Permite escolher os comandos para grapher.
 
 ### Configurações de exibição específicas
 
-- **Sobrenome** : Nome do link (texto exibido).
+- **Nome** : Nome do link (texto exibido).
 - **Link** : Link para o design ou exibição em questão.
 - **Cor de fundo** : Permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
 - **Cor do texto** : Permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
@@ -139,7 +139,7 @@ Permite escolher os comandos para grapher.
 - **Fronteira (atenção sintaxe CSS, ex : sólido 1px preto)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
 - **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** : Permite alterar o tamanho da fonte.
 - **Alinhamento de texto** : Permite escolher o alinhamento do texto (esquerda / direita / centralizado)).
-- **Audacioso** : Texto em negrito.
+- **Gordo** : Texto em negrito.
 
 ## Equipement
 
@@ -179,7 +179,7 @@ Exibe a janela de configuração avançada do equipamento (consulte a documenta�
 ### Configurações de exibição específicas
 
 - **Mostrar** : Define o que você deseja exibir, imagem estática ou transmitir a partir de uma câmera.
-- **Imagem** : Envie a imagem em questão (se você escolheu uma imagem).
+- **Foto** : Envie a imagem em questão (se você escolheu uma imagem).
 - **Câmera** : Câmera a ser exibida (se você escolher a câmera).
 
 ## Zone
@@ -219,7 +219,7 @@ Nesse modo, ao passar o mouse ou clicar na área Jeedom, você exibirá o widget
 - **Arredonde os ângulos (não esqueça de colocar%, ex 50%)** : Permite arredondar os ângulos, não se esqueça de colocar o%.
 - **Fronteira (atenção sintaxe CSS, ex : sólido 1px preto)** : Permite adicionar uma borda, cuidado com a sintaxe é HTML.
 - **Tamanho da fonte (ex 50%, você deve colocar o sinal de%)** : Permite alterar o tamanho da fonte.
-- **Audacioso** : Texto em negrito.
+- **Gordo** : Texto em negrito.
 
 ## FAQ
 

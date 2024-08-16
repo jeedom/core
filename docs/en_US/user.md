@@ -12,7 +12,7 @@ On the page you have three buttons :
 ## Users list
 
 - **Username** : User ID.
-- **Asset** : Allows you to deactivate the account without deleting it.
+- **Active** : Allows you to deactivate the account without deleting it.
 - **Local** : Allows the connection of the user only if he is on the local network of Jeedom.
 - **Profile** : Allows you to choose the user profile :
     - **Administrator** : The user obtains all rights (editing / consultation) on Jeedom.
@@ -23,7 +23,7 @@ On the page you have three buttons :
 - **Date of last connection** : Date of last user login. Please note, this is the actual connection date, so if you save your computer, the connection date is not updated each time you return.
 - **Rights** : Modify user rights.
 - **Password** : Allows you to change the user&#39;s password.
-- **To delete** : Remove user.
+- **DELETE** : Remove user.
 - **Regenerate API key** : Regenerate user API key.
 - **Manage rights** : Allows you to manage user rights finely (note that the profile must be in "limited user"").
 

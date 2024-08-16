@@ -10,7 +10,7 @@ Aunque muchos, la mayoría de los parámetros están configurados por defecto.
 En esta pestaña encontramos información general sobre Jeedom :
 
 - **Nombre de tu Jeedom** : Identifica tu Jeedom, especialmente en el mercado. Se puede reutilizar en escenarios o para identificar una copia de seguridad.
-- **Lengua** : Lenguaje usado en tu Jeedom.
+- **Idioma** : Lenguaje usado en tu Jeedom.
 - **Sistema** : Tipo de hardware en el que está instalado el sistema donde se ejecuta su Jeedom.
 - **Dia y hora** : Elige tu zona horaria. Puedes hacer clic en **Forzar la sincronización de la hora** para restaurar la hora incorrecta que se muestra en la esquina superior derecha.
 - **Servidor horario opcional** : Indica qué servidor horario debe usarse si hace clic en **Forzar la sincronización de la hora** (ser reservado para expertos).
@@ -22,8 +22,8 @@ En esta pestaña encontramos información general sobre Jeedom :
 A continuación, varios parámetros que centralizan la información que pueden usar los complementos, evitando tener que ingresarlos en cada complemento.
 
 - Contacto : Latitud, longitud y altitud de su hogar / sitio.
-- Dirección : Dirección postal de su hogar / sitio.
-- Diverso : Superficie y número de ocupantes de su hogar / sitio.
+- DIRECCIÓN : Dirección postal de su hogar / sitio.
+- Misceláneas : Superficie y número de ocupantes de su hogar / sitio.
 
 ## Pestaña interfaz
 
@@ -42,7 +42,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **No vertical** : Restringe la altura de los mosaicos cada x píxeles.
 - **Margen** : Espacio vertical y horizontal entre mosaicos, en píxeles.
 - **Centrado vertical de baldosas** : Centra verticalmente el contenido de los mosaicos.
-- **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *conjuntoColoredIcon* ('Colorear icono').
+- **Iconos coloridos de widgets** : Colorear iconos de widgets según su estado. Modificable por escenario, *establecerColoredIcono* ('Colorear icono').
 - **Categorías coloreadas** : Coloración del título de los mosaicos según la categoría.
 - **Móvil : una columna predeterminada** : Visualización de ancho completo de mosaicos en dispositivos móviles
 
@@ -65,9 +65,9 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 
 ### Personnalisation
 
-- **Habilitar** : Active el uso de las siguientes opciones.
+- **Permitir** : Active el uso de las siguientes opciones.
 - **Transparencia** : Muestra mosaicos del panel de control y algunos contenidos con transparencia. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Redondo** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
+- **Redondeado** : Muestra elementos de la interfaz con ángulos redondeados. 0 : sin redondeo, 1 : redondeo máximo.
 - **Deshabilitar sombras** : Deshabilita las sombras de los mosaicos en el tablero, los menús y ciertos elementos de la interfaz.
 
 
@@ -116,7 +116,7 @@ Es absolutamente necesario configurar correctamente esta parte importante de Jee
 - **Mercado proxy** : permite el acceso remoto a su Jeedom sin la necesidad de un DNS, una IP fija o abrir los puertos de su caja de Internet.
     - **Usando Jeedom DNS** : activa Jeedom DNS (tenga en cuenta que esto requiere al menos un paquete de servicio)).
     - **Estado de DNS** : Estado HTTP HTTP.
-    - **Administración** : permite detener y reiniciar el servicio DNS de Jeedom.
+    - **Gestión** : permite detener y reiniciar el servicio DNS de Jeedom.
 
 > **Importante**
 >
@@ -217,7 +217,7 @@ Configurar gráficos de enlace. Estos enlaces le permiten ver, en forma de gráf
 - **Profundidad para los comandos** : Lo mismo para pedidos.
 - **Profundidad para las variables** : Lo mismo para las variables.
 - **Prerender parámetro** : Le permite actuar sobre el diseño del gráfico.
-- **Parámetro de representación** : Mismo.
+- **Parámetro de representación** : Ídem.
 
 ## Pestaña interacciones
 
@@ -241,20 +241,20 @@ Aquí tienes tres parámetros :
 
 ### Interacción automática, contextuales y de alerta
 
--   Los **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible.
+-   EL **interacciones automáticas** permitir que Jeedom intente comprender una solicitud de interacción incluso si no hay ninguna definida. Luego buscará un nombre de objeto y / o equipo y / o orden para tratar de responder lo mejor posible.
 
--   Los **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
+-   EL **interacciones contextuales** le permite encadenar múltiples solicitudes sin repetir todo, por ejemplo :
     - *Jeedom manteniendo el contexto :*
-        - *Vosotras* : Cuanto esta el en el cuarto ?
+        - *TÚ* : Cuanto esta el en el cuarto ?
         - *Jeedom* : Temperatura 25.2 ° C
-        - *Vosotras* : y en la sala de estar ?
+        - *TÚ* : y en la sala de estar ?
         - *Jeedom* : Temperatura 27.2 ° C
     - *Haz dos preguntas en una :*
-        - *Vosotras* : ¿Cómo es en el dormitorio y en la sala de estar? ?
+        - *TÚ* : ¿Cómo es en el dormitorio y en la sala de estar? ?
         - *Jeedom* : Temperatura 23.6 ° C, temperatura 27.2 ° C
 -   Interacciones de tipo **Avísame** permita pedirle a Jeedom que le avise si un pedido excede / cae o vale un cierto valor.
-    - *Vosotras* : Notificarme si la temperatura de la sala supera los 25 ° C ?
-    - *Jeedom* : OK (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
+    - *TÚ* : Notificarme si la temperatura de la sala supera los 25 ° C ?
+    - *Jeedom* : Bueno (*Tan pronto como la temperatura de la sala supere los 25 ° C, Jeedom le dirá, una vez*)
 
 > **Nota**
 >
@@ -331,7 +331,7 @@ Depósito utilizado para conectar Jeedom a Github.
 
 Depósito utilizado para conectar Jeedom al mercado, se recomienda encarecidamente utilizar este depósito. Atención : cualquier solicitud de soporte puede ser rechazada si utiliza un depósito diferente a este.
 
-- **Dirección** : Dirección du Mercado.(https://market.jeedom.com).
+- **DIRECCIÓN** : DIRECCIÓN du Mercado.(https://market.jeedom.com).
 - **Nombre de usuario** : Su nombre de usuario en el mercado.
 - **Contraseña** : Tu contraseña de mercado.
 - **Nombre [nube de respaldo]** : Nombre de su copia de seguridad en la nube (la atención debe ser única para cada Jeedom en riesgo de chocar entre sí).
@@ -391,7 +391,7 @@ Permite monitorear y actuar en el caché Jeedom :
     Tenga en cuenta que esto puede causar pérdida de datos !
 - **Tiempo de pausa para polling largo** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, a cambio utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
 
->**Importante**
+>**IMPORTANTE**
 >
 > Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
 
