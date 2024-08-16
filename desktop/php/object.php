@@ -316,7 +316,7 @@ $synthToActions = array(
 			<div role="tabpanel" class="tab-pane" id="summarytab">
 				<?php
 				if (count($config_objSummary) == 0) {
-					echo '<div class="alert alert-danger">{{Aucun résumé n\'est créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
+					echo '<div class="alert alert-danger">{{Vous n\'avez aucun résumé de créé. Allez dans l\'administration de}} ' . config::byKey('product_name') . ' {{-> Configuration -> onglet Résumés.}}</div>';
 				} else {
 
 				?>
