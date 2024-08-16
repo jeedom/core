@@ -29,7 +29,7 @@ class ajax {
 			header('Content-Type: application/json');
 		}
 		if(isset($_GET['action']) && !in_array($_GET['action'], $_allowGetAction)){
-			throw new \Exception(__('Méthode non autorisé en GET : ',__FILE__).$_GET['action']);
+			throw new \Exception(__('Méthode non autorisée en GET : ',__FILE__).$_GET['action']);
 		}
 	}
 	
