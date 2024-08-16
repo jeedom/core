@@ -368,7 +368,7 @@ class cache {
 	}
 
 	public function setTimestamp($_timestamp){
-		$this->datetime = $timestamp;
+		$this->datetime = $_timestamp;
 		return $this;
 	}
 }
