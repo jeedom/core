@@ -391,7 +391,7 @@ Permite monitorear y actuar en el caché Jeedom :
     Tenga en cuenta que esto puede causar pérdida de datos !
 - **Tiempo de pausa para polling largo** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, a cambio utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
 
->**IMPORTANTE**
+>**Importante**
 >
 > Cualquier cambio en el motor de caché da como resultado un reinicio del mismo, por lo que luego debe esperar a que los módulos envíen la información para encontrar todo
 

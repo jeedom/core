@@ -121,7 +121,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 | **Electricity (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| POWER | Electric power | Info | numeric
+| Power | Electric power | Info | numeric
 | CONSUMPTION | Power consumption | Info | numeric
 | VOLTAGE | Tension | Info | numeric
 | REBOOT | Restart | Action | other
@@ -145,7 +145,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | **Generic (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | DEPTH | Depth | Info | numeric
-| DISTANCE | Distance | Info | numeric
+| DISTANCE | DISTANCE | Info | numeric
 | BUTTON | Button | Info | binary, numeric
 | GENERIC_INFO |  Generic | Info |
 | GENERIC_ACTION |  Generic | Action | other
@@ -172,7 +172,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume | Info | numeric
+| Volume | Volume | Info | numeric
 | MEDIA_STATUS | Status | Info | string
 | MEDIA_ALBUM | Album | Info | string
 | MEDIA_ARTIST | Artist | Info | string
@@ -258,7 +258,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | ALARM_MODE | Alarm Mode | Info | string
 | ALARM_ENABLE_STATE | Alarm Status activated | Info | binary
 | FLOOD | Flood | Info | binary
-| SABOTAGE | Sabotage | Info | binary
+| SABOTAGE | SABOTAGE | Info | binary
 | SHOCK | Shock | Info | binary, numeric
 | SIREN_OFF | Siren Button Off | Action | other
 | SIREN_ON | Siren Button On | Action | other
@@ -288,7 +288,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 | FAN_SPEED_STATE | Fan speed Status | Info | numeric
 | ROTATION_STATE | State Rotation | Info | numeric
 | FAN_SPEED | Fan speed | Action | slider
-| ROTATION | Rotation | Action | slider
+| ROTATION | ROTATION | Action | slider
 
 | **Pane (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

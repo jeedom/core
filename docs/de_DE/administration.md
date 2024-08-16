@@ -391,7 +391,7 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
     Bitte beachten Sie, dass dies zu Datenverlust führen kann !
 - **Pausenzeit für das lange Polling** : Häufigkeit, mit der Jeedom prüft, ob Ereignisse für Kunden ausstehen (Weboberfläche, mobile Anwendung usw.)). Je kürzer diese Zeit ist, desto schneller wird die Schnittstelle aktualisiert. Im Gegenzug verbraucht sie mehr Ressourcen und kann daher Jeedom verlangsamen.
 
->**WICHTIG**
+>**Wichtig**
 >
 > Jede Änderung der Cache-Engine führt zu einem Zurücksetzen der Cache-Engine, sodass Sie warten müssen, bis die Module die Informationen zurücksenden, um alles zu finden
 

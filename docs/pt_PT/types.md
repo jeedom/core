@@ -121,7 +121,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 | **Eletricidade (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| PODER | Energia elétrica | Informação | numeric
+| Poder | Energia elétrica | Informação | numeric
 | CONSUMO | Consumo de energia | Informação | numeric
 | TENSÃO | Tensão | Informação | numeric
 | REINÍCIO | Reiniciar | Ação | other
@@ -145,7 +145,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | **Genérico (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | PROFUNDIDADE | Profundidade | Informação | numeric
-| DISTÂNCIA | Distância | Informação | numeric
+| DISTÂNCIA | DISTÂNCIA | Informação | numeric
 | BOTÃO | Botão | Informação | binário, numérico
 | GENERIC_INFO |  Genérico | Informação |
 | AÇÃO_GENÉRICA |  Genérico | Ação | other
@@ -172,7 +172,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 | **Multimídia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUME | Volume | Informação | numeric
+| Volume | Volume | Informação | numeric
 | MEDIA_STATUS | Status | Informação | string
 | MEDIA_ALBUM | Álbum | Informação | string
 | MEDIA_ARTISTA | Artista | Informação | string
@@ -258,7 +258,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | ALARME_MODE | Modo de Alarme | Informação | string
 | ALARME_ENABLE_STATE | Status de alarme ativado | Informação | binary
 | ENCHENTE | Enchente | Informação | binary
-| SABOTAR | Sabotar | Informação | binary
+| SABOTAR | SABOTAR | Informação | binary
 | CHOQUE | Choque | Informação | binário, numérico
 | SIRENE_DESLIGADA | Botão da sirene desligado | Ação | other
 | SIRENE_ON | Botão de sirene ligado | Ação | other
@@ -288,7 +288,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 | FAN_SPEED_STATE | Status da velocidade do ventilador | Informação | numeric
 | ROTATION_STATE | Rotação de estado | Informação | numeric
 | VELOCIDADE DO VENTILADOR | Velocidade do ventilador | Ação | slider
-| ROTAÇÃO | Rotação | Ação | slider
+| ROTAÇÃO | ROTAÇÃO | Ação | slider
 
 | **Painel (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|

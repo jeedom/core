@@ -161,12 +161,12 @@ Depending on the type of widget, you can generally customize the icons, put the 
 
 There are two types of template :
 
-- THE "**simple**" : as an icon / image for the "**ON**" and an icon / image for the "**OFF**".
+- THE "**simple**" : as an icon / image for the "**On**" and an icon / image for the "**Off**".
 - THE "**multistates**" : This allows you to define, for example, an image if the command has the value "**XX**" and another so greater than "**YY**" or if less than "**ZZ**". Also works for text values, an image if the value is "**toto**", another if "**plop**" And so on...
 
 #### Remplacement
 
-This is called a simple template, here you just have to say that the "**ON**" matches such icon / image *(using the choose button)*, THE "**OFF**" to such other icon / image, etc...      
+This is called a simple template, here you just have to say that the "**On**" matches such icon / image *(using the choose button)*, THE "**Off**" to such other icon / image, etc...      
 
 The box **Time-widget**, if available, displays the duration since the last change of state under the widget.
 
@@ -178,7 +178,7 @@ For templates using images, you can configure the width of the widget in pixels 
 
 #### Test
 
-This is called multistate templates *(several states)*. Instead of putting an image for the "**ON** and / or for the "**OFF** as in the previous case, you will assign an icon according to the validation of a condition *(test)*. If this is true then the widget will display the icon / image in question.
+This is called multistate templates *(several states)*. Instead of putting an image for the "**On** and / or for the "**Off** as in the previous case, you will assign an icon according to the validation of a condition *(test)*. If this is true then the widget will display the icon / image in question.
 
 As before, different images can be selected depending on the theme active on Jeedom and the box **Time-widget** displays the duration since the last change of state.
 
@@ -188,13 +188,13 @@ The tests are in the form : `#value# == 1`, `#value#`will be automatically repla
 - `#value# >= 1 && #value# <= 5`
 - `#value# == 'toto'`
 
->**Note**     
+>**NOTE**     
 >It is essential to show the apostrophes (**'**) around the text to compare if the value is text *(info / other)*.
 
->**Note**     
+>**NOTE**     
 >For advanced users, it is also possible to use javascript functions such as `#value#.match ("^ plop") `, here we test if the text starts with` plop`.
 
->**Note**     
+>**NOTE**     
 >It is possible to display the value of the command in the widget by specifying `#value#`in the HTML code of the test. To display the unit add `#unite#`.
 
 ## Code Widget

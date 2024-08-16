@@ -391,7 +391,7 @@ Allows monitoring and acting on the Jeedom cache :
     Please note that this may cause data loss !
 - **Time of pause for long polling** : Frequency at which Jeedom checks if there are pending events for customers (web interface, mobile application, etc.)). The shorter this time, the faster the interface will update, in return it uses more resources and can therefore slow Jeedom.
 
->**IMPORTANT**
+>**Important**
 >
 > Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything
 

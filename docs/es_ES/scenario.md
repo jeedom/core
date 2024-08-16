@@ -163,7 +163,7 @@ El bloque de código le permite ejecutar código php. Por lo tanto, es muy poten
 #### Acceso a controles (sensores y actuadores)
 
 - ``cmd::byString($string);`` : Devuelve el objeto de comando correspondiente.
-  - ``$string``: Enlace al pedido deseado : ``#[objet][equipo][commande]#`` (ex : ``#[Appartement][Alarme][Activo]#``)
+  - ``$string``: Enlace al pedido deseado : ``#[objet][equipo][commande]#`` (Ex : ``#[Appartement][Alarme][Activo]#``)
 - ``cmd::byId($id);`` : Devuelve el objeto de comando correspondiente.
   - ``$id`` : ID de pedido.
 - ``$cmd->execCmd($options = null);`` : Ejecute el comando y devuelva el resultado.
@@ -307,7 +307,7 @@ También tiene las siguientes etiquetas adicionales si su escenario fue desencad
 - #query# : Interacción que desencadenó el escenario.
 - #profil# : Perfil del usuario que inició el escenario (puede estar vacío).
 
-> **Importante**
+> **IMPORTANTE**
 >
 > Cuando una interacción desencadena un escenario, se ejecuta necesariamente en modo rápido. Entonces, en el hilo de interacción y no en un hilo separado.
 
@@ -442,7 +442,7 @@ También se puede usar una caja de herramientas de funciones genéricas para rea
 - ``median(commande1,commande2…​.commandeN)`` : Devuelve la mediana de los valores.
 - ``avg(commande1,commande2…​.commandeN)`` : Devuelve el promedio de los valores.
 - ``time_op(time,value)`` : Le permite realizar operaciones a tiempo, con tiempo = tiempo (ej : 1530) y valor = valor para sumar o restar en minutos.
-- ``time_between(time,start,end)`` : Se usa para probar si un tiempo está entre dos valores con ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Los valores iniciales y finales pueden estar a caballo entre la medianoche.
+- ``time_between(time,start,end)`` : Se usa para probar si un tiempo está entre dos valores con ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Los valores iniciales y finales pueden estar a caballo entre la medianoche.
 - ``time_diff(date1,date2[,format, round])`` : Se usa para descubrir la diferencia entre dos fechas (las fechas deben estar en el formato AAAA / MM / DD HH:MM:SS). Por defecto, el método devuelve la diferencia en día (s). Puedes preguntarlo en segundos (s), minutos (m), horas (h). Ejemplo en segundos ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. La diferencia se devuelve en absoluto, a menos que especifique ``f`` (``sf``, ``mf``, ``hf``, ``df``). También puedes usar ``dhms`` quien no devolverá ejemplo ``7j 2h 5min 46s``. El parámetro de redondeo opcional se redondea a x decimales (2 por defecto). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formatea el retorno de una cadena ``#time#``.
 - ``floor(time/ /60)`` : Convierte segundos a minutos o minutos a horas (``floor(time/ /3600)`` por segundos a horas).
@@ -518,7 +518,7 @@ Además de los comandos de automatización del hogar, tiene acceso a las siguien
 
 Esta funcionalidad le permite transformar un escenario en una plantilla para, por ejemplo, aplicarlo a otro Jeedom.
 
-Haciendo clic en el botón **plantilla** en la parte superior de la página, abre la ventana de administración de plantillas.
+Haciendo clic en el botón **Plantilla** en la parte superior de la página, abre la ventana de administración de plantillas.
 
 A partir de ahí, tienes la posibilidad :
 

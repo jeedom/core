@@ -22,7 +22,7 @@ In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Erm�
 
 [CSS: Kaskadierende Stylesheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Tipps zum Anpassen der Benutzeroberfläche](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 

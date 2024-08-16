@@ -86,12 +86,12 @@ Para isso, é necessário levar em consideração 2 pré-requisitos :
     'fermer':'off',
     'activer':'on',
     'desactiver':'off',
-    'desativar':'off',
+    'desabilitar':'off',
     'lock':'on',
     'unlock':'off',
     'marche':'on',
     'arret':'off',
-    'Pare':'off',
+    'parar':'off',
     'stop':'off',
     'go':'on'
 ```
@@ -161,12 +161,12 @@ Dependendo do tipo de widget, geralmente você pode personalizar os ícones, col
 
 Existem dois tipos de modelo :
 
-- O "**simples**" : como um ícone / imagem para o "**SOBRE**" e um ícone / imagem para o "**DESLIGADO**".
+- O "**simples**" : como um ícone / imagem para o "**Nós**" e um ícone / imagem para o "**Desligado**".
 - O "**multiestado**" : Isso torna possível definir, por exemplo, uma imagem se o comando tiver o valor "**XX**" e outro tão maior que "**AA**" ou se menos que "**ZZ**". Também funciona para valores de texto, uma imagem se o valor for "**totó**", outro se "**estrondo**" E assim por diante...
 
 #### Remplacement
 
-Isso é chamado de modelo simples, aqui você só precisa dizer que o "**SOBRE**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, O "**DESLIGADO**" para esse outro ícone / imagem, etc...      
+Isso é chamado de modelo simples, aqui você só precisa dizer que o "**Nós**" corresponde a tal ícone / imagem *(usando o botão de escolha)*, O "**Desligado**" para esse outro ícone / imagem, etc...      
 
 A Caixa **Widget de tempo**, se disponível, exibe a duração desde a última mudança de estado no widget.
 
@@ -178,7 +178,7 @@ Para modelos usando imagens, você pode configurar a largura do widget em pixels
 
 #### Test
 
-Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**SOBRE** e / ou para o "**DESLIGADO** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
+Isso é chamado de modelos de vários estados *(vários estados)*. Em vez de colocar uma imagem para o "**Nós** e / ou para o "**Desligado** como no caso anterior, você atribuirá um ícone de acordo com a validação de uma condição *(test)*. Se isso for verdade, o widget exibirá o ícone / imagem em questão.
 
 Como antes, diferentes imagens podem ser selecionadas dependendo do tema ativo no Jeedom e na caixa **Widget de tempo** mostra a duração desde a última mudança de estado.
 
@@ -188,13 +188,13 @@ Os testes estão no formato : `#value# == 1`, `#value#`será automaticamente sub
 - `#value# >= 1 && #value# <= 5`
 - `#value# == 'toto'`
 
->**Observação**     
+>**OBSERVAÇÃO**     
 >É essencial mostrar os apóstrofos (**'**) em torno do texto para comparar se o valor é texto *(info / outro)*.
 
->**Observação**     
+>**OBSERVAÇÃO**     
 >Para usuários avançados, também é possível usar funções javascript, como `#value#.match ("^ plop") `, aqui testamos se o texto começa com` plop`.
 
->**Observação**     
+>**OBSERVAÇÃO**     
 >É possível exibir o valor do comando no widget especificando `#value#`no código HTML do teste. Para exibir a unidade, adicione `#unite#`.
 
 ## Widget de código

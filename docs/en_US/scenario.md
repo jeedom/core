@@ -163,7 +163,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 #### Access to controls (sensors and actuators)
 
 - ``cmd::byString($string);`` : Returns the corresponding command object.
-  - ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (ex : ``#[Appartement][Alarme][Active]#``)
+  - ``$string``: Link to the desired command : ``#[objet][equipment][commande]#`` (Ex : ``#[Appartement][Alarme][Active]#``)
 - ``cmd::byId($id);`` : Returns the corresponding command object.
   - ``$id`` : Command ID.
 - ``$cmd->execCmd($options = null);`` : Execute the command and return the result.
@@ -307,7 +307,7 @@ You also have the following additional tags if your scenario was triggered by an
 - #query# : Interaction that triggered the scenario.
 - #profil# : Profile of the user who started the scenario (can be empty).
 
-> **Important**
+> **IMPORTANT**
 >
 > When a scenario is triggered by an interaction, it is necessarily executed in fast mode. So in the interaction thread and not in a separate thread.
 
@@ -442,7 +442,7 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``median(commande1,commande2…​.commandeN)`` : Returns the median of the values.
 - ``avg(commande1,commande2…​.commandeN)`` : Returns the average of the values.
 - ``time_op(time,value)`` : Allows you to perform operations on time, with time = time (ex : 1530) and value = value to add or subtract in minutes.
-- ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
+- ``time_between(time,start,end)`` : Used to test if a time is between two values with ``time=temps`` (Ex : 1530), ``start=temps``, ``end=temps``. Start and end values can be straddling midnight.
 - ``time_diff(date1,date2[,format, round])`` : Used to find out the difference between two dates (the dates must be in the format YYYY / MM / DD HH:MM:SS). By default, the method returns the difference in day (s). You can ask it in seconds (s), minutes (m), hours (h). Example in seconds ``time_diff(2019-02-02 14:55:00,2019-02-25 14:55:00,s)``. The difference is returned in absolute, unless you specify ``f`` (``sf``, ``mf``, ``hf``, ``df``). You can also use ``dhms`` who will not return example ``7j 2h 5min 46s``. The optional round parameter rounds to x decimal places (2 by default). Ex: ``time_diff(2020-02-21 20:55:28,2020-02-28 23:01:14,df, 4)``.
 - ``formatTime(time)`` : Formats the return of a chain ``#time#``.
 - ``floor(time/60)`` : Convert seconds to minutes, or minutes to hours (``floor(time/3600)`` for seconds to hours).
@@ -518,7 +518,7 @@ In addition to home automation commands, you have access to the following action
 
 This functionality allows you to transform a scenario into a template to, for example, apply it to another Jeedom.
 
-By clicking on the button **template** at the top of the page, you open the template management window.
+By clicking on the button **Template** at the top of the page, you open the template management window.
 
 From there, you have the possibility :
 

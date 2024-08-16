@@ -62,7 +62,7 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **categoria** : categoria de mensagem para adicionar ao centro de mensagens.
-- **mensagem** : mensagem em questão, tenha cuidado ao pensar em codificar a mensagem (o espaço se torna% 20, =% 3D…). Você pode usar uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
+- **Mensagem** : mensagem em questão, tenha cuidado ao pensar em codificar a mensagem (o espaço se torna% 20, =% 3D…). Você pode usar uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
@@ -93,4 +93,4 @@ Retorna todos os objetos, equipamentos, comandos (e seus valores se forem inform
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = variável & nome=#NAME#&value=)*VALOR*
 
 - **nome** : nome da variável cujo valor é desejado (lendo o valor).
-- **valor** \ [opcional \] : se "value" for especificado, a variável aceitará esse valor (escrevendo um valor).
+- **VALOR** \ [opcional \] : se "value" for especificado, a variável aceitará esse valor (escrevendo um valor).

@@ -1,7 +1,7 @@
 # Objets
 **Ferramentas → Objetos**
 
-O **objetos** permitem definir a estrutura em árvore da sua automação residencial.
+O **Objetos** permitem definir a estrutura em árvore da sua automação residencial.
 
 Todo o equipamento que você cria deve pertencer a um objeto e, portanto, é mais facilmente identificável. Dizemos então que o objeto é o **pai** equipamento.
 

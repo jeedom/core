@@ -38,7 +38,7 @@ For each object, next to its label, two buttons are available.
 
 On each equipment we find :
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **DELETE**, give back **visible**/**invisible**,  **active**/**inactive** selected equipment.
+- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **DELETE**, give back **visible**/**invisible**,  **active**/**Inactive** selected equipment.
 - L'**id** equipment.
 - THE **kind** equipment : Identifier of the plugin to which it belongs.
 - THE **name** equipment.
@@ -69,7 +69,7 @@ The window of **Advanced equipment configuration** allows to modify it. First, a
 
 The tab **Information** contains general information about the equipment and its controls :
 
-- **ID** : Unique identifier in the Jeedom database.
+- **Id** : Unique identifier in the Jeedom database.
 - **Name** : Name of equipment.
 - **Logical ID** : Logical identifier of the equipment (can be empty).
 - **Object ID** : Unique identifier of the parent object (can be empty).
@@ -165,7 +165,7 @@ First, at the top right, some buttons available :
 
 The tab **Information** contains general information about the command :
 
-- **ID** : Unique identifier in the database.
+- **Id** : Unique identifier in the database.
 - **Logical ID** : Logical identifier of the command (can be empty).
 - **Name** : Name of the command.
 - **Kind** : Type of command (action or info).
@@ -202,7 +202,7 @@ Below, you will find the list of the different equipment, commands, scenarios or
 
 - **Historical**
     - **Historicize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, THE **minimum**, Or **none**. **none** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
+    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, THE **minimum**, Or **None**. **None** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
     - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom. Please note that the purge is triggered at night, so you must wait for the night to pass before having the effective action of the purge.
 
 - **Values management**

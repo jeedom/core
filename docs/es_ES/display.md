@@ -38,7 +38,7 @@ Para cada objeto, junto a su etiqueta, hay dos botones disponibles.
 
 En cada equipo encontramos :
 
-- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **BORRAR**, devolver **visible**/ /**invisible**,  **activo**/ /**inactivo** equipo seleccionado.
+- A **casilla de verificación** para seleccionar el equipo (puede seleccionar varios). Si se selecciona al menos un dispositivo, tiene botones de acción que aparecen en la esquina superior izquierda para **BORRAR**, devolver **visible**/ /**invisible**,  **activo**/ /**Inactivo** equipo seleccionado.
 - L'**identificación** equipo.
 - EL **amable** equipo : Identificador del complemento al que pertenece.
 - EL **nombre** equipo.
@@ -69,7 +69,7 @@ La ventana de **Configuración avanzada de equipos** permite modificarlo. Primer
 
 La pestaña **Información** contiene información general sobre el equipo y sus controles :
 
-- **IDENTIFICACIÓN** : Identificador único en la base de datos Jeedom.
+- **Identificación** : Identificador único en la base de datos Jeedom.
 - **Nombre** : Nombre del equipo.
 - **ID lógica** : Identificador lógico del equipo (puede estar vacío).
 - **ID de objeto** : Identificador único del objeto padre (puede estar vacío).
@@ -165,7 +165,7 @@ Primero, en la parte superior derecha, algunos botones disponibles :
 
 La pestaña **Información** contiene información general sobre el pedido :
 
-- **IDENTIFICACIÓN** : Identificador único en la base de datos.
+- **Identificación** : Identificador único en la base de datos.
 - **ID lógica** : Identificador lógico del comando (puede estar vacío).
 - **Nombre** : Nombre de la orden.
 - **Amable** : Tipo de comando (acción o información).
@@ -202,7 +202,7 @@ A continuación, encontrará la lista de los diferentes equipos, comandos, escen
 
 - **Histórico**
     - **Historizar** : Marque la casilla para registrar los valores de este comando. (Ver **Análisis → Historia**)
-    - **Modo de suavizado** : Modo de **suavizado** o d'**archivar** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, EL **mínimo**, O **ninguno**. **ninguno** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
+    - **Modo de suavizado** : Modo de **suavizado** o d'**archivar** le permite elegir cómo archivar los datos. Por defecto, este es un **promedio**. También es posible elegir el **máximo**, EL **mínimo**, O **Ninguno**. **Ninguno** digamos a Jeedom que no debe realizar el archivado con este comando (tanto durante los primeros 5 minutos como con la tarea de archivado)). Esta opción es peligrosa porque Jeedom guarda todo : entonces habrá muchos más datos guardados.
     - **Purgue el historial si es anterior a** : Vamos a decirle a Jeedom que elimine todos los datos anteriores a un período determinado. Puede ser práctico no guardar datos si no es necesario y, por lo tanto, limitar la cantidad de información registrada por Jeedom. Tenga en cuenta que la purga se activa durante la noche, por lo que debe esperar a que pase la noche antes de tener la acción efectiva de la purga.
 
 - **Gestión de valores**

@@ -38,7 +38,7 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 
 Em cada equipamento encontramos :
 
-- UM **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **EXCLUIR**, retribuir **visível**/**invisível**,  **ativo**/**inativo** equipamento selecionado.
+- UM **caixa de seleção** para selecionar o equipamento (você pode selecionar vários). Se pelo menos um dispositivo estiver selecionado, você terá botões de ação que aparecem no canto superior esquerdo para **EXCLUIR**, retribuir **visível**/**invisível**,  **ativo**/**Inativo** equipamento selecionado.
 - L'**eu ia** equipamento.
 - O **tipo** equipamento : Identificador do plug-in ao qual ele pertence.
 - O **nome** equipamento.
@@ -69,7 +69,7 @@ A janela de **Configuração avançada de equipamentos** permite modificá-lo. P
 
 A guia **Informação** contém informações gerais sobre o equipamento e seus controles :
 
-- **EU IA** : Identificador exclusivo no banco de dados Jeedom.
+- **Eu ia** : Identificador exclusivo no banco de dados Jeedom.
 - **Nome** : Nome de equipamentos.
 - **ID lógico** : Identificador lógico do equipamento (pode estar vazio).
 - **Object ID** : Identificador exclusivo do objeto pai (pode estar vazio).
@@ -165,7 +165,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 
 A guia **Informação** contém informações gerais sobre o pedido :
 
-- **EU IA** : Identificador exclusivo no banco de dados.
+- **Eu ia** : Identificador exclusivo no banco de dados.
 - **ID lógico** : Identificador lógico do comando (pode estar vazio).
 - **Nome** : Nome do comando.
 - **Tipo** : Tipo de comando (ação ou informação).
@@ -202,7 +202,7 @@ Abaixo, você encontrará a lista dos diferentes equipamentos, comandos, cenári
 
 - **Histórico**
     - **Historicizar** : Marque a caixa para ter os valores deste comando registrados. (Veja **Análise → História**)
-    - **Suavização moda** : Modo de **suavização** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **média**. Também é possível escolher o **máximo**, O **mínimo**, Ou **nenhum**. **nenhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
+    - **Suavização moda** : Modo de **suavização** ou d'**arquivamento** permite escolher como arquivar os dados. Por padrão, este é um **média**. Também é possível escolher o **máximo**, O **mínimo**, Ou **Nenhum**. **Nenhum** vamos dizer ao Jeedom que ele não deve executar o arquivamento neste comando (durante o primeiro período de 5 minutos e com a tarefa de arquivamento). Essa opção é perigosa porque o Jeedom mantém tudo : portanto, haverá muito mais dados mantidos.
     - **Limpar histórico se tiver mais de** : Vamos dizer ao Jeedom para excluir todos os dados anteriores a um determinado período. Pode ser prático não manter dados se não for necessário e, portanto, limitar a quantidade de informações registradas pela Jeedom. Observe que a purga é acionada à noite, portanto você deve aguardar a noite passar antes de ter a ação efetiva da purga.
 
 - **Gerenciando valores**

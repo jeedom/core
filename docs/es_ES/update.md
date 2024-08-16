@@ -68,7 +68,7 @@ En cada línea, puede usar las siguientes funciones:
 
 ## Pestaña OS/Paquete
 
-> **IMPORTANTE**
+> **Importante**
 >
 > Esta pestaña está reservada para usuarios avanzados y solo para usuarios avanzados, la más mínima mala acción aquí puede ROMPER su Jeedom (sin la posibilidad de recurrir al soporte)
 
@@ -92,7 +92,7 @@ Una vez conectado, este es el comando para realizar :
 Los posibles parámetros son :
 
 - **moda** : `force`, para iniciar una actualización en modo forzado (ignora los errores).
-- **versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
+- **Versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :
 

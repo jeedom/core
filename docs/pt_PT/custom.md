@@ -22,7 +22,7 @@ Na barra de menu do editor de arquivos Core, um botão **Habilitado** Ou **Desat
 
 [CSS: Folhas de estilo em cascata](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 [Dicas para personalizar a interface](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 

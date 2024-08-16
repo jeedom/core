@@ -91,7 +91,7 @@ Dazu müssen 2 Voraussetzungen berücksichtigt werden :
     'unlock':'off',
     'marche':'on',
     'arret':'off',
-    'Pause':'off',
+    'stoppen':'off',
     'stop':'off',
     'go':'on'
 `` ''
@@ -161,12 +161,12 @@ Abhängig von der Art des Widgets können Sie die Symbole im Allgemeinen anpasse
 
 Es gibt zwei Arten von Vorlagen :
 
-- DER "**einfach**" : als Symbol / Bild für die "**AN**" und ein Symbol / Bild für die "**AUS**".
+- DER "**einfach**" : als Symbol / Bild für die "**Wir**" und ein Symbol / Bild für die "**Aus**".
 - DER "**mehrstufig**" : Dies ermöglicht es beispielsweise, ein Bild zu definieren, wenn der Befehl den Wert hat "**XX**" und ein anderer so größer als "**JJ**" oder wenn weniger als "**ZZ**". Funktioniert auch für Textwerte, ein Bild, wenn der Wert ist "**toto**", ein anderer wenn "**plumpsen**" Und so weiter...
 
 #### Remplacement
 
-Dies nennt man eine einfache Vorlage, hier muss man nur sagen, dass die "**AN**" passt zu einem solchen Symbol / Bild *(mit der Auswahltaste)*, DER "**AUS**" zu solchen anderen Symbolen / Bildern usw...      
+Dies nennt man eine einfache Vorlage, hier muss man nur sagen, dass die "**Wir**" passt zu einem solchen Symbol / Bild *(mit der Auswahltaste)*, DER "**Aus**" zu solchen anderen Symbolen / Bildern usw...      
 
 Die Kiste **Zeit-Widget**, Wenn verfügbar, wird die Dauer seit der letzten Statusänderung unter dem Widget angezeigt.
 
@@ -178,7 +178,7 @@ Bei Vorlagen mit Bildern können Sie die Breite des Widgets je nach Unterstützu
 
 #### Test
 
-Dies wird als mehrstufige Vorlagen bezeichnet *(mehrere Staaten)*. Anstatt ein Bild für die "**AN** und / oder für die "**AUS** Wie im vorherigen Fall weisen Sie ein Symbol entsprechend der Validierung einer Bedingung zu *(test)*. Wenn dies zutrifft, zeigt das Widget das betreffende Symbol / Bild an.
+Dies wird als mehrstufige Vorlagen bezeichnet *(mehrere Staaten)*. Anstatt ein Bild für die "**Wir** und / oder für die "**Aus** Wie im vorherigen Fall weisen Sie ein Symbol entsprechend der Validierung einer Bedingung zu *(test)*. Wenn dies zutrifft, zeigt das Widget das betreffende Symbol / Bild an.
 
 Nach wie vor können je nach dem in Jeedom aktiven Thema und der Box unterschiedliche Bilder ausgewählt werden **Zeit-Widget** Zeigt die Dauer seit der letzten Zustandsänderung an.
 
@@ -188,13 +188,13 @@ Die Tests sind in der Form : `#value# == 1`,`#value#`wird automatisch durch den 
 - `#value# >= 1 && #value# <= 5`
 - `#value# == 'toto'`
 
->**Notiz**     
+>**NOTIZ**     
 >Es ist wichtig, die Apostrophe zu zeigen (**'**) um den Text herum zu vergleichen, ob der Wert Text ist *(info / andere)*.
 
->**Notiz**     
+>**NOTIZ**     
 >Für fortgeschrittene Benutzer ist es auch möglich, Javascript-Funktionen wie `zu verwenden#value#.match ("^ plop") `, hier testen wir, ob der Text mit` plop` beginnt.
 
->**Notiz**     
+>**NOTIZ**     
 >Sie können den Wert des Befehls im Widget anzeigen, indem Sie `angeben#value#`im HTML-Code des Tests. Um das Gerät anzuzeigen, fügen Sie `hinzu#unite#`.
 
 ## Code-Widget

@@ -121,7 +121,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 
 | **Strom (id: Electricity)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| LEISTUNG | Elektrische Energie | Information | numeric
+| Leistung | Elektrische Energie | Information | numeric
 | VERBRAUCH | Energieverbrauch | Information | numeric
 | STROMSPANNUNG | Spannung | Information | numeric
 | NEUSTART | Neu starten | Aktion | other
@@ -145,7 +145,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | **Generisch (id: Generic)** | | | |
 |:--------|:----------------|:--------:|:---------:|
 | TIEFE | Tiefe | Information | numeric
-| DISTANZ | Distanz | Information | numeric
+| DISTANZ | DISTANZ | Information | numeric
 | TASTE | Taste | Information | binär, numerisch
 | ALLGEMEINE_INFO |  Generisch | Information |
 | GENERIC_ACTION |  Generisch | Aktion | other
@@ -172,7 +172,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 
 | **Multimedia (id: Multimedia)** | | | |
 |:--------|:----------------|:--------:|:---------:|
-| VOLUMEN | Volumen | Information | numeric
+| Volumen | Volumen | Information | numeric
 | MEDIEN_STATUS | Status | Information | string
 | MEDIA_ALBUM | Album | Information | string
 | MEDIEN_KÜNSTLER | Künstler | Information | string
@@ -258,7 +258,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | ALARM_MODUS | Alarmmodus | Information | string
 | ALARM_ENABLE_STATE | Alarmstatus aktiviert | Information | binary
 | FLUT | Flut | Information | binary
-| SABOTAGE | Sabotage | Information | binary
+| SABOTAGE | SABOTAGE | Information | binary
 | SCHOCK | Schock | Information | binär, numerisch
 | SIRENE_AUS | Sirenentaste aus | Aktion | other
 | SIRENE_EIN | Sirenenknopf Ein | Aktion | other
@@ -288,7 +288,7 @@ Oder einfacher, erstellen Sie eine `genericType`-Aktion mit `LIGHT_ON` in `Salon
 | FAN_SPEED_STATE | Lüftergeschwindigkeit Status | Information | numeric
 | ROTATION_STATUS | Zustandsrotation | Information | numeric
 | LÜFTERGESCHWINDIGKEIT | Lüftergeschwindigkeit | Aktion | slider
-| DREHUNG | Drehung | Aktion | slider
+| DREHUNG | DREHUNG | Aktion | slider
 
 | **Bereich (id: Shutter)** | | | |
 |:--------|:----------------|:--------:|:---------:|
