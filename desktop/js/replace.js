@@ -35,7 +35,7 @@ if (!jeeFrontEnd.replace) {
         if (_filter.checked) {
           key = _filter.getAttribute('data-key')
           if (key == '') key = null
-          jeeP.filteredObjects.push(key)
+          jeeP.filteredObjects.push(parseInt(key))
         }
       })
       var byPlugins = new Array()

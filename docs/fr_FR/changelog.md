@@ -43,6 +43,7 @@
 - Possibilité de mettre une image personnalisé pour les équipements dans les plugins (si le plugin le support), pour cela il suffit de mettre l'image dans `data/img` sous la forme `eqLogic#id#.png` avec #id# l'id de l'équipement (vous pouvez le trouver dans la configuration avancée de l'équipement) [LIEN](https://github.com/jeedom/core/pull/2802)
 - Ajout du nom de l'utilisateur qui a lancer le scénario dans le tag ``#trigger_value#`` [LIEN](https://github.com/jeedom/core/pull/2382)
 - Correction d'une erreur qui pouvait arriver si vous quitter le dashboard avant la fin du chargement de celui-ci [LIEN](https://github.com/jeedom/core/pull/2827)
+- Correction d'un bug sur la page de remplacement lors d'un filtre sur les objets [LIEN](https://github.com/jeedom/core/issues/2833)
 
 >**IMPORTANT**
 >
