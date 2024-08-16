@@ -65,10 +65,10 @@ if (init('type') != '') {
 		}
 
 		if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), init('type'))){
-			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
+			throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 		}
 		if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), init('type'))){
-			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
+			throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 		}
 		$type = init('type');
 		log::add('api', 'debug', __('Demande sur l\'api http venant de :', __FILE__) . ' ' . getClientIp() . ' => ' . json_encode($_GET));
@@ -282,10 +282,10 @@ try {
 	}
 
 	if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), $jsonrpc->getMethod())){
-		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__));
+		throw new Exception(__('Cette demande n\'est autorisée', __FILE__));
 	}
 	if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), $jsonrpc->getMethod())){
-		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
+		throw new Exception(__('Cette demande n\'est autorisée', __FILE__) . ' ' . getClientIp());
 	}
 
 	$params = $jsonrpc->getParams();
@@ -740,7 +740,7 @@ try {
 	if ($jsonrpc->getMethod() == 'cmd::byId') {
 		$cmd = cmd::byId($params['id']);
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32701);
+			throw new Exception(__('Cmd introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32701);
 		}
 		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
 			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
@@ -910,7 +910,7 @@ try {
 		}
 		if ($params['state'] == 'run') {
 			$scenario->addTag('trigger','api');
-			$scenario->addTag('message',__('Scénario exécuté sur appel API', __FILE__));
+					$scenario->addTag('message',__('Scénario exécuté sur appel API', __FILE__));
 			$jsonrpc->makeSuccess($scenario->launch());
 		}
 		if ($params['state'] == 'enable') {

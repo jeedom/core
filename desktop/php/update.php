@@ -158,7 +158,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour le Core}}
-								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, le Core sera mis à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, la Core sera mis à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-pen-alt"></i>
@@ -175,7 +175,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<label><i class="fas fa-tasks"></i> Plugins</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour les plugins}}
-								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mis à jour après le Core.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="plugins" checked /><i class="fas fa-pen-alt"></i>

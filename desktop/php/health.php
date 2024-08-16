@@ -50,20 +50,20 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</td>';
 			switch ($dependancy_info['state']) {
 				case 'ok':
-					$html .= '<td class="alert alert-success" >{{OK}}</td>';
-					break;
+				$html .= '<td class="alert alert-success" >{{OK}}</td>';
+				break;
 				case 'nok':
-					$html .= '<td class="alert alert-danger" >{{NOK}}</td>';
-					$asNok += 1;
-					break;
+				$html .= '<td class="alert alert-danger" >{{NOK}}</td>';
+				$asNok += 1;
+				break;
 				case 'in_progress':
-					$html .= '<td class="alert alert-info">{{En cours}}</td>';
-					$asPending += 1;
-					break;
+				$html .= '<td class="alert alert-info">{{En cours}}</td>';
+				$asPending += 1;
+				break;
 				default:
-					$html .= '<td class="alert alert-danger">{{NOK}}</td>';
-					$asNok += 1;
-					break;
+				$html .= '<td class="alert alert-danger">{{NOK}}</td>';
+				$asNok += 1;
+				break;
 			}
 			$html .= '</tr>';
 		}
@@ -86,16 +86,16 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</td>';
 			switch ($deamon_info['launchable']) {
 				case 'ok':
-					$html .= '<td class="alert alert-success">{{OK}}</td>';
-					break;
+				$html .= '<td class="alert alert-success">{{OK}}</td>';
+				break;
 				case 'nok':
-					if ($deamon_info['auto'] != 1) {
-						$html .= '<td class="alert alert-success">{{Désactivé}}</td>';
-					} else {
-						$html .= '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
-						$asNok += 1;
-					}
-					break;
+				if ($deamon_info['auto'] != 1) {
+					$html .= '<td class="alert alert-success">{{Désactivé}}</td>';
+				} else {
+					$html .= '<td class="alert alert-danger" title="' . $deamon_info['launchable_message'] . '">{{NOK}}</td>';
+					$asNok += 1;
+				}
+				break;
 			}
 			$html .= '</tr>';
 			$html .= '<tr>';
@@ -104,17 +104,17 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 			$html .= '</td>';
 			switch ($deamon_info['state']) {
 				case 'ok':
-					$html .= '<td class="alert alert-success">';
-					$html .= '{{OK}}</td>';
-					break;
+				$html .= '<td class="alert alert-success">';
+				$html .= '{{OK}}</td>';
+				break;
 				case 'nok':
-					if ($deamon_info['auto'] != 1) {
-						$html .= '<td class="alert alert-success">{{Désactivé}}</td>';
-					} else {
-						$html .= '<td class="alert alert-danger">{{NOK}}</td>';
-						$asNok += 1;
-					}
-					break;
+				if ($deamon_info['auto'] != 1) {
+					$html .= '<td class="alert alert-success">{{Désactivé}}</td>';
+				} else {
+					$html .= '<td class="alert alert-danger">{{NOK}}</td>';
+					$asNok += 1;
+				}
+				break;
 			}
 			$html .= '</tr>';
 		}
