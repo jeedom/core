@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.13
+
+- Correction d'un bug de variable indefinie [LIEN](https://github.com/jeedom/core/commit/9f916da35675cf6a48f7575c5427137549338004)
+
 # 4.4.12
 
 - Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge) [LIEN](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
