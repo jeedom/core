@@ -168,7 +168,7 @@ sendVarToJS([
 					</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
 
 					<a id="bt_addScenarioElement" class="btn btn-sm"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
-					</a><a id="bt_logScenario" class="btn btn-sm" title="{{Log (Ctrl+l)}}"><i class="far fa-file-alt"></i>
+					</a><a id="bt_logScenario" class="btn btn-sm" title="{{Log}} (Ctrl+L)"><i class="far fa-file-alt"></i>
 					</a><a id="bt_copyScenario" class="btn btn-sm" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
 					</a><a id="bt_graphScenario" class="btn btn-sm" title="{{Liens}}"><i class="fas fa-object-group"></i>
 					</a><a id="bt_editJsonScenario" class="btn btn-sm" title="{{Edition texte}}"> <i class="far fa-edit"></i>
@@ -387,11 +387,11 @@ sendVarToJS([
 						<input id="in_addElementTypeFilter" class="form-control" placeholder="{{Filtre des blocs}}">
 						<br />
 						<div class="alert alert-info addElementTypeDescription if">
-							{{Permet de faire des conditions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.}}
+							{{Permet conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription action" style="display:none;">
-							{{Permet de lancer une action, sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.}}
+							{{Permet de lancer une action sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription for" style="display:none;">
@@ -403,11 +403,11 @@ sendVarToJS([
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription at" style="display:none;">
-							{{A un temps précis, cet élément permet de lancer une action. Par exemple : A 9h30, ouvrir les volets.}}
+							{{Cet élément permet de lancer une action à un horaire précis. Par exemple : A 9h30, ouvrir les volets.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription code" style="display:none;">
-							{{Cet élément permet de rajouter dans votre scénario de la programmation à l’aide d’un code, PHP/Shell, etc.}}
+							{{Cet élément permet d'ajouter un bloc de code (PHP, shell, etc.) dans votre scénario.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription comment" style="display:none;">
