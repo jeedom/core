@@ -69,7 +69,7 @@ try {
 		foreach ($cmds as $id) {
 			$cmd = cmd::byId($id);
 			if (!is_object($cmd)) {
-				throw new Exception(__('Cmd inconnu. Vérifiez l\'ID', __FILE__) . ' ' . $id);
+				throw new Exception(__('Commande inconnue. Vérifiez l\'ID', __FILE__) . ' ' . $id);
 			}
 			$cmd->setIsVisible(init('isVisible'));
 			$cmd->save(true);
@@ -80,7 +80,7 @@ try {
 	if (init('action') == 'execCmd') {
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
+			throw new Exception(__('ID de commande inconnu :', __FILE__) . ' ' . init('id'));
 		}
 		$eqLogic = $cmd->getEqLogic();
 		if ($cmd->getType() == 'action' && !$eqLogic->hasRight('x')) {
@@ -105,7 +105,7 @@ try {
 	if (init('action') == 'getByObjectNameEqNameCmdName') {
 		$cmd = cmd::byObjectNameEqLogicNameCmdName(init('object_name'), init('eqLogic_name'), init('cmd_name'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu :', __FILE__) . ' ' . init('object_name') . '/' . init('eqLogic_name') . '/' . init('cmd_name'));
+			throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('object_name') . '/' . init('eqLogic_name') . '/' . init('cmd_name'));
 		}
 		ajax::success($cmd->getId());
 	}
@@ -113,7 +113,7 @@ try {
 	if (init('action') == 'getByObjectNameCmdName') {
 		$cmd = cmd::byObjectNameCmdName(init('object_name'), init('cmd_name'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Cmd inconnu :', __FILE__) . ' ' . init('object_name') . '/' . init('cmd_name'), 9999);
+			throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('object_name') . '/' . init('cmd_name'), 9999);
 		}
 		ajax::success(utils::o2a($cmd));
 	}
@@ -405,7 +405,7 @@ try {
 		if (is_numeric(init('id'))) {
 			$cmd = cmd::byId(init('id'));
 			if (!is_object($cmd)) {
-				throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
+				throw new Exception(__('ID de commande inconnu :', __FILE__) . ' ' . init('id'));
 			}
 			$usage = $cmd->getCache('usage::history', 0);
 			$cmd->setCache('usage::history', $usage + 1);
@@ -494,16 +494,15 @@ try {
 		ajax::success($return);
 	}
 
-        if (init('action') == 'getLastHistory') {
-            $cmd = cmd::byId(init('id'));
-            $_time = date('Y-m-d H:i:s', strtotime(init('time')));
-            if(is_object($cmd)){
-                ajax::success($cmd->getLastHistory($_time));
-            } 
-            else{
-                throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
-            }
-        }
+	if (init('action') == 'getLastHistory') {
+		$cmd = cmd::byId(init('id'));
+		$_time = date('Y-m-d H:i:s', strtotime(init('time')));
+		if(is_object($cmd)){
+			ajax::success($cmd->getLastHistory($_time));
+		} else {
+			throw new Exception(__('Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens', __FILE__) . ' ' . init('id'));
+		}
+	}
 
 	if (init('action') == 'emptyHistory') {
 		if (!isConnect('admin')) {
@@ -512,7 +511,7 @@ try {
 		unautorizedInDemo();
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Commande ID inconnu :', __FILE__) . ' ' . init('id'));
+			throw new Exception(__('Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens', __FILE__) . ' ' . init('id'));
 		}
 		$cmd->emptyHistory(init('date'));
 		ajax::success();
