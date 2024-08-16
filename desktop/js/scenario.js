@@ -327,7 +327,7 @@ if (!jeeFrontEnd.scenario) {
       document.getElementById('scenarioThumbnailDisplay').unseen()
       document.getElementById('emptyModeWarning').unseen()
       jeedom.scenario.update[_id] = function(_options) {
-        if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
+        if (_options.scenario_id != undefined && _options.scenario_id != jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
           return
         }
         switch (_options.state) {
