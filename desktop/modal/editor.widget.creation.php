@@ -27,7 +27,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Version}}</label>
 				<div class="col-xs-8">
-					<select id="sel_widgetVersion">
+					<select id="sel_widgetVersion" class="form-control">
 						<option value="dashboard">{{Dashboard}}</option>
 						<option value="mobile">{{Mobile}}</option>
 					</select>
@@ -36,7 +36,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Type}}</label>
 				<div class="col-xs-8">
-					<select id="sel_widgetType">
+					<select id="sel_widgetType" class="form-control">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
 							echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
@@ -48,7 +48,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Sous-type}}</label>
 				<div class="col-xs-8">
-					<select id="sel_widgetSubtype">
+					<select id="sel_widgetSubtype" class="form-control">
 						<option value="" data-default="1"><a></option>
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
