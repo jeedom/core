@@ -44,6 +44,7 @@
 - Added the name of the user who launched the scenario in the tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Fixed an error that could occur if you exited the dashboard before it finished loading [LINK](https://github.com/jeedom/core/pull/2827)
 - Fixed a bug on the replacement page when filtering on objects [LINK](https://github.com/jeedom/core/issues/2833)
+- Improved opening of the core changelog under ios (no longer in a popup)) [LINK](https://github.com/jeedom/core/issues/2835)
 
 >**IMPORTANT**
 >

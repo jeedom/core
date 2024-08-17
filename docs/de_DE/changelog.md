@@ -44,6 +44,7 @@
 - Hinzufügen des Namens des Benutzers, der das Szenario gestartet hat, im Tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Es wurde ein Fehler behoben, der auftreten konnte, wenn Sie das Dashboard verlassen, bevor es vollständig geladen wurde [LINK](https://github.com/jeedom/core/pull/2827)
 - Ein Fehler auf der Ersetzungsseite beim Filtern nach Objekten wurde behoben [LINK](https://github.com/jeedom/core/issues/2833)
+- Verbessertes Öffnen des Core-Changelogs unter iOS (nicht mehr in einem Popup)) [LINK](https://github.com/jeedom/core/issues/2835)
 
 >**WICHTIG**
 >

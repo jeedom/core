@@ -44,6 +44,7 @@
 - Adicionando o nome do usuário que lançou o cenário na tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Corrigido um erro que poderia ocorrer se você saísse do painel antes de ele terminar de carregar [LINK](https://github.com/jeedom/core/pull/2827)
 - Corrigido um bug na página de substituição ao filtrar objetos [LINK](https://github.com/jeedom/core/issues/2833)
+- Abertura aprimorada do changelog principal no iOS (não mais em um pop-up) [LINK](https://github.com/jeedom/core/issues/2835)
 
 >**IMPORTANTE**
 >

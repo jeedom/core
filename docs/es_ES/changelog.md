@@ -44,6 +44,7 @@
 - Agregar el nombre del usuario que lanzó el escenario en la etiqueta ``#trigger_value#`` [ENLACE](https://github.com/jeedom/core/pull/2382)
 - Se corrigió un error que podía ocurrir si abandonaba el panel antes de que terminara de cargarse [ENLACE](https://github.com/jeedom/core/pull/2827)
 - Se corrigió un error en la página de reemplazo al filtrar objetos [ENLACE](https://github.com/jeedom/core/issues/2833)
+- Apertura mejorada del registro de cambios principal en iOS (ya no en una ventana emergente)) [ENLACE](https://github.com/jeedom/core/issues/2835)
 
 >**IMPORTANTE**
 >
