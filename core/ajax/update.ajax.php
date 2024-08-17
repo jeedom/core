@@ -51,6 +51,11 @@ try {
 				}else{
 					$infos['branch'] = config::byKey('core::repo::provider').' - custom';
 				}
+				$theme = 'light';
+				if (strpos(config::byKey('jeedom_theme_main'), 'Dark') !== false) {
+					$theme = 'dark';
+				}
+				$infos['changelog_url'] = config::byKey('doc::base_url', 'core') . '/' . config::byKey('language', 'core', 'fr_FR') . '/core/' . substr(jeedom::version(), 0, 3) . '/changelog?theme=' . $theme;
 			}
 			$return[] = $infos;
 		}
