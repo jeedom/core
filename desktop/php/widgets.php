@@ -146,7 +146,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                     <select class="form-control widgetsAttr" data-l1key="type">
                       <?php
                       foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-                        echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
+                        echo '<option value="' . $key . '">' . $value['name'] . '</option>';
                       }
                       ?>
                     </select>
@@ -159,7 +159,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                     foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
                       echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="' . $key . '">';
                       foreach ($value['subtype'] as $skey => $svalue) {
-                        echo '<option data-type="' . $key . '" value="' . $skey . '"><a>' . $svalue['name'] . '</option>';
+                        echo '<option data-type="' . $key . '" value="' . $skey . '">' . $svalue['name'] . '</option>';
                       }
                       echo '</select>';
                     }
