@@ -36,10 +36,10 @@ global $JEEDOM_INTERNAL_CONFIG;
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Type}}</label>
 				<div class="col-xs-8">
-					<select id="sel_widgetType" class="form-control">
+					<select id="sel_widgetType" class="form-control" data-l1key="type">
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
+							echo '<option value="' . $key . '">' . $value['name'] . '</option>';
 						}
 						?>
 					</select>
@@ -48,16 +48,16 @@ global $JEEDOM_INTERNAL_CONFIG;
 			<div class="form-group">
 				<label class="col-xs-4 control-label">{{Sous-type}}</label>
 				<div class="col-xs-8">
-					<select id="sel_widgetSubtype" class="form-control">
-						<option value="" data-default="1"><a></option>
-						<?php
-						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							foreach ($value['subtype'] as $skey => $svalue) {
-								echo '<option data-type="' . $key . '" value="' . $skey . '"><a>' . $svalue['name'] . '</option>';
-							}
+					<?php
+					foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
+						echo '<select class="form-control selectWidgetSubType" data-l1key="subtype" data-type="' . $key . '">';
+						echo '<option value=""></option>';
+						foreach ($value['subtype'] as $skey => $svalue) {
+							echo '<option data-type="' . $key . '" value="' . $skey . '">' . $svalue['name'] . '</option>';
 						}
-						?>
-					</select>
+						echo '</select>';
+					}
+					?>
 				</div>
 			</div>
 			<div class="form-group">
@@ -69,3 +69,20 @@ global $JEEDOM_INTERNAL_CONFIG;
 		</fieldset>
 	</form>
 </div>
+                          
+<script>
+/*Events delegations
+*/
+	document.getElementById('md_widgetCreate').addEventListener('change', function(event) {
+		var _target = null
+          
+		if (_target = event.target.closest('#sel_widgetType[data-l1key="type"]')) {
+			document.querySelectorAll('.selectWidgetSubType').unseen()
+			document.querySelector('.selectWidgetSubType[data-type="' + event.target.jeeValue() + '"]')?.seen().triggerEvent('change')
+		}
+	})
+	
+/*Init SubType
+*/
+	document.querySelector('#sel_widgetType[data-l1key="type"]')?.triggerEvent('change')
+</script>
