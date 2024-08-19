@@ -511,7 +511,7 @@ try {
 		unautorizedInDemo();
 		$cmd = cmd::byId(init('id'));
 		if (!is_object($cmd)) {
-			throw new Exception(__('Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens', __FILE__) . ' ' . init('id'));
+			throw new Exception(__('ID de commande inconnu :', __FILE__) . ' ' . init('id'));
 		}
 		$cmd->emptyHistory(init('date'));
 		ajax::success();
