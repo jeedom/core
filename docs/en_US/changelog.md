@@ -45,6 +45,9 @@
 - Fixed an error that could occur if you exited the dashboard before it finished loading [LINK](https://github.com/jeedom/core/pull/2827)
 - Fixed a bug on the replacement page when filtering on objects [LINK](https://github.com/jeedom/core/issues/2833)
 - Improved opening of the core changelog under ios (no longer in a popup)) [LINK](https://github.com/jeedom/core/issues/2835)
+- Improved advanced widget creation window [LINK](https://github.com/jeedom/core/pull/2836)
+- Improved advanced command configuration window [LINK](https://github.com/jeedom/core/pull/2837)
+- Fixed bug on widget creation [LINK](https://github.com/jeedom/core/pull/2838)
 
 >**IMPORTANT**
 >

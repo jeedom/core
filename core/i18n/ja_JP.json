@@ -379,6 +379,15 @@
         "récurrent": "リカレント",
         "En date du": "の時点で"
     },
+    "desktop\/modal\/editor.widget.creation.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Version": "Version",
+        "Dashboard": "Dashboard",
+        "Mobile": "Mobile",
+        "Type": "Type",
+        "Sous-type": "Sous-type",
+        "Nom": "Nom"
+    },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "ユーザーが見つかりません：",
         "Synthèse": "Synthèse",
@@ -1475,13 +1484,7 @@
         "Extensions php": "PHP拡張"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401-不正アクセス",
-        "Version": "Version",
-        "Dashboard": "Dashboard",
-        "Mobile": "Mobile",
-        "Type": "Type",
-        "Sous-type": "Sous-type",
-        "Nom": "Nom"
+        "401 - Accès non autorisé": "401-不正アクセス"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
@@ -2817,6 +2820,7 @@
         "Le sous-type ne peut être vide": "Le sous-type ne peut être vide",
         "Le nom ne peut être vide": "Le nom ne peut être vide",
         "Fichier enregistré avec succès": "Fichier enregistré avec succès",
+        "Annuler": "Annuler",
         "Activé": "Activé",
         "Personnalisation avancée active": "Personnalisation avancée active",
         "Désactivé": "Désactivé",

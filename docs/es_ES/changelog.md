@@ -45,6 +45,9 @@
 - Se corrigió un error que podía ocurrir si abandonaba el panel antes de que terminara de cargarse [ENLACE](https://github.com/jeedom/core/pull/2827)
 - Se corrigió un error en la página de reemplazo al filtrar objetos [ENLACE](https://github.com/jeedom/core/issues/2833)
 - Apertura mejorada del registro de cambios principal en iOS (ya no en una ventana emergente)) [ENLACE](https://github.com/jeedom/core/issues/2835)
+- Mejora de la ventana de creación avanzada de widgets [ENLACE](https://github.com/jeedom/core/pull/2836)
+- Se mejoró la ventana de configuración de comandos avanzados [ENLACE](https://github.com/jeedom/core/pull/2837)
+- Se corrigió un error en la creación de widgets [ENLACE](https://github.com/jeedom/core/pull/2838)
 
 >**IMPORTANTE**
 >
