@@ -379,6 +379,15 @@
         "récurrent": "recorrente",
         "En date du": "A partir de"
     },
+    "desktop\/modal\/editor.widget.creation.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Version": "Versão",
+        "Dashboard": "Painel",
+        "Mobile": "Móvel",
+        "Type": "Tipo",
+        "Sous-type": "Subtipo",
+        "Nom": "Nome"
+    },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "Não foi possível encontrar o utilizador:",
         "Synthèse": "Síntese",
@@ -1475,13 +1484,7 @@
         "Extensions php": "Extensões php"
     },
     "desktop\/php\/editor.php": {
-        "401 - Accès non autorisé": "401 - Acesso não autorizado",
-        "Version": "Versão",
-        "Dashboard": "Painel",
-        "Mobile": "Móvel",
-        "Type": "Tipo",
-        "Sous-type": "Subtipo",
-        "Nom": "Nome"
+        "401 - Accès non autorisé": "401 - Acesso não autorizado"
     },
     "desktop\/php\/plan3d.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2750,7 +2753,7 @@
     },
     "desktop\/php\/display.php": {
         "$value['name']": "$valor['nome']",
-        "401 - Accès non autorisé": "Nenhum autorizado",
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucun": "Não",
         "Configuration avancée": "Configuração avançada",
         "Aller sur la configuration de l\\'objet": "Ir para a configuração do objeto",
@@ -2817,6 +2820,7 @@
         "Le sous-type ne peut être vide": "O subtipo não pode estar vazio",
         "Le nom ne peut être vide": "O nome não pode estar vazio",
         "Fichier enregistré avec succès": "Arquivo guardado com sucesso",
+        "Annuler": "Cancelar",
         "Activé": "Ativado",
         "Personnalisation avancée active": "Personalização avançada ativa",
         "Désactivé": "Desativado",
@@ -3183,7 +3187,7 @@
         "Liste des Types Génériques (Core et Plugins)": "Lista de Modelos Genéricos (core e plugins)",
         "Générique": "Genérico",
         "Nom": "Nome",
-        "Type": "Modelo",
+        "Type": "Tipo",
         "Sous type": "Submodelo",
         "Types Génériques automatiques": "Modelos Genéricos Automáticos",
         "Appliquer": "Aplicar",
@@ -3514,8 +3518,8 @@
         "Date de valeur": "Data de validade",
         "Date de collecte": "Data de coleta",
         "Id": "EU IRIA",
-        "Nom": "Sobrenome",
-        "Type": "Gentil",
+        "Nom": "Nome",
+        "Type": "Tipo",
         "Logical ID": "ID lógico",
         "Options": "Opções",
         "Paramètres": "Definições",
