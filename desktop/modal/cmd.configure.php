@@ -349,10 +349,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   <sup><i class="fas fa-question-circle" title="#value# = {{valeur de la commande}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
-                  <div class="col-sm-6 input-group input-group-sm">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="calculValueOffset" />
+                  <div class="input-group">
+                    <input class="cmdAttr form-control roundedLeft" data-l1key="configuration" data-l2key="calculValueOffset" />
                     <span class="input-group-btn">
-                      <a class="btn btn-default btn-sm cursor tooltips" id="bt_searchInfoCmdCalculValue" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
+                      <a class="btn btn-default roundedRight cursor tooltips" id="bt_searchInfoCmdCalculValue" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
                     </span>
                   </div>
                 </div>
