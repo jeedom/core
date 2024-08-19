@@ -387,7 +387,7 @@ sendVarToJS([
 						<input id="in_addElementTypeFilter" class="form-control" placeholder="{{Filtre des blocs}}">
 						<br />
 						<div class="alert alert-info addElementTypeDescription if">
-							{{Permet conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.}}
+							{{Permet de conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription action" style="display:none;">
