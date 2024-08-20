@@ -52,6 +52,7 @@
 - Correction d'un bug sur la page scénario et la fenetre d'ajout d'action qui pouvait ne plus fonctionner [LIEN](https://github.com/jeedom/core/issues/2839)
 - Correction d'un bug qui pouvait changer l'ordre des commandes lors de l'édition du dashboard [LIEN](https://github.com/jeedom/core/issues/2840)
 - Correction d'un erreur javascript sur les historiques [LIEN](https://github.com/jeedom/core/issues/2840)
+- Ajout d'une sécurité sur l'encodage json en ajax pour eviter les erreurs du à des caractères invalide [LIEN](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
 
 >**IMPORTANT**
 >
