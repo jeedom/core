@@ -49,7 +49,7 @@
 - Melhorou a janela de configuração de comando avançada [LINK](https://github.com/jeedom/core/pull/2837)
 - Corrigido um bug na criação de widgets [LINK](https://github.com/jeedom/core/pull/2838)
 - Corrigido um bug na página do cenário e na janela de adição de ação que não funcionava mais [LINK](https://github.com/jeedom/core/issues/2839)
-- Corrigido um bug que poderia alterar a ordem dos comandos ao editar o painel [LINK](https://github.com/jeedom/core/issues/2840)
+- Corrigido um bug que poderia alterar a ordem dos comandos ao editar o painel [LINK](https://github.com/jeedom/core/issues/2841)
 - Corrigido um erro de javascript nos logs [LINK](https://github.com/jeedom/core/issues/2840)
 - Adicionando segurança à codificação json em ajax para evitar erros devido a caracteres inválidos [LINK](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
 

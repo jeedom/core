@@ -49,7 +49,7 @@
 - Das erweiterte Befehlskonfigurationsfenster wurde verbessert [LINK](https://github.com/jeedom/core/pull/2837)
 - Ein Fehler bei der Widget-Erstellung wurde behoben [LINK](https://github.com/jeedom/core/pull/2838)
 - Es wurde ein Fehler auf der Szenarioseite und im Fenster zum Hinzufügen von Aktionen behoben, der nicht mehr funktionieren konnte [LINK](https://github.com/jeedom/core/issues/2839)
-- Es wurde ein Fehler behoben, der die Reihenfolge der Befehle beim Bearbeiten des Dashboards ändern konnte [LINK](https://github.com/jeedom/core/issues/2840)
+- Es wurde ein Fehler behoben, der die Reihenfolge der Befehle beim Bearbeiten des Dashboards ändern konnte [LINK](https://github.com/jeedom/core/issues/2841)
 - Ein Javascript-Fehler in Protokollen wurde behoben [LINK](https://github.com/jeedom/core/issues/2840)
 - Hinzufügen von Sicherheit zur JSON-Codierung in Ajax, um Fehler aufgrund ungültiger Zeichen zu vermeiden [LINK](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
 
