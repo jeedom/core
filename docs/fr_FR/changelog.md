@@ -49,6 +49,9 @@
 - Amélioration de la fenetre de création avancées de widget [LIEN](https://github.com/jeedom/core/pull/2836)
 - Amélioration de la fenetre de configuration avancée des commandes [LIEN](https://github.com/jeedom/core/pull/2837)
 - Correction d'un bug sur la création de widget [LIEN](https://github.com/jeedom/core/pull/2838)
+- Correction d'un bug sur la page scénario et la fenetre d'ajout d'action qui pouvait ne plus fonctionner [LIEN](https://github.com/jeedom/core/issues/2839)
+- Correction d'un bug qui pouvait changer l'ordre des commandes lors de l'édition du dashboard [LIEN](https://github.com/jeedom/core/issues/2840)
+- Correction d'un erreur javascript sur les historiques [LIEN](https://github.com/jeedom/core/issues/2840)
 
 >**IMPORTANT**
 >
