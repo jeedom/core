@@ -56,7 +56,7 @@ class ajax {
 		if ($isError) {
 			$return['code'] = $_errorCode;
 		}
-		return json_encode($return, JSON_UNESCAPED_UNICODE);
+		return json_encode($return, JSON_UNESCAPED_UNICODE | JSON_INVALID_UTF8_SUBSTITUTE);
 	}
 	/*     * **********************Getteur Setteur*************************** */
 }
