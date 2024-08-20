@@ -1,6 +1,6 @@
 # Changelog Jeedom V4.5
 
-- Si une commande d'un équipement est de type generique "Batterie" et à pour unité % alors le core va automatiquement affecté le niveau de batterie de l'équipement à la valeur de la commande  
+- Si une commande d'un équipement est de type generique "Batterie" et à pour unité % alors le core va automatiquement affecté le niveau de batterie de l'équipement à la valeur de la commande [LIEN](https://github.com/jeedom/core/issues/2842)
 
 # 4.5
 
