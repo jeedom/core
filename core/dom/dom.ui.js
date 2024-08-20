@@ -1018,7 +1018,7 @@ var jeeDialog = (function() {
       }
       if (_params.isMainDialog) {
         backDrop.addEventListener('click', function(event) {
-          document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
+          document.querySelectorAll('div.jeeDialog:not(.jeeDialogNoCloseBackdrop)').forEach(_dialog => {
             if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
           })
         })

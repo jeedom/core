@@ -369,7 +369,7 @@ sendVarToJS([
 			<div role="tabpanel" class="tab-pane" id="scenariotab">
 				<div id="div_scenarioElement" class="element"></div>
 
-				<div id="md_addElement" class="jeeDialog jeeDialogPrompt" style="display:none;">
+				<div id="md_addElement" class="jeeDialog jeeDialogPrompt jeeDialogNoCloseBackdrop" style="display:none;">
 					<div class="jeeDialogTitle">
 						<span class="title">{{Ajouter un bloc}}</span><button class="btClose" id="bt_crossElementSave" type="button"></button>
 					</div>
