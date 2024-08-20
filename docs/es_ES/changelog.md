@@ -48,6 +48,9 @@
 - Mejora de la ventana de creación avanzada de widgets [ENLACE](https://github.com/jeedom/core/pull/2836)
 - Se mejoró la ventana de configuración de comandos avanzados [ENLACE](https://github.com/jeedom/core/pull/2837)
 - Se corrigió un error en la creación de widgets [ENLACE](https://github.com/jeedom/core/pull/2838)
+- Se corrigió un error en la página del escenario y en la ventana de adición de acciones que ya no podía funcionar [ENLACE](https://github.com/jeedom/core/issues/2839)
+- Se corrigió un error que podía cambiar el orden de los comandos al editar el panel [ENLACE](https://github.com/jeedom/core/issues/2840)
+- Se corrigió un error de JavaScript en los registros [ENLACE](https://github.com/jeedom/core/issues/2840)
 
 >**IMPORTANTE**
 >
