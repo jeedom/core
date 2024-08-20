@@ -1,5 +1,7 @@
 # Changelog Jeedom V4.5
 
+- Si une commande d'un équipement est de type generique "Batterie" et à pour unité % alors le core va automatiquement affecté le niveau de batterie de l'équipement à la valeur de la commande  
+
 # 4.5
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnables (seulement la liste des variables pour le moment ça sera étendu à d'autres tables si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
