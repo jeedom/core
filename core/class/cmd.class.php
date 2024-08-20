@@ -1958,6 +1958,9 @@ class cmd {
 			}
 			$this->pushUrl($value);
 			$this->pushInflux($value);
+			if($this->getGeneric_type() == 'BATTERY' && $this->getUnite() == '%'){
+				$this->batteryStatus($value);
+			}
 		}
 	}
 
