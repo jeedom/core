@@ -820,6 +820,7 @@
         "Correction d'un bug sur la page scénario et la fenetre d'ajout d'action qui pouvait ne plus fonctionner": "Correction d'un bug sur la page scénario et la fenetre d'ajout d'action qui pouvait ne plus fonctionner",
         "Correction d'un bug qui pouvait changer l'ordre des commandes lors de l'édition du dashboard": "Correction d'un bug qui pouvait changer l'ordre des commandes lors de l'édition du dashboard",
         "Correction d'un erreur javascript sur les historiques": "Correction d'un erreur javascript sur les historiques",
+        "Ajout d'une sécurité sur l'encodage json en ajax pour eviter les erreurs du à des caractères invalide": "Ajout d'une sécurité sur l'encodage json en ajax pour eviter les erreurs du à des caractères invalide",
         "IMPORTANT": "IMPORTANT",
         "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme": "Du au changement de moteur de cache sur cette mise à jour, tous le cache sera perdu, aucune inquietude c'est du cache il va se reconstituer de lui meme",
         "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
