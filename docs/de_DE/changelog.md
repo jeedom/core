@@ -2,22 +2,22 @@
 
 # 4.5
 
-- Möglichkeit, die Größe von Tabellenspalten anzupassen (im Moment nur die Liste der Variablen, sie wird bei Bedarf auf andere Tabellen ausgeweitet)) [LINK](https://github.com/jeedom/core/issues/2499)
+- Möglichkeit, Tabellenspalten in der Größe veränderbar zu machen (im Moment nur die Liste der Variablen, dies wird bei Bedarf auf andere Tabellen ausgeweitet)) [LINK](https://github.com/jeedom/core/issues/2499)
 - Es wurde eine Warnung hinzugefügt, wenn der Jeedom-Speicherplatz zu gering ist (die Überprüfung erfolgt einmal täglich)) [LINK](https://github.com/jeedom/core/issues/2438)
 - Dem Bestellkonfigurationsfenster im Wertberechnungsfeld wurde eine Schaltfläche zum Abrufen einer Bestellung hinzugefügt [LINK](https://github.com/jeedom/core/issues/2776)
-- Möglichkeit, bestimmte Menüs für eingeschränkte Benutzer auszublenden [LINK](https://github.com/jeedom/core/issues/2651)
+- Möglichkeit, bestimmte Menüs für Benutzer mit eingeschränkten Rechten auszublenden [LINK](https://github.com/jeedom/core/issues/2651)
 - Die Diagramme werden automatisch aktualisiert, wenn neue Werte eintreffen [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom fügt beim Erstellen von Widgets automatisch die Höhe des Bildes hinzu, um Überlappungsprobleme auf Mobilgeräten zu vermeiden [LINK](https://github.com/jeedom/core/issues/2539)
 - Neugestaltung des Cloud-Backup-Teils [LINK](https://github.com/jeedom/core/issues/2765)
 - **ENTW** Einrichten eines Warteschlangensystems für die Aktionsausführung [LINK](https://github.com/jeedom/core/issues/2489)
-- Die Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei Szenarios sehr nahe beieinander gestartet haben, überschreiben die Tags des letzteren nicht mehr das erste)) [LINK](https://github.com/jeedom/core/issues/2763)
+- Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei sehr nahe beieinander liegende Szenario-Starts haben, überschreiben die Tags des letzteren nicht mehr das erste)) [LINK](https://github.com/jeedom/core/issues/2763)
 - Wechseln Sie zum Auslöserteil der Szenarien : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
   - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
   - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
   - ``#trigger#`` : Vielleicht :
     - ``api`` wenn der Start durch die API ausgelöst wurde,
-    - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
+    - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird TYPE durch die Plugin-ID ersetzt (z. B. virtualCmd),
     - ``schedule`` wenn es durch Programmierung gestartet wurde,
     - ``user`` wenn es manuell gestartet wurde,
     - ``start`` für einen Start beim Jeedom-Startup.
@@ -30,6 +30,7 @@
 - Ein Fehler in Safari bei Filtern mit Akzenten wurde behoben [LINK](https://github.com/jeedom/core/pull/2754)
 - Ein Fehler bei der Generierung generischer Typinformationen in Szenarios wurde behoben [LINK](https://github.com/jeedom/core/pull/2806)
 - Bestätigung hinzugefügt, wenn der Support-Zugriff über die Benutzerverwaltungsseite geöffnet wird [LINK](https://github.com/jeedom/core/pull/2809)
+- Verbesserung des Cron-Systems, um einige Startfehler zu vermeiden [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten [LINK](https://github.com/jeedom/core/issues/2810)
 - Möglichkeit, Aufträge von der Dead-Order-Analyse auszuschließen [LINK](https://github.com/jeedom/core/issues/2812)
 - Ein Fehler bei der Nummerierung der Zeilenanzahl in Tabellen wurde behoben [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
@@ -52,7 +53,10 @@
 - Es wurde ein Fehler behoben, der die Reihenfolge der Befehle beim Bearbeiten des Dashboards ändern konnte [LINK](https://github.com/jeedom/core/issues/2841)
 - Ein Javascript-Fehler in Protokollen wurde behoben [LINK](https://github.com/jeedom/core/issues/2840)
 - Hinzufügen von Sicherheit zur JSON-Codierung in Ajax, um Fehler aufgrund ungültiger Zeichen zu vermeiden [LINK](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
+- Wenn ein Gerätebefehl vom generischen Typ „Batterie“ ist und die Einheit „%“ hat, ordnet der Kern automatisch den Batteriestand des Geräts dem Wert des Befehls zu [LINK](https://github.com/jeedom/core/issues/2842)
+- Verbesserung von Texten und Korrektur von Fehlern [LINK](https://github.com/jeedom/core/pull/2834)
+- Bei der Installation von NPM-Abhängigkeiten wird der Cache vorher bereinigt [LINK](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
 
 >**WICHTIG**
 >
-> Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, es handelt sich um den Cache, der sich selbst neu aufbaut. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
+> Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, der Cache wird sich selbst neu aufbauen. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
