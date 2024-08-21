@@ -145,7 +145,7 @@ sendVarToJS([
               </div>
 
               <div class="form-group col-lg-12">
-                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Supprimer l'historique de la commandes cible}}
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Supprimer l'historique de la commande cible}}
                 <sup><i class="fas fa-question-circle" title="{{Supprime l'historique de la commande cible.}}"></i></sup>
                 </label>
                 <div class="col-lg-1">
