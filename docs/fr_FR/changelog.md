@@ -1,7 +1,5 @@
 # Changelog Jeedom V4.5
 
-- Si une commande d'un équipement est de type generique "Batterie" et à pour unité % alors le core va automatiquement affecté le niveau de batterie de l'équipement à la valeur de la commande [LIEN](https://github.com/jeedom/core/issues/2842)
-
 # 4.5
 
 - Possibilité de rendre les colonnes des tableaux redimmensionnables (seulement la liste des variables pour le moment ça sera étendu à d'autres tables si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
@@ -55,6 +53,7 @@
 - Correction d'un bug qui pouvait changer l'ordre des commandes lors de l'édition du dashboard [LIEN](https://github.com/jeedom/core/issues/2841)
 - Correction d'un erreur javascript sur les historiques [LIEN](https://github.com/jeedom/core/issues/2840)
 - Ajout d'une sécurité sur l'encodage json en ajax pour eviter les erreurs du à des caractères invalide [LIEN](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
+- Si une commande d'un équipement est de type generique "Batterie" et à pour unité % alors le core va automatiquement affecté le niveau de batterie de l'équipement à la valeur de la commande [LIEN](https://github.com/jeedom/core/issues/2842)
 
 >**IMPORTANT**
 >
