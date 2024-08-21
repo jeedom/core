@@ -54,6 +54,7 @@
 - Correction d'un erreur javascript sur les historiques [LIEN](https://github.com/jeedom/core/issues/2840)
 - Ajout d'une sécurité sur l'encodage json en ajax pour eviter les erreurs du à des caractères invalide [LIEN](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
 - Si une commande d'un équipement est de type generique "Batterie" et a pour unité "%" alors le core va automatiquement affecter le niveau de batterie de l'équipement à la valeur de la commande [LIEN](https://github.com/jeedom/core/issues/2842)
+- Amélioration des textes et correction de fautes [LIEN](https://github.com/jeedom/core/pull/2834)
 
 >**IMPORTANT**
 >
