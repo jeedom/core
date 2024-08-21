@@ -2,22 +2,22 @@
 
 # 4.5
 
-- Posibilidad de cambiar el tamaño de las columnas de la tabla (por el momento sólo la lista de variables, se ampliará a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
+- Posibilidad de cambiar el tamaño de las columnas de la tabla (solo la lista de variables por el momento, esto se extenderá a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
 - Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)) [ENLACE](https://github.com/jeedom/core/issues/2438)
 - Se agregó un botón a la ventana de configuración del pedido en el campo de cálculo del valor para recuperar un pedido [ENLACE](https://github.com/jeedom/core/issues/2776)
-- Posibilidad de ocultar ciertos menús para usuarios limitados [ENLACE](https://github.com/jeedom/core/issues/2651)
+- Posibilidad de ocultar ciertos menús para usuarios con derechos limitados [ENLACE](https://github.com/jeedom/core/issues/2651)
 - Los gráficos se actualizan automáticamente cuando llegan nuevos valores [ENLACE](https://github.com/jeedom/core/issues/2749)
 - Jeedom agrega automáticamente la altura de la imagen al crear widgets para evitar problemas de superposición en dispositivos móviles [ENLACE](https://github.com/jeedom/core/issues/2539)
 - Rediseño de la parte de copia de seguridad en la nube [ENLACE](https://github.com/jeedom/core/issues/2765)
 - **DESARROLLO** Configurar un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
-- Las etiquetas del escenario ahora son específicas de la instancia del escenario (si tiene dos escenarios lanzados muy juntos, las etiquetas del último ya no sobrescriben al primero)) [ENLACE](https://github.com/jeedom/core/issues/2763)
+- Las etiquetas de escenario ahora son específicas de la instancia del escenario (si tiene dos lanzamientos de escenario muy cercanos, las etiquetas del último ya no sobrescriben la primera)) [ENLACE](https://github.com/jeedom/core/issues/2763)
 - Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
   - ``trigger()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
   - ``triggerValue()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
   - ``#trigger#`` : Puede ser :
     - ``api`` si el lanzamiento fue activado por la API,
-    - ``TYPEcmd`` si el inicio fue activado por un comando, con TYPE reemplazó la identificación del complemento (por ejemplo, virtualCmd),
+    - ``TYPEcmd`` si el inicio fue activado por un comando, con TIPO reemplazado por la identificación del complemento (por ejemplo, virtualCmd),
     - ``schedule`` si fue lanzado por programación,
     - ``user`` si se inició manualmente,
     - ``start`` para un lanzamiento en la startup Jeedom.
@@ -30,6 +30,7 @@
 - Se corrigió un error en Safari en filtros con acentos [ENLACE](https://github.com/jeedom/core/pull/2754)
 - Se corrigió un error en la generación de información de tipo genérico en escenarios [ENLACE](https://github.com/jeedom/core/pull/2806)
 - Se agregó confirmación al abrir el acceso de soporte desde la página de administración de usuarios [ENLACE](https://github.com/jeedom/core/pull/2809)
+- Mejora del sistema cron para evitar algunos fallos en el lanzamiento [ENLACE](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Adición de escenarios de condiciones mayores o iguales y menores o iguales al asistente de condiciones [ENLACE](https://github.com/jeedom/core/issues/2810)
 - Capacidad para excluir órdenes del análisis de órdenes muertas [ENLACE](https://github.com/jeedom/core/issues/2812)
 - Se corrigió un error en la numeración del número de filas en las tablas [ENLACE](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
@@ -52,7 +53,10 @@
 - Se corrigió un error que podía cambiar el orden de los comandos al editar el panel [ENLACE](https://github.com/jeedom/core/issues/2841)
 - Se corrigió un error de JavaScript en los registros [ENLACE](https://github.com/jeedom/core/issues/2840)
 - Agregar seguridad a la codificación json en ajax para evitar errores debido a caracteres no válidos [ENLACE](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
+- Si un comando de equipo es del tipo genérico "Batería" y tiene la unidad "%" entonces el núcleo asignará automáticamente el nivel de batería del equipo al valor del comando [ENLACE](https://github.com/jeedom/core/issues/2842)
+- Mejora de textos y corrección de errores [ENLACE](https://github.com/jeedom/core/pull/2834)
+- Al instalar dependencias npm, el caché se limpia antes [ENLACE](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
 
 >**IMPORTANTE**
 >
-> Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, es el caché el que se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
+> Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, el caché se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.

@@ -2,22 +2,22 @@
 
 # 4.5
 
-- Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, será estendida a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
+- Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, isto será estendido a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
 - Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
 - Adicionado um botão na janela de configuração do pedido no campo de cálculo de valor para buscar um pedido [LINK](https://github.com/jeedom/core/issues/2776)
-- Capacidade de ocultar determinados menus para usuários limitados [LINK](https://github.com/jeedom/core/issues/2651)
+- Capacidade de ocultar determinados menus para usuários com direitos limitados [LINK](https://github.com/jeedom/core/issues/2651)
 - Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
 - Redesenho da parte de backup em nuvem [LINK](https://github.com/jeedom/core/issues/2765)
 - **DEV** Configurando um sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
-- As tags do cenário agora são específicas para a instância do cenário (se você tiver dois cenários lançados muito próximos, as tags do último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
+- Tags de cenário agora são específicas para a instância do cenário (se você tiver dois lançamentos de cenário muito próximos, as tags deste último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
 - Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais
   - ``trigger()`` agora está obsoleto e será removido em futuras atualizações principais
   - ``triggerValue()`` agora está obsoleto e será removido em futuras atualizações principais
   - ``#trigger#`` : Talvez :
     - ``api`` se o lançamento foi acionado pela API,
-    - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
+    - ``TYPEcmd`` se a inicialização foi acionada por um comando, com TYPE substituído pelo ID do plugin (por exemplo, virtualCmd),
     - ``schedule`` se foi lançado por programação,
     - ``user`` se foi iniciado manualmente,
     - ``start`` para um lançamento na startup Jeedom.
@@ -30,6 +30,7 @@
 - Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
 - Corrigido um bug na geração de informações de tipo genérico em cenários [LINK](https://github.com/jeedom/core/pull/2806)
 - Adicionada confirmação ao abrir o acesso ao suporte na página de gerenciamento de usuários [LINK](https://github.com/jeedom/core/pull/2809)
+- Melhoria do sistema cron para evitar algumas falhas de inicialização [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Adição de cenários de condições maiores ou iguais e menores ou iguais ao assistente de condições [LINK](https://github.com/jeedom/core/issues/2810)
 - Capacidade de excluir pedidos da análise de pedidos mortos [LINK](https://github.com/jeedom/core/issues/2812)
 - Corrigido um bug na numeração do número de linhas nas tabelas [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
@@ -52,6 +53,9 @@
 - Corrigido um bug que poderia alterar a ordem dos comandos ao editar o painel [LINK](https://github.com/jeedom/core/issues/2841)
 - Corrigido um erro de javascript nos logs [LINK](https://github.com/jeedom/core/issues/2840)
 - Adicionando segurança à codificação json em ajax para evitar erros devido a caracteres inválidos [LINK](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
+- Se um comando do equipamento for do tipo genérico “Bateria” e possuir a unidade “%” então o núcleo atribuirá automaticamente o nível da bateria do equipamento ao valor do comando [LINK](https://github.com/jeedom/core/issues/2842)
+- Melhoria de textos e correção de erros [LINK](https://github.com/jeedom/core/pull/2834)
+- Ao instalar dependências npm, o cache é limpo antes [LINK](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
 
 >**IMPORTANTE**
 >

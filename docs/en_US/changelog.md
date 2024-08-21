@@ -2,22 +2,22 @@
 
 # 4.5
 
-- Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary) [LINK](https://github.com/jeedom/core/issues/2499)
+- Ability to make table columns resizable (only the list of variables for the moment, this will be extended to other tables if necessary)) [LINK](https://github.com/jeedom/core/issues/2499)
 - Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
 - Added a button to the order configuration window at the value calculation field to fetch an order [LINK](https://github.com/jeedom/core/issues/2776)
-- Ability to hide certain menus for limited users [LINK](https://github.com/jeedom/core/issues/2651)
-- The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
+- Ability to hide certain menus for users with limited rights [LINK](https://github.com/jeedom/core/issues/2651)
+- Charts update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
 - Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
 - Redesign of the cloud backup part [LINK](https://github.com/jeedom/core/issues/2765)
 - **DEV** Setting up a queue system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
-- The scenario tags are now specific to the scenario instance (if you have two scenarios launched very close together, the tags of the latter no longer overwrite the first) [LINK](https://github.com/jeedom/core/issues/2763)
+- Scenario tags are now specific to the scenario instance (if you have two scenario launches very close together, the tags of the latter no longer overwrite the former) [LINK](https://github.com/jeedom/core/issues/2763)
 - Change to the trigger part of the scenarios : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` is now deprecated and will be removed in future core updates
   - ``trigger()`` is now deprecated and will be removed in future core updates
   - ``triggerValue()`` is now deprecated and will be removed in future core updates
   - ``#trigger#`` : Maybe :
     - ``api`` if the launch was triggered by the API,
-    - ``TYPEcmd`` if the launch was triggered by a command, with TYPE replaced the plugin id (ex virtualCmd),
+    - ``TYPEcmd`` if the launch was triggered by a command, with TYPE replaced by the plugin id (eg virtualCmd),
     - ``schedule`` if it was launched by programming,
     - ``user`` if it was started manually,
     - ``start`` for a launch at Jeedom startup.
@@ -30,9 +30,10 @@
 - Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
 - Fixed a bug on the generation of generic type information in scenarios [LINK](https://github.com/jeedom/core/pull/2806)
 - Added confirmation when opening support access from the user management page [LINK](https://github.com/jeedom/core/pull/2809)
+- Improved the cron system to avoid some launch glitches [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
 - Added greater than or equal and less than or equal conditions to the scenario condition wizard [LINK](https://github.com/jeedom/core/issues/2810)
 - Ability to exclude orders from dead order analysis [LINK](https://github.com/jeedom/core/issues/2812)
-- Fixed a bug on the numbering of the number of rows of tables [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
+- Fixed a bug on numbering of the number of rows of tables [LINK](https://github.com/jeedom/core/commit/0e9e44492e29f7d0842b2c9b3df39d0d98957c83)
 - Added openstreetmap.org in external domains allowed by default [LINK](https://github.com/jeedom/core/commit/2d62c64f0bd1958372844f6859ef691f88852422)
 - Automatically update apache security file when updating core [LINK](https://github.com/jeedom/core/issues/2815)
 - Fixed a warning on views [LINK](https://github.com/jeedom/core/pull/2816)
@@ -52,7 +53,10 @@
 - Fixed a bug that could change the order of commands when editing the dashboard [LINK](https://github.com/jeedom/core/issues/2841)
 - Fixed a javascript error on histories [LINK](https://github.com/jeedom/core/issues/2840)
 - Added security on json encoding in ajax to avoid errors due to invalid characters [LINK](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
+- If a command of a device is of generic type "Battery" and has unit "%" then the core will automatically assign the battery level of the device to the value of the command [LINK](https://github.com/jeedom/core/issues/2842)
+- Improving texts and correcting mistakes [LINK](https://github.com/jeedom/core/pull/2834)
+- When installing npm dependencies the cache is cleaned before [LINK](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
 
 >**IMPORTANT**
 >
-> Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have virtuals with fixed values (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
+> Due to the change of cache engine on this update, all the cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have fixed value virtuals (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
