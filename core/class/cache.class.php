@@ -219,7 +219,8 @@ class MariadbCache {
 	public static function clean(){
 		$sql = 'DELETE 
 		FROM cache
-		WHERE (`timestamp`+`lifetime`) < UNIX_TIMESTAMP()';
+		WHERE `lifetime` > 0
+			AND (`timestamp`+`lifetime`) < UNIX_TIMESTAMP()';
 		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 

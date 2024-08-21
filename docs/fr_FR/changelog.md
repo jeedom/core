@@ -45,6 +45,17 @@
 - Ajout du nom de l'utilisateur qui a lancé le scénario dans le tag ``#trigger_value#`` [LIEN](https://github.com/jeedom/core/pull/2382)
 - Correction d'une erreur qui pouvait arriver en quittant le dashboard avant la fin du chargement de celui-ci [LIEN](https://github.com/jeedom/core/pull/2827)
 - Correction d'un bug sur la page de remplacement lors d'un filtre sur les objets [LIEN](https://github.com/jeedom/core/issues/2833)
+- Amélioration de l'ouverture du changelog du core sous ios (plus dans une popup) [LIEN](https://github.com/jeedom/core/issues/2835)
+- Amélioration de la fenetre de création avancées de widget [LIEN](https://github.com/jeedom/core/pull/2836)
+- Amélioration de la fenetre de configuration avancée des commandes [LIEN](https://github.com/jeedom/core/pull/2837)
+- Correction d'un bug sur la création de widget [LIEN](https://github.com/jeedom/core/pull/2838)
+- Correction d'un bug sur la page scénario et la fenetre d'ajout d'action qui pouvait ne plus fonctionner [LIEN](https://github.com/jeedom/core/issues/2839)
+- Correction d'un bug qui pouvait changer l'ordre des commandes lors de l'édition du dashboard [LIEN](https://github.com/jeedom/core/issues/2841)
+- Correction d'un erreur javascript sur les historiques [LIEN](https://github.com/jeedom/core/issues/2840)
+- Ajout d'une sécurité sur l'encodage json en ajax pour eviter les erreurs du à des caractères invalide [LIEN](https://github.com/jeedom/core/commit/0784cbf9e409cfc50dd9c3d085c329c7eaba7042)
+- Si une commande d'un équipement est de type generique "Batterie" et a pour unité "%" alors le core va automatiquement affecter le niveau de batterie de l'équipement à la valeur de la commande [LIEN](https://github.com/jeedom/core/issues/2842)
+- Amélioration des textes et correction de fautes [LIEN](https://github.com/jeedom/core/pull/2834)
+- Lors de l'installation de dépendances npm le cache est nettoyé avant [LIEN](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
 
 >**IMPORTANT**
 >

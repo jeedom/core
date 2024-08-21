@@ -10,10 +10,10 @@ if [[ "${GITHUB_REF_NAME}" == "master" ]]; then
   JEEDOM_TAGS="${REPO}/jeedom:latest,${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
   GITHUB_BRANCH=${GITHUB_REF_NAME};
 elif [[ "${GITHUB_REF_NAME}" == "beta" ]]; then
-  JEEDOM_TAGS="${REPO}/jeedom:beta,${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
+  JEEDOM_TAGS="${REPO}/jeedom:beta"; # ${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
   GITHUB_BRANCH=${GITHUB_REF_NAME};
 else
-  JEEDOM_TAGS="${REPO}/jeedom:$JEEDOM_SHORT_VERSION";
+  JEEDOM_TAGS="${REPO}/jeedom:alpha";
   GITHUB_BRANCH=alpha;
 fi
 

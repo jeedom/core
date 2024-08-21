@@ -1935,7 +1935,7 @@ class cmd {
 			event::adds('cmd::update', $events);
 		}
 		if (!$repeat) {
-			listener::check($this->getId(), $value, $this->getCollectDate());
+			listener::check($this->getId(), $value, $this->getCollectDate(),$this);
 			jeeObject::checkSummaryUpdate($this->getId());
 		}
 		$this->addHistoryValue($value, $this->getCollectDate());
@@ -1958,6 +1958,9 @@ class cmd {
 			}
 			$this->pushUrl($value);
 			$this->pushInflux($value);
+			if($this->getGeneric_type() == 'BATTERY' && $this->getUnite() == '%'){
+				$this->batteryStatus($value);
+			}
 		}
 	}
 

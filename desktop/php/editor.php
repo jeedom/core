@@ -75,55 +75,6 @@ if ($lang != 'en') {
 
 <div id="elfinder" class=""></div>
 
-<div id="md_widgetCreate" class="hidden">
-	<form class="form-horizontal">
-		<fieldset>
-			<div class="form-group">
-				<label class="col-xs-4 control-label">{{Version}}</label>
-				<div class="col-xs-8">
-					<select id="sel_widgetVersion">
-						<option value="dashboard">{{Dashboard}}</option>
-						<option value="mobile">{{Mobile}}</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-xs-4 control-label">{{Type}}</label>
-				<div class="col-xs-8">
-					<select id="sel_widgetType">
-						<?php
-						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							echo '<option value="' . $key . '"><a>' . $value['name'] . '</option>';
-						}
-						?>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-xs-4 control-label">{{Sous-type}}</label>
-				<div class="col-xs-8">
-					<select id="sel_widgetSubtype">
-						<option value="" data-default="1"><a></option>
-						<?php
-						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $key => $value) {
-							foreach ($value['subtype'] as $skey => $svalue) {
-								echo '<option data-type="' . $key . '" value="' . $skey . '"><a>' . $svalue['name'] . '</option>';
-							}
-						}
-						?>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-xs-4 control-label">{{Nom}}</label>
-				<div class="col-xs-8">
-					<input id="in_widgetName" class="form-control" />
-				</div>
-			</div>
-		</fieldset>
-	</form>
-</div>
-
 <?php
 include_file("desktop", "editor", "js");
 ?>

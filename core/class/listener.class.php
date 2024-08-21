@@ -206,11 +206,11 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function check($_event, $_value, $_datetime = null) {
+	public static function check($_event, $_value, $_datetime = null,$_object = null) {
 		$listeners = self::searchEvent($_event);
 		if (is_array($listeners) && count($listeners) > 0) {
 			foreach ($listeners as $listener) {
-				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
+				$listener->run(str_replace('#', '', $_event), $_value, $_datetime,$_object);
 			}
 		}
 	}
@@ -233,13 +233,13 @@ class listener {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function run($_event, $_value, $_datetime = null) {
+	public function run($_event, $_value, $_datetime = null,$_object = null) {
 		$option = array();
 		if (count($this->getOption()) > 0) {
 			$option = $this->getOption();
 		}
 		if (isset($option['background']) && $option['background'] == false) {
-			$this->execute($_event, $_value, $_datetime);
+			$this->execute($_event, $_value, $_datetime,$_object);
 		} else {
 			$cmd = __DIR__ . '/../php/jeeListener.php';
 			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' "value=' . escapeshellarg($_value) . '"';
@@ -250,7 +250,7 @@ class listener {
 		}
 	}
 
-	public function execute($_event, $_value, $_datetime = '') {
+	public function execute($_event, $_value, $_datetime = '',$_object = null) {
 		try {
 			$option = array();
 			if (count($this->getOption()) > 0) {
@@ -259,6 +259,7 @@ class listener {
 			$option['event_id'] = $_event;
 			$option['value'] = $_value;
 			$option['datetime'] = $_datetime;
+			$option['object'] = $_object;
 			$option['listener_id'] = $this->getId();
 			if ($this->getClass() != '') {
 				$class = $this->getClass();
