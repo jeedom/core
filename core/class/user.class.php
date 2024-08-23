@@ -308,7 +308,7 @@ class user {
 			return false;
 		}
 		$is_ban = false;
-		if (count($ban_ips) > 0 && config::byKey('security::bantime') >= 0 && is_int(intval(config::byKey('security::bantime')))) {
+		if (count($ban_ips) > 0 && intval(config::byKey('security::bantime')) >= 0 && is_int(intval(config::byKey('security::bantime')))) {
 			foreach ($ban_ips as $ip => $datetime) {
 				if ($datetime + intval(config::byKey('security::bantime')) > strtotime('now')) {
 					if ($ip == $current_ip) {
