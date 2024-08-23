@@ -79,7 +79,7 @@ then
   today=$(date +%Y%m%d)
   if [[ "$today" > "20220630" ]]; 
   then 
-  echo "== ATTENTION Debian 9 Stretch n'est officiellement plus supportée depuis le 30 juin 2022, merci de mettre à jour votre distribution !!!"
+  echo "== ATTENTION Debian 10 Buster n'est officiellement plus supportée depuis le 30 juin 2024, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
 fi
