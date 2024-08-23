@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.4
 
+
+# 4.4.14
+
+- Correction d'un bug sur l'affichage de la configuration de Jeedom dans certain rare cas [LIEN](https://github.com/jeedom/core/commit/21477534388a9000a138631803b22da787a0b722)
+
 # 4.4.13
 
 - Correction d'un bug de variable indefinie [LIEN](https://github.com/jeedom/core/commit/9f916da35675cf6a48f7575c5427137549338004)
