@@ -1,7 +1,7 @@
 #!/bin/bash
 
-installVer='18' 	#NodeJS major version to be installed
-minVer='18'	      #min NodeJS major version to be accepted
+installVer='20' 	#NodeJS major version to be installed
+minVer='20'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
@@ -62,6 +62,18 @@ fi
 
 #stretch doesn't support NodeJS 18
 lsb_release -c | grep stretch
+if [ $? -eq 0 ]
+then
+  today=$(date +%Y%m%d)
+  if [[ "$today" > "20220630" ]]; 
+  then 
+  echo "== ATTENTION Debian 9 Stretch n'est officiellement plus supportée depuis le 30 juin 2022, merci de mettre à jour votre distribution !!!"
+  exit 1
+fi
+fi
+
+#buster doesn't support NodeJS 20
+lsb_release -c | grep buster
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
