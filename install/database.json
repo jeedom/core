@@ -1068,7 +1068,7 @@
             }
           }
         },
-        "unique": {
+        "unique_listener": {
           "Key_name": "unique",
           "Non_unique": "0",
           "columns": {
