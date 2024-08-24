@@ -105,6 +105,11 @@ chmod 777 /dev/tty*
 chmod 755 -R ${WEBSERVER_HOME}
 
 echo 'Start apache2'
+if [[ "${APACHE_PORT}" != 80 ]]; then
+  echo "Port update for apache2: ${APACHE_PORT}"
+  echo "Listen ${APACHE_PORT}" > /etc/apache2/ports.conf
+  sed -i -E "s/\<VirtualHost \*:(.*)\>/VirtualHost \*:${APACHE_PORT}/" /etc/apache2/sites-available/000-default.conf
+fi
 service apache2 start
 service apache2 status
 echo 'Start CRON daemon'
