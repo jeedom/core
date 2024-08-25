@@ -176,13 +176,7 @@ if (!jeeFrontEnd.md_history) {
       jeeDialog.dialog({
         id: 'md_cmdHistory',
         title: "{{Historique}}",
-        contentUrl: url,
-        callback: function() {
-            setTimeout(() => {
-                document.getElementById('bt_toggleOptions')?.click()
-            }, 300);
-          
-        }
+        contentUrl: url
       })
     },
     toggleOptions: function(_value) {
