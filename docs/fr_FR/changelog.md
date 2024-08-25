@@ -58,7 +58,7 @@
 - Lors de l'installation de dépendances npm le cache est nettoyé avant [LIEN](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
 - Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration [LIEN](https://github.com/jeedom/core/pull/2849)
 - Correction d'un bug sur la fenetre d'affichage des historiques [LIEN](https://github.com/jeedom/core/pull/2850)
-
+- Possibilité de choisir le port d'écoute d'Apache en mode docker [LIEN](https://github.com/jeedom/core/pull/2847)
 
 >**IMPORTANT**
 >
