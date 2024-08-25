@@ -1067,24 +1067,6 @@
               "Sub_part": "255"
             }
           }
-        },
-        "unique_listener": {
-          "Key_name": "unique",
-          "Non_unique": "0",
-          "columns": {
-            "1": {
-              "column": "class",
-              "Sub_part": null
-            },
-            "2": {
-              "column": "function",
-              "Sub_part": null
-            },
-            "3": {
-              "column": "event",
-              "Sub_part": null
-            }
-          }
         }
       }
     },
