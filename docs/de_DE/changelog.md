@@ -56,6 +56,9 @@
 - Wenn ein Gerätebefehl vom generischen Typ „Batterie“ ist und die Einheit „%“ hat, ordnet der Kern automatisch den Batteriestand des Geräts dem Wert des Befehls zu [LINK](https://github.com/jeedom/core/issues/2842)
 - Verbesserung von Texten und Korrektur von Fehlern [LINK](https://github.com/jeedom/core/pull/2834)
 - Bei der Installation von NPM-Abhängigkeiten wird der Cache vorher bereinigt [LINK](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
+- Es wurde ein Fehler bei 3D-Plänen behoben, der die Konfiguration vollständig blockieren konnte [LINK](https://github.com/jeedom/core/pull/2849)
+- Ein Fehler im Protokollanzeigefenster wurde behoben [LINK](https://github.com/jeedom/core/pull/2850)
+- Möglichkeit, den Apache-Listening-Port im Docker-Modus auszuwählen [LINK](https://github.com/jeedom/core/pull/2847)
 
 >**WICHTIG**
 >
