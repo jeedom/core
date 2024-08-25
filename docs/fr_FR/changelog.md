@@ -5,8 +5,8 @@
 
 - Correction d'un bug sur l'affichage de la configuration de Jeedom dans certain rare cas [LIEN](https://github.com/jeedom/core/commit/21477534388a9000a138631803b22da787a0b722)
 - Amélioration de la fonction getStatistic en php8 [LIEN](https://github.com/jeedom/core/commit/b72547ddc01a06030df1e5e7b2d41c5556606408)
-- Renommage de l'indexe sur la table listener pour eviter une erreur de duplicate name [LIEN](https://github.com/jeedom/core/commit/28fa80f4fcb0ad57657f7e478758f3925378dfa8)
 - Correction de bug sur le nouveau systeme de cache [LIEN](https://github.com/jeedom/core/commit/bb84cfde702dd5b94d08f3d6d7041302eb06ad4d)
+- Correction d'un bug sur les listener qui pouvait créer une erreur dans certain plugin (sunshutter par exemple) 
 
 # 4.4.13
 
