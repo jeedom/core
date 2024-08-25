@@ -699,7 +699,7 @@ class history {
 	public static function getTendance($_cmd_id, $_startTime, $_endTime) {
 		$values = array();
 		foreach (self::all($_cmd_id, $_startTime, $_endTime) as $history) {
-			$values[] = $history->getValue();
+			$values[] = floatval($history->getValue());
 		}
 		if (count($values) == 0) {
 			$x_mean = 0;
