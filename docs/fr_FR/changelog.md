@@ -56,6 +56,8 @@
 - Si une commande d'un équipement est de type générique "Batterie" et a pour unité "%" alors le core va automatiquement affecter le niveau de batterie de l'équipement à la valeur de la commande [LIEN](https://github.com/jeedom/core/issues/2842)
 - Amélioration des textes et correction de fautes [LIEN](https://github.com/jeedom/core/pull/2834)
 - Lors de l'installation de dépendances npm le cache est nettoyé avant [LIEN](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
+- Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration [LIEN](https://github.com/jeedom/core/pull/2849)
+
 
 >**IMPORTANT**
 >
