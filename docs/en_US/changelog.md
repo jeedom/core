@@ -56,6 +56,9 @@
 - If a command of a device is of generic type "Battery" and has unit "%" then the core will automatically assign the battery level of the device to the value of the command [LINK](https://github.com/jeedom/core/issues/2842)
 - Improving texts and correcting mistakes [LINK](https://github.com/jeedom/core/pull/2834)
 - When installing npm dependencies the cache is cleaned before [LINK](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
+- Fixed a bug on 3D plans that could completely block the configuration [LINK](https://github.com/jeedom/core/pull/2849)
+- Fixed a bug on the history display window [LINK](https://github.com/jeedom/core/pull/2850)
+- Ability to choose Apache listening port in docker mode [LINK](https://github.com/jeedom/core/pull/2847)
 
 >**IMPORTANT**
 >

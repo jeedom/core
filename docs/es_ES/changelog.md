@@ -56,6 +56,9 @@
 - Si un comando de equipo es del tipo genérico "Batería" y tiene la unidad "%" entonces el núcleo asignará automáticamente el nivel de batería del equipo al valor del comando [ENLACE](https://github.com/jeedom/core/issues/2842)
 - Mejora de textos y corrección de errores [ENLACE](https://github.com/jeedom/core/pull/2834)
 - Al instalar dependencias npm, el caché se limpia antes [ENLACE](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
+- Se corrigió un error en los planos 3D que podía bloquear completamente la configuración [ENLACE](https://github.com/jeedom/core/pull/2849)
+- Se corrigió un error en la ventana de visualización de registros [ENLACE](https://github.com/jeedom/core/pull/2850)
+- Posibilidad de elegir el puerto de escucha de Apache en modo acoplable [ENLACE](https://github.com/jeedom/core/pull/2847)
 
 >**IMPORTANTE**
 >

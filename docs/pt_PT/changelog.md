@@ -56,6 +56,9 @@
 - Se um comando do equipamento for do tipo genérico “Bateria” e possuir a unidade “%” então o núcleo atribuirá automaticamente o nível da bateria do equipamento ao valor do comando [LINK](https://github.com/jeedom/core/issues/2842)
 - Melhoria de textos e correção de erros [LINK](https://github.com/jeedom/core/pull/2834)
 - Ao instalar dependências npm, o cache é limpo antes [LINK](https://github.com/jeedom/core/commit/1a151208e0a66b88ea61dca8d112d20bb045c8d9)
+- Corrigido um bug nos planos 3D que poderia bloquear completamente a configuração [LINK](https://github.com/jeedom/core/pull/2849)
+- Corrigido um bug na janela de exibição de logs [LINK](https://github.com/jeedom/core/pull/2850)
+- Capacidade de escolher a porta de escuta do Apache no modo docker [LINK](https://github.com/jeedom/core/pull/2847)
 
 >**IMPORTANTE**
 >
