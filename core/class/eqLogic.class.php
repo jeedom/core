@@ -1545,7 +1545,7 @@ class eqLogic {
 
 	public function getCustomImage(){
 		if ($this->getConfiguration('image::sha512') == '') {
-			return '';
+			return null;
 		}
 		$filename = 'eqLogic' . $this->getId() . '-' . $this->getConfiguration('image::sha512') . '.' . $this->getConfiguration('image::type');
 		if(file_exists(__DIR__ . '/../../data/eqLogic/'.$filename)){
