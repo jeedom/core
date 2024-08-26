@@ -88,7 +88,7 @@ try {
 				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
 			}
 		}
-		ajax::success();
+		ajax::success(array('filepath' => $eqLogic->getImage()));
 	}
 
 	if (init('action') == 'getEqLogicObject') {

@@ -594,7 +594,7 @@ sendVarToJS([
               	document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
               }
               jeedomUtils.showAlert({
-                message: '{{Image ajoutée avec succès}}',
+                message: '{{Image ajoutée avec succès (n\'oubliez pas refraichir la page pour voir le résultat)}}',
                 level: 'success'
                 })
               }
@@ -884,9 +884,13 @@ sendVarToJS([
                 })
               },
               success: function() {
-                document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
+                if (isset(data.result.result.filepath)) {
+                  document.querySelector('#md_eqLogicConfigure .eqLogicImg').seen().querySelector('img').src = data.result.result.filepath
+                } else {
+                  document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
+                }
                 jeedomUtils.showAlert({
-                  message: '{{Image enlevée}}',
+                  message: '{{Image enlevée (n\'oubliez pas refraichir la page pour voir le résultat)}}',
                   level: 'success'
                 })
               },
