@@ -1358,6 +1358,7 @@
         "Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration": "Fixed a bug on 3D plans that could completely block the configuration",
         "Correction d'un bug sur la fenetre d'affichage des historiques": "Fixed a bug on the history display window",
         "Possibilité de choisir le port d'écoute d'Apache en mode docker": "Ability to choose Apache listening port in docker mode",
+        "Correction d'un warning lors d'une sauvegarde sur la table event": "Fixed a warning when saving to the event table",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "Note that if you have fixed value virtuals (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value",

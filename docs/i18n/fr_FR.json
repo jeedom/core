@@ -833,6 +833,7 @@
         "Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration": "Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration",
         "Correction d'un bug sur la fenetre d'affichage des historiques": "Correction d'un bug sur la fenetre d'affichage des historiques",
         "Possibilité de choisir le port d'écoute d'Apache en mode docker": "Possibilité de choisir le port d'écoute d'Apache en mode docker",
+        "Correction d'un warning lors d'une sauvegarde sur la table event": "Correction d'un warning lors d'une sauvegarde sur la table event",
         "IMPORTANT": "IMPORTANT",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",

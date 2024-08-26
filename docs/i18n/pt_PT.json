@@ -1358,6 +1358,7 @@
         "Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration": "Corrigido um bug nos planos 3D que poderia bloquear completamente a configuração",
         "Correction d'un bug sur la fenetre d'affichage des historiques": "Corrigido um bug na janela de exibição de logs",
         "Possibilité de choisir le port d'écoute d'Apache en mode docker": "Capacidade de escolher a porta de escuta do Apache no modo docker",
+        "Correction d'un warning lors d'une sauvegarde sur la table event": "Corrigido um aviso ao salvar na tabela de eventos",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor",

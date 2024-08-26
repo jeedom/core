@@ -59,6 +59,7 @@
 - Fixed a bug on 3D plans that could completely block the configuration [LINK](https://github.com/jeedom/core/pull/2849)
 - Fixed a bug on the history display window [LINK](https://github.com/jeedom/core/pull/2850)
 - Ability to choose Apache listening port in docker mode [LINK](https://github.com/jeedom/core/pull/2847)
+- Fixed a warning when saving to the event table [LINK](https://github.com/jeedom/core/issues/2851)
 
 >**IMPORTANT**
 >
