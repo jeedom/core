@@ -883,9 +883,9 @@ sendVarToJS([
                   level: 'danger'
                 })
               },
-              success: function() {
-                if (isset(data.result.result.filepath)) {
-                  document.querySelector('#md_eqLogicConfigure .eqLogicImg').seen().querySelector('img').src = data.result.result.filepath
+              success: function(data) {
+                if (isset(data.filepath)) {
+                  document.querySelector('#md_eqLogicConfigure .eqLogicImg').seen().querySelector('img').src = data.filepath
                 } else {
                   document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
                 }
