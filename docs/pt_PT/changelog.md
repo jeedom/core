@@ -41,7 +41,7 @@
 - Corrigido um bug se um comando excedesse seu mínimo ou máximo, o valor mudava para 0 (em vez de mínimo/máximo) [LINK](https://github.com/jeedom/core/issues/2819)
 - Corrigido um bug exibindo o menu de configurações em determinados idiomas [LINK](https://github.com/jeedom/core/issues/2821)
 - Possibilidade nos triggers programados dos cenários utilizar cálculos/comandos/tags/fórmulas dando como resultado o horário de lançamento no formato Gi (horas sem zero inicial e minutos, exemplo para 9h15 => 915 ou para 11h40 tarde => 2340) [LINK](https://github.com/jeedom/core/pull/2808)
-- Possibilidade de colocar uma imagem personalizada do equipamento nos plugins (caso o plugin suporte), para isso basta colocar a imagem em `data/img` no formato `eqLogic`#id#.png` com #id# o id do equipamento (você pode encontrá-lo na configuração avançada do equipamento) [LINK](https://github.com/jeedom/core/pull/2802)
+- Possibilidade de colocar uma imagem personalizada do equipamento nos plugins (se o plugin suportar), isto é feito na configuração avançada do equipamento [LINK](https://github.com/jeedom/core/pull/2802) [LINK](https://github.com/jeedom/core/pull/2852)
 - Adicionando o nome do usuário que lançou o cenário à tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Corrigido um erro que poderia ocorrer ao sair do painel antes de terminar de carregar [LINK](https://github.com/jeedom/core/pull/2827)
 - Corrigido um bug na página de substituição ao filtrar objetos [LINK](https://github.com/jeedom/core/issues/2833)
@@ -60,6 +60,8 @@
 - Corrigido um bug na janela de exibição de logs [LINK](https://github.com/jeedom/core/pull/2850)
 - Capacidade de escolher a porta de escuta do Apache no modo docker [LINK](https://github.com/jeedom/core/pull/2847)
 - Corrigido um aviso ao salvar na tabela de eventos [LINK](https://github.com/jeedom/core/issues/2851)
+- Adicionando um nome de exibição para objetos [LINK](https://github.com/jeedom/core/issues/2484)
+- Adicionado um botão para excluir histórico e eventos da linha do tempo no futuro [LINK](https://github.com/jeedom/core/issues/2415)
 
 >**IMPORTANTE**
 >

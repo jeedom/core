@@ -41,7 +41,7 @@
 - Es wurde ein Fehler behoben, bei dem der Wert auf 0 (anstelle von Min/Max) geändert wurde, wenn ein Befehl seine Mindest- oder Höchstgrenze überschritt) [LINK](https://github.com/jeedom/core/issues/2819)
 - Ein Fehler bei der Anzeige des Einstellungsmenüs in bestimmten Sprachen wurde behoben [LINK](https://github.com/jeedom/core/issues/2821)
 - Möglichkeit in den programmierten Auslösern der Szenarien, Berechnungen/Befehle/Tags/Formeln zu verwenden, die als Ergebnis die Startzeit in der Form Gi (Stunden ohne Anfangsnull und Minuten) ergeben, Beispiel für 9:15 Uhr => 915 oder für 11:40 Uhr => 2340) [LINK](https://github.com/jeedom/core/pull/2808)
-- Möglichkeit, ein personalisiertes Bild für die Ausrüstung in die Plugins einzufügen (sofern das Plugin dies unterstützt), dazu fügen Sie einfach das Bild in „data/img“ in der Form „eqLogic“ ein#id#.png` mit #id# die Geräte-ID (Sie finden sie in der erweiterten Konfiguration des Geräts)) [LINK](https://github.com/jeedom/core/pull/2802)
+- Möglichkeit, in den Plugins ein personalisiertes Bild für das Gerät einzufügen (sofern das Plugin dies unterstützt), dies erfolgt in der erweiterten Konfiguration des Geräts [LINK](https://github.com/jeedom/core/pull/2802) [LINK](https://github.com/jeedom/core/pull/2852)
 - Hinzufügen des Namens des Benutzers, der das Szenario gestartet hat, zum Tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Es wurde ein Fehler behoben, der auftreten konnte, wenn das Dashboard verlassen wurde, bevor der Ladevorgang abgeschlossen war [LINK](https://github.com/jeedom/core/pull/2827)
 - Ein Fehler auf der Ersetzungsseite beim Filtern nach Objekten wurde behoben [LINK](https://github.com/jeedom/core/issues/2833)
@@ -60,6 +60,8 @@
 - Ein Fehler im Protokollanzeigefenster wurde behoben [LINK](https://github.com/jeedom/core/pull/2850)
 - Möglichkeit, den Apache-Listening-Port im Docker-Modus auszuwählen [LINK](https://github.com/jeedom/core/pull/2847)
 - Beim Speichern in der Ereignistabelle wurde eine Warnung behoben [LINK](https://github.com/jeedom/core/issues/2851)
+- Hinzufügen eines Anzeigenamens für Objekte [LINK](https://github.com/jeedom/core/issues/2484)
+- Es wurde eine Schaltfläche hinzugefügt, um Verlauf und Ereignisse in Zukunft aus der Zeitleiste zu löschen [LINK](https://github.com/jeedom/core/issues/2415)
 
 >**WICHTIG**
 >

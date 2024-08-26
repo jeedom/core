@@ -41,7 +41,7 @@
 - Se corrigió un error si un comando excedía su mínimo o máximo, el valor cambiaba a 0 (en lugar de mínimo/máximo)) [ENLACE](https://github.com/jeedom/core/issues/2819)
 - Se corrigió un error al mostrar el menú de configuración en ciertos idiomas [ENLACE](https://github.com/jeedom/core/issues/2821)
 - Posibilidad en los disparadores programados de los escenarios de utilizar cálculos/comandos/etiquetas/fórmulas dando como resultado el tiempo de lanzamiento en forma Gi (horas sin cero inicial y minutos, ejemplo para las 9:15 a.m. => 915 o para las 11:40 pm => 2340) [ENLACE](https://github.com/jeedom/core/pull/2808)
-- Posibilidad de poner una imagen personalizada del equipo en los complementos (si el complemento lo admite), para ello simplemente coloque la imagen en `data/img` en el formato `eqLogic`#id#.png` con #id# el id del equipo (lo puedes encontrar en la configuración avanzada del equipo)) [ENLACE](https://github.com/jeedom/core/pull/2802)
+- Posibilidad de poner una imagen personalizada del equipo en los plugins (si el plugin lo soporta), esto se hace en la configuración avanzada del equipo [ENLACE](https://github.com/jeedom/core/pull/2802) [ENLACE](https://github.com/jeedom/core/pull/2852)
 - Agregar el nombre del usuario que lanzó el escenario a la etiqueta ``#trigger_value#`` [ENLACE](https://github.com/jeedom/core/pull/2382)
 - Se corrigió un error que podía ocurrir al salir del tablero antes de que terminara de cargarse [ENLACE](https://github.com/jeedom/core/pull/2827)
 - Se corrigió un error en la página de reemplazo al filtrar objetos [ENLACE](https://github.com/jeedom/core/issues/2833)
@@ -60,6 +60,8 @@
 - Se corrigió un error en la ventana de visualización de registros [ENLACE](https://github.com/jeedom/core/pull/2850)
 - Posibilidad de elegir el puerto de escucha de Apache en modo acoplable [ENLACE](https://github.com/jeedom/core/pull/2847)
 - Se corrigió una advertencia al guardar en la tabla de eventos [ENLACE](https://github.com/jeedom/core/issues/2851)
+- Agregar un nombre para mostrar para objetos [ENLACE](https://github.com/jeedom/core/issues/2484)
+- Se agregó un botón para eliminar el historial y los eventos de la línea de tiempo en el futuro [ENLACE](https://github.com/jeedom/core/issues/2415)
 
 >**IMPORTANTE**
 >

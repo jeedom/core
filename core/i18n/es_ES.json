@@ -1089,6 +1089,9 @@
         "Dernière communication": "Última comunicación",
         "Tag(s)": "Tag (s)",
         "Commentaire": "Comentario",
+        "Image": "Imagen",
+        "Envoyer": "Enviar",
+        "Enlever l'image": "Quitar imagen",
         "Commandes": "Comandos",
         "ID": "IDENTIFICACIÓN",
         "Type": "Tipo",
@@ -1137,6 +1140,7 @@
         "Attention si": "Ten cuidado si",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Puede encontrar aquí cualquier información adicional solicitada por un complemento en el equipo Jeedom",
         "Informations complémentaires demandées par": "Información adicional solicitada por",
+        "Image ajoutée avec succès (n\\'oubliez pas refraichir la page pour voir le résultat)": "Imagen agregada exitosamente (no olvides actualizar la página para ver el resultado)",
         "Configuration de l'équipement": "Configuración del equipo",
         "Sauvegarde réussie": "Copia de seguridad realizada con éxito",
         "Graphique des liens": "Gráfico de enlaces",
@@ -1144,6 +1148,8 @@
         "Êtes-vous sûr de vouloir supprimer cet équipement ?": "¿Estás seguro de que deseas eliminar este equipo?",
         "Equipement supprimé avec succès": "Equipo eliminado con éxito",
         "Configuration de la commande": "Configuración de pedidos",
+        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "¿Estás seguro de que deseas eliminar la imagen de este equipo?",
+        "Image enlevée (n\\'oubliez pas refraichir la page pour voir le résultat)": "Imagen eliminada (no olvides actualizar la página para ver el resultado)",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "¿Confirmar el reemplazo de la batería? Esta acción registrará el último cambio de batería en la fecha de hoy",
         "Le remplacement des piles a été enregistré": "Se ha registrado el reemplazo de la batería"
     },
@@ -1802,7 +1808,7 @@
         "Cocher la case pour afficher les images de fond": "Marque la casilla para mostrar imágenes de fondo",
         "Dashboard": "Panel",
         "Image de fond pour les pages du Dashboard (En fonction des options de l'objet)": "Imagen de fondo para las páginas del Panel (según las opciones del objeto)",
-        "Envoyer": "Enviar a",
+        "Envoyer": "Enviar",
         "Supprimer": "Eliminar",
         "Analyse": "Análisis",
         "Image de fond pour les pages du menu Analyse": "Imagen de fondo para las páginas del menú Análisis",
@@ -1850,6 +1856,7 @@
         "Timeline": "Cronología",
         "Nombre maximum d'évènements sur chaque Timeline": "Número máximo de eventos en cada línea de tiempo",
         "Evènements actuels": "Eventos actuales",
+        "Supprimer tous les évènements de la Timeline qui sont dans le futur": "Eliminar todos los eventos de la línea de tiempo que estén en el futuro",
         "Supprimer tous les évènements de la Timeline": "Eliminar todos los eventos de la línea de tiempo",
         "Messages": "Mensajes",
         "Ajouter un message à chaque erreur dans les logs": "Añadir un mensaje a cada error en los registros",
@@ -1926,6 +1933,7 @@
         "3 ans": "3 años",
         "Autoriser les dates dans le futur": "Permitir fechas en el futuro",
         "Autorise l'affichage d'historique avec des dates dans le futur.": "Permite la visualización del historial con fechas en el futuro",
+        "Supprimer tous les historiques qui sont dans le futur": "Eliminar todo el historial que esté en el futuro",
         "Widgets par défaut": "Widgets predeterminados",
         "Push": "Empuje",
         "URL de push globale": "Url de push global",
@@ -2337,7 +2345,7 @@
         "Scénario": "Escenario",
         "Paramètres": "Parámetros",
         "Nom du scénario": "Nombre de escenario",
-        "Nom à afficher": "Nombre a mostrar",
+        "Nom à afficher": "Nombre para mostrar",
         "Ne rien mettre pour laisser le nom par défaut": "No poner nada para dejar el nombre por defecto",
         "Groupe": "Grupo",
         "Groupe du scénario": "Grupo de escenario",
@@ -2616,6 +2624,8 @@
         "Résumé par équipements": "Resumen por equipos",
         "Général": "General",
         "Nom de l'objet": "Nombre del objeto",
+        "Nom à afficher (si vide alors le nom de l'objet sera utilisé)": "Nombre a mostrar (si está vacío, se utilizará el nombre del objeto)",
+        "Nom à afficher": "Nombre para mostrar",
         "Objet parent": "Objeto padre",
         "Options": "Opciones",
         "Visible": "Visible",
@@ -2653,7 +2663,7 @@
         "L'image de fond sera utilisée seulement sur la Synthèse.": "La imagen de fondo se usará solo en la Síntesis",
         "Envoyer": "Enviar",
         "Bibliothèque d'image": "Biblioteca de imágenes",
-        "Enlever l'image": "Quita la imagen",
+        "Enlever l'image": "Quitar imagen",
         "Réordonner les équipements par utilisation": "Reordenar equipos por uso",
         "Réordonner": "Reordenar",
         "Réordonner automatiquement": "Reordenar automáticamente",
@@ -3162,11 +3172,13 @@
         "Image supprimée": "Imagen eliminada",
         "Automatique": "Automático",
         "Evènements de la timeline supprimés avec succès": "Eventos de la línea de tiempo eliminados con éxito",
+        "Evènements de la timeline dans le futur supprimés avec succès": "Los eventos de la línea de tiempo en el futuro se eliminaron con éxito",
         "Création des commandes virtuel réussies": "Creación de comandos virtuales correctos",
         "Êtes-vous sûr de vouloir supprimer la base d\\'InfluxDB": "¿Está seguro de que desea eliminar la base de datos de InfluxDB?",
         "Action envoyée avec succés": "Acción enviada con éxito",
         "Êtes-vous sûr de vouloir envoyer tout l\\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.": "¿Está seguro de que desea impulsar el historial completo de todos los pedidos con InfluxDB? Esto se programará y realizará en segundo plano en un minuto y puede llevar mucho tiempo dependiendo de la cantidad de comandos",
         "Programmation envoyée avec succés": "Programación enviada con éxito",
+        "Historique dans le futur supprimés avec succès": "Historial en el futuro eliminado con éxito",
         "Connexion échouée :": "Fallo de conexión :",
         "Connexion réussie": "Conexión exitosa",
         "Test réussi": "Prueba con exito",
@@ -3896,7 +3908,7 @@
         "Vue non trouvée. Vérifiez l\\'ID": "Vista no encontrada. Comprueba el ID",
         "Vous n\\'avez pas le droit de voir cette vue": "No tienes derecho a ver esta vista",
         "Erreur dans le decodage json veuiller réessaye : ": "Error en la decodificación json, intente nuevamente:",
-        "Vue inconnu. Vérifiez l\\'ID": "Vista desconocida Verifica la identificación",
+        "Vue inconnu. Vérifiez l\\'ID": "Ver desconocido. Verificar identificación",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconocido Verifica la identificación",
         "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
         "Extension du fichier non valide (autorisé .jpg .png) :": "Extensión de archivo no válida (.jpg .png autorizado):",
@@ -3911,7 +3923,7 @@
     },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/user.ajax.php": {
         "Connexion de l\\'utilisateur par REMOTE_USER :": "Inicio de sesión de usuario por REMOTE_USER:",
@@ -3937,7 +3949,7 @@
         "Stoppé": "Interrumpido",
         "Inconnue": "Desconocida",
         "Informations complémentaires": "Informaciones complementarias",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/note.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3948,9 +3960,9 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Objet inconnu. Vérifiez l\\'ID": "Objeto desconocido. Verifica el ID",
         "L\\'objet n\\'existe pas :": "El objeto no existe:",
-        "Vue inconnu. Vérifiez l\\'ID": "Vista desconocida. Verifica el ID",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifica el parámetro de PHP (límite de tamaño de publicación)",
-        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extensión de archivo no válida (permitido .jpg .png .gif .svg .webp):",
+        "Vue inconnu. Vérifiez l\\'ID": "Ver desconocido. Verificar identificación",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extensión de archivo no válida (permitida .jpg .png .gif .svg .webp):",
         "Le fichier est trop gros (maximum 5Mo)": "El archivo es demasiado grande (máximo 5 MB)",
         "Impossible de sauvegarder l\\'image": "No se puede guardar la imagen",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
@@ -3967,7 +3979,7 @@
         "Commande non trouvée :": "Comando no encontrado:",
         "Aucune Commande de Notification :": "Ningún comando de notificación:",
         "Répertoire de téléversement non trouvé :": "Directorio de gestor no encontrado:",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (post size limit)",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
         "Extension du fichier non valide (autorisé .tar.gz) :": "Extensión de archivo no válida (.tar.gz autorizado):",
         "Le fichier est trop gros (maximum 1Go)": "El archivo es demasiado grande (máximo 1 GB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
@@ -3999,13 +4011,13 @@
     "core\/ajax\/report.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Impossible de supprimer :": "No se puede eliminar :",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/repo.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Impossible de trouver l\\'objet associé :": "No se puede encontrar el objeto asociado :",
         "Mise à jour et réinstallation désactivées sur ": "Actualización y reinstalación deshabilitadas en",
-        "Aucune méthode correspondante à :": "Ningún método correspondiente a :"
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
     "core\/ajax\/scenario.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -4019,7 +4031,7 @@
         "Scénario ID inconnu": "ID de escenario desconocido",
         "Champs json invalide": "Campos json inválidos",
         "Répertoire de téléversement non trouvé :": "Directorio de carga no encontrado :",
-        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifica la configuración de PHP (post size limit)",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
         "Extension du fichier non valide (autorisé .json) :": "Extensión de archivo no válida (.json autorizado) :",
         "Le fichier est trop gros (maximum 10Mo)": "El archivo es demasiado grande (máximo 10 MB)",
         "Impossible de déplacer le fichier temporaire": "No se puede mover el archivo temporal",
@@ -4128,10 +4140,19 @@
         "Cron id inconnu": "Cron id desconocido",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
+    "core\/ajax\/history.ajax.php": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
+    },
     "core\/ajax\/eqLogic.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
-        "Objet inconnu. Vérifiez l\\'ID": "Objeto desconocido. Verifica el ID",
         "EqLogic inconnu. Vérifiez l\\'ID": "EqLogic desconocido. Verifica el ID",
+        "Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)": "No se encontraron archivos. Verifique la configuración de PHP (límite de tamaño de publicación)",
+        "Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :": "Extensión de archivo no válida (permitida .jpg .png .gif .svg .webp):",
+        "Le fichier est trop gros (maximum 5Mo)": "El archivo es demasiado grande (máximo 5 MB)",
+        "Impossible de sauvegarder l\\'image": "No se puede guardar la imagen",
+        "Vue inconnu. Vérifiez l\\'ID": "Ver desconocido. Verificar identificación",
+        "Objet inconnu. Vérifiez l\\'ID": "Objeto desconocido. Verifica el ID",
         "EqLogic inconnu. Vérifiez le logicalId ou le type": "EqLogic desconocido. Verifique el ID lógico o escriba",
         "Eqlogic inconnu. Vérifiez l\\'ID": "EqLogic desconocido. Verifica el ID",
         "Vous n\\'êtes pas autorisé à faire cette action": "No tienes permiso para hacer esta acción",
