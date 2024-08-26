@@ -56,74 +56,98 @@ sendVarToJS([
     <div class="tab-content" id="div_displayEqLogicConfigure">
       <div role="tabpanel" class="tab-pane active" id="eqLogic_information">
         <form class="form-horizontal">
-          <legend><i class="fas fa-clipboard-list"></i> {{Général}}</legend>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Nom}}</label>
-            <div class="col-sm-3">
-              <input type="text" class="eqLogicAttr form-control input-sm" data-l1key="name">
+          
+		  <div class="row">
+        	<div class="col-sm-6">
+        	  <legend><i class="fas fa-clipboard-list"></i> {{Général}}</legend>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Nom}}</label>
+                <div class="col-sm-8">
+                  <input type="text" class="eqLogicAttr form-control input-sm" data-l1key="name">
+                </div>
             </div>
+             <div class="form-group">
+                <label class="col-sm-4 control-label">{{ID unique}}</label>
+                <div class="col-sm-8">
+                  <span class="eqLogicAttr label label-sm label-primary" data-l1key="id"></span>
+                </div>
+              </div>
 
-            <label class="col-sm-2 control-label">{{ID unique}}</label>
-            <div class="col-sm-3">
-              <span class="eqLogicAttr label label-sm label-primary" data-l1key="id"></span>
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Options}}</label>
+                <div class="col-sm-8">
+                  <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked>{{Activer}}</label>
+                  <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked>{{Visible}}</label>
+                  <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="hideOnMain">{{Masquer sur la vue principale}}</label>
+                  <?php
+                  $class = new ReflectionClass($eqLogic->getEqType_name());
+                  $method_toHtml = $class->getMethod('toHtml');
+                  if ($method_toHtml->class == $eqLogic->getEqType_name()) {
+                    echo '<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="widgetTmpl" checked>{{Template de widget}}</label>';
+                  }
+                  ?>
+                </div>
+             </div>
+             <div class="form-group">
+                <label class="col-sm-4 control-label">{{ID logique}}</label>
+                <div class="col-sm-8">
+                  <span class="eqLogicAttr label label-sm label-primary" data-l1key="logicalId"></span>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Création - Sauvegarde}}</label>
+                <div class="col-sm-8">
+                  <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="createtime"></span> -
+                  <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="updatetime"></span>
+                </div>
+             </div>
+             <div class="form-group">
+                <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
+                <div class="col-sm-8">
+                  <span class="label label-sm label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Dernière communication}}</label>
+                <div class="col-sm-8">
+                  <span class="label label-sm label-info"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
+                </div>
             </div>
+             <div class="form-group">
+                <label class="col-sm-4 control-label">{{Tag(s)}}</label>
+                <div class="col-sm-8">
+                  <input class="eqLogicAttr form-control input-sm" data-l1key="tags">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-4 control-label">{{Commentaire}}</label>
+                <div class="col-sm-8">
+                  <textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+                    <legend>{{Image}}</legend>
+                    <div class="form-group">
+                    	<div class="col-sm-7 col-sm-offset-3">
+                    		<span class="btn btn-default btn-file">
+                    			<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageEqLogic" type="file" name="file" accept="image/*">
+                    		</span>
+                    		<a class="btn btn-danger" id="bt_removeEqLogicImage"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
+                   		</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-7 col-sm-offset-3 eqLogicImg">
+							<img class="img-responsive" src="<?php echo $eqLogic->getImage(); ?>" width="240px" style="min-height : 50px" />
+                        </div>
+					</div>
+                    
+            </div>	        
           </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Options}}</label>
-            <div class="col-sm-3">
-              <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked>{{Activer}}</label>
-              <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked>{{Visible}}</label>
-              <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="hideOnMain">{{Masquer sur la vue principale}}</label>
-              <?php
-              $class = new ReflectionClass($eqLogic->getEqType_name());
-              $method_toHtml = $class->getMethod('toHtml');
-              if ($method_toHtml->class == $eqLogic->getEqType_name()) {
-                echo '<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="display" data-l2key="widgetTmpl" checked>{{Template de widget}}</label>';
-              }
-              ?>
-            </div>
-
-            <label class="col-sm-2 control-label">{{ID logique}}</label>
-            <div class="col-sm-3">
-              <span class="eqLogicAttr label label-sm label-primary" data-l1key="logicalId"></span>
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Création - Sauvegarde}}</label>
-            <div class="col-sm-3">
-              <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="createtime"></span> -
-              <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="updatetime"></span>
-            </div>
-
-            <label class="col-sm-2 control-label">{{Tentative échouée}}</label>
-            <div class="col-sm-3">
-              <span class="label label-sm label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Dernière communication}}</label>
-            <div class="col-sm-3">
-              <span class="label label-sm label-info"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
-            </div>
-
-            <label class="col-sm-2 control-label">{{Tag(s)}}</label>
-            <div class="col-sm-3">
-              <input class="eqLogicAttr form-control input-sm" data-l1key="tags">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">{{Commentaire}}</label>
-            <div class="col-sm-8">
-              <textarea class="form-control eqLogicAttr autogrow" data-l1key="comment"></textarea>
-            </div>
-          </div>
-
           <legend><i class="fas fa-list-alt"></i> {{Commandes}}</legend>
           <table class="table table-condensed">
             <thead>
@@ -547,6 +571,34 @@ sendVarToJS([
         document.querySelectorAll('#md_eqLogicConfigure .advanceWidgetParameterColorTransparent').forEach(_transparent => {
           _transparent?.triggerEvent('change')
         })
+          
+       try {
+        	jeeFrontEnd.md_eqLogicConfigure.bckUploader.destroy()
+       } catch (error) {}
+        jeeFrontEnd.md_eqLogicConfigure.bckUploader = new jeeFileUploader({
+          fileInput: document.getElementById('bt_uploadImageEqLogic'),
+          replaceFileInput: false,
+          url: 'core/ajax/eqLogic.ajax.php?action=uploadImage&id=' + jeephp2js.md_eqLogicConfigure_Info.id,
+          dataType: 'json',
+          done: function(e, data) {
+            if (data.result.state != 'ok') {
+              jeedomUtils.showAlert({
+                message: data.result.result,
+                level: 'danger'
+                })
+                return
+              }
+              if (isset(data.result.result.filepath)) {
+                document.querySelector('#md_eqLogicConfigure .eqLogicImg').seen().querySelector('img').src = data.result.result.filepath
+              } else {
+              	document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
+              }
+              jeedomUtils.showAlert({
+                message: '{{Image ajoutée avec succès}}',
+                level: 'success'
+                })
+              }
+        })
 
         //Dynamic values:
         document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
@@ -819,6 +871,31 @@ sendVarToJS([
         })
         return
       }
+      
+      if (_target = event.target.closest('#bt_removeEqLogicImage')) {
+         jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image cet équipement ?}}', function(result) {
+         if (result) {
+            jeedom.eqLogic.removeImage({
+              id: jeephp2js.md_eqLogicConfigure_Info.id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
+                jeedomUtils.showAlert({
+                  message: '{{Image enlevée}}',
+                  level: 'success'
+                })
+              },
+            })
+          }
+        })
+        return
+      }
+      
     })
 
     document.getElementById('eqLogic_information')?.addEventListener('dblclick', function(event) {

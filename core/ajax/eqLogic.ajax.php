@@ -24,7 +24,72 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
-	ajax::init();
+	ajax::init(array('uploadImage'));
+  
+  	if (init('action') == 'uploadImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$eqLogic = eqLogic::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__));
+		}
+		if (init('file') == '') {
+			if (!isset($_FILES['file'])) {
+				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
+			}
+			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+			if (!in_array($extension, array('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp'))) {
+				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :', __FILE__) . ' ' . $extension);
+			}
+			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+			}
+			$upfilepath = $_FILES['file']['tmp_name'];
+		} else {
+			$extension = strtolower(strrchr(init('file'), '.'));
+			$upfilepath = init('file');
+		}
+		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $eqLogic->getId() . '-*');
+
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
+			}
+		}
+		$eqLogic->setConfiguration('image::type', str_replace('.', '', $extension));
+		$eqLogic->setConfiguration('image::sha512', sha512(file_get_contents($upfilepath)));
+		$filename = 'eqLogic' . $eqLogic->getId() . '-' . $eqLogic->getConfiguration('image::sha512') . '.' . $eqLogic->getConfiguration('image::type');
+		$filepath = __DIR__ . '/../../data/eqLogic/' . $filename;
+		file_put_contents($filepath, file_get_contents($upfilepath));
+		if (!file_exists($filepath)) {
+			throw new \Exception(__('Impossible de sauvegarder l\'image', __FILE__));
+		}
+		$eqLogic->save(true);
+		ajax::success(array('filepath' => $eqLogic->getImage()));
+	}
+
+	if (init('action') == 'removeImage') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		$eqLogic = eqLogic::byId(init('id'));
+		if (!is_object($eqLogic)) {
+			throw new Exception(__('Vue inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
+		}
+		$eqLogic->getConfiguration('image::data', '');
+		$eqLogic->getConfiguration('image::sha512', '');
+		$eqLogic->save(true);
+		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $eqLogic->getId() . '-*');
+		if (count($files)  > 0) {
+			foreach ($files as $file) {
+				unlink(__DIR__ . '/../../data/eqLogic/' . $file);
+			}
+		}
+		ajax::success();
+	}
 
 	if (init('action') == 'getEqLogicObject') {
 		$object = jeeObject::byId(init('object_id'));
