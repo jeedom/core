@@ -871,35 +871,6 @@ sendVarToJS([
         return
       }
       
-      if (_target = event.target.closest('#bt_libraryBackgroundImageEqLogic')) {
-        jeedomUtils.chooseIcon(function(_icon) {
-          let eqLogicImg = document.querySelector('#eqLogic_information .eqLogicImg')
-          if (!objectImg) return
-          eqLogicImg.seen().querySelector('img').remove()
-          eqLogicImg.insertAdjacentHTML('beforeend', _icon)
-          eqLogicImg.querySelector('img')?.setAttribute('width', '240px')
-          jeedom.eqLogic.uploadImage({
-            id: document.querySelector('.eqLogicAttr[data-l1key="id"]').innerHTML,
-            file: eqLogicImg.querySelector('img').getAttribute('data-filename'),
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              jeedomUtils.showAlert({
-                message: '{{Image appliquée avec succès}}',
-                level: 'success'
-              })
-            }
-          })
-        }, {
-          img: true
-        })
-        return
-      }
-      
     })
 
     document.getElementById('eqLogic_information')?.addEventListener('dblclick', function(event) {
