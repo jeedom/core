@@ -60,9 +60,7 @@
 - Correction d'un bug sur la fenetre d'affichage des historiques [LIEN](https://github.com/jeedom/core/pull/2850)
 - Possibilité de choisir le port d'écoute d'Apache en mode docker [LIEN](https://github.com/jeedom/core/pull/2847)
 - Correction d'un warning lors d'une sauvegarde sur la table event [LIEN](https://github.com/jeedom/core/issues/2851)
-
 - Ajout d'un nom d'affichage (display name) pour les objets [LIEN](https://github.com/jeedom/core/issues/2484)
-
 - Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur [LIEN](https://github.com/jeedom/core/issues/2415)
 
 >**IMPORTANT**
