@@ -77,7 +77,7 @@ try {
 		}
 	}
 
-	echo "Checking  database...";
+	
 	if (isset($CONFIG['db']['unix_socket'])) {
 		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 	} else {
@@ -87,9 +87,16 @@ try {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
 	}
-	system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent');
-	echo "OK" . "\n";
-
+	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
+	foreach ($tables as $table) {
+		if($table == 'event'){
+			continue;
+		}
+		echo "Checking  table ".$table."...";
+		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent --tables '.$table);
+		echo "OK" . "\n";
+	}
+	
 	echo 'Backing up database...';
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		unlink($jeedom_dir . "/DB_backup.sql");
