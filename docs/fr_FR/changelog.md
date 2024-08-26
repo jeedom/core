@@ -59,6 +59,7 @@
 - Correction d'un bug sur les plan 3d pouvant bloquer completement la configuration [LIEN](https://github.com/jeedom/core/pull/2849)
 - Correction d'un bug sur la fenetre d'affichage des historiques [LIEN](https://github.com/jeedom/core/pull/2850)
 - Possibilité de choisir le port d'écoute d'Apache en mode docker [LIEN](https://github.com/jeedom/core/pull/2847)
+- Correction d'un warning lors d'une sauvegarde sur la table event [LIEN](https://github.com/jeedom/core/issues/2851)
 
 >**IMPORTANT**
 >
