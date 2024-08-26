@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 GREEN="\\033[1;32m"
 NORMAL="\\033[0;39m"
 RED="\\033[1;31m"
@@ -51,7 +51,7 @@ version() {
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 1 - install${NORMAL}"
-  
+
   apt-get update
   apt-get -f install
   apt-get -y dist-upgrade
@@ -95,7 +95,7 @@ step_3_database() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 3 - database${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
-  
+
   service_action status mariadb
   if [ $? -ne 0 ]; then
     service_action start mariadb
@@ -109,7 +109,7 @@ step_3_database() {
       exit 1
     fi
   fi
-  
+
   echo "${GREEN}Step 3 - database done${NORMAL}"
 }
 
@@ -146,7 +146,7 @@ step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
   wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
-  
+
   if [ $? -ne 0 ]; then
     echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
     if [ -f /root/jeedom.zip ]; then
@@ -175,7 +175,7 @@ step_6_jeedom_download() {
 step_7_jeedom_customization_mariadb() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 7 - mariadb customization${NORMAL}"
-  
+
   mkdir -p /lib/systemd/system/mariadb.service.d
   echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
   echo 'Restart=always' >> /lib/systemd/system/mariadb.service.d/override.conf
@@ -184,7 +184,7 @@ step_7_jeedom_customization_mariadb() {
   # do not start oany new service during docker build sequence
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
-    
+
     service_action stop mariadb > /dev/null 2>&1
     if [ $? -ne 0 ]; then
       service_action status mariadb
@@ -198,7 +198,7 @@ step_7_jeedom_customization_mariadb() {
   fi
 
   #rm /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata* &> /dev/null
-  
+
   if [ -d /etc/mysql/conf.d ]; then
     touch /etc/mysql/conf.d/jeedom_my.cnf
     echo "[mysqld]" > /etc/mysql/conf.d/jeedom_my.cnf
@@ -220,7 +220,7 @@ step_7_jeedom_customization_mariadb() {
     echo "interactive_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
    # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
-  
+
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     service_action start mariadb > /dev/null 2>&1
     if [ $? -ne 0 ]; then
@@ -233,7 +233,7 @@ step_7_jeedom_customization_mariadb() {
       fi
     fi
   fi
-  
+
   echo "${GREEN}Step 7 - mariadb customization done${NORMAL}"
 }
 
@@ -245,20 +245,20 @@ step_8_jeedom_customization() {
 
   cp ${WEBSERVER_HOME}/install/apache_remoteip /etc/apache2/conf-available/remoteip.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/remoteip.conf
-  
+
   rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
   ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
   ln -s /etc/apache2/conf-available/remoteip.conf /etc/apache2/conf-enabled/
-  
+
   cp ${WEBSERVER_HOME}/install/apache_default /etc/apache2/sites-available/000-default.conf
   rm /etc/apache2/sites-enabled/000-default.conf > /dev/null 2>&1
   ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/
-  
+
   rm /etc/apache2/conf-available/other-vhosts-access-log.conf > /dev/null 2>&1
   rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf > /dev/null 2>&1
 
   echo '' > /etc/apache2/mods-available/alias.conf
-  
+
   mkdir /etc/systemd/system/apache2.service.d
   echo "[Service]" > /etc/systemd/system/apache2.service.d/override.conf
   echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/override.conf
@@ -268,7 +268,7 @@ step_8_jeedom_customization() {
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
   fi
-  
+
   for file in $(find /etc/ -iname php.ini -type f); do
     echo "Update php file ${file}"
     sed -i 's/max_execution_time = 30/max_execution_time = 600/g' ${file} > /dev/null 2>&1
@@ -281,20 +281,19 @@ step_8_jeedom_customization() {
     sed -i 's/opcache.enable_cli=0/opcache.enable_cli=1/g' ${file} > /dev/null 2>&1
     sed -i 's/memory_limit = 128M/memory_limit = 512M/g' ${file} > /dev/null 2>&1
   done
-  
+
   a2dismod status
   a2enmod headers
   a2enmod remoteip
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
-  
+
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     service_action restart apache2 > /dev/null 2>&1
   fi
-  
+
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
-  
   echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
 }
 
@@ -342,7 +341,7 @@ step_10_jeedom_installation() {
       exit 1
     fi
   fi
-  
+
   echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
 
@@ -351,7 +350,7 @@ step_11_jeedom_post() {
   echo "${YELLOW}Starting step 11 - Jeedom post-install${NORMAL}"
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
-    
+
   fi
   if [ ! -f /etc/cron.d/jeedom ]; then
     echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
@@ -414,7 +413,7 @@ distrib_1_spe(){
 STEP=0
 VERSION=master
 WEBSERVER_HOME=/var/www/html
-MARIADB_JEEDOM_PASSWD=$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)
+MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)}
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
@@ -458,7 +457,7 @@ case ${STEP} in
     step_7_jeedom_customization_mariadb
   fi
   step_8_jeedom_customization
- 
+
   if [ ${DATABASE} -eq 1 ]; then
     step_9_jeedom_configuration
     step_10_jeedom_installation
@@ -472,7 +471,10 @@ case ${STEP} in
   ;;
   2) step_2_mainpackage
   ;;
-  3) step_3_database
+  3)
+    if [ ${DATABASE} -eq 1 ]; then
+      step_3_database
+    fi
   ;;
   4) step_4_apache
   ;;
