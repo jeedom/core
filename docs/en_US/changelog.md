@@ -41,7 +41,7 @@
 - Fixed a bug if a command exceeded its min or max the value would go to 0 (instead of min/max) [LINK](https://github.com/jeedom/core/issues/2819)
 - Fixed a bug with the settings menu displaying in some languages [LINK](https://github.com/jeedom/core/issues/2821)
 - Possibility in the programmed triggers of the scenarios to use calculations/commands/tags/formulas giving as a result the launch time in the form Gi (hours without initial zero and minutes, example for 09:15 => 915 or for 23:40 => 2340) [LINK](https://github.com/jeedom/core/pull/2808)
-- Possibility to put a custom image for equipment in plugins (if the plugin supports it), for this it is enough to put the image in `data/img` in the form `eqLogic#id#.png` with #id# the equipment id (you can find it in the advanced equipment configuration) [LINK](https://github.com/jeedom/core/pull/2802)
+- Ability to put a custom image for equipment in plugins (if the plugin supports it), this is done in the advanced configuration of the equipment [LINK](https://github.com/jeedom/core/pull/2802) [LINK](https://github.com/jeedom/core/pull/2852)
 - Added the name of the user who launched the scenario in the tag ``#trigger_value#`` [LINK](https://github.com/jeedom/core/pull/2382)
 - Fixed an error that could occur when exiting the dashboard before it had finished loading [LINK](https://github.com/jeedom/core/pull/2827)
 - Fixed a bug on the replacement page when filtering on objects [LINK](https://github.com/jeedom/core/issues/2833)
@@ -60,6 +60,8 @@
 - Fixed a bug on the history display window [LINK](https://github.com/jeedom/core/pull/2850)
 - Ability to choose Apache listening port in docker mode [LINK](https://github.com/jeedom/core/pull/2847)
 - Fixed a warning when saving to the event table [LINK](https://github.com/jeedom/core/issues/2851)
+- Added display name for objects [LINK](https://github.com/jeedom/core/issues/2484)
+- Added a button to delete histories and events from the timeline in the future [LINK](https://github.com/jeedom/core/issues/2415)
 
 >**IMPORTANT**
 >
