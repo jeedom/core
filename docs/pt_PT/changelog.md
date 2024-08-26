@@ -59,6 +59,7 @@
 - Corrigido um bug nos planos 3D que poderia bloquear completamente a configuração [LINK](https://github.com/jeedom/core/pull/2849)
 - Corrigido um bug na janela de exibição de logs [LINK](https://github.com/jeedom/core/pull/2850)
 - Capacidade de escolher a porta de escuta do Apache no modo docker [LINK](https://github.com/jeedom/core/pull/2847)
+- Corrigido um aviso ao salvar na tabela de eventos [LINK](https://github.com/jeedom/core/issues/2851)
 
 >**IMPORTANTE**
 >

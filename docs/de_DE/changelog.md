@@ -59,6 +59,7 @@
 - Es wurde ein Fehler bei 3D-Plänen behoben, der die Konfiguration vollständig blockieren konnte [LINK](https://github.com/jeedom/core/pull/2849)
 - Ein Fehler im Protokollanzeigefenster wurde behoben [LINK](https://github.com/jeedom/core/pull/2850)
 - Möglichkeit, den Apache-Listening-Port im Docker-Modus auszuwählen [LINK](https://github.com/jeedom/core/pull/2847)
+- Beim Speichern in der Ereignistabelle wurde eine Warnung behoben [LINK](https://github.com/jeedom/core/issues/2851)
 
 >**WICHTIG**
 >

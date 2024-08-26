@@ -59,6 +59,7 @@
 - Se corrigió un error en los planos 3D que podía bloquear completamente la configuración [ENLACE](https://github.com/jeedom/core/pull/2849)
 - Se corrigió un error en la ventana de visualización de registros [ENLACE](https://github.com/jeedom/core/pull/2850)
 - Posibilidad de elegir el puerto de escucha de Apache en modo acoplable [ENLACE](https://github.com/jeedom/core/pull/2847)
+- Se corrigió una advertencia al guardar en la tabla de eventos [ENLACE](https://github.com/jeedom/core/issues/2851)
 
 >**IMPORTANTE**
 >
