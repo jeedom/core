@@ -1544,8 +1544,12 @@ class eqLogic {
 	}
 
 	public function getCustomImage(){
-		if(file_exists(__DIR__ . '/../../data/img/eqLogic'.$this->getId().'.png')){
-			return 'data/img/eqLogic' . $this->getId() . '.png';
+		if ($this->getConfiguration('image::sha512') == '') {
+			return '';
+		}
+		$filename = 'eqLogic' . $this->getId() . '-' . $this->getConfiguration('image::sha512') . '.' . $this->getConfiguration('image::type');
+		if(file_exists(__DIR__ . '/../../data/eqLogic/'.$filename)){
+			return 'data/eqLogic/' . $filename;
 		}
 		return null;
 	}
