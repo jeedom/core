@@ -137,6 +137,7 @@ sendVarToJS([
                     		<span class="btn btn-default btn-file">
                     			<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageEqLogic" type="file" name="file" accept="image/*">
                     		</span>
+                    		<a class="btn btn-danger" id="bt_removeEqLogicImage"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
                    		</div>
 					</div>
 					<div class="form-group">
@@ -867,6 +868,30 @@ sendVarToJS([
           id: 'jee_modal2',
           title: '{{Configuration de la commande}}',
           contentUrl: 'index.php?v=d&modal=cmd.configure&cmd_id=' + _target.getAttribute('data-id')
+        })
+        return
+      }
+      
+      if (_target = event.target.closest('#bt_removeEqLogicImage')) {
+         jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image cet équipement ?}}', function(result) {
+         if (result) {
+            jeedom.eqLogic.removeImage({
+              id: jeephp2js.md_eqLogicConfigure_Info.id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
+                jeedomUtils.showAlert({
+                  message: '{{Image enlevée}}',
+                  level: 'success'
+                })
+              },
+            })
+          }
         })
         return
       }
