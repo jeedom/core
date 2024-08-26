@@ -89,8 +89,7 @@ try {
 	}
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
 	foreach ($tables as $table) {
-		$table = array_values($table);
-		$table = $table[0];
+		$table = array_values($table)[0];
 		if($table == 'event'){
 			continue;
 		}
