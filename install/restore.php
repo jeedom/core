@@ -150,8 +150,7 @@ try {
 	DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
 	echo "OK\n";
 	foreach ($tables as $table) {
-		$table = array_values($table);
-		$table = $table[0];
+		$table = array_values($table)[0];
 		echo "Deleting table : " . $table . ' ...';
 		DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
