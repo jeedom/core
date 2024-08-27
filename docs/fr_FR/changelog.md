@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.4
 
+# 4.4.15
+
+- Correction d'un bug ou la connexion à Jeedom ne pouvait pas etre auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)
 
 # 4.4.14
 
