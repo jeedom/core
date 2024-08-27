@@ -469,8 +469,15 @@ sendVarToJS([
             </div>
           </div>
 
-          <legend><i class="fas fa-battery-three-quarters"></i> {{Batterie}}<a class="btn btn-success btn-xs pull-right" id="bt_resetbattery"><i class="fas fa-battery-full"></i> {{Pile(s) neuve(s)}}</a></legend>
+          <legend><i class="fas fa-battery-three-quarters"></i> {{Batterie}}<a class="btn btn-success btn-xs pull-right eqLogicHideNoBattery" id="bt_resetbattery"><i class="fas fa-battery-full"></i> {{Pile(s) neuve(s)}}</a></legend>
           <div class="form-group">
+            <label class="col-sm-2 control-label">{{Cet équipement n'a pas de batterie}}</label>
+            <div class="col-sm-3">
+              <input type="checkbox" class="eqLogicAttr" data-l1key="configuration" data-l2key="battery::disable"></input>
+            </div>
+          </div>
+
+          <div class="form-group eqLogicHideNoBattery">
             <label class="col-sm-2 control-label">{{Type de pile}}</label>
             <div class="col-sm-3">
               <input class="eqLogicAttr form-control input-sm" data-l1key="configuration" data-l2key="battery_type"></input>
@@ -481,7 +488,7 @@ sendVarToJS([
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group eqLogicHideNoBattery">
             <label class="col-sm-2 control-label">{{En alerte}} <sub>%</sub></label>
             <div class="col-sm-8 input-group">
               <span class="input-group-addon input-sm roundedLeft" style="background-color:var(--al-danger-color)!important;"><i class="fas fa-battery-empty"></i> {{Danger si}} <i class="fas fa-less-than-equal"></i></span>
@@ -565,6 +572,7 @@ sendVarToJS([
       },
       postInit: function() {
         document.querySelector('select[data-l2key="layout::dashboard"]')?.triggerEvent('change')
+        document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="battery::disable"]')?.triggerEvent('click')
         document.querySelectorAll('#md_eqLogicConfigure .advanceWidgetParameterDefault').forEach(_default => {
           _default?.triggerEvent('change')
         })
@@ -981,6 +989,15 @@ sendVarToJS([
     //eqLogic alert tab
     document.getElementById('eqLogic_alert')?.addEventListener('click', function(event) {
       var _target = null
+
+      if (_target = event.target.closest('.eqLogicAttr[data-l1key="configuration"][data-l2key="battery::disable"]')) {
+        if(document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="battery::disable"]').jeeValue() == 1){
+          document.querySelectorAll('.eqLogicHideNoBattery').unseen();
+        }else{
+          document.querySelectorAll('.eqLogicHideNoBattery').seen();
+        }
+      }
+
       if (_target = event.target.closest('#bt_resetbattery')) {
         jeeDialog.confirm("{{Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.}}", function(result) {
           if (result) {

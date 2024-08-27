@@ -608,6 +608,9 @@ class eqLogic {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function batteryWidget($_version = 'dashboard') {
+		if($this->getConfiguration('battery::disable',0) == 1){
+			return '';
+		}
 		$html = '';
 		$level = 'good';
 		$niveau = '3';
@@ -805,9 +808,11 @@ class eqLogic {
 
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
-			$replace['#alert_name#'] = $alert['name'];
-			$replace['#alert_icon#'] = $alert['icon'];
-			$replace['#background-color#'] = $alert['color'];
+			if($this->getConfiguration('battery::disable',0) == 0 || ($alert['key'] != 'batterywarning' && $alert['key'] != 'batterydanger')){
+				$replace['#alert_name#'] = $alert['name'];
+				$replace['#alert_icon#'] = $alert['icon'];
+				$replace['#background-color#'] = $alert['color'];
+			}
 		}
 		$refresh_cmd = $this->getCmd('action', 'refresh');
 		if (!is_object($refresh_cmd)) {
@@ -945,6 +950,7 @@ class eqLogic {
 		foreach ($JEEDOM_INTERNAL_CONFIG['alerts'] as $key => $data) {
 			if ($this->getStatus($key, 0) != 0 && $JEEDOM_INTERNAL_CONFIG['alerts'][$key]['level'] > $maxLevel) {
 				$hasAlert = $data;
+				$hasAlert['key'] = $key;
 				$maxLevel = $JEEDOM_INTERNAL_CONFIG['alerts'][$key]['level'];
 			}
 		}
@@ -995,6 +1001,9 @@ class eqLogic {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 				$this->setDisplay('backGraph::info', 0);
 			}
+			if($this->getConfiguration('battery::disable',0) == 1){
+				$this->setStatus(array('battery' => null, 'batterydanger' => 0, 'batterywarning' => 0));
+			}
 			if ($this->getDisplay('layout::dashboard') != 'table') {
 				$displays = $this->getDisplay();
 				foreach ($displays as $key => $value) {
@@ -1004,7 +1013,6 @@ class eqLogic {
 					}
 				}
 			} else {
-
 				$cmd_ids = array();
 				foreach (array('dashboard') as $key) {
 					if ($this->getDisplay('layout::' . $key . '::table::parameters') == '') {
@@ -1128,7 +1136,7 @@ class eqLogic {
 	}
 
 	public function batteryStatus($_pourcent = '', $_datetime = '') {
-		if ($this->getConfiguration('noBatterieCheck', 0) == 1) {
+		if ($this->getConfiguration('battery::disable', 0) == 1) {
 			return;
 		}
 		$currentpourcent = null;
