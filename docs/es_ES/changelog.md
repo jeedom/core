@@ -62,6 +62,7 @@
 - Se corrigió una advertencia al guardar en la tabla de eventos [ENLACE](https://github.com/jeedom/core/issues/2851)
 - Agregar un nombre para mostrar para objetos [ENLACE](https://github.com/jeedom/core/issues/2484)
 - Se agregó un botón para eliminar el historial y los eventos de la línea de tiempo en el futuro [ENLACE](https://github.com/jeedom/core/issues/2415)
+- Se solucionó un problema con los comandos de tipo seleccionado en los diseños [ENLACE](https://github.com/jeedom/core/issues/2853)
 
 >**IMPORTANTE**
 >
