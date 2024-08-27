@@ -60,7 +60,7 @@ No campo *Objeto*, selecione objeto(s) pai(s).
 ![7](../images/replace7.png)
 <br>
 
-Nas opções, selecione o modo desejado (*Substituir* Ou *Copiar*) na lista suspensa, e dependendo das necessidades, as seguintes opções (todas desmarcadas por padrão), ou pelo menos :
+Nas opções, selecione o modo desejado (*Substituir* Ou *Cópia*) na lista suspensa, e dependendo das necessidades, as seguintes opções (todas desmarcadas por padrão), ou pelo menos :
 
 - Copiar configuração do dispositivo de origem,
 - Copiar configuração do comando de origem.

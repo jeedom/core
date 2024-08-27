@@ -33,7 +33,7 @@ Jeedom est un logiciel Open-Source gratuit qui peut s’installer sur n’import
 
 # Installation
 
-Vous retrouverez [ici](https://doc.jeedom.com/fr_FR/installation/) toute les possibilités d'installation de Jeedom.
+Vous retrouverez [ici](https://doc.jeedom.com/fr_FR/installation/) toutes les possibilités d'installation de Jeedom.
 <p align="center">
 <a href="https://www.jeedom.com/site/fr/box.html">Les solutions domotiques plug & play Jeedom</a>
 </p>

@@ -1543,7 +1543,22 @@ class eqLogic {
 		return $return;
 	}
 
+	public function getCustomImage(){
+		if ($this->getConfiguration('image::sha512') == '') {
+			return null;
+		}
+		$filename = 'eqLogic' . $this->getId() . '-' . $this->getConfiguration('image::sha512') . '.' . $this->getConfiguration('image::type');
+		if(file_exists(__DIR__ . '/../../data/eqLogic/'.$filename)){
+			return 'data/eqLogic/' . $filename;
+		}
+		return null;
+	}
+
 	public function getImage() {
+		$customImage = $this->getCustomImage();
+		if($customImage !== null){
+			return $customImage;
+		}
 		$plugin = plugin::byId($this->getEqType_name());
 		return $plugin->getPathImgIcon();
 	}

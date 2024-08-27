@@ -30,7 +30,7 @@ Una vez en la configuración de una interacción, tiene un menú contextual con 
 
 En la parte superior de la página, hay 3 botones :
 
-- **Para agregar** : Le permite crear nuevas interacciones.
+- **Agregar** : Le permite crear nuevas interacciones.
 - **Regenerado** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prueba** : Abre un diálogo para escribir y probar una oración.
 
@@ -51,16 +51,16 @@ También podemos definir un comando para ejecutar si, por ejemplo, la interacci�
 La página de configuración consta de varias pestañas y botones :
 
 - **Oraciones** : Muestra el número de oraciones de la interacción (un clic en ellas te muestra).
-- **Para registrarse** : Grabar la interacción actual.
-- **Borrar** : Eliminar interacción actual.
-- **Duplicar** : Duplica la interacción actual.
+- **Ahorrar** : Grabar la interacción actual.
+- **BORRAR** : Eliminar interacción actual.
+- **Duplicado** : Duplica la interacción actual.
 
 ### Pestaña General
 
-- **Apellido** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
+- **Nombre** : Nombre de interacción (puede estar vacío, el nombre reemplaza el texto de solicitud en la lista de interacción).
 - **Banda** : Grupo de interacción, esto permite organizarlos (puede estar vacío, por lo tanto estará en el grupo "ninguno").
 - **Activo** : Habilita o deshabilita la interacción.
-- **Solicitud** : La oración modelo generadora (requerida).
+- **Pedido** : La oración modelo generadora (requerida).
 - **Sinónimo** : Permite definir sinónimos en los nombres de los comandos.
 - **Respuesta** : La respuesta para proporcionar.
 - **Espere antes de responder)** : Agregue un retraso de X segundos antes de generar la respuesta. Permite, por ejemplo, esperar el regreso del estado de una lámpara antes de ser respondido.
@@ -111,7 +111,7 @@ En los 2 ejemplos anteriores, la oración modelo es idéntica pero las acciones 
 
 Aquí veremos todo el interés y todo el poder de las interacciones, con una oración modelo podremos generar oraciones para un grupo completo de comandos.
 
-Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos agregado y, en lugar de la oración fija, en &quot;Solicitud&quot;, usaremos las etiquetas **\#commande\#** y **\#equipement\#**. Por lo tanto, Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre del equipo (podemos ver la importancia de tener nombres de comando / equipo consistentes).
+Reanudaremos lo que se hizo anteriormente, eliminaremos las acciones que hemos agregado y, en lugar de la oración fija, en &quot;Solicitud&quot;, usaremos las etiquetas **\#commande\#** Y **\#equipement\#**. Por lo tanto, Jeedom reemplazará estas etiquetas con el nombre de los comandos y el nombre del equipo (podemos ver la importancia de tener nombres de comando / equipo consistentes).
 
 ![interact006](../images/interact006.png)
 
@@ -242,7 +242,7 @@ En este ejemplo, vemos una oración simple que devolverá una respuesta con 3 te
 
 ![interact017](../images/interact017.png)
 
-Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *julio*\|si hay alguien en la sala *julio*"
+Este ejemplo se dirige específicamente a equipos específicos que permiten una respuesta personalizada. Entonces podríamos imaginar reemplazar la respuesta del ejemplo con "no, no hay nadie en la sala *julia*\|si hay alguien en la sala *julia*"
 
 #### Evolution
 
@@ -297,7 +297,7 @@ Es posible controlar una lámpara como un porcentaje (dimmer) o un termostato co
 
 ![interact022](../images/interact022.png)
 
-Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Solicitud : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Valores : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *consigna*.
+Como podemos ver, aquí está en la solicitud la etiqueta **\#consigne\#** (puede poner lo que quiera) que se incluye en el control de la unidad para aplicar el valor deseado. Para hacer esto, tenemos 3 partes : \* Pedido : en el que creamos una etiqueta que representará el valor que se enviará a la interacción. \* Respuesta : reutilizamos la etiqueta para la respuesta para asegurarnos de que Jeedom entendió correctamente la solicitud. \* Acción : ponemos una acción sobre la lámpara que queremos conducir y en el valor le pasamos nuestra etiqueta *orden*.
 
 > **Nota**
 >

@@ -40,5 +40,5 @@ Você também pode excluir todos os backups de um determinado relatório
 > Se você tiver um erro de detalhes :
 > *cutycapt: erro ao carregar bibliotecas compartilhadas: libEGL.so: não é possível abrir o arquivo de objeto compartilhado: Esse arquivo ou diretório não existe*
 > No ssh ou em Configurações → Sistema → Configuração : A administração do OS / DB / System não :
-> ``````sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so``````
-> ``````sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so``````
+> ```sudo ln -s /usr/lib/aarch64-linux-gnu/libGLESv2.so.2 /usr/lib/aarch64-linux-gnu/libGLESv2.so```
+> ```sudo ln -s /usr/lib/aarch64-linux-gnu/libEGL.so.1 /usr/lib/aarch64-linux-gnu/libEGL.so```

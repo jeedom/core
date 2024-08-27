@@ -60,7 +60,7 @@ Im Feld *Objekt*, Elternobjekt(e) auswählen.
 ![7](../images/replace7.png)
 <br>
 
-Wählen Sie in den Optionen den gewünschten Modus aus (*Ersetzen* Oder *Kopieren*) in der Dropdown-Liste und je nach Bedarf die folgenden Optionen (die standardmäßig alle deaktiviert sind) oder zumindest :
+Wählen Sie in den Optionen den gewünschten Modus aus (*Ersetzen* Oder *Kopie*) in der Dropdown-Liste und je nach Bedarf die folgenden Optionen (die standardmäßig alle deaktiviert sind) oder zumindest :
 
 - Konfiguration vom Quellgerät kopieren,
 - Kopieren Sie die Konfiguration aus dem Quellbefehl.

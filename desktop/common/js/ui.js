@@ -93,7 +93,7 @@ if (!jeedomUI) {
       if (init(_params) == '') {
         _params = {}
       }
-      var cmds = []
+      /*var cmds = []
       //Get all commands for display default eqLogic:
       document.querySelectorAll('div.eqLogic-widget:not(div.eqLogic_layout_table)').forEach(function(el_eqLogic) {
         var order = 1
@@ -117,7 +117,7 @@ if (!jeedomUI) {
           cmds.push(cmd)
           order++
         })
-      })
+      })*/
 
       //Get size/order tile:
       var eqLogics = []
@@ -151,14 +151,14 @@ if (!jeedomUI) {
           error: function (error) {
             jeedomUtils.showAlert({message: error.message, level: 'danger'})
           },
-          success:function(data){
+        /*  success:function(data){
             jeedom.cmd.setOrder({
               cmds: cmds,
               error: function (error) {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               }
             });
-          }
+          }*/
         })
         jeedom.scenario.setOrder({
           scenarios: scenarios,
@@ -198,14 +198,14 @@ if (!jeedomUI) {
           error: function (error) {
             jeedomUtils.showAlert({message: error.message, level: 'danger'})
           },
-          success:function(data){
+        /*  success:function(data){
             jeedom.cmd.setOrder({
               cmds: cmds,
               error: function (error) {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               }
             })
-          }
+          }*/
         })
       }
     },

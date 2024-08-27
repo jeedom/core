@@ -1,9 +1,9 @@
 # Objets
 **Werkzeuge → Objekte**
 
-Das **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
+DER **Objekte** Mit dieser Option können Sie die Baumstruktur Ihrer Hausautomation definieren.
 
-Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **relativ** Ausrüstung.
+Alle von Ihnen erstellten Geräte müssen zu einem Objekt gehören und sind daher leichter zu identifizieren. Wir sagen dann, dass das Objekt das ist **Elternteil** Ausrüstung.
 
 Um der Personalisierung freie Wahl zu lassen, können Sie diese Objekte nach Ihren Wünschen benennen. Normalerweise definieren wir die verschiedenen Teile seines Hauses, wie den Namen der Räume (dies ist auch die empfohlene Konfiguration).
 
@@ -19,7 +19,7 @@ Sie haben zwei Möglichkeiten :
 
 In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration anzeigen :
 
-- **ICH WÜRDE** : Objekt-ID.
+- **AUSWEIS** : Objekt-ID.
 - **Objekt** : Objektname.
 - **Vater** : Name des übergeordneten Objekts.
 - **Sichtbar** : Objektsichtbarkeit.
@@ -60,7 +60,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Sichtbar** : Aktivieren Sie dieses Kontrollkästchen, um dieses Objekt sichtbar zu machen.
 - **Im Dashboard ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt im Dashboard auszublenden. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit.
 - **Zusammenfassung ausblenden** : Aktivieren Sie dieses Kontrollkästchen, um das Objekt in der Zusammenfassung auszublenden'. Es wird weiterhin in der Liste gespeichert, sodass es angezeigt werden kann, jedoch nur explizit.
-- **Aktion aus der Synthese** : Hier können Sie eine Ansicht oder ein Design angeben, zu dem Sie wechseln möchten, wenn Sie in der Zusammenfassung auf das Objekt klicken. *Defekt : Armaturenbrett*.
+- **Aktion aus der Synthese** : Hier können Sie eine Ansicht oder ein Design angeben, zu dem Sie wechseln möchten, wenn Sie in der Zusammenfassung auf das Objekt klicken. *Standard : Armaturenbrett*.
 
 #### Anzeige :
 
@@ -77,7 +77,7 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 
 > **Tipp**
 >
-> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Verbindungen**, oben rechts.
+> Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Links**, oben rechts.
 
 > **Tipp**
 >

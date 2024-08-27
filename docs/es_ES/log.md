@@ -11,11 +11,11 @@ La página de registros es bastante simple :
 A la izquierda, una lista de registros disponibles, con un campo de búsqueda para filtrar el nombre de los registros.
 Arriba a la derecha 5 botones :
 
-- **Buscar** : Le permite filtrar la visualización del registro actual.
+- **Investigar** : Le permite filtrar la visualización del registro actual.
 - **Pausa / Reanudar** : Pausa / reanuda la actualización en tiempo real del registro actual.
 - **Descargar** : Descargar el registro actual.
 - **Vacío** : Borrar el registro actual.
-- **Borrar** : Eliminar el registro actual. Si Jeedom lo necesita, lo recreará automáticamente.
+- **BORRAR** : Eliminar el registro actual. Si Jeedom lo necesita, lo recreará automáticamente.
 - **Eliminar todos los registros** : Eliminar todos los registros presentes.
 
 > **Consejo**

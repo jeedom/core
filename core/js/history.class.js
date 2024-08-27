@@ -95,6 +95,24 @@ jeedom.history.getInitDates = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
+jeedom.history.removeHistoryInFutur = function(_params) {
+  var paramsRequired = []
+  var paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/history.ajax.php'
+  paramsAJAX.data = {
+    action: 'removeHistoryInFutur'
+  }
+  domUtils.ajax(paramsAJAX)
+}
+
 jeedom.history.copyHistoryToCmd = function(_params) {
   var paramsRequired = ['source_id', 'target_id']
   var paramsSpecifics = {}
@@ -143,7 +161,7 @@ jeedom.history.graphUpdate = function(_params) {
     }
     for(var chart in jeedom.history.chart){
       for(var serie in jeedom.history.chart[chart]){
-        if(jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
+        if(jeedom.history.chart[chart].chart.series[serie] && jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
           jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now()+(-1*(new Date()).getTimezoneOffset()*60*1000),_params[i].value])
         }
       }

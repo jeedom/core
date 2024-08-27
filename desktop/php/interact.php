@@ -208,7 +208,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 						<div class="form-group">
 							<label class="col-sm-2 col-xs-2 control-label">{{Attendre avant de répondre (s)}}</label>
 							<div class="col-sm-1 col-xs-9">
-								<input type="number" class="form-control interactAttr" type="text" data-l1key="options" data-l2key="waitBeforeReply" placeholder="" title="{{Permet d'attendre le temps que l'état d'une lampe soit mise à jour par exemple}}" />
+								<input type="number" class="form-control interactAttr" type="text" data-l1key="options" data-l2key="waitBeforeReply" placeholder="" title="{{Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple}}" />
 							</div>
 						</div>
 						<div class="form-group">

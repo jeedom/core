@@ -6,7 +6,7 @@ También puede manipular los complementos, a saber : descárguelos, actualícelo
 
 Por lo tanto, hay una lista de complementos en orden alfabético y un enlace al mercado.
 - Los complementos deshabilitados están atenuados.
-- Complementos que no están en la versión *firme* tenemos un punto naranja delante de su nombre.
+- Complementos que no están en la versión *estable* tenemos un punto naranja delante de su nombre.
 
 Al hacer clic en un complemento, accede a su configuración. En la parte superior, encontrará el nombre del complemento, luego entre paréntesis, su nombre en Jeedom (ID) y, finalmente, el tipo de versión instalada (estable, beta).
 
@@ -26,7 +26,7 @@ Aquí tienes tres botones :
 
 Desde un navegador, vaya al [Mercado](https://market.jeedom.com).
 Iniciar sesión en su cuenta.
-Haga clic en un complemento, luego elija *Instalar estable* Dónde *Instalar beta* (si su cuenta de Market lo permite).
+Haga clic en un complemento, luego elija *Instalar estable* O *Instalar beta* (si su cuenta de Market lo permite).
 
 Si su cuenta de Market está configurada correctamente en su Jeedom (Configuración → Actualizaciones / Market → pestaña Market), puede hacer clic en *Sincronizar mercado* o esperar a que se calme por sí solo.
 
@@ -42,7 +42,7 @@ En la parte superior de la ventana tienes filtros :
 - **Abierto / De pago** : muestra solo gratis o de pago.
 - **Oficial / Recomendado** : muestra solo complementos oficiales o recomendados.
 - **Menú desplegable de categoría** : muestra solo ciertas categorías de complementos.
-- **Buscar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
+- **Investigar** : le permite buscar un complemento (en el nombre o la descripción del mismo).
 - **Nombre del usuario** : muestra el nombre de usuario utilizado para conectarse a Market, así como el estado de la conexión.
 
 > **Consejo**
@@ -56,7 +56,7 @@ Una vez que haya encontrado el complemento que desea, simplemente haga clic en �
     - **Instalar estable** : permite instalar el complemento en su versión estable.
     - **Instalar beta** : permite instalar el complemento en su versión beta (solo para betatesters).
     - **Instalar pro** : permite instalar la versión pro (muy poco utilizada).
-    - **Borrar** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
+    - **BORRAR** : Si el complemento está instalado actualmente, este botón le permite eliminarlo.
 
 A continuación, encontrará la descripción del complemento, la compatibilidad (si Jeedom detecta una incompatibilidad, se lo notificará), las opiniones sobre el complemento (puede anotarlo aquí) e información adicional (el autor, la persona que realizó la última actualización, un enlace al documento, la cantidad de descargas). A la derecha encontrará un botón &quot;Registro de cambios&quot; que le permite tener todo el historial de modificaciones, un botón &quot;Documentación&quot; que se refiere a la documentación del complemento. Luego tiene el idioma disponible y la información variada sobre la fecha de la última versión estable.
 
@@ -88,7 +88,7 @@ Al hacer clic en el icono de un complemento, abre su página de configuración.
 - **Documentación** : Permite el acceso directo a la página de documentación del complemento.
 - **Registro de cambios** : Veamos el registro de cambios del complemento si existe.
 - **Asistencia** : Le permite crear automáticamente una solicitud de ayuda en el foro.
-- **Borrar** : Elimina el complemento de tu Jeedom. Tenga en cuenta que esto también elimina permanentemente todo el equipo de este complemento.
+- **BORRAR** : Elimina el complemento de tu Jeedom. Tenga en cuenta que esto también elimina permanentemente todo el equipo de este complemento.
 
 ### Abajo a la izquierda, hay un área **estado** con :
 
@@ -97,7 +97,7 @@ Al hacer clic en el icono de un complemento, abre su página de configuración.
 - **Autor** : El autor del complemento, enlace al mercado y los complementos de este autor.
 - **Licencia** : Indica la licencia del complemento que generalmente será AGPL.
 
-- **Valores** : Le permite habilitar o deshabilitar el complemento. El botón **Abrir** Le permite ir directamente a la página del complemento.
+- **Acción** : Le permite habilitar o deshabilitar el complemento. El botón **Abierto** Le permite ir directamente a la página del complemento.
 - **Versión** : La versión del complemento instalado.
 - **Prerrequisitos** : Indica la versión mínima de Jeedom requerida para el complemento.
 
@@ -113,14 +113,14 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 ### Dependencias :
 
-- **Apellido** : Generalmente será local.
+- **Nombre** : Generalmente será local.
 - **Estado** : Estado de dependencia, OK o NOK.
-- **Instalaciones** : Permite instalar o reinstalar dependencias (si no lo hace manualmente y son NOK, Jeedom se encargará de sí mismo después de un tiempo).
+- **Instalación** : Permite instalar o reinstalar dependencias (si no lo hace manualmente y son NOK, Jeedom se encargará de sí mismo después de un tiempo).
 - **Última instalación** : Fecha de la última instalación de dependencia.
 
 ### Demonio :
 
-- **Apellido** : Generalmente será local.
+- **Nombre** : Generalmente será local.
 - **Estado** : Estado del demonio, OK o NOK.
 - **Configuración** : OK si se cumplen todos los criterios para que el demonio corra, o si da la causa del bloqueo.
 - **(Para reiniciar** : Te permite lanzar o reiniciar el demonio.
@@ -135,15 +135,15 @@ Si el complemento tiene dependencias y / o un demonio, estas áreas adicionales 
 
 ### A continuación, hay un área de funcionalidad. Esto le permite ver si el complemento utiliza una de las funciones principales de Jeedom, como :
 
-- **Obrar recíprocamente** : Interacciones específicas.
+- **Interactuar** : Interacciones específicas.
 - **Cron** : Un cron por minuto.
 - **Cron5** : Un cron cada 5 minutos.
 - **Cron10** : Un cron cada 10 minutos.
 - **Cron15** : Un cron cada 15 minutos.
 - **Cron30** : Un cron cada 30 minutos.
-- **CronHorario** : Un cron cada hora.
+- **Cron por hora** : Un cron cada hora.
 - **CronDaily** : Un cron diario.
-- **Deadcmd** : Un cron para comandantes muertos.
+- **muertocmd** : Un cron para comandantes muertos.
 - **salud** : Una salud cron.
 
 > **Consejo**

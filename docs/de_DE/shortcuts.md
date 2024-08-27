@@ -14,37 +14,37 @@ Im Bearbeitungsmodus:
 	- Ziehen Sie n Drop auf Kacheln, um sie neu anzuordnen.
 	- Ändern Sie die Größe der Kachelränder, um deren Größe zu ändern.
 	- Kontextmenü (Rechtsklick) auf den Kacheln.
-	- Strg Klicken Sie auf ein Symbol *erweitern* : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
+	- Strg Klicken Sie auf ein Symbol *expandieren* : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
 
 - Strg Klicken Sie auf einen Info-Befehl : Öffnet alle Verlaufsinformationen der Kachel im Verlaufsfenster.
 
 ### Einstellungen / System / Konfiguration
-- Strg S : Zu schützen.
+- Strg S : Zum Schutz.
 
 ### Einstellungen / System / Backups
-- Strg S : Zu schützen.
+- Strg S : Zum Schutz.
 
 ### Einstellungen / System / Task-Engine
-- Strg S : Zu schützen.
+- Strg S : Zum Schutz.
 
 ### Einstellungen / System / Benutzer
-- Strg S : Zu schützen.
+- Strg S : Zum Schutz.
 
 ### Einstellungen / Einstellungen
-- Strg S : Zu schützen.
+- Strg S : Zum Schutz.
 
 ### Tools / Interaktionen
-- Bei einer Interaktion wird Strg S gedrückt : Zu schützen.
+- Bei einer Interaktion wird Strg S gedrückt : Zum Schutz.
 - Klicken Sie bei einer Interaktion mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einer anderen Interaktion zu gelangen.
 - Strg Klicken oder Zentrieren Klicken Sie auf eine Interaktion oder im Kontextmenü : Öffnen Sie die Interaktion in einem neuen Browser-Tab.
 
 ### Werkzeuge / Objekte
-- Auf einem Objekt wird Strg S gedrückt : Zu schützen.
+- Auf einem Objekt wird Strg S gedrückt : Zum Schutz.
 - Klicken Sie auf ein Objekt mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Objekt zu gelangen.
 - Strg Klicken oder Zentrieren Klicken Sie auf ein Objekt oder in das Kontextmenü : Öffnen Sie das Objekt in einem neuen Browser-Tab.
 
 ### Tools / Widgets
-- In einem Widget wird Strg S gedrückt : Zu schützen.
+- In einem Widget wird Strg S gedrückt : Zum Schutz.
 - Klicken Sie in einem Widget mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Widget zu gelangen.
 - Strg Klicken oder Klicken Sie in einem Widget oder im Kontextmenü auf Mitte : Öffnen Sie das Widget in einem neuen Browser-Tab.
 
@@ -52,11 +52,11 @@ Im Bearbeitungsmodus:
 - Strg Klicken oder Mitte Klicken Sie auf ein Szenario oder in das Kontextmenü : Öffnen Sie das Szenario in einem neuen Browser-Tab.
 
 In einem Szenario :
-- Strg S : Zu schützen.
+- Strg S : Zum Schutz.
 - Klicken Sie mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Szenario zu gelangen.
 - Strg L : Protokollanzeige.
-- Strg Shift Z : Abbrechen.
-- Strg Shift Y : Neu machen.
+- Strg Shift Z : Stornieren.
+- Strg Shift Y : Wiederholen.
 
 - Strg Klicken Sie auf Ausführen : Speichern Sie das Szenario, führen Sie es aus und öffnen Sie das Protokoll.
 - Strg Klicken Sie auf das Symbol *Kopieren Sie diesen Block* : Schneiden Sie diesen Block.
@@ -69,24 +69,24 @@ In einem Codeblock :
 - Strg G : Nächstes Suchereignis.
 
 ### Plugins / Plugins-Verwaltung
-- Strg + S bei einer Plugin-Konfiguration : Zu schützen.
+- Strg + S bei einer Plugin-Konfiguration : Zum Schutz.
 - Strg Klicken oder Klicken Sie in einem Plugin auf Mitte : Öffnen Sie die Plugin-Verwaltung in einem neuen Browser-Tab.
 
 ### Plugins / *Plugin*
-- Auf einem Gerät wird Strg S gedrückt  : Zu schützen.
+- Auf einem Gerät wird Strg S gedrückt  : Zum Schutz.
 - Klicken Sie auf einem Gerät mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Gerät zu gelangen.
 - Strg Klicken oder Mitte Klicken Sie auf ein Gerät: Öffnen Sie das Plugin-Gerät in einem neuen Browser-Tab.
 
 ### Startseite / Ansicht
-- Strg + S beim Bearbeiten einer Ansicht : Zu schützen.
+- Strg + S beim Bearbeiten einer Ansicht : Zum Schutz.
 
 ### Zuhause / Design
-- Strg + S auf einem Design : Zu schützen.
+- Strg + S auf einem Design : Zum Schutz.
 - Strg-Umschalttaste E für ein Design : Aktivieren oder Verlassen des Bearbeitungsmodus.
 
 ### Analyse / Zusammenfassung der Hausautomation
 - Strg Klicken Sie auf das Symbol *Offen* (recherche) : Öffnen Sie alle Gegenstände und Geräte.
-- Strg Klicken Sie auf das Symbol *Nah dran* (recherche) : Schließt alle Objekte und Geräte.
+- Strg Klicken Sie auf das Symbol *Schließen* (recherche) : Schließt alle Objekte und Geräte.
 
 ### Analyse / Geschichte
 Wenn mehrere Kurven angezeigt werden :

@@ -54,6 +54,30 @@ class listener {
 				$listener->remove();
 			}
 		}
+		$sql = 'SELECT '.DB::buildField(__CLASS__).' 
+				FROM listener GROUP BY class, function, event, option 
+				HAVING count(*) > 1';
+		$duplicateds = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if(count($duplicateds) > 0){
+			foreach ($duplicateds as $duplicated) {
+				$value = array(
+					'class' => $duplicated->getClass(),
+					'function' => $duplicated->getFunction(),
+					'event' => json_encode($duplicated->getEvent(), JSON_UNESCAPED_UNICODE),
+					'option' => json_encode($duplicated->getOption(), JSON_UNESCAPED_UNICODE)
+				);
+				$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+				FROM listener
+				WHERE class=:class
+				AND `function`=:function
+				AND `option`=:option
+				AND `event`=:event';
+				$listeners = DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+				for($i=1;$i<count($listeners);$i++){
+					$listeners[$i]->remove();
+				}
+			}
+		}
 	}
 
 	public static function all() {
@@ -182,11 +206,11 @@ class listener {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function check($_event, $_value, $_datetime = null) {
+	public static function check($_event, $_value, $_datetime = null,$_object = null) {
 		$listeners = self::searchEvent($_event);
 		if (is_array($listeners) && count($listeners) > 0) {
 			foreach ($listeners as $listener) {
-				$listener->run(str_replace('#', '', $_event), $_value, $_datetime);
+				$listener->run(str_replace('#', '', $_event), $_value, $_datetime,$_object);
 			}
 		}
 	}
@@ -209,13 +233,13 @@ class listener {
 
 	/*     * *********************Méthodes d'instance************************* */
 
-	public function run($_event, $_value, $_datetime = null) {
+	public function run($_event, $_value, $_datetime = null,$_object = null) {
 		$option = array();
 		if (count($this->getOption()) > 0) {
 			$option = $this->getOption();
 		}
 		if (isset($option['background']) && $option['background'] == false) {
-			$this->execute($_event, $_value, $_datetime);
+			$this->execute($_event, $_value, $_datetime,$_object);
 		} else {
 			$cmd = __DIR__ . '/../php/jeeListener.php';
 			$cmd .= ' listener_id=' . $this->getId() . ' event_id=' . $_event . ' "value=' . escapeshellarg($_value) . '"';
@@ -226,7 +250,7 @@ class listener {
 		}
 	}
 
-	public function execute($_event, $_value, $_datetime = '') {
+	public function execute($_event, $_value, $_datetime = '',$_object = null) {
 		try {
 			$option = array();
 			if (count($this->getOption()) > 0) {
@@ -235,6 +259,7 @@ class listener {
 			$option['event_id'] = $_event;
 			$option['value'] = $_value;
 			$option['datetime'] = $_datetime;
+			$option['object'] = $_object;
 			$option['listener_id'] = $this->getId();
 			if ($this->getClass() != '') {
 				$class = $this->getClass();

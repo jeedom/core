@@ -72,7 +72,7 @@ Em um bloco de código :
 - Ctrl S em uma configuração de plug-in : Para salvaguardar.
 - Ctrl Clique ou Clique Central em um plug-in : Abra o gerenciamento de plug-ins em uma nova guia do navegador.
 
-### Plug-ins / *plugar*
+### Plug-ins / *plug-in*
 - Em um dispositivo, Ctrl S  : Para salvaguardar.
 - Em um dispositivo, clique com o botão direito do mouse em uma guia : Menu contextual para ir diretamente para outro dispositivo.
 - Ctrl Clique ou Clique Central em um dispositivo: Abra o equipamento do plug-in em uma nova guia do navegador.
@@ -86,7 +86,7 @@ Em um bloco de código :
 
 ### Análise / resumo de automação residencial
 - Ctrl Clique no ícone *Abrir* (recherche) : Abra todos os objetos e equipamentos.
-- Ctrl Clique no ícone *Perto* (recherche) : Fecha todos os objetos e equipamentos.
+- Ctrl Clique no ícone *Fechar* (recherche) : Fecha todos os objetos e equipamentos.
 
 ### Análise / História
 Se várias curvas forem exibidas :

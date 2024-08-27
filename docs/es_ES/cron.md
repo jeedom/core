@@ -14,7 +14,7 @@ En la parte superior derecha, tienes :
 
 - **Deshabilitar sistema cron** : un botón para desactivar o reactivar todas las tareas (si las desactiva todas, nada funcionará en su Jeedom).
 - **Fresco** : Actualiza la tabla de tareas.
-- **Para agregar** : Agregar un trabajo cron manualmente.
+- **Agregar** : Agregar un trabajo cron manualmente.
 - **Para salvaguardar** : Guarda tus cambios.
 
 A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo que se recomienda no modificar nunca la información en esta página)).
@@ -25,7 +25,7 @@ En esta tabla, encontramos :
 - **Activo** : Indica si la tarea está activa (puede ser iniciada por Jeedom) o no.
 - **PID** : Indica la ID del proceso actual.
 - **Demonio** : Si este cuadro es &quot;sí&quot;, la tarea siempre debe estar en progreso. Además, encontrará la frecuencia del demonio, se recomienda no modificar nunca este valor y, especialmente, nunca disminuirlo.
-- **Unico** : Si es &quot;sí&quot;, la tarea se iniciará una vez y luego se eliminará.
+- **Único** : Si es &quot;sí&quot;, la tarea se iniciará una vez y luego se eliminará.
 - **Clase** : Clase PHP llamada para ejecutar la tarea (puede estar vacía).
 - **Función** : Función PHP llamada en la clase llamada (o no si la clase está vacía).
 - **Programación** : Programación de la tarea en formato CRON.
@@ -34,7 +34,7 @@ En esta tabla, encontramos :
 - **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes porque otras tareas pueden estar en 0s).
 - **Estado** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se "ejecuta"").
 
-- **Valores** :
+- **Acción** :
     - **Detalles** : Ver el cron en detalle (como se almacena en la base).
     - **Comenzar / Parar** : Iniciar o detener la tarea (dependiendo de su estado).
     - **Supresión** : Eliminar tarea.

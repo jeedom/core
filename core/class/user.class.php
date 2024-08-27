@@ -308,9 +308,9 @@ class user {
 			return false;
 		}
 		$is_ban = false;
-		if (count($ban_ips) > 0 && config::byKey('security::bantime') >= 0) {
+		if (count($ban_ips) > 0 && intval(config::byKey('security::bantime')) >= 0 && is_int(intval(config::byKey('security::bantime')))) {
 			foreach ($ban_ips as $ip => $datetime) {
-				if ($datetime + config::byKey('security::bantime') > strtotime('now')) {
+				if ($datetime + intval(config::byKey('security::bantime')) > strtotime('now')) {
 					if ($ip == $current_ip) {
 						$is_ban = true;
 						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => $datetime]);
