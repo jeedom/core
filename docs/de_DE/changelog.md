@@ -62,6 +62,7 @@
 - Beim Speichern in der Ereignistabelle wurde eine Warnung behoben [LINK](https://github.com/jeedom/core/issues/2851)
 - Hinzufügen eines Anzeigenamens für Objekte [LINK](https://github.com/jeedom/core/issues/2484)
 - Es wurde eine Schaltfläche hinzugefügt, um Verlauf und Ereignisse in Zukunft aus der Zeitleiste zu löschen [LINK](https://github.com/jeedom/core/issues/2415)
+- Ein Problem mit Befehlen zur Typauswahl in Designs wurde behoben [LINK](https://github.com/jeedom/core/issues/2853)
 
 >**WICHTIG**
 >

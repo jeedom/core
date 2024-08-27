@@ -62,6 +62,7 @@
 - Fixed a warning when saving to the event table [LINK](https://github.com/jeedom/core/issues/2851)
 - Added display name for objects [LINK](https://github.com/jeedom/core/issues/2484)
 - Added a button to delete histories and events from the timeline in the future [LINK](https://github.com/jeedom/core/issues/2415)
+- Fixed an issue with select type commands in designs [LINK](https://github.com/jeedom/core/issues/2853)
 
 >**IMPORTANT**
 >
