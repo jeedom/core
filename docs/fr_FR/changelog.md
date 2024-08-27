@@ -62,6 +62,7 @@
 - Correction d'un warning lors d'une sauvegarde sur la table event [LIEN](https://github.com/jeedom/core/issues/2851)
 - Ajout d'un nom d'affichage (display name) pour les objets [LIEN](https://github.com/jeedom/core/issues/2484)
 - Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur [LIEN](https://github.com/jeedom/core/issues/2415)
+- Correction d'un soucis sur les commandes de type select dans les designs [LIEN](https://github.com/jeedom/core/issues/2853)
 
 >**IMPORTANT**
 >
