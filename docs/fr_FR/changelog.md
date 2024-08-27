@@ -3,6 +3,7 @@
 # 4.4.15
 
 - Correction d'un bug ou la connexion à Jeedom ne pouvait pas etre auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)
+- Correction d'un bug sur le typage des valeurs dans les event qui pouvait conduire a une non mise a jour de certain widget [LIEN](https://github.com/jeedom/core/commit/5dba6de95c23989f138aefcfba3e2657315df31d)
 
 # 4.4.14
 

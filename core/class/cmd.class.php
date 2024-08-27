@@ -1888,7 +1888,7 @@ class cmd {
 		}
 		if ($repeat && $this->getConfiguration('repeatEventManagement', 'never') == 'never') {
 			$this->addHistoryValue($value, $this->getCollectDate());
-			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => $value, 'display_value' => $display_value, 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
+			event::adds('cmd::update', array(array('cmd_id' => $this->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value,0,3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate())));
 			return;
 		}
 		$_loop++;
@@ -1905,13 +1905,13 @@ class cmd {
 			$this->setCache(array('value' => $value, 'valueDate' => $this->getValueDate()));
 			scenario::check($this, false, $this->getGeneric_type(), $object, $value);
 			$level = $this->checkAlertLevel($value);
-			$events[] = array('cmd_id' => $this->getId(), 'value' => substr($value,0,3096), 'display_value' => substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
+			$events[] = array('cmd_id' => $this->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value,0,3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'alertLevel' => $level);
 			$foundInfo = false;
 			$value_cmd = self::byValue($this->getId(), null, true);
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => substr($value,0,3096), 'display_value' => substr($display_value,0,3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value,0,3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value,0,3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
@@ -1925,7 +1925,7 @@ class cmd {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
 		} else {
-			$events[] = array('cmd_id' => $this->getId(), 'value' => substr($value,0,3096), 'display_value' => substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+			$events[] = array('cmd_id' => $this->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value,0,3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value,0,3096)), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
