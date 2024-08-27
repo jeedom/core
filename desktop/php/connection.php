@@ -25,9 +25,9 @@
 						<div class="passwd">
 							<label>{{Mot de passe}}</label>
 							<div class="input-group">
-								<input type="text" class="inputPassword" id="in_login_password" autocomplete="off" autofill="off">
+								<input type="password" id="in_login_password">
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+									<a class="btn btn-default form-control bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
 								</span>
 							</div>
 						</div>
