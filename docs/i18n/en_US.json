@@ -1359,6 +1359,7 @@
         "Correction d'un warning lors d'une sauvegarde sur la table event": "Fixed a warning when saving to the event table",
         "Ajout d'un nom d'affichage (display name) pour les objets": "Added display name for objects",
         "Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur": "Added a button to delete histories and events from the timeline in the future",
+        "Correction d'un soucis sur les commandes de type select dans les designs": "Fixed an issue with select type commands in designs",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "Note that if you have fixed value virtuals (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value",

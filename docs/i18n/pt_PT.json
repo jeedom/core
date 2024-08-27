@@ -1359,6 +1359,7 @@
         "Correction d'un warning lors d'une sauvegarde sur la table event": "Corrigido um aviso ao salvar na tabela de eventos",
         "Ajout d'un nom d'affichage (display name) pour les objets": "Adicionando um nome de exibição para objetos",
         "Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur": "Adicionado um botão para excluir histórico e eventos da linha do tempo no futuro",
+        "Correction d'un soucis sur les commandes de type select dans les designs": "Corrigido um problema com comandos de seleção de tipo em designs",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor",
