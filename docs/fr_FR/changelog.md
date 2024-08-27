@@ -63,6 +63,7 @@
 - Ajout d'un nom d'affichage (display name) pour les objets [LIEN](https://github.com/jeedom/core/issues/2484)
 - Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur [LIEN](https://github.com/jeedom/core/issues/2415)
 - Correction d'un soucis sur les commandes de type select dans les designs [LIEN](https://github.com/jeedom/core/issues/2853)
+- Possibilité sur un équipement d'indiquer qu'il n'a pas de batterie (en cas de mauvaise remontée) [LIEN](https://github.com/jeedom/core/issues/2855)
 
 >**IMPORTANT**
 >
