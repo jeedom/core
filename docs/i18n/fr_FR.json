@@ -835,10 +835,13 @@
         "Ajout d'un nom d'affichage (display name) pour les objets": "Ajout d'un nom d'affichage (display name) pour les objets",
         "Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur": "Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur",
         "Correction d'un soucis sur les commandes de type select dans les designs": "Correction d'un soucis sur les commandes de type select dans les designs",
+        "Possibilité sur un équipement d'indiquer qu'il n'a pas de batterie (en cas de mauvaise remontée": "Possibilité sur un équipement d'indiquer qu'il n'a pas de batterie (en cas de mauvaise remontée",
+        "Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre": "Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre",
         "IMPORTANT": "IMPORTANT",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
-        "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur"
+        "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur",
+        "Du à la refonte des logs lors de la mise à jour vous pouvez avoir une erreur (rien de grave) il suffit de relancer la mise à jour": "Du à la refonte des logs lors de la mise à jour vous pouvez avoir une erreur (rien de grave) il suffit de relancer la mise à jour"
     },
     "cron.md": {
         "Moteur de tâches": "Moteur de tâches",

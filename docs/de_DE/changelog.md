@@ -63,7 +63,13 @@
 - Hinzufügen eines Anzeigenamens für Objekte [LINK](https://github.com/jeedom/core/issues/2484)
 - Es wurde eine Schaltfläche hinzugefügt, um Verlauf und Ereignisse in Zukunft aus der Zeitleiste zu löschen [LINK](https://github.com/jeedom/core/issues/2415)
 - Ein Problem mit Befehlen zur Typauswahl in Designs wurde behoben [LINK](https://github.com/jeedom/core/issues/2853)
+- Möglichkeit, am Gerät anzuzeigen, dass die Batterie leer ist (bei schlechtem Aufstieg)) [LINK](https://github.com/jeedom/core/issues/2855)
+- Neugestaltung des Schreibens in Protokollen, Löschung der Monolog-Bibliothek (beachten Sie, dass die Option zum Senden von Protokollen im Syslog derzeit nicht mehr verfügbar ist. Bei hoher Nachfrage werden wir versuchen, sie zurückzusetzen) [LINK](https://github.com/jeedom/core/pull/2805)
 
 >**WICHTIG**
 >
 > Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, der Cache wird sich selbst neu aufbauen. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
+
+>**WICHTIG**
+>
+> Aufgrund der Überarbeitung der Protokolle während des Updates tritt möglicherweise ein Fehler auf (nichts Ernstes). Starten Sie das Update einfach neu.

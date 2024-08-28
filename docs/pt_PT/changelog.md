@@ -63,7 +63,13 @@
 - Adicionando um nome de exibição para objetos [LINK](https://github.com/jeedom/core/issues/2484)
 - Adicionado um botão para excluir histórico e eventos da linha do tempo no futuro [LINK](https://github.com/jeedom/core/issues/2415)
 - Corrigido um problema com comandos de seleção de tipo em designs [LINK](https://github.com/jeedom/core/issues/2853)
+- Possibilidade no equipamento de indicar que não tem bateria (em caso de má subida) [LINK](https://github.com/jeedom/core/issues/2855)
+- Redesenho de escrita em logs, exclusão da biblioteca monolog (observe que a opção de enviar logs em syslog não está mais disponível no momento, se a demanda for alta veremos como colocá-la de volta) [LINK](https://github.com/jeedom/core/pull/2805)
 
 >**IMPORTANTE**
 >
 > Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho. O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor. Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor.
+
+>**IMPORTANTE**
+>
+> Devido à revisão dos logs durante a atualização você pode ter algum erro (nada sério) basta reiniciar a atualização.

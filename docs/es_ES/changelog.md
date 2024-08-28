@@ -63,7 +63,13 @@
 - Agregar un nombre para mostrar para objetos [ENLACE](https://github.com/jeedom/core/issues/2484)
 - Se agregó un botón para eliminar el historial y los eventos de la línea de tiempo en el futuro [ENLACE](https://github.com/jeedom/core/issues/2415)
 - Se solucionó un problema con los comandos de tipo seleccionado en los diseños [ENLACE](https://github.com/jeedom/core/issues/2853)
+- Posibilidad en el equipo de indicar que no tiene batería (en caso de mal ascenso)) [ENLACE](https://github.com/jeedom/core/issues/2855)
+- Rediseño de escritura en logs, eliminación de la biblioteca monolog (tenga en cuenta que la opción de enviar logs en syslog ya no está disponible en este momento, si la demanda es alta veremos cómo volver a colocarla)) [ENLACE](https://github.com/jeedom/core/pull/2805)
 
 >**IMPORTANTE**
 >
 > Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, el caché se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
+
+>**IMPORTANTE**
+>
+> Debido a la revisión de los registros durante la actualización, es posible que tenga un error (nada grave), simplemente reinicie la actualización.
