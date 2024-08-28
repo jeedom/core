@@ -69,3 +69,7 @@
 >**IMPORTANT**
 >
 > Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même. Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur. A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur.
+
+>**IMPORTANT**
+>
+> Du à la refonte des logs lors de la mise à jour vous pouvez avoir une erreur (rien de grave) il suffit de relancer la mise à jour.
