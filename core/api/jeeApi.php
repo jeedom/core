@@ -175,7 +175,7 @@ if (init('type') != '') {
 						$scenario->setTags(init('tags'));
 					}
 					$scenario->addTag('trigger','api');
-					$scenario->addTag('message',__('Scénario exécuté sur appel API', __FILE__));
+					$scenario->addTag('trigger_message',__('Scénario exécuté sur appel API', __FILE__));
 					$scenario_return = $scenario->launch();
 					if (is_string($scenario_return)) {
 						$return = $scenario_return;
@@ -910,7 +910,7 @@ try {
 		}
 		if ($params['state'] == 'run') {
 			$scenario->addTag('trigger','api');
-			$scenario->addTag('message',__('Scénario exécuté sur appel API', __FILE__));
+			$scenario->addTag('trigger_message',__('Scénario exécuté sur appel API', __FILE__));
 			$jsonrpc->makeSuccess($scenario->launch());
 		}
 		if ($params['state'] == 'enable') {

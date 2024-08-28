@@ -41,7 +41,7 @@ try {
 				}
 				$scenario->addTag('trigger','user');
 				$scenario->addTag('trigger_value',$_SESSION['user']->getLogin());
-				$scenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
+				$scenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
 				$scenario->launch(0);
 				break;
 			case 'stop':
