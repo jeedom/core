@@ -4,6 +4,7 @@
 
 - Correction d'un bug ou la connexion à Jeedom ne pouvait pas etre auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)
 - Correction d'un bug sur le typage des valeurs dans les event qui pouvait conduire a une non mise a jour de certain widget [LIEN](https://github.com/jeedom/core/commit/5dba6de95c23989f138aefcfba3e2657315df31d)
+- Ajout de la version de l'os lors de la demande d'un plugin (en prévision de bloquer en cas de plugin incompatible) [LIEN](https://github.com/jeedom/core/commit/9721cf75494bbf3a3bc7b1f4b1bbc25cec7a55a8)
 
 # 4.4.14
 
