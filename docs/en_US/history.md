@@ -15,7 +15,7 @@ Archiving is a task that starts at night and compacts the data recovered during 
 
 > **Tip**
 >
-> If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. Why ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
+> If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. For what ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
 
 > **Important**
 >
@@ -37,9 +37,9 @@ From Core v4.2 it is also possible to display a curve at the bottom of the tile 
 
 If you display a graph via the history page, you have access to several display options, above the graph :
 
-- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* in *Settings → System → Configuration / Equipment*.
+- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* In *Settings → System → Configuration / Equipment*.
 - **Group** : Offers several grouping options (Sum per hour, etc.).
-- **Display type** : Display in *Line*, *Area*, Where *Closed off*. Option saved on the order and used from the Dashboard.
+- **Display type** : Display in *Line*, *Area*, Or *Rod*. Option saved on the order and used from the Dashboard.
 - **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
 - **Stairs** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
 - **Compare** : Compare the curve between different periods.
@@ -83,7 +83,7 @@ The history page gives access to some additional options
 
 Allows to display a curve according to a calculation on several commands (you can pretty much do anything, + - / \* absolute value ... see PHP documentation for some functions). For example :
 
-``abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)``
+`abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)`
 
 You also have access to a management of calculation formulas which allows you to save them to re-display them more easily.
 
@@ -95,7 +95,7 @@ You also have access to a management of calculation formulas which allows you to
 
 In front of each data that can be displayed, you will find two icons :
 
-- **Trash can** : Allows you to delete the recorded data; when clicking, Jeedom asks whether to delete the data before a certain date or all the data.
+- **Garbage can** : Allows you to delete the recorded data; when clicking, Jeedom asks whether to delete the data before a certain date or all the data.
 - **Arrow** : Enables CSV export of historical data.
 
 ### Inconsistent value removal

@@ -2,7 +2,7 @@
 **Einstellungen → System → Update Center**
 
 
-Das **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
+DER **Update Center** Mit dieser Funktion können Sie alle Funktionen von Jeedom aktualisieren, einschließlich der Kernsoftware und ihrer Plugins.
 Andere Erweiterungsverwaltungsfunktionen sind verfügbar (Löschen, Neuinstallieren, Überprüfen usw.).).
 
 
@@ -16,7 +16,7 @@ Wenn diese Überprüfung zu Beginn der Seite älter als zwei Stunden ist, wieder
 Sie können auch die Schaltfläche verwenden **Suchen Sie nach Updates** Um es manuell zu tun.
 Wenn Sie eine manuelle Überprüfung durchführen möchten, können Sie auf die Schaltfläche "Nach Updates suchen" klicken".
 
-Die Taste **Zu schützen** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
+Die Taste **Zum Schutz** wird verwendet, wenn Sie die Optionen in der folgenden Tabelle ändern, um anzugeben, dass bestimmte Plugins bei Bedarf nicht aktualisiert werden sollen.
 
 ## Aktualisieren Sie den Core
 
@@ -42,17 +42,17 @@ Sobald Sie darauf klicken, erhalten Sie diese verschiedenen Optionen :
 
 Die Tabelle enthält die Versionen des Core und der installierten Plugins.
 
-Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stetig*, oder orange in *Beta* oder andere.
+Die Plugins haben neben ihrem Namen ein Abzeichen, das ihre Version angibt und grün ist *stabil*, oder orange in *Beta* oder andere.
 
 - **Status** : OK oder NOK.
-- **Nachname** : Name und Herkunft des Plugins
-- **Ausführung** : Zeigt die genaue Version des Core oder Plugins an.
+- **Name** : Name und Herkunft des Plugins
+- **Version** : Zeigt die genaue Version des Core oder Plugins an.
 - **Optionen** : Aktivieren Sie dieses Kontrollkästchen, wenn dieses Plugin während des globalen Updates nicht aktualisiert werden soll (Schaltfläche) **Update**).
 
 In jeder Zeile können Sie die folgenden Funktionen verwenden:
 
 - **Wieder einstellen** : Neuansiedlung erzwingen.
-- **Löschen** : Ermöglicht die Deinstallation.
+- **LÖSCHEN** : Ermöglicht die Deinstallation.
 - **überprüfen** : Fragen Sie die Quelle nach Updates ab, um herauszufinden, ob ein neues Update verfügbar ist.
 - **Update** : Ermöglicht das Aktualisieren des Elements (sofern es aktualisiert wurde)).
 - **Änderungsprotokoll** : Ermöglicht den Zugriff auf die Liste der Änderungen im Update.
@@ -87,17 +87,17 @@ Während oder nach einem Update können Sie auf dieser Registerkarte das Protoko
 Es ist möglich, Jeedom direkt in SSH zu aktualisieren.
 Sobald die Verbindung hergestellt ist, ist dies der auszuführende Befehl :
 
-``````sudo php /var/www/html/install/update.php``````
+```sudo php /var/www/html/install/update.php```
 
 Die möglichen Parameter sind :
 
 - **Mode** : `force`, um ein Update im erzwungenen Modus zu starten (ignoriert Fehler).
-- **Ausführung** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
+- **Version** : Nachverfolgung der Versionsnummer, um Änderungen gegenüber dieser Version erneut anzuwenden.
 
 Hier ist ein Beispiel für die Syntax, um ein erzwungenes Update durchzuführen, indem die Änderungen seit 4.0 erneut angewendet werden.04 :
 
-``````sudo php  /var/www/html/install/update.php mode=force version=4.0.04``````
+```sudo php  /var/www/html/install/update.php mode=force version=4.0.04```
 
 Achtung, nach einem Update in der Befehlszeile müssen die Rechte für den Jeedom-Ordner erneut angewendet werden :
 
-``````sudo chown -R www-data:www-data /var/www/html``````
+```sudo chown -R www-data:www-data /var/www/html```

@@ -23,7 +23,7 @@ Abaixo, vários parâmetros que centralizam as informações que podem ser usada
 
 - Informações para contato : Latitude, longitude e altitude da sua casa / site.
 - Endereço : Endereço para correspondência da sua casa / site.
-- Vários : Superfície e número de ocupantes da sua casa / local.
+- Variado : Superfície e número de ocupantes da sua casa / local.
 
 ## Guia Interface
 
@@ -42,7 +42,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Não vertical** : Restringe a altura dos blocos a cada x pixels.
 - **Margem** : Espaço vertical e horizontal entre blocos, em pixels.
 - **Centralização vertical de ladrilhos** : Centraliza verticalmente o conteúdo dos blocos.
-- **Ícones coloridos de widget** : Ícones de widget para colorir com base em seu estado. Modificável por cenário, *setColoredIcon* ('Coloração de ícone').
+- **Ícones coloridos de widget** : Ícones de widget para colorir com base em seu estado. Modificável por cenário, *definirColoredIcon* ('Coloração de ícone').
 - **Categorias coloridas** : Colorização do título dos tiles de acordo com a categoria.
 - **Móvel : uma coluna padrão** : Exibição de largura total de blocos em dispositivos móveis
 
@@ -65,9 +65,9 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 
 ### Personnalisation
 
-- **Permitir** : Ative o uso das opções abaixo.
+- **Habilitar** : Ative o uso das opções abaixo.
 - **Transparência** : Exibe blocos do painel e algum conteúdo com transparência. 1 : totalmente opaco, 0 : totalmente transparente.
-- **Redondo** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
+- **Arredondado** : Exibe elementos da interface com ângulos arredondados. 0 : sem arredondamento, 1 : arredondamento máximo.
 - **Desativar sombras** : Desativa sombras de blocos no painel, menus e certos elementos da interface.
 
 
@@ -116,7 +116,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Mercado de proxy** : permite acesso remoto ao seu Jeedom sem a necessidade de um DNS, um IP fixo ou abrir as portas da sua caixa da Internet.
     - **Usando o DNS Jeedom** : ativa o DNS Jeedom (observe que isso requer pelo menos um service pack).
     - **Status de DNS** : Status HTTP DNS.
-    - **Gestão** : permite parar e reiniciar o serviço DNS Jeedom.
+    - **Gerenciamento** : permite parar e reiniciar o serviço DNS Jeedom.
 
 > **Importante**
 >
@@ -217,7 +217,7 @@ Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as
 - **Profundidade para encomendas** : Mesmo para pedidos.
 - **Profundidade para variáveis** : O mesmo para variáveis.
 - **Prerender parâmetro** : Permite que você atue no layout do gráfico.
-- **Parâmetro renderizar** : Mesmo.
+- **Parâmetro renderizar** : Idem.
 
 ## Guia Interações
 
@@ -245,15 +245,15 @@ Aqui você tem três parâmetros :
 
 -   O **interações contextuais** permitem encadear várias solicitações sem repetir tudo, por exemplo :
     - *Jeedom mantendo o contexto :*
-        - *Você* : Quanto ele está na sala ?
+        - *VOCÊ* : Quanto ele está na sala ?
         - *Jeedom* : Temperatura 25.2 ° C
-        - *Você* : e na sala de estar ?
+        - *VOCÊ* : e na sala de estar ?
         - *Jeedom* : Temperatura 27.2 ° C
     - *Faça duas perguntas em uma :*
-        - *Você* : Como é no quarto e na sala de estar ?
+        - *VOCÊ* : Como é no quarto e na sala de estar ?
         - *Jeedom* : Temperatura 23.6 ° C, Temperatura 27.2 ° C
 -   Interações de tipo **Avise-me** permita que a Jeedom avise se um pedido excede / cai ou vale algum valor.
-    - *Você* : Notifique-me se a temperatura da sala exceder 25 ° C ?
+    - *VOCÊ* : Notifique-me se a temperatura da sala exceder 25 ° C ?
     - *Jeedom* : OK (*Assim que a temperatura da sala exceder 25 ° C, Jeedom dirá, uma vez*)
 
 > **Observação**
@@ -407,7 +407,7 @@ Para cada chave de plug-in de API, bem como para APIs HTTP, JsonRPC e TTS, é po
 
 - **Desativado** : A chave da API não pode ser usada,
 - **Branco IP** : apenas uma lista de IPs é autorizada (consulte Configurações → Sistema → Configuração : Segurança),
-- **Localhost** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
+- **Host local** : somente solicitações do sistema no qual o Jeedom está instalado são permitidas,
 - **Habilitado** : sem restrições, qualquer sistema com acesso ao seu Jeedom poderá acessar esta API.
 
 Para cada chave de API de plugin você pode proibi-los de métodos centrais (geral) para limitá-los ao seu único método embutido (tenha cuidado com alguns plugins como mobile ou jeelink absolutamente precisam de métodos centrais)

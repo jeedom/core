@@ -23,7 +23,7 @@ En la página tienes tres botones :
 - **Fecha de la última conexión** : Fecha de inicio de sesión del último usuario. Tenga en cuenta que esta es la fecha de conexión real, por lo que si guarda su computadora, la fecha de conexión no se actualiza cada vez que regresa.
 - **Derechos** : Modificar derechos de usuario.
 - **Contraseña** : Le permite cambiar la contraseña del usuario.
-- **Borrar** : Eliminar usuario.
+- **BORRAR** : Eliminar usuario.
 - **Regenerar clave API** : Regenerar clave de API de usuario.
 - **Administrar derechos** : Le permite administrar con precisión los derechos de los usuarios (tenga en cuenta que el perfil debe estar en "usuario limitado"").
 
@@ -36,7 +36,7 @@ Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite admini
 > El perfil debe ser limitado; de lo contrario, no se tendrán en cuenta las restricciones establecidas aquí.
 
 Obtiene una tabla que permite, para cada dispositivo y cada escenario, definir los derechos del usuario :
-- **Ninguna** : el usuario no ve el equipo / escenario.
+- **Ninguno** : el usuario no ve el equipo / escenario.
 - **Visualización** : el usuario ve el equipo / escenario pero no puede actuar sobre él.
 - **Visualización y ejecución** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
 

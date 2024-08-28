@@ -23,7 +23,7 @@ Below, several parameters that centralize information that can be used by plugin
 
 - Contact information : Latitude, Longitude and Altitude of your home / site.
 - Address : Mailing address of your home / site.
-- Various : Surface and number of occupants of your home / site.
+- Miscellaneous : Surface and number of occupants of your home / site.
 
 ## Interface tab
 
@@ -67,7 +67,7 @@ In this tab you will find the display customization parameters.
 
 - **Enable** : Activate the use of the options below.
 - **Transparency** : Displays Dashboard tiles and some content with transparency. 1 : totally opaque, 0 : totally transparent.
-- **Round** : Displays interface elements with rounded angles. 0 : no rounding, 1 : maximum rounding.
+- **Rounded** : Displays interface elements with rounded angles. 0 : no rounding, 1 : maximum rounding.
 - **Disable shadows** : Disables shadows from tiles on the dashboard, menus, and certain interface elements.
 
 
@@ -143,12 +143,12 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
 - **Timeout command** : Type command **message** to be used if an equipment is in **timeout**.
 - **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **warning**.
 - **Battery command in Warning** : Type command **message** to be used if equipment at its battery level **warning**.
-- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **danger**.
-- **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **danger**.
+- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **hazard**.
+- **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **hazard**.
 - **Add a message to each Warning** : Add a message in the message center if a command goes on alert **warning**.
 - **Command on Warning** : Type command **message** to use if a command goes on alert **warning**.
-- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **danger**.
-- **Command on Danger** : Type command **message** to use if a command goes on alert **danger**.
+- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **hazard**.
+- **Command on Danger** : Type command **message** to use if a command goes on alert **hazard**.
 
 ### Logs
 
@@ -217,7 +217,7 @@ Configure link graphics. These links allow you to see, in the form of a graph, t
 - **Commands depth** : Same for commands.
 - **Variables depth** : Same for variables.
 - **Prerender parameter** : Allows you to act on the layout of the graph.
-- **Render parameter** : Same.
+- **Render parameter** : Idem.
 
 ## Interactions tab
 
@@ -241,19 +241,19 @@ Here you have three parameters :
 
 ### Automatic, contextual & warning interaction
 
--   The **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
+-   THE **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
 
--   The **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
+-   THE **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
     - *Jeedom keeping the context :*
-        - *You* : How much is he in the room ?
+        - *YOU* : How much is he in the room ?
         - *Jeedom* : Temperature 25.2 ° C
-        - *You* : and in the living room ?
+        - *YOU* : and in the living room ?
         - *Jeedom* : Temperature 27.2 ° C
     - *Ask two questions in one :*
-        - *You* : What is it like in the bedroom and in the living room ?
+        - *YOU* : What is it like in the bedroom and in the living room ?
         - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
 -   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
-    - *You* : Notify me if the living room temperature exceeds 25 ° C ?
+    - *YOU* : Notify me if the living room temperature exceeds 25 ° C ?
     - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
 
 > **Note**
@@ -363,7 +363,7 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 > **Important**
 >
-> The Samba protocol has several versions, the v1 is compromised in terms of security and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
+> The Samba protocol has several versions, the v1 is compromised in terms of security and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *protocol failed: NT_STATUS_INVAID_NETWORK_RESPONSE* there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
 > client max protocol = SMB3
 > client min protocol = SMB2
 > The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 to both only SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server

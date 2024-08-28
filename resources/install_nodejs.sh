@@ -235,3 +235,6 @@ fi
 #   sudo wget --quiet -O - http://repo.jeedom.com/odroid/conf/jeedom.gpg.key | sudo apt-key add - &>/dev/null
 #   sudo apt-add-repository "deb http://repo.jeedom.com/odroid/ stable main" &>/dev/null
 # fi
+
+echo "Clean npm cache"
+sudo npm cache clean --force

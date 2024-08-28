@@ -2,7 +2,7 @@
 **Configuración → Sistema → Centro de actualizaciones**
 
 
-La **Centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
+EL **Centro de actualizaciones** le permite actualizar toda la funcionalidad de Jeedom, incluido el software principal y sus complementos.
 Hay otras funciones de administración de extensiones disponibles (eliminar, reinstalar, verificar, etc.).
 
 
@@ -28,7 +28,7 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 - **Actualiza el núcleo** : Le permite incluir el núcleo Jeedom (el núcleo) en la actualización.
 
 - **Modo forzado** : Realice la actualización en modo forzado, es decir, incluso si hay un error, Jeedom continuará y no restaurará la copia de seguridad. (Este modo deshabilita guardar !).
-- **Actualización para volver a aplicar** : Le permite volver a aplicar una actualización. (Nótese bien : No todas las actualizaciones se pueden volver a aplicar.)
+- **Actualización para volver a aplicar** : Le permite volver a aplicar una actualización. (NÓTESE BIEN : No todas las actualizaciones se pueden volver a aplicar.)
 
 > **Importante**
 >
@@ -42,17 +42,17 @@ Una vez que haces clic en él, obtienes estas diferentes opciones :
 
 La tabla contiene las versiones de Core y los complementos instalados.
 
-Los complementos tienen una insignia al lado de su nombre, especificando su versión, de color verde *firme*, o naranja en *beta* u otro.
+Los complementos tienen una insignia al lado de su nombre, especificando su versión, de color verde *estable*, o naranja en *beta* u otro.
 
 - **Estado** : OK o NOK.
-- **Apellido** : Nombre y origen del complemento
+- **Nombre** : Nombre y origen del complemento
 - **Versión** : Indica la versión precisa del núcleo o complemento.
 - **Opciones** : Marque esta casilla si no desea que este complemento se actualice durante la actualización global (Botón **Poner al día**).
 
 En cada línea, puede usar las siguientes funciones:
 
 - **Restablecer** : Reasentamiento forzado.
-- **Borrar** : Le permite desinstalarlo.
+- **BORRAR** : Le permite desinstalarlo.
 - **Comprobar** : Consulte la fuente de actualizaciones para averiguar si hay una nueva actualización disponible.
 - **Poner al día** : Le permite actualizar el elemento (si tiene una actualización).
 - **Registro de cambios** : Permite el acceso a la lista de cambios en la actualización.
@@ -87,17 +87,17 @@ Durante o después de una actualización, esta pestaña le permite leer el regis
 Es posible actualizar Jeedom directamente en SSH.
 Una vez conectado, este es el comando para realizar :
 
-''''''sudo php /var/www/html/install/update.php''''''
+```sudo php /var/www/html/install/update.php```
 
 Los posibles parámetros son :
 
-- **Moda** : `force`, para iniciar una actualización en modo forzado (ignora los errores).
+- **moda** : `force`, para iniciar una actualización en modo forzado (ignora los errores).
 - **Versión** : Seguimiento del número de versión, para volver a aplicar los cambios de esta versión.
 
 Aquí hay un ejemplo de sintaxis para realizar una actualización forzada al volver a aplicar los cambios desde 4.0.04 :
 
-''''''sudo php  /var/www/html/install/update.php mode=force version=4.0.04''''''
+```sudo php  /var/www/html/install/update.php mode=force version=4.0.04```
 
 Atención, después de una actualización en la línea de comando, es necesario volver a aplicar los derechos en la carpeta Jeedom :
 
-''''''sudo chown -R www-data:www-data /var/www/html''''''
+```sudo chown -R www-data:www-data /var/www/html```

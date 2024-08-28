@@ -55,8 +55,8 @@ On a scenario :
 - Ctrl-S : To safeguard.
 - Right click on a tab : Contextual menu to go directly to another scenario.
 - Ctrl-L : Log display.
-- Ctrl Shift Z : To cancel.
-- Ctrl Shift Y : Remake.
+- Ctrl Shift Z : Cancel.
+- Ctrl Shift Y : Redo.
 
 - Ctrl Click on Execute : Save and execute the scenario, then open the log.
 - Ctrl Click on icon *Copy this block* : Cut this block.

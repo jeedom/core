@@ -167,6 +167,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			)
 		),
 		'generic_type' => array(
+			'TOGGLE' => array(
+				'name' => __('Toggle', __FILE__), 'familyid' => 'Other', 'family' => __('Autre', __FILE__),
+				'type' => 'Action', 'subtype' => array('other')
+			),
 			'ONLINE' => array(
 				'name' => __('Connecté', __FILE__), 'familyid' => 'Other', 'family' => __('Autre', __FILE__),
 				'type' => 'Info', 'subtype' => array('binary')

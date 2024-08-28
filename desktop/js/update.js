@@ -278,7 +278,7 @@ if (!jeeFrontEnd.update) {
           }
         }
       } else {
-        tr += '<a class="btn btn-xs" id="bt_changelogCore"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+        tr += '<a class="btn btn-xs" target="_blank" href="'+_update.changelog_url+'"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
       }
       if (_update.type != 'core') {
         if (_update.status == 'UPDATE') {
@@ -557,10 +557,6 @@ if (!jeeFrontEnd.update) {
               check_backupBefore.removeAttribute('disabled')
             }
           })
-
-          contentEl.querySelector('.bt_changelogCore').addEventListener('click', function(event) {
-            document.getElementById('bt_changelogCore').triggerEvent('click')
-          })
         },
         onShown: function() {
           jeeDialog.get('#md_update', 'content').querySelector('#md_specifyUpdate').removeClass('hidden')
@@ -625,23 +621,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('#bt_updateJeedom')) {
     jeeP.getUpdateModal()
-    return
-  }
-
-  if (_target = event.target.closest('#bt_changelogCore')) {
-    jeedom.getDocumentationUrl({
-      page: 'changelog',
-      theme: document.body.getAttribute('data-theme'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(url) {
-        window.open(url, '_blank')
-      }
-    })
     return
   }
 

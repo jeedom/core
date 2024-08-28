@@ -31,22 +31,19 @@ if (!jeeFrontEnd.plan3d) {
     init: function() {
       window.jeeP = this
       document.getElementById('div_pageContainer').style.height = '100%'
+      if (getUrlVars('fullscreen') == '1') {
+        document.getElementById('div_colPlan3d').removeClass('col-lg-10')
+        document.getElementById('div_colPlan3d').addClass('col-lg-12')
+        document.getElementById('div_colMenu').unseen()
+        document.querySelectorAll('header').unseen()
+        document.getElementById('div_mainContainer').style.marginTop = '-50px'
+        if(wrap = document.getElementById('wrap')) wrap.style.marginBottom = '0px'
+      }
       this.SCREEN_WIDTH = document.getElementById('div_display3d').offsetWidth
-      this.SCREEN_HEIGHT = document.getElementById('div_display3d').offsetHeight
+      this.SCREEN_HEIGHT = document.getElementById('div_display3d').offsetHeight - 5
       this.raycaster = new THREE.Raycaster()
       this.mouse = new THREE.Vector2()
-      
-      if (getUrlVars('fullscreen') == '1') {
-        document.getElementById('div_colPlan3d').classList.remove('col-lg-10');
-        document.getElementById('div_colPlan3d').classList.add('col-lg-12');
-        document.getElementById('div_colMenu').style.display='none';
-        document.querySelectorAll('header')[0].hidden = true
-        document.getElementById('div_mainContainer').style.marginTop = '-50px'
-        document.getElementById('wrap').style.marginBottom = '0px'
-        document.getElementById('div_colPlan3d').style.width = window.innerHeight
-      } else {
-        document.getElementById('div_colPlan3d').style.width = window.innerHeight - 50
-      }
+      this.EDIT_MODE = 0
       jeeFrontEnd.plan3d.display3d(plan3dHeader_id)
     },
     handleClick3d: function(event) {
@@ -54,36 +51,37 @@ if (!jeeFrontEnd.plan3d) {
         return
       }
       document.getElementById('md_plan3dWidget').empty()
-      jeeFrontEnd.plan3d.mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / jeeFrontEnd.plan3d.SCREEN_WIDTH) * 2 - 1
-      jeeFrontEnd.plan3d.mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / jeeFrontEnd.plan3d.SCREEN_HEIGHT) * 2 + 1
-      jeeFrontEnd.plan3d.raycaster.setFromCamera(jeeFrontEnd.plan3d.mouse, jeeFrontEnd.plan3d.camera)
-      var intersects = jeeFrontEnd.plan3d.raycaster.intersectObjects(jeeFrontEnd.plan3d.scene.children, true)
-      if (intersects.length > 0) {
-        jeedom.plan3d.byName({
-          global: false,
-          name: intersects[0].object.name,
-          plan3dHeader_id: plan3dHeader_id,
-          error: function(request, status, error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            if (data.html) {
-              document.getElementById('md_plan3dWidget').empty()
-              document.getElementById('md_plan3dWidget').insertAdjacentHTML('beforeend', data.html)
-              jeedomUtils.positionEqLogic()
+       if (jeeFrontEnd.plan3d.EDIT_MODE == 0) {
+        jeeFrontEnd.plan3d.mouse.x = ((event.clientX - document.getElementById('div_display3d').offsetLeft) / jeeFrontEnd.plan3d.SCREEN_WIDTH) * 2 - 1
+        jeeFrontEnd.plan3d.mouse.y = -((event.clientY - document.getElementById('div_display3d').offsetTop) / jeeFrontEnd.plan3d.SCREEN_HEIGHT) * 2 + 1
+        jeeFrontEnd.plan3d.raycaster.setFromCamera(jeeFrontEnd.plan3d.mouse, jeeFrontEnd.plan3d.camera)
+        var intersects = jeeFrontEnd.plan3d.raycaster.intersectObjects(jeeFrontEnd.plan3d.scene.children, true)
+        if (intersects.length > 0) {
+          jeedom.plan3d.byName({
+            global: false,
+            name: intersects[0].object.name,
+            plan3dHeader_id: plan3dHeader_id,
+            error: function(request, status, error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function(data) {
+              if (data.html) {
+                document.getElementById('md_plan3dWidget').html(data.html, true)
+                jeedomUtils.positionEqLogic()
+              }
             }
-          }
-        })
+          })
+        }
       }
     },
     render: function() {
       jeeFrontEnd.plan3d.renderer.render(jeeFrontEnd.plan3d.scene, jeeFrontEnd.plan3d.camera)
     },
     animate: function() {
-      //requestAnimationFrame(animate)
+      requestAnimationFrame(jeeFrontEnd.plan3d.animate)
       jeeFrontEnd.plan3d.render()
       jeeFrontEnd.plan3d.controls.update()
     },
@@ -228,13 +226,12 @@ if (!jeeFrontEnd.plan3d) {
               console.log(error)
             })
           }
-          jeeFrontEnd.plan3d.controls = new THREE.OrbitControls(jeeFrontEnd.plan3d.camera, jeeFrontEnd.plan3d.camera.domElement)
+          jeeFrontEnd.plan3d.controls = new THREE.OrbitControls(jeeFrontEnd.plan3d.camera, jeeFrontEnd.plan3d.renderer.domElement)
           jeeFrontEnd.plan3d.controls.maxPolarAngle = 0.9 * Math.PI / 2
           jeeFrontEnd.plan3d.controls.addEventListener('change', jeeFrontEnd.plan3d.render)
           jeeFrontEnd.plan3d.scene.add(new THREE.HemisphereLight(0xffffbb, 0x080820, 0.5))
           jeeFrontEnd.plan3d.renderer.render(jeeFrontEnd.plan3d.scene, jeeFrontEnd.plan3d.camera)
           jeeFrontEnd.plan3d.animate()
-     
         }
       })
     }
@@ -253,11 +250,11 @@ document.getElementById('bt_editMode').addEventListener('click', function(event)
   if (jeeFrontEnd.plan3d.EDIT_MODE) {
     _target.classList.remove('btn-default')
     _target.classList.add('btn-success')
-    document.getElementById('div_btEdit').hidden = false
+    document.getElementById('div_btEdit').seen()
   } else {
     _target.classList.remove('btn-success')
     _target.classList.add('btn-default')
-    document.getElementById('div_btEdit').hidden = true
+    document.getElementById('div_btEdit').unseen()
     jeeFrontEnd.plan3d.refresh3dObject()
   }
   return
@@ -334,17 +331,12 @@ document.body.registerEvent('cmd::update', function(_event) {
 })
 
 window.registerEvent('resize', function() {
-  if (getUrlVars('fullscreen') == '1') {
-    document.getElementById('div_colPlan3d').style.width = window.innerHeight
-  } else {
-    document.getElementById('div_colPlan3d').style.width = 'auto'
-  }
-  jeeFrontEnd.plan3d.SCREEN_WIDTH = document.getElementById('div_display3d').style.width
-  jeeFrontEnd.plan3d.SCREEN_HEIGHT = document.getElementById('div_display3d').style.height
+  jeeFrontEnd.plan3d.SCREEN_WIDTH = document.getElementById('div_display3d').offsetWidth
+  jeeFrontEnd.plan3d.SCREEN_HEIGHT = document.getElementById('div_display3d').offsetHeight - 5
   try {
     jeeFrontEnd.plan3d.camera.aspect = jeeFrontEnd.plan3d.SCREEN_WIDTH / jeeFrontEnd.plan3d.SCREEN_HEIGHT
     jeeFrontEnd.plan3d.camera.updateProjectionMatrix()
-    jeeFrontEnd.plan3d.camera.setSize(jeeFrontEnd.plan3d.SCREEN_WIDTH, jeeFrontEnd.plan3d.SCREEN_HEIGHT)
+    jeeFrontEnd.plan3d.renderer.setSize(jeeFrontEnd.plan3d.SCREEN_WIDTH, jeeFrontEnd.plan3d.SCREEN_HEIGHT)
   } catch (error) { }
 }, false)
 
@@ -360,7 +352,7 @@ window.registerEvent('dblclick', function(event) {
     jeeDialog.dialog({
       id: 'jee_modal',
       title: "{{Configuration de l\'objet}}",
-      contentUrl: 'index.php?v=d&modal=plan3d.configure&&plan3dHeader_id=' + plan3dHeader_id + '&name=' + intersects[0].object.name
+      contentUrl: 'index.php?v=d&modal=plan3d.configure&plan3dHeader_id=' + plan3dHeader_id + '&name=' + intersects[0].object.name
     })
   }
 }, false)
@@ -414,11 +406,14 @@ jeedom3d.light.update = function(_options) {
       if (lights[i].info.additionalData.subType == 'numeric') {
         intensity = (max / 100) * _options.display_value
       }
-      if (lights[i].info.additionalData.subType == 'string') {
+      else if (lights[i].info.additionalData.subType == 'string') {
         color = _options.display_value
         if (color == '#000000') {
           intensity = 0
         }
+      }
+      else if (lights[i].info.additionalData.subType == 'binary' && _options.display_value == 0) {
+        intensity = 0
       }
     }
     lights[i].object.intensity = intensity
@@ -629,7 +624,7 @@ jeedom3d.door.create = function(_info, _object) {
       info: _info
     })
     jeedom3d.door.update({
-      state: _info.additionalData.state,
+      value: _info.additionalData.state,
       cmd_id: cmd_id,
       object: _object
     })
@@ -642,8 +637,8 @@ jeedom3d.door.update = function(_options) {
     if (_options.object && _options.object != doors[i].object) {
       continue
     }
-    if (_options.state) {
-      jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['door'][i].info.lastPosition = jeedom3d.door.doUpdate(_options.state, doors[i])
+    if (_options.value) {
+      jeeFrontEnd.plan3d.CMDS[_options.cmd_id]['door'][i].info.lastPosition = jeedom3d.door.doUpdate(_options.value, doors[i])
     } else {
       jeedom.plan3d.byId({
         id: doors[i].info.id,

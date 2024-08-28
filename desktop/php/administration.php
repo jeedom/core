@@ -852,6 +852,12 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline qui sont dans le futur}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
+								<a type="text" class="btn btn-sm btn-warning" id="bt_removeTimelineFuturEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<a type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
@@ -879,7 +885,7 @@ $productName = config::byKey('product_name');
 						<?php
 						foreach ($JEEDOM_INTERNAL_CONFIG['messageChannel'] as $k => $v) {
 							echo '<div class="form-group" data-channel="' . $k . '">';
-							echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">' . $v['icon'] . ' {{Action sur message, channel }} ' . $v['name'] . '</label>';
+							echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">' . $v['icon'] . ' {{Action sur message, channel}} ' . $v['name'] . '</label>';
 							echo '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
 							echo '<a class="btn btn-sm btn-success bt_addActionOnMessage" data-channel="' . $k . '"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>';
 							echo '</div>';
@@ -1121,8 +1127,8 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Limiter à une valeur toute les}}
-							<sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeur historisé par les commandes en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Limiter à une valeur toutes les}}
+							<sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeurs historisées par les commandes en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
 							<select class="form-control configKey" data-l1key="history::smooth">
@@ -1167,6 +1173,12 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="history::allowFuture">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les historiques qui sont dans le futur}}</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
+								<a type="text" class="btn btn-sm btn-warning" id="bt_removeHistoryInFutur"><i class="fas fa-trash"></i> {{Supprimer}}</a>
 							</div>
 						</div>
 					</fieldset>
@@ -1304,7 +1316,7 @@ $productName = config::byKey('product_name');
 					<fieldset>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Profondeur pour les scénarios}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de scénario}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens de scénario}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::scenario::drill">
@@ -1312,7 +1324,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Profondeur pour les objets}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens d'objet}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens d'objet}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::jeeObject::drill">
@@ -1320,7 +1332,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Profondeur pour les équipements}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens d'équipement}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens d'équipement}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::eqLogic::drill">
@@ -1328,7 +1340,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Profondeur pour les commandes}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de commande}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens de commande}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::cmd::drill">
@@ -1336,7 +1348,7 @@ $productName = config::byKey('product_name');
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Profondeur pour les variables}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de niveaux maximal d’éléments à afficher dans les graphiques de liens de variable}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens de variable}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::dataStore::drill">
@@ -1797,59 +1809,62 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Version installée du core, pour la vérification de mise à jour disponible.}}"></i></sup>
 									</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
-                                      <div class="input-group">
-                                          <select class="form-control configKey" data-l1key="core::branch">
-										  	  <optgroup label="{{Defaut (support)}}">
-												<option value="master">{{Stable}}</option>
-											  </optgroup>
-                                              <?php 
-                                              if(config::byKey('core::repo::provider') == 'default'){
-                                                  $lists = cache::byKey('core::branch::default::list')->getValue(array());
-                                                  if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
-                                                      $request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
-                                                      $request_http->setHeader(array('User-agent: jeedom'));
-                                                      try {
-                                                        $lists['branchs'] = json_decode($request_http->exec(10, 1), true);
-                                                      } catch (\Exception $e) {
-                                                      }
-													  cache::set('core::branch::default::list',$lists,86400);
-                                                  }
-												  if(!isset($lists['tags']) || !is_array($lists['tags'])){
-													$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
-													$request_http->setHeader(array('User-agent: jeedom'));
-													try {
-														$lists['tags'] = json_decode($request_http->exec(10, 1), true);
-													} catch (\Exception $e) {
+										<div class="input-group">
+											<select class="form-control configKey" data-l1key="core::branch">
+												<optgroup label="{{Defaut (support)}}">
+													<option value="master">{{Stable}}</option>
+												</optgroup>
+												<?php 
+												if(config::byKey('core::repo::provider') == 'default'){
+													$lists = cache::byKey('core::branch::default::list')->getValue(array());
+													if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
+														$request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
+														$request_http->setHeader(array('User-agent: jeedom'));
+														try {
+															$lists['branchs'] = json_decode($request_http->exec(10, 1), true);
+														} catch (\Exception $e) {
+														}
+														cache::set('core::branch::default::list',$lists,86400);
 													}
-													cache::set('core::branch::default::list',$lists,86400);
+													if(!isset($lists['tags']) || !is_array($lists['tags'])){
+														$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
+														$request_http->setHeader(array('User-agent: jeedom'));
+														try {
+															$lists['tags'] = json_decode($request_http->exec(10, 1), true);
+														} catch (\Exception $e) {
+														}
+														cache::set('core::branch::default::list',$lists,86400);
 												  }
-                                                  if(isset($lists['branchs']) && is_array($lists['branchs'])){
+												if(isset($lists['branchs']) && is_array($lists['branchs'])){
 													echo '<optgroup label="{{Branches (Pas de support)}}">';
 													foreach ($lists['branchs'] as $branch) {
+														if(!is_array($branch) || !isset($branch['name'])){
+															continue;
+														}
 														if(in_array($branch['name'],array('V4-stable','master'))){
 															continue;
 														}
 														echo '<option value="'.$branch['name'].'">'.$branch['name'].'</option>';
 													}
 													echo '</optgroup>';
-                                                  }
-												  if(isset($lists['tags']) && is_array($lists['tags'])){
+												}
+												if(isset($lists['tags']) && is_array($lists['tags'])){
 													echo '<optgroup label="{{Tags (Pas de support)}}">';
 													foreach ($lists['tags'] as $tag) {
-														if(in_array($branch['name'],array('V4-stable','master'))){
+														if(!is_array($tag) || !isset($tag['name'])){
 															continue;
 														}
 														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
 													}
 													echo '</optgroup>';
 												}
-                                              }
-                                              ?>
-                                          </select>
-                                          <span class="input-group-btn">
-                                              <a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>
-                                          </span>
-                                      </div>
+											}
+											?>
+											</select>
+											<span class="input-group-btn">
+												<a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>
+											</span>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -1969,7 +1984,7 @@ $productName = config::byKey('product_name');
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="alert alert-info">
-							{{Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.}}
+							{{Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeur des commandes et toute autre information en cache le temps que tout soit renvoyé.}}
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-5 col-sm-6 col-xs-6 control-label">{{Moteur de cache}}</label>
@@ -2138,13 +2153,13 @@ $productName = config::byKey('product_name');
 						</div>
 
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les methodes api (regexp)}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{Interdire les méthodes api (regexp)}}</label>
 							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::forbidden::method">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les methodes api (regexp)}}</label>
+							<label class="col-lg-2 col-md-3 col-sm-4 col-xs-12 control-label">{{N'autoriser que les méthodes api (regexp)}}</label>
 							<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">
 								<input type="text" class="configKey form-control" data-l1key="api::allow::method">
 							</div>
@@ -2305,8 +2320,8 @@ $productName = config::byKey('product_name');
 										</div>
 										</span>
 									</div>
-
 								</div>
+
 							</div>
 					</fieldset>
 					<br>

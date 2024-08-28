@@ -12,11 +12,11 @@ Aquí es donde podrá ajustar diferentes parámetros de su perfil :
 
 - **Perfil**
     - **Acceso** : Su inicio de sesión en el mercado, no se puede cambiar.
-    - **Apellido** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
+    - **Nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Primer nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
     - **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
     - **Correo electrónico** : Su email.
-    - **Lengua** : Tu idioma.
+    - **Idioma** : Tu idioma.
     - **Contraseña &amp;&amp; Confirmar contraseña** : Le permite cambiar su contraseña.
 
 Para desarrolladores :
@@ -27,7 +27,7 @@ Para desarrolladores :
 Para los profesionales :
 - **Cuenta de correo electrónico del instalador** : Su correo electrónico de contacto profesional.
 - **Soporte de solicitudes de destinatario** : saber quién recibirá los correos electrónicos de soporte (cliente final, instalador o ambos).
-    - **TOS**
+    - **UGE**
 - **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
 - **Revelador** : condiciones de uso para desarrolladores.
     - **Entradas**
@@ -54,7 +54,7 @@ Para los profesionales :
 > Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
 
 - **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
-    - **Apellido** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
+    - **Nombre** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
     - **Estado** : Veamos el estado de la libertad en cuestión.
     - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
     - **DNS** : Le permite personalizar el nombre de su DNS.

@@ -35,6 +35,7 @@ function initOverview() {
           }
 
           synthAction = _this.configuration.synthToAction
+          let name = (_this.configuration.display_name && _this.configuration.display_name != '') ? _this.configuration.display_name : _this.name;
           if (synthAction != undefined && synthAction != "-1" && synthAction != 'synthToDashboard') {
             if (synthAction == 'synthToView') {
               dataPage = 'view'
@@ -54,12 +55,11 @@ function initOverview() {
           } else {
             dataPage = 'equipment';
             dataOption = _this.id
-            dataTitle = icon.replace(/\"/g, "\'") + ' ' + _this.name.replace(/\"/g, "\'")
+            dataTitle = icon.replace(/\"/g, "\'") + ' ' + name.replace(/\"/g, "\'")
           }
-
           div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-object_id="'+dataOption+'" data-page="' + dataPage + '" data-option="'+dataOption+'" data-page="equipment" data-title="' + dataTitle + '">'
             div += '<div class="topPreview topCorner">'
-              div += '<span class="name">'+icon +' '+_this.name+'</span>'
+              div += '<span class="name">'+icon +' '+name+'</span>'
             div += '</div>'
             div += '<div class="bottomPreview bottomCorner">'
               div += '<div class="resume" style="display:none;">'

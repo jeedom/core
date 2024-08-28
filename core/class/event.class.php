@@ -126,7 +126,7 @@ class event {
 		}
 		$filters = ($_filter !== null) ? cache::byKey($_filter . '::event')->getValue(array()) : array();
 		$return = array();
-		foreach (_events as $event) {
+		foreach ($_events as $event) {
 			if ($_filter !== null && isset($_filter::$_listenEvents) && !in_array($event->getName(), $_filter::$_listenEvents)) {
 				continue;
 			}
@@ -181,6 +181,9 @@ class event {
 	}
 
 	public function getOption($_key = '', $_default = '') {
+		if(!is_json($this->option)){
+			return $this->option;
+		}
 		return utils::getJsonAttr($this->option, $_key, $_default);
 	}
 

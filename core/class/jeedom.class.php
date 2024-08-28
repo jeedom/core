@@ -416,7 +416,7 @@ class jeedom {
 			$ok = true;
 		}
 		$return[] = array(
-			'name' => __('Swapiness', __FILE__),
+			'name' => __('Swappiness', __FILE__),
 			'state' => $ok,
 			'result' => $value . '%',
 			'comment' => ($ok) ? '' : __('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire', __FILE__),

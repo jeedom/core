@@ -18,9 +18,9 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-if(init('id') != ''){
+if (init('id') != '') {
   $plan3d = plan3d::byId(init('id'));
-}else{
+} else {
   $plan3d = plan3d::byName3dHeaderId(init('name'), init('plan3dHeader_id'));
 }
 if (!is_object($plan3d)) {
@@ -29,17 +29,19 @@ if (!is_object($plan3d)) {
   $plan3d->setPlan3dHeader_id(init('plan3dHeader_id'));
   $plan3d->save();
 }
-$link = $plan3d->getLink();
 sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
 ?>
 
-<div id="div_alertPlan3dConfigure" data-modalType="md_plan3dConfigure"></div>
 <form class="form-horizontal">
-  <fieldset id="fd_plan3dConfigure">
-    <legend>{{Général}}
-      <a class='btn btn-success btn-xs pull-right cursor' style="color: white;" id='bt_saveConfigurePlan3d'><i class="fas fa-check"></i> {{Sauvegarder}}</a>
-      <a class='btn btn-danger btn-xs pull-right cursor' style="color: white;" id='bt_removeConfigurePlan3d'><i class="fas fa-times"></i> {{Supprimer}}</a>
-    </legend>
+  <div id="md_plan3dConfigure">
+    <div class="input-group pull-right" style="display:inline-flex;">
+      <span class="input-group-btn">
+        <a class='btn btn-success btn-sm roundedLeft bt_saveConfigurePlan3d'><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+        <a class='btn btn-danger btn-sm roundedRight bt_removeConfigurePlan3d'><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+      </span>
+    </div>
+  <legend>{{Général}}</legend>
+    <!-- ******************************* Général ************************************ -->
     <input type="text"  class="plan3dAttr form-control" data-l1key="id" style="display: none;"/>
     <div class="form-group">
       <label class="col-lg-4 control-label">{{Nom}}</label>
@@ -58,10 +60,14 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
     <div class="form-group">
       <label class="col-lg-4 control-label">{{Lien}}</label>
       <div class="col-lg-3">
-        <input type="text" class="plan3dAttr form-control" data-l1key="link_id" />
-      </div>
-      <div class="col-lg-2">
-        <a class="btn btn-default" id="bt_selEqLogic" title="{{Rechercher d\'un équipement}}"><i class="fas fa-list-alt"></i></a>
+        <div class="input-group">
+          <input type="text" class="plan3dAttr form-control roundedLeft" data-l1key="link_id">
+          <span class="input-group-btn">
+            <a class="btn btn-default bt_selEqLogic roundedRight" tooltip="{{Rechercher un équipement}}">
+              <i class="fas fa-list-alt"></i>
+            </a>
+          </span>
+        </div>
       </div>
     </div>
     <div class="form-group">
@@ -77,16 +83,20 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
         </select>
       </div>
     </div>
+    <!---******************************** LIGHT ************************************* -->
     <div class="form-group specificity specificity_light">
       <label class="col-lg-4 control-label">{{Statut}}</label>
       <div class="col-lg-3">
-        <input type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="cmd::state"/>
-      </div>
-      <div class="col-lg-2">
-        <a class="btn btn-default" id="bt_selCmd" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
+        <div class="input-group">
+          <input type="text" class="plan3dAttr form-control roundedLeft" data-l1key="configuration" data-l2key="cmd::state"/>
+          <span class="input-group-btn">
+            <a class="btn btn-default bt_selCmd roundedRight" tooltip="{{Rechercher une commande}}">
+              <i class="fas fa-list-alt"></i>
+            </a>
+          </span>
+        </div>
       </div>
     </div>
-    <!---*********************************LIGHT************************************** -->
     <div class="form-group specificity specificity_light">
       <label class="col-lg-4 control-label">{{Puissance}}</label>
       <div class="col-lg-3">
@@ -101,78 +111,88 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
         </select>
       </div>
     </div>
-
-    <!---*********************************TEXT************************************** -->
+    <!---******************************** TEXT ************************************* -->
     <div class="form-group specificity specificity_text">
-      <label class="col-lg-4 control-label">{{Texte}}</label>
-      <div class="col-lg-7">
-        <textarea type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::text"></textarea>
-      </div>
-      <div class="col-lg-1">
-        <a class="btn btn-default" id="bt_addTextCommand" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
+      <div class="form-group">
+        <label class="col-lg-4 control-label">{{Texte}}</label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <textarea type="text" class="plan3dAttr form-control roundedLeft" data-l1key="configuration" data-l2key="3d::widget::text::text" style="height: 32px;"></textarea>
+            <!--<input type="text" class="plan3dAttr form-control roundedLeft" data-l1key="configuration" data-l2key="3d::widget::door::shutter">-->
+              <span class="input-group-btn">
+                <a class="btn btn-default bt_addTextCommand roundedRight" tooltip="{{Rechercher une commande}}">
+                  <i class="fas fa-list-alt"></i>
+                </a>
+             </span>
+           </div>
+         </div>
       </div>
     </div>
     <div class="form-group specificity specificity_text">
       <label class="col-lg-4 control-label">{{Taille du texte}}</label>
-      <div class="col-lg-3">
+      <div class="col-lg-1">
         <input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::fontsize"/>
       </div>
     </div>
     <div class="form-group specificity specificity_text">
+      <label class="col-lg-4 control-label">{{Espacement au dessus de l'objet}}</label>
+      <div class="col-lg-1">
+        <input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::space::z"/>
+      </div>
+    </div>
+    <div class="form-group specificity specificity_text">
       <label class="col-lg-4 control-label">{{Couleur du texte}}</label>
-      <div class="col-lg-3">
+      <div class="col-lg-1">
         <input type="color" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::textcolor"/>
       </div>
-      <label class="col-lg-2 control-label">{{Transparence du texte}}</label>
+      <label class="col-lg-1 control-label">{{Transparence}}</label>
       <div class="col-lg-1">
         <input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::texttransparency"/>
       </div>
     </div>
     <div class="form-group specificity specificity_text">
       <label class="col-lg-4 control-label">{{Couleur de fond}}</label>
-      <div class="col-lg-3">
+      <div class="col-lg-1">
         <input type="color" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::backgroundcolor"/>
       </div>
-      <label class="col-lg-2 control-label">{{Transparence fond}}</label>
+      <label class="col-lg-1 control-label">{{Transparence}}</label>
       <div class="col-lg-1">
         <input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::backgroundtransparency"/>
       </div>
     </div>
     <div class="form-group specificity specificity_text">
       <label class="col-lg-4 control-label">{{Couleur de la bordure}}</label>
-      <div class="col-lg-3">
+      <div class="col-lg-1">
         <input type="color" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::bordercolor"/>
       </div>
-      <label class="col-lg-2 control-label">{{Transparence bordure}}</label>
+      <label class="col-lg-1 control-label">{{Transparence}}</label>
       <div class="col-lg-1">
         <input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::bordertransparency"/>
       </div>
     </div>
-    <div class="form-group specificity specificity_text">
-      <label class="col-lg-4 control-label">{{Espacement au dessus de l'objet}}</label>
-      <div class="col-lg-3">
-        <input type="number" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::text::space::z"/>
-      </div>
-    </div>
-
-    <!---*********************************DOOR************************************** -->
+    <!---******************************** DOOR ************************************* -->
     <ul class="nav nav-tabs  specificity specificity_door" role="tablist">
-      <li role="presentation" class="active"><a href="#tab_door_window" aria-controls="tab_door_window" role="tab" data-toggle="tab">{{Fênetre/Porte}}</a></li>
-      <li role="presentation"><a href="#tab_door_shutter" aria-controls="tab_door_shutter" role="tab" data-toggle="tab">{{Volet}}</a></li>
+      <li role="presentation" class="active" style="border-radius: var(--border-radius) 0 0 0 !important;"><a href="#tab_door_window" aria-controls="tab_door_window" role="tab" data-toggle="tab" style="border-radius: var(--border-radius) 0 0 0 !important;">{{Fênetre/Porte}}</a></li>
+      <li role="presentation" style="border-radius: 0 var(--border-radius) 0 0 !important;"><a href="#tab_door_shutter" aria-controls="tab_door_shutter" role="tab" data-toggle="tab" style="border-radius: 0 var(--border-radius) 0 0 !important;">{{Volet}}</a></li>
     </ul>
-
     <div class="tab-content  specificity specificity_door">
       <div role="tabpanel" class="tab-pane active" id="tab_door_window">
         <br/>
         <div class="form-group specificity specificity_door">
-          <label class="col-lg-4 control-label">{{Etat}}</label>
-          <div class="col-lg-3">
-            <input type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::window"/>
+          <div class="form-group">
+            <label class="col-lg-4 control-label">{{Etat}}</label>
+            <div class="col-lg-3">
+              <div class="input-group">
+                <input type="text" class="plan3dAttr form-control roundedLeft" data-l1key="configuration" data-l2key="3d::widget::door::window">
+                <span class="input-group-btn">
+                  <a class="btn btn-default bt_selWindow roundedRight" tooltip="{{Rechercher une commande}}">
+                    <i class="fas fa-list-alt"></i>
+                  </a>
+                </span>
+              </div>
+            </div>
           </div>
-          <div class="col-lg-2">
-            <a class="btn btn-default" id="bt_selWindow" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
-          </div>
-        </div>
+        </div>        
         <legend>{{Rotation}}</legend>
         <div class="form-group specificity specificity_door">
           <label class="col-lg-4 control-label">{{Activer}}</label>
@@ -201,7 +221,6 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
             </select>
           </div>
         </div>
-
         <legend>{{Translation}}</legend>
         <div class="form-group specificity specificity_door">
           <label class="col-lg-4 control-label">{{Activer}}</label>
@@ -219,12 +238,11 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
               <option value="down">{{Bas}}</option>
             </select>
           </div>
-          <label class="col-lg-3 control-label">{{Répeter}}</label>
+          <label class="col-lg-1 control-label">{{Répeter}}</label>
           <div class="col-lg-2">
-            <input type="text" class="plan3dAttr form-control translate" data-l1key="configuration" data-l2key="3d::widget::door::translate::repeat"/>
+            <input type="number" min=0 class="plan3dAttr form-control translate" data-l1key="configuration" data-l2key="3d::widget::door::translate::repeat"/>
           </div>
         </div>
-
         <legend>{{Masquer quand la porte/fenêtre est ouverte}}</legend>
         <div class="form-group specificity specificity_door">
           <label class="col-lg-4 control-label">{{Activer}}</label>
@@ -232,14 +250,13 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
             <input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::door::hide"/>
           </div>
         </div>
-
         <legend>{{Couleur}}</legend>
         <div class="form-group specificity specificity_door">
           <label class="col-lg-4 control-label">{{Couleur ouverte}}</label>
           <div class="col-lg-1">
             <input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::door::windowopen::enableColor"/>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-1">
             <input type="color" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::windowopen"/>
           </div>
         </div>
@@ -248,79 +265,180 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
           <div class="col-lg-1">
             <input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::door::windowclose::enableColor"/>
           </div>
-          <div class="col-lg-3">
+          <div class="col-lg-1">
             <input type="color" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::windowclose"/>
           </div>
-        </div>
+        </div>       
       </div>
       <div role="tabpanel" class="tab-pane" id="tab_door_shutter">
         <br/>
         <div class="form-group specificity specificity_door">
-          <label class="col-lg-4 control-label">{{Etat}}</label>
-          <div class="col-lg-3">
-            <input type="text" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::shutter"/>
-          </div>
-          <div class="col-lg-2">
-            <a class="btn btn-default" id="bt_selShutter" title="{{Rechercher d\'une commande}}"><i class="fas fa-list-alt"></i></a>
+          <div class="form-group">
+            <label class="col-lg-4 control-label">{{Etat}}</label>
+              <div class="col-lg-3">
+                <div class="input-group">
+                  <input type="text" class="plan3dAttr form-control roundedLeft" data-l1key="configuration" data-l2key="3d::widget::door::shutter">
+                  <span class="input-group-btn">
+                    <a class="btn btn-default bt_selShutter roundedRight" tooltip="{{Rechercher une commande}}">
+                      <i class="fas fa-list-alt"></i>
+                    </a>
+                 </span>
+               </div>
+             </div>
           </div>
         </div>
         <legend>{{Masquer quand le volet est ouvert}}</legend>
         <div class="form-group specificity specificity_door">
           <label class="col-lg-4 control-label">{{Activer}}</label>
-          <div class="col-lg-3">
+          <div class="col-lg-1">
             <input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::shutter::hide"/>
           </div>
         </div>
         <legend>{{Couleur}}</legend>
         <div class="form-group specificity specificity_door">
-          <label class="col-lg-4 control-label">{{Couleur fermé}}</label>
+          <label class="col-lg-4 control-label">{{Activer}}</label>
           <div class="col-lg-1">
             <input type="checkbox" class="plan3dAttr" data-l1key="configuration" data-l2key="3d::widget::door::shutterclose::enableColor"/>
           </div>
-          <div class="col-lg-3">
+          <label class="col-lg-1 control-label">{{Couleur fermé}}</label>
+          <div class="col-lg-1">
             <input type="color" class="plan3dAttr form-control" data-l1key="configuration" data-l2key="3d::widget::door::shutterclose"/>
           </div>
         </div>
       </div>
     </div>
-
-    <script>
-    $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]').on('change', function() {
-      $('.specificity.specificity_door .rotate').attr('disabled',false);
-      if (this.jeeValue() != 1) {
-        $('.specificity.specificity_door .rotate').attr('disabled','disabled');
-      }
-    });
-    $('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::translate"]').on('change', function() {
-      $('.specificity.specificity_door .translate').attr('disabled',false);
-      if (this.jeeValue() != 1) {
-        $('.specificity.specificity_door .translate').attr('disabled','disabled');
-      }
-    });
-    </script>
-
-    <!---*********************************conditionalColor************************************** -->
+    <!---******************************** conditionalColor ************************************* -->
     <div class="specificity specificity_conditionalColor">
       <legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addCondition"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
       <div id="div_conditionColor"></div>
     </div>
-    <script>
-    $('#bt_addCondition').on('click', function() {
-      addConditionalColor({})
-    });
+    <!---******************************** conditionalShow ************************************* -->
+    <div class="specificity specificity_conditionalShow">
+      <legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addConditionShow"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
+      <div id="div_conditionShow"></div>
+    </div>
+  </div>
+</form>
 
-    $('#fd_plan3dConfigure').off('click','.bt_removeConditionalColor').on('click','.bt_removeConditionalColor',  function(event) {
-      $(this).closest('.conditionalColor').remove();
-    });
-
-    $('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalColor').on('click','.listCmdInfoConditionalColor',  function(event) {
-      var el = this.closest('.conditionalColor').querySelector('.conditionalColorAttr[data-l1key="cmd"]');
-      jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-        el.insertAtCursor(result.human);
-      });
-    });
-
-    function addConditionalColor(_conditionalColor) {
+<script>
+if (!jeeFrontEnd.md_plan3dConfigure) {
+  jeeFrontEnd.md_plan3dConfigure = {
+    plan3d_configure_plan3d: null,
+    init: function(_cmdIds) {
+      if (isset(jeephp2js.md_plan3dConfigure_Id) && jeephp2js.md_plan3dConfigure_Id != '') {
+        jeedom.plan3d.byId({
+          id: jeephp2js.md_plan3dConfigure_Id,
+          async: false,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_plan3dConfigure', 'dialog'),
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function(plan3d) {
+            document.getElementById('md_plan3dConfigure').setJeeValues(plan3d, '.plan3dAttr')
+            if (isset(plan3d.configuration) && isset(plan3d.configuration['3d::widget::conditionalColor::condition'])) {
+              for (var i in plan3d.configuration['3d::widget::conditionalColor::condition']) {
+                jeeFrontEnd.md_plan3dConfigure.addConditionalColor(plan3d.configuration['3d::widget::conditionalColor::condition'][i])
+              }
+            }
+            if (isset(plan3d.configuration) && isset(plan3d.configuration['3d::widget::conditionalShow::condition'])) {
+              for (var i in plan3d.configuration['3d::widget::conditionalShow::condition']) {
+                jeeFrontEnd.md_plan3dConfigure.addConditionalShow(plan3d.configuration['3d::widget::conditionalShow::condition'][i])
+              }
+            }
+          }
+        })
+      }
+    },
+    postInit: function() {
+      this.setConditionColorSortable()
+      this.setConditionShowSortable()
+      this.setPlan3dUI_Events()
+    },
+    setPlan3dUI_Events: function() {
+      document.getElementById('md_plan3dConfigure').addEventListener('change', function(event) {
+        var _target = null
+        if (_target = event.target.closest('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]')) {
+          document.querySelectorAll('.specificity').unseen()
+          document.querySelectorAll('.specificity.specificity_' + event.target.jeeValue()).seen()
+        }
+        if (_target = event.target.closest('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]')) {
+          document.querySelectorAll('.specificity.specificity_door .rotate').forEach(_select => {
+            _select.removeAttribute('disabled')
+          })
+          if (_target.jeeValue() != 1) {
+            document.querySelectorAll('.specificity.specificity_door .rotate').forEach(_select => {
+              _select.setAttribute('disabled', true)
+            })
+          }
+        }
+        if (_target = event.target.closest('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::translate"]')) {
+          document.querySelectorAll('.specificity.specificity_door .translate').forEach(_select => {
+            _select.removeAttribute('disabled')
+          })
+          if (_target.jeeValue() != 1) {
+            document.querySelectorAll('.specificity.specificity_door .translate').forEach(_select => {
+              _select.setAttribute('disabled', true)
+            })
+          }
+        }
+      })
+      document.querySelector('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').triggerEvent('change')
+      document.querySelector('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::rotate"]').triggerEvent('change')
+      document.querySelector('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget::door::translate"]').triggerEvent('change')
+    },
+    setConditionColorSortable: function() {
+      Sortable.create(document.getElementById('div_conditionColor'), {
+        delay: 100,
+        delayOnTouchOnly: true,
+        draggable: '.conditionalColor',
+        filter: 'a, input, textarea',
+        preventOnFilter: false,
+        direction: 'vertical',
+        removeCloneOnHide: true,
+        chosenClass: 'dragSelected',
+      })
+    },
+    setConditionShowSortable: function() {
+      Sortable.create(document.getElementById('div_conditionShow'), {
+        delay: 100,
+        delayOnTouchOnly: true,
+        draggable: '.conditionalShow',
+        filter: 'a, input, textarea',
+        preventOnFilter: false,
+        direction: 'vertical',
+        removeCloneOnHide: true,
+        chosenClass: 'dragSelected',
+      })
+    },
+    addConditionalShow: function(_conditionalShow) {
+      if (!isset(_conditionalShow)) {
+        _conditionalShow = {};
+      }
+      var div = '<div class="conditionalShow">';
+      div += '<div class="form-group">';
+      div += '<label class="col-sm-1 control-label">{{Masquer si}}</label>';
+      div += '<div class="col-sm-9">';
+      div += '<div class="input-group">';
+      div += '<span class="input-group-btn">';
+      div += '<a class="btn btn-default bt_removeConditionalShow btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>';
+      div += '</span>';
+      div += '<input class="conditionalShowAttr form-control input-sm" data-l1key="cmd" />';
+      div += '<span class="input-group-btn">';
+      div += '<a class="btn btn-sm listCmdInfoConditionalShow btn-default roundedRight"><i class="fas fa-list-alt"></i></a>';
+      div += '</span>';
+      div += '</div>';
+      div += '</div>';
+      div += '</div>';
+      let newDiv = document.createElement('div')
+      newDiv.html(div)
+      newDiv.setJeeValues(_conditionalShow, '.conditionalShowAttr')
+      document.querySelector('#div_conditionShow').appendChild(newDiv)
+      newDiv.replaceWith(...newDiv.childNodes)
+    },
+    addConditionalColor: function(_conditionalColor) {
       if (!isset(_conditionalColor)) {
         _conditionalColor = {};
       }
@@ -343,168 +461,156 @@ sendVarToJS('jeephp2js.md_plan3dConfigure_Id', $plan3d->getId());
       div += '<input type="color" class="conditionalColorAttr form-control input-sm" data-l1key="color" />';
       div += '</div>';
       div += '</div>';
-      $('#div_conditionColor').append(div);
-      document.querySelectorAll('#div_conditionColor .conditionalColor').last().setJeeValues(_conditionalColor, '.conditionalColorAttr');
-    }
-
-    $("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-    </script>
-
-
-    <!---*********************************conditionalShow************************************** -->
-    <div class="specificity specificity_conditionalShow">
-      <legend>{{Condition}} <a class="btn btn-xs btn-success pull-right" id="bt_addConditionShow"><i class="fas fa-plus"></i> {{Ajouter}}</a></legend>
-      <div id="div_conditionShow"></div>
-    </div>
-    <script>
-    $('#bt_addConditionShow').on('click', function() {
-      addConditionalShow({})
-    });
-
-    $('#fd_plan3dConfigure').off('click','.bt_removeConditionalShow').on('click','.bt_removeConditionalShow',  function(event) {
-      $(this).closest('.conditionalShow').remove();
-    });
-
-    $('#fd_plan3dConfigure').off('click','.listCmdInfoConditionalShow').on('click','.listCmdInfoConditionalShow',  function(event) {
-      var el = this.closest('.conditionalShow').querySelector('.conditionalShowAttr[data-l1key="cmd"]');
-      jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-        el.insertAtCursor(result.human);
-      });
-    });
-
-    function addConditionalShow(_conditionalShow) {
-      if (!isset(_conditionalShow)) {
-        _conditionalShow = {};
-      }
-      var div = '<div class="conditionalShow">';
-      div += '<div class="form-group">';
-      div += '<label class="col-sm-1 control-label">{{Masqué si}}</label>';
-      div += '<div class="col-sm-9">';
-      div += '<div class="input-group">';
-      div += '<span class="input-group-btn">';
-      div += '<a class="btn btn-default bt_removeConditionalShow btn-sm roundedLeft"><i class="fas fa-minus-circle"></i></a>';
-      div += '</span>';
-      div += '<input class="conditionalShowAttr form-control input-sm" data-l1key="cmd" />';
-      div += '<span class="input-group-btn">';
-      div += '<a class="btn btn-sm listCmdInfoConditionalShow btn-default roundedRight"><i class="fas fa-list-alt"></i></a>';
-      div += '</span>';
-      div += '</div>';
-      div += '</div>';
-      div += '</div>';
-      $('#div_conditionShow').append(div);
-      document.querySelectorAll('#div_conditionShow .conditionalShow').last().setJeeValues(_conditionalShow, '.conditionalShowAttr');
-    }
-
-    $("#div_conditionColor").sortable({axis: "y", cursor: "move", items: ".conditionalColor", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
-    </script>
-  </fieldset>
-</form>
-
-<script>
-$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').on('change', function() {
-  document.querySelectorAll('.specificity').unseen()
-  document.querySelectorAll('.specificity.specificity_' + this.jeeValue()).seen()
-})
-
-$('.plan3dAttr[data-l1key=configuration][data-l2key="3d::widget"]').trigger('change')
-
-$('#fd_plan3dConfigure').off('click','#bt_selEqLogic').on('click','#bt_selEqLogic',  function(event) {
-  jeedom.eqLogic.getSelectModal({}, function(result) {
-    document.querySelector('.plan3dAttr[data-l1key="link_id"]').jeeValue(result.human)
-  })
-})
-
-$('#fd_plan3dConfigure').off('click','#bt_selCmd').on('click','#bt_selCmd',  function(event) {
-  jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="cmd::state"]').jeeValue(result.human)
-  })
-})
-
-$('#fd_plan3dConfigure').off('click','#bt_selWindow').on('click','#bt_selWindow',  function(event) {
-  jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::door::window"]').jeeValue(result.human)
-  })
-})
-
-$('#fd_plan3dConfigure').off('click','#bt_selShutter').on('click','#bt_selShutter',  function(event) {
-  jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::door::shutter"]').jeeValue(result.human)
-  })
-})
-
-$('#fd_plan3dConfigure').off('click','#bt_addTextCommand').on('click','#bt_addTextCommand',  function(event) {
-  jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
-    document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::text::text"]').jeeValue(result.human)
-  })
-})
-
-$('#bt_saveConfigurePlan3d').on('click', function() {
-  var plan3ds = document.getElementById('fd_plan3dConfigure').getJeeValues('.plan3dAttr')
-  if (!isset(plan3ds[0].configuration)) {
-    plan3ds[0].configuration = {}
-  }
-  plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = document.querySelectorAll('#div_conditionColor .conditionalColor').getJeeValues('.conditionalColorAttr')
-  plan3ds[0].configuration['3d::widget::conditionalShow::condition'] = document.querySelectorAll('#div_conditionShow .conditionalShow').getJeeValues('.conditionalShowAttr')
-  jeedom.plan3d.save({
-    plan3ds: plan3ds,
-    error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
+      let newDiv = document.createElement('div')
+      newDiv.html(div)
+      newDiv.setJeeValues(_conditionalColor, '.conditionalColorAttr')
+      document.querySelector('#div_conditionColor').appendChild(newDiv)
+      newDiv.replaceWith(...newDiv.childNodes)
     },
-    success: function() {
-      if (typeof refresh3dObject == 'function') {
-        refresh3dObject()
+    saveConfigurePlan3d: function() {
+      var plan3ds = document.getElementById('md_plan3dConfigure').getJeeValues('.plan3dAttr')
+      if (!isset(plan3ds[0].configuration)) {
+        plan3ds[0].configuration = {}
       }
-    }
-  })
-})
-
-$('#bt_removeConfigurePlan3d').on('click', function() {
-  var plan3ds = document.getElementById('fd_plan3dConfigure').getJeeValues('.plan3dAttr')
-  if (!isset(plan3ds[0].configuration)) {
-    plan3ds[0].configuration = {}
-  }
-  jeedom.plan3d.remove({
-    id: plan3ds[0].id,
-    error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function() {
-      if (typeof refresh3dObject == 'function') {
-        refresh3dObject()
-      }
-    }
-  })
-})
-
-if (isset(jeephp2js.md_plan3dConfigure_Id) && jeephp2js.md_plan3dConfigure_Id != '') {
-  domUtils.ajax({
-    type: "POST",
-    url: "core/ajax/plan3d.ajax.php",
-    data: {
-      action: "get",
-      id: jeephp2js.md_plan3dConfigure_Id
-    },
-    dataType: 'json',
-    error: function(request, status, error) {
-      handleAjaxError(request, status, error, $('#div_alertPlan3dConfigure'))
-    },
-    success: function(data) {
-      if (data.state != 'ok') {
-        jeedomUtils.showAlert({message: data.result, level: 'danger'})
-        return
-      }
-      document.getElementById('fd_plan3dConfigure').setJeeValues(data.result, '.plan3dAttr')
-      if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalColor::condition'])) {
-        for (var i in data.result.configuration['3d::widget::conditionalColor::condition']) {
-          addConditionalColor(data.result.configuration['3d::widget::conditionalColor::condition'][i])
+      plan3ds[0].configuration['3d::widget::conditionalColor::condition'] = document.querySelectorAll('#div_conditionColor .conditionalColor').getJeeValues('.conditionalColorAttr')
+      plan3ds[0].configuration['3d::widget::conditionalShow::condition'] = document.querySelectorAll('#div_conditionShow .conditionalShow').getJeeValues('.conditionalShowAttr')
+      jeedom.plan3d.save({
+        plan3ds: plan3ds,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_plan3dConfigure', 'dialog'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_plan3dConfigure', 'dialog'),
+            message: '{{Objet sauvegardé}}',
+            level: 'success'
+          })
         }
+      })
+    },
+    removeConfigurePlan3d: function() {
+      var plan3ds = document.getElementById('md_plan3dConfigure').getJeeValues('.plan3dAttr')
+      if (!isset(plan3ds[0].configuration)) {
+        plan3ds[0].configuration = {}
       }
-      if (isset(data.result.configuration) && isset(data.result.configuration['3d::widget::conditionalShow::condition'])) {
-        for (var i in data.result.configuration['3d::widget::conditionalShow::condition']) {
-          addConditionalShow(data.result.configuration['3d::widget::conditionalShow::condition'][i])
+      jeedom.plan3d.remove({
+        id: plan3ds[0].id,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_plan3dConfigure', 'dialog'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function() {
+          //document.getElementById('jeeDialogBackdrop').triggerEvent('click')
+          jeedomUtils.showAlert({
+            message: "{{Configuration de l'objet supprimée}}",
+            level: 'success'
+          })
         }
-      }
+      })
     }
-  })
+  }
 }
+
+
+(function() { // Self Isolation!
+  var jeeM = jeeFrontEnd.md_plan3dConfigure
+  jeeM.init()
+
+  /*Events delegations
+  */
+  document.getElementById('md_plan3dConfigure').addEventListener('click', function(event) {
+    var _target = null
+    if (_target = event.target.closest('.bt_selEqLogic')) {
+      jeedom.eqLogic.getSelectModal({}, function(result) {
+        document.querySelector('.plan3dAttr[data-l1key="link_id"]').jeeValue(result.human)
+      })
+    }
+
+    if (_target = event.target.closest('.bt_selCmd')) {
+      jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
+        document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="cmd::state"]').jeeValue(result.human)
+      })
+    }
+
+    if (_target = event.target.closest('.bt_saveConfigurePlan3d')) {
+      jeeFrontEnd.md_plan3dConfigure.saveConfigurePlan3d()
+      return
+    }
+
+    if (_target = event.target.closest('.bt_removeConfigurePlan3d')) {
+      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cette configutation ?}}', function(result) {
+        if (result) {
+          jeeFrontEnd.md_plan3dConfigure.removeConfigurePlan3d()
+        }
+      })
+      return
+    }
+
+    // Window / Door / Shutter
+    if (_target = event.target.closest('.bt_selWindow')) {
+      jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
+        document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::door::window"]').jeeValue(result.human)
+      })
+    }
+
+    if (_target = event.target.closest('.bt_selShutter')) {
+      jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
+        document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::door::shutter"]').jeeValue(result.human)
+      })
+    }
+
+    // Text
+    if (_target = event.target.closest('.bt_addTextCommand')) {
+      jeedom.cmd.getSelectModal({cmd:{type:'info'}}, function(result) {
+        document.querySelector('.plan3dAttr[data-l1key="configuration"][data-l2key="3d::widget::text::text"]').jeeValue(result.human)
+      })
+    }
+
+    // conditionalColor
+    if (_target = event.target.closest('#bt_addCondition')) {
+      jeeFrontEnd.md_plan3dConfigure.addConditionalColor({})
+      return
+    }
+
+    if (_target = event.target.closest('.bt_removeConditionalColor')) {
+      _target.closest('.conditionalColor').remove()
+      return
+    }
+
+    if (_target = event.target.closest('.listCmdInfoConditionalColor')) {
+      jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+        _target.closest('.conditionalColor').querySelector('.conditionalColorAttr[data-l1key="cmd"]').insertAtCursor(result.human)
+      })
+      return
+    }
+
+    // conditionalShow
+    if (_target = event.target.closest('#bt_addConditionShow')) {
+      jeeFrontEnd.md_plan3dConfigure.addConditionalShow({})
+      return
+    }
+
+    if (_target = event.target.closest('.bt_removeConditionalShow')) {
+      _target.closest('.conditionalShow').remove()
+      return
+    }
+
+    if (_target = event.target.closest('.listCmdInfoConditionalShow')) {
+      jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+        _target.closest('.conditionalShow').querySelector('.conditionalShowAttr[data-l1key="cmd"]').insertAtCursor(result.human)
+      })
+      return
+    }
+  })
+
+  jeeM.postInit()
+
+})()
 </script>

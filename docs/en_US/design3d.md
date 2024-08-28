@@ -20,7 +20,7 @@ Once your 3D model has been created, it must be exported in OBJ format. If you u
 >
 > The files must be at the root of the zip and not in a sub-folder.
 
-> **WARNING**
+> **ATTENTION**
 >
 > A 3D model is quite imposing (this can represent several hundred Mo). The larger it is, the longer the rendering time in Jeedom.
 
@@ -37,11 +37,11 @@ You can from this screen :
 
 Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and select your zip file
 
-> **WARNING**
+> **ATTENTION**
 >
 > Jeedom authorizes the import of a file of 150mo maximum !
 
-> **WARNING**
+> **ATTENTION**
 >
 > You must have a zip file.
 
@@ -65,7 +65,7 @@ To configure an element on the 3D design, double click on the element you want t
 ### Light
 
 - Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
-- Powerful : bulb power (please note this may not reflect reality))
+- Power : bulb power (please note this may not reflect reality))
 
 ### Texte
 
@@ -89,7 +89,7 @@ To configure an element on the 3D design, double click on the element you want t
 	- Opening : the best is to test so that it matches your Door / Window
 - Translation
 	- Enable : activates translation when opening (sliding door / window type))
-	- Meaning : direction in which the Door / Window should move (you have up / down / right / left)
+	- Sense : direction in which the Door / Window should move (you have up / down / right / left)
 	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
 - Hide when the Door / Window is open
 	- Enable : Hides the element if the Door / Window is open
