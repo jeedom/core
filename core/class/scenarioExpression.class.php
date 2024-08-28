@@ -963,8 +963,9 @@ class scenarioExpression {
 			if (trim($_name,'#') == $_scenario->getTag('trigger_name')) {
 				return 1;
 			}
+			return 0;
 		}
-		return 0;
+		return -1;
 	}
 
 	public static function triggerValue(&$_scenario = null) {
