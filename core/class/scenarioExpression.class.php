@@ -960,7 +960,7 @@ class scenarioExpression {
 			if (trim($_name) == '') {
 				return $_scenario->getTag('trigger_name');
 			}
-			if (trim($_name,'#') == trim($_scenario->getTag('trigger_name'),'#')) {
+			if (trim($_name,'#') == $_scenario->getTag('trigger_name')) {
 				return 1;
 			}
 		}
