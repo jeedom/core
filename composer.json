@@ -3,12 +3,7 @@
     "dragonmantank/cron-expression": "^3",
     "symfony/expression-language": "5 - 7",
     "pragmarx/google2fa-qrcode": "^3",
-    "bacon/bacon-qr-code": "2 - 3",
-    "league/oauth2-client": "~2.3",
-    "guzzlehttp/guzzle" : "^6.5.8",
-    "http-interop/http-factory-guzzle": "^1.2",
-    "symfony/http-client": "^7.0",
-    "nyholm/psr7": "^1.8"
+    "bacon/bacon-qr-code": "2 - 3"
   },
   "config": {
       "allow-plugins": {
