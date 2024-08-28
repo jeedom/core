@@ -63,7 +63,13 @@
 - Added display name for objects [LINK](https://github.com/jeedom/core/issues/2484)
 - Added a button to delete histories and events from the timeline in the future [LINK](https://github.com/jeedom/core/issues/2415)
 - Fixed an issue with select type commands in designs [LINK](https://github.com/jeedom/core/issues/2853)
+- Possibility on a piece of equipment to indicate that it has no battery (in the event of poor feedback)) [LINK](https://github.com/jeedom/core/issues/2855)
+- Rework of writing in logs, removal of the monolog library (note that the option to send logs in syslog is no longer available at the moment, if demand is high we will see about putting it back) [LINK](https://github.com/jeedom/core/pull/2805)
 
 >**IMPORTANT**
 >
 > Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have fixed value virtuals (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
+
+>**IMPORTANT**
+>
+> Due to the redesign of the logs during the update you may have an error (nothing serious) just restart the update.
