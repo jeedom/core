@@ -1925,7 +1925,7 @@ class cmd {
 				listener::backgroundCalculDependencyCmd($this->getId());
 			}
 		} else {
-			$events[] = array('cmd_id' => $this->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value,0,3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value,0,3096)), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
+			$events[] = array('cmd_id' => $this->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value,0,3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value,0,3096), 'unit' => $unit, 'raw_unit' => $raw_unit, 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate());
 		}
 		if (count($events) > 0) {
 			event::adds('cmd::update', $events);
