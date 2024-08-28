@@ -24,6 +24,7 @@
   - ``#trigger_id#`` : If it is a command that triggered the scenario then this tag takes the value of the id of the command that triggered it
   - ``#trigger_name#`` : If it is a command that triggered the scenario then this tag takes the value of the name of the command (in the form [object][equipment][command])
   - ``#trigger_value#`` : If it is a command that triggered the scenario then this tag takes the value of the command that triggered the scenario
+  - ``#trigger_message#`` : Message indicating the origin of the scenario launch
 - Improved plugin management on github (no more dependencies on a third-party library) [LINK](https://github.com/jeedom/core/issues/2567)
 - Removing the old cache system. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibility of deleting the IN and A blocks pending another scenario [LINK](https://github.com/jeedom/core/pull/2379)
@@ -65,6 +66,7 @@
 - Fixed an issue with select type commands in designs [LINK](https://github.com/jeedom/core/issues/2853)
 - Possibility on a piece of equipment to indicate that it has no battery (in the event of poor feedback)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Rework of writing in logs, removal of the monolog library (note that the option to send logs in syslog is no longer available at the moment, if demand is high we will see about putting it back) [LINK](https://github.com/jeedom/core/pull/2805)
+- Upgrading from nodejs 18 to nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
 
 >**IMPORTANT**
 >

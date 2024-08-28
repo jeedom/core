@@ -24,6 +24,7 @@
   - ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, nimmt dieses Tag den Wert der ID des Befehls an, der es ausgelöst hat
   - ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, nimmt dieses Tag den Wert des Namens des Befehls an (in der Form [Objekt][Ausrüstung][Befehl])
   - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, übernimmt dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat
+  - ``#trigger_message#`` : Nachricht, die den Ursprung des Szenariostarts angibt
 - Verbesserte Plugin-Verwaltung auf Github (keine Abhängigkeiten mehr von einer Drittanbieter-Bibliothek)) [LINK](https://github.com/jeedom/core/issues/2567)
 - Entfernen des alten Cache-Systems. [LINK](https://github.com/jeedom/core/pull/2799)
 - Möglichkeit, die Blöcke IN und A zu löschen, während auf ein anderes Szenario gewartet wird [LINK](https://github.com/jeedom/core/pull/2379)
@@ -65,6 +66,7 @@
 - Ein Problem mit Befehlen zur Typauswahl in Designs wurde behoben [LINK](https://github.com/jeedom/core/issues/2853)
 - Möglichkeit, am Gerät anzuzeigen, dass die Batterie leer ist (bei schlechtem Aufstieg)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Neugestaltung des Schreibens in Protokollen, Löschung der Monolog-Bibliothek (beachten Sie, dass die Option zum Senden von Protokollen im Syslog derzeit nicht mehr verfügbar ist. Bei hoher Nachfrage werden wir versuchen, sie zurückzusetzen) [LINK](https://github.com/jeedom/core/pull/2805)
+- Wechsel von NodeJS 18 zu NodeJS 20 [LINK](https://github.com/jeedom/core/pull/2846)
 
 >**WICHTIG**
 >
