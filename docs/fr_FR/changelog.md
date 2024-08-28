@@ -67,6 +67,8 @@
 - Ajout d'un bouton pour supprimer les historiques et évenement de la timeline dans le futur [LIEN](https://github.com/jeedom/core/issues/2415)
 - Correction d'un soucis sur les commandes de type select dans les designs [LIEN](https://github.com/jeedom/core/issues/2853)
 - Possibilité sur un équipement d'indiquer qu'il n'a pas de batterie (en cas de mauvaise remontée) [LIEN](https://github.com/jeedom/core/issues/2855)
+- Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre) [LIEN](https://github.com/jeedom/core/pull/2805)
+- Passage de nodejs 18 à nodejs 20 [LIEN](https://github.com/jeedom/core/pull/2846)
 
 >**IMPORTANT**
 >
