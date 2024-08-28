@@ -125,6 +125,7 @@ class repo_github {
 	}
 	
 	public static function downloadObject($_update) {
+		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
 		$branch = self::getBranchInfo($_update);
 		$tmp_dir = jeedom::getTmpFolder('github');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
