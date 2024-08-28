@@ -343,23 +343,23 @@ class scenario {
 			return;
 		}
 		$datetime = date('Y-m-d H:i:s');
-		$message = '';
+		$trigger_message = '';
 		if ($_event !== null) {
 			//check from a cmd event:
 			$scenarios = array();
 			if (is_object($_event)) {
 				$scenarios1 = self::byTrigger($_event->getId());
 				$trigger = '#' . $_event->getId() . '#';
-				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName();
+				$trigger_message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'] . $_event->getHumanName();
 				if ($_value !== null) {
-					$message .= ' (' . $_value . ')';
+					$trigger_message .= ' (' . $_value . ')';
 				}
 			} else {
 				$scenarios1 = self::byTrigger($_event);
 				$trigger = $_event;
-				$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startOnEvent']['txt'] . ' : #' . $_event . '#';
+				$trigger_message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startOnEvent']['txt'] . ' : #' . $_event . '#';
 				if ($_value !== null) {
-					$message .= ' (' . $_value . ')';
+					$trigger_message .= ' (' . $_value . ')';
 				}
 			}
 
@@ -369,13 +369,13 @@ class scenario {
 				if (is_array($scenarios2) && count($scenarios2) > 0) {
 					foreach ($scenarios2 as $scenario) {
 						if ($scenario->testTrigger($trigger)) {
-							$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'];
+							$trigger_message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'];
 							if (is_object($_object)) {
-								$message .= ' genericType(' . $_generic . ',#[' . $_object->getName() . ']#) from ' . $_event->getHumanName();
+								$trigger_message .= ' genericType(' . $_generic . ',#[' . $_object->getName() . ']#) from ' . $_event->getHumanName();
 							} else {
-								$message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
+								$trigger_message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
 							}
-							$scenario->addTag('message',$message);
+							$scenario->addTag('trigger_message',$trigger_message);
 							$scenario->addTag('trigger_value',$_value);
 							if (is_object($_event)) {
 								$scenario->addTag('trigger_name',trim($_event->getHumanName(),'#'));
@@ -398,7 +398,7 @@ class scenario {
 				}
 			}
 		} else {
-			$message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnShedule']['txt'];
+			$trigger_message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnShedule']['txt'];
 			$scenarios = scenario::schedule();
 			$_event = 'schedule';
 			if (jeedom::isDateOk()) {
@@ -414,7 +414,7 @@ class scenario {
 
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
-				$scenario_->addTag('message',$message);
+				$scenario_->addTag('trigger_message',$trigger_message);
 				
 				$scenario_->addTag('trigger_value',$_value);
 				if (is_object($_event)) {

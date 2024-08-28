@@ -1574,11 +1574,11 @@ class scenarioExpression {
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
 								$actionScenario->addTag('trigger','scenario');
-								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
 								return $actionScenario->launch();
 							} else {
 								$actionScenario->addTag('trigger','other');
-								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
+								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
 								return $actionScenario->launch();
 							}
 							break;
@@ -1597,11 +1597,11 @@ class scenarioExpression {
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
 								$actionScenario->addTag('trigger','scenario');
-								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
 								return $actionScenario->launch(true);
 							} else {
 								$actionScenario->addTag('trigger','other');
-								$actionScenario->addTag('message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
+								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
 								return $actionScenario->launch(true);
 							}
 							break;
