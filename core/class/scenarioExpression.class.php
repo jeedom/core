@@ -950,7 +950,7 @@ class scenarioExpression {
 
 	public static function triggerId(&$_scenario = null) {
 		if ($_scenario !== null) {
-			return str_replace('#', '', $_scenario->getTag('trigger'));
+			return str_replace('#', '', $_scenario->getTag('trigger_id'));
 		}
 		return 0;
 	}
@@ -958,12 +958,9 @@ class scenarioExpression {
 	public static function trigger($_name = '', &$_scenario = null) {
 		if ($_scenario !== null) {
 			if (trim($_name) == '') {
-				return str_replace('#', '', jeedom::toHumanReadable($_scenario->getTag('trigger')));
+				return $_scenario->getTag('trigger_name');
 			}
-			if ($_name == jeedom::toHumanReadable($_scenario->getTag('trigger'))) {
-				return 1;
-			}
-			if (trim($_name,'#') == trim($_scenario->getTag('trigger'),'#')) {
+			if (trim($_name,'#') == trim($_scenario->getTag('trigger_name'),'#')) {
 				return 1;
 			}
 		}
