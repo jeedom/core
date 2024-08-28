@@ -963,6 +963,9 @@ class scenarioExpression {
 			if ($_name == jeedom::toHumanReadable($_scenario->getTag('trigger'))) {
 				return 1;
 			}
+			if (trim($_name,'#') == trim($_scenario->getTag('trigger'),'#')) {
+				return 1;
+			}
 		}
 		return 0;
 	}
