@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 GREEN="\\033[1;32m"
 NORMAL="\\033[0;39m"
 RED="\\033[1;31m"
@@ -417,7 +417,7 @@ distrib_1_spe(){
 STEP=0
 VERSION=master
 WEBSERVER_HOME=/var/www/html
-MARIADB_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)}
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
@@ -475,7 +475,10 @@ case ${STEP} in
   ;;
   2) step_2_mainpackage
   ;;
-  3) step_3_database
+  3)
+    if [ ${DATABASE} -eq 1 ]; then
+      step_3_database
+    fi
   ;;
   4) step_4_apache
   ;;
