@@ -24,6 +24,7 @@
   - ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag assume o valor do id do comando que o desencadeou
   - ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag assume o valor do nome do comando (na forma [objeto][equipamento][comando])
   - ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag assume o valor do comando que acionou o cenário
+  - ``#trigger_message#`` : Mensagem indicando a origem do lançamento do cenário
 - Gerenciamento aprimorado de plug-ins no github (sem mais dependências de uma biblioteca de terceiros) [LINK](https://github.com/jeedom/core/issues/2567)
 - Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
 - Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
@@ -65,6 +66,7 @@
 - Corrigido um problema com comandos de seleção de tipo em designs [LINK](https://github.com/jeedom/core/issues/2853)
 - Possibilidade no equipamento de indicar que não tem bateria (em caso de má subida) [LINK](https://github.com/jeedom/core/issues/2855)
 - Redesenho de escrita em logs, exclusão da biblioteca monolog (observe que a opção de enviar logs em syslog não está mais disponível no momento, se a demanda for alta veremos como colocá-la de volta) [LINK](https://github.com/jeedom/core/pull/2805)
+- Mudando do nodejs 18 para o nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
 
 >**IMPORTANTE**
 >

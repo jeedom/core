@@ -24,6 +24,7 @@
   - ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta toma el valor de la identificación del comando que lo desencadenó
   - ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta toma el valor del nombre del comando (en el formato [objeto][equipo][comando])
   - ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta toma el valor del comando que desencadenó el escenario
+  - ``#trigger_message#`` : Mensaje indicando el origen del lanzamiento del escenario
 - Gestión de complementos mejorada en github (no más dependencias de una biblioteca de terceros)) [ENLACE](https://github.com/jeedom/core/issues/2567)
 - Eliminando el antiguo sistema de caché. [ENLACE](https://github.com/jeedom/core/pull/2799)
 - Posibilidad de borrar los bloques IN y A mientras se espera otro escenario [ENLACE](https://github.com/jeedom/core/pull/2379)
@@ -65,6 +66,7 @@
 - Se solucionó un problema con los comandos de tipo seleccionado en los diseños [ENLACE](https://github.com/jeedom/core/issues/2853)
 - Posibilidad en el equipo de indicar que no tiene batería (en caso de mal ascenso)) [ENLACE](https://github.com/jeedom/core/issues/2855)
 - Rediseño de escritura en logs, eliminación de la biblioteca monolog (tenga en cuenta que la opción de enviar logs en syslog ya no está disponible en este momento, si la demanda es alta veremos cómo volver a colocarla)) [ENLACE](https://github.com/jeedom/core/pull/2805)
+- Pasando de nodejs 18 a nodejs 20 [ENLACE](https://github.com/jeedom/core/pull/2846)
 
 >**IMPORTANTE**
 >
