@@ -931,7 +931,7 @@ class repo_market {
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId();
 		$url .='&version=' . $_version ;
 		$url .='&jeedomversion=' . jeedom::version();
-		$url .='&osversion=' . getOsVersion();
+		$url .='&osversion=' . system::getOsVersion();
 		$url .='&hwkey=' . jeedom::getHardwareKey();
 		$url .='&username=' . urlencode(config::byKey('market::username'));
 		$url .='&password=' . self::getPassword();
