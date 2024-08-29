@@ -1141,7 +1141,7 @@
         "Attention si": "Be careful if",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "You can find here any additional information requested by a plugin on Jeedom equipment",
         "Informations complémentaires demandées par": "Additional information requested by",
-        "Image ajoutée avec succès (n\\'oubliez pas refraichir la page pour voir le résultat)": "Image added successfully (don't forget to refresh the page to see the result)",
+        "Image ajoutée avec succès": "Image added successfully",
         "Configuration de l'équipement": "Equipment configuration",
         "Sauvegarde réussie": "Successful backup",
         "Graphique des liens": "Chart link",
@@ -1150,7 +1150,7 @@
         "Equipement supprimé avec succès": "Equipment deleted successfully",
         "Configuration de la commande": "Command configuration",
         "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Are you sure you want to remove the image from this equipment?",
-        "Image enlevée (n\\'oubliez pas refraichir la page pour voir le résultat)": "Image removed (don't forget to refresh the page to see the result)",
+        "Image enlevée": "Image removed",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Confirm battery replacement? This action will record the last battery change on today's date",
         "Le remplacement des piles a été enregistré": "Battery replacement has been recorded"
     },

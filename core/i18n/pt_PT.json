@@ -1141,7 +1141,7 @@
         "Attention si": "Tenha cuidado se",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Você pode encontrar aqui qualquer informação adicional solicitada por um plugin no equipamento Jeedom",
         "Informations complémentaires demandées par": "Informações adicionais solicitadas por",
-        "Image ajoutée avec succès (n\\'oubliez pas refraichir la page pour voir le résultat)": "Imagem adicionada com sucesso (não esqueça de atualizar a página para ver o resultado)",
+        "Image ajoutée avec succès": "Imagem adicionada com sucesso",
         "Configuration de l'équipement": "Configuração do equipamento",
         "Sauvegarde réussie": "Backup bem-sucedido",
         "Graphique des liens": "Gráfico das ligações",
@@ -1150,7 +1150,7 @@
         "Equipement supprimé avec succès": "Equipamento excluído com sucesso",
         "Configuration de la commande": "Configuração do pedido",
         "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Tem certeza de que deseja remover a imagem deste equipamento?",
-        "Image enlevée (n\\'oubliez pas refraichir la page pour voir le résultat)": "Imagem removida (não esqueça de atualizar a página para ver o resultado)",
+        "Image enlevée": "Imagem removida",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Confirmar a substituição da bateria? Esta ação registrará a última troca de bateria na data de hoje",
         "Le remplacement des piles a été enregistré": "A substituição da bateria foi registrada"
     },
