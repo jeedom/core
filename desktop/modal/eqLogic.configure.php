@@ -602,7 +602,7 @@ sendVarToJS([
               	document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
               }
               jeedomUtils.showAlert({
-                message: '{{Image ajoutée avec succès (n\'oubliez pas refraichir la page pour voir le résultat)}}',
+                message: '{{Image ajoutée avec succès}}',
                 level: 'success'
                 })
               }
@@ -898,7 +898,7 @@ sendVarToJS([
                   document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
                 }
                 jeedomUtils.showAlert({
-                  message: '{{Image enlevée (n\'oubliez pas refraichir la page pour voir le résultat)}}',
+                  message: '{{Image enlevée}}',
                   level: 'success'
                 })
               },
