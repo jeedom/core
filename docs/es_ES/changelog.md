@@ -69,6 +69,7 @@
 - Pasando de nodejs 18 a nodejs 20 [ENLACE](https://github.com/jeedom/core/pull/2846)
 - Mejor gestión de los niveles de registro de sublogs de complementos [ENLACE](https://github.com/jeedom/core/issues/2860)
 - Eliminar la carpeta del proveedor (usando Composer de forma normal) le permite reducir el tamaño del núcleo [ENLACE](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
+- Ahora se pueden traducir configuraciones específicas de widgets [ENLACE](https://github.com/jeedom/core/pull/2862)
 
 
 >**IMPORTANTE**

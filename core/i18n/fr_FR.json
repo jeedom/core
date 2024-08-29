@@ -1141,7 +1141,7 @@
         "Attention si": "Attention si",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom",
         "Informations complémentaires demandées par": "Informations complémentaires demandées par",
-        "Image ajoutée avec succès (n\\'oubliez pas refraichir la page pour voir le résultat)": "Image ajoutée avec succès (n\\'oubliez pas refraichir la page pour voir le résultat)",
+        "Image ajoutée avec succès": "Image ajoutée avec succès",
         "Configuration de l'équipement": "Configuration de l'équipement",
         "Sauvegarde réussie": "Sauvegarde réussie",
         "Graphique des liens": "Graphique des liens",
@@ -1150,7 +1150,7 @@
         "Equipement supprimé avec succès": "Equipement supprimé avec succès",
         "Configuration de la commande": "Configuration de la commande",
         "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?",
-        "Image enlevée (n\\'oubliez pas refraichir la page pour voir le résultat)": "Image enlevée (n\\'oubliez pas refraichir la page pour voir le résultat)",
+        "Image enlevée": "Image enlevée",
         "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.": "Confirmer le remplacement des piles ? Cette action enregistrera le dernier de changement de piles à la date d'aujourd'hui.",
         "Le remplacement des piles a été enregistré": "Le remplacement des piles a été enregistré"
     },

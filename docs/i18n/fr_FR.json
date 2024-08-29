@@ -841,6 +841,7 @@
         "Passage de nodejs 18 à nodejs 20": "Passage de nodejs 18 à nodejs 20",
         "Meilleure gestion du niveau de log des sous log des plugins": "Meilleure gestion du niveau de log des sous log des plugins",
         "Suppression du dossier vendor (utilisation de composer de maniere normal), permet de reduire la taille du core": "Suppression du dossier vendor (utilisation de composer de maniere normal), permet de reduire la taille du core",
+        "Les parametres spécifique des widgets peuvent maintent etre traduit": "Les parametres spécifique des widgets peuvent maintent etre traduit",
         "IMPORTANT": "IMPORTANT",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
