@@ -1799,6 +1799,9 @@ class jeedom {
 		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
 		}
+		if($result == 'diy' && strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
+			$result = 'docker';
+		}
 		config::save('hardware_name', $result);
 		return config::byKey('hardware_name');
 	}
