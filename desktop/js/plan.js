@@ -826,6 +826,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
       }
     },
     items: {
+      title : {
+        name: '{{Menu}}',
+        icon: 'fas fa-bars',
+        disabled:true
+      },
       parameter: {
         name: '{{Paramètres d\'affichage}}',
         icon: 'fas fa-cogs',
@@ -969,6 +974,11 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
       }
     },
     items: {
+      title : {
+        name: '{{Menu}}',
+        icon: 'fas fa-bars',
+        disabled:true
+      },
       fold1: {
         name: "{{Designs}}",
         icon: 'far fa-image',
