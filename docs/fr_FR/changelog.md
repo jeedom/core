@@ -69,6 +69,7 @@
 - Passage de nodejs 18 à nodejs 20 [LIEN](https://github.com/jeedom/core/pull/2846)
 - Meilleure gestion du niveau de log des sous log des plugins [LIEN](https://github.com/jeedom/core/issues/2860)
 - Suppression du dossier vendor (utilisation de composer de maniere normal), permet de reduire la taille du core [LIEN](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
+- Les parametres spécifique des widgets peuvent maintent etre traduit [LIEN](https://github.com/jeedom/core/pull/2862)
 
 
 >**IMPORTANT**
