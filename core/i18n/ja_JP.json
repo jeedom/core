@@ -3059,6 +3059,7 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "デザインの名前？",
         "Veuillez indiquer le code ?": "コードを指定してください？",
+        "Menu": "Menu",
         "Paramètres d\\'affichage": "ディスプレイ設定",
         "Configuration du composant": "コンポーネント構成",
         "Configuration avancée": "高度な構成",

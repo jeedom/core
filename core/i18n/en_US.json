@@ -3059,6 +3059,7 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "New design name ?",
         "Veuillez indiquer le code ?": "Please indicate the code?",
+        "Menu": "Menu",
         "Paramètres d\\'affichage": "Display settings",
         "Configuration du composant": "Component configuration",
         "Configuration avancée": "Advanced configuration",

@@ -70,7 +70,7 @@
 - Melhor gerenciamento dos níveis de log do sublog do plugin [LINK](https://github.com/jeedom/core/issues/2860)
 - Excluir a pasta vendor (usando o compositor normalmente) permite reduzir o tamanho do núcleo [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Configurações específicas de widget agora podem ser traduzidas [LINK](https://github.com/jeedom/core/pull/2862)
-
+- Corrigido um bug no Mac em designs ao clicar com o botão direito [LINK](https://github.com/jeedom/core/issues/2863)
 
 >**IMPORTANTE**
 >

@@ -3059,6 +3059,7 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Name des Designs?",
         "Veuillez indiquer le code ?": "Bitte geben Sie den Code an?",
+        "Menu": "Speisekarte",
         "Paramètres d\\'affichage": "Anzeigeeinstellungen",
         "Configuration du composant": "Komponentenkonfiguration",
         "Configuration avancée": "Erweiterte Konfiguration",

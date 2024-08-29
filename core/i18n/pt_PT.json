@@ -408,7 +408,7 @@
         "Objets": "Objetos",
         "Vues": "Vistas",
         "Design 3d": "Desenho 3D",
-        "Menu": "Cardápio",
+        "Menu": "Menu",
         "Appliquer aux éléments visibles": "Aplicar a elementos visíveis",
         "Aucun": "Nenhum",
         "Visualisation": "Vista",
@@ -3059,6 +3059,7 @@
     "desktop\/js\/plan.js": {
         "Nom du design ?": "Nome do design ?",
         "Veuillez indiquer le code ?": "Indique o código ?",
+        "Menu": "Menu",
         "Paramètres d\\'affichage": "Configurações da tela",
         "Configuration du composant": "Configuração de componentes",
         "Configuration avancée": "Configuração avançada",

@@ -70,7 +70,7 @@
 - Better management of plugin sub-log log level [LINK](https://github.com/jeedom/core/issues/2860)
 - Removing the vendor folder (using composer normally), reduces the core size [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Widget specific parameters can now be translated [LINK](https://github.com/jeedom/core/pull/2862)
-
+- Fixed a bug on mac on designs when right clicking [LINK](https://github.com/jeedom/core/issues/2863)
 
 >**IMPORTANT**
 >
