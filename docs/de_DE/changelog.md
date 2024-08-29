@@ -67,6 +67,7 @@
 - Möglichkeit, am Gerät anzuzeigen, dass die Batterie leer ist (bei schlechtem Aufstieg)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Neugestaltung des Schreibens in Protokollen, Löschung der Monolog-Bibliothek (beachten Sie, dass die Option zum Senden von Protokollen im Syslog derzeit nicht mehr verfügbar ist. Bei hoher Nachfrage werden wir versuchen, sie zurückzusetzen) [LINK](https://github.com/jeedom/core/pull/2805)
 - Wechsel von NodeJS 18 zu NodeJS 20 [LINK](https://github.com/jeedom/core/pull/2846)
+- Bessere Verwaltung der Plugin-Sublog-Protokollebenen [LINK](https://github.com/jeedom/core/issues/2860)
 
 >**WICHTIG**
 >

@@ -67,6 +67,7 @@
 - Possibility on a piece of equipment to indicate that it has no battery (in the event of poor feedback)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Rework of writing in logs, removal of the monolog library (note that the option to send logs in syslog is no longer available at the moment, if demand is high we will see about putting it back) [LINK](https://github.com/jeedom/core/pull/2805)
 - Upgrading from nodejs 18 to nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
+- Better management of plugin sub-log log level [LINK](https://github.com/jeedom/core/issues/2860)
 
 >**IMPORTANT**
 >

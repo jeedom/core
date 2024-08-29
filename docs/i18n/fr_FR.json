@@ -839,6 +839,7 @@
         "Possibilité sur un équipement d'indiquer qu'il n'a pas de batterie (en cas de mauvaise remontée": "Possibilité sur un équipement d'indiquer qu'il n'a pas de batterie (en cas de mauvaise remontée",
         "Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre": "Refonte de l'écriture dans les logs, suppression de la librairie monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre",
         "Passage de nodejs 18 à nodejs 20": "Passage de nodejs 18 à nodejs 20",
+        "Meilleure gestion du niveau de log des sous log des plugins": "Meilleure gestion du niveau de log des sous log des plugins",
         "IMPORTANT": "IMPORTANT",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",

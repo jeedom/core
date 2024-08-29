@@ -67,6 +67,7 @@
 - Posibilidad en el equipo de indicar que no tiene batería (en caso de mal ascenso)) [ENLACE](https://github.com/jeedom/core/issues/2855)
 - Rediseño de escritura en logs, eliminación de la biblioteca monolog (tenga en cuenta que la opción de enviar logs en syslog ya no está disponible en este momento, si la demanda es alta veremos cómo volver a colocarla)) [ENLACE](https://github.com/jeedom/core/pull/2805)
 - Pasando de nodejs 18 a nodejs 20 [ENLACE](https://github.com/jeedom/core/pull/2846)
+- Mejor gestión de los niveles de registro de sublogs de complementos [ENLACE](https://github.com/jeedom/core/issues/2860)
 
 >**IMPORTANTE**
 >
