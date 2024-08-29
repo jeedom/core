@@ -68,6 +68,8 @@
 - Redesenho de escrita em logs, exclusão da biblioteca monolog (observe que a opção de enviar logs em syslog não está mais disponível no momento, se a demanda for alta veremos como colocá-la de volta) [LINK](https://github.com/jeedom/core/pull/2805)
 - Mudando do nodejs 18 para o nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
 - Melhor gerenciamento dos níveis de log do sublog do plugin [LINK](https://github.com/jeedom/core/issues/2860)
+- Excluir a pasta vendor (usando o compositor normalmente) permite reduzir o tamanho do núcleo [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
+
 
 >**IMPORTANTE**
 >
