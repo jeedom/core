@@ -272,7 +272,8 @@ sendVarToJS([
                   foreach (($eqLogic->widgetPossibility('parameters')) as $pKey => $parameter) {
                     $echo .= '<tr>';
                     $echo .= '<td>';
-                    $echo .= $parameter['name'];
+                    if (is_array($parameter['name']) && isset($parameter['name'][translate::getLanguage()])) $echo .= $parameter['name'][translate::getLanguage()];
+                    else $echo .= $parameter['name'];
                     $echo .= '</td>';
                     foreach ((jeedom::getConfiguration('eqLogic:displayType')) as $key => $value) {
                       $echo .= '<td><div class="form-group">';
