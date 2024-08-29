@@ -73,7 +73,7 @@ class log {
 			return 'none';
 		}
 		foreach (self::$level as $key => $value) {
-			if($value = $_level){
+			if($value == $_level){
 				return $key;
 			}
 		}
