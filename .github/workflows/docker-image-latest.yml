@@ -128,6 +128,7 @@ jobs:
           build-args: |
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=buster"
+            "DATABASE=1"
           tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
           
       - name: Clean docker image
@@ -150,6 +151,7 @@ jobs:
           build-args: |
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=bookworm"
+            "DATABASE=1"
           tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-bookworm"
 
       - name: Image digest
