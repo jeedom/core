@@ -12,7 +12,7 @@ JAUNE="\\033[1;33m"
 CYAN="\\033[1;36m"
 
 FILE_STOP="/root/stop_requested"
-rm ${FILE_STOP}
+if [[ -e "${FILE_STOP}" ]]; then rm ${FILE_STOP}; fi
 
 # flag to fail fast on errors
 set -e
@@ -177,3 +177,4 @@ echo "Add trap docker_stop"
 trap "docker_stop $$ ;" 15
 
 while [[ ! -e "${FILE_STOP}" ]]; do sleep 1; done
+rm ${FILE_STOP}
