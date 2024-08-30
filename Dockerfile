@@ -35,44 +35,30 @@ VOLUME ${WEBSERVER_HOME}
 VOLUME /var/lib/mysql
 
 #speed up build using docker cache
-RUN apt update -y && apt -o Dpkg::Options::="--force-confdef" -y install software-properties-common \
+RUN apt update -y 
+RUN apt -o Dpkg::Options::="--force-confdef" -y install software-properties-common \
   ntp ca-certificates unzip curl sudo cron locate tar telnet wget logrotate dos2unix ntpdate htop \
   iotop vim iftop smbclient git python3 python3-pip libexpat1 ssl-cert \
   apt-transport-https xvfb cutycapt xauth at mariadb-client espeak net-tools nmap ffmpeg usbutils \
   gettext libcurl3-gnutls chromium librsync-dev ssl-cert iputils-ping \
-  # package step 4
   apache2 apache2-utils libexpat1 ssl-cert \
-  # package step 5
   php libapache2-mod-php php-json php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc \
   php-common php-dev php-zip php-ssh2 php-mbstring php-ldap php-yaml php-snmp && apt -y remove brltty
 
 COPY install/install.sh /tmp/
-# install step by step : step_1_upgrade
-RUN sh /tmp/install.sh -s 1 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_2_mainpackage
-    sh /tmp/install.sh -s 2 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_3_database
-    sh /tmp/install.sh -s 3 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_4_apache
-    sh /tmp/install.sh -s 4 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_5_php
-    sh /tmp/install.sh -s 5 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-# step 6 : copy jeedom source files
+RUN sh /tmp/install.sh -s 1 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 2 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 3 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 4 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 5 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 COPY . ${WEBSERVER_HOME}
-# step_7_jeedom_customization_mariadb
-RUN sh /tmp/install.sh -s 7 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_8_jeedom_customization
-    sh /tmp/install.sh -s 8 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_9_jeedom_configuration
-    sh /tmp/install.sh -s 9 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_10_jeedom_installation
-    sh /tmp/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # step_11_jeedom_post
-    sh /tmp/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker \
-    # cleanup
-    apt-get clean && rm -rf /var/lib/apt/lists/* \
-    # this file is a flag to trigger init.sh initialisation
-    && echo >${WEBSERVER_HOME}/initialisation
+RUN sh /tmp/install.sh -s 7 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 8 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 9 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
+RUN echo >${WEBSERVER_HOME}/initialisation
 
 WORKDIR ${WEBSERVER_HOME}
 EXPOSE 80
