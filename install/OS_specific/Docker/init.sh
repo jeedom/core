@@ -85,31 +85,23 @@ db_creds(){
 #Main
 # $WEBSERVER_HOME and $VERSION env variables comes from Dockerfile
 set +e
-dpkg -l mariabd-server 2>/dev/null
+dpkg -l mariadb-server 2>/dev/null
 status=$?
 ISMARIADBSERVER=$(( 1 - ${status} ))
 
-#define php db conf
-db_creds
-
-#check if database is populated
-isDB=$(mysql -u${DB_USERNAME} -p${DB_PASSWORD} -h ${DB_HOST} -P${DB_PORT} -BNe "show databases;" | grep -c ${DB_NAME})
 
 if [[ -f ${WEBSERVER_HOME}/initialisation ]]; then
   echo "************************
 Start Jeedom initialisation !
 ************************"
   JEEDOM_INSTALL=0
-
   # mariadb server is installed
   if [[ 1 -eq ${ISMARIADBSERVER} ]]; then
     echo "************************
   Start mariadb service
   ************************"
-
     service mariadb start
     service mariadb status
-
     DB_PASSWORD=$(openssl rand -base64 32 | tr -d /=+ | cut -c 15)
     echo "DROP USER IF EXISTS 'jeedom'@'%';" | mysql
     echo "CREATE USER 'jeedom'@'%' IDENTIFIED BY '${DB_PASSWORD}';" | mysql
@@ -117,25 +109,14 @@ Start Jeedom initialisation !
     echo "CREATE DATABASE jeedom;" | mysql
     echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
   fi
-
+  #define php db conf
+  db_creds
   echo "************************
 start JEEDOM PHP script installation
 ************************"
-
 	php "${WEBSERVER_HOME}/install/install.php" mode=force
 	# remove the flag file after the first successfull installation
 	rm "${WEBSERVER_HOME}/initialisation"
-fi
-
-#docker specific: create DB/user if not local
-# should not be used, as mysql/maria docker image can create user and database at first start.
-if [[ 0 -eq ${isDB} ]] && [[ localhost != ${DB_HOST} ]]; then
-  echo "la bdd n'est pas locale et le schema n'a pas ete trouvé. Arret du conteneur"
-  docker_stop
-else
-  #populate database
-  echo "Ajout des tables dans le schema ${DB_NAME}"
-  php "${WEBSERVER_HOME}/install/install.php" mode=force
 fi
 
 #set admin password if needed
