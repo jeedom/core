@@ -220,7 +220,7 @@ foreach ((plugin::listPlugin(true)) as $plugin) {
 								}
 								$echo .= $datas['result'];
 								$echo .= '</td>';
-								if (++$count % 2 == 0 || $globalhtml == '') $echo .= '</tr>';
+								if (++$count % 2 == 0) $echo .= '</tr>';
 							}
 							echo $echo;
 
