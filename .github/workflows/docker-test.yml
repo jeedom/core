@@ -1,13 +1,11 @@
-# build docker image based on debian bullseye and bookworm
-# start both containers and run sick.php
-# stop & clean
-name: Docker Build and Test Image
+name: Docker Hub Image CI Builder
 
 on:
-  # only trigger CI when pull request on following branches
-  pull_request:
+  push:
+    # only trigger CI when push on following branches
     branches:
-      - 'alpha'
+      - 'master'
+      - 'beta'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -16,42 +14,145 @@ on:
         default: 'Manual launch'
 
 jobs:
-  buildAndTestDockerImg:
+  build:
     runs-on: ubuntu-latest
     steps:
+    
+      - name: Free disk space
+        run: |
+          df -h
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo apt-get autoclean -y 2>&1
+          docker rmi $(docker image ls -aq) 2>&1
+          df -h
     
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Build jeedom:bullseye
-        # build current image for bullseye
+      - name: BRANCH name
+        # adding infos in the $GITHUB_ENV file and summary
+        # secret DOCKER_HUB_REPO is optional (default=jeedom)
         run: |
-          docker build -t jeedom:bullseye --build-arg DEBIAN=bullseye .
+          export DOCKER_HUB_REPO=${{ secrets.DOCKER_HUB_REPO }}
+          bash install/OS_specific/Docker/init_workflow.sh
 
-      - name: run jeedom:bullseye and check
-        # build current image for bullseye and check it
-        run: |
-          docker run -p 80:80 -d --rm --name jeedom_bullseye jeedom:bullseye
-          sleep 60
-          docker exec jeedom_bullseye php sick.php
+      - name: Set up QEMU
+        # https://github.com/marketplace/actions/docker-setup-qemu
+        # set up more platforms (default = all)
+        uses: docker/setup-qemu-action@v2
 
-      - name: Build jeedom:bookworm
-        # build current image for bookworm
-        run: |
-          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm .
+      - name: Login to Docker Hub
+        # https://github.com/marketplace/actions/docker-login
+        # login to DockerHub with secrets login & token
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-      - name: run jeedom:bookworm and check
-        # build current image for bookworm and check it
-        run: |
-          docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
-          sleep 60
-          docker exec jeedom_bookworm php sick.php
-    
-      - name: Clean docker image
+      - name: Set up Docker Buildx
+        # https://github.com/marketplace/actions/docker-setup-buildx
+        # set up a multi-platform builder for Docker containers
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Cache Docker layers
+        # https://github.com/marketplace/actions/cache
+        # this action allows caching dependancies and build output
+        uses: actions/cache@v3
+        id: cache
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build and push Jeedom on Debian:Bookworm without internal DB
+        # https://github.com/marketplace/actions/build-and-push-docker-images
+        uses: docker/build-push-action@v3
         continue-on-error: true
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            "VERSION=${{ env.GITHUB_BRANCH }}"
+            "DEBIAN=bookworm"
+            "DATABASE=0"
+          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-http-bookworm"
+
+      - name: Clean docker image
         run: |
-          docker stop jeedom_bullseye jeedom_bookworm 
-          docker rm jeedom_bullseye jeedom_bookworm 
-          docker rmi jeedom:bullseye jeedom:bookworm
+          docker stop $(docker ps -aq) 2>&1
+          docker rm $(docker ps -aq) 2>&1
+          docker rmi $(docker image ls -aq) 2>&1
+      
+      - name: Build and push Jeedom on DockerHub
+        # https://github.com/marketplace/actions/build-and-push-docker-images
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: "VERSION=${{ env.GITHUB_BRANCH }}"
+          tags: "${{ env.JEEDOM_TAGS }}"
+          
+      - name: Clean docker image
+        run: |
+          docker stop $(docker ps -aq) 2>&1
+          docker rm $(docker ps -aq) 2>&1
+          docker rmi $(docker image ls -aq) 2>&1
+
+      - name: Build and push Jeedom on Debian:Buster with DB
+        # https://github.com/marketplace/actions/build-and-push-docker-images
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            "VERSION=${{ env.GITHUB_BRANCH }}"
+            "DEBIAN=buster"
+            "DATABASE=1"
+          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
+          
+      - name: Clean docker image
+        run: |
+          docker stop $(docker ps -aq) 2>&1
+          docker rm $(docker ps -aq) 2>&1
+          docker rmi $(docker image ls -aq) 2>&1
+      
+      - name: Build and push Jeedom on Debian:Bookworm with DB
+        # https://github.com/marketplace/actions/build-and-push-docker-images
+        uses: docker/build-push-action@v3
+        continue-on-error: true
+        with:
+          context: ./
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
+          push: true
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+          build-args: |
+            "VERSION=${{ env.GITHUB_BRANCH }}"
+            "DEBIAN=bookworm"
+            "DATABASE=1"
+          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-bookworm"
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
