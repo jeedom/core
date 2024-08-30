@@ -114,7 +114,7 @@ jobs:
           docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
 
-      - name: Build and push Jeedom on Debian:Buster
+      - name: Build and push Jeedom on Debian:Buster with DB
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
         continue-on-error: true
@@ -136,7 +136,7 @@ jobs:
           docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
       
-      - name: Build and push Jeedom on Debian:Bookworm
+      - name: Build and push Jeedom on Debian:Bookworm with DB
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
         continue-on-error: true
