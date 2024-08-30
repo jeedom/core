@@ -107,7 +107,7 @@ Start Jeedom initialisation !
     echo "CREATE USER 'jeedom'@'%' IDENTIFIED BY '${DB_PASSWORD}';" | mysql
     echo "DROP DATABASE IF EXISTS jeedom;" | mysql
     echo "CREATE DATABASE jeedom;" | mysql
-    echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
+    echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql
   fi
   #define php db conf
   db_creds
