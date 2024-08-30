@@ -12,7 +12,7 @@ JAUNE="\\033[1;33m"
 CYAN="\\033[1;36m"
 
 FILE_STOP="/root/stop_requested"
-
+rm ${FILE_STOP}
 
 # flag to fail fast on errors
 set -e
