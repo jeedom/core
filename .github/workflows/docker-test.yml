@@ -1,7 +1,7 @@
 # build docker image based on debian bullseye and bookworm
 # start both containers and run sick.php
 # stop & clean
-name: Docker Build and Test Image
+name: Docker Test Image
 
 on:
   # only trigger CI when pull request on following branches
