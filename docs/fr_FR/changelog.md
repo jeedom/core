@@ -78,4 +78,4 @@
 
 >**IMPORTANT**
 >
-> Du à la refonte des logs lors de la mise à jour vous pouvez avoir une erreur (rien de grave) il suffit de relancer la mise à jour.
+> Du à la refonte des logs et la réinternalisation de librairies, lors de la mise à jour vous pouvez avoir une erreur type  ``PHP Fatal error`` (rien de grave) il suffit de relancer la mise à jour.
