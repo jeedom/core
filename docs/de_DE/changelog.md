@@ -78,4 +78,4 @@
 
 >**WICHTIG**
 >
-> Aufgrund der Überarbeitung der Protokolle während des Updates tritt möglicherweise ein Fehler auf (nichts Ernstes). Starten Sie das Update einfach neu.
+> Aufgrund der Überarbeitung der Protokolle und der Reinternalisierung der Bibliotheken kann es beim Update zu einem Standardfehler kommen  ``PHP Fatal error`` (nichts Ernstes) Starten Sie einfach das Update neu.

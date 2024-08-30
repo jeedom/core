@@ -78,4 +78,4 @@
 
 >**IMPORTANT**
 >
-> Due to the redesign of the logs during the update you may have an error (nothing serious) just restart the update.
+> Due to the redesign of logs and the reinternalization of libraries, during the update you may have an error type  ``PHP Fatal error`` (nothing serious) just restart the update.

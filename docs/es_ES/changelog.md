@@ -78,4 +78,4 @@
 
 >**IMPORTANTE**
 >
-> Debido a la revisión de los registros durante la actualización, es posible que tenga un error (nada grave), simplemente reinicie la actualización.
+> Debido a la revisión de registros y la reternalización de bibliotecas, durante la actualización puede aparecer un error estándar  ``PHP Fatal error`` (nada grave) simplemente reinicie la actualización.
