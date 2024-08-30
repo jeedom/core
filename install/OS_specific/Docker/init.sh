@@ -102,7 +102,7 @@ Start Jeedom initialisation !
   ************************"
     service mariadb start
     service mariadb status
-    DB_PASSWORD=$(openssl rand -base64 32 | tr -d /=+ | cut -c 15)
+    DB_PASSWORD=$(openssl rand -base64 32 | tr -d /=+)
     echo "DROP USER IF EXISTS 'jeedom'@'%';" | mysql
     echo "CREATE USER 'jeedom'@'%' IDENTIFIED BY '${DB_PASSWORD}';" | mysql
     echo "DROP DATABASE IF EXISTS jeedom;" | mysql
