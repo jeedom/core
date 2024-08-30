@@ -78,4 +78,4 @@
 
 >**IMPORTANTE**
 >
-> Devido à revisão dos logs durante a atualização você pode ter algum erro (nada sério) basta reiniciar a atualização.
+> Devido à revisão dos logs e à reinternalização das bibliotecas, durante a atualização você pode ter um erro padrão  ``PHP Fatal error`` (nada sério) apenas reinicie a atualização.
