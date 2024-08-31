@@ -4186,7 +4186,7 @@
         "Lancement de l\\'installation de": "Lançamento da instalação do",
         "en version": "na versão",
         "Objet introuvable sur le market :": "Objeto não encontrado no mercado:",
-        "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Nenhum servidor de backup definido. Tem uma assinatura de backup cloud?",
+        "Erreur d\\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?": "Erro ao enviar backup para a nuvem. Você tem uma assinatura de backup na nuvem?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Deve ter uma senha para o backup na nuvem (vá para Configurações -> Sistema -> Configuração e, em seguida, separador Atualização\/Market)",
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "A password da backup cloud não é idêntica à confirmação",
         "Besoin de faire de la place sur le stockage distant": "Precisa de aumentar o espaço no armazenamento remoto",
