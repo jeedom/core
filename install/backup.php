@@ -195,10 +195,10 @@ try {
 			if ($value['scope']['backup'] === false) {
 				continue;
 			}
-			if (config::byKey($key . '::enable') == 0) {
+			if (config::byKey($key . '::enable','core',0) == 0) {
 				continue;
 			}
-			if (config::byKey($key . '::cloudUpload') == 0) {
+			if (config::byKey($key . '::cloudUpload','core',0) == 0) {
 				continue;
 			}
 			$class = 'repo_' . $key;
