@@ -126,7 +126,7 @@ if( !isset($connection)) {
     echo "Aucune table ! relancer l'installation: php instal.php --force";
 	exit(1);
   }else{
-    echo "Connection OK - ' . count($arr) . ' tables.\n";
+    echo "Connection OK - " . count($arr) . " tables.\n";
   }
 }
 
