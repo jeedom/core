@@ -83,7 +83,7 @@ if(isset($CONFIG['db']['unix_socket']) || (isset($CONFIG['db']['host']) && $CONF
 	 exit(1);
   } else {
 	if(!file_exists($default_socket)){
-		echo  "Pas de socker: $default_socket");
+		echo  "Pas de socker: $default_socket";
 		exit(1);
 	}
 	if(!is_readable($default_socket)){
