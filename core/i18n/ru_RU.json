@@ -4186,7 +4186,7 @@
         "Lancement de l\\'installation de": "Lancement de l\\'installation de",
         "en version": "en version",
         "Objet introuvable sur le market :": "Objet introuvable sur le market :",
-        "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?",
+        "Erreur d\\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?": "Erreur d\\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)",
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Besoin de faire de la place sur le stockage distant": "Besoin de faire de la place sur le stockage distant",

@@ -4186,7 +4186,7 @@
         "Lancement de l\\'installation de": "Launch of the installation of",
         "en version": "in version",
         "Objet introuvable sur le market :": "Object not found on the market:",
-        "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "No backup server defined. Do you have a backup cloud subscription?",
+        "Erreur d\\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?": "Error sending backup to cloud. Do you have a cloud backup subscription?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "You must have a password for the cloud backup (go to Settings -> System -> Configuration then tab Update \/ Market)",
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "The backup cloud password is not the same as the confirmation",
         "Besoin de faire de la place sur le stockage distant": "Need to make room on remote storage",

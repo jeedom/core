@@ -4186,7 +4186,7 @@
         "Lancement de l\\'installation de": "Kurulumun başlatılması",
         "en version": "en version",
         "Objet introuvable sur le market :": "Piyasada bulunmayan nesne:",
-        "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?",
+        "Erreur d\\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?": "Erreur d\\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Bulut yedeklemesi için bir parolanız olması gerekir (Ayarlar -> Sistem -> Yapılandırma ve Güncelleme \/ Pazar sekmesine gidin)",
         "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Besoin de faire de la place sur le stockage distant": "Besoin de faire de la place sur le stockage distant",
