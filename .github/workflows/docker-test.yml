@@ -49,6 +49,6 @@ jobs:
       - name: Clean docker image
         continue-on-error: true
         run: |
-          docker stop jeedom_bullseye jeedom_bookworm 
-          docker rm jeedom_bullseye jeedom_bookworm 
-          docker rmi jeedom:bullseye jeedom:bookworm
+          docker stop jeedom_bullseye jeedom_bookworm || true
+          docker rm jeedom_bullseye jeedom_bookworm || true
+          docker rmi jeedom:bullseye jeedom:bookworm || true
