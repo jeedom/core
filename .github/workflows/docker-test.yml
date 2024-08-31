@@ -33,7 +33,7 @@ jobs:
         # build current image for bullseye and check it
         run: |
           docker run -p 80:80 -d --rm --name jeedom_bullseye jeedom:bullseye
-          sleep 60
+          sleep 45
           docker exec jeedom_bullseye php sick.php
       - name: Build jeedom:bookworm
         # build current image for bookworm
@@ -43,7 +43,7 @@ jobs:
         # build current image for bookworm and check it
         run: |
           docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
-          sleep 60
+          sleep 45
           docker exec jeedom_bookworm php sick.php
     
       - name: Clean docker image
