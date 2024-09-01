@@ -427,7 +427,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
 			'state' => ($values[2] < 20),
-			'result' => $values[0] . ' - ' . $values[1] . ' - ' . $values[2],
+			'result' => round($values[0],2) . ' - ' . round($values[1],2) . ' - ' . round($values[2],2),
 			'comment' => '',
 			'key' => 'load'
 		);
