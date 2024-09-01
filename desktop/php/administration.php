@@ -1761,11 +1761,11 @@ $productName = config::byKey('product_name');
 									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
 										$div .= '<td>' . $ip . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s', $datetime) . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s',(int) $datetime) . '</td>';
 										if (config::byKey('security::bantime') < 0) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s', $datetime + config::byKey('security::bantime')) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s',(int) ($datetime + config::byKey('security::bantime'))) . '</td>';
 										}
 										$div .= '</tr>';
 									}
