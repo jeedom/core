@@ -199,7 +199,7 @@ try {
 					$result = 'OK';
 				} else {
 					$filename = __DIR__ . '/../../cache.tar.gz';
-					$result = 'OK (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+					$result = 'OK (' . date('Y-m-d H:i:s',(int) filemtime($filename)) . ')';
 				}
 			} else {
 				$result = 'NOK';
