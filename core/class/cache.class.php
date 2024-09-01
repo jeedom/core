@@ -188,7 +188,7 @@ class cache {
 	}
 
 	public function getDatetime() {
-		return date('Y-m-d H:i:s',$this->timestamp);
+		return date('Y-m-d H:i:s',(int) $this->timestamp);
 	}
 
 	public function setDatetime($_datetime): self {

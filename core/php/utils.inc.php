@@ -1400,8 +1400,9 @@ function listSession() {
 				continue;
 			}
 			$session_id = str_replace('sess_', '', $session);
+			$timestamp = com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session);
 			$return[$session_id] = array(
-				'datetime' => date('Y-m-d H:i:s', com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session)),
+				'datetime' => date('Y-m-d H:i:s', (int) $timestamp),
 			);
 			$return[$session_id]['login'] = $data_session['user']->getLogin();
 			$return[$session_id]['user_id'] = $data_session['user']->getId();
