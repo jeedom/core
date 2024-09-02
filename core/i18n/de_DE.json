@@ -4192,7 +4192,7 @@
         "Besoin de faire de la place sur le stockage distant": "Sie müssen Platz auf dem Remote-Speicher schaffen",
         "Pas assez de place et aucun backup à supprimer": "Nicht genügend Speicherplatz und kein Backup zum Löschen",
         "Supression du backup cloud :": "Löschen von Cloud-Backups:",
-        "Erreur lors du nettoyage des backups cloud, supression > 10": "Fehler beim Bereinigen von Cloud-Backups, Löschen> 10",
+        "Erreur lors du nettoyage des backups cloud, supression > 100": "Fehler beim Bereinigen von Cloud-Backups, Löschung > 100",
         "Erreur sur le monitoring cloud :": "Cloud-Überwachungsfehler:",
         "Erreur repo_market::getinfo :": "Repo_market :: getinfo Fehler:",
         "Impossible d\\'écrire dans le répertoire :": "In Verzeichnis kann nicht geschrieben werden:",

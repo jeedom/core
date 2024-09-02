@@ -4192,7 +4192,7 @@
         "Besoin de faire de la place sur le stockage distant": "Need to make room on remote storage",
         "Pas assez de place et aucun backup à supprimer": "Not enough space and no backup to delete",
         "Supression du backup cloud :": "Cloud backup deletion:",
-        "Erreur lors du nettoyage des backups cloud, supression > 10": "Error when cleaning cloud backups, deletion> 10",
+        "Erreur lors du nettoyage des backups cloud, supression > 100": "Error cleaning cloud backups, deletion > 100",
         "Erreur sur le monitoring cloud :": "Cloud monitoring error:",
         "Erreur repo_market::getinfo :": "Repo_market :: getinfo error:",
         "Impossible d\\'écrire dans le répertoire :": "Unable to write to directory:",
