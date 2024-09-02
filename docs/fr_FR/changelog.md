@@ -71,6 +71,7 @@
 - Suppression du dossier vendor (utilisation de composer de maniere normal), permet de reduire la taille du core [LIEN](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Les parametres spécifique des widgets peuvent maintent etre traduit [LIEN](https://github.com/jeedom/core/pull/2862)
 - Correction d'un bug sous mac sur les designs lors d'un clic droit [LIEN](https://github.com/jeedom/core/issues/2863)
+- Ajout de widget badge pour les commandes de type texte [LIEN](https://github.com/jeedom/core/issues/2864)
 
 >**IMPORTANT**
 >

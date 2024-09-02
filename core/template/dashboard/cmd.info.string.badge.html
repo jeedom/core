@@ -1,0 +1,40 @@
+<div class="cmd cmd-widget #history#" data-type="info" data-subtype="string" data-template="badge" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+    <div class="title #hide_name#">
+      <div class="cmdName">#name_display#</div>
+    </div>
+    <div class="content">
+      <div class="label label-info state"><span class="value"></span></div>
+    </div>
+    <div class="timeCmd label label-default #history#" data-type="info"></div>
+    <template>
+      <div>color : rgb(20,20,20) ({{Couleur de fond}})</div>
+      <div>fontcolor : rgb(20,20,20) ({{Couleur du texte}})</div>
+      <div>time : duration|date ({{Affiche durée ou date de la valeur}})</div>
+    </template>
+    <script>
+      jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+        if (is_object(cmd = document.querySelector('.cmd[data-cmd_uid="#uid#"]'))) {
+          cmd.querySelector('.content').setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+          if ('#time#' == 'duration' || '#time#' == 'date') {
+            jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
+          }
+           cmd.querySelector('.value').innerHTML = _options.display_value
+          if (_options.alertLevel == 'warning') {
+            cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+          } else if (_options.alertLevel == 'danger') {
+            cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+          }
+        }
+      })
+  
+      jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+  
+      if (domUtils.issetWidgetOptParam('#color#', 'color')) {
+        document.querySelector('.cmd[data-cmd_uid="#uid#"] .label').style.setProperty('background-color', '#color#', 'important')
+      }
+      if (domUtils.issetWidgetOptParam('#fontcolor#', 'fontcolor')) {
+        document.querySelector('.cmd[data-cmd_uid="#uid#"] .label').style.setProperty('color', '#fontcolor#', 'important')
+      }
+    </script>
+  </div>
+  
