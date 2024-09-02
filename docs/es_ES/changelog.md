@@ -71,6 +71,7 @@
 - Eliminar la carpeta del proveedor (usando Composer de forma normal) le permite reducir el tamaño del núcleo [ENLACE](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Ahora se pueden traducir configuraciones específicas de widgets [ENLACE](https://github.com/jeedom/core/pull/2862)
 - Se corrigió un error en Mac en los diseños al hacer clic derecho [ENLACE](https://github.com/jeedom/core/issues/2863)
+- Mejora del sistema de lanzamiento de escenarios programados [ENLACE](https://github.com/jeedom/core/issues/2875)
 
 >**IMPORTANTE**
 >
