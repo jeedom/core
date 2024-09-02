@@ -488,7 +488,7 @@
         " est ouvert dans le navigateur)": "is opened in the browser)",
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "On all browsers that display a design, replace it with the one requested",
         "Permet de rajouter un message dans les logs": "Allows you to add a message to the logs",
-        "Permet d'ajouter une message dans le centre de message": "Add a message in the message center",
+        "Permet d'ajouter un message dans le centre de message": "Allows you to add a message to the message center",
         "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Allows you to modify the visible \/ invisible active \/ inactive properties of an equipment",
         "Action qui permet à": "Action that allows",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "to make a request and then store the response in a variable. This action is blocking and ends only if",
