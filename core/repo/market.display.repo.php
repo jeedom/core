@@ -117,7 +117,7 @@ sendVarToJS('market_display_info', $market_array);
         echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
       } else {
             if ($market->getCost() > 0) {
-                 if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
+                 if ($market->getPurchase() == 1 && isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
                   echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Plugin deja acheté et/ou inclus dans votre service Pack}}</span>';
                 }else{
                     if ($market->getCost() != $market->getRealCost()) {
