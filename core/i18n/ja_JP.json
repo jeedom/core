@@ -4192,7 +4192,7 @@
         "Besoin de faire de la place sur le stockage distant": "Besoin de faire de la place sur le stockage distant",
         "Pas assez de place et aucun backup à supprimer": "Pas assez de place et aucun backup à supprimer",
         "Supression du backup cloud :": "Supression du backup cloud :",
-        "Erreur lors du nettoyage des backups cloud, supression > 10": "Erreur lors du nettoyage des backups cloud, supression > 10",
+        "Erreur lors du nettoyage des backups cloud, supression > 100": "Erreur lors du nettoyage des backups cloud, supression > 100",
         "Erreur sur le monitoring cloud :": "Erreur sur le monitoring cloud :",
         "Erreur repo_market::getinfo :": "Repo_market :: getinfoエラー：",
         "Impossible d\\'écrire dans le répertoire :": "ディレクトリに書き込めません：",

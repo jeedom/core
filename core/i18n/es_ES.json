@@ -4192,7 +4192,7 @@
         "Besoin de faire de la place sur le stockage distant": "Necesita hacer espacio en el almacenamiento remoto",
         "Pas assez de place et aucun backup à supprimer": "No hay suficiente espacio y no hay copia de seguridad para eliminar",
         "Supression du backup cloud :": "Eliminación de la copia de seguridad en la nube:",
-        "Erreur lors du nettoyage des backups cloud, supression > 10": "Error al limpiar las copias de seguridad en la nube, eliminación> 10",
+        "Erreur lors du nettoyage des backups cloud, supression > 100": "Error al limpiar copias de seguridad en la nube, eliminación > 100",
         "Erreur sur le monitoring cloud :": "Error de monitoreo en la nube:",
         "Erreur repo_market::getinfo :": "Error repo_market::getinfo :",
         "Impossible d\\'écrire dans le répertoire :": "No se puede escribir en el directorio:",
