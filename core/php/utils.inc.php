@@ -1451,7 +1451,7 @@ function checkAndFixCron($_cron) {
 	return $return;
 }
 
-function cronIsDue($_cron,$_datetime = null){
+function cronIsDue($_cron,$_datetime = null,$_lastlaunch = null){
 	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('I') == 1 && date('Gi') > 159) {
 		return false;
 	}
@@ -1464,7 +1464,15 @@ function cronIsDue($_cron,$_datetime = null){
 	}
 	try {
 		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
-		return $c->isDue($_datetime);
+		if($c->isDue($_datetime)){
+			return true;
+		}
+		if($_lastlaunch !== null){
+			$prev = $c->getPreviousRunDate()->getTimestamp();
+			if (strtotime($_lastlaunch) <= $prev && abs((strtotime('now') - $prev) / 60) <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
+				return true;
+			}
+		}
 	} catch (Exception $e) {
 		$evaluate = jeedom::evaluateExpression($_cron);
 		if(is_numeric($evaluate)){

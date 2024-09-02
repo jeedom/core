@@ -1240,7 +1240,7 @@ class scenario {
 			$schedules = [$schedules];
 		}
 		foreach ($schedules as $schedule) {
-			if(cronIsDue($schedule,$_datetime)){
+			if(cronIsDue($schedule,$_datetime,$this->getLastLaunch())){
 				return true;
 			}
 		}
