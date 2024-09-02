@@ -338,8 +338,8 @@ class repo_market {
 			$request_http->exec();
 			$total_size -= $file['size'];
 			$nb++;
-			if ($nb > 10) {
-				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 10', __FILE__));
+			if ($nb > 100) {
+				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 100', __FILE__));
 			}
 		}
 	}
