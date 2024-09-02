@@ -277,6 +277,7 @@ class listener {
 					$function($option);
 				} else {
 					log::add('listener', 'error', __('[Erreur] Fonction non trouvée', __FILE__) . ' ' . json_encode(utils::o2a($this)));
+					$this->remove();
 					return;
 				}
 			}
