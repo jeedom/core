@@ -1573,6 +1573,8 @@ class scenarioExpression {
 							if ($scenario !== null) {
 								$actionScenario->addTag('trigger','scenario');
 								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger_name',trim($scenario->getHumanName(),'#'));
+								$actionScenario->addTag('trigger_id',$scenario->getId());
 								return $actionScenario->launch();
 							} else {
 								$actionScenario->addTag('trigger','other');
@@ -1596,6 +1598,8 @@ class scenarioExpression {
 							if ($scenario !== null) {
 								$actionScenario->addTag('trigger','scenario');
 								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger_name',trim($scenario->getHumanName(),'#'));
+								$actionScenario->addTag('trigger_id',$scenario->getId());
 								return $actionScenario->launch(true);
 							} else {
 								$actionScenario->addTag('trigger','other');
