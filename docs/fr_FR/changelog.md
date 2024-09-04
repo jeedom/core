@@ -7,6 +7,8 @@
 - Ajout de la version de l'os lors de la demande d'un plugin (en prévision de bloquer en cas de plugin incompatible) [LIEN](https://github.com/jeedom/core/commit/9721cf75494bbf3a3bc7b1f4b1bbc25cec7a55a8)
 - Correction d'un soucis sur la detection d'un Jeedom qui tourne sur docker [LIEN](https://github.com/jeedom/core/commit/3b942ff853661db49241fecafa096b7af3e16a4c)
 - Correction d'un bug sur l'affichage des plugins lorsque celui-ci n'est pas encore acheté [LIEN](https://github.com/jeedom/core/commit/5b02d619c80b08d0709e89c2c3c4bc942e568710)
+- Correction d'un soucis sur le banissement si la durée est infinie [LIEN](https://github.com/jeedom/core/issues/2879)
+- Correction d'un bug sur la page de remplacement des équipements [LIEN](https://github.com/jeedom/core/issues/2877)
 
 # 4.4.14
 
