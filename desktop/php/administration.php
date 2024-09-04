@@ -1762,7 +1762,7 @@ $productName = config::byKey('product_name');
 										$div .= '<tr>';
 										$div .= '<td>' . $ip . '</td>';
 										$div .= '<td>' . date('Y-m-d H:i:s',(int) $datetime) . '</td>';
-										if (config::byKey('security::bantime') < 0) {
+										if (config::byKey('security::bantime') == -1) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
 											$div .= '<td>' . date('Y-m-d H:i:s',(int) ($datetime + config::byKey('security::bantime'))) . '</td>';
