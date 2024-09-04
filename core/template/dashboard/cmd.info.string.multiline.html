@@ -4,6 +4,8 @@
   </div>
   <template>
     <div>maxHeight : 24 ({{Hauteur maximale en pixel}})</div>
+    <div>minHeight : 12 ({{Hauteur minimal en pixel}})</div>
+    <div>backgroundColor : rgb(20,20,20) ({{Couleur de fond}})</div>
   </template>
   <script>
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
@@ -25,6 +27,12 @@
 
     if (is_numeric('#maxHeight#')) {
       document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.maxHeight = '#maxHeight#px'
+    }
+    if (is_numeric('#minHeight#')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"]').style.minHeight = '#minHeight#px'
+    }
+    if (domUtils.issetWidgetOptParam('#backgroundColor#', 'backgroundColor')) {
+      document.querySelector('.cmd[data-cmd_uid="#uid#"] .value').style.backgroundColor = '#backgroundColor#'
     }
   </script>
 </div>
