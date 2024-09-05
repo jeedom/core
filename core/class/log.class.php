@@ -463,28 +463,25 @@ class log {
 	 */
 	public static function define_error_reporting($log_level) {
 		switch ($log_level) {
-			case logger::DEBUG:
-			case logger::INFO:
-			case logger::NOTICE:
+			case 100:
+			case 200:
+			case 250:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 				break;
-			case logger::WARNING:
+			case 300:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE);
 				break;
-			case logger::ERROR:
+			case 400:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
-			case logger::CRITICAL:
+			case 500:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
-			case logger::ALERT:
-				error_reporting(E_ERROR | E_PARSE);
-				break;
-			case logger::EMERGENCY:
+			case 600:
 				error_reporting(E_ERROR | E_PARSE);
 				break;
 			default:
-				throw new Exception('log::level invalide ("' . $log_level . '")');
+				error_reporting(E_ERROR | E_PARSE);
 		}
 	}
 
