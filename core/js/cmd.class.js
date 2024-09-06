@@ -987,7 +987,11 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     width: 800,
     top: '20vh',
     contentUrl: 'index.php?v=d&modal=cmd.human.insert',
-    callback: function() { mod_insertCmd.setOptions(_options) },
+    callback: function() {
+      if (window.mod_insertCmd) {
+        mod_insertCmd.setOptions(_options)
+      }
+    },
     buttons: {
       confirm: {
         label: '{{Valider}}',
