@@ -287,14 +287,17 @@ step_8_jeedom_customization() {
   a2enmod headers
   a2enmod remoteip
 
-  sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
+  #Add logs for http connections
+  if [[ 0 -eq $(grep Custom /etc/apache2/sites-available/000-default.conf) ]]; then
+     sed -i "$ i\CustomLog \${APACHE_LOG_DIR}/access.log combined" 000-default.conf
+  fi
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     service_action restart apache2 > /dev/null 2>&1
+    echo "vm.swappiness = 10" >>  /etc/sysctl.conf
+    sysctl vm.swappiness=10
   fi
 
-  echo "vm.swappiness = 10" >>  /etc/sysctl.conf
-  sysctl vm.swappiness=10
   echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
 }
 

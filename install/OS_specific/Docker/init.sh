@@ -71,6 +71,13 @@ apache_setup() {
     sed -i -E "s/\<VirtualHost \*:(.*)\>/VirtualHost \*:${APACHE_HTTP_PORT}/" /etc/apache2/sites-available/000-default.conf
     sed -i -E "s/\<VirtualHost \*:(.*)\>/VirtualHost \*:${APACHE_HTTPS_PORT}/" /etc/apache2/sites-available/default-ssl.conf
   fi
+
+  sed -i 's#/var/log/apache2#/var/www/html/log/#' /etc/apache2/envvars
+  sed -i 's#/var/log/apache2#/var/www/html/log#' /etc/logrotate.d/apache2
+
+  [[ $(a2query -m ssl | grep -c "^ssl") -eq 0 ]] && a2enmod ssl || true
+  [[ $(a2query -s default-ssl | grep -c "^default-ssl") -eq 0 ]] && a2ensite default-ssl
+  [[ $(a2query -s 000-default | grep -c "^000-default") -eq 0 ]] && a2ensite 000-default
 }
 
 db_creds(){
@@ -82,6 +89,17 @@ db_creds(){
   sed -i "s/#HOST#/${DB_HOST:-localhost}/g" ${WEBSERVER_HOME}/core/config/common.config.php
 }
 
+save_db_decrypt_key() {
+  # check if env jeedom encryption key is defined
+  if [[ -n ${JEEDOM_ENCRYPTION_KEY} ]]; then
+    #write jeedom encryption key if different
+    if [[ ! -e /var/www/html/data/jeedom_encryption.key ]] || [[ "$(cat /var/www/html/data/jeedom_encryption.key)" != "${JEEDOM_ENCRYPTION_KEY}" ]]; then
+      echo "Writing jeedom encryption key as defined in env"
+      echo "${JEEDOM_ENCRYPTION_KEY}" >${WEBSERVER_HOME}/data/jeedom_encryption.key
+    fi
+  fi
+}
+
 #Main
 # $WEBSERVER_HOME and $VERSION env variables comes from Dockerfile
 set +e
@@ -89,6 +107,17 @@ dpkg -l mariadb-server 2>/dev/null
 status=$?
 ISMARIADBSERVER=$(( 1 - ${status} ))
 
+#Get vars from secrets
+for s in JEEDOM_ENCRYPTION_KEY DB_ROOT_PASSWD DB_PASSWORD ROOT_PASSWORD; do
+  if [[ -f /run/secrets/${s} ]]; then
+    echo "Reading ${s} from secrets"
+    eval ${s}=$(cat /run/secrets/${s})
+    [[ 1 -eq ${DEBUG} ]] && echo "${s}: ${!s}" || true
+  fi
+done
+
+#define php db conf
+db_creds
 
 if [[ -f ${WEBSERVER_HOME}/initialisation ]]; then
   echo "************************
@@ -109,14 +138,17 @@ Start Jeedom initialisation !
     echo "CREATE DATABASE jeedom;" | mysql
     echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'%';" | mysql
   fi
-  #define php db conf
-  db_creds
   echo "************************
 start JEEDOM PHP script installation
 ************************"
 	php "${WEBSERVER_HOME}/install/install.php" mode=force
 	# remove the flag file after the first successfull installation
 	rm "${WEBSERVER_HOME}/initialisation"
+else
+  isTables=$(mysql -u${DB_USERNAME} -p${DB_PASSWORD} -h ${DB_HOST} -P${DB_PORT} ${DB_NAME} -e "show tables;" | wc -l)
+  if [[ ${isTables:-0} -eq 0 ]]; then
+    php "${WEBSERVER_HOME}/install/install.php" mode=force
+  fi
 fi
 
 #set admin password if needed
@@ -127,11 +159,14 @@ fi
 
 #set timezone
 setTimeZone
-
 #setup apache port
 apache_setup
 #setup root passwd
 set_root_password
+#allow db secrets decode when using external db.
+save_db_decrypt_key
+#save db config fil
+db_creds
 
 service atd restart
 service atd status
@@ -162,6 +197,17 @@ fi
 echo "All init complete"
 chmod 777 /dev/tty*
 chmod 755 -R "${WEBSERVER_HOME}"
+
+#redirect logs to container stdout
+if [[ ${LOGS_TO_STDOUT,,} =~ [yo] ]]; then
+  echo "Send apache logs to stdout/err"
+  [[ -f /var/log/apache2/access.log ]] && rm -Rf /var/log/apache2/* || true
+  ln -sf /proc/1/fd/1 /var/www/html/log/access.log
+  ln -sf /proc/1/fd/1 /var/www/html/log/error.log
+  chown -R www-data:www-data /var/www/html/log/
+else
+  [[ -L /var/log/apache2/access.log ]] && rm -f /var/log/apache2/{access,error}.log && echo "Remove apache symlink to stdout/stderr" || echo
+fi
 
 service apache2 start
 service apache2 status

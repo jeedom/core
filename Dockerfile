@@ -16,6 +16,7 @@ ENV DB_NAME=jeedom
 ENV DB_PORT=3306
 ENV DB_HOST=localhost
 ENV TZ=America/Chicago
+ENV LOGS_TO_STDOUT=n
 ENV DEBUG=0
 
 # labels follows opencontainers convention
@@ -31,11 +32,13 @@ LABEL org.opencontainers.image.description='Software for home automation'
 
 WORKDIR ${WEBSERVER_HOME}
 VOLUME ${WEBSERVER_HOME}
+VOLUME ${WEBSERVER_HOME}/log/
 VOLUME /var/lib/mysql
+
 
 #speed up build using docker cache
 RUN apt update -y 
-RUN apt -o Dpkg::Options::="--force-confdef" -y install software-properties-common \
+RUN apt -o Dpkg::Options::="--force-confdef" -y install software-properties-common dumb-init \
   ntp ca-certificates unzip curl sudo cron locate tar telnet wget logrotate dos2unix ntpdate htop \
   iotop vim iftop smbclient git python3 python3-pip libexpat1 ssl-cert \
   apt-transport-https xvfb cutycapt xauth at mariadb-client espeak net-tools nmap ffmpeg usbutils \
@@ -64,4 +67,11 @@ EXPOSE 80
 EXPOSE 443
 COPY --chown=root:root --chmod=550 install/OS_specific/Docker/init.sh /root/
 COPY --chown=root:root --chmod=550 install/bashrc /root/.bashrc
-CMD ["bash", "/root/init.sh"]
+
+WORKDIR /var/www/html/
+HEALTHCHECK --interval=60s --timeout=3s --retries=3 --start-period=40s \
+ CMD curl -s --fail http://localhost/here.html || exit 1
+
+#handler properly pid1
+ENTRYPOINT ["/usr/bin/dumb-init","--rewrite","15:10","--"]
+CMD ["/root/init.sh"]
