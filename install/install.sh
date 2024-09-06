@@ -304,13 +304,13 @@ step_9_jeedom_configuration() {
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     echo "DROP USER 'jeedom'@'localhost';" | mariadb -uroot > /dev/null 2>&1
-    mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MARIADB_JEEDOM_PASSWD}';"
+    mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${DB_PASSWORD}';"
     mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
     mariadb_sql "CREATE DATABASE jeedom;"
     mariadb_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
 
     cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
-    sed -i "s/#PASSWORD#/${MARIADB_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
+    sed -i "s/#PASSWORD#/${DB_PASSWORD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
@@ -414,7 +414,7 @@ distrib_1_spe(){
 STEP=0
 VERSION=master
 WEBSERVER_HOME=/var/www/html
-MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)}
+DB_PASSWORD=${DB_PASSWORD:-$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)}
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
