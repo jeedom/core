@@ -119,7 +119,7 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
           if (isset(data.source)) {
-            if (isset(data.update.configuration.user)){
+            if (isset(data.configuration) && isset(data.update.configuration.user)){
                 self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source +' - '+data.update.configuration.user
             } else {
                 self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
