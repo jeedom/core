@@ -62,14 +62,14 @@
 - Ability to choose Apache listening port in docker mode [LINK](https://github.com/jeedom/core/pull/2847)
 - Fixed a warning when saving to the event table [LINK](https://github.com/jeedom/core/issues/2851)
 - Added display name for objects [LINK](https://github.com/jeedom/core/issues/2484)
-- Added a button to delete histories and events from the timeline in the future [LINK](https://github.com/jeedom/core/issues/2415)
+- Added a button to delete timeline history and events in the future [LINK](https://github.com/jeedom/core/issues/2415)
 - Fixed an issue with select type commands in designs [LINK](https://github.com/jeedom/core/issues/2853)
-- Possibility on a piece of equipment to indicate that it has no battery (in the event of poor feedback)) [LINK](https://github.com/jeedom/core/issues/2855)
+- Possibility to indicate that a piece of equipment has no battery (in case of poor feedback)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Rework of writing in logs, removal of the monolog library (note that the option to send logs in syslog is no longer available at the moment, if demand is high we will see about putting it back) [LINK](https://github.com/jeedom/core/pull/2805)
 - Upgrading from nodejs 18 to nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
 - Better management of plugin sub-log log level [LINK](https://github.com/jeedom/core/issues/2860)
-- Removing the vendor folder (using composer normally), reduces the core size [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
-- Widget specific parameters can now be translated [LINK](https://github.com/jeedom/core/pull/2862)
+- Removed vendor folder (using composer normally), reduces core size [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
+- Widget specific settings can now be translated [LINK](https://github.com/jeedom/core/pull/2862)
 - Fixed a bug on mac on designs when right clicking [LINK](https://github.com/jeedom/core/issues/2863)
 - Improved the system for launching programmed scenarios [LINK](https://github.com/jeedom/core/issues/2875)
 
@@ -79,4 +79,4 @@
 
 >**IMPORTANT**
 >
-> Due to the redesign of logs and the reinternalization of libraries, during the update you may have an error type  ``PHP Fatal error`` (nothing serious) just restart the update.
+> Due to the rework of logs and the re-internalization of libraries, when updating you may have an error type ``PHP Fatal error`` (nothing serious) just restart the update.

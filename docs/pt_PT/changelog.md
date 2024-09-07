@@ -62,13 +62,13 @@
 - Capacidade de escolher a porta de escuta do Apache no modo docker [LINK](https://github.com/jeedom/core/pull/2847)
 - Corrigido um aviso ao salvar na tabela de eventos [LINK](https://github.com/jeedom/core/issues/2851)
 - Adicionando um nome de exibição para objetos [LINK](https://github.com/jeedom/core/issues/2484)
-- Adicionado um botão para excluir histórico e eventos da linha do tempo no futuro [LINK](https://github.com/jeedom/core/issues/2415)
+- Adicionado um botão para excluir históricos e eventos da linha do tempo no futuro [LINK](https://github.com/jeedom/core/issues/2415)
 - Corrigido um problema com comandos de seleção de tipo em designs [LINK](https://github.com/jeedom/core/issues/2853)
-- Possibilidade no equipamento de indicar que não tem bateria (em caso de má subida) [LINK](https://github.com/jeedom/core/issues/2855)
-- Redesenho de escrita em logs, exclusão da biblioteca monolog (observe que a opção de enviar logs em syslog não está mais disponível no momento, se a demanda for alta veremos como colocá-la de volta) [LINK](https://github.com/jeedom/core/pull/2805)
+- Possibilidade de indicar que o equipamento não possui bateria (em caso de má recuperação) [LINK](https://github.com/jeedom/core/issues/2855)
+- Redesenho de escrita em logs, remoção da biblioteca monolog (observe que a opção de enviar logs em syslog não está mais disponível no momento, se a demanda for alta veremos como colocá-la de volta) [LINK](https://github.com/jeedom/core/pull/2805)
 - Mudando do nodejs 18 para o nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
 - Melhor gerenciamento dos níveis de log do sublog do plugin [LINK](https://github.com/jeedom/core/issues/2860)
-- Excluir a pasta vendor (usando o compositor normalmente) permite reduzir o tamanho do núcleo [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
+- Excluir a pasta vendor (usando o compositor da maneira normal) permite reduzir o tamanho do núcleo [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Configurações específicas de widget agora podem ser traduzidas [LINK](https://github.com/jeedom/core/pull/2862)
 - Corrigido um bug no Mac em designs ao clicar com o botão direito [LINK](https://github.com/jeedom/core/issues/2863)
 - Melhoria do sistema de lançamento de cenários programados [LINK](https://github.com/jeedom/core/issues/2875)
@@ -79,4 +79,4 @@
 
 >**IMPORTANTE**
 >
-> Devido à revisão dos logs e à reinternalização das bibliotecas, durante a atualização você pode ter um erro padrão  ``PHP Fatal error`` (nada sério) apenas reinicie a atualização.
+> Devido à revisão dos logs e à reinternalização das bibliotecas, durante a atualização você pode ter um erro padrão ``PHP Fatal error`` (nada sério) apenas reinicie a atualização.
