@@ -23,8 +23,6 @@ service_mariadb(){
 
 docker_stop() {
   echo "${JAUNE}Stopping Jeedom container${NORMAL}"
-  echo "${VERT}Killing CRON${NORMAL}"
-  killall cron
   echo "${VERT}Stopping Apache gracefully${NORMAL}"
   service apache2 stop
   if [[ 1 -eq ${ISMARIABDBINSTALLED} ]]; then
@@ -34,7 +32,8 @@ docker_stop() {
   echo "${VERT}Stopping ATD gracefully${NORMAL}"
   service atd stop
   echo "${ROUGE}Requesting stop on init.sh${NORMAL}"
-  touch ${FILE_STOP}
+  echo "${VERT}Killing CRON${NORMAL}"
+  killall cron
   exit 0
 }
 
