@@ -33,8 +33,8 @@ if (!jeeFrontEnd.replace) {
       var key = null
       document.querySelectorAll('#objectFilter .objectFilterKey').forEach(_filter => {
         if (_filter.checked) {
-          key = _filter.getAttribute('data-key')
-          if (key == '') key = null
+          key = parseInt(_filter.getAttribute('data-key'))
+          if (isNaN(key)) key = null
           jeeP.filteredObjects.push(key)
         }
       })
