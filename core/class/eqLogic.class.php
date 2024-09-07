@@ -1355,7 +1355,7 @@ class eqLogic {
 			}
 			return $targetEq;
 		} catch (Exception $e) {
-			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : ' . $e->getMessage());
+			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : ' . log::exception($e));
 		}
 	}
 

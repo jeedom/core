@@ -282,7 +282,7 @@ class listener {
 				}
 			}
 		} catch (Exception $e) {
-			log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
+			log::add(init('plugin_id', 'plugin'), 'error', log::exception($e));
 		}
 	}
 

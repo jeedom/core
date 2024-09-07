@@ -46,7 +46,7 @@ function jeeCronAll_errorHandler($cron, $e) {
 		$cron->setState('error');
 		$cron->setPID('');
 		echo __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e);
-		log::add('cron', 'error', __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . $e->getMessage());
+		log::add('cron', 'error', __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e));
 	}
 }
 

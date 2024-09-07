@@ -1176,7 +1176,7 @@ class cmd {
 				}
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . ': ' . $message . '. ' . $this->getHumanName() . __('Détails :', __FILE__) . ' ' . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . ': ' . $message . '. ' . $this->getHumanName() . __('Détails :', __FILE__) . ' ' . log::exception($e));
 			}
 		}
 	}
@@ -1343,7 +1343,7 @@ class cmd {
 					$eqLogic->save();
 				}
 			}
-			log::add($type, 'error', __('Erreur exécution de la commande', __FILE__) . ' ' . $this->getHumanName() . ' : ' . $e->getMessage());
+			log::add($type, 'error', __('Erreur exécution de la commande', __FILE__) . ' ' . $this->getHumanName() . ' : ' . log::exception($e));
 			throw $e;
 		}
 		if ($options !== null && $this->getValue() == '') {
@@ -2034,7 +2034,7 @@ class cmd {
 				$options['source'] = $this->getHumanName();
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . __('. Détails :', __FILE__) . ' ' . $e->getMessage());
+				log::add('cmd', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . __('. Détails :', __FILE__) . ' ' . log::exception($e));
 			}
 		}
 	}
@@ -2154,7 +2154,7 @@ class cmd {
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						} catch (Exception $e) {
-							log::add('jeedomAlert', 'error', __('Erreur lors de l\'envoi de l\'alerte : ', __FILE__) . ' ' . $cmd->getHumanName() . '  => ' . $e->getMessage());
+							log::add('jeedomAlert', 'error', __('Erreur lors de l\'envoi de l\'alerte : ', __FILE__) . ' ' . $cmd->getHumanName() . '  => ' . log::exception($e));
 						}
 					}
 				}
@@ -2202,9 +2202,9 @@ class cmd {
 		try {
 			$http->exec();
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		} catch (Error $e) {
-			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
 
@@ -2260,7 +2260,7 @@ class cmd {
 			}
 			log::add('cmd', 'debug', 'Push influx for ' . $this->getHumanName() . ' : ' .  json_encode($tagArray, true));
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur computing influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur computing influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 		return $point;
 	}
@@ -2296,7 +2296,7 @@ class cmd {
 			}
 			return $database;
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur get influx database :', __FILE__) . ' ' . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur get influx database :', __FILE__) . ' ' . ' => ' . log::exception($e));
 		}
 		return '';
 	}
@@ -2313,7 +2313,7 @@ class cmd {
 			$point = $this->computeInfluxData($_value);
 			$result = $database->writePoints(array($point), 's');
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur push influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 		return;
 	}
@@ -2326,7 +2326,7 @@ class cmd {
 			}
 			$database->drop();
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur delete influx sur :', __FILE__) . ' ' . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur delete influx sur :', __FILE__) . ' ' . ' => ' . log::exception($e));
 		}
 		return;
 	}
@@ -2341,7 +2341,7 @@ class cmd {
 			$result = $database->query($query);
 			log::add('cmd', 'debug', 'Delete influx for ' . $this->getHumanName());
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur delete influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur delete influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 		return;
 	}
@@ -2392,7 +2392,7 @@ class cmd {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur history influx sur :', __FILE__) . ' ' . ' commande : ' . $cmd->getHumanName() . ' => ' . $e->getMessage());
+			log::add('cmd', 'error', __('Erreur history influx sur :', __FILE__) . ' ' . ' commande : ' . $cmd->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
 
@@ -2727,7 +2727,7 @@ class cmd {
 			$targetCmd->save();
 			return $targetCmd;
 		} catch (Exception $e) {
-			throw new Exception(__('Erreur lors de la migration de commande', __FILE__) . ' : ' . $e->getMessage());
+			throw new Exception(__('Erreur lors de la migration de commande', __FILE__) . ' : ' . log::exception($e));
 		}
 	}
 

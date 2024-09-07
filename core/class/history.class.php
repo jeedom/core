@@ -345,7 +345,7 @@ class history {
 				try {
 					DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 				} catch (Exception $e) {
-					log::add('history', 'error', __('Erreur l\'archivage des historiques :', __FILE__) . ' ' . json_encode($values) . '  => ' . $e->getMessage());
+					log::add('history', 'error', __('Erreur l\'archivage des historiques :', __FILE__) . ' ' . json_encode($values) . '  => ' . log::exception($e));
 					continue;
 				}
 				$values = array('cmd_id' => $sensors['cmd_id'], 'archiveTime' => $archiveDatetime);

@@ -1004,13 +1004,13 @@ class jeedom {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERROR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . log::exception($e);
 			}
 		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERROR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . log::exception($e);
 			}
 		}
 	}
@@ -1066,9 +1066,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			eqLogic::checkAlive();
@@ -1081,9 +1081,9 @@ class jeedom {
 		try {
 			network::cron10();
 		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+			log::add('network', 'error', 'network::cron : ' . log::exception($e));
 		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
+			log::add('network', 'error', 'network::cron : ' . log::exception($e));
 		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
@@ -1093,9 +1093,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 	}
 
@@ -1242,9 +1242,9 @@ class jeedom {
 			jeeObject::cronDaily();
 			timeline::clean(false);
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
@@ -1254,9 +1254,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		$disk_space = self::checkSpaceLeft();
 		if($disk_space < 10){
@@ -1268,16 +1268,16 @@ class jeedom {
 		try {
 			cache::set('hour', strtotime('UTC'));
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			cache::clean();
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			//Check for updates every 24h according to config
@@ -1300,9 +1300,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
@@ -1312,9 +1312,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 	}
 

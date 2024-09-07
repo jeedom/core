@@ -133,10 +133,10 @@ class update {
 						try {
 							$update->doUpdate();
 						} catch (Exception $e) {
-							log::add(__CLASS__, 'alert', $e->getMessage());
+							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						} catch (Error $e) {
-							log::add(__CLASS__, 'alert', $e->getMessage());
+							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						}
 					}
@@ -497,9 +497,9 @@ class update {
 			$request_http = new com_http($url);
 			return trim($request_http->exec(30));
 		} catch (Exception $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		} catch (Error $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		}
 		return null;
 	}

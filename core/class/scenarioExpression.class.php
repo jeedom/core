@@ -1987,9 +1987,9 @@ class scenarioExpression {
 				return eval($this->getExpression());
 			}
 		} catch (Exception $e) {
-			$this->setLog($scenario, $message . $e->getMessage());
+			$this->setLog($scenario, $message . log::exception($e));
 		} catch (Error $e) {
-			$this->setLog($scenario, $message . $e->getMessage());
+			$this->setLog($scenario, $message . log::exception($e));
 		}
 	}
 
