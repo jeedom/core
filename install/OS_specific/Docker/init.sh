@@ -160,7 +160,6 @@ if [[ "${JEEDOM_INSTALL}" == 0 ]] && [[ ! -z "${RESTOREBACKUP}" ]] && [[ "${REST
 fi
 
 echo "All init complete"
-chmod 777 /dev/tty*
 chmod 755 -R "${WEBSERVER_HOME}"
 
 service apache2 start
