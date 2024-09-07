@@ -1,4 +1,4 @@
-<?php
+log::exception($e))<?php
 
 /** @entrypoint */
 /** @console */
