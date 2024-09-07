@@ -1,4 +1,4 @@
-log::exception($e))log::exception($e))<?php
+<?php
 
 /* This file is part of Jeedom.
 *
