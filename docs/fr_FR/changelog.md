@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.4
 
+# 4.4.16
+
+- Correction d'un bug sur les filtre de la page de remplacement
+- Correction de bugs sur la version docker [LIEN](https://github.com/jeedom/core/commit/32e68dae9ec16eb58bdc66d8fdccbc0bdd1503bd)
+
+
 # 4.4.15
 
 - Correction d'un bug ou la connexion à Jeedom ne pouvait pas etre auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)

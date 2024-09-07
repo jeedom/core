@@ -33,8 +33,8 @@ if (!jeeFrontEnd.replace) {
       var key = null
       document.querySelectorAll('#objectFilter .objectFilterKey').forEach(_filter => {
         if (_filter.checked) {
-          key = parseInt(_filter.getAttribute('data-key'))
-          if (isNaN(key)) key = null
+          key = _filter.getAttribute('data-key')
+          if (key == '') key = null
           jeeP.filteredObjects.push(key)
         }
       })
@@ -542,4 +542,3 @@ document.getElementById('eqSource').addEventListener('change', function(event) {
     return
   }
 })
-
