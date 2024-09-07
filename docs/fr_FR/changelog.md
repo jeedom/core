@@ -2,7 +2,7 @@
 
 # 4.4.16
 
-- Correction d'un bug sur les filtre de la page de remplacement
+- Correction d'un bug sur les filtre de la page de remplacement [LIEN](https://github.com/jeedom/core/commit/ab0a197cf7ec99b7ae79db68ae9478afd3ffc6f1)
 - Correction de bugs sur la version docker [LIEN](https://github.com/jeedom/core/commit/32e68dae9ec16eb58bdc66d8fdccbc0bdd1503bd)
 
 
