@@ -489,7 +489,7 @@ class log {
 		if (self::getConfig('log::level') > 100) {
 			return $e->getMessage();
 		} else {
-			return print_r($e, true);
+			return $e->getMessage()."\n".$e->getTraceAsString();
 		}
 	}
 
