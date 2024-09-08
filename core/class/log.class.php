@@ -96,7 +96,14 @@ class log {
 		if($level < self::getLogLevel($_log)){
 			return;
 		}
-		$fp = fopen(self::getPathToLog($_log), 'a');
+		$log_path = self::getPathToLog($_log);
+		if(!file_exists($log_path)){
+			$cmd = system::getCmdSudo().' touch '.$log_path.';';
+			$cmd = system::getCmdSudo() . 'chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $log_path . ';';
+			$cmd .= system::getCmdSudo() . 'chmod 775 ' . $log_path . ';';
+			exec($cmd);
+		}
+		$fp = fopen($log_path, 'a');
 		fwrite($fp,'['.date('Y-m-d H:i:s').']['.strtoupper($_type).'] '.$_message."\n");  
 		fclose($fp);
 		try {
