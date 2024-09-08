@@ -75,7 +75,10 @@ echo 'Start init'
 
 # $WEBSERVER_HOME and $VERSION env variables comes from Dockerfile
 
-if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
+if [ -f ${WEBSERVER_HOME}/.env ]; then
+	echo 'Jeedom is already install'
+	JEEDOM_INSTALL=1
+elif [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
 	JEEDOM_INSTALL=1
 else
@@ -95,12 +98,15 @@ else
 		echo  "DROP DATABASE IF EXISTS jeedom;" | mysql
 		echo  "CREATE DATABASE jeedom;" | mysql
 		echo  "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
+		# Part to remove
 		cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
+
+		echo "DATABASE_DSN=mysql://jeedom:${MYSQL_JEEDOM_PASSWD}@localhost/jeedom" > ${WEBSERVER_HOME}/.env
 		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
 		/root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
 	fi

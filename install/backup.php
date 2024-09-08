@@ -141,6 +141,8 @@ try {
 		'.gitignore',
 		'node_modules',
 		'.log',
+        '.env',
+        '.env.local',
 		'core/config/common.config.php',
 		'data/imgOs',
 		'python_venv',
