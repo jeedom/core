@@ -740,9 +740,9 @@ class system {
 		}
 		if ($_plugin != '') {
 			if ($_foreground) {
-				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . ' 2>&1');
+				echo shell_exec('sudo su - debian -c php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . ' 2>&1');
 			} else {
-				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+				$cmd .= 'sudo su - debian -c php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
 				$count++;
 				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 			}
