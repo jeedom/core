@@ -28,7 +28,7 @@ $starttime = strtotime('now');
 try {
 	date_default_timezone_set('Europe/Brussels');
 	require_once __DIR__ . '/../vendor/autoload.php';
-	require_once __DIR__ . '/../core/config/common.config.php';
+	require_once __DIR__ . '/../core/config/common.config.env.php';
 	require_once __DIR__ . '/../core/class/DB.class.php';
 	require_once __DIR__ . '/../core/class/system.class.php';
 	if (count(system::ps('install/install.php', 'sudo')) > 1) {
