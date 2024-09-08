@@ -845,7 +845,7 @@ class system {
 				}
 				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'plugin':
-				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
+				return 'sudo su - debian -c php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
