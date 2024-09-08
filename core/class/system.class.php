@@ -740,9 +740,9 @@ class system {
 		}
 		if ($_plugin != '') {
 			if ($_foreground) {
-				echo shell_exec('sudo su - www-data -c php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . ' 2>&1');
+				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . ' 2>&1');
 			} else {
-				$cmd .= 'sudo su - www-data -c php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
 				$count++;
 				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 			}
@@ -845,7 +845,7 @@ class system {
 				}
 				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'plugin':
-				return 'sudo su - www-data -c php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
+				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
