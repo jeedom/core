@@ -20,52 +20,36 @@ use PHPUnit\Framework\TestCase;
 
 
 class cacheTest extends TestCase {
-	public function testSave() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		cache::set('toto', 'toto');
-		$this->assertTrue(true);
-	}
-	
-	/**
-	* @depends testSave
-	*/
-	public function testLoad() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+
+    public function testDefault(): void {
+        $cache = cache::byKey('toto');
+        $this->assertSame('', $cache->getValue());
+    }
+
+    public function testLoad(): void{
+        cache::set('toto', 'toto');
 		$cache = cache::byKey('toto');
-		$this->assertEquals('toto', $cache->getValue());
+		$this->assertSame('toto', $cache->getValue());
 	}
 	
-	/**
-	* @depends testLoad
-	*/
-	public function testRemove() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+	public function testRemove(): void {
+        cache::set('toto', 'toto');
 		$cache = cache::byKey('toto');
 		$cache->remove();
-		$this->assertTrue(true);
+        $cache = cache::byKey('toto');
+        $this->assertSame('', $cache->getValue());
 	}
 	
-	/**
-	* @depends testRemove
-	*/
-	public function testDefault() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		$cache = cache::byKey('toto');
-		$this->assertEquals(null, $cache->getValue());
-	}
-	
-	/**
-	* @depends testDefault
-	*/
-	public function testTime() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+	public function testLifetime(): void {
 		cache::set('toto', 'toto', 1);
 		$cache = cache::byKey('toto');
-		$this->assertEquals('toto', $cache->getValue());
-		sleep(2);
-		$cache = cache::byKey('toto');
-		$this->assertEquals(null, $cache->getValue());
+		$this->assertSame('toto', $cache->getValue());
 	}
-	
+
+    public function testExpired(): void {
+        cache::set('toto', 'toto', 1);
+        sleep(2);
+        $cache = cache::byKey('toto');
+        $this->assertSame('', $cache->getValue());
+    }
 }
-?>

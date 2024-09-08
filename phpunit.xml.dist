@@ -1,5 +1,11 @@
-<phpunit bootstrap="./tests/bootstrap.php" colors="true">
-    <testsuite>
+<phpunit
+        bootstrap="./tests/bootstrap.php"
+        colors="true"
+>
+    <php>
+        <env name="APP_ENV" value="test" force="true" />
+    </php>
+    <testsuite name="Unit tests">
         <directory suffix="Test.php">./tests</directory>
     </testsuite>
 </phpunit>

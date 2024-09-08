@@ -20,36 +20,22 @@ use PHPUnit\Framework\TestCase;
 
 
 class configTest extends TestCase {
-	public function testSave() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		config::save('toto', 'toto');
-		$this->assertTrue(true);
+    public function testConfigIsEmptyByDefault(): void {
+        $this->assertSame('', config::byKey('toto'));
+    }
+
+    public function testDefineDefaultValue(): void {
+        $this->assertEquals('plop', config::byKey('toto', 'core', 'plop'));
+    }
+
+	public function testReturnSettedValue(): void {
+		config::save('toto', 'titi');
+        $this->assertEquals('titi', config::byKey('toto'));
 	}
 	
-	/**
-	* @depends testSave
-	*/
-	public function testLoad() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		$this->assertEquals('toto', config::byKey('toto'));
-	}
-	
-	/**
-	* @depends testLoad
-	*/
-	public function testRemove() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+	public function testRemoveConfig(): void {
+        config::save('toto', 'titi');
 		config::remove('toto');
-		$this->assertTrue(config::byKey('toto') == '');
+		$this->assertSame('', config::byKey('toto'));
 	}
-	
-	/**
-	* @depends testRemove
-	*/
-	public function testDefault() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		$this->assertEquals('plop', config::byKey('toto', 'core', 'plop'));
-	}
-	
 }
-?>

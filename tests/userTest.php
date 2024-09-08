@@ -20,40 +20,40 @@ use PHPUnit\Framework\TestCase;
 
 class userTest extends TestCase {
 	public function testCreate() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		$user = $this->createUser('test', 'test', 'test', 'test');
+
+		$this->assertTrue((is_numeric($user->getId()) && $user->getId() != ''));
+		$this->assertEquals('test', $user->getLogin());
+		$this->assertEquals(sha512('test'), $user->getPassword());
+	}
+	
+	public function testConnect() {
+		$_user = $this->createUser('test2', 'test');
+		$user = user::connect('test2', 'test');
+		$this->assertEquals($user->getId(), $_user->getId());
+	}
+	
+	public function testRemove() {
+		$_user = $this->createUser('test3', 'test');
+		$id = $_user->getId();
+		$_user->remove();
+		$this->assertEquals(null,user::byId($id));
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	public function createUser(string $login, string $password): user
+	{
 		$user_array = array(
-			'login' => 'test',
-			'password' => 'test',
+			'login' => $login,
+			'password' => $password,
 		);
 		$user = new user();
 		utils::a2o($user, $user_array);
 		$user->setPassword(sha512($user_array['password']));
 		$user->save();
-		
-		$this->assertTrue((is_numeric($user->getId()) && $user->getId() != ''));
-		$this->assertEquals($user_array['login'], $user->getLogin());
-		$this->assertEquals(sha512($user_array['password']), $user->getPassword());
+
 		return $user;
 	}
-	
-	/**
-	* @depends testCreate
-	*/
-	public function testConnect($_user) {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		$user = user::connect('test', 'test');
-		$this->assertEquals($user->getId(), $_user->getId());
-	}
-	
-	/**
-	* @depends testCreate
-	*/
-	public function testRemove($_user) {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
-		$id = $_user->getId();
-		$_user->remove();
-		$this->assertEquals(null,user::byId($id));
-	}
-	
 }
-?>

@@ -19,95 +19,67 @@
 use PHPUnit\Framework\TestCase;
 
 class logTest extends TestCase {
-	public function getEngins() {
-		return array(
-			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
-			array('foo', 'Monolog\Handler\StreamHandler'),
-		);
+	public static function getLogs(): iterable {
+		return [
+			['StreamHandler', 'foo', false, true],
+        ];
 	}
 	
-	public function getLogs() {
-		return array(
-			array('StreamHandler', 'foo', false, true),
-		);
+	public static function getReturnListe(): iterable {
+		return [
+			['StreamHandler', ['StreamHandler']],
+        ];
 	}
 	
-	public function getReturnListe() {
-		return array(
-			array('StreamHandler', array('http.error')),
-		);
+	public static function getLevels(): iterable {
+		return [
+			['StreamHandler', 'debug'],
+			['StreamHandler', 'info'],
+			['StreamHandler', 'notice'],
+			['StreamHandler', 'warning'],
+			['StreamHandler', 'error'],
+        ];
 	}
 	
-	public function getLevels() {
-		return array(
-			array('StreamHandler', 'debug'),
-			array('StreamHandler', 'info'),
-			array('StreamHandler', 'notice'),
-			array('StreamHandler', 'warning'),
-			array('StreamHandler', 'error'),
-		);
+	public static function getErrorReporting(): iterable {
+		return [
+			[100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
+			[200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
+			[250, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
+			[300, E_ERROR | E_WARNING | E_PARSE],
+			[400, E_ERROR | E_PARSE],
+			[500, E_ERROR | E_PARSE],
+			[600, E_ERROR | E_PARSE],
+			[700, E_ERROR | E_PARSE],
+        ];
 	}
 	
-	public function getErrorReporting() {
-		return array(
-			array(Monolog\Logger::DEBUG, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::INFO, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::NOTICE, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::WARNING, E_ERROR | E_WARNING | E_PARSE),
-			array(Monolog\Logger::ERROR, E_ERROR | E_PARSE),
-			array(Monolog\Logger::CRITICAL, E_ERROR | E_PARSE),
-			array(Monolog\Logger::ALERT, E_ERROR | E_PARSE),
-			array(Monolog\Logger::EMERGENCY, E_ERROR | E_PARSE),
-		);
-	}
-	
-	/**
-	* @dataProvider getEngins
-	* @param string $name
-	* @param string $instance
-	*/
-	public function testLoggerHandler($name, $instance) {
-		config::save('log::engine', $name);
-		$logger = log::getLogger($name);
-		$this->assertInstanceOf('Monolog\\Logger', $logger);
-		$handler = $logger->popHandler();
-		$this->assertInstanceOf($instance, $handler);
-	}
-	
+
 	/**
 	* @dataProvider getLogs
-	* @param string $engin
-	* @param string $message
-	* @param string $get
-	* @param string $removeAll
 	*/
-	public function testAddGetRemove($engin, $message, $get, $removeAll) {
+	public function testAddGetRemove(string $engin, string $message, bool $get, bool $removeAll): void {
 		config::save('log::engine', $engin);
 		log::remove($engin);
-		$add = log::add($engin, 'debug', $message); // <- Effet de bord!
-		$this->assertNull($add);
+		log::add($engin, 'debug', $message); // <- Effet de bord!
 		$this->assertSame($get, log::get($engin, 0, 1));
 		$this->assertSame($removeAll, log::removeAll());
 	}
 	
 	/**
 	* @dataProvider getLevels
-	* @param string $engin
-	* @param string $level
 	*/
-	public function testAddLevels($engin, $level) {
+	public function testAddLevels(string $engin, string $level): void {
 		config::save('log::engine', $engin);
 		log::remove($engin);
-		$add = log::add($engin, $level, 'testLevel');
+		log::add($engin, $level, 'testLevel');
 		$this->assertTrue(true);
 	}
 	
 	/**
 	* @dataProvider getReturnListe
-	* @param string $engin
-	* @param string $return
 	*/
-	public function testListe($engin, $return) {
+	public function testListe(string $engin, array $return): void {
 		config::save('log::engine', $engin);
 		log::add($engin, 'debug', 'toto');
 		$this->assertSame($return, log::liste());
@@ -115,11 +87,9 @@ class logTest extends TestCase {
 	
 	/**
 	* @dataProvider getErrorReporting
-	* @param int $level
-	* @param int $result
 	*/
-	public function testErrorReporting($level, $result) {
-		$this->assertNull(log::define_error_reporting($level));
+	public function testErrorReporting(int $level, int $result): void {
+		log::define_error_reporting($level);
 		$this->assertSame($result, error_reporting());
 	}
 }

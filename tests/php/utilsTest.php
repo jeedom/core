@@ -19,7 +19,7 @@
 use PHPUnit\Framework\TestCase;
 
 class utilsTest extends TestCase {
-	public function getTemplates() {
+	public static function getTemplates() {
 		return array(
 			array('Vous êtes sur {{Nom}} version {{Version}}', 'Vous êtes sur Jeedom version 1.2.3'),
 			array('{{La poule}} {{pond}}', 'L\'oeuf est pondu'),
@@ -50,7 +50,7 @@ class utilsTest extends TestCase {
 		$this->assertSame('foobar', init('default','foobar'));
 	}
 	
-	public function getTimes() {
+	public static function getTimes() {
 		return array(
 			array(0, '0s'),
 			array(60, '1min 0s'),
@@ -70,7 +70,7 @@ class utilsTest extends TestCase {
 		$this->assertSame($out, convertDuration($in));
 	}
 	
-	public function getJsons() {
+	public static function getJsons() {
 		return array(
 			array(json_encode(array('foo','bar')), true),
 			array(json_encode(array('foo'=>'bar')), true),
@@ -86,7 +86,7 @@ class utilsTest extends TestCase {
 		$this->assertSame($out, is_json($in));
 	}
 	
-	public function getPaths() {
+	public static function getPaths() {
 		return array(
 			array('/home/user/doc/../../me/docs', '/home/me/docs'),
 		);

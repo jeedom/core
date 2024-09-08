@@ -9,6 +9,7 @@ ui
 composer.lock
 .env
 .env.local
+.phpunit.result.cache
 
 test.php
 core/config/common.config.php
