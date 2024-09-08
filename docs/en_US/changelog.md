@@ -72,6 +72,7 @@
 - Widget specific settings can now be translated [LINK](https://github.com/jeedom/core/pull/2862)
 - Fixed a bug on mac on designs when right clicking [LINK](https://github.com/jeedom/core/issues/2863)
 - Improved the system for launching programmed scenarios [LINK](https://github.com/jeedom/core/issues/2875)
+- Improved exception error messages if log level is debug [LINK](https://github.com/jeedom/core/issues/2886)
 
 >**IMPORTANT**
 >

@@ -72,6 +72,7 @@
 - Configurações específicas de widget agora podem ser traduzidas [LINK](https://github.com/jeedom/core/pull/2862)
 - Corrigido um bug no Mac em designs ao clicar com o botão direito [LINK](https://github.com/jeedom/core/issues/2863)
 - Melhoria do sistema de lançamento de cenários programados [LINK](https://github.com/jeedom/core/issues/2875)
+- Mensagens de erro de exceção aprimoradas se o nível de log for depurado [LINK](https://github.com/jeedom/core/issues/2886)
 
 >**IMPORTANTE**
 >
