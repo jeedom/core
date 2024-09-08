@@ -7,6 +7,8 @@ Thumbs.db
 .vscode
 ui
 composer.lock
+.env
+.env.local
 
 test.php
 core/config/common.config.php

@@ -93,7 +93,15 @@ try {
 	if (!copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Cannot copy ' . __DIR__ . "/../core/config/common.config.php\n";
 	}
-	
+
+    if (!copy(__DIR__ . '/../.env', '/tmp/.env')) {
+        echo 'Cannot copy ' . dirname(__DIR__) . ".env\n";
+    }
+
+    if (!copy(__DIR__ . '/../.env', '/tmp/.env.local')) {
+        echo 'Cannot copy ' . dirname(__DIR__) . ".env.local\n";
+    }
+
 	echo "OK\n";
 	
 	try {
@@ -111,6 +119,8 @@ try {
 		'.git',
 		'.log',
 		'core/config/common.config.php',
+        '.env',
+        '.env.local',
 		'/vendor',
 		config::byKey('backup::path'),
 	);
@@ -187,7 +197,19 @@ try {
 		copy('/tmp/common.config.php', __DIR__ . '/../core/config/common.config.php');
 		echo "OK\n";
 	}
-	
+
+    if (!file_exists(dirname(__DIR__) . '/.env')) {
+        echo "Restoring .env file...";
+        copy('/tmp/.env', dirname(__DIR__) . '/.env');
+        echo "OK\n";
+    }
+
+    if (!file_exists(dirname(__DIR__) . '/.env.local')) {
+        echo "Restoring .env.local file...";
+        copy('/tmp/.env.local', dirname(__DIR__) . '/.env.local');
+        echo "OK\n";
+    }
+
 	echo "Restoring cache...";
 	try {
 		cache::restore();
