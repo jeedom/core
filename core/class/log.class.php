@@ -38,6 +38,7 @@ class log extends AbstractLogger {
 		'warning' => 300,
 		'error' => 400,
 		'critical' => 500,
+		'alert' => 550,
 		'emergency' => 600
 	);
 
