@@ -19,16 +19,19 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
-class log {
+use Psr\Log\AbstractLogger;
+
+class log extends AbstractLogger {
 	/*     * *************************Constantes****************************** */
 
 	const DEFAULT_MAX_LINE = 200;
 
 	/*     * *************************Attributs****************************** */
 
-	
+	private $_log_name;
+
 	private static $config = null;
- 	private static $level = array(
+	private static $level = array(
 		'debug' => 100,
 		'info'  => 200,
 		'notice' => 250,
@@ -37,6 +40,19 @@ class log {
 		'critical' => 500,
 		'emergency' => 600
 	);
+
+	public function __construct($log_name) {
+		$this->_log_name = $log_name;
+	}
+
+	/*	 * ************Methods to suport Psr\Log\AbstractLogger &  LoggerInterface  ************ */
+	public static function getLogger($_logName) {
+		return new self($_logName);
+	}
+
+	public function log($level, $message, array $context = array()) {
+		log::add($this->_log_name, $level, $message);
+	}
 
 	/*     * ***********************Methode static*************************** */
 
