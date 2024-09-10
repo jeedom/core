@@ -47,7 +47,7 @@ if (!jeeFrontEnd.replace) {
 
       jeeP.filteredEqlogics = new Array()
       jeephp2js.listEqlogics.forEach(function(eqlogic) {
-        if (jeeP.filteredObjects.includes(eqlogic.object_id) && byPlugins.includes(eqlogic.eqType_name)) {
+        if ((jeeP.filteredObjects.includes(eqlogic.object_id) || jeeP.filteredObjects.includes(parseInt(eqlogic.object_id))) && byPlugins.includes(eqlogic.eqType_name)) {
           jeeP.filteredEqlogics.push(eqlogic)
         }
       })
