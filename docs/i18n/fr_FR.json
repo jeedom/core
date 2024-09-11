@@ -838,7 +838,6 @@
         "Correction d'un soucis sur les commandes de type select dans les designs": "Correction d'un soucis sur les commandes de type select dans les designs",
         "Possibilité d'indiquer qu'un équipement n'a pas de batterie (en cas de mauvaise remontée": "Possibilité d'indiquer qu'un équipement n'a pas de batterie (en cas de mauvaise remontée",
         "Refonte de l'écriture dans les logs, suppression de la bibliothèque monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre": "Refonte de l'écriture dans les logs, suppression de la bibliothèque monolog (attention l'option d'envoi des logs dans syslog n'est plus disponible pour le moment, si la demande est forte nous verrons pour la remettre",
-        "Passage de nodejs 18 à nodejs 20": "Passage de nodejs 18 à nodejs 20",
         "Meilleure gestion du niveau de log des sous log des plugins": "Meilleure gestion du niveau de log des sous log des plugins",
         "Suppression du dossier vendor (utilisation de composer de manière normale), permet de réduire la taille du core": "Suppression du dossier vendor (utilisation de composer de manière normale), permet de réduire la taille du core",
         "Les paramètres spécifiques des widgets peuvent maintent être traduits": "Les paramètres spécifiques des widgets peuvent maintent être traduits",

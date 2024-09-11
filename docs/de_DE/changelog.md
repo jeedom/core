@@ -66,7 +66,6 @@
 - Ein Problem mit Befehlen zur Typauswahl in Designs wurde behoben [LINK](https://github.com/jeedom/core/issues/2853)
 - Möglichkeit der Anzeige, dass das Gerät keine Batterie hat (im Falle einer schlechten Wiederherstellung)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Neugestaltung des Schreibens in Protokollen, Entfernung der Monolog-Bibliothek (beachten Sie, dass die Option zum Senden von Protokollen im Syslog derzeit nicht mehr verfügbar ist. Bei hoher Nachfrage werden wir versuchen, sie wieder einzuführen) [LINK](https://github.com/jeedom/core/pull/2805)
-- Wechsel von NodeJS 18 zu NodeJS 20 [LINK](https://github.com/jeedom/core/pull/2846)
 - Bessere Verwaltung der Plugin-Sublog-Protokollebenen [LINK](https://github.com/jeedom/core/issues/2860)
 - Durch das Löschen des Vendor-Ordners (mit Composer auf normale Weise) können Sie die Größe des Kerns reduzieren [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Widgetspezifische Einstellungen können jetzt übersetzt werden [LINK](https://github.com/jeedom/core/pull/2862)
