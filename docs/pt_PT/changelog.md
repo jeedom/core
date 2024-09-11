@@ -73,6 +73,7 @@
 - Corrigido um bug no Mac em designs ao clicar com o botão direito [LINK](https://github.com/jeedom/core/issues/2863)
 - Melhoria do sistema de lançamento de cenários programados [LINK](https://github.com/jeedom/core/issues/2875)
 - Mensagens de erro de exceção aprimoradas se o nível de log for depurado [LINK](https://github.com/jeedom/core/issues/2886)
+- Na página de substituição possibilidade de solicitar a desativação do equipamento [LINK](https://github.com/jeedom/core/issues/2893)
 
 >**IMPORTANTE**
 >

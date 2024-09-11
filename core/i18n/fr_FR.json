@@ -2123,6 +2123,8 @@
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.",
         "Cacher l'équipement source": "Cacher l'équipement source",
         "Rend invisible l'équipement source.": "Rend invisible l'équipement source.",
+        "Désactiver l'équipement source": "Désactiver l'équipement source",
+        "Désactive l'équipement source.": "Désactive l'équipement source.",
         "Copier la configuration de la commande source": "Copier la configuration de la commande source",
         "Copie les propriétés et configurations de la commande source sur la commande cible.": "Copie les propriétés et configurations de la commande source sur la commande cible.",
         "Supprimer l'historique de la commande cible": "Supprimer l'historique de la commande cible",

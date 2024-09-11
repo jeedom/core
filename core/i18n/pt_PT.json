@@ -2123,6 +2123,8 @@
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copia as propriedades do dispositivo de origem (objeto pai, categorias, visibilidade, posicionamento do painel, designs, visualizações etc.) para o dispositivo de destino",
         "Cacher l'équipement source": "Ocultar equipamento de origem",
         "Rend invisible l'équipement source.": "Torna o equipamento de origem invisível",
+        "Désactiver l'équipement source": "Desativar equipamento de origem",
+        "Désactive l'équipement source.": "Desativa o dispositivo de origem",
         "Copier la configuration de la commande source": "Copiar configuração do comando de origem",
         "Copie les propriétés et configurations de la commande source sur la commande cible.": "Copia propriedades e configurações do controle de origem para o controle de destino",
         "Supprimer l'historique de la commande cible": "Excluir histórico de pedidos alvo",

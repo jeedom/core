@@ -73,6 +73,7 @@
 - Ein Fehler auf dem Mac bei Designs beim Rechtsklick wurde behoben [LINK](https://github.com/jeedom/core/issues/2863)
 - Verbesserung des Systems zum Starten programmierter Szenarien [LINK](https://github.com/jeedom/core/issues/2875)
 - Verbesserte Ausnahmefehlermeldungen, wenn die Protokollebene Debug ist [LINK](https://github.com/jeedom/core/issues/2886)
+- Auf der Ersatzseite besteht die Möglichkeit, die Deaktivierung des Geräts zu beantragen [LINK](https://github.com/jeedom/core/issues/2893)
 
 >**WICHTIG**
 >

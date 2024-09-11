@@ -73,6 +73,7 @@
 - Se corrigió un error en Mac en los diseños al hacer clic derecho [ENLACE](https://github.com/jeedom/core/issues/2863)
 - Mejora del sistema de lanzamiento de escenarios programados [ENLACE](https://github.com/jeedom/core/issues/2875)
 - Mensajes de error de excepción mejorados si el nivel de registro es depuración [ENLACE](https://github.com/jeedom/core/issues/2886)
+- En la página de reposición posibilidad de solicitar la desactivación del equipo [ENLACE](https://github.com/jeedom/core/issues/2893)
 
 >**IMPORTANTE**
 >
