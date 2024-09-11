@@ -2,7 +2,7 @@
 
 # 4.4.17
 
-- Passage de nodejs en version 20
+- Passage de nodejs en version 20 [LIEN](https://github.com/jeedom/core/pull/2846)
 
 # 4.4.16
 
