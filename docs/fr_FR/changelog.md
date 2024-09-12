@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.17
+
+- Passage de nodejs en version 20 (Debian 11 et plus) [LIEN](https://github.com/jeedom/core/pull/2846)
+
 # 4.4.16
 
 - Correction d'un bug sur les filtre de la page de remplacement [LIEN](https://github.com/jeedom/core/commit/ab0a197cf7ec99b7ae79db68ae9478afd3ffc6f1)
