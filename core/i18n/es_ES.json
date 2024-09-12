@@ -4867,7 +4867,8 @@
         "couleur d'arrière plan": "Color de fondo",
         "couleur de la pastille": "color del parche",
         "Affiche la valeur textuelle": "Muestra el valor del texto",
-        "Hauteur maximale en pixel": "Altura máxima en píxeles"
+        "Hauteur maximale en pixel": "Altura máxima en píxeles",
+        "Hauteur minimale en pixel": "Altura mínima de píxel"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Duración",

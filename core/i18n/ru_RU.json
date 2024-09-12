@@ -4867,7 +4867,8 @@
         "couleur d'arrière plan": "Couleur d'arrière plan",
         "couleur de la pastille": "couleur de la pastille",
         "Affiche la valeur textuelle": "Affiche la valeur textuelle",
-        "Hauteur maximale en pixel": "Hauteur maximale en pixel"
+        "Hauteur maximale en pixel": "Hauteur maximale en pixel",
+        "Hauteur minimale en pixel": "Hauteur minimale en pixel"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Продолжительность",

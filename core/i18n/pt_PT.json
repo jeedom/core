@@ -4867,7 +4867,8 @@
         "couleur d'arrière plan": "Cor de fundo",
         "couleur de la pastille": "cor da tabela",
         "Affiche la valeur textuelle": "Mostra o valor do texto",
-        "Hauteur maximale en pixel": "Altura máxima em pixel"
+        "Hauteur maximale en pixel": "Altura máxima em pixel",
+        "Hauteur minimale en pixel": "Altura mínima de pixels"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Duração",

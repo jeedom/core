@@ -4867,7 +4867,8 @@
         "couleur d'arrière plan": "Hintergrundfarbe",
         "couleur de la pastille": "Farbe des Pflasters",
         "Affiche la valeur textuelle": "Zeigt den Textwert an",
-        "Hauteur maximale en pixel": "Maximale Höhe in Pixel"
+        "Hauteur maximale en pixel": "Maximale Höhe in Pixel",
+        "Hauteur minimale en pixel": "Minimale Pixelhöhe"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Dauer",
