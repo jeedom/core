@@ -426,14 +426,18 @@ class system {
 				break;
 			case 'composer':
 				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
-				foreach ($datas['installed'] as $value) {
-					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
+				if(is_array($datas['installed']) && count($datas['installed']) > 0){
+					foreach ($datas['installed'] as $value) {
+						self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
+					}
 				}
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
-				foreach ($updates as $update) {
-					self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+				if(is_array($updates) && count($updates) > 0){
+					foreach ($updates as $update) {
+						self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+					}
 				}
 				break;
 		}
