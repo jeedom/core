@@ -416,10 +416,12 @@ class system {
 				break;
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
-				foreach ($datas['dependencies'] as $key => $value) {
-					self::$_installPackage[$type_key][mb_strtolower($key)] = array(
-						'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
-					);
+				if(is_array($datas['dependencies']) && count($datas['dependencies']) > 0)
+					foreach ($datas['dependencies'] as $key => $value) {
+						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
+							'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
+						);
+					}
 				}
 				break;
 			case 'composer':
