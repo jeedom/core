@@ -69,11 +69,14 @@ class log extends AbstractLogger {
 
 	public static function getLogLevel($_log) {
 		$specific_level = self::getConfig('log::level::' . $_log);
-		if (!is_array($specific_level)) {
-			if(strpos($_log,'_') !== false){
-				$_log = explode('_',$_log)[0];
-			}
+		if (!is_array($specific_level) && strpos($_log,'_') !== false) {
+			$explode = explode('_',$_log);
+			$_log = $explode[0];
 			$specific_level = self::getConfig('log::level::' . $_log);
+			if (!is_array($specific_level) && count($explode) > 2){
+				$_log = $explode[0].'_'.$explode[1];
+				$specific_level = self::getConfig('log::level::' . $_log);
+			}
 		}
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
