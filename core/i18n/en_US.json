@@ -2123,6 +2123,8 @@
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Copies the properties of the source device (parent object, categories, visibility, dashboard positioning, designs, views, etc.) to the target device",
         "Cacher l'équipement source": "Hide source equipment",
         "Rend invisible l'équipement source.": "Makes source equipment invisible",
+        "Désactiver l'équipement source": "Disable source equipment",
+        "Désactive l'équipement source.": "Disables the source equipment",
         "Copier la configuration de la commande source": "Copy configuration from source command",
         "Copie les propriétés et configurations de la commande source sur la commande cible.": "Copy properties and configurations from source command to target command",
         "Supprimer l'historique de la commande cible": "Delete target command history",
@@ -4865,7 +4867,8 @@
         "couleur d'arrière plan": "Background color",
         "couleur de la pastille": "color of the patch",
         "Affiche la valeur textuelle": "Shows text value",
-        "Hauteur maximale en pixel": "Maximum height in pixel"
+        "Hauteur maximale en pixel": "Maximum height in pixel",
+        "Hauteur minimale en pixel": "Minimum height in pixels"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Duration",

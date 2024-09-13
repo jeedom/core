@@ -2123,6 +2123,8 @@
         "Copie les propriétés de l’équipement source (objet parent, catégories, visibilité, positionnement dashboard, designs, vues, etc) sur l’équipement cible.": "Kopiert die Eigenschaften des Quellgeräts (übergeordnetes Objekt, Kategorien, Sichtbarkeit, Dashboard-Positionierung, Designs, Ansichten usw.) auf das Zielgerät",
         "Cacher l'équipement source": "Quellgerät ausblenden",
         "Rend invisible l'équipement source.": "Macht Quellengeräte unsichtbar",
+        "Désactiver l'équipement source": "Deaktivieren Sie die Quellausrüstung",
+        "Désactive l'équipement source.": "Deaktiviert das Quellgerät",
         "Copier la configuration de la commande source": "Kopieren Sie die Konfiguration aus dem Quellbefehl",
         "Copie les propriétés et configurations de la commande source sur la commande cible.": "Kopiert Eigenschaften und Konfigurationen aus dem Quellsteuerelement in das Zielsteuerelement",
         "Supprimer l'historique de la commande cible": "Zielauftragshistorie löschen",
@@ -4865,7 +4867,8 @@
         "couleur d'arrière plan": "Hintergrundfarbe",
         "couleur de la pastille": "Farbe des Pflasters",
         "Affiche la valeur textuelle": "Zeigt den Textwert an",
-        "Hauteur maximale en pixel": "Maximale Höhe in Pixel"
+        "Hauteur maximale en pixel": "Maximale Höhe in Pixel",
+        "Hauteur minimale en pixel": "Minimale Pixelhöhe"
     },
     "core\/template\/scenario\/sleep.default.html": {
         "Durée": "Dauer",

@@ -66,13 +66,13 @@
 - Fixed an issue with select type commands in designs [LINK](https://github.com/jeedom/core/issues/2853)
 - Possibility to indicate that a piece of equipment has no battery (in case of poor feedback)) [LINK](https://github.com/jeedom/core/issues/2855)
 - Rework of writing in logs, removal of the monolog library (note that the option to send logs in syslog is no longer available at the moment, if demand is high we will see about putting it back) [LINK](https://github.com/jeedom/core/pull/2805)
-- Upgrading from nodejs 18 to nodejs 20 [LINK](https://github.com/jeedom/core/pull/2846)
 - Better management of plugin sub-log log level [LINK](https://github.com/jeedom/core/issues/2860)
 - Removed vendor folder (using composer normally), reduces core size [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Widget specific settings can now be translated [LINK](https://github.com/jeedom/core/pull/2862)
 - Fixed a bug on mac on designs when right clicking [LINK](https://github.com/jeedom/core/issues/2863)
 - Improved the system for launching programmed scenarios [LINK](https://github.com/jeedom/core/issues/2875)
 - Improved exception error messages if log level is debug [LINK](https://github.com/jeedom/core/issues/2886)
+- On the replacement page, it is possible to request the deactivation of the equipment [LINK](https://github.com/jeedom/core/issues/2893)
 
 >**IMPORTANT**
 >

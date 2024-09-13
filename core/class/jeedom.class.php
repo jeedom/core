@@ -1556,7 +1556,7 @@ class jeedom {
 		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer ou copier}}');
 		}
-		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory'] as $key) {
+		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory','disableEqs'] as $key) {
 			if (!isset($_options[$key])) {
 				$_options[$key] = false;
 			}
@@ -1643,11 +1643,20 @@ class jeedom {
 				$targetEq->save();
 				$return['eqlogics'] += 1;
 			}
-		} elseif ($_options['hideEqs'] == "true") {
+		} 
+		if ($_options['hideEqs'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
 				if (!is_object($sourceEq)) continue;
 				$sourceEq->setIsVisible(0);
+				$sourceEq->save();
+			}
+		}
+		if ($_options['disableEqs'] == "true") {
+			foreach ($_eqlogics as $_sourceId => $_targetId) {
+				$sourceEq = eqLogic::byId($_sourceId);
+				if (!is_object($sourceEq)) continue;
+				$sourceEq->setIsEnable(0);
 				$sourceEq->save();
 			}
 		}

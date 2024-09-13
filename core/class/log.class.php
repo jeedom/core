@@ -68,10 +68,13 @@ class log extends AbstractLogger {
 	}
 
 	public static function getLogLevel($_log) {
-		if(strpos($_log,'_') !== false){
-			$_log = explode('_',$_log)[0];
-		}
 		$specific_level = self::getConfig('log::level::' . $_log);
+		if (!is_array($specific_level) && strpos($_log,'_') !== false) {
+			preg_match('/(.*?)\_[a-zA-Z]*?$/m', $_log, $matches);
+			if(isset($matches[1])){
+				$specific_level = self::getConfig('log::level::' . $matches[1]);
+			}
+		}
 		if (is_array($specific_level)) {
 			if (isset($specific_level['default']) && $specific_level['default'] == 1) {
 				return self::getConfig('log::level');
@@ -120,7 +123,7 @@ class log extends AbstractLogger {
             $action = '<a href="/index.php?v=d&p=log&logfile=' . $_log . '">' . __('Log', __FILE__) . ' ' . $_log . '</a>';
 			if ($level == 400 && self::getConfig('addMessageForErrorLog') == 1) {
 				@message::add($_log, $_message, $action, $_logicalId);
-			} elseif ($level >= 500) {
+			} elseif ($level >= 500 && $_log != 'update') {
 				@message::add($_log, $_message, $action, $_logicalId);
 			}
 		} catch (Exception $e) {

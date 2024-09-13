@@ -95,10 +95,11 @@ if (!jeeFrontEnd.replace) {
 
       document.querySelector('#opt_copyEqProperties').checked = false
       document.querySelector('#opt_hideEqs').checked = false
+      document.querySelector('#opt_disableEqs').checked = false
       document.querySelector('#opt_copyCmdProperties').checked = false
       document.querySelector('#opt_removeHistory').checked = false
       document.querySelector('#opt_copyHistory').checked = false
-
+      
       jeeP.sourcesEqContainer.empty()
     },
     getHumanName: function(_eqLogicId) {
@@ -237,6 +238,7 @@ if (!jeeFrontEnd.replace) {
       var opt_mode = document.getElementById('opt_mode').value
       var opt_copyEqProperties = document.getElementById('opt_copyEqProperties').checked
       var opt_hideEqs = document.getElementById('opt_hideEqs').checked
+      var opt_disableEqs = document.getElementById('opt_disableEqs').checked
       var opt_copyCmdProperties = document.getElementById('opt_copyCmdProperties').checked
       var opt_removeHistory = document.getElementById('opt_removeHistory').checked
       var opt_copyHistory = document.getElementById('opt_copyHistory').checked
@@ -312,6 +314,7 @@ if (!jeeFrontEnd.replace) {
               mode: opt_mode,
               copyEqProperties: opt_copyEqProperties,
               hideEqs: opt_hideEqs,
+              disableEqs: opt_disableEqs,
               copyCmdProperties: opt_copyCmdProperties,
               removeCmdHistory: opt_removeHistory,
               copyCmdHistory: opt_copyHistory
