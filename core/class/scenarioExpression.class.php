@@ -1587,7 +1587,8 @@ class scenarioExpression {
 								$tags = array();
 								$args = arg2array($this->getOptions('tags'));
 								foreach ($args as $key => $value) {
-									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags(trim($value), $scenario), '"');
+									$value = trim($value);
+									$tags['#' . trim(trim($key), '#') . '#'] = trim(self::setTags($value, $scenario), '"');
 								}
 								$actionScenario->setTags($tags);
 							}
