@@ -314,10 +314,10 @@ class listener {
 			$event = array();
 		}
 		if ($_type == 'cmd') {
-			$id = str_replace('#', '', $_id);
+			$_id = str_replace('#', '', $_id);
 		}
-		if (!in_array('#' . $id . '#', $event)) {
-			$event[] = '#' . $id . '#';
+		if (!in_array('#' . $_id . '#', $event)) {
+			$event[] = '#' . $_id . '#';
 		}
 		$this->setEvent($event);
 	}
