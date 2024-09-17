@@ -619,6 +619,15 @@ class plugin {
 		}
 	}
 
+  	public static function isInstalled($_pluginId): bool {
+    		try {
+      			plugin::byId($_pluginId);
+      			return true;
+    		} catch (Exception $e) {
+      			return false;
+    		}
+  	}
+
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function report($_format = 'pdf', $_parameters = array()) {
