@@ -2852,8 +2852,10 @@ class cmd {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$cmds = array_merge(self::searchConfiguration('#' . $this->getId() . '#'), cmd::byValue($this->getId()));
-		foreach ($cmds as $cmd) {
-			$return['cmd'][$cmd->getId()] = $cmd;
+		if(is_array($cmds) && count($cmds) > 0){
+			foreach ($cmds as $cmd) {
+				$return['cmd'][$cmd->getId()] = $cmd;
+			}
 		}
 		$return['eqLogic'] = eqLogic::searchConfiguration('#' . $this->getId() . '#');
 		$return['object'] = jeeObject::searchConfiguration('#' . $this->getId() . '#');
