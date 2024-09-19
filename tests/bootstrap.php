@@ -24,3 +24,11 @@ $user->save();
 ob_end_clean();
 
 require_once dirname(__DIR__) . '/core/php/core.inc.php';
+
+function dd(...$vars)
+{
+    foreach ($vars as $var) {
+        var_dump($var);
+    }
+    die;
+}

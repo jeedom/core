@@ -5,6 +5,7 @@
     <php>
         <env name="APP_ENV" value="test" force="true" />
     </php>
+
     <testsuites>
         <testsuite name="Breaking change tests">
             <directory suffix="Test.php">./tests/BC/</directory>
@@ -16,4 +17,11 @@
             <directory suffix="Test.php">./tests/Legacy</directory>
         </testsuite>
     </testsuites>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">core/class</directory>
+        </include>
+    </coverage>
+
 </phpunit>
