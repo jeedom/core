@@ -15,42 +15,43 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
 use PHPUnit\Framework\TestCase;
 
 class ajaxTest extends TestCase
 {
-	public static function getSuccessResponses(): iterable
-	{
+    public static function getSuccessResponses(): iterable
+    {
         yield [
-            ['foo'=>'bar','bar'=>'baz'],
+            ['foo' => 'bar', 'bar' => 'baz'],
             '{"state":"ok","result":{"foo":"bar","bar":"baz"}}',
         ];
-	}
-	
-	public static function getErrorResponses(): iterable
-	{
-		yield [
-            ['foo'=>'bar','bar'=>'baz'],
+    }
+
+    public static function getErrorResponses(): iterable
+    {
+        yield [
+            ['foo' => 'bar', 'bar' => 'baz'],
             1234,
             '{"state":"error","result":{"foo":"bar","bar":"baz"},"code":1234}',
         ];
-	}
+    }
 
     /**
      * @dataProvider getSuccessResponses
      */
-	public function testSuccess(array $data, string $out): void
-	{
-		$response = ajax::getResponse($data);
-		$this->assertEquals($out, $response);
-	}
+    public function testSuccess(array $data, string $out): void
+    {
+        $response = ajax::getResponse($data);
+        $this->assertEquals($out, $response);
+    }
 
     /**
      * @dataProvider getErrorResponses
      */
-	public function testError(array $data, int $code, string $out): void
-	{
-		$response = ajax::getResponse($data, $code);
-		$this->assertEquals($out, $response);
-	}
+    public function testError(array $data, int $code, string $out): void
+    {
+        $response = ajax::getResponse($data, $code);
+        $this->assertEquals($out, $response);
+    }
 }

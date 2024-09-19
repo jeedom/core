@@ -5,7 +5,15 @@
     <php>
         <env name="APP_ENV" value="test" force="true" />
     </php>
-    <testsuite name="Unit tests">
-        <directory suffix="Test.php">./tests</directory>
-    </testsuite>
+    <testsuites>
+        <testsuite name="Breaking change tests">
+            <directory suffix="Test.php">./tests/BC/</directory>
+        </testsuite>
+        <testsuite name="Unit tests">
+            <directory suffix="Test.php">./tests/Legacy</directory>
+        </testsuite>
+        <testsuite name="Legacy tests">
+            <directory suffix="Test.php">./tests/Legacy</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>

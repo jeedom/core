@@ -174,7 +174,7 @@ class pluginBCTest extends TestCase
     public static function generateMethodsSignatures(): void
     {
         $flag = 0;
-        foreach (glob(dirname(__DIR__) . '/core/class/*.php') as $file) {
+        foreach (glob(dirname(__DIR__, 2) . '/core/class/*.php') as $file) {
             $class = basename($file, '.class.php');
             require_once $file;
 
@@ -205,7 +205,7 @@ class pluginBCTest extends TestCase
 
     private function getFile(string $class): string
     {
-        return dirname(__DIR__) . '/core/class/' . $class . '.class.php';
+        return dirname(__DIR__, 2) . '/core/class/' . $class . '.class.php';
     }
 
     /**
