@@ -1,6 +1,6 @@
 <?php
 $appEnv = $_ENV['APP_ENV'] ?? $_SERVER['APP_ENV'] ?? 'prod';
-$envData = [] + readEnv('.env.' . $appEnv . '.local') + readEnv('.env.' . $appEnv) + readEnv('.env.local') + readEnv('.env');
+$envData = ($_ENV['DATABASE_DSN'] ?? []) + readEnv('.env.' . $appEnv . '.local') + readEnv('.env.' . $appEnv) + readEnv('.env.local') + readEnv('.env');
 
 $databaseDsn = $envData['DATABASE_DSN'] ?? null;
 if (null === $databaseDsn) {

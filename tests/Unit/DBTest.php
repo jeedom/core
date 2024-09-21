@@ -154,6 +154,14 @@ final class DBTest extends TestCase
         $this->assertNull($results[0]->isChanged());
     }
 
+    public function test_bad_database_configuration(): void
+    {
+        $this->thereIsABadDatabaseConfiguration();
+
+        $this->expectExceptionMessageMatches('/failure in name resolution/');
+        $result = \DB::Prepare('SELECT 1 AS test', []);
+    }
+
     private function thereIsATable(string $tableName, string $structure, array $data = []): void
     {
         $connection = \DB::getConnection();
@@ -168,6 +176,14 @@ final class DBTest extends TestCase
     private function contentOfTable(string $table): array
     {
         return \DB::Prepare('SELECT * FROM '. $table, [], \DB::FETCH_TYPE_ALL);
+    }
+
+    private function thereIsABadDatabaseConfiguration(): void
+    {
+        global $CONFIG;
+        $CONFIG['db']['host'] = 'badhost';
+        $reflection = new \ReflectionClass(\DB::class);
+        $reflection->setStaticPropertyValue('connection', null);
     }
 
 }
