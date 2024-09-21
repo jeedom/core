@@ -258,7 +258,7 @@ function displayException($e) {
 		$message .= "<a class=\"pull-right bt_errorShowTrace cursor\" onclick=\"event.stopPropagation(); document.getElementById('pre_errorTrace').toggle()\">Show traces</a>";
 		$message .= '<br/><pre id="pre_errorTrace" style="display : none;">' . print_r($e->getTraceAsString(), true) . '</pre>';
 	}
-	return $message;
+	return str_replace("\n","<br>", $message);
 }
 
 function is_json($_string, $_default = null) {
