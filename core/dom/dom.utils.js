@@ -194,18 +194,18 @@ NodeList.prototype.getJeeValues = function(_attr, _depth) {
 Element.prototype.setJeeValues = function(_object, _attr) {
   let selector
   for (let i in _object) {
-    selector = _attr + '[data-l1key="' + i + '"]'
+    selector = _attr + '[data-l1key="' + i.replaceAll('"', '') + '"]'
     if ((!is_array(_object[i]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) && !is_object(_object[i])) {
-      this.querySelectorAll(_attr + '[data-l1key="' + i + '"]').jeeValue(_object[i])
+      this.querySelectorAll(_attr + '[data-l1key="' + i.replaceAll('"', '') + '"]').jeeValue(_object[i])
     } else {
       for (let j in _object[i]) {
-        selector = _attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]'
+        selector = _attr + '[data-l1key="' + i.replaceAll('"', '') + '"][data-l2key="' + j.replaceAll('"', '') + '"]'
         if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
           for (let k in _object[i][j]) {
-            this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"][data-l3key="' + k + '"]').jeeValue(_object[i][j][k])
+            this.querySelectorAll(_attr + '[data-l1key="' + i.replaceAll('"', '') + '"][data-l2key="' + j.replaceAll('"', '') + '"][data-l3key="' + k.replaceAll('"', '') + '"]').jeeValue(_object[i][j][k])
           }
         } else {
-          this.querySelectorAll(_attr + '[data-l1key="' + i + '"][data-l2key="' + j + '"]').jeeValue(_object[i][j])
+          this.querySelectorAll(_attr + '[data-l1key="' + i.replaceAll('"', '') + '"][data-l2key="' + j.replaceAll('"', '') + '"]').jeeValue(_object[i][j])
         }
       }
     }
