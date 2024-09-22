@@ -75,7 +75,6 @@
 - On the replacement page, it is possible to request the deactivation of the equipment [LINK](https://github.com/jeedom/core/issues/2893)
 - When updating, the backup before now takes into account plugin exclusions [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - If a plugin is in beta but does not have a beta changelog then the update center will link to the stable changelog [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
-- Fixed a bug when restoring Jeedom on MariaDB 10.5 versions.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 and 11.4.2 [LINK](https://github.com/jeedom/core/issues/2911)
 
 >**IMPORTANT**
 >
