@@ -75,6 +75,7 @@
 - Auf der Ersatzseite besteht die Möglichkeit, die Deaktivierung des Geräts zu beantragen [LINK](https://github.com/jeedom/core/issues/2893)
 - Bei einem Update berücksichtigt das Forward-Backup nun Plugin-Ausschlüsse [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Wenn sich ein Plugin in der Beta-Phase befindet, aber kein Beta-Änderungsprotokoll hat, kehrt das Update-Center zum stabilen Änderungsprotokoll zurück [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Ein Fehler beim Wiederherstellen von Jeedom in Versionen von MariaDB 10.5 wurde behoben.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 und 11.4.2 [LINK](https://github.com/jeedom/core/issues/2911)
 
 >**WICHTIG**
 >

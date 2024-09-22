@@ -75,6 +75,7 @@
 - En la página de reposición posibilidad de solicitar la desactivación del equipo [ENLACE](https://github.com/jeedom/core/issues/2893)
 - Durante una actualización, la copia de seguridad directa ahora tiene en cuenta las exclusiones de complementos [ENLACE](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Si un complemento está en versión beta pero no tiene un registro de cambios beta, el centro de actualización volverá al registro de cambios estable [ENLACE](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Se corrigió un error al restaurar Jeedom en las versiones de MariaDB 10.5.25, 10,6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 y 11.4.2 [ENLACE](https://github.com/jeedom/core/issues/2911)
 
 >**IMPORTANTE**
 >

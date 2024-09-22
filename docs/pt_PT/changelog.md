@@ -75,6 +75,7 @@
 - Na página de substituição possibilidade de solicitar a desativação do equipamento [LINK](https://github.com/jeedom/core/issues/2893)
 - Durante uma atualização, o backup direto agora leva em consideração exclusões de plugins [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Se um plugin estiver em beta, mas não tiver um changelog beta, o centro de atualização retornará ao changelog estável [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Corrigido um bug ao restaurar o Jeedom nas versões do MariaDB 10.5.25, 10,6.18, 10.11.8, 11,0.6, 11,1.5, 11,2.4 e 11.4.2 [LINK](https://github.com/jeedom/core/issues/2911)
 
 >**IMPORTANTE**
 >
