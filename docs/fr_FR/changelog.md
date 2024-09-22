@@ -3,6 +3,7 @@
 # 4.4.18
 
 - Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non) [LIEN](https://github.com/jeedom/core/commit/f052a5478c2885d1f6b49439e0f5ac0c19cb1fb7)
+- Correction d'un bug lors de la restoration de Jeedom sur les versions de MariaDB 10.5.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 et 11.4.2 [LIEN](https://github.com/jeedom/core/issues/2911)
 
 # 4.4.17
 

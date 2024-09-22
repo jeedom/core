@@ -170,6 +170,7 @@ try {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
 	}
+	shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
 	if(isset($CONFIG['db']['unix_socket'])) {
 		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
 	} else {
