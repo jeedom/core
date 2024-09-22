@@ -74,6 +74,7 @@
 - Improved exception error messages if log level is debug [LINK](https://github.com/jeedom/core/issues/2886)
 - On the replacement page, it is possible to request the deactivation of the equipment [LINK](https://github.com/jeedom/core/issues/2893)
 - When updating, the backup before now takes into account plugin exclusions [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
+- If a plugin is in beta but does not have a beta changelog then the update center will link to the stable changelog [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
 
 >**IMPORTANT**
 >
