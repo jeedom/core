@@ -2,7 +2,7 @@
 
 # 4.4.18
 
-- Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non)
+- Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non) [LIEN](https://github.com/jeedom/core/commit/f052a5478c2885d1f6b49439e0f5ac0c19cb1fb7)
 
 # 4.4.17
 
