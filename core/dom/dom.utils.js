@@ -202,7 +202,7 @@ Element.prototype.setJeeValues = function(_object, _attr) {
         selector = _attr + '[data-l1key="' + i.replaceAll('"', '') + '"][data-l2key="' + j.replaceAll('"', '') + '"]'
         if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
           for (let k in _object[i][j]) {
-            this.querySelectorAll(_attr + '[data-l1key="' + i.replaceAll('"', '') + '"][data-l2key="' + j.replaceAll('"', '') + '"][data-l3key="' + k.replaceAll('"', '') + '"]').jeeValue(_object[i][j][k])
+            this.querySelectorAll(selector+'[data-l3key="' + k.replaceAll('"', '') + '"]').jeeValue(_object[i][j][k])
           }
         } else {
           this.querySelectorAll(selector).jeeValue(_object[i][j])
