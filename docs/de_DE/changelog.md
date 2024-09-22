@@ -73,6 +73,7 @@
 - Verbesserung des Systems zum Starten programmierter Szenarien [LINK](https://github.com/jeedom/core/issues/2875)
 - Verbesserte Ausnahmefehlermeldungen, wenn die Protokollebene Debug ist [LINK](https://github.com/jeedom/core/issues/2886)
 - Auf der Ersatzseite besteht die Möglichkeit, die Deaktivierung des Geräts zu beantragen [LINK](https://github.com/jeedom/core/issues/2893)
+- Bei einem Update berücksichtigt das Forward-Backup nun Plugin-Ausschlüsse [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 
 >**WICHTIG**
 >
