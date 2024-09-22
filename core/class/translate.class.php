@@ -215,7 +215,3 @@ class translate {
 
 	/*     * *********************Methode d'instance************************* */
 }
-
-function __($_content, $_name, $_backslash = false) {
-	return translate::sentence(str_replace("\'", "'", $_content), $_name, $_backslash);
-}

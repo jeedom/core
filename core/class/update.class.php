@@ -360,6 +360,9 @@ class update {
 						if (file_exists($cibDir)) {
 							rrmdir($cibDir);
 						}
+						// re generate composer autoloader
+						$result = shell_exec(system::getCmdSudo() . ' composer dump-autoload --optimize --working-dir $WEBSERVER_HOME');
+						log::add(__CLASS__, 'debug', "Composer autoloader dump result:\n$result");
 					} else {
 						throw new Exception(__("Impossible de décompresser l'archive zip", __FILE__) . ' : ' . $tmp . ' => ' . ZipErrorMessage($res));
 					}

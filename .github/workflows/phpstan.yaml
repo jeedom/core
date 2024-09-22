@@ -18,7 +18,11 @@ jobs:
           php-version: 7.4
 
       - name: Install Dependencies
-        run: composer update --ignore-platform-reqs
+        run: |
+          # copy common.config.php for composer autoloader
+          cp core/config/common.config.sample.php  core/config/common.config.php 
+          # install composer dependencies
+          composer update --ignore-platform-reqs
 
       - name: Setup PHP 8.2 for PHPStan
         uses: shivammathur/setup-php@v2
