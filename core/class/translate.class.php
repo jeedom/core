@@ -48,7 +48,12 @@ class translate {
 
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
-			self::$config = config::byKeys(array('language'));
+			try {
+				self::$config = config::byKeys(array('language'));
+			} catch (Exception $e) {
+				log::add('jeedom', 'warning', $e->getMessage());
+				self::$config = array();
+			}
 		}
 		if (isset(self::$config[$_key])) {
 			return self::$config[$_key];
@@ -214,8 +219,4 @@ class translate {
 	}
 
 	/*     * *********************Methode d'instance************************* */
-}
-
-function __($_content, $_name, $_backslash = false) {
-	return translate::sentence(str_replace("\'", "'", $_content), $_name, $_backslash);
 }
