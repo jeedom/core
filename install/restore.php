@@ -167,11 +167,8 @@ try {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
 	}
-	if(isset($CONFIG['db']['unix_socket'])) {
-		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
-	} else {
-		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
-	}
+	shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
+	shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
 	echo "OK\n";
 	
 	echo "Enable back constraints...";
