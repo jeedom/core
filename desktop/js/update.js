@@ -268,7 +268,7 @@ if (!jeeFrontEnd.update) {
           if (isset(_update.plugin) && isset(_update.plugin.changelog_beta) && _update.plugin.changelog_beta != '') {
             tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog_beta + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
           } else {
-            tr += '<a class="btn btn-xs disabled"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+            tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
           }
         } else {
           if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
