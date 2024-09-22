@@ -73,6 +73,7 @@
 - Amélioration du systeme de lancement des scénarios programmées [LIEN](https://github.com/jeedom/core/issues/2875)
 - Amélioration des messages d'erreur d'exception si le niveau de log est debug [LIEN](https://github.com/jeedom/core/issues/2886)
 - Sur la page de remplacement possibilité de demander la désactivation de l'équipement [LIEN](https://github.com/jeedom/core/issues/2893)
+- Lors d'une mise à jour la sauvegarde avant prend maintenant en compte les exclusions des plugins [LIEN](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 
 >**IMPORTANT**
 >
