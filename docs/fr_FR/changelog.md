@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.18
+
+- Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non)
+
 # 4.4.17
 
 - Passage de nodejs en version 20 (Debian 11 et plus) [LIEN](https://github.com/jeedom/core/pull/2846)
