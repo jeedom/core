@@ -1189,11 +1189,14 @@ class scenario {
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
-					if(count($schedule) == 6 && $schedule[5] != $c->getPreviousRunDate()->format('Y')){
-						$calculatedDate['prevDate'] = '';
-					}
-					if(count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')){
-						$calculatedDate['nextDate'] = '';
+					$schedule_exp = explode(' ',trim($schedule));
+					if(is_array($schedule_exp) && count($schedule_exp) == 6 ){
+					 	if($schedule_exp[5] != $c->getPreviousRunDate()->format('Y')){
+							$calculatedDate['prevDate'] = '';
+						}
+						if($schedule_exp[5] != $c->getNextRunDate()->format('Y')){
+							$calculatedDate['nextDate'] = '';
+						}
 					}
 				} catch (Exception $exc) {
 				} catch (Error $exc) {
