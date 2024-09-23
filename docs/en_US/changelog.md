@@ -75,6 +75,8 @@
 - On the replacement page, it is possible to request the deactivation of the equipment [LINK](https://github.com/jeedom/core/issues/2893)
 - When updating, the backup before now takes into account plugin exclusions [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - If a plugin is in beta but does not have a beta changelog then the update center will link to the stable changelog [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Added alert if debian version is 10 or lower [LINK](https://github.com/jeedom/core/issues/2912)
+- Fix DB update error on cache table [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 
 >**IMPORTANT**
 >

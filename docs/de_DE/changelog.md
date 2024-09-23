@@ -75,6 +75,8 @@
 - Auf der Ersatzseite besteht die Möglichkeit, die Deaktivierung des Geräts zu beantragen [LINK](https://github.com/jeedom/core/issues/2893)
 - Bei einem Update berücksichtigt das Forward-Backup nun Plugin-Ausschlüsse [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Wenn sich ein Plugin in der Beta-Phase befindet, aber kein Beta-Änderungsprotokoll hat, kehrt das Update-Center zum stabilen Änderungsprotokoll zurück [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Es wurde eine Warnung hinzugefügt, wenn die Debian-Version 10 oder niedriger ist [LINK](https://github.com/jeedom/core/issues/2912)
+- Fehler bei der DB-Aktualisierung in der Cache-Tabelle behoben [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 
 >**WICHTIG**
 >

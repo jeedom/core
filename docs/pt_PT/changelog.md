@@ -75,6 +75,8 @@
 - Na página de substituição possibilidade de solicitar a desativação do equipamento [LINK](https://github.com/jeedom/core/issues/2893)
 - Durante uma atualização, o backup direto agora leva em consideração exclusões de plugins [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Se um plugin estiver em beta, mas não tiver um changelog beta, o centro de atualização retornará ao changelog estável [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Adicionado um alerta se a versão debian for 10 ou inferior [LINK](https://github.com/jeedom/core/issues/2912)
+- Corrigir erro de atualização do banco de dados na tabela de cache [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 
 >**IMPORTANTE**
 >

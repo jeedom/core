@@ -75,6 +75,8 @@
 - En la página de reposición posibilidad de solicitar la desactivación del equipo [ENLACE](https://github.com/jeedom/core/issues/2893)
 - Durante una actualización, la copia de seguridad directa ahora tiene en cuenta las exclusiones de complementos [ENLACE](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Si un complemento está en versión beta pero no tiene un registro de cambios beta, el centro de actualización volverá al registro de cambios estable [ENLACE](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Se agregó una alerta si la versión de Debian es 10 o menos [ENLACE](https://github.com/jeedom/core/issues/2912)
+- Corregir error de actualización de base de datos en la tabla de caché [ENLACE](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 
 >**IMPORTANTE**
 >

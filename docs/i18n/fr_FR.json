@@ -847,6 +847,8 @@
         "Sur la page de remplacement possibilité de demander la désactivation de l'équipement": "Sur la page de remplacement possibilité de demander la désactivation de l'équipement",
         "Lors d'une mise à jour la sauvegarde avant prend maintenant en compte les exclusions des plugins": "Lors d'une mise à jour la sauvegarde avant prend maintenant en compte les exclusions des plugins",
         "Si un plugin est en beta mais n'a pas de changelog beta alors le centre de mise à jour renverra vers le changelog stable": "Si un plugin est en beta mais n'a pas de changelog beta alors le centre de mise à jour renverra vers le changelog stable",
+        "Ajout d'une alerte si la version de debian est 10 ou moins": "Ajout d'une alerte si la version de debian est 10 ou moins",
+        "Correction d'une erreur de mise à jour DB sur la table cache": "Correction d'une erreur de mise à jour DB sur la table cache",
         "IMPORTANT": "IMPORTANT",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
