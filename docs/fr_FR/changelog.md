@@ -75,6 +75,7 @@
 - Sur la page de remplacement possibilité de demander la désactivation de l'équipement [LIEN](https://github.com/jeedom/core/issues/2893)
 - Lors d'une mise à jour la sauvegarde avant prend maintenant en compte les exclusions des plugins [LIEN](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
 - Si un plugin est en beta mais n'a pas de changelog beta alors le centre de mise à jour renverra vers le changelog stable [LIEN](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Ajout d'une alerte si la version de debian est 10 ou moins [LIEN](https://github.com/jeedom/core/issues/2912)
 
 >**IMPORTANT**
 >
