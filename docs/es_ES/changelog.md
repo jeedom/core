@@ -77,6 +77,7 @@
 - Si un complemento está en versión beta pero no tiene un registro de cambios beta, el centro de actualización volverá al registro de cambios estable [ENLACE](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
 - Se agregó una alerta si la versión de Debian es 10 o menos [ENLACE](https://github.com/jeedom/core/issues/2912)
 - Corregir error de actualización de base de datos en la tabla de caché [ENLACE](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
+- Si la página del equipo tiene un elemento img_device (etiqueta de tipo img), entonces el núcleo puede configurar la URL para mostrar la imagen correcta del equipo (usando la de la página de presentación de todos los equipos del complemento)) [ENLACE](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 
 >**IMPORTANTE**
 >
