@@ -1038,9 +1038,9 @@ class scenarioExpression {
 			if ($_date2 < 100) $_date2 = '00' . $_date2;
 			if ($_date2 < 1000) $_date2 = '0' . $_date2;
 		}
-		$d1 = self::setTags($_date1);
+		$d1 = str_replace(array('"','\'',"'"), '', self::setTags($_date1));
+		$d2 = str_replace(array('"','\'',"'"), '', self::setTags($_date2));
 		$date1 = new DateTime($d1);
-		$d2 = self::setTags($_date2);
 		$date2 = new DateTime($d2);
 		$duree = $date2->getTimestamp() - $date1->getTimestamp();
 		$dureeAbs = abs($duree);
