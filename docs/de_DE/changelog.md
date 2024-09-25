@@ -78,6 +78,7 @@
 - Es wurde eine Warnung hinzugefügt, wenn die Debian-Version 10 oder niedriger ist [LINK](https://github.com/jeedom/core/issues/2912)
 - Fehler bei der DB-Aktualisierung in der Cache-Tabelle behoben [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 - Wenn die Geräteseite über ein img_device-Element (img-Typ-Tag) verfügt, kann der Kern selbst die URL konfigurieren, um das richtige Gerätebild anzuzeigen (unter Verwendung des Bildes der Präsentationsseite aller Plugin-Geräte)) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
+- Ein Fehler mit der Funktion time_diff wurde behoben [LINK](https://github.com/jeedom/core/issues/2915)
 
 >**WICHTIG**
 >

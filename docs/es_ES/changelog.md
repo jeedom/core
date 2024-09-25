@@ -78,6 +78,7 @@
 - Se agregó una alerta si la versión de Debian es 10 o menos [ENLACE](https://github.com/jeedom/core/issues/2912)
 - Corregir error de actualización de base de datos en la tabla de caché [ENLACE](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 - Si la página del equipo tiene un elemento img_device (etiqueta de tipo img), entonces el núcleo puede configurar la URL para mostrar la imagen correcta del equipo (usando la de la página de presentación de todos los equipos del complemento)) [ENLACE](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
+- Se corrigió un error con la función time_diff [ENLACE](https://github.com/jeedom/core/issues/2915)
 
 >**IMPORTANTE**
 >
