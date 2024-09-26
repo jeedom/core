@@ -1335,7 +1335,7 @@ jeedomUtils.normTextLower = function(_text) {
 }
 
 jeedomUtils.linkify = function(inputText) {
-  if (!inputText || inputText == '' || inputText === null) {
+  if (!inputText || inputText == '' || inputText === null || typeof inputText !== 'string') {
     return ''
   }
   var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim
