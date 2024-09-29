@@ -122,7 +122,7 @@ class DB {
 	}
 
 	public static function optimize() {
-		$tables = static::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
+		$tables = static::getTablesToOptimize();
 		foreach ($tables as $table) {
 			$table = array_values($table);
 			$table = $table[0];
@@ -130,7 +130,16 @@ class DB {
 		}
 	}
 
-	public static function beginTransaction() {
+    /**
+     * @return array{TABLE_NAME: string}[]
+     */
+    protected static function getTablesToOptimize(): array
+    {
+        return static::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
+    }
+
+
+    public static function beginTransaction() {
 		static::getConnection()->beginTransaction();
 	}
 
@@ -445,7 +454,7 @@ class DB {
 			$object->$method($value);
 		} else {
 			$reflection = static::getReflectionClass($object);
-			if ($reflection->hasProperty($field)) {
+			if (!$reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
 			$property = $reflection->getProperty($field);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Mock;
+namespace Tests\Unit\Mock\ObjectMock;
 
-class DecryptableWithChangedMock extends DecryptableMock
+class ChangableMock extends ObjectMock
 {
     private $changed = null;
 

@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests\Unit\Mock;
+namespace Tests\Unit\Mock\ObjectMock;
 
-class NotDecryptableWithChangedMock
+class DecryptableAndChangableMock extends DecryptableMock
 {
-    public $var;
     private $changed = null;
 
     public function setChanged(bool $changed): void

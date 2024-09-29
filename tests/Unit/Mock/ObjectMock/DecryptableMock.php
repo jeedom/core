@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests\Unit\Mock;
+namespace Tests\Unit\Mock\ObjectMock;
 
-class DecryptableMock
+class DecryptableMock extends ObjectMock
 {
-    public $var;
     private $decrypted = false;
 
     public function decrypt(): void
