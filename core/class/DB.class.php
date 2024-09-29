@@ -470,7 +470,7 @@ class DB {
 			$object->$method($value);
 		} else {
 			$reflection = static::getReflectionClass($object);
-			if ($reflection->hasProperty($field)) {
+			if (!$reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
 			$property = $reflection->getProperty($field);
