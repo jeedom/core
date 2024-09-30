@@ -79,6 +79,7 @@
 - Fix DB update error on cache table [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 - If the equipment page has an img_device element (img type tag) then the core can itself configure the url to display the correct equipment image (using the one from the presentation page of all the plugin's equipment) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Fixed bug with time_diff function [LINK](https://github.com/jeedom/core/issues/2915)
+- Bug fix on composer dependency management [LINK](https://github.com/jeedom/core/issues/2920)
 
 >**IMPORTANT**
 >

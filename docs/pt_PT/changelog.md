@@ -79,6 +79,7 @@
 - Corrigir erro de atualização do banco de dados na tabela de cache [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
 - Se a página do equipamento tiver um elemento img_device (tag tipo img), então o próprio núcleo pode configurar a url para exibir a imagem correta do equipamento (usando a da página de apresentação de todos os equipamentos do plugin) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Corrigido um bug com a função time_diff [LINK](https://github.com/jeedom/core/issues/2915)
+- Correção de bug no gerenciamento de dependências do compositor [LINK](https://github.com/jeedom/core/issues/2920)
 
 >**IMPORTANTE**
 >
