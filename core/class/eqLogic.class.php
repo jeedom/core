@@ -1144,7 +1144,7 @@ class eqLogic {
 			$_pourcent = $this->getStatus('battery',100);
 			$_datetime = $this->getStatus('batteryDatetime',date('Y-m-d H:i:s'));
 		} else {
-			$currentpourcent = $this->getStatus('battery');
+			$currentpourcent = $this->getStatus('battery',100);
 		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
