@@ -1140,9 +1140,9 @@ class eqLogic {
 			return;
 		}
 		$currentpourcent = null;
-		if ($_pourcent === '') {
-			$_pourcent = $this->getStatus('battery');
-			$_datetime = $this->getStatus('batteryDatetime');
+		if ($_pourcent === '' || !is_numeric($_pourcent)) {
+			$_pourcent = $this->getStatus('battery',100);
+			$_datetime = $this->getStatus('batteryDatetime',date('Y-m-d H:i:s'));
 		} else {
 			$currentpourcent = $this->getStatus('battery');
 		}
