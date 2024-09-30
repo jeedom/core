@@ -2275,9 +2275,12 @@ div.eqLogic-widget.editingMode .panelLink {
     min-width: 20% !important;
     text-align: center !important;
     cursor: pointer !important;
+    vertical-align: middle;
+    display: inline-flex;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label i {
     margin-right: 5px;
+    margin-top: -1.5px;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:first-child {
     margin-top: 8px !important;
