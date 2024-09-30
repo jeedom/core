@@ -510,7 +510,7 @@ class system {
 				if ($type == 'composer' && strpos($package, '/') !== false) {
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
-						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l');
+						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l');
 						if ($output == 0) {
 							$found = 1;
 						}
@@ -854,12 +854,12 @@ class system {
 				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 		}
 	}
 
