@@ -1798,7 +1798,7 @@ class jeedom {
 			$result = 'Atlas';
 		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
-		} else if (strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
+		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
 			$result = 'docker';
 		}
 		config::save('hardware_name', $result);

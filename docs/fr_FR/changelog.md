@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.4
 
+# 4.4.18
+
+- Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non) [LIEN](https://github.com/jeedom/core/commit/f052a5478c2885d1f6b49439e0f5ac0c19cb1fb7)
+- Correction d'un bug lors de la restoration de Jeedom sur les versions de MariaDB 10.5.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 et 11.4.2 [LIEN](https://github.com/jeedom/core/issues/2911)
+- Correction d'un bug qui pouvait conduire à avoir des barre de défilement sur certain widgets [LIEN](https://github.com/jeedom/core/commit/1db88f402d9cffccddb10360c30c4231bfd15304)
+- Amélioration de l'interface [LIEN](https://github.com/jeedom/core/pull/2919) [LIEN](https://github.com/jeedom/core/pull/2918)
+
 # 4.4.17
 
 - Passage de nodejs en version 20 (Debian 11 et plus) [LIEN](https://github.com/jeedom/core/pull/2846)
