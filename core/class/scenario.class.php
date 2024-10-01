@@ -45,7 +45,7 @@ class scenario {
 	private $_realTriggerValue = '';
 	/** @var bool */
 	private $_return = true;
-	private $_tags = array();
+	private $_tags = array('trigger' => '','trigger_name' => '','trigger_id' => '','trigger_message' => '','trigger_value' => '');
 	private $_do = true;
 	private $_changed = false;
 
@@ -383,8 +383,6 @@ class scenario {
 								$scenario->addTag('trigger',get_class($_event));
 							}else{
 								$scenario->addTag('trigger',trim($_event,'#'));
-								$scenario->addTag('trigger_name','');
-								$scenario->addTag('trigger_id','');
 							}
 							$scenario->launch($_forceSyncMode);
 						}
@@ -425,8 +423,6 @@ class scenario {
 					$scenario_->addTag('trigger',get_class($_event));
 				}else{
 					$scenario_->addTag('trigger',$_event);
-					$scenario_->addTag('trigger_name','');
-					$scenario_->addTag('trigger_id','');
 				}
 				if (is_array($_options) && count($_options) > 0) {
 					foreach ($_options as $key => $value) {
