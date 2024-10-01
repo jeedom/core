@@ -13,7 +13,7 @@
 - Tags de cenário agora são específicas para a instância do cenário (se você tiver dois lançamentos de cenário muito próximos, as tags do último não sobrescreverão mais as do primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
 - Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais. Se você tiver ``triggerId() == 587`` deve ser substituído por ``#trigger_id# == 587``
-  - ``trigger()`` agora está obsoleto e será removido em futuras atualizações principais. Se você tiver ``trigger(#[cuisine][lumiere][etat]#) == 1`` deve ser substituído por ``'#trigger_name#' == '[cuisine][lumiere][etat]'``
+  - ``trigger()`` agora está obsoleto e será removido em futuras atualizações principais. Se você tiver ``trigger(#[cuisine][lumiere][etat]#) == 1`` deve ser substituído por ``#trigger_name# == '[cuisine][lumiere][etat]'``
   - ``triggerValue()`` agora está obsoleto e será removido em futuras atualizações principais. Se você tiver ``triggerValue() == 10`` deve ser substituído por ``#trigger_value# == 10``
   - ``#trigger#`` : Talvez :
     - ``api`` se o lançamento foi acionado pela API,

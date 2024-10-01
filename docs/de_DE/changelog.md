@@ -13,7 +13,7 @@
 - Szenario-Tags sind jetzt spezifisch für die Szenarioinstanz (wenn Sie zwei sehr nahe beieinander liegende Szenariostarts haben, überschreiben die Tags des letzten Szenarios nicht mehr das erste)) [LINK](https://github.com/jeedom/core/issues/2763)
 - Wechseln Sie zum Auslöserteil der Szenarien : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt. Wenn ja ``triggerId() == 587`` es muss durch ersetzt werden ``#trigger_id# == 587``
-  - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt. Wenn ja ``trigger(#[cuisine][lumiere][etat]#) == 1`` es muss durch ersetzt werden ``'#trigger_name#' == '[cuisine][lumiere][etat]'``
+  - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt. Wenn ja ``trigger(#[cuisine][lumiere][etat]#) == 1`` es muss durch ersetzt werden ``#trigger_name# == '[cuisine][lumiere][etat]'``
   - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt. Wenn ja ``triggerValue() == 10`` es muss durch ersetzt werden ``#trigger_value# == 10``
   - ``#trigger#`` : Vielleicht :
     - ``api`` wenn der Start durch die API ausgelöst wurde,

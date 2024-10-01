@@ -294,7 +294,7 @@ A tag is replaced during the execution of the scenario by its value. You can use
   - ``user`` if it was started manually,
   - ``start`` for a launch at startup of Jeedom.
 - ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it. Example : ``#trigger_id# == 19``
-- ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command]). Example : ``'#trigger_name#' == '[cuisine][lumiere][etat]'``
+- ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command]). Example : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario. Tip if you want the current value of the command which triggered the scenario (and not its value at triggering) you can use : ``##trigger_id##`` (double #)
 - ``#latitude#`` : Allows you to retrieve the latitude information put in the jeedom configuration
 - ``#longitude#`` : Allows you to retrieve the longitude information put in the jeedom configuration
