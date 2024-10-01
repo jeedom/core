@@ -45,7 +45,7 @@ class scenario {
 	private $_realTriggerValue = '';
 	/** @var bool */
 	private $_return = true;
-	private $_tags = array('trigger' => '','trigger_name' => '','trigger_id' => '','trigger_message' => '','trigger_value' => '');
+	private $_tags = array('#trigger#' => '','#trigger_name#' => '','#trigger_id#' => '','#trigger_message#' => '','#trigger_value#' => '');
 	private $_do = true;
 	private $_changed = false;
 
