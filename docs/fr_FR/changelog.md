@@ -12,8 +12,8 @@
 - **DEV** Mise en place d'un système de queue pour l'exécution d'actions [LIEN](https://github.com/jeedom/core/issues/2489)
 - Les tags des scénarios sont maintenant propres à l'instance du scénario (si vous avez deux lancements de scénarios très proches, les tags du dernier n'écrasent plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
 - Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
-  - ``triggerId()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core
-  - ``trigger()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core
+  - ``triggerId()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core.
+  - ``trigger()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``trigger(#[cuisine][lumiere][etat]#) == 1`` il faut le remplacer par ``'#trigger_name#' == '[cuisine][lumiere][etat]'``
   - ``triggerValue()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core
   - ``#trigger#`` : Peut être :
     - ``api`` si le lancement a été déclenché par l'API,
