@@ -103,7 +103,7 @@ if (!jeeFrontEnd.editor) {
       return options
     },
     setCommandCustom: function(options) {
-      document.getElementById('bt_getHelpPage').setAttribute('data-page', 'custom')
+      document.getElementById('bt_getHelpPage')?.setAttribute('data-page', 'custom')
       //new custom command in elfinder:
       elFinder.prototype._options.commands.push('jee_onoffcustom')
       options.uiOptions.toolbar.push(['jee_onoffcustom'])
