@@ -82,7 +82,7 @@ Mobile WebApp
     z-index: 1;
   }
   div.eqlogicbackgraph.fixedbackgraph {
-    position: relative;
+    position: absolute;
     margin-bottom: -50px;
     bottom: 50px;
   }
