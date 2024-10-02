@@ -293,8 +293,8 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
   - ``schedule`` s'il a été lancé par une programmation,
   - ``user`` s'il a été lancé manuellement,
   - ``start`` pour un lancement au démarrage de Jeedom.
-- ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché.
-- ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande])
+- ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché. Exemple : ``#trigger_id# == 19``
+- ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande]). Exemple : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario. Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser : ``##trigger_id##`` (double #)
 - ``#latitude#`` : Permet de récuperer l'information de latitude mise dans la configuration de jeedom
 - ``#longitude#`` : Permet de récuperer l'information de longitude mise dans la configuration de jeedom

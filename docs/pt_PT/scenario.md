@@ -293,8 +293,8 @@ Uma tag é substituída durante a execução do cenário por seu valor. Você po
   - ``schedule`` se foi iniciado por programação,
   - ``user`` se foi iniciado manualmente,
   - ``start`` para um lançamento na inicialização do Jeedom.
-- ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou.
-- ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
+- ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou. Exemplo : ``#trigger_id# == 19``
+- ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando]). Exemplo : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário. Dica se você quiser o valor atual do comando que disparou o cenário (e não seu valor no disparo), você pode usar : ``##trigger_id##`` (dobro #)
 - ``#latitude#`` : Permite recuperar as informações de latitude colocadas na configuração do jeedom
 - ``#longitude#`` : Permite recuperar as informações de longitude colocadas na configuração do jeedom
