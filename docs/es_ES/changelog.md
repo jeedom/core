@@ -13,7 +13,6 @@
 - Las etiquetas de escenario ahora son específicas de la instancia del escenario (si tiene dos lanzamientos de escenario muy cercanos, las etiquetas del último ya no sobrescriben la primera)) [ENLACE](https://github.com/jeedom/core/issues/2763)
 - Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales. Si tienes ``triggerId() == 587`` debe ser reemplazado por ``#trigger_id# == 587``
-  - ``trigger()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales. Si tienes ``trigger(#[cuisine][lumiere][etat]#) == 1`` debe ser reemplazado por ``#trigger_name# == '[cuisine][lumiere][etat]'``
   - ``triggerValue()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales. Si tienes ``triggerValue() == 10`` debe ser reemplazado por ``#trigger_value# == 10``
   - ``#trigger#`` : Puede ser :
     - ``api`` si el lanzamiento fue activado por la API,

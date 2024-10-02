@@ -13,7 +13,6 @@
 - Scenario tags are now specific to the scenario instance (if you have two scenario launches very close together, the tags of the last one no longer overwrite the first one)) [LINK](https://github.com/jeedom/core/issues/2763)
 - Change to the trigger part of the scenarios : [LINK](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` is now deprecated and will be removed in future core updates. If you have ``triggerId() == 587`` it must be replaced by ``#trigger_id# == 587``
-  - ``trigger()`` is now deprecated and will be removed in future core updates. If you have ``trigger(#[cuisine][lumiere][etat]#) == 1`` it must be replaced by ``#trigger_name# == '[cuisine][lumiere][etat]'``
   - ``triggerValue()`` is now deprecated and will be removed in future core updates. If you have ``triggerValue() == 10`` it must be replaced by ``#trigger_value# == 10``
   - ``#trigger#`` : Maybe :
     - ``api`` if the launch was triggered by the API,
