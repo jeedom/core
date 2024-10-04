@@ -16,7 +16,7 @@ class DBTestable extends \DB
         return $res;
     }
 
-    public static function getOptimizationQueries()
+    public static function getOptimizationQueries(): array
     {
         $result = array_filter(self::$queries, static function ($query) {
             return strpos($query[0], 'OPTIMIZE TABLE') === 0;

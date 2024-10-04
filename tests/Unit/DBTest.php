@@ -4,11 +4,12 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Mock\DBTestable;
-use Tests\Unit\Mock\ObjectMock\DecryptableAndChangableMock;
-use Tests\Unit\Mock\ObjectMock\DecryptableMock;
+use Tests\Unit\Mock\ObjectMock\ObjectWithDecryptAndChange;
+use Tests\Unit\Mock\ObjectMock\ObjectWithDecrypt;
 use Tests\Unit\Mock\ObjectMock\DecryptableWithChangedMock;
 use Tests\Unit\Mock\ObjectMock\ChangableMock;
 use Tests\Unit\Mock\ObjectMock\ObjectMock;
+use Tests\Unit\Mock\ObjectMock\ObjectWithEncrypt;
 use Tests\Unit\Mock\ObjectMock\ObjectWithIdField;
 use Tests\Unit\Mock\ObjectMock\ObjectWithPreInsert;
 use Tests\Unit\Mock\ObjectMock\ObjectWithPreSave;
@@ -124,41 +125,43 @@ final class DBTest extends TestCase
 
     public function test_fetch_all_class_decrypt(): void
     {
-        $results = \DB::Prepare('SELECT 1 AS var', [], \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, DecryptableMock::class);
+        $results = \DB::Prepare('SELECT 1 AS var', [], \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, ObjectWithDecrypt::class);
 
-        $this->assertInstanceOf(DecryptableMock::class, $results[0]);
+        $this->assertInstanceOf(ObjectWithDecrypt::class, $results[0]);
         $this->assertSame('1', $results[0]->var);
-        $this->assertTrue($results[0]->isDecrypted());
+        $this->assertTrue($results[0]->isMethodCalled('decrypt'));
     }
 
     public function test_fetch_all_class_decrypt_changed(): void
     {
-        $results = \DB::Prepare('SELECT 1 AS var', [], \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, DecryptableAndChangableMock::class);
+        $results = \DB::Prepare('SELECT 1 AS publicVar', [], \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, ObjectWithDecryptAndChange::class);
 
-        $this->assertInstanceOf(DecryptableAndChangableMock::class, $results[0]);
+        $this->assertInstanceOf(ObjectWithDecryptAndChange::class, $results[0]);
+        $this->assertTrue($results[0]->isMethodCalled('setChanged'));
         $this->assertFalse($results[0]->isChanged());
     }
 
     public function test_fetch_class_decrypt(): void
     {
-        $results = \DB::Prepare('SELECT 1 AS publicVar', [], \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, DecryptableMock::class);
+        $results = \DB::Prepare('SELECT 1 AS publicVar', [], \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, ObjectWithDecrypt::class);
 
-        $this->assertInstanceOf(DecryptableMock::class, $results);
+        $this->assertInstanceOf(ObjectWithDecrypt::class, $results);
         $this->assertSame('1', $results->publicVar);
-        $this->assertTrue($results->isDecrypted());
+        $this->assertTrue($results->isMethodCalled('decrypt'));
     }
 
     public function test_fetch_class_decrypt_changed(): void
     {
-        $results = \DB::Prepare('SELECT 1 AS var', [], \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, DecryptableAndChangableMock::class);
+        $results = \DB::Prepare('SELECT 1 AS publicVar', [], \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, ObjectWithDecryptAndChange::class);
 
-        $this->assertInstanceOf(DecryptableAndChangableMock::class, $results);
+        $this->assertInstanceOf(ObjectWithDecryptAndChange::class, $results);
+        $this->assertTrue($results->isMethodCalled('setChanged'));
         $this->assertFalse($results->isChanged());
     }
 
     public function test_fetch_class_no_decrypt_do_not_set_changed(): void
     {
-        $results = \DB::Prepare('SELECT 1 AS var', [], \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, ChangableMock::class);
+        $results = \DB::Prepare('SELECT 1 AS publicVar', [], \DB::FETCH_TYPE_ROW, \PDO::FETCH_CLASS, ChangableMock::class);
 
         $this->assertInstanceOf(ChangableMock::class, $results);
         $this->assertNull($results->isChanged());
@@ -166,7 +169,7 @@ final class DBTest extends TestCase
 
     public function test_fetch_all_class_no_decrypt_do_not_set_changed(): void
     {
-        $results = \DB::Prepare('SELECT 1 AS var', [], \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, ChangableMock::class);
+        $results = \DB::Prepare('SELECT 1 AS publicVar', [], \DB::FETCH_TYPE_ALL, \PDO::FETCH_CLASS, ChangableMock::class);
 
         $this->assertInstanceOf(ChangableMock::class, $results[0]);
         $this->assertNull($results[0]->isChanged());
@@ -210,7 +213,7 @@ final class DBTest extends TestCase
 
     public function test_save_data(): void
     {
-        $object = new ObjectMock();
+        $object = $this->thereIsAnObject();
         $this->thereIsATableForObject($object);
 
         \DB::save($object);
@@ -219,29 +222,50 @@ final class DBTest extends TestCase
 
     }
 
-    public function test_call_presave_hook(): void
+    public static function hookProvider(): iterable
     {
-        $object = new ObjectWithPreSave();
+        yield from self::hookCalledWithDirectFlagProvider();
+        yield from self::hookSkippedWithDirectFlagProvider();
+    }
+
+    /**
+     * @dataProvider hookProvider
+     */
+    public function test_save_call_hooks(string $hook): void
+    {
+        $object = $this->thereIsAnObject()->withMethod($hook);
         $this->thereIsATableForObject($object);
 
         \DB::save($object);
 
-        $this->assertTrue($object->isPreSaveCalled());
+        $this->assertTrue($object->isMethodCalled($hook));
+
     }
 
-    public function test_skip_presave_hook_with_direct_flag(): void
+    public static function hookSkippedWithDirectFlagProvider(): iterable
     {
-        $object = new ObjectWithPreSave();
+        yield ['preSave'];
+        yield ['preInsert'];
+        yield ['postInsert'];
+        yield ['postSave'];
+    }
+
+    /**
+     * @dataProvider hookSkippedWithDirectFlagProvider
+     */
+    public function test_save_skip_hook_with_direct_flag(string $hook): void
+    {
+        $object = $this->thereIsAnObject()->withMethod($hook);
         $this->thereIsATableForObject($object);
 
         \DB::save($object, true);
 
-        $this->assertFalse($object->isPreSaveCalled());
+        $this->assertFalse($object->isMethodCalled($hook));
     }
 
     public function test_save_set_private_id(): void
     {
-        $object = new ObjectWithIdField();
+        $object = $this->thereIsAnObject()->withField('id');
         $this->thereIsATableForObject($object);
 
         \DB::save($object);
@@ -249,26 +273,45 @@ final class DBTest extends TestCase
         $this->assertTrue($object->isIdSet());
     }
 
-    public function test_call_preinsert_hook(): void
+    /**
+     * @dataProvider hookProvider
+     */
+    public function test_save_skip_call_hook_on_object_without_method(string $hook): void
     {
-        $object = new ObjectWithPreInsert();
+        $object = $this->thereIsAnObject()->withoutMethod($hook);
         $this->thereIsATableForObject($object);
 
         \DB::save($object);
 
-        $this->assertTrue($object->isPreInsertCalled());
+        $this->assertFalse($object->isMethodCalled($hook));
     }
 
-    public function test_skip_preinsert_hook_with_direct_flag(): void
+    public static function hookCalledWithDirectFlagProvider(): iterable
     {
-        $object = new ObjectWithPreInsert();
+        yield ['encrypt'];
+        yield ['decrypt'];
+    }
+
+    /**
+     * @dataProvider hookCalledWithDirectFlagProvider
+     */
+    public function test_save_call_encrypt_hook_with_direct_flag(string $hook): void
+    {
+        $object = $this->thereIsAnObject()->withMethod($hook);
         $this->thereIsATableForObject($object);
 
         \DB::save($object, true);
 
-        $this->assertFalse($object->isPreInsertCalled());
+        $this->assertTrue($object->isMethodCalled($hook));
     }
 
+    /**
+     * @return ObjectMock
+     */
+    private function thereIsAnObject(): ObjectMock
+    {
+        return new ObjectMock();
+    }
 
     /**
      * @before
@@ -348,11 +391,11 @@ final class DBTest extends TestCase
         $reflection->setStaticPropertyValue('connection', null);
     }
 
-    private function expectPhpError(string $message): void
+    private function expectPhpError(string $message, int $errorType = E_USER_ERROR): void
     {
         $this->rollback();
-        $this->originalErrorHandler = set_error_handler(function (int $errno, string $errstr) use ($message): void {
-            $this->assertSame(E_USER_ERROR, $errno);
+        $this->originalErrorHandler = set_error_handler(function (int $errno, string $errstr) use ($message, $errorType): void {
+            $this->assertSame($errorType, $errno);
             $this->assertEquals($message, $errstr);
         });
     }

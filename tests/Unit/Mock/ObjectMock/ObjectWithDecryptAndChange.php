@@ -2,12 +2,13 @@
 
 namespace Tests\Unit\Mock\ObjectMock;
 
-class DecryptableAndChangableMock extends DecryptableMock
+class ObjectWithDecryptAndChange extends ObjectWithDecrypt
 {
     private $changed = null;
 
     public function setChanged(bool $changed): void
     {
+        $this->methodsCalled[] = 'setChanged';
         $this->changed = $changed;
     }
 
