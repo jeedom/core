@@ -8,6 +8,7 @@ class ChangableMock extends ObjectMock
 
     public function setChanged(bool $changed): void
     {
+        $this->methodsCalled[] = 'setChanged';
         $this->changed = $changed;
     }
 

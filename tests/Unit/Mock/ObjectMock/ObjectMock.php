@@ -21,27 +21,31 @@ class ObjectMock
         return 'id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, publicVar VARCHAR(255)';
     }
 
-    public function withMethod(string $method): self
+    public function changeable(): ChangableMock
     {
-        switch ($method) {
-            case 'setId':
-                return new ObjectWithSetId();
-            case 'preSave':
-                return new ObjectWithPreSave();
-            case 'preInsert':
-                return new ObjectWithPreInsert();
-            case 'postInsert':
-                return new ObjectWithPostInsert();
-            case 'encrypt':
-                return new ObjectWithEncrypt();
-            case 'decrypt':
-                return new ObjectWithDecrypt();
-            case 'postSave':
-                return new ObjectWithPostSave();
+        return new ChangableMock();
+    }
 
+    public function withHook(string $hook): self
+    {
+        $parentClassName = static::class;
+        $newClassName = str_replace('\\', '_', $parentClassName).'__'.$hook;
+        $code = <<<PHP
+        if (class_exists('{$newClassName}')) {
+            return;
         }
+        
+        class {$newClassName} extends {$parentClassName} 
+        {
+            public function {$hook}(): void
+            {
+                \$this->methodsCalled[] = '{$hook}';
+            }
+        };
+        PHP;
+        eval($code);
 
-        throw new \Exception('Unknown method ' . $method);
+        return new $newClassName();
     }
 
     public function __call(string $method, array $arguments)
@@ -66,5 +70,15 @@ class ObjectMock
     public function withoutMethod(string $method): self
     {
         return $this;
+    }
+
+    public function withUniqueField(): self
+    {
+        return new ObjectWithUniqueField();
+    }
+
+    public function className(): string
+    {
+        return static::class;
     }
 }
