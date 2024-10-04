@@ -4,11 +4,15 @@
     "symfony/expression-language": "5 - 7",
     "pragmarx/google2fa-qrcode": "^3",
     "bacon/bacon-qr-code": "2 - 3",
-    "psr/log": "^1.1"
+    "psr/log": "^1.1",
+    "php": ">=7.4"
   },
   "config": {
     "allow-plugins": {
       "php-http/discovery": true
+    },
+    "platform": {
+      "php": "7.4"
     }
   }
 }

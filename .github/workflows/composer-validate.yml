@@ -1,0 +1,30 @@
+name: Validate Composer dependencies
+# this workflows check composer dependency installation
+# using the commited composer.lock
+# validate on php7.4 and 8.2
+
+on:
+    pull_request:
+      branches:
+        - alpha
+  
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    # define every php version to test
+    strategy:
+      # do not stop at first fail
+      fail-fast: false
+      matrix:
+        php: [7.4, 8.2]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Validate dependencies php${{ matrix.php }}
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php }}
+          command: validate
+          args: --no-check-publish
