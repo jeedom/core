@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Mock\DBTestable;
-use Tests\Unit\Mock\ObjectMock\ObjectMock;
+use Tests\Unit\Mock\ObjectMock\ObjectMockBuilder;
 
 final class DBTest extends TestCase
 {
@@ -206,8 +206,7 @@ final class DBTest extends TestCase
 
     public function test_save_data(): void
     {
-        $object = $this->thereIsAnObject();
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->object();
 
         \DB::save($object);
 
@@ -225,8 +224,7 @@ final class DBTest extends TestCase
      */
     public function test_save_call_hooks(string $hook): void
     {
-        $object = $this->thereIsAnObject()->withHook($hook);
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->withHook($hook)->object();
 
         \DB::save($object);
 
@@ -246,8 +244,7 @@ final class DBTest extends TestCase
      */
     public function test_save_skip_hook_with_direct_flag(string $hook): void
     {
-        $object = $this->thereIsAnObject()->withHook($hook);
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->withHook($hook)->object();
 
         \DB::save($object, true);
 
@@ -256,8 +253,7 @@ final class DBTest extends TestCase
 
     public function test_save_set_private_id(): void
     {
-        $object = $this->thereIsAnObject()->withField('id');
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->withField('id')->object();
 
         \DB::save($object);
 
@@ -269,8 +265,7 @@ final class DBTest extends TestCase
      */
     public function test_save_skip_call_hook_on_object_without_method(string $hook): void
     {
-        $object = $this->thereIsAnObject()->withoutMethod($hook);
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->withoutMethod($hook)->object();
 
         \DB::save($object);
 
@@ -286,10 +281,9 @@ final class DBTest extends TestCase
     /**
      * @dataProvider hookCalledWithDirectFlagProvider
      */
-    public function test_save_call_hook_with_direct_flag(string $hook): void
+    public function test_save_insert_call_hook_with_direct_flag(string $hook): void
     {
-        $object = $this->thereIsAnObject()->withHook($hook);
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->withHook($hook)->object();
 
         \DB::save($object, true);
 
@@ -298,9 +292,7 @@ final class DBTest extends TestCase
 
     public function test_insert_with_duplicate_unique_field_fail(): void
     {
-        $object = $this->thereIsAnObject()->withUniqueField();
-        $this->thereIsAnEmptyTableForObject($object);
-        \DB::save($object);
+        $object = $this->thereIsAnObject()->withUniqueField()->persisted()->object();
 
         $this->expectException(\Exception::class);
         \DB::save($object);
@@ -308,9 +300,7 @@ final class DBTest extends TestCase
 
     public function test_replace_with_duplicate_unique_field(): void
     {
-        $object = $this->thereIsAnObject()->withUniqueField();
-        $this->thereIsAnEmptyTableForObject($object);
-        \DB::save($object);
+        $object = $this->thereIsAnObject()->withUniqueField()->persisted()->object();
 
         \DB::save($object, false, true);
 
@@ -321,8 +311,8 @@ final class DBTest extends TestCase
     {
         $object = $this->thereIsAnObject()
             ->withHooks('preSave', 'postSave', 'preInsert', 'postInsert', 'preUpdate', 'postUpdate', 'encrypt', 'decrypt')
+            ->object()
         ;
-        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object);
 
@@ -340,8 +330,8 @@ final class DBTest extends TestCase
     {
         $object = $this->thereIsAnObject()
             ->withHooks('preSave', 'postSave', 'preInsert', 'postInsert', 'preUpdate', 'postUpdate', 'encrypt', 'decrypt')
+            ->object()
         ;
-        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object, true);
 
@@ -353,8 +343,7 @@ final class DBTest extends TestCase
 
     public function test_save_object_identifiable(): void
     {
-        $object = $this->thereIsAnObject()->identifiable();
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->identifiable()->object();
 
         \DB::save($object);
 
@@ -363,8 +352,7 @@ final class DBTest extends TestCase
 
     public function test_save_unknown_object_identified_do_nothing(): void
     {
-        $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt());
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt())->object();
 
         \DB::save($object);
 
@@ -373,8 +361,7 @@ final class DBTest extends TestCase
 
     public function test_save_unknown_object_identified_with_replace_flag_insert_new_row(): void
     {
-        $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt());
-        $this->thereIsAnEmptyTableForObject($object);
+        $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt())->object();
 
         $this->expectPhpError('');
         \DB::save($object, false, true);
@@ -384,11 +371,9 @@ final class DBTest extends TestCase
 
     public function test_save_object_identified_update_row(): void
     {
-        $object = $this->thereIsAnObject()->identifiable();
-        $this->thereIsAnEmptyTableForObject($object);
-        \DB::save($object);
-        $object->publicVar = 'update';
+        $object = $this->thereIsAnObject()->identifiable()->persisted()->object();
 
+        $object->publicVar = 'update';
         \DB::save($object);
 
         $contentOfTable = $this->contentOfTable($object->getTableName());
@@ -397,11 +382,11 @@ final class DBTest extends TestCase
     }
 
     /**
-     * @return ObjectMock
+     * @return ObjectMockBuilder
      */
-    private function thereIsAnObject(): ObjectMock
+    private function thereIsAnObject(): ObjectMockBuilder
     {
-        return new ObjectMock();
+         return new ObjectMockBuilder();
     }
 
     /**
@@ -486,11 +471,6 @@ final class DBTest extends TestCase
             $this->assertSame($errorType, $errno, $errstr);
             $this->assertEquals($message, $errstr);
         });
-    }
-
-    private function thereIsAnEmptyTableForObject(ObjectMock $object): void
-    {
-        $this->thereIsATable($object->getTableName(), $object->getTableStructure());
     }
 
     private function randomPositiveInt(): int
