@@ -8,11 +8,6 @@ use Tests\Unit\Mock\ObjectMock\ObjectMock;
 
 final class DBTest extends TestCase
 {
-    /**
-     * @var callable|null
-     */
-    private $originalErrorHandler = null;
-
     private $inTransaction = false;
 
     /**
@@ -212,12 +207,11 @@ final class DBTest extends TestCase
     public function test_save_data(): void
     {
         $object = $this->thereIsAnObject();
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object);
 
         $this->assertCount(1, $this->contentOfTable($object->getTableName()));
-
     }
 
     public static function hookProvider(): iterable
@@ -232,7 +226,7 @@ final class DBTest extends TestCase
     public function test_save_call_hooks(string $hook): void
     {
         $object = $this->thereIsAnObject()->withHook($hook);
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object);
 
@@ -253,7 +247,7 @@ final class DBTest extends TestCase
     public function test_save_skip_hook_with_direct_flag(string $hook): void
     {
         $object = $this->thereIsAnObject()->withHook($hook);
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object, true);
 
@@ -263,7 +257,7 @@ final class DBTest extends TestCase
     public function test_save_set_private_id(): void
     {
         $object = $this->thereIsAnObject()->withField('id');
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object);
 
@@ -276,7 +270,7 @@ final class DBTest extends TestCase
     public function test_save_skip_call_hook_on_object_without_method(string $hook): void
     {
         $object = $this->thereIsAnObject()->withoutMethod($hook);
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object);
 
@@ -295,7 +289,7 @@ final class DBTest extends TestCase
     public function test_save_call_hook_with_direct_flag(string $hook): void
     {
         $object = $this->thereIsAnObject()->withHook($hook);
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
 
         \DB::save($object, true);
 
@@ -305,7 +299,7 @@ final class DBTest extends TestCase
     public function test_insert_with_duplicate_unique_field_fail(): void
     {
         $object = $this->thereIsAnObject()->withUniqueField();
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
         \DB::save($object);
 
         $this->expectException(\Exception::class);
@@ -315,12 +309,91 @@ final class DBTest extends TestCase
     public function test_replace_with_duplicate_unique_field(): void
     {
         $object = $this->thereIsAnObject()->withUniqueField();
-        $this->thereIsATableForObject($object);
+        $this->thereIsAnEmptyTableForObject($object);
         \DB::save($object);
 
         \DB::save($object, false, true);
 
         $this->assertCount(1, $this->contentOfTable($object->getTableName()));
+    }
+
+    public function test_insert_hooks_order(): void
+    {
+        $object = $this->thereIsAnObject()
+            ->withHooks('preSave', 'postSave', 'preInsert', 'postInsert', 'preUpdate', 'postUpdate', 'encrypt', 'decrypt')
+        ;
+        $this->thereIsAnEmptyTableForObject($object);
+
+        \DB::save($object);
+
+        $this->assertSame([
+            'preSave',
+            'preInsert',
+            'encrypt',
+            'decrypt',
+            'postInsert',
+            'postSave',
+        ], $object->getMethodsCalled());
+    }
+
+    public function test_insert_direct_hooks_order(): void
+    {
+        $object = $this->thereIsAnObject()
+            ->withHooks('preSave', 'postSave', 'preInsert', 'postInsert', 'preUpdate', 'postUpdate', 'encrypt', 'decrypt')
+        ;
+        $this->thereIsAnEmptyTableForObject($object);
+
+        \DB::save($object, true);
+
+        $this->assertSame([
+            'encrypt',
+            'decrypt',
+        ], $object->getMethodsCalled());
+    }
+
+    public function test_save_object_identifiable(): void
+    {
+        $object = $this->thereIsAnObject()->identifiable();
+        $this->thereIsAnEmptyTableForObject($object);
+
+        \DB::save($object);
+
+        $this->assertCount(1, $this->contentOfTable($object->getTableName()));
+    }
+
+    public function test_save_unknown_object_identified_do_nothing(): void
+    {
+        $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt());
+        $this->thereIsAnEmptyTableForObject($object);
+
+        \DB::save($object);
+
+        $this->assertCount(0, $this->contentOfTable($object->getTableName()));
+    }
+
+    public function test_save_unknown_object_identified_with_replace_flag_insert_new_row(): void
+    {
+        $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt());
+        $this->thereIsAnEmptyTableForObject($object);
+
+        $this->expectPhpError('');
+        \DB::save($object, false, true);
+
+        $this->assertCount(1, $this->contentOfTable($object->getTableName()));
+    }
+
+    public function test_save_object_identified_update_row(): void
+    {
+        $object = $this->thereIsAnObject()->identifiable();
+        $this->thereIsAnEmptyTableForObject($object);
+        \DB::save($object);
+        $object->publicVar = 'update';
+
+        \DB::save($object);
+
+        $contentOfTable = $this->contentOfTable($object->getTableName());
+        $this->assertCount(1, $contentOfTable);
+        $this->assertSame('update', $contentOfTable[0]['publicVar']);
     }
 
     /**
@@ -364,10 +437,7 @@ final class DBTest extends TestCase
 
     protected function tearDown(): void
     {
-        if (null !== $this->originalErrorHandler) {
-            set_error_handler($this->originalErrorHandler);
-            $this->originalErrorHandler = null;
-        }
+        restore_error_handler();
 
         global $CONFIG;
         $CONFIG = $this->originalConfig;
@@ -412,14 +482,19 @@ final class DBTest extends TestCase
     private function expectPhpError(string $message, int $errorType = E_USER_ERROR): void
     {
         $this->rollback();
-        $this->originalErrorHandler = set_error_handler(function (int $errno, string $errstr) use ($message, $errorType): void {
+        set_error_handler(function (int $errno, string $errstr) use ($message, $errorType): void {
             $this->assertSame($errorType, $errno, $errstr);
             $this->assertEquals($message, $errstr);
         });
     }
 
-    private function thereIsATableForObject(ObjectMock $object): void
+    private function thereIsAnEmptyTableForObject(ObjectMock $object): void
     {
         $this->thereIsATable($object->getTableName(), $object->getTableStructure());
+    }
+
+    private function randomPositiveInt(): int
+    {
+        return random_int(1, 2**30);
     }
 }

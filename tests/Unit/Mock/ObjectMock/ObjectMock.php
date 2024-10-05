@@ -9,11 +9,12 @@ class ObjectMock
     public function __construct()
     {
         $this->methodsCalled = []; // do not declare as property
+        $this->tableName = str_replace('.', '_', uniqid('mock_', true));
     }
 
     public function getTableName(): string
     {
-        return 'object_mock';
+        return $this->tableName;
     }
 
     public function getTableStructure(): string
@@ -29,7 +30,7 @@ class ObjectMock
     public function withHook(string $hook): self
     {
         $parentClassName = static::class;
-        $newClassName = str_replace('\\', '_', $parentClassName).'__'.$hook;
+        $newClassName = str_replace('\\', '_', $parentClassName).'__H'.$hook;
         $code = <<<PHP
         if (class_exists('{$newClassName}')) {
             return;
@@ -80,5 +81,57 @@ class ObjectMock
     public function className(): string
     {
         return static::class;
+    }
+
+    public function withHooks(string ...$hooks): self
+    {
+        $object = $this;
+        foreach ($hooks as $hook) {
+            $object = $object->withHook($hook);
+        }
+
+        return $object;
+    }
+
+    public function getMethodsCalled(): array
+    {
+        return $this->methodsCalled;
+    }
+
+    public function identifiable(): self
+    {
+        $parentClassName = static::class;
+        $newClassName = str_replace('\\', '_', $parentClassName).'__ID';
+        $code = <<<PHP
+        if (class_exists('{$newClassName}')) {
+            return;
+        }
+        
+        class {$newClassName} extends {$parentClassName} 
+        {
+            private \$id;
+            
+            public function getId(): ?int
+            {
+                return \$this->id;
+            }
+            
+            public function setId(?int \$id): void
+            {
+                \$this->id = \$id;
+            }
+        };
+        PHP;
+        eval($code);
+
+        return new $newClassName();
+    }
+
+    public function identifiedBy(int $id): self
+    {
+        $object = $this->identifiable();
+        $object->setId($id);
+
+        return $object;
     }
 }
