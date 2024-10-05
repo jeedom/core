@@ -90,10 +90,9 @@ sendVarToJS('market_display_info', $market_array);
       } else {
         if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
           $purchase_info = repo_market::getPurchaseInfo();
-          if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
-      ?>
+          if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) { ?>
             <a class="btn btn-default" href='<?php echo config::byKey('market::address'); ?>/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
-        <?php
+          <?php
             if ($market->getCertification() !== 'Premium') {
               echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
             } else {
@@ -117,7 +116,7 @@ sendVarToJS('market_display_info', $market_array);
         echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
       } else {
             if ($market->getCost() > 0) {
-                 if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
+                 if ($market->getPurchase() == 1 && isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
                   echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Plugin deja acheté et/ou inclus dans votre service Pack}}</span>';
                 }else{
                     if ($market->getCost() != $market->getRealCost()) {

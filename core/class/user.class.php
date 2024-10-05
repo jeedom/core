@@ -307,13 +307,12 @@ class user {
 		if (!is_array($ban_ips) || count($ban_ips) == 0) {
 			return false;
 		}
-		$is_ban = false;
-		if (count($ban_ips) > 0 && config::byKey('security::bantime') >= 0) {
+		if (count($ban_ips) > 0 && is_int(intval(config::byKey('security::bantime')))) {
 			foreach ($ban_ips as $ip => $datetime) {
-				if ($datetime + config::byKey('security::bantime') > strtotime('now')) {
+				if (config::byKey('security::bantime') == -1 || $datetime + intval(config::byKey('security::bantime')) > strtotime('now')) {
 					if ($ip == $current_ip) {
-						$is_ban = true;
 						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => $datetime]);
+                      	return true;
 					}
 					continue;
 				}
@@ -321,9 +320,8 @@ class user {
 			}
 			cache::set('security::banip', json_encode($ban_ips));
 		}
-		return $is_ban;
+		return false;
 	}
-
 	public static function getAccessKeyForReport(): string {
 		$user = user::byLogin('internal_report');
 		if (!is_object($user)) {

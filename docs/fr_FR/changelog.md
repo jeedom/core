@@ -1,5 +1,44 @@
 # Changelog Jeedom V4.4
 
+# 4.4.18
+
+- Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non) [LIEN](https://github.com/jeedom/core/commit/f052a5478c2885d1f6b49439e0f5ac0c19cb1fb7)
+- Correction d'un bug lors de la restoration de Jeedom sur les versions de MariaDB 10.5.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 et 11.4.2 [LIEN](https://github.com/jeedom/core/issues/2911)
+- Correction d'un bug qui pouvait conduire à avoir des barre de défilement sur certain widgets [LIEN](https://github.com/jeedom/core/commit/1db88f402d9cffccddb10360c30c4231bfd15304)
+- Amélioration de l'interface [LIEN](https://github.com/jeedom/core/pull/2919) [LIEN](https://github.com/jeedom/core/pull/2918)
+
+# 4.4.17
+
+- Passage de nodejs en version 20 (Debian 11 et plus) [LIEN](https://github.com/jeedom/core/pull/2846)
+
+# 4.4.16
+
+- Correction d'un bug sur les filtre de la page de remplacement [LIEN](https://github.com/jeedom/core/commit/ab0a197cf7ec99b7ae79db68ae9478afd3ffc6f1)
+- Correction de bugs sur la version docker [LIEN](https://github.com/jeedom/core/commit/32e68dae9ec16eb58bdc66d8fdccbc0bdd1503bd)
+- Correction d'un bug sur les droits lors de l'installation d'un plugin en dependance d'un autre [LIEN](https://github.com/jeedom/core/issues/2888)
+
+
+# 4.4.15
+
+- Correction d'un bug ou la connexion à Jeedom ne pouvait pas etre auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)
+- Correction d'un bug sur le typage des valeurs dans les event qui pouvait conduire a une non mise a jour de certain widget [LIEN](https://github.com/jeedom/core/commit/5dba6de95c23989f138aefcfba3e2657315df31d)
+- Ajout de la version de l'os lors de la demande d'un plugin (en prévision de bloquer en cas de plugin incompatible) [LIEN](https://github.com/jeedom/core/commit/9721cf75494bbf3a3bc7b1f4b1bbc25cec7a55a8)
+- Correction d'un soucis sur la detection d'un Jeedom qui tourne sur docker [LIEN](https://github.com/jeedom/core/commit/3b942ff853661db49241fecafa096b7af3e16a4c)
+- Correction d'un bug sur l'affichage des plugins lorsque celui-ci n'est pas encore acheté [LIEN](https://github.com/jeedom/core/commit/5b02d619c80b08d0709e89c2c3c4bc942e568710)
+- Correction d'un soucis sur le banissement si la durée est infinie [LIEN](https://github.com/jeedom/core/issues/2879)
+- Correction d'un bug sur la page de remplacement des équipements [LIEN](https://github.com/jeedom/core/issues/2877)
+
+# 4.4.14
+
+- Correction d'un bug sur l'affichage de la configuration de Jeedom dans certain rare cas [LIEN](https://github.com/jeedom/core/commit/21477534388a9000a138631803b22da787a0b722)
+- Amélioration de la fonction getStatistic en php8 [LIEN](https://github.com/jeedom/core/commit/b72547ddc01a06030df1e5e7b2d41c5556606408)
+- Correction de bug sur le nouveau systeme de cache [LIEN](https://github.com/jeedom/core/commit/bb84cfde702dd5b94d08f3d6d7041302eb06ad4d)
+- Correction d'un bug sur les listener qui pouvait créer une erreur dans certain plugin (sunshutter par exemple) [LIEN](https://github.com/jeedom/core/commit/3cd4c0a305fcb72e3d42b994ba62d6668217aac3)
+
+# 4.4.13
+
+- Correction d'un bug de variable indefinie [LIEN](https://github.com/jeedom/core/commit/9f916da35675cf6a48f7575c5427137549338004)
+
 # 4.4.12
 
 - Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge) [LIEN](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)

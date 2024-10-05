@@ -928,7 +928,15 @@ class repo_market {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
 
-		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId() . '&version=' . $_version . '&jeedomversion=' . jeedom::version() . '&hwkey=' . jeedom::getHardwareKey() . '&username=' . urlencode(config::byKey('market::username')) . '&password=' . self::getPassword() . '&password_type=sha1';
+		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId();
+		$url .='&version=' . $_version ;
+		$url .='&jeedomversion=' . jeedom::version();
+		$url .='&osversion=' . system::getOsVersion();
+		$url .='&hwkey=' . jeedom::getHardwareKey();
+		$url .='&username=' . urlencode(config::byKey('market::username'));
+		$url .='&password=' . self::getPassword();
+		$url .='&password_type=sha1';
+		
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
 		log::add('update', 'alert', __('URL', __FILE__) . ' ' . $url);
 		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update') . ' 2>&1');
