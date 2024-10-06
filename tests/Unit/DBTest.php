@@ -213,14 +213,14 @@ final class DBTest extends TestCase
         $this->assertCount(1, $this->contentOfTable($object->getTableName()));
     }
 
-    public static function hookProvider(): iterable
+    public static function saveInsertHookProvider(): iterable
     {
         yield from self::hookCalledWithDirectFlagProvider();
-        yield from self::hookSkippedWithDirectFlagProvider();
+        yield from self::saveInsertHookSkippedWithDirectFlagProvider();
     }
 
     /**
-     * @dataProvider hookProvider
+     * @dataProvider saveInsertHookProvider
      */
     public function test_save_call_hooks(string $hook): void
     {
@@ -228,10 +228,10 @@ final class DBTest extends TestCase
 
         \DB::save($object);
 
-        $this->assertTrue($object->isMethodCalled($hook));
+        $this->assertMethodCalledOnObject($object, $hook);
     }
 
-    public static function hookSkippedWithDirectFlagProvider(): iterable
+    public static function saveInsertHookSkippedWithDirectFlagProvider(): iterable
     {
         yield ['preSave'];
         yield ['preInsert'];
@@ -240,7 +240,7 @@ final class DBTest extends TestCase
     }
 
     /**
-     * @dataProvider hookSkippedWithDirectFlagProvider
+     * @dataProvider saveInsertHookSkippedWithDirectFlagProvider
      */
     public function test_save_skip_hook_with_direct_flag(string $hook): void
     {
@@ -248,7 +248,7 @@ final class DBTest extends TestCase
 
         \DB::save($object, true);
 
-        $this->assertFalse($object->isMethodCalled($hook));
+        $this->assertMethodNotCalledOnObject($object, $hook);
     }
 
     public function test_save_set_private_id(): void
@@ -261,15 +261,15 @@ final class DBTest extends TestCase
     }
 
     /**
-     * @dataProvider hookProvider
+     * @dataProvider saveInsertHookProvider
      */
     public function test_save_skip_call_hook_on_object_without_method(string $hook): void
     {
-        $object = $this->thereIsAnObject()->withoutMethod($hook)->object();
+        $object = $this->thereIsAnObject()->withoutHook($hook)->object();
 
         \DB::save($object);
 
-        $this->assertFalse($object->isMethodCalled($hook));
+        $this->assertMethodNotCalledOnObject($object, $hook);
     }
 
     public static function hookCalledWithDirectFlagProvider(): iterable
@@ -287,7 +287,7 @@ final class DBTest extends TestCase
 
         \DB::save($object, true);
 
-        $this->assertTrue($object->isMethodCalled($hook));
+        $this->assertMethodCalledOnObject($object, $hook);
     }
 
     public function test_insert_with_duplicate_unique_field_fail(): void
@@ -380,6 +380,71 @@ final class DBTest extends TestCase
         $this->assertCount(1, $contentOfTable);
         $this->assertSame('update', $contentOfTable[0]['publicVar']);
     }
+
+    public static function saveUpdateHookProvider(): iterable
+    {
+        yield from self::hookCalledWithDirectFlagProvider();
+        yield from self::saveUpdateHookSkippedWithDirectFlagProvider();
+    }
+
+    /**
+     * @dataProvider saveUpdateHookProvider
+     */
+    public function test_save_update_call_hooks(string $hook): void
+    {
+        $object = $this->thereIsAnObject()
+            ->identifiable()
+            ->withHook($hook)
+            ->persisted()
+            ->object();
+
+        \DB::save($object);
+
+        $this->assertMethodCalledOnObject($object, $hook);
+    }
+
+    public static function saveUpdateHookSkippedWithDirectFlagProvider(): iterable
+    {
+        yield ['preSave'];
+        yield ['preUpdate'];
+        yield ['postUpdate'];
+        yield ['postSave'];
+    }
+
+    /**
+     * @dataProvider saveUpdateHookSkippedWithDirectFlagProvider
+     */
+    public function test_save_update_skip_hook_with_direct_flag(string $hook): void
+    {
+        $object = $this->thereIsAnObject()
+            ->identifiable()
+            ->withHook($hook)
+            ->persisted()
+            ->object();
+
+        \DB::save($object, true);
+
+        $this->assertMethodNotCalledOnObject($object, $hook);
+    }
+
+    /**
+     * @dataProvider hookCalledWithDirectFlagProvider
+     */
+    public function test_save_update_call_hook_with_direct_flag(string $hook): void
+    {
+        $object = $this->thereIsAnObject()
+            ->identifiable()
+            ->withHook($hook)
+            ->persisted()
+            ->object();
+
+        \DB::save($object, true);
+
+        $this->assertMethodCalledOnObject($object, $hook);
+    }
+
+    // TODO: test setChanged parts
+    // TODO: test returns
 
     /**
      * @return ObjectMockBuilder
@@ -476,5 +541,15 @@ final class DBTest extends TestCase
     private function randomPositiveInt(): int
     {
         return random_int(1, 2**30);
+    }
+
+    private function assertMethodCalledOnObject(object $object, string $hook): void
+    {
+        $this->assertTrue($object->isMethodCalled($hook), sprintf('Method %s expects to be called on object %s.', $hook, get_class($object)));
+    }
+
+    private function assertMethodNotCalledOnObject(object $object, string $hook): void
+    {
+        $this->assertFalse($object->isMethodCalled($hook), sprintf('Method %s expects to be NOT called on object %s.', $hook, get_class($object)));
     }
 }

@@ -71,7 +71,7 @@ PHP
 
     }
 
-    public function withoutMethod(string $method): self
+    public function withoutHook(string $method): self
     {
         return $this;
     }
@@ -167,6 +167,8 @@ PHP
             \DB::save($object);
         }
 
+        $object->clearMethodsCalled();
+
         return $object;
     }
 
@@ -186,9 +188,8 @@ PHP
     private static function getBaseClassProperties(): string
     {
         return <<<PHP
-    public \$publicVar = null;
-PHP;
-;
+            public \$publicVar = null;
+        PHP;
     }
 
     private function getBaseClassMethods(): string
@@ -213,6 +214,11 @@ PHP;
     public function getMethodsCalled(): array
     {
         return \$this->methodsCalled;
+    }
+    
+    public function clearMethodsCalled(): void
+    {
+        \$this->methodsCalled = [];
     }
 PHP;
     }
