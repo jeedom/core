@@ -18,42 +18,46 @@
 
 use PHPUnit\Framework\TestCase;
 
-class userTest extends TestCase {
-	public function testCreate() {
-		$user = $this->createUser('test', 'test', 'test', 'test');
+class userTest extends TestCase
+{
+    public function test_create()
+    {
+        $user = $this->createUser('test', 'test', 'test', 'test');
 
-		$this->assertTrue((is_numeric($user->getId()) && $user->getId() != ''));
-		$this->assertEquals('test', $user->getLogin());
-		$this->assertEquals(sha512('test'), $user->getPassword());
-	}
-	
-	public function testConnect() {
-		$_user = $this->createUser('test2', 'test');
-		$user = user::connect('test2', 'test');
-		$this->assertEquals($user->getId(), $_user->getId());
-	}
-	
-	public function testRemove() {
-		$_user = $this->createUser('test3', 'test');
-		$id = $_user->getId();
-		$_user->remove();
-		$this->assertEquals(null,user::byId($id));
-	}
+        $this->assertTrue(is_numeric($user->getId()) && '' != $user->getId());
+        $this->assertEquals('test', $user->getLogin());
+        $this->assertEquals(sha512('test'), $user->getPassword());
+    }
 
-	/**
-	 * @throws Exception
-	 */
-	public function createUser(string $login, string $password): user
-	{
-		$user_array = array(
-			'login' => $login,
-			'password' => $password,
-		);
-		$user = new user();
-		utils::a2o($user, $user_array);
-		$user->setPassword(sha512($user_array['password']));
-		$user->save();
+    public function test_connect()
+    {
+        $_user = $this->createUser('test2', 'test');
+        $user = user::connect('test2', 'test');
+        $this->assertEquals($user->getId(), $_user->getId());
+    }
 
-		return $user;
-	}
+    public function test_remove()
+    {
+        $_user = $this->createUser('test3', 'test');
+        $id = $_user->getId();
+        $_user->remove();
+        $this->assertEquals(null, user::byId($id));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function createUser(string $login, string $password): user
+    {
+        $user_array = [
+            'login' => $login,
+            'password' => $password,
+        ];
+        $user = new user();
+        utils::a2o($user, $user_array);
+        $user->setPassword(sha512($user_array['password']));
+        $user->save();
+
+        return $user;
+    }
 }

@@ -18,29 +18,32 @@
 
 use PHPUnit\Framework\TestCase;
 
-class scenarioExpressionTest extends TestCase {
-	
-	public function testCalculCondition() {
-		$tests = array(
-			'1+1' => 2,
-		);
-		foreach ($tests as $key => $value) {
-			$result = scenarioExpression::createAndExec('condition', $key);
-			$this->assertEquals(2, $value);
-		}
-	}
-	
-	public function testVariable() {
-		scenarioExpression::createAndExec('action', 'variable', array('value' => 'plop', 'name' => 'test'));
-		$result = scenarioExpression::createAndExec('condition', 'variable(test)');
-		$this->assertEquals('plop', $result);
-	}
-	
-	/**
-	* @depends testVariable
-	*/
-	public function testStringCondition() {
-		$result = scenarioExpression::createAndExec('condition', 'variable(test) == "plop"');
-		$this->assertTrue($result);
-	}
+class scenarioExpressionTest extends TestCase
+{
+    public function test_calcul_condition()
+    {
+        $tests = [
+            '1+1' => 2,
+        ];
+        foreach ($tests as $key => $value) {
+            $result = scenarioExpression::createAndExec('condition', $key);
+            $this->assertEquals(2, $value);
+        }
+    }
+
+    public function test_variable()
+    {
+        scenarioExpression::createAndExec('action', 'variable', ['value' => 'plop', 'name' => 'test']);
+        $result = scenarioExpression::createAndExec('condition', 'variable(test)');
+        $this->assertEquals('plop', $result);
+    }
+
+    /**
+     * @depends test_variable
+     */
+    public function test_string_condition()
+    {
+        $result = scenarioExpression::createAndExec('condition', 'variable(test) == "plop"');
+        $this->assertTrue($result);
+    }
 }

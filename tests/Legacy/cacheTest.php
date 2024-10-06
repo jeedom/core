@@ -18,37 +18,39 @@
 
 use PHPUnit\Framework\TestCase;
 
-
-class cacheTest extends TestCase {
-
-    public function testDefault(): void {
+class cacheTest extends TestCase
+{
+    public function test_default(): void
+    {
         $cache = cache::byKey('toto');
         $this->assertSame('', $cache->getValue());
     }
 
     // not working on ci (TODO: mock the engine)
-//    public function testLoad(): void{
-//        cache::set('toto', 'toto');
-//		$cache = cache::byKey('toto');
-//		$this->assertSame('toto', $cache->getValue());
-//	}
-	
-	public function testRemove(): void {
+    //    public function testLoad(): void{
+    //        cache::set('toto', 'toto');
+    //		$cache = cache::byKey('toto');
+    //		$this->assertSame('toto', $cache->getValue());
+    //	}
+
+    public function test_remove(): void
+    {
         cache::set('toto', 'toto');
-		$cache = cache::byKey('toto');
-		$cache->remove();
+        $cache = cache::byKey('toto');
+        $cache->remove();
         $cache = cache::byKey('toto');
         $this->assertSame('', $cache->getValue());
-	}
+    }
 
     // not working on ci (TODO: mock the engine)
-//	public function testLifetime(): void {
-//		cache::set('toto', 'toto', 1);
-//		$cache = cache::byKey('toto');
-//		$this->assertSame('toto', $cache->getValue());
-//	}
+    //	public function testLifetime(): void {
+    //		cache::set('toto', 'toto', 1);
+    //		$cache = cache::byKey('toto');
+    //		$this->assertSame('toto', $cache->getValue());
+    //	}
 
-    public function testExpired(): void {
+    public function test_expired(): void
+    {
         $this->markTestSkipped('Too long to run');
         cache::set('toto', 'toto', 1);
         sleep(2);

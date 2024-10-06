@@ -22,28 +22,28 @@ class utilsTest extends TestCase
 {
     public static function getTemplates()
     {
-        return array(
-            array('Vous êtes sur {{Nom}} version {{Version}}', 'Vous êtes sur Jeedom version 1.2.3'),
-            array('{{La poule}} {{pond}}', 'L\'oeuf est pondu'),
-        );
+        return [
+            ['Vous êtes sur {{Nom}} version {{Version}}', 'Vous êtes sur Jeedom version 1.2.3'],
+            ['{{La poule}} {{pond}}', 'L\'oeuf est pondu'],
+        ];
     }
 
     /**
      * @dataProvider getTemplates
      */
-    public function testTemplace_replace($template, $out)
+    public function test_templace_replace($template, $out)
     {
-        $rules = array(
+        $rules = [
             '{{Nom}}' => 'Jeedom',
             '{{Version}}' => '1.2.3',
             '{{La poule}}' => 'L\'oeuf',
             '{{pond}}' => 'est pondu',
-        );
+        ];
         $result = template_replace($rules, $template);
         $this->assertSame($out, $result);
     }
 
-    public function testInit()
+    public function test_init()
     {
         $_GET['get'] = 'foo';
         $_POST['post'] = 'bar';
@@ -56,55 +56,55 @@ class utilsTest extends TestCase
 
     public static function getTimes()
     {
-        return array(
-            array(0, '0s'),
-            array(60, '1min 0s'),
-            array(65, '1min 5s'),
-            array(186, '3min 6s'),
-            array(3600, '1h 0min 0s'),
-            array(86400, '1j 0h 0min 0s'),
-            array(86401, '1j 0h 0min 1s'),
-            array(259199, '2j 23h 59min 59s'),
-        );
+        return [
+            [0, '0s'],
+            [60, '1min 0s'],
+            [65, '1min 5s'],
+            [186, '3min 6s'],
+            [3600, '1h 0min 0s'],
+            [86400, '1j 0h 0min 0s'],
+            [86401, '1j 0h 0min 1s'],
+            [259199, '2j 23h 59min 59s'],
+        ];
     }
 
     /**
      * @dataProvider getTimes
      */
-    public function testConvertDuartion($in, $out)
+    public function test_convert_duartion($in, $out)
     {
         $this->assertSame($out, convertDuration($in));
     }
 
     public static function getJsons()
     {
-        return array(
-            array(json_encode(array('foo', 'bar')), true),
-            array(json_encode(array('foo' => 'bar')), true),
-            array('{"foo":"bar"}', true),
-            array('foo bar', false),
-        );
+        return [
+            [json_encode(['foo', 'bar']), true],
+            [json_encode(['foo' => 'bar']), true],
+            ['{"foo":"bar"}', true],
+            ['foo bar', false],
+        ];
     }
 
     /**
      * @dataProvider getJsons
      */
-    public function testIs_json($in, $out)
+    public function test_is_json($in, $out)
     {
         $this->assertSame($out, is_json($in));
     }
 
     public static function getPaths()
     {
-        return array(
-            array('/home/user/doc/../../me/docs', '/home/me/docs'),
-        );
+        return [
+            ['/home/user/doc/../../me/docs', '/home/me/docs'],
+        ];
     }
 
     /**
      * @dataProvider getPaths
      */
-    public function testCleanPath($in, $out)
+    public function test_clean_path($in, $out)
     {
         $this->assertSame($out, cleanPath($in));
     }

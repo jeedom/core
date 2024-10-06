@@ -20,65 +20,64 @@ use PHPUnit\Framework\TestCase;
 
 class scenarioTest extends TestCase
 {
-
     public static function getGetSets()
     {
-        return array(
-            array('Id', 'foo', 'foo'),
-            array('Name', 'foo', 'foo'),
-//            array('State', 'foo', 'foo'), // TODO: not working on ci
-            array('IsActive', true, true),
-            array('Group', 'foo', 'foo'),
-//            array('LastLaunch', 'foo', 'foo'), // TODO: not working on ci
-            array('Mode', 'foo', 'foo'),
-            array('Schedule', array('foo' => 'bar'), array('foo' => 'bar')),
-            array('Schedule', '{"foo":"bar"}', array('foo' => 'bar')),
-            array('Schedule', 'foo', 'foo'),
-//            array('PID', 1, 1), // TODO: not working on ci
-            array('ScenarioElement', array('foo' => 'bar'), array('foo' => 'bar')),
-            array('ScenarioElement', '{"foo":"bar"}', array('foo' => 'bar')),
-            array('ScenarioElement', 'foo', 'foo'),
-            array('Trigger', array('foo' => 'bar'), array('foo' => 'bar')),
-            array('Trigger', '{"foo":"bar"}', array('foo' => 'bar')),
-            array('Trigger', 'foo', array('foo')),
-            array('Timeout', '', 0),
-            array('Timeout', 'foo', 0),
-            array('Timeout', 0.9, 0),
-            array('Timeout', 1.1, 1.1),
-            array('Timeout', 15, 15),
-            array('Object_id', null, null),
-            array('Object_id', array('foo'), null),
-//			array('Object_id', 0, 0),
-            array('Object_id', 150, 150),
-            array('IsVisible', true, 0),
-            array('IsVisible', 5, 5),
-            array('IsVisible', 'foo', 0),
-            array('Description', 'foo', 'foo'),
-        );
+        return [
+            ['Id', 'foo', 'foo'],
+            ['Name', 'foo', 'foo'],
+            //            array('State', 'foo', 'foo'), // TODO: not working on ci
+            ['IsActive', true, true],
+            ['Group', 'foo', 'foo'],
+            //            array('LastLaunch', 'foo', 'foo'), // TODO: not working on ci
+            ['Mode', 'foo', 'foo'],
+            ['Schedule', ['foo' => 'bar'], ['foo' => 'bar']],
+            ['Schedule', '{"foo":"bar"}', ['foo' => 'bar']],
+            ['Schedule', 'foo', 'foo'],
+            //            array('PID', 1, 1), // TODO: not working on ci
+            ['ScenarioElement', ['foo' => 'bar'], ['foo' => 'bar']],
+            ['ScenarioElement', '{"foo":"bar"}', ['foo' => 'bar']],
+            ['ScenarioElement', 'foo', 'foo'],
+            ['Trigger', ['foo' => 'bar'], ['foo' => 'bar']],
+            ['Trigger', '{"foo":"bar"}', ['foo' => 'bar']],
+            ['Trigger', 'foo', ['foo']],
+            ['Timeout', '', 0],
+            ['Timeout', 'foo', 0],
+            ['Timeout', 0.9, 0],
+            ['Timeout', 1.1, 1.1],
+            ['Timeout', 15, 15],
+            ['Object_id', null, null],
+            ['Object_id', ['foo'], null],
+            //			array('Object_id', 0, 0),
+            ['Object_id', 150, 150],
+            ['IsVisible', true, 0],
+            ['IsVisible', 5, 5],
+            ['IsVisible', 'foo', 0],
+            ['Description', 'foo', 'foo'],
+        ];
     }
 
     /**
      * @dataProvider getGetSets
      */
-    public function testGetterSetter($attribute, $in, $out)
+    public function test_getter_setter($attribute, $in, $out)
     {
         $scenario = new scenario();
-        $getter = 'get' . $attribute;
-        $setter = 'set' . $attribute;
+        $getter = 'get'.$attribute;
+        $setter = 'set'.$attribute;
         $scenario->$setter($in);
         $this->assertSame($out, $scenario->$getter());
     }
 
-    public function testPersistLog()
+    public function test_persist_log()
     {
-        $path = dirname(__DIR__, 3) . '/log/scenarioLog/scenarioTest.log';
+        $path = dirname(__DIR__, 3).'/log/scenarioLog/scenarioTest.log';
         if (file_exists($path)) {
-            $this->markTestSkipped('Le fichier "' . $path . '" existe déjà. Veuillez le supprimer.');
+            $this->markTestSkipped('Le fichier "'.$path.'" existe déjà. Veuillez le supprimer.');
         }
         $scenario = new scenario();
         $scenario->setId('Test');
         $scenario->persistLog();
         $this->assertTrue(file_exists($path));
-        shell_exec('rm ' . $path);
+        shell_exec('rm '.$path);
     }
 }

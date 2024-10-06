@@ -40,7 +40,7 @@ class ajaxTest extends TestCase
     /**
      * @dataProvider getSuccessResponses
      */
-    public function testSuccess(array $data, string $out): void
+    public function test_success(array $data, string $out): void
     {
         $response = ajax::getResponse($data);
         $this->assertEquals($out, $response);
@@ -49,7 +49,7 @@ class ajaxTest extends TestCase
     /**
      * @dataProvider getErrorResponses
      */
-    public function testError(array $data, int $code, string $out): void
+    public function test_error(array $data, int $code, string $out): void
     {
         $response = ajax::getResponse($data, $code);
         $this->assertEquals($out, $response);

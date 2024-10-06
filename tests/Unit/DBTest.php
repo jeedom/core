@@ -13,7 +13,7 @@ final class DBTest extends TestCase
     /**
      * @var array{db: array{dsn: string, user: string, password: string, options: array{}}}|null
      */
-    private $originalConfig = null;
+    private $originalConfig;
 
     public function test_a_simple_query(): void
     {
@@ -62,7 +62,7 @@ final class DBTest extends TestCase
 
         $this->assertFalse($result); // TODO: Est-ce qu’un return du nombre de lignes insérées ne serait pas plus intéressant ?
         $this->assertSame([
-            ['test' => 'foo']
+            ['test' => 'foo'],
         ], $this->contentOfTable('test_table'));
     }
 
@@ -74,7 +74,7 @@ final class DBTest extends TestCase
 
         $this->assertNull($result); // TODO: Est-ce qu’un return du nombre de lignes modifiées ne serait pas plus intéressant ?
         $this->assertSame([
-            ['test' => 'bar']
+            ['test' => 'bar'],
         ], $this->contentOfTable('test_table'));
     }
 
@@ -446,12 +446,9 @@ final class DBTest extends TestCase
     // TODO: test setChanged parts
     // TODO: test returns
 
-    /**
-     * @return ObjectMockBuilder
-     */
     private function thereIsAnObject(): ObjectMockBuilder
     {
-         return new ObjectMockBuilder();
+        return new ObjectMockBuilder();
     }
 
     /**
@@ -476,7 +473,6 @@ final class DBTest extends TestCase
         $connection = \DB::getConnection();
         $connection->rollBack();
         $this->inTransaction = false;
-
     }
 
     protected function setUp(): void
@@ -496,16 +492,16 @@ final class DBTest extends TestCase
     private function thereIsATable(string $tableName, string $structure, array $data = []): void
     {
         $connection = \DB::getConnection();
-        $connection->exec('DROP TABLE IF EXISTS ' . $tableName);
-        $connection->exec('CREATE TABLE ' . $tableName . ' (' . $structure . ')');
+        $connection->exec('DROP TABLE IF EXISTS '.$tableName);
+        $connection->exec('CREATE TABLE '.$tableName.' ('.$structure.')');
         if ('00000' !== $connection->errorCode()) {
             $this->fail($connection->errorInfo()[2]);
         }
 
         foreach ($data as $row) {
-            $statement = $statement ?? $connection->prepare('INSERT INTO ' . $tableName . ' (' . implode(', ', array_keys($row)) . ') VALUES (' . implode(', ', array_map(function ($value) {
-                    return ':' . $value;
-                }, array_keys($row))) . ')');
+            $statement = $statement ?? $connection->prepare('INSERT INTO '.$tableName.' ('.implode(', ', array_keys($row)).') VALUES ('.implode(', ', array_map(function ($value) {
+                return ':'.$value;
+            }, array_keys($row))).')');
             $statement->execute($row);
         }
     }
@@ -514,7 +510,7 @@ final class DBTest extends TestCase
     {
         $connection = \DB::getConnection();
 
-        $statement = $connection->query('SELECT * FROM ' . $table);
+        $statement = $connection->query('SELECT * FROM '.$table);
 
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -540,7 +536,7 @@ final class DBTest extends TestCase
 
     private function randomPositiveInt(): int
     {
-        return random_int(1, 2**30);
+        return random_int(1, 2 ** 30);
     }
 
     private function assertMethodCalledOnObject(object $object, string $hook): void

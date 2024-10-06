@@ -18,78 +18,86 @@
 
 use PHPUnit\Framework\TestCase;
 
-class logTest extends TestCase {
-	public static function getLogs(): iterable {
-		return [
-			['StreamHandler', 'foo', false, true],
+class logTest extends TestCase
+{
+    public static function getLogs(): iterable
+    {
+        return [
+            ['StreamHandler', 'foo', false, true],
         ];
-	}
-	
-	public static function getReturnListe(): iterable {
-		return [
-			['StreamHandler', ['StreamHandler']],
-        ];
-	}
-	
-	public static function getLevels(): iterable {
-		return [
-			['StreamHandler', 'debug'],
-			['StreamHandler', 'info'],
-			['StreamHandler', 'notice'],
-			['StreamHandler', 'warning'],
-			['StreamHandler', 'error'],
-        ];
-	}
-	
-	public static function getErrorReporting(): iterable {
-		return [
-			[100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
-			[200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
-			[250, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
-			[300, E_ERROR | E_WARNING | E_PARSE],
-			[400, E_ERROR | E_PARSE],
-			[500, E_ERROR | E_PARSE],
-			[600, E_ERROR | E_PARSE],
-			[700, E_ERROR | E_PARSE],
-        ];
-	}
-	
+    }
 
-	/**
-	* @dataProvider getLogs
-	*/
-	public function testAddGetRemove(string $engin, string $message, bool $get, bool $removeAll): void {
-		config::save('log::engine', $engin);
-		log::remove($engin);
-		log::add($engin, 'debug', $message); // <- Effet de bord!
-		$this->assertSame($get, log::get($engin, 0, 1));
-		$this->assertSame($removeAll, log::removeAll());
-	}
-	
-	/**
-	* @dataProvider getLevels
-	*/
-	public function testAddLevels(string $engin, string $level): void {
-		config::save('log::engine', $engin);
-		log::remove($engin);
-		log::add($engin, $level, 'testLevel');
-		$this->assertTrue(true);
-	}
-	
-	/**
-	* @dataProvider getReturnListe
-	*/
-	public function testListe(string $engin, array $return): void {
-		config::save('log::engine', $engin);
-		log::add($engin, 'debug', 'toto');
-		$this->assertSame($return, log::liste());
-	}
-	
-	/**
-	* @dataProvider getErrorReporting
-	*/
-	public function testErrorReporting(int $level, int $result): void {
-		log::define_error_reporting($level);
-		$this->assertSame($result, error_reporting());
-	}
+    public static function getReturnListe(): iterable
+    {
+        return [
+            ['StreamHandler', ['StreamHandler']],
+        ];
+    }
+
+    public static function getLevels(): iterable
+    {
+        return [
+            ['StreamHandler', 'debug'],
+            ['StreamHandler', 'info'],
+            ['StreamHandler', 'notice'],
+            ['StreamHandler', 'warning'],
+            ['StreamHandler', 'error'],
+        ];
+    }
+
+    public static function getErrorReporting(): iterable
+    {
+        return [
+            [100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
+            [200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
+            [250, E_ERROR | E_WARNING | E_PARSE | E_NOTICE],
+            [300, E_ERROR | E_WARNING | E_PARSE],
+            [400, E_ERROR | E_PARSE],
+            [500, E_ERROR | E_PARSE],
+            [600, E_ERROR | E_PARSE],
+            [700, E_ERROR | E_PARSE],
+        ];
+    }
+
+    /**
+     * @dataProvider getLogs
+     */
+    public function test_add_get_remove(string $engin, string $message, bool $get, bool $removeAll): void
+    {
+        config::save('log::engine', $engin);
+        log::remove($engin);
+        log::add($engin, 'debug', $message); // <- Effet de bord!
+        $this->assertSame($get, log::get($engin, 0, 1));
+        $this->assertSame($removeAll, log::removeAll());
+    }
+
+    /**
+     * @dataProvider getLevels
+     */
+    public function test_add_levels(string $engin, string $level): void
+    {
+        config::save('log::engine', $engin);
+        log::remove($engin);
+        log::add($engin, $level, 'testLevel');
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @dataProvider getReturnListe
+     */
+    public function test_liste(string $engin, array $return): void
+    {
+        config::save('log::engine', $engin);
+        log::add($engin, 'debug', 'toto');
+        $this->assertSame($return, log::liste());
+    }
+
+    /**
+     * @dataProvider getErrorReporting
+     */
+    public function test_error_reporting(int $level, int $result): void
+    {
+        log::define_error_reporting($level);
+        $this->assertSame($result, error_reporting());
+    }
 }

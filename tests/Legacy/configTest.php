@@ -18,24 +18,28 @@
 
 use PHPUnit\Framework\TestCase;
 
-
-class configTest extends TestCase {
-    public function testConfigIsEmptyByDefault(): void {
+class configTest extends TestCase
+{
+    public function test_config_is_empty_by_default(): void
+    {
         $this->assertSame('', config::byKey('toto'));
     }
 
-    public function testDefineDefaultValue(): void {
+    public function test_define_default_value(): void
+    {
         $this->assertEquals('plop', config::byKey('toto', 'core', 'plop'));
     }
 
-	public function testReturnSettedValue(): void {
-		config::save('toto', 'titi');
-        $this->assertEquals('titi', config::byKey('toto'));
-	}
-	
-	public function testRemoveConfig(): void {
+    public function test_return_setted_value(): void
+    {
         config::save('toto', 'titi');
-		config::remove('toto');
-		$this->assertSame('', config::byKey('toto'));
-	}
+        $this->assertEquals('titi', config::byKey('toto'));
+    }
+
+    public function test_remove_config(): void
+    {
+        config::save('toto', 'titi');
+        config::remove('toto');
+        $this->assertSame('', config::byKey('toto'));
+    }
 }

@@ -4,11 +4,36 @@ namespace Tests\Unit\Mock\ObjectMock;
 
 class ObjectMockBuilder
 {
+    /**
+     * @var string
+     */
+    private $tableName;
+
+    /**
+     * @var bool
+     */
+    private $persist = false;
+
+    /**
+     * @var string|null
+     */
+    private $className;
+
+    /**
+     * @var string
+     */
+    private $classProperties;
+
+    /**
+     * @var string
+     */
+    private $classMethods;
+
+    private string $tableStructure;
+
     public function __construct()
     {
         $this->tableName = str_replace('.', '_', uniqid('mock_', true));
-        $this->persist = false;
-        $this->className = null;
         $this->classProperties = self::getBaseClassProperties();
         $this->classMethods = $this->getBaseClassMethods();
         $this->tableStructure = 'id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, publicVar VARCHAR(255)';
@@ -19,7 +44,7 @@ class ObjectMockBuilder
         $this->addClassProperties(<<<PHP
     private \$changed = null;
 PHP
-);
+        );
 
         $this->addClassMethods(<<<PHP
     public function setChanged(bool \$changed): void
@@ -33,7 +58,8 @@ PHP
         return \$this->changed;
     }
 PHP
-);
+        );
+
         return $this;
     }
 
@@ -52,8 +78,8 @@ PHP
 
     public function withField(string $field): self
     {
-        if ($field !== 'id') {
-            throw new \Exception('Unknown field ' . $field);
+        if ('id' !== $field) {
+            throw new \Exception('Unknown field '.$field);
         }
 
         $this->addClassProperties(<<<PHP
@@ -66,9 +92,9 @@ PHP);
         return \$this->id !== null;
     }
 PHP
-);
-        return $this;
+        );
 
+        return $this;
     }
 
     public function withoutHook(string $method): self
@@ -80,13 +106,14 @@ PHP
     {
         $this->tableStructure = 'id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, publicVar VARCHAR(255) NOT NULL, UNIQUE (publicVar)';
 
-$this->addClassMethods(<<<PHP
+        $this->addClassMethods(<<<PHP
     public function __construct()
     {
         \$this->publicVar = 'test';
     }
 PHP
-);
+        );
+
         return $this;
     }
 
@@ -155,7 +182,7 @@ PHP
     {
         $className = $this->buildClass();
         $object = new $className($this->tableName);
-        if ($this->id !== null) {
+        if (null !== $this->id) {
             if (!method_exists($object, 'setId')) {
                 throw new \Exception('Can not set id.');
             }
@@ -177,13 +204,12 @@ PHP
         $tableName = $this->tableName;
         $structure = $this->tableStructure;
         $connection = \DB::getConnection();
-        $connection->exec('DROP TABLE IF EXISTS ' . $tableName);
-        $connection->exec('CREATE TABLE ' . $tableName . ' (' . $structure . ')');
+        $connection->exec('DROP TABLE IF EXISTS '.$tableName);
+        $connection->exec('CREATE TABLE '.$tableName.' ('.$structure.')');
         if ('00000' !== $connection->errorCode()) {
             throw new \Exception($connection->errorInfo()[2]);
         }
     }
-
 
     private static function getBaseClassProperties(): string
     {
@@ -244,5 +270,4 @@ PHP;
 
         return $this->className;
     }
-
 }
