@@ -425,7 +425,7 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
+				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;'.self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
 				if(is_array($datas['installed']) && count($datas['installed']) > 0){
 					foreach ($datas['installed'] as $value) {
 						self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
@@ -508,9 +508,10 @@ class system {
 					continue;
 				}
 				if ($type == 'composer' && strpos($package, '/') !== false) {
+					$version = 'N/A';
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
-						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l');
+						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
 						if ($output == 0) {
 							$found = 1;
 						}

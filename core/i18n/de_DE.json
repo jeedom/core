@@ -3866,6 +3866,7 @@
         "Début :": "Anfang:",
         "Tâche :": "Aufgabe:",
         "Changement de": "Änderung von",
+        "Mise à jour du tag": "Tag-Update",
         "Arrêt du scénario car il a dépassé son temps de timeout :": "Beenden des Szenarios, weil die Zeitüberschreitung überschritten wurde:",
         "Scénario désactivé non lancement de la sous tâche": "Deaktiviertes Szenario, in dem die Unteraufgabe nicht gestartet wird",
         "Equipement désactivé - impossible d\\'exécuter la commande :": "Ausrüstung deaktiviert - Befehl kann nicht ausgeführt werden:",

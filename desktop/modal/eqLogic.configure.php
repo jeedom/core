@@ -386,11 +386,11 @@ sendVarToJS([
               <div class="form-group">
                 <label class="col-sm-2 control-label">{{Nombre de lignes}}</label>
                 <div class="col-sm-3">
-                  <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
+                  <input type="number" min="1" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbLine">
                 </div>
                 <label class="col-sm-2 control-label">{{Nombre de colonnes}}</label>
                 <div class="col-sm-3">
-                  <input type="number" min="1" max="20" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
+                  <input type="number" min="1" step="1" class="eqLogicAttr form-control input-sm ispin" data-l1key="display" data-l2key="layout::dashboard::table::nbColumn">
                 </div>
                 <a class="btn btn-success btn-xs" id="bt_eqLogicLayoutApply"><i class="fas fa-sync-alt"></i></i> {{Appliquer}}</a>
               </div>
