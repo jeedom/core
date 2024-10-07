@@ -1269,7 +1269,6 @@ class eqLogic {
 			'parameters' => array(),
 			'height' => '',
 			'width' => '',
-			'height' => '',
 			'backGraph::format' => '',
 			'backGraph::type' => '',
 			'backGraph::color' => '',
