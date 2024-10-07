@@ -79,6 +79,7 @@
 - Si la page d'équipement à un élément img_device (balise de type img) alors le core peut lui meme configuré l'url pour afficher la bonne image d'équipement (en reprenant celle de la page de présentation de tous les équipements du plugin) [LIEN](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Correction d'un bug avec la fonction time_diff [LIEN](https://github.com/jeedom/core/issues/2915)
 - Correction de bug sur la gestion de dépendances composer [LIEN](https://github.com/jeedom/core/issues/2920)
+- **BETA** Possibilité de rediriger automatiquement vers la connexion interne si l'utilisateur est sur le meme réseaux que Jeedom, option à activer dans la configuration réseaux de Jeedom [LIEN](https://github.com/jeedom/core/issues/2928)
 
 >**IMPORTANT**
 >
