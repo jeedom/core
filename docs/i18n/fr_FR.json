@@ -854,6 +854,8 @@
         "Si la page d'équipement à un élément img_device (balise de type img) alors le core peut lui meme configuré l'url pour afficher la bonne image d'équipement (en reprenant celle de la page de présentation de tous les équipements du plugin": "Si la page d'équipement à un élément img_device (balise de type img) alors le core peut lui meme configuré l'url pour afficher la bonne image d'équipement (en reprenant celle de la page de présentation de tous les équipements du plugin",
         "Correction d'un bug avec la fonction time_diff": "Correction d'un bug avec la fonction time_diff",
         "Correction de bug sur la gestion de dépendances composer": "Correction de bug sur la gestion de dépendances composer",
+        "BETA": "BETA",
+        "Possibilité de rediriger automatiquement vers la connexion interne si l'utilisateur est sur le meme réseaux que Jeedom, option à activer dans la configuration réseaux de Jeedom": "Possibilité de rediriger automatiquement vers la connexion interne si l'utilisateur est sur le meme réseaux que Jeedom, option à activer dans la configuration réseaux de Jeedom",
         "IMPORTANT": "IMPORTANT",
         "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même": "Dû au changement de moteur de cache sur cette mise à jour, tout le cache sera perdu, aucune inquiétude c'est du cache il va se reconstituer de lui-même",
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
