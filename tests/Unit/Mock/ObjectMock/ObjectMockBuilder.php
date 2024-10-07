@@ -29,7 +29,7 @@ class ObjectMockBuilder
      */
     private $classMethods;
 
-    private string $tableStructure;
+    private $tableStructure;
 
     public function __construct()
     {

@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Tests\Unit\Mock\DBTestable;
 use Tests\Unit\Mock\ObjectMock\ObjectMockBuilder;
+use Tests\Unit\Mock\PhpErrorMock;
 
 final class DBTest extends TestCase
 {
@@ -180,7 +181,7 @@ final class DBTest extends TestCase
     {
         $db = new \DB();
 
-        $this->expectPhpError('DB : Cloner cet objet n\'est pas permis');
+        $this->expectPhpErrorMessage('DB : Cloner cet objet n\'est pas permis');
 
         $clone = clone $db;
     }
@@ -363,7 +364,6 @@ final class DBTest extends TestCase
     {
         $object = $this->thereIsAnObject()->identifiedBy($this->randomPositiveInt())->object();
 
-        $this->expectPhpError('');
         \DB::save($object, false, true);
 
         $this->assertCount(1, $this->contentOfTable($object->getTableName()));
@@ -525,13 +525,15 @@ final class DBTest extends TestCase
         $reflection->setStaticPropertyValue('connection', null);
     }
 
-    private function expectPhpError(string $message, int $errorType = E_USER_ERROR): void
+    private function expectPhpErrorMessage(string $message): void
     {
         $this->rollback();
-        set_error_handler(function (int $errno, string $errstr) use ($message, $errorType): void {
-            $this->assertSame($errorType, $errno, $errstr);
-            $this->assertEquals($message, $errstr);
+
+        set_error_handler(function (int $errno, string $errstr): void {
+            throw new PhpErrorMock($errstr, $errno);
         });
+
+        $this->expectExceptionMessage($message);
     }
 
     private function randomPositiveInt(): int
