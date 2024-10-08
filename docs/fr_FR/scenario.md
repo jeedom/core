@@ -258,9 +258,12 @@ Vous pouvez utiliser n’importe lequel des symboles suivants pour les comparais
 
 Vous pouvez combiner n’importe quelle comparaison avec les opérateurs suivants :
 
-- ``&&`` : et. Il est aussi possible d'utiliser : ``ET`` / ``et`` / ``AND`` / ``and`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
-- ``||`` : ou. Il est aussi possible d'utiliser : ``OU`` / ``ou`` / ``OR`` / ``or`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
-- ``xor``  : ou exclusif. Il est aussi possible d'utiliser : ``XOR`` / ``^`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
+Que vous combiniez des comparaisons sur des équipements différents ou sur le même, il est toujours nécessaire d'indiquer l'équipement.
+``[Salle de bain][Hydrometrie][température] >= 18 && [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``&&`` : et. **Attention**, l'utilisation de  : ``ET`` / ``et`` / ``AND`` / ``and`` n'est pas recommandée, dans certain cas cela peut fonctionner mais avec certaines fonctions php cela ne fonctionnera pas.
+- ``||`` : ou. **Attention**, l'utilisation de  : ``OU`` / ``ou`` / ``OR`` / ``or`` n'est pas recommandée, dans certain cas cela peut fonctionner mais avec certaines fonctions php cela ne fonctionnera pas.
+- ``xor``  : ou exclusif. **Attention**, l'utilisation de  : ``XOR`` / ``^`` n'est pas recommandée, dans certain cas cela peut fonctionner mais avec certaines fonctions php cela ne fonctionnera pas.
 
 ### Les tags
 
