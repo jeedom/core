@@ -23,6 +23,6 @@
       }
     })
 
-    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', display_value: document.querySelector('.cmd[data-cmd_uid=#uid#] .selectCmd').value, valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
   </script>
 </div>

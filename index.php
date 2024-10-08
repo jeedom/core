@@ -18,10 +18,17 @@
 try {
 	//no config, install Jeedom!
 	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
-		header("location: install/setup.php");
+		echo 'Jeedom not configure, no common.config.php found';
+		die();
 	}
 
 	require_once __DIR__ . "/core/php/core.inc.php";
+
+	if ((!isset($_GET['ajax']) || $_GET['ajax'] != 1) && count(system::ps('install/restore.php', 'sudo')) > 0) {
+			require_once __DIR__.'/restoring.php';
+			die();
+	}
+
 	//dunno desktop or mobile:
 	if (!isset($_GET['v'])) {
 		if (config::byKey('disableMobileUi') == 1) {
@@ -47,7 +54,6 @@ try {
 			die();
 		}
 	}
-
 
 	if (isset($_GET['v']) && $_GET['v'] == 'd') {
 		if (isset($_GET['modal'])) {
@@ -102,6 +108,18 @@ try {
 				echo $_div;
 			}
 		} else {
+			if(config::byKey('network::auto_redirect_internal','core',0) == 1 && network::getUserLocation() == 'internal' && $_SERVER['HTTP_HOST'] != network::getNetworkAccess('internal', 'ip', '', false)){
+				$url = network::getNetworkAccess('internal', 'proto:ip:port', '', false);
+                if (headers_sent()) {
+                    $_script = '<script type="text/javascript">';
+                    $_script .= "window.location.href='$url';";
+                    $_script .= '</script>';
+                    echo $_script;
+                } else {
+                    header('Location: ' . $url);
+                }
+				die();
+			}
 			include_file('desktop', 'index', 'php');
 		}
 		//page title:

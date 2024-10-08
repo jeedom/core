@@ -47,7 +47,7 @@ if ($text == '') {
 	echo __('Aucun texte à dire', __FILE__);
 	die();
 }
-if (substr(init('text'), -1) == '#' && substr(init('text'), 0, 1) == '#' && class_exists('songs_song')) {
+if (substr(init('text'), -1) == '#' && substr(init('text'), 0, 1) == '#' && class_exists('songs')  && class_exists('songs_song')) {
 	log::add('tts', 'debug', __('Tag detécté dans le tts et plugin song présent', __FILE__));
 	$song = songs_song::byLogicalId(strtolower(str_replace('#', '', init('text'))));
 	if (is_object($song) && file_exists($song->getPath())) {

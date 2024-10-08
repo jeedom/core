@@ -112,23 +112,23 @@ if (!jeeFrontEnd.user) {
             userTR += '</td>'
             userTR += '<td>'
             if (disable == '') {
-              userTR += '<div class="input-group pull-right">'
+              userTR += '<div class="input-group pull-right" style="display:inline-flex">'
               userTR += '<span class="input-group-btn">'
 
               if (jeeFrontEnd.ldapEnable != '1') {
-                userTR += '<a class="btn btn-xs btn-danger pull-right bt_del_user roundedRight"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a>'
-                userTR += '<a class="btn btn-xs btn-warning pull-right bt_change_mdp_user"><i class="fas fa-pencil-alt"></i><span class="hidden-1280"> {{Mot de passe}}</span></a>'
+                userTR += '<a class="btn btn-xs btn-danger bt_del_user roundedRight"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a>'
+                userTR += '<a class="btn btn-xs btn-warning bt_change_mdp_user"><i class="fas fa-pencil-alt"></i><span class="hidden-1280"> {{Mot de passe}}</span></a>'
               }
-              userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs pull-right" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Régénérer API}}</span></a>'
+              userTR += '<a class="cursor bt_changeHash btn btn-warning btn-xs" title="{{Renouveler la clef API}}"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Régénérer API}}</span></a>'
               if (data[i].profils == 'restrict') {
-                userTR += '<a class="btn btn-xs btn-default pull-right bt_copy_user_rights"><i class="fas fa-copy"></i><span class="hidden-1280"> {{Copier les droits}}</span></a>'
+                userTR += '<a class="btn btn-xs btn-default bt_copy_user_rights"><i class="fas fa-copy"></i><span class="hidden-1280"> {{Copier les droits}}</span></a>'
               }
 
-              userTR += '<a class="btn btn-xs btn-warning pull-right bt_manage_restrict_rights"><i class="fas fa-align-right"></i><span class="hidden-1280"> {{Droits}}</span></a>'
+              userTR += '<a class="btn btn-xs btn-warning bt_manage_restrict_rights"><i class="fas fa-align-right"></i><span class="hidden-1280"> {{Droits}}</span></a>'
               if (data[i].profils != 'restrict') {
                 userTR = userTR.replace('bt_manage_restrict_rights', 'bt_manage_restrict_rights disabled')
               }
-              userTR += '<a class="btn btn-xs btn-default pull-right bt_manage_profils roundedLeft"><i class="fas fa-briefcase"></i><span class="hidden-1280"> {{Profils}}</span></a>'
+              userTR += '<a class="btn btn-xs btn-default bt_manage_profils roundedLeft"><i class="fas fa-briefcase"></i><span class="hidden-1280"> {{Profils}}</span></a>'
 
               userTR += '</span></div>'
             }
@@ -210,6 +210,25 @@ document.registerEvent('keydown', function(event) {
   }
 })
 
+
+
+function handleSupportAccess(enable) {
+  jeedom.user.supportAccess({
+      enable: enable,
+      error: function(error) {
+          jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+          });
+      },
+      success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false;
+          jeedomUtils.loadPage('index.php?v=d&p=user');
+      }
+  });
+}
+
+
 /*Events delegations
 */
 //div_administration
@@ -262,21 +281,31 @@ document.getElementById('div_administration').addEventListener('click', function
   }
 
   if (_target = event.target.closest('#bt_supportAccess')) {
-    jeedom.user.supportAccess({
-      enable: _target.getAttribute('data-enable'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        jeeFrontEnd.modifyWithoutSave = false
-        jeedomUtils.loadPage('index.php?v=d&p=user')
-      }
-    })
-    return
-  }
+    var enable = _target.getAttribute('data-enable');
+    if (enable == '1') {
+        bootbox.confirm({
+            message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
+            buttons: {
+                confirm: {
+                    label: "Oui",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "Non",
+                    className: "btn-danger"
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    handleSupportAccess(enable);
+                }
+            }
+        });
+    } else {
+        handleSupportAccess(enable);
+    }
+}
+
 
   if (_target = event.target.closest('#table_user .bt_del_user')) {
     jeedomUtils.hideAlert();

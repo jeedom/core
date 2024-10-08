@@ -32,7 +32,7 @@ if (is_object($plan3dHeader)) {
 		</div>
 	</div>
 	<div class="col-lg-2 bs-sidebar" id="div_colMenu">
-		<div id="div_btEdit" style="padding: 5px 0;" hidden>
+		<div id="div_btEdit" style="padding: 5px 0; display: none;">
 			<a class="btn btn-default btn-xs" id="bt_plan3dHeaderConfigure" title="{{Configuration du design 3D}}"><i class="fas fa-cogs"></i></a>
 			<a class="btn btn-default btn-xs" id="bt_plan3dHeaderAdd" title="{{Créer un nouveau design 3D}}"><i class="fas fa-plus"></i></a>
 			<a class="btn btn-default btn-xs" id="bt_showAllObject" title="{{Afficher tous les objets du design 3D}}"><i class="fas fa-eye"></i></a>

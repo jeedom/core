@@ -6,30 +6,26 @@ if (strtotime(config::byKey('update::lastCheck')) < (strtotime('now -120min'))) 
 	try {
 		update::checkAllUpdate();
 	} catch (\Exception $e) {
-		echo '<div class="alert alert-danger">{{Erreur sur la vérification des mises à jour :}}' . ' ' . $e->getMessage() . '</div>';
+		echo '<div class="alert alert-danger">{{Erreur sur la vérification des mises à jour :}}' . ' ' . log::exception($e) . '</div>';
 	}
 }
 $hardware = jeedom::getHardwareName();
 $distrib = system::getDistrib();
-$coreRemoteVersion = update::byLogicalId('jeedom')->getRemoteVersion();
 $showUpdate = true;
 $showUpgrade = false;
-if ($coreRemoteVersion >= '4.2' && $distrib == 'debian') {
+if ($distrib == 'debian') {
 	$version = trim(strtolower(file_get_contents('/etc/debian_version')));
-	if ($version < '10') {
+	if (version_compare($version, config::byKey('os::min'),'<')) {
 		$system = strtoupper($hardware) . ' - ' . ucfirst($distrib) . ' ' . $version;
 		$showUpdate = false;
 		$alertLevel = 'alert alert-warning';
 		if ($hardware == 'miniplus' || $hardware == 'Jeedomboard') {
 			$messageAlert = '{{Votre système actuel fonctionnant correctement et n\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.}}';
-		} else if ($hardware == 'smart') {
-			$showUpgrade = true;
-			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box Smart}}';
 		} else {
 			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers}}';
-			$messageAlert .= ' <strong>Debian 10 Buster</strong>.<br><em>';
+			$messageAlert .= ' <strong>Debian '.config::byKey('os::min').'</strong>.<br><em>';
 			if (config::byKey('doc::base_url', 'core') != '') {
-				$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian 10 Buster puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}' . '</em>';
+				$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian}} '.config::byKey('os::min').' {{puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}' . '</em>';
 			}
 		}
 		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
@@ -158,7 +154,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour le Core}}
-								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, la Core sera mis à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, le Core sera mis à jour.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-pen-alt"></i>
@@ -175,7 +171,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<label><i class="fas fa-tasks"></i> Plugins</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour les plugins}}
-								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mise à jour après le Core.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mis à jour après le Core.}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="plugins" checked /><i class="fas fa-pen-alt"></i>

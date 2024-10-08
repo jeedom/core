@@ -43,8 +43,8 @@ if (init('listener_id') == '') {
 			throw new Exception(__('Listener non trouvé :', __FILE__) . ' ' . $listener_id);
 		}
 	} catch (Exception $e) {
-		log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
-		die($e->getMessage());
+		log::add(init('plugin_id', 'plugin'), 'error', log::exception($e));
+		die(log::exception($e));
 	}
 	$listener->execute(init('event_id'), trim(init('value'), "'"), trim(init('datetime'), "'"));
 }

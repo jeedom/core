@@ -65,7 +65,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 ### Luz
 
 - Estado : El control del estado de la luz puede ser binario (0 o 1), digital (0 a 100%) o color
-- Potencia : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad))
+- Fuerza : potencia de la bombilla (tenga en cuenta que esto puede no reflejar la realidad))
 
 ### Texte
 
@@ -85,14 +85,14 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 - Estado : Estado de puerta / ventana, 1 cerrado y 0 abierto
 - Rotation
-	- Habilitar : activa la rotación de la puerta / ventana al abrir
+	- Permitir : activa la rotación de la puerta / ventana al abrir
 	- Apertura : lo mejor es probar para que coincida con su puerta / ventana
 - Translation
-	- Habilitar : activa la traducción al abrir (puerta corredera / tipo de ventana))
+	- Permitir : activa la traducción al abrir (puerta corredera / tipo de ventana))
 	- Sentido : dirección en la que debe moverse la puerta / ventana (tiene arriba / abajo / derecha / izquierda)
 	- Repetición : de forma predeterminada, la Puerta / Ventana se mueve una vez que su dimensión en la dirección dada, pero puede aumentar este valor
 - Ocultar cuando la puerta / ventana está abierta
-	- Habilitar : Oculta el elemento si la puerta / ventana está abierta
+	- Permitir : Oculta el elemento si la puerta / ventana está abierta
 - Couleur
 	- Color abierto : Si marca, el elemento tomará este color si la puerta / ventana está abierta
 	- Color cerrado : Si marca, el elemento tomará este color si la puerta / ventana está cerrada
@@ -101,7 +101,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 - Estado : estado del obturador, 0 abierto otro valor cerrado
 - Ocultar cuando el obturador está abierto
-	- Habilitar : ocultar el elemento si el obturador está abierto
+	- Permitir : ocultar el elemento si el obturador está abierto
 - Couleur
 	- Color cerrado : Si marca, el elemento tomará este color si el obturador está cerrado
 

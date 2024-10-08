@@ -37,6 +37,7 @@ div.eqLogic-widget div.cmds {
   align-items: flex-start;
   width: 100%;
   overflow: auto;
+  height: calc(100%-24px);
 }
 
 div.eqLogic-widget div.cmd-widget {

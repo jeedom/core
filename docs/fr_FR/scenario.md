@@ -93,7 +93,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 
 > **Tip Mode programmé**
 >
-> Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuter un scénario toutes les 20 minutes avec  ``*/20 * * * *``, ou à 5h du matin pour régler une multitude de choses pour la journée avec ``0 5 * * *``. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron.
+> Le mode programmé utilise la syntaxe **Cron**. Vous pourrez par exemple exécuter un scénario toutes les 20 minutes avec  `*/20 * * * *`, ou à 5h du matin pour régler une multitude de choses pour la journée avec ``0 5 * * *``. Le ? à droite d'une programmation vous permet de régler celle-ci sans être un spécialiste de la syntaxe Cron. Il est aussi possible de mettre une heure de lancement sous la forme `Gi` (heure sans zero initial et minute, exemple pour `09h15` => `915` ou pour `23h40` => `2340`). Cette heure peut etre le résultat d'un calcul (utilisant une commande ou un tag), par exemple : `#sunset# + 10` pour un lancement 10 minutes après le couché du soleil. A noter que pour un lancement 1h30 après le couché du soleil il faut mettre `#sunset# + 130`. A noter que lors de l'utilisation d'une syntaxe autre qu'un cron jeedom ne sera pas en mesure de vous donner les dates des lancements précedent ou suivant.
 
 ## Onglet Scénario
 
@@ -287,12 +287,15 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
 - ``#IP#`` : IP interne de Jeedom.
 - ``#hostname#`` : Nom de la machine Jeedom.
 - ``#jeedomName#`` : Nom du Jeedom.
-- ``#trigger#`` (déprecié, mieux vaut utiliser ``trigger()``) : Peut être le nom de la commande qui a déclenché le scénario :
+- ``#trigger#`` : Peut être :
   - ``api`` si le lancement a été déclenché par l'API,
+  - ``TYPEcmd`` si le lancement a été déclenché par une commande, avec TYPE remplacé l'id du plugin (ex virtualCmd),
   - ``schedule`` s'il a été lancé par une programmation,
   - ``user`` s'il a été lancé manuellement,
   - ``start`` pour un lancement au démarrage de Jeedom.
-- ``#triggerValue#`` (déprecié, mieux vaut utiliser triggerValue()) : Pour la valeur de la commande ayant déclenché le scénario
+- ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché. Exemple : ``#trigger_id# == 19``
+- ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande]). Exemple : ``#trigger_name# == '[cuisine][lumiere][etat]'``
+- ``#trigger_value#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario. Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser : ``##trigger_id##`` (double #)
 - ``#latitude#`` : Permet de récuperer l'information de latitude mise dans la configuration de jeedom
 - ``#longitude#`` : Permet de récuperer l'information de longitude mise dans la configuration de jeedom
 - ``#altitude#`` : Permet de récuperer l'information de altitude mise dans la configuration de jeedom
@@ -432,8 +435,8 @@ Une boîte à outils de fonctions génériques peut également servir à effectu
 - ``rand(1,10)`` : Donne un nombre aléatoire de 1 à 10.
 - ``randText(texte1;texte2;texte…​..)`` : Permet de retourner un des textes aléatoirement (séparer les texte par un ; ). Il n’y a pas de limite dans le nombre de texte.
 - ``randomColor(min,max)`` : Donne une couleur aléatoire comprise entre 2 bornes ( 0 => rouge, 50 => vert, 100 => bleu).
-- ``trigger(commande)`` : Permet de connaître le déclencheur du scénario ou de savoir si c’est bien la commande passée en paramètre qui a déclenché le scénario.
-- ``triggerValue()`` : Permet de connaître la valeur du déclencheur du scénario.
+- ``trigger(commande)`` : Permet de connaître le déclencheur du scénario ou de savoir si c’est bien la commande passée en paramètre qui a déclenché le scénario. **=> Deprecated il vaut mieux utiliser le tag #trigger#**
+- ``triggerValue()`` : Permet de connaître la valeur du déclencheur du scénario. **=> Deprecated il vaut mieux utiliser le tag #triggerValue#**
 - ``round(valeur,[decimal])`` : Donne un arrondi au-dessus, [decimal] nombre de décimales après la virgule.
 - ``odd(valeur)`` : Permet de savoir si un nombre est impair ou non. Renvoie 1 si impair 0 sinon.
 - ``median(commande1,commande2…​.commandeN)`` : Renvoie la médiane des valeurs.
@@ -450,9 +453,7 @@ Et les exemples pratiques :
 | Exemple de fonction                  | Résultat retourné                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | la fonction retournera un de ces textes aléatoirement à chaque exécution.                           |
-| ``randomColor(40,60)``                 | Retourne une couleur aléatoire  proche du vert.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 si c’est bien ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario sinon 0  |
-| ``triggerValue()`` | 80 si l’hydrométrie de ``#[Salle de bain][Hydrometrie][Humidité]#`` est de 80 % et que c'est ``#[Salle de bain][Hydrometrie][Humidité]#`` qui a déclenché le scénario. Si le scénario n'a pas été déclenché par une commande, retourne `faux`.                         |
+| ``randomColor(40,60)``                 | Retourne une couleur aléatoire  proche du vert.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Renvoie 9 si le pourcentage d’humidité et 85                     |
 | ``odd(3)``                             | Renvoie 1                            |
 | ``median(15,25,20)``                   | Renvoie 20
@@ -498,7 +499,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
 - **Alerte** (alert) : Permet d’afficher un petit message d’alerte sur tous les navigateurs qui ont une page Jeedom ouverte. Vous pouvez, en plus, choisir 4 niveaux d’alerte.
 - **Pop-up** (popup) : Permet d’afficher un pop-up qui doit absolument être validé sur tous les navigateurs qui ont une page jeedom ouverte.
 - **Rapport** (report) : Permet d’exporter une vue au format (PDF,PNG, JPEG ou SVG) et de l’envoyer par le biais d’une commande de type message. Attention, si votre accès Internet est en HTTPS non-signé, cette fonctionnalité ne fonctionnera pas. Il faut du HTTP ou HTTPS signé. Le "delai" est en milli-seconde (ms).
-- **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la programmation de tous les blocs DANS et A du scénario.
+- **Supprimer bloc DANS/A programmé** (remove_inat) : Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario.
 - **Evènement** (event) : Permet de pousser une valeur dans une commande de type information de manière arbitraire.
 - **Tag** (tag) : Permet d'ajouter/modifier un tag (le tag n'existe que pendant l'exécution en cours du scénario à la différence des variables qui survivent à la fin du scénario).
 - **Coloration des icônes du dashboard** (setColoredIcon) : Permet d'activer ou non la coloration des icônes sur le Dashboard.

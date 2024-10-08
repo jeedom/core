@@ -11,7 +11,7 @@ Mit diesem Tool können Sie eine große Anzahl von Geräten, Befehlen, Objekten 
 
 Das Teil *Gefiltert* ermöglicht es Ihnen, auszuwählen, was Sie bearbeiten möchten, und fügen Sie dann Auswahlfilter gemäß ihren Parametern hinzu. Eine Testschaltfläche ermöglicht es Ihnen, ohne Änderungen die Elemente anzuzeigen, die durch die eingegebenen Filter ausgewählt wurden.
 
-Das Teil *Bearbeitung* ermöglicht es Ihnen, Parameter dieser Elemente zu ändern.
+Das Teil *Ausgabe* ermöglicht es Ihnen, Parameter dieser Elemente zu ändern.
 
 - **Spalte** : Rahmen.
 - **Wert** : Der Wert des Parameters.
@@ -25,7 +25,7 @@ Das Teil *Bearbeitung* ermöglicht es Ihnen, Parameter dieser Elemente zu änder
 - Klicken Sie auf die Schaltfläche **+** einen Filter hinzufügen.
 - Wählen Sie in diesem Filter die Spalte *Gruppe*, und markieren Sie den Namen der Gruppe, die Sie umbenennen möchten.
 - Klicken Sie auf die Schaltfläche *Prüfen* um die Szenarien dieser Gruppe anzuzeigen.
-- Im Spiel *Bearbeitung*, Spalte auswählen *Gruppe*, dann geben Sie den gewünschten Namen in den Wert ein.
+- Im Spiel *Ausgabe*, Spalte auswählen *Gruppe*, dann geben Sie den gewünschten Namen in den Wert ein.
 - Klicke auf **Ausführen** oben rechts.
 
 #### Machen Sie die gesamte Ausrüstung eines Objekts / Raums unsichtbar:
@@ -34,5 +34,5 @@ Das Teil *Bearbeitung* ermöglicht es Ihnen, Parameter dieser Elemente zu änder
 - Klicken Sie auf die Schaltfläche **+** einen Filter hinzufügen.
 - Wählen Sie in diesem Filter die Spalte *Objekt Identifikation*, und als Wert die ID des betreffenden Objekts (sichtbar unter Tools / Objects, Overview).
 - Klicken Sie auf die Schaltfläche *Prüfen* um die Szenarien dieser Gruppe anzuzeigen.
-- Im Spiel *Bearbeitung*, Spalte auswählen *ist sichtbar*, dann geben Sie den Wert 0 ein.
+- Im Spiel *Ausgabe*, Spalte auswählen *istsichtbar*, dann geben Sie den Wert 0 ein.
 - Klicke auf **Ausführen** oben rechts.

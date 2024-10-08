@@ -46,7 +46,7 @@ function jeeCronAll_errorHandler($cron, $e) {
 		$cron->setState('error');
 		$cron->setPID('');
 		echo __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e);
-		log::add('cron', 'error', __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . $e->getMessage());
+		log::add('cron', 'error', __('[Erreur master]', __FILE__) . ' ' . $cron->getName() . ' : ' . log::exception($e));
 	}
 }
 
@@ -177,6 +177,7 @@ if (init('cron_id') != '') {
 	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
+	$datetime = date('Y-m-d H:i:s');
 	foreach((cron::all()) as $cron) {
 		try {
 			if ($cron->getDeamon() == 1) {
@@ -191,7 +192,7 @@ if (init('cron_id') != '') {
 			}
 			$duration = strtotime('now') - strtotime($cron->getLastRun());
 			if ($cron->getEnable() == 1 && $cron->getState() != 'run' && $cron->getState() != 'starting' && $cron->getState() != 'stoping') {
-				if ($cron->isDue()) {
+				if ($cron->isDue($datetime)) {
 					$cron->start();
 				}
 			}

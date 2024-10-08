@@ -432,7 +432,7 @@ class interactQuery {
 				}
 			}
 		} catch (Exception $e) {
-			return array('reply' => __('Erreur :', __FILE__) . ' ' . $e->getMessage());
+			return array('reply' => __('Erreur :', __FILE__) . ' ' . log::exception($e));
 		}
 		return null;
 	}
@@ -878,9 +878,9 @@ class interactQuery {
 						$replace['#valeur#'] .= ' ' . $return;
 					}
 				} catch (Exception $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . $e->getMessage());
+					log::add('interact', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . log::exception($e));
 				} catch (Error $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . $e->getMessage());
+					log::add('interact', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
 		}

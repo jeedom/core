@@ -55,7 +55,7 @@ En un escenario :
 - Ctrl-S : Para salvaguardar.
 - Haga clic derecho en una pestaña : Menú contextual para ir directamente a otro escenario.
 - Ctrl-L : Pantalla de registro.
-- Ctrl Mayús Z : Anular.
+- Ctrl Mayús Z : Cancelar.
 - Ctrl Mayús Y : Rehacer.
 
 - Ctrl Haga clic en Ejecutar : Guarde y ejecute el escenario, luego abra el registro.
@@ -72,7 +72,7 @@ En un bloque de código :
 - Ctrl S en una configuración de complemento : Para salvaguardar.
 - Ctrl Click o Click Center en un complemento : Abra la administración de complementos en una nueva pestaña del navegador.
 
-### Complementos / *enchufar*
+### Complementos / *complemento*
 - En un dispositivo, Ctrl S  : Para salvaguardar.
 - En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
 - Ctrl Click o Center Click en un dispositivo: Abra el equipo del complemento en una nueva pestaña del navegador.
@@ -85,7 +85,7 @@ En un bloque de código :
 - Ctrl Shift E en un diseño : Entrar o salir del modo de edición.
 
 ### Análisis / resumen de domótica
-- Ctrl Haga clic en el icono *Abrir* (recherche) : Abra todos los objetos y equipos.
+- Ctrl Haga clic en el icono *Abierto* (recherche) : Abra todos los objetos y equipos.
 - Ctrl Haga clic en el icono *Cerca* (recherche) : Cierra todos los objetos y equipos.
 
 ### Análisis / Historia

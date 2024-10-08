@@ -580,6 +580,7 @@ jeedom.scenario.autoCompleteAction = [
   'popup',
   'event',
   'changeTheme',
+  'remove_inat',
   'genericType'
 ]
 /* Actions Autocomplete only for scenarios*/
@@ -587,7 +588,6 @@ jeedom.scenario.autoCompleteActionScOnly = [
   'stop',
   'log',
   'scenario_return',
-  'remove_inat',
   'icon'
 ]
 

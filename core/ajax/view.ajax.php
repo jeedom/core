@@ -58,6 +58,7 @@ try {
 	}
 
 	if (init('action') == 'all') {
+		$return = array();
 		$views = view::all();
 		foreach ($views as $view) {
 			if (!$view->hasRight('r')) {

@@ -167,6 +167,10 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			)
 		),
 		'generic_type' => array(
+			'TOGGLE' => array(
+				'name' => __('Toggle', __FILE__), 'familyid' => 'Other', 'family' => __('Autre', __FILE__),
+				'type' => 'Action', 'subtype' => array('other')
+			),
 			'ONLINE' => array(
 				'name' => __('Connecté', __FILE__), 'familyid' => 'Other', 'family' => __('Autre', __FILE__),
 				'type' => 'Info', 'subtype' => array('binary')
@@ -205,7 +209,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'LIGHT_MODE' => array(
 				'name' => __('Lumière Mode', __FILE__), 'familyid' => 'Light', 'family' => __('Lumière', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'LIGHT_STATE_BOOL' => array(
 				'name' => __('Lumière Etat (Binaire)', __FILE__), 'familyid' => 'Light', 'family' => __('Lumière', __FILE__),
@@ -341,7 +345,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'THERMOSTAT_SET_MODE' => array(
 				'name' => __('Thermostat Mode', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'THERMOSTAT_MODE' => array(
 				'name' => __('Thermostat Mode', __FILE__), 'familyid' => 'Thermostat', 'family' => __('Thermostat', __FILE__),
@@ -445,7 +449,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'MODE_SET_STATE' => array(
 				'name' => __('Changer Mode', __FILE__), 'familyid' => 'Mode', 'family' => __('Mode', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'SIREN_STATE' => array(
 				'name' => __('Sirène Etat', __FILE__), 'familyid' => 'Security', 'family' => __('Sécurité', __FILE__),
@@ -481,7 +485,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'ALARM_SET_MODE' => array(
 				'name' => __('Alarme Mode', __FILE__), 'familyid' => 'Security', 'family' => __('Sécurité', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action', 'subtype' => array('other','select')
 			),
 			'FLOOD' => array(
 				'name' => __('Inondation', __FILE__), 'familyid' => 'Security', 'family' => __('Sécurité', __FILE__),
@@ -717,7 +721,7 @@ $JEEDOM_INTERNAL_CONFIG = array(
 			),
 			'GENERIC_ACTION' => array(
 				'name' => ' ' . __('Générique', __FILE__), 'familyid' => 'Generic', 'family' => __('Generic', __FILE__),
-				'type' => 'Action', 'subtype' => array('other')
+				'type' => 'Action'
 			),
 			'DONT' => array(
 				'name' => __('Ne pas tenir compte de cette commande', __FILE__), 'familyid' => 'Generic', 'family' => __('Generic', __FILE__),
@@ -1001,6 +1005,7 @@ $GLOBALS['JEEDOM_SCLOG_TEXT'] = array(
 	'start'					=> array('txt' => '-- ' . __('Début :', __FILE__), 'replace' => '<strong>::</strong>'),
 	'task'					=> array('txt' => __('Tâche :', __FILE__) . ' ', 'replace' => '<label class="warning">::</label>'),
 	'event'					=> array('txt' => __('Changement de', __FILE__) . ' ', 'replace' => '<label class="warning">::</label>'),
+	'setTag'				=> array('txt' => __('Mise à jour du tag', __FILE__) . ' ', 'replace' => '<label class="warning">::</label>'),
 
 	'stopTimeout'			=> array('txt' => __('Arrêt du scénario car il a dépassé son temps de timeout :', __FILE__) . ' ', 'replace' => '<label class="danger">::</label>'),
 	'disableNoSubtask'		=> array('txt' => __('Scénario désactivé non lancement de la sous tâche', __FILE__), 'replace' => '<label class="danger">::</label>'),

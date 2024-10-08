@@ -98,6 +98,9 @@ if (!jeeFrontEnd.pluginTemplate) {
           if (isset(data) && isset(data.timeout) && data.timeout == 0) {
             data.timeout = ''
           }
+          if(document.getElementById('img_device') != null && document.querySelector('.eqLogicDisplayCard.active img').getAttribute('src') != ''){
+            document.getElementById('img_device').setAttribute("src",document.querySelector('.eqLogicDisplayCard.active img').getAttribute('src'));
+          }
           document.getElementById('div_mainContainer').setJeeValues(data, '.eqLogicAttr')
           if (!isset(data.category.opening)) try { document.querySelector('input[data-l2key="opening"]').checked = false } catch (e) { }
 

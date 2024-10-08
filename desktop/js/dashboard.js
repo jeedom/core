@@ -306,6 +306,7 @@ if (!jeeFrontEnd.dashboard) {
       let self = this
       jeedom.object.toHtml({
         id: _object_id,
+        hideOnMain: (getUrlVars('childs') === false) ? 1 : 0,
         version: 'dashboard',
         category: 'all',
         summary: self.url_summary,
@@ -323,7 +324,7 @@ if (!jeeFrontEnd.dashboard) {
               dom_divDisplayEq.closest('.div_object').parentNode.remove()
               return
             }
-            dom_divDisplayEq.html(html)
+            dom_divDisplayEq?.html(html)
           } catch (err) {
             console.warn(err)
           }

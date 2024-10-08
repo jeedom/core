@@ -14,5 +14,6 @@ Header set X-XSS-Protection "1; mode=block"
 Header unset X-Powered-By
 Header set Referrer-Policy: strict-origin-when-cross-origin
 Header set Permissions-Policy "accelerometer=(),battery=(),fullscreen=(self),geolocation=(),camera=(),ambient-light-sensor=(self),autoplay=(self)"
-Header set Content-Security-Policy "default-src 'self' file: data: blob: filesystem:;script-src-attr 'self' 'unsafe-inline' 'unsafe-eval' *.google.com *.google.fr *.googleapis.com;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.google.com *.google.fr;script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' *.google.com *.google.fr;img-src 'self' * data:;style-src 'self' 'unsafe-inline';style-src-attr 'self' 'unsafe-inline';worker-src blob:;frame-src 'self' *.jeedom.com *.google.com *.google.fr *.googleapis.com data:;"
+Header set Content-Security-Policy "default-src 'self' file: data: blob: filesystem:;script-src-attr 'self' 'unsafe-inline' 'unsafe-eval' *.google.com *.google.fr *.googleapis.com *.openstreetmap.org;script-src 'self' 'unsafe-inline' 'unsafe-eval' *.google.com *.google.fr *.openstreetmap.org;script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' *.google.com *.google.fr *.openstreetmap.org;img-src 'self' * data:;style-src 'self' 'unsafe-inline';style-src-attr 'self' 'unsafe-inline';worker-src blob:;frame-src 'self' *.jeedom.com *.google.com *.google.fr *.googleapis.com *.openstreetmap.org data:;"
 </IfModule>
+

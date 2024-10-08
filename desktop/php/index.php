@@ -354,11 +354,13 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 												<label class="drop-icon" for="drop-dashboard"><i class="fas fa-chevron-down fa-2x"></i></label>
 											</a>
 											<input type="checkbox" id="drop-dashboard">
-                                            <ul id="bt_dashboardList">
-                                                <li class="filter-input">
-                                                  <input type="text" id="bt_dashboardFilter" placeholder="{{Filtre du dashboard}}">
-                                                  <span class="clear-btn" id="dashboardClearFilter"><i class="fas fa-times"></i></span>
-                                                </li>												<?php
+                        <ul id="bt_dashboardList">
+                            <li class="filter-input">
+                              <input type="text" id="bt_dashboardFilter" placeholder="{{Filtre du dashboard}}">
+                              <span class="clear-btn" id="dashboardClearFilter"><i class="fas fa-times"></i></span>
+                            </li>												
+                        <?php
+
 												$echo = '';
 												foreach ((jeeObject::buildTree(null, false)) as $object_li) {
 													$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';

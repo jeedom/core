@@ -39,7 +39,10 @@ try {
 				if (!$scenario->getIsActive()) {
 					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 				}
-				$scenario->launch('user', $GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt'], 0);
+				$scenario->addTag('trigger','user');
+				$scenario->addTag('trigger_value',$_SESSION['user']->getLogin());
+				$scenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
+				$scenario->launch(0);
 				break;
 			case 'stop':
 				$scenario->stop();

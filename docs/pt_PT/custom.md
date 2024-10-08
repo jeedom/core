@@ -9,12 +9,12 @@ Aqui você pode gerenciar funções **javascript** e regras **CSS** aplicado em 
 
 Esta função usa um modo particular do editor de arquivos Core com dois locais:
 
-- desktop / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Desktop.
-- móvel / personalizado : Pode conter os dois arquivos **custom.js** e **CSS customizado** que será carregado pelo Core na versão Mobile.
+- desktop / personalizado : Pode conter os dois arquivos **custom.js** E **CSS customizado** que será carregado pelo Core na versão Desktop.
+- móvel / personalizado : Pode conter os dois arquivos **custom.js** E **CSS customizado** que será carregado pelo Core na versão Mobile.
 
-Na barra de menu do editor de arquivos Core, um botão **Habilitado** Onde **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
+Na barra de menu do editor de arquivos Core, um botão **Habilitado** Ou **Desativado** diz se o Core deve carregá-los ou não. Esta opção também está disponível em **Configurações → Sistema → Configuração** Guia Interface.
 
-> **Observação**
+> **Percebido**
 >
 > Quando esta página é lançada, a estrutura em árvore é criada automaticamente, assim como os 4 arquivos com um comentário na 1ª linha incluindo a versão do Core que os criou.
 
@@ -57,8 +57,8 @@ div.cmd-widget.content,
 div.cmd-widget .content-sm,
 div.cmd-widget .content-lg,
 div.cmd-widget.content-xs {
-  min-width: um conjunto !important;
-  min-height: um conjunto !important;
+  min-width: desarmar !important;
+  min-height: desarmar !important;
 }
 ```
 

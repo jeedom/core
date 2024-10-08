@@ -28,7 +28,7 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentificationSecret') == '' || $_
 }
 @session_write_close();
 $google2fa_url = $google2fa->getQRCodeInline(
-  'Jeedom',
+  'Jeedom '.config::byKey('name'),
   $_SESSION['user']->getLogin(),
   $_SESSION['user']->getOptions('twoFactorAuthentificationSecret')
 );

@@ -1,5 +1,5 @@
 # FAQ
-**Settings → Version : FAQs**
+**Settings → Version : FAQ**
 
 ### Jeedom does it require a subscription ?
 No, Jeedom is fully usable without any need for any subscription. However, there are services offered for backups or calls / SMS, but which are really optional.
@@ -60,7 +60,7 @@ In SSH do :
 sudo su -
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-`` ''
+```
 
 ### How to update Jeedom in SSH ?
 In SSH do :
@@ -70,7 +70,7 @@ sudo su -
 php /var/www/html/install/update.php
 chmod -R 775 / var / www / html
 chown -R www-data:www-data / var / www / html
-`` ''
+```
 
 ### Is the Webapp compatible Symbian ?
 The webapp requires a smartphone supporting HTML5 and CSS3. It is therefore unfortunately not Symbian compatible.
@@ -90,7 +90,7 @@ This can be due to several things, :
 It is necessary to connect in SSH to Jeedom and launch the self-diagnostic script :
 `` `{.bash}
 sudo chmod + x / var / www / html / health.sh; sudo /var/www/html/health.sh
-`` ''
+```
 If there is a problem, the script will try to correct it. If it can&#39;t, it will tell you.
 
 You can also look at the log /var/www/html/log/http.error. Very often, this indicates the concern.
@@ -107,7 +107,7 @@ cd / usr / share / nginx / www / jeedom
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
-`` ''
+```
 
 ### I have \ {\ {… \} \} everywhere
 The most frequent cause is the use of a plugin in beta version and Jeedom in stable, or the reverse. To get the details of the error, you have to look at the http log.error (in / var / www / html / log).
@@ -123,7 +123,7 @@ If this persists following a reinstallation, it is advisable to check with the a
 It is advisable to look at the commands executed by the scenario, often it comes from a command that does not end.
 
 ### I have instabilities or errors 504
-Check if your file system is not corrupt, in SSH the command is : `` ''sudo dmesg | grep error`` ''.
+Check if your file system is not corrupt, in SSH the command is : ```sudo dmesg | grep error```.
 
 ### I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock'
 This is due to MySQL which stopped, it is not normal, the common cases are :
@@ -137,7 +137,7 @@ Unfortunately, there is not much solution if it is the second case, the best bei
 sudo su -
 mysql stop service
 mysqld --verbose
-`` ''
+```
 Or consult the log : /var/log/mysql/error.log
 
 ### The Shutdown / Restart buttons do not work
@@ -146,7 +146,7 @@ NOPASSWD: ALL.
 
 `` `{.bash}
 sudo service apache2 restart
-`` ''
+```
 
 ### I don&#39;t see some plugins from the Market
 This kind of case happens if your Jeedom is not compatible with the plugin. In general, a Jeedom update fixes the problem.
@@ -156,11 +156,11 @@ Alerts are ranked by priority, from the least important to the most important : 
 
 ### My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ?
 If you are in DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If that&#39;s the case, you have to do :
-`` ''
+```
 mkdir /etc/systemd/system/apache2.service.d
 echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
 echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
-`` ''
+```
 
 ### I have a time concern on my history
 Try to clear the chrome cache, the display of histories is calculated relative to the browser time.
@@ -176,20 +176,20 @@ It means that Jeedom cannot back up the database which can suggest a problem wit
 
 ### I have errors of type &quot;Class &#39;eqLogic&#39; not found&quot;, files seem to be missing or I have a blank page
 It is a fairly serious error, the simplest is to make
-`` ''
+```
 mkdir -p / root / tmp /
 cd / root / tmp
 wget https://github.com/jeedom/core/archive/master.zip
 unzip master.zip
 cp -R / root / tmp / core-master / * / var / www / html
 rm -rf / root / tmp / core-master
-`` ''
+```
 
 ### I have the error in scenario_execution MYSQL_ATTR_INIT_COMMAND
 In the administration of Jeedom part OS / DB then in the system console it is necessary to make :
-`` ''
+```
 yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
-`` ''
+```
 
 ### I cannot install the plugin dependencies I have an error of the type : "E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock / var / lib / dpkg / lock"
 
@@ -207,10 +207,10 @@ It is necessary :
 
 It is necessary in the system console of Jeedom or in ssh to make
 
-`` ''``
+````
 sudo easy_install pip
 sudo easy_install3 pip
-`` ''``
+````
 
 Then relaunch the dependencies
 

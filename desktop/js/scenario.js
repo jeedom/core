@@ -327,7 +327,7 @@ if (!jeeFrontEnd.scenario) {
       document.getElementById('scenarioThumbnailDisplay').unseen()
       document.getElementById('emptyModeWarning').unseen()
       jeedom.scenario.update[_id] = function(_options) {
-        if (_options.scenario_id = !jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
+        if (_options.scenario_id != undefined && _options.scenario_id != jeeP.dom_divScenario.getJeeValues('.scenarioAttr')[0]['id']) {
           return
         }
         switch (_options.state) {
@@ -1226,6 +1226,8 @@ if (!jeeFrontEnd.scenario) {
         message += '    <option value=">">{{supérieur}}</option>'
         message += '    <option value="<">{{inférieur}}</option>'
         message += '    <option value="!=">{{différent}}</option>'
+        message += '    <option value=">=">{{supérieur ou égal}}</option>'
+        message += '    <option value="<=">{{inférieur ou égal}}</option>'
         message += '  </select>'
         message += '</div>'
         message += '<div class="col-xs-4">'
@@ -1238,7 +1240,7 @@ if (!jeeFrontEnd.scenario) {
       if (subType == 'string') {
         message += '<div class="col-xs-2">'
         message += '  <select class="conditionAttr form-control" data-l1key="operator">'
-        message += '    <option value="==">{{égale}}</option>'
+        message += '    <option value="==">{{égal}}</option>'
         message += '    <option value="matches">{{contient}}</option>'
         message += '    <option value="!=">{{différent}}</option>'
         message += '  </select>'
@@ -2334,7 +2336,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
           txt = '<i>Unfound</i>'
           _el = _blocPreview.closest('.element')
           if (_el.hasClass('elementACTION')) {
-            txt = _el.querySelector('.expressions .expression').querySelector('input.form-control').value
+            txt = _el.querySelector('.expressions .expression').querySelector('input.form-control')?.value
             if (!txt) txt = _el.querySelector('.expression textarea').value
           } else if (_el.hasClass('elementCODE')) {
             id = _el.querySelector('.expressionAttr[data-l1key="expression"]').getAttribute('id')

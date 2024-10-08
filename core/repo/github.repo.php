@@ -80,18 +80,6 @@ class repo_github {
 		);
 	}
 	
-	public static function getGithubClient($_token=null) {
-		$client = new \Github\Client();
-		if (!is_null($_token) && $_token!=''){
-			if(defined('Github\Client::AUTH_ACCESS_TOKEN')){
-				$client->authenticate($_token, '', Github\Client::AUTH_ACCESS_TOKEN);
-			}else{
-				$client->authenticate($_token, '', Github\Client::AUTH_HTTP_TOKEN);
-			}
-		}
-		return $client;
-	}
-	
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
 			if (count($_update) < 1) {
@@ -102,9 +90,8 @@ class repo_github {
 			}
 			return;
 		}
-		$client = self::getGithubClient($_update->getConfiguration('token',config::byKey('github::token','core','')));
 		try {
-			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
+			$branch = self::getBranchInfo($_update);
 		} catch (Exception $e) {
 			$_update->setRemoteVersion('repository not found');
 			$_update->setStatus('ok');
@@ -125,15 +112,21 @@ class repo_github {
 		}
 		$_update->save();
 	}
+
+	public static function getBranchInfo($_update){
+		$headers = array('User-agent: jeedom');
+		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
+		if($token != ''){
+			$headers[] = 'Authorization: Bearer '.$token;
+		}
+		$request_http = new com_http('https://api.github.com/repos/'.$_update->getConfiguration('user').'/'.$_update->getConfiguration('repository').'/branches/'.$_update->getConfiguration('version', 'master'));
+		$request_http->setHeader($headers);
+		return json_decode($request_http->exec(10, 1), true);
+	}
 	
 	public static function downloadObject($_update) {
 		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
-		$client = self::getGithubClient($token);
-		try {
-			$branch = $client->api('repo')->branches($_update->getConfiguration('user'), $_update->getConfiguration('repository'), $_update->getConfiguration('version', 'master'));
-		} catch (Exception $e) {
-			throw new Exception(__('Dépot github non trouvé :', __FILE__) . ' ' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/' . $_update->getConfiguration('version', 'master'));
-		}
+		$branch = self::getBranchInfo($_update);
 		$tmp_dir = jeedom::getTmpFolder('github');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
 		if (file_exists($tmp)) {
@@ -145,7 +138,6 @@ class repo_github {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
-		
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $_update->getLogicalId() . '...');
 		if ($token == '') {
@@ -173,12 +165,6 @@ class repo_github {
 	}
 	
 	public static function downloadCore($_path) {
-		$client = self::getGithubClient(config::byKey('github::token','core',''));
-		try {
-			$client->api('repo')->branches(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), config::byKey('github::core::branch', 'core', 'stable'));
-		} catch (Exception $e) {
-			throw new Exception(__('Dépot github non trouvé :', __FILE__) . ' ' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/' . config::byKey('github::core::branch', 'core', 'stable'));
-		}
 		$url = 'https://api.github.com/repos/' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/zipball/' . config::byKey('github::core::branch', 'core', 'stable');
 		echo __('Téléchargement de', __FILE__) . ' ' . $url . '...';
 		if (config::byKey('github::token') == '') {
@@ -190,16 +176,9 @@ class repo_github {
 	}
 	
 	public static function versionCore() {
-		try {
-			$client = self::getGithubClient(config::byKey('github::token','core',''));
-			$fileContent = $client->api('repo')->contents()->download(config::byKey('github::core::user', 'core', 'jeedom'), config::byKey('github::core::repository', 'core', 'core'), 'core/config/version', config::byKey('github::core::branch', 'core', 'stable'));
-			return trim($fileContent);
-		} catch (Exception $e) {
-			
-		} catch (Error $e) {
-			
-		}
-		return null;
+		$url = 'https://raw.githubusercontent.com/'.config::byKey('github::core::user', 'core', 'jeedom').'/'.config::byKey('github::core::repository', 'core', 'core').'/' . config::byKey('github::core::branch', 'core', 'stable') . '/core/config/version';
+		$request_http = new com_http($url);
+		return trim($request_http->exec(30));
 	}
 	
 	/*     * *********************Methode d'instance************************* */

@@ -1,9 +1,9 @@
 # Objets
 **Herramientas → Objetos**
 
-Los **Objetos** le permite definir la estructura de árbol de su domótica.
+EL **Objetos** le permite definir la estructura de árbol de su domótica.
 
-Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **pariente** equipo.
+Todo el equipo que cree debe pertenecer a un objeto y, por lo tanto, es más fácil de identificar. Luego decimos que el objeto es el **padre** equipo.
 
 Para dar libre elección a la personalización, puede nombrar estos objetos como desee. Por lo general, definiremos las diferentes partes de su casa, como el nombre de las habitaciones (esta también es la configuración recomendada).
 
@@ -12,7 +12,7 @@ Para dar libre elección a la personalización, puede nombrar estos objetos como
 ## Gestion
 
 Tienes dos opciones :
-- **Para agregar** : Crea un nuevo objeto.
+- **Agregar** : Crea un nuevo objeto.
 - **Resumen** : Muestra la lista de objetos creados y su configuración.
 
 ## Resumen
@@ -60,15 +60,15 @@ Aquí están las diferentes características para configurar un objeto :
 - **Visible** : Marque esta casilla para hacer visible este objeto.
 - **Ocultar en el tablero** : Marque esta casilla para ocultar el objeto en el Tablero. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente.
 - **Ocultar en resumen** : Marque esta casilla para ocultar el objeto en el resumen'. Todavía se mantiene en la lista, lo que permite que se muestre, pero solo explícitamente.
-- **Acción de síntesis** : Aquí puede indicar una vista o un diseño al que ir cuando haga clic en el objeto del Resumen. *Defecto : Tablero*.
+- **Acción de síntesis** : Aquí puede indicar una vista o un diseño al que ir cuando haga clic en el objeto del Resumen. *Por defecto : Panel*.
 
-#### Monitor :
+#### Mostrar :
 
 - **Icono** : Le permite elegir un icono para su objeto.
 - **Colores personalizados** : Activa el tener en cuenta los dos parámetros de color personalizados a continuación.
 - **Etiqueta de color** : Le permite elegir el color del objeto y el equipo adjunto.
 - **Color del texto de la etiqueta** : Le permite elegir el color del texto del objeto. Este texto estará sobre el **Etiqueta de color**. Eliges un color para que el texto sea legible.
-- **Solo en síntesis** : Le permite poner una imagen para la síntesis sin que se utilice como imagen de fondo, especialmente en la página *Tablero* de este objeto.
+- **Solo en síntesis** : Le permite poner una imagen para la síntesis sin que se utilice como imagen de fondo, especialmente en la página *Panel* de este objeto.
 - **Imagen** : Tienes la opción de cargar una imagen o eliminarla. En formato jpeg, esta imagen será la imagen de fondo del objeto cuando lo muestre en el Tablero. También se usará para la miniatura de la pieza en la Síntesis.
 
 > **Consejo**
@@ -77,11 +77,11 @@ Aquí están las diferentes características para configurar un objeto :
 
 > **Consejo**
 >
-> Puede ver un gráfico que representa todos los elementos de Jeedom unidos a este objeto haciendo clic en el botón **Vínculos**, arriba a la derecha.
+> Puede ver un gráfico que representa todos los elementos de Jeedom unidos a este objeto haciendo clic en el botón **Campo de golf**, arriba a la derecha.
 
 > **Consejo**
 >
-> Cuando se crea un dispositivo y no se ha definido ningún padre, tendrá como padre : **Ninguna**.
+> Cuando se crea un dispositivo y no se ha definido ningún padre, tendrá como padre : **Ninguno**.
 
 ## Pestañas de resumen
 

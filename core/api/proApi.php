@@ -199,7 +199,7 @@ try {
 					$result = 'OK';
 				} else {
 					$filename = __DIR__ . '/../../cache.tar.gz';
-					$result = 'OK (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+					$result = 'OK (' . date('Y-m-d H:i:s',(int) filemtime($filename)) . ')';
 				}
 			} else {
 				$result = 'NOK';
@@ -569,7 +569,9 @@ try {
 				$jsonrpc->makeSuccess($scenario->stop());
 			}
 			if ($params['state'] == 'run') {
-				$jsonrpc->makeSuccess($scenario->launch(__('Scénario exécuté sur appel API', __FILE__)));
+				$scenario->addTag('trigger','api');
+				$scenario->addTag('trigger_message',__('Scénario exécuté sur appel API', __FILE__));
+				$jsonrpc->makeSuccess($scenario->launch());
 			}
 			if ($params['state'] == 'enable') {
 				$scenario->setIsActive(1);

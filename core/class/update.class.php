@@ -133,10 +133,10 @@ class update {
 						try {
 							$update->doUpdate();
 						} catch (Exception $e) {
-							log::add(__CLASS__, 'alert', $e->getMessage());
+							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						} catch (Error $e) {
-							log::add(__CLASS__, 'alert', $e->getMessage());
+							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						}
 					}
@@ -318,11 +318,6 @@ class update {
 					$zip = new ZipArchive;
 					$res = $zip->open($tmp);
 					if ($res === TRUE) {
-						if(version_compare(PHP_VERSION, '8.0.0') >= 0){
-							for($i=0; $i<$zip->numFiles; $i++){
-				                            $zip->setMtimeIndex($i, strtotime('now'));
-				                        }
-						}
 						if (!$zip->extractTo($cibDir . '/')) {
 							$content = file_get_contents($tmp);
 							throw new Exception(__("Impossible d'installer le plugin. Les fichiers n'ont pas pu être décompressés", __FILE__) . ' : ' . substr($content, 255));
@@ -358,6 +353,7 @@ class update {
 							}
 						} catch (Exception $e) {
 						}
+						shell_exec('find '.$cibDir.'/ -exec touch {} +');
 						rmove($cibDir . '/', __DIR__ . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
 						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
@@ -467,11 +463,11 @@ class update {
 					exec($cmd);
 					log::add(__CLASS__, 'alert', __("OK", __FILE__) . "\n");
 					log::add(__CLASS__, 'alert',  __('Suppression des fichiers inutiles...', __FILE__));
-					foreach (array('3rdparty', '3rparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'vendor', 'plugin_info') as $folder) {
+					foreach (array('3rdparty', '3rparty', 'desktop', 'mobile', 'core', 'docs', 'install', 'script', 'plugin_info') as $folder) {
 						if (!file_exists($cibDir . '/' . $folder)) {
 							continue;
 						}
-						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" ! -path "./vendor/*" -delete 2>/dev/null');
+						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" ! -path "./vendor/*"  -delete 2>/dev/null');
 					}
 				} catch (Exception $e) {
 					$this->remove();
@@ -497,13 +493,13 @@ class update {
 
 	public static function getLastAvailableVersion() {
 		try {
-			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'V4-stable') . '/core/config/version';
+			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec(30));
 		} catch (Exception $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		} catch (Error $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		}
 		return null;
 	}

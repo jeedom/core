@@ -817,7 +817,6 @@ body[data-page="panel"] #div_pageContainer legend {
 div.div_viewZone legend.lg_viewZone {
   font-size: 18px;
   font-weight: 500;
-  text-align: center !important;
   margin: 5px !important;
 }
 
@@ -1080,7 +1079,7 @@ div.eqLogicZone {
     display: inline-block;
     top: 15px;
     right: 245px;
-    width: 100%;
+   /* width: 100%;*/
     max-height: 28px;
     text-align: right;
     word-break: break-word;
@@ -2276,9 +2275,12 @@ div.eqLogic-widget.editingMode .panelLink {
     min-width: 20% !important;
     text-align: center !important;
     cursor: pointer !important;
+    vertical-align: middle;
+    display: inline-flex;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label i {
     margin-right: 5px;
+    margin-top: -1.5px;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:first-child {
     margin-top: 8px !important;
@@ -2893,7 +2895,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
   [data-page="plan"] div[data-subtype=select] {
     min-width: unset !important;
-    width: 100% !important;
+    width: unset !important;
   }
 
   div[data-subtype=select] select {

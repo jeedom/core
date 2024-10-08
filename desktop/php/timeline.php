@@ -6,11 +6,7 @@ $date = array(
 	'start' => date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))),
 	'end' => date('Y-m-d'),
 );
-
 ?>
-
-
-
 <div class="row row-overflow">
 	<div id="timelineBar" class="input-group">
 		<input id="in_searchTimeline" class="form-control input-sm roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" style="flex: 6;flex-grow: 4;" />

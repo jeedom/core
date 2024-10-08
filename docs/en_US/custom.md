@@ -9,12 +9,12 @@ Here you can manage functions **javascript** and rules **CSS** applied on deskto
 
 This function uses a particular mode of the Core file editor with two locations:
 
-- desktop / custom : Can contain both files **custom.js** and **custom.css** which will be loaded by the Core in Desktop version.
-- mobile / custom : Can contain both files **custom.js** and **custom.css** which will be loaded by the Core in Mobile version.
+- desktop / custom : Can contain both files **custom.js** And **custom.css** which will be loaded by the Core in Desktop version.
+- mobile / custom : Can contain both files **custom.js** And **custom.css** which will be loaded by the Core in Mobile version.
 
-In the menu bar of the Core file editor, a button **Enabled** Where **Deactivated** tells you if the Core should load them or not. This option is also available in **Settings → System → Configuration** Interface tab.
+In the menu bar of the Core file editor, a button **Enabled** Or **Deactivated** tells you if the Core should load them or not. This option is also available in **Settings → System → Configuration** Interface tab.
 
-> **Remark**
+> **Noticed**
 >
 > When this page is launched, the tree structure is automatically created, as well as the 4 files with a comment in the 1st line including the version of the Core which created them.
 
@@ -57,8 +57,8 @@ div.cmd-widget.content,
 div.cmd-widget .content-sm,
 div.cmd-widget .content-lg,
 div.cmd-widget.content-xs {
-  min-width: a set !important;
-  min-height: a set !important;
+  min-width: unset !important;
+  min-height: unset !important;
 }
 ```
 

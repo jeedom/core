@@ -156,7 +156,7 @@ class repo_samba {
 			$file_info = array();
 			$file_info['filename'] = $line[0];
 			$file_info['size'] = $line[2];
-			$file_info['datetime'] = date('Y-m-d H:i:s', strtotime($line[5] . ' ' . $line[4] . ' ' . $line[7] . ' ' . $line[6]));
+			$file_info['datetime'] = date('Y-m-d H:i:s', (int) strtotime($line[5] . ' ' . $line[4] . ' ' . $line[7] . ' ' . $line[6]));
 			$return[] = $file_info;
 		}
 		usort($return, 'repo_samba::sortByDatetime');

@@ -4,8 +4,7 @@ on:
   push:
     # only trigger CI when push on following branches
     branches:
-      - 'V4-stable'
-      - 'beta'
+      - 'master'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -114,7 +113,7 @@ jobs:
           docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
 
-      - name: Build and push Jeedom on Debian:Buster
+      - name: Build and push Jeedom on Debian:Buster with DB
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
         continue-on-error: true
@@ -128,6 +127,7 @@ jobs:
           build-args: |
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=buster"
+            "DATABASE=1"
           tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
           
       - name: Clean docker image
@@ -136,7 +136,7 @@ jobs:
           docker rm $(docker ps -aq) 2>&1
           docker rmi $(docker image ls -aq) 2>&1
       
-      - name: Build and push Jeedom on Debian:Bookworm
+      - name: Build and push Jeedom on Debian:Bookworm with DB
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
         continue-on-error: true
@@ -150,6 +150,7 @@ jobs:
           build-args: |
             "VERSION=${{ env.GITHUB_BRANCH }}"
             "DEBIAN=bookworm"
+            "DATABASE=1"
           tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-bookworm"
 
       - name: Image digest
