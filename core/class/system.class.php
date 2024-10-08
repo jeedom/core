@@ -510,7 +510,10 @@ class system {
 				if ($type == 'composer' && strpos($package, '/') !== false) {
 					$version = 'N/A';
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
-						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
+						$composer_info = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/composer.json'), true);
+						if(isset($composer_info['version'])){
+							$version = $composer_info['version'];
+						}
 						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
 						if ($output == 0) {
 							$found = 1;
