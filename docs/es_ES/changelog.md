@@ -79,6 +79,7 @@
 - Si la página del equipo tiene un elemento img_device (etiqueta de tipo img), entonces el núcleo puede configurar la URL para mostrar la imagen correcta del equipo (usando la de la página de presentación de todos los equipos del complemento)) [ENLACE](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Se corrigió un error con la función time_diff [ENLACE](https://github.com/jeedom/core/issues/2915)
 - Corrección de errores en la gestión de dependencias del compositor [ENLACE](https://github.com/jeedom/core/issues/2920)
+- **BETA** Posibilidad de redirigir automáticamente a la conexión interna si el usuario está en la misma red que Jeedom, opción para activar en la configuración de red de Jeedom [ENLACE](https://github.com/jeedom/core/issues/2928)
 
 >**IMPORTANTE**
 >

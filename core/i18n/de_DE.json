@@ -1834,6 +1834,7 @@
         "MAC": "MAC",
         "Accès externe": "Externer Zugriff",
         "Désactiver la gestion automatique de l'adresse d'accès externe": "Deaktivieren Sie die automatische Verwaltung der externen Zugriffsadresse",
+        "Rediriger automatiquement sur la connexion interne si disponible": "Automatische Umleitung zur internen Verbindung, falls verfügbar",
         "HTTPS": "HTTPS",
         "DNS": "DNS",
         "Cette fonctionnalité n\\'est pas incluse avec votre service Pack (voir profil Market)": "Diese Funktion ist nicht in Ihrem Service Pack enthalten (siehe Marktprofil)",
