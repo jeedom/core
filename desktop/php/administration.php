@@ -721,13 +721,6 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{Rediriger automatiquement sur la connexion interne si disponible}}
-							</label>
-							<div class="col-xs-8">
-								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="network::auto_redirect_internal"></label>
-							</div>
-						</div>
-						<div class="form-group">
 							<label class="col-lg-2 col-xs-4 control-label">{{Adresse}}</label>
 							<div class="col-xs-8">
 								<div class="input-group">
