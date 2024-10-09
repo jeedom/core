@@ -108,18 +108,6 @@ try {
 				echo $_div;
 			}
 		} else {
-			if(config::byKey('network::auto_redirect_internal','core',0) == 1 && network::getUserLocation() == 'internal' && $_SERVER['HTTP_HOST'] != network::getNetworkAccess('internal', 'ip', '', false)){
-				$url = network::getNetworkAccess('internal', 'proto:ip:port', '', false);
-                if (headers_sent()) {
-                    $_script = '<script type="text/javascript">';
-                    $_script .= "window.location.href='$url';";
-                    $_script .= '</script>';
-                    echo $_script;
-                } else {
-                    header('Location: ' . $url);
-                }
-				die();
-			}
 			include_file('desktop', 'index', 'php');
 		}
 		//page title:
