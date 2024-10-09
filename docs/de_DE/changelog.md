@@ -79,7 +79,6 @@
 - Wenn die Geräteseite über ein img_device-Element (img-Typ-Tag) verfügt, kann der Kern selbst die URL konfigurieren, um das richtige Gerätebild anzuzeigen (unter Verwendung des Bildes der Präsentationsseite aller Plugin-Geräte)) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Ein Fehler mit der Funktion time_diff wurde behoben [LINK](https://github.com/jeedom/core/issues/2915)
 - Fehlerbehebung bei der Composer-Abhängigkeitsverwaltung [LINK](https://github.com/jeedom/core/issues/2920)
-- **BETA** Möglichkeit der automatischen Umleitung zur internen Verbindung, wenn sich der Benutzer im selben Netzwerk wie Jeedom befindet, Option zur Aktivierung in der Jeedom-Netzwerkkonfiguration [LINK](https://github.com/jeedom/core/issues/2928)
 
 >**WICHTIG**
 >

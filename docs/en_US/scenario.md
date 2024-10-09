@@ -258,9 +258,12 @@ You can use any of the following symbols for comparisons under conditions :
 
 You can combine any comparison with the following operators :
 
-- ``&&`` : And. It is also possible to use : ``ET`` / ``et`` / ``AND`` / ``and`` but may not work well with some php functions.
-- ``||`` : Or. It is also possible to use : ``OU`` / ``ou`` / ``OR`` / ``or`` but may not work well with some php functions.
-- ``xor``  : or exclusive. It is also possible to use : ``XOR`` / ``^`` but may not work well with some php functions.
+Whether you are combining comparisons on different equipment or on the same one, it is always necessary to indicate the equipment.
+``[Salle de bain][Hydrometrie][température] >= 18 && [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``&&`` : And. **Attention**, the use of  : ``ET`` / ``et`` / ``AND`` / ``and`` is not recommended, in some cases it may work but with some php functions it will not work.
+- ``||`` : Or. **Attention**, the use of  : ``OU`` / ``ou`` / ``OR`` / ``or`` is not recommended, in some cases it may work but with some php functions it will not work.
+- ``xor``  : or exclusive. **Attention**, the use of  : ``XOR`` / ``^`` is not recommended, in some cases it may work but with some php functions it will not work.
 
 ### Tags
 

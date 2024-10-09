@@ -79,7 +79,6 @@
 - Se a página do equipamento tiver um elemento img_device (tag tipo img), então o próprio núcleo pode configurar a url para exibir a imagem correta do equipamento (usando a da página de apresentação de todos os equipamentos do plugin) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Corrigido um bug com a função time_diff [LINK](https://github.com/jeedom/core/issues/2915)
 - Correção de bug no gerenciamento de dependências do compositor [LINK](https://github.com/jeedom/core/issues/2920)
-- **BETA** Possibilidade de redirecionar automaticamente para a conexão interna caso o usuário esteja na mesma rede do Jeedom, opção para ativar na configuração da rede Jeedom [LINK](https://github.com/jeedom/core/issues/2928)
 
 >**IMPORTANTE**
 >
