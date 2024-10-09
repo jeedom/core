@@ -20,7 +20,7 @@
 */
 
 require_once dirname(__DIR__).'/core/php/console.php';
-require_once __DIR__ . '/../core/config/common.config.php';
+require_once __DIR__ . '/../core/config/common.config.env.php';
 require_once __DIR__ . '/../core/class/system.class.php';
 echo "[START CHECK AND FIX PACKAGES]\n";
 try {
