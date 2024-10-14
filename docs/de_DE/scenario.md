@@ -258,9 +258,12 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
-- ``&&`` : Und. Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
-- ``||`` : Oder. Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
-- ``xor``  : oder exklusiv. Es ist auch möglich zu verwenden : ``XOR`` /. ``^`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+Unabhängig davon, ob Sie Vergleiche mit unterschiedlichen Geräten oder mit demselben Gerät kombinieren, ist es immer notwendig, das Gerät anzugeben.
+``[Salle de bain][Hydrometrie][température] >= 18 && [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``&&`` : Und. **Aufmerksamkeit**, die Verwendung von  : ``ET`` /. ``et`` /. ``AND`` /. ``and`` wird nicht empfohlen, in einigen Fällen funktioniert es möglicherweise, aber mit einigen PHP-Funktionen funktioniert es nicht.
+- ``||`` : Oder. **Aufmerksamkeit**, die Verwendung von  : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` wird nicht empfohlen, in einigen Fällen funktioniert es möglicherweise, aber mit einigen PHP-Funktionen funktioniert es nicht.
+- ``xor``  : oder exklusiv. **Aufmerksamkeit**, die Verwendung von  : ``XOR`` /. ``^`` wird nicht empfohlen, in einigen Fällen funktioniert es möglicherweise, aber mit einigen PHP-Funktionen funktioniert es nicht.
 
 ### Tags
 

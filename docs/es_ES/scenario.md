@@ -258,9 +258,12 @@ Puede utilizar cualquiera de los siguientes símbolos para realizar comparacione
 
 Puedes combinar cualquier comparación con los siguientes operadores :
 
-- ``YY`` : Y. También es posible utilizar : ``ET`` / / ``et`` / / ``AND`` / / ``and`` pero puede que no funcione bien con algunas funciones php.
-- ``||`` : O. También es posible utilizar : ``OU`` / / ``ou`` / / ``OR`` / / ``or`` pero puede que no funcione bien con algunas funciones php.
-- ``xor``  : o exclusivo. También es posible utilizar : ``XOR`` / / ``^`` pero puede que no funcione bien con algunas funciones php.
+Ya sea que combine comparativas en diferentes equipos o en el mismo, siempre es necesario indicar el equipo.
+``[Salle de bain][Hydrometrie][température] >= 18 YY [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``YY`` : Y. **Atención**, el uso de  : ``ET`` / / ``et`` / / ``AND`` / / ``and`` no se recomienda, en algunos casos puede funcionar pero con algunas funciones de php no funcionará.
+- ``||`` : O. **Atención**, el uso de  : ``OU`` / / ``ou`` / / ``OR`` / / ``or`` no se recomienda, en algunos casos puede funcionar pero con algunas funciones de php no funcionará.
+- ``xor``  : o exclusivo. **Atención**, el uso de  : ``XOR`` / / ``^`` no se recomienda, en algunos casos puede funcionar pero con algunas funciones de php no funcionará.
 
 ### Etiquetas
 

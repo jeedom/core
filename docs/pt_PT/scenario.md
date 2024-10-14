@@ -258,9 +258,12 @@ Você pode usar qualquer um dos seguintes símbolos para comparações sob condi
 
 Você pode combinar qualquer comparação com os seguintes operadores :
 
-- ``EE`` : E. Também é possível usar : ``ET`` / ``et`` / ``AND`` / ``and`` mas pode não funcionar bem com algumas funções php.
-- ``||`` : Ou. Também é possível usar : ``OU`` / ``ou`` / ``OR`` / ``or`` mas pode não funcionar bem com algumas funções php.
-- ``xor``  : ou exclusivo. Também é possível usar : ``XOR`` / ``^`` mas pode não funcionar bem com algumas funções php.
+Quer combine comparações em equipamentos diferentes ou no mesmo, é sempre necessário indicar o equipamento.
+``[Salle de bain][Hydrometrie][température] >= 18 EE [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``EE`` : E. **Atenção**, o uso de  : ``ET`` / ``et`` / ``AND`` / ``and`` não é recomendado, em alguns casos pode funcionar mas com algumas funções php não funcionará.
+- ``||`` : Ou. **Atenção**, o uso de  : ``OU`` / ``ou`` / ``OR`` / ``or`` não é recomendado, em alguns casos pode funcionar mas com algumas funções php não funcionará.
+- ``xor``  : ou exclusivo. **Atenção**, o uso de  : ``XOR`` / ``^`` não é recomendado, em alguns casos pode funcionar mas com algumas funções php não funcionará.
 
 ### Tags
 
