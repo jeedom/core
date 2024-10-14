@@ -232,7 +232,7 @@ class MariadbCache {
 		FROM cache
 		WHERE `key`=:key';
 		$cache = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
-		if($cache === false){
+		if($cache === false || !is_object($cache)){
 			return null;
 		}
 		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
@@ -332,6 +332,10 @@ class FileCache {
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
 			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
+			if(!is_object($cache)){
+				unlink(jeedom::getTmpFolder('cache').'/'.$file);
+				continue;
+			}
 			if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
 				unlink(jeedom::getTmpFolder('cache').'/'.$file);
 			}
