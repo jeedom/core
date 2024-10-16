@@ -996,7 +996,7 @@ class cmd {
 				return 0;
 			}
 			if($this->getSubType() == 'binary'){
-				return false;
+				return 0;
 			}
 			return '';
 		}
