@@ -1291,20 +1291,18 @@ jeedomUtils.initSpinners = function() {
   }
 
   document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
-    var step = _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1
-    var min = _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1
-    var max = _spin.getAttribute('max') != undefined ? parseFloat(_spin.getAttribute('max')) : 1
-    new ISpin(_spin, {
+    var options = {
       wrapperClass: 'ispin-wrapper',
       buttonsClass: 'ispin-button',
-      step: step,
-      min: min,
-      max: max,
+      step: _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1,
+      min: _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1,
       disabled: false,
       repeatInterval: 200,
       wrapOverflow: true,
       parse: Number
-    })
+    }
+    if (_spin.getAttribute('max') != undefined) options.max = parseFloat(_spin.getAttribute('max'))
+    new ISpin(_spin, options)
     if (_spin.hasClass('roundedLeft')) {
       _spin.closest('.ispin-wrapper').addClass('roundedLeft')
     }
