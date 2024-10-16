@@ -992,6 +992,12 @@ class cmd {
 			$_value = 0;
 		}
 		if (trim($_value) == '' && $_value !== false && $_value !== 0) {
+			if($this->getSubType() == 'numeric'){
+				return 0;
+			}
+			if($this->getSubType() == 'binary'){
+				return false;
+			}
 			return '';
 		}
 		$_value = trim(trim($_value), '"');
