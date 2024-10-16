@@ -79,6 +79,7 @@
 - Si la página del equipo tiene un elemento img_device (etiqueta de tipo img), entonces el núcleo puede configurar la URL para mostrar la imagen correcta del equipo (usando la de la página de presentación de todos los equipos del complemento)) [ENLACE](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Se corrigió un error con la función time_diff [ENLACE](https://github.com/jeedom/core/issues/2915)
 - Corrección de errores en la gestión de dependencias del compositor [ENLACE](https://github.com/jeedom/core/issues/2920)
+- En caso de un comando vacío, Jeedom fuerza el retorno de acuerdo con el subtipo del comando (por lo tanto, 0 para números y binarios)) [ENLACE](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
 
 >**IMPORTANTE**
 >
