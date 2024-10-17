@@ -79,6 +79,7 @@
 - Se a página do equipamento tiver um elemento img_device (tag tipo img), então o próprio núcleo pode configurar a url para exibir a imagem correta do equipamento (usando a da página de apresentação de todos os equipamentos do plugin) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Corrigido um bug com a função time_diff [LINK](https://github.com/jeedom/core/issues/2915)
 - Correção de bug no gerenciamento de dependências do compositor [LINK](https://github.com/jeedom/core/issues/2920)
+- No caso de comando vazio o Jeedom força o retorno de acordo com o subtipo do comando (então 0 para numérico e binário) [LINK](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
 
 >**IMPORTANTE**
 >

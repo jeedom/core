@@ -79,7 +79,7 @@
 - Si la page d'équipement à un élément img_device (balise de type img) alors le core peut lui meme configuré l'url pour afficher la bonne image d'équipement (en reprenant celle de la page de présentation de tous les équipements du plugin) [LIEN](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Correction d'un bug avec la fonction time_diff [LIEN](https://github.com/jeedom/core/issues/2915)
 - Correction de bug sur la gestion de dépendances composer [LIEN](https://github.com/jeedom/core/issues/2920)
-- En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et ``false`` pour binaire) [LIEN](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
+- En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et binaire) [LIEN](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
 
 >**IMPORTANT**
 >

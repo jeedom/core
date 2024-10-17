@@ -106,7 +106,7 @@ if (!jeeFrontEnd.view_edit) {
         div += '<legend><span class="viewZoneAttr" data-l1key="name"></span><span class="small viewtype"></span>'
         div += '<div class="input-group pull-right" style="display:inline-flex">'
         div += '<span class="input-group-btn" style="width: 100%;">'
-        div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">'
+        div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;margin-right:5px">'
         div += '<option value="12">{{Largeur}} 12</option>'
         div += '<option value="11">{{Largeur}} 11</option>'
         div += '<option value="10">{{Largeur}} 10</option>'
@@ -121,10 +121,9 @@ if (!jeeFrontEnd.view_edit) {
         div += '<option value="1">{{Largeur}} 1</option>'
         div += '</select>'
         if (init(_viewZone.type, 'widget') == 'graph') {
-          div += '<span class="viewZoneAttr form-control" style="width: auto; background: transparent !important;">{{Hauteur}} (px)</span>'
-          div += '<input class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="height" style="width : 150px;">'
+          div += '<input class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="height" style="width : 150px;" placeholder="{{Hauteur}} (px)" /> '
 
-          div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">'
+          div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;margin-left:5px;margin-right:5px">'
           div += '<option value="30 min">{{30 min}}</option>'
           div += '<option value="1 hour">{{1 heure}}</option>'
           div += '<option value="1 day">{{Jour}}</option>'

@@ -218,7 +218,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 col-xs-2 control-label">{{Utilisateurs autorisés}}</label>
+							<label class="col-sm-2 col-xs-2 control-label">{{Utilisateur(s) autorisé(s)}}</label>
 							<div class="col-sm-9 col-xs-9">
 								<input class="form-control interactAttr" type="text" data-l1key="person" placeholder="" title="{{Liste des utilisateurs (identifiants) séparés par un |}}" />
 							</div>

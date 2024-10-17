@@ -79,6 +79,7 @@
 - If the equipment page has an img_device element (img type tag) then the core can itself configure the url to display the correct equipment image (using the one from the presentation page of all the plugin's equipment) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
 - Fixed bug with time_diff function [LINK](https://github.com/jeedom/core/issues/2915)
 - Bug fix on composer dependency management [LINK](https://github.com/jeedom/core/issues/2920)
+- In case of empty command Jeedom forces the return according to the subtype of the command (therefore 0 for numeric and binary) [LINK](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
 
 >**IMPORTANT**
 >

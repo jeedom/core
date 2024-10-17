@@ -2469,7 +2469,7 @@
         "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple": "Permite esperar até que o status de uma lâmpada seja atualizado, por exemplo",
         "Conversion binaire": "Conversão binária",
         "Convertir les commandes binaires": "Converter comandos binários",
-        "Utilisateurs autorisés": "Utilizadores autorizados",
+        "Utilisateur(s) autorisé(s)": "Usuário(s) autorizado(s)",
         "Liste des utilisateurs (identifiants) séparés par un |": "Lista de utilizadores (identificadores) separados por uma |",
         "Regexp d'exclusion": "Regexp de exclusão",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Permitir ao Jeedom eliminar pedidos sintaticamente incorretos",
