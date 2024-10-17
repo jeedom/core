@@ -2469,7 +2469,7 @@
         "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple",
         "Conversion binaire": "Konversi biner",
         "Convertir les commandes binaires": "Konversi perintah biner",
-        "Utilisateurs autorisés": "Pengguna yang berwenang",
+        "Utilisateur(s) autorisé(s)": "Utilisateur(s) autorisé(s)",
         "Liste des utilisateurs (identifiants) séparés par un |": "Daftar pengguna (pengidentifikasi) dipisahkan oleh |",
         "Regexp d'exclusion": "Regexp pengecualian",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Memungkinkan Jeedom untuk menghilangkan permintaan cacat",

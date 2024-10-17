@@ -2469,7 +2469,7 @@
         "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple",
         "Conversion binaire": "İkiliye çevirim",
         "Convertir les commandes binaires": "İkili komutaları çevirin",
-        "Utilisateurs autorisés": "Izin verilen kullanıcılar",
+        "Utilisateur(s) autorisé(s)": "Utilisateur(s) autorisé(s)",
         "Liste des utilisateurs (identifiants) séparés par un |": "Kullanıcı bir ayırarak listesi (betimleyici) |",
         "Regexp d'exclusion": "Dışlama regexpi",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Jeedom\\'a sözdizimsel olarak yanlış olan istekleri silmesine izin ver",

@@ -2469,7 +2469,7 @@
         "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple",
         "Conversion binaire": "Бинарное преобразование",
         "Convertir les commandes binaires": "Преобразование бинарных команд",
-        "Utilisateurs autorisés": "Авторизованные пользователи",
+        "Utilisateur(s) autorisé(s)": "Utilisateur(s) autorisé(s)",
         "Liste des utilisateurs (identifiants) séparés par un |": "Список пользователей (идентификаторы) будут разделены |",
         "Regexp d'exclusion": "Regexp исключение",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Разрешить Jeedom устранить искаженные запросы",

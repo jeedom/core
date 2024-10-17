@@ -2469,7 +2469,7 @@
         "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple": "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple",
         "Conversion binaire": "バイナリ変換",
         "Convertir les commandes binaires": "バイナリコマンドの変換",
-        "Utilisateurs autorisés": "許可ユーザー",
+        "Utilisateur(s) autorisé(s)": "Utilisateur(s) autorisé(s)",
         "Liste des utilisateurs (identifiants) séparés par un |": "|で区切られたユーザー（識別子）のリスト",
         "Regexp d'exclusion": "正規表現の除外",
         "Autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes": "Jeedomが構文的に正しくないリクエストを削除できるようにする",
