@@ -311,7 +311,7 @@ class user {
 			foreach ($ban_ips as $ip => $datetime) {
 				if (config::byKey('security::bantime') == -1 || intval($datetime) + intval(config::byKey('security::bantime')) > strtotime('now')) {
 					if ($ip == $current_ip) {
-						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => $datetime]);
+						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => intval($datetime)]);
                       	return true;
 					}
 					continue;
