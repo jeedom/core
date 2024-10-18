@@ -167,7 +167,6 @@ step_6_jeedom_download() {
   fi
   cp -R /root/core-*/* ${WEBSERVER_HOME}
   cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
-  cp -R /root/core-*/.htaccess ${WEBSERVER_HOME}/htaccess
   find ${WEBSERVER_HOME}/ -exec touch {} +
   rm -rf /root/core-* > /dev/null 2>&1
   rm /tmp/jeedom.zip
@@ -347,11 +346,6 @@ step_10_jeedom_installation() {
       exit 1
     fi
   fi
-
-  if [ ! -f ${WEBSERVER_HOME}/.htaccess ];then
-      cp -R ${WEBSERVER_HOME}/htaccess ${WEBSERVER_HOME}/.htaccess
-  fi
-  rm ${WEBSERVER_HOME}/.htaccess
   
   echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
