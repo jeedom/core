@@ -809,7 +809,7 @@
         "Maximum": "Maximum",
         "Aucun": "None",
         "Limiter à une valeur toute les": "Limit to one value every",
-        "Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.": "Limits the number of values logged by the command in real time (before nighttime smoothing). Please note that a smoothing mode must absolutely be defined",
+        "Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.": "Limit the number of values logged by the real-time command (before night smoothing). Please note that a smoothing mode must absolutely be defined",
         "Default": "Default",
         "1 min": "1 minute",
         "5 min": "5 min",
