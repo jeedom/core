@@ -809,7 +809,7 @@
         "Maximum": "Máximo",
         "Aucun": "No",
         "Limiter à une valeur toute les": "Límite a un valor cada",
-        "Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.": "Limita la cantidad de valores registrados por el comando en tiempo real (antes del suavizado nocturno). Tenga en cuenta que es absolutamente necesario definir un modo de suavizado",
+        "Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.": "Limite la cantidad de valores registrados por el comando en tiempo real (antes del suavizado nocturno). Tenga en cuenta que es absolutamente necesario definir un modo de suavizado",
         "Default": "Por defecto",
         "1 min": "1 minuto",
         "5 min": "5 minutos",

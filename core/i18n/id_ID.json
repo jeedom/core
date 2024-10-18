@@ -809,7 +809,7 @@
         "Maximum": "Maksimum",
         "Aucun": "Tak ada",
         "Limiter à une valeur toute les": "Limiter à une valeur toute les",
-        "Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.": "Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini",
+        "Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.": "Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini",
         "Default": "Default",
         "1 min": "1 min",
         "5 min": "5 min",
