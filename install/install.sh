@@ -169,6 +169,7 @@ step_6_jeedom_download() {
   cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
   find ${WEBSERVER_HOME}/ -exec touch {} +
   rm -rf /root/core-* > /dev/null 2>&1
+  rm -rf ${WEBSERVER_HOME}/core-* > /dev/null 2>&1
   rm /tmp/jeedom.zip
   echo "${GREEN}Step 6 - download Jeedom done${NORMAL}"
 }
