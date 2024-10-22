@@ -1414,7 +1414,7 @@ try {
 } catch (Exception $e) {
 	$message = $e->getMessage();
 	if(!isset($jsonrpc) || !is_object($jsonrpc)){
-		if(!isset($reques)){
+		if(!isset($request)){
 			$request = init('request');
 			if ($request == '') {
 				$request = file_get_contents("php://input");
