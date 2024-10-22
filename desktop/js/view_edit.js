@@ -598,11 +598,15 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#div_viewZones .bt_addViewTable')) {
-    var table = _target.closest('.viewZone').querySelector('table.div_viewData')
+    let table = _target.closest('.viewZone').querySelector('table.div_viewData')
     if (_target.getAttribute('data-type') == 'line') {
-      var line = '<tr class="viewData">'
+      let line = '<tr class="viewData">'
       line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
-      for (var i = 0; i < table.tBodies[0].children[0].children.length - 1; i++) {
+      let length = 1;
+      if(table.tBodies[0].children){
+        length = table.tBodies[0].children[0].children.length - 1
+      }
+      for (let i = 0; i < length; i++) {
         line += '<td>'
         line += '<div class="input-group">'
         line += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
@@ -614,11 +618,11 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       }
       line += '</tr>'
       table.tBodies[0].insertAdjacentHTML('beforeend', line)
-
-    } else if (_target.getAttribute('data-type') == 'col') {
+    } 
+    if (_target.getAttribute('data-type') == 'col') {
       table.tHead.childNodes[0].insertAdjacentHTML('beforeend', '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>')
       table.tBodies[0].childNodes.forEach(_tr => {
-        var col = '<td>'
+        let col = '<td>'
         col += '<div class="input-group">'
         col += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
         col += '<span class="input-group-btn">'

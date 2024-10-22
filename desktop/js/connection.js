@@ -35,7 +35,7 @@ if (!jeeFrontEnd.connection) {
     },
     goToIndex: function() {
       jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
-        document.querySelectorAll('.veen')?.style.display='none';
+        document.querySelectorAll('.veen').unseen()
         window.location.href = 'index.php?v=d'
       })
     },
