@@ -27,6 +27,7 @@ try {
                 $eqLogic->setCache($value);
             }
         }
+        unlink('/tmp/jeedom/cache.json');
     } 
 } catch (\Throwable $th) {
     echo 'Error on reload cache : '.$th->getMessage();
