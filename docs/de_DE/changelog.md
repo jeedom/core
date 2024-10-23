@@ -83,12 +83,8 @@
 
 >**WICHTIG**
 >
-> Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, der Cache wird sich selbst neu aufbauen. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
-
->**WICHTIG**
->
 > Aufgrund der Überarbeitung der Protokolle und der Reinternalisierung der Bibliotheken kann es beim Update zu einem Standardfehler kommen ``PHP Fatal error`` (nichts Ernstes) Starten Sie einfach das Update neu.
 
 >**WICHTIG**
 >
-> Wiederherstellen eines Backups 4.4 kann in bestimmten Fällen Probleme verursachen und mit {{ in der Weboberfläche enden. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgUnd  https://github.com/jeedom/core/archive/master.zip;Master entpacken.zip;cd core-master;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Sie können dies über die Jeedom-Rettungsschnittstelle (fügen Sie &rescue=1 in der URL hinzu) oder direkt über ssh tun.
+> Wiederherstellen eines Backups 4.4 kann in bestimmten Fällen Probleme verursachen und mit {{ in der Weboberfläche enden. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgUnd https://github.com/jeedom/core/archive/refs/tags/4.4.18.zip;unzip 4.4.18.zip;cd core-4.4.18;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Sie können dies über die Jeedom-Rettungsschnittstelle (fügen Sie &rescue=1 in der URL hinzu) oder direkt über ssh tun.
