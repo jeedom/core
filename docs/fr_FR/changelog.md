@@ -88,3 +88,7 @@
 >**IMPORTANT**
 >
 > Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type ``PHP Fatal error`` (rien de grave) il suffit de relancer la mise à jour.
+
+>**IMPORTANT**
+>
+> La restoration d'un backup 4.4 peut dans certain cas poser soucis et finir par des {{ dans l'interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wget  https://github.com/jeedom/core/archive/master.zip;unzip master.zip;cd core-master;cp -r * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Vous pouvez ca depuis l'interface rescue de jeedom (ajouter &rescue=1 dans l'url), ou directement en ssh.
