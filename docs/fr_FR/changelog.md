@@ -87,4 +87,4 @@
 
 >**IMPORTANT**
 >
-> La restoration d'un backup 4.4 peut dans certain cas poser soucis et finir par des {{ dans l'interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wget  https://github.com/jeedom/core/archive/master.zip;unzip master.zip;cd core-master;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Vous pouvez ca depuis l'interface rescue de jeedom (ajouter &rescue=1 dans l'url), ou directement en ssh.
+> La restoration d'un backup 4.4 peut dans certain cas poser soucis et finir par des {{ dans l'interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.18.zip;unzip 4.4.18.zip;cd core-4.4.18;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Vous pouvez ca depuis l'interface rescue de jeedom (ajouter &rescue=1 dans l'url), ou directement en ssh.
