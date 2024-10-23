@@ -19,7 +19,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once dirname(__DIR__) . '/core/php/console.php';
+require_once dirname(__DIR__) . '/../core/php/console.php';
 set_time_limit(1800);
 require_once __DIR__ . '/../core/php/core.inc.php';
 try {
