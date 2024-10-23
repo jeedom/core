@@ -15,7 +15,7 @@ try {
 try {
     if(file_exists('/tmp/jeedom/cache.json')){
         echo "Save state cache found, load it....";
-        $data = json_decode(file_get_content('/tmp/jeedom/cache.json'),true);
+        $data = json_decode(file_get_contents('/tmp/jeedom/cache.json'),true);
         foreach ($data['cmd'] as $id => $value) {
             $cmd = cmd::byId($id);
             if(is_object($cmd)){

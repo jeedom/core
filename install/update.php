@@ -108,7 +108,7 @@ try {
 		  $data['eqLogic'][$eqLogic->getId()] = $eqLogic->getCache();
 		}
 		file_put_contents('/tmp/jeedom/cache.json',json_encode($data));
-		echo "OK";
+		echo "OK\n";
 	} catch (Exception $e) {
 		echo '***WARNING***' . $e->getMessage();
 	}
