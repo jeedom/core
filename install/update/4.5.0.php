@@ -12,4 +12,4 @@ try {
     echo 'Error on empty cache : '.$th->getMessage();
 }
 
-shell_exec('php '.__DIR__.'/loadCache.php');
+echo shell_exec('php '.__DIR__.'/reloadCache.php');
