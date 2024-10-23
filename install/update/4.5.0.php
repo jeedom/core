@@ -11,5 +11,4 @@ try {
 } catch (\Throwable $th) {
     echo 'Error on empty cache : '.$th->getMessage();
 }
-
 echo shell_exec('php '.__DIR__.'/reloadCache.php');
