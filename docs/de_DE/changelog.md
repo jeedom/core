@@ -88,3 +88,7 @@
 >**WICHTIG**
 >
 > Aufgrund der Überarbeitung der Protokolle und der Reinternalisierung der Bibliotheken kann es beim Update zu einem Standardfehler kommen ``PHP Fatal error`` (nichts Ernstes) Starten Sie einfach das Update neu.
+
+>**WICHTIG**
+>
+> Wiederherstellen eines Backups 4.4 kann in bestimmten Fällen Probleme verursachen und mit {{ in der Weboberfläche enden. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgUnd  https://github.com/jeedom/core/archive/master.zip;Master entpacken.zip;cd core-master;cp -r * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Sie können dies über die Jeedom-Rettungsschnittstelle (fügen Sie &rescue=1 in der URL hinzu) oder direkt über ssh tun.

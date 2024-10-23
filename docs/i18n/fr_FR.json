@@ -860,7 +860,13 @@
         "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur": "Le cache contient entre-autre les valeurs des commandes qui se remettront à jour automatiquement lorsque les modules remonteront leur valeur",
         "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur": "A noter que si vous avez des virtuels à valeur fixe (ce qui n'est pas bien si ça ne change pas alors il faut utiliser les variables) alors il vous faudra resauvegarder ceux-ci pour récupérer la valeur",
         "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type": "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type",
-        "rien de grave) il suffit de relancer la mise à jour": "rien de grave) il suffit de relancer la mise à jour"
+        "rien de grave) il suffit de relancer la mise à jour": "rien de grave) il suffit de relancer la mise à jour",
+        "La restoration d'un backup 4": "La restoration d'un backup 4",
+        "4 peut dans certain cas poser soucis et finir par des {{ dans l'interface web": "4 peut dans certain cas poser soucis et finir par des {{ dans l'interface web",
+        "zip;unzip master": "zip;unzip master",
+        "zip;cd core-master;cp -r * \/var\/www\/html\/;rm -rf \/tmp\/master": "zip;cd core-master;cp -r * \/var\/www\/html\/;rm -rf \/tmp\/master",
+        "zip;rm -rf \/tmp\/core-master;`": "zip;rm -rf \/tmp\/core-master;`",
+        "Vous pouvez ca depuis l'interface rescue de jeedom (ajouter &rescue=1 dans l'url), ou directement en ssh": "Vous pouvez ca depuis l'interface rescue de jeedom (ajouter &rescue=1 dans l'url), ou directement en ssh"
     },
     "cron.md": {
         "Moteur de tâches": "Moteur de tâches",
