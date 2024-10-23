@@ -12,25 +12,4 @@ try {
     echo 'Error on empty cache : '.$th->getMessage();
 }
 
-try {
-    if(file_exists('/tmp/jeedom/cache.json')){
-        echo "Save state cache found, load it....";
-        $data = json_decode(file_get_contents('/tmp/jeedom/cache.json'),true);
-        foreach ($data['cmd'] as $id => $value) {
-            $cmd = cmd::byId($id);
-            if(is_object($cmd)){
-                $cmd->setCache($value);
-            }
-        }
-        foreach ($data['eqLogic'] as $id => $value) {
-            $eqLogic = eqLogic::byId($id);
-            if(is_object($cmd)){
-                $eqLogic->setCache($value);
-            }
-        }
-        unlink('/tmp/jeedom/cache.json');
-        echo "OK\n";
-    } 
-} catch (\Throwable $th) {
-    echo 'Error on reload cache : '.$th->getMessage();
-}
+shell_exec('php '.__DIR__.'/loadCache.php');
