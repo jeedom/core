@@ -989,6 +989,18 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     contentUrl: 'index.php?v=d&modal=cmd.human.insert',
     callback: function() { mod_insertCmd.setOptions(_options) },
     buttons: {
+      cancel: {
+        label: '{{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            if (isset(_options.returnCancel) && 'function' === typeof (_callback)) {
+              _callback({})
+            }
+            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
+          }
+        }
+      },
       confirm: {
         label: '{{Valider}}',
         className: 'success',
@@ -1002,18 +1014,6 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
             args.cmd.subType = mod_insertCmd.getSubType()
             if (args.human.trim() != '' && 'function' === typeof (_callback)) {
               _callback(args)
-            }
-            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
-          }
-        }
-      },
-      cancel: {
-        label: '{{Annuler}}',
-        className: 'warning',
-        callback: {
-          click: function(event) {
-            if (isset(_options.returnCancel) && 'function' === typeof (_callback)) {
-              _callback({})
             }
             document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
           }
