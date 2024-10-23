@@ -3512,8 +3512,8 @@
         "Info": "Die Info",
         "Action": "Aktion",
         "Sélectionner la commande": "Befehl auswählen",
-        "Valider": "Validate",
-        "Annuler": "Abbrechen"
+        "Annuler": "Abbrechen",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Wählen Sie das Szenario aus",

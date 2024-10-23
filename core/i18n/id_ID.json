@@ -3512,8 +3512,8 @@
         "Info": "Info",
         "Action": "Tindakan",
         "Sélectionner la commande": "Pilih perintah",
-        "Valider": "Mengesahkan",
-        "Annuler": "Tidak jadi"
+        "Annuler": "Tidak jadi",
+        "Valider": "Mengesahkan"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Pilih skenario",

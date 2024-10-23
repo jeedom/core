@@ -3512,8 +3512,8 @@
         "Info": "Bilgi",
         "Action": "Eylem",
         "Sélectionner la commande": "Komutayı seçin",
-        "Valider": "Onaylayın",
-        "Annuler": "Iptal et"
+        "Annuler": "Iptal et",
+        "Valider": "Onaylayın"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Senaryoyu seçin",

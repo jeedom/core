@@ -3512,8 +3512,8 @@
         "Info": "Информация",
         "Action": "Действие",
         "Sélectionner la commande": "Выберите команду",
-        "Valider": "Validate",
-        "Annuler": "Отменить"
+        "Annuler": "Отменить",
+        "Valider": "Validate"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "Выберите сценарий",
