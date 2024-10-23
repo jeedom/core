@@ -91,4 +91,4 @@
 
 >**IMPORTANT**
 >
-> Restoring a backup 4.4 can in some cases cause problems and end with {{ in the web interface. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgAnd  https://github.com/jeedom/core/archive/master.zip;unzip master.zip;cd core-master;cp -r * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. You can do this from the jeedom rescue interface (add &rescue=1 in the url), or directly in ssh.
+> Restoring a backup 4.4 can in some cases cause problems and end with {{ in the web interface. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgAnd  https://github.com/jeedom/core/archive/master.zip;unzip master.zip;cd core-master;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. You can do this from the jeedom rescue interface (add &rescue=1 in the url), or directly in ssh.

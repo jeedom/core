@@ -1388,7 +1388,7 @@
         "La restoration d'un backup 4": "Restaurando um backup 4",
         "4 peut dans certain cas poser soucis et finir par des {{ dans l'interface web": "4 pode, em certos casos, causar problemas e acabar com {{ na interface web",
         "zip;unzip master": "zip; descompactar mestre",
-        "zip;cd core-master;cp -r * \/var\/www\/html\/;rm -rf \/tmp\/master": "zip;cd core-master;cp -r * \/var\/www\/html\/;rm -rf \/tmp\/master",
+        "zip;cd core-master;cp -rf * \/var\/www\/html\/;rm -rf \/tmp\/master": "zip;cd core-master;cp -rf * \/var\/www\/html\/;rm -rf \/tmp\/master",
         "zip;rm -rf \/tmp\/core-master;`": "zip;rm -rf \/tmp\/core-master;`",
         "Vous pouvez ca depuis l'interface rescue de jeedom (ajouter &rescue=1 dans l'url), ou directement en ssh": "Você pode fazer isso na interface de resgate do Jeedom (adicione &rescue=1 no URL) ou diretamente via ssh",
         " LIEN.": " LINK.",
