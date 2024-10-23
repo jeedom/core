@@ -3512,8 +3512,8 @@
         "Info": "インフォ",
         "Action": "アクション",
         "Sélectionner la commande": "コマンドを選択",
-        "Valider": "検証",
-        "Annuler": "キャンセル"
+        "Annuler": "キャンセル",
+        "Valider": "検証"
     },
     "core\/js\/scenario.class.js": {
         "Sélectionner le scénario": "シナリオを選択",
