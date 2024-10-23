@@ -990,7 +990,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     callback: function() { mod_insertCmd.setOptions(_options) },
     buttons: {
       cancel: {
-        label: '{{Annuler}}',
+        label: '<i class="fas fa-times"></i> {{Annuler}}',
         className: 'warning',
         callback: {
           click: function(event) {
@@ -1002,7 +1002,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
         }
       },
       confirm: {
-        label: '{{Valider}}',
+        label: '<i class="fas fa-check"></i> {{Valider}}',
         className: 'success',
         callback: {
           click: function(event) {
