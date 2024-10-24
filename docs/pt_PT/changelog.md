@@ -83,12 +83,8 @@
 
 >**IMPORTANTE**
 >
-> Devido à mudança do mecanismo de cache nesta atualização, todo o cache será perdido, não se preocupe, o cache será reconstruído sozinho. O cache contém, entre outras coisas, os valores dos comandos que serão atualizados automaticamente quando os módulos aumentarem de valor. Observe que se você tiver virtuais com valor fixo (o que não é bom se não mudar então terá que usar variáveis) então terá que salvá-los novamente para recuperar o valor.
-
->**IMPORTANTE**
->
 > Devido à revisão dos logs e à reinternalização das bibliotecas, durante a atualização você pode ter um erro padrão ``PHP Fatal error`` (nada sério) apenas reinicie a atualização.
 
 >**IMPORTANTE**
 >
-> Restaurando um backup 4.4 pode, em certos casos, causar problemas e acabar com {{ na interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgE  https://github.com/jeedom/core/archive/master.zip; descompactar mestre.zip;cd core-master;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Você pode fazer isso na interface de resgate do Jeedom (adicione &rescue=1 no URL) ou diretamente via ssh.
+> Restaurando um backup 4.4 pode, em certos casos, causar problemas e acabar com {{ na interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgE https://github.com/jeedom/core/archive/refs/tags/4.4.18.zip;descompacte 4.4.18.zip;cd núcleo-4.4.18;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Você pode fazer isso na interface de resgate do Jeedom (adicione &rescue=1 no URL) ou diretamente via ssh.

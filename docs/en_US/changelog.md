@@ -83,12 +83,8 @@
 
 >**IMPORTANT**
 >
-> Due to the change of cache engine on this update, all cache will be lost, don't worry it's cache it will rebuild itself. The cache contains, among other things, the values of the commands which will be automatically updated when the modules update their value. Note that if you have fixed value virtuals (which is not good if it does not change so you have to use variables) then you will have to resave them to recover the value.
-
->**IMPORTANT**
->
 > Due to the rework of logs and the re-internalization of libraries, when updating you may have an error type ``PHP Fatal error`` (nothing serious) just restart the update.
 
 >**IMPORTANT**
 >
-> Restoring a backup 4.4 can in some cases cause problems and end with {{ in the web interface. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgAnd  https://github.com/jeedom/core/archive/master.zip;unzip master.zip;cd core-master;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. You can do this from the jeedom rescue interface (add &rescue=1 in the url), or directly in ssh.
+> Restoring a backup 4.4 can in some cases cause problems and end with {{ in the web interface. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgAnd https://github.com/jeedom/core/archive/refs/tags/4.4.18.zip;unzip 4.4.18.zip;cd core-4.4.18;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. You can do this from the jeedom rescue interface (add &rescue=1 in the url), or directly in ssh.
