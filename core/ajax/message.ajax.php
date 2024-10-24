@@ -27,6 +27,9 @@ try {
 	ajax::init();
 
 	if (init('action') == 'clearMessage') {
+		if(!isConnect('admin')){
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+		}
 		message::removeAll(init('plugin'));
 		ajax::success();
 	}
@@ -46,6 +49,9 @@ try {
 	}
 
 	if (init('action') == 'removeMessage') {
+		if(!isConnect('admin')){
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
+		}
 		$message = message::byId(init('id'));
 		if (!is_object($message)) {
 			throw new Exception(__('Message inconnu. Vérifiez l\'ID', __FILE__));
