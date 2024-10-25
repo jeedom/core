@@ -2,13 +2,13 @@
 
 # 4.4.19
 
-- Ajout de la sauvegarde du cache avant mise à jour (sera necessaire pour ne pas perdre le cache lors du passage à Jeedom 4.5) [LIEN](https://github.com/jeedom/core/commit/37351c84c186bd3f1b9da337d0cc68a66c80ef2d)
+- Ajout de la sauvegarde du cache avant mise à jour (sera nécessaire pour ne pas perdre le cache lors du passage à Jeedom 4.5) [LIEN](https://github.com/jeedom/core/commit/37351c84c186bd3f1b9da337d0cc68a66c80ef2d)
 
 # 4.4.18
 
-- Correction d'un bug dans la dection de la plateforme Jeedom (Docker ou non) [LIEN](https://github.com/jeedom/core/commit/f052a5478c2885d1f6b49439e0f5ac0c19cb1fb7)
-- Correction d'un bug lors de la restoration de Jeedom sur les versions de MariaDB 10.5.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 et 11.4.2 [LIEN](https://github.com/jeedom/core/issues/2911)
-- Correction d'un bug qui pouvait conduire à avoir des barre de défilement sur certain widgets [LIEN](https://github.com/jeedom/core/commit/1db88f402d9cffccddb10360c30c4231bfd15304)
+- Correction d'un bug dans la détection de la plateforme Jeedom (Docker ou non) [LIEN](https://github.com/jeedom/core/commit/f052a5478c2885d1f6b49439e0f5ac0c19cb1fb7)
+- Correction d'un bug lors de la restauration de Jeedom sur les versions de Maria DB 10.5.25, 10.6.18, 10.11.8, 11.0.6, 11.1.5, 11.2.4 et 11.4.2 [LIEN](https://github.com/jeedom/core/issues/2911)
+- Correction d'un bug qui pouvait conduire à avoir des barres de défilement sur certain widgets [LIEN](https://github.com/jeedom/core/commit/1db88f402d9cffccddb10360c30c4231bfd15304)
 - Amélioration de l'interface [LIEN](https://github.com/jeedom/core/pull/2919) [LIEN](https://github.com/jeedom/core/pull/2918)
 
 # 4.4.17
@@ -17,26 +17,26 @@
 
 # 4.4.16
 
-- Correction d'un bug sur les filtre de la page de remplacement [LIEN](https://github.com/jeedom/core/commit/ab0a197cf7ec99b7ae79db68ae9478afd3ffc6f1)
+- Correction d'un bug sur les filtres de la page de remplacement [LIEN](https://github.com/jeedom/core/commit/ab0a197cf7ec99b7ae79db68ae9478afd3ffc6f1)
 - Correction de bugs sur la version docker [LIEN](https://github.com/jeedom/core/commit/32e68dae9ec16eb58bdc66d8fdccbc0bdd1503bd)
-- Correction d'un bug sur les droits lors de l'installation d'un plugin en dependance d'un autre [LIEN](https://github.com/jeedom/core/issues/2888)
+- Correction d'un bug sur les droits lors de l'installation d'un plugin en dépendance d'un autre [LIEN](https://github.com/jeedom/core/issues/2888)
 
 
 # 4.4.15
 
-- Correction d'un bug ou la connexion à Jeedom ne pouvait pas etre auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)
-- Correction d'un bug sur le typage des valeurs dans les event qui pouvait conduire a une non mise a jour de certain widget [LIEN](https://github.com/jeedom/core/commit/5dba6de95c23989f138aefcfba3e2657315df31d)
+- Correction d'un bug ou la connexion à Jeedom ne pouvait pas être auto remplis par le navigateur [LIEN](https://github.com/jeedom/core/pull/2854)
+- Correction d'un bug sur le typage des valeurs dans les event qui pouvait conduire à une non mise à jour de certain widget [LIEN](https://github.com/jeedom/core/commit/5dba6de95c23989f138aefcfba3e2657315df31d)
 - Ajout de la version de l'os lors de la demande d'un plugin (en prévision de bloquer en cas de plugin incompatible) [LIEN](https://github.com/jeedom/core/commit/9721cf75494bbf3a3bc7b1f4b1bbc25cec7a55a8)
-- Correction d'un soucis sur la detection d'un Jeedom qui tourne sur docker [LIEN](https://github.com/jeedom/core/commit/3b942ff853661db49241fecafa096b7af3e16a4c)
+- Correction d'un souci sur la détection d'un Jeedom qui tourne sur docker [LIEN](https://github.com/jeedom/core/commit/3b942ff853661db49241fecafa096b7af3e16a4c)
 - Correction d'un bug sur l'affichage des plugins lorsque celui-ci n'est pas encore acheté [LIEN](https://github.com/jeedom/core/commit/5b02d619c80b08d0709e89c2c3c4bc942e568710)
-- Correction d'un soucis sur le banissement si la durée est infinie [LIEN](https://github.com/jeedom/core/issues/2879)
+- Correction d'un souci sur le bannissement si la durée est infinie [LIEN](https://github.com/jeedom/core/issues/2879)
 - Correction d'un bug sur la page de remplacement des équipements [LIEN](https://github.com/jeedom/core/issues/2877)
 
 # 4.4.14
 
 - Correction d'un bug sur l'affichage de la configuration de Jeedom dans certain rare cas [LIEN](https://github.com/jeedom/core/commit/21477534388a9000a138631803b22da787a0b722)
 - Amélioration de la fonction getStatistic en php8 [LIEN](https://github.com/jeedom/core/commit/b72547ddc01a06030df1e5e7b2d41c5556606408)
-- Correction de bug sur le nouveau systeme de cache [LIEN](https://github.com/jeedom/core/commit/bb84cfde702dd5b94d08f3d6d7041302eb06ad4d)
+- Correction de bug sur le nouveau système de cache [LIEN](https://github.com/jeedom/core/commit/bb84cfde702dd5b94d08f3d6d7041302eb06ad4d)
 - Correction d'un bug sur les listener qui pouvait créer une erreur dans certain plugin (sunshutter par exemple) [LIEN](https://github.com/jeedom/core/commit/3cd4c0a305fcb72e3d42b994ba62d6668217aac3)
 
 # 4.4.13
@@ -45,7 +45,7 @@
 
 # 4.4.12
 
-- Correction d'un bug sur la fonction de filtre des évenements (impact les plugins type homebridge) [LIEN](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
+- Correction d'un bug sur la fonction de filtre des évènements (impact les plugins type homebridge) [LIEN](https://github.com/jeedom/core/commit/a7b6447bbd000b6508aebee211fb4b68be03ebe2)
 
 # 4.4.11
 
@@ -54,61 +54,61 @@
 
 # 4.4.10
 
-- Déplacement de la gestion des evenements (event) qui sert à la mise à jour de l'interface en base de données en mémoire [LIEN](https://github.com/jeedom/core/pull/2757)
+- Déplacement de la gestion des évènements (event) qui sert à la mise à jour de l'interface en base de données en mémoire [LIEN](https://github.com/jeedom/core/pull/2757)
 - Ajout d'un filtre sur de nombreuses action dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2753), [LIEN](https://github.com/jeedom/core/pull/2742), [LIEN](https://github.com/jeedom/core/pull/2759), [LIEN](https://github.com/jeedom/core/pull/2743), [LIEN](https://github.com/jeedom/core/pull/2755)
-- Le prix du plugin est masqué si vous l'avez deja acheté [LIEN](https://github.com/jeedom/core/pull/2746)
+- Le prix du plugin est masqué si vous l'avez déjà acheté [LIEN](https://github.com/jeedom/core/pull/2746)
 - Sur la page de connexion possibilité d'afficher ou nom le mot de passe [LIEN](https://github.com/jeedom/core/pull/2740)
 - Correction d'un bug lorsqu'on quitte une page sans avoir sauvegardé [LIEN](https://github.com/jeedom/core/pull/2745)
-- Création (en beta) d'un nouveau systeme de cache [LIEN](https://github.com/jeedom/core/pull/2758) :
-  - Fichier : systeme identique a celui d'avant mais repris en interne pour eviter la dépendances a une lib tierce. Le plus performant mais sauvegardé toute les 30min
+- Création (en beta) d'un nouveau système de cache [LIEN](https://github.com/jeedom/core/pull/2758) :
+  - Fichier : système identique à celui d'avant mais repris en interne pour éviter la dépendance a une lib tierce. Le plus performant mais sauvegardé toute les 30min
   - Mysql : utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
-  - Redis : réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
+  - Redis : réservé aux experts, s'appuie sur redis pour gérer le cache (nécessite donc que vous installiez vous même un redis et les dépendance php-redis)
 - Correction d'un bug sur les alertes des équipements lors de la suppression de la commande en alerte [LIEN](https://github.com/jeedom/core/issues/2775)
 - Possibilité dans la configuration avancée d'un équipement de masquer celui-ci lors de l'affichage sur le dashboard de plusieurs objets [LIEN](https://github.com/jeedom/core/issues/2553)
 - Correction d'un bug sur l'affichage du dossier de timeline dans la configuration avancée d'une commande [LIEN](https://github.com/jeedom/core/issues/2791)
-- Refonte du systeme de fail2ban de Jeedom pour qu'il consomme moins de ressource [LIEN](https://github.com/jeedom/core/issues/2684)
+- Refonte du système de fail2ban de Jeedom pour qu'il consomme moins de ressource [LIEN](https://github.com/jeedom/core/issues/2684)
 - Correction d'un bug sur l'archivage et la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2793)
 - Amélioration du patch pour le bug gpg sur les dépendances python [LIEN](https://github.com/jeedom/core/pull/2798)
-- Correction d'un soucis lors du changement d'heure suite à la refonte de la gestion des crons [LIEN](https://github.com/jeedom/core/issues/2794)
+- Correction d'un souci lors du changement d'heure suite à la refonte de la gestion des crons [LIEN](https://github.com/jeedom/core/issues/2794)
 - Correction d'un bug sur la page de résumé domotique lors de la recherche d'une commande par id [LIEN](https://github.com/jeedom/core/issues/2795)
 - Ajout de la taille de la base de données sur la page de santé [LIEN](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
-- Jeedom liste maintenant toute les branches et tags du repos github pour permettre de tester des fonctionnalitées en avance ou de revenir à une version précdente du core (attention cela est trés risqué) [LIEN](https://github.com/jeedom/core/issues/2500)
+- Jeedom liste maintenant toute les branches et tags du repos github pour permettre de tester des fonctionnalités en avance ou de revenir à une version précédente du core (attention cela est très risqué) [LIEN](https://github.com/jeedom/core/issues/2500)
 - Amélioration des sous types de commandes supportées sur les génériques type [LIEN](https://github.com/jeedom/core/pull/2797)
-- Correction d'un bug sur l'affichage des scénario et les commentaires lorsqu'on veut les masquer [LIEN](https://github.com/jeedom/core/pull/2790)
+- Correction d'un bug sur l'affichage des scénarios et les commentaires lorsqu'on veut les masquer [LIEN](https://github.com/jeedom/core/pull/2790)
 - Correction d'un bug sur l'outils de remplacement (pas de commande dans le choix de remplacement) [LIEN](https://github.com/jeedom/core/issues/2818)
-- Amélioration du systeme de cron pour eviter quelque raté de lancement [LIEN](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
-- Correction d'un bug autorisant d'avoir plusieurs fois le meme listener [LIEN](https://github.com/jeedom/core/issues/2820)
+- Amélioration du système de cron pour éviter quelque raté de lancement [LIEN](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Correction d'un bug autorisant d'avoir plusieurs fois le même listener [LIEN](https://github.com/jeedom/core/issues/2820)
 - Correction d'un bug en PHP8 avec la mise à jour qui supprimé des fichiers utiles [LIEN](https://github.com/jeedom/core/issues/2822)
 
 >**IMPORTANT**
 >
-> Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
+> Tout changement de moteur de cache entraine une remise à zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
 
 >**IMPORTANT**
 >
-> Lors de la mise à jour il est possible que vous ayez une erreur de création d'indexe unique sur la table listener, rien de grave c'est du à des listener dupliqué et jeedom corrigera ca de lui meme au bout de 24h (l'indexe en lui meme pourra etre fait soit depuis la verification de la base de données dans la configuration de jeedom ou juste attendre les prochaines mises à jour).
+> Lors de la mise à jour il est possible que vous ayez une erreur de création d'indexe unique sur la table listener, rien de grave c'est dû à des listener dupliqué et jeedom corrigera ca de lui même au bout de 24h (l'index en lui même pourra etre fait soit depuis la vérification de la base de données dans la configuration de jeedom ou juste attendre les prochaines mises à jour).
 
 >**IMPORTANT**
 >
->Pour tout ceux utilisant PHP8 il est impératif de cocher la case de "pre-update" avant de lancer la mise à jour de jeedom. Sans cette précaution, des fichiers ssentiels pourraitent être manquants, ce qui empêcherait le bon fonctionnement de Jeedom.
+>Pour tous ceux utilisant PHP8 il est impératif de cocher la case de "pre-update" avant de lancer la mise à jour de jeedom. Sans cette précaution, des fichiers essentiels  pourraient être manquants, ce qui empêcherait le bon fonctionnement de Jeedom.
 
 # 4.4.9
 
 - Amélioration de l'affichage de la liste des scénarios lors d'action sur les scénarios (ajout des groupe) [LIEN](https://github.com/jeedom/core/pull/2729)
-- Lors de la copie d'un équipement si le widgets avait un graphique en fond celui-ci est correctement transformé [LIEN](https://github.com/jeedom/core/issues/2540)
+- Lors de la copie d'un équipement si le widget avait un graphique en fond celui-ci est correctement transformé [LIEN](https://github.com/jeedom/core/issues/2540)
 - Ajout des tags #sunrise# et #sunset# dans les scénarios pour avoir les heures de lever et coucher du soleil [LIEN](https://github.com/jeedom/core/pull/2725)
 - Un plugin peut maintenant ajouter des champs dans la configuration avancée de tous les équipements de jeedom [LIEN](https://github.com/jeedom/core/issues/2711)
 - Amélioration du système de gestion des crons [LIEN](https://github.com/jeedom/core/issues/2719)
-- Correction d'un bug qui pouvait faire perdre toute les informations de la page de mise a jour [LIEN](https://github.com/jeedom/core/issues/2718)
+- Correction d'un bug qui pouvait faire perdre toutes les informations de la page de mise a jour [LIEN](https://github.com/jeedom/core/issues/2718)
 - Suppression de l'état du service fail2ban de la santé Jeedom [LIEN](https://github.com/jeedom/core/issues/2721)
-- Correction d'un soucis sur la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2723)
-- Suppression de la mise en cache des widgets (le gain d'affichage est pas intéressant et cela apporte pas mal de soucis) [LIEN](https://github.com/jeedom/core/issues/2726)
+- Correction d'un souci sur la purge des historiques [LIEN](https://github.com/jeedom/core/issues/2723)
+- Suppression de la mise en cache des widgets (le gain d'affichage n'est pas intéressant et cela apporte pas mal de soucis) [LIEN](https://github.com/jeedom/core/issues/2726)
 - Correction d'un bug sur les options d'édition des design (grid et aimantation) lors d'un changement de design avec un lien [LIEN](https://github.com/jeedom/core/issues/2728)
 - Correction d'un bug javascript sur les boutons dans les modal [LIEN](https://github.com/jeedom/core/pull/2734)
 - Correction d'un bug sur le nombre de message lors de la suppression de tous les message [LIEN](https://github.com/jeedom/core/issues/2735)
 - Exclusion du répertoire venv des backups [LIEN](https://github.com/jeedom/core/pull/2736)
-- Correction d'un bug sur la page de configuration avancée d'une commande ou le champs pour choisir le dossier de la timeline n'apparaissait pas [LIEN](https://github.com/jeedom/core/issues/2547)
-- Correction d'un bug sur la fenetre de selection d'une commande suite a la sauvegarde d'un équipement [LIEN](https://github.com/jeedom/core/issues/2773)
+- Correction d'un bug sur la page de configuration avancée d'une commande ou le champ pour choisir le dossier de la timeline n'apparaissait pas [LIEN](https://github.com/jeedom/core/issues/2547)
+- Correction d'un bug sur la fenêtre de sélection d'une commande suite à la sauvegarde d'un équipement [LIEN](https://github.com/jeedom/core/issues/2773)
 
 # 4.4.8.1
 
@@ -122,24 +122,24 @@
 - Suppression de message de warning [LIEN](https://github.com/jeedom/core/pull/2657)
 - Correction d'un souci sur la page des logs sur les petits écrans ou les boutons étaient non visible [LIEN](https://github.com/jeedom/core/issues/2671). Une autre amélioration est prévue plus tard pour avoir les boutons mieux placé [LIEN](https://github.com/jeedom/core/issues/2672)
 - Amélioration de la gestion des select [LIEN](https://github.com/jeedom/core/pull/2675)
-- Augmentation de la taille du champs pour la valeur du sleep dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2682)
+- Augmentation de la taille du champ pour la valeur du sleep dans les scénarios [LIEN](https://github.com/jeedom/core/pull/2682)
 - Correction d'un souci sur l'ordre des messages dans le centre des messages [LIEN](https://github.com/jeedom/core/issues/2686)
 - Optimisation du chargement des plugins [LIEN](https://github.com/jeedom/core/issues/2689)
-- Augmentation de la taille des barres de defilements sur certain page [LIEN](https://github.com/jeedom/core/pull/2691)
+- Augmentation de la taille des barres de défilements sur certain page [LIEN](https://github.com/jeedom/core/pull/2691)
 - Amélioration de la page de redémarrage de jeedom [LIEN](https://github.com/jeedom/core/pull/2685)
-- Correction d'un soucis sur les dépendances nodejs lors des restaurations [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va réduire la taille des backups
+- Correction d'un souci sur les dépendances nodejs lors des restaurations [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va réduire la taille des backups
 - Correction d'un bug sur le système de mise à jour de la base de données [LIEN](https://github.com/jeedom/core/issues/2693)
 - Correction d'un soucis d'index manquant pour les interactions [LIEN](https://github.com/jeedom/core/issues/2694)
 - Amélioration du script sick.php pour mieux détecter les soucis de base de données [LIEN](https://github.com/jeedom/core/pull/2677)
-- Meilleurs gestion de python2 sur la page santé [LIEN](https://github.com/jeedom/core/pull/2674)
-- Amélioration du champs de selection des scénarios (avec recherche) dans les actions sur scénario [LIEN](https://github.com/jeedom/core/pull/2688)
-- Amélioration de la gestion des cron en prevision de php8 [LIEN](https://github.com/jeedom/core/issues/2698)
-- Amélioration de la fonction de gestion de l'arrêt des demons par le numero de port [LIEN](https://github.com/jeedom/core/pull/2697)
+- Meilleure gestion de python2 sur la page santé [LIEN](https://github.com/jeedom/core/pull/2674)
+- Amélioration du champ de selection des scénarios (avec recherche) dans les actions sur scénario [LIEN](https://github.com/jeedom/core/pull/2688)
+- Amélioration de la gestion des cron en prévision de php8 [LIEN](https://github.com/jeedom/core/issues/2698)
+- Amélioration de la fonction de gestion de l'arrêt des demons par le numéro de port [LIEN](https://github.com/jeedom/core/pull/2697)
 - Correction d'un souci sur certains navigateurs avec les filtres [LIEN](https://github.com/jeedom/core/issues/2699)
 - Amélioration du support de curl [LIEN](https://github.com/jeedom/core/pull/2702)
 - Correction d'un bug sur la gestion des dépendances composer [LIEN](https://github.com/jeedom/core/pull/2703)
 - Amélioration du système de gestion du cache [LIEN](https://github.com/jeedom/core/pull/2706)
-- Meilleurs gestion des droits utilisateurs sur les appels API [LIEN](https://github.com/jeedom/core/pull/2695)
+- Meilleure gestion des droits utilisateurs sur les appels API [LIEN](https://github.com/jeedom/core/pull/2695)
 - Correction de warning [LIEN](https://github.com/jeedom/core/pull/2701)
 - Correction d'un souci avec l'installation des dépendances python [LIEN](https://github.com/jeedom/core/pull/2700/files)
 
@@ -151,22 +151,22 @@
 - Gestion des dépendances python en venv (pour être compatible debian 12) [LIEN](https://github.com/jeedom/core/pull/2566). Note : le support est que coté core il faudra ensuite des mises à jour coté plugin pour que ca marche
 - Affichage de la taille prise par les plugins (depuis Plugin -> Gestion de plugin -> plugin voulu) [LIEN](https://github.com/jeedom/core/issues/2642)
 - Correction d'un bug sur la découverte des paramètres des widgets mobile [LIEN](https://github.com/jeedom/core/issues/2615)
-- Ajout du status du service fail2ban [LIEN](https://github.com/jeedom/core/pull/2620)
+- Ajout du statuts du service fail2ban [LIEN](https://github.com/jeedom/core/pull/2620)
 - Amélioration de l'affichage de la page santé [LIEN](https://github.com/jeedom/core/pull/2619)
 - Correction d'un soucis sur les dépendances nodejs lors des restauration [LIEN](https://github.com/jeedom/core/issues/2621). Note : cela va augmenter la taille des backups
 - Correction d'un bug sur les designs [LIEN](https://github.com/jeedom/core/issues/2634)
 - Correction de l'affichage des select sur la page de remplacement [LIEN](https://github.com/jeedom/core/pull/2639)
 - Correction d'un bug sur la progression des dépendances (plugin zwavejs notamment) [LIEN](https://github.com/jeedom/core/issues/2644)
-- Correction d'un soucis de largeur sur le widget liste en mode design [LIEN](https://github.com/jeedom/core/issues/2647)
+- Correction d'un souci de largeur sur le widget liste en mode design [LIEN](https://github.com/jeedom/core/issues/2647)
 - Amélioration de l'affichage de widgets [LIEN](https://github.com/jeedom/core/pull/2631)
 - Mise à jour de la documentation sur de l'outils remplacer [LIEN](https://github.com/jeedom/core/pull/2638)
-- Correction d'un soucis d'incoherence sur les valeurs minimales des tailles de rapport [LIEN](https://github.com/jeedom/core/issues/2449)
+- Correction d'un souci d'incohérence sur les valeurs minimales des tailles de rapport [LIEN](https://github.com/jeedom/core/issues/2449)
 - Correction d'un bug sur la vérification de la base de données ou il pouvait toujours manquer un index [LIEN](https://github.com/jeedom/core/issues/2655)
 - Correction d'un bug sur le graphique des liens [LIEN](https://github.com/jeedom/core/issues/2659)
 - Suppression du service worker en mobile (plus utilisé) [LIEN](https://github.com/jeedom/core/issues/2660)
 - Correction d'un bug pouvant affecter la limitation du nombre d'événement dans la timeline [LIEN](https://github.com/jeedom/core/issues/2663)
 - Correction d'un bug sur l'affichage des tooltips sur les designs [LIEN](https://github.com/jeedom/core/pull/2667)
-- Amélioration de la gestion des trace de PDO avec php8 [LIEN](https://github.com/jeedom/core/pull/2661)
+- Amélioration de la gestion des traces de PDO avec php8 [LIEN](https://github.com/jeedom/core/pull/2661)
 
 # 4.4.6
 
@@ -294,12 +294,12 @@
 
 ## 4.3.11
 
-- Autorisation d'une réponse libre dans *ask* si vous mettez * dans le champs des réponses possibles.
+- Autorisation d'une réponse libre dans *ask* si vous mettez * dans le champ des réponses possibles.
 - **Analyse / Historique** : Bugfix sur la comparaison d'historique (bug introduit en 4.3.10).
 - **Synthèse** : L'*Action depuis la synthèse* d'un objet est maintenant supportée sur la version mobile.
 - Correction des historiques lors d'utilisation de fonction d’agrégation.
 - Correction d'un bug sur l'installation d'un plugin par un autre plugin (Ex : mqtt2 installé par zwavejs).
-- Correction d'un bug sur les historique ou la valeur 0 pouvait écraser la valeur précédente.
+- Correction d'un bug sur les historiques ou la valeur 0 pouvait écraser la valeur précédente.
 
 ## 4.3.10
 
@@ -310,7 +310,7 @@
 ## 4.3.9
 
 - Amélioration de l'édition des tuiles.
-- Amélioration de la visibilité des checkboxs sur les thème Dark et Light.
+- Amélioration de la visibilité des checkboxs sur les thèmes Dark et Light.
 - Correction de l'empilement des historiques.
 - Optimisation de la gestion du changement d'heure (merci @jpty).
 - Correction de bugs et améliorations.
@@ -318,7 +318,7 @@
 ## 4.3.8
 
 - Correction de bugs.
-- Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verrouillage de la réponse uniquement parmi les choix possible.
+- Amélioration de la sécurité des ask lors de l'utilisation de la fonction generateAskResponseLink par les plugins : utilisation d'un token unique (plus d'envoi de la clef api du core) et verrouillage de la réponse uniquement parmi les choix possibles.
 - Correction d'un bug empêchant l'installation de Jeedom.
 - Correction d'un bug sur InfluxDB.
 
@@ -341,7 +341,7 @@
 
 ## 4.3.4
 
-- Correction d'un soucis sur les images de fond.
+- Correction d'un souci sur les images de fond.
 - Correction d'un bug avec le widget numérique par défaut.
 - Correction d'une erreur d'inclusion avec certains plugins (*nut* par exemple).
 
@@ -351,7 +351,7 @@
 
 ## 4.3.2
 
-- Correction d'un soucis d'affichage de l'état d'une commande info dans la configuration avancé de la commande si la valeur est 0.
+- Correction d'un souci d'affichage de l'état d'une commande info dans la configuration avancé de la commande si la valeur est 0.
 
 ## 4.3.1
 
@@ -390,7 +390,7 @@
 
 ``<a onClick="planHeader_id=15; displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
-Il faut maintenant utiliser:
+Il faut maintenant utiliser :
 
 ``<a onClick="jeephp2js.planHeader_id=15; jeeFrontEnd.plan.displayPlan();"><li class="monmenu"><div class="imagette"><img src="theme1/images/new/home.png" height=30px></div></br></li></a>``
 
@@ -406,7 +406,7 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 ## 4.2.20
 
-- Ajout d'un ssyteme de correction des packages pip lors d'une mauvaise installation.
+- Ajout d'un système de correction des packages pip lors d'une mauvaise installation.
 
 ## 4.2.19
 
@@ -441,14 +441,14 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
 - Bugfix UI : Widget cmd.action.slider.value
 
 - Bugfix Core : Taille des images de fond en rapport avec la taille du design.
-- Bugfix Core : Correction d'un soucis sur les clefs api toujours en désactivées.
+- Bugfix Core : Correction d'un souci sur les clefs api toujours en désactivées.
 
 ## 4.2.13
 
 - Bugfix UI : Option *Masquer en desktop* des résumés.
-- Bugfix UI : Historiques: Respect des échelles lors du zoom.
+- Bugfix UI : Historiques : Respect des échelles lors du zoom.
 
-- Bugfix Core : Correction d'un soucis de taille de backup avec le plugin Atlas.
+- Bugfix Core : Correction d'un souci de taille de backup avec le plugin Atlas.
 
 - Amélioration : Création des clef api par défaut en inactif (si la demande de création ne vient pas du plugin).
 - Amélioration : Ajout de la taille des sauvegardes sur la page de gestion des sauvegardes.
@@ -514,22 +514,22 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
 
 - **Synthèse** : Possibilité de paramétrage des objets pour aller vers un *design* ou une *vue* depuis la synthèse.
 - **Dashboard** : La fenêtre de configuration d'un équipement (mode édition) permet maintenant de configurer les widgets mobile et les types génériques.
-- **Widgets** : Internationalisation des Widgets tiers (code utilisateur). voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2).
+- **Widgets** : Internationalisation des Widgets tiers (code utilisateur). Voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2).
 - **Analyse / Historique** : Possibilité de comparer un historique sur une période donnée.
 - **Analyse / Historique** : Affichage des axes multiples en Y. Option pour que chaque axe ait sa propre échelle, groupés par unité ou pas.
 - **Analyse / Historique** : Possibilité de masquer les axes Y. Menu contextuel sur les légendes avec affichage seul, masquage d'axe, changement de couleur de courbe.
-- **Analyse / Historique** : Les calculs d'historiques enregistrés sont maintenant affichés au dessus de la liste des commandes, de la même façon que celles-ci.
+- **Analyse / Historique** : Les calculs d'historiques enregistrés sont maintenant affichés au-dessus de la liste des commandes, de la même façon que celles-ci.
 - **Analyse / Equipements** : Les commandes orphelines affichent maintenant leur nom et date de suppression si encore dans l'historique de suppression, ainsi qu'un lien vers le scénario ou l'équipement concerné.
 - **Analyse / Logs** : Numérotation des lignes des logs. Possibilité d'afficher le log brut.
 - **Logs** : Coloration des logs en fonction de certains événements. Possibilité d'afficher le log brut.
-- **Résumés** : Possibilité de définir une icône différente quand le résumé est nul (aucun volets ouvert, aucune lumière allumée, etc).
+- **Résumés** : Possibilité de définir une icône différente quand le résumé est nul (aucun volet ouvert, aucune lumière allumée, etc).
 - **Résumés** : Possibilité de ne jamais afficher le numéro à droite de l'icône, ou seulement s'il est positif.
 - **Résumés** : Le changement de paramètre de résumé en configuration et sur les objets est maintenant visible, sans attendre un changement de valeur du résumé.
 - **Résumés** : Il est maintenant possible de configurer des [actions sur les résumés](/fr_FR/concept/summary#Actions sur résumés) (ctrl + clic sur un résumé) grâce aux virtuels.
 - **Rapport** : Prévisualisation des fichiers PDF.
 - **Types d'équipement** : [Nouvelle page](/fr_FR/core/4.2/types) **Outils → Types d'équipement** permettant d'attribuer des types génériques aux équipements et commandes, avec support des types dédiés aux plugins installés (voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2)).
 - **Sélection d'illustrations** : Nouvelle fenêtre globale pour le choix des illustrations *(icônes, images, fonds)*.
-- **Affichage en tableau** : Ajout d'un bouton à droite de la recherche sur les pages *Objets* *Scénarios* *Interactions* *Widgets* et *Plugins* pour basculer en mode tableau. Celui-ci est conservé par un cookie ou dans **Réglages → Système → Configuration / Interface, Options**. Les plugins peuvent faire appel à cette nouvelle fonction du Core. voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2).
+- **Affichage en tableau** : Ajout d'un bouton à droite de la recherche sur les pages *Objets* *Scénarios* *Interactions* *Widgets* et *Plugins* pour basculer en mode tableau. Celui-ci est conservé par un cookie ou dans **Réglages → Système → Configuration / Interface, Options**. Les plugins peuvent faire appel à cette nouvelle fonction du Core. Voir [Doc dev](https://doc.jeedom.com/fr_FR/dev/core4.2).
 - **Configuration Equipement** : Possibilité de paramétrer une courbe d'historique en fond de tuile d'un équipement.
 - **Commande** : Possibilité de faire un calcul sur une commande action de type slider avant exécution de la commande.
 - **Plugins / Gestion** : Affichage de la catégorie du plugin, et d'un lien pour ouvrir directement la page de celui-ci sans passer par le menu Plugins.
@@ -540,8 +540,8 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
   - Déclencheur : ``#genericType(LIGHT_STATE,#[Salon]#)# > 0``
   - IF ``genericType(LIGHT_STATE,#[Salon]#) > 0``
   - Action ``genericType``
-- **Objets** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux objets.
-- **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifique propres aux utilisateurs.
+- **Objets** : Les plugins peuvent maintenant demander des paramètres spécifiques propres aux objets.
+- **Utilisateurs** : Les plugins peuvent maintenant demander des paramètres spécifiques propres aux utilisateurs.
 - **Utilisateurs** : Possibilité de gérer les profils des différents utilisateurs Jeedom depuis la page de gestion des utilisateurs.
 - **Utilisateurs** : Possibilité de masquer des objets/vue/design/design 3d pour les utilisateurs limités.
 - **Centre de Mises à jour** : Le centre de mises à jour affiche désormais la date de dernière mise à jour.
@@ -550,16 +550,16 @@ Article du blog [ici](https://blog.jeedom.com/6739-jeedom-4-3/)
 - **General** : Intégration du plugin JeeXplorer dans le Core. Utilisé maintenant pour les Widget Code, et la personnalisation avancée.
 - **Configuration** : Nouvelle option en configuration / interface pour ne pas colorer le bandeau de titre des équipements.
 - **Configuration** : Possibilité de paramétrer des fonds d'écran sur les pages Dashboard, Analyse, Outils et leur opacité en fonction du thème.
-- **Configuration**: Ajout DNS Jeedom basé sur Wireguard au lieu d'Openvpn (Administration / réseaux). Plus rapide, et plus stable, mais encore en test. Attention ce n'est pour le moment pas compatible Jeedom Smart.
+- **Configuration** : Ajout DNS Jeedom basé sur Wireguard au lieu d'Openvpn (Administration / réseaux). Plus rapide, et plus stable, mais encore en test. Attention ce n'est pour le moment pas compatible Jeedom Smart.
 - **Configuration** : Réglages OSDB: Ajout d'un outil d'édition en masse d'équipements, commandes, objets, scénarios.
 - **Configuration** : Réglages OSDB: Ajout d'un constructeur dynamique de requête SQL.
-- **Configuration**: Possibilité de désactiver le monitoring cloud (Administration / Mises à jour / Market).
+- **Configuration** : Possibilité de désactiver le monitoring cloud (Administration / Mises à jour / Market).
 - **jeeCLI** : Ajout de ``jeeCli.php`` dans le dossier core/php de Jeedom pour gérer certaines fonctions en ligne de commande.
 - *Grosses améliorations de l'interface en terme de performances / réactivité. jeedomUtils{}, jeedomUI{}, menu principal réécrit en css pur, suppression d'initRowWorflow(), simplification du code, corrections css pour les petits écrans, etc.*
 
 ### 4.2 : Widgets Core
 
-- Les paramètres de Widgets pour la version Mobile sont maintenant accessible depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard.
+- Les paramètres de Widgets pour la version Mobile sont maintenant accessibles depuis la fenêtre de configuration de l'équipement en mode Édition du Dashboard.
 - Les paramètres optionnels disponibles sur les widgets sont maintenant affichés pour chaque widget, que ce soit dans la configuration de la commande ou depuis le mode Édition du Dashboard.
 - De nombreux Widgets Core acceptent maintenant des paramètres optionnels de couleur. (slider horizontal et vertical, jauge, compass, rain, shutter, templates slider, etc.).
 - Les Widgets Core avec affichage d'un *time* supportent maintenant un paramètre optionnel **time : date** pour afficher une date relative (Hier à 16h48, Lundi dernier à 14h00, etc).
@@ -599,11 +599,11 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 ## 4.1.26
 
-- Correction d'un soucis d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt.
+- Correction d'un souci d'installation de dépendance apt sur Smart dû au changement de certificat chez let's encrypt.
 
 ## 4.1.25
 
-- Correction d'un soucis d'installation de dépendance apt.
+- Correction d'un souci d'installation de dépendance apt.
 
 ## 4.1.24
 
@@ -659,13 +659,13 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - **Synthèse** : Ajout d'une nouvelle page **Accueil → Synthèse** proposant une synthèse visuelle globale des pièces, avec accès rapide aux résumés.
 - **Recherche** : Ajout d'un moteur de recherche dans **Outils → Recherche**.
 - **Dashboard** : Mode Édition maintenant en insertion de la tuile déplacée.
-- **Dashboard** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
+- **Dashboard** : Mode édition : les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce à une nouvelle modale simplifiée.
 - **Dashboard** : On peut maintenant cliquer sur les *time* des widgets actions time pour ouvrir la fenêtre d'historique de la commande info liée.
 - **Dashboard** : La taille de la tuile d'un nouvel équipement s'adapte à son contenu.
 - **Dashboard** : Ajout (retour !) d'un bouton pour filtrer les éléments affichés par catégorie.
 - **Dashboard** : Ctrl Clic sur une info ouvre la fenêtre d'historique avec toutes les commandes historisées de l'équipement visible sur la tuile. Ctrl Clic sur une légende pour afficher seulement celle-ci, Alt Clic pour les afficher toutes.
 - **Dashboard** : Refonte de l'affichage de l'arbre des objets (flèche à gauche de la recherche).
-- **Dashboard** : Possibilité de flouter les arrières plan des images de fond (Configuration -> Interface).
+- **Dashboard** : Possibilité de flouter les arrières-plan des images de fond (Configuration -> Interface).
 - **Outils / Widgets** : La fonction *Appliquer sur* montre les commandes liées cochées, en décocher une appliquera le widget core par défaut sur cette commande.
 - **Widgets** : Ajout d'un widget core *sliderVertical*.
 - **Widgets** : Ajout d'un widget core *binarySwitch*.
@@ -692,7 +692,7 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - **Analyse / Logs** : Nouvelle police de type monospace pour les logs.
 - **Vue** : Possibilité de mettre des scénarios.
 - **Vue** : Mode Édition maintenant en insertion de la tuile déplacée.
-- **Vue** : Mode édition: les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
+- **Vue** : Mode édition : les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration, grâce a une nouvelle modale simplifiée.
 - **Vue** : L'ordre d'affichage est maintenant indépendant de celui sur le Dashboard.
 - **Timeline** : Séparation des pages Historique et Timeline.
 - **Timeline** : Intégration de la Timeline en DB pour des raisons de fiabilité.
@@ -711,7 +711,7 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - **Configuration** : L'onglet *Commandes* est maintenant dans l'onglet *Equipements*.
 - **Fenêtre de configuration avancée d'équipement** : Changement dynamique de la configuration tableau.
 - **Equipements** : Nouvelle catégorie *Ouvrant*.
-- **Equipements** : Possibilité d'inverser les commande de type curseur (info et action)
+- **Equipements** : Possibilité d'inverser les commandes de type curseur (info et action)
 - **Equipements** : Possibilité d'ajouter des class css à une tuile (voir documentation widget).
 - **Fenêtre A propos** : Ajout de raccourcis vers le Changelog et la FAQ.
 - Pages Widgets / Objets / Scénarios / Interactions / Plugins :
@@ -765,7 +765,7 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 - Correction d'un soucis lors de l'application d'un template de scénario
 - Ajout d'une option permettant de désactiver la vérification SSL lors de la communication avec le market (non recommandé mais utile dans certaine configuration réseaux spécifique)
-- Correction d'un soucis sur l'archivage des historique si le mode de lissage était à jamais
+- Correction d'un souci sur l'archivage des historique si le mode de lissage était à jamais
 - Corrections de bugs
 - Correction de la commande trigger() dans les scénarios pour qu'elle renvoi le nom du déclencheur (sans les #) au lieu de la valeur, pour la valeur il faut utilise triggerValue()
 
@@ -781,8 +781,8 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 ## 4.0.57
 
 - Renforcement de la sécurité des cookies
-- Utilisation de chromium (si il est installé) pour les rapports
-- Correction d'un soucis de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le meme que celui du navigateur
+- Utilisation de chromium (s'il est installé) pour les rapports
+- Correction d'un souci de calcul de temps d'état sur les widgets si le fuseau horaire de jeedom n'est pas le même que celui du navigateur
 - Correction de bugs
 
 ## 4.0.55
@@ -852,12 +852,12 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - Lors d'une recherche, la touche *echap* annule la recherche.
 - Dashboard : En mode édition, le champ recherche et ses boutons sont désactivés et deviennent fixe.
 - Dashboard : En mode édition, un clic sur un bouton *expand* à droite des objets redimensionne les tuiles de l'objet à la hauteur de la plus haute. Ctrl+clic les réduit à la hauteur de la moins haute.
-- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. Si il n'y en a pas sur la tuile, il apparaîtra le temps de l’exécution.
+- Dashboard : L’exécution de commande sur une tuile est maintenant signalée par le bouton *refresh*. S'il n'y en a pas sur la tuile, il apparaîtra le temps de l’exécution.
 - Dashboard : Les tuiles indiquent une commande info (historisée, qui ouvrira la fenêtre Historique) ou action au survol.
 - Dashboard : La fenêtre d'historique permet maintenant d'ouvrir cet historique dans Analyse/Historique.
 - Dashboard : La fenêtre d'historique conserve ses position/dimensions à la réouverture d'un autre historique.
-- Fenêtre Configuration de commande: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
-- Fenêtre Configuration de l'équipement: Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
+- Fenêtre Configuration de commande : Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
+- Fenêtre Configuration de l'équipement : Ctrl+clic sur "Enregistrer" ferme la fenêtre après.
 - Ajout d'informations d'utilisation lors de la suppression d'un équipement.
 - Objets : Ajout d'une option pour utiliser des couleurs personnalisées.
 - Objets : Ajout d'un menu contextuel sur les onglets (changement rapide d'objet).
@@ -867,11 +867,11 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - Améliorations des tables avec option de filtre et tri.
 - Possibilité d'attribuer une icône à une interaction.
 - Chaque page de Jeedom a maintenant un titre dans la langue de l'interface (tab du navigateur).
-- Prévention de l'auto remplissage sur les champs 'Code d'accès'.
+- Prévention de l'auto-remplissage sur les champs 'Code d'accès'.
 - Gestion des fonctions *Page précédente / Page suivante* du navigateur.<br/><br/>
 - Widgets : Refonte du système de widgets (menu Outils / Widgets).
 - Widgets : Possibilité de remplacer un widget par un autre sur toutes les commandes l'utilisant.
-- Widgets : Possibilité d'affecter un widgets à plusieurs commandes.
+- Widgets : Possibilité d'affecter un widget à plusieurs commandes.
 - Widgets : Ajout d'un widget info numeric horizontal.
 - Widgets : Ajout d'un widget info numeric vertical.
 - Widgets : Ajout d'un widget info numeric compass/wind (merci @thanaus).
@@ -885,11 +885,11 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - Configuration : Possibilité de centrer verticalement le contenu des tuiles (onglet Interface).
 - Configuration : Ajout d'un paramètre pour la purge globale des historiques (onglet Commandes).
 - Configuration : Changement de #message# à #subject# dans Configuration/Logs/Messages pour éviter la duplication du message.
-- Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas étés mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
+- Configuration : Possibilité dans les résumés d'ajouter une exclusion des commandes n'ayant pas été mises à jour depuis plus de XX minutes (exemple pour le calcul des moyennes de température si un capteur n'a rien remonté depuis plus de 30min il sera exclus du calcul)<br/><br/>
 - Scénario : La colorisation des blocs n'est plus aléatoire, mais par type de bloc.
 - Scénario : Possibilité en faisant un Ctrl + clic sur le bouton *exécution* de le sauvegarder, le lancer, et afficher le log (si le niveau de log n'est pas sur *Aucun*).
 - Scénario : Confirmation de suppression d'un bloc. Ctrl + clic pour éviter la confirmation.
-- Scénario : Ajout d'une fonction recherche dans les bloc Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
+- Scénario : Ajout d'une fonction recherche dans les blocs Code. Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 - Scénario : Possibilité de condenser les blocs.
 - Scénario : L'action 'Ajouter bloc' bascule sur l'onglet Scénario si nécessaire.
 - Scénario : Nouvelles fonctions copier/coller de bloc. Ctrl+clic pour couper/remplacer.
@@ -906,10 +906,10 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 - Résumé domotique : L'historique des suppressions est maintenant disponible dans un onglet (Résumé - Historique).
 - Résumé domotique : Refonte complète, possibilité d'ordonner les objets, équipements, commandes.
 - Résumé domotique : Ajout des IDs d'équipement et de commande, à l'affichage et dans la recherche.
-- Résumé domotique : Export CSV des objet parent,id,équipement et de leurs id,commande.
+- Résumé domotique : Export CSV des objet parent,id,équipement et de leurs id, commande.
 - Résumé domotique : Possibilité de rendre visible ou non une ou des commandes.<br/><br/>
 - Design : Possibilité de spécifier l'ordre (position) des *Designs* et *Designs 3D* (Edition, Configurer le Design).
-- Design : Ajout d'un champs CSS personnalisé sur les éléments du *design*.
+- Design : Ajout d'un champ CSS personnalisé sur les éléments du *design*.
 - Design : Déplacement des options d'affichages en Design de la configuration avancée, dans les paramètres d'affichage depuis le *Design*. Ceci afin de simplifier l'interface, et de permettre d'avoir des paramètres différents par *Design*.
 - Design : Le déplacement et le redimensionnement des composants sur les *Design* tient compte de leur taille, avec ou sans aimantation.<br/><br/>
 - Ajout d'un système de configuration en masse (utilisé sur la page Equipement pour configurer l'Alertes Communications sur ceux-ci)
@@ -931,4 +931,4 @@ Les plugins doivent respecter les recommandations sur l'arborescence des dossier
 
 >**IMPORTANT**
 >
-> Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajout de composants en compte.
+> Si après la mise à jour vous avez une erreur sur le Dashboard essayez de redémarrer votre box pour qu'elle prenne bien les nouveaux ajouts de composants en compte.
