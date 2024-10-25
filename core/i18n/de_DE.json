@@ -5104,7 +5104,7 @@
     },
     "core\/api\/proApi.php": {
         "Requête invalide. Version JSON-RPC invalide :": "Ungültige Anfrage. Ungültige JSON-RPC-Version:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",
         "connexion valide et verifiée :": "gültige und überprüfte Verbindung:",
         "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Cron-Fehler: Cron sind deaktiviert. Gehen Sie zu Administration -> Task Engine, um sie wieder zu aktivieren",
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Szenariofehler: Alle Szenarien sind deaktiviert. Gehen Sie zu Tools -> Szenarien, um sie wieder zu aktivieren",
@@ -5129,7 +5129,7 @@
     "core\/api\/jeeApi.php": {
         "Commande inconnue ou Token invalide": "Unbekannter Befehl oder Ungültiger Token",
         "Erreur response ask, temps écoulé ou réponse invalide": "Antwortanfragefehler, verstrichene Zeit oder ungültige Antwort",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Sie sind nicht berechtigt, diese Aktion auszuführen, IP:",
         "Cette demande n\\'est pas autorisée": "Diese Anfrage ist nicht autorisiert",
         "Demande sur l\\'api http venant de :": "Anfrage auf der http API kommt von:",
@@ -5173,7 +5173,7 @@
         "Utilisateur non défini": "Undefinierter Benutzer"
     },
     "core\/api\/tts.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",
         "Aucun texte à dire": "Kein Text zu sagen",
         "Tag detécté dans le tts et plugin song présent": "Tag im tts- und Song-Plugin erkannt",
         "Son trouvé path :": "Sein gefundener Weg:",

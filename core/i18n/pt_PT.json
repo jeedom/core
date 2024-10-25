@@ -5104,7 +5104,7 @@
     },
     "core\/api\/proApi.php": {
         "Requête invalide. Version JSON-RPC invalide :": "Pedido inválido. Versão JSON-RPC inválida:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Você não está autorizado a realizar esta ação",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "connexion valide et verifiée :": "conexão válida e verificada:",
         "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Erro cron: os cron estão desativados. Vá a Sistema-> Motor de tarefas para os reativar",
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Erro de cenário: todos os cenários estão desativados. Vá em Ferramentas -> Cenários para reativar",
@@ -5129,7 +5129,7 @@
     "core\/api\/jeeApi.php": {
         "Commande inconnue ou Token invalide": "Comando desconhecido ou Token inválido",
         "Erreur response ask, temps écoulé ou réponse invalide": "Erro de pergunta de resposta, tempo decorrido ou resposta inválida",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Você não está autorizado a realizar esta ação",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Não está autorizado a realizar esta ação, IP:",
         "Cette demande n\\'est pas autorisée": "Esta solicitação não está autorizada",
         "Demande sur l\\'api http venant de :": "Pedido na API http proveniente de:",
@@ -5173,7 +5173,7 @@
         "Utilisateur non défini": "Usuário indefinido"
     },
     "core\/api\/tts.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Você não está autorizado a realizar esta ação",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Não está autorizado a executar esta ação",
         "Aucun texte à dire": "Nenhum texto presente",
         "Tag detécté dans le tts et plugin song présent": "Etiqueta detetada no tts e plugin de musica presente",
         "Son trouvé path :": "Caminho encontrado:",
