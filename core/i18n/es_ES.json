@@ -4078,6 +4078,7 @@
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "No estás autorizado a realizar esta acción",
         "Message inconnu. Vérifiez l\\'ID": "Mensaje desconocido. Verifica el ID",
         "Aucune méthode correspondante à :": "Ningún método correspondiente a:"
     },
@@ -5103,7 +5104,7 @@
     },
     "core\/api\/proApi.php": {
         "Requête invalide. Version JSON-RPC invalide :": "Solicitud inválida Versión JSON-RPC no válida:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "No estás autorizado a realizar esta acción",
         "connexion valide et verifiée :": "conexión válida y verificada:",
         "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Error de cron: los crons están deshabilitados. Vaya a Administración -> Motor de tareas para reactivarlos",
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Error de escenario : todos los escenarios están desactivados. Ir a Herramientas -> Escenarios, para reactivarlos",
@@ -5128,7 +5129,7 @@
     "core\/api\/jeeApi.php": {
         "Commande inconnue ou Token invalide": "Comando desconocido o Token inválido",
         "Erreur response ask, temps écoulé ou réponse invalide": "Error de solicitud de respuesta, tiempo transcurrido o respuesta no válida",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "No estás autorizado a realizar esta acción",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "No está autorizado para realizar esta acción, IP:",
         "Cette demande n\\'est pas autorisée": "Esta solicitud no está autorizada",
         "Demande sur l\\'api http venant de :": "Solicitud sobre la API http proveniente de:",
@@ -5172,7 +5173,7 @@
         "Utilisateur non défini": "Usuario no definido"
     },
     "core\/api\/tts.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "No tiene autorización para realizar esta acción",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "No estás autorizado a realizar esta acción",
         "Aucun texte à dire": "No hay texto para decir",
         "Tag detécté dans le tts et plugin song présent": "Etiqueta detectada en el complemento tts y canción presente",
         "Son trouvé path :": "Su camino encontrado:",

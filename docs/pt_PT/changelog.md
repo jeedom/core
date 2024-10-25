@@ -87,4 +87,4 @@
 
 >**IMPORTANTE**
 >
-> Restaurando um backup 4.4 pode, em certos casos, causar problemas e acabar com {{ na interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgE https://github.com/jeedom/core/archive/refs/tags/4.4.18.zip;descompacte 4.4.18.zip;cd núcleo-4.4.18;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Você pode fazer isso na interface de resgate do Jeedom (adicione &rescue=1 no URL) ou diretamente via ssh.
+> Restaurando um backup 4.4 pode, em certos casos, causar problemas e acabar com erros na interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgE https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descompacte 4.4.19.zip;cd núcleo-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Você pode fazer isso na interface de resgate do Jeedom (adicione &rescue=1 no URL) ou diretamente via ssh.

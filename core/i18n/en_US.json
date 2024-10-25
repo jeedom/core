@@ -4078,6 +4078,7 @@
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not allowed to perform this action",
         "Message inconnu. Vérifiez l\\'ID": "Unknown message. Check the ID",
         "Aucune méthode correspondante à :": "No method corresponding to:"
     },
@@ -5103,7 +5104,7 @@
     },
     "core\/api\/proApi.php": {
         "Requête invalide. Version JSON-RPC invalide :": "Invalid request. Invalid JSON-RPC version:",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not allowed to perform this action",
         "connexion valide et verifiée :": "valid and verified connection:",
         "Erreur cron : les crons sont désactivés. Allez dans Administration -> Moteur de tâches pour les réactiver": "Cron error: crons are disabled. Go to Administration -> Task Engine to reactivate them",
         "Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver": "Scenario error: all scenarios are disabled. Go to Tools -> Scenarios to reactivate them",
@@ -5128,7 +5129,7 @@
     "core\/api\/jeeApi.php": {
         "Commande inconnue ou Token invalide": "Unknown command or Invalid token",
         "Erreur response ask, temps écoulé ou réponse invalide": "Response ask error, time elapsed or invalid response",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not allowed to perform this action",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",
         "Cette demande n\\'est pas autorisée": "This request is not allowed",
         "Demande sur l\\'api http venant de :": "Request on the http API coming from:",
@@ -5172,7 +5173,7 @@
         "Utilisateur non défini": "Undefined user"
     },
     "core\/api\/tts.php": {
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not allowed to perform this action",
         "Aucun texte à dire": "No text to say",
         "Tag detécté dans le tts et plugin song présent": "Tag detected in the tts and song plugin present",
         "Son trouvé path :": "Sound found path:",

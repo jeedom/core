@@ -4078,6 +4078,7 @@
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401-不正アクセス",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Vous n\\'êtes pas autorisé à effectuer cette action",
         "Message inconnu. Vérifiez l\\'ID": "不明なメッセージ。 IDを確認してください",
         "Aucune méthode correspondante à :": "以下に対応するメソッドはありません："
     },
