@@ -28,9 +28,18 @@ try {
 	if ($jeeasy->getStatus() == 'update') {
 		$jeeasy->doUpdate();
 	}
-	echo "<script>jeedomUtils.loadPage('index.php?v=d&p=modaldisplay&plugin=jeeasy&loadmodal=welcome')</script>";
+	echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard')</script>";
 	die();
 } catch (Exception $e) {
+}
+
+if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
+	echo '<div class="col-md-12">';
+	echo '<a href="https://start.jeedom.com/" target="_blank">';
+	echo '<i class="fas fa-image"></i> {{Retrouvez le guide de démarrage}}';
+	echo '</a>';
+	echo ' {{de votre box officielle}} ' . $productName . '.';
+	echo '</div>';
 }
 
 if (config::byKey('jeedom::firstUse') == 1) {
@@ -74,17 +83,9 @@ $productName = config::byKey('product_name');
 
 	<hr class="hrPrimary">
 	<?php
-	if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
-		echo '<div class="col-md-12">';
-		echo '<a href="https://start.jeedom.com/" target="_blank">';
-		echo '<i class="fas fa-image"></i> {{Retrouvez le guide de démarrage}}';
-		echo '</a>';
-		echo ' {{de votre box officielle}} ' . $productName . '.';
-		echo '</div>';
-	}
 	if (($docURl = config::byKey('doc::base_url')) != '') {
 		echo '<div class="col-md-12">';
-		echo '<a href="' . $docURl . '/fr_FR/premiers-pas/" target="_blank">';
+		echo '<a href="' . $docURl . '/' . config::byKey('language') . '/premiers-pas/" target="_blank">';
 		echo '<i class="fas fa-book"></i> {{La documentation de démarrage}}';
 		echo '</a>';
 		echo ' {{détaille les étapes de mise en service votre box}} ' . $productName . '.';
@@ -139,7 +140,7 @@ $productName = config::byKey('product_name');
 											})
 										},
 										success: function() {
-											jeedomUtils.loadPage('index.php?v=d&p=modaldisplay&plugin=jeeasy&loadmodal=welcome')
+											jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard')
 										}
 									})
 								}
