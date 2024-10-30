@@ -87,4 +87,4 @@
 
 >**WICHTIG**
 >
-> Wiederherstellen eines Backups 4.4 kann in bestimmten Fällen Probleme verursachen und mit {{ in der Weboberfläche enden. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgUnd https://github.com/jeedom/core/archive/refs/tags/4.4.18.zip;unzip 4.4.18.zip;cd core-4.4.18;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-master;`. Sie können dies über die Jeedom-Rettungsschnittstelle (fügen Sie &rescue=1 in der URL hinzu) oder direkt über ssh tun.
+> Wiederherstellen eines Backups 4.4 kann in bestimmten Fällen Probleme verursachen und zu Fehlern in der Weboberfläche führen. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgUnd https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;unzip 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Sie können dies über die Jeedom-Rettungsschnittstelle (fügen Sie &rescue=1 in der URL hinzu) oder direkt über ssh tun.

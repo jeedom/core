@@ -4078,6 +4078,7 @@
     },
     "core\/ajax\/message.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
+        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
         "Message inconnu. Vérifiez l\\'ID": "Unbekannte Nachricht. Überprüfen Sie die ID",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
