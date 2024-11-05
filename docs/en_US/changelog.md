@@ -80,6 +80,7 @@
 - Fixed bug with time_diff function [LINK](https://github.com/jeedom/core/issues/2915)
 - Bug fix on composer dependency management [LINK](https://github.com/jeedom/core/issues/2920)
 - In case of empty command Jeedom forces the return according to the subtype of the command (therefore 0 for numeric and binary) [LINK](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
+- Support for custom events of type #pluginClass::*# Or #pluginClass::customId# [LINK](https://github.com/jeedom/core/pull/2964)
 
 >**IMPORTANT**
 >

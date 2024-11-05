@@ -855,6 +855,8 @@
         "Correction d'un bug avec la fonction time_diff": "Correction d'un bug avec la fonction time_diff",
         "Correction de bug sur la gestion de dépendances composer": "Correction de bug sur la gestion de dépendances composer",
         "En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et binaire": "En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et binaire",
+        "Prise en charge des évènements personnalisés de type": "Prise en charge des évènements personnalisés de type",
+        "ou": "ou",
         "IMPORTANT": "IMPORTANT",
         "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type": "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type",
         "rien de grave) il suffit de relancer la mise à jour": "rien de grave) il suffit de relancer la mise à jour",

@@ -80,6 +80,7 @@
 - Se corrigió un error con la función time_diff [ENLACE](https://github.com/jeedom/core/issues/2915)
 - Corrección de errores en la gestión de dependencias del compositor [ENLACE](https://github.com/jeedom/core/issues/2920)
 - En caso de un comando vacío, Jeedom fuerza el retorno de acuerdo con el subtipo del comando (por lo tanto, 0 para números y binarios)) [ENLACE](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
+- Soporte para eventos de tipo personalizado #pluginClass::*# O #pluginClass::customId# [ENLACE](https://github.com/jeedom/core/pull/2964)
 
 >**IMPORTANTE**
 >
