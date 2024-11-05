@@ -301,6 +301,7 @@ class listener {
 
 	public function emptyEvent() {
 		$this->event = array();
+		return $this;
 	}
 
 	public function addEvent($_id) {
@@ -313,6 +314,7 @@ class listener {
 			$event[] = '#' . $id . '#';
 		}
 		$this->setEvent($event);
+		return $this;
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
