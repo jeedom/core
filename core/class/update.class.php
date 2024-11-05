@@ -476,7 +476,7 @@ class update {
 					$this->remove();
 					throw new Exception(__("Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur", __FILE__));
 				}
-				$plugin->callInstallFunction('post_market_install');
+				$plugin->callInstallFunction('post_plugin_install');
 				if (is_object($plugin) && $plugin->isActive()) {
 					$plugin->setIsEnable(1);
 				}
