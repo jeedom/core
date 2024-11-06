@@ -296,6 +296,8 @@ if (!jeeFrontEnd.update) {
             tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
           }
         }
+      } else if (_update.status == 'UPDATE' && jeephp2js.showUpdate == '1') {
+        tr += '<a class="btn btn-warning btn-xs updateJeedom"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
       }
       if (_update.type != 'core') {
         tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a> '
@@ -621,7 +623,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     return
   }
 
-  if (_target = event.target.closest('#bt_updateJeedom')) {
+  if (_target = event.target.closest('.updateJeedom')) {
     jeeP.getUpdateModal()
     return
   }
