@@ -37,7 +37,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 		$type = $_type;
 	} elseif ($_folder == 'coreDOM') {
-	    $_fn .= '.' . $_type;
+		$_fn .= '.' . $_type;
 		$path = __DIR__ . '/../../core/dom/' . $_fn;
 		$type = $_type;
 		$_folder = 'core/dom';
@@ -238,7 +238,7 @@ function getClientIp() {
 			if (strpos($_SERVER[$source], ',') !== false) {
 				return explode(',', $_SERVER[$source])[0];
 			}
-			return str_replace(' ','',$_SERVER[$source]);
+			return str_replace(' ', '', $_SERVER[$source]);
 		}
 	}
 	return '';
@@ -665,67 +665,187 @@ function date_fr($date_en) {
 		return $date_en;
 	}
 	$texte_long_en = array(
-		'/(^|\W)Monday($|\W)/', '/(^|\W)Tuesday($|\W)/', '/(^|\W)Wednesday($|\W)/', '/(^|\W)Thursday($|\W)/',
-		'/(^|\W)Friday($|\W)/', '/(^|\W)Saturday($|\W)/', '/(^|\W)Sunday($|\W)/', '/(^|\W)January($|\W)/',
-		'/(^|\W)February($|\W)/', '/(^|\W)March($|\W)/', '/(^|\W)April($|\W)/', '/(^|\W)May($|\W)/',
-		'/(^|\W)June($|\W)/', '/(^|\W)July($|\W)/', '/(^|\W)August($|\W)/', '/(^|\W)September($|\W)/',
-		'/(^|\W)October($|\W )/', '/(^|\W)November($|\W)/', '/(^|\W)December($|\W)/',
+		'/(^|\W)Monday($|\W)/',
+		'/(^|\W)Tuesday($|\W)/',
+		'/(^|\W)Wednesday($|\W)/',
+		'/(^|\W)Thursday($|\W)/',
+		'/(^|\W)Friday($|\W)/',
+		'/(^|\W)Saturday($|\W)/',
+		'/(^|\W)Sunday($|\W)/',
+		'/(^|\W)January($|\W)/',
+		'/(^|\W)February($|\W)/',
+		'/(^|\W)March($|\W)/',
+		'/(^|\W)April($|\W)/',
+		'/(^|\W)May($|\W)/',
+		'/(^|\W)June($|\W)/',
+		'/(^|\W)July($|\W)/',
+		'/(^|\W)August($|\W)/',
+		'/(^|\W)September($|\W)/',
+		'/(^|\W)October($|\W)/',
+		'/(^|\W)November($|\W)/',
+		'/(^|\W)December($|\W)/',
 	);
 	$texte_short_day_en = array(
-		'/(^|\W)Mon($|\W)/', '/(^|\W)Tue($|\W)/', '/(^|\W)Wed($|\W)/', '/(^|\W)Thu($|\W)/', '/(^|\W)Fri($|\W)/', '/(^|\W)Sat($|\W)/', '/(^|\W)Sun($|\W)/'
+		'/(^|\W)Mon($|\W)/',
+		'/(^|\W)Tue($|\W)/',
+		'/(^|\W)Wed($|\W)/',
+		'/(^|\W)Thu($|\W)/',
+		'/(^|\W)Fri($|\W)/',
+		'/(^|\W)Sat($|\W)/',
+		'/(^|\W)Sun($|\W)/'
 	);
 	$texte_short_month_en = array(
-		'/(^|\W)Jan($|\W)/', '/(^|\W)Feb($|\W)/', '/(^|\W)Mar($|\W)/', '/(^|\W)Apr($|\W)/', '/(^|\W)May($|\W)/', '/(^|\W)Jun($|\W)/', '/(^|\W)Jul($|\W)/',
-		'/(^|\W)Aug($|\W)/', '/(^|\W)Sep($|\W)/', '/(^|\W)Oct($|\W)/', '/(^|\W)Nov($|\W)/', '/(^|\W)Dec($|\W)/',
+		'/(^|\W)Jan($|\W)/',
+		'/(^|\W)Feb($|\W)/',
+		'/(^|\W)Mar($|\W)/',
+		'/(^|\W)Apr($|\W)/',
+		'/(^|\W)May($|\W)/',
+		'/(^|\W)Jun($|\W)/',
+		'/(^|\W)Jul($|\W)/',
+		'/(^|\W)Aug($|\W)/',
+		'/(^|\W)Sep($|\W)/',
+		'/(^|\W)Oct($|\W)/',
+		'/(^|\W)Nov($|\W)/',
+		'/(^|\W)Dec($|\W)/',
 	);
 
 	switch (config::byKey('language', 'core', 'fr_FR')) {
 		case 'fr_FR':
 			$texte_long = array(
-				'$1Lundi$2', '$1Mardi$2', '$1Mercredi$2', '$1Jeudi$2',
-				'$1Vendredi$2', '$1Samedi$2', '$1Dimanche$2', '$1Janvier$2',
-				'$1Février$2', '$1Mars$2', '$1Avril$2', '$1Mai$2',
-				'$1Juin$2', '$1Juillet$2', '$1Août$2', '$1Septembre$2',
-				'$1Octobre$2', '$1Novembre$2', '$1Décembre$2',
+				'$1Lundi$2',
+				'$1Mardi$2',
+				'$1Mercredi$2',
+				'$1Jeudi$2',
+				'$1Vendredi$2',
+				'$1Samedi$2',
+				'$1Dimanche$2',
+				'$1Janvier$2',
+				'$1Février$2',
+				'$1Mars$2',
+				'$1Avril$2',
+				'$1Mai$2',
+				'$1Juin$2',
+				'$1Juillet$2',
+				'$1Août$2',
+				'$1Septembre$2',
+				'$1Octobre$2',
+				'$1Novembre$2',
+				'$1Décembre$2',
 			);
 			$texte_short_day = array(
-				'$1Lun$2', '$1Mar$2', '$1Mer$2', '$1Jeu$2', '$1Ven$2', '$1Sam$2', '$1Dim$2'
+				'$1Lun$2',
+				'$1Mar$2',
+				'$1Mer$2',
+				'$1Jeu$2',
+				'$1Ven$2',
+				'$1Sam$2',
+				'$1Dim$2'
 			);
 			$texte_short_month = array(
-				'$1Janv.$2', '$1Févr.$2', '$1Mars$2', '$1Avril$2', '$1Mai$2', '$1Juin$2',
-				'$1Juil.$2', '$1Août$2', '$1Sept.$2', '$1Oct.$2', '$1Nov.$2', '$1Déc.$2',
+				'$1Janv.$2',
+				'$1Févr.$2',
+				'$1Mars$2',
+				'$1Avril$2',
+				'$1Mai$2',
+				'$1Juin$2',
+				'$1Juil.$2',
+				'$1Août$2',
+				'$1Sept.$2',
+				'$1Oct.$2',
+				'$1Nov.$2',
+				'$1Déc.$2',
 			);
 			break;
 		case 'de_DE':
 			$texte_long = array(
-				'$1Montag$2', '$1Dienstag$2', '$1Mittwoch$2', '$1Donnerstag$2',
-				'$1Freitag$2', '$1Samstag$2', '$1Sonntag$2', '$1Januar$2',
-				'$1Februar$2', '$1März$2', '$1April$2', '$1May$2',
-				'$1Juni$2', '$1July$2', '$1August$2', '$1September$2',
-				'$1October$2', '$1November$2', '$1December$2',
+				'$1Montag$2',
+				'$1Dienstag$2',
+				'$1Mittwoch$2',
+				'$1Donnerstag$2',
+				'$1Freitag$2',
+				'$1Samstag$2',
+				'$1Sonntag$2',
+				'$1Januar$2',
+				'$1Februar$2',
+				'$1März$2',
+				'$1April$2',
+				'$1May$2',
+				'$1Juni$2',
+				'$1July$2',
+				'$1August$2',
+				'$1September$2',
+				'$1October$2',
+				'$1November$2',
+				'$1December$2',
 			);
 			$texte_short_day = array(
-				'$1Mon$2', '$1Die$2', '$1Mit$2', '$1Thu$2', '$1Don$2', '$1Sam$2', '$1Son$2'
+				'$1Mon$2',
+				'$1Die$2',
+				'$1Mit$2',
+				'$1Thu$2',
+				'$1Don$2',
+				'$1Sam$2',
+				'$1Son$2'
 			);
 			$texte_short_month = array(
-				'$1Jan$2', '$1Feb$2', '$1Mar$2', '$1Apr$2', '$1May$2', '$1Jun$2', '$1Jul$2',
-				'$1Aug$2', '$1Sep$2', '$1Oct$2', '$1Nov$2', '$1Dec$2',
+				'$1Jan$2',
+				'$1Feb$2',
+				'$1Mar$2',
+				'$1Apr$2',
+				'$1May$2',
+				'$1Jun$2',
+				'$1Jul$2',
+				'$1Aug$2',
+				'$1Sep$2',
+				'$1Oct$2',
+				'$1Nov$2',
+				'$1Dec$2',
 			);
 			break;
 		case 'es_ES':
 			$texte_long = array(
-				'$1Lunes$2', '$1Martes$2', '$1Miércoles$2', '$1Jueves$2',
-				'$1Viernes$2', '$1Sábado$2', '$1Domingo$2', '$1Enero$2',
-				'$1Febrero$2', '$1Marzo$2', '$1Abril$2', '$1Mayo$2',
-				'$1Junio$2', '$1Julio$2', '$1Agosto$2', '$1Septiembre$2',
-				'$1Octubre$2', '$1Noviembre$2', '$1Diciembre$2',
+				'$1Lunes$2',
+				'$1Martes$2',
+				'$1Miércoles$2',
+				'$1Jueves$2',
+				'$1Viernes$2',
+				'$1Sábado$2',
+				'$1Domingo$2',
+				'$1Enero$2',
+				'$1Febrero$2',
+				'$1Marzo$2',
+				'$1Abril$2',
+				'$1Mayo$2',
+				'$1Junio$2',
+				'$1Julio$2',
+				'$1Agosto$2',
+				'$1Septiembre$2',
+				'$1Octubre$2',
+				'$1Noviembre$2',
+				'$1Diciembre$2',
 			);
 			$texte_short_day = array(
-				'$1Lun$2', '$1Mar$2', '$1Mie$2', '$1Jue$2', '$1Vie$2', '$1Sab$2', '$1Dom$2'
+				'$1Lun$2',
+				'$1Mar$2',
+				'$1Mie$2',
+				'$1Jue$2',
+				'$1Vie$2',
+				'$1Sab$2',
+				'$1Dom$2'
 			);
 			$texte_short_month = array(
-				'$1Ener.$2', '$1Febr.$2', '$1Marz.$2', '$1Abr.$2', '$1May.$2', '$1Jun.$2',
-				'$1Jul.$2', '$1Ago.$2', '$1Sept.$2', '$1Oct.$2', '$1Nov.$2', '$1Dic.$2',
+				'$1Ener.$2',
+				'$1Febr.$2',
+				'$1Marz.$2',
+				'$1Abr.$2',
+				'$1May.$2',
+				'$1Jun.$2',
+				'$1Jul.$2',
+				'$1Ago.$2',
+				'$1Sept.$2',
+				'$1Oct.$2',
+				'$1Nov.$2',
+				'$1Dic.$2',
 			);
 			break;
 		default:
@@ -738,52 +858,94 @@ function convertDayFromEn($_day) {
 	$result = $_day;
 	$daysMapping = array(
 		'fr_FR' => array(
-			'Monday' => 'Lundi', 'Mon' => 'Lundi',
-			'monday' => 'lundi', 'mon' => 'lundi',
-			'Tuesday' => 'Mardi', 'Tue' => 'Mardi',
-			'tuesday' => 'mardi', 'tue' => 'mardi',
-			'Wednesday' => 'Mercredi', 'Wed' => 'Mercredi',
-			'wednesday' => 'mercredi', 'wed' => 'mercredi',
-			'Thursday' => 'Jeudi', 'Thu' => 'Jeudi',
-			'thursday' => 'jeudi', 'thu' => 'jeudi',
-			'Friday' => 'Vendredi', 'Fri' => 'Vendredi',
-			'friday' => 'vendredi', 'fri' => 'vendredi',
-			'Saturday' => 'Samedi', 'Sat' => 'Samedi',
-			'saturday' => 'samedi', 'sat' => 'samedi',
-			'Sunday' => 'Dimanche', 'Sun' => 'Dimanche',
-			'sunday' => 'dimanche', 'sun' => 'dimanche',
+			'Monday' => 'Lundi',
+			'Mon' => 'Lundi',
+			'monday' => 'lundi',
+			'mon' => 'lundi',
+			'Tuesday' => 'Mardi',
+			'Tue' => 'Mardi',
+			'tuesday' => 'mardi',
+			'tue' => 'mardi',
+			'Wednesday' => 'Mercredi',
+			'Wed' => 'Mercredi',
+			'wednesday' => 'mercredi',
+			'wed' => 'mercredi',
+			'Thursday' => 'Jeudi',
+			'Thu' => 'Jeudi',
+			'thursday' => 'jeudi',
+			'thu' => 'jeudi',
+			'Friday' => 'Vendredi',
+			'Fri' => 'Vendredi',
+			'friday' => 'vendredi',
+			'fri' => 'vendredi',
+			'Saturday' => 'Samedi',
+			'Sat' => 'Samedi',
+			'saturday' => 'samedi',
+			'sat' => 'samedi',
+			'Sunday' => 'Dimanche',
+			'Sun' => 'Dimanche',
+			'sunday' => 'dimanche',
+			'sun' => 'dimanche',
 		),
 		'de_DE' => array(
-			'Monday' => 'Montag', 'Mon' => 'Montag',
-			'monday' => 'montag', 'mon' => 'montag',
-			'Tuesday' => 'Dienstag', 'Tue' => 'Dienstag',
-			'tuesday' => 'dienstag', 'tue' => 'dienstag',
-			'Wednesday' => 'Mittwoch', 'Wed' => 'Mittwoch',
-			'wednesday' => 'mittwoch', 'wed' => 'mittwoch',
-			'Thursday' => 'Donnerstag', 'Thu' => 'Donnerstag',
-			'thursday' => 'donnerstag', 'thu' => 'donnerstag',
-			'Friday' => 'Freitag', 'Fri' => 'Freitag',
-			'friday' => 'freitag', 'fri' => 'freitag',
-			'Saturday' => 'Samstag', 'Sat' => 'Samstag',
-			'saturday' => 'samstag', 'sat' => 'samstag',
-			'Sunday' => 'Sonntag', 'Sun' => 'Sonntag',
-			'sunday' => 'sonntag', 'sun' => 'sonntag',
+			'Monday' => 'Montag',
+			'Mon' => 'Montag',
+			'monday' => 'montag',
+			'mon' => 'montag',
+			'Tuesday' => 'Dienstag',
+			'Tue' => 'Dienstag',
+			'tuesday' => 'dienstag',
+			'tue' => 'dienstag',
+			'Wednesday' => 'Mittwoch',
+			'Wed' => 'Mittwoch',
+			'wednesday' => 'mittwoch',
+			'wed' => 'mittwoch',
+			'Thursday' => 'Donnerstag',
+			'Thu' => 'Donnerstag',
+			'thursday' => 'donnerstag',
+			'thu' => 'donnerstag',
+			'Friday' => 'Freitag',
+			'Fri' => 'Freitag',
+			'friday' => 'freitag',
+			'fri' => 'freitag',
+			'Saturday' => 'Samstag',
+			'Sat' => 'Samstag',
+			'saturday' => 'samstag',
+			'sat' => 'samstag',
+			'Sunday' => 'Sonntag',
+			'Sun' => 'Sonntag',
+			'sunday' => 'sonntag',
+			'sun' => 'sonntag',
 		),
 		'es_ES' => array(
-			'Monday' => 'Lunes', 'Mon' => 'Lunes',
-			'monday' => 'lunes', 'mon' => 'lunes',
-			'Tuesday' => 'Martes', 'Tue' => 'Martes',
-			'tuesday' => 'martes', 'tue' => 'martes',
-			'Wednesday' => 'Miércoles', 'Wed' => 'Miércoles',
-			'wednesday' => 'miércoles', 'wed' => 'miércoles',
-			'Thursday' => 'Jueves', 'Thu' => 'Jueves',
-			'thursday' => 'jueves', 'thu' => 'jueves',
-			'Friday' => 'Viernes', 'Fri' => 'Viernes',
-			'friday' => 'viernes', 'fri' => 'viernes',
-			'Saturday' => 'Sábado', 'Sat' => 'Sábado',
-			'saturday' => 'sábado', 'sat' => 'sábado',
-			'Sunday' => 'Domingo', 'Sun' => 'Domingo',
-			'sunday' => 'domingo', 'sun' => 'domingo',
+			'Monday' => 'Lunes',
+			'Mon' => 'Lunes',
+			'monday' => 'lunes',
+			'mon' => 'lunes',
+			'Tuesday' => 'Martes',
+			'Tue' => 'Martes',
+			'tuesday' => 'martes',
+			'tue' => 'martes',
+			'Wednesday' => 'Miércoles',
+			'Wed' => 'Miércoles',
+			'wednesday' => 'miércoles',
+			'wed' => 'miércoles',
+			'Thursday' => 'Jueves',
+			'Thu' => 'Jueves',
+			'thursday' => 'jueves',
+			'thu' => 'jueves',
+			'Friday' => 'Viernes',
+			'Fri' => 'Viernes',
+			'friday' => 'viernes',
+			'fri' => 'viernes',
+			'Saturday' => 'Sábado',
+			'Sat' => 'Sábado',
+			'saturday' => 'sábado',
+			'sat' => 'sábado',
+			'Sunday' => 'Domingo',
+			'Sun' => 'Domingo',
+			'sunday' => 'domingo',
+			'sun' => 'domingo',
 		),
 	);
 	$language = config::byKey('language', 'core', 'fr_FR');
@@ -853,13 +1015,12 @@ function calculPath($_path) {
 
 function getDirectorySize($path) {
 	$bytestotal = 0;
- 	$path = realpath($path);
-  	if($path!==false && $path!='' && file_exists($path) && !is_link($path)){
-		foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+	$path = realpath($path);
+	if ($path !== false && $path != '' && file_exists($path) && !is_link($path)) {
+		foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object) {
 			try {
 				$bytestotal += $object->getSize();
 			} catch (\Throwable $th) {
-
 			}
 		}
 	}
@@ -1048,12 +1209,51 @@ function minify($_buffer) {
 
 function sanitizeAccent($_message) {
 	$caracteres = array(
-		'À' => 'a', 'Á' => 'a', 'Â' => 'a', 'Ä' => 'a', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ä' => 'a', '@' => 'a',
-		'È' => 'e', 'É' => 'e', 'Ê' => 'e', 'Ë' => 'e', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', '€' => 'e',
-		'Ì' => 'i', 'Í' => 'i', 'Î' => 'i', 'Ï' => 'i', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
-		'Ò' => 'o', 'Ó' => 'o', 'Ô' => 'o', 'Ö' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'ö' => 'o',
-		'Ù' => 'u', 'Ú' => 'u', 'Û' => 'u', 'Ü' => 'u', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ü' => 'u', 'µ' => 'u',
-		'Œ' => 'oe', 'œ' => 'oe',
+		'À' => 'a',
+		'Á' => 'a',
+		'Â' => 'a',
+		'Ä' => 'a',
+		'à' => 'a',
+		'á' => 'a',
+		'â' => 'a',
+		'ä' => 'a',
+		'@' => 'a',
+		'È' => 'e',
+		'É' => 'e',
+		'Ê' => 'e',
+		'Ë' => 'e',
+		'è' => 'e',
+		'é' => 'e',
+		'ê' => 'e',
+		'ë' => 'e',
+		'€' => 'e',
+		'Ì' => 'i',
+		'Í' => 'i',
+		'Î' => 'i',
+		'Ï' => 'i',
+		'ì' => 'i',
+		'í' => 'i',
+		'î' => 'i',
+		'ï' => 'i',
+		'Ò' => 'o',
+		'Ó' => 'o',
+		'Ô' => 'o',
+		'Ö' => 'o',
+		'ò' => 'o',
+		'ó' => 'o',
+		'ô' => 'o',
+		'ö' => 'o',
+		'Ù' => 'u',
+		'Ú' => 'u',
+		'Û' => 'u',
+		'Ü' => 'u',
+		'ù' => 'u',
+		'ú' => 'u',
+		'û' => 'u',
+		'ü' => 'u',
+		'µ' => 'u',
+		'Œ' => 'oe',
+		'œ' => 'oe',
 		'$' => 's'
 	);
 	return preg_replace('#[^A-Za-z0-9 \n\.\'=\*:]+\#\)\(#', '', strtr($_message, $caracteres));
@@ -1076,11 +1276,11 @@ function isConnect($_right = '') {
 	return true;
 }
 
-function hasRight($_name = '',$_right = 'r',$_default = 'r') {
+function hasRight($_name = '', $_right = 'r', $_default = 'r') {
 	if ($_SESSION['user']->getProfils() == 'admin' || $_SESSION['user']->getProfils() == 'user') {
 		return true;
 	}
-	if (strpos($_SESSION['user']->getRights($_name,$_default), $_right) !== false) {
+	if (strpos($_SESSION['user']->getRights($_name, $_default), $_right) !== false) {
 		return true;
 	}
 	return false;
@@ -1451,23 +1651,23 @@ function checkAndFixCron($_cron) {
 	return $return;
 }
 
-function cronIsDue($_cron,$_datetime = null,$_lastlaunch = null){
+function cronIsDue($_cron, $_datetime = null, $_lastlaunch = null) {
 	if (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1 && date('I') == 1 && date('Gi') > 159) {
 		return false;
 	}
-	if($_datetime == null){
+	if ($_datetime == null) {
 		$_datetime = date('Y-m-d H:i:s');
 	}
-	$schedule = explode(' ',trim($_cron));
-	if(count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')){
+	$schedule = explode(' ', trim($_cron));
+	if (count($schedule) == 6 && $schedule[5] !=  '*' && $schedule[5] != date('Y')) {
 		return false;
 	}
 	try {
 		$c = new Cron\CronExpression(checkAndFixCron($_cron), new Cron\FieldFactory);
-		if($c->isDue($_datetime)){
+		if ($c->isDue($_datetime)) {
 			return true;
 		}
-		if($_lastlaunch !== null){
+		if ($_lastlaunch !== null) {
 			$prev = $c->getPreviousRunDate()->getTimestamp();
 			if (strtotime($_lastlaunch) <= $prev && abs((strtotime('now') - $prev) / 60) <= config::byKey('maxCatchAllow') || config::byKey('maxCatchAllow') == -1) {
 				return true;
@@ -1475,11 +1675,10 @@ function cronIsDue($_cron,$_datetime = null,$_lastlaunch = null){
 		}
 	} catch (Exception $e) {
 		$evaluate = jeedom::evaluateExpression($_cron);
-		if(is_numeric($evaluate)){
-		  return ($evaluate == date('Gi'));
+		if (is_numeric($evaluate)) {
+			return ($evaluate == date('Gi'));
 		}
 	} catch (Error $e) {
-
 	}
 	return false;
 }
