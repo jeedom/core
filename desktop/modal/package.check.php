@@ -98,7 +98,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt ')) > 0) {
         } elseif ($info['status'] == 2) {
           $_echo .= '<td class="alert-success">OK (' . $info['alternative_found'] . ')</td>';
         } elseif ($info['status'] == 3) {
-          $_echo .= '<td class="alert-warning">{{Incompatible avec l\'OS}}</td>';
+          $_echo .= '<td class="alert-success">{{Incompatible avec l\'OS}}</td>';
         } else {
           if ($info['needUpdate']) {
             $_echo .= '<td class="alert-warning">{{Mise à jour}}</td>';
