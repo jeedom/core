@@ -1381,6 +1381,8 @@
         "Correction de bug sur la gestion de dépendances composer": "Bug fix on composer dependency management",
         "En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et binaire": "In case of empty command Jeedom forces the return according to the subtype of the command (therefore 0 for numeric and binary",
         "Prise en charge des évènements personnalisés de type": "Support for custom events of type",
+        "Ajout d'un bouton de mise à jour sur la ligne \"core\" en plus de celui en haut à droite": "Added an update button on the \"core\" line in addition to the one on the top right",
+        "Correction de l'écran \"package\" au niveau des packages python2": "Fixed \"package\" screen at python2 packages level",
         "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type": "Due to the rework of logs and the re-internalization of libraries, when updating you may have an error type",
         "rien de grave) il suffit de relancer la mise à jour": "nothing serious) just restart the update",
         "La restoration d'un backup 4": "Restoring a backup 4",

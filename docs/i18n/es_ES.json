@@ -1381,6 +1381,8 @@
         "Correction de bug sur la gestion de dépendances composer": "Corrección de errores en la gestión de dependencias del compositor",
         "En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et binaire": "En caso de un comando vacío, Jeedom fuerza el retorno de acuerdo con el subtipo del comando (por lo tanto, 0 para números y binarios)",
         "Prise en charge des évènements personnalisés de type": "Soporte para eventos de tipo personalizado",
+        "Ajout d'un bouton de mise à jour sur la ligne \"core\" en plus de celui en haut à droite": "Se agregó un botón de actualización a la línea \"principal\" además del que está en la parte superior derecha",
+        "Correction de l'écran \"package\" au niveau des packages python2": "Reparar la pantalla \"paquete\" en el nivel del paquete python2",
         "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type": "Debido a la revisión de registros y la reinternalización de bibliotecas, durante la actualización puede aparecer un error estándar",
         "rien de grave) il suffit de relancer la mise à jour": "nada grave) simplemente reinicie la actualización",
         "La restoration d'un backup 4": "Restaurar una copia de seguridad 4",
