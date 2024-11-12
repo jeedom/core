@@ -81,6 +81,8 @@
 - Correção de bug no gerenciamento de dependências do compositor [LINK](https://github.com/jeedom/core/issues/2920)
 - No caso de comando vazio o Jeedom força o retorno de acordo com o subtipo do comando (então 0 para numérico e binário) [LINK](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
 - Suporte para eventos de tipo personalizado #pluginClass::*# Ou #pluginClass::customId# [LINK](https://github.com/jeedom/core/pull/2964)
+- Adicionado um botão de atualização à linha "core" além daquele no canto superior direito [LINK](https://github.com/jeedom/core/pull/2974)
+- Corrija a tela “pacote” no nível do pacote python2 [LINK](https://github.com/jeedom/core/pull/2973)
 
 >**IMPORTANTE**
 >

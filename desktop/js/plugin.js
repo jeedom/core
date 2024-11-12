@@ -802,7 +802,7 @@ document.getElementById('div_confPlugin')?.addEventListener('mouseup', function(
 
 document.getElementById('div_confPlugin')?.addEventListener('change', function(event) {
   var _target = null
-  if (_target = event.target.closest('#div_resumePluginList .configKey')) {
+  if (_target = event.target.closest('.configKey')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
     return
   }

@@ -81,6 +81,8 @@
 - Fehlerbehebung bei der Composer-Abhängigkeitsverwaltung [LINK](https://github.com/jeedom/core/issues/2920)
 - Im Falle eines leeren Befehls erzwingt Jeedom die Rückgabe entsprechend dem Untertyp des Befehls (also 0 für numerisch und binär)) [LINK](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
 - Unterstützung für benutzerdefinierte Typereignisse #pluginClass::*# Oder #pluginClass::customId# [LINK](https://github.com/jeedom/core/pull/2964)
+- Zusätzlich zu der Schaltfläche oben rechts wurde der Zeile „Kern“ eine Schaltfläche „Aktualisieren“ hinzugefügt [LINK](https://github.com/jeedom/core/pull/2974)
+- Korrigieren Sie den Bildschirm „Paket“ auf Python2-Paketebene [LINK](https://github.com/jeedom/core/pull/2973)
 
 >**WICHTIG**
 >
