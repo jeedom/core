@@ -26,11 +26,11 @@ Pour chaque objet, à côté de son libellé, deux boutons sont disponibles.
 - Le premier sert à ouvrir la page de configuration de l’objet dans un nouvel onglet.
 - Le deuxième apporte quelques informations sur l’objet,
 
-> **Tip**
+> **Conseil**
 >
 > La couleur de fond des cadres objets dépend de la couleur choisie dans la configuration de l’objet.
 
-> **Tip**
+> **Conseil**
 >
 > Avec un cliquer-déposer sur les objets ou équipements, vous pouvez changer leur ordre ou même les affecter à un autre objet. C’est à partir de l’ordre établi dans cette page que l’affichage du Dashboard est calculé.
 
@@ -53,7 +53,7 @@ Si le plugin de l'équipement est désactivé, les deux icône à droite n'appar
 
 ## Configuration avancée d’un équipement
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible d’accéder (si le plugin le supporte) directement à cette fenêtre à partir de la page de configuration de l’équipement en cliquant sur le bouton configuration avancée
 
@@ -99,7 +99,7 @@ Dans l’onglet **Affichage**, vous allez pouvoir configurer certains comporteme
 En-dessous, on retrouve des paramètres optionnels d’affichage que l’on peut appliquer à l’équipement. Ces paramètres sont composés d’un nom et d’une valeur. Il suffit de cliquer sur **Ajouter** pour en appliquer un
 nouveau. Pour les équipements, seule la valeur **style** est pour le moment utilisée, elle permet d’insérer du code CSS sur l’équipement en question.
 
-> **Tip**
+> **Conseil**
 >
 > N’oubliez pas de sauvegarder après toute modification.
 
@@ -118,7 +118,7 @@ ceci :
 - **Texte de la case** : Ajouter un texte en plus de la commande (ou tout seul, si il n’y a pas de commande dans la case).
 - **Style de la case (CSS)** : Modifier le style CSS spécifique de la case (attention celui-ci écrase et remplace le CSS général des cases).
 
-> **Tip**
+> **Conseil**
 >
 > Dans une case du tableau, si vous voulez mettre 2 commandes l’une en dessous de l’autre, il ne faut pas oublier de rajouter un retour à la ligne après la première dans la **configuration avancée** de celle-ci.
 
@@ -134,7 +134,7 @@ Dessous, vous pourrez aussi définir les seuils spécifiques d’alerte de batte
 
 On peut également gérer le timeout, en minutes, de l’équipement. Par exemple, 30 indique à jeedom que si l’équipement n’a pas communiqué depuis 30 minutes, alors il faut le mettre en alerte.
 
-> **Tip**
+> **Conseil**
 >
 > Les paramètres globaux sont dans **Réglages→Système→Configuration : Logs** ou **Equipements**
 
@@ -153,7 +153,7 @@ En premier lieu, en haut à droite, quelques boutons disponibles :
 -  **Appliquer à** : Permet d’appliquer la même configuration sur plusieurs commandes.
 - **Sauvegarder** : Sauvegarde les modifications faites sur l’équipement.
 
-> **Tip**
+> **Conseil**
 >
 > Dans un graphique, un double clic sur un élément vous amène à sa configuration.
 
@@ -242,6 +242,6 @@ Dans cette partie, vous allez pouvoir configurer certains comportements d’affi
 
 En-dessous, on retrouve des paramètres optionnels d’affichage que l’on peut passer au widget. Ces paramètres dépendent du widget en question, il faut donc regarder sa fiche sur le Market pour les connaître.
 
-> **Tip**
+> **Conseil**
 >
 > N’oubliez pas de sauvegarder après toute modification.
