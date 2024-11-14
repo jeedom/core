@@ -12,7 +12,7 @@ Diese Bestellungen erhalten Sie von :
 
 Der Wert von Interaktionen liegt in der vereinfachten Integration in andere Systeme wie Smartphones, Tablets, andere Hausautomationsboxen usw.
 
-> **Tipp**
+> **Beratung**
 >
 > Sie können eine Interaktion öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -34,7 +34,7 @@ Am oberen Rand der Seite befinden sich 3 Schaltflächen :
 - **Regenerat** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Prüfen** : Öffnen Sie einen Dialog, um einen Satz zu schreiben und zu testen.
 
-> **Tipp**
+> **Beratung**
 >
 > Wenn Sie eine Interaktion haben, die beispielsweise die Sätze für Lichter generiert, und Sie ein neues Lichtsteuermodul hinzufügen, müssen Sie entweder alle Interaktionen neu generieren oder zur betreffenden Interaktion gehen und sie erneut erstellen, um sie zu erstellen die Sätze dieses neuen Moduls.
 
@@ -103,7 +103,7 @@ Wir können uns sehr gut vorstellen, dasselbe mit mehreren Aktionen zu tun, um m
 
 In den beiden obigen Beispielen ist der Modellsatz identisch, aber die daraus resultierenden Aktionen ändern sich entsprechend der Konfiguration im Teil "Aktion". Daher können wir uns bereits mit einer einfachen Interaktion mit einem einzelnen Satz Aktionen vorstellen, die zwischen diesen kombiniert werden verschiedene Befehle und verschiedene Szenarien (wir können auch Szenarien im Aktionsteil von Interaktionen auslösen).
 
-> **Tipp**
+> **Beratung**
 >
 > Um ein Szenario hinzuzufügen, erstellen Sie eine neue Aktion, schreiben Sie &quot;Szenario&quot; ohne Akzent und drücken Sie die Tabulatortaste auf Ihrer Tastatur, um die Szenarioauswahl aufzurufen.
 

@@ -26,11 +26,11 @@ For each object, next to its label, two buttons are available.
 - The first is used to open the object configuration page in a new tab.
 - The second provides some information on the object,
 
-> **Tip**
+> **Advice**
 >
 > The background color of the object frames depends on the color chosen in the configuration of the object.
 
-> **Tip**
+> **Advice**
 >
 > With a click and drop on the objects or equipment, you can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
 
@@ -53,7 +53,7 @@ If the equipment plugin is disabled, the two icons on the right do not appear:
 
 ## Advanced equipment configuration
 
-> **Tip**
+> **Advice**
 >
 > It is possible to access (if the plugin supports it) directly to this window from the equipment configuration page by clicking on the advanced configuration button
 
@@ -99,7 +99,7 @@ In the tab **Display**, you will be able to configure certain tile display behav
 Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **Add** to apply one
 new. For equipment, only the value **style** is currently used, it allows to insert CSS code on the equipment in question.
 
-> **Tip**
+> **Advice**
 >
 > Do not forget to save after any modification.
 
@@ -118,7 +118,7 @@ this :
 - **Box text** : Add text in addition to the command (or all by itself, if there is no command in the box).
 - **Case style (CSS)** : Modify the specific CSS style of the box (note that it overwrites and replaces the general CSS of boxes).
 
-> **Tip**
+> **Advice**
 >
 > In a box in the table, if you want to put 2 commands one below the other, don&#39;t forget to add a line break after the first in the **Advanced configuration** of it.
 
@@ -134,7 +134,7 @@ Below, you can also define the specific battery alert thresholds for this equipm
 
 You can also manage the timeout, in minutes, of the equipment. For example, 30 tells jeedom that if the equipment has not communicated for 30 minutes, then it must be put on alert.
 
-> **Tip**
+> **Advice**
 >
 > The global parameters are in **→ Settings → System Configuration : Logs** Or **Equipment**
 
@@ -153,7 +153,7 @@ First, at the top right, some buttons available :
 -  **To apply to** : Allows the same configuration to be applied to several commands.
 - **To safeguard** : Save the modifications made on the equipment.
 
-> **Tip**
+> **Advice**
 >
 > In a graphic, a double click on an element brings you to its configuration.
 
@@ -242,6 +242,6 @@ In this part, you will be able to configure certain widget display behaviors on 
 
 Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
 
-> **Tip**
+> **Advice**
 >
 > Do not forget to save after any modification.

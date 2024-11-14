@@ -17,7 +17,7 @@ This page allows these Generic Types to be configured in a more direct and simpl
 
 This page offers storage by type of equipment : Socket, Light, Shutter, Thermostat, Camera, etc. Initially, most of your equipment will be classified in **Equipment without type**. To assign them a type, you can either move them to another type, or right click on the equipment to move it directly. The Equipment Type is not really useful in itself, the most important being the Order Types. You can thus have an Equipment without a Type, or a Type that does not necessarily correspond to its commands. You can of course mix control types within the same equipment. For now, it is more of a storage, a logical organization, which will serve perhaps in future versions.
 
-> **Tip**
+> **Advice**
 >
 > - When you move equipment in the game **Equipment without type**, Jeedom suggests that you remove Generic Types from its orders.
 > - You can move several pieces of equipment at once by checking the checkboxes to the left of them.
@@ -28,7 +28,7 @@ Once an item of equipment is positioned in the correct *Kind*, by clicking on it
 
 By right-clicking on an order, you can then assign it a Generic Type corresponding to the specifications of this order (Info / Action type, Numeric, Binary subtype, etc).
 
-> **Tip**
+> **Advice**
 >
 > - The contextual menu of commands displays the type of equipment in bold, but still allows to assign any Generic Type of any type of equipment.
 
@@ -80,7 +80,7 @@ Or more simply, create a `genericType` action with` LIGHT_ON` in `Salon`. If tom
 
 ## List of Generic Core Types
 
-> **Tip**
+> **Advice**
 >
 > - You can find this list directly in Jeedom, on this same page, with the button **List** top right.
 

@@ -90,4 +90,4 @@
 
 >**IMPORTANT**
 >
-> Restoring a backup 4.4 can in some cases cause problems and end up with errors in the web interface. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgAnd https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;unzip 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. You can do this from the jeedom rescue interface (add &rescue=1 in the url), or directly in ssh.
+> Restoring a backup 4.4 may in some cases end up with errors in the web interface. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wgAnd https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;unzip 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. You can launch this command from the jeedom rescue interface (add `&rescue=1` in the url), or directly in ssh.

@@ -52,8 +52,8 @@ A maneira mais fácil de obter esse URL é ir para a página **Análise → Resu
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interact & query = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interagir e consultar=#QUERY#)
 
 - **consulta** : pergunta a Jeedom.
-- **utf8** \ [opcional \] : informa ao Jeedom se deve codificar a consulta no utf8 antes de tentar responder.
-- **vazioResposta** \ [opcional \] : 0 para Jeedom responder mesmo se ele não entendeu, 1 caso contrário.
+- **utf8** \ [opcional \] : diz ao Jeedom se deve codificar a consulta em utf8 antes de tentar responder.
+- **vazioResposta** \ [opcional \] : 0 para Jeedom responder mesmo que não tenha entendido, 1 caso contrário.
 - **perfil** \ [opcional \] : nome de usuário da pessoa que iniciou a interação.
 - **responder\_cmd** \ [opcional \] : ID do pedido a ser usado para responder à solicitação.
 
@@ -62,13 +62,13 @@ Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **categoria** : categoria de mensagem para adicionar ao centro de mensagens.
-- **Mensagem** : mensagem em questão, tenha cuidado ao pensar em codificar a mensagem (o espaço se torna% 20, =% 3D…). Você pode usar uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
+- **Mensagem** : mensagem em questão, lembre-se de codificar a mensagem (o espaço passa a ser %20, = %3D…). Você pode usar uma ferramenta, [aqui](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
 Voaqui l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
 
-Retorna em json a lista de todos os objetos Jeedom.
+Retorna a lista de todos os objetos Jeedom na forma de json.
 
 ## Equipement
 

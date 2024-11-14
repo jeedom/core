@@ -22,13 +22,13 @@ Una vez que se ha creado su modelo 3D, debe exportarse en formato OBJ. Si usa Sw
 
 > **ATENCIÓN**
 >
-> Un modelo 3D es bastante imponente (esto puede representar varios cientos de Mo). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
+> Un modelo 3D es bastante grande (puede representar varios cientos de MB). Cuanto más grande sea, mayor será el tiempo de representación en Jeedom.
 
-Una vez que su modelo 3D ha sido exportado, debe crear un nuevo diseño 3D en Jeedom. Para eso, debe ingresar al modo de edición haciendo clic en el pequeño lápiz a la derecha, luego haga clic en +, asigne un nombre a este nuevo diseño 3D y luego valide.
+Una vez exportado tu modelo 3D, en Jeedom debes crear un nuevo diseño 3D. Para hacer esto, debes ingresar al modo de edición haciendo clic en el pequeño lápiz a la derecha, luego hacer clic en +, darle un nombre a este nuevo diseño 3D y luego validar.
 
 Jeedom cambiará automáticamente al nuevo diseño 3D, debe volver al modo de edición y hacer clic en las pequeñas ruedas con muescas.
 
-Puedes desde esta pantalla :
+Desde esta pantalla podrás :
 
 - Cambia el nombre de tu diseño
 - Agregar un código de acceso
@@ -60,7 +60,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 - Indique un tipo de enlace (actualmente solo existe el equipo)
 - Ingrese el enlace al elemento en cuestión. Aquí solo puede poner un enlace a un dispositivo por el momento. Esto permite al hacer clic en el elemento para que aparezca el equipo
-- Definir especificidad: allí hay varios que veremos justo después, esto permite especificar el tipo de equipo y, por lo tanto, la visualización de información
+- Definir especificidad : allí hay varios que veremos justo después, esto permite especificar el tipo de equipo y, por lo tanto, la visualización de información
 
 ### Luz
 
@@ -99,7 +99,7 @@ Para configurar un elemento en el diseño 3D, haga doble clic en el elemento que
 
 #### Volet
 
-- Estado : estado del obturador, 0 abierto otro valor cerrado
+- Estado : estado de la persiana, 0 abierto y otro valor cerrado
 - Ocultar cuando el obturador está abierto
 	- Permitir : ocultar el elemento si el obturador está abierto
 - Couleur

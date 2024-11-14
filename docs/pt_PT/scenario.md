@@ -18,7 +18,7 @@ Você encontrará a lista de cenários do seu Jeedom, bem como funcionalidades p
 
 Você encontrará nesta parte **lista de cenários** que você criou. Eles são classificados de acordo com seus **banda**, possivelmente definido para cada um deles. Cada cenário é exibido com seus **nome** e o dele **Objeto pai**. O **cenários esmaecidos** são os que estão desativados.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode abrir um cenário fazendo :
 >
@@ -86,7 +86,7 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 - **Descrição** : Permite que você escreva um pequeno texto para descrever seu cenário.
 - **Modo de cenário** : O cenário pode ser programado, acionado ou ambos. Você terá a opção de indicar o (s) gatilho (s) (máximo de 15 gatilhos) e a (s) programação (ões)).
 
-> **Dica**
+> **Conselho**
 >
 > Agora as condições podem ser inseridas no modo acionado. Por exemplo : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Atenção : você pode ter no máximo 28 gatilhos / programação para um cenário.
@@ -102,11 +102,11 @@ Na aba **Geral**, encontramos os principais parâmetros do cenário :
 Para maior comodidade e não ter que reordenar constantemente os blocos no cenário, a adição de um bloco é feita após o campo em que o cursor do mouse está localizado.
 *Por exemplo, se você tiver dez blocos e clicar na condição IF do primeiro bloco, o bloco adicionado será adicionado após este bloco, no mesmo nível. Se nenhum campo estiver ativo, ele será adicionado no final do cenário.*
 
-> **Dica**
+> **Conselho**
 >
 > Em condições e ações, é melhor favorecer aspas simples (') em vez de aspas duplas (").
 
-> **Dica**
+> **Conselho**
 >
 > Ctrl Shift Z ou Ctrl Shift Y permite que você'**Cancelar** ou **refazer** uma modificação (adição de ação, bloco...).
 
@@ -150,7 +150,7 @@ Três botões estão disponíveis à direita deste tipo de bloco para selecionar
 > Em blocos do tipo Se / Então / Caso contrário, as setas circulares à esquerda do campo de condição permitem ativar ou não a repetição de ações se a avaliação da condição fornecer o mesmo resultado que na avaliação anterior.
 > Expressão IF != 0 é equivalente a expressão IF e expressão IF == 0 é equivalente a expressão IF não
 
-> **Dica**
+> **Conselho**
 >
 > Há uma lista de tags que permitem acessar variáveis do cenário ou de outro, ou pela hora, data, número aleatório,… Veja abaixo os capítulos sobre comandos e tags.
 
@@ -197,7 +197,7 @@ O bloco Code permite executar código php. Portanto, é muito poderoso, mas requ
 - ``$scenario->setLog($message);`` : Escreva uma mensagem no log de script.
 - ``$scenario->persistLog();`` : Forçar a gravação do log (caso contrário, ele será gravado apenas no final do cenário). Cuidado, isso pode atrasar um pouco o cenário.
 
-> **Dica**
+> **Conselho**
 >
 > Adição de uma função de pesquisa no bloco Código : Para pesquisar : Ctrl + F, em seguida, Enter, próximo resultado : Ctrl + G, resultado anterior : Ctrl+Shift+G
 
@@ -219,7 +219,7 @@ As ações adicionadas aos blocos têm várias opções :
 - Um botão para ações específicas, sempre que a descrição (em foco) dessa ação.
 - Um botão para procurar um comando de ação.
 
-> **Dica**
+> **Conselho**
 >
 > Dependendo do comando selecionado, diferentes campos adicionais podem ser exibidos.
 
@@ -269,7 +269,7 @@ Quer combine comparações em equipamentos diferentes ou no mesmo, é sempre nec
 
 Uma tag é substituída durante a execução do cenário por seu valor. Você pode usar as seguintes tags :
 
-> **Dica**
+> **Conselho**
 >
 > Para exibir os zeros à esquerda, use a função Data (). Veja [aqui](https://www.php.net/manual/fr/datetime.format.php).
 

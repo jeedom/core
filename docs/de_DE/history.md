@@ -13,7 +13,7 @@ Die Datenarchivierung ermöglicht es Jeedom, die im Speicher gehaltene Datenmeng
 
 Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellten Daten. Standardmäßig ruft Jeedom alle älteren Daten von 2 Stunden ab und erstellt 1-Stunden-Pakete daraus (entweder ein Durchschnitt, ein Minimum oder ein Maximum, abhängig von den Einstellungen). Hier haben wir also zwei Parameter, einen für die Paketgröße und einen anderen, um zu wissen, wann dies zu tun ist (standardmäßig sind dies 1-Stunden-Pakete mit Daten, die älter als 2 Stunden sind).
 
-> **Tipp**
+> **Beratung**
 >
 > Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Wofür ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
 
@@ -44,7 +44,7 @@ Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diag
 - **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
 - **Vergleichen** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
 
-> **Tipp**
+> **Beratung**
 >
 > Um Handhabungsfehler zu vermeiden, sind diese in den Befehlen gespeicherten Optionen nur aktiv, wenn eine einzelne Kurve angezeigt wird.
 > 
@@ -87,7 +87,7 @@ Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehl
 
 Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht, diese zu speichern, um sie einfacher wieder anzuzeigen.
 
-> **Tipp**
+> **Beratung**
 >
 > Wenn Sie Berechnungen gespeichert haben, stehen diese links in . zur Verfügung **Meine Berechnungen**.
 

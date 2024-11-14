@@ -34,7 +34,7 @@ Auf dieser Registerkarte finden Sie die Parameter für die Anpassung der Anzeige
 - **Heller und dunkler Desktop** : Hier können Sie ein helles und ein dunkles Thema für den Desktop auswählen.
 - **Helles und dunkles Handy** : Gleich wie oben für die Mobile-Version.
 - **Klares Thema von / bis** : Ermöglicht Ihnen, ein Zeitfenster zu definieren, in dem das zuvor ausgewählte Lichtthema verwendet wird. Aktivieren Sie jedoch die Option **Thema basierend auf der Zeit umschalten**.
-- **Helligkeitssensor**   : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chrom Seite://flags.
+- **Helligkeitssensor** : Nur mobile Schnittstelle, muss aktiviert werden *generischer zusätzlicher Sensor* in Chrom, Chrom Seite://flags.
 
 ### Tuiles
 
@@ -103,11 +103,11 @@ Es ist unbedingt erforderlich, diesen wichtigen Teil von Jeedom korrekt zu konfi
     - **Login** : Geben Sie den Proxy-Login ein,
     - **Passwort** : Geben Sie das Passwort ein.
 
-> **Tipp**
+> **Beratung**
 >
 > Wenn Sie sich in HTTPS befinden, ist der Port 443 (Standard) und in HTTP ist der Port 80 (Standard)). Um HTTPS von außen nutzen zu können, ist jetzt ein Letsencrypt-Plugin auf dem Markt erhältlich.
 
-> **Tipp**
+> **Beratung**
 >
 > Um herauszufinden, ob Sie einen Wert im Feld festlegen müssen **Ergänzen**, Schauen Sie, wenn Sie sich in Ihrem Internetbrowser bei Jeedom anmelden, ob Sie / Jeedom (oder was auch immer) nach der IP hinzufügen müssen.
 
@@ -174,7 +174,7 @@ Viele Bestellungen können protokolliert werden. So erhalten Sie unter Analyse �
 
 >**InfluxDB**
 >
->Wenn Sie InfluxDB im Moment verwenden möchten, müssen Sie die InfluxDB-Bibliothek selbst installieren. Jeedom tut dies nicht mehr, da sie nicht mehr gepflegt wird (wir planen eine Migration auf die neue Version, dies wird jedoch nicht sofort geschehen)). Hier erfahren Sie, wie Sie die Installation manuell durchführen : „cd /var/www/html;composer require influxdb/influxdb-php“ aus der Konfiguration, dann auf der Registerkarte „OS/DB“ und dann in der Betriebssystem-Verwaltungskonsole
+>Wenn Sie InfluxDB im Moment verwenden möchten, müssen Sie die InfluxDB-Bibliothek selbst installieren. Jeedom tut dies nicht mehr, da sie nicht mehr gepflegt wird (wir planen eine Migration auf die neue Version, aber das wird nicht sofort passieren)). Um die manuelle Installation durchzuführen, erfahren Sie hier, wie Sie vorgehen : „cd /var/www/html;composer require influxdb/influxdb-php“ aus der Konfiguration, dann auf der Registerkarte „OS/DB“ und dann in der Betriebssystem-Verwaltungskonsole
 
 ### Bestellhistorie
 
@@ -223,7 +223,7 @@ Linkgrafiken konfigurieren. Über diese Links können Sie in Form eines Diagramm
 
 Auf dieser Registerkarte können Sie globale Parameter für die Interaktionen festlegen, die Sie unter Extras → Interaktionen finden.
 
-> **Tipp**
+> **Beratung**
 >
 > Um das Interaktionsprotokoll zu aktivieren, gehen Sie zur Registerkarte Einstellungen → System → Konfiguration : Protokolle, dann überprüfen **Debuggen** in der unteren Liste. Aufmerksamkeit : Die Protokolle sind dann sehr ausführlich !
 
@@ -308,7 +308,7 @@ Die Liste der gesperrten IPs befindet sich am Ende dieser Seite. Sie finden die 
 
 - **Quelle aktualisieren** : Wählen Sie Jeedom Core Update Source.
 - **Kern Version** : Kernversion zum Wiederherstellen.
-- **Automatisch nach Updates suchen** : Geben Sie an, ob automatisch überprüft werden soll, ob neue Updates vorhanden sind (achten Sie darauf, dass der Markt nicht überlastet wird. Die Überprüfungszeit kann sich ändern).
+- **Automatisch nach Updates suchen** : Gibt an, ob automatisch nach neuen Updates gesucht werden soll (achten Sie darauf, den Markt nicht zu überlasten, da sich die Prüfzeit ändern kann)).
 
 ### Einlagen
 
@@ -363,7 +363,7 @@ Einzahlung, die es ermöglicht, automatisch ein Backup von Jeedom auf einer Samb
 
 > **Wichtig**
 >
-> Das Samba-Protokoll hat mehrere Versionen, die Version 1 ist in Bezug auf die Sicherheit gefährdet und auf einigen NAS können Sie den Client zwingen, die Verbindung mit Version 2 oder Version 3 herzustellen. Also, wenn Sie einen Fehler haben *Protokollaushandlung fehlgeschlagen: NT_STATUS_INVAID_NETWORK_RESPONSE* Es besteht eine gute Chance, dass auf der NAS-Seite die Einschränkung besteht. Sie müssen dann die Datei / etc / samba / smb auf Ihrem Jeedom-Betriebssystem ändern.conf und füge diese beiden Zeilen hinzu :
+> Das Samba-Protokoll hat mehrere Versionen, die Sicherheitsstufe von V1 ist gefährdet und auf einigen NAS können Sie den Client zwingen, für die Verbindung v2 oder v3 zu verwenden. Also, wenn Sie einen Fehler haben *Protokollaushandlung fehlgeschlagen: NT_STATUS_INVAID_NETWORK_RESPONSE* Es besteht eine gute Chance, dass auf der NAS-Seite die Einschränkung besteht. Sie müssen dann die Datei / etc / samba / smb auf Ihrem Jeedom-Betriebssystem ändern.conf und füge diese beiden Zeilen hinzu :
 > Client-Max-Protokoll = SMB3
 > Client-Min-Protokoll = SMB2
 > Der Jeedom-Seite smbclient verwendet dann v2, wobei v3 und indem SMB3 auf beide nur SMB3 gesetzt wird. Es liegt also an Ihnen, sich an die Einschränkungen des NAS oder eines anderen Samba-Servers anzupassen
@@ -385,11 +385,11 @@ Ermöglicht die Überwachung und Bearbeitung des Jeedom-Cache :
   - Dateisystem : Speicherung der Cache-Informationen /tmp/jeedom/cache (im RAM) im Dateimodus, verwendet eine Drittanbieter-Bibliothek. Es wird bald durch File (Beta) ersetzt)
   - Datei (Beta) : Speicherung der Cache-Informationen /tmp/jeedom/cache (im RAM) im Dateimodus. Am effizientesten, aber alle 30 Minuten gespart
   - MySQL (Beta)) : Verwendung einer einfachen Cache-Tabelle. Am wenigsten effizient, aber in Echtzeit gespeichert (kein Datenverlust möglich))
-  - Redis (Beta) : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (erfordert die Installation von Redis selbst und der PHP-Redis-Abhängigkeiten))
+  - Redis (Beta) : Reserviert für Experten, verlässt sich auf Redis, um den Cache zu verwalten (daher müssen Sie Redis- und PHP-Redis-Abhängigkeiten selbst installieren))
 - **Cache Reinigung** : Erzwingen Sie das Löschen von Objekten, die nicht mehr nützlich sind. Jeedom macht das automatisch jede Nacht.
 - **Alle Daten aus dem Cache entfernen** : Leeren Sie den Deckel vollständig.
     Bitte beachten Sie, dass dies zu Datenverlust führen kann !
-- **Pausenzeit für das lange Polling** : Häufigkeit, mit der Jeedom prüft, ob Ereignisse für Kunden ausstehen (Weboberfläche, mobile Anwendung usw.)). Je kürzer diese Zeit ist, desto schneller wird die Schnittstelle aktualisiert. Im Gegenzug verbraucht sie mehr Ressourcen und kann daher Jeedom verlangsamen.
+- **Pausenzeit für das lange Polling** : Häufigkeit, mit der Jeedom prüft, ob für Clients ausstehende Ereignisse vorliegen (Webschnittstelle, mobile Anwendung usw.)). Je kürzer diese Zeit ist, desto schneller wird die Schnittstelle aktualisiert, im Gegenzug verbraucht dies mehr Ressourcen und kann daher Jeedom verlangsamen.
 
 >**Wichtig**
 >

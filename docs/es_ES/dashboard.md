@@ -4,7 +4,7 @@
 <small>[Raccourcis clavier/souris](shortcuts.md)</small>
 
 El tablero es una de las páginas principales de Jeedom, muestra un informe de toda su domótica.
-Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jeedom e incluye todos los objetos visibles y sus equipos.
+Jeedom genera automáticamente este informe (a diferencia de las vistas y los diseños) e incluye todos los objetos visibles y sus equipos.
 
 {% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
@@ -21,7 +21,7 @@ Este informe (a diferencia de las vistas y los diseños) es autogenerado por Jee
 
 > **Consejo**
 >
-> El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. Puede modificar este orden en esta página arrastrando y soltando.
+> El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. En esta página puedes cambiar el orden arrastrando y soltando.
 
 Para que el equipo aparezca en el Tablero, debe :
 - Estar activo.
@@ -31,7 +31,7 @@ Para que el equipo aparezca en el Tablero, debe :
 Cuando el equipo aparece por primera vez en el Tablero, Jeedom intenta dimensionar correctamente su mosaico para mostrar todos los comandos y sus widgets.
 Para mantener un tablero equilibrado, puede cambiar al modo Editar con el lápiz en la parte superior derecha de la barra de búsqueda, para cambiar el tamaño y / o reordenar los mosaicos del equipo.
 
-Al mover el mouse sobre un pedido, aparece un marcador de color en la parte inferior izquierda del mosaico:
+Al mover el mouse sobre un pedido, aparece un marcador de color en la parte inferior izquierda del mosaico :
 - Azul para un pedido de información. Si está registrado, un clic en él abre la ventana de registro.
 - Naranja para un comando de acción. Un clic activará la acción.
 
@@ -40,12 +40,12 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 > **Consejo**
 >
 > Es posible ir directamente a un solo objeto en su domótica, a través del menú **Inicio → Panel de control → Nombre del objeto**.
-> Esto le permite tener solo el equipo que le interesa y cargar la página más rápido.
+> Esto te permite tener solo el equipo que te interesa y cargar la página más rápidamente.
 
 - Tiene en la parte superior izquierda un pequeño icono para mostrar el árbol de objetos al pasar el mouse.
 - Un campo de búsqueda le permite buscar equipos por nombre, categoría, complemento, etiqueta, etc.
 - El icono a la derecha del campo de búsqueda se utiliza para filtrar los equipos mostrados según su categoría. Un clic central permite seleccionar rápidamente una sola categoría.
-- En el extremo derecho, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (hacer clic y soltar en el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
+- En el extremo derecho, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (haga clic y suelte el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
 
 - Al hacer clic en el resumen de un objeto, filtra para mostrar solo el equipo relacionado con este objeto y que está relacionado con este resumen de objeto.
 
@@ -53,12 +53,11 @@ Además, puede hacer clic en el título del mosaico (el nombre del equipo) para 
 - Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
 - Un clic en la información *tiempo* de un comando de acción muestra el historial del comando (si está historizado).
 
-
 ## Modo de edición
 
 En modo edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
 
-los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración. Este icono abre una ventana de edición con los parámetros de visualización del equipo y sus controles.
+Los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración. Este icono abre una ventana de edición con los parámetros de visualización del equipo y sus controles.
 
 ![Modo de edición](./images/EditDashboardModal.gif)
 

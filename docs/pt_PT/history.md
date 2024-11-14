@@ -13,7 +13,7 @@ O arquivamento de dados permite que a Jeedom reduza a quantidade de dados mantid
 
 O arquivamento é uma tarefa que começa à noite e compacta os dados recuperados durante o dia. Por padrão, o Jeedom recupera todos os dados antigos de 2 horas e faz pacotes de 1 hora (uma média, um mínimo ou um máximo, dependendo das configurações). Portanto, aqui temos dois parâmetros, um para o tamanho do pacote e outro para saber quando fazê-lo (por padrão, são pacotes de 1 hora com dados com mais de 2 horas)).
 
-> **Dica**
+> **Conselho**
 >
 > Se você seguiu bem, deve ter alta precisão nas últimas 2 horas. No entanto, quando me conecto às 17h, tenho uma precisão nas últimas 17 horas. Para que ? De fato, para evitar consumir recursos desnecessariamente, a tarefa de arquivamento ocorre apenas uma vez por dia, à noite.
 
@@ -44,7 +44,7 @@ Se você exibir um gráfico na página de histórico, terá acesso a várias op�
 - **Escadaria** : Exibe a curva como uma escada ou uma exibição contínua. Opção salva no pedido e usada no Painel.
 - **Comparar** : Compare a curva entre diferentes períodos.
 
-> **Dica**
+> **Conselho**
 >
 > Para evitar qualquer erro de manuseio, essas opções salvas nos comandos só ficam ativas quando uma única curva é exibida.
 > 
@@ -87,7 +87,7 @@ Permite exibir uma curva de acordo com um cálculo em vários comandos (você po
 
 Você também tem acesso a um gerenciamento de fórmulas de cálculo que permite salvá-las para reapresentá-las mais facilmente.
 
-> **Dica**
+> **Conselho**
 >
 > Depois de salvar os cálculos, eles estão disponíveis à esquerda em **Meus cálculos**.
 
