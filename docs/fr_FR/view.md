@@ -6,7 +6,7 @@ Ce n’est pas aussi puissant que les designs mais cela permet en quelques minut
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez dans votre profil choisir la Vue par défaut lors du clic sur le menu des Vues.
 
@@ -20,7 +20,7 @@ Sur une Vue, on retrouve :
 - Le crayon sur la droite pour éditer l'ordre et la taille des équipements, de la même manière que le Dashboard.
 - Un bouton *Edition complète* permettant d'éditer les zones et éléments de la Vue.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez, dans votre profil, modifier cette option pour que la liste des Vues soit visible par défaut.
 
@@ -35,7 +35,7 @@ Le principe est assez simple : une Vue est composée de zones. Chaque zone est d
 - Un bouton permettant de sauvegarder cette Vue.
 - Un bouton permettant de supprimer cette Vue.
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible de déplacer l’ordre des zones par glisser/déposer.
 
@@ -52,11 +52,11 @@ Une zone de type equipement permet d’ajouter des équipements :
 
 - **Ajouter equipement** : Permet d’ajouter/modifier des équipements à afficher dans la zone.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez supprimer un equipement directement en cliquant sur la poubelle à gauche de celui-ci.
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible de modifier l’ordre des tuiles dans la zone par glisser/déposer.
 
@@ -82,7 +82,7 @@ Quand vous pressez le bouton **Ajouter courbe**, Jeedom affiche la liste des com
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible de modifier l’ordre des graphiques dans la zone par glisser/déposer.
 

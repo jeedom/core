@@ -60,13 +60,13 @@ Au niveau des protocoles, seul le Z-Wave (OpenZwave) est un peu différent car i
 
 > **Note**
 >
-> Le système sur lequel est installé Jeedom n’est pas sauvegardé. Si vous avez modifié des paramètres de ce système (notamment via SSH), c’est à vous de trouver un moyen de les récupérer en cas de soucis. De même les dependances ne le sont pas non plus il faudra donc les reinstaller après une restauration
+> Le système sur lequel est installé Jeedom n’est pas sauvegardé. Si vous avez modifié des paramètres de ce système (notamment via SSH), c’est à vous de trouver un moyen de les récupérer en cas de soucis. De même les dépendances ne le sont pas non plus il faudra donc les réinstaller après une restauration
 
 # Sauvegarde cloud
 
 La sauvegarde dans le cloud permet à Jeedom d’envoyer vos sauvegardes directement sur le Market. Cela vous permet de les restaurer facilement et d’être sûr de ne pas les perdre. Le Market conserve les 6 dernières sauvegardes. Pour vous abonner il suffit d’aller sur votre page **profil** sur le Market, puis, dans l’onglet **mes backups**. Vous pouvez, à partir de cette page, récupérer une sauvegarde ou acheter un abonnement (pour 1, 3, 6 ou 12 mois).
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez personnaliser le nom des fichiers de sauvegarde à partir de l’onglet **Mes Jeedoms**, en évitant toutefois les caractères exotiques.
 
@@ -76,6 +76,6 @@ Jeedom effectue une sauvegarde automatique tous les jours à la même heure. Il 
 
 # FAQ
 
->**Je n'arrive pas a restorer ma sauvegarde que j'ai récuperée depuis Safari**
+>**Je n'arrive pas à restaurer ma sauvegarde que j'ai récupérée depuis Safari**
 >
->Par defaut Safari décompresse les tar.gz (en tar) ce qui fait que la sauvegarde n'est plus exploitable par jeedom, il faut la recompresser (gzip) en tar.gz
+>Par défaut Safari décompresse les tar.gz (en tar) ce qui fait que la sauvegarde n'est plus exploitable par jeedom, il faut la recompresser (gzip) en tar.gz
