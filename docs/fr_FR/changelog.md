@@ -2,6 +2,7 @@
 
 # 4.4.19
 
+- Prise en charge des évènements personnalisés de type ``#pluginClass::*#`` ou ``#pluginClass::customId#`` [LIEN](https://github.com/jeedom/core/pull/2964)
 - Ajout de la sauvegarde du cache avant mise à jour (sera nécessaire pour ne pas perdre le cache lors du passage à Jeedom 4.5) [LIEN](https://github.com/jeedom/core/commit/37351c84c186bd3f1b9da337d0cc68a66c80ef2d)
 
 # 4.4.18
