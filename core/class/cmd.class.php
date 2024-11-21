@@ -1134,10 +1134,12 @@ class cmd {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$eqLogic = $this->getEqLogic();
-		$eqLogic->setStatus(array(
-			'warning' => 0,
-			'danger' => 0,
-		));
+		if (is_object($eqLogic)) {
+			$eqLogic->setStatus(array(
+				'warning' => 0,
+				'danger' => 0,
+			));
+		}
 		$this->emptyHistory();
 		cache::delete('cmdCacheAttr' . $this->getId());
 		cache::delete('cmd' . $this->getId());
