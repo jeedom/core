@@ -77,33 +77,36 @@ class network {
 				return config::byKey('internalAddr', 'core', $_default);
 			}
 			if ($_protocol == 'ip:port' || $_protocol == 'dns:port') {
-				return config::byKey('internalAddr') . ':' . self::getPort($_mode);
+				return config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
 			if ($_protocol == 'proto:ip' || $_protocol == 'proto:dns') {
 				return config::byKey('internalProtocol') . config::byKey('internalAddr');
 			}
 			if ($_protocol == 'proto:ip:port' || $_protocol == 'proto:dns:port') {
-				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . self::getPort($_mode);
+				return config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80);
 			}
 			if ($_protocol == 'proto:127.0.0.1:port:comp') {
 				if (jeedom::getHardwareName() == 'docker') {
-					return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . self::getPort($_mode) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+					return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
-				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . self::getPort($_mode) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+				return trim(config::byKey('internalProtocol') . '127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
 			if ($_protocol == 'http:127.0.0.1:port:comp') {
 				if (jeedom::getHardwareName() == 'docker') {
-					return trim('http://' . config::byKey('internalAddr') . ':' . self::getPort($_mode, 'http') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+					return trim('http://'. config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 				}
-				return trim('http://127.0.0.1:' . self::getPort($_mode, 'http') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+				return trim('http://127.0.0.1:' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
-			if (config::byKey('internalProtocol') == 'http://' && self::getPort($_mode) == 80) {
-				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			if (config::byKey('internalPort', 'core', '') == '') {
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
-			if (config::byKey('internalProtocol') == 'https://' && self::getPort($_mode) == 443) {
-				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			if (config::byKey('internalProtocol') == 'http://' && config::byKey('internalPort', 'core', 80) == 80) {
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
 			}
-			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . self::getPort($_mode) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			if (config::byKey('internalProtocol') == 'https://' && config::byKey('internalPort', 'core', 443) == 443) {
+				return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') .  '/' . trim(config::byKey('internalComplement'), '/'), '/');
+			}
+			return trim(config::byKey('internalProtocol') . config::byKey('internalAddr') . ':' . config::byKey('internalPort', 'core', 80) . '/' . trim(config::byKey('internalComplement'), '/'), '/');
 		}
 		if ($_mode == 'dnsjeedom') {
 			return config::byKey('jeedom::url');
@@ -126,7 +129,7 @@ class network {
 						}
 					}
 				}
-				return config::byKey('externalAddr') . ':' . self::getPort($_mode);
+				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocol == 'proto:dns:port' || $_protocol == 'proto:ip:port') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
@@ -143,7 +146,7 @@ class network {
 						}
 					}
 				}
-				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . self::getPort($_mode);
+				return config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocol == 'proto:dns' || $_protocol == 'proto:ip') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
@@ -173,7 +176,7 @@ class network {
 						}
 					}
 				}
-				return config::byKey('externalAddr') . ':' . self::getPort($_mode);
+				return config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80);
 			}
 			if ($_protocol == 'proto') {
 				if (config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
@@ -188,33 +191,17 @@ class network {
 			if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1 && config::byKey('jeedom::url') != '' && config::byKey('network::disableMangement') == 0) {
 				return trim(config::byKey('jeedom::url') . '/' . trim(config::byKey('externalComplement', 'core', ''), '/'), '/');
 			}
-			if (config::byKey('externalProtocol') == 'http://' && self::getPort($_mode, 'http') == 80) {
+			if (config::byKey('externalPort', 'core', '') == '') {
 				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 			}
-			if (config::byKey('externalProtocol') == 'https://' && self::getPort($_mode, 'https') == 443) {
+			if (config::byKey('externalProtocol') == 'http://' && config::byKey('externalPort', 'core', 80) == 80) {
 				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 			}
-			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . self::getPort($_mode) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
+			if (config::byKey('externalProtocol') == 'https://' && config::byKey('externalPort', 'core', 443) == 443) {
+				return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . '/' . trim(config::byKey('externalComplement'), '/'), '/');
+			}
+			return trim(config::byKey('externalProtocol') . config::byKey('externalAddr') . ':' . config::byKey('externalPort', 'core', 80) . '/' . trim(config::byKey('externalComplement'), '/'), '/');
 		}
-	}
-
-	private static function getPort(string $_mode = 'internal', string $_protocol = '') {
-		if ($_mode != 'internal' && $_mode != 'external') {
-			throw new InvalidArgumentException("Mode must be 'internal' or 'external'. Invalid mode received: {$_mode}");
-		}
-		if ($_protocol == '') {
-			$_protocol = strtolower(trim(config::byKey("{$_mode}Protocol", 'core'), ':/ '));
-		}
-		if ($_protocol != 'http' && $_protocol != 'https') {
-			throw new RuntimeException("Protocol must be 'http' or 'https'. Invalid protocol: {$_protocol}");
-		}
-
-		if ($_protocol == 'http') {
-			$default_port = 80;
-		} else {
-			$default_port = 443;
-		}
-		return config::byKey("{$_mode}Port", 'core', $default_port);
 	}
 
 	public static function checkConf($_mode = 'external') {
@@ -222,24 +209,24 @@ class network {
 			config::save($_mode . 'Protocol', 'http://');
 		}
 		if (config::byKey($_mode . 'Port') == '') {
-			config::save($_mode . 'Port', self::getPort($_mode));
+			config::save($_mode . 'Port', 80);
 		}
-		if (config::byKey($_mode . 'Protocol') == 'https://' && self::getPort($_mode) == 80) {
+		if (config::byKey($_mode . 'Protocol') == 'https://' && config::byKey($_mode . 'Port') == 80) {
 			config::save($_mode . 'Port', 443);
 		}
-		if (config::byKey($_mode . 'Protocol') == 'http://' && self::getPort($_mode) == 443) {
+		if (config::byKey($_mode . 'Protocol') == 'http://' && config::byKey($_mode . 'Port') == 443) {
 			config::save($_mode . 'Port', 80);
 		}
 		if (trim(config::byKey($_mode . 'Complement')) == '/') {
 			config::save($_mode . 'Complement', '');
 		}
 		if ($_mode == 'internal') {
-			if (config::byKey('network::disableInternalAuto', 'core', 0) == 0) {
+			if (config::byKey('network::disableInternalAuto','core',0) == 0) {
 				foreach ((self::getInterfacesInfo()) as $interface) {
 					if ($interface['ifname'] == 'lo' || !isset($interface['addr_info']) || strpos($interface['ifname'], 'docker') !== false  || strpos($interface['ifname'], 'tun') !== false || strpos($interface['ifname'], 'br') !== false) {
 						continue;
 					}
-					if (config::byKey('network::internalAutoInterface', 'core', 'auto') != 'auto' && $interface['ifname'] != config::byKey('network::internalAutoInterface', 'core', 'auto')) {
+					if (config::byKey('network::internalAutoInterface','core','auto') != 'auto' && $interface['ifname'] != config::byKey('network::internalAutoInterface','core','auto')){
 						continue;
 					}
 					$ip = null;
@@ -350,7 +337,7 @@ class network {
 		$openvpn->setEqType_name('openvpn');
 		$openvpn->setConfiguration('dev', 'tun');
 		$openvpn->setConfiguration('proto', 'udp');
-		if (config::byKey('dns::preferProtocol') != '' && strpos(config::byKey('dns::protocol'), config::byKey('dns::preferProtocol')) !== false) {
+		if(config::byKey('dns::preferProtocol') != '' && strpos(config::byKey('dns::protocol'),config::byKey('dns::preferProtocol')) !== false){
 			$openvpn->setConfiguration('proto', config::byKey('dns::preferProtocol'));
 		}
 		if (config::byKey('dns::vpnurl') != '') {
