@@ -2274,38 +2274,59 @@ class cmd {
 	}
 
 	public static function getInflux($_cmdId = null) {
-		if ($_cmdId) {
+		try {
+			if ($_cmdId) {
 				$cmd = cmd::byId($_cmdId);
 				$enabled = $cmd->getConfiguration('influx::enable');
 				if (!$enabled) {
 					return;
 				}
 			}
-		$url = config::byKey('cmdInfluxURL');
-		$port = config::byKey('cmdInfluxPort');
-		$base = config::byKey('cmdInfluxTable');
-		$user = config::byKey('cmdInfluxUser', 'core', '');
-		$pass = config::byKey('cmdInfluxPass', 'core', '');
-		if ($url == '' || $port == '') {
+			$url = config::byKey('cmdInfluxURL');
+			$port = config::byKey('cmdInfluxPort');
+			$base = config::byKey('cmdInfluxTable');
+			$user = config::byKey('cmdInfluxUser', 'core', '');
+			$pass = config::byKey('cmdInfluxPass', 'core', '');
+			if ($url == '' || $port == '') {
 				return;
 			}
-		if ($base == '') {
+			if ($base == '') {
 				$base = 'Jeedom';
 			}
-		if ($user == '') {
+			if ($user == '') {
 				$client = new InfluxDB\Client($url, $port);
 			} else {
 				$client = new InfluxDB\Client($url, $port, $user, $pass);
 			}
-		$database = $client->selectDB($base);
-		if (!$database->exists()) {
+			$database = $client->selectDB($base);
+			if (!$database->exists()) {
 				$database->create();
 			}
-		return $database;
+			return $database;
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur get influx database :', __FILE__) . ' ' . ' => ' . log::exception($e));
+		}
 		return '';
 	}
 
-	public static function dropInfluxDatabase() {
+	public function pushInflux($_value = null) {
+		try {
+			$database = cmd::getInflux($this->getId());
+			if ($database == '') {
+				return;
+			}
+			if ($_value === null) {
+				$_value = $this->execCmd();
+			}
+			$point = $this->computeInfluxData($_value);
+			$result = $database->writePoints(array($point), 's');
+		} catch (Exception $e) {
+			log::add('cmd', 'error', __('Erreur push influx sur :', __FILE__) . ' ' . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
+		}
+		return;
+	}
+
+	public function dropInfluxDatabase() {
 		try {
 			$database = cmd::getInflux();
 			if ($database == '') {
@@ -2333,21 +2354,8 @@ class cmd {
 		return;
 	}
 
-	public static function historyInfluxAll() {
-		try {
-			$cron = new cron();
-			$cron->setClass('cmd');
-			$cron->setFunction('sendHistoryInflux');
-			$cron->setOption(array('cmd_id' => 'all'));
-			$cron->setLastRun(date('Y-m-d H:i:s'));
-			$cron->setOnce(1);
-			$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
-			$cron->save();
-			return;
-		}
-		catch (Exception $e) {
-			log::add('cmd', 'error', __('historyInfluxAll w :', __FILE__) . ' '. $e->getMessage());
-		}
+	public function historyInfluxAll() {
+		cmd::historyInflux('all');
 	}
 
 	public static function sendHistoryInflux($_params) {
@@ -2393,19 +2401,19 @@ class cmd {
 			}
 		} catch (Exception $e) {
 			log::add('cmd', 'error', __('Erreur history influx sur :', __FILE__) . ' ' . ' commande : ' . $cmd->getHumanName() . ' => ' . log::exception($e));
-		  	
 		}
 	}
 
 	public function historyInflux($_type = '') {
-		if ($_type == 'all') {
-			return cmd::historyInfluxAll();
-		} 
 		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('sendHistoryInflux');
-		$cron->setOption(array('cmd_id' => intval($this->getId()))); 
-	  	$cron->setLastRun(date('Y-m-d H:i:s'));
+		if ($_type == 'all') {
+			$cron->setOption(array('cmd_id' => 'all'));
+		} else {
+			$cron->setOption(array('cmd_id' => intval($this->getId())));
+		}
+		$cron->setLastRun(date('Y-m-d H:i:s'));
 		$cron->setOnce(1);
 		$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
 		$cron->save();
