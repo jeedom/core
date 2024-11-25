@@ -363,7 +363,7 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$value = shell_exec('sudo dmesg | grep oom | grep -v deprecated | wc -l');
+		$value = shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l');
 		$return[] = array(
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
