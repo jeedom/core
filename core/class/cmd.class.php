@@ -25,7 +25,7 @@ Translate system scan core/template/dashboard files and set them in i18n all und
 */
 
 class cmd {
-	/*     * *************************Attributs****************************** */
+	/*	 * *************************Attributs****************************** */
 
 	protected $id;
 	protected $logicalId;
@@ -64,7 +64,7 @@ class cmd {
 		'Hz' => array(1000, 'Hz', 'kHz', 'MHz', 'GHz'),
 		'l' => array(1000, 'l', 'm<sup>3</sup>')
 	);
-	/*     * ***********************Méthodes statiques*************************** */
+	/*	 * ***********************Méthodes statiques*************************** */
 
 	private static function cast($_inputs, $_eqLogic = null) {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
@@ -983,7 +983,7 @@ class cmd {
 		$cmd->executeAlertCmdAction();
 	}
 
-	/*     * *********************Méthodes d'instance************************* */
+	/*	 * *********************Méthodes d'instance************************* */
 	public function formatValue($_value, $_quote = false) {
 		if (is_array($_value) || is_object($_value)) {
 			return '';
@@ -2273,7 +2273,7 @@ class cmd {
 		return $point;
 	}
 
-	public function getInflux($_cmdId = null) {
+	public static function getInflux($_cmdId = null) {
 		try {
 			if ($_cmdId) {
 				$cmd = cmd::byId($_cmdId);
@@ -2358,7 +2358,7 @@ class cmd {
 		cmd::historyInflux('all');
 	}
 
-	public function sendHistoryInflux($_params) {
+	public static function sendHistoryInflux($_params) {
 		$cmds = array();
 		if ($_params['cmd_id'] == 'all') {
 			foreach (cmd::byTypeSubType('info') as $cmd) {
@@ -2898,7 +2898,7 @@ class cmd {
 		}
 	}
 
-	/*     * **********************Getteur Setteur*************************** */
+	/*	 * **********************Getteur Setteur*************************** */
 
 	public function getId() {
 		return $this->id;
