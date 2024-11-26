@@ -4182,7 +4182,7 @@
         "Nom d\\'utilisateur": "Benutzername",
         "Mot de passe": "Passwort",
         "Pas de validation SSL (non recommandé)": "Keine SSL-Validierung (nicht empfohlen)",
-        "[Backup cloud] Nom": "[Backup Cloud] Name",
+        "[Backup cloud] Nom du dossier de backup": "[Cloud-Backup] Name des Backup-Ordners",
         "[Backup cloud] Mot de passe": "[Backup Cloud] Passwort",
         "[Backup cloud] Mot de passe (confirmation)": "[Cloud Backup] Passwort (Bestätigung)",
         "[Monitoring cloud] Désactiver": "[Cloud-Überwachung] Deaktivieren",

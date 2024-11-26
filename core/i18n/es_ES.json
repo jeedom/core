@@ -4182,7 +4182,7 @@
         "Nom d\\'utilisateur": "Nombre del usuario",
         "Mot de passe": "Contraseña",
         "Pas de validation SSL (non recommandé)": "Sin validación SSL (no recomendado)",
-        "[Backup cloud] Nom": "Nombre [nube de respaldo]",
+        "[Backup cloud] Nom du dossier de backup": "[Copia de seguridad en la nube] Nombre de la carpeta de copia de seguridad",
         "[Backup cloud] Mot de passe": "[Copia de seguridad de la nube] Contraseña",
         "[Backup cloud] Mot de passe (confirmation)": "[Copia de seguridad en la nube] Contraseña (confirmación)",
         "[Monitoring cloud] Désactiver": "[Monitoreo en la nube] Desactivar",
