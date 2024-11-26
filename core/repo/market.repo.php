@@ -88,7 +88,7 @@ class repo_market {
 					'type' => 'checkbox',
 				),
 				'cloud::backup::name' => array(
-					'name' => __('[Backup cloud] Nom', __FILE__),
+					'name' => __('[Backup cloud] Nom du dossier de backup', __FILE__),
 					'type' => 'input',
 				),
 				'cloud::backup::password' => array(
