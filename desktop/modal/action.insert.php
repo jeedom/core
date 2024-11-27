@@ -90,7 +90,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription equipement">
-  {{Permet de modifier les propriétés visibles/invisibles actives/inactives d'un équipement}}
+  {{Permet de modifier les propriétés d'un équipement (visible/invisible actif/inactif)}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">
