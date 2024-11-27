@@ -489,7 +489,7 @@
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "On all browsers that display a design, replace it with the one requested",
         "Permet de rajouter un message dans les logs": "Allows you to add a message to the logs",
         "Permet d'ajouter un message dans le centre de message": "Allows you to add a message to the message center",
-        "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Allows you to modify the visible \/ invisible active \/ inactive properties of an equipment",
+        "Permet de modifier les propriétés d'un équipement (visible\/invisible actif\/inactif)": "Allows you to modify the properties of a piece of equipment (visible\/invisible active\/inactive)",
         "Action qui permet à": "Action that allows",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "to make a request and then store the response in a variable. This action is blocking and ends only if",
         "reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "receives a response or if the timeout is reached. For the moment this action is only compatible with SMS, Slack, SARAH and Telegram plugins",

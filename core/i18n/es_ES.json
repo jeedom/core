@@ -489,7 +489,7 @@
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "En todos los navegadores que muestran un diseño, sustituido por uno solicitado",
         "Permet de rajouter un message dans les logs": "Permite añadir un mensaje en los logs",
         "Permet d'ajouter un message dans le centre de message": "Le permite agregar un mensaje al centro de mensajes",
-        "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Cambia la propiedad tomada visible \/ invisible \/ apagado de los equipos",
+        "Permet de modifier les propriétés d'un équipement (visible\/invisible actif\/inactif)": "Le permite modificar las propiedades del equipo (visible\/invisible activo\/inactivo)",
         "Action qui permet à": "Acción que permite",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "para hacer una solicitud y luego almacenar la respuesta en una variable. Esta acción es de bloqueo y finaliza solo si",
         "reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "recibe una respuesta o si se alcanza el tiempo de espera. Por el momento esta acción solo es compatible con los complementos de SMS, Slack, SARAH y Telegram",

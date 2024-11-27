@@ -489,7 +489,7 @@
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "Pada semua browser yang menampilkan desain, digantikan oleh salah satu yang diminta",
         "Permet de rajouter un message dans les logs": "Memungkinkan Anda untuk menambahkan pesan di log",
         "Permet d'ajouter un message dans le centre de message": "Permet d'ajouter un message dans le centre de message",
-        "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "Perubahan properti diambil terlihat \/ tak terlihat \/ off peralatan",
+        "Permet de modifier les propriétés d'un équipement (visible\/invisible actif\/inactif)": "Permet de modifier les propriétés d'un équipement (visible\/invisible actif\/inactif)",
         "Action qui permet à": "Action qui permet à",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si",
         "reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram",

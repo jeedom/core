@@ -489,7 +489,7 @@
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "デザインを表示するすべてのブラウザーで、要求されたものに置き換えます",
         "Permet de rajouter un message dans les logs": "ログにメッセージを追加できます",
         "Permet d'ajouter un message dans le centre de message": "Permet d'ajouter un message dans le centre de message",
-        "Permet de modifier les proriétés visible\/invisible actif\/inactif d'un équipement": "デバイスの表示\/非表示のアクティブ\/非アクティブプロパティを変更できます。",
+        "Permet de modifier les propriétés d'un équipement (visible\/invisible actif\/inactif)": "Permet de modifier les propriétés d'un équipement (visible\/invisible actif\/inactif)",
         "Action qui permet à": "Action qui permet à",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si",
         "reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram.": "reçoit une réponse ou si le timeout est atteint. Pour le moment cette action n'est compatible qu'avec les plugins SMS, Slack, SARAH et Telegram",
