@@ -44,20 +44,36 @@ RUN apt -o Dpkg::Options::="--force-confdef" -y install software-properties-comm
   php libapache2-mod-php php-json php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc \
   php-common php-dev php-zip php-ssh2 php-mbstring php-ldap php-yaml php-snmp && apt -y remove brltty
 
-COPY install/install.sh /tmp/
-RUN sh /tmp/install.sh -s 1 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 2 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 3 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 4 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 5 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+COPY --chown=root:root --chmod=550 install/install.sh /root/
+# install step by step : step_1_upgrade ... useless, using the LATEST debian
+RUN sh /root/install.sh -s 1 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_2_mainpackage ... useless, already installed before
+# RUN sh /root/install.sh -s 2 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_3_database ... only if $DATABASE
+RUN sh /root/install.sh -s 3 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_4_apache
+RUN sh /root/install.sh -s 4 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_5_php : install php with extensions
+RUN sh /root/install.sh -s 5 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step 6 : copy jeedom source files from local
 COPY . ${WEBSERVER_HOME}
-RUN sh /tmp/install.sh -s 7 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 8 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 9 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_7_jeedom_customization_mariadb
+RUN sh /root/install.sh -s 7 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_8_jeedom_customization
+RUN sh /root/install.sh -s 8 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_9_jeedom_configuration
+RUN sh /root/install.sh -s 9 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_10_jeedom_installation
+RUN sh /root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+# step_11_jeedom_post
+RUN sh /root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
 RUN echo >${WEBSERVER_HOME}/initialisation
+
+# check if apache is running
+HEALTHCHECK --interval=1m --timeout=3s --retries=5 --start-period=10s --start-interval=5s \
+  CMD curl -f http://localhost/ || exit 1
 
 WORKDIR ${WEBSERVER_HOME}
 EXPOSE 80
