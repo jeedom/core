@@ -25,15 +25,22 @@ docker_stop() {
   echo "${JAUNE}Stopping Jeedom container${NORMAL}"
   echo "${VERT}Stopping Apache gracefully${NORMAL}"
   service apache2 stop
-  if [[ 1 -eq ${ISMARIABDBINSTALLED} ]]; then
+  # check if mariadb is installed
+  dpkg --list mariadb-server > /dev/null 2>&1
+  status=$?
+  ISMARIADBSERVER=$(( 1 - ${status} ))
+  if [[ 1 -eq ${ISMARIADBSERVER} ]]; then
      echo "${VERT}Stopping Database gracefully${NORMAL}"
      service mariadb stop
+  else
+     echo "${VERT}no mariadb server${NORMAL}"
   fi
+
   echo "${VERT}Stopping ATD gracefully${NORMAL}"
   service atd stop
+  echo "${VERT}Stoping CRON${NORMAL}"
+  service cron stop
   echo "${ROUGE}Requesting stop on init.sh${NORMAL}"
-  echo "${VERT}Killing CRON${NORMAL}"
-  killall cron
   exit 0
 }
 
@@ -81,10 +88,15 @@ if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	JEEDOM_INSTALL=0
-	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
-	chmod +x /root/install.sh
-	/root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+
+  # do not re-install jeedom
+  if [ ! -f ${WEBSERVER_HOME}/core/config/common.config.sample.php ]; then
+    echo 'download again Jeedom'
+    /root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+    # jeedom installation : install composer
+		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -i docker
+  fi
+
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
@@ -101,8 +113,14 @@ else
 		sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
-		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
-		/root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
+    # init database
+    php ${WEBSERVER_HOME}/install/install.php mode=force
+    if [ $? -ne 0 ]; then
+      echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
+      exit 1
+    fi
+    # jeedom post-install
+		/root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -i docker
 	fi
 fi
 
@@ -148,4 +166,9 @@ service apache2 start
 echo "Add trap docker_stop"
 trap "docker_stop $$ ;" 15
 
-cron -f
+# launch cron daemon in background
+cron -f &
+# hold the cron daemon PID
+child=$!
+# wait for cron stopping
+wait "$child"
