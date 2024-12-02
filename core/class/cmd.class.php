@@ -1757,9 +1757,9 @@ class cmd {
 						$replace['#minHistoryValue#'] = round(intval($replace['#state#']), 1);
 						$replace['#maxHistoryValue#'] = round(intval($replace['#state#']), 1);
 					} else {
-						$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-						$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-						$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+						$replace['#averageHistoryValue#'] = round(intval($historyStatistique['avg']), 1);
+						$replace['#minHistoryValue#'] = round(intval($historyStatistique['min']), 1);
+						$replace['#maxHistoryValue#'] = round(intval($historyStatistique['max']), 1);
 					}
 					$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 					$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
