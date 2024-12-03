@@ -1856,7 +1856,7 @@ class cmd {
 		return $template;
 	}
 
-	public function event($_value, $_datetime = null, $_loop = 1) {
+	public function event($_value = 0, $_datetime = null, $_loop = 1) {
 		if ($_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
