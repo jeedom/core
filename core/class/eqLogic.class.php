@@ -1375,18 +1375,18 @@ class eqLogic {
 		$link_actions = array();
 		$arrayToRemove = [];
 		if (isset($_configuration['commands'])) {
-			foreach (($this->getCmd()) as $eqLogic_cmd) {
-				$exists = 0;
-				foreach ($_configuration['commands'] as $command) {
-					if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
-						$exists++;
+			if (!$_dontRemove) {
+				foreach (($this->getCmd()) as $eqLogic_cmd) {
+					$exists = 0;
+					foreach ($_configuration['commands'] as $command) {
+						if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
+							$exists++;
+						}
+					}
+					if ($exists < 1) {
+						$arrayToRemove[] = $eqLogic_cmd;
 					}
 				}
-				if ($exists < 1) {
-					$arrayToRemove[] = $eqLogic_cmd;
-				}
-			}
-			if (!$_dontRemove) {
 				foreach ($arrayToRemove as $cmdToRemove) {
 					try {
 						$cmdToRemove->remove();
