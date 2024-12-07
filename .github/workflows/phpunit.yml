@@ -1,0 +1,42 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+    branches:
+      - 'master'
+      - 'beta'
+      - 'alpha'
+
+permissions:
+  contents: read
+
+jobs:
+  phpunit:
+    name: PHP Unit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.4', '8.2']
+    services:
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --optimize-autoloader
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: '${{ matrix.php-version }}'
+            extensions: json pdo_mysql curl gd imap xml opcache soap xml zip ssh2 mbstring ldap yaml snmp pcov
+            coverage: none
+      - name: Run test suite
+        env:
+          DATABASE_DSN: mysql://root:root@localhost:3306/jeedom_test
+        run: composer run-script test

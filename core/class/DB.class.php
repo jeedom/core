@@ -57,7 +57,7 @@ class DB {
 	public static function getConnection() {
 		if (static::$connection == null) {
 			static::initConnection();
-			static::$lastConnection = strtotime('now');
+            self::updateLastConnection();
 		} elseif (static::$lastConnection + 120 < strtotime('now')) {
 			try {
 				$result = @static::$connection->query('select 1;');
@@ -67,7 +67,7 @@ class DB {
 			} catch (Exception $e) {
 				static::initConnection();
 			}
-			static::$lastConnection = strtotime('now');
+            self::updateLastConnection();
 		}
 		return static::$connection;
 	}
@@ -87,67 +87,42 @@ class DB {
 		}
 	}
 
-	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = NULL) {
+	public static function &Prepare($_query, $_params, $_fetchType = self::FETCH_TYPE_ROW, $_fetch_param = PDO::FETCH_ASSOC, $_fetch_opt = null) {
+        /** @var PDOStatement $stmt */
 		$stmt = static::getConnection()->prepare($_query);
-		$res = NULL;
-		if ($stmt != false && $stmt->execute($_params) != false) {
-			if(preg_match('/^update|^replace|^delete|^create|^drop|^alter|^truncate/i', $_query)){
-				$errorInfo = $stmt->errorInfo();
-				if ($errorInfo[0] != 0000) {
-					static::$lastConnection = 0;
-					throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
-				}
-				static::$lastConnection = strtotime('now');
-				return $res;
-			}
-			if ($_fetchType == static::FETCH_TYPE_ROW) {
-				if ($_fetch_opt === null) {
-					$res = $stmt->fetch($_fetch_param);
-				} elseif ($_fetch_param == PDO::FETCH_CLASS) {
-					$res = $stmt->fetchObject($_fetch_opt);
-				}
-			} else {
-				if ($_fetch_opt === null) {
-					$res = $stmt->fetchAll($_fetch_param);
-				} else {
-					$res = $stmt->fetchAll($_fetch_param, $_fetch_opt);
-				}
-			}
-		}
-		$errorInfo = $stmt->errorInfo();
-		if ($errorInfo[0] != 0000) {
-			static::$lastConnection = 0;
-			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
-		}
-		static::$lastConnection = strtotime('now');
-		if ($_fetch_param == PDO::FETCH_CLASS) {
-			if (is_array($res) && count($res) > 0) {
-				foreach ($res as &$obj) {
-					if (is_object($obj) && method_exists($obj, 'decrypt')) {
-						$obj->decrypt();
-						if (method_exists($obj, 'setChanged')) {
-							$obj->setChanged(false);
-						}
-					}
-				}
-			} else {
-				if (is_object($res) && method_exists($res, 'decrypt')) {
-					$res->decrypt();
-					if (method_exists($res, 'setChanged')) {
-						$res->setChanged(false);
-					}
-				}
-			}
-		}
-		return $res;
-	}
+        $stmt->execute($_params);
 
-	public function __clone() {
+        $errorInfo = $stmt->errorInfo();
+        if ($errorInfo[0] != 0000) {
+            self::resetLastConnection();
+            throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
+        }
+
+        $res = null;
+        if(preg_match('/^update|^replace|^delete|^create|^drop|^alter|^truncate/i', $_query)) {
+            self::updateLastConnection();
+
+            return $res;
+        }
+
+        if ($_fetchType == static::FETCH_TYPE_ROW) {
+            self::handleFetchRow($_fetch_opt, $stmt, $_fetch_param, $res);
+        } else {
+            self::handleFetchAll($_fetch_opt, $stmt, $_fetch_param, $res);
+        }
+
+        self::postPrepare($_fetch_param, $res);
+
+        return $res;
+    }
+
+
+    public function __clone() {
 		trigger_error('DB : Cloner cet objet n\'est pas permis', E_USER_ERROR);
 	}
 
 	public static function optimize() {
-		$tables = static::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
+		$tables = static::getTablesToOptimize();
 		foreach ($tables as $table) {
 			$table = array_values($table);
 			$table = $table[0];
@@ -155,7 +130,16 @@ class DB {
 		}
 	}
 
-	public static function beginTransaction() {
+    /**
+     * @return array{TABLE_NAME: string}[]
+     */
+    protected static function getTablesToOptimize(): array
+    {
+        return static::Prepare("SELECT TABLE_NAME FROM information_schema.TABLES WHERE Data_Free > 0", array(), DB::FETCH_TYPE_ALL);
+    }
+
+
+    public static function beginTransaction() {
 		static::getConnection()->beginTransaction();
 	}
 
@@ -871,4 +855,73 @@ class DB {
 		$return .= ')';
 		return $return;
 	}
+
+    private static function handleDecrypt($obj): void
+    {
+        if (!is_object($obj)) {
+            return;
+        }
+
+        if (!method_exists($obj, 'decrypt')) {
+            return;
+        }
+
+        $obj->decrypt();
+
+        if (!method_exists($obj, 'setChanged')) {
+            return;
+        }
+
+        $obj->setChanged(false);
+    }
+
+    private static function postPrepare($_fetch_param, &$res): void
+    {
+        self::updateLastConnection();
+        if ($_fetch_param != PDO::FETCH_CLASS) {
+            return;
+        }
+
+        if (!is_array($res)) {
+            self::handleDecrypt($res);
+
+            return;
+        }
+
+        foreach ($res as $obj) {
+            self::handleDecrypt($obj);
+        }
+    }
+
+    private static function updateLastConnection(): void
+    {
+        static::$lastConnection = strtotime('now');
+    }
+
+    private static function resetLastConnection(): void
+    {
+        static::$lastConnection = 0;
+    }
+
+    private static function handleFetchRow($_fetch_opt, PDOStatement $stmt, $_fetch_param, &$res): void
+    {
+        if ($_fetch_opt === null) {
+            $res = $stmt->fetch($_fetch_param);
+            return;
+        }
+
+        if ($_fetch_param == PDO::FETCH_CLASS) {
+            $res = $stmt->fetchObject($_fetch_opt);
+        }
+    }
+
+    private static function handleFetchAll($_fetch_opt, PDOStatement $stmt, $_fetch_param, &$res): void
+    {
+        if ($_fetch_opt === null) {
+            $res = $stmt->fetchAll($_fetch_param);
+            return;
+        }
+
+        $res = $stmt->fetchAll($_fetch_param, $_fetch_opt);
+    }
 }
