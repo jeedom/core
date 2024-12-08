@@ -16,8 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* * ***************************Includes********************************* */
-require_once __DIR__ . '/../../core/php/core.inc.php';
 global $JEEDOM_INTERNAL_CONFIG;
 class jeedom {
 	/*     * *************************Attributs****************************** */

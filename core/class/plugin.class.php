@@ -16,9 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* * ***************************Includes********************************* */
-require_once __DIR__ . '/../../core/php/core.inc.php';
-
 class plugin {
 	/*     * *************************Attributs****************************** */
 
