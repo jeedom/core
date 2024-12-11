@@ -106,7 +106,7 @@ class event {
 		}
 		$waitTime = config::byKey('event::waitPollingTime');
 		if($waitTime == 0){
-			$waitTime = 0.1;
+			$waitTime = 1;
 		}
 		$i = 0;
 		$max_cycle = $_longPolling / $waitTime;
