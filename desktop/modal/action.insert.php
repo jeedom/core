@@ -90,7 +90,7 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription equipement">
-  {{Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement}}
+  {{Permet de modifier les propriétés visibles/invisibles actives/inactives d'un équipement}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">
@@ -184,7 +184,7 @@ if (!isConnect()) {
     const select = document.getElementById('mod_actionValue_sel')
     const input = document.getElementById('mod_actionValue_fil')
     const allOptions = Array.from(select.options)
-                                                                                      
+
     function filterOptions() {
       const text = input.value.trim().toLowerCase().stripAccents()
 
@@ -199,7 +199,7 @@ if (!isConnect()) {
           select.add(option.cloneNode(true))
         })
     }
-                                                                                      
-    input.addEventListener('input', filterOptions)                                                                                                                        
+
+    input.addEventListener('input', filterOptions)
   })()
 </script>
