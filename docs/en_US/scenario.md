@@ -287,12 +287,15 @@ A tag is replaced during the execution of the scenario by its value. You can use
 - ``#IP#`` : Jeedom&#39;s internal IP.
 - ``#hostname#`` : Jeedom machine name.
 - ``#jeedomName#`` : Name of Jeedom.
-- ``#trigger#`` (deprecated, better to use ``trigger()``) : Maybe the name of the command that started the scenario :
+- ``#trigger#`` : Maybe :
   - ``api`` if the launch was triggered by the API,
+  - ``TYPEcmd`` if the launch was triggered by a command, with TYPE replaced the plugin id (ex virtualCmd),
   - ``schedule`` if it was started by programming,
   - ``user`` if it was started manually,
   - ``start`` for a launch at startup of Jeedom.
-- ``#triggerValue#`` (deprecated, better to use triggerValue()) : For the value of the command that triggered the scenario
+- ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it.
+- ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command])
+- ``#trigger_value#`` : If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario. Tip if you want the current value of the command which triggered the scenario (and not its value at triggering) you can use : ``##trigger_id##`` (double #)
 - ``#latitude#`` : Allows you to retrieve the latitude information put in the jeedom configuration
 - ``#longitude#`` : Allows you to retrieve the longitude information put in the jeedom configuration
 - ``#altitude#`` : Allows you to retrieve the altitude information put in the jeedom configuration
@@ -432,8 +435,8 @@ A generic function toolbox can also be used to perform conversions or calculatio
 - ``rand(1,10)`` : Give a random number from 1 to 10.
 - ``randText(texte1;texte2;texte…​..)`` : Allows you to return one of the texts randomly (separate the texts by one; ). There is no limit in the number of texts.
 - ``randomColor(min,max)`` : Gives a random color between 2 bounds (0 => red, 50 => green, 100 => blue).
-- ``trigger(commande)`` : Enables you to find out the trigger for the scenario or to know whether it is the command passed as a parameter that triggered the scenario.
-- ``triggerValue()`` : Used to find out the value of the scenario trigger.
+- ``trigger(commande)`` : Enables you to find out the trigger for the scenario or to know whether it is the command passed as a parameter that triggered the scenario. **=> Deprecated it is better to use the tag #trigger#**
+- ``triggerValue()`` : Used to find out the value of the scenario trigger. **=> Deprecated it is better to use the tag #triggerValue#**
 - ``round(valeur,[decimal])`` : Rounds above, [decimal] number of decimal places after the decimal point.
 - ``odd(valeur)`` : Lets you know if a number is odd or not. Returns 1 if odd 0 otherwise.
 - ``median(commande1,commande2…​.commandeN)`` : Returns the median of the values.
@@ -450,9 +453,7 @@ And practical examples :
 | Example of function                  | Returned result                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | the function will return one of these texts randomly at each execution.                           |
-| ``randomColor(40,60)``                 | Returns a random color close to green.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 if it's good ``#[Salle de bain][Hydrometrie][Humidité]#`` who started the scenario otherwise 0  |
-| ``triggerValue()`` | 80 if the hydrometry of ``#[Salle de bain][Hydrometrie][Humidité]#`` is 80% and that is ``#[Salle de bain][Hydrometrie][Humidité]#`` who triggered the scenario. If the scenario was not triggered by a command, returns `false`.                         |
+| ``randomColor(40,60)``                 | Returns a random color close to green.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# / 10)`` | Returns 9 if the humidity percentage and 85                     |
 | ``odd(3)``                             | Returns 1                            |
 | ``median(15,25,20)``                   | Returns 20
@@ -498,7 +499,7 @@ In addition to home automation commands, you have access to the following action
 - **Alert** (alert) : Displays a small alert message on all browsers that have a Jeedom page open. You can, in addition, choose 4 alert levels.
 - **Pop up** (popup) : Allows to display a pop-up which must absolutely be validated on all browsers which have a jeedom page open.
 - **Report** (report) : Allows you to export a view in format (PDF, PNG, JPEG or SVG) and send it using a message-type command. Please note, if your Internet access is in unsigned HTTPS, this functionality will not work. Signed HTTP or HTTPS is required. The "delay" is in milli-seconds (ms).
-- **Delete programmed IN / A block** (remove_inat) : Allows you to delete the programming of all IN and A blocks of the scenario.
+- **Delete programmed IN / A block** (remove_inat) : Allows you to delete the programming of all the IN and A blocks of a scenario.
 - **Event** (event) : Allows you to push a value in an information type command arbitrarily.
 - **Tags** (tag) : Allows you to add / modify a tag (the tag only exists during the current execution of the scenario unlike the variables that survive the end of the scenario).
 - **Coloring of dashboard icons** (setColoredIcon) : Allows to activate or not the coloring of icons on the dashboard.

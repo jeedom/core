@@ -1,5 +1,38 @@
 # Änderungsprotokoll Jeedom V4.4
 
+# 4.4.11
+
+- Möglichkeit, die Größe von Tabellenspalten anzupassen (im Moment nur die Liste der Variablen, sie wird bei Bedarf auf andere Tabellen ausgeweitet)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2499)
+- Es wurde eine Warnung hinzugefügt, wenn der Jeedom-Speicherplatz zu gering ist (die Überprüfung erfolgt einmal täglich)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2438)
+- Dem Bestellkonfigurationsfenster im Wertberechnungsfeld wurde eine Schaltfläche zum Abrufen einer Bestellung hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2776)
+- Möglichkeit, bestimmte Menüs für eingeschränkte Benutzer auszublenden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2651)
+- Die Diagramme werden automatisch aktualisiert, wenn neue Werte eintreffen [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2749)
+- Jeedom fügt beim Erstellen von Widgets automatisch die Höhe des Bildes hinzu, um Überlappungsprobleme auf Mobilgeräten zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2539)
+- Neugestaltung des Cloud-Backup-Teils [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementierung eines Warteschlangensystems zur Aktionsausführung [LINK](https://github.com/jeedom/core/issues/2489)
+- Die Szenario-Tags sind jetzt spezifisch für die Szenario-Instanz (wenn Sie zwei Szenarios sehr nahe beieinander gestartet haben, überschreiben die Tags des letzteren nicht mehr das erste)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2763)
+- Wechseln Sie zum Auslöserteil der Szenarien : [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``#trigger#`` : Vielleicht :
+    - ``api`` wenn der Start durch die API ausgelöst wurde,
+    - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
+    - ``schedule`` wenn es durch Programmierung gestartet wurde,
+    - ``user`` wenn es manuell gestartet wurde,
+    - ``start`` für einen Start beim Jeedom-Startup.
+  - ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat
+  - ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
+  - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat
+- Verbesserte Plugin-Verwaltung auf Github (keine Abhängigkeiten mehr von einer Drittanbieter-Bibliothek)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2567)
+- Entfernen des alten Cache-Systems. [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2799)
+- Möglichkeit, die Blöcke IN und A zu löschen, während auf ein anderes Szenario gewartet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2379)
+- Ein Fehler in Safari bei Filtern mit Akzenten wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2754)
+- Ein Fehler bei der Generierung generischer Typinformationen in Szenarios wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2806)
+- Bestätigung hinzugefügt, wenn der Support-Zugriff über die Benutzerverwaltungsseite geöffnet wird [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2809)
+- Verbesserung des Cron-Systems, um Startfehler zu vermeiden [VERKNÜPFUNG](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Hinzufügen von Bedingungsszenarien „größer oder gleich“ und „kleiner als oder gleich“ zum Bedingungsassistenten [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2810)
+
 # 4.4.10
 
 - Die Ereignisverwaltung, die zum Aktualisieren der In-Memory-Datenbankschnittstelle verwendet wird, wurde verschoben [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +52,10 @@
 - Verbesserter Patch für GPG-Fehler bei Python-Abhängigkeiten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2798)
 - Ein Problem beim Ändern der Zeit nach der Überarbeitung der Cron-Verwaltung wurde behoben [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2794)
 - Es wurde ein Fehler auf der Zusammenfassungsseite der Hausautomation behoben, der bei der Suche nach einer Bestellung anhand der ID auftrat [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2795)
+- Datenbankgröße zur Gesundheitsseite hinzugefügt [VERKNÜPFUNG](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom listet jetzt alle Zweige und Tags des Github-Repositorys auf, damit Sie die Funktionalitäten vorab testen oder zu einer früheren Version des Kerns zurückkehren können (Achtung, das ist sehr riskant)) [VERKNÜPFUNG](https://github.com/jeedom/core/issues/2500)
+- Verbesserung der Untertypen von Befehlen, die von generischen Typen unterstützt werden [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2797)
+- Es wurde ein Fehler bei der Anzeige von Szenarien und Kommentaren behoben, wenn diese ausgeblendet werden sollten [VERKNÜPFUNG](https://github.com/jeedom/core/pull/2790)
 
 >**WICHTIG**
 >

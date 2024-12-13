@@ -381,14 +381,25 @@
     },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "Benutzer konnte nicht gefunden werden:",
+        "Synthèse": "Synthese",
+        "Dashboard": "Armaturenbrett",
+        "Vue": "Sicht",
+        "Design": "Entwurf",
+        "Design 3D": "3D-Design",
+        "[Globale] Analyse": "[Gesamt] Analyse",
+        "Timeline": "Zeitleiste",
+        "Historique": "Historisch",
+        "[Globale] Réglages": "[Globale Einstellungen",
+        "Préférences": "Präferenzen",
+        "Version mobile": "Mobile Version",
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Sauvegarder": "Speichern",
         "Equipements": "Geräte",
         "Scénarios": "Szenarien",
         "Objets": "Objekte",
         "Vues": "Ansichten",
-        "Design": "Entwurf",
         "Design 3d": "3D-Design",
+        "Menu": "Speisekarte",
         "Appliquer aux éléments visibles": "Auf sichtbare Elemente anwenden",
         "Aucun": "Nein",
         "Visualisation": "Visualisierung",
@@ -396,6 +407,8 @@
         "Equipement": "Gerät",
         "Droits": "Rechte",
         "Scénario": "Szenario",
+        "Masqué": "Maske",
+        "Visible": "Sichtbar",
         "Sauvegarde effectuée": "Sicherung abgeschlossen"
     },
     "desktop\/modal\/object.display.php": {
@@ -481,7 +494,7 @@
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Ermöglicht die Anzeige eines Popups, das in allen Browsern mit einer Seite unbedingt überprüft werden muss",
         "ouverte.": "geöffnet.",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Ermöglicht das Senden eines Berichts einer Ansicht, eines Entwurfs oder eines Bedienfelds in PNG \/ PDF \/ JPEG \/ SVG über einen Nachrichtenbefehl",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios",
+        "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario": "Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke eines Szenarios",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information",
         "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Ermöglicht das Hinzufügen\/Ändern eines Tags (das Tag existiert nur während der aktuellen Ausführung des Szenarios, im Gegensatz zu den Variablen, die am Ende des Szenarios überleben)",
         "Permet d'activer ou non la coloration des icones sur le dashboard": "Ermöglicht das Aktivieren oder Deaktivieren der Farbgebung von Symbolen auf dem Dashboard",
@@ -754,6 +767,7 @@
         "Calcul et arrondi": "Berechnung und Runden",
         "Formule de calcul": "Algorithmus",
         "valeur de la commande": "Bestellwert",
+        "Rechercher une commande": "Suchen Sie nach einer Bestellung",
         "Arrondi": "Runden",
         "Nombre de décimales": "Anzahl der Nachkommastellen",
         "Type générique": "Generischer Typ",
@@ -2013,9 +2027,10 @@
         "Source de mise à jour du core": "Kernaktualisierungsquelle",
         "Version du core": "Kern Version",
         "Version installée du core, pour la vérification de mise à jour disponible.": "Installierte Version des Kerns, für die Überprüfung des verfügbaren Updates",
-        "Stable v4": "Stabil v4",
-        "Beta (Pas de support)": "Beta (keine Unterstützung)",
-        "Alpha (Pas de support)": "Alpha (keine Unterstützung)",
+        "Defaut (support)": "Standard (Unterstützung)",
+        "Stable": "Stabil",
+        "Branches (Pas de support)": "Zweige (keine Unterstützung)",
+        "Tags (Pas de support)": "Tags (keine Unterstützung)",
         "Vérification automatique des mises à jour": "Automatische Überprüfung der Updates",
         "[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core": "[GEFAHR] Aktualisieren Sie PHP-Abhängigkeiten (Composer) nach jedem Core-Update",
         "Configuration des dépôts": "Konfiguration von Repositorys",
@@ -2023,13 +2038,9 @@
         "Tester": "Prüfung",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Warnung: Jede Änderung an der Cache-Engine erfordert einen Neustart und führt dazu, dass Sie vorübergehend Informationen über die Werte der Befehle und alle anderen zwischengespeicherten Informationen verlieren, während alles zurückgegeben wird",
         "Moteur de cache": "Cache Engine",
-        "Système de fichiers": "Dateisystem",
-        "Memcached": "Zwischengespeichert",
-        "Redis (beta)": "Redis (Beta)",
-        "Mysql (beta)": "MySQL (Beta)",
-        "Fichier (beta)": "Datei (Beta)",
-        "Adresse Memcache": "Memcache Adresse",
-        "Port Memcache": "Memcache Port",
+        "Fichier": "Datei",
+        "Redis": "Redis",
+        "Mysql": "MySQL",
         "Adresse Redis": "Addresse wiederholen",
         "Port redis": "Port wiederholen",
         "Temps de pause pour le long polling": "Pausenzeit für das lange Polling",
@@ -2560,6 +2571,7 @@
         "Cron": "Cron",
         "Listener": "Zuhörer",
         "Démon": "Dämon",
+        "Queue": "Schwanz",
         "ID": "Identifikation",
         "Actif": "Aktiviert",
         "PID": "PID",
@@ -2576,7 +2588,9 @@
         "Nom": "Name",
         "Status": "Status",
         "Date lancement": "Startdatum",
-        "Action": "Aktion"
+        "Action": "Aktion",
+        "Queue id": "Schwanz-ID",
+        "Crée le": "Erstellt die"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -2961,6 +2975,7 @@
         "Activer la gestion automatique du démon": "Aktivieren Sie die Automatisches management des Dämons",
         "Désactiver la gestion automatique du démon": "Deaktivieren Sie die automatische Daemon-Management",
         "Détails du cron": "Cron Details",
+        "Détails de la queue": "Schwanzdetails",
         "Détails du listener": "Hörerdetails"
     },
     "desktop\/js\/history.js": {
@@ -3009,6 +3024,7 @@
         "Sauvegarde effectuée": "Sicherung abgeschlossen",
         "Identifiant": "ICH WÜRDE",
         "Ajouter un utilisateur": "Nutzer hinzufügen",
+        "En activant l\\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?": "Durch die Aktivierung des Support-Zugriffs autorisieren Sie einen Jeedom-Supporttechniker, auf Ihre Installation zuzugreifen. Weitermachen?",
         "Vous allez supprimer l\\'utilisateur :": "Sie werden den Benutzer löschen:",
         "L\\'utilisateur a bien été supprimé": "Benutzer wurde gelöscht",
         "Quel est le nouveau mot de passe ?": "Was ist das neue Passwort?",
@@ -3310,7 +3326,8 @@
         "supérieur": "oben",
         "inférieur": "niedriger",
         "différent": "unterschiedlich",
-        "égale": "gleich",
+        "supérieur ou égal": "größer oder gleich",
+        "inférieur ou égal": "kleiner oder gleich",
         "contient": "enthält",
         "Ouvert": "Offen",
         "Fermé": "Geschlossen",
@@ -3455,6 +3472,12 @@
         "Scenario  :": "Szenario:",
         "Erreur :": "Fehler:",
         "Scénario non trouvé. Vérifiez ID :": "Szenario nicht gefunden. ID überprüfen:"
+    },
+    "core\/php\/jeeQueue.php": {
+        "Erreur sur": "Fehler an",
+        "Tous les queues sont actuellement désactivés": "Alle Warteschlangen sind derzeit deaktiviert",
+        "[Erreur] ": "[Fehler] ",
+        "[Erreur] Non trouvée": "[Error nicht gefunden"
     },
     "core\/php\/editor.connector.php": {
         "401 - Accès non autorisé": "401 - Unbefugter Zugriff"
@@ -3874,6 +3897,11 @@
         "Impossible de sauvegarder l\\'image": "Bild kann nicht gespeichert werden",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
     },
+    "core\/ajax\/queue.ajax.php": {
+        "401 - Accès non autorisé": "401 – Unbefugter Zugriff",
+        "Queue id inconnu": "Warteschlangen-ID unbekannt",
+        "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
+    },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Aucune méthode correspondante à :": "Keine Methode entsprechend:"
@@ -4135,9 +4163,9 @@
         "Lancement de l\\'installation de": "Start der Installation von",
         "en version": "in der Version",
         "Objet introuvable sur le market :": "Objekt nicht auf dem Markt gefunden:",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Das Backup-Cloud-Passwort stimmt nicht mit der Bestätigung überein",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Kein Backup-Server definiert. Haben Sie ein Backup-Cloud-Abonnement?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Sie müssen ein Kennwort für die Cloud-Sicherung haben (gehen Sie zu Einstellungen -> System -> Konfiguration und dann zu Update \/ Market)",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Das Backup-Cloud-Passwort stimmt nicht mit der Bestätigung überein",
         "Besoin de faire de la place sur le stockage distant": "Sie müssen Platz auf dem Remote-Speicher schaffen",
         "Pas assez de place et aucun backup à supprimer": "Nicht genügend Speicherplatz und kein Backup zum Löschen",
         "Supression du backup cloud :": "Löschen von Cloud-Backups:",
@@ -4180,7 +4208,6 @@
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Jeedom Core Repository Benutzer oder Organisation",
         "Nom du dépôt pour le core Jeedom": "Repository-Name für den Jeedom-Kern",
         "Branche pour le core Jeedom": "Jeedom Kernindustrie",
-        "Dépot github non trouvé :": "Github-Repository nicht gefunden:",
         "Impossible d\\'écrire dans le répertoire :": "In Verzeichnis kann nicht geschrieben werden:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R",
         "Téléchargement de": "Download von"
@@ -4307,6 +4334,7 @@
         "Version database": "Datenbankversion",
         "Espace disque libre": "Freier Speicherplatz",
         "Connexion active\/max\/autorisée": "Verbindung aktiv\/maximal\/erlaubt",
+        "Taille base de données": "Datenbankgröße",
         "Espace disque libre tmp": "Freier Speicherplatz tmp",
         "En cas d\\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\\'à trouver le coupable": "Versuchen Sie im Fehlerfall einen Neustart. Wenn das Problem weiterhin besteht, testen Sie die Plugins nacheinander, bis Sie den Schuldigen gefunden haben",
         "Mémoire disponible": "Verfügbarer Speicher",
@@ -4318,7 +4346,7 @@
         "Swap disponible": "Tausch möglich",
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go": "Der kostenlose Austausch reicht nicht aus oder es befinden sich weniger als 2 GB Arbeitsspeicher auf dem System und ein Austausch von weniger als 1 GB",
         "Inconnue": "Unbekannt",
-        "Swapiness": "Swappiness",
+        "Swappiness": "Tauschheit",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Für eine optimale Leistung sollte der Swapiness 20% nicht überschreiten, wenn Sie 1 GB oder weniger Speicher haben",
         "Charge": "Last",
         "Configuration réseau interne": "Interne Netzwerkkonfiguration",
@@ -4361,6 +4389,8 @@
         "Test de connexion au market": "Marktverbindungstest",
         "Erreur sur la connexion au market :": "Fehler beim Herstellen einer Verbindung zum Markt:",
         "Démarrage de jeedom fini avec succès": "Jeedom-Start erfolgreich abgeschlossen",
+        "Espace disque disponible faible : ": "Wenig verfügbarer Speicherplatz:",
+        "Veuillez faire de la place (suppression de backup, de video\/capture du plugin camera, d\\'historique...)": "Bitte schaffen Sie Platz (Löschen von Backup, Video\/Aufnahme aus dem Kamera-Plugin, Verlauf usw.)",
         "De nouvelles mises à jour sont disponibles": "Neue updates sind verfügbar",
         "Centre de mise à jour": "Update-Center",
         "Vous pouvez arrêter le système": "Sie können das System stoppen",
@@ -4635,6 +4665,18 @@
         "Vrai": "War",
         "Faux": "Falsch"
     },
+    "core\/class\/queue.class.php": {
+        "Lancement de '.$queue->getHumanName()": "Ausführen von '.$queue->getHumanName()",
+        "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()": "Fehler beim Starten von „.$queue->getHumanName()“. => '.$th->getMessage()",
+        "Recherche des actions à faire pour '.$queueId['queueId']": "Suchen nach Aktionen für '.$queueId['queueId']",
+        "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (": "Die Aufgabe in der Warteschlange kann nicht ausgeführt werden, da sie bereits ausgeführt wird (",
+        "Arrêt de": "Stoppen",
+        " : Impossible d\\'arrêter la tâche en queue": ": Aufgabe in der Warteschlange konnte nicht gestoppt werden",
+        "La classe est la fonction ne peuvent etre vides": "Die Klasse ist eine Funktion, die nicht leer sein darf",
+        "La classe n\\'existe pas": "Die Klasse existiert nicht",
+        "La fonction n\\'existe pas": "Die Funktion existiert nicht",
+        "La methode n\\'existe pas": "Die Methode existiert nicht"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Methode in GET nicht erlaubt:"
     },
@@ -4811,7 +4853,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Szenario",
-        "Filtre de scénario": "Szenariofilter",
+        "Filtre des scénarios": "Szenariofilter",
         "Action": "Aktion",
         "Démarrer": "Start",
         "Démarrer (sync)": "Starten (Synchronisieren)",
@@ -4909,6 +4951,10 @@
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Nachricht",
         "Sélectionner la commande": "Befehl auswählen"
+    },
+    "core\/template\/scenario\/remove_inat.default.html": {
+        "Scénario": "Szenario",
+        "Scénario courant": "Häufiges Szenario"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Suchsymbol"
@@ -5066,7 +5112,7 @@
         "Aucun scénario correspondant à l\\'ID :": "Kein Szenario entsprechend der ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Sie dürfen in diesem Szenario keine Maßnahmen ergreifen",
         "Démarrage scénario de :": "Startszenario von:",
-        "Exécution provoquée par un appel API": "Ausführung durch einen API-Aufruf",
+        "Scénario exécuté sur appel API": "Szenario beim API-Aufruf ausgeführt",
         "Arrêt scénario de :": "Szenario-Stopp von:",
         "Désactivation scénario de :": "Deaktivierungsszenario von:",
         "Activation scénario de :": "Szenarioaktivierung von:",
@@ -5092,7 +5138,6 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "Sie dürfen diese Aktion nicht ausführen",
         "Scénario introuvable :": "Szenario nicht gefunden:",
         "Vous n\\'avez pas les droits sur ce scénario": "Sie haben keine Rechte an diesem Szenario",
-        "Scénario exécuté sur appel API": "Szenario beim API-Aufruf ausgeführt",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Der Parameter \"state\" darf nicht leer sein und muss den Wert [run, stop, enable, disable] haben",
         "Impossible de trouver le message :": "Nachricht kann nicht gefunden werden:",
         "Impossible de trouver l\\'objet associé :": "Das zugehörige Objekt konnte nicht gefunden werden:",

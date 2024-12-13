@@ -1,5 +1,38 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibility of making table columns resizable (only the list of variables for the moment, it will be extended to other tables if necessary) [LINK](https://github.com/jeedom/core/issues/2499)
+- Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
+- Added a button to the order configuration window at the value calculation field to fetch an order [LINK](https://github.com/jeedom/core/issues/2776)
+- Ability to hide certain menus for limited users [LINK](https://github.com/jeedom/core/issues/2651)
+- The graphs update automatically when new values arrive [LINK](https://github.com/jeedom/core/issues/2749)
+- Jeedom automatically adds the height of the image when creating widgets to avoid overlapping issues on mobile [LINK](https://github.com/jeedom/core/issues/2539)
+- Redesign of the cloud backup part [LINK](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementation of a queuing system for action execution [LINK](https://github.com/jeedom/core/issues/2489)
+- The scenario tags are now specific to the scenario instance (if you have two scenarios launched very close together, the tags of the latter no longer overwrite the first) [LINK](https://github.com/jeedom/core/issues/2763)
+- Change to the trigger part of the scenarios : [LINK](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` is now deprecated and will be removed in future core updates
+  - ``trigger()`` is now deprecated and will be removed in future core updates
+  - ``triggerValue()`` is now deprecated and will be removed in future core updates
+  - ``#trigger#`` : Maybe :
+    - ``api`` if the launch was triggered by the API,
+    - ``TYPEcmd`` if the launch was triggered by a command, with TYPE replaced the plugin id (ex virtualCmd),
+    - ``schedule`` if it was launched by programming,
+    - ``user`` if it was started manually,
+    - ``start`` for a launch at Jeedom startup.
+  - ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it
+  - ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command])
+  - ``#trigger_value#`` : If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario
+- Improved plugin management on github (no more dependencies on a third-party library) [LINK](https://github.com/jeedom/core/issues/2567)
+- Removing the old cache system. [LINK](https://github.com/jeedom/core/pull/2799)
+- Possibility of deleting the IN and A blocks while waiting for another scenario [LINK](https://github.com/jeedom/core/pull/2379)
+- Fixed a bug in Safari on filters with accents [LINK](https://github.com/jeedom/core/pull/2754)
+- Fixed a bug on the generation of generic type information in scenarios [LINK](https://github.com/jeedom/core/pull/2806)
+- Added confirmation when opening support access from the user management page [LINK](https://github.com/jeedom/core/pull/2809)
+- Improved cron system to avoid some launch failures [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Added greater than or equal and less than or equal conditions to the scenario condition wizard [LINK](https://github.com/jeedom/core/issues/2810)
+
 # 4.4.10
 
 - Moved event management which is used to update the in-memory database interface [LINK](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +52,10 @@
 - Improved patch for gpg bug on python dependencies [LINK](https://github.com/jeedom/core/pull/2798)
 - Fixed a problem when changing the time following the overhaul of cron management [LINK](https://github.com/jeedom/core/issues/2794)
 - Fixed a bug on the home automation summary page when searching for an order by id [LINK](https://github.com/jeedom/core/issues/2795)
+- Added database size to health page [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom now lists all the branches and tags of the github repository to allow you to test functionalities in advance or to revert to a previous version of the core (be careful this is very risky) [LINK](https://github.com/jeedom/core/issues/2500)
+- Improvement of subtypes of commands supported on generic types [LINK](https://github.com/jeedom/core/pull/2797)
+- Fixed a bug in the display of scenarios and comments when you want to hide them [LINK](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANT**
 >

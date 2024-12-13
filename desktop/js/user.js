@@ -210,6 +210,25 @@ document.registerEvent('keydown', function(event) {
   }
 })
 
+
+
+function handleSupportAccess(enable) {
+  jeedom.user.supportAccess({
+      enable: enable,
+      error: function(error) {
+          jeedomUtils.showAlert({
+              message: error.message,
+              level: 'danger'
+          });
+      },
+      success: function(data) {
+          jeeFrontEnd.modifyWithoutSave = false;
+          jeedomUtils.loadPage('index.php?v=d&p=user');
+      }
+  });
+}
+
+
 /*Events delegations
 */
 //div_administration
@@ -262,21 +281,31 @@ document.getElementById('div_administration').addEventListener('click', function
   }
 
   if (_target = event.target.closest('#bt_supportAccess')) {
-    jeedom.user.supportAccess({
-      enable: _target.getAttribute('data-enable'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        jeeFrontEnd.modifyWithoutSave = false
-        jeedomUtils.loadPage('index.php?v=d&p=user')
-      }
-    })
-    return
-  }
+    var enable = _target.getAttribute('data-enable');
+    if (enable == '1') {
+        bootbox.confirm({
+            message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
+            buttons: {
+                confirm: {
+                    label: "Oui",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "Non",
+                    className: "btn-danger"
+                }
+            },
+            callback: function(result) {
+                if (result) {
+                    handleSupportAccess(enable);
+                }
+            }
+        });
+    } else {
+        handleSupportAccess(enable);
+    }
+}
+
 
   if (_target = event.target.closest('#table_user .bt_del_user')) {
     jeedomUtils.hideAlert();

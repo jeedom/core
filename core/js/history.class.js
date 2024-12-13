@@ -136,6 +136,21 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
   return plotBands
 }
 
+jeedom.history.graphUpdate = function(_params) {
+  for (var i in _params) {
+    if(_params[i].cmd_id == ''){
+      continue;
+    }
+    for(var chart in jeedom.history.chart){
+      for(var serie in jeedom.history.chart[chart]){
+        if(jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
+          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now()+(-1*(new Date()).getTimezoneOffset()*60*1000),_params[i].value])
+        }
+      }
+    }
+  }
+}
+
 jeedom.history.changePoint = function(_params) {
   // console.log('changePoint:', _params)
   var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue']
@@ -572,7 +587,7 @@ jeedom.history.drawChart = function(_params) {
           cursor: 'pointer',
           data: [{
             y: data.result.data[data.result.data.length - 1][1],
-            name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
+            name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite, 
             color: _params.option.graphColor
           }],
         }

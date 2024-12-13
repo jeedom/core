@@ -51,18 +51,22 @@ class log {
 		if (isset(self::$logger[$_log])) {
 			return self::$logger[$_log];
 		}
+		$log_level = self::getLogLevel($_log);
+		if($log_level > 600){
+			$log_level = 600;
+		}
 		$formatter = new LineFormatter(str_replace('\n', "\n", self::getConfig('log::formatter')),'Y-m-d H:i:s');
 		self::$logger[$_log] = new Logger($_log);
 		switch (self::getConfig('log::engine')) {
 			case 'SyslogHandler':
-				$handler = new SyslogHandler(self::getLogLevel($_log));
+				$handler = new SyslogHandler($log_level);
 				break;
 			case 'SyslogUdp':
-				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'), config::byKey('log::syslogudpfacility'), self::getLogLevel($_log),true,'jeedom');
+				$handler = new SyslogUdpHandler(config::byKey('log::syslogudphost'), config::byKey('log::syslogudpport'), config::byKey('log::syslogudpfacility'), $log_level,true,'jeedom');
 				break;
 			case 'StreamHandler':
 			default:
-				$handler = new StreamHandler(self::getPathToLog($_log), self::getLogLevel($_log));
+				$handler = new StreamHandler(self::getPathToLog($_log), $log_level);
 				break;
 		}
 		$handler->setFormatter($formatter);

@@ -381,14 +381,25 @@
     },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "Невозможно найти пользователя:",
+        "Synthèse": "Synthèse",
+        "Dashboard": "Dashboard",
+        "Vue": "Vue",
+        "Design": "Design",
+        "Design 3D": "Design 3d",
+        "[Globale] Analyse": "[Globale] Analyse",
+        "Timeline": "Timeline",
+        "Historique": "Historique",
+        "[Globale] Réglages": "[Globale] Réglages",
+        "Préférences": "Préférences",
+        "Version mobile": "Version mobile",
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Sauvegarder": "Сохранить",
         "Equipements": "Оборудование",
         "Scénarios": "Сценарии",
         "Objets": "Objets",
         "Vues": "Vues",
-        "Design": "Design",
         "Design 3d": "Design 3d",
+        "Menu": "Menu",
         "Appliquer aux éléments visibles": "Appliquer aux éléments visibles",
         "Aucun": "Нет",
         "Visualisation": "визуализация",
@@ -396,6 +407,8 @@
         "Equipement": "Оборудование",
         "Droits": "права",
         "Scénario": "Сценарий",
+        "Masqué": "Masqué",
+        "Visible": "Visible",
         "Sauvegarde effectuée": "Резервное копирование завершено"
     },
     "desktop\/modal\/object.display.php": {
@@ -481,7 +494,7 @@
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Позволяет отображать всплывающее окно, которое должно быть абсолютно проверено во всех браузерах, которые имеют страницу",
         "ouverte.": "открыт.",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Позволяет отправлять с помощью команды сообщения отчет о виде, дизайне или панели в формате PNG \/ PDF \/ JPEG \/ SVG",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Позволяет удалить программирование всех блоков IN и A сценария",
+        "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario": "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Позволяет произвольно вставить значение в команду типа информации",
         "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)",
         "Permet d'activer ou non la coloration des icones sur le dashboard": "Permet d'activer ou non la coloration des icones sur le dashboard",
@@ -754,6 +767,7 @@
         "Calcul et arrondi": "Расчет и округление",
         "Formule de calcul": "Formule de calcul",
         "valeur de la commande": "valeur de la commande",
+        "Rechercher une commande": "Rechercher une commande",
         "Arrondi": "Arrondi",
         "Nombre de décimales": "Nombre de décimales",
         "Type générique": "общий тип",
@@ -2013,9 +2027,10 @@
         "Source de mise à jour du core": "Source de mise à jour du core",
         "Version du core": "Версия ядра",
         "Version installée du core, pour la vérification de mise à jour disponible.": "Version installée du core, pour la vérification de mise à jour disponible",
-        "Stable v4": "Stable v4",
-        "Beta (Pas de support)": "Beta (Pas de support)",
-        "Alpha (Pas de support)": "Alpha (Pas de support)",
+        "Defaut (support)": "Defaut (support)",
+        "Stable": "Stable",
+        "Branches (Pas de support)": "Branches (Pas de support)",
+        "Tags (Pas de support)": "Tags (Pas de support)",
         "Vérification automatique des mises à jour": "Vérification automatique des mises à jour",
         "[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core": "[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core",
         "Configuration des dépôts": "Configuration des dépôts",
@@ -2023,13 +2038,9 @@
         "Tester": "Тест",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée",
         "Moteur de cache": "крышка двигателя",
-        "Système de fichiers": "Système de fichiers",
-        "Memcached": "Memcached",
-        "Redis (beta)": "Redis (beta)",
-        "Mysql (beta)": "Mysql (beta)",
-        "Fichier (beta)": "Fichier (beta)",
-        "Adresse Memcache": "Memcached Адрес",
-        "Port Memcache": "Порт Memcached",
+        "Fichier": "Fichier",
+        "Redis": "Redis",
+        "Mysql": "Mysql",
         "Adresse Redis": "Redis Адрес",
         "Port redis": "Порт повтор",
         "Temps de pause pour le long polling": "Время паузы в течение длительного опроса",
@@ -2560,6 +2571,7 @@
         "Cron": "Cron",
         "Listener": "Listener",
         "Démon": "Демон",
+        "Queue": "Queue",
         "ID": "Идентификатор",
         "Actif": "активы",
         "PID": "PID",
@@ -2576,7 +2588,9 @@
         "Nom": "Имя",
         "Status": "Статус",
         "Date lancement": "Дата запуска",
-        "Action": "Действие"
+        "Action": "Действие",
+        "Queue id": "Queue id",
+        "Crée le": "Crée le"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
@@ -2961,6 +2975,7 @@
         "Activer la gestion automatique du démon": "Активировать автоматическое управление демоном",
         "Désactiver la gestion automatique du démon": "Отключить автоматическое управление демонами",
         "Détails du cron": "Детали Cron",
+        "Détails de la queue": "Détails de la queue",
         "Détails du listener": "Детали слушателя"
     },
     "desktop\/js\/history.js": {
@@ -3009,6 +3024,7 @@
         "Sauvegarde effectuée": "Резервное копирование завершено",
         "Identifiant": "Identifiant",
         "Ajouter un utilisateur": "Ajouter un utilisateur",
+        "En activant l\\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?": "En activant l\\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?",
         "Vous allez supprimer l\\'utilisateur :": "Vous allez supprimer l\\'utilisateur :",
         "L\\'utilisateur a bien été supprimé": "Пользователь был удален",
         "Quel est le nouveau mot de passe ?": "Какой новый пароль?",
@@ -3310,7 +3326,8 @@
         "supérieur": "высший",
         "inférieur": "Нижний",
         "différent": "другой",
-        "égale": "равный",
+        "supérieur ou égal": "supérieur ou égal",
+        "inférieur ou égal": "inférieur ou égal",
         "contient": "содержит",
         "Ouvert": "открытый",
         "Fermé": "закрытое",
@@ -3455,6 +3472,12 @@
         "Scenario  :": "Scenario  : ",
         "Erreur :": "ошибка:",
         "Scénario non trouvé. Vérifiez ID :": "Scénario non trouvé. Vérifiez ID :"
+    },
+    "core\/php\/jeeQueue.php": {
+        "Erreur sur": "Erreur sur",
+        "Tous les queues sont actuellement désactivés": "Tous les queues sont actuellement désactivés",
+        "[Erreur] ": "[Erreur] ",
+        "[Erreur] Non trouvée": "[Erreur] Non trouvée"
     },
     "core\/php\/editor.connector.php": {
         "401 - Accès non autorisé": "401 - Accès non autorisé"
@@ -3874,6 +3897,11 @@
         "Impossible de sauvegarder l\\'image": "Impossible de sauvegarder l\\'image",
         "Aucune méthode correspondante à :": "Aucune methode correspondante à :"
     },
+    "core\/ajax\/queue.ajax.php": {
+        "401 - Accès non autorisé": "401 - Accès non autorisé",
+        "Queue id inconnu": "Queue id inconnu",
+        "Aucune méthode correspondante à :": "Aucune méthode correspondante à :"
+    },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Несанкционированный доступ",
         "Aucune méthode correspondante à :": "Aucune methode correspondante à :"
@@ -4135,9 +4163,9 @@
         "Lancement de l\\'installation de": "Lancement de l\\'installation de",
         "en version": "en version",
         "Objet introuvable sur le market :": "Objet introuvable sur le market :",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "Le mot de passe du backup cloud n\\'est pas identique à la confirmation",
         "Besoin de faire de la place sur le stockage distant": "Besoin de faire de la place sur le stockage distant",
         "Pas assez de place et aucun backup à supprimer": "Pas assez de place et aucun backup à supprimer",
         "Supression du backup cloud :": "Supression du backup cloud :",
@@ -4180,7 +4208,6 @@
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilisateur ou organisation du dépôt pour le core Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nom du dépôt pour le core Jeedom",
         "Branche pour le core Jeedom": "Branche pour le core Jeedom",
-        "Dépot github non trouvé :": "Dépot github non trouvé :",
         "Impossible d\\'écrire dans le répertoire :": "Impossible d\\'écrire dans le répertoire :",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Exécuter la commande suivante en SSH : sudo chmod 777 -R",
         "Téléchargement de": "скачать"
@@ -4307,6 +4334,7 @@
         "Version database": "базы данных версии",
         "Espace disque libre": "Свободное место на диске",
         "Connexion active\/max\/autorisée": "Connexion active\/max\/autorisée",
+        "Taille base de données": "Taille base de données",
         "Espace disque libre tmp": "Espace disque libre tmp",
         "En cas d\\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\\'à trouver le coupable": "En cas d\\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\\'à trouver le coupable",
         "Mémoire disponible": "доступная память",
@@ -4318,7 +4346,7 @@
         "Swap disponible": "своп доступны",
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go": "Le swap libre n\\'est pas suffisant ou il y a moins de 2go de mémoire sur le systeme et un swap inférieure à 1go",
         "Inconnue": "Неизвестный",
-        "Swapiness": "Swapiness",
+        "Swappiness": "Swappiness",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire",
         "Charge": "нагрузка",
         "Configuration réseau interne": "Конфигурация внутренней сети",
@@ -4361,6 +4389,8 @@
         "Test de connexion au market": "Тест подключения рынка",
         "Erreur sur la connexion au market :": "Erreur sur la connexion au market :",
         "Démarrage de jeedom fini avec succès": "Jeedom Запуск успешно завершен",
+        "Espace disque disponible faible : ": "Espace disque disponible faible :",
+        "Veuillez faire de la place (suppression de backup, de video\/capture du plugin camera, d\\'historique...)": "Veuillez faire de la place (suppression de backup, de video\/capture du plugin camera, d\\'historique...)",
         "De nouvelles mises à jour sont disponibles": "De nouvelles mises à jour sont disponibles",
         "Centre de mise à jour": "Centre de mise à jour",
         "Vous pouvez arrêter le système": "Vous pouvez arrêter le système",
@@ -4635,6 +4665,18 @@
         "Vrai": "Реальный",
         "Faux": "Ложный"
     },
+    "core\/class\/queue.class.php": {
+        "Lancement de '.$queue->getHumanName()": "Lancement de '.$queue->getHumanName()",
+        "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()": "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()",
+        "Recherche des actions à faire pour '.$queueId['queueId']": "Recherche des actions à faire pour '.$queueId['queueId']",
+        "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (": "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (",
+        "Arrêt de": "Arrêt de",
+        " : Impossible d\\'arrêter la tâche en queue": ": Impossible d\\'arrêter la tâche en queue",
+        "La classe est la fonction ne peuvent etre vides": "La classe est la fonction ne peuvent etre vides",
+        "La classe n\\'existe pas": "La classe n\\'existe pas",
+        "La fonction n\\'existe pas": "La fonction n\\'existe pas",
+        "La methode n\\'existe pas": "La methode n\\'existe pas"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Méthode non autorisé en GET :"
     },
@@ -4811,7 +4853,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Сценарий",
-        "Filtre de scénario": "Filtre de scénario",
+        "Filtre des scénarios": "Filtre des scénarios",
         "Action": "Действие",
         "Démarrer": "Démarrer",
         "Démarrer (sync)": "Démarrer (sync)",
@@ -4909,6 +4951,10 @@
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Сообщение",
         "Sélectionner la commande": "Выберите команду"
+    },
+    "core\/template\/scenario\/remove_inat.default.html": {
+        "Scénario": "Scénario",
+        "Scénario courant": "Scénario courant"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "значок поиска"
@@ -5066,7 +5112,7 @@
         "Aucun scénario correspondant à l\\'ID :": "Aucun scénario correspondant à l\\'ID :",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Vous n\\'avez pas le droit de faire une action sur ce scénario",
         "Démarrage scénario de :": "Démarrage scénario de :",
-        "Exécution provoquée par un appel API": "Exécution provoquée par un appel API",
+        "Scénario exécuté sur appel API": "Scénario exécuté sur appel API",
         "Arrêt scénario de :": "Arrêt scénario de :",
         "Désactivation scénario de :": "Désactivation scénario de :",
         "Activation scénario de :": "Activation scénario de :",
@@ -5092,7 +5138,6 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "Vous n\\'êtes pas autorisé à faire cette action",
         "Scénario introuvable :": "Scénario introuvable :",
         "Vous n\\'avez pas les droits sur ce scénario": "Vous n\\'avez pas les droits sur ce scénario",
-        "Scénario exécuté sur appel API": "Scénario exécuté sur appel API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]",
         "Impossible de trouver le message :": "Impossible de trouver le message :",
         "Impossible de trouver l\\'objet associé :": "Impossible de trouver l\\'objet associé :",

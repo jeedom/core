@@ -287,12 +287,15 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
 - ``#IP#`` : Jeedom&#39;s interne IP.
 - ``#hostname#`` : Name der Jeedom-Maschine.
 - ``#jeedomName#`` : Name von Jeedom.
-- ``#trigger#`` (veraltet, besser zu bedienen ``trigger()``) : Möglicherweise der Name des Befehls, der das Szenario gestartet hat :
+- ``#trigger#`` : Vielleicht :
   - ``api`` wenn der Start von der API ausgelöst wurde,
+  - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird durch TYPE die Plugin-ID ersetzt (z. B. virtualCmd),
   - ``schedule`` wenn es durch Programmierung gestartet wurde,
   - ``user`` wenn es manuell gestartet wurde,
   - ``start`` für einen Start beim Start von Jeedom.
-- ``#triggerValue#`` (veraltet, besser TriggerValue zu verwenden()) : Für den Wert des Befehls, der das Szenario ausgelöst hat
+- ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat.
+- ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
+- ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat. Tipp: Wenn Sie den aktuellen Wert des Befehls möchten, der das Szenario ausgelöst hat (und nicht seinen Wert zum Zeitpunkt der Auslösung), können Sie diesen verwenden : ``##trigger_id##`` (doppelt #)
 - ``#latitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Breitengradinformationen abzurufen
 - ``#longitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Längengradinformationen abzurufen
 - ``#altitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Höheninformationen abzurufen
@@ -432,8 +435,8 @@ Eine generische Funktions-Toolbox kann auch zum Durchführen von Konvertierungen
 - ``rand(1,10)`` : Geben Sie eine Zufallszahl von 1 bis 10 an.
 - ``randText(texte1;texte2;texte…​..)`` : Ermöglicht es Ihnen, einen der Texte zufällig zurückzugeben (trennen Sie die Texte durch einen; ). Die Anzahl der Texte ist unbegrenzt.
 - ``randomColor(min,max)`` : Gibt eine zufällige Farbe zwischen 2 Grenzen (0 => Rot, 50 => Grün, 100 => Blau).
-- ``trigger(commande)`` : Ermöglicht es Ihnen, den Auslöser für das Szenario herauszufinden oder festzustellen, ob der als Parameter übergebene Befehl das Szenario ausgelöst hat.
-- ``triggerValue()`` : Wird verwendet, um den Wert des Szenario-Triggers herauszufinden.
+- ``trigger(commande)`` : Ermöglicht es Ihnen, den Auslöser für das Szenario herauszufinden oder festzustellen, ob der als Parameter übergebene Befehl das Szenario ausgelöst hat. **=> Veraltet, es ist besser, das Tag zu verwenden #trigger#**
+- ``triggerValue()`` : Wird verwendet, um den Wert des Szenario-Triggers herauszufinden. **=> Veraltet, es ist besser, das Tag zu verwenden #triggerValue#**
 - ``round(valeur,[decimal])`` : Runden oben, [Dezimal] Anzahl der Dezimalstellen nach dem Dezimalpunkt.
 - ``odd(valeur)`` : Lässt Sie wissen, ob eine Zahl ungerade ist oder nicht. Gibt 1 zurück, wenn sonst ungerade 0.
 - ``median(commande1,commande2…​.commandeN)`` : Gibt den Median der Werte zurück.
@@ -450,9 +453,7 @@ Und praktische Beispiele :
 | Funktionsbeispiel                  | Zurückgegebenes Ergebnis                    |
 |--------------------------------------|--------------------------------------|
 | ``randText(il fait #[salon][oeil][température]#;La température est de #[salon][oeil][température]#;Actuellement on a #[salon][oeil][température]#)`` | Die Funktion gibt bei jeder Ausführung zufällig einen dieser Texte zurück.                           |
-| ``randomColor(40,60)``                 | Gibt eine zufällige Farbe nahe Grün zurück.
-| ``trigger(#[Salle de bain][Hydrometrie][Humidité]#)``   | 1 wenn es gut ist ``#[Salle de bain][Hydrometrie][Humidité]#`` Wer hat das Szenario sonst gestartet? 0  |
-| ``triggerValue()`` | 80 wenn die Hydrometrie von ``#[Salle de bain][Hydrometrie][Humidité]#`` ist 80% und das ist ``#[Salle de bain][Hydrometrie][Humidité]#`` wer hat das szenario ausgelöst. Wenn das Szenario nicht durch einen Befehl ausgelöst wurde, wird `false` zurückgegeben.                         |
+| ``randomColor(40,60)``                 | Gibt eine zufällige Farbe nahe Grün zurück.                      |
 | ``round(#[Salle de bain][Hydrometrie][Humidité]# /. 10)`` | Gibt 9 zurück, wenn der Feuchtigkeitsprozentsatz und 85                     |
 | ``odd(3)``                             | Rückgabe 1                            |
 | ``median(15,25,20)``                   | Rückgabe 20
@@ -498,7 +499,7 @@ Zusätzlich zu den Befehlen für die Hausautomation haben Sie Zugriff auf die fo
 - **Alarm** (alert) : Zeigt eine kleine Warnmeldung in allen Browsern an, in denen eine Jeedom-Seite geöffnet ist. Sie können zusätzlich 4 Alarmstufen auswählen.
 - **Aufpoppen** (popup) : Ermöglicht die Anzeige eines Popups, das in allen Browsern, in denen eine Jeedom-Seite geöffnet ist, unbedingt überprüft werden muss.
 - **Bericht** (report) : Ermöglicht das Exportieren einer Ansicht im Format (PDF, PNG, JPEG oder SVG) und das Senden mit einem Befehl vom Typ Nachricht. Bitte beachten Sie, dass diese Funktionalität nicht funktioniert, wenn sich Ihr Internetzugang in nicht signiertem HTTPS befindet. Signiertes HTTP oder HTTPS ist erforderlich. Die „Verzögerung“ wird in Millisekunden (ms).
-- **Programmierten IN / A-Block löschen** (entfernen_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke des Szenarios.
+- **Programmierten IN / A-Block löschen** (entfernen_inat) : Ermöglicht das Löschen der Programmierung aller IN- und A-Blöcke eines Szenarios.
 - **Ereignis** (event) : Ermöglicht das willkürliche Übertragen eines Werts in einen Befehl vom Typ Information.
 - **Stichworte** (tag) : Ermöglicht das Hinzufügen / Ändern eines Tags (das Tag ist nur während der aktuellen Ausführung des Szenarios vorhanden, im Gegensatz zu den Variablen, die das Ende des Szenarios überleben).
 - **Färbung von Dashboard-Symbolen** (setColoredIcon) : Ermöglicht das Aktivieren oder Nicht-Aktivieren der Farbgebung von Symbolen im Dashboard.

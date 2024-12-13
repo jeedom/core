@@ -381,14 +381,25 @@
     },
     "desktop\/modal\/user.rights.php": {
         "Impossible de trouver l\\'utilisateur :": "Não foi possível encontrar o utilizador:",
+        "Synthèse": "Síntese",
+        "Dashboard": "Painel",
+        "Vue": "Visualizar",
+        "Design": "Projeto",
+        "Design 3D": "Desenho 3D",
+        "[Globale] Analyse": "Análise [geral]",
+        "Timeline": "Linha do tempo",
+        "Historique": "Histórico",
+        "[Globale] Réglages": "[Configurações globais",
+        "Préférences": "Preferências",
+        "Version mobile": "Versão móvel",
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Sauvegarder": "Guardar",
         "Equipements": "Equipamentos",
         "Scénarios": "Cenários",
         "Objets": "Objetos",
         "Vues": "Vistas",
-        "Design": "Projeto",
         "Design 3d": "Desenho 3D",
+        "Menu": "Cardápio",
         "Appliquer aux éléments visibles": "Aplicar a elementos visíveis",
         "Aucun": "Nenhum",
         "Visualisation": "Vista",
@@ -396,6 +407,8 @@
         "Equipement": "Equipamento",
         "Droits": "Direitos",
         "Scénario": "Cenários",
+        "Masqué": "Mascarar",
+        "Visible": "Visível",
         "Sauvegarde effectuée": "Backup feito"
     },
     "desktop\/modal\/object.display.php": {
@@ -481,7 +494,7 @@
         "Permet d'afficher un popup qui doit absolument être validé sur tous les navigateurs qui ont une page": "Permite exibir um pop-up que deve ser absolutamente validado em todos os navegadores que possuem uma página",
         "ouverte.": "aberta.",
         "Permet d'envoyer, par une commande message, un rapport d'une vue, d'un design ou d'un panel en PNG\/PDF\/JPEG\/SVG.": "Permite enviar, por mensagem de comando, um relatório de uma vista, um design ou um painel em PNG\/PDF\/JPEG\/SVG",
-        "Permet de supprimer la programmation de tous les blocs DANS et A du scénario": "Permite apagar a programação de todos os blocos EM e ÀS do cenário",
+        "Permet de supprimer la programmation de tous les blocs DANS et A d'un scénario": "Permite apagar a programação de todos os blocos IN e A de um cenário",
         "Permet de pousser une valeur dans une commande de type information de maniere arbitraire": "Permite enviar um valor num comando do tipo de informação de forma aleatória",
         "Permet d'ajouter\/modifier un tag (le tag n'existe que pendant l'execution en cours du scénario à la difference des variables qui survive à la fin du scénario)": "Permite adicionar\/modificar um tag (o tag só existe durante a execução atual do cenário ao contrário das variáveis que sobrevivem no final do cenário)",
         "Permet d'activer ou non la coloration des icones sur le dashboard": "Permite ativar ou não a coloração dos ícones no painel",
@@ -754,6 +767,7 @@
         "Calcul et arrondi": "Cálculo e arredondamento",
         "Formule de calcul": "Formula de cálculo",
         "valeur de la commande": "valor do comando",
+        "Rechercher une commande": "Procure um pedido",
         "Arrondi": "Arredondar",
         "Nombre de décimales": "Número de casas decimais",
         "Type générique": "Tipo genérico",
@@ -2013,9 +2027,10 @@
         "Source de mise à jour du core": "Fonte de atualização principal",
         "Version du core": "Versão do Core",
         "Version installée du core, pour la vérification de mise à jour disponible.": "Versão instalada do Core, para verificação de atualizações disponíveis",
-        "Stable v4": "Estável v4",
-        "Beta (Pas de support)": "Beta (sem suporte)",
-        "Alpha (Pas de support)": "Alpha (sem suporte)",
+        "Defaut (support)": "Padrão (suporte)",
+        "Stable": "Estábulo",
+        "Branches (Pas de support)": "Filiais (sem suporte)",
+        "Tags (Pas de support)": "Etiquetas (sem suporte)",
         "Vérification automatique des mises à jour": "Verificação automática de atualizações",
         "[DANGER] Mettre à jour les dépendances PHP (composer) après chaque mise à jour du core": "[PERIGO] Atualize as dependências do PHP (composer) após cada atualização principal",
         "Configuration des dépôts": "Configuração de repositórios",
@@ -2023,13 +2038,9 @@
         "Tester": "Testar",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeurs des commandes et toute autre informations en cache le temps que tout soit renvoyée.": "Atenção: qualquer modificação no mecanismo de cache requer uma reinicialização e fará com que você perca temporariamente informações sobre os valores dos comandos e quaisquer outras informações armazenadas em cache enquanto tudo é retornado",
         "Moteur de cache": "Motor de cache",
-        "Système de fichiers": "Sistema de arquivos",
-        "Memcached": "Memcached",
-        "Redis (beta)": "Redis (beta)",
-        "Mysql (beta)": "MySQL (beta)",
-        "Fichier (beta)": "Arquivo (beta)",
-        "Adresse Memcache": "Endereço memcached",
-        "Port Memcache": "Porta Memcached",
+        "Fichier": "Arquivo",
+        "Redis": "Redis",
+        "Mysql": "MySQL",
         "Adresse Redis": "Repita o Endereço",
         "Port redis": "Repita a Porta",
         "Temps de pause pour le long polling": "Tempo de pausa para o polling longo",
@@ -2560,6 +2571,7 @@
         "Cron": "Cron",
         "Listener": "Ouvir",
         "Démon": "Daemon",
+        "Queue": "Cauda",
         "ID": "EU IRIA",
         "Actif": "Ativos",
         "PID": "PID",
@@ -2576,7 +2588,9 @@
         "Nom": "Nome",
         "Status": "Estado",
         "Date lancement": "Data de lançamento",
-        "Action": "Açao"
+        "Action": "Açao",
+        "Queue id": "ID da cauda",
+        "Crée le": "Criou o"
     },
     "desktop\/php\/object.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -2961,6 +2975,7 @@
         "Activer la gestion automatique du démon": "Ativar a gestão automática do daemon",
         "Désactiver la gestion automatique du démon": "Desativar a gestão automática de daemon",
         "Détails du cron": "Detalhes do cron",
+        "Détails de la queue": "Detalhes da cauda",
         "Détails du listener": "Detalhes do listener"
     },
     "desktop\/js\/history.js": {
@@ -3009,6 +3024,7 @@
         "Sauvegarde effectuée": "Backup feito",
         "Identifiant": "EU IRIA",
         "Ajouter un utilisateur": "Adicionar usuário",
+        "En activant l\\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?": "Ao ativar o acesso ao suporte, você autoriza um técnico de suporte da Jeedom a acessar sua instalação. Continuar?",
         "Vous allez supprimer l\\'utilisateur :": "Vai excluir o utilizador:",
         "L\\'utilisateur a bien été supprimé": "O utilizador foi excluído",
         "Quel est le nouveau mot de passe ?": "Qual é a nova password?",
@@ -3310,7 +3326,8 @@
         "supérieur": "superior",
         "inférieur": "inferior",
         "différent": "diferente",
-        "égale": "igual",
+        "supérieur ou égal": "maior ou igual",
+        "inférieur ou égal": "menor ou igual",
         "contient": "contém",
         "Ouvert": "Aberto",
         "Fermé": "Fechado",
@@ -3455,6 +3472,12 @@
         "Scenario  :": "Cenário:",
         "Erreur :": "Erro:",
         "Scénario non trouvé. Vérifiez ID :": "Cenário não encontrado. Verifique o ID:"
+    },
+    "core\/php\/jeeQueue.php": {
+        "Erreur sur": "Erro ativado",
+        "Tous les queues sont actuellement désactivés": "Todas as filas estão desativadas no momento",
+        "[Erreur] ": "[Erro] ",
+        "[Erreur] Non trouvée": "[Erro não encontrado"
     },
     "core\/php\/editor.connector.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado"
@@ -3874,6 +3897,11 @@
         "Impossible de sauvegarder l\\'image": "Não foi possível salvar a imagem",
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
     },
+    "core\/ajax\/queue.ajax.php": {
+        "401 - Accès non autorisé": "401 - Acesso não autorizado",
+        "Queue id inconnu": "ID da fila desconhecido",
+        "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
+    },
     "core\/ajax\/timeline.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:"
@@ -4135,9 +4163,9 @@
         "Lancement de l\\'installation de": "Lançamento da instalação do",
         "en version": "na versão",
         "Objet introuvable sur le market :": "Objeto não encontrado no mercado:",
-        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "A password da backup cloud não é idêntica à confirmação",
         "Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?": "Nenhum servidor de backup definido. Tem uma assinatura de backup cloud?",
         "Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour\/Market)": "Deve ter uma senha para o backup na nuvem (vá para Configurações -> Sistema -> Configuração e, em seguida, separador Atualização\/Market)",
+        "Le mot de passe du backup cloud n\\'est pas identique à la confirmation": "A password da backup cloud não é idêntica à confirmação",
         "Besoin de faire de la place sur le stockage distant": "Precisa de aumentar o espaço no armazenamento remoto",
         "Pas assez de place et aucun backup à supprimer": "Espaço insuficiente e nenhum backup para excluir",
         "Supression du backup cloud :": "Exclusão de backup na nuvem:",
@@ -4180,7 +4208,6 @@
         "Utilisateur ou organisation du dépôt pour le core Jeedom": "Utilizador ou organização do repositório do core Jeedom",
         "Nom du dépôt pour le core Jeedom": "Nome do repositório para o core Jeedom",
         "Branche pour le core Jeedom": "Caminho para o  core Jeedom",
-        "Dépot github non trouvé :": "Repositório do Github não encontrado:",
         "Impossible d\\'écrire dans le répertoire :": "Não foi possível gravar no diretório:",
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Execute o seguinte comando no SSH: sudo chmod 777 -R",
         "Téléchargement de": "Transferir"
@@ -4307,6 +4334,7 @@
         "Version database": "Versão da base de dados",
         "Espace disque libre": "Espaço livre em disco",
         "Connexion active\/max\/autorisée": "Conexão ativa\/máxima\/permitida",
+        "Taille base de données": "Tamanho do banco de dados",
         "Espace disque libre tmp": "Espaço livre em disco tmp",
         "En cas d\\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\\'à trouver le coupable": "Em caso de erro, tente reiniciar. Se o problema persistir, teste desativando os plugins um a um até encontrar o culpado",
         "Mémoire disponible": "Memória disponível",
@@ -4318,7 +4346,7 @@
         "Swap disponible": "Swap disponível",
         "Le swap libre n\\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go": "O swap livre não é suficiente ou há menos de 2GB de memória do sistema e um swap inferior a 1GB",
         "Inconnue": "Desconhecido",
-        "Swapiness": "Troca",
+        "Swappiness": "Troca",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Para um desempenho ideal, o swapiness não deve exceder 20% se tiver 1GB ou menos de memória",
         "Charge": "Carga",
         "Configuration réseau interne": "Configuração de rede interna",
@@ -4361,6 +4389,8 @@
         "Test de connexion au market": "Teste de conexão ao Market",
         "Erreur sur la connexion au market :": "Erro ao conectar-se ao Market:",
         "Démarrage de jeedom fini avec succès": "O arranque do Jeedom terminou com sucesso",
+        "Espace disque disponible faible : ": "Pouco espaço em disco disponível:",
+        "Veuillez faire de la place (suppression de backup, de video\/capture du plugin camera, d\\'historique...)": "Por favor, libere espaço (exclusão de backup, vídeo\/captura do plugin da câmera, histórico, etc.)",
         "De nouvelles mises à jour sont disponibles": "Novas atualizações estão disponíveis",
         "Centre de mise à jour": "Central de atualização",
         "Vous pouvez arrêter le système": "Pode parar o sistema",
@@ -4635,6 +4665,18 @@
         "Vrai": "Verdadeiro",
         "Faux": "Falso"
     },
+    "core\/class\/queue.class.php": {
+        "Lancement de '.$queue->getHumanName()": "Executando '.$queue->getHumanName()",
+        "Erreur sur le lancement de '.$queue->getHumanName().' => '.$th->getMessage()": "Erro ao iniciar '.$queue->getHumanName().' => '.$th->getMessage()",
+        "Recherche des actions à faire pour '.$queueId['queueId']": "Encontrando ações a serem executadas para '.$queueId['queueId']",
+        "Impossible d\\'exécuter la tâche en queue car elle est déjà en cours d\\'exécution (": "Não foi possível executar a tarefa na fila porque ela já está em execução (",
+        "Arrêt de": "Parar",
+        " : Impossible d\\'arrêter la tâche en queue": ": Não é possível interromper a tarefa na fila",
+        "La classe est la fonction ne peuvent etre vides": "Classe é função não pode estar vazia",
+        "La classe n\\'existe pas": "A classe não existe",
+        "La fonction n\\'existe pas": "A função não existe",
+        "La methode n\\'existe pas": "O método não existe"
+    },
     "core\/class\/ajax.class.php": {
         "Méthode non autorisé en GET : ": "Método não permitido no GET:"
     },
@@ -4811,7 +4853,7 @@
     },
     "core\/template\/scenario\/scenario.default.html": {
         "Scénario": "Cenário",
-        "Filtre de scénario": "Filtro de cenário",
+        "Filtre des scénarios": "Filtro de cenário",
         "Action": "Ação",
         "Démarrer": "Iniciar",
         "Démarrer (sync)": "Iniciar (sincronização)",
@@ -4909,6 +4951,10 @@
     "core\/template\/scenario\/scenario_return.default.html": {
         "Message": "Mensagem",
         "Sélectionner la commande": "Selecionar o comando"
+    },
+    "core\/template\/scenario\/remove_inat.default.html": {
+        "Scénario": "Cenário",
+        "Scénario courant": "Cenário comum"
     },
     "core\/template\/scenario\/icon.default.html": {
         "Rechercher icône": "Procurar ícone"
@@ -5066,7 +5112,7 @@
         "Aucun scénario correspondant à l\\'ID :": "Nenhum cenário correspondente à ID:",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Não tem permissão para realizar uma ação neste cenário",
         "Démarrage scénario de :": "Cenário inicial de:",
-        "Exécution provoquée par un appel API": "Execução causada por uma chamada de API",
+        "Scénario exécuté sur appel API": "Cenário executado na chamada da API",
         "Arrêt scénario de :": "Parar cenário de:",
         "Désactivation scénario de :": "Desativar cenário de:",
         "Activation scénario de :": "Ativar cenário de:",
@@ -5092,7 +5138,6 @@
         "Vous n\\'êtes pas autorisé à faire cette action": "Não tem permissão para executar esta ação",
         "Scénario introuvable :": "Cenário não encontrado:",
         "Vous n\\'avez pas les droits sur ce scénario": "Você não tem direitos sobre este cenário",
-        "Scénario exécuté sur appel API": "Cenário executado na chamada da API",
         "Le paramètre \"state\" ne peut être vide et doit avoir pour valeur [run,stop,enable,disable]": "O parâmetro \"state\" não pode estar vazio e deve ter o valor [run,stop,enable,disable]",
         "Impossible de trouver le message :": "Não foi possível encontrar a mensagem:",
         "Impossible de trouver l\\'objet associé :": "Não foi possível encontrar o objeto associado:",

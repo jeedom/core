@@ -17,9 +17,6 @@
 */
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use League\ColorExtractor\Color;
-use League\ColorExtractor\ColorExtractor;
-use League\ColorExtractor\Palette;
 
 function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	if (strpos($_folder, '..') !== false || strpos($_fn, '..') !== false || strpos($_fn, '\\') !== false) {
@@ -1077,6 +1074,16 @@ function isConnect($_right = '') {
 		return ($_SESSION['user']->getProfils() == $_right);
 	}
 	return true;
+}
+
+function hasRight($_name = '',$_right = 'r',$_default = 'r') {
+	if ($_SESSION['user']->getProfils() == 'admin' || $_SESSION['user']->getProfils() == 'user') {
+		return true;
+	}
+	if (strpos($_SESSION['user']->getRights($_name,$_default), $_right) !== false) {
+		return true;
+	}
+	return false;
 }
 
 function ZipErrorMessage($code) {

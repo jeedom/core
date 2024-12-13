@@ -416,7 +416,7 @@ class jeedom {
 			$ok = true;
 		}
 		$return[] = array(
-			'name' => __('Swapiness', __FILE__),
+			'name' => __('Swappiness', __FILE__),
 			'state' => $ok,
 			'result' => $value . '%',
 			'comment' => ($ok) ? '' : __('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire', __FILE__),
@@ -1257,6 +1257,10 @@ class jeedom {
 			log::add('jeedom', 'error', $e->getMessage());
 		} catch (Error $e) {
 			log::add('jeedom', 'error', $e->getMessage());
+		}
+		$disk_space = self::checkSpaceLeft();
+		if($disk_space < 10){
+			log::add('jeedom', 'error',__('Espace disque disponible faible : ',__FILE__).$disk_space.'%.'.__('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)',__FILE__));
 		}
 	}
 

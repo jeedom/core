@@ -1,5 +1,38 @@
 # Registro de cambios Jeedom V4.4
 
+# 4.4.11
+
+- Posibilidad de cambiar el tamaño de las columnas de la tabla (por el momento sólo la lista de variables, se ampliará a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
+- Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)) [ENLACE](https://github.com/jeedom/core/issues/2438)
+- Se agregó un botón a la ventana de configuración del pedido en el campo de cálculo del valor para recuperar un pedido [ENLACE](https://github.com/jeedom/core/issues/2776)
+- Posibilidad de ocultar ciertos menús para usuarios limitados [ENLACE](https://github.com/jeedom/core/issues/2651)
+- Los gráficos se actualizan automáticamente cuando llegan nuevos valores [ENLACE](https://github.com/jeedom/core/issues/2749)
+- Jeedom agrega automáticamente la altura de la imagen al crear widgets para evitar problemas de superposición en dispositivos móviles [ENLACE](https://github.com/jeedom/core/issues/2539)
+- Rediseño de la parte de copia de seguridad en la nube [ENLACE](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementación de un sistema de colas para la ejecución de acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
+- Las etiquetas del escenario ahora son específicas de la instancia del escenario (si tiene dos escenarios lanzados muy juntos, las etiquetas del último ya no sobrescriben al primero)) [ENLACE](https://github.com/jeedom/core/issues/2763)
+- Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``trigger()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``triggerValue()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``#trigger#`` : Puede ser :
+    - ``api`` si el lanzamiento fue activado por la API,
+    - ``TYPEcmd`` si el inicio fue activado por un comando, con TYPE reemplazó la identificación del complemento (por ejemplo, virtualCmd),
+    - ``schedule`` si fue lanzado por programación,
+    - ``user`` si se inició manualmente,
+    - ``start`` para un lanzamiento en la startup Jeedom.
+  - ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó
+  - ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando])
+  - ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta tiene el valor del comando que desencadenó el escenario
+- Gestión de complementos mejorada en github (no más dependencias de una biblioteca de terceros)) [ENLACE](https://github.com/jeedom/core/issues/2567)
+- Eliminando el antiguo sistema de caché. [ENLACE](https://github.com/jeedom/core/pull/2799)
+- Posibilidad de borrar los bloques IN y A mientras se espera otro escenario [ENLACE](https://github.com/jeedom/core/pull/2379)
+- Se corrigió un error en Safari en filtros con acentos [ENLACE](https://github.com/jeedom/core/pull/2754)
+- Se corrigió un error en la generación de información de tipo genérico en escenarios [ENLACE](https://github.com/jeedom/core/pull/2806)
+- Se agregó confirmación al abrir el acceso de soporte desde la página de administración de usuarios [ENLACE](https://github.com/jeedom/core/pull/2809)
+- Mejora del sistema cron para evitar fallos en el lanzamiento [ENLACE](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Adición de escenarios de condiciones mayores o iguales y menores o iguales al asistente de condiciones [ENLACE](https://github.com/jeedom/core/issues/2810)
+
 # 4.4.10
 
 - Se movió la gestión de eventos que se utiliza para actualizar la interfaz de la base de datos en memoria [ENLACE](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +52,10 @@
 - Parche mejorado para el error gpg en las dependencias de Python [ENLACE](https://github.com/jeedom/core/pull/2798)
 - Se solucionó un problema al cambiar la hora después de la revisión de la gestión cron [ENLACE](https://github.com/jeedom/core/issues/2794)
 - Se corrigió un error en la página de resumen de domótica al buscar un pedido por identificación [ENLACE](https://github.com/jeedom/core/issues/2795)
+- Se agregó tamaño de base de datos a la página de salud [ENLACE](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom ahora enumera todas las ramas y etiquetas del repositorio de github para permitirle probar las funcionalidades por adelantado o volver a una versión anterior del núcleo (tenga cuidado, esto es muy arriesgado)) [ENLACE](https://github.com/jeedom/core/issues/2500)
+- Mejora de subtipos de comandos soportados en tipos genéricos [ENLACE](https://github.com/jeedom/core/pull/2797)
+- Se corrigió un error en la visualización de escenarios y comentarios cuando desea ocultarlos [ENLACE](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANTE**
 >

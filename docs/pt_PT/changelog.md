@@ -1,5 +1,38 @@
 # Changelog Jeedom V4.4
 
+# 4.4.11
+
+- Possibilidade de tornar as colunas da tabela redimensionáveis (por enquanto apenas a lista de variáveis, será estendida a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
+- Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
+- Adicionado um botão na janela de configuração do pedido no campo de cálculo de valor para buscar um pedido [LINK](https://github.com/jeedom/core/issues/2776)
+- Capacidade de ocultar determinados menus para usuários limitados [LINK](https://github.com/jeedom/core/issues/2651)
+- Os gráficos são atualizados automaticamente quando novos valores chegam [LINK](https://github.com/jeedom/core/issues/2749)
+- Jeedom adiciona automaticamente a altura da imagem ao criar widgets para evitar problemas de sobreposição no celular [LINK](https://github.com/jeedom/core/issues/2539)
+- Redesenho da parte de backup em nuvem [LINK](https://github.com/jeedom/core/issues/2765)
+- [DEV] Implementação de sistema de filas para execução de ações [LINK](https://github.com/jeedom/core/issues/2489)
+- As tags do cenário agora são específicas para a instância do cenário (se você tiver dois cenários lançados muito próximos, as tags do último não sobrescreverão mais o primeiro) [LINK](https://github.com/jeedom/core/issues/2763)
+- Mudança para a parte de gatilho dos cenários : [LINK](https://github.com/jeedom/core/issues/2414)
+  - ``triggerId()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``trigger()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``triggerValue()`` agora está obsoleto e será removido em futuras atualizações principais
+  - ``#trigger#`` : Talvez :
+    - ``api`` se o lançamento foi acionado pela API,
+    - ``TYPEcmd`` se o lançamento foi acionado por um comando, por TYPE substituiu o id do plugin (ex virtualCmd),
+    - ``schedule`` se foi lançado por programação,
+    - ``user`` se foi iniciado manualmente,
+    - ``start`` para um lançamento na startup Jeedom.
+  - ``#trigger_id#`` : Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou
+  - ``#trigger_name#`` : Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando])
+  - ``#trigger_value#`` : Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário
+- Gerenciamento aprimorado de plug-ins no github (sem mais dependências de uma biblioteca de terceiros) [LINK](https://github.com/jeedom/core/issues/2567)
+- Removendo o antigo sistema de cache. [LINK](https://github.com/jeedom/core/pull/2799)
+- Possibilidade de deletar os blocos IN e A enquanto espera por outro cenário [LINK](https://github.com/jeedom/core/pull/2379)
+- Corrigido um bug no Safari em filtros com acentos [LINK](https://github.com/jeedom/core/pull/2754)
+- Corrigido um bug na geração de informações de tipo genérico em cenários [LINK](https://github.com/jeedom/core/pull/2806)
+- Adicionada confirmação ao abrir o acesso ao suporte na página de gerenciamento de usuários [LINK](https://github.com/jeedom/core/pull/2809)
+- Melhoria do sistema cron para evitar falhas de inicialização [LINK](https://github.com/jeedom/core/commit/533d6d4d508ffe5815f7ba6355ec45497df73313)
+- Adição de cenários de condições maiores ou iguais e menores ou iguais ao assistente de condições [LINK](https://github.com/jeedom/core/issues/2810)
+
 # 4.4.10
 
 - Gerenciamento de eventos movido que é usado para atualizar a interface do banco de dados na memória [LINK](https://github.com/jeedom/core/pull/2757)
@@ -19,6 +52,10 @@
 - Patch aprimorado para bug gpg em dependências python [LINK](https://github.com/jeedom/core/pull/2798)
 - Corrigido um problema ao alterar a hora após a revisão do gerenciamento do cron [LINK](https://github.com/jeedom/core/issues/2794)
 - Corrigido bug na página de resumo da automação residencial ao pesquisar um pedido por id [LINK](https://github.com/jeedom/core/issues/2795)
+- Adicionado tamanho do banco de dados à página de integridade [LINK](https://github.com/jeedom/core/commit/65fe37bb11a2e9f389669d935669abc33f54495c)
+- Jeedom agora lista todas as ramificações e tags do repositório github para permitir que você teste funcionalidades com antecedência ou reverta para uma versão anterior do núcleo (tenha cuidado, isso é muito arriscado) [LINK](https://github.com/jeedom/core/issues/2500)
+- Melhoria de subtipos de comandos suportados em tipos genéricos [LINK](https://github.com/jeedom/core/pull/2797)
+- Corrigido bug na exibição de cenários e comentários quando você deseja ocultá-los [LINK](https://github.com/jeedom/core/pull/2790)
 
 >**IMPORTANTE**
 >
