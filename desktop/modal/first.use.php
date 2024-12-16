@@ -33,6 +33,7 @@ try {
 } catch (Exception $e) {
 }
 
+$productName = config::byKey('product_name');
 if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
 	echo '<div class="col-md-12">';
 	echo '<a href="https://start.jeedom.com/" target="_blank">';
@@ -47,7 +48,6 @@ if (config::byKey('jeedom::firstUse') == 1) {
 	echo '<i class="fas fa-eye-slash"></i> {{Ne plus afficher}}';
 	echo '</button>';
 }
-$productName = config::byKey('product_name');
 ?>
 
 <div class="text-center">
@@ -56,11 +56,11 @@ $productName = config::byKey('product_name');
 
 	<div class="alert alert-info col-md-10 col-md-offset-1">
 		<p class="first_use">
-			<?= $productName ?> {{est une solution incontournable dans la gestion du bâtiment intelligent et de l'habitat connecté.}}
+			<?= $productName ?> {{est la solution incontournable dans les domaines du bâtiment intelligent et de l'habitat connecté.}}
 			<br><br>
-			{{Cliquez sur le bouton "Installer l'assistant de configuration" pour être accompagné de manière ludique et interactive dans la configuration de votre installation}} <?= $productName ?>.
+			{{Cliquez sur le bouton "Installer l'assistant}} <?= $productName ?>" {{pour être accompagné de manière ludique et interactive dans la mise en place de votre installation.}}
 		</p>
-		<p class="market_connect hidden">{{L'assistant de configuration}} <?= $productName ?> {{nécessite de pouvoir accéder au Market, merci de valider vos identifiants de connexion au Market}} <?= $productName ?>.
+		<p class="market_connect hidden">{{L'assistant}} <?= $productName ?> {{nécessite de pouvoir accéder au Market, veuillez valider vos identifiants de connexion au Market}} <?= $productName ?>.
 		</p>
 
 		<form class="form-horizontal market_connect hidden">
@@ -79,7 +79,7 @@ $productName = config::byKey('product_name');
 		<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market? En créer un!}}
 	</a>
 	<button class="btn btn-success market_connect hidden" id="bt_validate_market"><i class="fas fa-check"></i> {{Valider les identifiants Market}}</button>
-	<button class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant de configuration}}</button>
+	<button class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant}} <?= $productName ?></button>
 
 	<hr class="hrPrimary">
 	<?php
