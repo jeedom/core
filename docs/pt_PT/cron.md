@@ -48,7 +48,7 @@ Os ouvintes são apenas visíveis na leitura e permitem que você veja as funç�
 
 Tabela de todos os daemons com seu estado, a data do último lançamento, bem como a possibilidade de :
 - Iniciar / reiniciar um daemon.
-- Pare um daemon se o gerenciamento automático estiver desativado.
+- Pare um daemon se o gerenciamento automático estiver desabilitado.
 - Ativar / desativar o gerenciamento automático de um daemon.
 
 > Tip

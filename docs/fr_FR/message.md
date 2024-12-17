@@ -9,6 +9,6 @@ Il est assez simple. Il vous montre la date et l’heure du message, le plugin q
 
 En haut, on retrouve un sélecteur pour filtrer les messages sur un plugin particulier et tout à droite un bouton pour vider tous les messages.
 
-> **Tip**
+> **Conseil**
 >
 > Lorsque vous avez une erreur dans le centre des messages, essayez d’abord de supprimer le message puis voir si l’erreur revient avant de contacter le support. Il arrive que ce soit juste dû à un souci de connexion réseau.

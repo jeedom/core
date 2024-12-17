@@ -34,7 +34,7 @@ If your Market account is correctly configured on your Jeedom (Configuration →
 
 To install a new plugin, just click on the "Market" button (and Jeedom is connected to the Internet). After a short loading time, you will get the page.
 
-> **Tip**
+> **Advice**
 >
 > You must have entered your Market account information in the administration (Configuration → Updates / Market → Market tab) in order to find the plugins that you have already purchased for example.
 
@@ -45,7 +45,7 @@ At the top of the window you have filters :
 - **To research** : allows you to search for a plugin (in the name or description of it).
 - **Username** : displays the user name used to connect to the Market as well as the connection status.
 
-> **Tip**
+> **Advice**
 >
 > The small cross resets the filter concerned
 
@@ -78,7 +78,7 @@ Attention, in the case of adding by a zip file, the name of the zip must be the 
 
 By clicking on the icon of a plugin, you open its configuration page.
 
-> **Tip**
+> **Advice**
 >
 > You can Ctrl-Click or Click Center to open its configuration in a new browser tab.
 
@@ -128,7 +128,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 - **Automatic management** : Enables or disables automatic management (which allows Jeedom to manage the daemon itself and restart it if necessary. Unless otherwise indicated, it is advisable to leave automatic management active).
 - **Last launch** : Date of last launch of the daemon.
 
-> **Tip**
+> **Advice**
 >
 > Some plugins have a configuration part. If this is the case, it will appear under the dependency and daemon zones described above.
 > In this case, refer to the documentation of the plugin in question to know how to configure it.
@@ -146,7 +146,7 @@ If the plugin has dependencies and / or a daemon, these additional areas are dis
 - **deadcmd** : A cron for dead commanders.
 - **health** : A cron health.
 
-> **Tip**
+> **Advice**
 >
 > If the plugin uses one of these functions, you can specifically prohibit it from doing so by unchecking the &quot;activate&quot; box which will be present next to it.
 

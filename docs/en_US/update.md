@@ -34,7 +34,7 @@ Once you click on it, you get these different options :
 >
 > Before an update, by default, Jeedom will make a backup. In the event of a problem when applying an update, Jeedom will automatically restore the backup made just before. This principle is only valid for Jeedom updates and not for plugin updates.
 
-> **Tip**
+> **Advice**
 >
 > You can force an update of Jeedom, even if it does not offer one.
 
@@ -62,7 +62,7 @@ On each line, you can use the following functions:
 > If the changelog is empty but you still have an update, it means that the documentation has been updated. It is therefore not necessary to ask the developer for changes, since there are not necessarily any. (it is often an update of the translation, documentation).
 > The plugin developer can also in some cases make simple bugfixes, which do not necessarily require updating the changelog.
 
-> **Tip**
+> **Advice**
 >
 > When you launch an update, a progress bar appears above the table. Avoid other manipulations during the update.
 

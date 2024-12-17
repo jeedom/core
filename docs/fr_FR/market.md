@@ -37,7 +37,7 @@ Pour les pros :
 - **Activer l’accès aux plugins beta** : Permet d’activer l’accès aux plugins betas (attention cela vous interdira tout accès au support).
     - **Résumé** Ici vous retrouverez un résumé de vos différents droits et services.
 
-> **Tip**
+> **Conseil**
 >
 > N’oubliez pas de sauvegarder.
 
@@ -49,7 +49,7 @@ Pour les pros :
 - **Clef d’installation**
     - **Nombre de clefs d’installation** : Affiche le nombre d’installations Jeedom actuellement liées à votre compte ainsi que la limite autorisée.
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible que le Market vous demande parfois de remettre à zéro vos clefs d’installation, c’est normal, il suffit de suivre ce qui est demandé.
 
@@ -66,7 +66,7 @@ Pour les pros :
     - **Hardware** : Nom du hardware du Jeedom.
     - **Version** : La version de Jeedom installée.
 
-> **Tip**
+> **Conseil**
 >
 > N’oubliez pas de sauvegarder.
 

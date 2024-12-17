@@ -12,7 +12,7 @@ These commands can be obtained by :
 
 The value of interactions lies in the simplified integration into other systems such as smartphones, tablets, other home automation boxes, etc.
 
-> **Tip**
+> **Advice**
 >
 > You can open an interaction by doing :
 > - Click on one of them.
@@ -34,7 +34,7 @@ At the top of the page, there are 3 buttons :
 - **Regenerate** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Test** : Open a dialog to write and test a sentence.
 
-> **Tip**
+> **Advice**
 >
 > If you have an interaction that generates sentences for lights for example and you add a new light control module, you will either have to regenerate all the interactions, or go to the interaction in question and save it again to create the sentences of this new module.
 
@@ -103,7 +103,7 @@ We can very well imagine doing the same with several actions to light several la
 
 In the 2 examples above, the model sentence is identical but the actions which result from it change according to what is configured in the "Action" part, we can therefore already with a simple interaction with a single sentence imagine actions combined between various commands and various scenarios (we can also trigger scenarios in the action part of interactions).
 
-> **Tip**
+> **Advice**
 >
 > To add a scenario, create a new action, write &quot;scenario&quot; without an accent, press the tab key on your keyboard to bring up the scenario selector.
 

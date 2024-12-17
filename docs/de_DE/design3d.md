@@ -4,7 +4,7 @@
 Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhängig vom Status der verschiedenen Informationen in Ihrer Hausautomation reagieren kann.
 
 
-> **Tipp**
+> **Beratung**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem 3D-Design zu wechseln.
 
@@ -22,13 +22,13 @@ Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. We
 
 > **AUFMERKSAMKEIT**
 >
-> Ein 3D-Modell ist ziemlich beeindruckend (dies kann mehrere hundert Mo darstellen). Je größer es ist, desto länger ist die Renderzeit in Jeedom.
+> Ein 3D-Modell ist ziemlich groß (es kann mehrere hundert MB darstellen)). Je größer es ist, desto länger ist die Renderzeit in Jeedom.
 
-Nachdem Ihr 3D-Modell exportiert wurde, müssen Sie in Jeedom ein neues 3D-Design erstellen. Dazu müssen Sie in den Bearbeitungsmodus wechseln, indem Sie auf den kleinen Stift rechts klicken, dann auf das + klicken, diesem neuen 3D-Design einen Namen geben und dann validieren.
+Sobald Ihr 3D-Modell exportiert wurde, müssen Sie in Jeedom ein neues 3D-Design erstellen. Dazu müssen Sie in den Bearbeitungsmodus wechseln, indem Sie auf den kleinen Stift rechts klicken, dann auf das + klicken, diesem neuen 3D-Design einen Namen geben und es dann bestätigen.
 
 Jeedom wechselt automatisch zum neuen 3D-Design. Sie müssen in den Bearbeitungsmodus zurückkehren und auf die kleinen gekerbten Räder klicken.
 
-Sie können von diesem Bildschirm aus :
+Von diesem Bildschirm aus können Sie :
 
 - Ändern Sie den Namen Ihres Designs
 - Fügen Sie einen Zugangscode hinzu
@@ -45,7 +45,7 @@ Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Send
 >
 > Sie müssen eine Zip-Datei haben.
 
-> **Tipp**
+> **Beratung**
 >
 > Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
 
@@ -60,7 +60,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 - Geben Sie einen Verbindungstyp an (derzeit ist nur Ausrüstung vorhanden)
 - Geben Sie den Link zu dem betreffenden Element ein. Hier können Sie momentan nur einen Link zu einem Gerät setzen. Dies ermöglicht es beim Klicken auf den Gegenstand, die Ausrüstung aufzurufen
-- Spezifität definieren: Es gibt einige, die wir gleich danach sehen werden. Dies ermöglicht es, den Gerätetyp und damit die Anzeige von Informationen festzulegen
+- Spezifität definieren : Es gibt einige, die wir gleich danach sehen werden. Dies ermöglicht es, den Gerätetyp und damit die Anzeige von Informationen festzulegen
 
 ### Licht
 
@@ -99,7 +99,7 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 #### Volet
 
-- Zustand : Verschlussstatus, 0 offen anderer Wert geschlossen
+- Zustand : Verschlussstatus, 0 offen und anderer Wert geschlossen
 - Ausblenden, wenn der Verschluss geöffnet ist
 	- Aktivieren : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
 - Couleur
@@ -109,6 +109,6 @@ Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Elemen
 
 Wenn die Bedingung gültig ist, können Sie dem Element die ausgewählte Farbe geben. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
 
-> **Tipp**
+> **Beratung**
 >
 > Die Bedingungen werden in der Reihenfolge ausgewertet, die erste, die wahr ist, wird genommen, die folgenden werden daher nicht bewertet

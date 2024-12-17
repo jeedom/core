@@ -34,7 +34,7 @@ En esta pestaña encontrará los parámetros de personalización de la pantalla.
 - **Escritorio claro y oscuro** : Le permite elegir un tema claro y oscuro para el escritorio.
 - **Móvil claro y oscuro** : igual que el anterior para la versión móvil.
 - **Borrar tema de / a** : Le permite definir un intervalo de tiempo durante el cual se utilizará el tema de luz elegido previamente. Sin embargo, marque la opción **Cambiar el tema según el tiempo**.
-- **Sensor de brillo**   : Interfaz móvil solamente, requiere activación *sensor adicional genérico* en cromo, página de cromo://flags.
+- **Sensor de brillo** : Interfaz móvil solamente, requiere activación *sensor adicional genérico* en cromo, página de cromo://flags.
 
 ### Tuiles
 
@@ -174,7 +174,7 @@ Se pueden registrar muchos pedidos. Por lo tanto, en Análisis → Historia, obt
 
 >**InflujoDB**
 >
->Si desea utilizar InfluxDB por el momento, debe instalar la biblioteca InfluxDB usted mismo, Jeedom ya no lo hace porque ya no se mantiene (planeamos migrar a la nueva versión, pero esto no sucederá de inmediato)). Para realizar la instalación manualmente aquí se explica cómo hacerlo : `cd /var/www/html;composer requiere influxdb/influxdb-php` desde la configuración, luego la pestaña OS/DB y luego la consola de administración del sistema operativo
+>Si desea utilizar InfluxDB por el momento, debe instalar la biblioteca InfluxDB usted mismo, Jeedom ya no lo hace porque ya no se mantiene (planeamos migrar a la nueva versión, pero eso no sucederá de inmediato)). Para realizar la instalación manual, aquí se explica cómo hacerlo : `cd /var/www/html;composer requiere influxdb/influxdb-php` desde la configuración, luego la pestaña OS/DB y luego la consola de administración del sistema operativo
 
 ### Historial de pedidos
 
@@ -308,7 +308,7 @@ La lista de IP prohibidas se encuentra al final de esta página. Encontrará la 
 
 - **Fuente de actualización** : Elija la fuente de actualización principal de Jeedom.
 - **Versión del core** : Versión principal para recuperar.
-- **Buscar actualizaciones automáticamente** : Indique si debe verificar automáticamente si hay nuevas actualizaciones (tenga cuidado de evitar sobrecargar el mercado, el tiempo de verificación puede cambiar).
+- **Buscar actualizaciones automáticamente** : Indica si se deben buscar nuevas actualizaciones automáticamente (tenga cuidado de no sobrecargar el Market, el tiempo de verificación puede cambiar)).
 
 ### Depósitos
 
@@ -363,7 +363,7 @@ Depósito que permite enviar automáticamente una copia de seguridad de Jeedom e
 
 > **Importante**
 >
-> El protocolo Samba tiene varias versiones, el v1 tiene un nivel de seguridad comprometido y en algunos NAS puede obligar al cliente a usar v2 o v3 para conectarse. Entonces si tienes un error *negociación de protocolo fallida: NT_STATUS_INVAID_NETWORK_RESPONSE* hay una buena posibilidad de que en el lado del NAS la restricción esté en su lugar. Luego debe modificar el archivo / etc / samba / smb en su sistema operativo Jeedom.conf y agregue estas dos líneas :
+> El protocolo Samba tiene varias versiones, el nivel de seguridad de V1 está comprometido y en algunos NAS puedes obligar al cliente a usar v2 o v3 para conectarse. Entonces si tienes un error *negociación de protocolo fallida: NT_STATUS_INVAID_NETWORK_RESPONSE* hay muchas posibilidades de que en el lado NAS la restricción esté vigente. Luego debe modificar el archivo / etc / samba / smb en su sistema operativo Jeedom.conf y agregue estas dos líneas :
 > protocolo max del cliente = SMB3
 > protocolo min del cliente = SMB2
 > El smbclient del lado de Jeedom usará v2 donde v3 y al poner SMB3 en ambos solo SMB3. Entonces, depende de usted adaptarse según las restricciones en el NAS u otro servidor Samba
@@ -385,11 +385,11 @@ Permite monitorear y actuar en el caché Jeedom :
   - Sistema de archivos : Almacenamiento de información de caché /tmp/jeedom/cache (en RAM) en modo archivo, utiliza una biblioteca de terceros. Pronto será reemplazado por Archivo (beta)
   - Archivo (beta) : Almacenamiento de información de caché /tmp/jeedom/cache (en RAM) en modo archivo. El más eficiente pero ahorrado cada 30 minutos
   - MySQL (beta)) : Usando una tabla de caché básica. El menos eficiente pero guardado en tiempo real (no es posible la pérdida de datos))
-  - Redis (beta)) : Reservado para expertos, depende de redis para administrar el caché (requiere que usted mismo instale redis y las dependencias de php-redis)
+  - Redis (beta)) : Reservado para expertos, depende de redis para administrar el caché (por lo que requiere que usted mismo instale las dependencias de redis y php-redis))
 - **Limpiar la caché** : Forzar la eliminación de objetos que ya no son útiles. Jeedom hace esto automáticamente todas las noches.
 - **Vaciar todos los datos de la caché** : Vacíe la tapa completamente.
     Tenga en cuenta que esto puede causar pérdida de datos !
-- **Tiempo de pausa para polling largo** : Frecuencia con la que Jeedom comprueba si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz, a cambio utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
+- **Tiempo de pausa para polling largo** : Frecuencia con la que Jeedom verifica si hay eventos pendientes para los clientes (interfaz web, aplicación móvil, etc.)). Cuanto más corto sea este tiempo, más rápido se actualizará la interfaz; a cambio, esto utiliza más recursos y, por lo tanto, puede ralentizar Jeedom.
 
 >**Importante**
 >

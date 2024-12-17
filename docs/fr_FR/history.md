@@ -13,7 +13,7 @@ L’archivage des données permet à Jeedom de réduire la quantité de données
 
 L’archivage est une tâche qui se lance dans la nuit et compacte les données récupérées dans la journée. Par défaut Jeedom récupère toutes les données plus vieilles de 2h et en fait des paquets de 1h (soit une moyenne, un minimum ou un maximum en fonction des réglages). On a donc ici deux paramètres, un pour la taille des paquets et un autre pour savoir à partir de quand en faire (pour rappel par défaut ce sont des paquets de 1h avec des données qui ont plus de 2h d’ancienneté).
 
-> **Tip**
+> **Conseil**
 >
 > Si vous avez bien suivi vous devriez avoir une haute précision sur les 2 dernières heures seulement. Pourtant quand je me connecte à 17h, j’ai une précision sur les 17 dernières heures. Pourquoi ? En fait, pour éviter de consommer des ressources inutilement, la tâche qui fait l’archivage ne se déroule qu’une fois par jour, le soir.
 
@@ -44,7 +44,7 @@ Si vous affichez un graphique par la page historique, vous avez accès à plusie
 - **Escalier** : Permet d’afficher la courbe sous la forme d’un escalier ou d’un affichage continu. Option sauvegardée sur la commande et utilisée depuis le Dashboard.
 - **Comparer** : Permet de comparer la courbe entre différentes périodes.
 
-> **Tip**
+> **Conseil**
 >
 > Pour éviter toutes erreur de manipulation, ces options sauvegardées dans les commandes sont active seulement quand une seule courbe est affichée.
 > 
@@ -87,7 +87,7 @@ Permet d’afficher une courbe en fonction d’un calcul sur plusieurs commandes
 
 Vous avez aussi accès à une gestion de formules de calcul qui vous permet de les sauvegarder pour les ré-afficher plus facilement.
 
-> **Tip**
+> **Conseil**
 >
 > Quand vous avez des calculs sauvegardés, ceux-ci sont disponible à gauche dans **Mes Calculs**.
 

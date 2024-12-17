@@ -48,7 +48,7 @@ Les listeners sont juste visibles en lecture et permettent de voir les fonctions
 
 Tableau de l'ensemble des démons avec leur état, la date de dernier lancement ainsi que la possibilité de :
 - Démarrer / Redémarrer un démon.
-- Arrêter un démon si la gestion automatique est désactiver.
+- Arrêter un démon si la gestion automatique est désactivée.
 - Activer / désactiver la gestion automatique d'un démon.
 
 > Tip

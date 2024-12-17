@@ -3,7 +3,7 @@
 
 Les logs sont des fichiers de journaux, permettant de suivre ce qui se passe sur sa domotique. Dans la plupart des cas les logs ne serviront qu’à effectuer du debuggage et à résoudre des problèmes par l’équipe de support.
 
-> **Tip**
+> **Conseil**
 >
 > A l'ouverture de la page, le premier log disponible est affiché.
 
@@ -18,7 +18,7 @@ En haut à droite 5 boutons :
 - **Supprimer** : Permet de supprimer le log actuel. Si Jeedom en a besoin il le recréera automatiquement.
 - **Supprimer tous les logs** : Supprime tous les logs présents.
 
-> **Tip**
+> **Conseil**
 >
 > A noter que le log http.error ne peut être supprimé. Il est essentiel si vous le supprimez (en ligne de commande par exemple) celui-ci ne se recréera pas tout seul, il faut redémarrer le système.
 

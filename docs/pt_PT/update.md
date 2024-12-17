@@ -34,7 +34,7 @@ Depois de clicar nele, você obtém essas opções diferentes :
 >
 > Antes de uma atualização, por padrão, o Jeedom fará um backup. No caso de um problema ao aplicar uma atualização, o Jeedom restaurará automaticamente o backup feito pouco antes. Esse princípio é válido apenas para atualizações do Jeedom e não para atualizações de plugins.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode forçar uma atualização do Jeedom, mesmo que ele não ofereça um.
 
@@ -62,7 +62,7 @@ Em cada linha, você pode usar as seguintes funções:
 > Se o registro de alterações estiver vazio, mas você ainda tiver uma atualização, isso significa que a documentação foi atualizada. Portanto, não é necessário solicitar mudanças ao desenvolvedor, pois não há necessariamente. (geralmente é uma atualização da tradução, documentação).
 > O desenvolvedor do plugin também pode, em alguns casos, fazer correções simples, o que não requer necessariamente a atualização do registro de alterações.
 
-> **Dica**
+> **Conselho**
 >
 > Quando você inicia uma atualização, uma barra de progresso aparece acima da tabela. Evite outras manipulações durante a atualização.
 

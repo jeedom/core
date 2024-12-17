@@ -90,4 +90,4 @@
 
 >**IMPORTANTE**
 >
-> Restaurar una copia de seguridad 4.4 puede en ciertos casos causar problemas y terminar con errores en la interfaz web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgY https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descomprimir 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Puedes hacer esto desde la interfaz de rescate de jeedom (agrega &rescue=1 en la URL) o directamente a través de ssh.
+> Restaurar una copia de seguridad 4.4 en algunos casos puede provocar errores en la interfaz web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wgY https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descomprimir 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Puede ejecutar este comando desde la interfaz de rescate de jeedom (agregue `&rescue=1` en la URL), o directamente a través de ssh.

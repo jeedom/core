@@ -4,7 +4,7 @@
 Cette page permet de créer une vue 3D de votre habitation qui pourra réagir en fonction de l'état des différentes informations de votre domotique.
 
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible d’aller directement sur un design 3D grâce au sous-menu.
 
@@ -22,13 +22,13 @@ Une fois votre modèle 3D créé il faut l'exporter au format OBJ. Si vous utili
 
 > **ATTENTION**
 >
-> Un modèle 3D est assez imposant (cela peut représenter plusieurs centaine de Mo). Plus il est volumineux, plus long sera le temps de rendu dans Jeedom.
+> Un modèle 3D est assez imposant (cela peut représenter plusieurs centaines de Mo). Plus il est volumineux, plus long sera le temps de rendu dans Jeedom.
 
-Une fois votre modèle 3D exporté il faut dans Jeedom créer un nouveau design 3D. Pour cela il faut passer en mode édition en cliquant sur le petit crayon à droite, puis ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
+Une fois votre modèle 3D exporté, dans Jeedom il faut créer un nouveau design 3D. Pour cela il faut passer en mode édition en cliquant sur le petit crayon à droite, ensuite cliquer sur le +, donner un nom à ce nouveau design 3D puis valider.
 
 Jeedom va automatiquement passer sur le nouveau design 3D, il faut repasser en mode édition et cliquer sur les petites roues crantées.
 
-Vous pouvez à partir de cette écran :
+À partir de cet écran vous pouvez :
 
 - Changer le nom de votre design
 - Ajouter un code d'accès
@@ -45,7 +45,7 @@ Cliquez sur le bouton "envoyer" au niveau de "Modèle 3D" et sélectionner votre
 >
 > Il faut obligatoirement un fichier au format zip.
 
-> **Tip**
+> **Conseil**
 >
 > Une fois l'import du fichier effectué (cela peut être assez long en fonction de la taille de celui-ci), il vous faut rafraichir la page pour voir le résultat (F5).
 
@@ -60,7 +60,7 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
 
 - Indiquer un type de lien (actuellement seul Equipement existe)
 - Renseigner le lien vers l'élément en question. Ici vous ne pouvez pour le moment mettre qu'un lien vers un équipement. Cela permet lors du clic sur l'élément de faire apparaître l'équipement
-- Définir la spécificité: là il en existe plusieurs que l'on va voir juste après, cela permet de spécifier le type d'équipement et donc l'affichage d'information
+- Définir la spécificité : là il en existe plusieurs que l'on va voir juste après, cela permet de spécifier le type d'équipement et donc l'affichage d'information
 
 ### Lumière
 
@@ -99,7 +99,7 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
 
 #### Volet
 
-- Etat : état du volet, 0 ouvert autre valeur fermé
+- Etat : état du volet, 0 ouvert et autre valeur fermé
 - Masquer quand le volet est ouvert
 	- Activer : masque l'élément si le volet est ouvert
 - Couleur
@@ -109,6 +109,6 @@ Pour configurer un élément sur le design 3D il vous faire un double clic sur l
 
 Si la condition est valide, permet de donner la couleur choisie à l'élément. Vous pouvez mettre autant de couleurs/conditions que vous voulez.
 
-> **Tip**
+> **Conseil**
 >
 > Les conditions sont évaluées dans l'ordre, la première qui est vraie sera prise, les suivantes ne seront donc pas évaluées

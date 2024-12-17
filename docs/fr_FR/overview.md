@@ -26,7 +26,7 @@ La configuration de l'affichage de l'objet se fait dans **Outils → Objets** :
 - Si l'image de fond doit être utilisée uniquement sur la page Synthèse ou aussi en fond une fois sur l'objet.
 - Les éléments de ses résumés, dans l'onglet *Résumé*.
 
-> **Tip**
+> **Conseil**
 >
 > L'ordre d'affichage des objets est celui du *résumé domotique*, que vous pouvez réordonner (Analyse → Résumé domotique).
 
@@ -42,7 +42,7 @@ Pour chaque objet, vous pouvez cliquer :
 - Sur un élément de résumé pour afficher les éléments de cet objet, de ce type. Ceux-ci s'affichent dans une modale, sans changer de page, et permet de rapidement fermer un volet, allumer une lumière, etc. La taille de la modale s'adapte aux équipements qu'elle doit afficher, mais vous pouvez la déplacer. Même avec la modale de résumés ouverte, vous pouvez cliquer sur d'autres résumés.
 
 
-> **Tip**
+> **Conseil**
 >
 > Ctrl Clic ou Clic Centre sur l'objet ou un élément de résumé ouvre un autre onglet de votre navigateur.
 

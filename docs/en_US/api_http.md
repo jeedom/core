@@ -53,7 +53,7 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 
 - **query** : question to ask Jeedom.
 - **utf8** \[optional\] : tells Jeedom whether to encode query in utf8 before trying to answer.
-- **emptyReply** \[optional\] : 0 for Jeedom to respond even if he did not understand, 1 otherwise.
+- **emptyReply** \[optional\] : 0 for Jeedom to respond even if he didn't understand, 1 otherwise.
 - **profile** \[optional\] : username of the person initiating the interaction.
 - **reply\_cmd** \[optional\] : Command ID to use to respond to the request.
 
@@ -62,13 +62,13 @@ Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& typ
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : message category to add to message center.
-- **Message** : message in question, be careful to think about encoding the message (space becomes% 20, =% 3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
+- **Message** : message in question, be careful to remember to encode the message (space becomes %20, = %3D…). You can use a tool, [here](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
 Vohere l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
 
-Returns in json the list of all Jeedom objects.
+Returns the list of all Jeedom objects in json format.
 
 ## Equipement
 

@@ -32,7 +32,7 @@ The overview allows you to view all the objects in Jeedom, as well as their conf
 
 Once you have created an object, it will appear in this part.
 
-> **Tip**
+> **Advice**
 >
 > You can open an object by doing :
 > - Click on one of them.
@@ -71,15 +71,15 @@ Here are the different characteristics to configure an object :
 - **Only on synthesis** : Allows you to put an image for the Synthesis without it being used as a background image, especially on the page *Dashboard* of this object.
 - **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
 
-> **Tip**
+> **Advice**
 >
 > You can change the display order of objects in the Dashboard, through the Home Automation Summary (tools -> home automation summary), select your object with the mouse with drag/drop to give it a new place.
 
-> **Tip**
+> **Advice**
 >
 > You can see a graph representing all the elements of Jeedom attached to this object by clicking on the button **Links**, top right.
 
-> **Tip**
+> **Advice**
 >
 > When a device is created and no parent has been defined, it will have as parent : **None**.
 

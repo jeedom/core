@@ -37,7 +37,7 @@ Für die Profis :
 - **Aktivieren Sie den Zugriff auf Beta-Plugins** : Aktiviert den Zugriff auf Betas-Plugins (beachten Sie, dass Sie dadurch nicht auf den Support zugreifen können).
     - **Zusammenfassung** Hier finden Sie eine Zusammenfassung Ihrer verschiedenen Rechte und Dienste.
 
-> **Tipp**
+> **Beratung**
 >
 > Vergiss nicht zu sparen.
 
@@ -49,7 +49,7 @@ Für die Profis :
 - **Installationsschlüssel**
     - **Anzahl der Installationsschlüssel** : Zeigt die Anzahl der Jeedom-Installationen an, die derzeit mit Ihrem Konto verknüpft sind, sowie das autorisierte Limit.
 
-> **Tipp**
+> **Beratung**
 >
 > Es ist möglich, dass der Markt Sie manchmal auffordert, Ihre Installationsschlüssel zurückzusetzen. Dies ist normal. Befolgen Sie einfach die Anforderungen.
 
@@ -66,7 +66,7 @@ Für die Profis :
     - **Hardware** : Jeedom Hardware-Name.
     - **Version** : Jeedom Version installiert.
 
-> **Tipp**
+> **Beratung**
 >
 > Vergiss nicht zu sparen.
 

@@ -25,7 +25,7 @@ Translate system scan core/template/dashboard files and set them in i18n all und
 */
 
 class cmd {
-	/*     * *************************Attributs****************************** */
+	/*	 * *************************Attributs****************************** */
 
 	protected $id;
 	protected $logicalId;
@@ -64,7 +64,7 @@ class cmd {
 		'Hz' => array(1000, 'Hz', 'kHz', 'MHz', 'GHz'),
 		'l' => array(1000, 'l', 'm<sup>3</sup>')
 	);
-	/*     * ***********************Méthodes statiques*************************** */
+	/*	 * ***********************Méthodes statiques*************************** */
 
 	private static function cast($_inputs, $_eqLogic = null) {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
@@ -983,7 +983,7 @@ class cmd {
 		$cmd->executeAlertCmdAction();
 	}
 
-	/*     * *********************Méthodes d'instance************************* */
+	/*	 * *********************Méthodes d'instance************************* */
 	public function formatValue($_value, $_quote = false) {
 		if (is_array($_value) || is_object($_value)) {
 			return '';
@@ -1134,10 +1134,12 @@ class cmd {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
 		$eqLogic = $this->getEqLogic();
-		$eqLogic->setStatus(array(
-			'warning' => 0,
-			'danger' => 0,
-		));
+		if (is_object($eqLogic)) {
+			$eqLogic->setStatus(array(
+				'warning' => 0,
+				'danger' => 0,
+			));
+		}
 		$this->emptyHistory();
 		cache::delete('cmdCacheAttr' . $this->getId());
 		cache::delete('cmd' . $this->getId());
@@ -1755,9 +1757,9 @@ class cmd {
 						$replace['#minHistoryValue#'] = round(intval($replace['#state#']), 1);
 						$replace['#maxHistoryValue#'] = round(intval($replace['#state#']), 1);
 					} else {
-						$replace['#averageHistoryValue#'] = round($historyStatistique['avg'], 1);
-						$replace['#minHistoryValue#'] = round($historyStatistique['min'], 1);
-						$replace['#maxHistoryValue#'] = round($historyStatistique['max'], 1);
+						$replace['#averageHistoryValue#'] = round(intval($historyStatistique['avg']), 1);
+						$replace['#minHistoryValue#'] = round(intval($historyStatistique['min']), 1);
+						$replace['#maxHistoryValue#'] = round(intval($historyStatistique['max']), 1);
 					}
 					$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 					$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
@@ -2271,7 +2273,7 @@ class cmd {
 		return $point;
 	}
 
-	public function getInflux($_cmdId = null) {
+	public static function getInflux($_cmdId = null) {
 		try {
 			if ($_cmdId) {
 				$cmd = cmd::byId($_cmdId);
@@ -2356,7 +2358,7 @@ class cmd {
 		cmd::historyInflux('all');
 	}
 
-	public function sendHistoryInflux($_params) {
+	public static function sendHistoryInflux($_params) {
 		$cmds = array();
 		if ($_params['cmd_id'] == 'all') {
 			foreach (cmd::byTypeSubType('info') as $cmd) {
@@ -2896,7 +2898,7 @@ class cmd {
 		}
 	}
 
-	/*     * **********************Getteur Setteur*************************** */
+	/*	 * **********************Getteur Setteur*************************** */
 
 	public function getId() {
 		return $this->id;

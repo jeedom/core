@@ -34,7 +34,7 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 - **Desktop clair et sombre** : Vous permet de choisir un thème clair et un sombre pour le Desktop.
 - **Mobile clair et sombre** : idem que précédemment pour la version Mobile.
 - **Thème clair de / à** : Vous permet de définir une plage horaire durant laquelle le thème clair choisi précédemment sera utilisé. Il faut cependant cocher l'option **Bascule du thème en fonction de l'heure**.
-- **Capteur de luminosité**   : Uniquement en interface mobile, nécessite d'activer *generic extra sensor* dans Chrome, page chrome://flags.
+- **Capteur de luminosité** : Uniquement en interface mobile, nécessite d'activer *generic extra sensor* dans Chrome, page chrome://flags.
 
 ### Tuiles
 
@@ -44,7 +44,7 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 - **Centrage vertical des tuiles** : Centre verticalement le contenu des tuiles.
 - **Icônes widgets colorées** : Coloration des icônes de widgets en fonction de leur état. Modifiable par scénario, *setColoredIcon* ('Coloration des icônes').
 - **Catégories colorées** : Colorisation du titre des tuiles en fonction de la catégorie.
-- **Mobile : une colonne par defaut** : Affichage pleine largeur des tuiles en mobile
+- **Mobile : une colonne par défaut** : Affichage pleine largeur des tuiles en mobile
 
 
 ### Images de fond
@@ -59,7 +59,7 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 
 ### Options
 
-- **Affichage tableau** : Affiche en mode tableau les pages du menu outils et les plugins supportés.
+- **Affichage tableau** : Affiche en mode tableau les pages du menu Outils et les plugins supportés.
 - **Position des notifications** : Position sur la page de l'apparition des notifications.
 - **Durée des notifications** : Durée de l'affichage des notifications en seconde. 0 pour ne pas les masquer automatiquement.
 
@@ -103,11 +103,11 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
     - **Login** : Renseigner le login du proxy,
     - **Mot de passe** : Renseigner le mot de passe.
 
-> **Tip**
+> **Conseil**
 >
 > Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le port est le 80 (par défaut). Pour utiliser HTTPS depuis l’extérieur, un plugin letsencrypt est maintenant disponible sur le market.
 
-> **Tip**
+> **Conseil**
 >
 > Pour savoir si vous avez besoin de définir une valeur dans le champ **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
 
@@ -174,7 +174,7 @@ De nombreuses commandes peuvent être historisées. Ainsi, dans Analyse→Histor
 
 >**InfluxDB**
 >
->Si vous voulez utilisez InfluxDB pour le moment il faut installer vous meme la librairie InfluxDB, Jeedom ne le faisant plus car elle n'est plus maintenu (nous prévoyons de migrer sur la nouvelle version mais cela ne sera pas pour tout de suite). Pour faire l'installation manuel voila comment faire : `cd /var/www/html;composer require influxdb/influxdb-php` depuis configuration puis onglet OS/DB puis la console d'administration OS
+>Si vous voulez utilisez InfluxDB pour le moment il faut installer vous-même la bibliothèque InfluxDB, Jeedom ne le faisant plus car elle n'est plus maintenue (nous prévoyons de migrer sur la nouvelle version mais cela ne sera pas pour tout de suite). Pour faire l'installation manuelle voilà comment faire : `cd /var/www/html;composer require influxdb/influxdb-php` depuis configuration puis onglet OS/DB puis la console d'administration OS
 
 ### Historique des commandes
 
@@ -223,7 +223,7 @@ Permet de configurer les graphiques de liens. Ces liens permettent de voir, sous
 
 Cet onglet permet de fixer des paramètres globaux concernant les interactions que vous trouverez dans Outils→Interactions.
 
-> **Tip**
+> **Conseil**
 >
 > Pour activer le log des interactions, il faut aller dans l’onglet Réglages → Système → Configuration : Logs, puis cocher **Debug** dans la liste du bas. Attention : les logs seront alors très verbeux !
 
@@ -308,7 +308,7 @@ La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l’IP,
 
 - **Source de mise à jour** : Choisissez la source de mise à jour du core de Jeedom.
 - **Version du core** : Version du core à récupérer.
-- **Vérifier automatiquement s’il y a des mises à jour** : Indique si il faut chercher automatiquement s'il y a de nouvelles mises à jour (attention pour éviter de surcharger le Market, l’heure de vérification peut changer).
+- **Vérifier automatiquement s’il y a des mises à jour** : Indique s’il faut chercher automatiquement s'il y a de nouvelles mises à jour (attention pour éviter de surcharger le Market, l’heure de vérification peut changer).
 
 ### Les dépôts
 
@@ -363,7 +363,7 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 > **Important**
 >
-> Le protocole Samba comporte plusieurs versions, la v1 est compromise niveau sécurité et sur certains NAS vous pouvez obliger le client à utiliser la v2 ou la v3 pour se connecter. Donc si vous avez une erreur *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* il y a de forte chance que côté NAS la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
+> Le protocole Samba comporte plusieurs versions, le niveau sécurité de la V1 est compromise et sur certains NAS vous pouvez obliger le client à utiliser la v2 ou la v3 pour se connecter. Donc si vous avez une erreur *protocol negotiation failed: NT_STATUS_INVAID_NETWORK_RESPONSE* il y a de fortes chances que côté NAS la restriction soit en place. Vous devez alors modifier sur l'OS de votre Jeedom le fichier /etc/samba/smb.conf et y ajouter ces deux lignes :
 > client max protocol = SMB3
 > client min protocol = SMB2
 > Le smbclient côté Jeedom utilisera alors v2 ou v3 et en mettant SMB3 aux 2 uniquement SMB3. A vous donc d'adapter en fonction des restrictions côté NAS ou autre serveur Samba
@@ -382,18 +382,18 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 Permet de surveiller et d’agir sur le cache de Jeedom :
 
 - **Moteur de cache** : choix du moteur de cache pour jeedom : 
-  - Systeme de fichier : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier, utilise une lib tierce. Il sera prochainement remplacé par Fichier (beta)
+  - Système de fichier : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier, utilise une lib tierce. Il sera prochainement remplacé par Fichier (beta)
   - Fichier (beta) : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier. Le plus performant mais sauvegardé toute les 30min
-  - Mysql (beta) : Utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
-  - Redis (beta) : Réservé aux experts, s'appuie sur redis pour gerer le cache (necessite donc que vous installiez vous meme un redis et les dépendance php-redis)
+  - MySQL (beta) : Utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)
+  - Redis (beta) : Réservé aux experts, s'appuie sur redis pour gérer le cache (nécessite donc que vous installiez vous-même un redis et les dépendances php-redis)
 - **Nettoyer le cache** : Force la suppression des objets qui ne sont plus utiles. Jeedom le fait automatiquement toutes les nuits.
 - **Vider toutes les données en cache** : Vide complètement le cache.
     Attention cela peut faire perdre des données !
-- **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…​). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contre-partie cela utilise plus de ressources et peut donc ralentir Jeedom.
+- **Temps de pause pour le long polling** : Fréquence à laquelle Jeedom vérifie s'il y a des événements en attente pour les clients (interface web, application mobile…). Plus ce temps est court, plus l’interface se mettra à jour rapidement, en contrepartie cela utilise plus de ressources et peut donc ralentir Jeedom.
 
 >**IMPORTANT**
 >
-> Tout changement de moteur de cache entraine une remise a zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
+> Tout changement de moteur de cache entraine une remise à zéro de celui-ci il faut donc attendre ensuite que les modules renvoient les informations pour tout retrouver
 
 ## Onglet API
 

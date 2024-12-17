@@ -4,7 +4,7 @@
 Cette page permet de configurer l’affichage de toute votre domotique de manière très fine.
 Celle-ci demande du temps mais sa seule limite est votre imagination.
 
-> **Tip**
+> **Conseil**
 >
 > Il est possible d’aller directement sur un design grâce au sous-menu.
 
@@ -111,7 +111,7 @@ Permet de choisir les commandes à grapher.
 
 - **Icône** : Icône affichée devant le nom du Design.
 - **Couleur de fond** : permet de changer la couleur de fond ou de le mettre transparent, ne pas oublier de passer "Défaut" sur NON.
-- **Couleur du texte** : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non)..
+- **Couleur du texte** : permet de changer la couleur des icônes et des textes (attention à bien passer Défaut sur Non).
 - **Arrondir les angles** : permet d’arrondir les angles (ne pas oublier de mettre %, ex 50%).
 - **Bordure** : permet d’ajouter une bordure, attention la syntaxe est HTML (il faut utiliser une syntaxe CSS, par exemple : solid 1px black).
 - **Taille de la police** : permet de modifier la taille de la police (ex 50%, il faut bien mettre le signe %).
@@ -121,7 +121,7 @@ Permet de choisir les commandes à grapher.
 
 > **Important**
 >
-> Si vous mettez du code HTML (en particulier du Javascript), attention à bien le vérifier avant car vous pouvez si il y a une erreur dedans ou si il écrase un composant Jeedom planter complètement le design et il ne restera plus qu’à le supprimer directement en base de données.
+> Si vous mettez du code HTML (en particulier du Javascript), attention à bien le vérifier avant car vous pouvez s’il y a une erreur dedans ou s’il écrase un composant Jeedom planter complètement le design et il ne restera plus qu’à le supprimer directement en base de données.
 
 ## Scénario
 

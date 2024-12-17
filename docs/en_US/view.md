@@ -6,7 +6,7 @@ It is not as powerful as the designs but it allows in a few minutes to have a mo
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Tip**
+> **Advice**
 >
 > You can choose the default view in your profile when clicking on the view menu.
 
@@ -20,7 +20,7 @@ On a View, we find :
 - The pencil on the right to edit the order and size of the equipment, in the same way as the Dashboard.
 - A button *Full Edition* allowing to edit the zones and elements of the View.
 
-> **Tip**
+> **Advice**
 >
 > You can, in your profile, modify this option so that the list of Views is visible by default.
 
@@ -35,7 +35,7 @@ The principle is quite simple : a View is made up of areas. Each zone is of type
 - A button allowing to save this View.
 - A button allowing to delete this View.
 
-> **Tip**
+> **Advice**
 >
 > You can move the order of the zones by dragging and dropping.
 
@@ -52,11 +52,11 @@ An equipment type zone allows you to add equipment :
 
 - **Add equipment** : Allows you to add / modify equipment to display in the area.
 
-> **Tip**
+> **Advice**
 >
 > You can delete an item of equipment directly by clicking on the trash can to the left of it.
 
-> **Tip**
+> **Advice**
 >
 > It is possible to change the order of the tiles in the area by dragging and dropping.
 
@@ -82,7 +82,7 @@ When you press the button **Add curve**, Jeedom displays the list of historical 
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Tip**
+> **Advice**
 >
 > You can change the order of the graphics in the area by dragging and dropping.
 

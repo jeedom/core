@@ -26,11 +26,11 @@ Für jedes Objekt stehen neben seiner Beschriftung zwei Schaltflächen zur Verf�
 - Die erste wird verwendet, um die Objektkonfigurationsseite in einer neuen Registerkarte zu öffnen.
 - Die zweite enthält einige Informationen zum Objekt,
 
-> **Tipp**
+> **Beratung**
 >
 > Die Hintergrundfarbe der Objektrahmen hängt von der Farbe ab, die in der Konfiguration des Objekts ausgewählt wurde.
 
-> **Tipp**
+> **Beratung**
 >
 > Mit einem Klick auf die Objekte oder Geräte können Sie deren Reihenfolge ändern oder sie sogar einem anderen Objekt zuweisen. Aus der auf dieser Seite festgelegten Reihenfolge wird die Anzeige des Dashboards berechnet.
 
@@ -53,7 +53,7 @@ Wenn das Geräte-Plugin deaktiviert ist, werden die beiden Symbole rechts nicht 
 
 ## Erweiterte Gerätekonfiguration
 
-> **Tipp**
+> **Beratung**
 >
 > Sie können (sofern das Plugin dies unterstützt) direkt von der Gerätekonfigurationsseite auf dieses Fenster zugreifen, indem Sie auf die Schaltfläche Erweiterte Konfiguration klicken
 
@@ -99,7 +99,7 @@ In der Registerkarte **Anzeige**, Sie können bestimmte Verhaltensweisen bei der
 Unten finden Sie optionale Anzeigeparameter, die auf das Gerät angewendet werden können. Diese Parameter bestehen aus einem Namen und einem Wert. Klicken Sie einfach auf **Hinzufügen** einen anwenden
 wieder. Für Geräte nur den Wert **Stil** Wird derzeit verwendet, kann CSS-Code in das betreffende Gerät eingefügt werden.
 
-> **Tipp**
+> **Beratung**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.
 
@@ -118,7 +118,7 @@ Das :
 - **Boxtext** : Fügen Sie zusätzlich zum Befehl Text hinzu (oder ganz alleine, wenn das Feld keinen Befehl enthält).
 - **Fallstil (CSS)** : Ändern Sie den spezifischen CSS-Stil der Box (beachten Sie, dass das allgemeine CSS der Boxen überschrieben und ersetzt wird).
 
-> **Tipp**
+> **Beratung**
 >
 > Wenn Sie in einem Feld in der Tabelle zwei Befehle untereinander setzen möchten, vergessen Sie nicht, nach dem ersten in der Tabelle einen Zeilenumbruch hinzuzufügen **Erweiterte Konfiguration** davon.
 
@@ -134,7 +134,7 @@ Im Folgenden können Sie auch die spezifischen Batteriewarnschwellen für dieses
 
 Sie können das Zeitlimit der Ausrüstung auch in Minuten verwalten. Zum Beispiel sagt 30 jeedom, dass wenn das Gerät 30 Minuten lang nicht kommuniziert hat, es in Alarmbereitschaft versetzt werden muss.
 
-> **Tipp**
+> **Beratung**
 >
 > Die globalen Parameter sind in **→ Einstellungen → Systemkonfiguration : Protokolle** Oder **Ausrüstung**
 
@@ -153,7 +153,7 @@ Zunächst sind oben rechts einige Schaltflächen verfügbar :
 -  **Bewerben Sie sich bei** : Ermöglicht die Anwendung derselben Konfiguration auf mehrere Befehle.
 - **Zum Schutz** : Speichern Sie die am Gerät vorgenommenen Änderungen.
 
-> **Tipp**
+> **Beratung**
 >
 > In einer Grafik bringt Sie ein Doppelklick auf ein Element zu seiner Konfiguration.
 
@@ -242,6 +242,6 @@ In diesem Teil können Sie bestimmte Widget-Anzeigeverhalten im Dashboard, in An
 
 Unten finden Sie optionale Anzeigeparameter, die an das Widget übergeben werden können. Diese Parameter hängen vom jeweiligen Widget ab. Sie müssen sich daher die Datei auf dem Markt ansehen, um sie zu kennen.
 
-> **Tipp**
+> **Beratung**
 >
 > Vergessen Sie nicht, nach jeder Änderung zu speichern.

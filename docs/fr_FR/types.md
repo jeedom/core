@@ -17,7 +17,7 @@ Cette page permet de paramétrer ces Types Génériques, de manière plus direct
 
 Cette page propose un rangement par type d'équipement : Prise, Lumière, Volet, Thermostat, Camera, etc. Au départ, la plupart de vos équipements seront classés dans **Equipements sans type**. Pour leur assigner un type, vous pouvez soit les déplacer dans un autre type, soit faire un clic droit sur l'équipement pour le déplacer directement. Le Type d'équipement n'est pas vraiment utile en soit, le plus important étant le Types des commandes. Vous pouvez ainsi avoir un Equipement sans Type, ou d'un Type ne correspondant pas forcément à ses commandes. Vous pouvez bien sûr mixer des types de commandes au sein d'un même équipement. Pour l'instant, il s'agit plus d'un rangement, d'une organisation logique, qui servira peu-être dans de futures versions.
 
-> **Tip**
+> **Conseil**
 >
 > - Quand vous déplacez un équipement dans la partie **Equipements sans type**, Jeedom vous propose de supprimer les Types Génériques sur ses commandes.
 > - Vous pouvez déplacer plusieurs équipements d'un coup en cochant les cases à cocher à gauche de celles-ci.
@@ -28,7 +28,7 @@ Une fois un équipement positionné dans le bon *Type*, en cliquant dessus vous 
 
 Au clic droit sur une commande, vous pouvez alors lui attribuer un Type Générique correspond aux spécifiées de cette commande (type Info/Action, sous-type Numérique, Binaire, etc).
 
-> **Tip**
+> **Conseil**
 >
 > - Le menu contextuel des commandes affiche le type de l'équipement en caractères gras, mais permet tout de même d'attribuer n'importe quel Type Générique de n'importe quel type d'équipement.
 
@@ -80,7 +80,7 @@ Ou plus simplement, créer une action `genericType` avec `LIGHT_ON` dans `Salon`
 
 ## Liste des Types génériques du Core
 
-> **Tip**
+> **Conseil**
 >
 > - Vous pouvez retrouver cette liste directement dans Jeedom, sur cette même page, avec le bouton **Liste** en haut à droite.
 

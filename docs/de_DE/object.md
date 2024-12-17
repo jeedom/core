@@ -32,7 +32,7 @@ In der Übersicht können Sie alle Objekte in Jeedom sowie deren Konfiguration a
 
 Sobald Sie ein Objekt erstellt haben, wird es in diesem Teil angezeigt.
 
-> **Tipp**
+> **Beratung**
 >
 > Sie können ein Objekt öffnen, indem Sie dies tun :
 > - Klicken Sie auf eine davon.
@@ -71,15 +71,15 @@ Hier sind die verschiedenen Merkmale zum Konfigurieren eines Objekts :
 - **Nur bei Synthese** : Ermöglicht das Einfügen eines Bildes für die Synthese, ohne dass es als Hintergrundbild verwendet wird, insbesondere auf der Seite *Armaturenbrett* dieses Objekts.
 - **Bild** : Sie haben die Möglichkeit, ein Bild hochzuladen oder zu löschen. Im JPEG-Format ist dieses Bild das Hintergrundbild des Objekts, wenn Sie es im Dashboard anzeigen. Es wird auch für das Vorschaubild des Stücks über die Synthese verwendet.
 
-> **Tipp**
+> **Beratung**
 >
 > Sie können die Anzeigereihenfolge von Objekten im Dashboard ändern, indem Sie über die Home-Automation-Zusammenfassung (Extras -> Home-Automation-Zusammenfassung) Ihr Objekt mit der Maus per Drag/Drop auswählen, um ihm einen neuen Platz zuzuweisen.
 
-> **Tipp**
+> **Beratung**
 >
 > Sie können eine Grafik sehen, die alle Elemente von Jeedom darstellt, die an dieses Objekt angehängt sind, indem Sie auf die Schaltfläche klicken **Links**, oben rechts.
 
-> **Tipp**
+> **Beratung**
 >
 > Wenn ein Gerät erstellt wird und kein übergeordnetes Gerät definiert wurde, wird es als übergeordnetes Element verwendet : **Keiner**.
 

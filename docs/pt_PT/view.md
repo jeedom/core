@@ -6,7 +6,7 @@ Não é tão poderoso quanto os designs, mas permite em poucos minutos uma exibi
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Dica**
+> **Conselho**
 >
 > Você pode escolher a visualização padrão no seu perfil ao clicar no menu de visualização.
 
@@ -20,7 +20,7 @@ Em uma visualização, encontramos :
 - O lápis à direita para editar a ordem e o tamanho do equipamento, da mesma maneira que o Dashboard.
 - Um botão *Edição completa* permitindo editar as zonas e elementos da Visualização.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode, em seu perfil, modificar esta opção para que a lista de Visualizações fique visível por padrão.
 
@@ -35,7 +35,7 @@ O princípio é bastante simples : uma vista é composta de áreas. Cada zona é
 - Um botão que permite salvar esta visualização.
 - Um botão que permite excluir esta visualização.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode mover a ordem das zonas arrastando e soltando.
 
@@ -52,11 +52,11 @@ Uma zona de tipo de equipamento permite que você adicione equipamentos :
 
 - **Adicionar equipamento** : Permite adicionar / modificar equipamentos a serem exibidos na área.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode excluir um item de equipamento diretamente clicando na lata de lixo à esquerda dele.
 
-> **Dica**
+> **Conselho**
 >
 > É possível alterar a ordem das peças na área arrastando e soltando.
 
@@ -82,7 +82,7 @@ Quando você pressiona o botão **Adicionar curva**, O Jeedom exibe a lista de c
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Dica**
+> **Conselho**
 >
 > Você pode alterar a ordem dos gráficos na área, arrastando e soltando.
 

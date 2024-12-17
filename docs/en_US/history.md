@@ -13,7 +13,7 @@ Data archiving allows Jeedom to reduce the amount of data kept in memory. This a
 
 Archiving is a task that starts at night and compacts the data recovered during the day. By default Jeedom retrieves all older data of 2 hours and makes 1 hour packets of it (either an average, a minimum or a maximum depending on the settings). So here we have two parameters, one for packet size and another to know when to do it (by default, these are 1 hour packets with data that are more than 2 hours old).
 
-> **Tip**
+> **Advice**
 >
 > If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. For what ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
 
@@ -44,7 +44,7 @@ If you display a graph via the history page, you have access to several display 
 - **Stairs** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
 - **Compare** : Compare the curve between different periods.
 
-> **Tip**
+> **Advice**
 >
 > To avoid any handling error, these options saved in the commands are only active when a single curve is displayed.
 > 
@@ -87,7 +87,7 @@ Allows to display a curve according to a calculation on several commands (you ca
 
 You also have access to a management of calculation formulas which allows you to save them to re-display them more easily.
 
-> **Tip**
+> **Advice**
 >
 > When you have saved calculations, these are available on the left in **My Calculations**.
 

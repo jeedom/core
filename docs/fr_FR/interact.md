@@ -12,7 +12,7 @@ Ces commandes peuvent être obtenues par :
 
 L’intérêt des interactions réside dans l’intégration simplifiée dans d’autres systèmes comme smartphone, tablette, autre box domotique, etc.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez ouvrir une interaction en faisant :
 > - Clic sur l'une d'entre elle.
@@ -34,7 +34,7 @@ En haut de page, on trouve 3 boutons :
 - **Régénérer** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Tester** : Permet d’ouvrir une boîte de dialogue pour écrire et tester une phrase.
 
-> **Tip**
+> **Conseil**
 >
 > Si vous avez une interaction qui génère les phrases pour les lumières par exemple et que vous ajoutez un nouveau module de commande de lumière, il vous faudra soit régénérer toutes les interactions, soit aller dans l’interaction en question et la sauvegarder de nouveau pour créer les phrases de ce nouveau module.
 
@@ -103,7 +103,7 @@ On peut très bien imaginer faire de même avec plusieurs actions pour allumer p
 
 Dans les 2 exemples ci-dessus, la phrase modèle est identique mais les actions qui en découlent changent en fonction de ce qui est configuré dans la partie "Action", on peut donc déjà avec une interaction simple à phrase unique imaginer des actions combinées entre diverses commandes et divers scénarios (on peut aussi déclencher des scénarios dans la partie action des interactions).
 
-> **Tip**
+> **Conseil**
 >
 > Pour ajouter un scénario, créer une nouvelle action, écrire "scenario" sans accent, appuyer sur la touche tabulation de votre clavier pour faire apparaître le sélecteur de scénario.
 

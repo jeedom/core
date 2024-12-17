@@ -41,7 +41,7 @@ Le plus simple pour avoir cette URL est d’aller sur la page **Analyse → Rés
 
 > **Note**
 >
-> Il est possible pour le champs \#ID\# de passer plusieurs commandes d’un coup. Pour cela, il faut passer un tableau en json (ex %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B et %5D). Le retour de Jeedom sera un json.
+> Il est possible pour le champ \#ID\# de passer plusieurs commandes d’un coup. Pour cela, il faut passer un tableau en json (ex %5B12,58,23%5D, à noter que \[ et \] doivent être encodés d’où les %5B et %5D). Le retour de Jeedom sera un json.
 
 > **Note**
 >
@@ -52,8 +52,8 @@ Le plus simple pour avoir cette URL est d’aller sur la page **Analyse → Rés
 Voici l’URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
 - **query** : question à poser à Jeedom.
-- **utf8** \[optionnel\] : indique à Jeedom si il faut encoder query en utf8 avant de chercher à répondre.
-- **emptyReply** \[optionnel\] : 0 pour que Jeedom réponde même si il n’a pas compris, 1 sinon.
+- **utf8** \[optionnel\] : indique à Jeedom s’il faut encoder query en utf8 avant de chercher à répondre.
+- **emptyReply** \[optionnel\] : 0 pour que Jeedom réponde même s’il n’a pas compris, 1 sinon.
 - **profile** \[optionnel\] : nom d’utilisateur de la personne déclenchant l’interaction.
 - **reply\_cmd** \[optionnel\] : ID de la commande à utiliser pour répondre à la demande.
 
@@ -62,13 +62,13 @@ Voici l’URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&typ
 Voici l’URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
 - **category** : catégorie du message à ajouter au centre de message.
-- **message** : message en question, attention à bien penser à encoder le message (espace devient %20, = %3D…​). Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
+- **message** : message en question, attention à bien penser à encoder le message (espace devient %20, = %3D…). Vous pouvez utiliser un outil, [ici](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
 Voici l’URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
-Renvoie en json la liste de tous les objets de Jeedom.
+Renvoie la liste de tous les objets de Jeedom sous la forme d’un json.
 
 ## Equipement
 
