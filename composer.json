@@ -7,8 +7,11 @@
     "psr/log": "^1.1"
   },
   "config": {
-    "allow-plugins": {
-      "php-http/discovery": true
-    }
+      "allow-plugins": {
+          "php-http/discovery": true
+      }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
   }
 }

@@ -46,3 +46,4 @@ tmp/*
 
 !.htaccess
 .env
+.phpunit.result.cache

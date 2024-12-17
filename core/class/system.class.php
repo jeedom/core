@@ -16,8 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* * ***************************Includes********************************* */
-
 class system {
 
 	private static $_hasExec = array();

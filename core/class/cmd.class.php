@@ -16,9 +16,6 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-/* * ***************************Includes********************************* */
-require_once __DIR__ . '/../../core/php/core.inc.php';
-
 /*
 Translate system scan core/template/dashboard files and set them in i18n all under "core\/template\/widgets.html" path
 -> translate::exec($string, 'core/template/widgets.html');
