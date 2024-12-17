@@ -81,18 +81,15 @@ if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	JEEDOM_INSTALL=0
-	if [ -f ${WEBSERVER_HOME}/initialisation ]; then
-		echo 'Jeedom code already present from image build, skipping download'
-		INSTALL_SCRIPT=${WEBSERVER_HOME}/install/install.sh
-		chmod +x ${INSTALL_SCRIPT}
-		rm -f ${WEBSERVER_HOME}/initialisation
-	else
-		rm -rf /root/install.sh
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
-		INSTALL_SCRIPT=/root/install.sh
-		chmod +x ${INSTALL_SCRIPT}
-		${INSTALL_SCRIPT} -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+
+	# do not re-install jeedom
+	if [ ! -f ${WEBSERVER_HOME}/core/config/common.config.sample.php ]; then
+		echo 'download again Jeedom'
+		/root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+		# jeedom installation : install composer
+		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -i docker
 	fi
+
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
