@@ -47,9 +47,17 @@ try {
 }
 
 function jeedomAutoload($_classname) {
+	// namespaced class : 
+	// remove 'jeedom' from namespace and replace \ by /
+	// jeedom\core\class\eqLogic --> __DIR__/core/class/eqLogic.class.php
+	// jeedom\plugin\atlas\core\class\atlas --> __DIR__/plugin/atlas/core/class/atlas.class.php
+	// jeedom\core\class\repo\github --> __DIR__/core/class/repo/github.class.php
+	$nspath = __DIR__ .'/../..' . str_replace( ['jeedom\\', '\\'], ['/', '/'], $_classname) . '.class.php';
 	/* core class always in /core/class : */
 	$path = __DIR__ . "/../../core/class/$_classname.class.php";
-	if (file_exists($path)) {
+	if (file_exists( $nspath)) {
+		require_once $nspath;
+	} else if (file_exists($path)) {
 		include_file('core', $_classname, 'class');
 	} else if (substr($_classname, 0, 4) === 'com_') {
 		/* class com_$1 in /core/com/$1.com.php */
