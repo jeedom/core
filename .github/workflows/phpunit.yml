@@ -1,0 +1,58 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+    branches:
+      - 'master'
+      - 'beta'
+      - 'alpha'
+
+permissions:
+  contents: read
+
+jobs:
+  phpunit:
+    name: PHP Unit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['7.4', '8.2']
+    services:
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --optimize-autoloader
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+            php-version: '${{ matrix.php-version }}'
+            extensions: json pdo_mysql curl gd imap xml opcache soap xml zip ssh2 mbstring ldap yaml snmp pcov
+            coverage: none
+
+      # Run Legacy test suite
+      - name: Run legacy test suite
+        env:
+          DATABASE_DSN: mysql://root:root@localhost:3306/jeedom_test
+        run: composer run-script test-legacy
+
+      # Run Unit test suite
+      - name: Run unit test suite
+        env:
+          DATABASE_DSN: mysql://root:root@localhost:3306/jeedom_test
+        run: composer run-script test-unit
+
+      # Run Backward Compatibility test suite
+      # If these tests fail, it means that the PR will have to be integrated into the futur major version.
+      # You need to ensure compatibility if you want your changes to be taken into account in the next minor version.
+      - name: Run BC test suite
+        env:
+          DATABASE_DSN: mysql://root:root@localhost:3306/jeedom_test
+        run: composer run-script test-bc

@@ -7,6 +7,11 @@ Thumbs.db
 .vscode
 ui
 composer.lock
+.env
+.env.local
+.env.*.local
+.phpunit.result.cache
+var
 
 test.php
 core/config/common.config.php
