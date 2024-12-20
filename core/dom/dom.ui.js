@@ -78,7 +78,7 @@ NodeList.prototype.unseen = function() {
   return this
 }
 Element.prototype.toggle = function() {
-  if (this.offsetParent === null){
+  if (this.offsetParent === null) {
     this.style.display = ''
   } else {
     this.style.display = 'none'
@@ -921,12 +921,12 @@ var jeeDialog = (function() {
       template.appendChild(dialogFooter)
 
       let buttons = {}
-      for ( let button of Object.entries(_params.buttons)) {
-        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]],button[1])
+      for (let button of Object.entries(_params.buttons)) {
+        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]], button[1])
       }
 
       for (let defaultButton of Object.entries(_params.defaultButtons)) {
-        if (! isset(buttons[defaultButton[0]])) {
+        if (!isset(buttons[defaultButton[0]])) {
           buttons[defaultButton[0]] = defaultButton[1]
         }
       }
@@ -1018,7 +1018,7 @@ var jeeDialog = (function() {
       }
       if (_params.isMainDialog) {
         backDrop.addEventListener('click', function(event) {
-          document.querySelectorAll('div.jeeDialog').forEach(_dialog => {
+          document.querySelectorAll('div.jeeDialog:not(.jeeDialogNoCloseBackdrop)').forEach(_dialog => {
             if (isset(_dialog._jeeDialog)) _dialog._jeeDialog.close(_dialog)
           })
         })
@@ -2099,10 +2099,10 @@ var jeeCtxMenu = function(_options) {
         ctxInstance.hide(event)
       }, 100)
     })
-  }else{
+  } else {
     document.addEventListener('click', event => {
       if (ctxMenuContainer.contains(event.target)) {
-        return;
+        return
       }
       setTimeout(function() {
         if (!ctxMenuContainer.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
