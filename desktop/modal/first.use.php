@@ -34,14 +34,6 @@ try {
 }
 
 $productName = config::byKey('product_name');
-if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
-	echo '<div class="col-md-12">';
-	echo '<a href="https://start.jeedom.com/" target="_blank">';
-	echo '<i class="fas fa-image"></i> {{Retrouvez le guide de démarrage}}';
-	echo '</a>';
-	echo ' {{de votre box officielle}} ' . $productName . '.';
-	echo '</div>';
-}
 
 if (config::byKey('jeedom::firstUse') == 1) {
 	echo '<button class="btn btn-xs btn-danger" id="bt_doNotDisplayFirstUse" style="position:absolute;right:15px;">';
@@ -84,11 +76,19 @@ if (config::byKey('jeedom::firstUse') == 1) {
 	<hr class="hrPrimary">
 	<?php
 	if (($docURl = config::byKey('doc::base_url')) != '') {
+		if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
+			echo '<div class="col-md-12">';
+			echo '<a href="https://start.jeedom.com/" target="_blank">';
+			echo '<i class="fas fa-image"></i> {{Retrouvez le guide de mise en service}}';
+			echo '</a>';
+			echo ' {{de votre box officielle}} ' . $productName . '.';
+			echo '</div>';
+		}
 		echo '<div class="col-md-12">';
 		echo '<a href="' . $docURl . '/' . config::byKey('language') . '/premiers-pas/" target="_blank">';
 		echo '<i class="fas fa-book"></i> {{La documentation de démarrage}}';
 		echo '</a>';
-		echo ' {{détaille les étapes de mise en service votre box}} ' . $productName . '.';
+		echo ' {{détaille les étapes de démarrage de votre box}} ' . $productName . '.';
 		echo '</div>';
 	}
 	?>
