@@ -20,11 +20,20 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 use Psr\Log\AbstractLogger;
+use Psr\Log\LogLevel;
 
 class log extends AbstractLogger {
 	/*     * *************************Constantes****************************** */
 
 	const DEFAULT_MAX_LINE = 200;
+    const LEVEL_DEBUG = 100;
+    const LEVEL_INFO = 200;
+    const LEVEL_NOTICE = 250;
+    const LEVEL_WARNING = 300;
+    const LEVEL_ERROR = 400;
+    const LEVEL_CRITICAL = 500;
+    const LEVEL_ALERT = 550;
+    const LEVEL_EMERGENCY = 600;
 
 	/*     * *************************Attributs****************************** */
 
@@ -32,14 +41,14 @@ class log extends AbstractLogger {
 
 	private static $config = null;
 	private static $level = array(
-		'debug' => 100,
-		'info'  => 200,
-		'notice' => 250,
-		'warning' => 300,
-		'error' => 400,
-		'critical' => 500,
-		'alert' => 550,
-		'emergency' => 600
+		LogLevel::DEBUG => self::LEVEL_DEBUG,
+        LogLevel::INFO => self::LEVEL_INFO,
+		LogLevel::NOTICE => self::LEVEL_NOTICE,
+		LogLevel::WARNING => self::LEVEL_WARNING,
+		LogLevel::ERROR => self::LEVEL_ERROR,
+		LogLevel::CRITICAL => self::LEVEL_CRITICAL,
+		LogLevel::ALERT => self::LEVEL_ALERT,
+		LogLevel::EMERGENCY => self::LEVEL_EMERGENCY
 	);
 
 	public function __construct($log_name) {
@@ -52,7 +61,28 @@ class log extends AbstractLogger {
 	}
 
 	public function log($level, $message, array $context = array()) {
-		log::add($this->_log_name, $level, $message);
+        if (trim($message) == '') {
+            return;
+        }
+        $level = strtolower($level);
+        $logLevel = (isset(self::$level[$level])) ? self::$level[$level] : self::$level[LogLevel::DEBUG];
+        if($logLevel < self::getLogLevel($this->_log_name)){
+            return;
+        }
+        $fp = fopen(self::getPathToLog($this->_log_name), 'a');
+        fwrite($fp,'['.date('Y-m-d H:i:s').']['.strtoupper($level).'] '. $message ."\n");
+        fclose($fp);
+        try {
+            $action = '<a href="/index.php?v=d&p=log&logfile=' . $this->_log_name . '">' . __('Log', __FILE__) . ' ' . $this->_log_name . '</a>';
+            $logicalId = $context['logicalId'] ?? '';
+            if ($logLevel == self::LEVEL_ERROR && self::getConfig('addMessageForErrorLog') == 1) {
+                @message::add($this->_log_name, $message, $action, $logicalId);
+            } elseif ($logLevel >= self::LEVEL_CRITICAL && $this->_log_name != 'update') {
+                @message::add($this->_log_name, $message, $action, $logicalId);
+            }
+        } catch (Exception $e) {
+
+        }
 	}
 
 	/*     * ***********************Methode static*************************** */
@@ -92,7 +122,7 @@ class log extends AbstractLogger {
 	}
 
 	public static function convertLogLevel($_level = 100) {
-		if ($_level >= 600) {
+		if ($_level >= self::$level[LogLevel::EMERGENCY]) {
 			return 'none';
 		}
 		foreach (self::$level as $key => $value) {
@@ -107,28 +137,13 @@ class log extends AbstractLogger {
 	 * Add message and keep it less than 1000 lines
 	 * @param string $_type message type (info, debug, warning, danger)
 	 * @param string $_message message added into log
+     *
+     * @deprecated Will be removed in version 5.0.0. Replaced by log::getLogger($_log)->log($_type, $_message, ['logicalId' => $_logicalId]);
 	 */
    public static function add($_log, $_type, $_message, $_logicalId = '') {
-		if (trim($_message) == '') {
-			return;
-		}
-		$level = (isset(self::$level[strtolower($_type)])) ? self::$level[strtolower($_type)] : 100;
-		if($level < self::getLogLevel($_log)){
-			return;
-		}
-		$fp = fopen(self::getPathToLog($_log), 'a');
-		fwrite($fp,'['.date('Y-m-d H:i:s').']['.strtoupper($_type).'] '.$_message."\n");  
-		fclose($fp);
-		try {
-            $action = '<a href="/index.php?v=d&p=log&logfile=' . $_log . '">' . __('Log', __FILE__) . ' ' . $_log . '</a>';
-			if ($level == 400 && self::getConfig('addMessageForErrorLog') == 1) {
-				@message::add($_log, $_message, $action, $_logicalId);
-			} elseif ($level >= 500 && $_log != 'update') {
-				@message::add($_log, $_message, $action, $_logicalId);
-			}
-		} catch (Exception $e) {
-			
-		}
+       trigger_error('The '.__CLASS__.'::'.__METHOD__.' method is deprecated and will be removed in version 5.0.0.  Replaced by log::getLogger($_log)->log($_type, $_message, [\'logicalId\' => $_logicalId]);', E_USER_DEPRECATED);
+
+       self::getLogger($_log)->log($_type, $_message, array('logicalId' => $_logicalId));
 	}
 
 	public static function chunk($_log = '') {
@@ -478,27 +493,16 @@ class log extends AbstractLogger {
 	/**
 	 * Set php error level
 	 * @param int $log_level
-	 * @since 2.1.4
-	 * @author KwiZeR <kwizer@kw12er.com>
 	 */
 	public static function define_error_reporting($log_level) {
 		switch ($log_level) {
-			case 100:
-			case 200:
-			case 250:
+            case self::LEVEL_DEBUG:
+            case self::LEVEL_INFO:
+            case self::LEVEL_NOTICE:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 				break;
-			case 300:
+			case self::LEVEL_WARNING:
 				error_reporting(E_ERROR | E_WARNING | E_PARSE);
-				break;
-			case 400:
-				error_reporting(E_ERROR | E_PARSE);
-				break;
-			case 500:
-				error_reporting(E_ERROR | E_PARSE);
-				break;
-			case 600:
-				error_reporting(E_ERROR | E_PARSE);
 				break;
 			default:
 				error_reporting(E_ERROR | E_PARSE);
@@ -506,11 +510,11 @@ class log extends AbstractLogger {
 	}
 
 	public static function exception($e) {
-		if (self::getConfig('log::level') > 100) {
+		if (self::getConfig('log::level') > self::LEVEL_DEBUG) {
 			return $e->getMessage();
-		} else {
-			return $e->getMessage()."\n".$e->getTraceAsString();
 		}
+
+        return $e->getMessage()."\n".$e->getTraceAsString();
 	}
 
 	/*     * *********************Methode d'instance************************* */
