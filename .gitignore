@@ -46,3 +46,5 @@ tmp/*
 
 !.htaccess
 .env
+
+/phpcs.phar
