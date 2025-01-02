@@ -222,7 +222,7 @@ class jeedom {
 		$state = self::isDateOk();
 		$cache = cache::byKey('hour');
 		$lastKnowDate = $cache->getValue();
-		if($lastKnowDate === ""){
+		if ($lastKnowDate === "") {
 			$lastKnowDate = 0;
 		}
 		$return[] = array(
@@ -736,27 +736,26 @@ class jeedom {
 				}
 				if (file_exists('/dev/ttyS1')) {
 					$usbMapping['Jeedom Luna Zwave'] = '/dev/ttyS1';
-				}
-				if (file_exists('/dev/ttyS1')) {
 					$usbMapping['Odroid C2'] = '/dev/ttyS1';
 				}
 				if (file_exists('/dev/ttyS2')) {
 					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
 				}
 				if (file_exists('/dev/ttyS3')) {
-					$usbMapping['Orange PI'] = '/dev/ttyS3';
+					$usbMapping['Orange Pi'] = '/dev/ttyS3';
+				}
+				if (file_exists('/dev/ttyAML1')) {
+					$usbMapping['Jeedom Smart'] = '/dev/ttyAML1';
+					$usbMapping['Odroid Armbian'] = '/dev/ttyAML1';
+				}
+				if (file_exists('/dev/ttyAMA0')) {
+					$usbMapping['Raspberry Pi'] = '/dev/ttyAMA0';
+				}
+				if (file_exists('/dev/S2')) {
+					$usbMapping['Banana Pi'] = '/dev/S2';
 				}
 				if (file_exists('/dev/ttymxc0')) {
 					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
-				}
-				if (file_exists('/dev/ttyAML1')) {
-					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
-				}
-				if (file_exists('/dev/ttyAMA0')) {
-					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
-				}
-				if (file_exists('/dev/S2')) {
-					$usbMapping['Banana PI'] = '/dev/S2';
 				}
 				foreach (ls('/dev/', 'ttyAMA*') as $value) {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
@@ -1741,7 +1740,7 @@ class jeedom {
 	}
 
 	public static function getTmpFolder($_plugin = '') {
-		if(isset(self::$cache['getTmpFolder::' . $_plugin])){
+		if (isset(self::$cache['getTmpFolder::' . $_plugin])) {
 			return self::$cache['getTmpFolder::' . $_plugin];
 		}
 		$return = '/' . trim(config::byKey('folder::tmp'), '/');
@@ -1798,7 +1797,7 @@ class jeedom {
 			$result = 'Atlas';
 		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
-		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
+		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'), 'systemd') === false) {
 			$result = 'docker';
 		}
 		config::save('hardware_name', $result);
