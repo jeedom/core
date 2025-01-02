@@ -29,7 +29,12 @@ class config {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getDefaultConfiguration(string $_plugin = 'core') {
+	/**
+	 * Get default configuration for core or plugin
+	 * @param string $_plugin
+	 * @return array
+	 */
+	public static function getDefaultConfiguration(string $_plugin = 'core'): array {
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			if ($_plugin == 'core') {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
@@ -43,12 +48,30 @@ class config {
 					self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
 				}
 			}
-		}
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			self::$defaultConfiguration[$_plugin] = array();
+
+			if (!isset(self::$defaultConfiguration[$_plugin])) {
+				self::$defaultConfiguration[$_plugin] = self::getSpecificConfiguration($_plugin);
+			} else {
+				self::$defaultConfiguration[$_plugin] = array_replace_recursive(self::$defaultConfiguration[$_plugin], self::getSpecificConfiguration($_plugin));
+			}
 		}
 		return self::$defaultConfiguration[$_plugin];
 	}
+
+	/**
+	 * Get specific configuration for known boards
+	 * @param string $_plugin
+	 * @return array
+	 */
+	private static function getSpecificConfiguration(string $_plugin): array {
+		$hardware = strtolower(jeedom::getHardwareName());
+		$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
+		if (isset($specific[$hardware][$_plugin])) {
+			return array($_plugin => $specific[$hardware][$_plugin]);
+		}
+		return array();
+	}
+
 	/**
 	 * Save key to config
 	 * @param string $_key
@@ -245,6 +268,16 @@ class config {
 			$result['value'] = is_json($result['value'], $result['value']);
 		}
 		return $results;
+	}
+
+	public static function searchValue($_value) {
+		$values = array(
+			'value' => $_value
+		);
+		$sql = 'SELECT *
+		FROM config
+		WHERE value=:value';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
 	public static function genKey($_car = 64) {
