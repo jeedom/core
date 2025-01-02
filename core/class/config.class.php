@@ -270,13 +270,17 @@ class config {
 		return $results;
 	}
 
-	public static function searchValue($_value) {
+	public static function searchValue($_value, $_key = null) {
 		$values = array(
 			'value' => $_value
 		);
 		$sql = 'SELECT *
 		FROM config
 		WHERE value=:value';
+		if ($_key) {
+			$values['key'] = $_key;
+			$sql .= ' AND `key`=:key';
+		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
