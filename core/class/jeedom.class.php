@@ -263,7 +263,7 @@ class jeedom {
 
 		$return[] = array(
 			'name' => __('Version OS', __FILE__),
-			'state' => (system::getDistrib() != 'debian' || version_compare(system::getOsVersion(), '10', '>=')),
+			'state' => (system::getDistrib() != 'debian' || version_compare(system::getOsVersion(), '11', '>=')),
 			'result' => system::getDistrib() . ' ' . system::getOsVersion(),
 			'comment' => '',
 			'key' => 'os::version'
