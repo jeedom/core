@@ -274,9 +274,8 @@ class config {
 		$values = array(
 			'value' => $_value
 		);
-		$sql = 'SELECT *
-		FROM config
-		WHERE value=:value';
+		$sql = (!$_key) ? 'SELECT `plugin`,`key`' : 'SELECT `plugin`';
+		$sql .= ' FROM config	WHERE `value`=:value';
 		if ($_key) {
 			$values['key'] = $_key;
 			$sql .= ' AND `key`=:key';

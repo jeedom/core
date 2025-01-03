@@ -10,6 +10,6 @@ $renamed = array(
 );
 foreach ($renamed as $previousValue => $newValue) {
     foreach ((config::searchValue($previousValue, 'port')) as $config) {
-        config::save($config['key'], $newValue, $config['plugin']);
+        config::save('port', $newValue, $config['plugin']);
     }
 }
