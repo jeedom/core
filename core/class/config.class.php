@@ -134,8 +134,8 @@ class config {
 
 	/**
 	 * Delete key from config
-	 * @param string $_key nom de la clef à supprimer
-	 * @return boolean vrai si ok faux sinon
+	 * @param string $_key
+	 * @return boolean
 	 */
 	public static function remove(string $_key, string $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
@@ -163,8 +163,8 @@ class config {
 
 	/**
 	 * Get config by key
-	 * @param string $_key nom de la clef dont on veut la valeur
-	 * @return string valeur de la clef
+	 * @param string $_key
+	 * @return string
 	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {
@@ -270,7 +270,13 @@ class config {
 		return $results;
 	}
 
-	public static function searchValue($_value, $_key = null) {
+	/**
+	 * Search value in config
+	 * @param mixed $_value
+	 * @param string $_key (optional)
+	 * @return array
+	 */
+	public static function searchValue($_value, string $_key = null): array {
 		$values = array(
 			'value' => $_value
 		);
