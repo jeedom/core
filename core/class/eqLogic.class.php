@@ -639,7 +639,7 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget text-center ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="' . $this->getId() . '">';
+		$html .= '<div class="eqLogic eqLogic-widget battery-widget text-center ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="' . $this->getId() . '">';
 
 		$eqName = $this->getName();
 		if ($_version == 'mobile') {
