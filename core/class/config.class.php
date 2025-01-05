@@ -122,6 +122,11 @@ class config {
 			$sql = 'DELETE FROM config
 			WHERE plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
+            foreach (self::$cache as $cacheKey => $value) {
+                if (strpos($cacheKey, $_plugin . '::') === 0) {
+                    unset(self::$cache[$cacheKey]);
+                }
+            }
 		} else {
 			$values = array(
 				'plugin' => $_plugin,
@@ -131,9 +136,7 @@ class config {
 			WHERE `key`=:key
 			AND plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-			if (isset(self::$cache[$_plugin . '::' . $_key])) {
-				unset(self::$cache[$_plugin . '::' . $_key]);
-			}
+            unset(self::$cache[$_plugin . '::' . $_key]);
 		}
 		return true;
 	}
@@ -197,7 +200,7 @@ class config {
 			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'], $_plugin::$_encryptConfigKey)) {
 				$value['value'] = utils::decrypt($value['value']);
 			} else if ($value['key'] == 'api') {
-				$value['key'] = utils::decrypt($value['key']);
+				$value['value'] = utils::decrypt($value['value']);
 			}
 			$return[$value['key']] = $value['value'];
 		}
@@ -248,6 +251,9 @@ class config {
 	}
 
 	public static function genKey($_car = 64) {
+        if ($_car > 256) {
+            throw new \Exception('Key length too long');
+        }
 		$key = '';
 		$chaine = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
