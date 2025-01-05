@@ -167,6 +167,7 @@ step_6_jeedom_download() {
   fi
   cp -R /root/core-*/* ${WEBSERVER_HOME}
   cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
+  cp /root/core/.htaccess ${WEBSERVER_HOME}/.htaccess
   find ${WEBSERVER_HOME}/ -exec touch {} +
   rm -rf /root/core-* > /dev/null 2>&1
   rm -rf ${WEBSERVER_HOME}/core-* > /dev/null 2>&1
