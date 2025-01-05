@@ -83,6 +83,7 @@
 - Soporte para eventos de tipo personalizado #pluginClass::*# O #pluginClass::customId# [ENLACE](https://github.com/jeedom/core/pull/2964)
 - Se agregó un botón de actualización a la línea "principal" además del que está en la parte superior derecha [ENLACE](https://github.com/jeedom/core/pull/2974)
 - Reparar la pantalla "paquete" en el nivel del paquete python2 [ENLACE](https://github.com/jeedom/core/pull/2973)
+- Se corrigió un error al actualizar el equipo en la página de la batería [ENLACE](https://github.com/jeedom/core/pull/3008)
 
 >**IMPORTANTE**
 >
