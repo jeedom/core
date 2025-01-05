@@ -63,12 +63,12 @@ if( !in_array( 'mysql', PDO::getAvailableDrivers())){
   echo "Driver mysql disponible.\n";
 }
 // check database configuration
-if(!file_exists(__DIR__ . '/core/config/common.config.php')){
-  echo 'Configuration manquante ! core/config/common.config.php non généré.';
-  exit(1);
+try {
+    require_once __DIR__ . '/core/config/common.config.env.php';
+} catch (\RuntimeException $e) {
+    echo 'Configuration manquante : ' . $e->getMessage();
+    exit(1);
 }
-
-require_once __DIR__ . '/core/config/common.config.php';
 
 // check local socket if localhost is configured
 if(isset($CONFIG['db']['unix_socket']) || (isset($CONFIG['db']['host']) && $CONFIG['db']['host'] == 'localhost')) {

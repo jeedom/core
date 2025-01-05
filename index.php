@@ -16,13 +16,15 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 try {
-	//no config, install Jeedom!
-	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
-		echo 'Jeedom not configure, no common.config.php found';
-		die();
-	}
+    //no config, error!
+    require_once __DIR__ . '/core/config/common.config.env.php';
+} catch (\RuntimeException $e) {
+    echo 'Jeedom not configure, no common.config.php found';
+    die();
+}
 
-	require_once __DIR__ . "/core/php/core.inc.php";
+try {
+    require_once __DIR__ . "/core/php/core.inc.php";
 
 	if ((!isset($_GET['ajax']) || $_GET['ajax'] != 1) && count(system::ps('install/restore.php', 'sudo')) > 0) {
 			require_once __DIR__.'/restoring.php';

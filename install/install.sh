@@ -311,12 +311,15 @@ step_9_jeedom_configuration() {
     mariadb_sql "CREATE DATABASE jeedom;"
     mariadb_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
 
+    # Path to remove
     cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#PASSWORD#/${MARIADB_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
     sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
+
+    echo "DATABASE_DSN=\"mysql://jeedom:${MARIADB_JEEDOM_PASSWD}@localhost:3306/jeedom\"" > ${WEBSERVER_HOME}/.env
   fi
   chmod 775 -R ${WEBSERVER_HOME}
   chown -R www-data:www-data ${WEBSERVER_HOME}
