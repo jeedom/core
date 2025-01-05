@@ -1952,6 +1952,7 @@ var jeeCtxMenu = function(_options) {
       //Events
       itemDiv.addEventListener('mouseup', function(event) { //Context menu item click:
         if (event.target.hasClass('disabled')) return
+        if (isset(event.button) && event.button === 2) return
         setTimeout(() => { //Wait for mouseup firing default click
           let then = true
           event.realTrigger = ctxInstance.realTrigger
