@@ -161,7 +161,7 @@ class log extends AbstractLogger {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 		try {
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;'. system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path.' > /dev/null 2>&1;'.system::getCmdSudo() . ' echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;'. system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $_path.' > /dev/null 2>&1;'.system::getCmdSudo() . ' echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		} catch (\Exception $e) {
 		}
 		@chown($_path, system::get('www-uid'));
