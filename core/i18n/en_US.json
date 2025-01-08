@@ -2027,7 +2027,7 @@
         "Champ à utiliser pour déterminer l'entête HTTP contenant l'identifiant utilisateur (e.g HTTP_REMOTE_USER)": "Field to use to determine the HTTP header containing the user identifier (eg HTTP_REMOTE_USER)",
         "Dépendance et démon": "Dependency and daemon",
         "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle": "Allow the installation of dependencies of the same plugin less than 45s apart",
-        "Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle": "Allow the launch of the daemon of the same plugin less than 30s apart",
+        "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle": "Allow launching the daemon of the same plugin less than 45s apart",
         "IPs bannies": "IPs banned",
         "Date": "Date",
         "Date de fin": "End date",
