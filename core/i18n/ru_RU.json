@@ -3598,6 +3598,7 @@
         "Valider": "Validate",
         "Annuler": "Отменить",
         "Sélectionner la commande": "Выберите команду"
+		"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Выберите переменную",

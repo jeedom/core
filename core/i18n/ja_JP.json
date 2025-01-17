@@ -3598,6 +3598,7 @@
         "Valider": "検証",
         "Annuler": "キャンセル",
         "Sélectionner la commande": "コマンドを選択"
+		"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "変数を選択してください",

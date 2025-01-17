@@ -3598,6 +3598,7 @@
         "Valider": "Onaylayın",
         "Annuler": "Iptal et",
         "Sélectionner la commande": "Komutayı seçin"
+		"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Değişken seçin",
