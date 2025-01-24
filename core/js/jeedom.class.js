@@ -155,7 +155,7 @@ jeedom.init = function() {
       downloadXLS: '{{Téléchargement XLS}}',
       printChart: '{{Imprimer}}',
       viewFullscreen: '{{Plein écran}}',
-	  exitFullscreen: '{{Sortir du plein écran}}',
+      exitFullscreen: '{{Sortir du plein écran}}',
     },
     colors: [
       cssComputedStyle.getPropertyValue('--al-info-color'),
