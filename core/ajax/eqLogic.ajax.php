@@ -408,6 +408,9 @@ try {
 		if (isset($used['eqLogic' . $eqLogic->getId()])) {
 			unset($used['eqLogic' . $eqLogic->getId()]);
 		}
+		if (isset($used['object' . $eqLogic->getObject_id()])) {
+			unset($used['object' . $eqLogic->getObject_id()]);
+		}
 		foreach (($eqLogic->getCmd()) as $cmd) {
 			if (isset($used['cmd' . $cmd->getId()])) {
 				unset($used['cmd' . $cmd->getId()]);
