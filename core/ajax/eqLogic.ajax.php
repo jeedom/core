@@ -25,8 +25,8 @@ try {
 	}
 
 	ajax::init(array('uploadImage'));
-  
-  	if (init('action') == 'uploadImage') {
+
+	if (init('action') == 'uploadImage') {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
@@ -422,6 +422,10 @@ try {
 			}
 			if (count($cmdData['node']) > 0) {
 				foreach ($cmdData['node'] as $name => $data) {
+					if (cmd::byId(str_replace('cmd', '', $data['id']))->getEqLogic_id() == $eqLogic->getId()) {
+						continue;
+					}
+
 					$data['sourceName'] = $cmd->getName();
 					$used[$name . $cmd->getName()] = $data;
 				}
