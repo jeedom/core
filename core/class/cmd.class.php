@@ -992,10 +992,10 @@ class cmd {
 			$_value = 0;
 		}
 		if (trim($_value) == '' && $_value !== false && $_value !== 0) {
-			if($this->getSubType() == 'numeric'){
+			if ($this->getSubType() == 'numeric') {
 				return 0;
 			}
-			if($this->getSubType() == 'binary'){
+			if ($this->getSubType() == 'binary') {
 				return 0;
 			}
 			return '';
@@ -2812,7 +2812,7 @@ class cmd {
 		return $return;
 	}
 
-	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
+	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null, $_include_use = true) {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::cmd::drill');
 		}
@@ -2838,7 +2838,6 @@ class cmd {
 			'url' => $this->getEqLogic()->getLinkToConfiguration(),
 		);
 		$usedBy = $this->getUsedBy();
-		$use = $this->getUse();
 		addGraphLink($this, 'cmd', $usedBy['scenario'], 'scenario', $_data, $_level, $_drill);
 		foreach ($usedBy['plugin'] as $key => $value) {
 			addGraphLink($this, 'cmd', $value, $key, $_data, $_level, $_drill);
@@ -2849,10 +2848,13 @@ class cmd {
 		addGraphLink($this, 'cmd', $usedBy['plan'], 'plan', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'cmd', $usedBy['plan3d'], 'plan3d', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
 		addGraphLink($this, 'cmd', $usedBy['view'], 'view', $_data, $_level, $_drill, array('dashvalue' => '2,6', 'lengthfactor' => 0.6));
-		addGraphLink($this, 'cmd', $use['scenario'], 'scenario', $_data, $_level, $_drill);
-		addGraphLink($this, 'cmd', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
-		addGraphLink($this, 'cmd', $use['cmd'], 'cmd', $_data, $_level, $_drill);
-		addGraphLink($this, 'cmd', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		if ($_include_use) {
+			$use = $this->getUse();
+			addGraphLink($this, 'cmd', $use['scenario'], 'scenario', $_data, $_level, $_drill);
+			addGraphLink($this, 'cmd', $use['eqLogic'], 'eqLogic', $_data, $_level, $_drill);
+			addGraphLink($this, 'cmd', $use['cmd'], 'cmd', $_data, $_level, $_drill);
+			addGraphLink($this, 'cmd', $use['dataStore'], 'dataStore', $_data, $_level, $_drill);
+		}
 		addGraphLink($this, 'cmd', $this->getEqLogic(), 'eqLogic', $_data, $_level, $_drill, array('dashvalue' => '1,0', 'lengthfactor' => 0.6));
 		return $_data;
 	}
@@ -2860,7 +2862,7 @@ class cmd {
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$cmds = array_merge(self::searchConfiguration('#' . $this->getId() . '#'), cmd::byValue($this->getId()));
-		if(is_array($cmds) && count($cmds) > 0){
+		if (is_array($cmds) && count($cmds) > 0) {
 			foreach ($cmds as $cmd) {
 				$return['cmd'][$cmd->getId()] = $cmd;
 			}
