@@ -379,6 +379,25 @@ try {
 		$cron->setTimeout(10);
 		$cron->save();
 
+		$cron = cron::byClassAndFunction('network', 'cron10');
+		if (!is_object($cron)) {
+			echo "Create network::cron10\n";
+			$cron = new cron();
+			$cron->setClass('network');
+			$cron->setFunction('cron10');
+			$rand_min = rand(0,9);
+			$cron = '';
+			for($i=0;$i<6;$i++){
+				$cron .= ($rand_min+($i*10)).',';
+			}
+			$cron = trim($cron,',').' * * * *';
+			$cron->setSchedule($cron);
+			$cron->setEnable(1);
+			$cron->setDeamon(0);
+			$cron->setTimeout(60);
+			$cron->save();
+		}
+
 		if (!file_exists(__DIR__ . '/../plugins')) {
 			mkdir(__DIR__ . '/../plugins');
 		}
