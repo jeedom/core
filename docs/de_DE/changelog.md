@@ -84,6 +84,7 @@
 - Zusätzlich zu der Schaltfläche oben rechts wurde der Zeile „Kern“ eine Schaltfläche „Aktualisieren“ hinzugefügt [LINK](https://github.com/jeedom/core/pull/2974)
 - Korrigieren Sie den Bildschirm „Paket“ auf Python2-Paketebene [LINK](https://github.com/jeedom/core/pull/2973)
 - Ein Fehler beim Aktualisieren der Ausrüstung auf der Batterieseite wurde behoben [LINK](https://github.com/jeedom/core/pull/3008)
+- .
 
 >**WICHTIG**
 >

@@ -84,6 +84,7 @@
 - Added an update button on the "core" line in addition to the one on the top right [LINK](https://github.com/jeedom/core/pull/2974)
 - Fixed "package" screen at python2 packages level [LINK](https://github.com/jeedom/core/pull/2973)
 - Fixed a bug when updating equipment on the battery page [LINK](https://github.com/jeedom/core/pull/3008)
+- .
 
 >**IMPORTANT**
 >
