@@ -1079,13 +1079,6 @@ class jeedom {
 
 	public static function cron10() {
 		try {
-			network::cron10();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . log::exception($e));
-		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . log::exception($e));
-		}
-		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
