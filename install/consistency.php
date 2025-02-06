@@ -386,12 +386,12 @@ try {
 			$cron->setClass('network');
 			$cron->setFunction('cron10');
 			$rand_min = rand(0,9);
-			$cron = '';
+			$cronString = '';
 			for($i=0;$i<6;$i++){
-				$cron .= ($rand_min+($i*10)).',';
+				$cronString .= ($rand_min+($i*10)).',';
 			}
-			$cron = trim($cron,',').' * * * *';
-			$cron->setSchedule($cron);
+			$cronString = trim($cronString,',').' * * * *';
+			$cron->setSchedule($cronString);
 			$cron->setEnable(1);
 			$cron->setDeamon(0);
 			$cron->setTimeout(60);
