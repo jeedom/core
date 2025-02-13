@@ -84,6 +84,7 @@
 - Added an update button on the "core" line in addition to the one on the top right [LINK](https://github.com/jeedom/core/pull/2974)
 - Fixed "package" screen at python2 packages level [LINK](https://github.com/jeedom/core/pull/2973)
 - Fixed a bug when updating equipment on the battery page [LINK](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
 
 >**IMPORTANT**
 >

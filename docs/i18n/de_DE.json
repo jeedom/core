@@ -1384,6 +1384,7 @@
         "Ajout d'un bouton de mise à jour sur la ligne \"core\" en plus de celui en haut à droite": "Zusätzlich zu der Schaltfläche oben rechts wurde der Zeile „Kern“ eine Schaltfläche „Aktualisieren“ hinzugefügt",
         "Correction de l'écran \"package\" au niveau des packages python2": "Korrigieren Sie den Bildschirm „Paket“ auf Python2-Paketebene",
         "Correction d'un bug lors de la mise à jour des équipements sur la page de batterie": "Ein Fehler beim Aktualisieren der Ausrüstung auf der Batterieseite wurde behoben",
+        "La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure": "La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure",
         "Dû à la refonte des logs et la réinternalisation de bibliothèques, lors de la mise à jour vous pouvez avoir une erreur type": "Aufgrund der Überarbeitung der Protokolle und der Reinternalisierung der Bibliotheken kann es beim Update zu einem Standardfehler kommen",
         "rien de grave) il suffit de relancer la mise à jour": "nichts Ernstes) Starten Sie einfach das Update neu",
         "La restauration d'un backup 4": "Wiederherstellen eines Backups 4",
