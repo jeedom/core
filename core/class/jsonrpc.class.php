@@ -71,7 +71,15 @@ class jsonrpc {
 		exit;
 	}
 	
-	public function makeSuccess($_result = 'ok') {
+	public function makeSuccess($_result) {
+		if(is_object($_result)){
+			$_result = utils::o2a($_result);
+		}
+
+		if(empty($_result)){
+			$_result = 'ok';
+		}
+
 		$return = array(
 			'jsonrpc' => '2.0',
 			'id' => $this->id,
