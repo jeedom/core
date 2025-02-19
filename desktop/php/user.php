@@ -56,6 +56,7 @@ sendVarToJS('jeeFrontEnd.ldapEnable', config::byKey('ldap::enable'));
 		</thead>
 		<tbody>
 			<?php
+			$sessions = null;
 			try {
 				$sessions = listSession();
 			} catch (Exception $e) {
