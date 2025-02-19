@@ -195,21 +195,16 @@ try {
 	echo "OK\n";
 	
 	foreach (plugin::listPlugin(true) as $plugin) {
-		$plugin_id = null;
 		try {
 			$plugin_id = $plugin->getId();
 			$dependancy_info = $plugin->dependancy_info(true);
 			if (method_exists($plugin_id, 'restore')) {
-				echo 'Restoring Plugin: ' . $plugin_id . '...';
+				echo 'Restoring Plugin : ' . $plugin_id . '...';
 				$plugin_id::restore();
 				echo "OK\n";
 			}
 		} catch (\Exception $e) {
-			if ($plugin_id !== null) {
-				echo '[error] on plugin: ' . $plugin_id . ' => ' . $e->getMessage() . "\n";
-			} else {
-				echo '[error] on unknown plugin => ' . $e->getMessage() . "\n";
-			}
+			echo '[error] on plugin : '.$plugin_id. ' => '.$e->getMessage();
 		}
 	}
 	config::save('hardware_name', '');

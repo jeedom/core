@@ -28,7 +28,6 @@ $allObject = jeeObject::buildTree(null, true);
       }
 
       $synthAction = $_object->getConfiguration('synthToAction', -1);
-      $dataUrl = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId() . '&childs=0&btover=1';
       if ($synthAction != -1 && $synthAction != 'synthToDashboard') {
         if ($synthAction == 'synthToView') {
           $dataUrl = 'index.php?v=d&p=view&view_id=' . $_object->getConfiguration('synthToView');
@@ -39,7 +38,9 @@ $allObject = jeeObject::buildTree(null, true);
         if ($synthAction == 'synthToPlan3d') {
           $dataUrl = 'index.php?v=d&p=plan3d&plan3d_id=' . $_object->getConfiguration('synthToPlan3d');
         }
-      } 
+      } else {
+        $dataUrl = 'index.php?v=d&p=dashboard&object_id=' . $_object->getId() . '&childs=0' . '&btover=1';
+      }
 
       $div .= '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">';
       $div .= '<div class="objectPreview cursor shadowed fullCorner" style="background:url(' . $backUrl . ')" data-url="' . $dataUrl . '" data-object_id="' . $_object->getId() . '">';

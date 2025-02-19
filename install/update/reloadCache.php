@@ -34,7 +34,7 @@ try {
         }
         foreach ($data['eqLogic'] as $id => $value) {
             $eqLogic = eqLogic::byId($id);
-            if(is_object($eqLogic)){
+            if(is_object($cmd)){
                 $eqLogic->setCache($value);
             }
         }
