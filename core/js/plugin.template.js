@@ -411,7 +411,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           success: function(data) {
             var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + textEqtype + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
             if (Object.keys(data).length > 0) {
-              text += ' </br> {{Il est utilisé par ou utilise :}}</br>'
+              text += ' </br> {{Il est utilisé par:}}</br>'
               var complement = null
               for (var i in data) {
                 complement = ''
