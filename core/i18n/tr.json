@@ -3555,7 +3555,7 @@
         "copie": "copie",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Cihazı silmek istemekden eminmisiniz",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Veuillez d\\'abord sélectionner un": "Once bitane seçin",
         "Configuration du plugin": "Eklentinin ayarları",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Komutasını test etmeden önce cihazı aktif hale getirin"

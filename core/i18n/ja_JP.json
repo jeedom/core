@@ -3555,7 +3555,7 @@
         "copie": "copie",
         "Nom de la copie de l\\'équipement ?": "機器のコピーの名前？",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "機器を削除してもよろしいですか",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Veuillez d\\'abord sélectionner un": "を選択してください",
         "Configuration du plugin": "プラグイン構成",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "コントロールをテストする前に、機器をアクティブにしてください"

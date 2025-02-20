@@ -3555,7 +3555,7 @@
         "copie": "Copiar",
         "Nom de la copie de l\\'équipement ?": "Nombre de la copia del equipo?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "¿Está seguro de que desea eliminar el equipo?",
-        "Il est utilisé par ou utilise :": "Es utilizado por o utiliza:",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Veuillez d\\'abord sélectionner un": "Primero seleccione un",
         "Configuration du plugin": "Configuración del complemento",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Por favor, active el dispositivo antes de probar uno de sus comandos"

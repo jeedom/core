@@ -3555,7 +3555,7 @@
         "copie": "copy",
         "Nom de la copie de l\\'équipement ?": "Name of equipment copy?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Are you sure you want to delete the equipment",
-        "Il est utilisé par ou utilise :": "It is used by or uses:",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Veuillez d\\'abord sélectionner un": "Please first select a",
         "Configuration du plugin": "Plugin configuration",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Please activate the equipment before testing any of its commands"

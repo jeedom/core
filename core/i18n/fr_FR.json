@@ -3555,7 +3555,7 @@
         "copie": "copie",
         "Nom de la copie de l\\'équipement ?": "Nom de la copie de l\\'équipement ?",
         "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Êtes-vous sûr de vouloir supprimer l\\'équipement",
-        "Il est utilisé par ou utilise :": "Il est utilisé par ou utilise :",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Veuillez d\\'abord sélectionner un": "Veuillez d\\'abord sélectionner un",
         "Configuration du plugin": "Configuration du plugin",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Veuillez activer l\\'équipement avant de tester une de ses commandes"
