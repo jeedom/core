@@ -278,10 +278,24 @@ sendVarToJS('market_display_info', $market_array);
 <script>
   (function() { // Self Isolation!
 
+    function compareVersionsCore(v1, v2) {
+        const v1Parts = v1.split('.').map(Number);
+        const v2Parts = v2.split('.').map(Number);
+
+        for (let i = 0; i < Math.max(v1Parts.length, v2Parts.length); i++) {
+            const v1Part = v1Parts[i] || 0;
+            const v2Part = v2Parts[i] || 0;
+
+            if (v1Part > v2Part) return 1;
+            if (v1Part < v2Part) return -1;
+        }
+
+        return 0;
+    }
 
     jeedom.version({
         success: function(version) {
-            if (market_display_info.parameters.minJeedomVersion >= version) {
+            if(compareVersions(market_display_info.parameters.minJeedomVersion, version) > 0) {
                 var installButtons = document.querySelectorAll('.bt_installFromMarket');
                 installButtons.forEach(function(installButton) {
                     installButton.style.display = 'none';
