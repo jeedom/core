@@ -19,7 +19,7 @@
 use PHPUnit\Framework\TestCase;
 
 class pluginTest extends TestCase {
-	public function getSources() {
+	public static function getSources() {
 		return array(
 			array('market', array(
 				'version' => 'stable',

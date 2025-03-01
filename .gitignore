@@ -45,5 +45,6 @@ tmp/*
 
 !.htaccess
 .env
+.phpunit.result.cache
 .phpstan.cache
 phpstan.phar
