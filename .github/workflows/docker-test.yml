@@ -1,13 +1,17 @@
-# build docker image based on debian bullseye and bookworm
+# build docker image based on debian bullseye or bookworm
 # start both containers and run sick.php
+# install composer dev depedencies and run phpunits into running containers
 # stop & clean
-name: Docker Test Image
+name: Integrated PHPUnit
 
 on:
   # only trigger CI when pull request on following branches
   pull_request:
     branches:
       - 'alpha'
+  push:
+    branches:
+      - 'feat/run_phpunit'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -30,21 +34,26 @@ jobs:
         run: |
           docker build -t jeedom:bullseye --build-arg DEBIAN=bullseye --build-arg DATABASE=1 .
       - name: run jeedom:bullseye and check
-        # build current image for bullseye and check it
+        # run current image for bullseye and check it
         run: |
           docker run -p 80:80 -d --rm --name jeedom_bullseye jeedom:bullseye
           sleep 45
           docker exec jeedom_bullseye php sick.php
+          docker exec jeedom_bullseye /bin/bash -c "COMPOSER_NO_DEV=0 && composer install"
+          docker exec jeedom_bullseye ./vendor/bin/phpunit --testsuite integration
+
       - name: Build jeedom:bookworm
         # build current image for bookworm
         run: |
           docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 .
       - name: run jeedom:bookworm and check
-        # build current image for bookworm and check it
+        # run current image for bookworm and check it
         run: |
           docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
           sleep 45
           docker exec jeedom_bookworm php sick.php
+          docker exec jeedom_bookworm /bin/bash -c "COMPOSER_NO_DEV=0 && composer install"
+          docker exec jeedom_bookworm ./vendor/bin/phpunit --testsuite integration
     
       - name: Clean docker image
         continue-on-error: true

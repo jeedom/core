@@ -1,5 +1,15 @@
 <phpunit bootstrap="./tests/bootstrap.php" colors="true">
-    <testsuite>
-        <directory suffix="Test.php">./tests</directory>
+  <testsuites>
+    <testsuite name="unit">
+        <directory>tests/unit/core</directory>
     </testsuite>
+    <testsuite name="integration">
+        <directory>tests/class</directory>
+    </testsuite>
+  </testsuites>
+  <coverage>
+      <include>
+          <directory suffix=".php">core</directory>
+      </include>
+  </coverage>
 </phpunit>
