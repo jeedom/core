@@ -4,7 +4,7 @@
 This page allows you to create a 3D view of your home that can react depending on the state of the various information in your home automation.
 
 
-> **Tip**
+> **Advice**
 >
 > It is possible to go directly to a 3D design thanks to the submenu.
 
@@ -22,13 +22,13 @@ Once your 3D model has been created, it must be exported in OBJ format. If you u
 
 > **ATTENTION**
 >
-> A 3D model is quite imposing (this can represent several hundred Mo). The larger it is, the longer the rendering time in Jeedom.
+> A 3D model is quite large (it can represent several hundred MB). The larger it is, the longer the rendering time in Jeedom.
 
-Once your 3D model has been exported, you must create a new 3D design in Jeedom. For that you have to go into edit mode by clicking on the little pencil on the right, then click on the +, give a name to this new 3D design then validate.
+Once your 3D model is exported, in Jeedom you must create a new 3D design. To do this, you must switch to edit mode by clicking on the small pencil on the right, then click on the +, give a name to this new 3D design then validate.
 
 Jeedom will automatically switch to the new 3D design, you must return to edit mode and click on the small notched wheels.
 
-You can from this screen :
+From this screen you can :
 
 - Change the name of your design
 - Add an access code
@@ -45,7 +45,7 @@ Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and selec
 >
 > You must have a zip file.
 
-> **Tip**
+> **Advice**
 >
 > Once the file has been imported (it can be quite long depending on the size of the file), you need to refresh the page to see the result (F5).
 
@@ -60,7 +60,7 @@ To configure an element on the 3D design, double click on the element you want t
 
 - Indicate a type of link (currently only Equipment exists)
 - Enter the link to the element in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
-- Define specificity: there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
+- Define specificity : there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
 
 ### Light
 
@@ -99,7 +99,7 @@ To configure an element on the 3D design, double click on the element you want t
 
 #### Volet
 
-- State : shutter status, 0 open other value closed
+- State : shutter status, 0 open and other value closed
 - Hide when the shutter is open
 	- Enable : hide the element if the shutter is open
 - Couleur
@@ -109,6 +109,6 @@ To configure an element on the 3D design, double click on the element you want t
 
 If the condition is valid, allows to give the chosen color to the element. You can put as many colors / conditions as you want.
 
-> **Tip**
+> **Advice**
 >
 > The conditions are evaluated in order, the first one which is true will be taken, the following ones will therefore not be evaluated

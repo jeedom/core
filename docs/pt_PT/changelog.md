@@ -83,6 +83,8 @@
 - Suporte para eventos de tipo personalizado #pluginClass::*# Ou #pluginClass::customId# [LINK](https://github.com/jeedom/core/pull/2964)
 - Adicionado um botão de atualização à linha "core" além daquele no canto superior direito [LINK](https://github.com/jeedom/core/pull/2974)
 - Corrija a tela “pacote” no nível do pacote python2 [LINK](https://github.com/jeedom/core/pull/2973)
+- Corrigido um bug ao atualizar equipamentos na página da bateria [LINK](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
 
 >**IMPORTANTE**
 >
@@ -90,4 +92,4 @@
 
 >**IMPORTANTE**
 >
-> Restaurando um backup 4.4 pode, em certos casos, causar problemas e acabar com erros na interface web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgE https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descompacte 4.4.19.zip;cd núcleo-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Você pode fazer isso na interface de resgate do Jeedom (adicione &rescue=1 no URL) ou diretamente via ssh.
+> Restaurando um backup 4.4 pode, em alguns casos, resultar em erros na interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wgE https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descompacte 4.4.19.zip;cd núcleo-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Você pode executar este comando a partir da interface de resgate do jeedom (adicione `&rescue=1` na url) ou diretamente via ssh.

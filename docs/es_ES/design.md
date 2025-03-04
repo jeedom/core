@@ -111,7 +111,7 @@ Le permite elegir los comandos para graficar.
 
 - **Icono** : Icono que se muestra delante del nombre del diseño.
 - **Color de fondo** : le permite cambiar el color de fondo o hacerlo transparente, no olvide cambiar &quot;Predeterminado&quot; a NO.
-- **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No)..
+- **Color del texto** : le permite cambiar el color de los iconos y textos (tenga cuidado de establecer Predeterminado en No).
 - **Alrededor de los ángulos** : permite redondear los ángulos (no olvides poner%, ex 50%).
 - **Borde** : le permite agregar un borde, tenga cuidado con la sintaxis HTML (debe usar la sintaxis CSS, por ejemplo : sólido 1px negro).
 - **Tamaño de fuente** : le permite cambiar el tamaño de fuente (ex 50%, debe poner el signo%).
@@ -121,7 +121,7 @@ Le permite elegir los comandos para graficar.
 
 > **Importante**
 >
-> Si coloca código HTML (especialmente Javascript), tenga cuidado de verificarlo antes porque puede hacerlo si hay un error o si sobrescribe un componente de Jeedom y bloquea completamente el diseño y solo tendrá que eliminarlo. directamente en la base de datos.
+> Si coloca código HTML (especialmente Javascript), tenga cuidado de revisarlo cuidadosamente antes porque puede hacerlo si hay un error en él o si sobrescribe un componente de Jeedom, el diseño se bloqueará por completo y todo lo que tendrá que hacer es eliminarlo directamente de la base de datos.
 
 ## Guión
 

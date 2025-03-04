@@ -34,7 +34,7 @@ Une fois que vous avez cliqué dessus, on obtient ces différentes options :
 >
 > Avant une mise à jour, par défaut, Jeedom va faire une sauvegarde. En cas de souci lors de l’application d’une mise à jour, Jeedom va automatiquement restaurer la sauvegarde faite juste avant. Ce principe n’est valable que pour les mises à jour de Jeedom et non la mise à jour des plugins.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez forcer une mise à jour de Jeedom, même si celui-ci ne vous en propose pas.
 
@@ -62,7 +62,7 @@ Sur chaque ligne, vous pouvez utiliser les fonctions suivantes:
 > Si le changelog est vide mais que vous avez tout de même une mise à jour, cela signifie que c’est la documentation qui a été mise à jour. Il n’est donc pas nécessaire de demander au développeur les changements, vu qu’il n’y en a pas forcément. (c’est souvent une mise à jour de la traduction, de la documentation).
 > Le développeur du plugin peut aussi dans certains cas faire des bugfix simples, ne nécessitant pas forcément de mettre à jour le changelog.
 
-> **Tip**
+> **Conseil**
 >
 > Quand vous lancez une mise à jour, une barre de progression apparaît au dessus du tableau. Évitez d'autres manipulations pendant la mise à jour.
 

@@ -4,7 +4,7 @@
 This page allows you to configure the display of all your home automation in a very fine way.
 It takes time but its only limit is your imagination.
 
-> **Tip**
+> **Advice**
 >
 > It is possible to go directly to a design thanks to the submenu.
 
@@ -111,7 +111,7 @@ Allows you to choose the commands to grapher.
 
 - **Icon** : Icon displayed in front of the Design name.
 - **Background color** : allows you to change the background color or make it transparent, do not forget to change &quot;Default&quot; to NO.
-- **Text color** : allows you to change the color of icons and texts (be careful to set Default to No)..
+- **Text color** : allows you to change the color of icons and texts (be careful to set Default to No).
 - **Smooth it out** : allows to round the angles (do not forget to put%, ex 50%).
 - **Border** : allows you to add a border, beware the syntax is HTML (you must use CSS syntax, for example : solid 1px black).
 - **Font size** : allows you to change the font size (ex 50%, you must put the% sign).
@@ -121,7 +121,7 @@ Allows you to choose the commands to grapher.
 
 > **Important**
 >
-> If you put HTML code (in particular Javascript), be careful to check it before because you can if there is an error in it or if it overwrites a Jeedom component completely crash the design and it will only have to delete it directly into the database.
+> If you put HTML code (especially Javascript), be careful to check it carefully before because if there is an error in it or if it overwrites a Jeedom component, you can completely crash the design and all that will be left is to delete it directly in the database.
 
 ## Scenario
 

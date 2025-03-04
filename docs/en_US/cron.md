@@ -48,7 +48,7 @@ The listeners are just visible in reading and allow you to see the functions cal
 
 Table of all the daemons with their state, the date of the last launch as well as the possibility of :
 - Start / Restart a daemon.
-- Stop a daemon if automatic management is deactivated.
+- Stop a daemon if automatic management is disabled.
 - Enable / disable automatic management of a daemon.
 
 > Tip

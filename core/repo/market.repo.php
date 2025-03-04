@@ -88,7 +88,7 @@ class repo_market {
 					'type' => 'checkbox',
 				),
 				'cloud::backup::name' => array(
-					'name' => __('[Backup cloud] Nom', __FILE__),
+					'name' => __('[Backup cloud] Nom du dossier de backup', __FILE__),
 					'type' => 'input',
 				),
 				'cloud::backup::password' => array(
@@ -238,6 +238,7 @@ class repo_market {
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
+		$found = false; 
 		foreach ($child->response as $file) {
 			if($file->propstat->prop->getcontenttype){
 				continue;
@@ -305,6 +306,7 @@ class repo_market {
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$total_size = 0;
+		$files = []; 
 		foreach ($child->response as $file) {
 			if(!$file->propstat->prop->getcontenttype){
 				continue;
@@ -321,9 +323,11 @@ class repo_market {
 			return;
 		}
 		echo __('Besoin de faire de la place sur le stockage distant', __FILE__) . "\n";
-		usort($files, function ($a, $b) {
-			return $a["timestamp"] - $b["timestamp"];
-		});
+		if (!empty($files)) {
+			usort($files, function ($a, $b) {
+				return $a["timestamp"] - $b["timestamp"];
+			});
+		}
 		$nb = 0;
 		while (($total_size / 1024 / 1024) > $limit - (filesize($_path) / 1024 / 1024)) {
 			if (count($files) == 0) {

@@ -26,7 +26,7 @@ The configuration of the display of the object is done in **Tools → Objects** 
 - If the background image should only be used on the Summary page or also in the background once on the object.
 - The elements of his summaries, in the tab *Summary*.
 
-> **Tip**
+> **Advice**
 >
 > The display order of objects is that of *Domotic overview*, that you can reorder (Analysis → Home automation summary).
 
@@ -42,7 +42,7 @@ For each object, you can click :
 - On a summary element to display the elements of this object, of this type. These are displayed in a modal, without changing the page, and allows you to quickly close a shutter, turn on a light, etc. The size of the modal adapts to the equipment it must display, but you can move it. Even with the modal of summaries open, you can click on other summaries.
 
 
-> **Tip**
+> **Advice**
 >
 > Ctrl Click or Center Click on the object or a summary element opens another tab of your browser.
 

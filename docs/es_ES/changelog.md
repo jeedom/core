@@ -83,6 +83,8 @@
 - Soporte para eventos de tipo personalizado #pluginClass::*# O #pluginClass::customId# [ENLACE](https://github.com/jeedom/core/pull/2964)
 - Se agregó un botón de actualización a la línea "principal" además del que está en la parte superior derecha [ENLACE](https://github.com/jeedom/core/pull/2974)
 - Reparar la pantalla "paquete" en el nivel del paquete python2 [ENLACE](https://github.com/jeedom/core/pull/2973)
+- Se corrigió un error al actualizar el equipo en la página de la batería [ENLACE](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
 
 >**IMPORTANTE**
 >
@@ -90,4 +92,4 @@
 
 >**IMPORTANTE**
 >
-> Restaurar una copia de seguridad 4.4 puede en ciertos casos causar problemas y terminar con errores en la interfaz web. Rien de grave cela peut facilement ce corriger il suffit de faire : `cd /tmp;wgY https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descomprimir 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Puedes hacer esto desde la interfaz de rescate de jeedom (agrega &rescue=1 en la URL) o directamente a través de ssh.
+> Restaurar una copia de seguridad 4.4 en algunos casos puede provocar errores en la interfaz web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wgY https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descomprimir 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Puede ejecutar este comando desde la interfaz de rescate de jeedom (agregue `&rescue=1` en la URL), o directamente a través de ssh.

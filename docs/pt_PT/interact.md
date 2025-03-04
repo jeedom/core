@@ -12,7 +12,7 @@ Esses pedidos podem ser obtidos por :
 
 O valor das interações reside na integração simplificada em outros sistemas, como smartphones, tablets, outras caixas de automação residencial, etc.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode abrir uma interação fazendo :
 > - Clique em um deles.
@@ -34,7 +34,7 @@ No topo da página, existem 3 botões :
 - **Regenerar** : Recréer toutes les interactions (peut être très long &gt; 5mn).
 - **Teste** : Abra uma caixa de diálogo para escrever e testar uma frase.
 
-> **Dica**
+> **Conselho**
 >
 > Se você possui uma interação que gera sentenças para luzes, por exemplo, e adiciona um novo módulo de controle de luz, precisará regenerar todas as interações ou ir para a interação em questão e salvá-la novamente para criar as frases deste novo módulo.
 
@@ -103,7 +103,7 @@ Podemos muito bem imaginar fazendo o mesmo com várias ações para acender vár
 
 Nos 2 exemplos acima, a sentença modelo é idêntica, mas as ações resultantes dela mudam de acordo com o que está configurado na parte "Ação", portanto, já podemos, com uma interação simples com uma única frase, imaginar ações combinadas entre vários comandos e vários cenários (também podemos acionar cenários na parte de ação das interações).
 
-> **Dica**
+> **Conselho**
 >
 > Para adicionar um cenário, crie uma nova ação, escreva "cenário" sem acento, pressione a tecla Tab no teclado para abrir o seletor de cenário.
 

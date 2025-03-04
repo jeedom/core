@@ -472,6 +472,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
 
     eqLogics[_params[i].eqLogic_id] = {
       eqLogic: eqLogic,
+      type: eqLogic?.classList.contains('battery-widget') ? 'battery' : 'default'
     }
     sends[_params[i].eqLogic_id] = {
       version: ((version = eqLogic?.getAttribute('data-version')) != undefined) ? version : 'dashboard'
@@ -490,6 +491,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
       for (var i in result) {
         tile = domUtils.parseHTML(result[i].html)
         if (tile.childNodes.length == 0) {
+          continue
+        }
+        if (eqLogics[i].type === 'battery') {
           continue
         }
         eqLogic = eqLogics[i].eqLogic

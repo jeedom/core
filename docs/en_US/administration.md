@@ -34,7 +34,7 @@ In this tab you will find the display customization parameters.
 - **Light and dark desktop** : Lets you choose a light and dark theme for the Desktop.
 - **Light and dark mobile** : same as above for the Mobile version.
 - **Clear theme from / to** : Allows you to define a time slot during which the light theme chosen previously will be used. However, check the option **Toggle theme based on time**.
-- **Brightness sensor**   : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
+- **Brightness sensor** : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
 
 ### Tuiles
 
@@ -103,11 +103,11 @@ It is absolutely necessary to correctly configure this important part of Jeedom 
     - **Login** : Enter the proxy login,
     - **Password** : Enter the password.
 
-> **Tip**
+> **Advice**
 >
 > If you are in HTTPS the port is 443 (default) and in HTTP the port is 80 (default). To use HTTPS from outside, a letsencrypt plugin is now available on the market.
 
-> **Tip**
+> **Advice**
 >
 > To find out if you need to set a value in the field **Complement**, look, when you log into Jeedom in your internet browser, if you need to add / Jeedom (or whatever) after the IP.
 
@@ -174,7 +174,7 @@ Many command can be logged. Thus, in Analysis → History, you get graphs repres
 
 >**InfluxDB**
 >
->If you want to use InfluxDB for the moment you have to install the InfluxDB library yourself, Jeedom no longer does it because it is no longer maintained (we plan to migrate to the new version but this will not happen right away). To do the installation manually here is how to do it : `cd /var/www/html;composer require influxdb/influxdb-php` from configuration then OS/DB tab then the OS administration console
+>If you want to use InfluxDB for the moment you have to install the InfluxDB library yourself, Jeedom no longer does this because it is no longer maintained (we plan to migrate to the new version but this will not be for now). To do the manual installation, here's how to do it : `cd /var/www/html;composer require influxdb/influxdb-php` from configuration then OS/DB tab then the OS administration console
 
 ### Command history
 
@@ -223,7 +223,7 @@ Configure link graphics. These links allow you to see, in the form of a graph, t
 
 This tab allows you to set global parameters concerning the interactions that you will find in Tools → Interactions.
 
-> **Tip**
+> **Advice**
 >
 > To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Attention : the logs will then be very verbose !
 
@@ -308,7 +308,7 @@ The list of banned IPs is at the bottom of this page. You will find the IP, the 
 
 - **Update source** : Choose Jeedom core update source.
 - **Core version** : Core version to recover.
-- **Automatically check for updates** : Indicate whether to automatically check if there are new updates (be careful to avoid overloading the market, the verification time may change).
+- **Automatically check for updates** : Whether to automatically check for new updates (be careful to avoid overloading the Market, the check time may change)).
 
 ### Deposits
 
@@ -363,7 +363,7 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 > **Important**
 >
-> The Samba protocol has several versions, the v1 is compromised in terms of security and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *protocol failed: NT_STATUS_INVAID_NETWORK_RESPONSE* there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
+> The Samba protocol has several versions, the security level of V1 is compromised and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *protocol failed: NT_STATUS_INVAID_NETWORK_RESPONSE* there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
 > client max protocol = SMB3
 > client min protocol = SMB2
 > The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 to both only SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server
@@ -385,11 +385,11 @@ Allows monitoring and acting on the Jeedom cache :
   - File system : Storage of cache information /tmp/jeedom/cache (in RAM) in file mode, uses a third-party lib. It will soon be replaced by File (beta)
   - File (beta) : Storage of cache information /tmp/jeedom/cache (in RAM) in file mode. The most efficient but saved every 30 minutes
   - Mysql (beta)) : Using a basic cache table. The least efficient but saved in real time (no data loss possible)
-  - Redis (beta) : Reserved for experts, relies on redis to manage the cache (requires you to install redis yourself and the php-redis dependencies)
+  - Redis (beta) : For experts only, relies on redis to manage the cache (so requires you to install redis and php-redis dependencies yourself))
 - **Clean cache** : Force deletion of objects that are no longer useful. Jeedom does this automatically every night.
 - **Clear all cache data** : Empty the cover completely.
     Please note that this may cause data loss !
-- **Time of pause for long polling** : Frequency at which Jeedom checks if there are pending events for customers (web interface, mobile application, etc.)). The shorter this time, the faster the interface will update, in return it uses more resources and can therefore slow Jeedom.
+- **Time of pause for long polling** : Frequency at which Jeedom checks if there are pending events for clients (web interface, mobile application, etc.)). The shorter this time, the faster the interface will update, but on the other hand it uses more resources and can therefore slow down Jeedom.
 
 >**Important**
 >

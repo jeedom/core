@@ -363,7 +363,7 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$value = shell_exec('sudo dmesg | grep oom | grep -v deprecated | wc -l');
+		$value = shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l');
 		$return[] = array(
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
@@ -1078,13 +1078,6 @@ class jeedom {
 	}
 
 	public static function cron10() {
-		try {
-			network::cron10();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . log::exception($e));
-		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . log::exception($e));
-		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;

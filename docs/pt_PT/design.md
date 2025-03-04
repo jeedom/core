@@ -4,7 +4,7 @@
 Esta página permite configurar a exibição de toda a sua automação residencial de uma maneira muito fina.
 Leva tempo, mas seu único limite é a sua imaginação.
 
-> **Dica**
+> **Conselho**
 >
 > É possível ir diretamente a um design graças ao submenu.
 
@@ -111,7 +111,7 @@ Permite escolher os comandos para grapher.
 
 - **Ícone** : Ícone exibido na frente do nome do design.
 - **Cor de fundo** : permite alterar a cor do plano de fundo ou torná-la transparente; não se esqueça de alterar "Padrão" para NÃO.
-- **Cor do texto** : permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não)..
+- **Cor do texto** : permite alterar a cor dos ícones e textos (tenha cuidado para definir Padrão como Não).
 - **Arredonde os ângulos** : permite arredondar os ângulos (não esqueça de colocar%, ex 50%).
 - **Fronteira** : permite adicionar uma borda, cuidado com a sintaxe é HTML (você deve usar a sintaxe CSS, por exemplo : sólido 1px preto).
 - **Tamanho da fonte** : permite alterar o tamanho da fonte (ex 50%, você deve colocar o sinal de%).
@@ -121,7 +121,7 @@ Permite escolher os comandos para grapher.
 
 > **Importante**
 >
-> Se você colocar o código HTML (especialmente o Javascript), verifique-o antes, pois pode ocorrer se houver algum erro ou substituir um componente Jeedom que trava completamente o design e ele só precisará excluí-lo diretamente no banco de dados.
+> Se você colocar código HTML (especialmente Javascript), tome cuidado para verificá-lo cuidadosamente antes, porque você pode, se houver um erro nele ou se ele substituir um componente Jeedom, travar completamente o design e tudo que você terá que fazer é excluí-lo diretamente de o banco de dados.
 
 ## Cenas
 

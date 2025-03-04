@@ -59,7 +59,7 @@ function scanDB($_table) {
   }
   foreach ($items as $item) {
     $sqlQuery = 'SELECT * FROM `' . $_table . '` WHERE `id` = ' . $item->getId();
-    $result = DB::prepare($sqlQuery, array('db_name' => $CONFIG['db']['dbname']), DB::FETCH_TYPE_ALL);
+    $result = DB::prepare($sqlQuery, array(), DB::FETCH_TYPE_ALL);
     foreach ($result[0] as $key => $value) {
       if ($value == '' || $value == '[]') continue;
       if (in_array($key, $excludeParams[$_table])) continue;

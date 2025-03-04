@@ -48,7 +48,7 @@ Los oyentes solo son visibles en la lectura y le permiten ver las funciones llam
 
 Tabla de todos los demonios con su estado, la fecha del último lanzamiento así como la posibilidad de :
 - Iniciar / reiniciar un demonio.
-- Detener un demonio si la gestión automática está desactivada.
+- Detener un demonio si la gestión automática está deshabilitada.
 - Habilitar / deshabilitar la gestión automática de un demonio.
 
 > Tip

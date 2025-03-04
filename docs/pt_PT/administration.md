@@ -34,7 +34,7 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
 - **Área de trabalho clara e escura** : Permite escolher um tema claro e escuro para a área de trabalho.
 - **Celular claro e escuro** : mesmo que acima para a versão Mobile.
 - **Limpar tema de / para** : Permite-lhe definir um intervalo de tempo durante o qual o tema claro escolhido anteriormente será usado. No entanto, marque a opção **Alternar tema com base no tempo**.
-- **Sensor de brilho**   : Somente interface móvel, requer ativação *sensor extra genérico* no cromo, página do cromo://flags.
+- **Sensor de brilho** : Somente interface móvel, requer ativação *sensor extra genérico* no cromo, página do cromo://flags.
 
 ### Tuiles
 
@@ -103,11 +103,11 @@ Nesta guia, você encontrará os parâmetros de personalização de exibição.
     - **Conecte-se** : Digite o login do proxy,
     - **Senha** : Digite a senha.
 
-> **Dica**
+> **Conselho**
 >
 > Se você estiver em HTTPS, a porta é 443 (padrão) e em HTTP, a porta é 80 (padrão)). Para usar HTTPS de fora, um plug-in letsencrypt agora está disponível no mercado.
 
-> **Dica**
+> **Conselho**
 >
 > Para descobrir se você precisa definir um valor no campo **Complemento**, veja, quando você faz login no Jeedom no seu navegador da Internet, se precisar adicionar / Jeedom (ou qualquer outra coisa) após o IP.
 
@@ -174,7 +174,7 @@ Muitos pedidos podem ser registrados. Assim, em Análise → Histórico, você o
 
 >**InfluxoDB**
 >
->Se você quiser usar o InfluxDB no momento, terá que instalar você mesmo a biblioteca InfluxDB, o Jeedom não faz mais isso porque ela não é mais mantida (planejamos migrar para a nova versão, mas isso não acontecerá imediatamente). Para fazer a instalação manual, veja como fazer : `cd /var/www/html;composer require influxdb/influxdb-php` da configuração, depois na guia OS/DB e depois no console de administração do sistema operacional
+>Se você quiser usar o InfluxDB no momento você mesmo terá que instalar a biblioteca InfluxDB, o Jeedom não faz mais isso porque ela não é mais mantida (planejamos migrar para a nova versão, mas isso não acontecerá imediatamente). Para fazer a instalação manual, veja como fazer : `cd /var/www/html;composer require influxdb/influxdb-php` da configuração, depois na guia OS/DB e depois no console de administração do sistema operacional
 
 ### Histórico de pedidos
 
@@ -223,7 +223,7 @@ Configurar gráficos de link. Esses links permitem ver, na forma de gráfico, as
 
 Essa guia permite definir parâmetros globais relativos às interações que você encontrará em Ferramentas → Interações.
 
-> **Dica**
+> **Conselho**
 >
 > Para ativar o log de interação, vá para a guia Configurações → Sistema → Configuração : Logs e verifique **Depurar** na lista inferior. Atenção : os logs serão muito detalhados !
 
@@ -308,7 +308,7 @@ A lista de IPs banidos está na parte inferior desta página. Você encontrará 
 
 - **Fonte atualização** : Escolha a fonte de atualização principal do Jeedom.
 - **Core Version** : Versão principal a recuperar.
-- **Verificar atualizações automaticamente** : Indique se deve verificar automaticamente se há novas atualizações (tenha cuidado para evitar sobrecarregar o mercado, o tempo de verificação pode mudar).
+- **Verificar atualizações automaticamente** : Indica se deve verificar automaticamente se há novas atualizações (cuidado para não sobrecarregar o Market, o horário de verificação pode mudar).
 
 ### Depósitos
 
@@ -363,7 +363,7 @@ Depósito que permite enviar automaticamente um backup do Jeedom em um compartil
 
 > **Importante**
 >
-> O protocolo Samba possui várias versões, a v1 está comprometida em termos de segurança e, em alguns NAS, você pode forçar o cliente a usar a v2 ou v3 para conectar-se. Então, se você tiver um erro *falha na negociação do protocolo: NT_STATUS_INVAID_NETWORK_RESPONSE* existe uma boa chance de que, no lado do NAS, a restrição esteja em vigor. Você deve modificar o arquivo / etc / samba / smb no seu Jeedom OS.conf e adicione essas duas linhas a ele :
+> O protocolo Samba possui diversas versões, o nível de segurança da V1 fica comprometido e em determinados NAS você pode forçar o cliente a usar v2 ou v3 para se conectar. Então, se você tiver um erro *falha na negociação do protocolo: NT_STATUS_INVAID_NETWORK_RESPONSE* há uma boa chance de que a restrição esteja em vigor no lado do NAS. Você deve modificar o arquivo / etc / samba / smb no seu Jeedom OS.conf e adicione essas duas linhas a ele :
 > protocolo máximo do cliente = SMB3
 > protocolo min de cliente = SMB2
 > O smbclient do lado do Jeedom usará v2 em que v3 e colocando SMB3 em ambos apenas SMB3. Cabe a você adaptar de acordo com as restrições no servidor NAS ou outro servidor Samba
@@ -385,11 +385,11 @@ Permite monitorar e agir no cache Jeedom :
   - Sistema de arquivo : Armazenamento de informações de cache /tmp/jeedom/cache (em RAM) no modo de arquivo, usa uma biblioteca de terceiros. Em breve será substituído por Arquivo (beta)
   - Arquivo (beta) : Armazenamento de informações de cache /tmp/jeedom/cache (em RAM) no modo de arquivo. O mais eficiente, mas economizado a cada 30 minutos
   - MySQL (beta)) : Usando uma tabela de cache básica. O menos eficiente, mas salvo em tempo real (sem possibilidade de perda de dados)
-  - Redis (beta) : Reservado para especialistas, depende do redis para gerenciar o cache (requer que você mesmo instale o redis e as dependências do php-redis)
+  - Redis (beta) : Reservado para especialistas, depende do redis para gerenciar o cache (portanto, requer que você mesmo instale o redis e as dependências do php-redis)
 - **Cache de limpo** : Forçar a exclusão de objetos que não são mais úteis. Jeedom faz isso automaticamente todas as noites.
 - **Vazio todos os dados de cache** : Esvazie a tampa completamente.
     Observe que isso pode causar perda de dados !
-- **Tempo de pausa para o longo polling** : Frequência com que o Jeedom verifica se há eventos pendentes para os clientes (interface da web, aplicativo móvel etc.)). Quanto menor o tempo, mais rápida será a atualização da interface. Em troca, ela usa mais recursos e, portanto, pode retardar o Jeedom.
+- **Tempo de pausa para o longo polling** : Frequência com que o Jeedom verifica se há eventos pendentes para os clientes (interface web, aplicativo móvel, etc.)). Quanto menor for esse tempo, mais rápido a interface será atualizada, em troca, isso consome mais recursos e pode, portanto, desacelerar o Jeedom.
 
 >**Importante**
 >

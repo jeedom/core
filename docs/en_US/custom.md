@@ -5,9 +5,9 @@ Here you can manage functions **javascript** and rules **CSS** applied on deskto
 
 > **Attention**
 >
-> Using inappropriate CSS rules can break the display of your Jeedom. Incorrectly used js functions can cause significant damage to various components of your installation. Remember to generate and outsource a backup before using these functions.
+> Using inappropriate CSS rules can break the display of your Jeedom. Improperly used js functions can cause significant damage to various components of your installation. Remember to generate and outsource a backup before using these functions.
 
-This function uses a particular mode of the Core file editor with two locations:
+This function uses a particular mode of the Core file editor with two locations :
 
 - desktop / custom : Can contain both files **custom.js** And **custom.css** which will be loaded by the Core in Desktop version.
 - mobile / custom : Can contain both files **custom.js** And **custom.css** which will be loaded by the Core in Mobile version.
@@ -16,7 +16,7 @@ In the menu bar of the Core file editor, a button **Enabled** Or **Deactivated**
 
 > **Noticed**
 >
-> When this page is launched, the tree structure is automatically created, as well as the 4 files with a comment in the 1st line including the version of the Core which created them.
+> When launching this page, the tree is automatically created, as well as the 4 files with a comment on the first line including the version of the Core which created them.
 
 ## Ressources
 
@@ -30,14 +30,14 @@ In the menu bar of the Core file editor, a button **Enabled** Or **Deactivated**
 
 Injecting JS and / or CSS can make Jeedom inoperative.
 
-In this case, two solutions:
+In this case, two solutions :
 
 - Open a browser in rescue mode : `IP / index.php?rescue=1`
 - Connect in SSH and delete the customization files : `desktop / custom` and` mobile / custom`
 
 ## Example of advanced personalization in CSS
 
-All these examples are to be put in the CSS file (don't forget to activate advanced customization at the top)
+All these examples are to be put in the CSS file (don't forget to activate the advanced customization at the top)
 
 ### Removing scrollbars on widgets
 
@@ -50,7 +50,7 @@ All these examples are to be put in the CSS file (don't forget to activate advan
 
 ### Remove minimum width/height of widgets
 
-This allows you to have smaller widgets (width [min-width], height [min-height]) but be careful this can make the display less attractive
+This allows you to have smaller widgets (width [min-width], height [min-height]) but be careful, this can make the display less pretty.
 
 ```
 div.cmd-widget.content,
@@ -62,7 +62,7 @@ div.cmd-widget.content-xs {
 }
 ```
 
-### Added margin between the names of objects and equipment on the dashboard 
+### Added margins between object names and equipment on the dashboard 
 
 ```
 .div_object legend .objectDashLegend {

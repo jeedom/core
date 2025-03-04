@@ -34,7 +34,7 @@ Se sua conta do Market estiver configurada corretamente em seu Jeedom (Configura
 
 Para instalar um novo plugin, basta clicar no botão "Mercado" (e o Jeedom está conectado à Internet). Após um curto período de carregamento, você receberá a página.
 
-> **Dica**
+> **Conselho**
 >
 > Você deve inserir as informações da sua conta do Market na administração (Configuração → Atualizações / Market → guia Market) para encontrar os plug-ins que você já comprou, por exemplo.
 
@@ -45,7 +45,7 @@ No topo da janela você tem filtros :
 - **Para pesquisar** : permite procurar um plugin (no nome ou na descrição dele)).
 - **Nome de Usuário** : exibe o nome de usuário usado para conectar-se ao Market, bem como o status da conexão.
 
-> **Dica**
+> **Conselho**
 >
 > A cruz pequena redefine o filtro em questão
 
@@ -78,7 +78,7 @@ Atenção, no caso de adicionar por um arquivo zip, o nome do zip deve ser o mes
 
 Ao clicar no ícone de um plugin, você abre sua página de configuração.
 
-> **Dica**
+> **Conselho**
 >
 > Você pode pressionar Ctrl ou Click Center para abrir sua configuração em uma nova guia do navegador.
 
@@ -128,7 +128,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 - **Gerenciamento automático** : Habilita ou desabilita o gerenciamento automático (que permite que o Jeedom gerencie o próprio daemon e reinicie-o, se necessário. Salvo indicação em contrário, é recomendável deixar o gerenciamento automático ativo).
 - **último lançamento** : Data do último lançamento do daemon.
 
-> **Dica**
+> **Conselho**
 >
 > Alguns plugins possuem uma parte de configuração. Se for esse o caso, ele aparecerá nas zonas de dependência e daemon descritas acima.
 > Nesse caso, consulte a documentação do plug-in em questão para saber como configurá-lo.
@@ -146,7 +146,7 @@ Se o plug-in tiver dependências e / ou um daemon, essas áreas adicionais serã
 - **morto cmd** : Um cron para comandantes mortos.
 - **saúde** : Uma saúde cron.
 
-> **Dica**
+> **Conselho**
 >
 > Se o plug-in usa uma dessas funções, você pode proibi-lo especificamente desmarcando a caixa "ativar" que estará presente ao lado dele.
 
