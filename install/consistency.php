@@ -266,7 +266,7 @@ try {
 		$cron->setClass('plugin');
 		$cron->setFunction('cron');
 		$cron->setSchedule('* * * * *');
-		$cron->setTimeout(2);
+		$cron->setTimeout(1);
 		$cron->setDeamon(0);
 		$cron->save();
 
