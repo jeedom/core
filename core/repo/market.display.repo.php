@@ -295,7 +295,7 @@ sendVarToJS('market_display_info', $market_array);
 
     jeedom.version({
         success: function(version) {
-            if(compareVersions(market_display_info.parameters.minJeedomVersion, version) > 0) {
+            if(compareVersionsCore(market_display_info.parameters.minJeedomVersion, version) > 0) {
                 var installButtons = document.querySelectorAll('.bt_installFromMarket');
                 installButtons.forEach(function(installButton) {
                     installButton.style.display = 'none';
