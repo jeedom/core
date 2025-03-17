@@ -170,11 +170,13 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                   <label class="col-lg-4 col-xs-4 control-label">{{Template}}</label>
                   <div class="col-lg-4 col-xs-5">
                     <?php
+                    $selected = 'selected'; // Ajoute selected uniquement pour le premier élément
                     foreach ((widgets::listTemplate()) as $type => $values) {
                       foreach ($values as $subtype => $namelist) {
                         echo '<select class="form-control selectWidgetTemplate" data-l1key="template" data-type="' . $type . '" data-subtype="' . $subtype . '">';
                         foreach ($namelist as $name) {
-                          echo '<option data-type="' . $type . '" data-subtype="' . $subtype . '" value="' . $name . '">' . ucfirst(str_replace('tmpl', '', $name)) . '</option>';
+                          echo '<option data-type="' . $type . '" data-subtype="' . $subtype . '" value="' . $name . '" ' . $selected . '>' . ucfirst(str_replace('tmpl', '', $name)) . '</option>';
+                          $selected = '';
                         }
                         echo '</select>';
                       }
