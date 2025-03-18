@@ -995,7 +995,7 @@ $productName = config::byKey('product_name');
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Taille maximal pour fichier de log (en Mo)}}</label>
+									<label class="col-lg-4 col-md-4 col-sm-4 col-xs-3 control-label">{{Taille maximale pour fichier de log (en Mo)}}</label>
 									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 										<input type="text" class="configKey form-control" data-l1key="maxSizeLog" />
 									</div>
