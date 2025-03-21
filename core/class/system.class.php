@@ -844,7 +844,6 @@ class system {
 						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
 					} 
 					$_package .= '==' . $_version;
-					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 				}
 				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 			case 'npm':
