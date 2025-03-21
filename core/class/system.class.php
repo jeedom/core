@@ -840,7 +840,7 @@ class system {
 			case 'pip3':
 				if ($_version != '') {
 					if (preg_match('/[<>]/', $_version)) {
-						$_package .= $_version;
+						$_package .= "'{$_version}'";
 						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
 					} 
 					$_package .= '==' . $_version;
