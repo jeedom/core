@@ -839,11 +839,13 @@ class system {
 				return self::getCmdSudo() . ' pip2 install --force-reinstall --upgrade ' . $_package;
 			case 'pip3':
 				if ($_version != '') {
-					$_version = trim($_version);
-					if (preg_match('/^[<>]/', $_version)) {
-						$_package .= "'{$_version}'";
-						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
-					} 
+					if (version_compare(self::getOsVersion(), '12', '>=')){
+						$_version = trim($_version);
+						if (preg_match('/^[>]/', $_version)) {
+							$_package .= "'{$_version}'";
+							return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
+						} 		
+					}				
 					$_package .= '==' . $_version;
 				}
 				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
