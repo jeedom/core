@@ -58,7 +58,7 @@ try {
     if ($queue->getClass() != '') {
         if (class_exists($queue->getClass()) && method_exists($queue->getClass(), $queue->getFunction())) {
             try {
-                call_user_func_array($queue->getClass() . '::' . $queue->getFunction(), $queue->getArguments());
+                call_user_func_array($queue->getClass() . '::' . $queue->getFunction(), $queue->getArguments(false));
             } catch (\Throwable $th) {
                 log::add('queue', 'error', __('[Erreur] ', __FILE__) . ' ' . $queue->getHumanName().' => '.$th->getMessage());
                 $queue->setState('error');
@@ -75,7 +75,7 @@ try {
     } else {
         if (function_exists($queue->getFunction())) {
             try {
-                call_user_func_array($queue->getFunction(), $queue->getArguments());
+                call_user_func_array($queue->getFunction(), $queue->getArguments(false));
             } catch (\Throwable $th) {
                 log::add('queue', 'error', __('[Erreur] ', __FILE__) . ' ' . $queue->getHumanName().' => '.$th->getMessage());
                 $queue->setState('error');

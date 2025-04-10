@@ -315,7 +315,10 @@ class queue {
 		return $this;
 	}
 
-    public function getArguments() {
+    public function getArguments($_serialize = true) {
+		if($_serialize){
+			return $this->arguments;
+		}
 		return unserialize($this->arguments);
 	}
 
