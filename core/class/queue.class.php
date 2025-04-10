@@ -235,7 +235,6 @@ class queue {
     }
 
     public function save($_direct = false){
-      var_dump($this);
 		DB::save($this, $_direct);
 	}
 
