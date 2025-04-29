@@ -69,6 +69,24 @@
 - Suppression du dossier vendor (utilisation de composer de manière normale), permet de réduire la taille du core [LIEN](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Les paramètres spécifiques des widgets peuvent maintent être traduits [LIEN](https://github.com/jeedom/core/pull/2862)
 - Correction d'un bug sous mac sur les designs lors d'un clic droit [LIEN](https://github.com/jeedom/core/issues/2863)
+- Ajout de widget badge pour les commandes de type texte [LIEN](https://github.com/jeedom/core/issues/2864)
+- Amélioration du systeme de lancement des scénarios programmés [LIEN](https://github.com/jeedom/core/issues/2875)
+- Amélioration des messages d'erreur d'exception si le niveau de log est debug [LIEN](https://github.com/jeedom/core/issues/2886)
+- Sur la page de remplacement possibilité de demander la désactivation de l'équipement [LIEN](https://github.com/jeedom/core/issues/2893)
+- Lors d'une mise à jour la sauvegarde avant prend maintenant en compte les exclusions des plugins [LIEN](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
+- Si un plugin est en beta mais n'a pas de changelog beta alors le centre de mise à jour renverra vers le changelog stable [LIEN](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Ajout d'une alerte si la version de debian est 10 ou moins [LIEN](https://github.com/jeedom/core/issues/2912)
+- Correction d'une erreur de mise à jour DB sur la table cache [LIEN](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
+- Si la page d'équipement a un élément img_device (balise de type img) alors le core peut lui même configurer l'url pour afficher la bonne image d'équipement (en reprenant celle de la page de présentation de tous les équipements du plugin) [LIEN](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
+- Correction d'un bug avec la fonction time_diff [LIEN](https://github.com/jeedom/core/issues/2915)
+- Correction de bug sur la gestion de dépendances composer [LIEN](https://github.com/jeedom/core/issues/2920)
+- En cas de commande vide Jeedom force le retour en fonction du sous type de la commande (donc 0 pour numerique et binaire) [LIEN](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
+- Prise en charge des évènements personnalisés de type #pluginClass::*# ou #pluginClass::customId# [LIEN](https://github.com/jeedom/core/pull/2964)
+- Ajout d'un bouton de mise à jour sur la ligne "core" en plus de celui en haut à droite [LIEN](https://github.com/jeedom/core/pull/2974)
+- Correction de l'écran "package" au niveau des packages python2 [LIEN](https://github.com/jeedom/core/pull/2973)
+- Correction d'un bug lors de la mise à jour des équipements sur la page de batterie [LIEN](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
+- Correction du système de file d'attente sur la partie DB [LIEN](https://github.com/jeedom/core/pull/3051).
 
 >**IMPORTANT**
 >
