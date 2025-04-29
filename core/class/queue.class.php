@@ -25,15 +25,33 @@ class queue {
     private $id;
 	private $class;
 	private $function;
+
+    /**
+     * @var string Serialized version of arguments (used only for database fetch)
+     */
 	private $arguments;
+
+    /**
+     * @var array<mixed> Arguments
+     */
+    private $_arrayArguments = [];
 	private $createTime;
 	private $options;
     private $queueId = null;
     private $timeout = -1;
     private $_changed = false;
 
+    /**
+     * @var bool
+     */
+    private $_onSave = false;
+
     /*     * ***********************Méthodes statiques*************************** */
 
+    public function initialize(): void
+    {
+        $this->setSerializedArguments($this->arguments);
+    }
 
     public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -232,6 +250,12 @@ class queue {
         if($this->getCreateTime() == ''){
             $this->setCreateTime(date('Y-m-d H:i:s'));
         }
+        $this->_onSave = true;
+    }
+
+    public function postSave(): void
+    {
+        $this->_onSave = false;
     }
 
     public function save($_direct = false){
@@ -315,12 +339,27 @@ class queue {
 		return $this;
 	}
 
+    /**
+     * @return array<mixed>|string Array in normal context, string in onSave
+     */
     public function getArguments() {
-		return unserialize($this->arguments);
-	}
+        if ($this->_onSave) {
+            return $this->getSerializedArguments();
+        }
 
+        return $this->getUnserializedArguments();
+    }
+
+    /**
+     * @param array<mixed> $_arguments Arguments as array or serialized arguments
+     * @return self
+     */
 	public function setArguments($_arguments) {
-		$this->arguments = serialize($_arguments);
+        if (!is_array($_arguments)) {
+            throw new Exception('Arguments must be an array');
+        }
+
+        $this->_arrayArguments = $_arguments;
 		return $this;
 	}
 
@@ -377,5 +416,23 @@ class queue {
 	public function setCache($_key, $_value = null) {
 		cache::set('queueCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('queueCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
+
+    private function getSerializedArguments(): string {
+        return serialize($this->_arrayArguments);
+    }
+
+    private function setSerializedArguments(string $arguments): void {
+        $unserializedArguments = unserialize($arguments);
+        if (!is_array($unserializedArguments)) {
+            $unserializedArguments = [];
+        }
+
+        $this->_arrayArguments = $unserializedArguments;
+    }
+
+    private function getUnserializedArguments(): array
+    {
+        return $this->_arrayArguments;
+    }
 
 }
