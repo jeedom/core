@@ -344,8 +344,8 @@ jeedom.cmd.test = function(_params) {
               break
             case 'message':
               let productName = JEEDOM_PRODUCT_NAME
-              let content = '<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="{{Titre pour la commande}} ' + result.name + '">'
-              content += '<textarea class="promptAttr" data-l1key="message" placeholder="{{Message pour la commande}} ' + result.name + '"></textarea>'
+              let content = `<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="${result.display.title_placeholder || `{{Titre pour la commande}} ${result.name}`}">`
+              content += `<textarea class="promptAttr" data-l1key="message" placeholder="${result.display.message_placeholder || `{{Message pour la commande}} ${result.name}`}"></textarea>`
               jeeDialog.prompt({
                 title: "{{Message}}",
                 message: content,
