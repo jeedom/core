@@ -69,7 +69,7 @@
 - Excluir a pasta vendor (usando o compositor da maneira normal) permite reduzir o tamanho do núcleo [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Configurações específicas de widget agora podem ser traduzidas [LINK](https://github.com/jeedom/core/pull/2862)
 - Corrigido um bug no Mac em designs ao clicar com o botão direito [LINK](https://github.com/jeedom/core/issues/2863)
--  [LINK](https://github.com/jeedom/core/issues/2864)
+- Ajout de widget badge pour les commandes de type texte [LINK](https://github.com/jeedom/core/issues/2864)
 - Melhoria do sistema de lançamento de cenários programados [LINK](https://github.com/jeedom/core/issues/2875)
 - Mensagens de erro de exceção aprimoradas se o nível de log for depurado [LINK](https://github.com/jeedom/core/issues/2886)
 - Na página de substituição possibilidade de solicitar a desativação do equipamento [LINK](https://github.com/jeedom/core/issues/2893)
@@ -86,7 +86,7 @@
 - Corrija a tela “pacote” no nível do pacote python2 [LINK](https://github.com/jeedom/core/pull/2973)
 - Corrigido um bug ao atualizar equipamentos na página da bateria [LINK](https://github.com/jeedom/core/pull/3008)
 - La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
--  [LINK](https://github.com/jeedom/core/pull/3051).
+- Correction du système de file d'attente sur la partie DB [LINK](https://github.com/jeedom/core/pull/3051).
 
 >**IMPORTANTE**
 >
