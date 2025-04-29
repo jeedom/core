@@ -45,7 +45,7 @@ class scenario {
 	private $_realTriggerValue = '';
 	/** @var bool */
 	private $_return = true;
-	private $_tags = array();
+	private $_tags = array('#trigger#' => '','#trigger_name#' => '','#trigger_id#' => '','#trigger_message#' => '','#trigger_value#' => '');
 	private $_do = true;
 	private $_changed = false;
 
@@ -1189,11 +1189,14 @@ class scenario {
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
-					if(count($schedule) == 6 && $schedule[5] != $c->getPreviousRunDate()->format('Y')){
-						$calculatedDate['prevDate'] = '';
-					}
-					if(count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')){
-						$calculatedDate['nextDate'] = '';
+					$schedule_exp = explode(' ',trim($schedule));
+					if(is_array($schedule_exp) && count($schedule_exp) == 6 ){
+					 	if($schedule_exp[5] != $c->getPreviousRunDate()->format('Y')){
+							$calculatedDate['prevDate'] = '';
+						}
+						if($schedule_exp[5] != $c->getNextRunDate()->format('Y')){
+							$calculatedDate['nextDate'] = '';
+						}
 					}
 				} catch (Exception $exc) {
 				} catch (Error $exc) {
@@ -1240,7 +1243,7 @@ class scenario {
 			$schedules = [$schedules];
 		}
 		foreach ($schedules as $schedule) {
-			if(cronIsDue($schedule,$_datetime)){
+			if(cronIsDue($schedule,$_datetime,$this->getLastLaunch())){
 				return true;
 			}
 		}

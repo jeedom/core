@@ -85,8 +85,6 @@ try {
 	}
 	if (init('backup::before') == 1 && init('force') != 1) {
 		try {
-			global $NO_PLUGIN_BACKUP;
-			$NO_PLUGIN_BACKUP = true;
 			global $NO_CLOUD_BACKUP;
 			$NO_CLOUD_BACKUP = true;
 			jeedom::backup();
@@ -100,6 +98,9 @@ try {
 		$backup_ok = true;
 	}
 	echo "[PROGRESS][10]\n";
+
+	echo "[PROGRESS][12]\n";
+
 	if (init('core', 1) == 1) {
 		if (init('mode') == 'force') {
 			echo "/!\ Force update /!\ \n";

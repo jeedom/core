@@ -34,7 +34,7 @@ Si votre compte Market est bien configuré sur votre Jeedom (Configuration→Mis
 
 Pour installer un nouveau plugin, il suffit de cliquer sur le bouton "Market" (et que Jeedom soit relié à Internet). Après un petit temps de chargement, vous obtiendrez la page.
 
-> **Tip**
+> **Conseil**
 >
 > Vous devez avoir saisi les informations de votre compte du Market dans l’administration (Configuration→Mises à jour/Market→Onglet Market) afin de retrouver les plugins que vous avez déjà achetés par exemple.
 
@@ -45,7 +45,7 @@ En haut de la fenêtre, vous avez des filtres :
 - **Rechercher** : permet de rechercher un plugin (dans le nom ou la description de celui-ci).
 - **Nom d’utilisateur** : affiche le nom d’utilisateur utilisé pour la connexion au Market ainsi que le statut de la connexion.
 
-> **Tip**
+> **Conseil**
 >
 > La petite croix permet de réinitialiser le filtre concerné
 
@@ -78,7 +78,7 @@ Attention, dans le cas de l’ajout par un fichier zip, le nom du zip doit être
 
 En cliquant sur l'icône d'un plugin, vous ouvrez sa page de configuration.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez faire un Ctrl Clic ou Clic Centre pour ouvrir sa configuration dans un nouvel onglet du navigateur.
 
@@ -128,7 +128,7 @@ Si le plugin possède des dépendances et/ou un démon, ces zones supplémentair
 - **Gestion automatique** : Permet d’activer ou désactiver la gestion automatique (ce qui permet à Jeedom de gérer lui même le démon et le relancer si besoin. Sauf contre indication, il est conseillé de laisser la gestion automatique active).
 - **Dernier lancement** : Date du dernier lancement du démon.
 
-> **Tip**
+> **Conseil**
 >
 > Certains plugins ont une partie configuration. Si tel est le cas, elle apparaîtra sous les zones dépendances et démon décrites ci-dessus.
 > Dans ce cas, il faut se référer à la documentation du plugin en question pour savoir comment le configurer.
@@ -146,7 +146,7 @@ Si le plugin possède des dépendances et/ou un démon, ces zones supplémentair
 - **deadcmd** : Un cron pour les commanders dead.
 - **health** : Un cron health.
 
-> **Tip**
+> **Conseil**
 >
 > Si le plugin utilise une de ces fonctions, vous pourrez spécifiquement lui interdire de le faire en décochant la case "activer" qui sera présente à côté.
 

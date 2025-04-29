@@ -32,7 +32,7 @@ La vue d’ensemble vous permet de visualiser l’ensemble des objets dans Jeedo
 
 Une fois que vous avez créé un objet, il apparaîtra dans cette partie.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez ouvrir un objet en faisant :
 > - Clic sur l'un d'entre eux.
@@ -71,15 +71,15 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 - **Seulement sur la synthèse** : Permet de mettre une image pour la Synthèse sans qu'elle soit utilisée comme image de fond, notamment sur la page *Dashboard* de cet objet.
 - **Image** : Vous avez la possibilité de télécharger une image ou la supprimer. Au format jpeg cette image sera l'image de fond de l'objet quand vous l'afficherez sur le Dashboard. Elle sera aussi utilisée pour la vignette de la pièce sur la Synthèse.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard, par le Résumé Domotique (outils -> résumé domotique) , sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez voir un graphique représentant tous les éléments de Jeedom rattachés à cet objet en cliquant sur le bouton **Liens**, en haut à droite.
 
-> **Tip**
+> **Conseil**
 >
 > Quand un équipement est créé et qu’aucun parent n’a été défini, il aura comme parent : **Aucun**.
 

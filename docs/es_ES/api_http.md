@@ -52,8 +52,8 @@ La forma más fácil de obtener esta URL es ir a la página **Análisis → Resu
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interactuar y consultar = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interactuar y consultar=#QUERY#)
 
 - **consulta** : pregunta para hacerle a Jeedom.
-- **utf8** \ [Opcional \] : le dice a Jeedom si codifica la consulta en utf8 antes de intentar responder.
-- **vacíoResponder** \ [Opcional \] : 0 para que Jeedom responda incluso si no entendió, 1 de lo contrario.
+- **utf8** \ [Opcional \] : le dice a Jeedom si codificar la consulta en utf8 antes de intentar responder.
+- **vacíoResponder** \ [Opcional \] : 0 para que Jeedom responda incluso si no entendió, 1 en caso contrario.
 - **perfil** \ [Opcional \] : nombre de usuario de la persona que inicia la interacción.
 - **responder\_cmd** \ [Opcional \] : ID de pedido que se utilizará para responder a la solicitud.
 
@@ -62,13 +62,13 @@ Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& ty
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = mensaje y categoría = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = mensaje y categoría=#CATEGORY#&message=#MESSAGE#)
 
 - **categoría** : categoría de mensaje para agregar al centro de mensajes.
-- **Mensaje** : mensaje en cuestión, tenga cuidado de pensar en codificar el mensaje (el espacio se convierte en% 20, =% 3D). Puedes usar una herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/).
+- **Mensaje** : mensaje en cuestión, tenga cuidado de recordar codificar el mensaje (el espacio se convierte en %20, = %3D…). Puedes usar una herramienta, [aquí](https://meyerweb.com/eric/tools/dencoder/).
 
 ## Objet
 
 Voaquí l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = object)
 
-Devuelve en json la lista de todos los objetos Jeedom.
+Devuelve la lista de todos los objetos Jeedom en forma de json.
 
 ## Equipement
 

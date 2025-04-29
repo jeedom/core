@@ -136,6 +136,15 @@ sendVarToJS([
               </div>
 
               <div class="form-group col-lg-12">
+                <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Désactiver l'équipement source}}
+                <sup><i class="fas fa-question-circle" title="{{Désactive l'équipement source.}}"></i></sup>
+                </label>
+                <div class="col-lg-1">
+                  <input id="opt_disableEqs" type="checkbox" class="form-control" />
+                </div>
+              </div>
+
+              <div class="form-group col-lg-12">
                 <label class="col-lg-4 col-md-6 col-sm-6 col-xs-10 control-label">{{Copier la configuration de la commande source}}
                 <sup><i class="fas fa-question-circle" title="{{Copie les propriétés et configurations de la commande source sur la commande cible.}}"></i></sup>
                 </label>

@@ -18,7 +18,7 @@ You will find there the list of scenarios of your Jeedom, as well as functionali
 
 You will find in this part **list of scenarios** that you created. They are classified according to their **band**, possibly defined for each of them. Each scenario is displayed with its **name** and his **parent object**. THE **grayed out scenarios** are the ones that are disabled.
 
-> **Tip**
+> **Advice**
 >
 > You can open a scenario by doing :
 >
@@ -86,7 +86,7 @@ In the tab **General**, we find the main parameters of the scenario :
 - **Description** : Allows you to write a small text to describe your scenario.
 - **Scenario mode** : The scenario can be programmed, triggered or both. You will then have the choice to indicate the trigger (s) (15 triggers maximum) and the programming (s)).
 
-> **Tip**
+> **Advice**
 >
 > Conditions can now be entered in triggered mode. Eg : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Attention : you can have a maximum of 28 triggers / programming for a scenario.
@@ -102,11 +102,11 @@ This is where you will build your scenario. After creating the scenario, its con
 For more convenience and not having to constantly reorder the blocks in the scenario, adding a block is done after the field in which the mouse cursor is located.
 *For example, if you have ten blocks, and you click in the IF condition of the first block, the added block will be added after this block, at the same level. If no field is active, it will be added at the end of the scenario.*
 
-> **Tip**
+> **Advice**
 >
 > In conditions and actions, it is better to favor single quotes (') instead of double (").
 
-> **Tip**
+> **Advice**
 >
 > A Ctrl Shift Z or Ctrl Shift Y allows you to'**Cancel** or from **redo** a modification (addition of action, block...).
 
@@ -150,7 +150,7 @@ Three buttons are available on the right of this type of block to select an item
 > On blocks of type If / Then / Otherwise, circular arrows to the left of the condition field allow to activate or not the repetition of actions if the evaluation of the condition gives the same result as during the previous evaluation.
 > IF expression != 0 is equivalent to IF expression and IF expression == 0 is equivalent to IF not expression
 
-> **Tip**
+> **Advice**
 >
 > There is a list of tags allowing access to variables from the scenario or another, or by the time, the date, a random number,… See below the chapters on commands and tags.
 
@@ -197,7 +197,7 @@ The Code block allows you to execute php code. It is therefore very powerful but
 - ``$scenario->setLog($message);`` : Write a message in the script log.
 - ``$scenario->persistLog();`` : Force the writing of the log (otherwise it is written only at the end of the scenario). Be careful, this can slow the scenario down a bit.
 
-> **Tip**
+> **Advice**
 >
 > Addition of a search function in the Code block : To research : Ctrl + F then Enter, Next result : Ctrl + G, Previous result : Ctrl+Shift+G
 
@@ -219,7 +219,7 @@ Actions added to blocks have several options :
 - A button for specific actions, with each time the description (on hover) of this action.
 - A button to search for an action command.
 
-> **Tip**
+> **Advice**
 >
 > Depending on the command selected, different additional fields may be displayed.
 
@@ -258,15 +258,18 @@ You can use any of the following symbols for comparisons under conditions :
 
 You can combine any comparison with the following operators :
 
-- ``&&`` : And. It is also possible to use : ``ET`` / ``et`` / ``AND`` / ``and`` but may not work well with some php functions.
-- ``||`` : Or. It is also possible to use : ``OU`` / ``ou`` / ``OR`` / ``or`` but may not work well with some php functions.
-- ``xor``  : or exclusive. It is also possible to use : ``XOR`` / ``^`` but may not work well with some php functions.
+Whether you are combining comparisons on different equipment or on the same one, it is always necessary to indicate the equipment.
+``[Salle de bain][Hydrometrie][température] >= 18 && [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``&&`` : And. **Attention**, the use of  : ``ET`` / ``et`` / ``AND`` / ``and`` is not recommended, in some cases it may work but with some php functions it will not work.
+- ``||`` : Or. **Attention**, the use of  : ``OU`` / ``ou`` / ``OR`` / ``or`` is not recommended, in some cases it may work but with some php functions it will not work.
+- ``xor``  : or exclusive. **Attention**, the use of  : ``XOR`` / ``^`` is not recommended, in some cases it may work but with some php functions it will not work.
 
 ### Tags
 
 A tag is replaced during the execution of the scenario by its value. You can use the following tags :
 
-> **Tip**
+> **Advice**
 >
 > To have the leading zeros displayed, use the Date () function. See [here](https://www.php.net/manual/fr/datetime.format.php).
 
@@ -293,8 +296,8 @@ A tag is replaced during the execution of the scenario by its value. You can use
   - ``schedule`` if it was started by programming,
   - ``user`` if it was started manually,
   - ``start`` for a launch at startup of Jeedom.
-- ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it.
-- ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command])
+- ``#trigger_id#`` : If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it. Example : ``#trigger_id# == 19``
+- ``#trigger_name#`` : If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command]). Example : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario. Tip if you want the current value of the command which triggered the scenario (and not its value at triggering) you can use : ``##trigger_id##`` (double #)
 - ``#latitude#`` : Allows you to retrieve the latitude information put in the jeedom configuration
 - ``#longitude#`` : Allows you to retrieve the longitude information put in the jeedom configuration

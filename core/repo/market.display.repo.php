@@ -85,6 +85,7 @@ sendVarToJS('market_display_info', $market_array);
             echo ' <a class="btn btn-default bt_installFromMarket" data-version="' . $branch . '" data-market_logicalId="' . $market->getLogicalId() . '" data-market_id="' . $market->getId() . '" ><i class="fas fa-plus-circle"></i> {{Installer}} ' . $branch . '</a>';
           }
         }
+        echo '<div class="alert alert-warning" id="warningVersion" style="display:none;">{{Votre version actuelle du core ne permet pas d\'installer ce plugin}}</div>';
       } else if ($market->getPrivate() == 1) {
         echo '<div class="alert alert-info">{{Ce plugin est pour le moment privé. Vous devez attendre qu\'il devienne public ou avoir un code pour y accéder}}</div>';
       } else {
@@ -95,15 +96,15 @@ sendVarToJS('market_display_info', $market_array);
             <a class="btn btn-default" href='<?php echo config::byKey('market::address'); ?>/index.php?v=d&p=profils' target="_blank"><i class="fa fa-eur"></i> {{Code promo}}</a>
         <?php
             if ($market->getCertification() !== 'Premium') {
-              echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
+              echo '<a class="btn btn-default buyButtons" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
             } else {
               echo '<a class="btn btn-default" target="_blank" href="mailto:supportpro@jeedom.com"><i class="fa fa-envelope"></i> {{Nous Contacter}}</a>';
             }
           } else {
-            echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
+            echo '<a class="btn btn-default buyButtons" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
           }
         } else {
-          echo '<a class="btn btn-default" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
+          echo '<a class="btn btn-default buyButtons" target="_blank" href="' . config::byKey('market::address') . '/index.php?v=d&p=market_display&id=' . $market->getId() . '"><i class="fa fa-shopping-cart"></i> {{Acheter}}</a>';
         }
       }
       if (is_object($update)) {
@@ -117,7 +118,7 @@ sendVarToJS('market_display_info', $market_array);
         echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
       } else {
             if ($market->getCost() > 0) {
-                 if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
+                 if ($market->getPurchase() == 1 && isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id'])) {
                   echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Plugin deja acheté et/ou inclus dans votre service Pack}}</span>';
                 }else{
                     if ($market->getCost() != $market->getRealCost()) {
@@ -276,6 +277,42 @@ sendVarToJS('market_display_info', $market_array);
 
 <script>
   (function() { // Self Isolation!
+
+    function compareVersionsCore(v1, v2) {
+        const v1Parts = v1.split('.').map(Number);
+        const v2Parts = v2.split('.').map(Number);
+
+        for (let i = 0; i < Math.max(v1Parts.length, v2Parts.length); i++) {
+            const v1Part = v1Parts[i] || 0;
+            const v2Part = v2Parts[i] || 0;
+
+            if (v1Part > v2Part) return 1;
+            if (v1Part < v2Part) return -1;
+        }
+
+        return 0;
+    }
+
+    jeedom.version({
+        success: function(version) {
+            if(compareVersionsCore(market_display_info.parameters.minJeedomVersion, version) > 0) {
+                var installButtons = document.querySelectorAll('.bt_installFromMarket');
+                installButtons.forEach(function(installButton) {
+                    installButton.style.display = 'none';
+                });
+              var buyButtons = document.querySelectorAll('.buyButtons');
+                     buyButtons.forEach(function(buyButton) {
+                          buyButton.style.display = 'none';
+                      });
+     
+              var warningDiv = document.getElementById('warningVersion'); 
+              if (warningDiv) {
+                  warningDiv.style.display = 'block';
+              }
+            }
+        }
+    });
+
 
     //Slide screenshot:
     if (document.querySelector(".slide")) {

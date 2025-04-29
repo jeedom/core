@@ -204,11 +204,11 @@ document.getElementById('in_searchTimeline')?.addEventListener('keyup', function
   var match, text
   document.querySelectorAll('#events > li.event').forEach(_li => {
     match = false
-    text = jeedomUtils.normTextLower(_li.querySelector('.tml-cmd').textContent)
+    text = jeedomUtils.normTextLower(_li.querySelector('.tml-cmd')?.textContent)
     if (text.includes(search)) {
       match = true
     }
-    text = jeedomUtils.normTextLower(_li.querySelector('.type').textContent)
+    text = jeedomUtils.normTextLower(_li.querySelector('.type')?.textContent)
     if (text.includes(search)) {
       match = true
     }

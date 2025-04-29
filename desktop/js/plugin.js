@@ -119,7 +119,7 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
           if (isset(data.source)) {
-            if (isset(data.update.configuration.user)){
+            if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.user)){
                 self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source +' - '+data.update.configuration.user
             } else {
                 self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
@@ -802,7 +802,7 @@ document.getElementById('div_confPlugin')?.addEventListener('mouseup', function(
 
 document.getElementById('div_confPlugin')?.addEventListener('change', function(event) {
   var _target = null
-  if (_target = event.target.closest('#div_resumePluginList .configKey')) {
+  if (_target = event.target.closest('.configKey')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
     return
   }

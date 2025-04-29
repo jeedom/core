@@ -12,9 +12,8 @@
 - **DESARROLLO** Configurar un sistema de colas para ejecutar acciones [ENLACE](https://github.com/jeedom/core/issues/2489)
 - Las etiquetas de escenario ahora son específicas de la instancia del escenario (si tiene dos lanzamientos de escenario muy cercanos, las etiquetas del último ya no sobrescriben la primera)) [ENLACE](https://github.com/jeedom/core/issues/2763)
 - Cambiar a la parte desencadenante de los escenarios : [ENLACE](https://github.com/jeedom/core/issues/2414)
-  - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
-  - ``trigger()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
-  - ``triggerValue()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales
+  - ``triggerId()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales. Si tienes ``triggerId() == 587`` debe ser reemplazado por ``#trigger_id# == 587``
+  - ``triggerValue()`` Ahora está en desuso y se eliminará en futuras actualizaciones principales. Si tienes ``triggerValue() == 10`` debe ser reemplazado por ``#trigger_value# == 10``
   - ``#trigger#`` : Puede ser :
     - ``api`` si el lanzamiento fue activado por la API,
     - ``TYPEcmd`` si el inicio fue activado por un comando, con TIPO reemplazado por la identificación del complemento (por ejemplo, virtualCmd),
@@ -62,20 +61,35 @@
 - Posibilidad de elegir el puerto de escucha de Apache en modo acoplable [ENLACE](https://github.com/jeedom/core/pull/2847)
 - Se corrigió una advertencia al guardar en la tabla de eventos [ENLACE](https://github.com/jeedom/core/issues/2851)
 - Agregar un nombre para mostrar para objetos [ENLACE](https://github.com/jeedom/core/issues/2484)
-- Se agregó un botón para eliminar el historial y los eventos de la línea de tiempo en el futuro [ENLACE](https://github.com/jeedom/core/issues/2415)
+- Se agregó un botón para eliminar historias y eventos de la línea de tiempo en el futuro [ENLACE](https://github.com/jeedom/core/issues/2415)
 - Se solucionó un problema con los comandos de tipo seleccionado en los diseños [ENLACE](https://github.com/jeedom/core/issues/2853)
-- Posibilidad en el equipo de indicar que no tiene batería (en caso de mal ascenso)) [ENLACE](https://github.com/jeedom/core/issues/2855)
+- Posibilidad de indicar que el equipo no tiene batería (en caso de mala recuperación) [ENLACE](https://github.com/jeedom/core/issues/2855)
 - Rediseño de escritura en logs, eliminación de la biblioteca monolog (tenga en cuenta que la opción de enviar logs en syslog ya no está disponible en este momento, si la demanda es alta veremos cómo volver a colocarla)) [ENLACE](https://github.com/jeedom/core/pull/2805)
-- Pasando de nodejs 18 a nodejs 20 [ENLACE](https://github.com/jeedom/core/pull/2846)
 - Mejor gestión de los niveles de registro de sublogs de complementos [ENLACE](https://github.com/jeedom/core/issues/2860)
-- Eliminar la carpeta del proveedor (usando Composer de forma normal) le permite reducir el tamaño del núcleo [ENLACE](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
-- Ahora se pueden traducir configuraciones específicas de widgets [ENLACE](https://github.com/jeedom/core/pull/2862)
+- Eliminar la carpeta del proveedor (usando Composer de la manera normal) le permite reducir el tamaño del núcleo [ENLACE](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
+- La configuración específica del widget ahora se puede traducir [ENLACE](https://github.com/jeedom/core/pull/2862)
 - Se corrigió un error en Mac en los diseños al hacer clic derecho [ENLACE](https://github.com/jeedom/core/issues/2863)
+- Mejora del sistema de lanzamiento de escenarios programados [ENLACE](https://github.com/jeedom/core/issues/2875)
+- Mensajes de error de excepción mejorados si el nivel de registro es depuración [ENLACE](https://github.com/jeedom/core/issues/2886)
+- En la página de reposición posibilidad de solicitar la desactivación del equipo [ENLACE](https://github.com/jeedom/core/issues/2893)
+- Durante una actualización, la copia de seguridad directa ahora tiene en cuenta las exclusiones de complementos [ENLACE](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
+- Si un complemento está en versión beta pero no tiene un registro de cambios beta, el centro de actualización volverá al registro de cambios estable [ENLACE](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Se agregó una alerta si la versión de Debian es 10 o menos [ENLACE](https://github.com/jeedom/core/issues/2912)
+- Corregir error de actualización de base de datos en la tabla de caché [ENLACE](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
+- Si la página del equipo tiene un elemento img_device (etiqueta de tipo img), entonces el núcleo puede configurar la URL para mostrar la imagen correcta del equipo (usando la de la página de presentación de todos los equipos del complemento)) [ENLACE](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
+- Se corrigió un error con la función time_diff [ENLACE](https://github.com/jeedom/core/issues/2915)
+- Corrección de errores en la gestión de dependencias del compositor [ENLACE](https://github.com/jeedom/core/issues/2920)
+- En caso de un comando vacío, Jeedom fuerza el retorno de acuerdo con el subtipo del comando (por lo tanto, 0 para números y binarios)) [ENLACE](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
+- Soporte para eventos de tipo personalizado #pluginClass::*# O #pluginClass::customId# [ENLACE](https://github.com/jeedom/core/pull/2964)
+- Se agregó un botón de actualización a la línea "principal" además del que está en la parte superior derecha [ENLACE](https://github.com/jeedom/core/pull/2974)
+- Reparar la pantalla "paquete" en el nivel del paquete python2 [ENLACE](https://github.com/jeedom/core/pull/2973)
+- Se corrigió un error al actualizar el equipo en la página de la batería [ENLACE](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
 
 >**IMPORTANTE**
 >
-> Debido al cambio del motor de caché en esta actualización, todo el caché se perderá, no te preocupes, el caché se reconstruirá solo. El caché contiene, entre otras cosas, los valores de los comandos que se actualizarán automáticamente cuando los módulos aumenten su valor. Ten en cuenta que si tienes virtuales con un valor fijo (lo cual no es bueno si no cambia entonces tienes que usar variables) entonces tendrás que guardarlos nuevamente para recuperar el valor.
+> Debido a la revisión de registros y la reinternalización de bibliotecas, durante la actualización puede aparecer un error estándar ``PHP Fatal error`` (nada grave) simplemente reinicie la actualización.
 
 >**IMPORTANTE**
 >
-> Debido a la revisión de los registros durante la actualización, es posible que tenga un error (nada grave), simplemente reinicie la actualización.
+> Restaurar una copia de seguridad 4.4 en algunos casos puede provocar errores en la interfaz web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wgY https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;descomprimir 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Puede ejecutar este comando desde la interfaz de rescate de jeedom (agregue `&rescue=1` en la URL), o directamente a través de ssh.

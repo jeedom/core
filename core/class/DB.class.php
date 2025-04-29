@@ -129,6 +129,10 @@ class DB {
 							$obj->setChanged(false);
 						}
 					}
+
+                    if (is_object($obj) && method_exists($obj, 'initialize')) {
+                        $obj->initialize();
+                    }
 				}
 			} else {
 				if (is_object($res) && method_exists($res, 'decrypt')) {
@@ -137,6 +141,10 @@ class DB {
 						$res->setChanged(false);
 					}
 				}
+
+                if (is_object($res) && method_exists($res, 'initialize')) {
+                    $res->initialize();
+                }
 			}
 		}
 		return $res;
@@ -470,7 +478,7 @@ class DB {
 			$object->$method($value);
 		} else {
 			$reflection = static::getReflectionClass($object);
-			if ($reflection->hasProperty($field)) {
+			if (!$reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
 			$property = $reflection->getProperty($field);

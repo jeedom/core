@@ -1005,6 +1005,7 @@ $GLOBALS['JEEDOM_SCLOG_TEXT'] = array(
 	'start'					=> array('txt' => '-- ' . __('Début :', __FILE__), 'replace' => '<strong>::</strong>'),
 	'task'					=> array('txt' => __('Tâche :', __FILE__) . ' ', 'replace' => '<label class="warning">::</label>'),
 	'event'					=> array('txt' => __('Changement de', __FILE__) . ' ', 'replace' => '<label class="warning">::</label>'),
+	'setTag'				=> array('txt' => __('Mise à jour du tag', __FILE__) . ' ', 'replace' => '<label class="warning">::</label>'),
 
 	'stopTimeout'			=> array('txt' => __('Arrêt du scénario car il a dépassé son temps de timeout :', __FILE__) . ' ', 'replace' => '<label class="danger">::</label>'),
 	'disableNoSubtask'		=> array('txt' => __('Scénario désactivé non lancement de la sous tâche', __FILE__), 'replace' => '<label class="danger">::</label>'),

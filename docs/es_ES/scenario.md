@@ -258,9 +258,12 @@ Puede utilizar cualquiera de los siguientes símbolos para realizar comparacione
 
 Puedes combinar cualquier comparación con los siguientes operadores :
 
-- ``YY`` : Y. También es posible utilizar : ``ET`` / / ``et`` / / ``AND`` / / ``and`` pero puede que no funcione bien con algunas funciones php.
-- ``||`` : O. También es posible utilizar : ``OU`` / / ``ou`` / / ``OR`` / / ``or`` pero puede que no funcione bien con algunas funciones php.
-- ``xor``  : o exclusivo. También es posible utilizar : ``XOR`` / / ``^`` pero puede que no funcione bien con algunas funciones php.
+Ya sea que combine comparativas en diferentes equipos o en el mismo, siempre es necesario indicar el equipo.
+``[Salle de bain][Hydrometrie][température] >= 18 YY [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``YY`` : Y. **Atención**, el uso de  : ``ET`` / / ``et`` / / ``AND`` / / ``and`` no se recomienda, en algunos casos puede funcionar pero con algunas funciones de php no funcionará.
+- ``||`` : O. **Atención**, el uso de  : ``OU`` / / ``ou`` / / ``OR`` / / ``or`` no se recomienda, en algunos casos puede funcionar pero con algunas funciones de php no funcionará.
+- ``xor``  : o exclusivo. **Atención**, el uso de  : ``XOR`` / / ``^`` no se recomienda, en algunos casos puede funcionar pero con algunas funciones de php no funcionará.
 
 ### Etiquetas
 
@@ -293,8 +296,8 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
   - ``schedule`` si se inició programando,
   - ``user`` si se inició manualmente,
   - ``start`` para un lanzamiento al inicio de Jeedom.
-- ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó.
-- ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando])
+- ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó. Ejemplo : ``#trigger_id# == 19``
+- ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando]). Ejemplo : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta tiene el valor del comando que desencadenó el escenario. Consejo: si desea conocer el valor actual del comando que desencadenó el escenario (y no su valor en el momento de la activación), puede utilizar : ``##trigger_id##`` (doble #)
 - ``#latitude#`` : Le permite recuperar la información de latitud ingresada en la configuración de jeedom
 - ``#longitude#`` : Le permite recuperar la información de longitud ingresada en la configuración de jeedom

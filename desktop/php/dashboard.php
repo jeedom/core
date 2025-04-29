@@ -155,7 +155,7 @@ $columns = config::byKey('dahsboard::column::size');
 		if ($toSummary) $divClass .= ' hidden';
 		$div =  '<div class="' . $columns . '" >';
 		$div .= '<div data-object_id="' . $objectId . '" data-father_id="' . $object->getFather_id() . '" class="' . $divClass . '">';
-		$div .= '<legend><span class="objectDashLegend fullCorner">';
+		$div .= '<legend style="margin-bottom: '.config::byKey('widget::margin').'px"><span class="objectDashLegend fullCorner">';
 		if (init('childs', 1) == 0) {
 			$div .= '<a href="index.php?v=d&p=dashboard&object_id=' . $objectId . '&childs=0&btover=1"><i class="icon jeedomapp-fleche-haut-line"></i></a>';
 		} else {

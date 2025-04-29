@@ -106,7 +106,7 @@ if (!jeeFrontEnd.view_edit) {
         div += '<legend><span class="viewZoneAttr" data-l1key="name"></span><span class="small viewtype"></span>'
         div += '<div class="input-group pull-right" style="display:inline-flex">'
         div += '<span class="input-group-btn" style="width: 100%;">'
-        div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;">'
+        div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="zoneCol" style="width : 110px;margin-right:5px">'
         div += '<option value="12">{{Largeur}} 12</option>'
         div += '<option value="11">{{Largeur}} 11</option>'
         div += '<option value="10">{{Largeur}} 10</option>'
@@ -121,10 +121,9 @@ if (!jeeFrontEnd.view_edit) {
         div += '<option value="1">{{Largeur}} 1</option>'
         div += '</select>'
         if (init(_viewZone.type, 'widget') == 'graph') {
-          div += '<span class="viewZoneAttr form-control" style="width: auto; background: transparent !important;">{{Hauteur}} (px)</span>'
-          div += '<input class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="height" style="width : 150px;">'
+          div += '<input class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="height" style="width : 150px;" placeholder="{{Hauteur}} (px)" /> '
 
-          div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;">'
+          div += '<select class="viewZoneAttr form-control input-sm" data-l1key="configuration" data-l2key="dateRange" style="width : 200px;margin-left:5px;margin-right:5px">'
           div += '<option value="30 min">{{30 min}}</option>'
           div += '<option value="1 hour">{{1 heure}}</option>'
           div += '<option value="1 day">{{Jour}}</option>'
@@ -599,11 +598,15 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#div_viewZones .bt_addViewTable')) {
-    var table = _target.closest('.viewZone').querySelector('table.div_viewData')
+    let table = _target.closest('.viewZone').querySelector('table.div_viewData')
     if (_target.getAttribute('data-type') == 'line') {
-      var line = '<tr class="viewData">'
+      let line = '<tr class="viewData">'
       line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
-      for (var i = 0; i < table.tBodies[0].children[0].children.length - 1; i++) {
+      let length = 1;
+      if(table.tBodies[0].children){
+        length = table.tBodies[0].children[0].children.length - 1
+      }
+      for (let i = 0; i < length; i++) {
         line += '<td>'
         line += '<div class="input-group">'
         line += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
@@ -615,11 +618,11 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       }
       line += '</tr>'
       table.tBodies[0].insertAdjacentHTML('beforeend', line)
-
-    } else if (_target.getAttribute('data-type') == 'col') {
+    } 
+    if (_target.getAttribute('data-type') == 'col') {
       table.tHead.childNodes[0].insertAdjacentHTML('beforeend', '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>')
       table.tBodies[0].childNodes.forEach(_tr => {
-        var col = '<td>'
+        let col = '<td>'
         col += '<div class="input-group">'
         col += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" />'
         col += '<span class="input-group-btn">'

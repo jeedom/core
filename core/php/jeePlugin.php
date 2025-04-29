@@ -55,6 +55,6 @@ try {
 		$plugin_id::$function();
 	}
 } catch (Exception $e) {
-	log::add(init('plugin_id', 'plugin'), 'error', $e->getMessage());
-	die($e->getMessage());
+	log::add(init('plugin_id', 'plugin'), 'error', log::exception($e));
+	die(log::exception($e));
 }

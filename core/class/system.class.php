@@ -114,7 +114,11 @@ class system {
 				$cmd .= ' | grep -v "' . $value . '"';
 			}
 		}
-		$results = explode("\n", trim(shell_exec($cmd)));
+		$execCmd = shell_exec($cmd);
+      		if(!$execCmd){
+			return $return;
+          	}
+		$results = explode("\n", trim($execCmd));
 		if (!is_array($results) || count($results) == 0) {
 			return $return;
 		}
@@ -416,22 +420,28 @@ class system {
 				break;
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
-				foreach ($datas['dependencies'] as $key => $value) {
-					self::$_installPackage[$type_key][mb_strtolower($key)] = array(
-						'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
-					);
+				if(is_array($datas['dependencies']) && count($datas['dependencies']) > 0){
+					foreach ($datas['dependencies'] as $key => $value) {
+						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
+							'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
+						);
+					}
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec(self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
-				foreach ($datas['installed'] as $value) {
-					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
+				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;'.self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
+				if(is_array($datas['installed']) && count($datas['installed']) > 0){
+					foreach ($datas['installed'] as $value) {
+						self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
+					}
 				}
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
-				foreach ($updates as $update) {
-					self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+				if(is_array($updates) && count($updates) > 0){
+					foreach ($updates as $update) {
+						self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
+					}
 				}
 				break;
 		}
@@ -502,9 +512,13 @@ class system {
 					continue;
 				}
 				if ($type == 'composer' && strpos($package, '/') !== false) {
+					$version = 'N/A';
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
-						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
-						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep Required | grep present | wc -l');
+						$composer_info = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/composer.json'), true);
+						if(isset($composer_info['version'])){
+							$version = $composer_info['version'];
+						}
+						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
 						if ($output == 0) {
 							$found = 1;
 						}
@@ -825,7 +839,12 @@ class system {
 				return self::getCmdSudo() . ' pip2 install --force-reinstall --upgrade ' . $_package;
 			case 'pip3':
 				if ($_version != '') {
+					if (preg_match('/[<>]/', $_version)) {
+						$_package .= $_version;
+						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
+					} 
 					$_package .= '==' . $_version;
+					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 				}
 				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 			case 'npm':
@@ -848,12 +867,12 @@ class system {
 				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 		}
 	}
 

@@ -66,7 +66,7 @@ At the protocol level, only the Z-Wave (OpenZwave) is a little different because
 
 Cloud backup allows Jeedom to send your backups directly to the Market. This allows you to restore them easily and be sure not to lose them. The Market keeps the last 6 backups. To subscribe just go to your page **profile** on the Market, then in the tab **my backups**. You can, from this page, retrieve a backup or buy a subscription (for 1, 3, 6 or 12 months).
 
-> **Tip**
+> **Advice**
 >
 > You can customize the name of the backup files from the tab **My jeedoms**, avoiding however the exotic characters.
 
@@ -76,6 +76,6 @@ Jeedom performs an automatic backup every day at the same time. It is possible t
 
 # FAQ
 
->**I can't restore my backup that I retrieved from Safari**
+>**I can't restore my backup that I recovered from Safari**
 >
 >By default Safari decompresses tars.gz (in tar) which means that the backup can no longer be used by jeedom, it must be recompressed (gzip) in tar.gz

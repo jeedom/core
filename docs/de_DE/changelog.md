@@ -12,9 +12,8 @@
 - **ENTW** Einrichten eines Warteschlangensystems zur Ausführung von Aktionen [LINK](https://github.com/jeedom/core/issues/2489)
 - Szenario-Tags sind jetzt spezifisch für die Szenarioinstanz (wenn Sie zwei sehr nahe beieinander liegende Szenariostarts haben, überschreiben die Tags des letzten Szenarios nicht mehr das erste)) [LINK](https://github.com/jeedom/core/issues/2763)
 - Wechseln Sie zum Auslöserteil der Szenarien : [LINK](https://github.com/jeedom/core/issues/2414)
-  - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
-  - ``trigger()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
-  - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt
+  - ``triggerId()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt. Wenn ja ``triggerId() == 587`` es muss durch ersetzt werden ``#trigger_id# == 587``
+  - ``triggerValue()`` ist jetzt veraltet und wird in zukünftigen Kernaktualisierungen entfernt. Wenn ja ``triggerValue() == 10`` es muss durch ersetzt werden ``#trigger_value# == 10``
   - ``#trigger#`` : Vielleicht :
     - ``api`` wenn der Start durch die API ausgelöst wurde,
     - ``TYPEcmd`` Wenn der Start durch einen Befehl ausgelöst wurde, wird TYPE durch die Plugin-ID ersetzt (z. B. virtualCmd),
@@ -62,20 +61,35 @@
 - Möglichkeit, den Apache-Listening-Port im Docker-Modus auszuwählen [LINK](https://github.com/jeedom/core/pull/2847)
 - Beim Speichern in der Ereignistabelle wurde eine Warnung behoben [LINK](https://github.com/jeedom/core/issues/2851)
 - Hinzufügen eines Anzeigenamens für Objekte [LINK](https://github.com/jeedom/core/issues/2484)
-- Es wurde eine Schaltfläche hinzugefügt, um Verlauf und Ereignisse in Zukunft aus der Zeitleiste zu löschen [LINK](https://github.com/jeedom/core/issues/2415)
+- Eine Schaltfläche hinzugefügt, um Historien und Ereignisse in Zukunft aus der Zeitleiste zu löschen [LINK](https://github.com/jeedom/core/issues/2415)
 - Ein Problem mit Befehlen zur Typauswahl in Designs wurde behoben [LINK](https://github.com/jeedom/core/issues/2853)
-- Möglichkeit, am Gerät anzuzeigen, dass die Batterie leer ist (bei schlechtem Aufstieg)) [LINK](https://github.com/jeedom/core/issues/2855)
-- Neugestaltung des Schreibens in Protokollen, Löschung der Monolog-Bibliothek (beachten Sie, dass die Option zum Senden von Protokollen im Syslog derzeit nicht mehr verfügbar ist. Bei hoher Nachfrage werden wir versuchen, sie zurückzusetzen) [LINK](https://github.com/jeedom/core/pull/2805)
-- Wechsel von NodeJS 18 zu NodeJS 20 [LINK](https://github.com/jeedom/core/pull/2846)
+- Möglichkeit der Anzeige, dass das Gerät keine Batterie hat (im Falle einer schlechten Wiederherstellung)) [LINK](https://github.com/jeedom/core/issues/2855)
+- Neugestaltung des Schreibens in Protokollen, Entfernung der Monolog-Bibliothek (beachten Sie, dass die Option zum Senden von Protokollen im Syslog derzeit nicht mehr verfügbar ist. Bei hoher Nachfrage werden wir versuchen, sie wieder einzuführen) [LINK](https://github.com/jeedom/core/pull/2805)
 - Bessere Verwaltung der Plugin-Sublog-Protokollebenen [LINK](https://github.com/jeedom/core/issues/2860)
 - Durch das Löschen des Vendor-Ordners (mit Composer auf normale Weise) können Sie die Größe des Kerns reduzieren [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
-- Spezifische Widget-Einstellungen können jetzt übersetzt werden [LINK](https://github.com/jeedom/core/pull/2862)
+- Widgetspezifische Einstellungen können jetzt übersetzt werden [LINK](https://github.com/jeedom/core/pull/2862)
 - Ein Fehler auf dem Mac bei Designs beim Rechtsklick wurde behoben [LINK](https://github.com/jeedom/core/issues/2863)
+- Verbesserung des Systems zum Starten programmierter Szenarien [LINK](https://github.com/jeedom/core/issues/2875)
+- Verbesserte Ausnahmefehlermeldungen, wenn die Protokollebene Debug ist [LINK](https://github.com/jeedom/core/issues/2886)
+- Auf der Ersatzseite besteht die Möglichkeit, die Deaktivierung des Geräts zu beantragen [LINK](https://github.com/jeedom/core/issues/2893)
+- Bei einem Update berücksichtigt das Forward-Backup nun Plugin-Ausschlüsse [LINK](https://github.com/jeedom/core/commit/22aa19b85028b0de6f7d3028ae0424d4f238f7df)
+- Wenn sich ein Plugin in der Beta-Phase befindet, aber kein Beta-Änderungsprotokoll hat, kehrt das Update-Center zum stabilen Änderungsprotokoll zurück [LINK](https://github.com/jeedom/core/commit/2af7b0a4d8680f68810cf9d07c657c51fe9e40bd)
+- Es wurde eine Warnung hinzugefügt, wenn die Debian-Version 10 oder niedriger ist [LINK](https://github.com/jeedom/core/issues/2912)
+- Fehler bei der DB-Aktualisierung in der Cache-Tabelle behoben [LINK](https://github.com/jeedom/core/commit/a21f3498195f0003c5ead7cd5e8589f1c77c1c06)
+- Wenn die Geräteseite über ein img_device-Element (img-Typ-Tag) verfügt, kann der Kern selbst die URL konfigurieren, um das richtige Gerätebild anzuzeigen (unter Verwendung des Bildes der Präsentationsseite aller Plugin-Geräte)) [LINK](https://github.com/jeedom/core/commit/07708ba4cbed982af968919dac3e406707867417)
+- Ein Fehler mit der Funktion time_diff wurde behoben [LINK](https://github.com/jeedom/core/issues/2915)
+- Fehlerbehebung bei der Composer-Abhängigkeitsverwaltung [LINK](https://github.com/jeedom/core/issues/2920)
+- Im Falle eines leeren Befehls erzwingt Jeedom die Rückgabe entsprechend dem Untertyp des Befehls (also 0 für numerisch und binär)) [LINK](https://github.com/jeedom/core/commit/442d47246373e4f52b1dde7d1c7fdc9f67ea143e)
+- Unterstützung für benutzerdefinierte Typereignisse #pluginClass::*# Oder #pluginClass::customId# [LINK](https://github.com/jeedom/core/pull/2964)
+- Zusätzlich zu der Schaltfläche oben rechts wurde der Zeile „Kern“ eine Schaltfläche „Aktualisieren“ hinzugefügt [LINK](https://github.com/jeedom/core/pull/2974)
+- Korrigieren Sie den Bildschirm „Paket“ auf Python2-Paketebene [LINK](https://github.com/jeedom/core/pull/2973)
+- Ein Fehler beim Aktualisieren der Ausrüstung auf der Batterieseite wurde behoben [LINK](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
 
 >**WICHTIG**
 >
-> Aufgrund der Änderung der Cache-Engine bei diesem Update geht der gesamte Cache verloren. Keine Sorge, der Cache wird sich selbst neu aufbauen. Der Cache enthält unter anderem die Werte der Befehle, die automatisch aktualisiert werden, wenn die Module ihren Wert erhöhen. Beachten Sie, dass Sie virtuelle Variablen mit einem festen Wert (was nicht gut ist, wenn er sich nicht ändert und dann Variablen verwenden muss) erneut speichern müssen, um den Wert wiederherzustellen.
+> Aufgrund der Überarbeitung der Protokolle und der Reinternalisierung der Bibliotheken kann es beim Update zu einem Standardfehler kommen ``PHP Fatal error`` (nichts Ernstes) Starten Sie einfach das Update neu.
 
 >**WICHTIG**
 >
-> Aufgrund der Überarbeitung der Protokolle während des Updates tritt möglicherweise ein Fehler auf (nichts Ernstes). Starten Sie das Update einfach neu.
+> Wiederherstellen eines Backups 4.4 kann in einigen Fällen zu Fehlern in der Weboberfläche führen. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wgUnd https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;unzip 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Sie können diesen Befehl über die Jeedom-Rettungsschnittstelle ausführen (fügen Sie „&rescue=1“ in der URL hinzu) oder direkt über ssh.

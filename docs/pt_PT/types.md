@@ -17,7 +17,7 @@ Esta página permite que esses Tipos Genéricos sejam configurados de forma mais
 
 Esta página oferece armazenamento por tipo de equipamento : Soquete, luz, obturador, termostato, câmera, etc. Inicialmente, a maior parte do seu equipamento será classificado em **Equipamento sem tipo**. Para atribuir um tipo a eles, você pode movê-los para outro tipo ou clicar com o botão direito no equipamento para movê-lo diretamente. O tipo de equipamento não é realmente útil em si, sendo o mais importante os tipos de pedido. Você pode, portanto, ter um Equipamento sem um Tipo, ou um Tipo que não corresponda necessariamente aos seus comandos. Você pode, é claro, misturar tipos de controles no mesmo equipamento. Por enquanto, é mais um armazenamento, uma organização lógica, que talvez servirá em versões futuras.
 
-> **Dica**
+> **Conselho**
 >
 > - Quando você move o equipamento no jogo **Equipamento sem tipo**, Jeedom sugere que você remova os tipos genéricos de seus pedidos.
 > - Você pode mover vários equipamentos de uma vez marcando as caixas de seleção à esquerda deles.
@@ -28,7 +28,7 @@ Uma vez que um item do equipamento é posicionado na posição correta *Tipo*, c
 
 Ao clicar com o botão direito em um pedido, você pode atribuir a ele um tipo genérico correspondente às especificações desse pedido (tipo de informação / ação, numérico, subtipo binário, etc).
 
-> **Dica**
+> **Conselho**
 >
 > - O menu contextual de comandos exibe o tipo de equipamento em negrito, mas ainda permite atribuir qualquer Tipo Genérico de qualquer tipo de equipamento.
 
@@ -80,7 +80,7 @@ Ou mais simplesmente, crie uma ação `genericType` com` LIGHT_ON` no `Salon`. S
 
 ## Lista de tipos de núcleo genérico
 
-> **Dica**
+> **Conselho**
 >
 > - Você pode encontrar essa lista diretamente no Jeedom, nesta mesma página, com o botão **Lista** canto superior direito.
 

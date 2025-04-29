@@ -344,8 +344,9 @@ jeedom.cmd.test = function(_params) {
               break
             case 'message':
               let productName = JEEDOM_PRODUCT_NAME
-              let content = '<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="{{Titre pour la commande}} ' + result.name + '">'
-              content += '<textarea class="promptAttr" data-l1key="message" placeholder="{{Message pour la commande}} ' + result.name + '"></textarea>'
+              let content = `<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="${result.display.title_placeholder || `{{Titre pour la commande}} ${result.name}`}">`
+              content += `<textarea class="promptAttr" data-l1key="message" placeholder="${result.display.message_placeholder || `{{Message pour la commande}} ${result.name}`}"></textarea>`
+
               jeeDialog.prompt({
                 title: "{{Message}}",
                 message: content,
@@ -989,8 +990,20 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
     contentUrl: 'index.php?v=d&modal=cmd.human.insert',
     callback: function() { mod_insertCmd.setOptions(_options) },
     buttons: {
+      cancel: {
+        label: '<i class="fas fa-times"></i> {{Annuler}}',
+        className: 'warning',
+        callback: {
+          click: function(event) {
+            if (isset(_options.returnCancel) && 'function' === typeof (_callback)) {
+              _callback({})
+            }
+            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
+          }
+        }
+      },
       confirm: {
-        label: '{{Valider}}',
+        label: '<i class="fas fa-check"></i> {{Valider}}',
         className: 'success',
         callback: {
           click: function(event) {
@@ -1002,18 +1015,6 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
             args.cmd.subType = mod_insertCmd.getSubType()
             if (args.human.trim() != '' && 'function' === typeof (_callback)) {
               _callback(args)
-            }
-            document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
-          }
-        }
-      },
-      cancel: {
-        label: '{{Annuler}}',
-        className: 'warning',
-        callback: {
-          click: function(event) {
-            if (isset(_options.returnCancel) && 'function' === typeof (_callback)) {
-              _callback({})
             }
             document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
           }

@@ -18,7 +18,8 @@
 try {
 	//no config, install Jeedom!
 	if (!file_exists(__DIR__ . '/core/config/common.config.php')) {
-		header("location: install/setup.php");
+		echo 'Jeedom not configure, no common.config.php found';
+		die();
 	}
 
 	require_once __DIR__ . "/core/php/core.inc.php";

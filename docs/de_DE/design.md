@@ -4,7 +4,7 @@
 Auf dieser Seite können Sie die Anzeige Ihrer gesamten Hausautomation auf sehr feine Weise konfigurieren.
 Es braucht Zeit, aber seine einzige Grenze ist Ihre Vorstellungskraft.
 
-> **Tipp**
+> **Beratung**
 >
 > Dank des Untermenüs ist es möglich, direkt zu einem Entwurf zu gelangen.
 
@@ -111,7 +111,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 - **Symbol** : Symbol vor dem Designnamen.
 - **Hintergrundfarbe** : Mit dieser Option können Sie die Hintergrundfarbe ändern oder transparent machen. Vergessen Sie nicht, &quot;Standard&quot; auf NEIN zu ändern.
-- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen)..
+- **Textfarbe** : Mit dieser Option können Sie die Farbe von Symbolen und Texten ändern (achten Sie darauf, die Standardeinstellung auf Nein zu setzen).
 - **Rund um die Winkel** : erlaubt das Abrunden der Winkel (vergessen Sie nicht,%, ex 50% zu setzen).
 - **Grenze** : Wenn Sie einen Rahmen hinzufügen möchten, achten Sie darauf, dass die Syntax HTML ist (Sie müssen beispielsweise die CSS-Syntax verwenden : festes 1px schwarz).
 - **Schriftgröße** : Mit dieser Option können Sie die Schriftgröße ändern (ab 50% müssen Sie das% -Zeichen eingeben).
@@ -121,7 +121,7 @@ Hier können Sie die Befehle auswählen, die erfasst werden sollen.
 
 > **Wichtig**
 >
-> Wenn Sie HTML-Code (insbesondere Javascript) einfügen, überprüfen Sie diesen sorgfältig, da dies möglich ist, wenn ein Fehler vorliegt oder wenn eine Jeedom-Komponente überschrieben wird, das Design vollständig abstürzt und nur gelöscht werden muss direkt in die Datenbank.
+> Wenn Sie HTML-Code (insbesondere Javascript) einfügen, prüfen Sie ihn vorher sorgfältig, denn wenn er einen Fehler enthält oder eine Jeedom-Komponente überschreibt, kann das Design vollständig zum Absturz kommen und Sie müssen ihn nur noch direkt aus löschen die Datenbank.
 
 ## Szenario
 

@@ -3,7 +3,7 @@
 
 Logs are log files, allowing you to follow what is happening on your home automation. In most cases the logs will only be used for debugging and solving problems by the support team.
 
-> **Tip**
+> **Advice**
 >
 > When the page opens, the first available log is displayed.
 
@@ -18,7 +18,7 @@ Top right 5 buttons :
 - **DELETE** : Delete the current log. If Jeedom needs it it will recreate it automatically.
 - **Delete all logs** : Delete all logs present.
 
-> **Tip**
+> **Advice**
 >
 > Note that the http log.error cannot be deleted. It is essential if you delete it (on the command line for example) it will not recreate itself, you must restart the system.
 

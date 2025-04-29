@@ -51,6 +51,7 @@ switch ($argv[1]) {
                     die();
                 }
                 $plugin->setIsEnable(1,true,true);
+                jeedom::cleanFileSystemRight();
                 break;
             case 'dependancy_end':
                 if (!isset($argv[3])) {
@@ -133,6 +134,71 @@ switch ($argv[1]) {
                 die();
         }
         break;
+    case 'backup':
+        switch ($argv[2]) {
+            case 'restore':
+                if (!isset($argv[3])) {
+                    echo "No backup file provide";
+                    break;
+                }
+
+                $backupPath = ''; 
+                $i = 0;
+                foreach (jeedom::listBackup() as $key => $backup) {
+                    $i++;
+                    if($i == $argv[3]) {
+                        $backupPath = $key;
+                        break;
+                    }
+                }
+
+                if (!is_file($backupPath)) {
+                    echo "Backup file not found";
+                    break;
+                }
+                jeedom::restore($backupPath, true);
+    
+                $cheminFichier = log::getPathToLog('restore');
+                if (!file_exists($cheminFichier)) {
+                    echo "Le fichier n'existe pas.\n";
+                    break;
+                }
+    
+                $handle = fopen($cheminFichier, "r");
+                if ($handle === false) {
+                    echo "Impossible d'ouvrir le fichier.\n";
+                    break;
+                }
+    
+                fseek($handle, 0, SEEK_END);
+    
+                while (true) {
+                    while (($line = fgets($handle)) !== false) {
+                        echo $line;
+                    }
+                    clearstatcache();
+                    $fileSize = filesize($cheminFichier);
+                    if (ftell($handle) < $fileSize) {
+                        fseek($handle, ftell($handle));
+                    } else {
+                        sleep(1); 
+                    }            
+                }
+                fclose($handle);
+
+                break;
+            case 'list':
+                $i = 0;
+                foreach (jeedom::listBackup() as $backup) {
+                    $i++;
+                    echo "[$i] - ". $backup . "\n";
+                }
+                break;
+            default:
+                echo "No action provide : backup";
+                die();
+        }
+        break;
     default:
         help();
         break;
@@ -154,4 +220,8 @@ function help() {
     echo "\t user : manage Jeedom user\n";
     echo "\t\t list : list jeedom user\n";
     echo "\t\t password [username] [password] : change password of [username] to [password]\n";
+
+    echo "Available actions for 'backup':\n";
+    echo "  restore [n] - Restore the nth backup file.\n";
+    echo "  list - List all available backups.\n";
 }

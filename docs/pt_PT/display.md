@@ -26,11 +26,11 @@ Para cada objeto, próximo ao seu rótulo, dois botões estão disponíveis.
 - O primeiro é usado para abrir a página de configuração do objeto em uma nova guia.
 - O segundo fornece algumas informações sobre o objeto,
 
-> **Dica**
+> **Conselho**
 >
 > A cor do plano de fundo dos quadros do objeto depende da cor escolhida na configuração do objeto.
 
-> **Dica**
+> **Conselho**
 >
 > Com um clique e soltar nos objetos ou equipamentos, você pode alterar a ordem deles ou até atribuí-los a outro objeto. É da ordem estabelecida nesta página que a exibição do Painel é calculada.
 
@@ -53,7 +53,7 @@ Se o plug-in do equipamento estiver desativado, os dois ícones à direita não 
 
 ## Configuração avançada de equipamentos
 
-> **Dica**
+> **Conselho**
 >
 > É possível acessar (se o plugin o suportar) diretamente a esta janela a partir da página de configuração do equipamento, clicando no botão de configuração avançada
 
@@ -99,7 +99,7 @@ Na aba **Mostrar**, você poderá configurar certos comportamentos de exibição
 Abaixo, há parâmetros opcionais de exibição que podem ser aplicados ao equipamento. Esses parâmetros são compostos de um nome e um valor. Basta clicar em **Adicionar** aplicar um
 novo. Para equipamentos, apenas o valor **estilo** atualmente utilizado, permite inserir código CSS no equipamento em questão.
 
-> **Dica**
+> **Conselho**
 >
 > Não se esqueça de salvar após qualquer modificação.
 
@@ -118,7 +118,7 @@ esse :
 - **Caixa de texto** : Adicione texto além do comando (ou sozinho, se não houver comando na caixa).
 - **Estilo do caso (CSS)** : Modifique o estilo CSS específico da caixa (observe que ele substitui e substitui o CSS geral das caixas).
 
-> **Dica**
+> **Conselho**
 >
 > Em uma caixa da tabela, se você deseja colocar 2 comandos um abaixo do outro, não se esqueça de adicionar uma quebra de linha após o primeiro no **Configuração avançada** disso.
 
@@ -134,7 +134,7 @@ Abaixo, você também pode definir os limites de alerta de bateria específicos 
 
 Você também pode gerenciar o tempo limite, em minutos, do equipamento. Por exemplo, 30 informa ao jeedom que se o equipamento não se comunicar por 30 minutos, ele deve ser colocado em alerta.
 
-> **Dica**
+> **Conselho**
 >
 > Os parâmetros globais estão em **Configurações → Sistema → Configuração : Registros** Ou **Equipamento**
 
@@ -153,7 +153,7 @@ Primeiro, no canto superior direito, alguns botões disponíveis :
 -  **Aplicar** : Permite que a mesma configuração seja aplicada a vários comandos.
 - **Para salvaguardar** : Salve as modificações feitas no equipamento.
 
-> **Dica**
+> **Conselho**
 >
 > Em um gráfico, um clique duplo em um elemento leva você à sua configuração.
 
@@ -242,6 +242,6 @@ Nesta parte, você poderá configurar determinados comportamentos de exibição 
 
 Abaixo, existem parâmetros de exibição opcionais que podem ser passados para o widget. Esses parâmetros dependem do widget em questão, portanto, é necessário examinar o arquivo no Market para conhecê-los.
 
-> **Dica**
+> **Conselho**
 >
 > Não se esqueça de salvar após qualquer modificação.

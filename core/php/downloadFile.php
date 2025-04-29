@@ -105,5 +105,5 @@ try {
 	}
 	exit;
 } catch (Exception $e) {
-	echo $e->getMessage();
+	echo log::exception($e);
 }

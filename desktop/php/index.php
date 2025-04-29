@@ -7,6 +7,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
 $configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose', 'scenario::disableAutocomplete')));
+$homeLink = 'index.php?v=d&p=dashboard'; 
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -20,8 +21,6 @@ if (isConnect()) {
 		} else	if ($homePage[1] == 'plan3d' && $_SESSION['user']->getOptions('defaultPlanFullScreen3d') == 1) {
 			$homeLink .= '&fullscreen=1';
 		}
-	} else {
-		$homeLink = 'index.php?v=d&p=dashboard';
 	}
 }
 if (init('rescue', 0) == 1) {

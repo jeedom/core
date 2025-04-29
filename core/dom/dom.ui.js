@@ -1659,9 +1659,15 @@ var jeeDialog = (function() {
         function dragging(event) {
           event.preventDefault()
           let modalRect = dialogContainer.getBoundingClientRect()
-          nextLeft = event.clientX || event.targetTouches[0].pageX
+          nextLeft = event.clientX
+          if (event.targetTouches) {
+            nextLeft = event.targetTouches[0].pageX
+          }
           nextLeft -= initialLeft
-          nextTop = event.clientY || event.targetTouches[0].pageY
+          nextTop = event.clientY
+          if (event.targetTouches) {
+            nextTop = event.targetTouches[0].pageY
+          }
           nextTop -= initialTop
 
           if (nextTop <= 0) {
@@ -1946,6 +1952,7 @@ var jeeCtxMenu = function(_options) {
       //Events
       itemDiv.addEventListener('mouseup', function(event) { //Context menu item click:
         if (event.target.hasClass('disabled')) return
+        if (isset(event.button) && event.button === 2) return
         setTimeout(() => { //Wait for mouseup firing default click
           let then = true
           event.realTrigger = ctxInstance.realTrigger

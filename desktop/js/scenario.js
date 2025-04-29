@@ -252,7 +252,7 @@ if (!jeeFrontEnd.scenario) {
         var scId = document.querySelector('div#div_editScenario span[data-l1key="id"]').textContent
         var cmdId = document.querySelector('div#cmd_information span[data-l1key="id"]')?.textContent
 
-        var cmdName = jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName + ' [' + jeephp2js.md_cmdConfigure_cmdInfo.name + ']'
+        var cmdName = jeephp2js.md_cmdConfigure_cmdInfo.eqLogicHumanName + '[' + jeephp2js.md_cmdConfigure_cmdInfo.name + ']'
 
         //clean actual cmd from list:
         jeeP.dataDefinedAction = jeeP.dataDefinedAction.filter(i => i['cmdId'] != cmdId)

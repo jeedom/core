@@ -1,0 +1,37 @@
+# copy .env.default into .env and customize it before launch :
+# `docker compose up -d`
+services:
+
+  jeedom:
+    # fix jeedom version to avoid unwanted upgrade, select one tag of:
+    # https://hub.docker.com/r/jeedom/jeedom/tags
+    image: jeedom/jeedom:4.4
+    # values from .env file
+    environment:
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USERNAME=${MYSQL_USER}
+      - MARIADB_JEEDOM_PASSWD=${MYSQL_PASSWORD}
+      - DB_PORT=${DB_PORT}
+      - DB_HOST=${DB_HOST}
+      - TZ=${TIME_ZONE}
+      - DEBUG=${DEBUG}
+    restart: unless-stopped
+    # map host directories into container volumes
+    # volumes:
+    #  - ./volumes/jeedom:/var/www/html
+    #  - ./volumes/backup:/tmp/backup
+    healthcheck:
+      test: ["CMD-SHELL", "curl -so /tmp/status http://localhost/here.html || exit 1"]
+      interval: 1m30s
+      retries: 3
+      start_period: 40s
+      timeout: 20s
+    ports:
+      # host port mapped to the container port 80
+      - "80:80"
+      - "443:443"
+    logging:
+      # limit log file and size
+      options:
+        max-size: "10m"
+        max-file: "1"

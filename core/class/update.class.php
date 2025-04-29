@@ -133,10 +133,10 @@ class update {
 						try {
 							$update->doUpdate();
 						} catch (Exception $e) {
-							log::add(__CLASS__, 'alert', $e->getMessage());
+							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						} catch (Error $e) {
-							log::add(__CLASS__, 'alert', $e->getMessage());
+							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						}
 					}
@@ -353,7 +353,7 @@ class update {
 							}
 						} catch (Exception $e) {
 						}
-						shell_exec('find '.$cibDir.'/ -exec touch {} +');
+						shell_exec('find ' . $cibDir . '/ -exec touch {} +');
 						rmove($cibDir . '/', __DIR__ . '/../../plugins/' . $this->getLogicalId(), false, array(), true);
 						rrmdir($cibDir);
 						$cibDir = jeedom::getTmpFolder('market') . '/' . $this->getLogicalId();
@@ -476,10 +476,11 @@ class update {
 					$this->remove();
 					throw new Exception(__("Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur", __FILE__));
 				}
+				$plugin->callInstallFunction('post_plugin_install');
 				if (is_object($plugin) && $plugin->isActive()) {
 					$plugin->setIsEnable(1);
 				}
-				$plugin->setCache('usedSpace',null);
+				$plugin->setCache('usedSpace', null);
 				break;
 		}
 		if (isset($_infos['localVersion'])) {
@@ -497,9 +498,9 @@ class update {
 			$request_http = new com_http($url);
 			return trim($request_http->exec(30));
 		} catch (Exception $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		} catch (Error $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . $e->getMessage());
+			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		}
 		return null;
 	}

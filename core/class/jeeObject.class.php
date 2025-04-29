@@ -769,7 +769,7 @@ class jeeObject {
 				try {
 					$cmd->execCmd($_options);
 				} catch (\Exception $e) {
-					log::add('cmd', 'error', $cmd->getHumanName() . ' ' . $e->getMessage());
+					log::add('cmd', 'error', $cmd->getHumanName() . ' ' . log::exception($e));
 				}
 			}
 		}
@@ -1098,7 +1098,7 @@ class jeeObject {
 				}
 				$value = $cmd->execCmd();
 				if (isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0) {
-					if ((strtotime('now') - strtotime($cmd->getCollectDate())) > ($def[$_key]['ignoreIfCmdOlderThan'] * 60)) {
+					if ((strtotime('now') - strtotime($cmd->getCollectDate())) > ((int)  $def[$_key]['ignoreIfCmdOlderThan'] * 60)) {
 						continue (2);
 					}
 				}

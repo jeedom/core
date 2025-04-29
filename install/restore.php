@@ -130,15 +130,16 @@ try {
 	}
 	echo "Update composer file...\n";
 	if (exec('which composer | wc -l') > 0) {
-		shell_exec(system::getCmdSudo(). ' rm '. __DIR__ . '/../composer.lock');
 		shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
 		shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
 		shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
 		if(method_exists('jeedom','cleanFileSystemRight')){
 			jeedom::cleanFileSystemRight();
 		}
+		echo "OK\n";
+	} else {
+		echo "ERROR : no composer available !\n";
 	}
-	echo "OK\n";
 	echo "[PROGRESS][58]\n";
 
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
@@ -167,11 +168,8 @@ try {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
 	}
-	if(isset($CONFIG['db']['unix_socket'])) {
-		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
-	} else {
-		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
-	}
+	shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
+	shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
 	echo "OK\n";
 	
 	echo "Enable back constraints...";
@@ -197,16 +195,21 @@ try {
 	echo "OK\n";
 	
 	foreach (plugin::listPlugin(true) as $plugin) {
+		$plugin_id = null;
 		try {
 			$plugin_id = $plugin->getId();
 			$dependancy_info = $plugin->dependancy_info(true);
 			if (method_exists($plugin_id, 'restore')) {
-				echo 'Restoring Plugin : ' . $plugin_id . '...';
+				echo 'Restoring Plugin: ' . $plugin_id . '...';
 				$plugin_id::restore();
 				echo "OK\n";
 			}
 		} catch (\Exception $e) {
-			echo '[error] on plugin : '.$plugin_id. ' => '.$e->getMessage();
+			if ($plugin_id !== null) {
+				echo '[error] on plugin: ' . $plugin_id . ' => ' . $e->getMessage() . "\n";
+			} else {
+				echo '[error] on unknown plugin => ' . $e->getMessage() . "\n";
+			}
 		}
 	}
 	config::save('hardware_name', '');

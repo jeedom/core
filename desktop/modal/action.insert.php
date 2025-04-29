@@ -86,11 +86,11 @@ if (!isConnect()) {
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription message" style="display:none;">
-  {{Permet d'ajouter une message dans le centre de message}}
+  {{Permet d'ajouter un message dans le centre de message}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription equipement">
-  {{Permet de modifier les proriétés visible/invisible actif/inactif d'un équipement}}
+  {{Permet de modifier les propriétés d'un équipement (visible/invisible actif/inactif)}}
 </div>
 
 <div class="alert alert-info mod_actionValue_selDescription ask" style="display:none;">

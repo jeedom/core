@@ -18,7 +18,7 @@ Vous y trouverez la liste des scénarios de votre Jeedom, ainsi que des fonction
 
 Vous trouverez dans cette partie-là **liste des scénarios** que vous avez créés. Ils sont classés suivant leur **groupe**, éventuellement définis pour chacun d’eux. Chaque scénario est affiché avec son **nom** et son **objet parent**. Les **scénarios grisés** sont ceux qui sont désactivés.
 
-> **Tip**
+> **Conseil**
 >
 > Vous pouvez ouvrir un scénario en faisant :
 >
@@ -86,7 +86,7 @@ Dans l’onglet **Général**, on retrouve les paramètres principaux du scénar
 - **Description** : Permet d’écrire un petit texte pour décrire votre scénario.
 - **Mode du scénario** : Le scénario peut être programmé, déclenché ou les deux à la fois. Vous aurez ensuite le choix d’indiquer le(s) déclencheur(s) (15 déclencheurs maximum) et la/les programmation(s).
 
-> **Tip**
+> **Conseil**
 >
 > En mode déclenché, des conditions peuvent à présent être saisies. Par ex : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Attention : vous pouvez avoir au maximum 28 déclencheurs/programmations pour un scénario.
@@ -102,11 +102,11 @@ C’est ici que vous allez construire votre scénario. Après la création du sc
 Pour plus de praticité et ne pas avoir à constamment réordonner les blocs dans le scénario, l'ajout d'un bloc se fait après le champ dans lequel se situe le curseur de la souris.
 *Par exemple, si vous avez une dizaine de blocs, et que vous cliquez dans la condition SI du premier bloc, le bloc ajouté le sera après ce bloc, au même niveau. Si aucun champ n'est actif, il sera ajouté à la fin du scénario.*
 
-> **Tip**
+> **Conseil**
 >
 > Dans les conditions et actions, il vaut mieux privilégier les guillemets simples (') au lieu des doubles (").
 
-> **Tip**
+> **Conseil**
 >
 > Un Ctrl Shift Z ou Ctrl Shift Y vous permet d'**annuler** ou de **refaire** une modification (ajout d'action, de bloc...).
 
@@ -150,7 +150,7 @@ Trois boutons sont disponibles sur la droite de ce type de bloc pour sélectionn
 > Sur les blocs de type Si/Alors/Sinon, des flèches circulaires situées à gauche du champ de condition permettent d’activer ou non la répétition des actions si l’évaluation de la condition donne le même résultat que lors de la précédente évaluation.
 > SI expression != 0 est équivalent à SI expression et SI expression == 0 est équivalent à SI not expression
 
-> **Tip**
+> **Conseil**
 >
 > Il existe une liste de tags permettant d’avoir accès à des variables issues du scénario ou d’un autre, ou bien à l’heure, la date, un nombre aléatoire, … Voir plus loin les chapitres sur les commandes et les tags.
 
@@ -197,7 +197,7 @@ Le bloc Code permet d’exécuter du code PHP. Il est donc très puissant mais n
 - ``$scenario->setLog($message);`` : Écrit un message dans le log du scénario.
 - ``$scenario->persistLog();`` : Force l’écriture du log (sinon il est écrit seulement à la fin du scénario). Attention, ceci peut un peu ralentir le scénario.
 
-> **Tip**
+> **Conseil**
 >
 > Ajout d'une fonction recherche dans le bloc Code : Rechercher : Ctrl + F puis Enter, Résultat suivant : Ctrl + G, Résultat précédent : Ctrl + Shift + G
 
@@ -219,7 +219,7 @@ Les actions ajoutées dans les blocs ont plusieurs options :
 - Un bouton pour les actions spécifiques, avec à chaque fois la description (au survol) de cette action.
 - Un bouton pour rechercher une commande d’action.
 
-> **Tip**
+> **Conseil**
 >
 > Suivant la commande sélectionnée, on peut voir s'afficher différents champs supplémentaires.
 
@@ -258,15 +258,18 @@ Vous pouvez utiliser n’importe lequel des symboles suivants pour les comparais
 
 Vous pouvez combiner n’importe quelle comparaison avec les opérateurs suivants :
 
-- ``&&`` : et. Il est aussi possible d'utiliser : ``ET`` / ``et`` / ``AND`` / ``and`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
-- ``||`` : ou. Il est aussi possible d'utiliser : ``OU`` / ``ou`` / ``OR`` / ``or`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
-- ``xor``  : ou exclusif. Il est aussi possible d'utiliser : ``XOR`` / ``^`` mais peut ne pas fonctionner correctement avec certaines fonctions php.
+Que vous combiniez des comparaisons sur des équipements différents ou sur le même, il est toujours nécessaire d'indiquer l'équipement.
+``[Salle de bain][Hydrometrie][température] >= 18 && [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``&&`` : et. **Attention**, l'utilisation de  : ``ET`` / ``et`` / ``AND`` / ``and`` n'est pas recommandée, dans certain cas cela peut fonctionner mais avec certaines fonctions php cela ne fonctionnera pas.
+- ``||`` : ou. **Attention**, l'utilisation de  : ``OU`` / ``ou`` / ``OR`` / ``or`` n'est pas recommandée, dans certain cas cela peut fonctionner mais avec certaines fonctions php cela ne fonctionnera pas.
+- ``xor``  : ou exclusif. **Attention**, l'utilisation de  : ``XOR`` / ``^`` n'est pas recommandée, dans certain cas cela peut fonctionner mais avec certaines fonctions php cela ne fonctionnera pas.
 
 ### Les tags
 
 Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pouvez utiliser les tags suivants :
 
-> **Tip**
+> **Conseil**
 >
 > Pour avoir les zéros initiaux à l’affichage, il faut utiliser la fonction Date(). Voir [ici](https://www.php.net/manual/fr/datetime.format.php).
 
@@ -293,8 +296,8 @@ Un tag est remplacé lors de l’exécution du scénario par sa valeur. Vous pou
   - ``schedule`` s'il a été lancé par une programmation,
   - ``user`` s'il a été lancé manuellement,
   - ``start`` pour un lancement au démarrage de Jeedom.
-- ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché.
-- ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande])
+- ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché. Exemple : ``#trigger_id# == 19``
+- ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande]). Exemple : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario. Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser : ``##trigger_id##`` (double #)
 - ``#latitude#`` : Permet de récuperer l'information de latitude mise dans la configuration de jeedom
 - ``#longitude#`` : Permet de récuperer l'information de longitude mise dans la configuration de jeedom

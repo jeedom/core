@@ -639,7 +639,7 @@ class eqLogic {
 		}
 		$classAttr = $level . ' ' . $battery . ' ' . $plugins . ' ' . $object_name;
 		$idAttr = $level . '__' . $battery . '__' . $plugins . '__' . $object_name;
-		$html .= '<div class="eqLogic eqLogic-widget text-center ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="' . $this->getId() . '">';
+		$html .= '<div class="eqLogic eqLogic-widget battery-widget text-center ' . $classAttr . '" id="' . $idAttr . '" data-eqlogic_id="' . $this->getId() . '">';
 
 		$eqName = $this->getName();
 		if ($_version == 'mobile') {
@@ -1140,11 +1140,11 @@ class eqLogic {
 			return;
 		}
 		$currentpourcent = null;
-		if ($_pourcent === '') {
-			$_pourcent = $this->getStatus('battery');
-			$_datetime = $this->getStatus('batteryDatetime');
+		if ($_pourcent === '' || !is_numeric($_pourcent)) {
+			$_pourcent = $this->getStatus('battery',100);
+			$_datetime = $this->getStatus('batteryDatetime',date('Y-m-d H:i:s'));
 		} else {
-			$currentpourcent = $this->getStatus('battery');
+			$currentpourcent = $this->getStatus('battery',100);
 		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
@@ -1269,7 +1269,6 @@ class eqLogic {
 			'parameters' => array(),
 			'height' => '',
 			'width' => '',
-			'height' => '',
 			'backGraph::format' => '',
 			'backGraph::type' => '',
 			'backGraph::color' => '',
@@ -1355,7 +1354,7 @@ class eqLogic {
 			}
 			return $targetEq;
 		} catch (Exception $e) {
-			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : ' . $e->getMessage());
+			throw new Exception(__('Erreur lors de la migration d\'équipement', __FILE__) . ' : ' . log::exception($e));
 		}
 	}
 
@@ -1376,18 +1375,18 @@ class eqLogic {
 		$link_actions = array();
 		$arrayToRemove = [];
 		if (isset($_configuration['commands'])) {
-			foreach (($this->getCmd()) as $eqLogic_cmd) {
-				$exists = 0;
-				foreach ($_configuration['commands'] as $command) {
-					if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
-						$exists++;
+			if (!$_dontRemove) {
+				foreach (($this->getCmd()) as $eqLogic_cmd) {
+					$exists = 0;
+					foreach ($_configuration['commands'] as $command) {
+						if (isset($command['logicalId']) && $command['logicalId'] == $eqLogic_cmd->getLogicalId()) {
+							$exists++;
+						}
+					}
+					if ($exists < 1) {
+						$arrayToRemove[] = $eqLogic_cmd;
 					}
 				}
-				if ($exists < 1) {
-					$arrayToRemove[] = $eqLogic_cmd;
-				}
-			}
-			if (!$_dontRemove) {
 				foreach ($arrayToRemove as $cmdToRemove) {
 					try {
 						$cmdToRemove->remove();

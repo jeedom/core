@@ -263,7 +263,7 @@ class jeedom {
 
 		$return[] = array(
 			'name' => __('Version OS', __FILE__),
-			'state' => (system::getDistrib() != 'debian' || version_compare(system::getOsVersion(), '10', '>=')),
+			'state' => (system::getDistrib() == 'debian' && version_compare(system::getOsVersion(), config::byKey('os::min'), '>=')),
 			'result' => system::getDistrib() . ' ' . system::getOsVersion(),
 			'comment' => '',
 			'key' => 'os::version'
@@ -363,7 +363,7 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$value = shell_exec('sudo dmesg | grep oom | grep -v deprecated | wc -l');
+		$value = shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l');
 		$return[] = array(
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
@@ -427,7 +427,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
 			'state' => ($values[2] < 20),
-			'result' => $values[0] . ' - ' . $values[1] . ' - ' . $values[2],
+			'result' => round($values[0],2) . ' - ' . round($values[1],2) . ' - ' . round($values[2],2),
 			'comment' => '',
 			'key' => 'load'
 		);
@@ -1004,13 +1004,13 @@ class jeedom {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERROR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . log::exception($e);
 			}
 		} catch (Error $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			} else {
-				echo '***ERROR*** ' . $e->getMessage();
+				echo '***ERROR*** ' . log::exception($e);
 			}
 		}
 	}
@@ -1066,9 +1066,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			eqLogic::checkAlive();
@@ -1079,13 +1079,6 @@ class jeedom {
 
 	public static function cron10() {
 		try {
-			network::cron10();
-		} catch (Exception $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		} catch (Error $e) {
-			log::add('network', 'error', 'network::cron : ' . $e->getMessage());
-		}
-		try {
 			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cron10') && config::byKey($name . '::enable') == 1) {
@@ -1093,9 +1086,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 	}
 
@@ -1242,9 +1235,9 @@ class jeedom {
 			jeeObject::cronDaily();
 			timeline::clean(false);
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
@@ -1254,9 +1247,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		$disk_space = self::checkSpaceLeft();
 		if($disk_space < 10){
@@ -1268,16 +1261,16 @@ class jeedom {
 		try {
 			cache::set('hour', strtotime('UTC'));
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			cache::clean();
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			//Check for updates every 24h according to config
@@ -1300,9 +1293,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 		try {
 			foreach ((update::listRepo()) as $name => $repo) {
@@ -1312,9 +1305,9 @@ class jeedom {
 				}
 			}
 		} catch (Exception $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
-			log::add('jeedom', 'error', $e->getMessage());
+			log::add('jeedom', 'error', log::exception($e));
 		}
 	}
 
@@ -1556,7 +1549,7 @@ class jeedom {
 		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer ou copier}}');
 		}
-		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory'] as $key) {
+		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory','disableEqs'] as $key) {
 			if (!isset($_options[$key])) {
 				$_options[$key] = false;
 			}
@@ -1643,11 +1636,20 @@ class jeedom {
 				$targetEq->save();
 				$return['eqlogics'] += 1;
 			}
-		} elseif ($_options['hideEqs'] == "true") {
+		} 
+		if ($_options['hideEqs'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
 				if (!is_object($sourceEq)) continue;
 				$sourceEq->setIsVisible(0);
+				$sourceEq->save();
+			}
+		}
+		if ($_options['disableEqs'] == "true") {
+			foreach ($_eqlogics as $_sourceId => $_targetId) {
+				$sourceEq = eqLogic::byId($_sourceId);
+				if (!is_object($sourceEq)) continue;
+				$sourceEq->setIsEnable(0);
 				$sourceEq->save();
 			}
 		}
@@ -1802,7 +1804,7 @@ class jeedom {
 			$result = 'Atlas';
 		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
-		} else if (strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
+		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
 			$result = 'docker';
 		}
 		config::save('hardware_name', $result);

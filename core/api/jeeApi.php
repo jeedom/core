@@ -1413,7 +1413,15 @@ try {
 	/*         * *********Catch exeption*************** */
 } catch (Exception $e) {
 	$message = $e->getMessage();
-	$jsonrpc = new jsonrpc(init('request'));
+	if(!isset($jsonrpc) || !is_object($jsonrpc)){
+		if(!isset($request)){
+			$request = init('request');
+			if ($request == '') {
+				$request = file_get_contents("php://input");
+			}
+		}
+		$jsonrpc = new jsonrpc($request);
+	}
 	$errorCode = (is_numeric($e->getCode())) ? -32000 - $e->getCode() : -32599;
 	log::add('api', 'info', 'Error code ' . $errorCode . ' : ' . secureXSS($message));
 	$jsonrpc->makeError($errorCode, $message);

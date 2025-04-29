@@ -218,7 +218,7 @@ class plan {
 				$options['source'] = 'Design ' . $this->getPlanHeader()->getName() . ' ' . $action['cmd'];
 				scenarioExpression::createAndExec('action', $action['cmd'], $options);
 			} catch (Exception $e) {
-				log::add('design', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . $e->getMessage());
+				log::add('design', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . log::exception($e));
 			}
 		}
 	}

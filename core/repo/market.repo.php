@@ -88,7 +88,7 @@ class repo_market {
 					'type' => 'checkbox',
 				),
 				'cloud::backup::name' => array(
-					'name' => __('[Backup cloud] Nom', __FILE__),
+					'name' => __('[Backup cloud] Nom du dossier de backup', __FILE__),
 					'type' => 'input',
 				),
 				'cloud::backup::password' => array(
@@ -238,6 +238,7 @@ class repo_market {
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
+		$found = false; 
 		foreach ($child->response as $file) {
 			if($file->propstat->prop->getcontenttype){
 				continue;
@@ -262,7 +263,7 @@ class repo_market {
 
 	public static function backup_send($_path) {
 		if (!config::byKey('service::backup::enable')) {
-			throw new Exception(__('Aucun serveur de backup defini. Avez-vous bien un abonnement au backup cloud ?', __FILE__));
+			throw new Exception(__('Erreur d\'envoi du backup au cloud. Avez-vous bien un abonnement au backup cloud ?', __FILE__));
 		}
 		if (config::byKey('market::cloud::backup::password') == '') {
 			throw new Exception(__('Vous devez obligatoirement avoir un mot de passe pour le backup cloud (allez dans Réglages -> Système -> Configuration puis onglet Mise à jour/Market)', __FILE__));
@@ -305,6 +306,7 @@ class repo_market {
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$total_size = 0;
+		$files = []; 
 		foreach ($child->response as $file) {
 			if(!$file->propstat->prop->getcontenttype){
 				continue;
@@ -321,9 +323,11 @@ class repo_market {
 			return;
 		}
 		echo __('Besoin de faire de la place sur le stockage distant', __FILE__) . "\n";
-		usort($files, function ($a, $b) {
-			return $a["timestamp"] - $b["timestamp"];
-		});
+		if (!empty($files)) {
+			usort($files, function ($a, $b) {
+				return $a["timestamp"] - $b["timestamp"];
+			});
+		}
 		$nb = 0;
 		while (($total_size / 1024 / 1024) > $limit - (filesize($_path) / 1024 / 1024)) {
 			if (count($files) == 0) {
@@ -338,8 +342,8 @@ class repo_market {
 			$request_http->exec();
 			$total_size -= $file['size'];
 			$nb++;
-			if ($nb > 10) {
-				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 10', __FILE__));
+			if ($nb > 100) {
+				throw new \Exception(__('Erreur lors du nettoyage des backups cloud, supression > 100', __FILE__));
 			}
 		}
 	}
@@ -436,7 +440,11 @@ class repo_market {
 				$request_http->setPost(json_encode($data));
 				try {
 					$result = json_decode($request_http->exec(60, 1), true);
-					if ($result['state'] != 'ok') {
+					if ($result == null || $result['state'] != 'ok') {
+						sleep(rand(5,45));
+						$result = json_decode($request_http->exec(60, 1), true);
+					}
+					if ($result == null || $result['state'] != 'ok') {
 						log::add('monitoring_cloud', 'debug', __('Erreur sur le monitoring cloud :', __FILE__) . ' ' . json_encode($result));
 					}
 				} catch (\Exception $e) {
@@ -1057,7 +1065,7 @@ class repo_market {
 		}
 		if ($update->getSource() == 'market') {
 			$update->setConfiguration('version', 'beta');
-			$update->setLocalVersion(date('Y-m-d H:i:s', strtotime('+10 minute' . date('Y-m-d H:i:s'))));
+			$update->setLocalVersion(date('Y-m-d H:i:s',(int) strtotime('+10 minute' . date('Y-m-d H:i:s'))));
 			$update->save();
 		}
 		$update->checkUpdate();

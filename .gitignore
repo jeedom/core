@@ -6,7 +6,6 @@ Thumbs.db
 .buildpath
 .vscode
 ui
-composer.lock
 
 test.php
 core/config/common.config.php
@@ -45,4 +44,4 @@ tmp/*
 !tmp/.htaccess
 
 !.htaccess
-
+.env

@@ -37,7 +37,7 @@ Para os profissionais :
 - **Ativar acesso a plugins beta** : Habilita o acesso a plugins betas (observe que isso impedirá que você acesse o suporte).
     - **Resumo** Aqui você encontrará um resumo dos seus diferentes direitos e serviços.
 
-> **Dica**
+> **Conselho**
 >
 > Não esqueça de salvar.
 
@@ -49,7 +49,7 @@ Para os profissionais :
 - **Key instalação**
     - **Número de chaves de instalação** : Exibe o número de instalações Jeedom atualmente vinculadas à sua conta, bem como o limite autorizado.
 
-> **Dica**
+> **Conselho**
 >
 > É possível que o Market às vezes peça para você redefinir suas chaves de instalação, isso é normal, basta seguir o que é solicitado.
 
@@ -66,7 +66,7 @@ Para os profissionais :
     - **Hardware** : Nome do hardware Jeedom.
     - **Versão** : Versão Jeedom instalada.
 
-> **Dica**
+> **Conselho**
 >
 > Não esqueça de salvar.
 

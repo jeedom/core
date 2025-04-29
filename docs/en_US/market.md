@@ -37,7 +37,7 @@ For the pros :
 - **Enable access to beta plugins** : Enables access to betas plugins (note that this will prevent you from accessing the support).
     - **Summary** Here you will find a summary of your different rights and services.
 
-> **Tip**
+> **Advice**
 >
 > Don&#39;t forget to save.
 
@@ -49,7 +49,7 @@ For the pros :
 - **Installation key**
     - **Number of installation keys** : Displays the number of Jeedom installations currently linked to your account as well as the authorized limit.
 
-> **Tip**
+> **Advice**
 >
 > It is possible that the Market sometimes asks you to reset your installation keys, this is normal, just follow what is requested.
 
@@ -66,7 +66,7 @@ For the pros :
     - **Hardware** : Jeedom hardware name.
     - **Version** : Jeedom version installed.
 
-> **Tip**
+> **Advice**
 >
 > Don&#39;t forget to save.
 

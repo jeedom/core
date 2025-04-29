@@ -105,6 +105,9 @@ class event {
 			return array('datetime' => getmicrotime(), 'result'=> utils::o2a($return));
 		}
 		$waitTime = config::byKey('event::waitPollingTime');
+		if($waitTime == 0){
+			$waitTime = 1;
+		}
 		$i = 0;
 		$max_cycle = $_longPolling / $waitTime;
 		while (count($return) == 0 && $i < $max_cycle) {
@@ -113,7 +116,6 @@ class event {
 			} else {
 				sleep(round($waitTime));
 			}
-			sleep(1);
 			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 			$i++;
 		}

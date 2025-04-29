@@ -1730,8 +1730,8 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 30s d'intervalle}}"></i></sup>
+							<label class="col-lg-6 col-sm-8 col-xs-12 control-label">{{Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle}}"></i></sup>
 							</label>
 							<div class="col-sm-1">
 								<input type="checkbox" class="configKey" data-l1key="dontProtectTooFastLaunchDeamony">
@@ -1761,11 +1761,11 @@ $productName = config::byKey('product_name');
 									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
 										$div .= '<td>' . $ip . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s', $datetime) . '</td>';
-										if (config::byKey('security::bantime') < 0) {
+										$div .= '<td>' . date('Y-m-d H:i:s',(int) $datetime) . '</td>';
+										if (config::byKey('security::bantime') == -1) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s', $datetime + config::byKey('security::bantime')) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s',(int) ($datetime + config::byKey('security::bantime'))) . '</td>';
 										}
 										$div .= '</tr>';
 									}

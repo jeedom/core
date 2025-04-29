@@ -325,8 +325,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin(s)}} <?php echo $key; ?></label>
                 <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                   <?php
-                  foreach ($values as $value) {
-                    echo '<span class="btn btn-xs btn-info">' . $value->getName() . '</span><br/>';
+                  if (is_iterable($values)) {
+                    foreach ($values as $value) {
+                      echo '<span class="btn btn-xs btn-info">' . $value->getName() . '</span><br/>';
+                    }
                   }
                   ?>
                 </div>
@@ -518,7 +520,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
               <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
-                <sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeur historisé par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+                <sup><i class="fas fa-question-circle" title="{{Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
                   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">

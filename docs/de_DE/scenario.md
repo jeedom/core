@@ -18,7 +18,7 @@ Dort finden Sie die Liste der Szenarien Ihres Jeedom sowie Funktionen, um diese 
 
 Sie finden in diesem Teil **Liste der Szenarien** dass du erstellt hast. Sie werden nach ihren klassifiziert **Band**, möglicherweise für jeden von ihnen definiert. Jedes Szenario wird mit seinem angezeigt **Name** und seine **übergeordnetes Objekt**. DER **ausgegraute Szenarien** sind diejenigen, die deaktiviert sind.
 
-> **Tipp**
+> **Beratung**
 >
 > Sie können ein Szenario öffnen, indem Sie dies tun :
 >
@@ -86,7 +86,7 @@ In der Registerkarte **General**, Wir finden die Hauptparameter des Szenarios :
 - **Beschreibung** : Ermöglicht das Schreiben eines kleinen Textes zur Beschreibung Ihres Szenarios.
 - **Szenariomodus** : Das Szenario kann programmiert, ausgelöst oder beides sein. Sie haben dann die Wahl, die Auslöser (maximal 15 Auslöser) und die Programmierung (en) anzugeben).
 
-> **Tipp**
+> **Beratung**
 >
 > Bedingungen können jetzt im ausgelösten Modus eingegeben werden. Zum Beispiel : ``#[Garage][Open Garage][Ouverture]# == 1``
 > Aufmerksamkeit : Sie können maximal 28 Trigger / Programmierungen für ein Szenario haben.
@@ -102,11 +102,11 @@ Hier erstellen Sie Ihr Szenario. Nach dem Erstellen des Szenarios ist sein Inhal
 Um die Blöcke im Szenario einfacher zu gestalten und nicht ständig neu anordnen zu müssen, wird nach dem Feld, in dem sich der Mauszeiger befindet, ein Block hinzugefügt.
 *Wenn Sie beispielsweise zehn Blöcke haben und auf die IF-Bedingung des ersten Blocks klicken, wird der hinzugefügte Block nach diesem Block auf derselben Ebene hinzugefügt. Wenn kein Feld aktiv ist, wird es am Ende des Szenarios hinzugefügt.*
 
-> **Tipp**
+> **Beratung**
 >
 > Bei Bedingungen und Aktionen ist es besser, einfache Anführungszeichen (') anstelle von doppelten zu bevorzugen (").
 
-> **Tipp**
+> **Beratung**
 >
 > Mit einer Strg-Umschalttaste Z oder einer Strg-Umschalttaste Y können Sie dies tun'**Stornieren** oder von **wiederholen** eine Modifikation (Hinzufügen einer Aktion, Blockieren)...).
 
@@ -150,7 +150,7 @@ Rechts neben diesem Blocktyp stehen drei Schaltflächen zur Auswahl eines zu tes
 > Bei Blöcken vom Typ If / Then / Andernfalls können kreisförmige Pfeile links neben dem Bedingungsfeld die Wiederholung von Aktionen aktivieren oder nicht, wenn die Auswertung der Bedingung das gleiche Ergebnis wie bei der vorherigen Auswertung ergibt.
 > IF-Ausdruck != 0 entspricht IF-Ausdruck und IF-Ausdruck == 0 entspricht IF-nicht-Ausdruck
 
-> **Tipp**
+> **Beratung**
 >
 > Es gibt eine Liste von Tags, die den Zugriff auf Variablen aus dem einen oder anderen Szenario oder nach Uhrzeit, Datum, Zufallszahl usw. ermöglichen. Siehe unten die Kapitel zu Befehlen und Tags.
 
@@ -197,7 +197,7 @@ Mit dem Code-Block können Sie PHP-Code ausführen. Es ist daher sehr mächtig, 
 - ``$scenario->setLog($message);`` : Schreiben Sie eine Nachricht in das Skriptprotokoll.
 - ``$scenario->persistLog();`` : Erzwingen Sie das Schreiben des Protokolls (andernfalls wird es nur am Ende des Szenarios geschrieben). Seien Sie vorsichtig, dies kann das Szenario etwas verlangsamen.
 
-> **Tipp**
+> **Beratung**
 >
 > Hinzufügen einer Suchfunktion im Codeblock : Zur Recherche : Strg + F dann Enter, Nächstes Ergebnis : Strg + G, Vorheriges Ergebnis : Strg + Umschalt + G
 
@@ -219,7 +219,7 @@ Zu Blöcken hinzugefügte Aktionen haben mehrere Optionen :
 - Eine Schaltfläche für bestimmte Aktionen, bei der jedes Mal die Beschreibung (beim Bewegen des Mauszeigers) dieser Aktion angezeigt wird.
 - Eine Schaltfläche zum Suchen nach einem Aktionsbefehl.
 
-> **Tipp**
+> **Beratung**
 >
 > Je nach gewähltem Befehl können unterschiedliche Zusatzfelder angezeigt werden.
 
@@ -258,15 +258,18 @@ Sie können eines der folgenden Symbole für Vergleiche unter Bedingungen verwen
 
 Sie können jeden Vergleich mit den folgenden Operatoren kombinieren :
 
-- ``&&`` : Und. Es ist auch möglich zu verwenden : ``ET`` /. ``et`` /. ``AND`` /. ``and`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
-- ``||`` : Oder. Es ist auch möglich zu verwenden : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
-- ``xor``  : oder exklusiv. Es ist auch möglich zu verwenden : ``XOR`` /. ``^`` funktioniert aber möglicherweise nicht gut mit einigen PHP-Funktionen.
+Unabhängig davon, ob Sie Vergleiche mit unterschiedlichen Geräten oder mit demselben Gerät kombinieren, ist es immer notwendig, das Gerät anzugeben.
+``[Salle de bain][Hydrometrie][température] >= 18 && [Salle de bain][Hydrometrie][température] <= 22``
+
+- ``&&`` : Und. **Aufmerksamkeit**, die Verwendung von  : ``ET`` /. ``et`` /. ``AND`` /. ``and`` wird nicht empfohlen, in einigen Fällen funktioniert es möglicherweise, aber mit einigen PHP-Funktionen funktioniert es nicht.
+- ``||`` : Oder. **Aufmerksamkeit**, die Verwendung von  : ``OU`` /. ``ou`` /. ``OR`` /. ``or`` wird nicht empfohlen, in einigen Fällen funktioniert es möglicherweise, aber mit einigen PHP-Funktionen funktioniert es nicht.
+- ``xor``  : oder exklusiv. **Aufmerksamkeit**, die Verwendung von  : ``XOR`` /. ``^`` wird nicht empfohlen, in einigen Fällen funktioniert es möglicherweise, aber mit einigen PHP-Funktionen funktioniert es nicht.
 
 ### Tags
 
 Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. Sie können die folgenden Tags verwenden :
 
-> **Tipp**
+> **Beratung**
 >
 > Verwenden Sie die Funktion Date (), um die führenden Nullen anzuzeigen. Siehe [Hier](https:/./.www.php.net/.manual/.fr/.datetime.format.php).
 
@@ -293,8 +296,8 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
   - ``schedule`` wenn es durch Programmierung gestartet wurde,
   - ``user`` wenn es manuell gestartet wurde,
   - ``start`` für einen Start beim Start von Jeedom.
-- ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat.
-- ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl])
+- ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat. Beispiel : ``#trigger_id# == 19``
+- ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl]). Beispiel : ``#trigger_name# == '[cuisine][lumiere][etat]'``
 - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat. Tipp: Wenn Sie den aktuellen Wert des Befehls möchten, der das Szenario ausgelöst hat (und nicht seinen Wert zum Zeitpunkt der Auslösung), können Sie diesen verwenden : ``##trigger_id##`` (doppelt #)
 - ``#latitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Breitengradinformationen abzurufen
 - ``#longitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Längengradinformationen abzurufen
