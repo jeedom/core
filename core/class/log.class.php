@@ -51,7 +51,7 @@ class log extends AbstractLogger {
 		return new self($_logName);
 	}
 
-	public function log($level, string  $message, array $context = array()) : void {
+	public function log($level, $message, array $context = array()) : void {
 		log::add($this->_log_name, $level, $message);
 	}
 
