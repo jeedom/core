@@ -261,7 +261,7 @@ class scenarioExpression {
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
 
-		if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
+		if (count($args) > 3 || strpos($_period, '#') !== false || is_numeric($_period)) {
 			$values = array();
 			foreach ($args as $arg) {
 				if (is_numeric($arg)) {
