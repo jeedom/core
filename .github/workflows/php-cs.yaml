@@ -1,0 +1,70 @@
+# Workflow de vérification du style de code K&R
+# Ne vérifie que les lignes modifiées dans les fichiers PHP des PR
+name: PHP K&R Style Check
+on:
+  pull_request:
+
+jobs:
+  style-check:
+    name: Check K&R style
+    runs-on: ubuntu-latest
+    steps:
+      # Récupération du code avec l'historique pour pouvoir faire le diff
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Identifie les fichiers PHP modifiés et génère leurs diffs
+      - name: Get changed files and diffs
+        id: changes
+        run: |
+          FILES=$(git diff --name-only --diff-filter=ACMRT origin/${{ github.base_ref }} ${{ github.sha }} | grep "\.php$" || true)
+          echo "PHP files changed:"
+          echo "$FILES"
+          echo "files=$FILES" >> $GITHUB_OUTPUT
+          
+          mkdir -p .diffs
+          for file in $FILES; do
+            git diff --unified=0 origin/${{ github.base_ref }} ${{ github.sha }} -- "$file" > ".diffs/$(basename "$file").diff"
+          done
+
+      # Exécute la vérification de style dans un container Docker
+      - name: Run PHP CS check
+        id: style_check
+        if: steps.changes.outputs.files != ''
+        continue-on-error: true
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/app \
+            -v ${{ github.workspace }}/.diffs:/app/.diffs \
+            -w /app \
+            php:8.1-cli \
+            bash -c 'apt-get update && apt-get install -y git && chmod +x .github/scripts/check-style.sh && DIFF_DIR=/app/.diffs .github/scripts/check-style.sh ${{ steps.changes.outputs.files }}'
+
+      # Poste un commentaire avec les instructions en cas d'erreur
+      - name: Post documentation notice
+        if: steps.style_check.outcome == 'failure'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const message = `## Code Style Errors Detected
+
+            Pour corriger ces erreurs, consultez la documentation :
+            - [Documentation FR](docs/fr_FR/code-styling.md)
+            - [Documentation EN](docs/en_US/code-styling.md)
+            - [Documentation DE](docs/de_DE/code-styling.md)
+            - [Documentation ES](docs/es_ES/code-styling.md)
+            `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+
+      # Faire échouer le workflow si des erreurs sont trouvées
+      - name: Check for errors
+        if: steps.style_check.outcome == 'failure'
+        run: exit 1
