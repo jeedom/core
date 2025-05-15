@@ -397,34 +397,10 @@ parameters:
 			path: core/repo/market.repo.php
 
 		-
-			message: '#^Variable \$files might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/repo/market.repo.php
-
-		-
-			message: '#^Variable \$found might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/repo/market.repo.php
-
-		-
 			message: '#^Variable \$link might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
 			path: desktop/modal/planHeader.configure.php
-
-		-
-			message: '#^Undefined variable\: \$plugin_enable$#'
-			identifier: variable.undefined
-			count: 2
-			path: desktop/php/display.php
-
-		-
-			message: '#^Variable \$plugin_enable in isset\(\) is never defined\.$#'
-			identifier: isset.variable
-			count: 2
-			path: desktop/php/display.php
 
 		-
 			message: '#^Variable \$code might not be defined\.$#'
@@ -433,37 +409,7 @@ parameters:
 			path: desktop/php/eqAnalyse.php
 
 		-
-			message: '#^Variable \$homeLink might not be defined\.$#'
-			identifier: variable.undefined
-			count: 3
-			path: desktop/php/index.php
-
-		-
-			message: '#^Variable \$dataUrl might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: desktop/php/overview.php
-
-		-
-			message: '#^Variable \$sessions might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: desktop/php/user.php
-
-		-
 			message: '#^Variable \$plugin_exclude in isset\(\) always exists and is not nullable\.$#'
 			identifier: isset.variable
 			count: 1
 			path: install/backup.php
-
-		-
-			message: '#^Variable \$plugin_id might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: install/restore.php
-
-		-
-			message: '#^Variable \$cmd might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: install/update/reloadCache.php
