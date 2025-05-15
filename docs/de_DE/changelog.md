@@ -69,6 +69,7 @@
 - Durch das Löschen des Vendor-Ordners (mit Composer auf normale Weise) können Sie die Größe des Kerns reduzieren [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Widgetspezifische Einstellungen können jetzt übersetzt werden [LINK](https://github.com/jeedom/core/pull/2862)
 - Ein Fehler auf dem Mac bei Designs beim Rechtsklick wurde behoben [LINK](https://github.com/jeedom/core/issues/2863)
+- Ajout de widget badge pour les commandes de type texte [LINK](https://github.com/jeedom/core/issues/2864)
 - Verbesserung des Systems zum Starten programmierter Szenarien [LINK](https://github.com/jeedom/core/issues/2875)
 - Verbesserte Ausnahmefehlermeldungen, wenn die Protokollebene Debug ist [LINK](https://github.com/jeedom/core/issues/2886)
 - Auf der Ersatzseite besteht die Möglichkeit, die Deaktivierung des Geräts zu beantragen [LINK](https://github.com/jeedom/core/issues/2893)
@@ -85,6 +86,7 @@
 - Korrigieren Sie den Bildschirm „Paket“ auf Python2-Paketebene [LINK](https://github.com/jeedom/core/pull/2973)
 - Ein Fehler beim Aktualisieren der Ausrüstung auf der Batterieseite wurde behoben [LINK](https://github.com/jeedom/core/pull/3008)
 - La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
+- Correction du système de file d'attente sur la partie DB [LINK](https://github.com/jeedom/core/pull/3051).
 
 >**WICHTIG**
 >

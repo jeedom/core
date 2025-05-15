@@ -69,6 +69,7 @@
 - Suppression du dossier vendor (utilisation de composer de manière normale), permet de réduire la taille du core [LIEN](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Les paramètres spécifiques des widgets peuvent maintent être traduits [LIEN](https://github.com/jeedom/core/pull/2862)
 - Correction d'un bug sous mac sur les designs lors d'un clic droit [LIEN](https://github.com/jeedom/core/issues/2863)
+- Ajout de widget badge pour les commandes de type texte [LIEN](https://github.com/jeedom/core/issues/2864)
 - Amélioration du systeme de lancement des scénarios programmés [LIEN](https://github.com/jeedom/core/issues/2875)
 - Amélioration des messages d'erreur d'exception si le niveau de log est debug [LIEN](https://github.com/jeedom/core/issues/2886)
 - Sur la page de remplacement possibilité de demander la désactivation de l'équipement [LIEN](https://github.com/jeedom/core/issues/2893)
@@ -85,6 +86,7 @@
 - Correction de l'écran "package" au niveau des packages python2 [LIEN](https://github.com/jeedom/core/pull/2973)
 - Correction d'un bug lors de la mise à jour des équipements sur la page de batterie [LIEN](https://github.com/jeedom/core/pull/3008)
 - La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
+- Correction du système de file d'attente sur la partie DB [LIEN](https://github.com/jeedom/core/pull/3051).
 
 >**IMPORTANT**
 >
