@@ -92,6 +92,8 @@ jobs:
           branch: update-phpstan-baseline
           base: alpha
           delete-branch: true
+          add-paths: |
+            phpstan-baseline.neon
           reviewers: |
             zoic21
             Hotfirenet
