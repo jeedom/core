@@ -151,6 +151,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= '</tr>';
 								}
 								if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
+									$code = ' {{avec code}}';
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
 									$div .= '{{Code de confirmation de l\'action}}';
 									$div .= '</td>';
