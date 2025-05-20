@@ -323,13 +323,13 @@ class cron {
 			if ($this->getPID() > 0) {
 				system::kill($this->getPID());
 				$retry = 0;
-				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while ($this->running() && $retry < (intval(config::byKey('deamonsSleepTime')) + 5)) {
 					sleep(1);
 					system::kill($this->getPID());
 					$retry++;
 				}
 				$retry = 0;
-				while ($this->running() && $retry < (config::byKey('deamonsSleepTime') + 5)) {
+				while ($this->running() && $retry < (intval(config::byKey('deamonsSleepTime')) + 5)) {
 					sleep(1);
 					system::kill($this->getPID());
 					$retry++;
