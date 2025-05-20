@@ -76,7 +76,7 @@ class scenario {
 
 	/**
 	 * Renvoie tous les objets scenario
-	 * @return [] scenario object scenario
+	 * @return scenario[]
 	 */
 	public static function all($_group = '') {
 		$values = array();
@@ -174,7 +174,7 @@ class scenario {
 	}
 	/**
 	 * return all scenarios ordered by [group][objectName][scenarioName]
-	 * @return [] array of scenario object
+	 * @return scenario[]
 	 */
 	public static function allOrderedByGroupObjectName($_asGroup = false) {
 		$scenarioList = array();
@@ -830,8 +830,6 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $_trigger
-	 * @param string $_message
 	 * @param boolean $_forceSyncMode
 	 * @return boolean
 	 */
@@ -888,8 +886,8 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $_trigger
-	 * @param string $_message
+	 * @param string $instance_id
+	 * @return void
 	 */
 	public function execute($instance_id = '') {
 		if (config::byKey('enableScenario') != 1) {
@@ -965,7 +963,7 @@ class scenario {
 	/**
 	 *
 	 * @param string $_name
-	 * @return \scenario
+	 * @return scenario
 	 */
 	public function copy($_name) {
 		$scenarioCopy = clone $this;
@@ -1796,7 +1794,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @return string/object
+	 * @return string|object
 	 */
 	public function getSchedule() {
 		return is_json($this->schedule, $this->schedule);
@@ -1878,7 +1876,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string|int $timeout
+	 * @param string|int $_timeout
 	 * @return $this
 	 */
 	public function setTimeout($_timeout) {
@@ -1960,7 +1958,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $description
+	 * @param string $_description
 	 * @return $this
 	 */
 	public function setDescription($_description) {
