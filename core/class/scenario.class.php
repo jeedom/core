@@ -887,7 +887,6 @@ class scenario {
 	/**
 	 *
 	 * @param string $instance_id
-	 * @return void
 	 */
 	public function execute($instance_id = '') {
 		if (config::byKey('enableScenario') != 1) {
