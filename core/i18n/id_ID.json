@@ -3594,12 +3594,12 @@
         "Téléchargement XLS": "Téléchargement XLS",
         "Imprimer": "Imprimer",
         "Plein écran": "Plein écran",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Asisten cron",
         "Valider": "Mengesahkan",
         "Annuler": "Tidak jadi",
         "Sélectionner la commande": "Pilih perintah"
-	"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Pilih variabel",

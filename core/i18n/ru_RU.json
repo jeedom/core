@@ -3594,12 +3594,12 @@
         "Téléchargement XLS": "Téléchargement XLS",
         "Imprimer": "Imprimer",
         "Plein écran": "Plein écran",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Centre de Messages": "Centre de Messages",
         "Assistant cron": "Помощник cron",
         "Valider": "Validate",
         "Annuler": "Отменить",
         "Sélectionner la commande": "Выберите команду"
-	"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Выберите переменную",

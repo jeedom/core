@@ -3594,12 +3594,12 @@
         "Téléchargement XLS": "Baixar XLS",
         "Imprimer": "Imprimir",
         "Plein écran": "Tela cheia",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Centre de Messages": "Central de mensagens",
         "Assistant cron": "Assistente de cron",
         "Valider": "Confirmar",
         "Annuler": "Cancelar",
         "Sélectionner la commande": "Selecione o comando"
-	"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",

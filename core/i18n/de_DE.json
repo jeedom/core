@@ -3594,12 +3594,12 @@
         "Téléchargement XLS": "XLS-Download",
         "Imprimer": "Zu drucken",
         "Plein écran": "Ganzer Bildschirm",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Centre de Messages": "Nachrichtenzentrum",
         "Assistant cron": "Cron Assistent",
         "Valider": "Validate",
         "Annuler": "Abbrechen",
         "Sélectionner la commande": "Befehl auswählen"
-	"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Wählen Sie eine Variable aus",
