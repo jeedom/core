@@ -286,7 +286,7 @@ class log extends AbstractLogger {
 	* @param string $_log Log filename (default 'core')
 	* @param int $_position Bytes representing position from the begining of the file (default 0)
 	* @param string $_search Text to find in log file (default '')
-	* @param int $_colored Should lines be colored (default false)
+	* @param boolean $_colored Should lines be colored (default false)
 	* @param boolean $_numbered Should lines be numbered (default true)
 	* @param int $_numStart At what number should lines number start (default 0)
 	* @param int $_max Max number of returned lines (default is config value "maxLineLog")
