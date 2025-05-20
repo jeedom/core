@@ -64,9 +64,9 @@ switch ($argv[1]) {
                     echo "Error plugin not found";
                     die();
                 }
-                 if($plugin->setIsEnable(1,true,true)){
+                if ($plugin->setIsEnable(1,true,true)) {
                    echo "Plugin ".$argv[3]." installed with success";
-                }else{
+                } else {
                    echo "Error install plugin ".$argv[3];
                    break;
                 }
