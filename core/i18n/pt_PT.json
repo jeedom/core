@@ -3599,6 +3599,7 @@
         "Valider": "Confirmar",
         "Annuler": "Cancelar",
         "Sélectionner la commande": "Selecione o comando"
+	"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Selecione uma variável",

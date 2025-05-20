@@ -3599,6 +3599,7 @@
         "Valider": "Ok",
         "Annuler": "Cancel",
         "Sélectionner la commande": "Select command"
+	"Sortir du plein écran": "Exit from full screen"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Select a variable",

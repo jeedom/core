@@ -3599,6 +3599,7 @@
         "Valider": "Mengesahkan",
         "Annuler": "Tidak jadi",
         "Sélectionner la commande": "Pilih perintah"
+	"Sortir du plein écran": "Sortir du plein écran"
     },
     "core\/js\/dataStore.class.js": {
         "Sélectionner une variable": "Pilih variabel",
