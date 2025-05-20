@@ -169,6 +169,14 @@ try {
 			}
 			utils::a2o($user, $user_json);
 			$user->save();
+			if (isset($user_json['enable']) && $user_json['enable'] == 0) {
+        		$sessions = listSession();
+                foreach ($sessions as $sessionId => $sessionData) {
+                    if (isset($sessionData['user_id']) && $sessionData['user_id'] == $user->getId()) {
+                        deleteSession($sessionId);
+                    }
+                }
+    		}
 		}
 		@session_start();
 		$_SESSION['user']->refresh();
