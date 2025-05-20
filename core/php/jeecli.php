@@ -64,7 +64,12 @@ switch ($argv[1]) {
                     echo "Error plugin not found";
                     die();
                 }
-                $plugin->setIsEnable(1,true,true);
+                 if($plugin->setIsEnable(1,true,true)){
+                   echo "Plugin ".$argv[3]." installed with success";
+                }else{
+                   echo "Error install plugin ".$argv[3];
+                   break;
+                }
                 jeedom::cleanFileSystemRight();
                 break;
             case 'dependancy_end':
