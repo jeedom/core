@@ -137,13 +137,16 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= '</td>';
 									$div .= '</tr>';
 								}
-								if ($cmd->getConfiguration('actionConfirm')) {
-									$code = '';
+								if ($cmd->getConfiguration('actionConfirm')){
+									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}';
 									if ($cmd->getConfiguration('actionCodeAccess')) {
-										$code = ' {{avec code}}';
+										$div .= ' {{avec code}}';
 									}
-									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
-									$div .= 'Confirmation de l\'action' . $code;
+									$div .= '</td><td>';
+									$div .= 'Confirmation de l\'action';
+									if ($cmd->getConfiguration('actionCodeAccess')) {
+										$div .= ' {{avec code}}';
+									}
 									$div .= '</td>';
 									$div .= '<td>';
 									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
@@ -151,13 +154,13 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= '</tr>';
 								}
 								if ($cmd->getConfiguration('actionCodeAccess') && !$cmd->getConfiguration('actionConfirm')) {
-									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}}' . $code . '</td><td>';
-									$div .= '{{Code de confirmation de l\'action}}';
-									$div .= '</td>';
-									$div .= '<td>';
-									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
-									$div .= '</td>';
-									$div .= '</tr>';
+								    $div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>{{Confirmation}} {{avec code}}</td><td>';
+								    $div .= '{{Code de confirmation de l\'action}}';
+								    $div .= '</td>';
+								    $div .= '<td>';
+								    $div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+								    $div .= '</td>';
+								    $div .= '</tr>';
 								}
 							}
 							if ($div != '') echo $div;
