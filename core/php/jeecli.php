@@ -36,6 +36,7 @@ switch ($argv[1]) {
                     // install by github source
                     // jeecli.php plugin install [id] [user] [repository=id] [branch=master]
                     echo "Install Plugin $argv[4] / $argv[3] from github\n";
+                    config::save('github::enable', 1);
                     $update = new update();
                     $update->setLogicalId($argv[3]);
                     $update->setConfiguration('user', $argv[4]);
