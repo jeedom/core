@@ -46,7 +46,7 @@ class system {
 
 	/**
 	 *
-	 * @return string/object self::
+	 * @return string|object self::
 	 */
 	public static function getDistrib() {
 		self::loadCommand();
