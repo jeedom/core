@@ -1146,7 +1146,7 @@ class cmd {
      * @param string|false $_subtype Command subtype
      * @param string $_version Widget version
      * @param bool $_availWidgets Pre-loaded available widgets
-     * @return int|string Options HTML string or error code
+     * @return int|string|void|null Options HTML string or error code
      * @throws Exception
      */
 	public static function getSelectOptionsByTypeAndSubtype($_type = false, $_subtype = false, $_version = 'dashboard', $_availWidgets = false) {
@@ -2377,7 +2377,7 @@ class cmd {
 		$this->checkReturnState($value);
 		if (!$repeat) {
 			$this->checkCmdAlert($value);
-			if (isset($level) && $level != $this->getCache('alertLevel')) {
+			if ($level != $this->getCache('alertLevel')) {
 				$this->actionAlertLevel($level, $value);
 			}
 			if ($this->getConfiguration('timeline::enable')) {
@@ -2821,7 +2821,7 @@ class cmd {
     /**
      * Drop InfluxDB database
      *
-     * @return void
+     * @return void|null
      */
 	public function dropInfluxDatabase() {
 		try {
@@ -2859,7 +2859,7 @@ class cmd {
     /**
      * Send all history to InfluxDB
      *
-     * @return void
+     * @return void|null
      */
 	public function historyInfluxAll() {
 		cmd::historyInflux('all');
