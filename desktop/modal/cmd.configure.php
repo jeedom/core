@@ -365,7 +365,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
                   </label>
                   <div class="col-sm-6">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" type="number" min="0" max="9" step="1" maxlength="1" oninput="this.value = this.value.slice(0, 1)"/>
                   </div>
                 </div>
               <?php }
