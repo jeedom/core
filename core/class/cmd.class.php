@@ -1857,6 +1857,10 @@ class cmd {
 	}
 
 	public function event($_value, $_datetime = null, $_loop = 1) {
+		if(is_array($_value) && $this->getIsHistorized() == 0) {
+			$_value = json_encode($_value);
+		}
+		
 		if ($_loop > 4 || $this->getType() != 'info') {
 			return;
 		}
