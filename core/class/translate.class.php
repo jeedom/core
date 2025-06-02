@@ -35,17 +35,43 @@ require_once  'event.class.php';
 //log::add('debug_translate', 'error', $_content);
 */
 
+/**
+ * Handles internationalization (i18n) for Jeedom system
+ *
+ * Provides translation capabilities for both core system and plugins,
+ * with caching mechanisms for better performance.
+ *
+ * @see config For language configuration
+ * @see plugin For plugin-related translations
+ */
 class translate {
 	/*     * *************************Attributs****************************** */
 
+    /** @var array<string, array<string, array<string, string>>> Cached translations by language and namespace */
 	protected static $translation = array();
+
+    /** @var string|null Current active language */
 	protected static $language = null;
+
+    /** @var array<string, string>|null System configuration cache */
 	private static $config = null;
+
+    /** @var array<string, bool> Loaded plugins tracking */
 	private static $pluginLoad = array();
+
+    /** @var array<string, array<string, array<string, string>>> Loaded widgets translations */
 	private static $widgetLoad = array();
 
 	/*     * ***********************Methode static*************************** */
 
+    /**
+     * Retrieves a configuration value
+     *
+     * @param string $_key Configuration key to retrieve
+     * @param string $_default Default value if key not found
+     * @return string Configuration value
+     * @see config::byKeys() For configuration retrieval
+     */
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
 			self::$config = config::byKeys(array('language'));
@@ -56,6 +82,12 @@ class translate {
 		return $_default;
 	}
 
+    /**
+     * Gets translations for a plugin
+     *
+     * @param string $_plugin Plugin identifier
+     * @return array<string, array<string, string>> Translation mappings
+     */
 	public static function getTranslation($_plugin) {
 		if (!isset(self::$translation[self::getLanguage()])) {
 			self::$translation[self::getLanguage()] = array();
@@ -67,6 +99,12 @@ class translate {
 		return self::$translation[self::getLanguage()];
 	}
 
+    /**
+     * Gets translations for a widget
+     *
+     * @param string $_widget Widget identifier
+     * @return array<string, array<string, string>> Translation mappings
+     */
 	public static function getWidgetTranslation($_widget) {
 		if (!isset(self::$translation[self::getLanguage()]['core/template/widgets.html'])) {
 			self::$translation[self::getLanguage()]['core/template/widgets.html'] = array();
@@ -77,10 +115,25 @@ class translate {
 		return self::$widgetLoad[$_widget];
 	}
 
+    /**
+     * Translates a single text key
+     *
+     * @param string $_content Translation key
+     * @param string $_name Plugin/widget identifier or path
+     * @param bool $_backslash Whether to escape single quotes
+     * @return string Translated text
+     * @see self::exec() For full translation processing
+     */
 	public static function sentence($_content, $_name, $_backslash = false) {
 		return self::exec("{{" . $_content . "}}", $_name, $_backslash);
 	}
 
+    /**
+     * Extracts plugin name from file path
+     *
+     * @param string $_name File path
+     * @return string Plugin name or 'core'
+     */
 	public static function getPluginFromName($_name) {
 		if (strpos($_name, 'plugins/') === false) {
 			return 'core';
@@ -95,6 +148,17 @@ class translate {
 		return $matches[1];
 	}
 
+    /**
+     * Processes text content for internationalization
+     *
+     * @param string $_content Text with {{translation_keys}}
+     * @param string $_name Plugin/widget identifier or path
+     * @param bool $_backslash Whether to escape single quotes
+     * @return string Translated content
+     * @see self::getLanguage() For current language
+     * @see self::getTranslation() For plugin translations
+     * @see self::getWidgetTranslation() For widget translations
+     */
 	public static function exec($_content, $_name = '', $_backslash = false) {
 		if ($_content == '' || $_name == '') {
 			return $_content;
@@ -163,14 +227,34 @@ class translate {
 		return str_replace(array_keys($replace), $replace, $_content);
 	}
 
+    /**
+     * Returns path to language translation file
+     *
+     * @param string $_language Language code
+     * @return string File path
+     */
 	public static function getPathTranslationFile($_language) {
 		return __DIR__ . '/../i18n/' . $_language . '.json';
 	}
 
+
+    /**
+     * Returns path to widget translation file
+     *
+     * @param string $_widgetName Widget name
+     * @return string File path
+     */
 	public static function getWidgetPathTranslationFile($_widgetName) {
 		return __DIR__ . '/../../data/customTemplates/i18n/' . $_widgetName . '.json';
 	}
 
+    /**
+     * Loads translations for core or plugin
+     *
+     * @param string|null $_plugin Plugin name or null for core
+     * @return array<string, array<string, string>> Translation mappings
+     * @see plugin::getTranslation() For plugin translations
+     */
 	public static function loadTranslation($_plugin = null) {
 		$return = array();
 		if ($_plugin == null || $_plugin == 'core') {
@@ -202,6 +286,11 @@ class translate {
 		return $return;
 	}
 
+    /**
+     * Gets current active language
+     *
+     * @return string Language code
+     */
 	public static function getLanguage() {
 		if (self::$language == null) {
 			self::$language = self::getConfig('language', 'fr_FR');
@@ -209,6 +298,12 @@ class translate {
 		return self::$language;
 	}
 
+    /**
+     * Sets active language
+     *
+     * @param string $_langage Language code
+     * @return void
+     */
 	public static function setLanguage($_langage) {
 		self::$language = $_langage;
 	}
@@ -216,6 +311,15 @@ class translate {
 	/*     * *********************Methode d'instance************************* */
 }
 
+/**
+ * Global translation helper for a single text key
+ *
+ * @param string $_content Translation key
+ * @param string $_name Plugin/widget identifier or path
+ * @param bool $_backslash Whether to escape single quotes
+ * @return string Translated text
+ * @see translate::sentence() Core translation method
+ */
 function __($_content, $_name, $_backslash = false) {
 	return translate::sentence(str_replace("\'", "'", $_content), $_name, $_backslash);
 }
