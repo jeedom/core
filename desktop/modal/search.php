@@ -75,7 +75,7 @@ if (!isConnect()) {
 
       <div class="col-lg-4 searchType" data-searchType="equipment" data-tableFilter="1111110">
         <div class="input-group input-group-sm" >
-          <input id="in_searchFor_equipment" class="form-control roundedLeft" value="" disabled/>
+          <input id="in_searchFor_equipment" class="form-control roundedLeft" value=""/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default cursor bt_selectEqLogic roundedRight" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>
           </span>
@@ -652,6 +652,24 @@ if (!jeeFrontEnd.md_search) {
   jeeM.init()
 
 
+  function updateEquipmentInputDisabled() {
+    var inputIds = [
+      'in_searchFor_equipment',
+      'in_searchFor_command',
+    ];
+    inputIds.forEach(function(id) {
+      var input = document.getElementById(id);
+      if (input) {
+        input.disabled = true;
+      }
+    });
+  }
+
+  updateEquipmentInputDisabled();
+
+  document.getElementById('sel_searchByType')?.addEventListener('change', updateEquipmentInputDisabled);
+
+
   //Manage events outside parents delegations:
   document.querySelector('#md_search #in_searchFor_string')?.addEventListener('keypress', function(event) {
     if (event.which === 13) {
@@ -785,6 +803,8 @@ if (!jeeFrontEnd.md_search) {
         if (dataFilter[i] == 1) table.parentNode.seen()
         else table.parentNode.unseen()
       }
+
+      updateEquipmentInputDisabled();
       return
     }
 
