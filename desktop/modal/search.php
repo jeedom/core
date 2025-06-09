@@ -75,7 +75,7 @@ if (!isConnect()) {
 
       <div class="col-lg-4 searchType" data-searchType="equipment" data-tableFilter="1111110">
         <div class="input-group input-group-sm" >
-          <input id="in_searchFor_equipment" class="form-control roundedLeft" value="" />
+          <input id="in_searchFor_equipment" class="form-control roundedLeft" value="" disabled/>
           <span class="input-group-btn">
             <button type="button" class="btn btn-default cursor bt_selectEqLogic roundedRight" title="{{Rechercher un équipement}}"><i class="fas fa-cube"></i></button>
           </span>
