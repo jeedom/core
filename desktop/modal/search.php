@@ -667,7 +667,6 @@ if (!jeeFrontEnd.md_search) {
 
   updateEquipmentInputDisabled();
 
-  document.getElementById('sel_searchByType')?.addEventListener('change', updateEquipmentInputDisabled);
 
 
   //Manage events outside parents delegations:
