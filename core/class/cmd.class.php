@@ -3066,8 +3066,8 @@ class cmd {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
-	public function setDisplay($_key, $_value) {
-		if ($this->getDisplay($_key) !== $_value) {
+	public function setDisplay($_key, $_value = null) {
+		if ($this->getDisplay($_key,null) !== $_value) {
 			$this->_needRefreshWidget = true;
 			$this->_changed = true;
 		}
