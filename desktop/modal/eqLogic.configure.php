@@ -694,15 +694,6 @@ sendVarToJS([
         var tableRowCount = tableLayout.querySelectorAll('tr').length
         var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td').length
 		
-        if (_action != '') {
-          	if (_action == 'remove') {
-            	var deleteRow = _row
-        	}
-            if (_action == 'add') {
-            	var insertRowBefore = _row
-        	}   
-        }
-          
         if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
           //build new table:
           var newTableLayout = document.createElement('table')
@@ -734,11 +725,11 @@ sendVarToJS([
             row = _cLay.closest('td').getAttribute('data-line')
             row = parseInt(row)       
             
-            if (insertRowBefore != '' && row >= insertRowBefore) {
-              row = row + 1
+            if (_action == 'add' && row >= _row) {
+              row++
             }
-            if (deleteRow != '' && row >= deleteRow) {
-              row = row - 1             
+            if (_action == 'remove' && row >= _row) {
+              row--
             }
             
             col = _cLay.closest('td').getAttribute('data-column')
@@ -761,11 +752,11 @@ sendVarToJS([
               text = _td.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value
               style = _td.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value
             }
-            if (insertRowBefore != '' && row >= insertRowBefore) {
-              row = row + 1
+            if (_action == 'add' && row >= _row) {
+              row++
             }
-            if (deleteRow != '' && row > deleteRow) {
-              row = row - 1              
+            if (_action == 'remove' && row > _row) {
+              row--
             }
 
             newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
@@ -1014,35 +1005,39 @@ sendVarToJS([
     })
 
     //eqLogic layout tab    
+    function handleDynamicLine(_action) {
+        if (_action !== 'add' && _action !== 'remove') {
+            throw new Error(`Invalid action value : only "add" or "remove" allowed, "${_action}" given`);
+        }
+
+        row = event.target.closest('td').getAttribute('data-line')
+        var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
+        var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
+        var tableRowCount = tableLayout.querySelectorAll('tr').length
+        
+        if (_action === 'add' && nbRow <= tableRowCount) {
+            tableRowCount++
+        }
+        if (_action === 'remove' && nbRow >= tableRowCount) {
+            tableRowCount--
+        }
+
+        document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount
+        jeeFrontEnd.md_eqLogicConfigure.applyTableLayout(_action, row)
+    }
+
     document.getElementById('divCmdLayoutConfiguration')?.addEventListener('click', function(event) {
-      	var _target = null
-        if (_target = event.target.closest('.bt_removeRow')) {
-          row = event.target.closest('td').getAttribute('data-line')
-          var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
-          var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
-          var tableRowCount = tableLayout.querySelectorAll('tr').length
-          if (nbRow >= tableRowCount) {
-            document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount - 1
-          } else {
-            document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount
-          }
-          jeeFrontEnd.md_eqLogicConfigure.applyTableLayout('remove', row) // Supprime la ligne selectionnée
-          return
+        if (event.target.closest('.bt_addRow')) {
+            handleDynamicLine('add');
+            return;
         }
-      	if (_target = event.target.closest('.bt_addRow')) {
-          row = event.target.closest('td').getAttribute('data-line')
-          var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
-          var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
-          var tableRowCount = tableLayout.querySelectorAll('tr').length
-          if (nbRow <= tableRowCount) {
-      	  	document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount + 1
-      	  } else {
-        	document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount
-      	  }
-          jeeFrontEnd.md_eqLogicConfigure.applyTableLayout('add', row) // Ajoute une ligne avant la ligne selectionnée
+
+        if (event.target.closest('.bt_removeRow')) {
+            handleDynamicLine('remove');
+            return;
         }
-    })   
-      
+    })
+
     document.getElementById('eqLogic_layout')?.addEventListener('click', function(event) {
       var _target = null
       if (_target = event.target.closest('#bt_eqLogicLayoutApply')) {
