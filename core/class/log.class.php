@@ -131,13 +131,14 @@ class log extends AbstractLogger {
 		}
 	}
 
-	public static function chunk($_log = '') {
+	public static function chunk($_log = '', $_onlyIfSizeExceeded = False) {
 		$paths = array();
 		if ($_log != '') {
 			$paths = array(self::getPathToLog($_log));
 		} else {
 			$relativeLogPaths = array('', 'scenarioLog/');
 			foreach ($relativeLogPaths as $relativeLogPath) {
+
 				$logPath = self::getPathToLog($relativeLogPath);
 				$logs = ls($logPath, '*');
 				foreach ($logs as $log) {
@@ -146,9 +147,12 @@ class log extends AbstractLogger {
 			}
 		}
 		foreach ($paths as $path) {
-			if (is_file($path)) {
-				self::chunkLog($path);
-			}
+				if (is_file($path)) {
+					if($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024) ){
+						continue;
+					}					
+					self::chunkLog($path);	
+				}
 		}
 	}
 
