@@ -438,7 +438,7 @@ sendVarToJS([
                     $tr = '<tr>';
                     $tr .= '<td data-line="' . $i . '" data-column="0" style="text-align: center; width: 70px;">';
                     $tr .= '<a class="bt_removeRow"  style="margin-left: 5px;margin-right: 5px;" tooltip="{{Supprimer la ligne}}"><i class="fas fa-minus-circle"></i></a>';
-                    $tr .= $i;
+                    $tr .= '<span class="counterReorder">' . $i . '</span>';
                     $tr .= '<a class="bt_addRow" style="margin-left: 5px;margin-right: 5px;" tooltip="{{Inserer une ligne avant}}"><i class="fas fa-plus-circle"></i></a>';
                     $tr .= '</td>';
                     for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
@@ -669,6 +669,33 @@ sendVarToJS([
       setTableLayoutSortable: function() {
         let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
         containers.forEach(_container => {
+		  new Sortable(document.querySelector('#tableCmdLayoutConfiguration tbody'), {
+          delay: 50,
+          delayOnTouchOnly: true,
+          draggable: 'tr',
+          filter: 'input, a',
+          preventOnFilter: false,
+          direction: 'vertical',
+          chosenClass: 'dragSelected',
+          onUpdate: function(evt) {
+            let tableLayout = document.getElementById('tableCmdLayoutConfiguration')
+            let row = 1
+            tableLayout.querySelectorAll('tr').forEach(_cLay => {
+              let col = 1
+              _cLay.querySelectorAll('td').forEach(_td => {
+                _td.setAttribute('data-line', row)
+                if (is_object(_td.querySelector('.counterReorder'))) {
+                  _td.querySelector('span').innerHTML = row
+                } else {
+                  _td.querySelectorAll('input')[0]?.setAttribute('data-l3key', 'text::td::' + row + '::' + col)
+                  _td.querySelectorAll('input')[1]?.setAttribute('data-l3key', 'style::td::' + row + '::' + col)
+                  col++
+                }
+              })
+              row++
+            })
+          }        
+        }),
           new Sortable(_container, {
             delay: 100,
             delayOnTouchOnly: true,
@@ -705,7 +732,7 @@ sendVarToJS([
             var newTr = document.createElement('tr')
             let newFirstCol = '<td data-line="' + i + '" data-column="0" style="text-align: center; width: 75px;">'
             newFirstCol += '<a class="bt_removeRow" style="margin-left: 5px;margin-right: 5px;" title="{{Supprimer la ligne}}"><i class="fas fa-minus-circle"></i></a>'
-            newFirstCol += i
+            newFirstCol += '<span class="counterReorder">' + i + '</span>'
             newFirstCol += '<a class="bt_addRow" style="margin-left: 5px;margin-right: 5px;" title="{{Inserer une ligne avant}}"><i class="fas fa-plus-circle"></i></a>'
             newFirstCol += '</td>'
             newTr.insertAdjacentHTML('beforeend', newFirstCol)
@@ -1015,6 +1042,10 @@ sendVarToJS([
         var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
         var tableRowCount = tableLayout.querySelectorAll('tr').length
         
+        if (_action === 'remove' && tableRowCount === 1) {
+          return
+        }
+      
         if (_action === 'add' && nbRow <= tableRowCount) {
             tableRowCount++
         }
