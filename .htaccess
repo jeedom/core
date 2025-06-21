@@ -17,7 +17,7 @@ Options -Indexes -ExecCGI -FollowSymLinks
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
 mod_gzip_dechunk Yes
-mod_gzip_item_include file .(html?|css|js|php)$
+mod_gzip_item_include file .(html?|css|js|php|md)$
 mod_gzip_item_include handler ^cgi-script$
 mod_gzip_item_include mime ^text/.*
 mod_gzip_item_include mime ^application/x-javascript.*
@@ -79,7 +79,9 @@ DirectoryIndex index.php
 
     RedirectMatch 403 (?i)^.*\/data\/.*\/((?!\.m3u8|\.ts|\.jpg|\.jpeg|\.gif|\.webp|\.png|\.mp3|\.mp4|\.aac|\.svg|\.obj|\.mtl|\.woff|\.woff2|\.ttf|\.css|\.pdf|\.css.map|\.js|\.js.map).)*$
     RedirectMatch 403 (?i)^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.woff|\.woff2|\.ttf|\.svg|\.txt).)*$
-    RedirectMatch 403 (?i)^.*\/docs\/.*$
+    # dans /doc/* Refuser tout sauf les fichiers .md et .yaml et .html et ...
+    RedirectMatch 403 (?i)^.*\/docs\/.*/((?!\.md|\.yaml|\.html|\.js|\.css|\.png|\.map).)*$
+
     RedirectMatch 403 (?i)^.*\/install\/.*$
     RedirectMatch 403 (?i)^.*\/log\/.*$
     RedirectMatch 403 (?i)^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.woff|\.woff2|\.ttf|\.svg|\.html|\.php).)*$
@@ -101,7 +103,7 @@ Order Allow,Deny
 
 # Allow all :
 
-<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac|mp4|pdf|txt)$|(apple\-app\-site\-association)$">
+<FilesMatch ".*\.(css|map|js|jpeg|jpg|png|php|html|svg|woff|woff2|ttf|m3u8|ts|ico|gif|webp|mp3|aac|mp4|pdf|txt|md|yaml)$|(apple\-app\-site\-association)$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>
@@ -127,3 +129,7 @@ Order Allow,Deny
     Order Allow,Deny
     Deny from all
 </FilesMatch>
+
+AddType text/plain .yaml .yml
+AddCharset UTF-8 .yaml .yml .html
+AddType application/yaml .yaml
