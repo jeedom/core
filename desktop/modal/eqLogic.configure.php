@@ -719,7 +719,7 @@ sendVarToJS([
         var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
         var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
         var tableRowCount = tableLayout.querySelectorAll('tr').length
-        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td').length
+        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td:not(:first-child)').length
 		
         if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
           //build new table:
