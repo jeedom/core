@@ -50,9 +50,9 @@ if (config::byKey('jeedom::firstUse') == 1) {
 		<p class="first_use">
 			<?= $productName ?> {{est la solution incontournable dans les domaines du bâtiment intelligent et de l'habitat connecté.}}
 			<br><br>
-			{{Cliquez sur le bouton "Installer l'assistant}} <?= $productName ?>" {{pour être accompagné de manière ludique et interactive dans la mise en place de votre installation.}}
+			{{Cliquez sur le bouton "Installer l'assistant" pour être accompagné de manière ludique et interactive dans la mise en place de votre installation.}}
 		</p>
-		<p class="market_connect hidden">{{L'assistant}} <?= $productName ?> {{nécessite de pouvoir accéder au Market, veuillez valider vos identifiants de connexion au Market}} <?= $productName ?>.
+		<p class="market_connect hidden">{{L'assistant}} <?= $productName ?> {{nécessite de pouvoir accéder au Market, veuillez valider vos identifiants de connexion.}}
 		</p>
 
 		<form class="form-horizontal market_connect hidden">
@@ -71,7 +71,7 @@ if (config::byKey('jeedom::firstUse') == 1) {
 		<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market? En créer un!}}
 	</a>
 	<button class="btn btn-success market_connect hidden" id="bt_validate_market"><i class="fas fa-check"></i> {{Valider les identifiants Market}}</button>
-	<button class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant}} <?= $productName ?></button>
+	<button class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant}}</button>
 
 	<hr class="hrPrimary">
 	<?php
