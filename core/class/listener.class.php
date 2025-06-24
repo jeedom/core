@@ -317,6 +317,16 @@ class listener {
 		return $this;
 	}
 
+	public function removeEvent($_id) {
+		$event = $this->getEvent();
+		if (!is_array($event)) {
+			$event = array();
+		}
+		$id = trim($_id, '#');
+		$this->setEvent(array_diff($event, ['#' . $id . '#']));
+		return $this;
+	}
+
 	/*     * **********************Getteur Setteur*************************** */
 
 	/**
