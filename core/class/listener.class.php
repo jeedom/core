@@ -323,7 +323,7 @@ class listener {
 			$event = array();
 		}
 		$id = trim($_id, '#');
-		$this->setEvent(array_diff($event, ['#' . $id . '#']));
+		$this->setEvent(array_values(array_diff($event, ['#' . $id . '#'])));
 		return $this;
 	}
 
