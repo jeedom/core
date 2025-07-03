@@ -137,7 +137,7 @@ class jeedom {
 		return $return;
 	}
 
-	public static function addRemoveHistory($_data): void {
+	public static function addRemoveHistory($_data) {
 		try {
 			$remove_history = array();
 			if (file_exists(__DIR__ . '/../../data/remove_history.json')) {
@@ -819,7 +819,7 @@ class jeedom {
 
 	/********************************************BACKUP*****************************************************************/
 
-	public static function backup($_background = false): void {
+	public static function backup($_background = false) {
 		if ($_background) {
 			log::clear('backup');
 			$cmd = __DIR__ . '/../../install/backup.php';
@@ -844,7 +844,7 @@ class jeedom {
 		return $return;
 	}
 
-	public static function removeBackup($_backup): void {
+	public static function removeBackup($_backup) {
 		if (file_exists($_backup)) {
 			unlink($_backup);
 		} else {
@@ -852,7 +852,7 @@ class jeedom {
 		}
 	}
 
-	public static function restore($_backup = '', $_background = false): void {
+	public static function restore($_backup = '', $_background = false) {
 		if ($_background) {
 			log::clear('restore');
 			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '"';
@@ -867,7 +867,7 @@ class jeedom {
 
 	/****************************UPDATE*****************************************************************/
 
-	public static function update($_options = array()): void {
+	public static function update($_options = array()) {
 		log::clear('update');
 		$params = '';
 		if (is_array($_options) && count($_options) > 0) {
@@ -936,7 +936,7 @@ class jeedom {
 
 	/**********************START AND DATE MANAGEMENT*************************************************************/
 
-	public static function stop(): void {
+	public static function stop() {
 		echo "Disable all task";
 		config::save('enableCron', 0);
 		foreach ((cron::all()) as $cron) {
@@ -977,7 +977,7 @@ class jeedom {
 		echo " OK\n";
 	}
 
-	public static function start(): void {
+	public static function start() {
 		try {
 			/*             * *********Réactivation des scénarios**************** */
 			echo "Enable scenario : ";
@@ -1036,7 +1036,7 @@ class jeedom {
 		return true;
 	}
 
-	public static function event($_event, $_forceSyncMode = false, $_options = null): void {
+	public static function event($_event, $_forceSyncMode = false, $_options = null) {
 		scenario::check($_event, $_forceSyncMode, null, null, null, $_options);
 	}
 
@@ -1072,7 +1072,7 @@ class jeedom {
 		}
     }
 
-	public static function cron(): void {
+	public static function cron() {
 		if (!self::isStarted()) {
 			echo date('Y-m-d H:i:s') . ' starting Jeedom';
 			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
@@ -1259,7 +1259,7 @@ class jeedom {
 
 	/*************************************************************************************/
 
-	public static function replaceTag(array $_replaces): void {
+	public static function replaceTag(array $_replaces) {
 		$datas = array();
         foreach ($_replaces as $key => $value) {
             $cleanKey = str_replace('#', '', $key);
@@ -1653,7 +1653,7 @@ class jeedom {
 
 	/******************************SYSTEM MANAGEMENT**********************************************************/
 
-	public static function haltSystem(): void {
+	public static function haltSystem() {
 		plugin::stop();
 		cache::persist();
 		if (self::isCapable('sudo')) {
@@ -1663,7 +1663,7 @@ class jeedom {
 		}
 	}
 
-	public static function rebootSystem(): void {
+	public static function rebootSystem() {
 		plugin::stop();
 		cache::persist();
 		if (self::isCapable('sudo')) {
@@ -1673,14 +1673,14 @@ class jeedom {
 		}
 	}
 
-	public static function forceSyncHour(): void {
+	public static function forceSyncHour() {
 		if (config::byKey('disable_ntp', 'core', 0) == 1) {
 			return;
 		}
 		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
 	}
 
-	public static function cleanDatabase(): void {
+	public static function cleanDatabase() {
 		log::clear('cleaningdb');
 		$cmd = __DIR__ . '/../../install/cleaning.php';
 		$cmd .= ' >> ' . log::getPathToLog('cleaningdb') . ' 2>&1 &';
