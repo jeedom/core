@@ -1246,7 +1246,7 @@ class jeedom {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         try {
-			foreach ((update::listRepo() as $name) => $repo) {
+			foreach ((update::listRepo()) as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
 					$class::cronHourly();
