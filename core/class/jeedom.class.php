@@ -1260,72 +1260,69 @@ class jeedom {
 	/*************************************************************************************/
 
 	public static function replaceTag(array $_replaces) {
-		$datas = array();
-        foreach ($_replaces as $key => $value) {
-            $cleanKey = str_replace('#', '', $key);
-            $searchExpressions = [
-                cmd::searchConfiguration($key),
-                eqLogic::searchConfiguration($key),
-                jeeObject::searchConfiguration($key),
-                scenario::searchByUse([['action' => $key]]),
-                scenarioExpression::searchExpression($key, $key, false),
-                scenarioExpression::searchExpression("variable($cleanKey)"),
-                scenarioExpression::searchExpression('variable', $cleanKey, true),
-                scenarioExpression::searchExpression("genericType($cleanKey)"),
-                scenarioExpression::searchExpression('genericType', $cleanKey, true),
-                viewData::searchByConfiguration($key),
-                plan::searchByConfiguration($key),
-                plan3d::searchByConfiguration($key),
-                listener::searchEvent($key),
-                user::searchByOptions($key),
-                user::searchByRight($key),
-            ];
+		$results = [];
+		foreach ($_replaces as $key => $value) {
+			$cleanKey = str_replace('#', '', $key);
+			$searchExpressions = [
+				cmd::searchConfiguration($key),
+				eqLogic::searchConfiguration($key),
+				jeeObject::searchConfiguration($key),
+				scenario::searchByUse([['action' => $key]]),
+				scenarioExpression::searchExpression($key, $key, false),
+				scenarioExpression::searchExpression("variable($cleanKey)"),
+				scenarioExpression::searchExpression('variable', $cleanKey, true),
+				scenarioExpression::searchExpression("genericType($cleanKey)"),
+				scenarioExpression::searchExpression('genericType', $cleanKey, true),
+				viewData::searchByConfiguration($key),
+				plan::searchByConfiguration($key),
+				plan3d::searchByConfiguration($key),
+				listener::searchEvent($key),
+				user::searchByOptions($key),
+				user::searchByRight($key),
+			];
             foreach ($searchExpressions as $result) {
-                $datas = array_merge($datas, $result);
-            }
-        }
-		if (count($datas) > 0) {
-			foreach ($datas as $data) {
-				try {
-					if (method_exists($data, 'refresh')) {
-						$data->refresh();
-					}
-					utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
-					$data->save(true);
-				} catch (\Exception $e) {
+				if (is_array($result)) {
+					$results[] = $result;
 				}
 			}
 		}
+		$datas = [];
+		if (!empty($results)) {
+			$datas = array_merge(...$results);
+		}
+
+		foreach ($datas as $data) {
+			try {
+				if (method_exists($data, 'refresh')) {
+					$data->refresh();
+				}
+				utils::a2o($data, json_decode(str_replace(array_keys($_replaces), $_replaces, json_encode(utils::o2a($data))), true));
+				$data->save(true);
+			} catch (\Exception $e) {
+			}
+        }
+
 		foreach ($_replaces as $key => $value) {
-			$viewDatas = viewData::byTypeLinkId('cmd', str_replace('#', '', $key));
-			if (count($viewDatas)  > 0) {
-				foreach ($viewDatas as $viewData) {
-					try {
-						$viewData->setLink_id(str_replace('#', '', $value));
-						$viewData->save();
-					} catch (\Exception $e) {
-					}
-				}
+			$cleanKey = str_replace('#', '', $key);
+			$cleanValue = str_replace('#', '', $value);
+
+			foreach (viewData::byTypeLinkId('cmd', $cleanKey) as $viewData) {
+				try {
+					$viewData->setLink_id($cleanValue);
+					$viewData->save();
+				} catch (\Exception $e) {}
 			}
-			$plans = plan::byLinkTypeLinkId('cmd', str_replace('#', '', $key));
-			if (count($plans) > 0) {
-				foreach ($plans as $plan) {
-					try {
-						$plan->setLink_id(str_replace('#', '', $value));
-						$plan->save();
-					} catch (\Exception $e) {
-					}
-				}
+            foreach (plan::byLinkTypeLinkId('cmd', $cleanKey) as $plan) {
+                try {
+                    $plan->setLink_id($cleanValue);
+                    $plan->save();
+                } catch (\Exception $e) {}
 			}
-			$plan3ds = plan3d::byLinkTypeLinkId('cmd', str_replace('#', '', $key));
-			if (count($plan3ds) > 0) {
-				foreach ($plan3ds as $plan3d) {
-					try {
-						$plan3d->setLink_id(str_replace('#', '', $value));
-						$plan3d->save();
-					} catch (\Exception $e) {
-					}
-				}
+            foreach (plan3d::byLinkTypeLinkId('cmd', $cleanKey) as $plan3d) {
+				try {
+					$plan3d->setLink_id($cleanValue);
+					$plan3d->save();
+				} catch (\Exception $e) {}
 			}
 		}
 	}
