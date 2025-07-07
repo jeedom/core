@@ -150,7 +150,10 @@ class jeedom {
 		}
 	}
 
-	public static function deadCmd(): array {
+	/**
+	* @return array
+	*/
+	public static function deadCmd() {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$cmd = config::byKey('interact::warnme::defaultreturncmd', 'core', '');
@@ -944,7 +947,8 @@ class jeedom {
 				try {
 					$cron->halt();
 					echo '.';
-				} catch (Exception|Error $e) {
+				} catch (Throwable $e) {
+``
 					sleep(5);
 					$cron->halt();
 				}
@@ -969,7 +973,7 @@ class jeedom {
 			try {
 				$scenario->stop();
 				echo '.';
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				sleep(5);
 				$scenario->stop();
 			}
@@ -991,7 +995,7 @@ class jeedom {
 			echo "Check Network Conf : ";
 			network::checkConf('internal');
 			echo "OK\n";
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			if (!isset($_GET['mode']) || $_GET['mode'] != 'force') {
 				throw $e;
 			}
@@ -1050,12 +1054,12 @@ class jeedom {
 					$class::cron5();
 				}
 			}
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         try {
 			eqLogic::checkAlive();
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 		}
     }
 
