@@ -521,8 +521,8 @@ class jeedom {
 			$return += array_merge($return, $class::health());
 		}
 
-		return $return;
-	}
+        return $return;
+    }
 
 	public static function sick() {
 		$cmd = __DIR__ . '/../../sick.php';
@@ -948,7 +948,6 @@ class jeedom {
 					$cron->halt();
 					echo '.';
 				} catch (Throwable $e) {
-``
 					sleep(5);
 					$cron->halt();
 				}
@@ -1009,7 +1008,6 @@ class jeedom {
 	}
 
 	/**
-	 *
 	 * @return boolean
 	 */
 	public static function isDateOk(): bool {
@@ -1071,7 +1069,7 @@ class jeedom {
 					$class::cron10();
 				}
 			}
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
     }
@@ -1086,26 +1084,26 @@ class jeedom {
 					if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 						try {
 							$cron->halt();
-						} catch (Exception|Error $e) {
+						} catch (Throwable $e) {
 							log::add('starting', 'error', __('Erreur sur l\'arrêt d\'une tâche cron :', __FILE__) . ' ' . log::exception($e));
 						}
                     }
 				}
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur l\'arrêt des tâches crons :', __FILE__) . ' ' . log::exception($e));
 			}
 
             try {
 				log::add('starting', 'debug', __('Restauration du cache', __FILE__));
 				cache::restore();
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur la restauration du cache :', __FILE__) . ' ' . log::exception($e));
 			}
 
             try {
 				log::add('starting', 'debug', __('Consolidation de l\'historique', __FILE__));
 				history::checkCurrentValueAndHistory();
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur la consolidation de l\'historique :', __FILE__) . ' ' . log::exception($e));
 			}
 
@@ -1113,7 +1111,7 @@ class jeedom {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques USB', __FILE__));
 				$cache = cache::byKey('jeedom::usbMapping');
 				$cache->remove();
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques USB :', __FILE__) . ' ' . log::exception($e));
 			}
 
@@ -1121,14 +1119,14 @@ class jeedom {
 				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques Bluetooth', __FILE__));
 				$cache = cache::byKey('jeedom::bluetoothMapping');
 				$cache->remove();
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques Bluetooth :', __FILE__) . ' ' . log::exception($e));
 			}
 
             try {
 				log::add('starting', 'debug', __('Démarrage des processus Internet de Jeedom', __FILE__));
 				self::start();
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur le démarrage interne de Jeedom :', __FILE__) . ' ' . log::exception($e));
 			}
 
@@ -1137,7 +1135,7 @@ class jeedom {
 				if (file_put_contents(self::getTmpFolder() . '/started', date('Y-m-d H:i:s')) === false) {
 					log::add('starting', 'error', __('Impossible d\'écrire', __FILE__) . ' ' . self::getTmpFolder() . '/started');
 				}
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Impossible d\'écrire', __FILE__) . ' ' . self::getTmpFolder() . '/started : ' . log::exception($e));
 			}
 
@@ -1151,23 +1149,21 @@ class jeedom {
 				if (!network::test('internal')) {
 					network::checkConf('internal');
 				}
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur la configuration réseau interne :', __FILE__) . ' ' . log::exception($e));
 			}
 
             try {
 				log::add('starting', 'debug', __('Envoi de l\'événement de démarrage', __FILE__));
 				self::event('start');
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'événement de démarrage :', __FILE__) . ' ' . log::exception($e));
 			}
 
             try {
 				log::add('starting', 'debug', __('Démarrage des plugins', __FILE__));
 				plugin::start();
-			} catch (Exception $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage des plugins :', __FILE__) . ' ' . log::exception($e));
-			} catch (Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur la démarrage des plugins :', __FILE__) . ' ' . log::exception($e));
 			}
 
@@ -1176,7 +1172,7 @@ class jeedom {
 					log::add('starting', 'debug', __('Test de connexion au market', __FILE__));
 					repo_market::test();
 				}
-			} catch (Exception|Error $e) {
+			} catch (Throwable $e) {
 				log::add('starting', 'error', __('Erreur sur la connexion au market :', __FILE__) . ' ' . log::exception($e));
 			}
             log::add('starting', 'debug', __('Démarrage de jeedom fini avec succès', __FILE__));
@@ -1196,7 +1192,7 @@ class jeedom {
 			user::regenerateHash();
 			jeeObject::cronDaily();
 			timeline::clean(false);
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         try {
@@ -1206,11 +1202,11 @@ class jeedom {
 					$class::cronDaily();
 				}
 			}
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         $disk_space = self::checkSpaceLeft();
-		if($disk_space < 10){
+		if ($disk_space < 10) {
 			log::add('jeedom', 'error',__('Espace disque disponible faible : ',__FILE__).$disk_space.'%.'.__('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)',__FILE__));
 		}
 	}
@@ -1218,12 +1214,12 @@ class jeedom {
 	public static function cronHourly() {
 		try {
 			cache::set('hour', strtotime('UTC'));
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         try {
 			cache::clean();
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         try {
@@ -1246,17 +1242,17 @@ class jeedom {
 					}
 				}
 			}
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
         try {
-			foreach ((update::listRepo()) as $name => $repo) {
+			foreach ((update::listRepo() as $name => $repo) {
 				$class = 'repo_' . $name;
 				if (class_exists($class) && method_exists($class, 'cronHourly') && config::byKey($name . '::enable') == 1) {
 					$class::cronHourly();
 				}
 			}
-		} catch (Exception|Error $e) {
+		} catch (Throwable $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
     }
@@ -1312,7 +1308,7 @@ class jeedom {
 				}
 			}
 			$plans = plan::byLinkTypeLinkId('cmd', str_replace('#', '', $key));
-			if (count($plans)  > 0) {
+			if (count($plans) > 0) {
 				foreach ($plans as $plan) {
 					try {
 						$plan->setLink_id(str_replace('#', '', $value));
@@ -1322,7 +1318,7 @@ class jeedom {
 				}
 			}
 			$plan3ds = plan3d::byLinkTypeLinkId('cmd', str_replace('#', '', $key));
-			if (count($plan3ds)  > 0) {
+			if (count($plan3ds) > 0) {
 				foreach ($plan3ds as $plan3d) {
 					try {
 						$plan3d->setLink_id(str_replace('#', '', $value));
@@ -1345,7 +1341,9 @@ class jeedom {
 	}
 
 	/******************************************UTILS******************************************************/
-
+    /**
+     * @return mixed|string
+     */
 	public static function versionAlias($_version, $_lightMode = true) {
 		if ($_version == 'mview') {
 			return 'mobile';
@@ -1704,11 +1702,7 @@ class jeedom {
 	}
 
 	public static function checkSpaceLeft($_dir = null) {
-		if ($_dir === null) {
-			$path = __DIR__ . '/../../';
-		} else {
-			$path = $_dir;
-		}
+        $path = $_dir ?? (__DIR__ . '/../../');
 		return round(disk_free_space($path) / disk_total_space($path) * 100);
 	}
 
@@ -1729,7 +1723,7 @@ class jeedom {
 		return $return;
 	}
 
-	/*     * ******************hardware management*************************** */
+    /*     * ******************hardware management*************************** */
 
 	public static function getHardwareKey() {
 		$return = config::byKey('jeedom::installKey');
