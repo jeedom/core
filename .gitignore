@@ -48,5 +48,4 @@ tmp/*
 .phpstan.cache
 phpstan.phar
 
-phpunit.phar
 .phpunit.result.cache

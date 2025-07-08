@@ -38,10 +38,6 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --optimize-autoloader
 
-      # Download PHPUnit
-      - name: Download PHPUnit
-        run: wget -O phpunit.phar https://phar.phpunit.de/phpunit-9.phar && chmod +x phpunit.phar
-
       # Setup cache directory
       - name: Setup cache directory
         run: |
@@ -63,4 +59,4 @@ jobs:
       - name: Run legacy test suite
         env:
           DATABASE_DSN: mysql://root:root@localhost:3306/jeedom_test
-        run: ./phpunit.phar --coverage-text --colors=never --testsuite "Legacy tests"
+        run: vendor/bin/phpunit --coverage-text --colors=never --testsuite "Legacy tests"

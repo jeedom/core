@@ -8,20 +8,13 @@
 - MySQL/MariaDB configuré et fonctionnel
 - Composer installé
 
-### 1. Télécharger PHPUnit
+### 1. Installer les dépendances
 
 ```bash
-wget -O phpunit.phar https://phar.phpunit.de/phpunit-9.phar
-chmod +x phpunit.phar
+composer install
 ```
 
-### 2. Mettre à jour les dépendances
-
-```bash
-composer update --ignore-platform-reqs
-```
-
-### 3. Configuration
+### 2. Configuration
 
 Copier le fichier de configuration d'exemple et l'adapter :
 
@@ -47,7 +40,7 @@ $CONFIG = [
 ];
 ```
 
-### 4. Configuration du cache (optionnel)
+### 3. Configuration du cache (optionnel)
 
 Pour éviter les problèmes de permissions avec le FileCache, créer le répertoire de cache :
 
@@ -70,37 +63,37 @@ sudo chown -R $USER:$USER /tmp/jeedom
 
 ```bash
 # Exécuter tous les tests
-./phpunit.phar
+vendor/bin/phpunit
 
 # Ou avec plus de détails
-./phpunit.phar --coverage-text --colors=never
+vendor/bin/phpunit --coverage-text --colors=never
 ```
 
 ### Exécuter une suite de tests spécifique
 
 ```bash
 # Exécuter seulement les tests legacy
-./phpunit.phar --testsuite "Legacy tests"
+vendor/bin/phpunit --testsuite "Legacy tests"
 ```
 
 ### Exécuter un test spécifique
 
 ```bash
 # Exécuter un fichier de test particulier
-./phpunit.phar tests/configTest.php
+vendor/bin/phpunit tests/configTest.php
 
 # Exécuter une méthode de test spécifique
-./phpunit.phar tests/configTest.php::testMethod
+vendor/bin/phpunit tests/configTest.php::testMethod
 ```
 
 ### Exécuter les tests d'un dossier
 
 ```bash
 # Tests des classes
-./phpunit.phar tests/class/
+vendor/bin/phpunit tests/class/
 
 # Tests des utilitaires PHP
-./phpunit.phar tests/php/
+vendor/bin/phpunit tests/php/
 ```
 
 ## Structure des tests
@@ -176,10 +169,10 @@ Pour déboguer vos tests :
 
 ```bash
 # Afficher plus de détails
-./phpunit.phar --verbose
+vendor/bin/phpunit --verbose
 
 # Arrêter au premier échec
-./phpunit.phar --stop-on-failure
+vendor/bin/phpunit --stop-on-failure
 ```
 
 ### Couverture de code
@@ -188,10 +181,10 @@ Pour générer un rapport de couverture de code :
 
 ```bash
 # Rapport texte
-./phpunit.phar --coverage-text
+vendor/bin/phpunit --coverage-text
 
 # Rapport HTML (nécessite l'extension xdebug ou pcov)
-./phpunit.phar --coverage-html coverage/
+vendor/bin/phpunit --coverage-html coverage/
 ```
 
 ## GitHub Actions
@@ -201,7 +194,7 @@ Les tests sont automatiquement exécutés via GitHub Actions sur :
 - Pull requests vers `master`, `beta`, et `alpha`
 - Matrice de tests : PHP 7.4 et 8.2
 
-Le workflow télécharge automatiquement PHPUnit, initialise la configuration et configure les répertoires de cache nécessaires.
+Le workflow installe les dépendances composer automatiquement, initialise la configuration et configure les répertoires de cache nécessaires.
 
 ## Informations techniques
 
