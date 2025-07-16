@@ -36,6 +36,8 @@ $CONFIG = [
         'dbname' => 'jeedom',          // Le bootstrap ajoutera '_test'
         'username' => 'root',
         'password' => 'root',
+        'root_user' => 'my_root_user',               // À ajouter si besoin, par défaut 'root'
+        'root_password' => 'my_root_password',       // À ajouter si besoin, par défaut pas de mot de passe
     ],
 ];
 ```
@@ -231,6 +233,7 @@ Jeedom utilise un système de cache FileCache qui stocke les données dans `/tmp
 **Erreur de connexion à la base de données :**
 - Vérifiez que MySQL/MariaDB est démarré
 - Vérifiez les paramètres dans `core/config/common.config.php`
+- Vérifiez que l’utilisateur du SGBD a les droits de création/suppression de base
 
 **Erreur de cache :**
 - Créez le répertoire de cache avec les bonnes permissions (voir section 4)
