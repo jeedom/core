@@ -62,7 +62,6 @@ class log extends AbstractLogger {
 			try {
 				self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog')));
 			} catch (Exception $e) {
-				echo $e->getMessage();
 				self::$config = array();
 			}
 		}

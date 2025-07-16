@@ -23,7 +23,6 @@
     "files": [
       "core/config/common.config.php",
       "core/php/utils.inc.php",
-      "core/config/jeedom.config.php",
       "core/config/compatibility.config.php"
     ],
     "classmap": [
