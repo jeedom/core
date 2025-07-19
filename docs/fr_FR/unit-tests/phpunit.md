@@ -141,6 +141,21 @@ Le fichier `phpunit.xml.dist` contient la configuration des tests :
 </phpunit>
 ```
 
+## Tests actuellement désactivés
+
+Certains tests sont marqués comme "skipped" et apparaîtront dans les résultats :
+
+**Tests du système de plugins :**
+- Utilisaient le plugin "virtual" comme référence
+- Créaient des effets de bords (installation automatique)
+- **Status :** Marqués `markTestAsSkipped()` en attente de réintégration avec mocks
+- **Issue de suivi :** #XXXX (à créer)
+
+Pour voir les tests skippés :
+```bash
+vendor/bin/phpunit --verbose
+```
+
 ## Conseils de développement
 
 ### Créer un nouveau test
@@ -188,6 +203,20 @@ vendor/bin/phpunit --coverage-text
 # Rapport HTML (nécessite l'extension xdebug ou pcov)
 vendor/bin/phpunit --coverage-html coverage/
 ```
+
+### Bonnes pratiques pour les tests
+
+- **Isolation :** Chaque test doit pouvoir s'exécuter indépendamment
+- **Nommage :** Utilisez des noms explicites `testCreateUserWithValidEmail()`
+- **Setup/Teardown :** Nettoyez les données après chaque test si nécessaire
+- **Assertions :** Une assertion principale par méthode de test
+
+### Éviter les effets de bords
+
+⚠️ **Important :** Ne pas installer de plugins réels dans les tests
+- Utilisez des mocks pour simuler les interactions avec les plugins
+- Évitez les modifications permanentes de la configuration
+- Préférez les données temporaires aux données persistantes
 
 ## GitHub Actions
 
