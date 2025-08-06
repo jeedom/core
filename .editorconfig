@@ -1,0 +1,21 @@
+# This file is for unifying the coding style for different editors and IDEs.
+# More information at http://EditorConfig.org
+
+# Set this file as the root
+root = true
+
+# Global settings for all files
+[*]
+indent_style = space
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# PHP files
+[*.php]
+indent_size = 4
+
+# Frontend files
+[*.{css,html,js,less,sass,scss}]
+indent_size = 2
