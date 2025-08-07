@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.4
 
+# 4.4.20
+
+- Nouvelle méthode de restauration système automatique au démarrage pour les boxs officielles Smart & Atlas
+
 # 4.4.19
 
 - Prise en charge des évènements personnalisés de type ``#pluginClass::*#`` ou ``#pluginClass::customId#`` [LIEN](https://github.com/jeedom/core/pull/2964)
