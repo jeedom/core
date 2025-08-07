@@ -23,11 +23,11 @@ class recovery {
 	/*     * *************************Attributes****************************** */
 
 	/*     * ***********************Static Methods*************************** */
-	public static function install($_force = false) {
+	public static function install(bool $_force = false) {
 		switch (system::getArch()) {
 			case 'arm64':
-				self::writeLog(__('Vérification du script de démarrage', __FILE__), 'info');
-				$cmd = 'sudo /bin/bash ' . __DIR__ . '/../../resources/update_boot_script.sh';
+				self::writeLog(__('Vérification du script de démarrage', __FILE__));
+				$cmd = system::getCmdSudo() . ' /bin/bash ' . __DIR__ . '/../../resources/update_boot_script.sh';
 				$cmd .= ($_force) ? ' -f' : '';
 				$cmd .= ' >> ' . log::getPathToLog(__CLASS__) . ' 2>&1';
 				exec($cmd, $output, $returnCode);
@@ -44,7 +44,7 @@ class recovery {
 		}
 	}
 
-	private static function writeLog($_message, $_level = 'info') {
+	private static function writeLog(string $_message, string $_level = 'debug') {
 		exec('echo [' . date('Y-m-d H:i:s') . '][' . strtoupper($_level) . '] : ' . $_message . ' >> ' . log::getPathToLog(__CLASS__) . ' 2>&1');
 	}
 }
