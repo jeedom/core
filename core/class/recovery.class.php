@@ -27,7 +27,7 @@ class recovery {
 		switch (system::getArch()) {
 			case 'arm64':
 				self::writeLog(__('Vérification du script de démarrage', __FILE__), 'info');
-				$cmd = 'sudo /bin/bash ' . dirname(__FILE__) . '/../../resources/update_boot_script.sh';
+				$cmd = 'sudo /bin/bash ' . __DIR__ . '/../../resources/update_boot_script.sh';
 				$cmd .= ($_force) ? ' -f' : '';
 				$cmd .= ' >> ' . log::getPathToLog(__CLASS__) . ' 2>&1';
 				exec($cmd, $output, $returnCode);
