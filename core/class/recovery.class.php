@@ -149,7 +149,7 @@ class recovery {
 					}
 				}
 			}
-			$log = (isset($_progress['step']) ? $_progress['step'] . ' - ' : '') . (isset($_progress['details']) ? $_progress['details'] : '');
+			$log = (isset($_progress['step']) ? $_progress['step'] . ' : ' : '') . (isset($_progress['details']) ? $_progress['details'] : '');
 			self::writeLog($log, $level);
 			sleep($_pause);
 		}
@@ -193,7 +193,7 @@ class recovery {
 		curl_exec($ch);
 
 		if (curl_errno($ch)) {
-			$error = __("Erreur lors du téléchargement", __FILE__) . ' - ' . curl_error($ch);
+			$error = __("Erreur lors du téléchargement", __FILE__) . ' : ' . curl_error($ch);
 			if (cache::exist(self::CANCEL)) {
 				$error = __("Téléchargement annulé à la demande de l'utilisateur", __FILE__);
 			}
@@ -255,7 +255,7 @@ class recovery {
 			return $imgInfos[$_revision];
 		}
 
-		throw new Exception(__("Abandon, informations sur l'image système manquantes", __FILE__) . ' - ' . print_r($imgInfos, true));
+		throw new Exception(__("Abandon, informations sur l'image système manquantes", __FILE__) . ' : ' . print_r($imgInfos, true));
 	}
 
 	private static function calculPercentProgress($_done, $_total, float $_max = 100, float $_base = 0) {
@@ -277,7 +277,7 @@ class recovery {
 	}
 
 	private static function writeLog(string $_message, string $_level = 'info') {
-		$logLine = "[" . date('Y-m-d H:i:s') . "][" . strtoupper($_level) . "] : " . $_message . PHP_EOL;
+		$logLine = "[" . date('Y-m-d H:i:s') . "][" . strtoupper($_level) . "] " . $_message . PHP_EOL;
 		file_put_contents(log::getPathToLog(__CLASS__), $logLine, FILE_APPEND);
 	}
 }
