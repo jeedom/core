@@ -42,13 +42,12 @@ else
   cp /boot/boot.cmd ./boot.txt
 fi
 
-if grep -q '# Jeedom boot script including automatic system update' ./boot.txt && [ $FORCE_UPDATE -eq 0 ]; then
-  rm ./boot.txt
-  echo "Boot script already updated, no changes made"
-  exit 4
-fi
-
-if [ $FORCE_UPDATE -eq 1 ]; then
+if grep -q '# Jeedom boot script including automatic system update' ./boot.txt; then
+  if [ $FORCE_UPDATE -eq 0 ]; then
+    rm ./boot.txt
+    echo "Boot script already updated, no changes made"
+    exit 4
+  fi
   sed -i '/# Jeedom boot script including automatic system update/,/# End of Jeedom system update script/d' ./boot.txt
 fi
 
