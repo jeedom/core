@@ -24,7 +24,6 @@ if (!jeeFrontEnd.recovery) {
     buttons: NodeList,
     inProgress: null,
     mode: null,
-    usb: null,
     init: function() {
       this.step = document.getElementById('recovery-step')
       this.details = document.getElementById('recovery-details')
@@ -56,23 +55,18 @@ if (!jeeFrontEnd.recovery) {
     cancel: function() {
       bootbox.confirm('<div class="text-center alert alert-danger"><i class="fas fa-exclamation-triangle"></i> {{Annuler la procédure de restauration système en cours ?}}</div>', function(ok) {
         if (ok) {
-          jeeP.monitorProgress('stop')
-
-          jeeP.updateProgress({
-            details: "{{Procédure annulée à la demande de l'utilisateur}}",
-            progress: -1
-          })
-
+          jeeP.displayButtons('refresh')
           if (jeeP.mode) {
             jeedom.recovery.cancel({
               async: false
             })
-            setTimeout(() => {
-              jeeP.getProgress()
-            }, 800)
+          } else {
+            jeeP.monitorProgress('stop')
+            jeeP.updateProgress({
+              details: "{{Procédure annulée à la demande de l'utilisateur}}",
+              progress: -1
+            })
           }
-
-          jeeP.displayButtons('refresh')
         }
       })
     },
@@ -143,7 +137,7 @@ if (!jeeFrontEnd.recovery) {
       jeedom.recovery.usbConnected({
         async: false,
         success: function(_data) {
-          jeeP.usb = _data
+          return _data
         }
       })
     },
