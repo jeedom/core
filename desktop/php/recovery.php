@@ -13,7 +13,7 @@ switch (system::getArch()) {
 }
 
 $product = config::byKey('product_name');
-$hardware = 'Atlas'; //ucfirst(jeedom::getHardwareName());
+$hardware = ucfirst(jeedom::getHardwareName());
 $mbState = config::byKey('mbState');
 $image = config::byKey('product_connection_image');
 ?>
