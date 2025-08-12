@@ -55,7 +55,6 @@ if (!jeeFrontEnd.recovery) {
     cancel: function() {
       bootbox.confirm('<div class="text-center alert alert-danger"><i class="fas fa-exclamation-triangle"></i> {{Annuler la procédure de restauration système en cours ?}}</div>', function(ok) {
         if (ok) {
-          jeeP.displayButtons('refresh')
           if (jeeP.mode) {
             jeedom.recovery.cancel({
               async: false
@@ -67,6 +66,7 @@ if (!jeeFrontEnd.recovery) {
               progress: -1
             })
           }
+          jeeP.displayButtons('refresh')
         }
       })
     },
