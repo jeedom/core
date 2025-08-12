@@ -138,15 +138,15 @@ class recovery {
 		if ($_pause) {
 			$level = 'info';
 			if (isset($_progress['progress'])) {
-				if ($_progress['progress'] < 0) {
+				if ($_progress['progress'] == 100) {
+					$level = 'debug';
+				} else if ($_progress['progress'] > 0) {
+					$level = $_progress['progress'] . '%';
+				} else if ($_progress['progress'] < 0) {
 					$level = 'error';
 					if (cache::exist(self::CANCEL)) {
 						$level = 'warning';
 					}
-				} else if ($_progress['progress'] == 100) {
-					$level = 'debug';
-				} else if ($_progress['progress'] > 0) {
-					$level = $_progress['progress'] . '%';
 				}
 			}
 			$log = (isset($_progress['step']) ? $_progress['step'] . ' - ' : '') . (isset($_progress['details']) ? $_progress['details'] : '');
