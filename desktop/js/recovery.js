@@ -22,13 +22,16 @@ if (!jeeFrontEnd.recovery) {
     details: Node,
     progress: Node,
     buttons: NodeList,
+    hardware: null,
     inProgress: null,
     mode: null,
+    usb: null,
     init: function() {
       this.step = document.getElementById('recovery-step')
       this.details = document.getElementById('recovery-details')
       this.progress = document.getElementById('recovery-progress')
       this.buttons = document.getElementById('recovery-buttons').querySelectorAll('a.btn')
+      this.hardware = jeephp2js.hardware
       window.jeeP = this
     },
     start: function(_mode) {
@@ -39,13 +42,13 @@ if (!jeeFrontEnd.recovery) {
       jeedom.recovery.start({
         global: false,
         mode: _mode,
+        hardware: jeeP.hardware,
         success: function(_success) {
           jeeP.monitorProgress('stop')
           jeeP.mode = null
 
           if (_success) {
             jeeP.displayButtons('reboot', 'halt')
-            jeeP.progress.removeClass('active')
           } else {
             jeeP.displayButtons('refresh')
           }
@@ -100,10 +103,6 @@ if (!jeeFrontEnd.recovery) {
         jeeP.details.innerText = _data.details
       }
       if (isset(_data.progress)) {
-        if (!jeeP.progress.isVisible()) {
-          jeeP.progress.parentNode.seen()
-        }
-
         if (_data.progress < 0) {
           jeeP.progress.classList = 'progress-bar ' + (!jeeP.inProgress ? 'progress-bar-warning' : 'progress-bar-danger')
           jeeP.progress.style.width = '100%'
@@ -111,7 +110,7 @@ if (!jeeFrontEnd.recovery) {
           jeeP.progress.innerText = (!jeeP.inProgress) ? "{{Annulation}}" : '{{Erreur}}'
           jeeP.displayButtons()
         } else if (_data.progress >= 100) {
-          jeeP.progress.classList = 'progress-bar progress-bar-striped progress-bar-animated progress-bar-success active'
+          jeeP.progress.classList = 'progress-bar progress-bar-striped progress-bar-animated progress-bar-success'
           jeeP.progress.style.width = '100%'
           jeeP.progress.setAttribute('aria-valuenow', 100)
           jeeP.progress.innerText = '100%'
@@ -123,6 +122,9 @@ if (!jeeFrontEnd.recovery) {
           jeeP.progress.innerText = _data.progress + '%'
           if (_data.progress >= 98) {
             jeeP.displayButtons()
+          }
+          if (!jeeP.progress.isVisible()) {
+            jeeP.progress.parentNode.seen()
           }
         }
       }
@@ -136,15 +138,17 @@ if (!jeeFrontEnd.recovery) {
     usbConnected: function() {
       jeedom.recovery.usbConnected({
         async: false,
+        hardware: jeeP.hardware,
         success: function(_data) {
-          return _data
+          jeeP.usb = _data
         }
       })
+      return jeeP.usb
     },
     usbDetection: function() {
       return new Promise(function(resolve, reject) {
         if (jeeP.usbConnected()) {
-          return resolve(true)
+          return resolve()
         }
 
         let i = 1
@@ -158,7 +162,7 @@ if (!jeeFrontEnd.recovery) {
         jeeP.inProgress = setInterval(function() {
           if (jeeP.usbConnected()) {
             jeeP.monitorProgress('stop')
-            return resolve(true)
+            return resolve()
           }
 
           if (i == 100) {
@@ -168,7 +172,7 @@ if (!jeeFrontEnd.recovery) {
             })
             jeeP.monitorProgress('stop')
             jeeP.displayButtons('refresh')
-            return reject(new Error('{{Clé USB non détectée}}'))
+            return reject()
           }
 
           i += 1

@@ -13,16 +13,17 @@ switch (system::getArch()) {
 }
 
 $product = config::byKey('product_name');
-$hardware = ucfirst(jeedom::getHardwareName());
-$mbState = config::byKey('mbState');
+$hardware = strtolower(jeedom::getHardwareName());
 $image = config::byKey('product_connection_image');
+$mbState = config::byKey('mbState');
+sendVarToJS('jeephp2js.hardware', $hardware);
 ?>
 
 <div class="text-center" id="div_recovery">
 	<h3>{{Restauration système}}</h3>
 	<img src="<?= $image ?>" alt="Product Image">
 	<div class="bold" id="recovery-step" style="min-height:50px">
-		<?= $product . ' ' . $hardware ?> {{intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution}} :
+		<?= $product . ' ' . ucfirst($hardware) ?> {{intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution}} :
 	</div>
 	<div class="progress" style="display:none">
 		<div id="recovery-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>

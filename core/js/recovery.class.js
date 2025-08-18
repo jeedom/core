@@ -17,7 +17,7 @@
 jeedom.recovery = function() { }
 
 jeedom.recovery.start = function(_params) {
-    var paramsRequired = ['mode']
+    var paramsRequired = ['mode', 'hardware']
     var paramsSpecifics = {}
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -30,7 +30,8 @@ jeedom.recovery.start = function(_params) {
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
         action: 'start',
-        mode: _params.mode
+        mode: _params.mode,
+        hardware: _params.hardware
     }
     domUtils.ajax(paramsAJAX)
 }
@@ -58,12 +59,20 @@ jeedom.recovery.getProgress = function(_params) {
 }
 
 jeedom.recovery.usbConnected = function(_params) {
+    var paramsRequired = ['hardware']
     var paramsSpecifics = {}
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+        return
+    }
     var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
     var paramsAJAX = jeedom.private.getParamsAJAX(params)
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
-        action: 'usbConnected'
+        action: 'usbConnected',
+        hardware: _params.hardware
     }
     domUtils.ajax(paramsAJAX)
 }

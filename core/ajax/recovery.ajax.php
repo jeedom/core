@@ -28,7 +28,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'start') {
-		ajax::success(recovery::start(init('mode')));
+		ajax::success(recovery::start(init('mode'), init('hardware')));
 	}
 
 	if (init('action') == 'cancel') {
@@ -40,7 +40,7 @@ try {
 	}
 
 	if (init('action') == 'usbConnected') {
-		ajax::success(recovery::usbConnected());
+		ajax::success(recovery::usbConnected(init('hardware')));
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

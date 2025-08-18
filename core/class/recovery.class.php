@@ -62,7 +62,7 @@ class recovery {
 		}
 	}
 
-	public static function start(string $_mode) {
+	public static function start(string $_mode, string $_hardware) {
 		cache::delete(self::CANCEL);
 		cache::set(self::PROGRESS, false, 60);
 		self::setProgress(['step' => __("Initialisation", __FILE__), 'details' => __('Démarrage de la procédure de restauration système en mode', __FILE__) . ' ' . strtoupper($_mode), 'progress' => 0], 3);
@@ -72,7 +72,7 @@ class recovery {
 				case 'arm64':
 					$downloadPath = realpath(__DIR__ . '/../../install/update');
 					if ($_mode == 'usb') {
-						if (!$usbDevice = self::usbConnected()) {
+						if (!$usbDevice = self::usbConnected($_hardware)) {
 							throw new Exception(__('Périphérique USB non détecté', __FILE__));
 						}
 						$downloadPath = '/mnt/usb';
@@ -83,8 +83,7 @@ class recovery {
 					}
 
 					self::setProgress(['details' => __("Collecte des informations sur l'image système", __FILE__), 'progress' => 2], 1);
-					$hardware = strtolower(jeedom::getHardwareName());
-					$imgInfos = self::getImgInfos($hardware);
+					$imgInfos = self::getImgInfos($_hardware);
 					jeedom::cleanFileSystemRight();
 					self::downloadImage($imgInfos['url'], $downloadPath . '/' . $imgInfos['name'], $imgInfos['SHA256']);
 
@@ -116,12 +115,26 @@ class recovery {
 		cache::set(self::CANCEL, true, 60);
 	}
 
-	public static function usbConnected() {
+	public static function usbConnected(string $_hardware) {
 		foreach (['/dev/sda', '/dev/sdb', '/dev/sdc', '/dev/sdd'] as $device) {
 			if (file_exists($device)) {
 				$deviceInfos = shell_exec('udevadm info -q path -n ' . $device);
-				if (stripos($deviceInfos, '/usb1/1-1/') !== false) {
-					return $device;
+				switch ($_hardware) {
+					case 'smart':
+						if (strpos($deviceInfos, '/c9100000.usb/usb') !== false) {
+							return $device;
+						}
+						break;
+					case 'atlas':
+						if (strpos($deviceInfos, '/fe3c0000.usb/usb') !== false) {
+							return $device;
+						}
+						break;
+					default:
+						if (strpos($deviceInfos, '/usb1/1-1/') !== false) {
+							return $device;
+						}
+						break;
 				}
 			}
 		}
@@ -162,7 +175,7 @@ class recovery {
 			self::setProgress(['details' => __("Vérification de l'intégrité de l'image système trouvée sur la cible", __FILE__), 'progress' => 95], 1);
 			try {
 				self::validateImage($_path, $_sha256, false);
-				self::setProgress(['details' => __("Image système validée avec succès", __FILE__), 'progress' => 98], 2);
+				self::setProgress(['details' => __("Image système validée avec succès", __FILE__), 'progress' => 97.5], 2);
 				return;
 			} catch (Exception $e) {
 				if (cache::exist(self::CANCEL)) {
@@ -209,7 +222,7 @@ class recovery {
 
 		self::setProgress(['details' => __("Vérification de l'intégrité de l'image système téléchargée", __FILE__), 'progress' => 95], 1);
 		self::validateImage($_path, $_sha256);
-		self::setProgress(['details' => __("Image système téléchargée avec succès", __FILE__), 'progress' => 98], 2);
+		self::setProgress(['details' => __("Image système téléchargée avec succès", __FILE__), 'progress' => 97.5], 2);
 	}
 
 	private static function downloadImageProgress($_resource, $_downloadSize, $_downloaded) {
