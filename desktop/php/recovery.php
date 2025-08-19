@@ -70,10 +70,11 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: space-between;
 		max-width: 640px;
-		min-height: 720px;
-		margin: 10px auto;
-		padding: 0 20px 20px 20px;
+		min-height: 820px;
+		margin: 15px auto 0 auto;
+		padding: 0 20px 15px 20px;
 		background-color: rgba(var(--eq-bg-color), var(--opacity));
 		border-radius: var(--border-radius);
 	}
@@ -86,7 +87,12 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 	#recovery-details,
 	#div_recovery>.progress {
 		width: 95%;
-		margin: 15px auto;
+		margin: 10px auto;
+	}
+
+	#recovery-details {
+		height: 300px;
+		overflow: hidden;
 	}
 
 	.bold {
