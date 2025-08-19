@@ -66,6 +66,7 @@ class recovery {
 	public static function start(string $_hardware, string $_mode = 'auto') {
 		cache::delete(self::CANCEL);
 		cache::set(self::PROGRESS, false, 60);
+		self::writeLog('-----------------------------------------------------------------------------------------', __('Restauration', __FILE__) . ' ' . $_hardware);
 		self::setProgress(['step' => __('Initialisation', __FILE__) . ' (' . strtoupper($_mode) . ')', 'details' => __('Démarrage de la procédure de restauration système', __FILE__), 'progress' => 0], 3);
 
 		try {
