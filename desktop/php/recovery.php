@@ -20,7 +20,7 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 ?>
 
 <div class="text-center" id="div_recovery">
-	<h3>{{Restauration système}}</h3>
+	<h3 id="recovery-title">{{Restauration système}}</h3>
 	<img src="<?= $image ?>" alt="Product Image">
 	<div class="bold" id="recovery-step" style="min-height:50px">
 		<?= $product . ' ' . ucfirst($hardware) ?> {{intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution}} :

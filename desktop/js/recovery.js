@@ -18,6 +18,7 @@
 
 if (!jeeFrontEnd.recovery) {
   jeeFrontEnd.recovery = {
+    title: Node,
     step: Node,
     details: Node,
     progress: Node,
@@ -27,6 +28,7 @@ if (!jeeFrontEnd.recovery) {
     mode: null,
     usb: null,
     init: function() {
+      this.title = document.getElementById('recovery-title')
       this.step = document.getElementById('recovery-step')
       this.details = document.getElementById('recovery-details')
       this.progress = document.getElementById('recovery-progress')
@@ -111,7 +113,7 @@ if (!jeeFrontEnd.recovery) {
           jeeP.progress.innerText = (!jeeP.inProgress) ? "{{Annulation}}" : '{{Erreur}}'
           jeeP.displayButtons()
         } else if (_data.progress >= 100) {
-          jeeP.progress.classList = 'progress-bar progress-bar-striped progress-bar-animated progress-bar-success'
+          jeeP.progress.classList = 'progress-bar progress-bar-success'
           jeeP.progress.style.width = '100%'
           jeeP.progress.setAttribute('aria-valuenow', 100)
           jeeP.progress.innerText = '100%'
@@ -207,11 +209,13 @@ jeeFrontEnd.recovery.init()
 document.getElementById('recovery-buttons').addEventListener('click', function(_event) {
   var _target = null
   if (_target = _event.target.closest('#bt_auto')) {
+    jeeP.title.innerText = jeeP.title.innerText + ' (AUTO)'
     jeeP.start('auto')
     return
   }
 
   if (_target = _event.target.closest('#bt_usb')) {
+    jeeP.title.innerText = jeeP.title.innerText + ' (USB)'
     jeeP.usbDetection().then(() => {
       jeeP.start('usb')
     }).catch((_error) => {
