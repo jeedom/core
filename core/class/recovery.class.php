@@ -23,6 +23,7 @@ class recovery {
 	/* * *************************Constants****************************** */
 	private const PROGRESS = 'jeedomRecovery';
 	private const CANCEL = 'jeedomRecoveryCancellation';
+	private const DEFAULT_IMGNAME = 'JeedomSystemUpdate.img.gz';
 
 	/* * ***********************Static Methods*************************** */
 	public static function isInstalled() {
@@ -62,43 +63,47 @@ class recovery {
 		}
 	}
 
-	public static function start(string $_mode, string $_hardware) {
+	public static function start(string $_hardware, string $_mode = 'auto') {
 		cache::delete(self::CANCEL);
 		cache::set(self::PROGRESS, false, 60);
-		self::setProgress(['step' => __("Initialisation", __FILE__), 'details' => __('Démarrage de la procédure de restauration système en mode', __FILE__) . ' ' . strtoupper($_mode), 'progress' => 0], 3);
+		self::setProgress(['step' => __('Initialisation', __FILE__) . ' (' . strtoupper($_mode) . ')', 'details' => __('Démarrage de la procédure de restauration système', __FILE__), 'progress' => 0], 3);
 
 		try {
 			switch (system::getArch()) {
 				case 'arm64':
-					$downloadPath = realpath(__DIR__ . '/../../install/update');
-					if ($_mode == 'usb') {
-						if (!$usbDevice = self::usbConnected($_hardware)) {
-							throw new Exception(__('Périphérique USB non détecté', __FILE__));
-						}
-						$downloadPath = '/mnt/usb';
-						if (!file_exists($downloadPath)) {
-							shell_exec('sudo mkdir ' . $downloadPath);
-						}
-						shell_exec('sudo mount ' . $usbDevice . '1 ' . $downloadPath);
-					}
-
-					self::setProgress(['details' => __("Collecte des informations sur l'image système", __FILE__), 'progress' => 2], 1);
 					$imgInfos = self::getImgInfos($_hardware);
-					jeedom::cleanFileSystemRight();
-					self::downloadImage($imgInfos['url'], $downloadPath . '/' . $imgInfos['name'], $imgInfos['SHA256']);
 
-					self::setProgress(['step' => __("Finalisation", __FILE__), 'details' => '', 'progress' => 98], 2);
 					if ($_mode == 'usb') {
-						self::setProgress(['details' => __('Ecriture du fichier de configuration USB', __FILE__), 'progress' => 99], 1);
-						file_put_contents($downloadPath . '/JeedomSystemUpdate.ini', 'update_filename="' . $imgInfos['name'] . '"');
-						shell_exec('sudo umount ' . $downloadPath);
+						$downloadPath = '/mnt/usb';
+						self::prepareUsbDevice($_hardware, $downloadPath);
+					} else {
+						$downloadPath = realpath(__DIR__ . '/../../install/update');
 					}
+					if (!file_exists($downloadPath . '/' . $imgInfos['name']) && !file_exists($downloadPath . '/' . self::DEFAULT_IMGNAME)) {
+						self::checkFreeSpace($downloadPath, $imgInfos['size']);
+					}
+					self::downloadAndValidateImage($imgInfos['url'], $downloadPath . '/' . $imgInfos['name'], $imgInfos['SHA256']);
 
-					$message = __('Le nouveau système est prêt à être déployé automatiquement au prochain démarrage', __FILE__);
-					$message .= "\n" . __('Veuillez redémarrer pour effectuer la restauration', __FILE__);
+					self::setProgress(['step' => __('Finalisation', __FILE__), 'details' => __('Veuillez patienter un instant', __FILE__), 'progress' => 98], 2);
 					if ($_mode == 'usb') {
+						if (!file_exists($downloadPath . '/' . self::DEFAULT_IMGNAME)) {
+							self::setProgress(['details' => __('Ecriture du fichier de configuration USB', __FILE__), 'progress' => 99], 1);
+							if (!file_put_contents($downloadPath . '/JeedomSystemUpdate.ini', 'update_filename="' . $imgInfos['name'] . '"')) {
+								throw new Exception(__('Une erreur est survenue lors de la finalisation de la procédure de restauration système', __FILE__));
+							}
+						}
+						shell_exec('sudo umount ' . $downloadPath);
 						$message = __('Le nouveau système est prêt à être installé depuis la clé USB de restauration', __FILE__);
-						$message .= "\n" . __('Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration', __FILE__);
+						$message .= "\n\n" . __('Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration', __FILE__);
+					} else {
+						if (!file_exists($downloadPath . '/' . self::DEFAULT_IMGNAME)) {
+							self::setProgress(['details' => __('Renommage du fichier de restauration système', __FILE__), 'progress' => 99], 1);
+							if (!rename($downloadPath . '/' . $imgInfos['name'], $downloadPath . '/' . self::DEFAULT_IMGNAME)) {
+								throw new Exception(__('Une erreur est survenue lors de la finalisation de la procédure de restauration système', __FILE__));
+							}
+						}
+						$message = __('Le nouveau système est prêt à être déployé automatiquement au prochain démarrage', __FILE__);
+						$message .= "\n\n" . __('Veuillez redémarrer pour effectuer la restauration', __FILE__);
 					}
 					self::setProgress(['step' => __("Félicitations", __FILE__), 'details' => $message, 'progress' => 100], 2);
 					return true;
@@ -168,14 +173,11 @@ class recovery {
 		}
 	}
 
-	private static function downloadImage(string $_url, string $_path, string $_sha256) {
-		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => '', 'progress' => 4], 2);
-
-		if (file_exists($_path)) {
-			self::setProgress(['details' => __("Vérification de l'intégrité de l'image système trouvée sur la cible", __FILE__), 'progress' => 95], 1);
+	private static function downloadAndValidateImage(string $_url, string $_filepath, string $_sha256) {
+		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => __('Veuillez patienter un instant', __FILE__), 'progress' => 4.5], 2);
+		if (file_exists($imgPath = $_filepath) || file_exists($imgPath = dirname($_filepath) . '/' . self::DEFAULT_IMGNAME)) {
 			try {
-				self::validateImage($_path, $_sha256, false);
-				self::setProgress(['details' => __("Image système validée avec succès", __FILE__), 'progress' => 97.5], 2);
+				self::validateImage($imgPath, $_sha256, false);
 				return;
 			} catch (Exception $e) {
 				if (cache::exist(self::CANCEL)) {
@@ -188,9 +190,10 @@ class recovery {
 			self::setProgress(['details' => __("Début du téléchargement", __FILE__), 'progress' => 5], 1);
 		}
 
+		jeedom::cleanFileSystemRight();
 		$error = false;
 		$ch = curl_init();
-		$fp = fopen($_path, 'wb');
+		$fp = fopen($_filepath, 'wb');
 
 		curl_setopt_array($ch, [
 			CURLOPT_URL => $_url,
@@ -216,13 +219,11 @@ class recovery {
 		fclose($fp);
 
 		if ($error) {
-			unlink($_path);
+			unlink($_filepath);
 			throw new Exception($error);
 		}
 
-		self::setProgress(['details' => __("Vérification de l'intégrité de l'image système téléchargée", __FILE__), 'progress' => 95], 1);
-		self::validateImage($_path, $_sha256);
-		self::setProgress(['details' => __("Image système téléchargée avec succès", __FILE__), 'progress' => 97.5], 2);
+		self::validateImage($_filepath, $_sha256);
 	}
 
 	private static function downloadImageProgress($_resource, $_downloadSize, $_downloaded) {
@@ -239,10 +240,17 @@ class recovery {
 		}
 	}
 
-	private static function validateImage(string $_filepath, string $_sha256, bool $_unlinkOnCancel = true) {
+	private static function validateImage(string $_filepath, string $_sha256, bool $_downloaded = true) {
+		if ($_downloaded) {
+			$message = __("Vérification de l'intégrité de l'image système téléchargée", __FILE__);
+		} else {
+			$message = __("Vérification de l'intégrité de l'image système trouvée sur la cible", __FILE__);
+		}
+		self::setProgress(['details' => $message, 'progress' => 95], 1);
+
 		$sha256 = hash_file('sha256', $_filepath);
 		if (cache::exist(self::CANCEL)) {
-			if ($_unlinkOnCancel) {
+			if ($_downloaded) {
 				unlink($_filepath);
 			}
 			throw new Exception(__("Vérification annulée à la demande de l'utilisateur", __FILE__));
@@ -251,35 +259,74 @@ class recovery {
 			unlink($_filepath);
 			throw new Exception(__("Erreur lors de la vérification de l'image système", __FILE__) . ' (' . $sha256 . ' != ' . $_sha256) . ')';
 		}
+
+		if ($_downloaded) {
+			$message = __("Image système téléchargée avec succès", __FILE__);
+		} else {
+			$message = __("Image système validée avec succès", __FILE__);
+		}
+		self::setProgress(['details' => $message, 'progress' => 97.5], 2);
 	}
 
-	private static function getImgInfos(string $_hardware, string $_revision = 'stable') {
+	private static function getImgInfos(string $_hardware) {
+		self::setProgress(['details' => __("Collecte des informations sur l'image système", __FILE__), 'progress' => 2], 1);
 		$url = 'https://images.jeedom.com/';
 		$jsonUrl = $url . $_hardware . '/info.json';
 
 		$jsonContent = @file_get_contents($jsonUrl);
 		if ($jsonContent === false) {
-			throw new Exception(__("Abandon, impossible de récupérer les informations sur l'image système", __FILE__) . ' (' . $jsonUrl . ')');
+			throw new Exception(__("Impossible de récupérer les informations sur l'image système", __FILE__) . ' (' . $jsonUrl . ')');
 		}
 
 		$imgInfos = json_decode($jsonContent, true);
-		if (isset($imgInfos[$_revision]) && isset($imgInfos[$_revision]['name']) && isset($imgInfos[$_revision]['SHA256'])) {
-			$imgInfos[$_revision]['url'] = $url . $_hardware . '/' . $imgInfos[$_revision]['name'];
-			return $imgInfos[$_revision];
+		$osVersion = config::byKey('os::min', 'core', 11);
+		if (isset($imgInfos[$osVersion]) && isset($imgInfos[$osVersion]['name']) && isset($imgInfos[$osVersion]['SHA256'])) {
+			$imgInfos[$osVersion]['url'] = $url . $_hardware . '/' . $imgInfos[$osVersion]['name'];
+			$imgInfos[$osVersion]['size'] = ceil((int) trim(shell_exec("curl -sI " . $imgInfos[$osVersion]['url'] . " | grep content-length | awk '{print $2}'")) / 1024);
+			return $imgInfos[$osVersion];
 		}
 
-		throw new Exception(__("Abandon, informations sur l'image système manquantes", __FILE__) . ' : ' . print_r($imgInfos, true));
+		throw new Exception(__("Informations sur l'image système manquantes", __FILE__) . ' : ' . print_r($imgInfos, true));
+	}
+
+	private static function prepareUsbDevice(string $_hardware, string $_mountPath = '/mnt/usb') {
+		self::setProgress(['details' => __('Vérification du périphérique USB', __FILE__), 'progress' => 3], 1);
+		if (!$usbDevice = self::usbConnected($_hardware)) {
+			throw new Exception(__('Périphérique USB non détecté', __FILE__));
+		}
+
+		$partition = $usbDevice . '1';
+		$fsType = trim(shell_exec("sudo blkid -s TYPE -o value $partition"));
+		if ($fsType !== 'vfat') {
+			throw new Exception(__("Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT", __FILE__) . ' (' . $fsType . ')');
+		}
+
+		if (!file_exists($_mountPath)) {
+			shell_exec('sudo mkdir ' . $_mountPath);
+		} else if (!empty(shell_exec('mount | grep ' . $_mountPath))) {
+			shell_exec('sudo umount ' . $_mountPath);
+		}
+		exec('sudo mount -o rw,uid=www-data,gid=www-data ' . $partition . ' ' . $_mountPath, $output, $returnCode);
+		if ($returnCode !== 0 || empty(shell_exec('mount | grep ' . $_mountPath))) {
+			throw new Exception(__("Echec d'accès au périphérique USB, vérifier les logs http.error", __FILE__) . ' (' . $partition . ')');
+		}
+	}
+
+	private function checkFreeSpace(string $_path, int $_imgSize = 1500000) {
+		self::setProgress(['details' => __("Vérification de l'espace disque disponible", __FILE__), 'progress' => 4], 1);
+		$available = (int) trim(shell_exec("sudo df --output=avail -k $_path | tail -1"));
+		if ($available < $_imgSize) {
+			throw new Exception(__('Espace disque disponible insuffisant', __FILE__) . ' : ' . $available . 'Mo (' . $_path . ')');
+		}
 	}
 
 	private static function calculPercentProgress($_done, $_total, float $_max = 100, float $_base = 0) {
-		$percent = round(($_done / $_total) * 100, 1);
+		$rawPercent = $_done / $_total;
+		$mappedPercent = $_base + ($rawPercent * ($_max - $_base));
+		$percent = round($mappedPercent, 1);
 
-		if ($_base > 0 && $_base < $_max) {
-			$percent = round($percent * ($_base / $_max) + $_base, 1);
-		}
-
-		if ($percent < 0) {
-			return 0;
+		if ($percent < $_base) {
+			return $_base;
 		}
 
 		if ($percent > $_max) {

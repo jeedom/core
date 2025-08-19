@@ -35,14 +35,15 @@ if (!jeeFrontEnd.recovery) {
       window.jeeP = this
     },
     start: function(_mode) {
+      jeeP.clearProgress()
       jeeP.mode = _mode
       jeeP.monitorProgress()
       jeeP.displayButtons('cancel')
 
       jeedom.recovery.start({
         global: false,
-        mode: _mode,
         hardware: jeeP.hardware,
+        mode: _mode,
         success: function(_success) {
           jeeP.monitorProgress('stop')
           jeeP.mode = null
@@ -129,6 +130,13 @@ if (!jeeFrontEnd.recovery) {
         }
       }
     },
+    clearProgress: function() {
+      jeeP.updateProgress({
+        step: '',
+        details: '',
+        progress: 0
+      })
+    },
     displayButtons: function(..._buttons) {
       jeeP.buttons.unseen()
       _buttons.forEach(_button => {
@@ -161,8 +169,14 @@ if (!jeeFrontEnd.recovery) {
         jeeP.displayButtons('cancel')
         jeeP.inProgress = setInterval(function() {
           if (jeeP.usbConnected()) {
+            jeeP.updateProgress({
+              details: '{{Clé USB détectée}}',
+              progress: 100
+            })
             jeeP.monitorProgress('stop')
-            return resolve()
+            setTimeout(() => {
+              return resolve()
+            }, 1000)
           }
 
           if (i == 100) {

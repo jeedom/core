@@ -28,7 +28,7 @@ try {
 	ajax::init();
 
 	if (init('action') == 'start') {
-		ajax::success(recovery::start(init('mode'), init('hardware')));
+		ajax::success(recovery::start(init('hardware'), init('mode')));
 	}
 
 	if (init('action') == 'cancel') {

@@ -17,7 +17,7 @@
 jeedom.recovery = function() { }
 
 jeedom.recovery.start = function(_params) {
-    var paramsRequired = ['mode', 'hardware']
+    var paramsRequired = ['hardware', 'mode']
     var paramsSpecifics = {}
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -30,8 +30,8 @@ jeedom.recovery.start = function(_params) {
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
         action: 'start',
-        mode: _params.mode,
-        hardware: _params.hardware
+        hardware: _params.hardware,
+        mode: _params.mode
     }
     domUtils.ajax(paramsAJAX)
 }
