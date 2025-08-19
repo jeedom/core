@@ -67,7 +67,7 @@ class recovery {
 		cache::delete(self::CANCEL);
 		cache::set(self::PROGRESS, false, 60);
 		self::writeLog('-----------------------------------------------------------------------------------------', __('Restauration', __FILE__) . ' ' . $_hardware);
-		self::setProgress(['step' => __('Initialisation', __FILE__) . ' (' . strtoupper($_mode) . ')', 'details' => __('Démarrage de la procédure de restauration système', __FILE__), 'progress' => 0], 3);
+		self::setProgress(['step' => __('Initialisation', __FILE__) . ' (' . strtoupper($_mode) . ')', 'details' => __('Initialisation de la procédure de restauration système', __FILE__), 'progress' => 0], 2);
 
 		try {
 			switch (system::getArch()) {
@@ -85,7 +85,7 @@ class recovery {
 					}
 					self::downloadAndValidateImage($imgInfos['url'], $downloadPath . '/' . $imgInfos['name'], $imgInfos['SHA256']);
 
-					self::setProgress(['step' => __('Finalisation', __FILE__), 'details' => __('Veuillez patienter un instant', __FILE__), 'progress' => 98], 2);
+					self::setProgress(['step' => __('Finalisation', __FILE__), 'details' =>  __('Finalisation de la procédure de restauration système', __FILE__), 'progress' => 98], 2);
 					if ($_mode == 'usb') {
 						if (!file_exists($downloadPath . '/' . self::DEFAULT_IMGNAME)) {
 							self::setProgress(['details' => __('Ecriture du fichier de configuration USB', __FILE__), 'progress' => 99], 1);
@@ -175,7 +175,7 @@ class recovery {
 	}
 
 	private static function downloadAndValidateImage(string $_url, string $_filepath, string $_sha256) {
-		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => __('Veuillez patienter un instant', __FILE__), 'progress' => 4.5], 2);
+		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => __('Préparation du téléchargement', __FILE__), 'progress' => 5], 2);
 		if (file_exists($imgPath = $_filepath) || file_exists($imgPath = dirname($_filepath) . '/' . self::DEFAULT_IMGNAME)) {
 			try {
 				self::validateImage($imgPath, $_sha256, false);
@@ -187,8 +187,6 @@ class recovery {
 					self::setProgress(['details' => __('Image système invalide, reprise du téléchargement', __FILE__), 'progress' => 5], 1);
 				}
 			}
-		} else {
-			self::setProgress(['details' => __("Début du téléchargement", __FILE__), 'progress' => 5], 1);
 		}
 
 		jeedom::cleanFileSystemRight();
@@ -260,13 +258,6 @@ class recovery {
 			unlink($_filepath);
 			throw new Exception(__("Erreur lors de la vérification de l'image système", __FILE__) . ' (' . $sha256 . ' != ' . $_sha256) . ')';
 		}
-
-		if ($_downloaded) {
-			$message = __("Image système téléchargée avec succès", __FILE__);
-		} else {
-			$message = __("Image système validée avec succès", __FILE__);
-		}
-		self::setProgress(['details' => $message, 'progress' => 97.5], 2);
 	}
 
 	private static function getImgInfos(string $_hardware) {
@@ -280,7 +271,7 @@ class recovery {
 		}
 
 		$imgInfos = json_decode($jsonContent, true);
-		$osVersion = config::byKey('os::min', 'core', 11);
+		$osVersion = config::byKey('os::min');
 		if (isset($imgInfos[$osVersion]) && isset($imgInfos[$osVersion]['name']) && isset($imgInfos[$osVersion]['SHA256'])) {
 			$imgInfos[$osVersion]['url'] = $url . $_hardware . '/' . $imgInfos[$osVersion]['name'];
 			$imgInfos[$osVersion]['size'] = ceil((int) trim(shell_exec("curl -sI " . $imgInfos[$osVersion]['url'] . " | grep content-length | awk '{print $2}'")) / 1024);
@@ -297,7 +288,7 @@ class recovery {
 		}
 
 		$partition = $usbDevice . '1';
-		$fsType = trim(shell_exec("sudo blkid -s TYPE -o value $partition"));
+		$fsType = trim(shell_exec('sudo blkid -s TYPE -o value ' . $partition));
 		if ($fsType !== 'vfat') {
 			throw new Exception(__("Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT", __FILE__) . ' (' . $fsType . ')');
 		}
@@ -309,7 +300,7 @@ class recovery {
 		}
 		exec('sudo mount -o rw,uid=www-data,gid=www-data ' . $partition . ' ' . $_mountPath, $output, $returnCode);
 		if ($returnCode !== 0 || empty(shell_exec('mount | grep ' . $_mountPath))) {
-			throw new Exception(__("Echec d'accès au périphérique USB, vérifier les logs http.error", __FILE__) . ' (' . $partition . ')');
+			throw new Exception(__("Impossible d'accéder au périphérique USB, vérifier les logs http.error", __FILE__) . ' (' . $partition . ')');
 		}
 	}
 
@@ -317,7 +308,7 @@ class recovery {
 		self::setProgress(['details' => __("Vérification de l'espace disque disponible", __FILE__), 'progress' => 4], 1);
 		$available = (int) trim(shell_exec("sudo df --output=avail -k $_path | tail -1"));
 		if ($available < $_imgSize) {
-			throw new Exception(__('Espace disque disponible insuffisant', __FILE__) . ' : ' . $available . 'Mo (' . $_path . ')');
+			throw new Exception(__('Espace disque disponible insuffisant', __FILE__) . ' : ' . $available . 'Ko < ' . $_imgSize . 'Ko (' . $_path . ')');
 		}
 	}
 
@@ -325,16 +316,8 @@ class recovery {
 		$rawPercent = $_done / $_total;
 		$mappedPercent = $_base + ($rawPercent * ($_max - $_base));
 		$percent = round($mappedPercent, 1);
-
-		if ($percent < $_base) {
-			return $_base;
-		}
-
-		if ($percent > $_max) {
-			return $_max;
-		}
-
 		return $percent;
+		// return min(max($percent, $_base), $_max);
 	}
 
 	private static function writeLog(string $_message, string $_level = 'info') {
