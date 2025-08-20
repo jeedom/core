@@ -85,7 +85,7 @@ class recovery {
 					}
 					self::downloadAndValidateImage($imgInfos['url'], $downloadPath . '/' . $imgInfos['name'], $imgInfos['SHA256']);
 
-					self::setProgress(['step' => __('Finalisation', __FILE__), 'details' =>  __('Finalisation de la procédure de restauration système', __FILE__), 'progress' => 98], 2);
+					self::setProgress(['step' => __('Finalisation', __FILE__) . ' (' . strtoupper($_mode) . ')', 'details' => __('Finalisation de la procédure de restauration système', __FILE__), 'progress' => 98], 2);
 					if ($_mode == 'usb') {
 						if (!file_exists($downloadPath . '/' . self::DEFAULT_IMGNAME)) {
 							self::setProgress(['details' => __('Ecriture du fichier de configuration USB', __FILE__), 'progress' => 99], 1);
@@ -316,8 +316,8 @@ class recovery {
 		$rawPercent = $_done / $_total;
 		$mappedPercent = $_base + ($rawPercent * ($_max - $_base));
 		$percent = round($mappedPercent, 1);
-		return $percent;
 		// return min(max($percent, $_base), $_max);
+		return $percent;
 	}
 
 	private static function writeLog(string $_message, string $_level = 'info') {
