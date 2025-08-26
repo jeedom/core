@@ -271,7 +271,9 @@ class recovery {
 		}
 
 		$imgInfos = json_decode($jsonContent, true);
-		$osVersion = config::byKey('os::min');
+		$minOsVersion = config::byKey('os::min');
+		$currentOsVersion = trim(shell_exec('lsb_release -rs'));
+		$osVersion = ((int) $currentOsVersion > (int) $minOsVersion) ? $currentOsVersion : $minOsVersion;
 		if (isset($imgInfos[$osVersion]) && isset($imgInfos[$osVersion]['name']) && isset($imgInfos[$osVersion]['SHA256'])) {
 			$imgInfos[$osVersion]['url'] = $url . $_hardware . '/' . $imgInfos[$osVersion]['name'];
 			$imgInfos[$osVersion]['size'] = ceil((int) trim(shell_exec("curl -sI " . $imgInfos[$osVersion]['url'] . " | grep content-length | awk '{print $2}'")) / 1024);
