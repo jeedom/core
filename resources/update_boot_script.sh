@@ -51,6 +51,10 @@ if grep -q '# Jeedom boot script including automatic system update' ./boot.txt; 
   sed -i '/# Jeedom boot script including automatic system update/,/# End of Jeedom system update script/d' ./boot.txt
 fi
 
+# Detect root partition number
+ROOT_PART=$(mount | sed -n "s|^/dev/\(.*\) on / .*|\1|p")
+ROOT_PART_NUM=${ROOT_PART#mmcblk?p}
+
 # Add Jeedom system update to boot script
 echo "Updating boot script to include Jeedom system auto update"
 cat << EOF > ./boot.cmd
@@ -60,10 +64,10 @@ env set update_filename "JeedomSystemUpdate.img.gz"
 env set update_load_addr "0x1000000"
 env set update_src ""
 
-if test -e \${devtype} \${devnum}:2 /var/www/html/install/update/\${update_filename}; then
+if test -e \${devtype} \${devnum}:$ROOT_PART_NUM /var/www/html/install/update/\${update_filename}; then
   env set update_found "Found Jeedom system update on disk \${devtype}\${devnum}"
   env set update_src "\${devtype} \${devnum}"
-  env set update_part "2"
+  env set update_part "$ROOT_PART_NUM"
   env set update_path "/var/www/html/install/update/"
 else
   usb start
