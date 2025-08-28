@@ -175,7 +175,7 @@ class recovery {
 	}
 
 	private static function downloadAndValidateImage(string $_url, string $_filepath, string $_sha256) {
-		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => __('Préparation du téléchargement', __FILE__), 'progress' => 5], 2);
+		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => __('Début du téléchargement', __FILE__), 'progress' => 5], 2);
 		if (file_exists($imgPath = $_filepath) || file_exists($imgPath = dirname($_filepath) . '/' . self::DEFAULT_IMGNAME)) {
 			try {
 				self::validateImage($imgPath, $_sha256, false);
@@ -189,7 +189,7 @@ class recovery {
 			}
 		}
 
-		jeedom::cleanFileSystemRight();
+		// jeedom::cleanFileSystemRight();
 		$error = false;
 		$ch = curl_init();
 		$fp = fopen($_filepath, 'wb');
@@ -261,13 +261,13 @@ class recovery {
 	}
 
 	private static function getImgInfos(string $_hardware) {
-		self::setProgress(['details' => __("Collecte des informations sur l'image système", __FILE__), 'progress' => 2], 1);
+		self::setProgress(['details' => __("Collecte des informations concernant l'image système", __FILE__) . ' ' . ucfirst($_hardware), 'progress' => 2], 1);
 		$url = 'https://images.jeedom.com/';
 		$jsonUrl = $url . $_hardware . '/info.json';
 
 		$jsonContent = @file_get_contents($jsonUrl);
 		if ($jsonContent === false) {
-			throw new Exception(__("Impossible de récupérer les informations sur l'image système", __FILE__) . ' (' . $jsonUrl . ')');
+			throw new Exception(__("Impossible de récupérer les informations relatives aux images systèmes", __FILE__) . ' (' . $jsonUrl . ')');
 		}
 
 		$imgInfos = json_decode($jsonContent, true);
@@ -280,7 +280,7 @@ class recovery {
 			return $imgInfos[$osVersion];
 		}
 
-		throw new Exception(__("Informations sur l'image système manquantes", __FILE__) . ' : ' . print_r($imgInfos, true));
+		throw new Exception(__("Impossible de trouver les informations requises concernant l'image système", __FILE__) . ' ' . ucfirst($_hardware) .  ' ' . __('en version', __FILE__) . ' ' . $osVersion);
 	}
 
 	private static function prepareUsbDevice(string $_hardware, string $_mountPath = '/mnt/usb') {
