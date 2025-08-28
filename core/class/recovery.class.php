@@ -306,7 +306,7 @@ class recovery {
 		}
 	}
 
-	private function checkFreeSpace(string $_path, int $_imgSize = 1500000) {
+	private static function checkFreeSpace(string $_path, int $_imgSize = 1500000) {
 		self::setProgress(['details' => __("Vérification de l'espace disque disponible", __FILE__), 'progress' => 4], 1);
 		$available = (int) trim(shell_exec("sudo df --output=avail -k $_path | tail -1"));
 		if ($available < $_imgSize) {
