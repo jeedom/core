@@ -81,8 +81,7 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 	}
 
 	#div_recovery>img {
-		max-width: 300px;
-		max-height: 220px;
+		height: 210px;
 	}
 
 	#recovery-details,
