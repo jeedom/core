@@ -48,12 +48,13 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 			<br>
 			<div class="alert alert-info">
 				{{Consulter la documentation dédiée pour plus de détails}} :
-				<a href="https://doc.jeedom.com/" target="_blank" class="btn btn-default btn-xs" role="button"><i class="fas fa-book"></i> {{Documentation}}</a>
+				<a href="https://doc.jeedom.com/<?= config::byKey('language') ?>/installation/recovery" target="_blank" class="btn btn-default btn-xs" role="button"><i class="fas fa-book"></i> {{Documentation}}</a>
 			</div>
 		<?php } ?>
 	</div>
 	<div class="alert alert-warning" id="recovery-warning">
-		<i class="fas fa-exclamation-triangle"></i> {{Une sauvegarde récente doit impérativement être téléchargée avant de démarrer la restauration du système}}
+		<i class="fas fa-exclamation-triangle"></i> {{Une sauvegarde récente doit être téléchargée avant de restaurer le système}} :
+		<a href="/index.php?v=d&p=backup" target="_blank" class="btn btn-default btn-xs" role="button"><i class="fas fa-save"></i> {{Sauvegardes}}</a>
 	</div>
 	<div id="recovery-buttons" style="min-height:35px">
 		<a class="btn btn-success" id="bt_auto"><i class="fas fa-hdd"></i> {{Restauration automatique}}</a>
