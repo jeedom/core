@@ -1098,7 +1098,7 @@ class jeeObject {
 				}
 				$value = $cmd->execCmd();
 				if (isset($def[$_key]['ignoreIfCmdOlderThan']) && $def[$_key]['ignoreIfCmdOlderThan'] != '' && $def[$_key]['ignoreIfCmdOlderThan'] > 0) {
-					if ((strtotime('now') - strtotime($cmd->getCollectDate())) > ((int)  $def[$_key]['ignoreIfCmdOlderThan'] * 60)) {
+					if ((strtotime('now') - strtotime($cmd->getCollectDate())) > (intval($def[$_key]['ignoreIfCmdOlderThan']) * 60)) {
 						continue (2);
 					}
 				}
