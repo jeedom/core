@@ -32,17 +32,31 @@ switch ($argv[1]) {
     case 'plugin':
         switch ($argv[2]) {
             case 'install':
-                if (!isset($argv[3])) {
+                if (isset($argv[4])) { 
+                    // install by github source
+                    // jeecli.php plugin install [id] [user] [repository=id] [branch=master]
+                    echo "Install Plugin $argv[4] / $argv[3] from github\n";
+                    config::save('github::enable', 1);
+                    $update = new update();
+                    $update->setLogicalId($argv[3]);
+                    $update->setConfiguration('user', $argv[4]);
+                    $update->setSource('github');
+                    // if arg(5) is set, it is the repository configuration, else the repo name is the same as the plugin id
+                    $update->setConfiguration('repository', $argv[5] ?? $argv[3]);
+                    // if arg(6) is set, it is the version configuration i.e. branch name
+                    $update->setConfiguration('version', $argv[6] ?? 'master');
+                } else if (!isset($argv[3])) {
                     echo "Plugin id is mandatory";
                     die();
+                } else {
+                    $update = update::byLogicalId($argv[3]);
+                    if (!is_object($update)) {
+                        $update = new update();
+                    }
+                    $update->setLogicalId($argv[3]);
+                    $update->setSource('market');
+                    $update->setConfiguration('version', 'stable');
                 }
-                $update = update::byLogicalId($argv[3]);
-                if (!is_object($update)) {
-                    $update = new update();
-                }
-                $update->setLogicalId($argv[3]);
-                $update->setSource('market');
-                $update->setConfiguration('version', 'stable');
                 $update->save();
                 $update->doUpdate();
                 $plugin = plugin::byId($argv[3]);
@@ -50,7 +64,12 @@ switch ($argv[1]) {
                     echo "Error plugin not found";
                     die();
                 }
-                $plugin->setIsEnable(1,true,true);
+                if ($plugin->setIsEnable(1,true,true)) {
+                   echo "Plugin ".$argv[3]." installed with success";
+                } else {
+                   echo "Error install plugin ".$argv[3];
+                   break;
+                }
                 jeedom::cleanFileSystemRight();
                 break;
             case 'dependancy_end':
@@ -214,6 +233,7 @@ function help() {
     echo "Commands : \n";
     echo "\t plugin : manage Jeedom plugin\n";
     echo "\t\t install [plugin_id] : install plugin_id from market\n";
+    echo "\t\t install [plugin_id] [user] [repository=plugin_id] [branch=master] : install plugin_id from github\n";
     echo "\t\t dependancy_end [plugin_id] : send end of dependancy install for plugin_id\n";
 
     echo "\n";

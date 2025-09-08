@@ -740,7 +740,7 @@ class repo_market {
 	/**
 	 *
 	 * @param array $_arrayMarket
-	 * @return \self
+	 * @return self|null
 	 */
 	public static function construct(array $_arrayMarket) {
 		$market = new self();

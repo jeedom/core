@@ -1,0 +1,409 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Static method cache\:\:set\(\) invoked with 4 parameters, 2\-3 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/ajax/cache.ajax.php
+
+		-
+			message: '#^Static call to instance method cmd\:\:dropInfluxDatabase\(\)\.$#'
+			identifier: method.staticCall
+			count: 1
+			path: core/ajax/cmd.ajax.php
+
+		-
+			message: '#^Static call to instance method cmd\:\:historyInfluxAll\(\)\.$#'
+			identifier: method.staticCall
+			count: 1
+			path: core/ajax/cmd.ajax.php
+
+		-
+			message: '#^Static method history\:\:getHistoryFromCalcul\(\) invoked with 6 parameters, 1\-5 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/ajax/cmd.ajax.php
+
+		-
+			message: '#^Variable \$eqLogic might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/ajax/eqLogic.ajax.php
+
+		-
+			message: '#^Static method interactQuery\:\:byInteractDefId\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: core/ajax/interact.ajax.php
+
+		-
+			message: '#^Static method listener\:\:all\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/ajax/listener.ajax.php
+
+		-
+			message: '#^Static method jeeObject\:\:getUISelectList\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/ajax/object.ajax.php
+
+		-
+			message: '#^Static method queue\:\:all\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/ajax/queue.ajax.php
+
+		-
+			message: '#^Variable \$market might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/ajax/repo.ajax.php
+
+		-
+			message: '#^Variable \$return might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/ajax/report.ajax.php
+
+		-
+			message: '#^Variable \$cmd might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/ajax/scenario.ajax.php
+
+		-
+			message: '#^Variable \$converts might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: core/ajax/scenario.ajax.php
+
+		-
+			message: '#^Result of static method user\:\:removeBanIp\(\) \(void\) is used\.$#'
+			identifier: staticMethod.void
+			count: 1
+			path: core/ajax/user.ajax.php
+
+		-
+			message: '#^Variable \$configs might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/ajax/user.ajax.php
+
+		-
+			message: '#^Static method jeedom\:\:update\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Variable \$cmd might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Variable \$jsonrpc in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Variable \$object might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Variable \$request in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Variable \$scenario might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Variable \$update might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: core/api/jeeApi.php
+
+		-
+			message: '#^Call to static method byId\(\) on an unknown class jeeNetwork\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/api/proApi.php
+
+		-
+			message: '#^Call to static method byId\(\) on an unknown class market\.$#'
+			identifier: class.notFound
+			count: 2
+			path: core/api/proApi.php
+
+		-
+			message: '#^Call to static method byLogicalId\(\) on an unknown class market\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/api/proApi.php
+
+		-
+			message: '#^Call to static method testMaster\(\) on an unknown class jeeNetwork\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/api/proApi.php
+
+		-
+			message: '#^Static method jeedom\:\:update\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: core/api/proApi.php
+
+		-
+			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/api/proApi.php
+
+		-
+			message: '#^Static method repo_market\:\:backup_restore\(\) invoked with 2 parameters, 1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/api/proApi.php
+
+		-
+			message: '#^Instantiated class InfluxDB\\Client not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: core/class/cmd.class.php
+
+		-
+			message: '#^Instantiated class InfluxDB\\Point not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: core/class/cmd.class.php
+
+		-
+			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: core/class/config.class.php
+
+		-
+			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/class/eqLogic.class.php
+
+		-
+			message: '#^Static method event\:\:add\(\) invoked with 3 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/class/event.class.php
+
+		-
+			message: '#^Variable \$goupingType might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: core/class/history.class.php
+
+		-
+			message: '#^Static call to instance method interactQuery\:\:replaceForContextual\(\)\.$#'
+			identifier: method.staticCall
+			count: 3
+			path: core/class/interactQuery.class.php
+
+		-
+			message: '#^Variable \$closest might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/interactQuery.class.php
+
+		-
+			message: '#^Variable \$cmd might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/interactQuery.class.php
+
+		-
+			message: '#^Variable \$objects might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/interactQuery.class.php
+
+		-
+			message: '#^Instantiated class virtual not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: core/class/jeeObject.class.php
+
+		-
+			message: '#^Instantiated class virtualCmd not found\.$#'
+			identifier: class.notFound
+			count: 4
+			path: core/class/jeeObject.class.php
+
+		-
+			message: '#^Variable \$events might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/jeeObject.class.php
+
+		-
+			message: '#^Variable \$ch might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: core/class/jsonrpcClient.class.php
+
+		-
+			message: '#^Variable \$http_status might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/jsonrpcClient.class.php
+
+		-
+			message: '#^Variable \$response might not be defined\.$#'
+			identifier: variable.undefined
+			count: 3
+			path: core/class/jsonrpcClient.class.php
+
+		-
+			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/class/message.class.php
+
+		-
+			message: '#^Instantiated class openvpn not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/class/network.class.php
+
+		-
+			message: '#^Variable \$listPlugin in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: core/class/plugin.class.php
+
+		-
+			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 2
+			path: core/class/scenario.class.php
+
+		-
+			message: '#^Variable \$return might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/scenario.class.php
+
+		-
+			message: '#^Instantiated class SolarData\\SolarData not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/class/scenarioExpression.class.php
+
+		-
+			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
+			identifier: arguments.count
+			count: 6
+			path: core/class/scenarioExpression.class.php
+
+		-
+			message: '#^Undefined variable\: \$_parameters$#'
+			identifier: variable.undefined
+			count: 8
+			path: core/class/scenarioExpression.class.php
+
+		-
+			message: '#^Variable \$_parameters in isset\(\) is never defined\.$#'
+			identifier: isset.variable
+			count: 4
+			path: core/class/scenarioExpression.class.php
+
+		-
+			message: '#^Static method update\:\:getLastAvailableVersion\(\) invoked with 1 parameter, 0 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: core/class/update.class.php
+
+		-
+			message: '#^Variable \$url might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/update.class.php
+
+		-
+			message: '#^Variable \$return might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/class/utils.class.php
+
+		-
+			message: '#^Access to an undefined property widgets\:\:\$_needRefreshWidget\.$#'
+			identifier: property.notFound
+			count: 1
+			path: core/class/widgets.class.php
+
+		-
+			message: '#^Array has 2 duplicate keys with value ''THERMOSTAT_HUMIDITY'' \(''THERMOSTAT_HUMIDITY'', ''THERMOSTAT_HUMIDITY''\)\.$#'
+			identifier: array.duplicateKey
+			count: 1
+			path: core/config/jeedom.config.php
+
+		-
+			message: '#^Instantiated class elFinder not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/php/editor.connector.php
+
+		-
+			message: '#^Instantiated class elFinderConnector not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: core/php/editor.connector.php
+
+		-
+			message: '#^Result of function header \(void\) is used\.$#'
+			identifier: function.void
+			count: 1
+			path: core/php/utils.inc.php
+
+		-
+			message: '#^Variable \$matches might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/php/utils.inc.php
+
+		-
+			message: '#^Variable \$return might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: core/php/utils.inc.php
+
+		-
+			message: '#^Inner named functions are not supported by PHPStan\. Consider refactoring to an anonymous function, class method, or a top\-level\-defined function\. See issue \#165 \(https\://github\.com/phpstan/phpstan/issues/165\) for more details\.$#'
+			identifier: function.inner
+			count: 1
+			path: core/repo/market.repo.php
+
+		-
+			message: '#^Variable \$link might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: desktop/modal/planHeader.configure.php
+
+		-
+			message: '#^Variable \$plugin_exclude in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.variable
+			count: 1
+			path: install/backup.php
