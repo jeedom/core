@@ -7,7 +7,7 @@ global $JEEDOM_INTERNAL_CONFIG;
 global $jeedom_theme;
 $jeedom_theme = jeedom::getThemeConfig();
 $configs = array_merge($jeedom_theme, config::byKeys(array('language', 'jeedom::firstUse', 'debugFrontEnd', 'debugFrontEndVerbose', 'scenario::disableAutocomplete')));
-$homeLink = 'index.php?v=d&p=dashboard'; 
+$homeLink = 'index.php?v=d&p=dashboard';
 if (isConnect()) {
 	$homePage = explode('::', $_SESSION['user']->getOptions('homePage', 'core::dashboard'));
 	if (count($homePage) == 2) {
@@ -401,7 +401,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 											}
 											?>
 										</li>
-									<?php } ?>		
+									<?php } ?>
 
 									<?php if (hasRight('menu::plan3d')) { ?>
 										<li>
@@ -420,13 +420,13 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 											}
 											?>
 										</li>
-									<?php } ?>		
+									<?php } ?>
 
 									<?php echo $panel_menu; ?>
 								</ul>
 							</li>
 
-							<?php if(hasRight('menu::analyze')){ ?>
+							<?php if (hasRight('menu::analyze')) { ?>
 								<li class="cursor">
 									<a>
 										<i class="fas fa-stethoscope"></i> <span class="hidden-sm hidden-md">{{Analyse}}</span> <b class="caret"></b>
@@ -514,16 +514,19 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 													<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 													<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
 													<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
+													<?php if (recovery::isInstalled() || in_array(strtolower(jeedom::getHardwareName()), ['smart', 'atlas'])) {
+														echo '<li><a href="index.php?v=d&p=recovery"><i class="fas fa-hdd"></i> {{Restauration système}}</a></li>';
+													} ?>
 													<li class="divider"></li>
 													<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
 													<li><a href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt warning"></i> {{Personnalisation avancée}}</a></li>
 													<?php if (isConnect('admin')) {
-														echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichiers}}</a></li>';
-													} ?>
-													<li class="divider"></li>
-													<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {
-														echo '<li class="cursor"><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
-														echo '<li class="cursor"><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+														echo '<li><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichiers}}</a></li>';
+														if (jeedom::isCapable('sudo')) {
+															echo '<li class="divider"></li>';
+															echo '<li><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
+															echo '<li><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+														}
 													} ?>
 												</ul>
 											</li>
