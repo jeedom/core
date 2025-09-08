@@ -26,7 +26,7 @@ class recovery {
 	private const DEFAULT_IMGNAME = 'JeedomSystemUpdate.img.gz';
 
 	/* * ***********************Static Methods*************************** */
-	public static function isInstalled() {
+	public static function isInstalled(): bool {
 		switch (system::getArch()) {
 			case 'arm64':
 				return file_exists('/etc/jeedom_board');
@@ -35,7 +35,7 @@ class recovery {
 		}
 	}
 
-	public static function install(bool $_force = false) {
+	public static function install(bool $_force = false): bool {
 		switch (system::getArch()) {
 			case 'arm64':
 				self::writeLog(__('Vérification du script de démarrage', __FILE__));
@@ -63,7 +63,7 @@ class recovery {
 		}
 	}
 
-	public static function start(string $_hardware, string $_mode = 'auto') {
+	public static function start(string $_hardware, string $_mode = 'auto'): bool {
 		cache::delete(self::CANCEL);
 		cache::set(self::PROGRESS, false, 60);
 		self::writeLog('-----------------------------------------------------------------------------------------', __('Restauration', __FILE__) . ' ' . $_hardware);
@@ -117,10 +117,11 @@ class recovery {
 		}
 	}
 
-	public static function cancel() {
+	public static function cancel(): void {
 		cache::set(self::CANCEL, true, 60);
 	}
 
+	/** @return string|false */
 	public static function usbConnected(string $_hardware) {
 		foreach (['/dev/sda', '/dev/sdb', '/dev/sdc', '/dev/sdd'] as $device) {
 			if (file_exists($device)) {
@@ -151,7 +152,7 @@ class recovery {
 		return cache::byKey(self::PROGRESS)->getValue();
 	}
 
-	private static function setProgress(array $_progress, int $_pause = null) {
+	private static function setProgress(array $_progress, int $_pause = null): void {
 		cache::byKey(self::PROGRESS)->setValue(json_encode($_progress))->setLifetime(60)->save();
 
 		if ($_pause) {
@@ -174,7 +175,7 @@ class recovery {
 		}
 	}
 
-	private static function downloadAndValidateImage(string $_url, string $_filepath, string $_sha256) {
+	private static function downloadAndValidateImage(string $_url, string $_filepath, string $_sha256): void {
 		self::setProgress(['step' => __("Téléchargement de l'image système", __FILE__), 'details' => __('Début du téléchargement', __FILE__), 'progress' => 5], 2);
 		if (file_exists($imgPath = $_filepath) || file_exists($imgPath = dirname($_filepath) . '/' . self::DEFAULT_IMGNAME)) {
 			try {
@@ -189,7 +190,6 @@ class recovery {
 			}
 		}
 
-		// jeedom::cleanFileSystemRight();
 		$error = false;
 		$ch = curl_init();
 		$fp = fopen($_filepath, 'wb');
@@ -225,6 +225,7 @@ class recovery {
 		self::validateImage($_filepath, $_sha256);
 	}
 
+	/** @return void|int */
 	private static function downloadImageProgress($_resource, $_downloadSize, $_downloaded) {
 		if (cache::exist(self::CANCEL)) {
 			return 1;
@@ -239,7 +240,7 @@ class recovery {
 		}
 	}
 
-	private static function validateImage(string $_filepath, string $_sha256, bool $_downloaded = true) {
+	private static function validateImage(string $_filepath, string $_sha256, bool $_downloaded = true): void {
 		if ($_downloaded) {
 			$message = __("Vérification de l'intégrité de l'image système téléchargée", __FILE__);
 		} else {
@@ -260,6 +261,7 @@ class recovery {
 		}
 	}
 
+	/** @return array|void */
 	private static function getImgInfos(string $_hardware) {
 		self::setProgress(['details' => __("Collecte des informations concernant l'image système", __FILE__) . ' ' . ucfirst($_hardware), 'progress' => 2], 1);
 		$url = 'https://images.jeedom.com/';
@@ -283,7 +285,7 @@ class recovery {
 		throw new Exception(__("Impossible de trouver les informations requises concernant l'image système", __FILE__) . ' ' . ucfirst($_hardware) .  ' ' . __('en version', __FILE__) . ' ' . $osVersion);
 	}
 
-	private static function prepareUsbDevice(string $_hardware, string $_mountPath = '/mnt/usb') {
+	private static function prepareUsbDevice(string $_hardware, string $_mountPath = '/mnt/usb'): void {
 		self::setProgress(['details' => __('Vérification du périphérique USB', __FILE__), 'progress' => 3], 1);
 		if (!$usbDevice = self::usbConnected($_hardware)) {
 			throw new Exception(__('Périphérique USB non détecté', __FILE__));
@@ -306,7 +308,7 @@ class recovery {
 		}
 	}
 
-	private static function checkFreeSpace(string $_path, int $_imgSize = 1500000) {
+	private static function checkFreeSpace(string $_path, int $_imgSize = 1500000): void {
 		self::setProgress(['details' => __("Vérification de l'espace disque disponible", __FILE__), 'progress' => 4], 1);
 		$available = (int) trim(shell_exec("sudo df --output=avail -k $_path | tail -1"));
 		if ($available < $_imgSize) {
@@ -314,7 +316,7 @@ class recovery {
 		}
 	}
 
-	private static function calculPercentProgress($_done, $_total, float $_max = 100, float $_base = 0) {
+	private static function calculPercentProgress($_done, $_total, float $_max = 100, float $_base = 0): float {
 		$rawPercent = $_done / $_total;
 		$mappedPercent = $_base + ($rawPercent * ($_max - $_base));
 		$percent = round($mappedPercent, 1);
@@ -322,7 +324,7 @@ class recovery {
 		return $percent;
 	}
 
-	private static function writeLog(string $_message, string $_level = 'info') {
+	private static function writeLog(string $_message, string $_level = 'info'): void {
 		$logLine = "[" . date('Y-m-d H:i:s') . "][" . strtoupper($_level) . "] " . $_message . PHP_EOL;
 		file_put_contents(log::getPathToLog(__CLASS__), $logLine, FILE_APPEND);
 	}
