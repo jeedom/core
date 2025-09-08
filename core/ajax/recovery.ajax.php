@@ -32,7 +32,8 @@ try {
 	}
 
 	if (init('action') == 'cancel') {
-		ajax::success(recovery::cancel());
+		recovery::cancel();
+		ajax::success();
 	}
 
 	if (init('action') == 'getProgress') {
