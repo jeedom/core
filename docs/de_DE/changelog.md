@@ -2,6 +2,7 @@
 
 # 4.5
 
+- 
 - Möglichkeit, die Größe von Tabellenspalten zu ändern (im Moment nur die Liste der Variablen, dies wird bei Bedarf auf andere Tabellen ausgeweitet)) [LINK](https://github.com/jeedom/core/issues/2499)
 - Es wurde eine Warnung hinzugefügt, wenn der Jeedom-Speicherplatz zu gering ist (die Überprüfung erfolgt einmal täglich)) [LINK](https://github.com/jeedom/core/issues/2438)
 - Dem Bestellkonfigurationsfenster im Wertberechnungsfeld wurde eine Schaltfläche zum Abrufen einer Bestellung hinzugefügt [LINK](https://github.com/jeedom/core/issues/2776)

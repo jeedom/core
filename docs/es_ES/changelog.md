@@ -2,6 +2,7 @@
 
 # 4.5
 
+- 
 - Posibilidad de cambiar el tamaño de las columnas de la tabla (solo la lista de variables por el momento, esto se extenderá a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
 - Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)) [ENLACE](https://github.com/jeedom/core/issues/2438)
 - Se agregó un botón a la ventana de configuración del pedido en el campo de cálculo del valor para recuperar un pedido [ENLACE](https://github.com/jeedom/core/issues/2776)

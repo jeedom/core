@@ -2,6 +2,7 @@
 
 # 4.5
 
+- 
 - Ability to make table columns resizable (only the list of variables for the moment, this will be extended to other tables if necessary)) [LINK](https://github.com/jeedom/core/issues/2499)
 - Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
 - Added a button to the order configuration window at the value calculation field to fetch an order [LINK](https://github.com/jeedom/core/issues/2776)
