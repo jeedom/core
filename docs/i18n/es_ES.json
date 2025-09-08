@@ -1296,7 +1296,7 @@
     },
     "changelog.md": {
         "Changelog Jeedom V4.5": "Registro de cambios Jeedom V4.5",
-        "[Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`": "",
+        "[Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`": "[Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`",
         "Possibilité de rendre les colonnes des tableaux redimensionnables (seulement la liste des variables pour le moment ça sera étendu à d'autres tables si besoin": "Posibilidad de cambiar el tamaño de las columnas de la tabla (solo la lista de variables por el momento, esto se extenderá a otras tablas si es necesario)",
         "Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour": "Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)",
         "Ajout d'un bouton sur la fenêtre de configuration d'une commande au niveau du champ de calcul de valeur pour aller chercher une commande": "Se agregó un botón a la ventana de configuración del pedido en el campo de cálculo del valor para recuperar un pedido",
