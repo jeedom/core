@@ -148,7 +148,7 @@ class recovery {
 		return false;
 	}
 
-	public static function getProgress(): mixed {
+	public static function getProgress() {
 		return cache::byKey(self::PROGRESS)->getValue();
 	}
 
