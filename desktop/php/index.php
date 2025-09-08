@@ -498,16 +498,19 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 												<li><a href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Sauvegardes}}</a></li>
 												<li><a href="index.php?v=d&p=update"><i class="fas fa-sync-alt"></i> {{Centre de mise à jour}}</a></li>
 												<li><a href="index.php?v=d&p=user"><i class="fas fa-users"></i> {{Utilisateurs}}</a></li>
+												<?php if (recovery::isInstalled() || in_array(strtolower(jeedom::getHardwareName()), ['smart', 'atlas'])) {
+													echo '<li><a href="index.php?v=d&p=recovery"><i class="fas fa-hdd"></i> {{Restauration système}}</a></li>';
+												} ?>
 												<li class="divider"></li>
 												<li><a href="index.php?v=d&p=cron"><i class="fas fa-tasks warning"></i> {{Moteur de tâches}}</a></li>
 												<li><a href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt warning"></i> {{Personnalisation avancée}}</a></li>
 												<?php if (isConnect('admin')) {
 													echo '<li class="cursor"><a href="index.php?v=d&p=editor"><i class="fas fa-folder-open warning"></i> {{Editeur de fichiers}}</a></li>';
-												} ?>
-												<li class="divider"></li>
-												<?php if (jeedom::isCapable('sudo') && isConnect('admin')) {
-													echo '<li class="cursor"><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
-													echo '<li class="cursor"><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+													if (jeedom::isCapable('sudo')) {
+														echo '<li class="divider"></li>';
+														echo '<li><a href="index.php?v=d&p=reboot"><i class="fas fa-redo"></i> {{Redémarrer}}</a></li>';
+														echo '<li><a href="index.php?v=d&p=shutdown"><i class="fas fa-power-off"></i> {{Eteindre}}</a></li>';
+													}
 												} ?>
 											</ul>
 										</li>
