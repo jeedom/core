@@ -51,7 +51,7 @@ class recovery {
 				if ($returnCode == 0) {
 					self::writeLog(__('Le script de démarrage a été mis à jour', __FILE__), 'debug');
 					if (!self::isInstalled()) {
-						file_put_contents('/etc/jeedom_board', ucfirst(jeedom::getHardwareName()));
+						shell_exec('echo ' . ucfirst(jeedom::getHardwareName()) . ' | sudo tee /etc/jeedom_board');
 					}
 					return true;
 				}
