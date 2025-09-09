@@ -2,6 +2,7 @@
 
 # 4.5
 
+- [Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`
 - Capacidade de tornar as colunas da tabela redimensionáveis (apenas a lista de variáveis no momento, isto será estendido a outras tabelas se necessário) [LINK](https://github.com/jeedom/core/issues/2499)
 - Adicionado um alerta se o espaço em disco do jeedom estiver muito baixo (a verificação é feita uma vez por dia) [LINK](https://github.com/jeedom/core/issues/2438)
 - Adicionado um botão na janela de configuração do pedido no campo de cálculo de valor para buscar um pedido [LINK](https://github.com/jeedom/core/issues/2776)

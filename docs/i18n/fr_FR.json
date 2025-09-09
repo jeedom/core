@@ -768,6 +768,7 @@
     },
     "changelog.md": {
         "Changelog Jeedom V4.5": "Changelog Jeedom V4.5",
+        "[Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`": "[Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`",
         "LIEN": "LIEN",
         "Possibilité de rendre les colonnes des tableaux redimensionnables (seulement la liste des variables pour le moment ça sera étendu à d'autres tables si besoin": "Possibilité de rendre les colonnes des tableaux redimensionnables (seulement la liste des variables pour le moment ça sera étendu à d'autres tables si besoin",
         "Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour": "Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour",
