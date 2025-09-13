@@ -1,0 +1,53 @@
+# build diy image based on debian bullseye and bookworm
+# test install.sh script as-it
+name: Test DIY install.sh
+
+# only trigger when last commit or PR modify install/**
+on:
+  # only trigger CI when pull request on following branches and path
+  pull_request:
+    branches:
+      - 'alpha'
+    paths:
+      - install/**
+# this is to manually trigger the worklow
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Reason'     
+        default: 'Manual launch'
+
+env:
+  GITHUB_REPOSITORY: jeedom/core
+
+jobs:
+  InstallationDIY:
+    # This step  build the same image on different runners / platforms
+    strategy:
+      # continue all jobs even if some fail
+      fail-fast: false
+      matrix:
+        debian: [bullseye, bookworm ]
+        targetRunner: [ ubuntu-latest]  # [ ubuntu-latest, ARM, ARM64]
+        database: [ 1] # [1, 0]
+
+    runs-on: ${{ matrix.targetRunner }}
+    steps:
+      
+        - name: Check Out Repo
+          # Check out the repo, using current branch
+          # https://github.com/marketplace/actions/checkout
+          uses: actions/checkout@v4
+  
+        - name: install jeedom:${{ matrix.debian }}
+          # run current installation
+          run: |
+            echo "Running DIY install of ${GITHUB_REPOSITORY} / ${GITHUB_REF_NAME}" into ${{ matrix.debian }} >> ${GITHUB_STEP_SUMMARY}
+            docker build -t jeedom:${{ matrix.debian }} -f tests/Dockerfile \
+              --build-arg DEBIAN=${{ matrix.debian }} \
+              --build-arg DATABASE=${{ matrix.database }} \
+              --build-arg WEBSERVER_HOME=/var/www/html \
+              --build-arg MARIADB_NAME=jeedom .
+            docker run -p 80:80 -d --rm --name jeedom_${{ matrix.debian }} jeedom:${{ matrix.debian }}
+            sleep 10
+            docker exec jeedom_${{ matrix.debian }} php sick.php
