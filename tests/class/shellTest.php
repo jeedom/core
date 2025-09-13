@@ -17,9 +17,11 @@
 */
 use PHPUnit\Framework\TestCase;
 
+require_once __DIR__ . '/../../core/com/shell.com.php';
+
 class shellTest extends TestCase {
 	/******************* Base ********************/
-	public function getBackgrounds() {
+	public static function getBackgrounds() {
 		return array(
 			array(true),
 			array(false),
@@ -33,8 +35,8 @@ class shellTest extends TestCase {
 	
 	public function testCommandExist() {
 		$shell = new com_shell();
-		$this->assertTrue($shell->commandExist('ls'));
-		$this->assertFalse($shell->commandExist('foo'));
+		$this->assertTrue($shell->commandExists('ls'));
+		$this->assertFalse($shell->commandExists('foo'));
 	}
 	
 	/**
