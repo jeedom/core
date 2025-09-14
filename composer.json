@@ -15,5 +15,12 @@
     "platform": {
       "php": "7.4"
     }
+  },
+  "autoload": {
+    "classmap": [
+      "core/class/",
+      "core/com/",
+      "core/repo/"
+    ]
   }
 }
