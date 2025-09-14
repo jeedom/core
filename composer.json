@@ -23,7 +23,8 @@
       "core/repo/"
     ],
     "files": [
-      "core/config/common.config.php"
+      "core/config/common.config.php",
+      "core/php/utils.inc.php"
     ]
   }
 }
