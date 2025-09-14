@@ -21,6 +21,9 @@
       "core/class/",
       "core/com/",
       "core/repo/"
+    ],
+    "files": [
+      "core/config/common.config.php"
     ]
   }
 }
