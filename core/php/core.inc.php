@@ -17,7 +17,6 @@
 */
 date_default_timezone_set('Europe/Brussels');
 require_once __DIR__ . '/../../vendor/autoload.php';
-include_file('core', 'jeedom', 'config');
 
 try {
 	$configs = config::byKeys(array('timezone', 'log::level'));
