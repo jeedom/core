@@ -58,7 +58,7 @@ try {
 			}
 			$info_cmd = array();
 			$info_cmd['id'] = $cmd->getId();
-			$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'), init('cmdColor', null));
+			$info_cmd['html'] = $cmd->toHtml(init('version'), init('option'));
 			ajax::success($info_cmd);
 		}
 	}
@@ -385,8 +385,8 @@ try {
 		}
 
 		if ($dateStart == '' && init('dateRange') != 'all') {
-			$now = date('Y-m-d');
-			$dateStart = $now->modify('- ' . init('dateRange'));
+            $now = new \DateTimeImmutable();
+            $dateStart = $now->modify('- ' . init('dateRange'))->format('Y-m-d H:i:s');
 		}
 
 		$return['maxValue'] = '';
