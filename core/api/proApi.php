@@ -765,7 +765,6 @@ try {
 				$params['log'],
 				$params['position'],
 				$params['search'],
-				$params['position'],
 				$params['colored'],
 				$params['numbered'],
 				$params['numStart'],
