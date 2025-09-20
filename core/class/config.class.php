@@ -144,7 +144,7 @@ class config {
 	/**
 	 * Get config by key
 	 * @param string $_key nom de la clef dont on veut la valeur
-	 * @return string valeur de la clef
+	 * @return mixed valeur de la clef
 	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {

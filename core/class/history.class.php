@@ -237,14 +237,14 @@ class history {
 			config::save('historyArchiveTime', 2);
 		}
 		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
-			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
+			config::save('historyArchivePackage', (int) config::byKey('historyArchiveTime') - 1);
 		}
 		if (config::byKey('historyArchivePackage') >= config::byKey('historyArchiveTime')) {
-			config::save('historyArchivePackage', config::byKey('historyArchiveTime') - 1);
+			config::save('historyArchivePackage', (int) config::byKey('historyArchiveTime') - 1);
 		}
 		$archiveDatetime = (config::byKey('historyArchiveTime') < 1) ? date('Y-m-d H:i:s', strtotime('- 1 hours')) : date('Y-m-d H:i:s', strtotime('- ' . config::byKey('historyArchiveTime', 'core', 1) . ' hours'));
 		if (config::byKey('historyArchivePackage') < 1) {
-			$archivePackage = '00:' . config::byKey('historyArchivePackage') * 60 . ':00';
+			$archivePackage = '00:' . (int) config::byKey('historyArchivePackage') * 60 . ':00';
 		} else {
 			$archivePackage = config::byKey('historyArchivePackage') . ':00:00';
 			if (strlen($archivePackage) < 8) {
@@ -328,7 +328,7 @@ class history {
 				$mode = $cmd->getConfiguration('historizeMode', 'avg');
 				$values = array(
 					'cmd_id' => $sensors['cmd_id'],
-					'archivePackage' => config::byKey('historyArchivePackage') * 3600,
+					'archivePackage' => (int) config::byKey('historyArchivePackage') * 3600,
 					'archiveTime' => $archiveDatetime
 				);
 				$round = (is_numeric($cmd->getConfiguration('historizeRound'))) ? $cmd->getConfiguration('historizeRound') : 2;
