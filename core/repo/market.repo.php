@@ -370,10 +370,9 @@ class repo_market {
                 'timestamp' => strtotime($file->propstat->prop->getlastmodified)
             );
 		}
-		function cmp($a,$b){ // $a,$b are reference to first index of array
-			return strcmp($a["timestamp"], $b["timestamp"]);
-		}
-		usort($files, "cmp");
+		usort($files, function ($a, $b) { // $a,$b are reference to first index of array
+            return $a['timestamp'] - $b['timestamp'];
+        });
 		$result = array();
 		foreach ($files as $file) {
 			$result[] = $file['name'];

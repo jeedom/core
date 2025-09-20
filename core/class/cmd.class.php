@@ -2326,7 +2326,7 @@ class cmd {
 		return;
 	}
 
-	public function dropInfluxDatabase() {
+	public static function dropInfluxDatabase() {
 		try {
 			$database = cmd::getInflux();
 			if ($database == '') {
@@ -2354,8 +2354,15 @@ class cmd {
 		return;
 	}
 
-	public function historyInfluxAll() {
-		cmd::historyInflux('all');
+	public static function historyInfluxAll() {
+        $cron = new cron();
+        $cron->setClass('cmd');
+        $cron->setFunction('sendHistoryInflux');
+        $cron->setOption(array('cmd_id' => 'all'));
+        $cron->setLastRun(date('Y-m-d H:i:s'));
+        $cron->setOnce(1);
+        $cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
+        $cron->save();
 	}
 
 	public static function sendHistoryInflux($_params) {

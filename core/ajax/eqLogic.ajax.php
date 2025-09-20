@@ -541,7 +541,7 @@ try {
 		$eqLogicsSave = json_decode($eqLogicSaves, true);
 		$nbrSave = count($eqLogicsSave);
 		$return = array();
-
+        $eqLogic = null;
 		foreach ($eqLogicsSave as $eqLogicSave) {
 
 			if (!is_array($eqLogicSave)) {
