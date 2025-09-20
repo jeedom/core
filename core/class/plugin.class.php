@@ -273,7 +273,7 @@ class plugin {
 			}
 			return $return;
 		} else {
-			if (isset($listPlugin) && is_array($listPlugin) && count($listPlugin) > 0) {
+			if (is_array($listPlugin) && count($listPlugin) > 0) {
 				usort($listPlugin, 'plugin::orderPlugin');
 				return $listPlugin;
 			} else {

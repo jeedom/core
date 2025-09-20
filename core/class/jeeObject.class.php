@@ -296,6 +296,7 @@ class jeeObject {
 		}
 		$toRefreshCmd = array();
 		$global = array();
+        $events = [];
 		foreach ($objects as $object) {
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
@@ -578,11 +579,11 @@ class jeeObject {
 			sleep(2);
 			$plugin = plugin::byId('virtual');
 		}
+		if (!is_object($plugin) || !class_exists('virtual') || !class_exists('virtualCmd')) {
+			throw new Exception(__('Le plugin virtuel doit être installé', __FILE__));
+		}
 		if (!$plugin->isActive()) {
 			$plugin->setIsEnable(1);
-		}
-		if (!is_object($plugin)) {
-			throw new Exception(__('Le plugin virtuel doit être installé', __FILE__));
 		}
 		if (!$plugin->isActive()) {
 			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));

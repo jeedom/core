@@ -61,7 +61,7 @@ try {
 		foreach (ls($path, '*') as $value) {
 			unlink($path . $value);
 		}
-		ajax::success($return);
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

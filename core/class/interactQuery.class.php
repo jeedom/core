@@ -116,6 +116,7 @@ class interactQuery {
 	}
 
 	public static function recognize($_query) {
+        $closest = null;
 		$_query = trim(interactDef::sanitizeQuery($_query));
 		if (trim($_query) == '') {
 			return null;
@@ -248,6 +249,7 @@ class interactQuery {
 		$return['query'] = strtolower(sanitizeAccent($_query));
 		$return[$_type] = null;
 		$synonyms = self::getQuerySynonym($return['query'], $_type);
+        $objects = [];
 		if ($_type == 'object') {
 			$objects = jeeObject::all();
 		} elseif ($_type == 'eqLogic') {
@@ -332,6 +334,7 @@ class interactQuery {
 		$data = array_merge($data, self::findInQuery('eqLogic', $data['query'], $data));
 		$data = array_merge($data, self::findInQuery('cmd', $data['query'], $data));
 		if (isset($data['eqLogic']) && is_object($data['eqLogic']) && (!isset($data['cmd']) || !is_object($data['cmd']))) {
+            $cmd = null;
 			foreach ($data['eqLogic']->getCmd('action') as $cmd) {
 				if ($cmd->getSubtype() == 'slider') {
 					break;
@@ -667,7 +670,7 @@ class interactQuery {
 		return $return;
 	}
 
-	public function replaceForContextual($_replace, $_by, $_in) {
+	public static function replaceForContextual($_replace, $_by, $_in) {
 		return str_replace(strtolower(sanitizeAccent($_replace)), strtolower(sanitizeAccent($_by)), str_replace($_replace, $_by, $_in));
 	}
 
