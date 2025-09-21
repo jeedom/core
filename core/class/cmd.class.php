@@ -1042,6 +1042,10 @@ class cmd {
 					return intval($binary xor boolval($this->getConfiguration('invertBinary', false)));
 				case 'numeric':
 					if ($this->getConfiguration('historizeRound') !== '' && is_numeric($this->getConfiguration('historizeRound')) && $this->getConfiguration('historizeRound') >= 0) {
+                        if (!is_numeric($_value)) {
+                            log::add('cmd', 'error', __('La formule de calcul doit retourner une valeur numérique uniquement : ', __FILE__) . $this->getHumanName() . ' => ' . $_value);
+                            $_value = (float) (str_replace(',', '.', $_value));
+                        }
 						$_value = round($_value, $this->getConfiguration('historizeRound'));
 					}
 					if ($_value > $this->getConfiguration('maxValue', $_value)) {
