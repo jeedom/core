@@ -97,12 +97,6 @@ parameters:
 			path: core/api/jeeApi.php
 
 		-
-			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/api/jeeApi.php
-
-		-
 			message: '#^Variable \$cmd might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
@@ -166,12 +160,6 @@ parameters:
 			message: '#^Static method jeedom\:\:update\(\) invoked with 2 parameters, 0\-1 required\.$#'
 			identifier: arguments.count
 			count: 2
-			path: core/api/proApi.php
-
-		-
-			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
-			identifier: arguments.count
-			count: 1
 			path: core/api/proApi.php
 
 		-
