@@ -67,12 +67,6 @@ parameters:
 			path: core/ajax/report.ajax.php
 
 		-
-			message: '#^Variable \$cmd might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/ajax/scenario.ajax.php
-
-		-
 			message: '#^Variable \$converts might not be defined\.$#'
 			identifier: variable.undefined
 			count: 2
