@@ -169,12 +169,6 @@ parameters:
 			path: core/api/proApi.php
 
 		-
-			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/api/proApi.php
-
-		-
 			message: '#^Static method repo_market\:\:backup_restore\(\) invoked with 2 parameters, 1 required\.$#'
 			identifier: arguments.count
 			count: 1
