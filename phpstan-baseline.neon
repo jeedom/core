@@ -301,18 +301,6 @@ parameters:
 			path: core/class/scenarioExpression.class.php
 
 		-
-			message: '#^Undefined variable\: \$_parameters$#'
-			identifier: variable.undefined
-			count: 8
-			path: core/class/scenarioExpression.class.php
-
-		-
-			message: '#^Variable \$_parameters in isset\(\) is never defined\.$#'
-			identifier: isset.variable
-			count: 4
-			path: core/class/scenarioExpression.class.php
-
-		-
 			message: '#^Static method update\:\:getLastAvailableVersion\(\) invoked with 1 parameter, 0 required\.$#'
 			identifier: arguments.count
 			count: 1
