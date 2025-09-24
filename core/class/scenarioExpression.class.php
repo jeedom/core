@@ -1855,8 +1855,8 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyse':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
@@ -1865,8 +1865,8 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyseAlert':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$options['tab'] = 'alertEqlogic';
@@ -1876,8 +1876,8 @@ class scenarioExpression {
 							break;
 						case 'health':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=health&report=1';
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'health', $options['export_type'], $options));
@@ -1886,8 +1886,8 @@ class scenarioExpression {
 							break;
 						case 'timeline':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline=' . $options['timeline'];
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport timeline', __FILE__) . ' ' . $options['timeline']);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'timeline', $options['export_type'], $options));
