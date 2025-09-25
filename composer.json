@@ -4,7 +4,7 @@
     "symfony/expression-language": "5 - 7",
     "pragmarx/google2fa-qrcode": "^3",
     "bacon/bacon-qr-code": "2 - 3",
-    "influxdata/influxdb-client-php": "^3",
+    "influxdb/influxdb-php": "^1.15",
     "psr/log": "^1.1",
     "php": ">=7.4"
   },
