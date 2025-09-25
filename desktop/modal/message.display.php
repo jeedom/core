@@ -65,7 +65,7 @@ if ($selectPlugin != '') {
         $trs .= '<td><div class="center"><i class="far fa-trash-alt cursor removeMessage"></i></div></td>';
         $trs .= '<td class="datetime">' . $message->getDate() . '</td>';
         $trs .= '<td class="plugin">' . $message->getPlugin() . '</td>';
-        $trs .= '<td class="message">' . $message->getMessage(true) . '</td>';
+        $trs .= '<td class="message">' . nl2br($message->getMessage(true)) . '</td>';
         $trs .= '<td class="message_action">' . $message->getAction(true) . '</td>';
         $trs .= '<td class="occurrences" style="text-align: center">' . $message->getOccurrences() . '</td>';
         $trs .= '</tr>';
