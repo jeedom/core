@@ -87,13 +87,13 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 					</tbody>
 				</table>
 			</div>
+
 			<div role="tabpanel" class="tab-pane" id="log" style="overflow:auto;overflow-x: hidden">
 				<legend><i class="fas fa-info-circle"></i> {{Log :}}</legend>
 				<div id="div_log">
 					<pre id="pre_updateInfo"></pre>
 				</div>
 			</div>
-
 
 			<div role="tabpanel" class="tab-pane" id="os" style="overflow:auto;overflow-x: hidden">
 				<div class="alert alert-info">{{IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.}}</div>
@@ -106,6 +106,66 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<a class="bt_OsPackageUpdate btn btn-warning roundedRight disabled" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
 					</span>
 				</div>
+
+<?php
+// --- Recherche de tous les packages.json dans les plugins ---
+$pluginsDir = dirname(__FILE__) . '/../../plugins';
+$packagesList = [];
+
+if (is_dir($pluginsDir)) {
+    foreach (scandir($pluginsDir) as $plugin) {
+        if ($plugin == '.' || $plugin == '..') continue;
+        $packageFile = $pluginsDir . '/' . $plugin . '/plugin_info/packages.json';
+        if (file_exists($packageFile)) {
+            $json = file_get_contents($packageFile);
+            $data = json_decode($json, true);
+            if (is_array($data)) {
+                foreach ($data as $type => $entries) {
+                    if (!is_array($entries)) continue;
+                    foreach ($entries as $name => $info) {
+                        $packagesList[] = [
+                            'plugin' => $plugin,
+                            'type' => $type,
+                            'name' => $name,
+                            'version' => isset($info['version']) ? $info['version'] : '',
+                            'reinstall' => isset($info['reinstall']) ? $info['reinstall'] : false,
+                        ];
+                    }
+                }
+            }
+        }
+    }
+}
+?>
+<h4><i class="fas fa-cubes"></i> {{Prérequis pip2 et pip3 des plugins installés :}}</h4>
+<?php if (!empty($packagesList)) { ?>
+    <table class="ui-table-reflow table table-condensed" id="table_pluginPackages">
+        <thead>
+            <tr>
+                <th>{{Plugin}}</th>
+                <th>{{Type}}</th>
+                <th>{{Nom}}</th>
+                <th>{{Version requise}}</th>
+                <th>{{Réinstallation}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($packagesList as $pkg) { ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($pkg['plugin']); ?></td>
+                    <td><?php echo htmlspecialchars($pkg['type']); ?></td>
+                    <td><?php echo htmlspecialchars($pkg['name']); ?></td>
+              		<td><?php echo !empty($pkg['version']) ? '<span class="icon_red">' . htmlspecialchars($pkg['version']) . '</span>' : 'Non spécifiée'; ?></td>
+                    <td><?php echo $pkg['reinstall'] ? '<i class="fas fa-check icon_green"></i>' : ''; ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+<?php } else { ?>
+    <div class="alert alert-info">
+        {{Aucun fichier packages.json trouvé dans les plugins.}}
+    </div>
+<?php } ?>
 
 				<table class="ui-table-reflow table table-condensed" id="table_osUpdate">
 					<thead>
