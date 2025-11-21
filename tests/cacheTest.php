@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 class cacheTest extends TestCase {
 	public function testSave() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		cache::set('toto', 'toto');
 		$this->assertTrue(true);
 	}
@@ -30,35 +30,35 @@ class cacheTest extends TestCase {
 	* @depends testSave
 	*/
 	public function testLoad() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+
 		$cache = cache::byKey('toto');
-		$this->assertEquals('toto', $cache->getValue());
+		$this->assertEquals('toto', $cache->getValue(), 'cache engine'. cache::getEngine(). ' not working');
 	}
 	
 	/**
 	* @depends testLoad
 	*/
 	public function testRemove() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+
 		$cache = cache::byKey('toto');
 		$cache->remove();
 		$this->assertTrue(true);
 	}
-	
+
 	/**
 	* @depends testRemove
 	*/
 	public function testDefault() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+
 		$cache = cache::byKey('toto');
 		$this->assertEquals(null, $cache->getValue());
 	}
-	
+
 	/**
 	* @depends testDefault
 	*/
 	public function testTime() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+
 		cache::set('toto', 'toto', 1);
 		$cache = cache::byKey('toto');
 		$this->assertEquals('toto', $cache->getValue());
