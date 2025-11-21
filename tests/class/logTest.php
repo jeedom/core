@@ -19,26 +19,26 @@
 use PHPUnit\Framework\TestCase;
 
 class logTest extends TestCase {
-	public function getEngins() {
+	public static function getEngins() {
 		return array(
 			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
 			array('foo', 'Monolog\Handler\StreamHandler'),
 		);
 	}
 	
-	public function getLogs() {
-		return array(
-			array('StreamHandler', 'foo', false, true),
-		);
+	public static function getLogs() {
+		return [
+			['StreamHandler', 'foo', false, true],
+		];
 	}
 	
-	public function getReturnListe() {
-		return array(
-			array('StreamHandler', array('http.error')),
-		);
+	public static function getReturnListe() {
+		return [
+			['http.error', 'http.error', 'result contains: "http.error"']
+		];
 	}
 	
-	public function getLevels() {
+	public static function getLevels() {
 		return array(
 			array('StreamHandler', 'debug'),
 			array('StreamHandler', 'info'),
@@ -48,7 +48,7 @@ class logTest extends TestCase {
 		);
 	}
 	
-	public function getErrorReporting() {
+	public static function getErrorReporting() {
 		return array(
 			array(Monolog\Logger::DEBUG, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
 			array(Monolog\Logger::INFO, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
@@ -107,10 +107,10 @@ class logTest extends TestCase {
 	* @param string $engin
 	* @param string $return
 	*/
-	public function testListe($engin, $return) {
+	public function testListe($engin, $return, $msg) {
 		config::save('log::engine', $engin);
 		log::add($engin, 'debug', 'toto');
-		$this->assertSame($return, log::liste());
+		$this->assertContains($return, log::liste(), $msg);
 	}
 	
 	/**

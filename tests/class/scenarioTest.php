@@ -19,7 +19,7 @@ use PHPUnit\Framework\TestCase;
 
 class scenarioTest extends TestCase {
 	
-	public function getGetSets() {
+	public static function getGetSets() {
 		return array(
 			array('Id', 'foo', 'foo'),
 			array('Name', 'foo', 'foo'),
@@ -45,7 +45,7 @@ class scenarioTest extends TestCase {
 			array('Timeout', 15, 15),
 			array('Object_id', null, null),
 			array('Object_id', array('foo'), null),
-			array('Object_id', 0, null),
+			array('Object_id', 0, null ),
 			array('Object_id', 150, 150),
 			array('IsVisible', true, 0),
 			array('IsVisible', 5, 5),
