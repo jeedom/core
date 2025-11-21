@@ -1,0 +1,172 @@
+<div class="cmd cmd-widget" data-type="info" data-subtype="numeric" data-template="tile" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  <div class="title #hide_name#">
+    <div  class="cmdName">#name_display#</div>
+  </div>
+  <!--<span class="#hide_history#">{{La commande source n'est pas historisée}}</span>-->
+  <div class="value">
+    <div class="col-xs-12 center-block">
+      <a class="#hide_history#" onclick="jeeDialog.dialog({id: 'md_cmdHistory', title: '{{Historique}}', contentUrl: 'index.php?v=d&modal=cmd.history&id=#id#&derive=1&groupingType=none'})">
+      <span class="conteneurStats">
+      </span>
+      </a>
+      <a onclick="jeeDialog.dialog({id: 'md_cmdHistory', title: '{{Historique}}', contentUrl: 'index.php?v=d&modal=cmd.history&id=#id#&derive=0&groupingType=none'})">
+        Total : <span class="state state_mini"></span><span class="unit">#unite#</span>
+      </a>
+    </div>
+  </div>
+  <template>
+    <div>tabJour : {{Jours a afficher.}} {{Défaut}} : 0,1,2,3,4</div>
+    <div>tabSemaine : {{Semaines a afficher.}} {{Défaut}} : 0,1</div>
+  </template>
+  <script>
+    var hasNow = false;
+    if(dateMaj === undefined)
+      var dateMaj = [];
+    dateMaj[#id#] = 0;
+    if(cacheValue === undefined)
+      var cacheValue = [];
+    if(recupCache === undefined)
+      var recupCache = 0;
+
+    if ($.issetWidgetOptParam('#tabJour#', 'tabJour'))
+      var tabJour = eval('[#tabJour#]');
+    else
+      var tabJour = [0,1,2,3,4,5,6,7];
+    if ($.issetWidgetOptParam('#tabSemaine#', 'tabSemaine'))
+      var tabSemaine = eval('[#tabSemaine#]');
+    else
+      var tabSemaine = [0,1];
+
+    for(var j in tabJour){
+      var html = ' : <span title="{{Histo}}" class="tooltips J'+tabJour[j]+'Ty cursor"></span>';
+      if(tabJour[j] == 0){
+        hasNow = true;
+        html = '<span class="state_max">J' + html + '</span><br/>';
+      }
+      else
+        html = 'J-'+ tabJour[j] + html + '<br/>';
+
+      $('.cmd[data-cmd_id=#id#] .conteneurStats').append(html);
+    }
+    for(var s in tabSemaine){
+      var html = ' : <span title="{{Histo}}" class="tooltips S'+tabSemaine[s]+'Ty cursor"></span>';
+      if(tabSemaine[s] == 0)
+        html = 'S' + html + '<br/>';
+      else
+        html = 'S-'+ tabSemaine[s] + html + '<br/>';
+
+      $('.cmd[data-cmd_id=#id#] .conteneurStats').append(html);
+    }
+
+
+    jeedom.cmd.addUpdateFunction('#id#',function(_options) {
+      var unite = 'nc';
+      $('.cmd[data-cmd_id=#id#]').attr('title', '{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate)
+      $('.cmd[data-cmd_id=#id#] .state').empty().append(_options.display_value)
+      $('.cmd[data-cmd_id=#id#] .unit').empty().append(_options.unit)
+
+      var dateNow = new Date();
+      if(dateMaj[#id#] < dateNow.getDate()){//rafraichissement que tous les jours
+        cacheValue[#id#] = [];
+        debug('eraseCache', 0);
+
+        for(var j in tabJour){
+          if(j>0){
+            getHisto(tabJour[j],1, 'J'+tabJour[j]+'Ty');
+          }
+        }
+        for(var s in tabSemaine){
+          getHisto((tabSemaine[s]+1)*7,7, 'S'+tabSemaine[s]+'Ty');
+        }
+
+        dateMaj[#id#] = dateNow.getDate();
+      }
+      if(hasNow)
+        getHisto(0,1, 'J0Ty');
+
+      function debug(msg, nbDay){
+//          console.log(msg, nbDay, 'id', #id#);
+      }
+
+
+      function getHisto(nbDayOldValue, nbDayComparaison, classResponse){
+        var nbDayNewValueFin = nbDayOldValue-nbDayComparaison;
+        var nbDayOldValueFin = nbDayOldValue;
+//            var unite = _options.unit.replace('M', '').replace('k', '');
+
+        function getValue(nbDay, success){
+          if(cacheValue[#id#][nbDay] === undefined || nbDay < 0){//nbDay < 0 pour ne pas utiliser le cache de aujourd'hui
+            debug('get', nbDay) ;
+            cacheValue[#id#][nbDay] = 'run';
+            jeedom.history.getLast({
+              cmd_id: #id#,
+            time : moment().subtract(nbDay, 'days').format('YYYY-MM-DD 00:01:00'),
+                    error: function (error) {
+              console.log('error old value cmd_id  #id#', error);
+            },
+            success: function (result) {
+              cacheValue[#id#][nbDay] = result.value;
+              unite = result.unite
+              debug('save', nbDay);
+              success();
+            },
+            error: function (error) {
+              console.log('error new value cmd_id #id#', error);
+            }
+          });
+          }
+        else{
+            attendreValeur(nbDay, success);
+          }
+        }
+        function attendreValeur(nbDay, success){
+          if(cacheValue[#id#][nbDay] == 'run'){
+            debug('attente', nbDay);
+            setTimeout(function(){
+              attendreValeur(nbDay, success);
+            }, 200);
+          }
+        else{
+            recupCache++;
+            success();
+          }
+        }
+
+        getValue(nbDayNewValueFin, function(){
+          getValue(nbDayOldValueFin, function(){
+            traiteValue(cacheValue[#id#][nbDayNewValueFin] - cacheValue[#id#][nbDayOldValueFin], unite, '.cmd[data-cmd_id=#id#] .'+classResponse);
+          });
+        });
+      }
+    });
+
+    function traiteValue(value, unite, conteneur){
+      if(value > 10000 || value < -1000){
+        value = value / 1000;
+        if(value > 10000){
+          value = value / 1000;
+          unite = 'M'+unite;
+        }
+        else{
+          unite = 'k'+unite;
+        }
+      }
+      value = Math.round(value*100)/100 +' '+ unite;
+      $(conteneur).empty().append(value);
+    }
+
+    jeedom.cmd.refreshValue([{cmd_id :'#id#',display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#'}])
+  </script>
+  <style>
+    div.cmd-widget .content-sm.state_mini, .state_mini span, .state_mini{
+      font-size: 1em!important;
+      font-weight: normal;
+      height: 20px!important;
+    }
+    .state_max{
+      font-size: 1.5em;
+      font-weight: bold;
+      display: block;
+    }
+  </style>
+</div>
