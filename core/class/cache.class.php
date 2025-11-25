@@ -275,13 +275,13 @@ class RedisCache {
 	}
 
 	public static function getConnection(){
-		if(static::$connection !== null){
-			return static::$connection;
+		if(self::$connection !== null){
+			return self::$connection;
 		}
 		$redis = new Redis();
 		$redis->connect(config::byKey('cache::redisaddr'), config::byKey('cache::redisport'));
-		static::$connection = $redis;
-		return static::$connection;
+		self::$connection = $redis;
+		return self::$connection;
 	}
 
 	public static function all(){

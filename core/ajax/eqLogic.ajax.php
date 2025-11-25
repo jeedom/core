@@ -416,7 +416,7 @@ try {
 				unset($used['cmd' . $cmd->getId()]);
 			}
 			$cmdData = array('node' => array(), 'link' => array());
-			$cmdData = $cmd->getLinkData($cmdData, 0, 2, null, false);
+			$cmdData = $cmd->getLinkData($cmdData, 0, 2, false);
 			if (isset($cmdData['node']['eqLogic' . $eqLogic->getId()])) {
 				unset($cmdData['node']['eqLogic' . $eqLogic->getId()]);
 			}

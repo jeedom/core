@@ -370,10 +370,11 @@ class scenario {
 					foreach ($scenarios2 as $scenario) {
 						if ($scenario->testTrigger($trigger)) {
 							$trigger_message = $GLOBALS['JEEDOM_SCLOG_TEXT']['startAutoOnEvent']['txt'];
+                            $eventName = is_object($_event) ? $_event->getHumanName() : $_event;
 							if (is_object($_object)) {
-								$trigger_message .= ' genericType(' . $_generic . ',#[' . $_object->getName() . ']#) from ' . $_event->getHumanName();
+								$trigger_message .= ' genericType(' . $_generic . ',#[' . $_object->getName() . ']#) from ' . $eventName;
 							} else {
-								$trigger_message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
+								$trigger_message .= ' genericType(' . $_generic . ')' . ' from ' . $eventName;
 							}
 							$scenario->addTag('trigger_message',$trigger_message);
 							$scenario->addTag('trigger_value',$_value);
@@ -1697,7 +1698,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param int $id
+	 * @param int $_id
 	 * @return $this
 	 */
 	public function setId($_id) {
@@ -1707,7 +1708,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $name
+	 * @param string $_name
 	 * @return $this
 	 */
 	public function setName($_name) {
@@ -1722,7 +1723,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param bool $isActive
+	 * @param bool $_isActive
 	 * @return $this
 	 */
 	public function setIsActive($_isActive) {
@@ -1735,7 +1736,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $group
+	 * @param string $_group
 	 * @return $this
 	 */
 	public function setGroup($_group) {

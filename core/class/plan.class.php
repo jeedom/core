@@ -295,7 +295,7 @@ class plan {
 			} else {
 				$camera = eqLogic::byId(str_replace(array('#', 'eqLogic'), array('', ''), $this->getConfiguration('camera')));
 				if (is_object($camera)) {
-					$html .= $camera->toHtml($_version, true);
+					$html .= $camera->toHtml($_version);
 				}
 			}
 			$html .= '</div>';

@@ -42,10 +42,10 @@ class DB {
 			PDO::ATTR_ERRMODE => (DEBUG ? PDO::ERRMODE_EXCEPTION : PDO::ERRMODE_SILENT),
 		];
 		if (isset($CONFIG['db']['unix_socket'])) {
-			static::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'],
+			 self::$connection = new PDO('mysql:unix_socket=' . $CONFIG['db']['unix_socket'] . ';dbname=' . $CONFIG['db']['dbname'],
 			 $CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
 		} else {
-			static::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'], 
+			self::$connection = new PDO('mysql:host=' . $CONFIG['db']['host'] . ';port=' . $CONFIG['db']['port'] . ';dbname=' . $CONFIG['db']['dbname'],
 			$CONFIG['db']['username'], $CONFIG['db']['password'], $_options);
 		}
 	}
@@ -55,21 +55,21 @@ class DB {
 	}
 
 	public static function getConnection() {
-		if (static::$connection == null) {
-			static::initConnection();
-			static::$lastConnection = strtotime('now');
-		} elseif (static::$lastConnection + 120 < strtotime('now')) {
+		if (self::$connection == null) {
+			self::initConnection();
+			self::$lastConnection = strtotime('now');
+		} elseif (self::$lastConnection + 120 < strtotime('now')) {
 			try {
-				$result = @static::$connection->query('select 1;');
+				$result = @self::$connection->query('select 1;');
 				if (!$result) {
-					static::initConnection();
+					self::initConnection();
 				}
 			} catch (Exception $e) {
-				static::initConnection();
+				self::initConnection();
 			}
-			static::$lastConnection = strtotime('now');
+			self::$lastConnection = strtotime('now');
 		}
-		return static::$connection;
+		return self::$connection;
 	}
 
 	public static function &CallStoredProc($_procName, $_params, $_fetch_type, $_className = NULL, $_fetch_opt = NULL) {
@@ -94,10 +94,10 @@ class DB {
 			if(preg_match('/^update|^replace|^delete|^create|^drop|^alter|^truncate/i', $_query)){
 				$errorInfo = $stmt->errorInfo();
 				if ($errorInfo[0] != 0000) {
-					static::$lastConnection = 0;
+					self::$lastConnection = 0;
 					throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
 				}
-				static::$lastConnection = strtotime('now');
+				self::$lastConnection = strtotime('now');
 				return $res;
 			}
 			if ($_fetchType == static::FETCH_TYPE_ROW) {
@@ -116,10 +116,10 @@ class DB {
 		}
 		$errorInfo = $stmt->errorInfo();
 		if ($errorInfo[0] != 0000) {
-			static::$lastConnection = 0;
+			self::$lastConnection = 0;
 			throw new Exception('[MySQL] Error code : ' . $errorInfo[0] . ' (' . $errorInfo[1] . '). ' . $errorInfo[2] . '  : ' . $_query);
 		}
-		static::$lastConnection = strtotime('now');
+		self::$lastConnection = strtotime('now');
 		if ($_fetch_param == PDO::FETCH_CLASS) {
 			if (is_array($res) && count($res) > 0) {
 				foreach ($res as &$obj) {
@@ -186,11 +186,11 @@ class DB {
 		if (!$_direct && method_exists($object, 'preSave')) {
 			$object->preSave();
 		}
-		if (!static::getField($object, 'id')) {
+		if (!self::getField($object, 'id')) {
 			//New object to save.
-			$fields = static::getFields($object);
+			$fields = self::getFields($object);
 			if (in_array('id', $fields)) {
-				static::setField($object, 'id', null);
+				self::setField($object, 'id', null);
 			}
 			if (!$_direct && method_exists($object, 'preInsert')) {
 				$object->preInsert();
@@ -198,17 +198,17 @@ class DB {
 			if (method_exists($object, 'encrypt')) {
 				$object->encrypt();
 			}
-			list($sql, $parameters) = static::buildQuery($object);
+			list($sql, $parameters) = self::buildQuery($object);
 			if ($_replace) {
-				$sql = 'REPLACE INTO `' . static::getTableName($object) . '` SET ' . implode(', ', $sql);
+				$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
 			} else {
-				$sql = 'INSERT INTO `' . static::getTableName($object) . '` SET ' . implode(', ', $sql);
+				$sql = 'INSERT INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
 			}
 			$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
-			$reflection = static::getReflectionClass($object);
+			$reflection = self::getReflectionClass($object);
 			if ($reflection->hasProperty('id')) {
 				try {
-					static::setField($object, 'id', static::getLastInsertId());
+					self::setField($object, 'id', static::getLastInsertId());
 				} catch (Exception $exc) {
 					trigger_error($exc->getMessage(), E_USER_NOTICE);
 				} catch (InvalidArgumentException $ex) {
@@ -234,14 +234,14 @@ class DB {
 				if (method_exists($object, 'encrypt')) {
 					$object->encrypt();
 				}
-				list($sql, $parameters) = static::buildQuery($object);
+				list($sql, $parameters) = self::buildQuery($object);
 				if (!$_direct && method_exists($object, 'getId')) {
 					$parameters['id'] = $object->getId(); //override if necessary
 				}
 				if ($_replace) {
-					$sql = 'REPLACE INTO `' . static::getTableName($object) . '` SET ' . implode(', ', $sql);
+					$sql = 'REPLACE INTO `' . self::getTableName($object) . '` SET ' . implode(', ', $sql);
 				} else {
-					$sql = 'UPDATE `' . static::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
+					$sql = 'UPDATE `' . self::getTableName($object) . '` SET ' . implode(', ', $sql) . ' WHERE id = :id';
 				}
 				$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
 			} else {
@@ -264,12 +264,12 @@ class DB {
 	}
 
 	public static function refresh($object) {
-		if (!static::getField($object, 'id')) {
+		if (!self::getField($object, 'id')) {
 			throw new Exception('Can\'t refresh DB object without its ID');
 		}
-		$parameters = array('id' => static::getField($object, 'id'));
+		$parameters = array('id' => self::getField($object, 'id'));
 		$sql = 'SELECT ' . static::buildField(get_class($object)) .
-			' FROM `' . static::getTableName($object) . '` ' .
+			' FROM `' . self::getTableName($object) . '` ' .
 			' WHERE ';
 		foreach ($parameters as $field => $value) {
 			if ($value != '') {
@@ -283,14 +283,14 @@ class DB {
 		if (!is_object($newObject)) {
 			return false;
 		}
-		foreach (static::getFields($object) as $field) {
-			$reflection = static::getReflectionClass($object);
+		foreach (self::getFields($object) as $field) {
+			$reflection = self::getReflectionClass($object);
 			$property = $reflection->getProperty($field);
 			if (!$reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
 			$property->setAccessible(true);
-			$property->setValue($object, static::getField($newObject, $field));
+			$property->setValue($object, self::getField($newObject, $field));
 			$property->setAccessible(false);
 		}
 		return true;
@@ -300,13 +300,13 @@ class DB {
 	 * Retourne une liste d'objets ou un objet en fonction de filtres
 	 * @param $_filters Filtres à appliquer
 	 * @param $_object Objet sur lequel appliquer les filtres
-	 * @return Objet ou liste d'objets correspondant à la requête
+	 * @return array<mixed>|null Objet ou liste d'objets correspondant à la requête
 	 */
 	public static function getWithFilter(array $_filters, $_object) {
 		// operators have to remain in this order. If you put '<' before '<=', algorithm won't make the difference & will think a '<=' is a '<'
 		$operators = array('!=', '<=', '>=', '<', '>', 'NOT LIKE', 'LIKE', '=');
-		$fields = static::getFields($_object);
-		$class = static::getReflectionClass($_object)->getName();
+		$fields = self::getFields($_object);
+		$class = self::getReflectionClass($_object)->getName();
 		// create query
 		$query = 'SELECT ' . static::buildField($class) . ' FROM ' . $class . '';
 		$values = array();
@@ -365,8 +365,8 @@ class DB {
 				return false;
 			}
 		}
-		list($sql, $parameters) = static::buildQuery($object);
-		$sql = 'DELETE FROM `' . static::getTableName($object) . '` WHERE ';
+		list($sql, $parameters) = self::buildQuery($object);
+		$sql = 'DELETE FROM `' . self::getTableName($object) . '` WHERE ';
 		if (isset($parameters['id'])) {
 			$sql .= '`id`=:id AND ';
 			$parameters = array('id' => $parameters['id']);
@@ -381,9 +381,9 @@ class DB {
 		}
 		$sql .= '1';
 		$res = static::Prepare($sql, $parameters, DB::FETCH_TYPE_ROW);
-		$reflection = static::getReflectionClass($object);
+		$reflection = self::getReflectionClass($object);
 		if ($reflection->hasProperty('id')) {
-			static::setField($object, 'id', null);
+			self::setField($object, 'id', null);
 		}
 		if (method_exists($object, 'postRemove')) {
 			$object->postRemove();
@@ -409,8 +409,8 @@ class DB {
 				return false;
 			}
 		}
-		list($sql, $parameters) = static::buildQuery($object);
-		$sql = 'SELECT * FROM ' . static::getTableName($object) . ' WHERE ';
+		list($sql, $parameters) = self::buildQuery($object);
+		$sql = 'SELECT * FROM ' . self::getTableName($object) . ' WHERE ';
 		foreach ($parameters as $field => $value) {
 			if ($value != '') {
 				$sql .= '`' . $field . '`=:' . $field . ' AND ';
@@ -445,23 +445,23 @@ class DB {
 	 * @throws RuntimeException
 	 */
 	private static function getFields($object) {
-		$table = is_string($object) ? $object : static::getTableName($object);
-		if (isset(static::$fields[$table])) {
-			return static::$fields[$table];
+		$table = is_string($object) ? $object : self::getTableName($object);
+		if (isset(self::$fields[$table])) {
+			return self::$fields[$table];
 		}
-		$reflection = is_object($object) ? static::getReflectionClass($object) : new ReflectionClass($object);
+		$reflection = is_object($object) ? self::getReflectionClass($object) : new ReflectionClass($object);
 		$properties = $reflection->getProperties();
-		static::$fields[$table] = array();
+		self::$fields[$table] = array();
 		foreach ($properties as $property) {
 			$name = $property->getName();
 			if ('_' !== $name[0]) {
-				static::$fields[$table][] = $name;
+				self::$fields[$table][] = $name;
 			}
 		}
-		if (empty(static::$fields[$table])) {
+		if (empty(self::$fields[$table])) {
 			throw new RuntimeException('No fields found for class ' . get_class($object));
 		}
-		return static::$fields[$table];
+		return self::$fields[$table];
 	}
 
 	/**
@@ -477,7 +477,7 @@ class DB {
 		if (method_exists($object, $method)) {
 			$object->$method($value);
 		} else {
-			$reflection = static::getReflectionClass($object);
+			$reflection = self::getReflectionClass($object);
 			if (!$reflection->hasProperty($field)) {
 				throw new InvalidArgumentException('Unknown field ' . get_class($object) . '::' . $field);
 			}
@@ -499,9 +499,9 @@ class DB {
 	private static function buildQuery($object) {
 		$parameters = array();
 		$sql = array();
-		foreach (static::getFields($object) as $field) {
+		foreach (self::getFields($object) as $field) {
 			$sql[] = '`' . $field . '` = :' . $field;
-			$parameters[$field] = static::getField($object, $field);
+			$parameters[$field] = self::getField($object, $field);
 		}
 		return array($sql, $parameters);
 	}
@@ -521,7 +521,7 @@ class DB {
 		if (method_exists($object, $method)) {
 			$retval = $object->$method();
 		} else {
-			$reflection = static::getReflectionClass($object);
+			$reflection = self::getReflectionClass($object);
 			if ($reflection->hasProperty($field)) {
 				$property = $reflection->getProperty($field);
 				$property->setAccessible(true);
@@ -552,7 +552,7 @@ class DB {
 
 	public static function buildField($_class, $_prefix = '') {
 		$fields = array();
-		foreach (static::getFields($_class) as $field) {
+		foreach (self::getFields($_class) as $field) {
 			if ('_' !== $field[0]) {
 				if ($_prefix != '') {
 					$fields[] = '`' . $_prefix . '`.' . '`' . $field . '`';

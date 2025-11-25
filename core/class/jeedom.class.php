@@ -1044,7 +1044,7 @@ class jeedom {
 			self::forceSyncHour();
 			sleep(3);
 			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-				log::add('core', 'error', __('La date du système est incorrecte (avant ' . $minDateValue . ' ou après ' . $maxDateValue . ') :', __FILE__) . ' ' . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
+				log::add('core', 'error', __('La date du système est incorrecte (avant ' . $minDateValue->format('Y-m-d H:i:s') . ' ou après ' . $maxDateValue . ') :', __FILE__) . ' ' . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
 				return false;
 			}
 		}
