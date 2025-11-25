@@ -493,6 +493,7 @@ class update {
 	}
 
 	public static function getLastAvailableVersion() {
+        $url = 'undefined url';
 		try {
 			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
 			$request_http = new com_http($url);
@@ -515,7 +516,7 @@ class update {
 				return;
 			}
 			if (config::byKey('core::repo::provider') == 'default') {
-				$this->setRemoteVersion(self::getLastAvailableVersion(true));
+				$this->setRemoteVersion(self::getLastAvailableVersion());
 			} else {
 				$class = 'repo_' . config::byKey('core::repo::provider');
 				if (!method_exists($class, 'versionCore') || config::byKey(config::byKey('core::repo::provider') . '::enable') != 1) {

@@ -161,7 +161,7 @@ try {
 				if (isset($plugin_excludes) === true) {
 					foreach ($plugin_excludes as $plugin_exclude) {
 						$plugin_exclude = trim($plugin_exclude);
-						if (isset($plugin_exclude) === true && $plugin_exclude !== '') {
+						if ($plugin_exclude !== '') {
 							if (strpos($plugin_exclude, '..') === false) {
 								$excludes[] = "plugins/" . $plugin_id . "/" . $plugin_exclude;
 								echo "Plugin " . $plugin_id . " - Following subfolder will be excluded from the backup: " . $plugin_exclude . "\n";

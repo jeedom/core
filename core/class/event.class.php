@@ -19,6 +19,10 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
+/**
+ * @see https://github.com/phpstan/phpstan/issues/13556
+ * @method static void add(string $_event, $_option = [], bool $_clean = true)
+ */
 class event {
 	/*     * *************************Attributs****************************** */
 

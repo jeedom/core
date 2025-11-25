@@ -1370,6 +1370,7 @@ class scenario {
 					$return .= "    " . $export . "\n";
 				}
 			}
+            return $return;
 		}
 		if ($_mode == 'array') {
 			$return = utils::o2a($this);
@@ -1426,8 +1427,9 @@ class scenario {
 			if (isset($return['_elements'])) {
 				unset($return['_elements']);
 			}
+            return $return;
 		}
-		return $return;
+		return null;
 	}
 	/**
 	 *
