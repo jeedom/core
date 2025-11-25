@@ -1,5 +1,6 @@
 {
   "require": {
+    "abbadon1334/sun-position-spa-php" : "^2",
     "dragonmantank/cron-expression": "^3",
     "symfony/expression-language": "5 - 7",
     "pragmarx/google2fa-qrcode": "^3",
