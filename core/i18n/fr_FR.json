@@ -4329,6 +4329,7 @@
         "Aucun": "Aucun",
         "Impossible de traduire la couleur en code hexadécimal :": "Impossible de traduire la couleur en code hexadécimal :",
         "Type ou sous-type de commande invalide": "Type ou sous-type de commande invalide",
+        "La formule de calcul doit retourner une valeur numérique uniquement : ": "La formule de calcul doit retourner une valeur numérique uniquement : ",
         "Le nom de la commande ne peut pas être vide :": "Le nom de la commande ne peut pas être vide :",
         "Le type de la commande ne peut pas être vide :": "Le type de la commande ne peut pas être vide :",
         "Le sous-type de la commande ne peut pas être vide :": "Le sous-type de la commande ne peut pas être vide :",

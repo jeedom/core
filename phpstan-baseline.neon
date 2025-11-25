@@ -67,12 +67,6 @@ parameters:
 			path: core/ajax/report.ajax.php
 
 		-
-			message: '#^Variable \$cmd might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/ajax/scenario.ajax.php
-
-		-
 			message: '#^Variable \$converts might not be defined\.$#'
 			identifier: variable.undefined
 			count: 2
@@ -94,12 +88,6 @@ parameters:
 			message: '#^Static method jeedom\:\:update\(\) invoked with 2 parameters, 0\-1 required\.$#'
 			identifier: arguments.count
 			count: 2
-			path: core/api/jeeApi.php
-
-		-
-			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
-			identifier: arguments.count
-			count: 1
 			path: core/api/jeeApi.php
 
 		-
@@ -169,12 +157,6 @@ parameters:
 			path: core/api/proApi.php
 
 		-
-			message: '#^Static method log\:\:getDelta\(\) invoked with 8 parameters, 0\-7 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/api/proApi.php
-
-		-
 			message: '#^Static method repo_market\:\:backup_restore\(\) invoked with 2 parameters, 1 required\.$#'
 			identifier: arguments.count
 			count: 1
@@ -191,24 +173,6 @@ parameters:
 			identifier: class.notFound
 			count: 2
 			path: core/class/cmd.class.php
-
-		-
-			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 2
-			path: core/class/config.class.php
-
-		-
-			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/class/eqLogic.class.php
-
-		-
-			message: '#^Static method event\:\:add\(\) invoked with 3 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/class/event.class.php
 
 		-
 			message: '#^Variable \$goupingType might not be defined\.$#'
@@ -277,12 +241,6 @@ parameters:
 			path: core/class/jsonrpcClient.class.php
 
 		-
-			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/class/message.class.php
-
-		-
 			message: '#^Instantiated class openvpn not found\.$#'
 			identifier: class.notFound
 			count: 1
@@ -295,12 +253,6 @@ parameters:
 			path: core/class/plugin.class.php
 
 		-
-			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 2
-			path: core/class/scenario.class.php
-
-		-
 			message: '#^Variable \$return might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
@@ -310,24 +262,6 @@ parameters:
 			message: '#^Instantiated class SolarData\\SolarData not found\.$#'
 			identifier: class.notFound
 			count: 1
-			path: core/class/scenarioExpression.class.php
-
-		-
-			message: '#^Static method event\:\:add\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 6
-			path: core/class/scenarioExpression.class.php
-
-		-
-			message: '#^Undefined variable\: \$_parameters$#'
-			identifier: variable.undefined
-			count: 8
-			path: core/class/scenarioExpression.class.php
-
-		-
-			message: '#^Variable \$_parameters in isset\(\) is never defined\.$#'
-			identifier: isset.variable
-			count: 4
 			path: core/class/scenarioExpression.class.php
 
 		-
