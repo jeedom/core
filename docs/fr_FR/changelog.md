@@ -95,4 +95,4 @@
 
 >**IMPORTANT**
 >
-> La restauration d'un backup 4.4 peut dans certains cas finir par des erreurs dans l'interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;unzip 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Vous pouvez lancer cette commande depuis l'interface rescue de jeedom (ajouter `&rescue=1` dans l'url), ou directement en ssh.
+> La restauration d'un backup 4.4 peut dans certains cas finir par des erreurs dans l'interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.20.zip;unzip 4.4.19.zip;cd core-4.4.20;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.20;`. Vous pouvez lancer cette commande depuis l'interface rescue de jeedom (ajouter `&rescue=1` dans l'url), ou directement en ssh.
