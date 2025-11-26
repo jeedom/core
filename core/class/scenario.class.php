@@ -912,16 +912,20 @@ class scenario {
 				return;
 			}
 		}
-		$cmd = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
-		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
+		if($this->getTag('trigger') == 'scenario'){
+			$obj_trigger = scenario::byId(str_replace('#', '', $this->getTag('trigger_id')));
+		}else{
+			$obj_trigger = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
+		}
+		if (is_object($obj_trigger)) {
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $obj_trigger->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
 				$timeline->setFolder($this->getConfiguration('timeline::folder'));
 				$timeline->setLink_id($this->getId());
 				$timeline->setName($this->getHumanName(true, true, true, true));
-				$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
+				$timeline->setOptions(array('trigger' => $obj_trigger->getHumanName(true)));
 				$timeline->save();
 			}
 		} else {
