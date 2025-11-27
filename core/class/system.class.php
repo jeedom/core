@@ -793,7 +793,7 @@ class system {
 			}
 			return true;
 		}
-		if (shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l') > 0) {
+		if (shell_exec('ls /tmp/jeedom_install_in_progress* | wc -l 2> /dev/null') > 0) {
 			return true;
 		}
 		return false;
