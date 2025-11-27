@@ -44,8 +44,8 @@ service_action(){
   fi
 }
 
-version() { 
-  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; 
+version() {
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }';
 }
 
 step_1_upgrade() {
@@ -63,8 +63,8 @@ step_2_mainpackage() {
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
   apt-get -y install software-properties-common
   apt-get update
-  apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix ntpdate htop iotop vim iftop smbclient
+  apt_install chrony ca-certificates unzip curl sudo cron
+  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
   apt-get -y install git python python-pip
@@ -342,7 +342,7 @@ step_10_jeedom_installation() {
       exit 1
     fi
   fi
-  
+
   echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
 
