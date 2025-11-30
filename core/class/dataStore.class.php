@@ -19,18 +19,43 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
+/**
+ * Manages persistent key-value storage for Jeedom components
+ *
+ * @see cmd
+ * @see scenario
+ * @see eqLogic
+ */
 class dataStore {
 	/*     * *************************Attributs****************************** */
 
+    /** @var int Unique identifier */
 	private $id;
+
+    /** @var string Type of related component (cmd, object, eqLogic, scenario) */
 	private $type;
+
+    /** @var int Related component identifier */
 	private $link_id;
+
+    /** @var string Storage key identifier */
 	private $key;
+
+    /** @var scalar Stored value */
 	private $value;
+
+    /** @var bool Change tracking flag */
 	private $_changed;
 
 	/*     * ***********************Méthodes statiques*************************** */
 
+    /**
+     * Retrieves a dataStore instance by its ID
+     *
+     * @param int $_id Instance identifier
+     * @return static|null Found instance or null
+     * @throws Exception If database error occurs
+     */
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -41,12 +66,14 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	/**
-	 * @param string $_type
-	 * @param string $_link_id
-	 * @param string $_key
-	 * @return dataStore
-	 */
+    /**
+     * Retrieves a dataStore instance by its type, linked ID and key
+     *
+     * @param string $_type Component type
+     * @param int $_link_id Component identifier
+     * @param string $_key Storage key
+     * @return static|null Found instance or null
+     */
 	public static function byTypeLinkIdKey($_type, $_link_id, $_key) {
 		$values = array(
 			'type' => $_type,
@@ -62,6 +89,14 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+    /**
+     * Retrieves all dataStore instances for a component type and optional link ID
+     *
+     * @param string $_type Component type
+     * @param int|string $_link_id Optional component identifier
+     * @return static[] Array of matching instances
+     * @throws Exception If database error occurs
+     */
 	public static function byTypeLinkId($_type, $_link_id = '') {
 		$values = array(
 			'type' => $_type,
@@ -77,6 +112,14 @@ class dataStore {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+    /**
+     * Removes all dataStore instances for a component type and link ID
+     *
+     * @param string $_type Component type
+     * @param int $_link_id Component identifier
+     * @return bool Success status
+     * @throws Exception If removal fails
+     */
 	public static function removeByTypeLinkId($_type, $_link_id) {
 		$datastores = self::byTypeLinkId($_type, $_link_id);
 		foreach ($datastores as $datastore) {
@@ -87,6 +130,12 @@ class dataStore {
 
 	/*     * *********************Méthodes d'instance************************* */
 
+    /**
+     * Validates instance data before saving
+     *
+     * @return bool Validation status
+     * @throws Exception If validation fails
+     */
 	public function preSave() {
 		$allowType = array('cmd', 'object', 'eqLogic', 'scenario');
 		if (!in_array($this->getType(), $allowType)) {
@@ -107,11 +156,22 @@ class dataStore {
 		return true;
 	}
 
+    /**
+     * Persists the instance to database
+     *
+     * @return bool Success status
+     */
 	public function save() {
 		DB::save($this);
 		return true;
 	}
 
+    /**
+     * Executes post-save operations
+     *
+     * @return void
+     * @throws Exception If post-save operations fail
+     */
 	public function postSave() {
 		scenario::check('variable(' . $this->getKey().')');
 		$value_cmd =	cmd::byValue('variable(' . $this->getKey(), null, true);
@@ -125,10 +185,23 @@ class dataStore {
 		}
 	}
 
+    /**
+     * Removes the instance from database
+     *
+     * @return void
+     */
 	public function remove() {
 		DB::remove($this);
 	}
 
+    /**
+     * Builds graph data for component dependencies
+     *
+     * @param array<string, array<string, array<string, mixed>>> $_data Existing graph data
+     * @param int $_level Current graph level
+     * @param int|null $_drill Maximum drill level
+     * @return array<string, string|float|array<string, array<string, mixed>>>|void Graph data structure
+     */
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null) {
 		if ($_drill == null) {
 			$_drill = config::byKey('graphlink::dataStore::drill');
@@ -161,6 +234,12 @@ class dataStore {
 		return $_data;
 	}
 
+    /**
+     * Lists components using this instance
+     *
+     * @param bool $_array Convert objects to arrays
+     * @return array<string, array<mixed>> List of dependent components
+     */
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'interactDef' => array(), 'scenario' => array());
 		$return['cmd'] = cmd::searchConfiguration(array('"cmd":"variable"%"name":"' . $this->getKey() . '"', 'variable(' . $this->getKey() . ')', 'variable(' . $this->getKey() . ',', '"name":"' . $this->getKey() . '"%"cmd":"variable"'));
@@ -182,46 +261,78 @@ class dataStore {
 
 	/*     * **********************Getteur Setteur*************************** */
 
+    /**
+     * @return int
+     */
 	public function getId() {
 		return $this->id;
 	}
 
+    /**
+     * @param int $_id
+     * @return static
+     */
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
 		$this->id = $_id;
 		return $this;
 	}
 
+    /**
+     * @return string
+     */
 	public function getType() {
 		return $this->type;
 	}
 
+    /**
+     * @param string $_type
+     * @return static
+     */
 	public function setType($_type) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->type,$_type);
 		$this->type = $_type;
 		return $this;
 	}
 
+    /**
+     * @return int
+     */
 	public function getLink_id() {
 		return $this->link_id;
 	}
 
+    /**
+     * @param int $_link_id
+     * @return static
+     */
 	public function setLink_id($_link_id) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->link_id,$_link_id);
 		$this->link_id = $_link_id;
 		return $this;
 	}
 
+    /**
+     * @return string
+     */
 	public function getKey() {
 		return $this->key;
 	}
 
+    /**
+     * @param string $_key
+     * @return static
+     */
 	public function setKey($_key) {
 		$this->_changed = utils::attrChanged($this->_changed,$this->key,$_key);
 		$this->key = $_key;
 		return $this;
 	}
 
+    /**
+     * @param mixed $_default Default value if none stored
+     * @return mixed
+     */
 	public function getValue($_default = '') {
 		if ($this->value === '') {
 			return $_default;
@@ -229,6 +340,10 @@ class dataStore {
 		return is_json($this->value, $this->value);
 	}
 
+    /**
+     * @param object|array|scalar $_value
+     * @return static
+     */
 	public function setValue($_value) {
 		if (is_object($_value) || is_array($_value)) {
 			$_value = json_encode($_value, JSON_UNESCAPED_UNICODE);
@@ -238,10 +353,17 @@ class dataStore {
 		return $this;
 	}
 
+    /**
+     * @return bool
+     */
 	public function getChanged() {
 		return $this->_changed;
 	}
 
+    /**
+     * @param bool $_changed
+     * @return static
+     */
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;
