@@ -425,7 +425,7 @@ try {
 			}
 			if (count($cmdData['node']) > 0) {
 				foreach ($cmdData['node'] as $name => $data) {
-					if (cmd::byId(str_replace('cmd', '', $data['id']))->getEqLogic_id() == $eqLogic->getId()) {
+					if (is_object(cmd::byId(str_replace('cmd', '', $data['id']))) && cmd::byId(str_replace('cmd', '', $data['id']))->getEqLogic_id() == $eqLogic->getId()) {
 						continue;
 					}
 
