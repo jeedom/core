@@ -19,17 +19,40 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
+/**
+ * Main cache handling class implementing a flexible caching system
+ *
+ * Provides a facade for different cache backends (File, Redis, MariaDB) with consistent interface
+ *
+ * @see FileCache For file-based cache implementation
+ * @see RedisCache For Redis-based cache implementation
+ * @see MariadbCache For database-based cache implementation
+ */
 class cache {
 	/*     * *************************Attributs****************************** */
 
-	private $key;
-	private $value = null;
-	private $lifetime = 0;
-	private $timestamp;
-	private static $_engine = null;
+    /** @var string Cache entry key */
+    private $key;
+
+    /** @var mixed|null Cache entry value */
+    private $value = null;
+
+    /** @var int Cache lifetime in seconds (0 for infinite) */
+    private $lifetime = 0;
+
+    /** @var int Unix timestamp of cache entry creation */
+    private $timestamp;
+
+    /** @var string|null Current cache engine class name */
+    private static $_engine = null;
 
 	/*     * ***********************Methode static*************************** */
 
+    /**
+     * Get current cache engine class name
+     *
+     * @return string Cache engine class name ('FileCache', 'RedisCache', or 'MariadbCache')
+     */
 	public static function getEngine(){
 		if(self::$_engine != null){
 			return self::$_engine;
@@ -46,6 +69,14 @@ class cache {
 		return self::$_engine;
 	}
 
+    /**
+     * Set a cache entry
+     *
+     * @param string $_key Cache key
+     * @param mixed $_value Value to cache
+     * @param int $_lifetime Cache lifetime in seconds (0 for infinite)
+     * @return mixed Result depends on cache engine implementation
+     */
 	public static function set($_key, $_value, $_lifetime = 0) {
 		return (new self())
 			->setKey($_key)
@@ -54,6 +85,12 @@ class cache {
 		    ->save();
 	}
 
+    /**
+     * Delete a cache entry
+     *
+     * @param string $_key Cache key to delete
+     * @return void
+     */
 	public static function delete($_key) {
 		$cache = cache::byKey($_key);
 		if (is_object($cache)) {
@@ -61,11 +98,12 @@ class cache {
 		}
 	}
 
-	/**
-	 *
-	 * @param string $_key
-	 * @return cache
-	 */
+    /**
+     * Get cache entry by key
+     *
+     * @param string $_key Cache key
+     * @return cache Always returns a cache object (value will be null if not found)
+     */
 	public static function byKey($_key) {
 		$cache = self::getEngine()::fetch($_key);
 		if (!is_object($cache)) {
@@ -76,20 +114,41 @@ class cache {
 		return $cache;
 	}
 
+    /**
+     * Check if a cache entry exists and is valid
+     *
+     * @param string $_key Cache key
+     * @return bool True if cache exists and is valid
+     */
 	public static function exist($_key){
 		return (self::byKey($_key)->getValue(null) !== null);
 	}
 
+    /**
+     * Delete all cache entries
+     *
+     * @return mixed Result depends on cache engine implementation
+     */
 	public static function flush() {
 		return self::getEngine()::deleteAll();
 	}
 
+    /**
+     * Persist cache to storage if supported by engine
+     *
+     * @return void
+     */
 	public static function persist() {
 		if(method_exists(self::getEngine(),'persist')){
 			self::getEngine()::persist();
 		}
 	}
 
+    /**
+     * Check if persistence is working correctly
+     *
+     * @return bool True if persistence is working
+     */
 	public static function isPersistOk(): bool {
 		if(method_exists(self::getEngine(),'isPersistOk')){
 			return self::getEngine()::isPersistOk();
@@ -97,12 +156,22 @@ class cache {
 		return true;
 	}
 
-	public static function restore() {
+    /**
+     * Restore cache from persistence if supported by engine
+     *
+     * @return void
+     */
+    public static function restore() {
 		if(method_exists(self::getEngine(),'restore')){
 			self::getEngine()::restore();
 		}
 	}
 
+    /**
+     * Clean expired entries and perform maintenance
+     *
+     * @return void
+     */
 	public static function clean() {
 		if(method_exists(self::getEngine(),'clean')){
 			self::getEngine()::clean();
@@ -146,39 +215,83 @@ class cache {
 
 	/*     * *********************Methode d'instance************************* */
 
+    /**
+     * Save current cache entry
+     *
+     * @return mixed Result depends on cache engine implementation
+     */
 	public function save() {
 		$this->setTimestamp(strtotime('now'));
 		return self::getEngine()::save($this);
 	}
 
+    /**
+     * Remove current cache entry
+     *
+     * @return mixed Result depends on cache engine implementation
+     */
 	public function remove() {
 		return self::getEngine()::delete($this->getKey());
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
 
+    /**
+     * Get cache entry key
+     *
+     * @return string Cache key
+     */
 	public function getKey() {
 		return $this->key;
 	}
 
+    /**
+     * Set cache entry key
+     *
+     * @param string $_key Cache key
+     * @return self
+     */
 	public function setKey($_key): self {
 		$this->key = $_key;
 		return $this;
 	}
 
+    /**
+     * Get cache entry value
+     *
+     * @param mixed $_default Default value if cache is empty
+     * @return mixed Cached value or default
+     */
 	public function getValue($_default = '') {
 		return ($this->value === null || (is_string($this->value) && trim($this->value) === '')) ? $_default : $this->value;
 	}
 
+    /**
+     * Set cache entry value
+     *
+     * @param mixed $_value Value to cache
+     * @return self
+     */
 	public function setValue($_value): self {
 		$this->value = $_value;
 		return $this;
 	}
 
+    /**
+     * Get cache entry lifetime
+     *
+     * @return int Lifetime in seconds
+     */
 	public function getLifetime() {
 		return $this->lifetime;
 	}
 
+    /**
+     * Set cache entry lifetime
+     *
+     * @param int $_lifetime Lifetime in seconds
+     * @return self
+     */
 	public function setLifetime($_lifetime): self {
 		if ($_lifetime < 0) {
 			$_lifetime = 0;
@@ -187,28 +300,61 @@ class cache {
 		return $this;
 	}
 
+    /**
+     * Get cache entry datetime
+     *
+     * @return string Datetime in Y-m-d H:i:s format
+     */
 	public function getDatetime() {
 		return date('Y-m-d H:i:s',(int) $this->timestamp);
 	}
 
+    /**
+     * Set cache entry datetime
+     *
+     * @param string $_datetime Datetime in Y-m-d H:i:s format
+     * @return self
+     */
 	public function setDatetime($_datetime): self {
 		$this->timestamp = strtotime($_datetime);
 		return $this;
 	}
 
+    /**
+     * Get cache entry timestamp
+     *
+     * @return int Unix timestamp
+     */
 	public function getTimestamp(){
 		return $this->timestamp;
 	}
 
+    /**
+     * Set cache entry timestamp
+     *
+     * @param int $_timestamp Unix timestamp
+     * @return self
+     */
 	public function setTimestamp($_timestamp){
 		$this->timestamp = $_timestamp;
 		return $this;
 	}
 }
 
-
+/**
+ * MariaDB cache engine implementation
+ *
+ * Stores cache entries in MariaDB/MySQL database
+ *
+ * @see cache Main cache class
+ */
 class MariadbCache {
 
+    /**
+     * Get all cache entries
+     *
+     * @return array<cache|null> Array of cache objects
+     */
 	public static function all(){
 		$sql = 'SELECT `key`,`timestamp`,`value`,`lifetime`
 		FROM cache';
@@ -219,6 +365,11 @@ class MariadbCache {
 		return $results;
 	}
 
+    /**
+     * Clean expired cache entries
+     *
+     * @return mixed DB query result
+     */
 	public static function clean(){
 		$sql = 'DELETE 
 		FROM cache
@@ -227,6 +378,12 @@ class MariadbCache {
 		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
+    /**
+     * Fetch a cache entry by key
+     *
+     * @param string $_key Cache key
+     * @return cache|null Cache object if found, false if not found or expired
+     */
 	public static function fetch($_key){
 		$sql = 'SELECT `key`,`timestamp`,`value`,`lifetime`
 		FROM cache
@@ -242,6 +399,12 @@ class MariadbCache {
 		return $cache;
 	}
 
+    /**
+     * Delete a cache entry
+     *
+     * @param string $_key Cache key
+     * @return mixed DB query result
+     */
 	public static function delete($_key){
 		$sql = 'DELETE 
 		FROM cache
@@ -249,10 +412,22 @@ class MariadbCache {
 		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW);
 	}
 
+    /**
+     * Delete all cache entries
+     *
+     * @return mixed DB query result
+     */
 	public static function deleteAll(){
 		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW);
 	}
 
+
+    /**
+     * Save a cache entry
+     *
+     * @param cache $_cache Cache object to save
+     * @return mixed DB query result
+     */
 	public static function save($_cache){
 		$value = array(
 			'key' => $_cache->getKey(),
@@ -266,14 +441,32 @@ class MariadbCache {
 
 }
 
+/**
+ * Redis cache engine implementation
+ *
+ * Stores cache entries in Redis key-value store
+ *
+ * @see cache Main cache class
+ */
 class RedisCache {
 
+    /** @var \Redis|null Redis connection instance */
 	private static $connection = null;
 
+    /**
+     * Check if Redis extension is available
+     *
+     * @return bool True if Redis can be used
+     */
 	public static function isOk(){
 		return class_exists('redis');
 	}
 
+    /**
+     * Get Redis connection
+     *
+     * @return \Redis Redis connection instance
+     */
 	public static function getConnection(){
 		if(static::$connection !== null){
 			return static::$connection;
@@ -284,6 +477,11 @@ class RedisCache {
 		return static::$connection;
 	}
 
+    /**
+     * Get all cache entries
+     *
+     * @return array<cache|null> Array of cache objects
+     */
 	public static function all(){
 		$return  = array();
 		$keys = self::getConnection()->keys('*');
@@ -293,6 +491,12 @@ class RedisCache {
 		return $return;
 	}
 
+    /**
+     * Fetch a cache entry by key
+     *
+     * @param string $_key Cache key
+     * @return cache|null Cache object or null if not found
+     */
 	public static function fetch($_key){
 		$data = self::getConnection()->get($_key);
 		if($data === false){
@@ -301,14 +505,31 @@ class RedisCache {
 		return @unserialize($data);
 	}
 
+    /**
+     * Delete a cache entry
+     *
+     * @param string $_key Cache key
+     * @return void
+     */
 	public static function delete($_key){
 		self::getConnection()->del($_key);
 	}
 
+    /**
+     * Delete all cache entries
+     *
+     * @return bool Success of operation
+     */
 	public static function deleteAll(){
 		return  self::getConnection()->flushDb();
 	}
 
+    /**
+     * Save a cache entry
+     *
+     * @param cache $_cache Cache object to save
+     * @return void
+     */
 	public static function save($_cache){
 		if($_cache->getLifetime() > 0){
 			self::getConnection()->set($_cache->getKey(),serialize($_cache), $_cache->getLifetime());
@@ -319,8 +540,20 @@ class RedisCache {
 
 }
 
+/**
+ * File-based cache engine implementation
+ *
+ * Stores cache entries as serialized files
+ *
+ * @see cache Main cache class
+ */
 class FileCache {
 
+    /**
+     * Get all cache entries
+     *
+     * @return array<cache|null> Array of cache objects
+     */
 	public static function all(){
 		$return = array();
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
@@ -329,6 +562,11 @@ class FileCache {
 		return $return;
 	}
 
+    /**
+     * Clean expired cache entries
+     *
+     * @return void
+     */
 	public static function clean(){
 		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
 			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
@@ -342,6 +580,12 @@ class FileCache {
 		}
 	}
 
+    /**
+     * Fetch a cache entry by key
+     *
+     * @param string $_key Cache key
+     * @return cache|null Cache object or null if not found
+     */
 	public static function fetch($_key){
 		$data = @file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
         if($data === false){
@@ -358,18 +602,41 @@ class FileCache {
 		return $cache;
 	}
 
+    /**
+     * Delete a cache entry
+     *
+     * @param string $_key Cache key
+     * @return void
+     */
 	public static function delete($_key){
 		@unlink(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
 	}
 
+    /**
+     * Delete all cache entries
+     *
+     * @return false|null|string Output of shell command or false/null on failure
+     */
 	public static function deleteAll(){
 		return shell_exec(system::getCmdSudo().' rm -rf '.jeedom::getTmpFolder('cache'));
 	}
 
+    /**
+     * Save a cache entry
+     *
+     * @param cache $_cache Cache object to save
+     * @return void
+     */
 	public static function save($_cache){
 		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_cache->getKey()),serialize($_cache));
 	}
 
+
+    /**
+     * Persist cache to archive file
+     *
+     * @return void
+     */
 	public static function persist() {
 		$cache_dir = jeedom::getTmpFolder('cache');
 		try {
@@ -384,6 +651,11 @@ class FileCache {
 		}
 	}
 
+    /**
+     * Check if persistence archive is valid
+     *
+     * @return bool True if persistence archive is valid
+     */
 	public static function isPersistOk(): bool {
 		$filename = __DIR__ . '/../../cache.tar.gz';
 		if (!file_exists($filename)) {
@@ -395,6 +667,11 @@ class FileCache {
 		return true;
 	}
 
+    /**
+     * Restore cache from persistence archive
+     *
+     * @return void
+     */
 	public static function restore() {
 		$cache_dir = jeedom::getTmpFolder('cache');
 		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
