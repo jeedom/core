@@ -2,7 +2,7 @@
 
 # 4.5.1
 
-
+- Montée de version de nodejs 20 vers 22 ([Détails](https://github.com/jeedom/core/issues/3147))
 
 # 4.5
 

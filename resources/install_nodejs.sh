@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-installVer='20' 	#NodeJS major version to be installed
-minVer='20'	      #min NodeJS major version to be accepted
+installVer='22' 	#NodeJS major version to be installed
+minVer='22'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
@@ -53,8 +53,8 @@ lsb_release -c | grep jessie
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20200630" ]]; 
-  then 
+  if [[ "$today" > "20200630" ]];
+  then
   echo "== ATTENTION Debian 8 Jessie n'est officiellement plus supportée depuis le 30 juin 2020, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
@@ -65,8 +65,8 @@ lsb_release -c | grep stretch
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20220630" ]]; 
-  then 
+  if [[ "$today" > "20220630" ]];
+  then
   echo "== ATTENTION Debian 9 Stretch n'est officiellement plus supportée depuis le 30 juin 2022, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
@@ -77,8 +77,8 @@ lsb_release -c | grep buster
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20220630" ]]; 
-  then 
+  if [[ "$today" > "20220630" ]];
+  then
   echo "== ATTENTION Debian 10 Buster n'est officiellement plus supportée depuis le 30 juin 2024, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
@@ -87,9 +87,9 @@ fi
 #x86 32 bits not supported by nodesource anymore
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
-then 
+then
 echo "== ATTENTION Votre système est x86 en 32bits et NodeJS 12 n'y est pas supporté, merci de passer en 64bits !!!"
-exit 1 
+exit 1
 fi
 
 
@@ -104,7 +104,7 @@ then
 else
   echo "[  KO  ]";
   echo "Installation de NodeJS $installVer"
-  
+
   #if npm exists
   type npm &>/dev/null
   if [ $? -eq 0 ]; then
@@ -112,10 +112,10 @@ else
   else
     npmPrefix="/usr"
   fi
-  
+
   sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove npm &>/dev/null
   sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove nodejs &>/dev/null
-  
+
   if [[ $arch == "armv6l" ]]
   then
     #version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
@@ -152,13 +152,13 @@ else
     sudo apt-get update
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
   fi
-  
+
   npm config set prefix ${npmPrefix} &>/dev/null
 
-  if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then 
+  if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then
     ln -s $(which node) $(which node)js
   fi
-  
+
   new=`nodejs -v`;
   echo -n "[Check Version NodeJS après install : ${new} : "
   testVerAfter=$(php -r "echo version_compare('${new}','v${minVer}','>=');")
@@ -173,7 +173,7 @@ fi
 type npm &>/dev/null
 if [ $? -ne 0 ]; then
   # Installation de npm car non présent (par sécu)
-  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y npm  
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y npm
   sudo npm install -g npm
 fi
 
@@ -183,7 +183,7 @@ if [ $? -eq 0 ]; then
   npmPrefixSudo=`sudo npm prefix -g`
   npmPrefixwwwData=`sudo -u www-data npm prefix -g`
   echo -n "[Check Prefix : $npmPrefix and sudo prefix : $npmPrefixSudo and www-data prefix : $npmPrefixwwwData : "
-  if [[ "$npmPrefixSudo" != "/usr" ]] && [[ "$npmPrefixSudo" != "/usr/local" ]]; then 
+  if [[ "$npmPrefixSudo" != "/usr" ]] && [[ "$npmPrefixSudo" != "/usr/local" ]]; then
   echo "[  KO  ]"
   if [[ "$npmPrefixwwwData" == "/usr" ]] || [[ "$npmPrefixwwwData" == "/usr/local" ]]; then
     echo "Reset prefix ($npmPrefixwwwData) pour npm `sudo whoami`"
@@ -202,7 +202,7 @@ if [ $? -eq 0 ]; then
         sudo npm config set prefix /usr/local
       fi
     fi
-  fi  
+  fi
 else
   if [[ "$npmPrefixwwwData" == "/usr" ]] || [[ "$npmPrefixwwwData" == "/usr/local" ]]; then
     if [[ "$npmPrefixwwwData" == "$npmPrefixSudo" ]]; then
