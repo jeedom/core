@@ -1,5 +1,9 @@
 # Changelog Jeedom V4.5
 
+# 4.5.1
+
+
+
 # 4.5
 
 - [Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`
