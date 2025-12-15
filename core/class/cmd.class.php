@@ -538,8 +538,8 @@ class cmd {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 			FROM cmd c
 			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
-			WHERE c.name=:cmd_name
-			AND el.name=:eqLogic_name
+			WHERE c.name COLLATE utf8mb4_0900_ai_ci =:cmd_name
+			AND el.name COLLATE utf8mb4_0900_ai_ci =:eqLogic_name
 			AND el.object_id IS NULL';
 		} else {
 			$values['object_name'] = $_object_name;
@@ -547,9 +547,9 @@ class cmd {
 			FROM cmd c
 			INNER JOIN eqLogic el ON c.eqLogic_id=el.id
 			INNER JOIN object ob ON el.object_id=ob.id
-			WHERE c.name=:cmd_name
-			AND el.name=:eqLogic_name
-			AND ob.name=:object_name';
+			WHERE c.name COLLATE utf8mb4_0900_ai_ci =:cmd_name
+			AND el.name COLLATE utf8mb4_0900_ai_ci =:eqLogic_name
+			AND ob.name COLLATE utf8mb4_0900_ai_ci = :object_name';
 		}
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
