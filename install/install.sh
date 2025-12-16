@@ -61,33 +61,18 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
-  apt-get -y install software-properties-common
+  apt_install software-properties-common
   apt-get update
-  apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix ntpdate htop iotop vim iftop smbclient
-  apt-get -y install usermod
-  apt-get -y install visudo
-  apt-get -y install git python python-pip
-  apt-get -y install python3 python3-pip
-  apt-get -y install libexpat1 ssl-cert
-  apt-get -y install apt-transport-https
-  apt-get -y install xvfb cutycapt xauth
-  apt-get -y install at
-  apt-get -y install mariadb-client
-  apt-get -y install libav-tools
-  apt-get -y install espeak
-  apt-get -y install mbrola
-  apt-get -y install net-tools
-  apt-get -y install nmap
-  apt-get -y install ffmpeg
-  apt-get -y install usbutils
-  apt-get -y install gettext
-  apt-get -y install libcurl3-gnutls
+  apt_install chrony ca-certificates unzip curl sudo cron plocate tar wget logrotate htop iotop vim iftop smbclient
+  apt_install git python3 python3-pip
+  apt_install libexpat1 ssl-cert
+  apt_install xvfb xauth at
+  apt_install mariadb-client
+  apt_install ffmpeg
+  apt_install espeak-ng
+  apt_install net-tools nmap usbutils gettext librsync-dev iputils-ping
   apt-get -y install chromium
-  apt-get -y install librsync-dev
-  apt-get -y install ssl-cert
   apt-get -y remove brltty
-  apt-get -y iputils-ping
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
@@ -123,22 +108,13 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 5 - php${NORMAL}"
-  apt_install php libapache2-mod-php php-json php-mysql
-  apt install -y php-curl
-  apt install -y php-gd
-  apt install -y php-imap
-  apt install -y php-xml
-  apt install -y php-opcache
-  apt install -y php-soap
-  apt install -y php-xmlrpc
-  apt install -y php-common
-  apt install -y php-dev
-  apt install -y php-zip
-  apt install -y php-ssh2
-  apt install -y php-mbstring
-  apt install -y php-ldap
-  apt install -y php-yaml
-  apt install -y php-snmp
+  apt_install php php-fpm php-json php-mysql
+  apt_install php-curl php-gd php-imap php-xml php-opcache
+  apt_install php-soap php-xmlrpc php-common php-dev
+  apt_install php-zip php-ssh2 php-mbstring
+  apt-get -y install php-ldap
+  apt-get -y install php-yaml
+  apt-get -y install php-snmp
   echo "${GREEN}Step 5 - php done${NORMAL}"
 }
 
@@ -210,18 +186,12 @@ step_7_jeedom_customization_mariadb() {
     echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "connect_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "wait_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "interactive_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
-   # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
@@ -285,13 +255,22 @@ step_8_jeedom_customization() {
     sed -i 's/memory_limit = 128M/memory_limit = 512M/g' ${file} > /dev/null 2>&1
   done
 
+  # Désactiver mod_php si présent et activer PHP-FPM
+  a2dismod php* > /dev/null 2>&1
   a2dismod status
   a2enmod headers
   a2enmod remoteip
+  a2enmod proxy_fcgi
+  a2enmod setenvif
+  
+  # Activer la configuration PHP-FPM (détecte automatiquement la version PHP)
+  PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+  a2enconf php${PHP_VERSION}-fpm
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    service_action restart php${PHP_VERSION}-fpm > /dev/null 2>&1
     service_action restart apache2 > /dev/null 2>&1
   fi
 
