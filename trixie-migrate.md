@@ -239,6 +239,78 @@ if (version_compare(PHP_VERSION, '7.4', '<')) {
 }
 ```
 
+### 6. `resources/install_nodejs.sh`
+
+**Modernisation complète du script d'installation NodeJS 22** :
+
+#### Méthode d'installation simplifiée
+```bash
+# Avant (configuration manuelle GPG + sources)
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+
+# Après (méthode officielle NodeSource)
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+#### Packages requis optimisés
+```bash
+# Avant
+apt-get install -y lsb-release build-essential apt-utils git gnupg curl
+
+# Après (uniquement les packages strictement nécessaires)
+apt-get install -y lsb-release curl build-essential
+```
+
+#### Support NodeJS 22 pour armv6l (Raspberry Pi Zero/1/2)
+```bash
+# Ajouté
+elif [[ $installVer == "22" ]]; then
+  armVer="22.12.0"
+```
+
+#### Détection intelligente et mise à jour
+```bash
+# Avant
+sudo apt-get -y --purge autoremove nodejs npm  # Désinstallation systématique
+
+# Après (détection de provenance)
+if dpkg -l nodejs 2>/dev/null | grep -q '^ii'; then
+  if ! apt-cache policy nodejs 2>/dev/null | grep -q 'deb.nodesource.com'; then
+    echo "NodeJS détecté depuis les dépôts Debian officiels, désinstallation nécessaire"
+    sudo apt-get -y --purge autoremove nodejs npm
+  else
+    echo "NodeJS détecté depuis NodeSource, mise à jour en place"
+  fi
+fi
+```
+
+#### Suppression warning npm obsolète
+```bash
+# Suppression du paramètre globalignorefile (obsolète npm v9+)
+npm config delete globalignorefile &>/dev/null || true
+sudo npm config delete globalignorefile &>/dev/null || true
+sudo -u www-data npm config delete globalignorefile &>/dev/null || true
+```
+
+#### Corrections dates Debian
+```bash
+# Debian 10 Buster
+if [[ "$today" > "20240630" ]]; then  # Corrigé (était 20220630)
+  echo "Debian 10 Buster n'est plus supportée depuis le 30 juin 2024"
+```
+
+#### Message d'erreur x86 32 bits actualisé
+```bash
+# Avant
+echo "NodeJS 12 n'y est pas supporté"
+
+# Après
+echo "NodeJS n'y est plus supporté"
+```
+
 ## 🚀 Installation
 
 ### Prérequis
