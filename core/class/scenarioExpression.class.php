@@ -1275,7 +1275,9 @@ class scenarioExpression {
 		}
 		if ($_quote) {
 			foreach ($replace1 as &$value) {
-				$value = (string)$value;
+				if ($value === null) {
+					continue;
+				}
 				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
 					$value = '"' . trim($value, '"') . '"';
 				}
