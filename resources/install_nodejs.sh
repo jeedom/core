@@ -105,16 +105,15 @@ else
   echo "[  KO  ]";
   echo "Installation de NodeJS $installVer"
 
-  #if npm exists
-  type npm &>/dev/null
-  if [ $? -eq 0 ]; then
-    npmPrefix=`npm prefix -g`
-  else
-    npmPrefix="/usr"
+  # Détection de la provenance de NodeJS pour éviter les conflits
+  if dpkg -l nodejs 2>/dev/null | grep -q '^ii'; then
+    if ! apt-cache policy nodejs 2>/dev/null | grep -q 'deb.nodesource.com'; then
+      echo "NodeJS détecté depuis les dépôts Debian officiels, désinstallation nécessaire"
+      sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove nodejs npm &>/dev/null
+    else
+      echo "NodeJS détecté depuis NodeSource, mise à jour en place"
+    fi
   fi
-
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove npm &>/dev/null
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove nodejs &>/dev/null
 
   if [[ $arch == "armv6l" ]]
   then
@@ -153,7 +152,6 @@ else
 
   # Suppression du paramètre npm obsolète globalignorefile (npm v9+)
   npm config delete globalignorefile &>/dev/null || true
-  npm config set prefix ${npmPrefix} &>/dev/null
 
   if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then
     ln -s $(which node) $(which node)js
