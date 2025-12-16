@@ -891,7 +891,37 @@ class system {
 		if (isset(self::$_os_version)) {
 			return self::$_os_version;
 		}
-		self::$_os_version = exec('cat /etc/debian_version');
+		$version = exec('cat /etc/debian_version');
+		
+		// Mapping des noms de code vers les numéros de version
+		$codenames = array(
+			'trixie' => '13',
+			'bookworm' => '12',
+			'bullseye' => '11',
+			'buster' => '10',
+			'stretch' => '9',
+			'jessie' => '8'
+		);
+		
+		// Vérifier si c'est un nom de code connu (avec ou sans /sid)
+		foreach ($codenames as $codename => $number) {
+			if (strpos($version, $codename) !== false) {
+				self::$_os_version = $number;
+				return self::$_os_version;
+			}
+		}
+		
+		// Si format "codename/sid" non reconnu, essayer de lire VERSION_ID depuis os-release
+		if (strpos($version, '/') !== false) {
+			$osVersion = exec('grep VERSION_ID /etc/os-release | cut -d\'=\' -f2 | tr -d \'"\'');
+			if ($osVersion != '') {
+				self::$_os_version = $osVersion;
+				return self::$_os_version;
+			}
+		}
+		
+		// Sinon, retourner la version telle quelle
+		self::$_os_version = $version;
 		return self::$_os_version;
 	}
 
