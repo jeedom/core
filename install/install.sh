@@ -150,10 +150,11 @@ step_6_jeedom_download() {
   REPO_NAME=$(echo ${GITHUB_REPO} | cut -d'/' -f2)
   
   # Le dossier extrait suit le pattern GitHub: {repo}-{branch}
-  EXTRACTED_DIR="/root/${REPO_NAME}-${VERSION}"
+  # Recherche insensible à la casse car GitHub peut avoir des majuscules
+  EXTRACTED_DIR=$(find /root -maxdepth 1 -type d -iname "${REPO_NAME}-${VERSION}" | head -n 1)
   
-  if [ ! -d "${EXTRACTED_DIR}" ]; then
-    echo "${RED}Cannot find extracted directory: ${EXTRACTED_DIR}${NORMAL}"
+  if [ -z "${EXTRACTED_DIR}" ] || [ ! -d "${EXTRACTED_DIR}" ]; then
+    echo "${RED}Cannot find extracted directory matching pattern: ${REPO_NAME}-${VERSION}${NORMAL}"
     echo "${YELLOW}Available directories in /root/:${NORMAL}"
     ls -la /root/
     exit 1
