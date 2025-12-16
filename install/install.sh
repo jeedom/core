@@ -137,19 +137,47 @@ step_6_jeedom_download() {
   fi
   mkdir -p ${WEBSERVER_HOME}
   find ${WEBSERVER_HOME} ! -name 'index.html' -type f -exec rm -rf {} +
-  rm -rf /root/core-*
+  
+  rm -rf /root/${REPO_NAME}-*
   unzip -q /tmp/jeedom.zip -d /root/
   if [ $? -ne 0 ]; then
     echo "${RED}Cannot unpack archive - Cancelling${NORMAL}"
     exit 1
   fi
-  cp -R /root/core-*/* ${WEBSERVER_HOME}
-  cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
-  cp /root/core/.htaccess ${WEBSERVER_HOME}/.htaccess
+  
+  # Extraire le nom du repo (sans le owner) depuis GITHUB_REPO
+  # Ex: jeedom/core -> core, titidom-rc/jeedom-core -> jeedom-core
+  REPO_NAME=$(echo ${GITHUB_REPO} | cut -d'/' -f2)
+  
+  # Le dossier extrait suit le pattern GitHub: {repo}-{branch}
+  EXTRACTED_DIR="/root/${REPO_NAME}-${VERSION}"
+  
+  if [ ! -d "${EXTRACTED_DIR}" ]; then
+    echo "${RED}Cannot find extracted directory: ${EXTRACTED_DIR}${NORMAL}"
+    echo "${YELLOW}Available directories in /root/:${NORMAL}"
+    ls -la /root/
+    exit 1
+  fi
+  
+  echo "${YELLOW}Using directory: ${EXTRACTED_DIR}${NORMAL}"
+  
+  # Copier les fichiers
+  cp -R ${EXTRACTED_DIR}/* ${WEBSERVER_HOME}/
+  cp -R ${EXTRACTED_DIR}/.[^.]* ${WEBSERVER_HOME}/ 2>/dev/null
+  
+  # S'assurer que .htaccess est présent
+  if [ -f ${EXTRACTED_DIR}/.htaccess ]; then
+    cp ${EXTRACTED_DIR}/.htaccess ${WEBSERVER_HOME}/.htaccess
+  fi
+  
   find ${WEBSERVER_HOME}/ -exec touch {} +
-  rm -rf /root/core-* > /dev/null 2>&1
-  rm -rf ${WEBSERVER_HOME}/core-* > /dev/null 2>&1
+  
+  # Nettoyer les fichiers temporaires
+  rm -rf ${EXTRACTED_DIR} > /dev/null 2>&1
+  # Supprimer les dossiers repo-branche copiés par erreur dans le webroot
+  rm -rf ${WEBSERVER_HOME}/${REPO_NAME}-${VERSION} > /dev/null 2>&1
   rm /tmp/jeedom.zip
+  
   echo "${GREEN}Step 6 - download Jeedom done${NORMAL}"
 }
 
