@@ -26,7 +26,7 @@
     "mariadb-server" : {"alternative" : ["/mariadb-server-(.*?)/"],"optional" : true},
     "php-curl" : {"alternative" : ["/php(.*?)-curl/"]},
     "php-gd" : {"alternative" : ["/php(.*?)-gd/"]},
-    "php-imap" : {"alternative" : ["/php(.*?)-imap/"]},
+    "php-imap" : {"alternative" : ["/php(.*?)-imap/"],"optional" : true,"remark":"{{Retiré de PHP 8.4+, non disponible sur Debian 13}}","denyDebianHigherEqual" : "13"},
     "php-xml" : {"alternative" : ["/php(.*?)-xml/"]},
     "php-soap" : {"alternative" : ["/php(.*?)-soap/"]},
     "php-xmlrpc" : {"alternative" : ["/php(.*?)-xmlrpc/"]},
