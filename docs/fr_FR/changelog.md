@@ -2,6 +2,7 @@
 
 # 4.5.1
 
+- Le déclencheur de scénarios `#user_connect#` inclut dorénavant le tag `#trigger_value#` qui renseigne le nom de l'utilisateur venant de se connecter ([Détails](https://github.com/jeedom/core/pull/3109))
 - Montée de version de nodejs 20 vers 22 ([Détails](https://github.com/jeedom/core/issues/3147))
 
 # 4.5

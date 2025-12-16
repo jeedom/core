@@ -236,7 +236,7 @@ Il existe des déclencheurs spécifiques (autre que ceux fournis par les command
 - ``#end_update#`` : Événement envoyé à la fin d’une mise à jour.
 - ``#begin_restore#`` : Événement envoyé au début d’une restauration.
 - ``#end_restore#`` : Événement envoyé à la fin d’une restauration.
-- ``#user_connect#`` : Connexion d'un utilisateur
+- ``#user_connect#`` : Connexion d'un utilisateur, le tag `#trigger_value#` contient le nom de l'utilisateur.
 - ``#variable(nom_variable)#`` : Changement de valeur de la variable nom_variable.
 - ``#genericType(GENERIC, #[Object]#)#`` : Changement d'une commande info de Type Generic GENERIC, dans l'objet Object.
 - ``#new_eqLogic#`` : Événement envoyé lors de la création d'un nouvelle équipement, vous avez dans les tags id (id de l'équipement crée), name (nom de l'équipement crée) et eqType (type/plugin de l'équipement crée)
