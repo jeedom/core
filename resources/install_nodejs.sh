@@ -3,7 +3,7 @@
 installVer='22' 	#NodeJS major version to be installed
 minVer='22'	      #min NodeJS major version to be accepted
 
-# vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
+# vérifier si toujours nécessaire, cette source traîne encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
   echo "Vérification si la source deb-multimedia existe (bug lors du apt-get update si c'est le cas)"
   echo "deb-multimedia existe !"
