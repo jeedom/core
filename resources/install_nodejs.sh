@@ -41,9 +41,9 @@ Pin: origin deb.nodesource.com
 Pin-Priority: 600
 EOL
 
-# Mise à jour APT et installation des packages nécessaires
+# Mise à jour APT et installation des packages nécessaires pour ce script
 sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lsb-release build-essential apt-utils git
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lsb-release curl build-essential
 
 # Vérification du système
 arch=`arch`;
@@ -72,12 +72,12 @@ then
 fi
 fi
 
-#buster doesn't support NodeJS 20
+#buster doesn't support NodeJS 22
 lsb_release -c | grep buster
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20220630" ]];
+  if [[ "$today" > "20240630" ]];
   then
   echo "== ATTENTION Debian 10 Buster n'est officiellement plus supportée depuis le 30 juin 2024, merci de mettre à jour votre distribution !!!"
   exit 1
@@ -88,7 +88,7 @@ fi
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
 then
-echo "== ATTENTION Votre système est x86 en 32bits et NodeJS 12 n'y est pas supporté, merci de passer en 64bits !!!"
+echo "== ATTENTION Votre système est x86 en 32bits et NodeJS n'y est plus supporté, merci de passer en 64bits !!!"
 exit 1
 fi
 
@@ -126,9 +126,11 @@ else
     elif [[ $installVer == "16" ]]; then
       armVer="16.20.2"
     elif [[ $installVer == "18" ]]; then
-      armVer="18.18.0"
+      armVer="18.20.4"
     elif [[ $installVer == "20" ]]; then
-      armVer="20.8.0"
+      armVer="20.18.1"
+    elif [[ $installVer == "22" ]]; then
+      armVer="22.12.0"
     fi
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
     wget https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
@@ -142,17 +144,15 @@ else
     #upgrade to recent npm
     sudo npm install -g npm
   else
-    echo "Utilisation du dépot officiel"
+    echo "Utilisation du dépot officiel NodeSource"
     NODE_MAJOR=$installVer
-    sudo mkdir -p /etc/apt/keyrings
-    [[ -f /etc/apt/keyrings/nodesource.gpg ]] && sudo rm /etc/apt/keyrings/nodesource.gpg || true
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-    [[ -f /etc/apt/sources.list.d/nodesource.list ]] && sudo rm /etc/apt/sources.list.d/nodesource.list || true
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-    sudo apt-get update
+    # Méthode officielle NodeSource : https://github.com/nodesource/distributions
+    curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | sudo -E bash -
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
   fi
 
+  # Suppression du paramètre npm obsolète globalignorefile (npm v9+)
+  npm config delete globalignorefile &>/dev/null || true
   npm config set prefix ${npmPrefix} &>/dev/null
 
   if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then
@@ -179,6 +179,11 @@ fi
 
 type npm &>/dev/null
 if [ $? -eq 0 ]; then
+  # Suppression du paramètre npm obsolète globalignorefile pour tous les utilisateurs (npm v9+)
+  npm config delete globalignorefile &>/dev/null || true
+  sudo npm config delete globalignorefile &>/dev/null || true
+  sudo -u www-data npm config delete globalignorefile &>/dev/null || true
+  
   npmPrefix=`npm prefix -g`
   npmPrefixSudo=`sudo npm prefix -g`
   npmPrefixwwwData=`sudo -u www-data npm prefix -g`
