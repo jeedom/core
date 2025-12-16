@@ -121,7 +121,9 @@ step_5_php() {
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
-  wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
+  echo "${YELLOW}Repository: ${GITHUB_REPO}${NORMAL}"
+  echo "${YELLOW}Branch: ${VERSION}${NORMAL}"
+  wget https://codeload.github.com/${GITHUB_REPO}/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
   if [ $? -ne 0 ]; then
     echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
@@ -392,12 +394,13 @@ distrib_1_spe(){
 
 STEP=0
 VERSION=master
+GITHUB_REPO=jeedom/core
 WEBSERVER_HOME=/var/www/html
 MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)}
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
-while getopts ":s:v:w:m:i:d:" opt; do
+while getopts ":s:v:w:m:i:d:r:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -408,6 +411,8 @@ while getopts ":s:v:w:m:i:d:" opt; do
     i) INSTALLATION_TYPE="$OPTARG"
     ;;
     d) DATABASE="$OPTARG"
+    ;;
+    r) GITHUB_REPO="$OPTARG"
     ;;
     \?) echo "${RED}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
