@@ -61,7 +61,6 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
-  apt_install software-properties-common
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron plocate tar wget logrotate htop iotop vim iftop smbclient
   apt_install git python3 python3-pip
