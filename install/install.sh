@@ -108,9 +108,10 @@ step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 5 - php${NORMAL}"
   apt_install php php-fpm php-json php-mysql
-  apt_install php-curl php-gd php-imap php-xml php-opcache
+  apt_install php-curl php-gd php-xml php-opcache
   apt_install php-soap php-xmlrpc php-common php-dev
   apt_install php-zip php-ssh2 php-mbstring
+  apt-get -y install php-imap
   apt-get -y install php-ldap
   apt-get -y install php-yaml
   apt-get -y install php-snmp
