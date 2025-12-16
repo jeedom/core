@@ -34,16 +34,24 @@ if [ -f /media/boot/multiboot/meson64_odroidc2.dtb.linux ]; then
   fi
 fi
 
-#prioritize nodesource nodejs : just in case
-sudo bash -c "cat >> /etc/apt/preferences.d/nodesource" << EOL
-Package: nodejs
-Pin: origin deb.nodesource.com
-Pin-Priority: 600
-EOL
+# Installation des packages nécessaires pour ce script
+# Attendre la libération des verrous dpkg si nécessaire (max 10 secondes)
+timeout=10
+while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1 && [ $timeout -gt 0 ]; do
+  echo "Attente de la libération du verrou dpkg... (${timeout}s restantes)"
+  sleep 2
+  timeout=$((timeout - 2))
+done
 
-# Mise à jour APT et installation des packages nécessaires pour ce script
+if [ $timeout -le 0 ]; then
+  echo "ATTENTION: Timeout dépassé, tentative d'installation malgré le verrou"
+fi
+
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lsb-release curl build-essential
+
+# Attendre que les verrous apt soient libérés avant le script NodeSource
+sleep 2
 
 # Vérification du système
 arch=`arch`;
@@ -233,9 +241,6 @@ else
   fi
 fi
 fi
-
-# on nettoie la priorité nodesource
-[[ -f /etc/apt/preferences.d/nodesource ]] && sudo rm -f /etc/apt/preferences.d/nodesource &>/dev/null || true
 
 # on remet deb-multimedia si on l'a désactivé avant
 if [ -f /etc/apt/sources.list.d/deb-multimedia.list.disabled ]; then
