@@ -3845,6 +3845,8 @@
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché": "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché",
         "Exemple": "Exemple",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande": "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande",
+        "Notez qu'en utilisant la syntaxe": "Notez qu'en utilisant la syntaxe",
+        "en cas de modification de nom de votre objet, équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code": "en cas de modification de nom de votre objet, équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario": "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario",
         "Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser": "Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser",
         "double": "double",
