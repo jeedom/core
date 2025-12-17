@@ -297,7 +297,7 @@ Una etiqueta se reemplaza durante la ejecución del escenario por su valor. Pued
   - ``user`` si se inició manualmente,
   - ``start`` para un lanzamiento al inicio de Jeedom.
 - ``#trigger_id#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor de la identificación del comando que lo desencadenó. Ejemplo : ``#trigger_id# == 19``
-- ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando]). Ejemplo : ``#trigger_name# == '[cuisine][lumiere][etat]'``.  : ``#trigger_name# == '[cuisine][lumiere][etat]'``, .
+- ``#trigger_name#`` : Si es un comando el que desencadenó el escenario, entonces esta etiqueta tiene el valor del nombre del comando (en el formato [objeto][equipo][comando]). Ejemplo : ``#trigger_name# == '[cuisine][lumiere][etat]'``. Notez qu'en utilisant la syntaxe : ``#trigger_name# == '[cuisine][lumiere][etat]'``, en cas de modification de nom de votre objet, équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code.
 - ``#trigger_value#`` : Si es un comando que desencadenó el escenario, entonces esta etiqueta tiene el valor del comando que desencadenó el escenario. Consejo: si desea conocer el valor actual del comando que desencadenó el escenario (y no su valor en el momento de la activación), puede utilizar : ``##trigger_id##`` (doble #)
 - ``#latitude#`` : Le permite recuperar la información de latitud ingresada en la configuración de jeedom
 - ``#longitude#`` : Le permite recuperar la información de longitud ingresada en la configuración de jeedom
