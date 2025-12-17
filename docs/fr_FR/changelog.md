@@ -1,5 +1,8 @@
 # Changelog Jeedom V4.5
 
+# 4.5.2
+
+
 # 4.5.1
 
 - Le déclencheur de scénarios `#user_connect#` inclut dorénavant le tag `#trigger_value#` qui renseigne le nom de l'utilisateur venant de se connecter ([Détails](https://github.com/jeedom/core/pull/3109))
