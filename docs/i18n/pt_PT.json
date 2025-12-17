@@ -6884,6 +6884,8 @@
         "pour un lancement au démarrage de Jeedom": "para um lançamento na inicialização do Jeedom",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché": "Se for um comando que desencadeou o cenário então esta tag tem o valor do id do comando que o desencadeou",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande": "Se for um comando que disparou o cenário então esta tag terá o valor do nome do comando (na forma [objeto][equipamento][comando",
+        "Notez qu'en utilisant la syntaxe": "",
+        "en cas de modification de nom de votre objet, équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code": "",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario": "Se for um comando que acionou o cenário então esta tag terá o valor do comando que acionou o cenário",
         "Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser": "Dica se você quiser o valor atual do comando que disparou o cenário (e não seu valor no disparo), você pode usar",
         "Permet de récuperer l'information de latitude mise dans la configuration de jeedom": "Permite recuperar as informações de latitude colocadas na configuração do jeedom",
