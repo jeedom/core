@@ -396,7 +396,7 @@ echo "[END UPDATE SUCCESS]\n";
 
 function incrementVersion($_version) {
 	$version = explode('.', $_version);
-	if ($version[2] < 100) {
+	if (isset($version[2]) && $version[2] < 100) {
 		$version[2]++;
 	} else {
 		if ($version[1] < 100) {
