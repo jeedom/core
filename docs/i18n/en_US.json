@@ -6884,6 +6884,8 @@
         "pour un lancement au démarrage de Jeedom": "for a launch at startup of Jeedom",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de l'id de la commande qui l'a déclenché": "If it is a command which triggered the scenario then this tag has the value of the id of the command which triggered it",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur du nom de la commande (sous forme [objet][equipement][commande": "If it is a command which triggered the scenario then this tag has the value of the name of the command (in the form [object][equipment][command",
+        "Notez qu'en utilisant la syntaxe": "",
+        "en cas de modification de nom de votre objet, équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code": "",
         "Si c'est une commande qui a déclenché le scénario alors ce tag à la valeur de la commande ayant déclenché le scénario": "If it is a command which triggered the scenario then this tag has the value of the command which triggered the scenario",
         "Astuce si vous voulez la valeur courante de la commande qui a déclencher le scénario (et non sa valeur au déclenchement) vous pouvez utiliser": "Tip if you want the current value of the command which triggered the scenario (and not its value at triggering) you can use",
         "Permet de récuperer l'information de latitude mise dans la configuration de jeedom": "Allows you to retrieve the latitude information put in the jeedom configuration",
