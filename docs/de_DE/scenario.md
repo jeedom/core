@@ -297,7 +297,7 @@ Ein Tag wird während der Ausführung des Szenarios durch seinen Wert ersetzt. S
   - ``user`` wenn es manuell gestartet wurde,
   - ``start`` für einen Start beim Start von Jeedom.
 - ``#trigger_id#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert der ID des Befehls, der es ausgelöst hat. Beispiel : ``#trigger_id# == 19``
-- ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl]). Beispiel : ``#trigger_name# == '[cuisine][lumiere][etat]'``.  : ``#trigger_name# == '[cuisine][lumiere][etat]'``, .
+- ``#trigger_name#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Namens des Befehls (in der Form [Objekt][Ausrüstung][Befehl]). Beispiel : ``#trigger_name# == '[cuisine][lumiere][etat]'``. Notez qu'en utilisant la syntaxe : ``#trigger_name# == '[cuisine][lumiere][etat]'``, en cas de modification de nom de votre objet, équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code.
 - ``#trigger_value#`` : Wenn es sich um einen Befehl handelt, der das Szenario ausgelöst hat, hat dieses Tag den Wert des Befehls, der das Szenario ausgelöst hat. Tipp: Wenn Sie den aktuellen Wert des Befehls möchten, der das Szenario ausgelöst hat (und nicht seinen Wert zum Zeitpunkt der Auslösung), können Sie diesen verwenden : ``##trigger_id##`` (doppelt #)
 - ``#latitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Breitengradinformationen abzurufen
 - ``#longitude#`` : Ermöglicht Ihnen, die in der Jeedom-Konfiguration eingegebenen Längengradinformationen abzurufen
