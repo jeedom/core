@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 export DEBIAN_FRONTEND=noninteractive
 
 VERSION=3.2.0
