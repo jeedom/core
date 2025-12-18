@@ -26,6 +26,36 @@ Pour améliorer la compatibilité et éviter les invites interactives lors des i
 - `core/ajax/jeedom.ajax.php` : Installation de paquets via l'interface web
 - `desktop/php/system.php` : Commandes système pour réparation/maintenance
 
+### Améliorations de l'interaction terminal (install.sh)
+
+Pour éviter "l'effet escalier" dans le terminal lors de l'installation (lignes qui ne reviennent pas au début), plusieurs optimisations ont été apportées :
+
+**Variables d'environnement globales** :
+```bash
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=l
+```
+
+- `DEBIAN_FRONTEND=noninteractive` : force apt/dpkg à ne pas interagir avec le terminal
+- `NEEDRESTART_MODE=l` : mode "list" de needrestart - liste les services à redémarrer sans les redémarrer automatiquement (cohérent avec le message final "Reboot required")
+
+**Redirection stdin depuis /dev/null** :
+Toutes les commandes apt-get utilisent maintenant `</dev/null` pour empêcher les programmes d'interagir avec le terminal :
+
+```bash
+# Exemples
+apt-get update </dev/null
+apt-get -y dist-upgrade </dev/null
+apt-get install packages </dev/null
+```
+
+**Avantages** :
+- ✅ Empêche apt-get/dpkg de modifier les paramètres du terminal (conversion \r/\n)
+- ✅ Élimine l'effet escalier (lignes décalées sans retour chariot)
+- ✅ Affichage propre et lisible tout au long de l'installation
+- ✅ Pas de redémarrages partiels pendant l'installation (reboot complet à la fin)
+- ✅ Solution plus propre que `stty sane` (prévention plutôt que correction)
+
 ### Packages système mis à jour
 
 #### Packages remplacés
