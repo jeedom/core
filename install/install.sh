@@ -132,7 +132,7 @@ step_6_jeedom_download() {
   echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
   echo "${YELLOW}Repository: ${GITHUB_REPO}${NORMAL}"
   echo "${YELLOW}Branch: ${VERSION}${NORMAL}"
-  wget https://codeload.github.com/${GITHUB_REPO}/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
+  wget --tries=3 --timeout=60 https://codeload.github.com/${GITHUB_REPO}/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip 2>&1
 
   if [ $? -ne 0 ]; then
     echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
