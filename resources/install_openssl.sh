@@ -6,7 +6,7 @@ VERSION=3.2.0
 apt-get update </dev/null
 apt-get install -y build-essential checkinstall zlib1g-dev </dev/null
 cd /usr/local/src
-wget --tries=3 --timeout=60 https://www.openssl.org/source/openssl-${VERSION}.tar.gz 2>&1
+wget -o /dev/stdout --tries=3 --timeout=60 https://www.openssl.org/source/openssl-${VERSION}.tar.gz
 tar -xf openssl-${VERSION}.tar.gz
 cd openssl-${VERSION}/
 ./config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib
