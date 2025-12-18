@@ -70,8 +70,10 @@ step_2_mainpackage() {
   apt_install ffmpeg
   apt_install espeak-ng
   apt_install net-tools nmap usbutils gettext librsync-dev iputils-ping
-  apt-get -y install chromium
-  apt-get -y remove brltty
+  
+  # Packages optionnels
+  apt-get -y install chromium > /dev/null 2>&1 || echo "${YELLOW}[Optional] chromium not available (used for reports)${NORMAL}"
+  apt-get -y remove brltty > /dev/null 2>&1 || echo "${YELLOW}[Optional] brltty not present (cleanup)${NORMAL}"
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
@@ -111,10 +113,12 @@ step_5_php() {
   apt_install php-curl php-gd php-xml php-opcache
   apt_install php-soap php-xmlrpc php-common php-dev
   apt_install php-zip php-ssh2 php-mbstring
-  apt-get -y install php-imap
-  apt-get -y install php-ldap
-  apt-get -y install php-yaml
-  apt-get -y install php-snmp
+  
+  # Packages PHP optionnels (peuvent ne pas être disponibles sur toutes les versions Debian)
+  apt-get -y install php-imap > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)${NORMAL}"
+  apt-get -y install php-ldap > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-ldap not available${NORMAL}"
+  apt-get -y install php-yaml > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-yaml not available${NORMAL}"
+  apt-get -y install php-snmp > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-snmp not available${NORMAL}"
   echo "${GREEN}Step 5 - php done${NORMAL}"
 }
 
