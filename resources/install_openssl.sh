@@ -1,6 +1,8 @@
+export DEBIAN_FRONTEND=noninteractive
+
 VERSION=3.2.0
-apt update
-apt install -y build-essential checkinstall zlib1g-dev
+apt-get update </dev/null
+apt-get install -y build-essential checkinstall zlib1g-dev </dev/null
 cd /usr/local/src
 wget https://www.openssl.org/source/openssl-${VERSION}.tar.gz
 tar -xf openssl-${VERSION}.tar.gz
