@@ -147,7 +147,7 @@ try {
 		$cron = new cron();
 		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
 	}
-	if(config::byKey('service::backup::enable')){
+	if(config::byKey('market::cloudUpload', 0) == 1){
 		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
 	}
 	$cron->setClass('jeedom');
