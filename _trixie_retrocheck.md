@@ -44,6 +44,8 @@ Les modifications apportées pour supporter Debian 13 (Trixie) ont été conçue
 - ✅ `apt-get` version 2.2.4 - 100% fonctionnel
 - ✅ `DEBIAN_FRONTEND=noninteractive` - Supporté depuis toujours
 - ✅ Options `--force-confdef/confold` - Supportées depuis dpkg 1.15+
+- ✅ `NEEDRESTART_MODE=l` - needrestart 3.5+ disponible
+- ✅ Redirection `</dev/null` - supportée nativement
 
 **Debian 12 (Bookworm)** :
 - ✅ `apt-get` version 2.6+ - Améliorations mineures, totalement compatible
@@ -64,6 +66,32 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-
 ```
 
 **Conclusion** : ✅ **Migration totalement rétrocompatible, aucun risque**
+
+#### Améliorations supplémentaires : Interaction terminal (install.sh)
+
+Pour corriger "l'effet escalier" (lignes sans retour chariot) pendant l'installation :
+
+**Variables d'environnement** :
+```bash
+export DEBIAN_FRONTEND=noninteractive  # Pas d'interaction avec le terminal
+export NEEDRESTART_MODE=l              # Liste services sans les redémarrer
+```
+
+**Redirection stdin** : Toutes les commandes apt-get utilisent `</dev/null`
+```bash
+apt-get update </dev/null
+apt-get install package </dev/null
+```
+
+**Compatibilité** :
+- ✅ **Debian 11+** : Redirection stdin supportée depuis toujours
+- ✅ **NEEDRESTART_MODE** : Disponible depuis needrestart 1.0+ (Debian 8+)
+- ✅ **Améliore l'affichage** sur toutes les versions sans régression
+
+**Avantages** :
+- Affichage propre et lisible pendant l'installation
+- Pas de modifications intempestives des paramètres du terminal
+- Redémarrage complet à la fin plutôt que partiels pendant l'installation
 
 ### 2. ✅ Compatibilité des Packages Système
 
