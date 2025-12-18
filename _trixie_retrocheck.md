@@ -12,11 +12,60 @@
 
 Les modifications apportées pour supporter Debian 13 (Trixie) ont été conçues avec une logique de compatibilité descendante. Aucune régression n'a été identifiée qui pourrait affecter les installations sur Debian 11 ou 12.
 
+### 🆕 Changement récent : APT → APT-GET (commit dc668b780)
+
+**Migration de `apt` vers `apt-get`** dans tous les scripts d'installation et de maintenance :
+
+**Raisons** :
+- ✅ **Plus stable** : `apt-get` a un comportement prévisible pour les scripts automatisés
+- ✅ **Non-interactif** : Utilisation de `DEBIAN_FRONTEND=noninteractive` pour éviter les dialogues
+- ✅ **Gestion des conflits** : Options `--force-confdef` et `--force-confold` pour résoudre automatiquement les conflits de configuration
+
+**Impact sur compatibilité** : ✅ **AUCUN** - `apt-get` existe depuis Debian 6+ (2011) et est **100% rétrocompatible**
+
 ---
 
 ## 📊 ANALYSE DÉTAILLÉE
 
-### 1. ✅ Compatibilité des Packages Système
+### 1. ✅ Migration APT → APT-GET (COMMIT RÉCENT)
+
+#### Changements effectués
+
+| Ancienne commande | Nouvelle commande | Compatibilité |
+|-------------------|-------------------|---------------|
+| `apt update` | `apt-get update` | ✅ Debian 6+ (2011) |
+| `apt upgrade` | `DEBIAN_FRONTEND=noninteractive apt-get upgrade -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y` | ✅ Debian 6+ |
+| `apt install` | `DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y` | ✅ Debian 6+ |
+| `dpkg --configure -a` | `DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confdef --force-confold` | ✅ Debian 6+ |
+
+#### Avantages pour Debian 11/12/13
+
+**Debian 11 (Bullseye)** :
+- ✅ `apt-get` version 2.2.4 - 100% fonctionnel
+- ✅ `DEBIAN_FRONTEND=noninteractive` - Supporté depuis toujours
+- ✅ Options `--force-confdef/confold` - Supportées depuis dpkg 1.15+
+
+**Debian 12 (Bookworm)** :
+- ✅ `apt-get` version 2.6+ - Améliorations mineures, totalement compatible
+- ✅ Toutes les options supportées
+
+**Debian 13 (Trixie)** :
+- ✅ `apt-get` version 2.9+ - Nouvelles optimisations
+- ✅ Résout les problèmes d'invites interactives avec les nouveaux paquets
+
+#### Cas d'usage
+
+```bash
+# AVANT (problématique en automatique)
+sudo apt install package  # Peut demander confirmation utilisateur
+
+# APRÈS (automatisé)
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y package
+```
+
+**Conclusion** : ✅ **Migration totalement rétrocompatible, aucun risque**
+
+### 2. ✅ Compatibilité des Packages Système
 
 #### Packages avec gestion conditionnelle (CORRECT)
 
@@ -48,7 +97,7 @@ Ces packages ont été retirés car obsolètes ou non-disponibles, mais ne cause
 
 ---
 
-### 2. ✅ Migration PHP-FPM (RÉTROCOMPATIBLE)
+### 3. ✅ Migration PHP-FPM (RÉTROCOMPATIBLE)
 
 #### Analyse du code
 
@@ -84,7 +133,7 @@ a2dismod php* > /dev/null 2>&1  # Le '> /dev/null 2>&1' masque les erreurs
 
 ---
 
-### 3. ✅ Détection de Version Debian (ROBUSTE)
+### 4. ✅ Détection de Version Debian (ROBUSTE)
 
 #### Code de détection (system.class.php lignes 887-925)
 

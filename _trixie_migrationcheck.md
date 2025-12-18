@@ -4,6 +4,28 @@ Ce document récapitule les modifications apportées pour rendre Jeedom compatib
 
 ## 📋 Résumé des modifications
 
+### Commandes APT → APT-GET
+
+Pour améliorer la compatibilité et éviter les invites interactives lors des installations automatiques, toutes les commandes `apt` ont été remplacées par `apt-get` avec les options suivantes :
+
+**Modifications principales** :
+- `apt update` → `apt-get update`
+- `apt upgrade` → `DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade`
+- `apt install` → `DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y`
+- `apt -f install` → `DEBIAN_FRONTEND=noninteractive apt-get -f install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"`
+- `dpkg --configure -a` → `DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confdef --force-confold`
+
+**Raisons du changement** :
+- `apt-get` est plus stable pour les scripts automatisés (comportement prévisible)
+- `DEBIAN_FRONTEND=noninteractive` évite toutes les invites interactives
+- `--force-confdef` : utilise la valeur par défaut pour les nouvelles options de configuration
+- `--force-confold` : conserve les fichiers de configuration existants en cas de conflit
+
+**Fichiers modifiés** :
+- `core/class/system.class.php` : Toutes les fonctions d'installation et mise à jour de paquets
+- `core/ajax/jeedom.ajax.php` : Installation de paquets via l'interface web
+- `desktop/php/system.php` : Commandes système pour réparation/maintenance
+
 ### Packages système mis à jour
 
 #### Packages remplacés
