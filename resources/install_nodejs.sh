@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 installVer='22' 	#NodeJS major version to be installed
 minVer='22'	      #min NodeJS major version to be accepted
 
@@ -47,8 +49,8 @@ if [ $timeout -le 0 ]; then
   echo "ATTENTION: Timeout dépassé, tentative d'installation malgré le verrou"
 fi
 
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lsb-release curl build-essential
+sudo apt-get update </dev/null
+sudo apt-get install -y lsb-release curl build-essential </dev/null
 
 # Attendre que les verrous apt soient libérés avant le script NodeSource
 sleep 2
@@ -117,7 +119,7 @@ else
   if dpkg -l nodejs 2>/dev/null | grep -q '^ii'; then
     if ! apt-cache policy nodejs 2>/dev/null | grep -q 'deb.nodesource.com'; then
       echo "NodeJS détecté depuis les dépôts Debian officiels, désinstallation nécessaire"
-      sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove nodejs npm &>/dev/null
+      sudo apt-get -y --purge autoremove nodejs npm </dev/null &>/dev/null
     else
       echo "NodeJS détecté depuis NodeSource, mise à jour en place"
     fi
@@ -155,7 +157,7 @@ else
     NODE_MAJOR=$installVer
     # Méthode officielle NodeSource : https://github.com/nodesource/distributions
     curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | sudo -E bash -
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+    sudo apt-get install -y nodejs </dev/null
   fi
 
   # Suppression du paramètre npm obsolète globalignorefile (npm v9+)
@@ -179,7 +181,7 @@ fi
 type npm &>/dev/null
 if [ $? -ne 0 ]; then
   # Installation de npm car non présent (par sécu)
-  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y npm
+  sudo apt-get install -y npm </dev/null
   sudo npm install -g npm
 fi
 

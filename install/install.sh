@@ -120,10 +120,10 @@ step_5_php() {
   apt_install php-zip php-ssh2 php-mbstring
   
   # Packages PHP optionnels (peuvent ne pas être disponibles sur toutes les versions Debian)
-  apt-get -y install php-imap > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)${NORMAL}"
-  apt-get -y install php-ldap > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-ldap not available${NORMAL}"
-  apt-get -y install php-yaml > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-yaml not available${NORMAL}"
-  apt-get -y install php-snmp > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-snmp not available${NORMAL}"
+  apt-get -y install php-imap </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)${NORMAL}"
+  apt-get -y install php-ldap </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-ldap not available${NORMAL}"
+  apt-get -y install php-yaml </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-yaml not available${NORMAL}"
+  apt-get -y install php-snmp </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-snmp not available${NORMAL}"
   echo "${GREEN}Step 5 - php done${NORMAL}"
 }
 
