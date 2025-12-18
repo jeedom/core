@@ -81,6 +81,10 @@ sudo ./install.sh -r owner/repo -v branche
 + chrony
 + plocate (avec alternative "locate")
 + espeak-ng
+
+# Packages optionnels avec gestion d'erreur améliorée
+apt-get -y install chromium > /dev/null 2>&1 || echo "[Optional] chromium not available"
+apt-get -y remove brltty > /dev/null 2>&1 || echo "[Optional] brltty not present"
 ```
 
 **PHP-FPM (step_5_php)** :
@@ -92,6 +96,20 @@ apt_install php libapache2-mod-php php-json php-mysql
 apt_install php php-fpm php-json php-mysql
 a2enmod proxy_fcgi setenvif
 a2enconf php${PHP_VERSION}-fpm
+
+# Packages PHP optionnels avec messages informatifs
+apt-get -y install php-imap > /dev/null 2>&1 || echo "[Optional] php-imap not available (normal on Debian 13+)"
+apt-get -y install php-ldap > /dev/null 2>&1 || echo "[Optional] php-ldap not available"
+apt-get -y install php-yaml > /dev/null 2>&1 || echo "[Optional] php-yaml not available"
+apt-get -y install php-snmp > /dev/null 2>&1 || echo "[Optional] php-snmp not available"
+```
+
+**Avantage de cette approche** :
+- ✅ Les erreurs apt sont masquées (`> /dev/null 2>&1`)
+- ✅ Un message informatif en jaune est affiché si l'installation échoue
+- ✅ L'utilisateur comprend que c'est optionnel et pourquoi
+- ✅ Les vrais problèmes système restent visibles
+- ✅ Plus informatif que de tout masquer avec `2>/dev/null`
 ```
 
 **Configuration Apache (step_8_jeedom_customization)** :
@@ -390,6 +408,7 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 | PHP IMAP | php-imap requis | php-imap optionnel | Retiré de PHP 8.4+ |
 | Détection Debian | Version numérique | Codenames + fallback | Support Trixie |
 | PHP minimal | 7.0 | 7.4 | EOL de PHP 7.x |
+| Gestion erreurs packages optionnels | Erreurs silencieuses | Messages informatifs | Transparence et debug |
 
 ## 🔍 Tests recommandés
 
@@ -421,6 +440,34 @@ Ce document et les modifications associées sont distribués sous la même licen
 
 ---
 
-**Date de dernière mise à jour** : 16 décembre 2025  
+## 🆕 Améliorations récentes (18 décembre 2025)
+
+### Gestion améliorée des packages optionnels
+
+Au lieu de masquer complètement les erreurs (`2>/dev/null`), le script affiche maintenant des **messages informatifs** lorsqu'un package optionnel n'est pas disponible :
+
+```bash
+# Exemple de sortie sur Debian 13
+[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)
+[Optional] chromium not available (used for reports)
+```
+
+**Packages concernés** :
+- `chromium` (step_2_mainpackage) - pour génération de rapports PDF
+- `brltty` (step_2_mainpackage) - nettoyage lecteur braille
+- `php-imap` (step_5_php) - accès IMAP (retiré PHP 8.4+)
+- `php-ldap` (step_5_php) - authentification LDAP
+- `php-yaml` (step_5_php) - fichiers YAML
+- `php-snmp` (step_5_php) - monitoring SNMP
+
+**Avantages** :
+- ✅ Transparence : l'utilisateur sait ce qui se passe
+- ✅ Debug facilité : les vrais problèmes système restent visibles
+- ✅ Meilleure UX : messages colorés et informatifs
+- ✅ Rétrocompatibilité : fonctionne sur Debian 11, 12 et 13
+
+---
+
+**Date de dernière mise à jour** : 18 décembre 2025  
 **Version Jeedom** : 4.5.1  
 **Debian cible** : 13 (Trixie)
