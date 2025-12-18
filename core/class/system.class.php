@@ -205,7 +205,7 @@ class system {
 		switch ($_type) {
 			case 'apt':
 				if ($_forceRefresh) {
-					shell_exec(system::getCmdSudo() . ' apt update 2>/dev/null');
+					shell_exec(system::getCmdSudo() . ' apt-get update 2>/dev/null');
 				}
 				$lines = explode("\n", shell_exec(system::getCmdSudo() . ' apt list --upgradable 2>/dev/null'));
 				foreach ($lines as $line) {
@@ -270,8 +270,8 @@ class system {
 		switch ($_type) {
 			case 'apt':
 				if ($_package == null) {
-					$cmd .= system::getCmdSudo() . " apt update\n";
-					$cmd .= system::getCmdSudo() . ' apt -o Dpkg::Options::="--force-confdef" -y upgrade' . "\n";
+					$cmd .= system::getCmdSudo() . " apt-get update\n";
+					$cmd .= system::getCmdSudo() . ' DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade' . "\n";
 				} else {
 					$cmd .= self::installPackage($_type, $_package);
 				}
@@ -645,15 +645,15 @@ class system {
 							echo shell_exec(self::getCmdSudo() . " rm /var/lib/apt/lists/lock 2>&1");
 							echo shell_exec(self::getCmdSudo() . " rm /var/cache/apt/archives/lock 2>&1");
 							echo shell_exec(self::getCmdSudo() . " rm /var/lib/dpkg/lock* 2>&1");
-							echo shell_exec(self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef 2>&1");
-							echo shell_exec(self::getCmdSudo() . " apt update 2>&1");
+							echo shell_exec(self::getCmdSudo() . " DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confdef 2>&1");
+							echo shell_exec(self::getCmdSudo() . " apt-get update 2>&1");
 						} else {
 							$cmd .= self::getCmdSudo() . " killall apt apt-get unattended-upgr\n";
 							$cmd .= self::getCmdSudo() . " rm /var/lib/apt/lists/lock\n";
 							$cmd .= self::getCmdSudo() . " rm /var/cache/apt/archives/lock\n";
 							$cmd .= self::getCmdSudo() . " rm /var/lib/dpkg/lock*\n";
-							$cmd .= self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef\n";
-							$cmd .= self::getCmdSudo() . " apt update\n";
+							$cmd .= self::getCmdSudo() . " DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confdef\n";
+							$cmd .= self::getCmdSudo() . " apt-get update\n";
 							$count++;
 							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 						}
@@ -679,11 +679,11 @@ class system {
 							}
 						} else {
 							if ($_foreground) {
-								echo shell_exec(self::getCmdSudo() . ' apt update;' . self::getCmdSudo() . ' apt-get install -y python3 python3-pip python3-dev python3-venv');
+								echo shell_exec(self::getCmdSudo() . ' apt-get update;' . self::getCmdSudo() . ' apt-get install -y python3 python3-pip python3-dev python3-venv');
 								echo shell_exec(self::getCmdSudo() . ' python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin));
 								echo shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --upgrade pip wheel');
 							} else {
-								$cmd .= self::getCmdSudo() . " apt update;\n" . self::getCmdSudo() . " apt-get install -y python3 python3-pip python3-dev python3-venv\n";
+								$cmd .= self::getCmdSudo() . " apt-get update;\n" . self::getCmdSudo() . " apt-get install -y python3 python3-pip python3-dev python3-venv\n";
 								$count++;
 								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 								$cmd .= self::getCmdSudo() . 'python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin) . "\n";
@@ -831,7 +831,7 @@ class system {
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
 				}
-				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
+				return self::getCmdSudo() . ' DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y ' . $_package;
 			case 'pip2':
 				if (version_compare(self::getOsVersion(), '11', '>=')) {
 					return '';
