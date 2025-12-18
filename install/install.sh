@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
+
+# Configurer l'environnement pour éviter l'effet escalier
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=l
+
 GREEN="\\033[1;32m"
 NORMAL="\\033[0;39m"
 RED="\\033[1;31m"
@@ -11,7 +16,7 @@ if [ $(id -u) != 0 ] ; then
 fi
 
 apt_install() {
-  apt-get -o Dpkg::Options::="--force-confdef" -y install "$@"
+  apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y install "$@" </dev/null
   if [ $? -ne 0 ]; then
     echo "${RED}Cannot install $@ - Cancelling${NORMAL}"
     exit 1
@@ -52,16 +57,16 @@ step_1_upgrade() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 1 - install${NORMAL}"
 
-  apt-get update
-  apt-get -f install
-  apt-get -y dist-upgrade
+  apt-get update </dev/null
+  apt-get -f install </dev/null
+  apt-get -y dist-upgrade </dev/null
   echo "${GREEN} Step 1 - Install done ${NORMAL}"
 }
 
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
-  apt-get update
+  apt-get update </dev/null
   apt_install chrony ca-certificates unzip curl sudo cron plocate tar wget logrotate htop iotop vim iftop smbclient
   apt_install git python3 python3-pip
   apt_install libexpat1 ssl-cert
@@ -72,8 +77,8 @@ step_2_mainpackage() {
   apt_install net-tools nmap usbutils gettext librsync-dev iputils-ping
   
   # Packages optionnels
-  apt-get -y install chromium > /dev/null 2>&1 || echo "${YELLOW}[Optional] chromium not available (used for reports)${NORMAL}"
-  apt-get -y remove brltty > /dev/null 2>&1 || echo "${YELLOW}[Optional] brltty not present (cleanup)${NORMAL}"
+  apt-get -y install chromium </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] chromium not available (used for reports)${NORMAL}"
+  apt-get -y remove brltty </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] brltty not present (cleanup)${NORMAL}"
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
