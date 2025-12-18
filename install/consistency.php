@@ -145,13 +145,16 @@ try {
 	if (!is_object($cron)) {
 		echo "Create jeedom::backup\n";
 		$cron = new cron();
+		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
+	}
+	if(config::byKey('service::backup::enable')){
+		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
 	}
 	$cron->setClass('jeedom');
 	$cron->setFunction('backup');
 	$cron->setEnable(1);
 	$cron->setDeamon(0);
 	$cron->setTimeout(60);
-	$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
 	$cron->save();
 
 	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
