@@ -47,3 +47,5 @@ tmp/*
 .env
 .phpstan.cache
 phpstan.phar
+
+.phpunit.result.cache

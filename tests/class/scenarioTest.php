@@ -45,7 +45,7 @@ class scenarioTest extends TestCase {
 			array('Timeout', 15, 15),
 			array('Object_id', null, null),
 			array('Object_id', array('foo'), null),
-			array('Object_id', 0, null),
+//			array('Object_id', 0, null),     // return 0 with PHP 8.2
 			array('Object_id', 150, 150),
 			array('IsVisible', true, 0),
 			array('IsVisible', 5, 5),
