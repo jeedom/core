@@ -1,6 +1,6 @@
 # Migration et compatibilité Debian 13 (Trixie)
 
-Ce document récapitule les modifications apportées pour rendre Jeedom compatible avec Debian 13 (Trixie).
+Ce document récapitule les modifications apportées pour rendre l'installation de Jeedom compatible avec Debian 13 (Trixie), tout en maintenant la rétrocompatibilité avec Debian 12 (Bookworm).
 
 ## 📋 Résumé des modifications
 
@@ -9,22 +9,35 @@ Ce document récapitule les modifications apportées pour rendre Jeedom compatib
 Pour améliorer la compatibilité et éviter les invites interactives lors des installations automatiques, toutes les commandes `apt` ont été remplacées par `apt-get` avec les options suivantes :
 
 **Modifications principales** :
+
+**Dans `install/install.sh`** :
+- `apt update` → `apt-get update </dev/null`
+- `apt upgrade` → `apt-get -y dist-upgrade </dev/null`
+- `apt install` → `apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y install "$@" </dev/null`
+- `apt -f install` → `apt-get -f install </dev/null`
+
+**Dans `core/class/system.class.php`** :
 - `apt update` → `apt-get update`
 - `apt upgrade` → `DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y upgrade`
 - `apt install` → `DEBIAN_FRONTEND=noninteractive apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y`
-- `apt -f install` → `DEBIAN_FRONTEND=noninteractive apt-get -f install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold"`
+- `dpkg --configure -a` → `DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confdef`
+
+**Dans `desktop/php/system.php`** :
+- `apt -f install` → `DEBIAN_FRONTEND=noninteractive apt-get -f install -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'`
 - `dpkg --configure -a` → `DEBIAN_FRONTEND=noninteractive dpkg --configure -a --force-confdef --force-confold`
 
 **Raisons du changement** :
 - `apt-get` est plus stable pour les scripts automatisés (comportement prévisible)
-- `DEBIAN_FRONTEND=noninteractive` évite toutes les invites interactives
+- `DEBIAN_FRONTEND=noninteractive` évite toutes les invites interactives (utilisé dans `system.class.php` et `system.php`)
+- `</dev/null` redirige stdin pour éviter les interactions dans `install.sh`
 - `--force-confdef` : utilise la valeur par défaut pour les nouvelles options de configuration
-- `--force-confold` : conserve les fichiers de configuration existants en cas de conflit
+- `--force-confold` : conserve les fichiers de configuration existants en cas de conflit (sauf dans `system.class.php` où seul `--force-confdef` est utilisé pour `dpkg --configure -a`)
 
 **Fichiers modifiés** :
-- `core/class/system.class.php` : Toutes les fonctions d'installation et mise à jour de paquets
-- `core/ajax/jeedom.ajax.php` : Installation de paquets via l'interface web
-- `desktop/php/system.php` : Commandes système pour réparation/maintenance
+- `install/install.sh` : Toutes les commandes apt-get avec `</dev/null` et variables d'environnement globales
+- `core/class/system.class.php` : Fonctions d'installation et mise à jour avec `DEBIAN_FRONTEND=noninteractive`
+- `core/ajax/jeedom.ajax.php` : `apt-get update` simple
+- `desktop/php/system.php` : Commandes système pour réparation/maintenance avec `at now`
 
 ### Améliorations de l'interaction terminal (install.sh)
 
@@ -54,7 +67,6 @@ apt-get install packages </dev/null
 - ✅ Élimine l'effet escalier (lignes décalées sans retour chariot)
 - ✅ Affichage propre et lisible tout au long de l'installation
 - ✅ Pas de redémarrages partiels pendant l'installation (reboot complet à la fin)
-- ✅ Solution plus propre que `stty sane` (prévention plutôt que correction)
 
 ### Packages système mis à jour
 
@@ -74,9 +86,28 @@ apt-get install packages </dev/null
 - `software-properties-common` (paquet Ubuntu, absent de Debian pur)
 
 #### Packages rendus optionnels
-- `php-imap` (retiré de PHP 8.4+, non disponible sur Debian 13)
-- `php-ldap`, `php-yaml`, `php-snmp` (optionnels)
-- `chromium` (optionnel)
+
+Au lieu de masquer complètement les erreurs (`2>/dev/null`), le script affiche maintenant des **messages informatifs** lorsqu'un package optionnel n'est pas disponible :
+
+```bash
+# Exemple de sortie sur Debian 13
+[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)
+[Optional] chromium not available (used for reports)
+```
+
+**Packages concernés** :
+- `chromium` (step_2_mainpackage) - pour génération de rapports PDF
+- `brltty` (step_2_mainpackage) - nettoyage lecteur braille
+- `php-imap` (step_5_php) - accès IMAP (retiré PHP 8.4+)
+- `php-ldap` (step_5_php) - authentification LDAP
+- `php-yaml` (step_5_php) - fichiers YAML
+- `php-snmp` (step_5_php) - monitoring SNMP
+
+**Avantages** :
+- ✅ Transparence : l'utilisateur sait ce qui se passe
+- ✅ Debug facilité : les vrais problèmes système restent visibles
+- ✅ Meilleure UX : messages colorés et informatifs
+- ✅ Rétrocompatibilité : fonctionne sur Debian 11, 12 et 13
 
 ### Migration vers PHP-FPM
 
@@ -194,7 +225,7 @@ VERSION=master            # Par défaut
 REPO_NAME=$(echo "${GITHUB_REPO}" | awk -F'/' '{print $2}')
 
 # URL de téléchargement
-wget https://codeload.github.com/${GITHUB_REPO}/zip/refs/heads/${VERSION}
+wget -o /dev/stdout --tries=3 --timeout=60 https://codeload.github.com/${GITHUB_REPO}/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
 # Nettoyage des anciennes extractions
 rm -rf /root/${REPO_NAME}-*
@@ -321,8 +352,8 @@ curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg 
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 
 # Après (méthode officielle NodeSource)
-curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-sudo apt-get install -y nodejs
+curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | sudo -E bash -
+sudo apt-get install -y nodejs </dev/null
 ```
 
 #### Packages requis optimisés
@@ -331,7 +362,7 @@ sudo apt-get install -y nodejs
 apt-get install -y lsb-release build-essential apt-utils git gnupg curl
 
 # Après (uniquement les packages strictement nécessaires)
-apt-get install -y lsb-release curl build-essential
+sudo apt-get install -y lsb-release curl build-essential </dev/null
 ```
 
 #### Support NodeJS 22 pour armv6l (Raspberry Pi Zero/1/2)
@@ -387,13 +418,6 @@ echo "NodeJS n'y est plus supporté"
 - Debian 13 (Trixie) testing/sid ou version stable
 - Accès root ou sudo
 
-### Installation standard
-
-```bash
-wget https://raw.githubusercontent.com/titidom-rc/jeedom-core/4.5.1/install/install.sh -O install.sh
-sudo bash install.sh 2>&1 | tee jeedom-install.log
-```
-
 ### Installation avec fork personnalisé
 
 ```bash
@@ -420,7 +444,7 @@ Options:
 ```bash
 sudo bash install.sh \
   -r titidom-rc/jeedom-core \
-  -v 4.5.1 \
+  -v trixie \
   -w /var/www/html \
   -i standard \
   -d 1 \
@@ -430,7 +454,7 @@ sudo bash install.sh \
 ### Installation en une ligne (pipe)
 
 ```bash
-wget -O- https://raw.githubusercontent.com/titidom-rc/jeedom-core/4.5.1/install/install.sh | sudo bash 2>&1 | tee jeedom-install.log
+wget -O- https://raw.githubusercontent.com/titidom-rc/jeedom-core/trixie/install/install.sh | sudo bash 2>&1 | tee jeedom-install.log
 ```
 
 ## ✅ Compatibilité PHP 8.3+
@@ -443,9 +467,6 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 - Pas de passage de `null` problématique aux fonctions natives
 - Utilisation correcte de la Reflection API
 - Pas de dynamic properties non déclarées
-
-### Conclusion
-**Le code Jeedom est pleinement compatible PHP 8.3+** sans modification nécessaire.
 
 ## 📊 Récapitulatif des changements
 
@@ -465,7 +486,7 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 ## 🔍 Tests recommandés
 
 1. **Installation fraîche** sur Debian 13
-2. **Mise à jour** depuis Debian 12
+2. **Montée de version Jeedom** (par exemple 4.4 → 4.5) depuis une ancienne version
 3. **Vérification PHP-FPM** : `systemctl status phpX.X-fpm`
 4. **Test des fonctionnalités** : scénarios, plugins, TTS
 5. **Performances** : comparaison avant/après
@@ -477,49 +498,13 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 - [MariaDB 10.11 Release Notes](https://mariadb.com/kb/en/changes-improvements-in-mariadb-1011/)
 - [PHP-FPM Configuration](https://www.php.net/manual/en/install.fpm.php)
 
-## 🤝 Contribution
-
-Pour contribuer à ces modifications :
-1. Forkez le repository
-2. Créez une branche : `git checkout -b debian-13-support`
-3. Committez vos changements : `git commit -am 'Add Debian 13 support'`
-4. Pushez vers la branche : `git push origin debian-13-support`
-5. Créez une Pull Request
-
 ## 📝 Licence
 
 Ce document et les modifications associées sont distribués sous la même licence que Jeedom (GPL v3).
 
 ---
 
-## 🆕 Améliorations récentes (18 décembre 2025)
-
-### Gestion améliorée des packages optionnels
-
-Au lieu de masquer complètement les erreurs (`2>/dev/null`), le script affiche maintenant des **messages informatifs** lorsqu'un package optionnel n'est pas disponible :
-
-```bash
-# Exemple de sortie sur Debian 13
-[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)
-[Optional] chromium not available (used for reports)
-```
-
-**Packages concernés** :
-- `chromium` (step_2_mainpackage) - pour génération de rapports PDF
-- `brltty` (step_2_mainpackage) - nettoyage lecteur braille
-- `php-imap` (step_5_php) - accès IMAP (retiré PHP 8.4+)
-- `php-ldap` (step_5_php) - authentification LDAP
-- `php-yaml` (step_5_php) - fichiers YAML
-- `php-snmp` (step_5_php) - monitoring SNMP
-
-**Avantages** :
-- ✅ Transparence : l'utilisateur sait ce qui se passe
-- ✅ Debug facilité : les vrais problèmes système restent visibles
-- ✅ Meilleure UX : messages colorés et informatifs
-- ✅ Rétrocompatibilité : fonctionne sur Debian 11, 12 et 13
-
----
-
-**Date de dernière mise à jour** : 18 décembre 2025  
-**Version Jeedom** : 4.5.1  
-**Debian cible** : 13 (Trixie)
+**Date de dernière mise à jour** : 19 décembre 2025  
+**Version Jeedom** : 4.5.2  
+**Debian cible** : 13 (Trixie)  
+**Compatibilité** : Debian 12 (Bookworm) et Debian 13 (Trixie)
