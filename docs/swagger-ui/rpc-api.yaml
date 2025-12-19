@@ -1,0 +1,1726 @@
+openapi: 3.0.3
+info:
+  title: Jeedom JSON-RPC API
+  description: |
+    Spécification OpenAPI pour l'API JSON-RPC de Jeedom. [Spécifications Json RPC](http://www.jsonrpc.org/specification)
+    
+    Voici un exemple d’utilisation de l’API. Pour l’exemple ci-dessous j’utilise cette classe php qui permet de simplifier l’utilisation de l’api.
+    
+    **Récupération de la liste des objets :**
+    ```
+    $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+    if($jsonrpc->sendRequest('jeeObject::all', array())){
+        print_r($jsonrpc->getResult());
+    }else{
+        echo $jsonrpc->getError();
+    }
+    ```
+    
+    **Exécution d’une commande** (avec comme option un titre et un message)
+    ```
+    $jsonrpc = new jsonrpcClient('#URL_JEEDOM#/core/api/jeeApi.php', #API_KEY#);
+    if($jsonrpc->sendRequest('cmd::execCmd', array('id' => #cmd_id#, 'options' => array('title' => 'Coucou', 'message' => 'Ca marche')))){
+        echo 'OK';
+    }else{
+        echo $jsonrpc->getError();
+    }
+    ```
+    /!\\ **Attention** : L’utilisation de l’API Jeedom nécessite une clé API valide. Vous pouvez la trouver dans votre interface Jeedom,
+     dans la section "Configuration" > "API". Assurez-vous de remplacer `#URL_JEEDOM#` et `#API_KEY#` par les valeurs appropriées.
+  version: "1.0.0"
+servers:
+  # configurer ici l'URL Jeedom, de la forme URL_JEEDOM/core/api/jeeApi.php
+  - url: http://localhost/core/api/jeeApi.php
+    description: |
+      Serveur Jeedom local
+paths:
+  /:
+    post:
+      summary: Endpoint unique JSON-RPC de Jeedom
+      description: | 
+        Toutes les méthodes JSON-RPC sont envoyées via ce point d'entrée.
+        Il n'y a pas de paramètre dans l'URL mais tous les paramètres sont envoyés via le body
+        de la requête, selon les différents `Shémas` décrit ci-dessous.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: Réponse JSON-RPC
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+
+security:
+  - ApiKeyAuth: []
+
+components:
+  schemas:
+    securitySchemes:
+      ApiKeyAuth:
+        type: apiKey
+        in: header         # json-RPC utilise le body pour l'identification mais ce n'est pas supporté par OpenAPI
+        name: X-API-Key    # ce header est donc inutile
+        description: |
+          Clé API pour authentifier les requêtes. Vous pouvez la trouver dans votre interface Jeedom,
+          dans la section "Configuration" > "API".
+
+    JsonRpcRequest:
+      type: object
+      required:
+        - jsonrpc
+        - method
+        - id
+      properties:
+        jsonrpc:
+          type: string
+          example: "2.0"
+          description: |
+            Une constante indiquant la version de [Spécifications Json RPC](http://www.jsonrpc.org/specification) à utiliser
+        method:
+          type: string
+          description: 'Nom complet de la méthode Jeedom (ex: cmd::execCmd) [divers config event plugin jeeObject summary eqLogic cmd scenario log datastore message interact jeedom update network timeline user]'
+          enum:
+            - ping
+            - version
+            - datetime
+            - config::byKey
+            - config::save
+            - event::changes
+            - plugin::listPlugin
+            - jeeObject::all
+            - jeeObject::full
+            - jeeObject::fullById
+            - jeeObject::byId
+            - jeeObject::fullById
+            - jeeObject::save
+            - summary::global
+            - summary::byId
+            - eqLogic::all
+            - eqLogic::fullById
+            - eqLogic::byId
+            - eqLogic::byType
+            - eqLogic::byObjectId
+            - eqLogic::byTypeAndId
+            - eqLogic::save
+            - cmd::all
+            - cmd::byId
+            - cmd::byEqLogicId
+            - cmd::execCmd
+            - cmd::getStatistique
+            - cmd::getTendance
+            - cmd::getHistory
+            - cmd::save
+            - cmd::event
+            - scenario::all
+            - scenario::byId
+            - scenario::export
+            - scenario::import
+            - scenario::changeState
+            - log::get
+            - log::add
+            - log::list
+            - log::empty
+            - log::remove
+            - datastore::byTypeLinkIdKey
+            - datastore::save
+            - message::all
+            - message::add
+            - message::removeAll
+            - interact::tryToReply
+            - interactQuery::all
+            - jeedom::halt
+            - jeedom::reboot
+            - jeedom::isOk
+            - jeedom::update
+            - jeedom::backup
+            - jeedom::getUsbMapping
+            - plugin::install
+            - plugin::remove
+            - plugin::dependancyInfo
+            - plugin::dependancyInstall
+            - plugin::deamonInfo
+            - plugin::deamonStart
+            - plugin::deamonStop
+            - plugin::deamonChangeAutoMode
+            - update::all
+            - update::checkUpdate
+            - update::update
+            - update::doUpdate
+            - network::restartDns
+            - network::stopDns
+            - network::dnsRun
+            - timeline::all
+            - timeline::listFolder
+            - timeline::byFolder
+            - user::all
+            - user::save
+        params:
+          description: |
+            Utiliser les paramètres correspondant à la méthode sélectionnée,
+            ex: `cmd::execCmd` = `CmdExecCmdParams`
+          oneOf:
+            - $ref: '#/components/schemas/ConfigByKeyParam'
+            - $ref: '#/components/schemas/ConfigSaveParam'
+            - $ref: '#/components/schemas/EventChangesParam'
+            - $ref: '#/components/schemas/PluginListPluginParam'
+            - $ref: '#/components/schemas/PluginInstallParam'
+            - $ref: '#/components/schemas/PluginRemoveParam'
+            - $ref: '#/components/schemas/PluginDependancyInfoParam'
+            - $ref: '#/components/schemas/PluginDependancyInstallParam'
+            - $ref: '#/components/schemas/PluginDeamonInfoParam'
+            - $ref: '#/components/schemas/PluginDeamonStartParam'
+            - $ref: '#/components/schemas/PluginDeamonStopParam'
+            - $ref: '#/components/schemas/PluginDeamonChangeAutoModeParam'
+            - $ref: '#/components/schemas/JeeObjectAllParam'
+            - $ref: '#/components/schemas/JeeObjectFullParam'
+            - $ref: '#/components/schemas/JeeObjectByIdParam'
+            - $ref: '#/components/schemas/JeeObjectFullByIdParam'
+            - $ref: '#/components/schemas/JeeObjectSaveParam'
+            - $ref: '#/components/schemas/SummaryGlobalParam'
+            - $ref: '#/components/schemas/SummaryByIdParam'
+            - $ref: '#/components/schemas/EqLogicAllParam'
+            - $ref: '#/components/schemas/EqLogicFullByIdParam'
+            - $ref: '#/components/schemas/EqLogicByIdParam'
+            - $ref: '#/components/schemas/EqLogicByTypeParam'
+            - $ref: '#/components/schemas/EqLogicByObjectIdParam'
+            - $ref: '#/components/schemas/EqLogicByTypeAndIdParam'
+            - $ref: '#/components/schemas/EqLogicSaveParam'
+            - $ref: '#/components/schemas/CmdExecCmdParam'
+            - $ref: '#/components/schemas/CmdByIdParam'
+            - $ref: '#/components/schemas/CmdByEqLogicIdParam'
+            - $ref: '#/components/schemas/CmdSaveParam'
+            - $ref: '#/components/schemas/CmdGetStatistiqueParam'
+            - $ref: '#/components/schemas/CmdEventParam'
+            - $ref: '#/components/schemas/ScenarioAllParam'
+            - $ref: '#/components/schemas/ScenarioByIdParam'
+            - $ref: '#/components/schemas/ScenarioExportParam'
+            - $ref: '#/components/schemas/ScenarioImportParam'
+            - $ref: '#/components/schemas/ScenarioChangeStateParam'
+            - $ref: '#/components/schemas/LogGetParam'
+            - $ref: '#/components/schemas/LogAddParam'
+            - $ref: '#/components/schemas/LogListParam'
+            - $ref: '#/components/schemas/LogEmptyParam'
+            - $ref: '#/components/schemas/LogRemoveParam'
+            - $ref: '#/components/schemas/DatastoreByTypeLinkIdKeyParam'
+            - $ref: '#/components/schemas/DatastoreSaveParam'
+            - $ref: '#/components/schemas/MessageAllParam'
+            - $ref: '#/components/schemas/MessageAddParam'
+            - $ref: '#/components/schemas/MessageRemoveAllParam'
+            - $ref: '#/components/schemas/InteractTryToReplyParam'
+            - $ref: '#/components/schemas/InteractQueryAllParam'
+            - $ref: '#/components/schemas/JeedomHaltParam'
+            - $ref: '#/components/schemas/JeedomRebootParam'
+            - $ref: '#/components/schemas/JeedomIsOkParam'
+            - $ref: '#/components/schemas/JeedomUpdateParam'
+            - $ref: '#/components/schemas/JeedomBackupParam'
+            - $ref: '#/components/schemas/JeedomGetUsbMappingParam'
+            - $ref: '#/components/schemas/UpdateAllParam'
+            - $ref: '#/components/schemas/UpdateCheckUpdateParam'
+            - $ref: '#/components/schemas/UpdateUpdateParam'
+            - $ref: '#/components/schemas/UpdateDoUpdateParam'
+            - $ref: '#/components/schemas/TimelineAllParam'
+            - $ref: '#/components/schemas/TimelineListFolderParam'
+            - $ref: '#/components/schemas/TimelineByFolderParam'
+            - $ref: '#/components/schemas/UserAllParam'
+            - $ref: '#/components/schemas/UserSaveParam'
+
+        id:
+          type: integer
+          example: 1
+          description: |
+            Un paramètre auto-incrémenté par le client permettant d'identifier d'une manière unique la requête.
+
+    JsonRpcResponse:
+      type: object
+      required:
+        - jsonrpc
+        - id
+      properties:
+        jsonrpc:
+          type: string
+          example: "2.0"
+        id:
+          type: string
+          example: "1"
+        result:
+          type: object
+          description: 'Résultat retourné par la méthode'
+        error:
+          type: object
+          description: 'Détails en cas d’erreur'
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+
+    LogGetParam:
+      type: object
+      required:
+        - log
+        - apiKey
+      description: 'log::get – Récupère le contenu d’un log.'
+      properties: 
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        log:
+          type: string
+          description: Nom du log à récupérer
+        start:
+          type: string
+          description: Numéro de ligne de départ (optionnel)
+        nbLine:
+          type: string
+          description: Nombre de lignes à récupérer (optionnel)
+
+    LogAddParam:
+      type: object
+      required:
+        - log
+        - type
+        - message
+        - apiKey
+      description: 'log::add – Écrit un message dans un log.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        log:
+          type: string
+          description: Nom du log
+        type:
+          type: string
+          description: Type de message (debug, info, warning, error)
+        message:
+          type: string
+          description: Message texte à écrire
+        logicalId:
+          type: string
+          description: Identifiant logique lié au message (optionnel)
+
+    LogListParam:
+      type: object
+      description: 'log::list – Récupère la liste des logs de Jeedom.'
+      required:
+        - apiKey
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        filtre:
+          type: string
+          description: Filtre appliqué au nom des logs (optionnel)
+
+    LogEmptyParam:
+      type: object
+      required:
+        - log
+        - apiKey
+      description: 'log::empty – Vide un log.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        log:
+          type: string
+          description: Nom du log à vider
+
+    LogRemoveParam:
+      type: object
+      required:
+        - log
+        - apiKey
+      description: 'log::remove – Supprime un log.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        log:
+          type: string
+          description: Nom du log à supprimer
+
+    DatastoreByTypeLinkIdKeyParam:
+      type: object
+      required:
+        - type
+        - linkId
+        - key
+        - apiKey
+      description: 'datastore::byTypeLinkIdKey – Récupère une valeur depuis le datastore.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        type:
+          type: string
+          description: 'Type de donnée (ex: scenario)'
+        linkId:
+          type: integer
+          description: ID de lien (-1 pour global)
+        key:
+          type: string
+          description: Clé de la valeur à lire
+
+    DatastoreSaveParam:
+      type: object
+      required:
+        - type
+        - linkId
+        - key
+        - value
+        - apiKey
+      description: 'datastore::save – Sauvegarde une valeur dans le datastore.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        type:
+          type: string
+          description: 'Type de donnée (ex: scenario)'
+        linkId:
+          type: integer
+          description: ID de lien (-1 pour global)
+        key:
+          type: string
+          description: Clé de la valeur à enregistrer
+        value:
+          type: string
+          description: Valeur à enregistrer
+
+    InteractTryToReplyParam:
+      type: object
+      required:
+        - query
+        - apiKey
+      description: 'interact::tryToReply – Analyse une requête et exécute l’action correspondante.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        query:
+          type: string
+          description: Phrase à analyser
+        reply_cmd:
+          type: integer
+          description: ID de la commande à utiliser pour répondre (optionnel)
+
+    InteractQueryAllParam:
+      type: object
+      description: 'interactQuery::all – Retourne toutes les interactions enregistrées.'
+      properties: {}
+
+    CmdExecCmdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'cmd::execCmd – Exécute une ou plusieurs commandes Jeedom.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: ID de la commande, ou tableau d’IDs
+        options:
+          type: object
+          description: Options dépendantes du type de commande
+
+    CmdByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'cmd::byId – Retourne les détails d’une commande.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: ID de la commande
+
+    CmdByEqLogicIdParam:
+      type: object
+      required:
+        - eqLogic_id
+        - apiKey
+      description: 'cmd::byEqLogicId – Retourne toutes les commandes liées à un équipement.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        eqLogic_id:
+          type: integer
+          description: ID de l’équipement
+
+    CmdGetStatistiqueParam:
+      type: object
+      required:
+        - id
+        - startTime
+        - endTime
+        - apiKey
+      description: 'cmd::getStatistique – Retourne les statistiques d’une commande historisée.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: ID de la commande
+        startTime:
+          type: string
+          description: Date de début au format YYYY-MM-DD HH:mm:ss
+        endTime:
+          type: string
+          description: Date de fin au format YYYY-MM-DD HH:mm:ss
+
+    CmdEventParam:
+      type: object
+      required:
+        - id
+        - value
+        - apiKey
+      description: 'cmd::event – Envoie une valeur à une commande.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: ID de la commande
+        value:
+          type: string
+          description: Valeur à envoyer
+        datetime:
+          type: string
+          description: Date/heure d’exécution (optionnelle)
+
+    CmdSaveParam:
+      type: object
+      required:
+        - name
+        - logicalId
+        - eqType
+        - type
+        - subType
+        - eqLogic_id
+        - apiKey
+      description: 'cmd::save – Crée ou met à jour une commande.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: ID de la commande (vide si création)
+        name:
+          type: string
+          description: Nom de la commande
+        logicalId:
+          type: string
+          description: Identifiant logique
+        eqType:
+          type: string
+          description: Type d’équipement (virtuel, script, etc.)
+        order:
+          type: string
+          description: Ordre d’affichage ou exécution
+        type:
+          type: string
+          description: Type principal (info, action, etc.)
+        subType:
+          type: string
+          description: Sous-type (numeric, string, etc.)
+        eqLogic_id:
+          type: integer
+          description: ID de l’équipement
+        isHistorized:
+          type: integer
+          description: Historisation (0/1)
+        unite:
+          type: string
+          description: Unité (optionnelle)
+        configuration:
+          type: object
+          description: Configuration avancée
+        template:
+          type: object
+          description: Templates d’affichage
+        display:
+          type: object
+          description: Réglages d’affichage
+        html:
+          type: object
+          description: Contenu HTML personnalisé
+        value:
+          type: integer
+          description: Valeur par défaut (optionnelle)
+        isVisible:
+          type: integer
+          description: Visibilité (1 par défaut)
+        alert:
+          type: object
+          description: Configuration des alertes
+
+    TimelineAllParam:
+      type: object
+      description: 'timeline::all – Retourne tous les éléments de la timeline.'
+      properties: {}
+
+    TimelineListFolderParam:
+      type: object
+      description: 'timeline::listFolder – Retourne tous les dossiers de la timeline.'
+      properties: {}
+
+    TimelineByFolderParam:
+      type: object
+      required:
+        - folder
+        - apiKey
+      description: 'timeline::byFolder – Retourne tous les éléments du dossier demandé.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        folder:
+          type: string
+          description: 'Nom du dossier à consulter'
+
+    UserAllParam:
+      type: object
+      description: 'user::all – Retourne la liste de tous les utilisateurs.'
+      properties: {}
+
+    UserSaveParam:
+      type: object
+      required:
+        - login
+        - password
+        - profile
+        - apiKey
+      description: 'user::save – Crée ou édite un utilisateur.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’utilisateur (obligatoire pour l’édition)'
+        login:
+          type: string
+          description: 'Nom d’utilisateur'
+        password:
+          type: string
+          description: 'Mot de passe de l’utilisateur'
+        profile:
+          type: string
+          description: 'Profil de l’utilisateur (admin, user, restrict)'
+
+    PluginListPluginParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::listPlugin – Retourne la liste des plugins.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        activateOnly:
+          type: integer
+          description: '1 pour ne retourner que les plugins activés'
+        orderByCaterogy:
+          type: integer
+          description: '1 pour trier les plugins par catégorie'
+
+    PluginInstallParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::install – Installe ou met à jour un plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginRemoveParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::remove – Supprime un plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginDependancyInfoParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::dependancyInfo – Renvoie le statut des dépendances du plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginDependancyInstallParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::dependancyInstall – Installe les dépendances du plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginDeamonInfoParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::deamonInfo – Renvoie le statut du démon du plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginDeamonStartParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::deamonStart – Démarre le démon du plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginDeamonStopParam:
+      type: object
+      required:
+        - apiKey
+      description: 'plugin::deamonStop – Arrête le démon du plugin.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    PluginDeamonChangeAutoModeParam:
+      type: object
+      required:
+        - mode
+        - apiKey
+      description: 'plugin::deamonChangeAutoMode – Change le mode de gestion du démon.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+        mode:
+          type: integer
+          description: '1 pour automatique, 0 pour manuel'
+
+    UpdateAllParam:
+      type: object
+      description: 'update::all – Retourne la liste des composants installés.'
+      properties: {}
+
+    UpdateCheckUpdateParam:
+      type: object
+      description: 'update::checkUpdate – Vérifie les mises à jour disponibles.'
+      properties: {}
+
+    UpdateUpdateParam:
+      type: object
+      description: 'update::update – Lance la mise à jour de Jeedom et de ses plugins.'
+      properties: {}
+
+    UpdateDoUpdateParam:
+      type: object
+      required:
+        - apiKey
+      description: 'update::doUpdate – Met à jour un plugin spécifique.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        plugin_id:
+          type: integer
+          description: 'ID du plugin'
+        logicalId:
+          type: string
+          description: 'Nom logique du plugin'
+
+    MessageAllParam:
+      type: object
+      description: 'message::all – Retourne la liste de tous les messages.'
+      properties: {}
+
+    MessageAddParam:
+      type: object
+      required:
+        - type
+        - message
+        - apiKey
+      description: 'message::add – Ajoute un message dans le système de log.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        type:
+          type: string
+          description: 'Type de message (debug, info, warning, error)'
+        message:
+          type: string
+          description: 'Texte du message'
+        action:
+          type: string
+          description: 'Action associée (optionnelle)'
+        logicalId:
+          type: string
+          description: 'Identifiant logique du message (optionnel)'
+
+    MessageRemoveAllParam:
+      type: object
+      description: 'message::removeAll – Supprime tous les messages.'
+      properties: {}
+
+    JeedomHaltParam:
+      type: object
+      description: 'jeedom::halt – Arrête complètement Jeedom.'
+      properties: {}
+
+    JeedomRebootParam:
+      type: object
+      description: 'jeedom::reboot – Redémarre Jeedom.'
+      properties: {}
+
+    JeedomIsOkParam:
+      type: object
+      description: 'jeedom::isOk – Vérifie si Jeedom est fonctionnel.'
+      properties: {}
+
+    JeedomUpdateParam:
+      type: object
+      description: 'jeedom::update – Lance une mise à jour du core Jeedom.'
+      properties: {}
+
+    JeedomBackupParam:
+      type: object
+      description: 'jeedom::backup – Lance une sauvegarde de Jeedom.'
+      properties: {}
+
+    JeedomGetUsbMappingParam:
+      type: object
+      description: 'jeedom::getUsbMapping – Retourne la correspondance des ports USB.'
+      properties: {}
+
+    EventChangesParam:
+      type: object
+      required:
+        - apikey
+        - datetime
+      description: 'event::changes – Retourne les changements survenus depuis un datetime donné.'
+      properties:
+        apikey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        datetime:
+          type: integer
+          description: 'Datetime en microsecondes à partir duquel récupérer les changements'
+
+    SummaryGlobalParam:
+      type: object
+      required:
+        - apiKey
+      description: 'summary::global – Retourne un résumé global ou filtré par clé.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        key:
+          type: string
+          description: 'Clé spécifique du résumé (facultatif)'
+
+    SummaryByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'summary::byId – Retourne un résumé pour un objet donné.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’objet'
+        key:
+          type: string
+          description: 'Clé spécifique du résumé (facultatif)'
+
+    EqLogicAllParam:
+      type: object
+      description: 'eqLogic::all – Retourne tous les équipements.'
+      properties: {}
+
+    EqLogicFullByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'eqLogic::fullById – Retourne un équipement et ses commandes (type info).'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’équipement'
+
+    EqLogicByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'eqLogic::byId – Retourne un équipement spécifique.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’équipement'
+
+    EqLogicByTypeParam:
+      type: object
+      required:
+        - type
+        - apiKey
+      description: 'eqLogic::byType – Retourne les équipements d’un type donné.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        type:
+          type: string
+          description: 'Nom du plugin (type)'
+
+    EqLogicByObjectIdParam:
+      type: object
+      required:
+        - object_id
+        - apiKey
+      description: 'eqLogic::byObjectId – Retourne les équipements liés à un objet.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        object_id:
+          type: integer
+          description: 'ID de l’objet'
+
+    EqLogicByTypeAndIdParam:
+      type: object
+      required:
+        - apiKey
+      description: 'eqLogic::byTypeAndId – Retourne les équipements filtrés par type et ID.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        eqType:
+          type: array
+          items:
+            type: string
+          description: 'Liste des types d’équipements'
+        id:
+          type: array
+          items:
+            type: integer
+          description: 'Liste des IDs d’équipements'
+
+    EqLogicSaveParam:
+      type: object
+      required:
+        - name
+        - eqType_name
+        - type
+        - subType
+        - eqLogic_id
+        - apiKey
+      description: 'eqLogic::save – Crée ou modifie un équipement.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’équipement (vide si création)'
+        eqType_name:
+          type: string
+          description: 'Type d’équipement (script, virtuel, etc.)'
+        name:
+          type: string
+          description: 'Nom de l’équipement'
+        logicalId:
+          type: string
+          description: 'Identifiant logique (optionnel)'
+        object_id:
+          type: integer
+          description: 'ID de l’objet parent (optionnel)'
+        eqReal_id:
+          type: integer
+          description: 'ID réel associé (optionnel)'
+        isVisible:
+          type: integer
+          description: 'Visibilité (0 ou 1)'
+        isEnable:
+          type: integer
+          description: 'Activation (0 ou 1)'
+        configuration:
+          type: object
+          description: 'Données de configuration'
+        timeout:
+          type: integer
+          description: 'Timeout (optionnel)'
+        category:
+          type: array
+          items:
+            type: string
+          description: 'Catégories d’équipement'
+
+    JeeObjectAllParam:
+      type: object
+      description: 'jeeObject::all – Retourne la liste de tous les objets Jeedom.'
+      properties: {}
+
+    JeeObjectAllResponse:
+      type: array
+      description: 'Résultat de jeeObject::all – Liste de tous les objets.'
+      items:
+        $ref: '#/components/schemas/JeeObjectByIdResponse'
+
+    JeeObjectByIdResponse:
+      type: object
+      description: 'Résultat de jeeObject::byId – Un seul objet Jeedom.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        isVisible:
+          type: boolean
+        position:
+          type: integer
+        configuration:
+          type: object
+          description: 'Configuration de l’objet, liste de clés / valeurs'
+        display:
+          type: object
+        father_id:
+          type: integer
+        image:
+          type: object
+          description: 'Image de l’objet'
+        img:
+          type: string
+        eqLogics:
+          type: array
+          items:
+            $ref: '#/components/schemas/EqLogicByIdResponse'
+          description: 'Liste des équipements de l’objet. Non valorisé sauf pour Les méthodes "full"'
+
+    JeeObjectFullParam:
+      type: array
+      items:
+        $ref: '#/components/schemas/JeeObjectByIdResponse'
+      description: 'jeeObject::full – Retourne tous les objets avec équipements et commandes (type info).'
+
+    JeeObjectByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'jeeObject::byId – Retourne un objet spécifique.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’objet'
+
+    JeeObjectFullByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'jeeObject::fullById – Retourne un objet complet avec ses équipements et commandes.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’objet'
+
+    JeeObjectSaveParam:
+      type: object
+      required:
+        - name
+        - apiKey
+      description: 'jeeObject::save – Crée ou met à jour un objet.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID de l’objet (vide si création)'
+        name:
+          type: string
+          description: 'Nom de l’objet'
+        father_id:
+          type: integer
+          description: 'ID du parent (optionnel)'
+        isVisible:
+          type: integer
+          description: 'Visibilité (0 ou 1)'
+        position:
+          type: integer
+          description: 'Position dans l’arborescence'
+        configuration:
+          type: object
+          description: 'Données de configuration'
+        display:
+          type: object
+          description: 'Paramètres d’affichage'
+
+    ScenarioAllParam:
+      type: object
+      description: 'scenario::all – Retourne la liste de tous les scénarios.'
+      properties: {}
+
+    ScenarioByIdParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'scenario::byId – Retourne un scénario spécifique.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID du scénario'
+
+    ScenarioExportParam:
+      type: object
+      required:
+        - id
+        - apiKey
+      description: 'scenario::export – Exporte un scénario.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID du scénario'
+
+    ScenarioImportParam:
+      type: object
+      description: 'scenario::import – Importe un scénario (ou le met à jour).'
+      required:
+        - import
+        - apiKey
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID du scénario cible (vide si création)'
+        humanName:
+          type: string
+          description: 'Nom humain du scénario (optionnel)'
+        import:
+          type: object
+          description: 'Contenu exporté depuis scenario::export'
+
+    ScenarioChangeStateParam:
+      type: object
+      required:
+        - id
+        - state
+        - apiKey
+      description: 'scenario::changeState – Change l’état d’un scénario (run, stop, enable, disable).'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        id:
+          type: integer
+          description: 'ID du scénario'
+        state:
+          type: string
+          description: 'Nouvel état du scénario (run, stop, enable, disable)'
+
+    ConfigByKeyParam:
+      type: object
+      required:
+        - key
+        - apiKey
+      description: 'config::byKey – Retourne une valeur de configuration.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        key:
+          type: string
+          description: 'Clé de la valeur de configuration à retourner'
+        plugin:
+          type: string
+          description: 'Plugin associé (optionnel)'
+        default:
+          type: string
+          description: 'Valeur par défaut si la clé n’existe pas'
+
+    ConfigSaveParam:
+      type: object
+      required:
+        - key
+        - value
+        - apiKey
+      description: 'config::save – Enregistre une valeur de configuration.'
+      properties:
+        apiKey:
+          type: string
+          description: 'Clé API autorisant l’accès'
+        key:
+          type: string
+          description: 'Clé de la valeur à enregistrer'
+        value:
+          type: string
+          description: 'Valeur à enregistrer'
+        plugin:
+          type: string
+          description: 'Plugin associé (optionnel)'
+
+    EqLogicAllResponse:
+      type: array
+      description: 'Résultat de eqLogic::all – Liste de tous les équipements.'
+      items:
+        $ref: '#/components/schemas/EqLogicByIdResponse'
+
+    EqLogicByIdResponse:
+      type: object
+      description: 'Résultat de eqLogic::byId – Un seul équipement. Peut avoir le détail des commandes avec eqLogic::fullById.'
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        logicalId:
+          type: string
+        generic_type:
+          type: string
+        object_id:
+          type: integer
+        eqType_name:
+          type: string
+        isVisible:
+          type: boolean
+        isEnable:
+          type: boolean
+        configuration:
+           description: 'Liste de Paramètres d’de configuration de l’équipement'
+           type: array
+           items:
+             type: string
+        timeout:
+          type: integer
+        category:
+          description: 'liste de catégories'
+          type: array
+          items:
+            type: string
+        display:
+          description: 'Liste de Paramètres d’affichage de l’équipement'
+          type: array
+          items:
+            type: string
+        order:
+          type: integer
+        commnent:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        status:
+          type: array
+          items:
+            type: string
+        cache:
+          type: array
+          items:
+            type: string
+        cmds:
+          description: 'Liste des commandes de l’équipement. Peut être vide si eqLogic::fullById n’est pas utilisé.'
+          type: array
+          items:
+            $ref: '#/components/schemas/CmdByIdResponse'
+          
+
+    EqLogicFullByIdResponse:
+      $ref: '#/components/schemas/EqLogicByIdResponse'
+
+    EqLogicByObjectIdResponse:
+      type: array
+      description: 'Résultat de eqLogic::byObjectId – Liste d’équipements liés à un objet.'
+      items:
+        $ref: '#/components/schemas/EqLogicByIdResponse'
+
+    EqLogicByTypeResponse:
+      type: array
+      description: 'Résultat de eqLogic::byType – Liste d’équipements d’un type donné.'
+      items:
+        $ref: '#/components/schemas/EqLogicByIdResponse'
+
+    EqLogicByTypeAndIdResponse:
+      type: array
+      description: 'Résultat de eqLogic::byTypeAndId – Liste filtrée d’équipements.'
+      items:
+        $ref: '#/components/schemas/EqLogicByIdResponse'
+
+    CmdByIdResponse:
+      type: object
+      description: 'cmd::byId – Retourne une commande spécifique.'
+      properties:
+          id:
+            type: integer
+          logicalId:
+            type: string
+          generic_type:
+            type: string
+          eqType:
+            type: string
+          name:
+            type: string
+          order:
+            type: integer
+          type:
+            type: string
+          subType:
+            type: string
+          eqLogic_id:
+            type: integer
+          isHistorized:
+            type: boolean
+          unite:
+            type: string
+          configuration:
+            type: array
+            items:
+              type: string
+          display:
+            type: array
+            items:
+              type: string
+          value:
+            type: string
+          isVisible:
+            type: boolean
+          alert:
+            type: array
+            items:
+              type: string
+          currentValue:
+            type: string
+
+    CmdByEqLogicIdResponse:
+        type: array
+        description: 'cmd::byEqLogicId – Liste des commandes liées à un équipement.'
+        items:
+            $ref: '#/components/schemas/CmdByIdResponse'
+
+    CmdAllResponse:
+        type: array
+        description: 'cmd::all – Retourne toutes les commandes.'
+        items:
+            $ref: '#/components/schemas/CmdByIdResponse'
+
+    CmdExecCmdResponse:
+        type: array
+        description: 'cmd::execCmd – Retourne la valeur exécutée ou son résultat.'
+        items:
+          type: string
+
+    CmdGetStatistiqueResponse:
+        type: object
+        description: 'cmd::getStatistique – Retourne les statistiques d’une commande.'
+        properties:
+            min:
+                type: number
+            max:
+                type: number
+            avg:
+                type: number
+            sum:
+                type: number
+            count:
+                type: number
+
+    CmdEventResponse:
+        type: boolean
+        description: 'cmd::event – Retourne true si l’événement a été envoyé avec succès.'
+
+    CmdSaveResponse:
+        type: object
+        description: 'cmd::save – Retourne les données de la commande sauvegardée.'
+        properties:
+            id:
+                type: integer
+            name:
+                type: string
+            logicalId:
+                type: string
+            value:
+                type: string
+
+    ScenarioByIdResponse:
+        type: object
+        description: 'scenario::byId – Retourne les détails d’un scénario.'
+        properties:
+            id:
+                type: integer
+            name:
+                type: string
+            group:
+                type: string
+            isActive:
+                type: boolean
+            mode:
+                type: string
+            isVisible:
+                type: boolean
+            object_id:
+                type: integer
+            configuration:
+                type: object
+            display:
+                type: object
+
+    ScenarioAllResponse:
+        type: array
+        description: 'scenario::all – Liste de tous les scénarios.'
+        items:
+            $ref: '#/components/schemas/ScenarioByIdResponse'
+
+    ScenarioExportResponse:
+        type: object
+        description: 'scenario::export – Retourne les données exportables d’un scénario.'
+        additionalProperties: true
+
+    ScenarioImportResponse:
+        type: boolean
+        description: 'scenario::import – Retourne true si l’importation a réussi.'
+
+    ScenarioChangeStateResponse:
+        type: boolean
+        description: 'scenario::changeState – Retourne true si le changement d’état a été effectué.'
+
+    ConfigByKeyResponse:
+        type: string
+        description: 'config::byKey – Retourne la valeur d’une clé de configuration.'
+
+    ConfigSaveResponse:
+        type: boolean
+        description: 'config::save – Retourne true si la configuration a été enregistrée.'
+
+    PluginInstallResponse:
+        type: boolean
+        description: 'plugin::install – Retourne true si le plugin a été installé ou mis à jour.'
+
+    PluginRemoveResponse:
+        type: boolean
+        description: 'plugin::remove – Retourne true si le plugin a été supprimé.'
+
+    PluginDependancyInfoResponse:
+        type: object
+        description: 'plugin::dependancyInfo – Informations sur les dépendances du plugin.'
+        additionalProperties: true
+
+    PluginDependancyInstallResponse:
+        type: boolean
+        description: 'plugin::dependancyInstall – Retourne true si les dépendances ont été lancées.'
+
+    PluginDeamonInfoResponse:
+        type: object
+        description: 'plugin::deamonInfo – Informations sur le démon du plugin.'
+        additionalProperties: true
+
+    PluginDeamonStartResponse:
+        type: boolean
+        description: 'plugin::deamonStart – Retourne true si le démon a été démarré.'
+
+    PluginDeamonStopResponse:
+        type: boolean
+        description: 'plugin::deamonStop – Retourne true si le démon a été arrêté.'
+
+    PluginDeamonChangeAutoModeResponse:
+        type: boolean
+        description: 'plugin::deamonChangeAutoMode – Retourne true si le mode automatique a été modifié.'
+
+    JeedomHaltResponse:
+        type: boolean
+        description: 'jeedom::halt – Retourne true si l’arrêt a été lancé.'
+
+    JeedomRebootResponse:
+        type: boolean
+        description: 'jeedom::reboot – Retourne true si le redémarrage a été lancé.'
+
+    JeedomIsOkResponse:
+        type: boolean
+        description: 'jeedom::isOk – Retourne true si Jeedom fonctionne correctement.'
+
+    JeedomUpdateResponse:
+        type: boolean
+        description: 'jeedom::update – Retourne true si la mise à jour du core a été lancée.'
+
+    JeedomBackupResponse:
+        type: boolean
+        description: 'jeedom::backup – Retourne true si la sauvegarde a été lancée.'
+
+    JeedomGetUsbMappingResponse:
+        type: object
+        description: 'jeedom::getUsbMapping – Retourne le mappage des ports USB.'
+        additionalProperties: true
+
+    UpdateCheckUpdateResponses:
+        type: array
+        description: 'update::checkUpdate – Liste des mises à jour disponibles.'
+        items:
+            type: object
+            title: UpdateCheckUpdateResponse
+            properties:
+                plugin:
+                    type: string
+                currentVersion:
+                    type: string
+                lastVersion:
+                    type: string
+
+    UpdateUpdateResponse:
+        type: boolean
+        description: 'update::update – Retourne true si la mise à jour a été lancée.'
+
+    UpdateDoUpdateResponse:
+        type: boolean
+        description: 'update::doUpdate – Retourne true si la mise à jour du plugin a été exécutée.'
+
+    LogGetResponse:
+      type: array
+      description: 'log::get – Retourne le contenu d’un fichier de log.'
+      items:
+        type: string
+
+    LogListResponse:
+      type: array
+      description: 'log::list – Retourne la liste des fichiers de log disponibles.'
+      items:
+        type: string
+
+    UserAllResponses:
+      type: array
+      description: 'user::all – Liste de tous les utilisateurs.'
+      items:
+        type: object
+        title: UserAllResponse
+        properties:
+          id:
+            type: integer
+          login:
+            type: string
+          profile:
+            type: string
+          password:
+            type: string
+          options:
+            type: object
+            description: 'Options de l’utilisateur, liste de clés / valeurs'
+          rights:
+            type: array
+            description: 'Droits de l’utilisateur, liste de permissions'
+            items:
+              type: string
+          enable:
+            type: boolean
+          hash:
+            type: string
+
+    UpdateAllResponses:
+      type: array
+      description: 'update::all – Liste de tous les composants installés.'
+      items:
+        type: object
+        title: UpdateAllResponse
+        properties:
+          id:
+            type: integer
+          type:
+            type: string
+            description: 'Type de composant (plugin, core)'
+          logicalId:
+            type: string
+          name:
+            type: string
+          localVersion:
+            type: string
+            description: 'Version locale du composant (ou hash, ou date au format YYYY-MM-DD HH:mm:ss)'
+          remoteVersion:
+            type: string
+            description: 'Version distante du composant (ou hash, ou date au format YYYY-MM-DD HH:mm:ss)'
+          status:
+            type: string
+          configuration:
+            type: object
+            description: 'Configuration du composant, liste de clés / valeurs'
+          source:
+            type: string
+            description: 'Source du composant (market, github ...)'
+          updateDate:
+            type: string
+            description: 'Date de la dernière mise à jour (au format YYYY-MM-DD HH:mm:ss)'
+
+    PluginListPluginResponses:
+      type: array
+      description: 'plugin::listPlugin – Liste de tous les plugins installés.'
+      items:
+        type: object
+        title: PluginListPluginResponse
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          description:
+            type: string
+          license:
+            type: string
+          installation:
+            type: string
+          author:
+            type: string
+          require:
+            type: string
+          requireOsVersion:
+            type: string
+          category:
+            type: string
+          filepath:
+            type: string
+            description: 'Chemin du fichier info.json du plugin'
+          index:
+            type: string
+          display:
+            type: string
+          mobile: 
+            type: string
+          eventjs:
+            type: integer
+          hasDependency:
+            type: boolean
+          hasTtsEngine:
+            type: boolean
+          maxDependancyInstallTime:
+            type: integer
+          hasOwnDeamon:
+            type: boolean
+          issue:
+            type: string
+            description: 'URL du dépôt github du plugin pour déclarer un bug'
+          changelog:
+            type: string
+            description: 'URL du changelog'
+          documentation:
+            type: string
+            description: 'URL de la documentation'
+          changelog_beta:
+            type: string
+            description: 'URL du changelog beta'
+          documentation_beta:
+            type: string
+            description: 'URL de la documentation beta'
+          source:
+            type: string
+            description: 'Source du plugin (market, github ...)'
+          whiteListFolders:
+            type: array
+            items:
+              type: string
+          specialAttributes:
+            type: object
+          info:
+            type: object
+          include:
+            type: object
+          functionality:
+            type: object
+          usedSpace:
+            type: integer
