@@ -105,7 +105,7 @@ class listener {
 	 *
 	 * @param string $_class
 	 * @param string $_function
-	 * @param array $_option
+	 * @param mixed $_option
 	 * @return listener
 	 */
 	public static function byClassAndFunction($_class, $_function, $_option = '') {
@@ -129,7 +129,7 @@ class listener {
 	 *
 	 * @param string $_class
 	 * @param string $_function
-	 * @param array $_option
+	 * @param string $_option
 	 * @return array<listener>
 	 */
 	public static function searchClassFunctionOption($_class, $_function, $_option = '') {

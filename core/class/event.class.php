@@ -112,7 +112,7 @@ class event {
 		$max_cycle = $_longPolling / $waitTime;
 		while (count($return) == 0 && $i < $max_cycle) {
 			if ($waitTime < 1) {
-				usleep(1000000 * $waitTime);
+				usleep(1000000 * ((float) $waitTime));
 			} else {
 				sleep(round($waitTime));
 			}
