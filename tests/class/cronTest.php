@@ -35,7 +35,7 @@ class cronTest extends TestCase {
 		$cron2->setSchedule('00 00 * * * 2020');
 		$cron2->save();
 		
-		$this->assertSame($cron1->getId(), $cron2->getId());
+		$this->assertEquals($cron1->getId(), $cron2->getId(), sprintf('"%s" = "%s"', $cron1->getId(), $cron2->getId()));
 		
 		$cron1 = cron::byClassAndFunction('calendar', 'pull');
 		if (!is_object($cron1)) {
@@ -68,7 +68,7 @@ class cronTest extends TestCase {
 		$cron2->setSchedule('00 00 * * * 2020');
 		$cron2->save();
 		
-		$this->assertNotSame($cron1->getId(), $cron2->getId());
+		$this->assertNotEquals($cron1->getId(), $cron2->getId());
 		
 		$cron3 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(1)));
 		if (!is_object($cron3)) {
@@ -81,7 +81,7 @@ class cronTest extends TestCase {
 		$cron3->setSchedule('00 00 * * * 2020');
 		$cron3->save();
 		
-		$this->assertSame($cron1->getId(), $cron3->getId());
+		$this->assertEquals($cron1->getId(), $cron3->getId());
 		
 		$cron1 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(1)));
 		if (!is_object($cron1)) {
@@ -95,4 +95,3 @@ class cronTest extends TestCase {
 		$cron2->remove();
 	}
 }
-?>

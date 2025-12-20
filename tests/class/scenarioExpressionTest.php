@@ -30,7 +30,6 @@ class scenarioExpressionTest extends TestCase {
 			$result = scenarioExpression::createAndExec('condition', $key);
 			$this->assertEquals(2, $value);
 		}
-		echo "\n";
 	}
 	
 	public function testVariable() {
@@ -49,4 +48,3 @@ class scenarioExpressionTest extends TestCase {
 		$this->assertTrue($result);
 	}
 }
-?>
