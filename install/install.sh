@@ -523,4 +523,6 @@ esac
 
 rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
 
+apt-get clean > /dev/null 2>&1
+
 exit 0
