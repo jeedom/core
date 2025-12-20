@@ -9,21 +9,23 @@ on:
 jobs:
   phpstan:
     runs-on: ubuntu-latest
+    # define every php version to test
+    strategy:
+      # do not stop at first fail
+      fail-fast: false
+      matrix:
+        php: [7.4, 8.2]
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP 7.4 for dependencies
+      - name: Setup PHP ${{ matrix.php }} for dependencies
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: ${{ matrix.php }}
 
       - name: Install Dependencies
         run: composer update --ignore-platform-reqs
-
-      - name: Setup PHP 8.2 for PHPStan
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.2
 
       - name: Restore PHPStan cache
         id: cache-phpstan
@@ -32,12 +34,8 @@ jobs:
           path: phpstan.phar
           key: phpstan-1
 
-      - name: Download PHPStan
-        if: steps.cache-phpstan.outputs.cache-hit != 'true'
-        run: wget https://github.com/phpstan/phpstan/releases/latest/download/phpstan.phar
-
       - name: Run PHPStan
-        run: php phpstan.phar analyse --configuration phpstan.neon
+        run: vendor/bin/phpstan analyse --configuration phpstan.neon
 
   update-baseline:
     needs: phpstan
@@ -50,9 +48,7 @@ jobs:
 
       - name: Delete existing branch if exists
         run: |
-          if git ls-remote --heads origin update-phpstan-baseline | grep update-phpstan-baseline; then
-            git push origin --delete update-phpstan-baseline
-          fi
+          git ls-remote --exit-code --heads origin update-phpstan-baseline && git push origin --delete update-phpstan-baseline
 
       - name: Setup PHP 7.4 for dependencies
         uses: shivammathur/setup-php@v2
@@ -62,19 +58,11 @@ jobs:
       - name: Install Dependencies
         run: composer update --ignore-platform-reqs
 
-      - name: Setup PHP 8.2 for PHPStan
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.2
-
-      - name: Download PHPStan
-        run: wget https://github.com/phpstan/phpstan/releases/latest/download/phpstan.phar
-
       - name: Generate new baseline
         id: generate-baseline
         run: |
           cp phpstan-baseline.neon phpstan-baseline.neon.old
-          php phpstan.phar analyse --configuration phpstan.neon --generate-baseline
+          vendor/bin/phpstan analyse --configuration phpstan.neon --generate-baseline
           if ! diff -q phpstan-baseline.neon phpstan-baseline.neon.old > /dev/null; then
             echo "baseline_changed=true" >> $GITHUB_OUTPUT
           fi
