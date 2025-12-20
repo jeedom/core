@@ -68,6 +68,21 @@ apt-get install packages </dev/null
 - ✅ Affichage propre et lisible tout au long de l'installation
 - ✅ Pas de redémarrages partiels pendant l'installation (reboot complet à la fin)
 
+### Nettoyage du cache APT
+
+Pour optimiser l'espace disque après l'installation, la commande `apt-get clean` a été ajoutée à la fin du script :
+
+```bash
+apt-get clean > /dev/null 2>&1
+```
+
+**Effet** :
+- Supprime les fichiers .deb téléchargés du cache APT (`/var/cache/apt/archives/`)
+- Libère de l'espace disque (potentiellement plusieurs centaines de Mo)
+- Redirection de la sortie pour éviter les messages inutiles
+
+**Placement** : Juste avant `exit 0` à la fin du script d'installation
+
 ### Packages système mis à jour
 
 #### Packages remplacés
