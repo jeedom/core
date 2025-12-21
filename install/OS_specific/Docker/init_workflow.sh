@@ -3,7 +3,7 @@
 # this script is used by CI/CD Github Workflow
 JEEDOM_VERSION=$(cat core/config/version)
 JEEDOM_SHORT_VERSION="$(echo "$JEEDOM_VERSION" | awk -F. '{print $1"."$2}')"
-# Docker hub repository may be overriden
+# Docker hub repository may be overridden
 REPO=${DOCKER_HUB_REPO:-"jeedom"}
 
 if [[ "${GITHUB_REF_NAME}" == "master" ]]; then
