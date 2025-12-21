@@ -4,7 +4,10 @@ on:
   push:
     # only trigger CI when push on following branches
     branches:
-      - 'master'
+      - master
+      - alpha
+      - beta
+      - feat/matrix_workflow
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -15,19 +18,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      # do every matrix combination, don't stop on errors
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        debian: [bullseye, bookworm]
+        database: [0, 1]
+
     steps:
-    
-      - name: Free disk space
-        run: |
-          df -h
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-          sudo apt-get autoclean -y 2>&1
-          docker rmi $(docker image ls -aq) 2>&1
-          df -h
-    
+
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
@@ -36,14 +36,21 @@ jobs:
       - name: BRANCH name
         # adding infos in the $GITHUB_ENV file and summary
         # secret DOCKER_HUB_REPO is optional (default=jeedom)
+        id: config_tags
+        env:
+          DOCKER_HUB_REPO: ${{ secrets.DOCKER_HUB_REPO }}
+          TAG_SUFFIX: ${{ matrix.database && 'http-' || '' }}${{ matrix.debian }}
+          DEBIAN: ${{ matrix.debian }}
+          DATABASE: ${{ matrix.database }}
         run: |
-          export DOCKER_HUB_REPO=${{ secrets.DOCKER_HUB_REPO }}
-          bash install/OS_specific/Docker/init_workflow.sh
+          bash .github/scripts/init_workflow.sh
 
       - name: Set up QEMU
         # https://github.com/marketplace/actions/docker-setup-qemu
         # set up more platforms (default = all)
         uses: docker/setup-qemu-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
 
       - name: Login to Docker Hub
         # https://github.com/marketplace/actions/docker-login
@@ -66,92 +73,21 @@ jobs:
         id: cache
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ matrix.debian }}
           restore-keys: |
-            ${{ runner.os }}-buildx-
+            ${{ runner.os }}-buildx-${{ matrix.debian }}
 
-      - name: Build and push Jeedom on Debian:Bookworm without internal DB
+      - name: Build and push Jeedom on Debian:${{ matrix.debian }} ${{ matrix.database && 'with' || 'without' }} internal DB
         # https://github.com/marketplace/actions/build-and-push-docker-images
         uses: docker/build-push-action@v3
-        continue-on-error: true
         with:
           context: ./
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
           build-args: |
-            "VERSION=${{ env.GITHUB_BRANCH }}"
-            "DEBIAN=bookworm"
-            "DATABASE=0"
-          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-http-bookworm"
-
-      - name: Clean docker image
-        run: |
-          docker stop $(docker ps -aq) 2>&1
-          docker rm $(docker ps -aq) 2>&1
-          docker rmi $(docker image ls -aq) 2>&1
-      
-      - name: Build and push Jeedom on DockerHub
-        # https://github.com/marketplace/actions/build-and-push-docker-images
-        uses: docker/build-push-action@v3
-        continue-on-error: true
-        with:
-          context: ./
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
-          push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-          build-args: "VERSION=${{ env.GITHUB_BRANCH }}"
-          tags: "${{ env.JEEDOM_TAGS }}"
-          
-      - name: Clean docker image
-        run: |
-          docker stop $(docker ps -aq) 2>&1
-          docker rm $(docker ps -aq) 2>&1
-          docker rmi $(docker image ls -aq) 2>&1
-
-      - name: Build and push Jeedom on Debian:Buster with DB
-        # https://github.com/marketplace/actions/build-and-push-docker-images
-        uses: docker/build-push-action@v3
-        continue-on-error: true
-        with:
-          context: ./
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
-          push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-          build-args: |
-            "VERSION=${{ env.GITHUB_BRANCH }}"
-            "DEBIAN=buster"
-            "DATABASE=1"
-          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-buster"
-          
-      - name: Clean docker image
-        run: |
-          docker stop $(docker ps -aq) 2>&1
-          docker rm $(docker ps -aq) 2>&1
-          docker rmi $(docker image ls -aq) 2>&1
-      
-      - name: Build and push Jeedom on Debian:Bookworm with DB
-        # https://github.com/marketplace/actions/build-and-push-docker-images
-        uses: docker/build-push-action@v3
-        continue-on-error: true
-        with:
-          context: ./
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64 # ,linux/arm/v7
-          push: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache
-          build-args: |
-            "VERSION=${{ env.GITHUB_BRANCH }}"
-            "DEBIAN=bookworm"
-            "DATABASE=1"
-          tags: "${{ env.JEEDOM_REPO }}/jeedom:${{ env.JEEDOM_SHORT_VERSION}}-bookworm"
-
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+            "VERSION=${{ steps.config_tags.outputs.GITHUB_BRANCH }}"
+            "DEBIAN=${{ matrix.debian }}"
+            "DATABASE=${{ matrix.database }}"
+          tags: "${{ steps.config_tags.outputs.JEEDOM_TAGS }}"
