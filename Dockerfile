@@ -57,17 +57,17 @@ RUN apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
   (apt-get -y remove brltty </dev/null 2>&1 || echo "[Optional] brltty not present")
 
 COPY install/install.sh /tmp/
-RUN sh /tmp/install.sh -s 1 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 2 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 3 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 4 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 5 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 1 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 2 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 3 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 4 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 5 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 COPY . ${WEBSERVER_HOME}
-RUN sh /tmp/install.sh -s 7 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 8 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 9 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 10 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 11 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 7 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 8 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 9 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 10 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN bash /tmp/install.sh -s 11 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
 RUN echo >${WEBSERVER_HOME}/initialisation
 
