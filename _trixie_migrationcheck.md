@@ -624,10 +624,10 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 6. **🐳 Docker Debian 13** :
    ```bash
    # Build avec Debian 13
-   docker build --build-arg DEBIAN=trixie-slim --build-arg VERSION=trixie -t jeedom:trixie .
+   docker build --build-arg DEBIAN=trixie-slim --build-arg VERSION=trixie -t jeedom:trixie . 2>&1 | tee build.log
    
    # Test du container
-   docker run -d -p 80:80 -p 443:443 --name jeedom-test jeedom:trixie
+   docker run -d -p 80:80 -p 443:443 --name jeedom-trixie -v jeedom-data:/var/www/html -v jeedom-db:/var/lib/mysql -e TZ=Europe/Paris --restart unless-stopped jeedom:trixie
    
    # Vérification
    curl http://localhost
