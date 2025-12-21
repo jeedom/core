@@ -613,6 +613,55 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 | **Docker shell** | **sh** | **bash** | **Syntaxe bash dans install.sh** |
 | **Docker CRLF** | **Non géré** | **Conversion automatique sed** | **Compatibilité Windows** |
 | **Docker PHP-FPM** | **Non démarré** | **Démarrage automatique** | **Évite erreur 503** |
+| **Persistance cache** | **Sans sudo** | **Avec sudo** | **Évite "Operation not permitted"** |
+
+## 🐛 Correctifs de bugs
+
+### Fix persistance du cache au premier lancement
+
+**Problème identifié** :
+Au premier lancement de Jeedom, la persistance du cache est signalée KO dans la page Santé avec des erreurs dans les logs :
+```
+mkdir: cannot create directory '/tmp/jeedom/cache': File exists
+chmod: changing permissions of '/tmp/jeedom/cache/xxx': Operation not permitted
+```
+
+**Cause** :
+Le répertoire `/tmp/jeedom/cache` peut être créé par le système (Script d'install, Docker) avec des permissions restrictives ou appartenant à `root`. L'utilisateur `www-data` ne peut pas modifier les permissions sans privilèges sudo.
+
+**Solution appliquée** dans `core/class/cache.class.php` :
+
+1. **Méthode `restore()`** :
+   - Utilisation de `sudo` pour toutes les opérations critiques (mkdir, chown, chmod)
+   - `mkdir -p` au lieu de `mkdir` pour éviter les erreurs si le répertoire existe
+   - `tar -C` au lieu de `cd` pour éviter les problèmes de contexte
+   - Ordre optimisé : mkdir → chown → chmod
+
+2. **Méthode `isPersistOk()`** :
+   - Garde sa logique simple : teste l'existence et la fraîcheur de `cache.tar.gz`
+   - Retourne `false` pendant les 30-65 premières minutes (normal, le cache n'est pas encore persisté)
+   - Le statut passe à `OK` après le premier cron `cache::persist` (30 min)
+
+**Avant** :
+```php
+// restore()
+$cmd = 'mkdir ' . $cache_dir . ';';
+$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
+```
+
+**Après** :
+```php
+// restore()
+$cmd = system::getCmdSudo() . 'mkdir -p ' . $cache_dir . ';';
+$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
+$cmd .= system::getCmdSudo() . 'chmod -R 777 ' . $cache_dir . ';';
+```
+
+**Impact** :
+- ✅ Plus d'erreurs "Operation not permitted" au premier lancement
+- ✅ Le répertoire cache est créé avec les bonnes permissions même si créé par root
+- ✅ La persistance du cache fonctionne dès le premier cron (30 min)
+- ✅ Compatible avec tous les environnements (bare metal, VM, Docker)
 
 ## 🔍 Tests recommandés
 
@@ -651,4 +700,5 @@ Ce document et les modifications associées sont distribués sous la même licen
 **Date de dernière mise à jour** : 21 décembre 2025  
 **Version Jeedom** : 4.5.2  
 **Debian cible** : 13 (Trixie)  
-**Compatibilité** : Debian 12 (Bookworm) et Debian 13 (Trixie)
+**Compatibilité** : Debian 12 (Bookworm) et Debian 13 (Trixie)  
+**Dernières modifications** : Fix persistance cache au premier lancement
