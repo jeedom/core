@@ -38,6 +38,8 @@ Pour améliorer la compatibilité et éviter les invites interactives lors des i
 - `core/class/system.class.php` : Fonctions d'installation et mise à jour avec `DEBIAN_FRONTEND=noninteractive`
 - `core/ajax/jeedom.ajax.php` : `apt-get update` simple
 - `desktop/php/system.php` : Commandes système pour réparation/maintenance avec `at now`
+- **`Dockerfile`** : Commandes apt-get avec `</dev/null` et variables d'environnement pour builds Docker
+- **`install/OS_specific/Docker/init.sh`** : Support du repository GitHub custom
 
 ### Améliorations de l'interaction terminal (install.sh)
 
@@ -472,6 +474,90 @@ sudo bash install.sh \
 wget -O- https://raw.githubusercontent.com/titidom-rc/jeedom-core/trixie/install/install.sh | sudo bash 2>&1 | tee jeedom-install.log
 ```
 
+## 🐳 Images Docker
+
+Les modifications pour Debian 13 ont également été appliquées aux **images Docker** officielles.
+
+### Support du repository GitHub personnalisé
+
+Le **Dockerfile** supporte maintenant un repository GitHub custom via l'argument `GITHUB_REPO` :
+
+```bash
+# Build avec le repo par défaut (jeedom/core)
+docker build -t jeedom/jeedom:latest .
+
+# Build avec un repo et une branche custom
+docker build \
+  --build-arg GITHUB_REPO=votre-user/jeedom-core \
+  --build-arg VERSION=trixie \
+  -t jeedom/jeedom:custom .
+```
+
+### Tags Docker disponibles
+
+Le workflow CI/CD GitHub Actions génère automatiquement les tags suivants :
+
+| Branche GitHub | Tags Docker générés | Utilisation |
+|----------------|---------------------|-------------|
+| **master** | `latest`, `4.5` | Version stable production |
+| **beta** | `beta` | Tests pré-release |
+| **trixie** | `trixie` | Support Debian 13 |
+| **autres** | `alpha` | Développement général |
+
+**Pull de l'image Debian 13** :
+```bash
+docker pull jeedom/jeedom:trixie
+docker run -d -p 80:80 -p 443:443 --name jeedom jeedom/jeedom:trixie
+```
+
+### Modifications dans Dockerfile
+
+**Variables d'environnement** :
+```dockerfile
+ENV DEBIAN_FRONTEND=noninteractive
+ENV NEEDRESTART_MODE=l
+ENV GITHUB_REPO=jeedom/core
+```
+
+**Packages modernisés** (identiques à `install.sh`) :
+- ✅ `chrony` (remplace ntp)
+- ✅ `plocate` (remplace locate)
+- ✅ `espeak-ng` (remplace espeak)
+- ✅ `libcurl4` (remplace libcurl3-gnutls)
+- ✅ `php-fpm` (remplace libapache2-mod-php)
+- ✅ Packages optionnels : `chromium`, `php-imap`, `php-ldap`, `php-yaml`, `php-snmp`
+
+**Commandes** :
+```dockerfile
+RUN apt-get update </dev/null 
+RUN apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y install \
+  chrony plocate espeak-ng libcurl4 php php-fpm ... </dev/null && \
+  (apt-get -y install chromium </dev/null 2>&1 || echo "[Optional] chromium not available") && \
+  (apt-get -y install php-imap </dev/null 2>&1 || echo "[Optional] php-imap not available")
+```
+
+### Modifications dans init.sh
+
+Le script d'initialisation Docker utilise maintenant le repository custom :
+
+```bash
+# Téléchargement depuis le repo personnalisé
+wget https://raw.githubusercontent.com/${GITHUB_REPO}/${VERSION}/install/install.sh -O /root/install.sh
+
+# Appel avec l'option -r
+/root/install.sh -s 6 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME}
+```
+
+### Modifications dans init_workflow.sh
+
+Ajout du tag `trixie` pour les builds CI/CD :
+
+```bash
+elif [[ "${GITHUB_REF_NAME}" == "trixie" ]]; then
+  JEEDOM_TAGS="${REPO}/jeedom:trixie";
+  GITHUB_BRANCH=${GITHUB_REF_NAME};
+```
+
 ## ✅ Compatibilité PHP 8.3+
 
 Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
@@ -497,6 +583,8 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 | Détection Debian | Version numérique | Codenames + fallback | Support Trixie |
 | PHP minimal | 7.0 | 7.4 | EOL de PHP 7.x |
 | Gestion erreurs packages optionnels | Erreurs silencieuses | Messages informatifs | Transparence et debug |
+| **Docker GITHUB_REPO** | **Hardcodé jeedom/core** | **Variable ARG/ENV** | **Support forks** |
+| **Docker tags** | **latest, beta, alpha** | **+ trixie** | **Tag spécifique Debian 13** |
 
 ## 🔍 Tests recommandés
 
@@ -505,6 +593,7 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 3. **Vérification PHP-FPM** : `systemctl status phpX.X-fpm`
 4. **Test des fonctionnalités** : scénarios, plugins, TTS
 5. **Performances** : comparaison avant/après
+6. **🐳 Docker** : `docker pull jeedom/jeedom:trixie && docker run -d -p 80:80 --name jeedom-test jeedom/jeedom:trixie`
 
 ## 📚 Références
 
@@ -512,6 +601,7 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 - [PHP 8.3 Migration Guide](https://www.php.net/manual/en/migration83.php)
 - [MariaDB 10.11 Release Notes](https://mariadb.com/kb/en/changes-improvements-in-mariadb-1011/)
 - [PHP-FPM Configuration](https://www.php.net/manual/en/install.fpm.php)
+- [Docker Hub - Jeedom](https://hub.docker.com/r/jeedom/jeedom)
 
 ## 📝 Licence
 
@@ -519,7 +609,7 @@ Ce document et les modifications associées sont distribués sous la même licen
 
 ---
 
-**Date de dernière mise à jour** : 19 décembre 2025  
+**Date de dernière mise à jour** : 21 décembre 2025  
 **Version Jeedom** : 4.5.2  
 **Debian cible** : 13 (Trixie)  
 **Compatibilité** : Debian 12 (Bookworm) et Debian 13 (Trixie)
