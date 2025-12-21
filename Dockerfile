@@ -57,6 +57,7 @@ RUN apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
   (apt-get -y remove brltty </dev/null 2>&1 || echo "[Optional] brltty not present")
 
 COPY install/install.sh /tmp/
+RUN sed -i 's/\r$//' /tmp/install.sh
 RUN bash /tmp/install.sh -s 1 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 RUN bash /tmp/install.sh -s 2 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 RUN bash /tmp/install.sh -s 3 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
