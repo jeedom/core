@@ -7,6 +7,8 @@ ARG WEBSERVER_HOME=/var/www/html
 ENV WEBSERVER_HOME=${WEBSERVER_HOME}
 ARG VERSION=master
 ENV VERSION=${VERSION}
+ARG GITHUB_REPO=jeedom/core
+ENV GITHUB_REPO=${GITHUB_REPO}
 ARG DATABASE=1
 ENV APACHE_HTTP_PORT=80
 ENV APACHE_HTTPS_PORT=443
@@ -33,29 +35,39 @@ WORKDIR ${WEBSERVER_HOME}
 VOLUME ${WEBSERVER_HOME}
 VOLUME /var/lib/mysql
 
+# Configurer l'environnement pour éviter les interactions et l'effet escalier
+ENV DEBIAN_FRONTEND=noninteractive
+ENV NEEDRESTART_MODE=l
+
 #speed up build using docker cache
-RUN apt update -y 
-RUN apt -o Dpkg::Options::="--force-confdef" -y install software-properties-common \
-  ntp ca-certificates unzip curl sudo cron locate tar telnet wget logrotate dos2unix ntpdate htop \
+RUN apt-get update </dev/null 
+RUN apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y install \
+  chrony ca-certificates unzip curl sudo cron plocate tar wget logrotate htop \
   iotop vim iftop smbclient git python3 python3-pip libexpat1 ssl-cert \
-  apt-transport-https xvfb cutycapt xauth at mariadb-client espeak net-tools nmap ffmpeg usbutils \
-  gettext libcurl3-gnutls chromium librsync-dev ssl-cert iputils-ping \
+  xvfb xauth at mariadb-client espeak-ng net-tools nmap ffmpeg usbutils \
+  gettext libcurl4 librsync-dev ssl-cert iputils-ping \
   apache2 apache2-utils libexpat1 ssl-cert \
-  php libapache2-mod-php php-json php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc \
-  php-common php-dev php-zip php-ssh2 php-mbstring php-ldap php-yaml php-snmp && apt -y remove brltty
+  php php-fpm php-json php-mysql php-curl php-gd php-xml php-opcache php-soap php-xmlrpc \
+  php-common php-dev php-zip php-ssh2 php-mbstring </dev/null && \
+  (apt-get -y install chromium </dev/null 2>&1 || echo "[Optional] chromium not available") && \
+  (apt-get -y install php-imap </dev/null 2>&1 || echo "[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)") && \
+  (apt-get -y install php-ldap </dev/null 2>&1 || echo "[Optional] php-ldap not available") && \
+  (apt-get -y install php-yaml </dev/null 2>&1 || echo "[Optional] php-yaml not available") && \
+  (apt-get -y install php-snmp </dev/null 2>&1 || echo "[Optional] php-snmp not available") && \
+  (apt-get -y remove brltty </dev/null 2>&1 || echo "[Optional] brltty not present")
 
 COPY install/install.sh /tmp/
-RUN sh /tmp/install.sh -s 1 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 2 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 3 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 4 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 5 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 1 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 2 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 3 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 4 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 5 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 COPY . ${WEBSERVER_HOME}
-RUN sh /tmp/install.sh -s 7 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 8 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 9 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN sh /tmp/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 7 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 8 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 9 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 10 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
+RUN sh /tmp/install.sh -s 11 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
 RUN echo >${WEBSERVER_HOME}/initialisation
 
