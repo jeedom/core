@@ -534,11 +534,23 @@ RUN apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
   chrony plocate espeak-ng libcurl4 php php-fpm ... </dev/null && \
   (apt-get -y install chromium </dev/null 2>&1 || echo "[Optional] chromium not available") && \
   (apt-get -y install php-imap </dev/null 2>&1 || echo "[Optional] php-imap not available")
+
+# Correction des fins de ligne Windows (CRLF → LF)
+COPY install/install.sh /tmp/
+RUN sed -i 's/\r$//' /tmp/install.sh
+
+# Utilisation de bash au lieu de sh (syntaxe bash dans install.sh)
+RUN bash /tmp/install.sh -s 1 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 ```
+
+**Points importants** :
+- ✅ Utilisation de `bash` au lieu de `sh` pour éviter les erreurs de syntaxe
+- ✅ Conversion automatique des fins de ligne CRLF en LF avec `sed`
+- ✅ Support complet du repository GitHub personnalisé
 
 ### Modifications dans init.sh
 
-Le script d'initialisation Docker utilise maintenant le repository custom :
+Le script d'initialisation Docker a été amélioré :
 
 ```bash
 # Téléchargement depuis le repo personnalisé
@@ -546,7 +558,20 @@ wget https://raw.githubusercontent.com/${GITHUB_REPO}/${VERSION}/install/install
 
 # Appel avec l'option -r
 /root/install.sh -s 6 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME}
+
+# Démarrage de PHP-FPM (essentiel pour que Jeedom fonctionne)
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+service php${PHP_VERSION}-fpm start
+
+# Configuration Apache pour éviter les warnings
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+service apache2 start
 ```
+
+**Améliorations** :
+- ✅ Démarrage automatique de PHP-FPM (correction erreur 503)
+- ✅ Configuration du ServerName Apache (supprime warning AH00558)
+- ✅ Support du repository GitHub personnalisé
 
 ### Modifications dans init_workflow.sh
 
@@ -585,6 +610,9 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 | Gestion erreurs packages optionnels | Erreurs silencieuses | Messages informatifs | Transparence et debug |
 | **Docker GITHUB_REPO** | **Hardcodé jeedom/core** | **Variable ARG/ENV** | **Support forks** |
 | **Docker tags** | **latest, beta, alpha** | **+ trixie** | **Tag spécifique Debian 13** |
+| **Docker shell** | **sh** | **bash** | **Syntaxe bash dans install.sh** |
+| **Docker CRLF** | **Non géré** | **Conversion automatique sed** | **Compatibilité Windows** |
+| **Docker PHP-FPM** | **Non démarré** | **Démarrage automatique** | **Évite erreur 503** |
 
 ## 🔍 Tests recommandés
 
@@ -593,7 +621,18 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
 3. **Vérification PHP-FPM** : `systemctl status phpX.X-fpm`
 4. **Test des fonctionnalités** : scénarios, plugins, TTS
 5. **Performances** : comparaison avant/après
-6. **🐳 Docker** : `docker pull jeedom/jeedom:trixie && docker run -d -p 80:80 --name jeedom-test jeedom/jeedom:trixie`
+6. **🐳 Docker Debian 13** :
+   ```bash
+   # Build avec Debian 13
+   docker build --build-arg DEBIAN=trixie-slim --build-arg VERSION=trixie -t jeedom:test-trixie .
+   
+   # Test du container
+   docker run -d -p 80:80 -p 443:443 --name jeedom-test jeedom:test-trixie
+   
+   # Vérification
+   curl http://localhost
+   docker logs jeedom-test
+   ```
 
 ## 📚 Références
 
