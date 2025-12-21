@@ -398,16 +398,17 @@ class FileCache {
 	public static function restore() {
 		$cache_dir = jeedom::getTmpFolder('cache');
 		if (!file_exists(__DIR__ . '/../../cache.tar.gz')) {
-			$cmd = 'mkdir ' . $cache_dir . ';';
-			$cmd .= 'chmod -R 777 ' . $cache_dir . ';';
+			$cmd = system::getCmdSudo() . 'mkdir -p ' . $cache_dir . ';';
+			$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
+			$cmd .= system::getCmdSudo() . 'chmod -R 777 ' . $cache_dir . ';';
 			com_shell::execute($cmd);
 			return;
 		}
-		$cmd = 'rm -rf ' . $cache_dir . ';';
-		$cmd .= 'mkdir ' . $cache_dir . ';';
-		$cmd .= 'cd ' . $cache_dir . ';';
-		$cmd .= 'tar xfz ' . __DIR__ . '/../../cache.tar.gz;';
-		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
+		$cmd = system::getCmdSudo() . 'rm -rf ' . $cache_dir . ';';
+		$cmd .= system::getCmdSudo() . 'mkdir -p ' . $cache_dir . ';';
+		$cmd .= system::getCmdSudo() . 'tar xfz ' . __DIR__ . '/../../cache.tar.gz -C ' . $cache_dir . ';';
+		$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
+		$cmd .= system::getCmdSudo() . 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
 	}
 
