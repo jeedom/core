@@ -631,7 +631,7 @@ Le code Jeedom a été analysé pour la compatibilité PHP 8.3+ :
    
    # Vérification
    curl http://localhost
-   docker logs jeedom-test
+   docker logs jeedom-trixie
    ```
 
 ## 📚 Références
