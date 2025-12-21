@@ -142,6 +142,13 @@ chmod 777 -R /tmp
 chmod 755 -R ${WEBSERVER_HOME}
 chown -R www-data:www-data ${WEBSERVER_HOME}
 
+# Configure Apache ServerName to avoid warning
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+echo 'Start PHP-FPM'
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+service php${PHP_VERSION}-fpm start
+
 echo 'Start apache2'
 service apache2 start
 
