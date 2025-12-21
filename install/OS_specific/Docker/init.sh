@@ -38,10 +38,17 @@ docker_stop() {
 }
 
 setTimeZone() {
-  [[ ${TZ} == $(</etc/timezone) ]] && return
+  # Check if timezone is already correctly configured via /etc/localtime
+  if [[ -L /etc/localtime ]] && [[ $(readlink /etc/localtime) == "/usr/share/zoneinfo/${TZ}" ]]; then
+    echo "Timezone already correctly set to ${TZ} (via /etc/localtime)"
+    return
+  fi
+  
   echo "Setting timezone to ${TZ}"
-  ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
-  dpkg-reconfigure -fnoninteractive tzdata
+  echo "${TZ}" > /etc/timezone
+  ln -fns /usr/share/zoneinfo/${TZ} /etc/localtime
+  dpkg-reconfigure -f noninteractive tzdata
+  echo "Timezone configured: /etc/timezone and /etc/localtime set to ${TZ}"
 }
 
 set_root_password(){
