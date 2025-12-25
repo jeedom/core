@@ -1999,8 +1999,11 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       _target.setAttribute('data-state', '1')
       //open code blocks for later search:
       document.querySelectorAll('#div_scenarioElement div.elementCODE.elementCollapse').forEach(_code => {
-        _code.removeClass('elementCollapse')
-        _code.querySelector('textarea[data-l1key="expression"]').show()
+          _code.classList.remove('elementCollapse');
+          const textarea = _code.querySelector('textarea[data-l1key="expression"]');
+          if (textarea) {
+            textarea.style.display = 'block';
+          }
       })
       jeeP.setEditors()
       document.querySelectorAll('textarea[data-l1key="expression"]').unseen()
