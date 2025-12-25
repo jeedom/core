@@ -109,7 +109,7 @@ class log extends AbstractLogger {
 	 * @param string $_message message added into log
 	 */
    public static function add($_log, $_type, $_message, $_logicalId = '') {
-		if (trim($_message) == '') {
+		if (!is_string($_message) || trim($_message) == '') {
 			return;
 		}
 		$level = (isset(self::$level[strtolower($_type)])) ? self::$level[strtolower($_type)] : 100;
