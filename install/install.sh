@@ -49,8 +49,8 @@ service_action(){
   fi
 }
 
-version() { 
-  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; 
+version() {
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }';
 }
 
 step_1_upgrade() {
@@ -361,7 +361,7 @@ step_10_jeedom_installation() {
       exit 1
     fi
   fi
-  
+
   echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
 
