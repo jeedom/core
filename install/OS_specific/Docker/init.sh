@@ -38,10 +38,17 @@ docker_stop() {
 }
 
 setTimeZone() {
-  [[ ${TZ} == $(</etc/timezone) ]] && return
+  # Check if timezone is already correctly configured via /etc/localtime
+  if [[ -L /etc/localtime ]] && [[ $(readlink /etc/localtime) == "/usr/share/zoneinfo/${TZ}" ]]; then
+    echo "Timezone already correctly set to ${TZ} (via /etc/localtime)"
+    return
+  fi
+  
   echo "Setting timezone to ${TZ}"
-  ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
-  dpkg-reconfigure -fnoninteractive tzdata
+  echo "${TZ}" > /etc/timezone
+  ln -fns /usr/share/zoneinfo/${TZ} /etc/localtime
+  dpkg-reconfigure -f noninteractive tzdata
+  echo "Timezone configured: /etc/timezone and /etc/localtime set to ${TZ}"
 }
 
 set_root_password(){
@@ -73,7 +80,7 @@ apache_setup() {
 
 echo 'Start init'
 
-# $WEBSERVER_HOME and $VERSION env variables comes from Dockerfile
+# $WEBSERVER_HOME, $VERSION and $GITHUB_REPO env variables comes from Dockerfile
 
 if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 	echo 'Jeedom is already install'
@@ -82,9 +89,9 @@ else
 	echo 'Start jeedom installation'
 	JEEDOM_INSTALL=0
 	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
+	wget https://raw.githubusercontent.com/${GITHUB_REPO}/${VERSION}/install/install.sh -O /root/install.sh
 	chmod +x /root/install.sh
-	/root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+	/root/install.sh -s 6 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME}
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
@@ -101,8 +108,8 @@ else
 		sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
-		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
-		/root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
+		/root/install.sh -s 10 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME}
+		/root/install.sh -s 11 -r ${GITHUB_REPO} -v ${VERSION} -w ${WEBSERVER_HOME}
 	fi
 fi
 
@@ -141,6 +148,13 @@ chmod 777 /dev/tty*
 chmod 777 -R /tmp
 chmod 755 -R ${WEBSERVER_HOME}
 chown -R www-data:www-data ${WEBSERVER_HOME}
+
+# Configure Apache ServerName to avoid warning
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+echo 'Start PHP-FPM'
+PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+service php${PHP_VERSION}-fpm start
 
 echo 'Start apache2'
 service apache2 start

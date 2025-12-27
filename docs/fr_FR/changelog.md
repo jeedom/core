@@ -1,5 +1,15 @@
 # Changelog Jeedom V4.5
 
+# 4.5.2
+
+
+# 4.5.1
+
+- Le déclencheur de scénarios `#user_connect#` inclut dorénavant le tag `#trigger_value#` qui renseigne le nom de l'utilisateur venant de se connecter ([Détails](https://github.com/jeedom/core/pull/3109))
+- Montée de version de nodejs 20 vers 22 ([Détails](https://github.com/jeedom/core/issues/3147))
+- La sauvegarde se fera maintenant a une heure aléatoire entre 00:10 et 9:59
+- Correction d'un warning sur les valeurs de tags null
+
 # 4.5
 
 - [Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`
@@ -10,7 +20,7 @@
 - Les graphiques se mettent à jour automatiquement lors de l'arrivée de nouvelles valeurs [LIEN](https://github.com/jeedom/core/issues/2749)
 - Jeedom ajoute automatiquement la hauteur de l'image lors de la création des widgets pour éviter les soucis de chevauchement en mobile [LIEN](https://github.com/jeedom/core/issues/2539)
 - Refonte de la partie backup cloud [LIEN](https://github.com/jeedom/core/issues/2765)
-- **DEV** Mise en place d'un système de queue pour l'exécution d'actions [LIEN](https://github.com/jeedom/core/issues/2489)
+- [Développeurs] Mise en place d'un système de queue pour l'exécution d'actions [LIEN](https://github.com/jeedom/core/issues/2489)
 - Les tags des scénarios sont maintenant propres à l'instance du scénario (si vous avez deux lancements de scénarios très proches, les tags du dernier n'écrasent plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
 - Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``triggerId() == 587`` il faut le remplacer par ``#trigger_id# == 587``
@@ -95,4 +105,4 @@
 
 >**IMPORTANT**
 >
-> La restauration d'un backup 4.4 peut dans certains cas finir par des erreurs dans l'interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.20.zip;unzip 4.4.19.zip;cd core-4.4.20;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.20;`. Vous pouvez lancer cette commande depuis l'interface rescue de jeedom (ajouter `&rescue=1` dans l'url), ou directement en ssh.
+> La restauration d'un backup 4.4 peut dans certains cas finir par des erreurs dans l'interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.20.zip;unzip 4.4.20.zip;cd core-4.4.20;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.20;`. Vous pouvez lancer cette commande depuis l'interface rescue de jeedom (ajouter `&rescue=1` dans l'url), ou directement en ssh.
