@@ -20,6 +20,7 @@
     "chromium" : {"optional" : true,"remark":"{{Utilisé pour les rapports}}"},
     "at" : {},
     "mariadb-client" : {"alternative" : ["/mariadb-client-(.*?)/"]},
+    "mariadb-client-compat" : {"optional" : true,"remark":"{{Contient mysqlcheck et mysqldump sur Debian 13+}}"},
     "net-tools" : {},
     "nmap" : {},
     "mariadb-common" : {"alternative" : ["/mariadb-common-(.*?)/"],"optional" : true},

@@ -72,6 +72,8 @@ step_2_mainpackage() {
   apt_install libexpat1 ssl-cert
   apt_install xvfb xauth at
   apt_install mariadb-client
+  # Sur Debian 13+, mysqlcheck/mysqldump sont dans mariadb-client-compat
+  apt-get -y install mariadb-client-compat </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] mariadb-client-compat not needed (mysqlcheck/mysqldump already available)${NORMAL}"
   apt_install ffmpeg
   apt_install espeak-ng
   apt_install net-tools nmap usbutils gettext librsync-dev iputils-ping
