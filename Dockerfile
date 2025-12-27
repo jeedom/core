@@ -49,6 +49,7 @@ RUN apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-con
   apache2 apache2-utils libexpat1 ssl-cert \
   php php-fpm php-json php-mysql php-curl php-gd php-xml php-opcache php-soap php-xmlrpc \
   php-common php-dev php-zip php-ssh2 php-mbstring </dev/null && \
+  (apt-get -y install mariadb-client-compat </dev/null 2>&1 || echo "[Optional] mariadb-client-compat not needed (mysqlcheck/mysqldump already available)") && \
   (apt-get -y install chromium </dev/null 2>&1 || echo "[Optional] chromium not available") && \
   (apt-get -y install php-imap </dev/null 2>&1 || echo "[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)") && \
   (apt-get -y install php-ldap </dev/null 2>&1 || echo "[Optional] php-ldap not available") && \
