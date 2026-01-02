@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
+
+# Configurer l'environnement pour éviter l'effet escalier
+export DEBIAN_FRONTEND=noninteractive
+export NEEDRESTART_MODE=l
+
 GREEN="\\033[1;32m"
 NORMAL="\\033[0;39m"
 RED="\\033[1;31m"
@@ -11,7 +16,7 @@ if [ $(id -u) != 0 ] ; then
 fi
 
 apt_install() {
-  apt-get -o Dpkg::Options::="--force-confdef" -y install "$@"
+  apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y install "$@" </dev/null
   if [ $? -ne 0 ]; then
     echo "${RED}Cannot install $@ - Cancelling${NORMAL}"
     exit 1
@@ -52,42 +57,30 @@ step_1_upgrade() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 1 - install${NORMAL}"
 
-  apt-get update
-  apt-get -f install
-  apt-get -y dist-upgrade
+  apt-get update </dev/null
+  apt-get -f install </dev/null
+  apt-get -y dist-upgrade </dev/null
   echo "${GREEN} Step 1 - Install done ${NORMAL}"
 }
 
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
-  apt-get -y install software-properties-common
-  apt-get update
-  apt_install chrony ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
-  apt-get -y install usermod
-  apt-get -y install visudo
-  apt-get -y install git python python-pip
-  apt-get -y install python3 python3-pip
-  apt-get -y install libexpat1 ssl-cert
-  apt-get -y install apt-transport-https
-  apt-get -y install xvfb cutycapt xauth
-  apt-get -y install at
-  apt-get -y install mariadb-client
-  apt-get -y install libav-tools
-  apt-get -y install espeak
-  apt-get -y install mbrola
-  apt-get -y install net-tools
-  apt-get -y install nmap
-  apt-get -y install ffmpeg
-  apt-get -y install usbutils
-  apt-get -y install gettext
-  apt-get -y install libcurl3-gnutls
-  apt-get -y install chromium
-  apt-get -y install librsync-dev
-  apt-get -y install ssl-cert
-  apt-get -y remove brltty
-  apt-get -y iputils-ping
+  apt-get update </dev/null
+  apt_install chrony ca-certificates unzip curl sudo cron plocate tar wget logrotate htop iotop vim iftop smbclient
+  apt_install git python3 python3-pip
+  apt_install libexpat1 ssl-cert
+  apt_install xvfb xauth at
+  apt_install mariadb-client
+  # Sur Debian 13+, mysqlcheck/mysqldump sont dans mariadb-client-compat
+  apt-get -y install mariadb-client-compat </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] mariadb-client-compat not needed (mysqlcheck/mysqldump already available)${NORMAL}"
+  apt_install ffmpeg
+  apt_install espeak-ng
+  apt_install net-tools nmap usbutils gettext librsync-dev iputils-ping
+  
+  # Packages optionnels
+  apt-get -y install chromium </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] chromium not available (used for reports)${NORMAL}"
+  apt-get -y remove brltty </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] brltty not present (cleanup)${NORMAL}"
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
@@ -123,29 +116,25 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 5 - php${NORMAL}"
-  apt_install php libapache2-mod-php php-json php-mysql
-  apt install -y php-curl
-  apt install -y php-gd
-  apt install -y php-imap
-  apt install -y php-xml
-  apt install -y php-opcache
-  apt install -y php-soap
-  apt install -y php-xmlrpc
-  apt install -y php-common
-  apt install -y php-dev
-  apt install -y php-zip
-  apt install -y php-ssh2
-  apt install -y php-mbstring
-  apt install -y php-ldap
-  apt install -y php-yaml
-  apt install -y php-snmp
+  apt_install php php-fpm php-json php-mysql
+  apt_install php-curl php-gd php-xml php-opcache
+  apt_install php-soap php-xmlrpc php-common php-dev
+  apt_install php-zip php-ssh2 php-mbstring
+  
+  # Packages PHP optionnels (peuvent ne pas être disponibles sur toutes les versions Debian)
+  apt-get -y install php-imap </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-imap not available (normal on Debian 13+ with PHP 8.4+)${NORMAL}"
+  apt-get -y install php-ldap </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-ldap not available${NORMAL}"
+  apt-get -y install php-yaml </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-yaml not available${NORMAL}"
+  apt-get -y install php-snmp </dev/null > /dev/null 2>&1 || echo "${YELLOW}[Optional] php-snmp not available${NORMAL}"
   echo "${GREEN}Step 5 - php done${NORMAL}"
 }
 
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
-  wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
+  echo "${YELLOW}Repository: ${GITHUB_REPO}${NORMAL}"
+  echo "${YELLOW}Branch: ${VERSION}${NORMAL}"
+  wget -o /dev/stdout --tries=3 --timeout=60 https://codeload.github.com/${GITHUB_REPO}/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
   if [ $? -ne 0 ]; then
     echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
@@ -159,19 +148,48 @@ step_6_jeedom_download() {
   fi
   mkdir -p ${WEBSERVER_HOME}
   find ${WEBSERVER_HOME} ! -name 'index.html' -type f -exec rm -rf {} +
-  rm -rf /root/core-*
+  
+  rm -rf /root/${REPO_NAME}-*
   unzip -q /tmp/jeedom.zip -d /root/
   if [ $? -ne 0 ]; then
     echo "${RED}Cannot unpack archive - Cancelling${NORMAL}"
     exit 1
   fi
-  cp -R /root/core-*/* ${WEBSERVER_HOME}
-  cp -R /root/core-*/.[^.]* ${WEBSERVER_HOME}
-  cp /root/core/.htaccess ${WEBSERVER_HOME}/.htaccess
+  
+  # Extraire le nom du repo (sans le owner) depuis GITHUB_REPO
+  # Ex: jeedom/core -> core, titidom-rc/jeedom-core -> jeedom-core
+  REPO_NAME=$(echo ${GITHUB_REPO} | cut -d'/' -f2)
+  
+  # Le dossier extrait suit le pattern GitHub: {repo}-{branch}
+  # Recherche insensible à la casse car GitHub peut avoir des majuscules
+  EXTRACTED_DIR=$(find /root -maxdepth 1 -type d -iname "${REPO_NAME}-${VERSION}" | head -n 1)
+  
+  if [ -z "${EXTRACTED_DIR}" ] || [ ! -d "${EXTRACTED_DIR}" ]; then
+    echo "${RED}Cannot find extracted directory matching pattern: ${REPO_NAME}-${VERSION}${NORMAL}"
+    echo "${YELLOW}Available directories in /root/:${NORMAL}"
+    ls -la /root/
+    exit 1
+  fi
+  
+  echo "${YELLOW}Using directory: ${EXTRACTED_DIR}${NORMAL}"
+  
+  # Copier les fichiers
+  cp -R ${EXTRACTED_DIR}/* ${WEBSERVER_HOME}/
+  cp -R ${EXTRACTED_DIR}/.[^.]* ${WEBSERVER_HOME}/ 2>/dev/null
+  
+  # S'assurer que .htaccess est présent
+  if [ -f ${EXTRACTED_DIR}/.htaccess ]; then
+    cp ${EXTRACTED_DIR}/.htaccess ${WEBSERVER_HOME}/.htaccess
+  fi
+  
   find ${WEBSERVER_HOME}/ -exec touch {} +
-  rm -rf /root/core-* > /dev/null 2>&1
-  rm -rf ${WEBSERVER_HOME}/core-* > /dev/null 2>&1
+  
+  # Nettoyer les fichiers temporaires
+  rm -rf ${EXTRACTED_DIR} > /dev/null 2>&1
+  # Supprimer les dossiers repo-branche copiés par erreur dans le webroot
+  rm -rf ${WEBSERVER_HOME}/${REPO_NAME}-${VERSION} > /dev/null 2>&1
   rm /tmp/jeedom.zip
+  
   echo "${GREEN}Step 6 - download Jeedom done${NORMAL}"
 }
 
@@ -210,18 +228,12 @@ step_7_jeedom_customization_mariadb() {
     echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "connect_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "wait_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "interactive_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
-   # echo "default-storage-engine=myisam" >> /etc/mysql/conf.d/jeedom_my.cnf
   fi
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
@@ -285,13 +297,22 @@ step_8_jeedom_customization() {
     sed -i 's/memory_limit = 128M/memory_limit = 512M/g' ${file} > /dev/null 2>&1
   done
 
+  # Désactiver mod_php si présent et activer PHP-FPM
+  a2dismod php* > /dev/null 2>&1
   a2dismod status
   a2enmod headers
   a2enmod remoteip
+  a2enmod proxy_fcgi
+  a2enmod setenvif
+  
+  # Activer la configuration PHP-FPM (détecte automatiquement la version PHP)
+  PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;")
+  a2enconf php${PHP_VERSION}-fpm
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    service_action restart php${PHP_VERSION}-fpm > /dev/null 2>&1
     service_action restart apache2 > /dev/null 2>&1
   fi
 
@@ -413,12 +434,13 @@ distrib_1_spe(){
 
 STEP=0
 VERSION=master
+GITHUB_REPO=jeedom/core
 WEBSERVER_HOME=/var/www/html
 MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d /=+ | cut -c -15)}
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
-while getopts ":s:v:w:m:i:d:" opt; do
+while getopts ":s:v:w:m:i:d:r:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -429,6 +451,8 @@ while getopts ":s:v:w:m:i:d:" opt; do
     i) INSTALLATION_TYPE="$OPTARG"
     ;;
     d) DATABASE="$OPTARG"
+    ;;
+    r) GITHUB_REPO="$OPTARG"
     ;;
     \?) echo "${RED}Invalid option -$OPTARG${NORMAL}" >&2
     ;;
@@ -500,5 +524,7 @@ case ${STEP} in
 esac
 
 rm -rf ${WEBSERVER_HOME}/index.html > /dev/null 2>&1
+
+apt-get clean > /dev/null 2>&1
 
 exit 0

@@ -1023,7 +1023,8 @@ class repo_market {
 				if (property_exists($plugin_id, '_excludeOnSendPlugin')) {
 					$exclude = array_merge($plugin_id::$_excludeOnSendPlugin);
 				}
-				exec('find ' . realpath(__DIR__ . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec dos2unix {} \;');
+				// Conversion des fins de ligne CRLF vers LF pour les scripts shell (sed est natif sur tous les systèmes)
+				exec('find ' . realpath(__DIR__ . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec sed -i \'s/\r$//\' {} \;');
 				rcopy(realpath(__DIR__ . '/../../plugins/' . $plugin_id), $cibDir, true, $exclude, true);
 				if (file_exists($cibDir . '/data')) {
 					rrmdir($cibDir . '/data');

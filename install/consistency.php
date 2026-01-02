@@ -128,333 +128,332 @@ try {
 	if (is_object($cron)) {
 		$cron->remove();
 	}
-	if (method_exists('utils', 'attrChanged')) {
-		$cron = cron::byClassAndFunction('plugin', 'cronDaily');
-		if (!is_object($cron)) {
-			echo "Create plugin::cronDaily\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cronDaily');
-		$cron->setSchedule('00 00 * * *');
-		$cron->setTimeout(240);
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->save();
+	$cron = cron::byClassAndFunction('plugin', 'cronDaily');
+	if (!is_object($cron)) {
+		echo "Create plugin::cronDaily\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cronDaily');
+	$cron->setSchedule('00 00 * * *');
+	$cron->setTimeout(240);
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->save();
 
-		$cron = cron::byClassAndFunction('jeedom', 'backup');
-		if (!is_object($cron)) {
-			echo "Create jeedom::backup\n";
-			$cron = new cron();
-			$cron->setClass('jeedom');
-			$cron->setFunction('backup');
-			$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 7) . ' * * *');
-			$cron->setEnable(1);
-			$cron->setDeamon(0);
-			$cron->setTimeout(60);
-			$cron->save();
-		}
+	$cron = cron::byClassAndFunction('jeedom', 'backup');
+	if (!is_object($cron)) {
+		echo "Create jeedom::backup\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('backup');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(60);
+	$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
+	$cron->save();
 
-		$cron = cron::byClassAndFunction('plugin', 'cronHourly');
-		if (!is_object($cron)) {
-			echo "Create plugin::cronHourly\n";
-			$cron = new cron();
+	$cron = cron::byClassAndFunction('plugin', 'cronHourly');
+	if (!is_object($cron)) {
+		echo "Create plugin::cronHourly\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cronHourly');
+	$cron->setSchedule('00 * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(60);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('scenario', 'check');
+	if (!is_object($cron)) {
+		echo "Create scenario::check\n";
+		$cron = new cron();
+	}
+	$cron->setClass('scenario');
+	$cron->setFunction('check');
+	$cron->setSchedule('* * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(30);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('scenario', 'control');
+	if (!is_object($cron)) {
+		echo "Create scenario::control\n";
+		$cron = new cron();
+	}
+	$cron->setClass('scenario');
+	$cron->setFunction('control');
+	$cron->setSchedule('* * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(30);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cronDaily\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cronDaily');
+	$cron->setSchedule(rand(0, 59) . ' ' . rand(0, 3) . ' * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(240);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('jeedom', 'cronHourly');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cronHourly\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cronHourly');
+	$cron->setSchedule(rand(0, 59) . ' * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(60);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('jeedom', 'cron5');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cron5\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cron5');
+	$cron->setSchedule('*/5 * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(5);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('jeedom', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(10);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('jeedom', 'cron');
+	if (!is_object($cron)) {
+		echo "Create jeedom::cron\n";
+		$cron = new cron();
+	}
+	$cron->setClass('jeedom');
+	$cron->setFunction('cron');
+	$cron->setSchedule('* * * * *');
+	$cron->setTimeout(2);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron');
+	$cron->setSchedule('* * * * *');
+	$cron->setTimeout(2);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('queue', 'cron');
+	if (!is_object($cron)) {
+		echo "Create queue::cron\n";
+		$cron = new cron();
+	}
+	$cron->setClass('queue');
+	$cron->setFunction('cron');
+	$cron->setSchedule('* * * * *');
+	$cron->setTimeout(2);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron5');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron5\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron5');
+	$cron->setSchedule('*/5 * * * *');
+	$cron->setTimeout(5);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron10\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron10');
+	$cron->setSchedule('*/10 * * * *');
+	$cron->setTimeout(10);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron15');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron15\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron15');
+	$cron->setSchedule('*/15 * * * *');
+	$cron->setTimeout(15);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'cron30');
+	if (!is_object($cron)) {
+		echo "Create plugin::cron30\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('cron30');
+	$cron->setSchedule('*/30 * * * *');
+	$cron->setTimeout(30);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
+	if (!is_object($cron)) {
+		echo "Create plugin::checkDeamon\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('checkDeamon');
+	$cron->setSchedule('*/5 * * * *');
+	$cron->setTimeout(5);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('cache', 'persist');
+	if (!is_object($cron)) {
+		echo "Create cache::persist\n";
+		$cron = new cron();
+	}
+	$cron->setClass('cache');
+	$cron->setFunction('persist');
+	$cron->setSchedule('*/30 * * * *');
+	$cron->setTimeout(30);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('history', 'archive');
+	if (!is_object($cron)) {
+		echo "Create history::archive\n";
+		$cron = new cron();
+	}
+	$cron->setClass('history');
+	$cron->setFunction('archive');
+	$cron->setSchedule('00 5 * * *');
+	$cron->setTimeout(240);
+	$cron->setDeamon(0);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('plugin', 'heartbeat');
+	if (!is_object($cron)) {
+		echo "Create plugin::heartbeat\n";
+		$cron = new cron();
+	}
+	$cron->setClass('plugin');
+	$cron->setFunction('heartbeat');
+	$cron->setSchedule('*/5 * * * *');
+	$cron->setEnable(1);
+	$cron->setDeamon(0);
+	$cron->setTimeout(10);
+	$cron->save();
+
+	$cron = cron::byClassAndFunction('network', 'cron10');
+	if (!is_object($cron)) {
+		echo "Create network::cron10\n";
+		$cron = new cron();
+		$cron->setClass('network');
+		$cron->setFunction('cron10');
+		$rand_min = rand(0,9);
+		$cronString = '';
+		for($i=0;$i<6;$i++){
+			$cronString .= ($rand_min+($i*10)).',';
 		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cronHourly');
-		$cron->setSchedule('00 * * * *');
+		$cronString = trim($cronString,',').' * * * *';
+		$cron->setSchedule($cronString);
 		$cron->setEnable(1);
 		$cron->setDeamon(0);
 		$cron->setTimeout(60);
 		$cron->save();
+	}
 
-		$cron = cron::byClassAndFunction('scenario', 'check');
-		if (!is_object($cron)) {
-			echo "Create scenario::check\n";
-			$cron = new cron();
-		}
-		$cron->setClass('scenario');
-		$cron->setFunction('check');
-		$cron->setSchedule('* * * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(30);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('scenario', 'control');
-		if (!is_object($cron)) {
-			echo "Create scenario::control\n";
-			$cron = new cron();
-		}
-		$cron->setClass('scenario');
-		$cron->setFunction('control');
-		$cron->setSchedule('* * * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(30);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('jeedom', 'cronDaily');
-		if (!is_object($cron)) {
-			echo "Create jeedom::cronDaily\n";
-			$cron = new cron();
-		}
-		$cron->setClass('jeedom');
-		$cron->setFunction('cronDaily');
-		$cron->setSchedule(rand(0, 59) . ' ' . rand(0, 3) . ' * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(240);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('jeedom', 'cronHourly');
-		if (!is_object($cron)) {
-			echo "Create jeedom::cronHourly\n";
-			$cron = new cron();
-		}
-		$cron->setClass('jeedom');
-		$cron->setFunction('cronHourly');
-		$cron->setSchedule(rand(0, 59) . ' * * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(60);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('jeedom', 'cron5');
-		if (!is_object($cron)) {
-			echo "Create jeedom::cron5\n";
-			$cron = new cron();
-		}
-		$cron->setClass('jeedom');
-		$cron->setFunction('cron5');
-		$cron->setSchedule('*/5 * * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(5);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('jeedom', 'cron10');
-		if (!is_object($cron)) {
-			echo "Create jeedom::cron10\n";
-			$cron = new cron();
-		}
-		$cron->setClass('jeedom');
-		$cron->setFunction('cron10');
-		$cron->setSchedule('*/10 * * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(10);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('jeedom', 'cron');
-		if (!is_object($cron)) {
-			echo "Create jeedom::cron\n";
-			$cron = new cron();
-		}
-		$cron->setClass('jeedom');
-		$cron->setFunction('cron');
-		$cron->setSchedule('* * * * *');
-		$cron->setTimeout(2);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'cron');
-		if (!is_object($cron)) {
-			echo "Create plugin::cron\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cron');
-		$cron->setSchedule('* * * * *');
-		$cron->setTimeout(2);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('queue', 'cron');
-		if (!is_object($cron)) {
-			echo "Create queue::cron\n";
-			$cron = new cron();
-		}
-		$cron->setClass('queue');
-		$cron->setFunction('cron');
-		$cron->setSchedule('* * * * *');
-		$cron->setTimeout(2);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'cron5');
-		if (!is_object($cron)) {
-			echo "Create plugin::cron5\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cron5');
-		$cron->setSchedule('*/5 * * * *');
-		$cron->setTimeout(5);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'cron10');
-		if (!is_object($cron)) {
-			echo "Create plugin::cron10\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cron10');
-		$cron->setSchedule('*/10 * * * *');
-		$cron->setTimeout(10);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'cron15');
-		if (!is_object($cron)) {
-			echo "Create plugin::cron15\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cron15');
-		$cron->setSchedule('*/15 * * * *');
-		$cron->setTimeout(15);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'cron30');
-		if (!is_object($cron)) {
-			echo "Create plugin::cron30\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('cron30');
-		$cron->setSchedule('*/30 * * * *');
-		$cron->setTimeout(30);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
-		if (!is_object($cron)) {
-			echo "Create plugin::checkDeamon\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('checkDeamon');
-		$cron->setSchedule('*/5 * * * *');
-		$cron->setTimeout(5);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('cache', 'persist');
-		if (!is_object($cron)) {
-			echo "Create cache::persist\n";
-			$cron = new cron();
-		}
-		$cron->setClass('cache');
-		$cron->setFunction('persist');
-		$cron->setSchedule('*/30 * * * *');
-		$cron->setTimeout(30);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('history', 'archive');
-		if (!is_object($cron)) {
-			echo "Create history::archive\n";
-			$cron = new cron();
-		}
-		$cron->setClass('history');
-		$cron->setFunction('archive');
-		$cron->setSchedule('00 5 * * *');
-		$cron->setTimeout(240);
-		$cron->setDeamon(0);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('plugin', 'heartbeat');
-		if (!is_object($cron)) {
-			echo "Create plugin::heartbeat\n";
-			$cron = new cron();
-		}
-		$cron->setClass('plugin');
-		$cron->setFunction('heartbeat');
-		$cron->setSchedule('*/5 * * * *');
-		$cron->setEnable(1);
-		$cron->setDeamon(0);
-		$cron->setTimeout(10);
-		$cron->save();
-
-		$cron = cron::byClassAndFunction('network', 'cron10');
-		if (!is_object($cron)) {
-			echo "Create network::cron10\n";
-			$cron = new cron();
-			$cron->setClass('network');
-			$cron->setFunction('cron10');
-			$rand_min = rand(0,9);
-			$cronString = '';
-			for($i=0;$i<6;$i++){
-				$cronString .= ($rand_min+($i*10)).',';
-			}
-			$cronString = trim($cronString,',').' * * * *';
-			$cron->setSchedule($cronString);
-			$cron->setEnable(1);
-			$cron->setDeamon(0);
-			$cron->setTimeout(60);
-			$cron->save();
-		}
-
-		if (!file_exists(__DIR__ . '/../plugins')) {
-			mkdir(__DIR__ . '/../plugins');
-		}
-		try {
-			echo "\nCheck filesystem right...";
-			jeedom::cleanFileSystemRight();
-			echo "OK\n";
-		} catch (Exception $e) {
-			echo "NOK\n";
-		}
-
-		config::save('hardware_name', '');
-		if (config::byKey('api') == '') {
-			echo "Fix default apikey...\n";
-			config::save('api', config::genKey());
-		}
-		if (file_exists(__DIR__ . '/../core/nodeJS')) {
-			echo "Remove unused nodejs folder...\n";
-			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../core/nodeJS');
-		}
-		if (file_exists(__DIR__ . '/../script/ngrok')) {
-			echo "Remove unused ngrok folder...\n";
-			shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
-		}
-		
-		echo "Check jeedom object...";
-		foreach (jeeObject::all() as $object) {
-			try {
-				$object->save();
-			} catch (Exception $exc) {
-			}
-		}
+	if (!file_exists(__DIR__ . '/../plugins')) {
+		mkdir(__DIR__ . '/../plugins');
+	}
+	try {
+		echo "\nCheck filesystem right...";
+		jeedom::cleanFileSystemRight();
 		echo "OK\n";
+	} catch (Exception $e) {
+		echo "NOK\n";
+	}
 
-		echo "Check jeedom cmd...";
-		foreach (cmd::all() as $cmd) {
-			try {
-				$changed = false;
-				if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
-					$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
-					$changed = true;
-				}
-				if (trim($cmd->getTemplate('dashboard')) != '' && strpos($cmd->getTemplate('dashboard'), '::') === false) {
-					$cmd->setTemplate('dashboard', 'core::' . $cmd->getTemplate('dashboard'));
-					$changed = true;
-				}
-				if (trim($cmd->getTemplate('mobile')) != '' && strpos($cmd->getTemplate('mobile'), '::') === false) {
-					$cmd->setTemplate('mobile', 'core::' . $cmd->getTemplate('mobile'));
-					$changed = true;
-				}
-				if ($changed) {
-					$cmd->save(true);
-				}
-			} catch (Exception $exc) {
-			}
+	config::save('hardware_name', '');
+	if (config::byKey('api') == '') {
+		echo "Fix default apikey...\n";
+		config::save('api', config::genKey());
+	}
+	if (file_exists(__DIR__ . '/../core/nodeJS')) {
+		echo "Remove unused nodejs folder...\n";
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../core/nodeJS');
+	}
+	if (file_exists(__DIR__ . '/../script/ngrok')) {
+		echo "Remove unused ngrok folder...\n";
+		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
+	}
+	
+	echo "Check jeedom object...";
+	foreach (jeeObject::all() as $object) {
+		try {
+			$object->save();
+		} catch (Exception $exc) {
 		}
 	}
+	echo "OK\n";
+
+	echo "Check jeedom cmd...";
+	foreach (cmd::all() as $cmd) {
+		try {
+			$changed = false;
+			if ($cmd->getConfiguration('jeedomCheckCmdCmdActionId') != '') {
+				$cmd->setConfiguration('jeedomCheckCmdCmdActionId', '');
+				$changed = true;
+			}
+			if (trim($cmd->getTemplate('dashboard')) != '' && strpos($cmd->getTemplate('dashboard'), '::') === false) {
+				$cmd->setTemplate('dashboard', 'core::' . $cmd->getTemplate('dashboard'));
+				$changed = true;
+			}
+			if (trim($cmd->getTemplate('mobile')) != '' && strpos($cmd->getTemplate('mobile'), '::') === false) {
+				$cmd->setTemplate('mobile', 'core::' . $cmd->getTemplate('mobile'));
+				$changed = true;
+			}
+			if ($changed) {
+				$cmd->save(true);
+			}
+		} catch (Exception $exc) {
+		}
+	}
+	
 	echo "OK\n";
 
 	if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {

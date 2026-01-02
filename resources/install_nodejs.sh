@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-installVer='20' 	#NodeJS major version to be installed
-minVer='20'	      #min NodeJS major version to be accepted
+export DEBIAN_FRONTEND=noninteractive
 
-# vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
+installVer='22' 	#NodeJS major version to be installed
+minVer='22'	      #min NodeJS major version to be accepted
+
+# vérifier si toujours nécessaire, cette source traîne encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
   echo "Vérification si la source deb-multimedia existe (bug lors du apt-get update si c'est le cas)"
   echo "deb-multimedia existe !"
@@ -34,16 +36,24 @@ if [ -f /media/boot/multiboot/meson64_odroidc2.dtb.linux ]; then
   fi
 fi
 
-#prioritize nodesource nodejs : just in case
-sudo bash -c "cat >> /etc/apt/preferences.d/nodesource" << EOL
-Package: nodejs
-Pin: origin deb.nodesource.com
-Pin-Priority: 600
-EOL
+# Installation des packages nécessaires pour ce script
+# Attendre la libération des verrous dpkg si nécessaire (max 10 secondes)
+timeout=10
+while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1 && [ $timeout -gt 0 ]; do
+  echo "Attente de la libération du verrou dpkg... (${timeout}s restantes)"
+  sleep 2
+  timeout=$((timeout - 2))
+done
 
-# Mise à jour APT et installation des packages nécessaires
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y lsb-release build-essential apt-utils git
+if [ $timeout -le 0 ]; then
+  echo "ATTENTION: Timeout dépassé, tentative d'installation malgré le verrou"
+fi
+
+sudo apt-get update </dev/null
+sudo apt-get install -y lsb-release curl build-essential </dev/null
+
+# Attendre que les verrous apt soient libérés avant le script NodeSource
+sleep 2
 
 # Vérification du système
 arch=`arch`;
@@ -53,8 +63,8 @@ lsb_release -c | grep jessie
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20200630" ]]; 
-  then 
+  if [[ "$today" > "20200630" ]];
+  then
   echo "== ATTENTION Debian 8 Jessie n'est officiellement plus supportée depuis le 30 juin 2020, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
@@ -65,20 +75,20 @@ lsb_release -c | grep stretch
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20220630" ]]; 
-  then 
+  if [[ "$today" > "20220630" ]];
+  then
   echo "== ATTENTION Debian 9 Stretch n'est officiellement plus supportée depuis le 30 juin 2022, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
 fi
 
-#buster doesn't support NodeJS 20
+#buster doesn't support NodeJS 22
 lsb_release -c | grep buster
 if [ $? -eq 0 ]
 then
   today=$(date +%Y%m%d)
-  if [[ "$today" > "20220630" ]]; 
-  then 
+  if [[ "$today" > "20240630" ]];
+  then
   echo "== ATTENTION Debian 10 Buster n'est officiellement plus supportée depuis le 30 juin 2024, merci de mettre à jour votre distribution !!!"
   exit 1
 fi
@@ -87,9 +97,9 @@ fi
 #x86 32 bits not supported by nodesource anymore
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
-then 
-echo "== ATTENTION Votre système est x86 en 32bits et NodeJS 12 n'y est pas supporté, merci de passer en 64bits !!!"
-exit 1 
+then
+echo "== ATTENTION Votre système est x86 en 32bits et NodeJS n'y est plus supporté, merci de passer en 64bits !!!"
+exit 1
 fi
 
 
@@ -104,18 +114,17 @@ then
 else
   echo "[  KO  ]";
   echo "Installation de NodeJS $installVer"
-  
-  #if npm exists
-  type npm &>/dev/null
-  if [ $? -eq 0 ]; then
-    npmPrefix=`npm prefix -g`
-  else
-    npmPrefix="/usr"
+
+  # Détection de la provenance de NodeJS pour éviter les conflits
+  if dpkg -l nodejs 2>/dev/null | grep -q '^ii'; then
+    if ! apt-cache policy nodejs 2>/dev/null | grep -q 'deb.nodesource.com'; then
+      echo "NodeJS détecté depuis les dépôts Debian officiels, désinstallation nécessaire"
+      sudo apt-get -y --purge autoremove nodejs npm </dev/null &>/dev/null
+    else
+      echo "NodeJS détecté depuis NodeSource, mise à jour en place"
+    fi
   fi
-  
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove npm &>/dev/null
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y --purge autoremove nodejs &>/dev/null
-  
+
   if [[ $arch == "armv6l" ]]
   then
     #version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
@@ -126,12 +135,14 @@ else
     elif [[ $installVer == "16" ]]; then
       armVer="16.20.2"
     elif [[ $installVer == "18" ]]; then
-      armVer="18.18.0"
+      armVer="18.20.4"
     elif [[ $installVer == "20" ]]; then
-      armVer="20.8.0"
+      armVer="20.18.1"
+    elif [[ $installVer == "22" ]]; then
+      armVer="22.12.0"
     fi
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
-    wget https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
+    wget -o /dev/stdout --tries=3 --timeout=60 https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
     tar -xvf node-v${armVer}-linux-armv6l.tar.gz
     cd node-v${armVer}-linux-armv6l
     sudo cp -f -R * /usr/local/
@@ -142,23 +153,20 @@ else
     #upgrade to recent npm
     sudo npm install -g npm
   else
-    echo "Utilisation du dépot officiel"
+    echo "Utilisation du dépot officiel NodeSource"
     NODE_MAJOR=$installVer
-    sudo mkdir -p /etc/apt/keyrings
-    [[ -f /etc/apt/keyrings/nodesource.gpg ]] && sudo rm /etc/apt/keyrings/nodesource.gpg || true
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-    [[ -f /etc/apt/sources.list.d/nodesource.list ]] && sudo rm /etc/apt/sources.list.d/nodesource.list || true
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-    sudo apt-get update
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+    # Méthode officielle NodeSource : https://github.com/nodesource/distributions
+    curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | sudo -E bash -
+    sudo apt-get install -y nodejs </dev/null
   fi
-  
-  npm config set prefix ${npmPrefix} &>/dev/null
 
-  if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then 
+  # Suppression du paramètre npm obsolète globalignorefile (npm v9+)
+  npm config delete globalignorefile &>/dev/null || true
+
+  if [ $(which node | wc -l) -ne 0 ] && [ $(which nodejs | wc -l) -eq 0 ]; then
     ln -s $(which node) $(which node)js
   fi
-  
+
   new=`nodejs -v`;
   echo -n "[Check Version NodeJS après install : ${new} : "
   testVerAfter=$(php -r "echo version_compare('${new}','v${minVer}','>=');")
@@ -173,17 +181,22 @@ fi
 type npm &>/dev/null
 if [ $? -ne 0 ]; then
   # Installation de npm car non présent (par sécu)
-  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y npm  
+  sudo apt-get install -y npm </dev/null
   sudo npm install -g npm
 fi
 
 type npm &>/dev/null
 if [ $? -eq 0 ]; then
+  # Suppression du paramètre npm obsolète globalignorefile pour tous les utilisateurs (npm v9+)
+  npm config delete globalignorefile &>/dev/null || true
+  sudo npm config delete globalignorefile &>/dev/null || true
+  sudo -u www-data npm config delete globalignorefile &>/dev/null || true
+  
   npmPrefix=`npm prefix -g`
   npmPrefixSudo=`sudo npm prefix -g`
   npmPrefixwwwData=`sudo -u www-data npm prefix -g`
   echo -n "[Check Prefix : $npmPrefix and sudo prefix : $npmPrefixSudo and www-data prefix : $npmPrefixwwwData : "
-  if [[ "$npmPrefixSudo" != "/usr" ]] && [[ "$npmPrefixSudo" != "/usr/local" ]]; then 
+  if [[ "$npmPrefixSudo" != "/usr" ]] && [[ "$npmPrefixSudo" != "/usr/local" ]]; then
   echo "[  KO  ]"
   if [[ "$npmPrefixwwwData" == "/usr" ]] || [[ "$npmPrefixwwwData" == "/usr/local" ]]; then
     echo "Reset prefix ($npmPrefixwwwData) pour npm `sudo whoami`"
@@ -202,7 +215,7 @@ if [ $? -eq 0 ]; then
         sudo npm config set prefix /usr/local
       fi
     fi
-  fi  
+  fi
 else
   if [[ "$npmPrefixwwwData" == "/usr" ]] || [[ "$npmPrefixwwwData" == "/usr/local" ]]; then
     if [[ "$npmPrefixwwwData" == "$npmPrefixSudo" ]]; then
@@ -230,9 +243,6 @@ else
   fi
 fi
 fi
-
-# on nettoie la priorité nodesource
-[[ -f /etc/apt/preferences.d/nodesource ]] && sudo rm -f /etc/apt/preferences.d/nodesource &>/dev/null || true
 
 # on remet deb-multimedia si on l'a désactivé avant
 if [ -f /etc/apt/sources.list.d/deb-multimedia.list.disabled ]; then
