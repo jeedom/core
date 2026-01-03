@@ -1,7 +1,10 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3
+
 # 4.5.2
 
+- Mise à jour vivement recommandée qui corrige un bug sur la vérification de la date empêchant tout lancement de scénario ou de tâche planifiée.
 
 # 4.5.1
 

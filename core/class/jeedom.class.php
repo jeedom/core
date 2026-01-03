@@ -222,7 +222,7 @@ class jeedom {
 		$state = self::isDateOk();
 		$cache = cache::byKey('hour');
 		$lastKnowDate = $cache->getValue();
-		if($lastKnowDate === ""){
+		if ($lastKnowDate === "") {
 			$lastKnowDate = 0;
 		}
 		$return[] = array(
@@ -427,7 +427,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
 			'state' => ($values[2] < 20),
-			'result' => round($values[0],2) . ' - ' . round($values[1],2) . ' - ' . round($values[2],2),
+			'result' => round($values[0], 2) . ' - ' . round($values[1], 2) . ' - ' . round($values[2], 2),
 			'comment' => '',
 			'key' => 'load'
 		);
@@ -1036,18 +1036,6 @@ class jeedom {
 				return false;
 			}
 		}
-		$minDateValue = new \DateTime('2020-01-01');
-		$mindate = strtotime($minDateValue->format('Y-m-d 00:00:00'));
-		$maxDateValue = $minDateValue->modify('+6 year')->format('Y-m-d 00:00:00');
-		$maxdate = strtotime($maxDateValue);
-		if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-			self::forceSyncHour();
-			sleep(3);
-			if (strtotime('now') < $mindate || strtotime('now') > $maxdate) {
-				log::add('core', 'error', __('La date du système est incorrecte (avant ' . $minDateValue . ' ou après ' . $maxDateValue . ') :', __FILE__) . ' ' . (new \DateTime())->format('Y-m-d H:i:s'), 'dateCheckFailed');
-				return false;
-			}
-		}
 		return true;
 	}
 
@@ -1252,8 +1240,8 @@ class jeedom {
 			log::add('jeedom', 'error', log::exception($e));
 		}
 		$disk_space = self::checkSpaceLeft();
-		if($disk_space < 10){
-			log::add('jeedom', 'error',__('Espace disque disponible faible : ',__FILE__).$disk_space.'%.'.__('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)',__FILE__));
+		if ($disk_space < 10) {
+			log::add('jeedom', 'error', __('Espace disque disponible faible : ', __FILE__) . $disk_space . '%.' . __('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)', __FILE__));
 		}
 	}
 
@@ -1549,7 +1537,7 @@ class jeedom {
 		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer ou copier}}');
 		}
-		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory','disableEqs'] as $key) {
+		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory', 'disableEqs'] as $key) {
 			if (!isset($_options[$key])) {
 				$_options[$key] = false;
 			}
@@ -1636,7 +1624,7 @@ class jeedom {
 				$targetEq->save();
 				$return['eqlogics'] += 1;
 			}
-		} 
+		}
 		if ($_options['hideEqs'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
@@ -1747,7 +1735,7 @@ class jeedom {
 	}
 
 	public static function getTmpFolder($_plugin = '') {
-		if(isset(self::$cache['getTmpFolder::' . $_plugin])){
+		if (isset(self::$cache['getTmpFolder::' . $_plugin])) {
 			return self::$cache['getTmpFolder::' . $_plugin];
 		}
 		$return = '/' . trim(config::byKey('folder::tmp'), '/');
@@ -1804,7 +1792,7 @@ class jeedom {
 			$result = 'Atlas';
 		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
-		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
+		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'), 'systemd') === false) {
 			$result = 'docker';
 		}
 		config::save('hardware_name', $result);
