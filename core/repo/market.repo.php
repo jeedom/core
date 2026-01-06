@@ -231,7 +231,7 @@ class repo_market {
 	/*     * ***********************BACKUP*************************** */
 
 	public static function backup_createFolderIsNotExist() {
-		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')),config::byKey('market::username'),config::byKey('market::password'));
 		$request_http->setCURLOPT(array(
 				CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
@@ -243,7 +243,8 @@ class repo_market {
 			if($file->propstat->prop->getcontenttype){
 				continue;
 			}
-			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$file->href),'/'));
+			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.urlencode(config::byKey('market::username')),'',$file->href),'/'));
+			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$folder),'/'));
 			if($folder == ''){
 				continue;
 			}
@@ -253,7 +254,7 @@ class repo_market {
 			}
 		}
 		if (!$found) {
-			$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
+			$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')).'/'.rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
 			$request_http->setCURLOPT(array(
 					CURLOPT_CUSTOMREQUEST => "MKCOL"
 			));
@@ -280,7 +281,7 @@ class repo_market {
 			com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
 			$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c ' . $_path;
 			com_shell::execute($cmd);
-            $cmd = "curl --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
+            $cmd = "curl --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
             com_shell::execute($cmd);
 			unlink($_path . '.gpg');
 			rrmdir('/tmp/jeedom_gnupg');
@@ -298,7 +299,7 @@ class repo_market {
 		$limit = 3700;
 		self::backup_createFolderIsNotExist();
 
-		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')),config::byKey('market::username'),config::byKey('market::password'));
 		$request_http->setCURLOPT(array(
 				CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
@@ -353,7 +354,7 @@ class repo_market {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
-		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')). '/' . rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
 		$request_http->setCURLOPT(array(
 				CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
