@@ -1757,13 +1757,13 @@ class cmd {
 					$replace['#hide_history#'] = '';
 					$historyStatistique = $this->getStatistique($startHist, date('Y-m-d H:i:s'));
 					if ($historyStatistique['avg'] == 0 && $historyStatistique['min'] == 0 && $historyStatistique['max'] == 0) {
-						$replace['#averageHistoryValue#'] = round(intval($replace['#state#']), 1);
-						$replace['#minHistoryValue#'] = round(intval($replace['#state#']), 1);
-						$replace['#maxHistoryValue#'] = round(intval($replace['#state#']), 1);
+						$replace['#averageHistoryValue#'] = round(floatval($replace['#state#']), 1);
+						$replace['#minHistoryValue#'] = round(floatval($replace['#state#']), 1);
+						$replace['#maxHistoryValue#'] = round(floatval($replace['#state#']), 1);
 					} else {
-						$replace['#averageHistoryValue#'] = round(intval($historyStatistique['avg']), 1);
-						$replace['#minHistoryValue#'] = round(intval($historyStatistique['min']), 1);
-						$replace['#maxHistoryValue#'] = round(intval($historyStatistique['max']), 1);
+						$replace['#averageHistoryValue#'] = round(floatval($historyStatistique['avg']), 1);
+						$replace['#minHistoryValue#'] = round(floatval($historyStatistique['min']), 1);
+						$replace['#maxHistoryValue#'] = round(floatval($historyStatistique['max']), 1);
 					}
 					$startHist = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' -' . config::byKey('historyCalculTendance') . ' hour'));
 					$tendance = $this->getTendance($startHist, date('Y-m-d H:i:s'));
