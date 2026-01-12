@@ -586,12 +586,12 @@ try {
 
 		/*             * ************************System*************************** */
 
-		if ($jsonrpc->getMethod() == 'system::halt') {
+		if ($jsonrpc->getMethod() == 'jeedom::halt') {
 			jeedom::haltSystem();
 			$jsonrpc->makeSuccess('ok');
 		}
 
-		if ($jsonrpc->getMethod() == 'system::reboot') {
+		if ($jsonrpc->getMethod() == 'jeedom::reboot') {
 			jeedom::rebootSystem();
 			$jsonrpc->makeSuccess('ok');
 		}
