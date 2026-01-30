@@ -1297,6 +1297,13 @@ class jeedom {
 		} catch (Error $e) {
 			log::add('jeedom', 'error', log::exception($e));
 		}
+		try{
+			log::chunk('', True);
+		}catch (Throwable $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		}
 	}
 
 	/*************************************************************************************/
