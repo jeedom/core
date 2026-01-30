@@ -2,9 +2,11 @@
 
 # 4.5.3
 
+- Diverses corrections de bugs et optimisations
+
 # 4.5.2
 
-- Mise à jour vivement recommandée qui corrige un bug sur la vérification de la date empêchant tout lancement de scénario ou de tâche planifiée.
+- Mise à jour indispensable qui corrige un bug sur la vérification de la date empêchant tout lancement de scénario ou de tâche planifiée.
 
 # 4.5.1
 
