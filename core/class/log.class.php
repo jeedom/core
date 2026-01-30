@@ -108,7 +108,7 @@ class log extends AbstractLogger {
 	 * @param string $_type message type (info, debug, warning, danger)
 	 * @param string $_message message added into log
 	 */
-   public static function add($_log, $_type, $_message, $_logicalId = '') {
+   public static function add(string $_log,string $_type, string $_message,string $_logicalId = '') {
 		if (trim($_message) == '') {
 			return;
 		}
