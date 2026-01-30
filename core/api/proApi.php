@@ -643,7 +643,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'jeeNetwork::update') {
-			jeedom::update('', 0);
+			jeedom::update('');
 			$jsonrpc->makeSuccess('ok');
 		}
 
@@ -751,7 +751,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'backup::restoreMarket') {
-			repo_market::backup_restore($params['backup'], true);
+			repo_market::backup_restore($params['backup']);
 			$jsonrpc->makeSuccess();
 		}
 
@@ -814,9 +814,9 @@ try {
 		/*             * ************************Plugin*************************** */
 		if ($jsonrpc->getMethod() == 'plugin::install') {
 			try {
-				$market = market::byId($params['plugin_id']);
+				$market = repo_market::byId($params['plugin_id']);
 			} catch (Exception $e) {
-				$market = market::byLogicalId($params['plugin_id']);
+				$market = repo_market::byLogicalId($params['plugin_id']);
 			}
 			if (!is_object($market)) {
 				throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['plugin_id']));
@@ -829,7 +829,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'plugin::remove') {
-			$market = market::byId($params['plugin_id']);
+			$market = repo_market::byId($params['plugin_id']);
 			if (!is_object($market)) {
 				throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['plugin_id']));
 			}
@@ -857,7 +857,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'update::update') {
-			jeedom::update('', 0);
+			jeedom::update('');
 			$jsonrpc->makeSuccess('ok');
 		}
 

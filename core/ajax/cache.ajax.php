@@ -28,7 +28,7 @@ try {
 
 	if (init('action') == 'set') {
 		unautorizedInDemo();
-		cache::set(init('key'), init('value'), init('lifetime', 0), init('options', null));
+		cache::set(init('key'), init('value'), init('lifetime', 0));
 		ajax::success();
 	}
 

@@ -31,6 +31,7 @@ class widgets {
   private $test;
   private $display;
   private $_changed = false;
+  protected $_needRefreshWidget = false;
 
   /*     * ***********************Méthodes statiques*************************** */
 

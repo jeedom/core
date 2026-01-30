@@ -465,7 +465,7 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
-			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'), init('addFirstPreviousValue', false));
+			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
 					$info_history = array();

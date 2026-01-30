@@ -178,6 +178,7 @@ class utils {
 			}
 			if (empty($_attr)) {
 				if (is_array($_key)) {
+                    $return = [];
 					foreach ($_key as $key) {
 						$return[$key] = $_default;
 					}

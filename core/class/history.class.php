@@ -366,6 +366,7 @@ class history {
 			$values['endTime'] = $_endTime;
 		}
 		$sql='';
+        $goupingType = [];
 		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
 			$sql .= 'SELECT ' . DB::buildField(__CLASS__);
 		} else {

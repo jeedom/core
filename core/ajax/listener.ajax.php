@@ -43,7 +43,7 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		$listeners = utils::o2a(listener::all(true));
+		$listeners = utils::o2a(listener::all());
 		foreach ($listeners as &$listener) {
 			$listener['event_str'] = '';
 			foreach ($listener['event'] as $event) {
