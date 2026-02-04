@@ -272,7 +272,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
 			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
 		}
-		self::backup_clean($_path);
+		//self::backup_clean($_path);
 		self::backup_createFolderIsNotExist();
 		try {
 			if (!file_exists('/tmp/jeedom_gnupg')) {
