@@ -213,18 +213,18 @@ class scenarioExpression {
 		$_sValue = self::setTags($_sValue);
 		$_aValue = explode(";", $_sValue);
 		try {
-			$result = evaluate($_aValue);
+			$result = evaluate($_sValue);
 			if (is_string($result)) {
 				$result = $_aValue;
 			}
 		} catch (Exception $e) {
 			$result = $_aValue;
 		}
-		if (is_array($_aValue)) {
-			$nbr = mt_rand(0, count($_aValue) - 1);
-			return $_aValue[$nbr];
+		if (is_array($result)) {
+			$nbr = mt_rand(0, count($result) - 1);
+			return $result[$nbr];
 		} else {
-			return $_aValue;
+			return $result;
 		}
 	}
 
