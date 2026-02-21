@@ -379,6 +379,7 @@ sendVarToJS([
 							<option value="if">{{Si/Alors/Sinon}}</option>
 							<option value="action">{{Action}}</option>
 							<option value="for">{{Boucle}}</option>
+							<option value="while">{{Tant que}}</option>
 							<option value="in">{{Dans}}</option>
 							<option value="at">{{A}}</option>
 							<option value="code">{{Code}}</option>

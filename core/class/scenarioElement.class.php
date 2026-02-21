@@ -131,8 +131,8 @@ class scenarioElement {
 	}
 
 	/**
- 	* @return void|bool
-  	*/
+	 * @return void|bool
+	 */
 	public function execute(&$_scenario = null) {
 		if ($_scenario != null && !$_scenario->getDo()) {
 			return;
@@ -205,6 +205,33 @@ class scenarioElement {
 			$return = false;
 			for ($i = 1; $i <= $limits; $i++) {
 				$return = $this->getSubElement('do')->execute($_scenario);
+			}
+			return $return;
+		} elseif ($this->getType() == 'while') {
+			if ($this->getSubElement('while')->getOptions('enable', 1) == 0) {
+				return true;
+			}
+			$result = $this->getSubElement('while')->execute($_scenario);
+			if (is_string($result) && strlen($result) > 1) {
+				$_scenario->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['invalidExpr']['txt'] . $result);
+				$expresssion_str = '';
+				if ($this->getSubElement('while')->getSubtype() == 'condition' && is_array($this->getSubElement('while')->getExpression())) {
+					foreach (($this->getSubElement('while')->getExpression()) as $expression) {
+						$expresssion_str = $expression->getExpression();
+					}
+				}
+				$message = __('Expression non valide', __FILE__) . '  [' . $expresssion_str . '] ' . __('trouvée dans le scénario :', __FILE__) . ' ' . $_scenario->getHumanName() . __(', résultat : ', __FILE__) . $result;
+				$action = '<a href="/' . $_scenario->getLinkToConfiguration() . '">' . __('Scenario', __FILE__) . '</a>';
+				$logicalId = 'invalidExprScenarioElement::' . $this->getId();
+				message::add('scenario', $message, $action, $logicalId);
+				return;
+			}
+			$max = 3600;
+			$i = 0;
+			while ($i++ < $max && $result) {
+				$return = $this->getSubElement('do')->execute($_scenario);
+				sleep(1);
+				$result = $this->getSubElement('while')->execute($_scenario);
 			}
 			return $return;
 		} elseif ($this->getType() == 'in') {
@@ -424,6 +451,9 @@ class scenarioElement {
 					break;
 				case 'do':
 					$return .= __('FAIRE', __FILE__);
+					break;
+				case 'while':
+					$return .= __('TANT QUE', __FILE__);
 					break;
 				case 'code':
 					$return .= __('CODE', __FILE__);
