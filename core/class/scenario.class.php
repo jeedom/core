@@ -415,7 +415,7 @@ class scenario {
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
 				$scenario_->addTag('trigger_message',$trigger_message);
-				
+
 				$scenario_->addTag('trigger_value',$_value);
 				if (is_object($_event)) {
 					$scenario_->addTag('trigger_name',trim($_event->getHumanName(),'#'));
@@ -606,14 +606,14 @@ class scenario {
 			if ($_group_name == __('Aucun', __FILE__)) {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
-				WHERE s.name COLLATE utf8mb4_0900_ai_ci =:scenario_name
+				WHERE s.name =:scenario_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")
 				AND s.object_id IS NULL';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
-				WHERE s.name COLLATE utf8mb4_0900_ai_ci =:scenario_name
+				WHERE s.name =:scenario_name
 				AND s.object_id IS NULL
 				AND `group`=:group_name';
 			}
@@ -623,17 +623,17 @@ class scenario {
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
 				INNER JOIN object ob ON s.object_id=ob.id
-				WHERE s.name COLLATE utf8mb4_0900_ai_ci =:scenario_name
-				AND ob.name COLLATE utf8mb4_0900_ai_ci =:object_name
+				WHERE s.name =:scenario_name
+				AND ob.name =:object_name
 				AND (`group` IS NULL OR `group`=""  OR `group`="Aucun" OR `group`="None")';
 			} else {
 				$values['group_name'] = $_group_name;
 				$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 				FROM scenario s
 				INNER JOIN object ob ON s.object_id=ob.id
-				WHERE s.name COLLATE utf8mb4_0900_ai_ci =:scenario_name
-				AND ob.name COLLATE utf8mb4_0900_ai_ci =:object_name
-				AND `group` COLLATE utf8mb4_0900_ai_ci =:group_name';
+				WHERE s.name =:scenario_name
+				AND ob.name =:object_name
+				AND `group` =:group_name';
 			}
 		}
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
@@ -1031,7 +1031,6 @@ class scenario {
 	 *
 	 */
 	public function emptyCacheWidget() {
-		
 	}
 	/**
 	 *
@@ -1225,7 +1224,7 @@ class scenario {
 			} catch (Error $exc) {
 			}
 		}
-		
+
 		return $calculatedDate;
 	}
 
@@ -1990,7 +1989,7 @@ class scenario {
 		$this->configuration = $configuration;
 		return $this;
 	}
-	
+
 	/**
 	 * getReturn
 	 *
