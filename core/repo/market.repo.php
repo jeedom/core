@@ -281,8 +281,13 @@ class repo_market {
 			com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
 			$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c ' . $_path;
 			com_shell::execute($cmd);
-            $cmd = "curl --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
-            com_shell::execute($cmd);
+            $cmd = "curl --retry 5 --retry-delay 3 --retry-max-time 60 --retry-connrefused --keepalive-time 30 --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
+            try {
+                com_shell::execute($cmd);
+            } catch (\Exception $e) {
+                $cmd = "curl --http1.1 --retry 5 --retry-delay 3 --retry-max-time 60 --retry-connrefused --keepalive-time 30 --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.urlencode(config::byKey('market::username')). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
+    			com_shell::execute($cmd);
+    		}
 			unlink($_path . '.gpg');
 			rrmdir('/tmp/jeedom_gnupg');
 		} catch (\Exception $e) {
