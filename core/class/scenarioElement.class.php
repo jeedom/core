@@ -226,10 +226,13 @@ class scenarioElement {
 				message::add('scenario', $message, $action, $logicalId);
 				return;
 			}
-			$max = 3600;
-			$i = 0;
-			while ($i++ < $max && $result) {
+			$endTime = time() + 3600;
+			while ($result) {
 				$return = $this->getSubElement('do')->execute($_scenario);
+				if (time() > $endTime) {
+					$_scenario->setLog(__('[While] Arrêt de la boucle pour cause de durée d\'exécution trop longue', __FILE__));
+					return;
+				}
 				sleep(1);
 				$result = $this->getSubElement('while')->execute($_scenario);
 			}
