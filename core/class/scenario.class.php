@@ -2028,7 +2028,7 @@ class scenario {
 	 * @return $this
 	 */
 	public function setTags($_tags) {
-		$this->_tags = $_tags;
+		$this->_tags = array_merge($this->_tags, $_tags);
 		return $this;
 	}
 
