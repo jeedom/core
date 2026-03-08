@@ -22,19 +22,19 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_github {
 	/*     * *************************Attributs****************************** */
-	
+
 	public static $_name = 'Github';
-	
+
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
 		'hasConfiguration' => true,
 		'core' => true,
 	);
-	
-	
+
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
+
 	public static function getConfigurationOption(){
 		return array(
 			'parameters_for_add' => array(
@@ -79,7 +79,7 @@ class repo_github {
 			),
 		);
 	}
-	
+
 	public static function checkUpdate(&$_update) {
 		if (is_array($_update)) {
 			if (count($_update) < 1) {
@@ -123,7 +123,7 @@ class repo_github {
 		$request_http->setHeader($headers);
 		return json_decode($request_http->exec(10, 1), true);
 	}
-	
+
 	public static function downloadObject($_update) {
 		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
 		$branch = self::getBranchInfo($_update);
@@ -141,29 +141,41 @@ class repo_github {
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $_update->getLogicalId() . '...');
 		if ($token == '') {
-			$result = shell_exec('curl -s -L ' . $url . ' > ' . $tmp);
+			exec('curl -s -f -L -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
 		} else {
-			$result = shell_exec('curl -s -H "Authorization: token ' . $token . '" -L ' . $url . ' > ' . $tmp);
+			exec('curl -s -f -L -H "Authorization: token ' . escapeshellarg($token) . '" -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
 		}
-		log::add('update', 'alert', $result);
-		
+		if ($return_code !== 0 || !file_exists($tmp) || filesize($tmp) == 0) {
+			$error_msg = __('Erreur lors du téléchargement', __FILE__);
+			if (!empty($output)) {
+				$error_msg .= ': ' . implode("\n", $output);
+			}
+			if (!file_exists($tmp)) {
+				$error_msg .= ' - ' . __('Fichier non créé', __FILE__);
+			} elseif (filesize($tmp) == 0) {
+				$error_msg .= ' - ' . __('Fichier vide', __FILE__);
+			}
+			log::add('update', 'error', $error_msg);
+			throw new Exception($error_msg);
+		}
+		log::add('update', 'info', __('Téléchargement réussi', __FILE__) . ' (' . round(filesize($tmp) / 1024 / 1024, 2) . ' MB)');
+
 		if (!isset($branch['commit']) || !isset($branch['commit']['sha'])) {
 			return array('path' => $tmp);
 		}
 		return array('localVersion' => $branch['commit']['sha'], 'path' => $tmp);
 	}
-	
+
 	public static function deleteObjet($_update) {
-		
 	}
-	
+
 	public static function objectInfo($_update) {
 		return array(
 			'doc' => 'https://github.com/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/blob/' . $_update->getConfiguration('version', 'master') . '/doc/' . config::byKey('language', 'core', 'fr_FR') . '/index.asciidoc',
 			'changelog' => 'https://github.com/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/commits/' . $_update->getConfiguration('version', 'master'),
 		);
 	}
-	
+
 	public static function downloadCore($_path) {
 		$url = 'https://api.github.com/repos/' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/zipball/' . config::byKey('github::core::branch', 'core', 'stable');
 		echo __('Téléchargement de', __FILE__) . ' ' . $url . '...';
@@ -174,15 +186,14 @@ class repo_github {
 		}
 		return;
 	}
-	
+
 	public static function versionCore() {
 		$url = 'https://raw.githubusercontent.com/'.config::byKey('github::core::user', 'core', 'jeedom').'/'.config::byKey('github::core::repository', 'core', 'core').'/' . config::byKey('github::core::branch', 'core', 'stable') . '/core/config/version';
 		$request_http = new com_http($url);
 		return trim($request_http->exec(30));
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
 }
