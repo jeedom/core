@@ -767,6 +767,9 @@ class jeedom {
 				foreach (ls('/dev/', 'ttyAMA*') as $value) {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
+				foreach (ls('/dev/', 'ttyAML*') as $value) {
+					$usbMapping['/dev/' . $value] = '/dev/' . $value;
+				}
 			}
 			cache::set('jeedom::usbMapping', json_encode($usbMapping));
 		} else {
