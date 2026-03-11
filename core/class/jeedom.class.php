@@ -307,7 +307,7 @@ class jeedom {
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supportés sont consultables dans la documentation officielle.', __FILE__),
+			'comment' => ($state) ? '' : __("Cet OS n'est pas pris en charge, toute demande de support pourra donc être refusée (voir la documentation sur la compatibilité logicielle).", __FILE__)
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
