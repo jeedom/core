@@ -753,7 +753,7 @@ class jeedom {
 					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
 				}
 				if (file_exists('/dev/ttyAML1')) {
-					$usbMapping['Odroid ARMBIAN'] = '/dev/ttyAML1';
+					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
 				}
 				if (file_exists('/dev/ttyAMA0')) {
 					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
