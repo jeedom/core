@@ -111,8 +111,8 @@ class config {
 
 	/**
 	 * Delete key from config
-	 * @param string $_key nom de la clef à supprimer
-	 * @return boolean vrai si ok faux sinon
+	 * @param string $_key
+	 * @return boolean
 	 */
 	public static function remove(string $_key, string $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
@@ -122,11 +122,11 @@ class config {
 			$sql = 'DELETE FROM config
 			WHERE plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-            foreach (self::$cache as $cacheKey => $value) {
-                if (strpos($cacheKey, $_plugin . '::') === 0) {
-                    unset(self::$cache[$cacheKey]);
-                }
-            }
+			foreach (self::$cache as $cacheKey => $value) {
+				if (strpos($cacheKey, $_plugin . '::') === 0) {
+					unset(self::$cache[$cacheKey]);
+				}
+			}
 		} else {
 			$values = array(
 				'plugin' => $_plugin,
@@ -136,15 +136,15 @@ class config {
 			WHERE `key`=:key
 			AND plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-            unset(self::$cache[$_plugin . '::' . $_key]);
+			unset(self::$cache[$_plugin . '::' . $_key]);
 		}
 		return true;
 	}
 
 	/**
 	 * Get config by key
-	 * @param string $_key nom de la clef dont on veut la valeur
-	 * @return string valeur de la clef
+	 * @param string $_key
+	 * @return string
 	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {
@@ -251,9 +251,9 @@ class config {
 	}
 
 	public static function genKey($_car = 64) {
-        if ($_car > 256) {
-            throw new \Exception('Key length too long');
-        }
+		if ($_car > 256) {
+			throw new \Exception('Key length too long');
+		}
 		$key = '';
 		$chaine = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
@@ -325,7 +325,11 @@ class config {
 				}
 			}
 		}
-		asort($types['byFamily'], SORT_STRING | SORT_FLAG_CASE);
+
+		if (is_array($types['byFamily'])) {
+			asort($types['byFamily'], SORT_STRING | SORT_FLAG_CASE);
+		}
+
 		return $types;
 	}
 
