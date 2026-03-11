@@ -294,17 +294,20 @@ class jeedom {
 			$state = false;
 		} else {
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
-			if (version_compare($version, '8', '<')) {
-				if (strpos($version, 'jessie') === false && strpos($version, 'stretch') === false) {
+			$majorVersion = intval($version);
+			if ($majorVersion > 0) {
+				if ($majorVersion < 11 || $majorVersion > 12) {
 					$state = false;
 				}
+			} else if (strpos($version, 'bullseye') === false && strpos($version, 'bookworm') === false) {
+				$state = false;
 			}
 		}
 		$return[] = array(
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supportés sont Debian Strech et Debian Buster', __FILE__),
+			'comment' => ($state) ? '' : __("Cet OS n'est pas pris en charge, toute demande de support pourra donc être refusée (voir la documentation sur la compatibilité logicielle).", __FILE__)
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
