@@ -250,6 +250,27 @@ class config {
 		return $results;
 	}
 
+	/**
+	 * Search raw value in config
+	 * @param mixed $_value
+	 * @param string $_key (optional)
+	 * @return array
+	 */
+	public static function searchValue($_value, string $_key = null): array {
+		$values = array(
+			'value' => $_value
+		);
+
+		if ($_key) {
+			$values['key'] = $_key;
+			$sql = 'SELECT `plugin` FROM config	WHERE `value`=:value AND `key`=:key';
+		} else {
+			$sql = 'SELECT `plugin`,`key` FROM config	WHERE `value`=:value';
+		}
+
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+	}
+
 	public static function genKey($_car = 64) {
 		if ($_car > 256) {
 			throw new \Exception('Key length too long');
