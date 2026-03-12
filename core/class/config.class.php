@@ -23,7 +23,7 @@ class config {
 	/*     * *************************Attributs****************************** */
 
 	private static $defaultConfiguration = array();
-	private static $specificConfiguration = array();
+	private static $specificConfiguration = null;
 	private static $cache = array();
 	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
 	private static $nocache = array('enableScenario');
@@ -58,7 +58,6 @@ class config {
 		} else {
 			self::$defaultConfiguration[$_plugin] = array_replace_recursive(self::$defaultConfiguration[$_plugin], self::getSpecificConfiguration($_plugin));
 		}
-
 		return self::$defaultConfiguration[$_plugin];
 	}
 
@@ -68,19 +67,17 @@ class config {
 	 * @return array
 	 */
 	private static function getSpecificConfiguration(string $_plugin): array {
-		if (isset(self::$specificConfiguration[$_plugin])) {
-			return self::$specificConfiguration[$_plugin];
+		if (self::$specificConfiguration === null) {
+			self::$specificConfiguration = array();
+			$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
+			$hardware = strtolower(jeedom::getHardwareName());
+			if (isset($specific[$hardware])) {
+				foreach ($specific[$hardware] as $plugin => $config) {
+					self::$specificConfiguration[$plugin] = array($plugin => $config);
+				}
+			}
 		}
-
-		$hardware = strtolower(jeedom::getHardwareName());
-		$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
-		if (isset($specific[$hardware][$_plugin])) {
-			self::$specificConfiguration[$_plugin] = array($_plugin => $specific[$hardware][$_plugin]);
-		} else {
-			self::$specificConfiguration[$_plugin] = array();
-		}
-
-		return self::$specificConfiguration[$_plugin];
+		return self::$specificConfiguration[$_plugin] ?? array();
 	}
 
 	/**
@@ -278,7 +275,6 @@ class config {
 		} else {
 			$sql = 'SELECT `plugin`,`key` FROM config	WHERE `value`=:value';
 		}
-
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
