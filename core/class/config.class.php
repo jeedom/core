@@ -249,6 +249,27 @@ class config {
 		return $return;
 	}
 
+	/**
+	 * Get list of plugins|keys from unencrypted value
+	 * @param mixed $_value
+	 * @param string $_key (optional)
+	 * @return array
+	 */
+	public static function byValue($_value, string $_key = null): array {
+		$values = array(
+			'value' => $_value
+		);
+
+		if ($_key) {
+			$values['key'] = $_key;
+			$sql = 'SELECT `plugin` FROM config	WHERE `value`=:value AND `key`=:key';
+		} else {
+			$sql = 'SELECT `plugin`,`key` FROM config	WHERE `value`=:value';
+		}
+
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+	}
+
 	public static function searchKey($_key, $_plugin = 'core') {
 		$values = array(
 			'plugin' => $_plugin,
@@ -270,27 +291,6 @@ class config {
 			$result['value'] = is_json($result['value'], $result['value']);
 		}
 		return $results;
-	}
-
-	/**
-	 * Search unencrypted value in config
-	 * @param mixed $_value
-	 * @param string $_key (optional)
-	 * @return array
-	 */
-	public static function searchValue($_value, string $_key = null): array {
-		$values = array(
-			'value' => $_value
-		);
-
-		if ($_key) {
-			$values['key'] = $_key;
-			$sql = 'SELECT `plugin` FROM config	WHERE `value`=:value AND `key`=:key';
-		} else {
-			$sql = 'SELECT `plugin`,`key` FROM config	WHERE `value`=:value';
-		}
-
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
 	public static function genKey($_car = 64) {

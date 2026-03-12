@@ -19,7 +19,7 @@ if ($hardware !== 'atlas') {
 }
 
 foreach ($renamed as $previousValue => $newValue) {
-    foreach ((config::searchValue($previousValue, 'port')) as $config) {
+    foreach ((config::byValue($previousValue, 'port')) as $config) {
         config::save('port', $newValue, $config['plugin']);
     }
 }
