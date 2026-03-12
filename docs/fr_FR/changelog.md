@@ -5,6 +5,7 @@
 - Diverses corrections de bugs et optimisations
 - Mise à jour dans les contrôles de version
 - Mise à jour du nommage des ports de communication
+- Ajout de configurations automatiques de certains plugins *(zwavejs, z2m, openenocean, eibd)* pour les boxes officielles
 - [Développeurs] Ajout de la méthode `config::searchValue($_value, string $_key = null)`
 
 # 4.5.2
