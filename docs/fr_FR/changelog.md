@@ -3,6 +3,9 @@
 # 4.5.3
 
 - Diverses corrections de bugs et optimisations
+- Mise à jour dans les contrôles de version
+- Mise à jour du nommage des ports de communication
+- [Développeurs] Ajout de la méthode `config::searchValue($_value, string $_key = null)`
 
 # 4.5.2
 
