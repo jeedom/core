@@ -23,6 +23,7 @@ class config {
 	/*     * *************************Attributs****************************** */
 
 	private static $defaultConfiguration = array();
+	private static $specificConfiguration = array();
 	private static $cache = array();
 	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
 	private static $nocache = array('enableScenario');
@@ -35,25 +36,29 @@ class config {
 	 * @return array
 	 */
 	public static function getDefaultConfiguration(string $_plugin = 'core'): array {
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			if ($_plugin == 'core') {
-				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
-				if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
-					$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
-					self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
-				}
-			} else {
-				$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
-				if (file_exists($filename)) {
-					self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
-				}
+		if (isset(self::$defaultConfiguration[$_plugin])) {
+			return self::$defaultConfiguration[$_plugin];
+		}
+
+		if ($_plugin == 'core') {
+			self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
+			if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
+				$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
+				self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
+			}
+		} else {
+			$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
+			if (file_exists($filename)) {
+				self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
 			}
 		}
+
 		if (!isset(self::$defaultConfiguration[$_plugin])) {
 			self::$defaultConfiguration[$_plugin] = self::getSpecificConfiguration($_plugin);
 		} else {
 			self::$defaultConfiguration[$_plugin] = array_replace_recursive(self::$defaultConfiguration[$_plugin], self::getSpecificConfiguration($_plugin));
 		}
+
 		return self::$defaultConfiguration[$_plugin];
 	}
 
@@ -63,12 +68,19 @@ class config {
 	 * @return array
 	 */
 	private static function getSpecificConfiguration(string $_plugin): array {
+		if (isset(self::$specificConfiguration[$_plugin])) {
+			return self::$specificConfiguration[$_plugin];
+		}
+
 		$hardware = strtolower(jeedom::getHardwareName());
 		$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
 		if (isset($specific[$hardware][$_plugin])) {
-			return array($_plugin => $specific[$hardware][$_plugin]);
+			self::$specificConfiguration[$_plugin] = array($_plugin => $specific[$hardware][$_plugin]);
+		} else {
+			self::$specificConfiguration[$_plugin] = array();
 		}
-		return array();
+
+		return self::$specificConfiguration[$_plugin];
 	}
 
 	/**
