@@ -68,19 +68,16 @@ class config {
 	 * @return array
 	 */
 	private static function getSpecificConfiguration(string $_plugin): array {
-		if (isset(self::$specificConfiguration[$_plugin])) {
-			return self::$specificConfiguration[$_plugin];
+		if (empty(self::$specificConfiguration)) {
+			$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
+			$hardware = strtolower(jeedom::getHardwareName());
+			if (isset($specific[$hardware])) {
+				foreach ($specific[$hardware] as $plugin => $config) {
+					self::$specificConfiguration[$plugin] = array($plugin => $config);
+				}
+			}
 		}
-
-		$hardware = strtolower(jeedom::getHardwareName());
-		$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
-		if (isset($specific[$hardware][$_plugin])) {
-			self::$specificConfiguration[$_plugin] = array($_plugin => $specific[$hardware][$_plugin]);
-		} else {
-			self::$specificConfiguration[$_plugin] = array();
-		}
-
-		return self::$specificConfiguration[$_plugin];
+		return self::$specificConfiguration[$_plugin] ?? array();
 	}
 
 	/**
