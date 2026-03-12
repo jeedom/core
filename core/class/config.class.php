@@ -251,7 +251,7 @@ class config {
 	}
 
 	/**
-	 * Search raw value in config
+	 * Search unencrypted value in config
 	 * @param mixed $_value
 	 * @param string $_key (optional)
 	 * @return array
