@@ -69,9 +69,9 @@ class log extends AbstractLogger {
 
 	public static function getLogLevel($_log) {
 		$specific_level = self::getConfig('log::level::' . $_log);
-		if (!is_array($specific_level) && strpos($_log,'_') !== false) {
+		if (!is_array($specific_level) && strpos($_log, '_') !== false) {
 			preg_match('/(.*?)\_[a-zA-Z]*?$/m', $_log, $matches);
-			if(isset($matches[1])){
+			if (isset($matches[1])) {
 				$specific_level = self::getConfig('log::level::' . $matches[1]);
 			}
 		}
@@ -96,7 +96,7 @@ class log extends AbstractLogger {
 			return 'none';
 		}
 		foreach (self::$level as $key => $value) {
-			if($value == $_level){
+			if ($value == $_level) {
 				return $key;
 			}
 		}
@@ -108,26 +108,25 @@ class log extends AbstractLogger {
 	 * @param string $_type message type (info, debug, warning, danger)
 	 * @param string $_message message added into log
 	 */
-   public static function add(string $_log,string $_type, string $_message,string $_logicalId = '') {
+	public static function add(string $_log, string $_type, string $_message, string $_logicalId = '') {
 		if (trim($_message) == '') {
 			return;
 		}
 		$level = (isset(self::$level[strtolower($_type)])) ? self::$level[strtolower($_type)] : 100;
-		if($level < self::getLogLevel($_log)){
+		if ($level < self::getLogLevel($_log)) {
 			return;
 		}
 		$fp = fopen(self::getPathToLog($_log), 'a');
-		fwrite($fp,'['.date('Y-m-d H:i:s').']['.strtoupper($_type).'] '.$_message."\n");  
+		fwrite($fp, '[' . date('Y-m-d H:i:s') . '][' . strtoupper($_type) . '] ' . $_message . "\n");
 		fclose($fp);
 		try {
-            $action = '<a href="/index.php?v=d&p=log&logfile=' . $_log . '">' . __('Log', __FILE__) . ' ' . $_log . '</a>';
+			$action = '<a href="/index.php?v=d&p=log&logfile=' . $_log . '">' . __('Log', __FILE__) . ' ' . $_log . '</a>';
 			if ($level == 400 && self::getConfig('addMessageForErrorLog') == 1) {
 				@message::add($_log, $_message, $action, $_logicalId);
 			} elseif ($level >= 500 && $_log != 'update') {
 				@message::add($_log, $_message, $action, $_logicalId);
 			}
 		} catch (Exception $e) {
-			
 		}
 	}
 
@@ -147,12 +146,12 @@ class log extends AbstractLogger {
 			}
 		}
 		foreach ($paths as $path) {
-				if (is_file($path)) {
-					if($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024) ){
-						continue;
-					}					
-					self::chunkLog($path);	
+			if (is_file($path)) {
+				if ($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024)) {
+					continue;
 				}
+				self::chunkLog($path);
+			}
 		}
 	}
 
@@ -165,7 +164,7 @@ class log extends AbstractLogger {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 		try {
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;'. system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $_path.' > /dev/null 2>&1;'.system::getCmdSudo() . ' echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $_path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
 		} catch (\Exception $e) {
 		}
 		@chown($_path, system::get('www-uid'));
@@ -200,7 +199,7 @@ class log extends AbstractLogger {
 	public static function clear($_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . '> /dev/null 2>&1;'. system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path.' > /dev/null 2>&1;'.system::getCmdSudo() . ' cat /dev/null > ' . $path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . '> /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path);
 			return true;
 		}
 		return;
@@ -226,10 +225,10 @@ class log extends AbstractLogger {
 		}
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;'. system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path.' > /dev/null 2>&1;'.system::getCmdSudo() . ' cat /dev/null > ' . $path.';rm ' . $path . ' 2>&1 > /dev/null');
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path . ';rm ' . $path . ' 2>&1 > /dev/null');
 
 
-			
+
 			return true;
 		}
 	}
@@ -241,24 +240,24 @@ class log extends AbstractLogger {
 	}
 
 	/**
-	* Get $_nbLines from a $_log from $_begin position
-	* @param string $_log
-	* @param int $_begin
-	* @param int $_nbLines
-	* @return boolean|array
-	* @deprecated v4.4
-	* => removed in v4.6 (use log::getDelta() instead)
-	*
-	* Note that log::get($_log, $_begin, $_nbLines) is equivalent to:
-	*    $path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
-	*    if (!file_exists($path)) {
-	*      return false;
-	*    }
-	*    $delta = self::getDelta($_log, $_begin, '', false, false, 0, $_nbLines);
-	*    $arr = explode("\n", $delta['logText']);
-	*    unset($arr[count($arr) - 1]);
-	*    $res = array_reverse($arr);
-	*/
+	 * Get $_nbLines from a $_log from $_begin position
+	 * @param string $_log
+	 * @param int $_begin
+	 * @param int $_nbLines
+	 * @return boolean|array
+	 * @deprecated v4.4
+	 * => removed in v4.6 (use log::getDelta() instead)
+	 *
+	 * Note that log::get($_log, $_begin, $_nbLines) is equivalent to:
+	 *    $path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
+	 *    if (!file_exists($path)) {
+	 *      return false;
+	 *    }
+	 *    $delta = self::getDelta($_log, $_begin, '', false, false, 0, $_nbLines);
+	 *    $arr = explode("\n", $delta['logText']);
+	 *    unset($arr[count($arr) - 1]);
+	 *    $res = array_reverse($arr);
+	 */
 	public static function get($_log, $_begin, $_nbLines) {
 		$path = (!file_exists($_log) || !is_file($_log)) ? self::getPathToLog($_log) : $_log;
 		if (!file_exists($path)) {
@@ -274,7 +273,6 @@ class log extends AbstractLogger {
 				$line = trim($log->current()); //get current line
 				if ($line != '') {
 					array_unshift($page, mb_convert_encoding($line, 'UTF-8'));
-
 				}
 				$log->next();
 				$linesRead++;
@@ -284,18 +282,18 @@ class log extends AbstractLogger {
 	}
 
 	/**
-	* Get the log delta from $_position to the end of the file
-	* New position is stored in $_position when eof is reached
-	*
-	* @param string $_log Log filename (default 'core')
-	* @param int $_position Bytes representing position from the begining of the file (default 0)
-	* @param string $_search Text to find in log file (default '')
-	* @param bool $_colored Should lines be colored (default false)
-	* @param bool $_numbered Should lines be numbered (default true)
-	* @param int $_numStart At what number should lines number start (default 0)
-	* @param int $_max Max number of returned lines (default is config value "maxLineLog")
-	* @return array Array containing log to append to buffer and new position for next call
-	*/
+	 * Get the log delta from $_position to the end of the file
+	 * New position is stored in $_position when eof is reached
+	 *
+	 * @param string $_log Log filename (default 'core')
+	 * @param int $_position Bytes representing position from the begining of the file (default 0)
+	 * @param string $_search Text to find in log file (default '')
+	 * @param bool $_colored Should lines be colored (default false)
+	 * @param bool $_numbered Should lines be numbered (default true)
+	 * @param int $_numStart At what number should lines number start (default 0)
+	 * @param int $_max Max number of returned lines (default is config value "maxLineLog")
+	 * @return array Array containing log to append to buffer and new position for next call
+	 */
 	public static function getDelta($_log = 'core', $_position = 0, $_search = '', $_colored = false, $_numbered = true, $_numStart = 0, $_max = -1) {
 		// Add path to file if needed
 		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
@@ -363,46 +361,82 @@ class log extends AbstractLogger {
 				$logText = preg_replace('/(' . $srch . ')/i', '<mark>$1</mark>', $logText);
 			}
 
-			$search = array();              $replace = array();
-			$search[] = '[DEBUG]';          $replace[] = '<span class="label label-xs label-success">&nbsp;D<&>EBUG&nbsp;</span>';
-			$search[] = '[INFO]';           $replace[] = '<span class="label label-xs label-info">&nbsp;I<&>NFO&nbsp;</span>';
-			$search[] = '[NOTICE]';         $replace[] = '<span class="label label-xs label-info">N<&>OTICE&nbsp;</span>';
-			$search[] = '[WARNING]';        $replace[] = '<span class="label label-xs label-warning">W<&>ARNING</span>';
-			$search[] = '[ERROR]';          $replace[] = '<span class="label label-xs label-danger">&nbsp;E<&>RROR&nbsp;</span>';
-			$search[] = '[CRITICAL]';       $replace[] = '<span class="label label-xs label-danger">&nbsp;C<&>RITI&nbsp;</span>';
-			$search[] = '[ALERT]';          $replace[] = '<span class="label label-xs label-danger">&nbsp;A<&>LERT&nbsp;</span>';
-			$search[] = '[EMERGENCY]';      $replace[] = '<span class="label label-xs label-danger">&nbsp;E<&>MERG&nbsp;</span>';
+			$search = array();
+			$replace = array();
+			$search[] = '[DEBUG]';
+			$replace[] = '<span class="label label-xs label-success">&nbsp;D<&>EBUG&nbsp;</span>';
+			$search[] = '[INFO]';
+			$replace[] = '<span class="label label-xs label-info">&nbsp;I<&>NFO&nbsp;</span>';
+			$search[] = '[NOTICE]';
+			$replace[] = '<span class="label label-xs label-info">N<&>OTICE&nbsp;</span>';
+			$search[] = '[WARNING]';
+			$replace[] = '<span class="label label-xs label-warning">W<&>ARNING</span>';
+			$search[] = '[ERROR]';
+			$replace[] = '<span class="label label-xs label-danger">&nbsp;E<&>RROR&nbsp;</span>';
+			$search[] = '[CRITICAL]';
+			$replace[] = '<span class="label label-xs label-danger">&nbsp;C<&>RITI&nbsp;</span>';
+			$search[] = '[ALERT]';
+			$replace[] = '<span class="label label-xs label-danger">&nbsp;A<&>LERT&nbsp;</span>';
+			$search[] = '[EMERGENCY]';
+			$replace[] = '<span class="label label-xs label-danger">&nbsp;E<&>MERG&nbsp;</span>';
 
-			$search[] = '[  OK  ]';         $replace[] = '<span class="label label-xs label-success">[&nbsp;&nbsp;O<&>K&nbsp;&nbsp;]</span>';
-			$search[] = '[  KO  ]';         $replace[] = '<span class="label label-xs label-danger">[&nbsp;&nbsp;K<&>O&nbsp;&nbsp;]</span>';
-			$search[] = ' OK ';             $replace[] = '<span class="label label-xs label-success"> O<&>K </span>';
-			$search[] = ' KO ';             $replace[] = '<span class="label label-xs label-danger"> K<&>O </span>';
-			$search[] = 'ERROR';            $replace[] = '<span class="label label-xs label-danger">E<&>RROR</span>';
-			$search[] = 'PHP Notice:';      $replace[] = '<span class="warning">PHP N<&>otice:</span>';
-			$search[] = 'PHP Warning:';     $replace[] = '<span class="warning">PHP War<&>ning:</span>';
-			$search[] = 'PHP Stack trace:'; $replace[] = '<span class="danger">PHP S<&>tack trace:</span>';
+			$search[] = '[  OK  ]';
+			$replace[] = '<span class="label label-xs label-success">[&nbsp;&nbsp;O<&>K&nbsp;&nbsp;]</span>';
+			$search[] = '[  KO  ]';
+			$replace[] = '<span class="label label-xs label-danger">[&nbsp;&nbsp;K<&>O&nbsp;&nbsp;]</span>';
+			$search[] = ' OK ';
+			$replace[] = '<span class="label label-xs label-success"> O<&>K </span>';
+			$search[] = ' KO ';
+			$replace[] = '<span class="label label-xs label-danger"> K<&>O </span>';
+			$search[] = 'ERROR';
+			$replace[] = '<span class="label label-xs label-danger">E<&>RROR</span>';
+			$search[] = 'PHP Notice:';
+			$replace[] = '<span class="warning">PHP N<&>otice:</span>';
+			$search[] = 'PHP Warning:';
+			$replace[] = '<span class="warning">PHP War<&>ning:</span>';
+			$search[] = 'PHP Stack trace:';
+			$replace[] = '<span class="danger">PHP S<&>tack trace:</span>';
 
-			$search[] = ':br:';             $replace[] = '<br>';
-			$search[] = ':bg-success:';     $replace[] = '<span class="label label-success">';
-			$search[] = ':bg-info:';        $replace[] = '<span class="label label-info">';
-			$search[] = ':bg-warning:';     $replace[] = '<span class="label label-warning">';
-			$search[] = ':bg-danger:';      $replace[] = '<span class="label label-danger">';
-			$search[] = ':/bg:';            $replace[] = '</span>';
-			$search[] = ':fg-success:';     $replace[] = '<span class="success">';
-			$search[] = ':fg-info:';        $replace[] = '<span class="info">';
-			$search[] = ':fg-warning:';     $replace[] = '<span class="warning">';
-			$search[] = ':fg-danger:';      $replace[] = '<span class="danger">';
-			$search[] = ':/fg:';            $replace[] = '</span>';
-			$search[] = ':b:';              $replace[] = '<b>';
-			$search[] = ':/b:';             $replace[] = '</b>';
-			$search[] = ':s:';              $replace[] = '<strong>';
-			$search[] = ':/s:';             $replace[] = '</strong>';
-			$search[] = ':i:';              $replace[] = '<i>';
-			$search[] = ':/i:';             $replace[] = '</i>';
-			$search[] = ':hide:';           $replace[] = '<!--';
-			$search[] = ':/hide:';          $replace[] = '-->';
+			$search[] = ':br:';
+			$replace[] = '<br>';
+			$search[] = ':bg-success:';
+			$replace[] = '<span class="label label-success">';
+			$search[] = ':bg-info:';
+			$replace[] = '<span class="label label-info">';
+			$search[] = ':bg-warning:';
+			$replace[] = '<span class="label label-warning">';
+			$search[] = ':bg-danger:';
+			$replace[] = '<span class="label label-danger">';
+			$search[] = ':/bg:';
+			$replace[] = '</span>';
+			$search[] = ':fg-success:';
+			$replace[] = '<span class="success">';
+			$search[] = ':fg-info:';
+			$replace[] = '<span class="info">';
+			$search[] = ':fg-warning:';
+			$replace[] = '<span class="warning">';
+			$search[] = ':fg-danger:';
+			$replace[] = '<span class="danger">';
+			$search[] = ':/fg:';
+			$replace[] = '</span>';
+			$search[] = ':b:';
+			$replace[] = '<b>';
+			$search[] = ':/b:';
+			$replace[] = '</b>';
+			$search[] = ':s:';
+			$replace[] = '<strong>';
+			$search[] = ':/s:';
+			$replace[] = '</strong>';
+			$search[] = ':i:';
+			$replace[] = '<i>';
+			$search[] = ':/i:';
+			$replace[] = '</i>';
+			$search[] = ':hide:';
+			$replace[] = '<!--';
+			$search[] = ':/hide:';
+			$replace[] = '-->';
 
-			foreach($GLOBALS['JEEDOM_SCLOG_TEXT'] as $item) {
+			foreach ($GLOBALS['JEEDOM_SCLOG_TEXT'] as $item) {
 				$search[] = $item['txt'];
 				// Insert a marker into subject string to avoid replacing it multiple times
 				$subject = $item['txt'][0] . '<&>' . substr($item['txt'], 1);
@@ -417,7 +451,7 @@ class log extends AbstractLogger {
 				array('txt' => '-------------------- TRUNCATED LOG --------------------', 'replace' => '<span class="label label-xl label-danger">::</span>')
 			);
 
-			foreach($replacables as $item) {
+			foreach ($replacables as $item) {
 				if (strlen($item['txt']) >= 2) {
 					$search[] = $item['txt'];
 					// Insert a marker into subject string to avoid replacing it multiple times
@@ -436,10 +470,10 @@ class log extends AbstractLogger {
 	}
 
 	/**
-	* Efficiently get the last line of a file
-	* @param string $_log Log filename
-	* @return string The last non-empty line of the file (or '')
-	*/
+	 * Efficiently get the last line of a file
+	 * @param string $_log Log filename
+	 * @return string The last non-empty line of the file (or '')
+	 */
 	public static function getLastLine($_log) {
 		// Add path to file if needed
 		$filename = (file_exists($_log) && is_file($_log)) ? $_log : self::getPathToLog($_log);
@@ -516,7 +550,7 @@ class log extends AbstractLogger {
 		if (self::getConfig('log::level') > 100) {
 			return $e->getMessage();
 		} else {
-			return $e->getMessage()."\n".$e->getTraceAsString();
+			return $e->getMessage() . "\n" . $e->getTraceAsString();
 		}
 	}
 
