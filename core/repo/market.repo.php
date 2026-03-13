@@ -417,6 +417,9 @@ class repo_market {
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
+		if (empty(config::byKey('market::username')) || empty(config::byKey('market::password'))) {
+			return;
+		}
 		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - (24 * 3600))) {
 			return;
 		}
