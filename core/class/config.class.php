@@ -23,7 +23,6 @@ class config {
 	/*     * *************************Attributs****************************** */
 
 	private static $defaultConfiguration = array();
-	private static $specificConfiguration = null;
 	private static $cache = array();
 	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
 	private static $nocache = array('enableScenario');
@@ -42,42 +41,30 @@ class config {
 
 		if ($_plugin == 'core') {
 			self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
+
 			if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
 				$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
 				self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
 			}
 		} else {
+			self::$defaultConfiguration[$_plugin] = array();
+
 			$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
 			if (file_exists($filename)) {
 				self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
 			}
-		}
 
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			self::$defaultConfiguration[$_plugin] = self::getSpecificConfiguration($_plugin);
-		} else {
-			self::$defaultConfiguration[$_plugin] = array_replace_recursive(self::$defaultConfiguration[$_plugin], self::getSpecificConfiguration($_plugin));
-		}
-		return self::$defaultConfiguration[$_plugin];
-	}
-
-	/**
-	 * Get specific configuration for known boards
-	 * @param string $_plugin
-	 * @return array
-	 */
-	private static function getSpecificConfiguration(string $_plugin): array {
-		if (self::$specificConfiguration === null) {
-			self::$specificConfiguration = array();
-			$specific = parse_ini_file(__DIR__ . '/../../core/config/specific.config.ini', true);
-			$hardware = strtolower(jeedom::getHardwareName());
-			if (isset($specific[$hardware])) {
-				foreach ($specific[$hardware] as $plugin => $config) {
-					self::$specificConfiguration[$plugin] = array($plugin => $config);
+			$specificConf = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/specific.config.ini';
+			if (file_exists($specificConf)) {
+				$specific = parse_ini_file($specificConf, true);
+				$hardware = strtolower(jeedom::getHardwareName());
+				if (isset($specific[$hardware])) {
+					self::$defaultConfiguration[$_plugin] = array_replace_recursive(self::$defaultConfiguration[$_plugin], $specific[$hardware]);
 				}
 			}
 		}
-		return self::$specificConfiguration[$_plugin] ?? array();
+
+		return self::$defaultConfiguration[$_plugin];
 	}
 
 	/**
