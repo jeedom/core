@@ -689,7 +689,7 @@ class plugin {
 
 	public function dependancy_info($_refresh = false) {
 		$plugin_id = $this->getId();
-		$cache = cache::byKey('dependancy' . $this->getID());
+		$cache = cache::byKey('dependancy' . $this->getId());
 		if ($_refresh) {
 			$cache->remove();
 		} else {
@@ -732,7 +732,7 @@ class plugin {
 				}
 			}
 			if ($return['state'] == 'ok') {
-				cache::set('dependancy' . $this->getID(), $return);
+				cache::set('dependancy' . $this->getId(), $return);
 			}
 			return $return;
 		}
@@ -764,7 +764,7 @@ class plugin {
 		$return['last_launch'] = config::byKey('lastDependancyInstallTime', $this->getId(), __('Inconnue', __FILE__));
 		$return['auto'] = config::byKey('dependancyAutoMode', $this->getId(), 1);
 		if ($return['state'] == 'ok') {
-			cache::set('dependancy' . $this->getID(), $return);
+			cache::set('dependancy' . $this->getId(), $return);
 		}
 		return $return;
 	}
@@ -776,7 +776,7 @@ class plugin {
 	public function dependancy_install($_force = false, $_foreground  = false) {
 		$plugin_id = $this->getId();
 		if (!$_force && config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
-			$cache = cache::byKey('dependancy' . $this->getID());
+			$cache = cache::byKey('dependancy' . $this->getId());
 			$cache->remove();
 			throw new Exception(__('Vous devez attendre au moins 60 secondes entre deux lancements d\'installation de dépendances', __FILE__));
 		}
@@ -788,7 +788,7 @@ class plugin {
 			$this->deamon_stop();
 			config::save('lastDependancyInstallTime', date('Y-m-d H:i:s'), $plugin_id);
 			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/../../plugins/' . $plugin_id . '/plugin_info/packages.json'), true), true, $_foreground, $plugin_id, $_force);
-			$cache = cache::byKey('dependancy' . $this->getID());
+			$cache = cache::byKey('dependancy' . $this->getId());
 			$cache->remove();
 			return;
 		}
@@ -831,7 +831,7 @@ class plugin {
 				log::add($plugin_id, 'error', __('Aucun script ne correspond à votre type de Linux :', __FILE__) . ' ' . $cmd['script'] . ' ' . __('avec #stype# :', __FILE__) . ' ' . system::get('type'));
 			}
 		}
-		$cache = cache::byKey('dependancy' . $this->getID());
+		$cache = cache::byKey('dependancy' . $this->getId());
 		$cache->remove();
 		return;
 	}
