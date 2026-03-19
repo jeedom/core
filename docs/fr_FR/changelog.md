@@ -4,9 +4,9 @@
 
 - Diverses corrections de bugs et optimisations
 - Mise à jour dans les contrôles de version
-- Mise à jour du nommage des ports de communication
-- [Développeurs] Ajout de la prise en charge de configurations spécifiques au matériel via un fichier `core/config/specific.config.ini` dans le dossier du plugin
-- [Développeurs] Ajout de la méthode `config::byValue($_value, string $_key = null)`
+- Mise à jour du nommage des ports de communication ([Détails](https://github.com/jeedom/core/issues/3210))
+- [Développeurs] Ajout de la prise en charge de configurations spécifiques au matériel via un fichier `core/config/specific.config.ini` dans le dossier du plugin ([Détails](https://github.com/jeedom/core/issues/3218))
+- [Développeurs] Ajout de la méthode `config::byValue($_value, string $_key = null)`([Détails](https://github.com/jeedom/core/pull/3212/changes/559a010))
 
 # 4.5.2
 
