@@ -183,6 +183,13 @@ try {
 		$healt = '[details="' . __('Santé', __FILE__) . '"]';
 		$healt .= '<br>```<br>';
 		foreach ((jeedom::health()) as $datas) {
+			if ($datas['state'] === 2) {
+				$healt .= "🟠 ";
+			} else if ($datas['state']) {
+				$healt .= "🟢 ";
+			} else {
+				$healt .= "🔴 ";
+			}
 			$healt .= $datas['name'] . ' : ' . str_replace(["\r","\n"], " ", $datas['result']) . '<br>';
 		}
 		$healt .= '<br>```<br>';
