@@ -1677,7 +1677,10 @@ class scenarioExpression {
 						$result = $options['value'];
 					}
 				} elseif ($this->getExpression() == 'delete_variable') {
-					scenario::removeData($options['name']);
+					$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $options['name']);
+					if (is_object($dataStore)) {
+						$dataStore->remove();
+					}
 					$this->setLog($scenario, __('Suppression de la variable', __FILE__) . ' ' . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
