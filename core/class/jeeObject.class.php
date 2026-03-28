@@ -1036,16 +1036,22 @@ class jeeObject {
 		return 0;
 	}
 
+	public function getDisplayName() {
+		$display_name = $this->getConfiguration('display_name', '');
+		return ($display_name != '') ? $display_name : $this->getName();
+	}
+
 	public function getHumanName($_tag = false, $_prettify = false) {
+		$name = $this->getDisplayName();
 		if ($_tag) {
 			if ($_prettify) {
 				if ($this->getConfiguration('useCustomColor') == 1) {
-					return '<span class="label" style="background-color:' . $this->getDisplay('tagColor') . ' ;color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+					return '<span class="label" style="background-color:' . $this->getDisplay('tagColor') . ' ;color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $name . '</span>';
 				} else {
-					return '<span class="label labelObjectHuman">' . $this->getDisplay('icon') . ' ' . $this->getName() . '</span>';
+					return '<span class="label labelObjectHuman">' . $this->getDisplay('icon') . ' ' . $name . '</span>';
 				}
 			} else {
-				return $this->getDisplay('icon') . ' ' . $this->getName();
+				return $this->getDisplay('icon') . ' ' . $name;
 			}
 		} else {
 			return '[' . $this->getName() . ']';
