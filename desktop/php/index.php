@@ -357,7 +357,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 												<?php
 												$echo = '';
 												foreach ((jeeObject::buildTree(null, false)) as $object_li) {
-													$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getConfiguration('display_name', $object_li->getName()) . '</a></li>';
+													$echo .= '<li><a href="index.php?v=d&p=dashboard&object_id=' . $object_li->getId() . '">' . str_repeat('&nbsp;&nbsp;', $object_li->getConfiguration('parentNumber')) . $object_li->getHumanName(true) . '</a></li>';
 												}
 												echo $echo;
 												?>
