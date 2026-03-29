@@ -563,7 +563,6 @@ jeedom.scenario.autoCompleteCondition = [
 /* Actions Autocomplete */
 jeedom.scenario.autoCompleteAction = [
   'setColoredIcon',
-  'tag',
   'report',
   'exportHistory',
   'sleep',
@@ -574,7 +573,6 @@ jeedom.scenario.autoCompleteAction = [
   'gotodesign',
   'message',
   'equipement',
-  'ask',
   'jeedom_poweroff',
   'alert',
   'popup',
@@ -585,10 +583,12 @@ jeedom.scenario.autoCompleteAction = [
 ]
 /* Actions Autocomplete only for scenarios*/
 jeedom.scenario.autoCompleteActionScOnly = [
+  'ask',
   'stop',
   'log',
   'scenario_return',
-  'icon'
+  'icon',
+  'tag'
 ]
 
 jeedom.scenario.setAutoComplete = function(_params) {
