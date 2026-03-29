@@ -1380,7 +1380,7 @@ class scenarioExpression {
 		return;
 	}
 
-	public function execute(&$scenario = null) {
+	public function execute(?scenario &$scenario = null) {
 		if ($scenario !== null && !$scenario->getDo()) {
 			return;
 		}
@@ -1480,9 +1480,7 @@ class scenarioExpression {
 					}
 					die();
 				} elseif ($this->getExpression() == 'log') {
-					if ($scenario !== null) {
-						$scenario->setLog('Log : ' . $options['message']);
-					}
+					$this->setLog($scenario, 'Log : ' . $options['message']);
 					return;
 				} elseif ($this->getExpression() == 'event') {
 					$cmd = cmd::byId(trim(str_replace('#', '', $options['cmd'])));
@@ -1681,6 +1679,9 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Suppression de la variable', __FILE__) . ' ' . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
+					if ($scenario == null || !is_object($scenario)) {
+						return;
+					}
 					$dataStore = new dataStore();
 					$dataStore->setType('scenario');
 					$dataStore->setKey($options['variable']);
@@ -1696,11 +1697,9 @@ class scenarioExpression {
 					}
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => $answer, 'timeout' => $limit, 'variable' => $options['variable']);
 
-					if ($scenario !== null) {
-						$tags = $scenario->getTags();
+					$tags = $scenario->getTags();
 						if (isset($tags['#profile#']) === true) {
-							$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
-						}
+						$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
 					}
 
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
@@ -1758,13 +1757,16 @@ class scenarioExpression {
 					jeedom::rebootSystem();
 					return;
 				} elseif ($this->getExpression() == 'scenario_return') {
-					$this->setLog($scenario, __('Demande de retour d\'information :', __FILE__) . ' ' . $options['message']);
-					if ($scenario->getReturn() === true) {
-						$scenario->setReturn($options['message']);
-					} else {
-						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
+					if ($scenario !== null) {
+						$this->setLog($scenario, __('Demande de retour d\'information :', __FILE__) . ' ' . $options['message']);
+						if ($scenario->getReturn() === true) {
+							$scenario->setReturn($options['message']);
+						} else {
+							$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
+						}
+						return;
 					}
-					return;
+					die();
 				} elseif ($this->getExpression() == 'remove_inat') {
 					if (isset($options['scenario_id']) && intval($options['scenario_id']) != 0) {
 						$targetScenario = scenario::byId($options['scenario_id']);
@@ -1920,6 +1922,9 @@ class scenarioExpression {
 						}
 					}
 				} elseif ($this->getExpression() == 'tag') {
+					if ($scenario == null || !is_object($scenario)) {
+						return;
+					}
 					$tags = $scenario->getTags();
 					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
@@ -1950,7 +1955,9 @@ class scenarioExpression {
 							}
 							$result = call_user_func_array('userFunction::' . $functionName, $arguments);
 							$this->setLog($scenario, 'userFunction: ' . $stringFunction . ' : ' . json_encode($result));
-							$scenario->persistLog();
+							if ($scenario !== null) {
+								$scenario->persistLog();
+							}
 							return;
 						}
 					}
