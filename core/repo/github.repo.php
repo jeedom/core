@@ -143,7 +143,7 @@ class repo_github {
 		if ($token == '') {
 			exec('curl -s -f -L -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
 		} else {
-			exec('curl -s -f -L -H "Authorization: token ' . escapeshellarg($token) . '" -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
+			exec('curl -s -f -L -H ' . escapeshellarg('Authorization: token ' . $token) . ' -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
 		}
 		if ($return_code !== 0 || !file_exists($tmp) || filesize($tmp) == 0) {
 			$error_msg = __('Erreur lors du téléchargement', __FILE__);
