@@ -180,6 +180,21 @@ try {
 			$infoPost .= ' - (' . ($daemon_info['last_launch'] ?? __('Inconnue', __FILE__)) . ')';
 		}
 
+		$healt = '[details="' . __('Santé', __FILE__) . '"]';
+		$healt .= '<br>```<br>';
+		foreach ((jeedom::health()) as $datas) {
+			if ($datas['state'] === 2) {
+				$healt .= "🟠 ";
+			} else if ($datas['state']) {
+				$healt .= "🟢 ";
+			} else {
+				$healt .= "🔴 ";
+			}
+			$healt .= $datas['name'] . ' : ' . str_replace(["\r","\n"], " ", $datas['result']) . '<br>';
+		}
+		$healt .= '<br>```<br>';
+		$healt .= '[/details]<br>';
+
 		$infoPlugin = '';
 		if (method_exists($plugin_id, 'getConfigForCommunity')) {
 			$infoPlugin .= '**' . __('Informations complémentaires', __FILE__) .  '**<br>';
@@ -190,7 +205,7 @@ try {
 		$communitUrl = 'https://community.jeedom.com';
 		$ressource = '/new-topic?';
 
-		$finalBody = br2nl($header . $infoPost . $footer . $infoPlugin);
+		$finalBody = br2nl($header . $infoPost . $footer . $healt . $infoPlugin);
 
 		$data = array(
 			'category' => 'plugins/' . $plugin->getCategory(),

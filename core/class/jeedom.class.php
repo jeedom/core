@@ -222,7 +222,7 @@ class jeedom {
 		$state = self::isDateOk();
 		$cache = cache::byKey('hour');
 		$lastKnowDate = $cache->getValue();
-		if($lastKnowDate === ""){
+		if ($lastKnowDate === "") {
 			$lastKnowDate = 0;
 		}
 		$return[] = array(
@@ -294,17 +294,20 @@ class jeedom {
 			$state = false;
 		} else {
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
-			if (version_compare($version, '8', '<')) {
-				if (strpos($version, 'jessie') === false && strpos($version, 'stretch') === false) {
+			$majorVersion = intval($version);
+			if ($majorVersion > 0) {
+				if ($majorVersion < 11 || $majorVersion > 12) {
 					$state = false;
 				}
+			} else if (strpos($version, 'bullseye') === false && strpos($version, 'bookworm') === false) {
+				$state = false;
 			}
 		}
 		$return[] = array(
 			'name' => __('Version OS', __FILE__),
 			'state' => $state,
 			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __('Vous n\'êtes pas sur un OS officiellement supporté par l\'équipe Jeedom (toute demande de support pourra donc être refusée). Les OS officiellement supportés sont Debian Strech et Debian Buster', __FILE__),
+			'comment' => ($state) ? '' : __("Cet OS n'est pas pris en charge, toute demande de support pourra donc être refusée (voir la documentation sur la compatibilité logicielle).", __FILE__)
 		);
 
 		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
@@ -427,7 +430,7 @@ class jeedom {
 		$return[] = array(
 			'name' => __('Charge', __FILE__),
 			'state' => ($values[2] < 20),
-			'result' => round($values[0],2) . ' - ' . round($values[1],2) . ' - ' . round($values[2],2),
+			'result' => round($values[0], 2) . ' - ' . round($values[1], 2) . ' - ' . round($values[2], 2),
 			'comment' => '',
 			'key' => 'load'
 		);
@@ -731,34 +734,40 @@ class jeedom {
 			}
 			$usbMapping = self::getUsbLegacy($usbMapping);
 			if ($_getGPIO) {
+				if (file_exists('/dev/ttyLuna-Zigbee')) {
+					$usbMapping['Jeedom Luna Zigbee'] = '/dev/ttyLuna-Zigbee';
+				}
 				if (file_exists('/dev/ttyS0')) {
 					$usbMapping['Cubiboard'] = '/dev/ttyS0';
 				}
 				if (file_exists('/dev/ttyS1')) {
 					$usbMapping['Jeedom Luna Zwave'] = '/dev/ttyS1';
-				}
-				if (file_exists('/dev/ttyS1')) {
-					$usbMapping['Odroid C2'] = '/dev/ttyS1';
+					$usbMapping['Odroid (old)'] = '/dev/ttyS1';
 				}
 				if (file_exists('/dev/ttyS2')) {
 					$usbMapping['Jeedom Atlas'] = '/dev/ttyS2';
+					$usbMapping['Rock Pi'] = '/dev/ttyS2';
 				}
 				if (file_exists('/dev/ttyS3')) {
-					$usbMapping['Orange PI'] = '/dev/ttyS3';
+					$usbMapping['Orange Pi'] = '/dev/ttyS3';
 				}
 				if (file_exists('/dev/ttymxc0')) {
 					$usbMapping['Jeedom board'] = '/dev/ttymxc0';
 				}
-				if (file_exists('/dev/ttyAML1')) {
-					$usbMapping['Odroid ARMBIAN (Buster)'] = '/dev/ttyAML1';
-				}
 				if (file_exists('/dev/ttyAMA0')) {
-					$usbMapping['Raspberry pi'] = '/dev/ttyAMA0';
+					$usbMapping['Raspberry Pi'] = '/dev/ttyAMA0';
+				}
+				if (file_exists('/dev/ttyAML1')) {
+					$usbMapping['Jeedom Smart'] = '/dev/ttyAML1';
+					$usbMapping['Odroid'] = '/dev/ttyAML1';
 				}
 				if (file_exists('/dev/S2')) {
-					$usbMapping['Banana PI'] = '/dev/S2';
+					$usbMapping['Banana Pi'] = '/dev/S2';
 				}
 				foreach (ls('/dev/', 'ttyAMA*') as $value) {
+					$usbMapping['/dev/' . $value] = '/dev/' . $value;
+				}
+				foreach (ls('/dev/', 'ttyAML*') as $value) {
 					$usbMapping['/dev/' . $value] = '/dev/' . $value;
 				}
 			}
@@ -1240,8 +1249,8 @@ class jeedom {
 			log::add('jeedom', 'error', log::exception($e));
 		}
 		$disk_space = self::checkSpaceLeft();
-		if($disk_space < 10){
-			log::add('jeedom', 'error',__('Espace disque disponible faible : ',__FILE__).$disk_space.'%.'.__('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)',__FILE__));
+		if ($disk_space < 10) {
+			log::add('jeedom', 'error', __('Espace disque disponible faible : ', __FILE__) . $disk_space . '%.' . __('Veuillez faire de la place (suppression de backup, de video/capture du plugin camera, d\'historique...)', __FILE__));
 		}
 	}
 
@@ -1296,6 +1305,13 @@ class jeedom {
 			log::add('jeedom', 'error', log::exception($e));
 		} catch (Error $e) {
 			log::add('jeedom', 'error', log::exception($e));
+		}
+		try {
+			log::chunk('', True);
+		} catch (Throwable $e) {
+			log::add('jeedom', 'error', $e->getMessage());
+		} catch (Error $e) {
+			log::add('jeedom', 'error', $e->getMessage());
 		}
 	}
 
@@ -1537,7 +1553,7 @@ class jeedom {
 		if (count($_eqlogics) == 0 && count($_cmds) == 0) {
 			throw new Exception('{{Aucun équipement ou commande à remplacer ou copier}}');
 		}
-		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory','disableEqs'] as $key) {
+		foreach (['copyEqProperties', 'hideEqs', 'copyCmdProperties', 'removeCmdHistory', 'copyCmdHistory', 'disableEqs'] as $key) {
 			if (!isset($_options[$key])) {
 				$_options[$key] = false;
 			}
@@ -1624,7 +1640,7 @@ class jeedom {
 				$targetEq->save();
 				$return['eqlogics'] += 1;
 			}
-		} 
+		}
 		if ($_options['hideEqs'] == "true") {
 			foreach ($_eqlogics as $_sourceId => $_targetId) {
 				$sourceEq = eqLogic::byId($_sourceId);
@@ -1735,7 +1751,7 @@ class jeedom {
 	}
 
 	public static function getTmpFolder($_plugin = '') {
-		if(isset(self::$cache['getTmpFolder::' . $_plugin])){
+		if (isset(self::$cache['getTmpFolder::' . $_plugin])) {
 			return self::$cache['getTmpFolder::' . $_plugin];
 		}
 		$return = '/' . trim(config::byKey('folder::tmp'), '/');
@@ -1792,7 +1808,7 @@ class jeedom {
 			$result = 'Atlas';
 		} else if (strpos($hostname, 'Luna') !== false) {
 			$result = 'Luna';
-		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'),'systemd') === false){
+		} else if (file_exists('/proc/1/sched') && strpos(shell_exec('cat /proc/1/sched | head -n 1'), 'systemd') === false) {
 			$result = 'docker';
 		}
 		config::save('hardware_name', $result);

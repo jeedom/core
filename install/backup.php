@@ -146,6 +146,7 @@ try {
 		'python_venv',
 		'resources/venv',
 		'/vendor',
+		'install/update/*.img.gz',
 		config::byKey('backup::path'),
 	);
 

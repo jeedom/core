@@ -30,17 +30,17 @@ class cache {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getEngine(){
-		if(self::$_engine != null){
+	public static function getEngine() {
+		if (self::$_engine != null) {
 			return self::$_engine;
 		}
 		self::$_engine = config::byKey('cache::engine');
-		if(!class_exists(self::$_engine)){
-			config::save('cache::engine','FileCache');
+		if (!class_exists(self::$_engine)) {
+			config::save('cache::engine', 'FileCache');
 			self::$_engine = 'FileCache';
 		}
-		if(method_exists(self::$_engine,'isOk') && !self::$_engine::isOk()){
-			config::save('cache::engine','FileCache');
+		if (method_exists(self::$_engine, 'isOk') && !self::$_engine::isOk()) {
+			config::save('cache::engine', 'FileCache');
 			self::$_engine = 'FileCache';
 		}
 		return self::$_engine;
@@ -51,7 +51,7 @@ class cache {
 			->setKey($_key)
 			->setValue($_value)
 			->setLifetime($_lifetime)
-		    ->save();
+			->save();
 	}
 
 	public static function delete($_key) {
@@ -76,7 +76,7 @@ class cache {
 		return $cache;
 	}
 
-	public static function exist($_key){
+	public static function exist($_key) {
 		return (self::byKey($_key)->getValue(null) !== null);
 	}
 
@@ -85,31 +85,31 @@ class cache {
 	}
 
 	public static function persist() {
-		if(method_exists(self::getEngine(),'persist')){
+		if (method_exists(self::getEngine(), 'persist')) {
 			self::getEngine()::persist();
 		}
 	}
 
 	public static function isPersistOk(): bool {
-		if(method_exists(self::getEngine(),'isPersistOk')){
+		if (method_exists(self::getEngine(), 'isPersistOk')) {
 			return self::getEngine()::isPersistOk();
 		}
 		return true;
 	}
 
 	public static function restore() {
-		if(method_exists(self::getEngine(),'restore')){
+		if (method_exists(self::getEngine(), 'restore')) {
 			self::getEngine()::restore();
 		}
 	}
 
 	public static function clean() {
-		if(method_exists(self::getEngine(),'clean')){
+		if (method_exists(self::getEngine(), 'clean')) {
 			self::getEngine()::clean();
 		}
 		$caches = self::getEngine()::all();
 		foreach ($caches as $cache) {
-			if(!is_object($cache)){
+			if (!is_object($cache)) {
 				continue;
 			}
 			$matches = null;
@@ -188,7 +188,7 @@ class cache {
 	}
 
 	public function getDatetime() {
-		return date('Y-m-d H:i:s',(int) $this->timestamp);
+		return date('Y-m-d H:i:s', (int) $this->timestamp);
 	}
 
 	public function setDatetime($_datetime): self {
@@ -196,11 +196,11 @@ class cache {
 		return $this;
 	}
 
-	public function getTimestamp(){
+	public function getTimestamp() {
 		return $this->timestamp;
 	}
 
-	public function setTimestamp($_timestamp){
+	public function setTimestamp($_timestamp) {
 		$this->timestamp = $_timestamp;
 		return $this;
 	}
@@ -209,73 +209,72 @@ class cache {
 
 class MariadbCache {
 
-	public static function all(){
+	public static function all() {
 		$sql = 'SELECT `key`,`timestamp`,`value`,`lifetime`
 		FROM cache';
-		$results =  DB::Prepare($sql,array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS,'cache');
+		$results =  DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, 'cache');
 		foreach ($results as $cache) {
 			$cache->setValue(unserialize($cache->getValue()));
 		}
 		return $results;
 	}
 
-	public static function clean(){
-		$sql = 'DELETE 
+	public static function clean() {
+		$sql = 'DELETE
 		FROM cache
 		WHERE `lifetime` > 0
 			AND (`timestamp`+`lifetime`) < UNIX_TIMESTAMP()';
-		return  DB::Prepare($sql,array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
+		return  DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS);
 	}
 
-	public static function fetch($_key){
+	public static function fetch($_key) {
 		$sql = 'SELECT `key`,`timestamp`,`value`,`lifetime`
 		FROM cache
 		WHERE `key`=:key';
-		$cache = DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS,'cache');
-		if($cache === false || !is_object($cache)){
+		$cache = DB::Prepare($sql, array('key' => $_key), DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, 'cache');
+		if ($cache === false || !is_object($cache)) {
 			return null;
 		}
-		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
+		if ($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
 			return null;
 		}
 		$cache->setValue(unserialize($cache->getValue()));
 		return $cache;
 	}
 
-	public static function delete($_key){
-		$sql = 'DELETE 
+	public static function delete($_key) {
+		$sql = 'DELETE
 		FROM cache
 		WHERE `key`=:key';
-		return  DB::Prepare($sql,array('key' => $_key), DB::FETCH_TYPE_ROW);
+		return  DB::Prepare($sql, array('key' => $_key), DB::FETCH_TYPE_ROW);
 	}
 
-	public static function deleteAll(){
-		return  DB::Prepare('TRUNCATE cache',array(), DB::FETCH_TYPE_ROW);
+	public static function deleteAll() {
+		return  DB::Prepare('TRUNCATE cache', array(), DB::FETCH_TYPE_ROW);
 	}
 
-	public static function save($_cache){
+	public static function save($_cache) {
 		$value = array(
 			'key' => $_cache->getKey(),
 			'value' => serialize($_cache->getValue()),
-			'lifetime' =>$_cache->getLifetime(),
+			'lifetime' => $_cache->getLifetime(),
 			'timestamp' => $_cache->getTimestamp()
 		);
 		$sql = 'REPLACE INTO cache SET `key`=:key, `value`=:value,`timestamp`=:timestamp,`lifetime`=:lifetime';
-		return  DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
+		return  DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 	}
-
 }
 
 class RedisCache {
 
 	private static $connection = null;
 
-	public static function isOk(){
+	public static function isOk() {
 		return class_exists('redis');
 	}
 
-	public static function getConnection(){
-		if(static::$connection !== null){
+	public static function getConnection() {
+		if (static::$connection !== null) {
 			return static::$connection;
 		}
 		$redis = new Redis();
@@ -284,7 +283,7 @@ class RedisCache {
 		return static::$connection;
 	}
 
-	public static function all(){
+	public static function all() {
 		$return  = array();
 		$keys = self::getConnection()->keys('*');
 		foreach ($keys as $key) {
@@ -293,88 +292,87 @@ class RedisCache {
 		return $return;
 	}
 
-	public static function fetch($_key){
+	public static function fetch($_key) {
 		$data = self::getConnection()->get($_key);
-		if($data === false){
+		if ($data === false) {
 			return null;
 		}
 		return @unserialize($data);
 	}
 
-	public static function delete($_key){
+	public static function delete($_key) {
 		self::getConnection()->del($_key);
 	}
 
-	public static function deleteAll(){
+	public static function deleteAll() {
 		return  self::getConnection()->flushDb();
 	}
 
-	public static function save($_cache){
-		if($_cache->getLifetime() > 0){
-			self::getConnection()->set($_cache->getKey(),serialize($_cache), $_cache->getLifetime());
-		}else{
-			self::getConnection()->set($_cache->getKey(),serialize($_cache));
+	public static function save($_cache) {
+		if ($_cache->getLifetime() > 0) {
+			self::getConnection()->set($_cache->getKey(), serialize($_cache), $_cache->getLifetime());
+		} else {
+			self::getConnection()->set($_cache->getKey(), serialize($_cache));
 		}
 	}
-
 }
 
 class FileCache {
 
-	public static function all(){
+	public static function all() {
 		$return = array();
-		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
+		foreach (ls(jeedom::getTmpFolder('cache'), '*', false, array('files')) as $file) {
 			$return[] = self::fetch(base64_decode($file));
 		}
 		return $return;
 	}
 
-	public static function clean(){
-		foreach (ls(jeedom::getTmpFolder('cache'), '*',false,array('files')) as $file) {
-			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache').'/'.$file));
-			if(!is_object($cache)){
-				unlink(jeedom::getTmpFolder('cache').'/'.$file);
+	public static function clean() {
+		foreach (ls(jeedom::getTmpFolder('cache'), '*', false, array('files')) as $file) {
+			$cache = unserialize(file_get_contents(jeedom::getTmpFolder('cache') . '/' . $file));
+			if (!is_object($cache)) {
+				unlink(jeedom::getTmpFolder('cache') . '/' . $file);
 				continue;
 			}
-			if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
-				unlink(jeedom::getTmpFolder('cache').'/'.$file);
+			if ($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
+				unlink(jeedom::getTmpFolder('cache') . '/' . $file);
 			}
 		}
 	}
 
-	public static function fetch($_key){
-		$data = @file_get_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
-        if($data === false){
-        	return null;
-        }
-	    $cache = unserialize($data);
-		if(!is_object($cache)){
+	public static function fetch($_key) {
+		$data = @file_get_contents(jeedom::getTmpFolder('cache') . '/' . base64_encode($_key));
+		if ($data === false) {
 			return null;
 		}
-		if($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')){
+		$cache = unserialize($data);
+		if (!is_object($cache)) {
+			return null;
+		}
+		if ($cache->getLifetime() > 0 && ($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
 			self::delete($_key);
 			return null;
 		}
 		return $cache;
 	}
 
-	public static function delete($_key){
-		@unlink(jeedom::getTmpFolder('cache').'/'.base64_encode($_key));
+	public static function delete($_key) {
+		@unlink(jeedom::getTmpFolder('cache') . '/' . base64_encode($_key));
 	}
 
-	public static function deleteAll(){
-		return shell_exec(system::getCmdSudo().' rm -rf '.jeedom::getTmpFolder('cache'));
+	public static function deleteAll() {
+		return shell_exec(system::getCmdSudo() . ' rm -rf ' . jeedom::getTmpFolder('cache'));
 	}
 
-	public static function save($_cache){
-		file_put_contents(jeedom::getTmpFolder('cache').'/'.base64_encode($_cache->getKey()),serialize($_cache));
+	public static function save($_cache) {
+		file_put_contents(jeedom::getTmpFolder('cache') . '/' . base64_encode($_cache->getKey()), serialize($_cache));
 	}
 
 	public static function persist() {
 		$cache_dir = jeedom::getTmpFolder('cache');
 		try {
 			$cmd = system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';';
-			$cmd .= system::getCmdSudo() . 'tar cfz ' . __DIR__ . '/../../cache.tar.gz * 2>&1 > /dev/null;';
+			$cmd .= system::getCmdSudo() . 'tar cfz ' . __DIR__ . '/../../cache.tar.gz . 2>&1 > /dev/null;';
 			$cmd .= system::getCmdSudo() . 'chmod 774 ' . __DIR__ . '/../../cache.tar.gz;';
 			$cmd .= system::getCmdSudo() . 'chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;';
 			$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
@@ -410,5 +408,4 @@ class FileCache {
 		$cmd .= 'chmod -R 777 ' . $cache_dir . ' 2>&1 > /dev/null;';
 		com_shell::execute($cmd);
 	}
-
 }

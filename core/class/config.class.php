@@ -29,26 +29,44 @@ class config {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function getDefaultConfiguration(string $_plugin = 'core') {
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			if ($_plugin == 'core') {
-				self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
-				if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
-					$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
-					self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
-				}
-			} else {
-				$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
-				if (file_exists($filename)) {
-					self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
+	/**
+	 * Get default configuration for core or plugin
+	 * @param string $_plugin
+	 * @return array
+	 */
+	public static function getDefaultConfiguration(string $_plugin = 'core'): array {
+		if (isset(self::$defaultConfiguration[$_plugin])) {
+			return self::$defaultConfiguration[$_plugin];
+		}
+
+		if ($_plugin == 'core') {
+			self::$defaultConfiguration[$_plugin] = parse_ini_file(__DIR__ . '/../../core/config/default.config.ini', true);
+
+			if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
+				$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
+				self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
+			}
+		} else {
+			self::$defaultConfiguration[$_plugin] = array();
+
+			$filename = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/' . $_plugin . '.config.ini';
+			if (file_exists($filename)) {
+				self::$defaultConfiguration[$_plugin] = parse_ini_file($filename, true);
+			}
+
+			$specificConf = __DIR__ . '/../../plugins/' . $_plugin . '/core/config/specific.config.ini';
+			if (file_exists($specificConf)) {
+				$specific = parse_ini_file($specificConf, true);
+				$hardware = strtolower(jeedom::getHardwareName());
+				if (isset($specific[$hardware])) {
+					self::$defaultConfiguration[$_plugin] = array_replace_recursive(self::$defaultConfiguration[$_plugin], $specific[$hardware]);
 				}
 			}
 		}
-		if (!isset(self::$defaultConfiguration[$_plugin])) {
-			self::$defaultConfiguration[$_plugin] = array();
-		}
+
 		return self::$defaultConfiguration[$_plugin];
 	}
+
 	/**
 	 * Save key to config
 	 * @param string $_key
@@ -111,8 +129,8 @@ class config {
 
 	/**
 	 * Delete key from config
-	 * @param string $_key nom de la clef à supprimer
-	 * @return boolean vrai si ok faux sinon
+	 * @param string $_key
+	 * @return boolean
 	 */
 	public static function remove(string $_key, string $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
@@ -122,11 +140,11 @@ class config {
 			$sql = 'DELETE FROM config
 			WHERE plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-            foreach (self::$cache as $cacheKey => $value) {
-                if (strpos($cacheKey, $_plugin . '::') === 0) {
-                    unset(self::$cache[$cacheKey]);
-                }
-            }
+			foreach (self::$cache as $cacheKey => $value) {
+				if (strpos($cacheKey, $_plugin . '::') === 0) {
+					unset(self::$cache[$cacheKey]);
+				}
+			}
 		} else {
 			$values = array(
 				'plugin' => $_plugin,
@@ -136,15 +154,15 @@ class config {
 			WHERE `key`=:key
 			AND plugin=:plugin';
 			DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-            unset(self::$cache[$_plugin . '::' . $_key]);
+			unset(self::$cache[$_plugin . '::' . $_key]);
 		}
 		return true;
 	}
 
 	/**
 	 * Get config by key
-	 * @param string $_key nom de la clef dont on veut la valeur
-	 * @return string valeur de la clef
+	 * @param string $_key
+	 * @return string
 	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {
@@ -227,6 +245,26 @@ class config {
 		return $return;
 	}
 
+	/**
+	 * Get list of plugins|keys from unencrypted value
+	 * @param mixed $_value
+	 * @param string $_key (optional)
+	 * @return array
+	 */
+	public static function byValue($_value, string $_key = null): array {
+		$values = array(
+			'value' => $_value
+		);
+
+		if ($_key) {
+			$values['key'] = $_key;
+			$sql = 'SELECT `plugin` FROM config	WHERE `value`=:value AND `key`=:key';
+		} else {
+			$sql = 'SELECT `plugin`,`key` FROM config	WHERE `value`=:value';
+		}
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
+	}
+
 	public static function searchKey($_key, $_plugin = 'core') {
 		$values = array(
 			'plugin' => $_plugin,
@@ -251,9 +289,9 @@ class config {
 	}
 
 	public static function genKey($_car = 64) {
-        if ($_car > 256) {
-            throw new \Exception('Key length too long');
-        }
+		if ($_car > 256) {
+			throw new \Exception('Key length too long');
+		}
 		$key = '';
 		$chaine = "abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for ($i = 0; $i < $_car; $i++) {
@@ -325,7 +363,11 @@ class config {
 				}
 			}
 		}
-		asort($types['byFamily'], SORT_STRING | SORT_FLAG_CASE);
+
+		if (is_array($types['byFamily'])) {
+			asort($types['byFamily'], SORT_STRING | SORT_FLAG_CASE);
+		}
+
 		return $types;
 	}
 

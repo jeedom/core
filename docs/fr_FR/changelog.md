@@ -1,8 +1,18 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3
+
+- Diverses corrections de bugs et optimisations
+- Mise à jour dans les contrôles de version
+- Mise à jour du nommage des ports de communication ([Détails](https://github.com/jeedom/core/issues/3210))
+- Limitation de la taille maximale des fichiers de logs ([Détails](https://github.com/jeedom/core/pull/3045))
+- Ajout du contenu de la page "Santé" aux demandes d'assistance communautaire ([Détails](https://github.com/jeedom/core/pull/3224))
+- [Développeurs] Ajout de la prise en charge de configurations spécifiques au matériel via un fichier `core/config/specific.config.ini` dans le dossier du plugin ([Détails](https://github.com/jeedom/core/issues/3218))
+- [Développeurs] Ajout de la méthode `config::byValue($_value, string $_key = null)`([Détails](https://github.com/jeedom/core/pull/3212/changes/559a010))
+
 # 4.5.2
 
-Mise à jour vivement recommandée, elle corrige un bug sur la verification de la date qui empeche tout lancement de scénario ou de tache planifiée.
+- Mise à jour indispensable qui corrige un bug sur la vérification de la date empêchant tout lancement de scénario ou de tâche planifiée.
 
 # 4.5.1
 
@@ -26,6 +36,7 @@ Mise à jour vivement recommandée, elle corrige un bug sur la verification de l
 - Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``triggerId() == 587`` il faut le remplacer par ``#trigger_id# == 587``
   - ``triggerValue()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``triggerValue() == 10`` il faut le remplacer par ``#trigger_value# == 10``
+  -  ``trigger()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``trigger(#[objet][equipement][commande]#)`` il faut le remplacer par ``#trigger_name# == '[objet][equipement][commande]'``
   - ``#trigger#`` : Peut être :
     - ``api`` si le lancement a été déclenché par l'API,
     - ``TYPEcmd`` si le lancement a été déclenché par une commande, avec TYPE remplacé par l'id du plugin (ex virtualCmd),
@@ -33,7 +44,7 @@ Mise à jour vivement recommandée, elle corrige un bug sur la verification de l
     - ``user`` s'il a été lancé manuellement,
     - ``start`` pour un lancement au démarrage de Jeedom.
   - ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur de l'id de la commande qui l'a déclenché
-  - ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur du nom de la commande (sous forme [objet][équipement][commande])
+  - ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur du nom de la commande (sous forme '[objet][équipement][commande]'). Notez qu'en utilisant la syntaxe : ``#trigger_name# == '[objet][equipement][commande]'``, en cas de modification de nom de votre objet ou équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code.
   - ``#trigger_value#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur de la commande ayant déclenché le scénario
   - ``#trigger_message#`` : Message indiquant l'origine du lancement du scénario
 - Amélioration de la gestion des plugins sur github (plus de dépendances à une librairie tierce) [LIEN](https://github.com/jeedom/core/issues/2567)
