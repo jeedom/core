@@ -81,15 +81,12 @@ jeedom.changes = function() {
           object_summary_update.push(data.result[i].option)
           continue
         }
+        
+        // Dispatch à la fois en natif (dispatchEvent) et jQuery (rétrocompatibilité)
         if (isset(data.result[i].option)) {
-          if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
-            document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
-          } else {
-            if (typeof jQuery === 'function') {
-              $('body').trigger(data.result[i].name, data.result[i].option)
-            } else {
-              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
-            }
+          document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+          if (typeof jQuery === 'function') {
+            $('body').trigger(data.result[i].name, data.result[i].option)
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
