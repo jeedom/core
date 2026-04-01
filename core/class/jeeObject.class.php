@@ -1042,16 +1042,15 @@ class jeeObject {
 	}
 
 	public function getHumanName($_tag = false, $_prettify = false) {
-		$name = $this->getDisplayName();
 		if ($_tag) {
 			if ($_prettify) {
 				if ($this->getConfiguration('useCustomColor') == 1) {
-					return '<span class="label" style="background-color:' . $this->getDisplay('tagColor') . ' ;color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $name . '</span>';
+					return '<span class="label" style="background-color:' . $this->getDisplay('tagColor') . ' ;color:' . $this->getDisplay('tagTextColor', 'white') . '">' . $this->getDisplay('icon') . ' ' . $this->getDisplayName() . '</span>';
 				} else {
-					return '<span class="label labelObjectHuman">' . $this->getDisplay('icon') . ' ' . $name . '</span>';
+					return '<span class="label labelObjectHuman">' . $this->getDisplay('icon') . ' ' . $this->getDisplayName() . '</span>';
 				}
 			} else {
-				return $this->getDisplay('icon') . ' ' . $name;
+				return $this->getDisplay('icon') . ' ' . $this->getDisplayName();
 			}
 		} else {
 			return '[' . $this->getName() . ']';
