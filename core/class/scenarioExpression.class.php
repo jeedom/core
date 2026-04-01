@@ -221,13 +221,12 @@ class scenarioExpression {
 			$result = $_aValue;
 		}
 		if (is_array($result)) {
-			$nbr = mt_rand(0, count($result) - 1);
-			return $result[$nbr];
+			if (count($result) === 0) {
+				return '';
+			}
+			return $result[array_rand($result)];
 		}
 		return $result;
-    }
-			return $result;
-		}
 	}
 
 	public static function scenario($_scenario) {
