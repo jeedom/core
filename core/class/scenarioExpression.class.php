@@ -223,7 +223,9 @@ class scenarioExpression {
 		if (is_array($result)) {
 			$nbr = mt_rand(0, count($result) - 1);
 			return $result[$nbr];
-		} else {
+		}
+		return $result;
+    }
 			return $result;
 		}
 	}
