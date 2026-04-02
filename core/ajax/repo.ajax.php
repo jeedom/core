@@ -83,17 +83,22 @@ try {
 
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
-		$class = 'repo_' . init('repo');
-		$repo = $class::byId(init('id'));
+        $repoName = init('repo');
+        $class = 'repo_' . $repoName;
+        if ($class !== repo_market::class) {
+            throw new \Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . $repoName);
+        }
+
+        $market = $class::byId(init('id'));
 		if (!is_object($market)) {
 			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . init('id'));
 		}
-		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
+		$update = update::byTypeAndLogicalId($market->getType(), $market->getLogicalId());
 		try {
 			if (is_object($update)) {
 				$update->remove();
 			} else {
-				$market->remove();
+                $market->remove();
 			}
 		} catch (Exception $e) {
 			if (is_object($update)) {
