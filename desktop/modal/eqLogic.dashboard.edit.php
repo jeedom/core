@@ -310,19 +310,19 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     }
                     $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
                     $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
-      
+
                     $tr = '<tr>';
-                  	$tr .= '<td data-line="0" data-column="0">&nbsp;</td>';
+                    $tr .= '<td data-line="0" data-column="0">&nbsp;</td>';
                     for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
-                      	$tr .= '<td data-line="0" data-column="' . $j . '" style="text-align: center;">';
-                    	$tr .= '<a class="bt_removeCol"  style="margin-left: 5px;margin-right: 5px;" tooltip="{{Supprimer la colonne}}"><i class="fas fa-minus-circle"></i></a>';
-                    	$tr .= $j;
-                    	$tr .= '<a class="bt_addCol" style="margin-left: 5px;margin-right: 5px;" tooltip="{{Inserer une colonne avant}}"><i class="fas fa-plus-circle"></i></a>';
-                    	$tr .= '</td>';
-				  	}
-                  	$tr .= '</tr>';
-                  	echo $tr;
-      
+                      $tr .= '<td data-line="0" data-column="' . $j . '" style="text-align: center;">';
+                      $tr .= '<a class="bt_removeCol"  style="margin-left: 5px;margin-right: 5px;" tooltip="{{Supprimer la colonne}}"><i class="fas fa-minus-circle"></i></a>';
+                      $tr .= $j;
+                      $tr .= '<a class="bt_addCol" style="margin-left: 5px;margin-right: 5px;" tooltip="{{Inserer une colonne avant}}"><i class="fas fa-plus-circle"></i></a>';
+                      $tr .= '</td>';
+                    }
+                    $tr .= '</tr>';
+                    echo $tr;
+
                     for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
                       $tr = '<tr>';
                       $tr .= '<td data-line="' . $i . '" data-column="0" style="text-align: center; width: 70px;">';
@@ -355,7 +355,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           </div>
         </div>
       </div>
-    <?php }
+  <?php }
   }
   ?>
 
@@ -561,7 +561,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           })
         })
         // sortable rows
-	    new Sortable(document.querySelector('#tableCmdLayoutConfiguration tbody'), {
+        new Sortable(document.querySelector('#tableCmdLayoutConfiguration tbody'), {
           delay: 50,
           delayOnTouchOnly: true,
           draggable: 'tr:not(:first-child)', //exclude the first row (row for column manage)
@@ -586,7 +586,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               })
               row++
             })
-          }        
+          }
         })
       },
       getNewLayoutTd: function(row, col) {
@@ -604,7 +604,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
         var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
         var tableRowCount = tableLayout.querySelectorAll('tr').length - 1
         var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td:not(:first-child)').length
-		
+
         if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
           //build new table:
           var newTableLayout = document.createElement('table')
@@ -619,11 +619,11 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             newFirstCol += '<a class="bt_removeCol" style="margin-left: 5px;margin-right: 5px;" title="{{Supprimer la colonne}}"><i class="fas fa-minus-circle"></i></a>'
             newFirstCol += j
             newFirstCol += '<a class="bt_addCol" style="margin-left: 5px;margin-right: 5px;" title="{{Inserer une colonne avant}}"><i class="fas fa-plus-circle"></i></a>'
-            newFirstCol += '</td>'           
+            newFirstCol += '</td>'
           }
           newTr.insertAdjacentHTML('beforeend', newFirstCol)
           newTableLayout.tBodies[0].appendChild(newTr)
-          
+
           for (i = 1; i <= nbRow; i++) {
             var newTr = document.createElement('tr')
             let newFirstCol = '<td data-line="' + i + '" data-column="0" style="text-align: center; width: 75px;">'
@@ -632,13 +632,13 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             newFirstCol += '<a class="bt_addRow" style="margin-left: 5px;margin-right: 5px;" title="{{Inserer une ligne avant}}"><i class="fas fa-plus-circle"></i></a>'
             newFirstCol += '</td>'
             newTr.insertAdjacentHTML('beforeend', newFirstCol)
-                        
+
             for (j = 1; j <= nbColumn; j++) {
               newTd = jeeFrontEnd.md_eqlogicDashEdit.getNewLayoutTd(i, j)
               newTr.insertAdjacentHTML('beforeend', newTd)
             }
             newTableLayout.tBodies[0].appendChild(newTr)
-          }          
+          }
 
           //distribute back cmds into new table
           //var firstTdLayout = newTableLayout.querySelector('tr').querySelector('td > .cmdLayoutContainer')
@@ -647,26 +647,26 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           tableLayout.querySelectorAll('.cmdLayout').forEach(_cLay => {
             row = parseInt(_cLay.closest('td').getAttribute('data-line'))
             col = parseInt(_cLay.closest('td').getAttribute('data-column'))
-            
+
             // manage adding or removing row or column
             if (_action == 'add') {
-            	if (row >= _row && _row != 0) {
-                  row++
-                }
-                if (col >= _col && _col != 0) {
-                  col++
-                }
+              if (row >= _row && _row != 0) {
+                row++
+              }
+              if (col >= _col && _col != 0) {
+                col++
+              }
             } else if (_action == 'remove') {
-            	if (row >= _row && _row != 0) {         
-                  row--
-                }
-                if (col >= _col && _col != 0) {
-                  col--
-                }
+              if (row >= _row && _row != 0) {
+                row--
+              }
+              if (col >= _col && _col != 0) {
+                col--
+              }
             }
-            
+
             newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
-            
+
             if (is_object(newTd = newTableLayout.querySelector('td[data-line="' + Math.max(row, 1) + '"][data-column="' + Math.max(col, 1) + '"] .cmdLayoutContainer'))) {
               newTd.appendChild(_cLay)
             } else {
@@ -678,31 +678,31 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           tableLayout.querySelectorAll('td').forEach(_td => {
             row = parseInt(_td.getAttribute('data-line'))
             col = parseInt(_td.getAttribute('data-column'))
-              
+
             if (col != 0 && row != 0) {
               text = _td.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value
               style = _td.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value
             }
-            
+
             // manage adding or removing row or column
             if (_action == 'add') {
-            	if (row >= _row && _row != 0) {
-                  row++
-                }
-                if (col >= _col && _col != 0) {
-                   col++
-                }
+              if (row >= _row && _row != 0) {
+                row++
+              }
+              if (col >= _col && _col != 0) {
+                col++
+              }
             } else if (_action == 'remove') {
-            	if (row > _row && _row != 0) {         
-                  row--
-                }
-                if (col > _col && _col != 0) {
-                  col--
-                }
+              if (row > _row && _row != 0) {
+                row--
+              }
+              if (col > _col && _col != 0) {
+                col--
+              }
             }
-              
+
             newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
-            if (newTd && row !=0 && col != 0) {
+            if (newTd && row != 0 && col != 0) {
               newTableLayout.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value = text
               newTableLayout.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value = style
             }
@@ -710,7 +710,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
           //replace by new table:
           jeedomUtils.initTooltips(newTableLayout)
-          tableLayout.replaceWith(newTableLayout)          
+          tableLayout.replaceWith(newTableLayout)
           jeeFrontEnd.md_eqlogicDashEdit.setTableLayoutSortable()
         }
       },
@@ -912,58 +912,58 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
     })
 
     function handleDynamicLineColumn(_action) {
-        if (_action !== 'add' && _action !== 'remove') {
-            throw new Error(`Invalid action value : only "add" or "remove" allowed, "${_action}" given`);
-        }
+      if (_action !== 'add' && _action !== 'remove') {
+        throw new Error(`Invalid action value : only "add" or "remove" allowed, "${_action}" given`);
+      }
 
-        row = event.target.closest('td').getAttribute('data-line')
-        col = event.target.closest('td').getAttribute('data-column')
-        var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
+      row = event.target.closest('td').getAttribute('data-line')
+      col = event.target.closest('td').getAttribute('data-column')
+      var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
 
-        if (col == 0) {          
-          var tableRowCount = tableLayout.querySelectorAll('tr').length - 1
-          if (_action === 'remove' && tableRowCount === 1) {
-            return
-          }
-          if (_action === 'add') {
-              tableRowCount++
-          }
-          if (_action === 'remove') {
-              tableRowCount--
-          }
-          document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount
+      if (col == 0) {
+        var tableRowCount = tableLayout.querySelectorAll('tr').length - 1
+        if (_action === 'remove' && tableRowCount === 1) {
+          return
         }
-      
-        if (row == 0) {
-          var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td:not(:first-child)').length
-          if (_action === 'remove' && tableColumnCount === 1) {
-            return
-          }          
-          if (_action === 'add') {
-              tableColumnCount++
-          }
-          if (_action === 'remove') {
-              tableColumnCount--
-          }
-          document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = tableColumnCount
+        if (_action === 'add') {
+          tableRowCount++
         }
-        
-        jeeFrontEnd.md_eqlogicDashEdit.applyTableLayout(_action, row, col)
+        if (_action === 'remove') {
+          tableRowCount--
+        }
+        document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount
+      }
+
+      if (row == 0) {
+        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td:not(:first-child)').length
+        if (_action === 'remove' && tableColumnCount === 1) {
+          return
+        }
+        if (_action === 'add') {
+          tableColumnCount++
+        }
+        if (_action === 'remove') {
+          tableColumnCount--
+        }
+        document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = tableColumnCount
+      }
+
+      jeeFrontEnd.md_eqlogicDashEdit.applyTableLayout(_action, row, col)
     }
-    
+
     // listener to add/remove row or column
     document.getElementById('divCmdLayoutConfiguration')?.addEventListener('click', function(event) {
-        if (event.target.closest('.bt_addRow') || event.target.closest('.bt_addCol')) {
-            handleDynamicLineColumn('add');
-            return;
-        }
+      if (event.target.closest('.bt_addRow') || event.target.closest('.bt_addCol')) {
+        handleDynamicLineColumn('add');
+        return;
+      }
 
-        if (event.target.closest('.bt_removeRow') || event.target.closest('.bt_removeCol')) {
-            handleDynamicLineColumn('remove');
-            return;
-        }
+      if (event.target.closest('.bt_removeRow') || event.target.closest('.bt_removeCol')) {
+        handleDynamicLineColumn('remove');
+        return;
+      }
     })
-      
+
     jeeM.postInit()
   })()
 </script>
