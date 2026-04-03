@@ -562,6 +562,7 @@ jeedom.scenario.autoCompleteCondition = [
 ]
 /* Actions Autocomplete */
 jeedom.scenario.autoCompleteAction = [
+  'ask',
   'setColoredIcon',
   'report',
   'exportHistory',
@@ -583,7 +584,6 @@ jeedom.scenario.autoCompleteAction = [
 ]
 /* Actions Autocomplete only for scenarios*/
 jeedom.scenario.autoCompleteActionScOnly = [
-  'ask',
   'stop',
   'log',
   'scenario_return',
