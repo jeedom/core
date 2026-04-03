@@ -1381,7 +1381,7 @@ class scenarioExpression {
 		return;
 	}
 
-	public function execute(&$scenario = null) {
+	public function execute(?scenario &$scenario = null) {
 		if ($scenario !== null && !$scenario->getDo()) {
 			return;
 		}
@@ -1481,9 +1481,7 @@ class scenarioExpression {
 					}
 					die();
 				} elseif ($this->getExpression() == 'log') {
-					if ($scenario !== null) {
-						$scenario->setLog('Log : ' . $options['message']);
-					}
+					$this->setLog($scenario, 'Log : ' . $options['message']);
 					return;
 				} elseif ($this->getExpression() == 'event') {
 					$cmd = cmd::byId(trim(str_replace('#', '', $options['cmd'])));
@@ -1678,7 +1676,10 @@ class scenarioExpression {
 						$result = $options['value'];
 					}
 				} elseif ($this->getExpression() == 'delete_variable') {
-					$scenario->removeData($options['name']);
+					$dataStore = dataStore::byTypeLinkIdKey('scenario', -1, $options['name']);
+					if (is_object($dataStore)) {
+						$dataStore->remove();
+					}
 					$this->setLog($scenario, __('Suppression de la variable', __FILE__) . ' ' . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
@@ -1737,7 +1738,8 @@ class scenarioExpression {
 						$dataStore->setValue($value);
 						$dataStore->save();
 					}
-					event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
+					// TODO: deactivate now because not used and not documented and this cause issue in case scenarion does not exist; approache for new events should be reviewed globally in a new issue
+					// event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
@@ -1759,13 +1761,16 @@ class scenarioExpression {
 					jeedom::rebootSystem();
 					return;
 				} elseif ($this->getExpression() == 'scenario_return') {
-					$this->setLog($scenario, __('Demande de retour d\'information :', __FILE__) . ' ' . $options['message']);
-					if ($scenario->getReturn() === true) {
-						$scenario->setReturn($options['message']);
-					} else {
-						$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
+					if ($scenario !== null) {
+						$this->setLog($scenario, __('Demande de retour d\'information :', __FILE__) . ' ' . $options['message']);
+						if ($scenario->getReturn() === true) {
+							$scenario->setReturn($options['message']);
+						} else {
+							$scenario->setReturn($scenario->getReturn() . ' ' . $options['message']);
+						}
+						return;
 					}
-					return;
+					die();
 				} elseif ($this->getExpression() == 'remove_inat') {
 					if (isset($options['scenario_id']) && intval($options['scenario_id']) != 0) {
 						$targetScenario = scenario::byId($options['scenario_id']);
@@ -1921,6 +1926,9 @@ class scenarioExpression {
 						}
 					}
 				} elseif ($this->getExpression() == 'tag') {
+					if ($scenario == null || !is_object($scenario)) {
+						return;
+					}
 					$tags = $scenario->getTags();
 					$options['value'] = self::setTags($options['value'], $scenario);
 					try {
@@ -1951,7 +1959,9 @@ class scenarioExpression {
 							}
 							$result = call_user_func_array('userFunction::' . $functionName, $arguments);
 							$this->setLog($scenario, 'userFunction: ' . $stringFunction . ' : ' . json_encode($result));
-							$scenario->persistLog();
+							if ($scenario !== null) {
+								$scenario->persistLog();
+							}
 							return;
 						}
 					}
