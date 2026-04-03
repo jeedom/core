@@ -399,6 +399,10 @@ sendVarToJS([
 							{{Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.}}
 						</div>
 
+						<div class="alert alert-info addElementTypeDescription while" style="display:none;">
+							{{Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.}}
+						</div>
+
 						<div class="alert alert-info addElementTypeDescription in" style="display:none;">
 							{{Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.}}
 						</div>
