@@ -6,8 +6,8 @@ name: Validate Composer dependencies
 on:
     pull_request:
       branches:
-        - alpha
-  
+        - 'develop'
+
 jobs:
   build-test:
     runs-on: ubuntu-latest
