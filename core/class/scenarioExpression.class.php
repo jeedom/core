@@ -1682,9 +1682,6 @@ class scenarioExpression {
 					$this->setLog($scenario, __('Suppression de la variable', __FILE__) . ' ' . $options['name']);
 					return;
 				} elseif ($this->getExpression() == 'ask') {
-					if ($scenario == null || !is_object($scenario)) {
-						return;
-					}
 					$dataStore = new dataStore();
 					$dataStore->setType('scenario');
 					$dataStore->setKey($options['variable']);
@@ -1700,9 +1697,11 @@ class scenarioExpression {
 					}
 					$options_cmd = array('title' => $options['question'], 'message' => $options['question'], 'answer' => $answer, 'timeout' => $limit, 'variable' => $options['variable']);
 
-					$tags = $scenario->getTags();
+					if ($scenario !== null) {
+						$tags = $scenario->getTags();
 						if (isset($tags['#profile#']) === true) {
-						$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
+							$this->setOptions('cmd', str_replace('#profile#', $tags['#profile#'], $this->getOptions('cmd')));
+						}
 					}
 
 					$cmd = cmd::byId(str_replace('#', '', $this->getOptions('cmd')));
@@ -1738,7 +1737,8 @@ class scenarioExpression {
 						$dataStore->setValue($value);
 						$dataStore->save();
 					}
-					event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
+					// TODO: deactivate now because not used and not documented and this cause issue in case scenarion does not exist; approache for new events should be reviewed globally in a new issue
+					// event::add('scenario::ask', array('scenario_id' => $scenario->getId(), 'variable' => $options['variable'], 'value' => $value));
 					$this->setLog($scenario, __('Réponse', __FILE__) . ' ' . $value);
 					return;
 				} elseif ($this->getExpression() == 'jeedom_poweroff') {
