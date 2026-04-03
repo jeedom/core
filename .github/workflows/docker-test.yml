@@ -7,19 +7,18 @@ on:
   # only trigger CI when pull request on following branches
   pull_request:
     branches:
-      - 'alpha'
+      - 'develop'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
       logLevel:
-        description: 'Reason'     
+        description: 'Reason'
         default: 'Manual launch'
 
 jobs:
   buildAndTestDockerImg:
     runs-on: ubuntu-latest
     steps:
-    
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
@@ -35,6 +34,7 @@ jobs:
           docker run -p 80:80 -d --rm --name jeedom_bullseye jeedom:bullseye
           sleep 45
           docker exec jeedom_bullseye php sick.php
+
       - name: Build jeedom:bookworm
         # build current image for bookworm
         run: |
@@ -45,7 +45,7 @@ jobs:
           docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
           sleep 45
           docker exec jeedom_bookworm php sick.php
-    
+
       - name: Clean docker image
         continue-on-error: true
         run: |

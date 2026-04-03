@@ -2,12 +2,10 @@ on:
   # Workflows check plugin Jeedom
   push:
     branches:
-      - alpha
-      - beta
+      - develop
   pull_request:
     branches:
-      - alpha
-      - beta
+      - develop
       - master
 
 name : 'Test Core Jeedom'
