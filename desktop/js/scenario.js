@@ -1238,6 +1238,7 @@ if (!jeeFrontEnd.scenario) {
         retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
       }
       retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="while">{{Bloc Tant que}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
