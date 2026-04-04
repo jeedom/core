@@ -423,7 +423,11 @@ try {
 			$return['derive'] = $derive;
 			$groupingType = init('groupingType');
 			if (is_array($groupingType)) {
-				$groupingType = implode('::', array_values($groupingType));
+				if (isset($groupingType['function']) && isset($groupingType['time'])) {
+					$groupingType = $groupingType['function'] . '::' . $groupingType['time'];
+				} else {
+					$groupingType = implode('::', array_values($groupingType));
+				}
 			}
 			if ($groupingType == '') {
 				$groupingType = $cmd->getDisplay('groupingType');
