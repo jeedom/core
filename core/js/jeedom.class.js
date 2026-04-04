@@ -168,6 +168,7 @@ jeedom.init = function() {
       cssComputedStyle.getPropertyValue('--al-danger-color'),
       cssComputedStyle.getPropertyValue('--scBlocCOM'),
       cssComputedStyle.getPropertyValue('--scBlocFOR'),
+      cssComputedStyle.getPropertyValue('--scBlocWHILE'),
       cssComputedStyle.getPropertyValue('--scBlocACTION'),
       cssComputedStyle.getPropertyValue('--scBlocAT')
     ]

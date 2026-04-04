@@ -379,6 +379,7 @@ sendVarToJS([
 							<option value="if">{{Si/Alors/Sinon}}</option>
 							<option value="action">{{Action}}</option>
 							<option value="for">{{Boucle}}</option>
+							<option value="while">{{Tant que}}</option>
 							<option value="in">{{Dans}}</option>
 							<option value="at">{{A}}</option>
 							<option value="code">{{Code}}</option>
@@ -396,6 +397,10 @@ sendVarToJS([
 
 						<div class="alert alert-info addElementTypeDescription for" style="display:none;">
 							{{Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.}}
+						</div>
+
+						<div class="alert alert-info addElementTypeDescription while" style="display:none;">
+							{{Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription in" style="display:none;">

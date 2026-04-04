@@ -661,7 +661,7 @@ if (!jeeFrontEnd.scenario) {
       if (!isset(_subElement.type) || _subElement.type == '') return ''
       if (!isset(_subElement.options)) _subElement.options = {}
       var noSortable = ''
-      if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'code') {
+      if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'while' || _subElement.type == 'code') {
         noSortable = 'noSortable'
       }
 
@@ -678,6 +678,9 @@ if (!jeeFrontEnd.scenario) {
           break
         case 'for':
           blocClass = 'subElementFOR'
+          break
+        case 'while':
+          blocClass = 'subElementWHILE'
           break
         case 'in':
           blocClass = 'subElementIN'
@@ -788,6 +791,36 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
           retour += '<div>'
           retour += '<legend >{{DE 1 A}}</legend>'
+          retour += '</div>'
+          retour += '<div class="expressions" >'
+          var expression = {
+            type: 'condition'
+          }
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
+            expression = _subElement.expressions[0]
+          }
+          retour += this.addExpression(expression)
+          retour += '</div>'
+          retour = this.addElButtons(retour)
+          break
+
+        case 'while':
+          retour += '<input class="subElementAttr" data-l1key="subtype" style="display : none;" value="condition"/>'
+          retour += '<div>'
+          retour += '<i class="bt_sortable fas fa-arrows-alt-v pull-left cursor"></i>'
+          if (!isset(_subElement.options) || !isset(_subElement.options.collapse) || _subElement.options.collapse == 0) {
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Masquer ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="0"><i class="far fa-eye"></i></a>'
+          } else {
+            retour += '<a class="bt_collapse cursor subElementAttr" title="{{Afficher ce bloc.<br>Ctrl+click: tous.}}" data-l1key="options" data-l2key="collapse" value="1"><i class="far fa-eye-slash"></i></a>'
+          }
+          if (!isset(_subElement.options) || !isset(_subElement.options.enable) || _subElement.options.enable == 1) {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" checked title="{{Décocher pour désactiver l\'élément}}" />'
+          } else {
+            retour += '<input type="checkbox" class="subElementAttr" data-l1key="options" data-l2key="enable" title="{{Décocher pour désactiver l\'élément}}" />'
+          }
+          retour += '</div>'
+          retour += '<div>'
+          retour += '<legend >{{TANT QUE}}</legend>'
           retour += '</div>'
           retour += '<div class="expressions" >'
           var expression = {
@@ -1003,6 +1036,9 @@ if (!jeeFrontEnd.scenario) {
         case 'for':
           elementClass = 'elementFOR'
           break
+        case 'while':
+          elementClass = 'elementWHILE'
+          break
         case 'in':
           elementClass = 'elementIN'
           break
@@ -1049,6 +1085,20 @@ if (!jeeFrontEnd.scenario) {
           } else {
             div += this.addSubElement({
               type: 'for'
+            })
+            div += this.addSubElement({
+              type: 'do'
+            })
+          }
+          break
+        case 'while':
+          if (isset(_element.subElements) && isset(_element.subElements)) {
+            for (var j in _element.subElements) {
+              div += this.addSubElement(_element.subElements[j])
+            }
+          } else {
+            div += this.addSubElement({
+              type: 'while'
             })
             div += this.addSubElement({
               type: 'do'
@@ -1188,6 +1238,7 @@ if (!jeeFrontEnd.scenario) {
         retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
       }
       retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
+      retour += '<li><a class="fromSubElement" data-type="while">{{Bloc Tant que}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="in">{{Bloc Dans}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="at">{{Bloc A}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="code">{{Bloc Code}}</a></li>'
@@ -1633,7 +1684,7 @@ function filterOptions() {
     })
 }
 
-input.addEventListener('input', filterOptions) 
+input.addEventListener('input', filterOptions)
 
 select.addEventListener('change', function(event) {
   document.querySelectorAll('.addElementTypeDescription').unseen()
@@ -2398,7 +2449,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
       if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
         var condType = _target.closest('.subElement')
-        if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR')) {
+        if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR') && !condType.hasClass('subElementWHILE')) {
           expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
           return
         }
