@@ -246,12 +246,12 @@ try {
 	}
 
 	if (init('action') == 'byEqLogic') {
-        if (init('typeCmd')) {
-            ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'), init('typeCmd'))));
-        } else {
-            ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
-        }
-     }
+		if (init('typeCmd')) {
+			ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'), init('typeCmd'))));
+		} else {
+			ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+		}
+	}
 
 	if (init('action') == 'getCmd') {
 		$cmd = cmd::byId(init('id'));
@@ -422,6 +422,9 @@ try {
 			}
 			$return['derive'] = $derive;
 			$groupingType = init('groupingType');
+			if (is_array($groupingType)) {
+				$groupingType = implode('::', array_values($groupingType));
+			}
 			if ($groupingType == '') {
 				$groupingType = $cmd->getDisplay('groupingType');
 			}
@@ -497,7 +500,7 @@ try {
 	if (init('action') == 'getLastHistory') {
 		$cmd = cmd::byId(init('id'));
 		$_time = date('Y-m-d H:i:s', strtotime(init('time')));
-		if(is_object($cmd)){
+		if (is_object($cmd)) {
 			ajax::success($cmd->getLastHistory($_time));
 		} else {
 			throw new Exception(__('Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens', __FILE__) . ' ' . init('id'));
