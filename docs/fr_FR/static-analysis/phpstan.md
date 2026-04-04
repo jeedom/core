@@ -2,12 +2,7 @@
 
 ## Installation locale
 
-1. Télécharger PHPStan :
-```bash
-wget https://github.com/phpstan/phpstan/releases/latest/download/phpstan.phar
-```
-
-2. Mettre à jour les dépendances :
+Mettre à jour les dépendances :
 ```bash
 composer update --ignore-platform-reqs
 ```
@@ -43,7 +38,7 @@ Notes importantes :
 
 ### Lancer l'analyse
 ```bash
-php phpstan.phar analyse --configuration phpstan.neon
+vendor/bin/phpstan analyse --configuration phpstan.neon
 ```
 
 ### Types d'erreurs courantes et solutions
@@ -102,7 +97,7 @@ $resultat = codeProblematiqueQuiNeDoitPasEtreModifie();
 ### Générer un nouveau baseline
 Si de nombreuses erreurs existantes doivent être ignorées :
 ```bash
-php phpstan.phar analyse --configuration phpstan.neon --generate-baseline
+vendor/bin/phpstan analyse --configuration phpstan.neon --generate-baseline
 ```
 
 ## Intégration continue
