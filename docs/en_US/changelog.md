@@ -2,6 +2,7 @@
 
 # 4.5
 
+- [Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`
 - Ability to make table columns resizable (only the list of variables for the moment, this will be extended to other tables if necessary)) [LINK](https://github.com/jeedom/core/issues/2499)
 - Added an alert if jeedom disk space is too low (the check is done once a day) [LINK](https://github.com/jeedom/core/issues/2438)
 - Added a button to the order configuration window at the value calculation field to fetch an order [LINK](https://github.com/jeedom/core/issues/2776)
@@ -69,6 +70,7 @@
 - Removed vendor folder (using composer normally), reduces core size [LINK](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Widget specific settings can now be translated [LINK](https://github.com/jeedom/core/pull/2862)
 - Fixed a bug on mac on designs when right clicking [LINK](https://github.com/jeedom/core/issues/2863)
+- Added badge widget for text type commands [LINK](https://github.com/jeedom/core/issues/2864)
 - Improved the system for launching programmed scenarios [LINK](https://github.com/jeedom/core/issues/2875)
 - Improved exception error messages if log level is debug [LINK](https://github.com/jeedom/core/issues/2886)
 - On the replacement page, it is possible to request the deactivation of the equipment [LINK](https://github.com/jeedom/core/issues/2893)
@@ -84,6 +86,8 @@
 - Added an update button on the "core" line in addition to the one on the top right [LINK](https://github.com/jeedom/core/pull/2974)
 - Fixed "package" screen at python2 packages level [LINK](https://github.com/jeedom/core/pull/2973)
 - Fixed a bug when updating equipment on the battery page [LINK](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
+- Fixed the queue system on the DB part [LINK](https://github.com/jeedom/core/pull/3051).
 
 >**IMPORTANT**
 >

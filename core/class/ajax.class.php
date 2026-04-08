@@ -20,37 +20,14 @@
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
 /**
- * Gère les réponses AJAX de Jeedom
+ * Handles AJAX responses in Jeedom
  *
- * @note Évolutions possibles et compatibles
- *   Cette classe pourrait être enrichie progressivement avec :
- *   - Une interface ResponseFormatterInterface pour supporter différents formats (json, xml...)
- *   - Un système de middleware pour la validation des entrées
- *   - Des codes d'erreur HTTP standards via une énumération
- *   Ces changements peuvent être implémentés graduellement sans casser l'existant
+ * @example
+ * ajax::init(['getInfos']); // returns void
+ * ajax::success(['result' => 'ok']); // sends JSON response
  *
- * @example Utilisation actuelle
- * ```php
- * ajax::init(['getInfos']);
- * ajax::success($data);
- * ```
- *
- * @example Utilisation future possible
- * ```php
- * // Même API, plus de fonctionnalités
- * ajax::init(['getInfos'])
- *    ->withValidator(new InputValidator())
- *    ->withFormat(new JsonFormatter());
- * ajax::success($data);
- * ```
- *
- * @see config::class Pour la gestion des configurations
- * @see log::class Pour la gestion des logs
- *
- * @todo Version 4.6 ou 5.0
- *   - [OPTIONNEL] Ajouter un système de middleware pour valider les entrées
- *   - [OPTIONNEL] Support de différents formats via interfaces
- *   - [COMPATIBLE] Utiliser des codes HTTP standards
+ * @see config::class For configuration management
+ * @see log::class For logging management
  */
 class ajax {
 	/*     * *************************Attributs****************************** */
@@ -58,21 +35,11 @@ class ajax {
 	/*     * *********************Methode static ************************* */
 
     /**
-     * Initialise la réponse AJAX
-     * Configure les en-têtes HTTP et vérifie les actions autorisées en GET
+     * Initializes AJAX response with HTTP headers and GET action validation
      *
-     * @param array $_allowGetAction Liste des actions autorisées en GET
+     * @param string[] $_allowGetAction List of allowed GET actions
      * @return void
-     * @throws \Exception Si l'action demandée en GET n'est pas autorisée
-     *
-     * @note Évolution possible
-     * Cette méthode pourrait retourner $this pour permettre le chaînage :
-     * ```php
-     * ajax::init(['action'])
-     *     ->withValidator()
-     *     ->withFormat();
-     * ```
-     * Ce changement serait rétrocompatible
+     * @throws \Exception When requested GET action is not allowed
      */
 	public static function init($_allowGetAction = array()) {
 		if (!headers_sent()) {
@@ -84,27 +51,20 @@ class ajax {
 	}
 
     /**
-     * Retourne un token (méthode non utilisée ?)
+     * Returns authentication token
      *
-     * @return string Token vide
+     * @deprecated Since version 4.4, authentication is handled differently
+     * @return string Empty token
      */
 	public static function getToken(){
 		return '';
 	}
 
     /**
-     * Envoie une réponse de succès et termine l'exécution
+     * Sends a success response and ends execution
      *
-     * @param mixed $_data Données à renvoyer dans la réponse
+     * @param mixed $_data Data to send in response
      * @return never
-     *
-     * @note Compatibilité et évolution
-     * Pour maintenir la compatibilité tout en permettant l'évolution :
-     * - Garder le comportement actuel par défaut
-     * - Permettre l'injection d'un formatter optionnel
-     * ```php
-     * ajax::success($data, new JsonFormatter()); // Optionnel
-     * ```
      */
 	public static function success($_data = '') {
 		echo self::getResponse($_data);
@@ -112,10 +72,10 @@ class ajax {
 	}
 
     /**
-     * Envoie une réponse d'erreur et termine l'exécution
+     * Sends an error response and ends execution
      *
-     * @param mixed $_data Message d'erreur ou données à renvoyer
-     * @param int $_errorCode Code d'erreur
+     * @param mixed $_data Error message or data to send
+     * @param int $_errorCode Custom error code for client-side handling (default: 0)
      * @return never
      */
 	public static function error($_data = '', $_errorCode = 0) {
@@ -124,19 +84,11 @@ class ajax {
 	}
 
     /**
-     * Génère la réponse JSON formatée
+     * Generates formatted JSON response
      *
-     * @param mixed $_data Données à inclure dans la réponse
-     * @param ?int $_errorCode Code d'erreur (null pour une réponse de succès)
-     * @return string Réponse JSON encodée
-     *
-     * @note Architecture future
-     * Cette méthode pourrait déléguer le formatage à des classes dédiées :
-     * - JsonFormatter (comportement actuel)
-     * - XmlFormatter
-     * - CsvFormatter
-     * etc.
-     * La transition peut se faire graduellement en gardant le comportement par défaut
+     * @param mixed $_data Data to include in response
+     * @param ?int $_errorCode Error code (null for success response)
+     * @return string|false Encoded JSON response
      */
 	public static function getResponse($_data = '', $_errorCode = null) {
 		$isError = !(null === $_errorCode);

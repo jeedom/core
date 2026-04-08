@@ -325,8 +325,10 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Plugin(s)}} <?php echo $key; ?></label>
                 <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
                   <?php
-                  foreach ($values as $value) {
-                    echo '<span class="btn btn-xs btn-info">' . $value->getName() . '</span><br/>';
+                  if (is_iterable($values)) {
+                    foreach ($values as $value) {
+                      echo '<span class="btn btn-xs btn-info">' . $value->getName() . '</span><br/>';
+                    }
                   }
                   ?>
                 </div>
@@ -363,7 +365,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
                   </label>
                   <div class="col-sm-6">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" />
+                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" type="number" min="0" max="9" step="1" maxlength="1" oninput="this.value = this.value.slice(0, 1)"/>
                   </div>
                 </div>
               <?php }

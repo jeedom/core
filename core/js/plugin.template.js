@@ -132,17 +132,17 @@ if (!jeeFrontEnd.pluginTemplate) {
           }
           document.querySelectorAll('.cmdTableState').forEach(_cmdState => {
             jeedom.cmd.addUpdateFunction(_cmdState.getAttribute('data-cmd_id'), function(_options) {
-              _options.display_value = String(_options.display_value).replace(/<[^>]*>?/gm, '')
+              _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
               let cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
               if (cmd === null) {
                 return
               }
               let title = '{{Date de collecte}} : ' + _options.collectDate + '<br/>{{Date de valeur}} ' + _options.valueDate
-              if (_options.display_value.length > 50) {
-                title += ' - ' + _options.display_value
+              if (_options.value.length > 50) {
+                title += ' - ' + _options.value
               }
               cmd.setAttribute('title', title)
-              cmd.empty().innerHTML = _options.display_value.substring(0, 50) + ' ' + _options.unit
+              cmd.empty().innerHTML = _options.value.substring(0, 50) + ' ' + _options.unit
               cmd.style.color = 'var(--logo-primary-color)'
               setTimeout(function() {
                 cmd.style.color = null
@@ -411,7 +411,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           success: function(data) {
             var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + textEqtype + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
             if (Object.keys(data).length > 0) {
-              text += ' </br> {{Il est utilisé par ou utilise :}}</br>'
+              text += ' </br> {{Il est utilisé par:}}</br>'
               var complement = null
               for (var i in data) {
                 complement = ''

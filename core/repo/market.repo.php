@@ -144,7 +144,7 @@ class repo_market {
 				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
 				$update->setConfiguration('version', $plugin['version']);
-				$update->setConfiguration('user',null);
+				$update->setConfiguration('user', null);
 				$update->save();
 				$update->doUpdate();
 				$nbInstall++;
@@ -231,30 +231,32 @@ class repo_market {
 	/*     * ***********************BACKUP*************************** */
 
 	public static function backup_createFolderIsNotExist() {
-		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')), config::byKey('market::username'), config::byKey('market::password'));
 		$request_http->setCURLOPT(array(
-				CURLOPT_CUSTOMREQUEST => "PROPFIND"
+			CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
+		$found = false;
 		foreach ($child->response as $file) {
-			if($file->propstat->prop->getcontenttype){
+			if ($file->propstat->prop->getcontenttype) {
 				continue;
 			}
-			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/'.config::byKey('market::username'),'',$file->href),'/'));
-			if($folder == ''){
+			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/' . urlencode(config::byKey('market::username')), '', $file->href), '/'));
+			$folder = trim(trim(str_replace('http://backup.jeedom.com/webdav/' . config::byKey('market::username'), '', $folder), '/'));
+			if ($folder == '') {
 				continue;
 			}
-			if($folder == config::byKey('market::cloud::backup::name')){
+			if ($folder == config::byKey('market::cloud::backup::name')) {
 				$found = true;
 				break;
 			}
 		}
 		if (!$found) {
-			$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username').'/'.rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
+			$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')), config::byKey('market::username'), config::byKey('market::password'));
 			$request_http->setCURLOPT(array(
-					CURLOPT_CUSTOMREQUEST => "MKCOL"
+				CURLOPT_CUSTOMREQUEST => "MKCOL"
 			));
 			$request_http->exec();
 		}
@@ -270,7 +272,7 @@ class repo_market {
 		if (config::byKey('market::cloud::backup::password') != config::byKey('market::cloud::backup::password_confirmation')) {
 			throw new Exception(__('Le mot de passe du backup cloud n\'est pas identique à la confirmation', __FILE__));
 		}
-		self::backup_clean($_path);
+		//self::backup_clean($_path);
 		self::backup_createFolderIsNotExist();
 		try {
 			if (!file_exists('/tmp/jeedom_gnupg')) {
@@ -279,8 +281,13 @@ class repo_market {
 			com_shell::execute('sudo chmod 777 -R /tmp/jeedom_gnupg');
 			$cmd = 'echo "' . config::byKey('market::cloud::backup::password') . '" | gpg --homedir /tmp/jeedom_gnupg --batch --yes --passphrase-fd 0 -c ' . $_path;
 			com_shell::execute($cmd);
-            $cmd = "curl --user '".config::byKey('market::username').":".config::byKey('market::password')."' -T '".$_path . '.gpg'."' '".config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name'))."/'";
-            com_shell::execute($cmd);
+			$cmd = "curl --retry 5 --retry-delay 3 --retry-max-time 60 --retry-connrefused --keepalive-time 30 --user '" . config::byKey('market::username') . ":" . config::byKey('market::password') . "' -T '" . $_path . '.gpg' . "' '" . config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')) . "/'";
+			try {
+				com_shell::execute($cmd);
+			} catch (\Exception $e) {
+				$cmd = "curl --http1.1 --retry 5 --retry-delay 3 --retry-max-time 60 --retry-connrefused --keepalive-time 30 --user '" . config::byKey('market::username') . ":" . config::byKey('market::password') . "' -T '" . $_path . '.gpg' . "' '" . config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')) . "/'";
+				com_shell::execute($cmd);
+			}
 			unlink($_path . '.gpg');
 			rrmdir('/tmp/jeedom_gnupg');
 		} catch (\Exception $e) {
@@ -297,16 +304,17 @@ class repo_market {
 		$limit = 3700;
 		self::backup_createFolderIsNotExist();
 
-		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')), config::byKey('market::username'), config::byKey('market::password'));
 		$request_http->setCURLOPT(array(
-				CURLOPT_CUSTOMREQUEST => "PROPFIND"
+			CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$total_size = 0;
+		$files = [];
 		foreach ($child->response as $file) {
-			if(!$file->propstat->prop->getcontenttype){
+			if (!$file->propstat->prop->getcontenttype) {
 				continue;
 			}
 			$files[] = array(
@@ -321,9 +329,11 @@ class repo_market {
 			return;
 		}
 		echo __('Besoin de faire de la place sur le stockage distant', __FILE__) . "\n";
-		usort($files, function ($a, $b) {
-			return $a["timestamp"] - $b["timestamp"];
-		});
+		if (!empty($files)) {
+			usort($files, function ($a, $b) {
+				return $a["timestamp"] - $b["timestamp"];
+			});
+		}
 		$nb = 0;
 		while (($total_size / 1024 / 1024) > $limit - (filesize($_path) / 1024 / 1024)) {
 			if (count($files) == 0) {
@@ -331,9 +341,9 @@ class repo_market {
 			}
 			$file = array_shift($files);
 			echo __('Supression du backup cloud :', __FILE__) . ' ' . $file['name'] . "\n";
-			$request_http = new com_http($file['href'],config::byKey('market::username'),config::byKey('market::password'));
+			$request_http = new com_http($file['href'], config::byKey('market::username'), config::byKey('market::password'));
 			$request_http->setCURLOPT(array(
-					CURLOPT_CUSTOMREQUEST => "DELETE"
+				CURLOPT_CUSTOMREQUEST => "DELETE"
 			));
 			$request_http->exec();
 			$total_size -= $file['size'];
@@ -349,24 +359,24 @@ class repo_market {
 			return array();
 		}
 		self::backup_createFolderIsNotExist();
-		$request_http = new com_http(config::byKey('service::backup::url').'/webdav/'.config::byKey('market::username'). '/' . rawurldecode(config::byKey('market::cloud::backup::name')),config::byKey('market::username'),config::byKey('market::password'));
+		$request_http = new com_http(config::byKey('service::backup::url') . '/webdav/' . urlencode(config::byKey('market::username')) . '/' . rawurldecode(config::byKey('market::cloud::backup::name')), config::byKey('market::username'), config::byKey('market::password'));
 		$request_http->setCURLOPT(array(
-				CURLOPT_CUSTOMREQUEST => "PROPFIND"
+			CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
 		$xml = simplexml_load_string($request_http->exec());
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$files = array();
 		foreach ($child->response as $file) {
-			if(!$file->propstat->prop->getcontenttype){
+			if (!$file->propstat->prop->getcontenttype) {
 				continue;
 			}
 			$files[] = array(
-            	'name' => (string) $file->propstat->prop->displayname,
-                'timestamp' => strtotime($file->propstat->prop->getlastmodified)
-            );
+				'name' => (string) $file->propstat->prop->displayname,
+				'timestamp' => strtotime($file->propstat->prop->getlastmodified)
+			);
 		}
-		function cmp($a,$b){ // $a,$b are reference to first index of array
+		function cmp($a, $b) { // $a,$b are reference to first index of array
 			return strcmp($a["timestamp"], $b["timestamp"]);
 		}
 		usort($files, "cmp");
@@ -407,6 +417,9 @@ class repo_market {
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
+		if (empty(config::byKey('market::username')) || empty(config::byKey('market::password'))) {
+			return;
+		}
 		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - (24 * 3600))) {
 			return;
 		}
@@ -437,7 +450,7 @@ class repo_market {
 				try {
 					$result = json_decode($request_http->exec(60, 1), true);
 					if ($result == null || $result['state'] != 'ok') {
-						sleep(rand(5,45));
+						sleep(rand(5, 45));
 						$result = json_decode($request_http->exec(60, 1), true);
 					}
 					if ($result == null || $result['state'] != 'ok') {
@@ -736,7 +749,7 @@ class repo_market {
 	/**
 	 *
 	 * @param array $_arrayMarket
-	 * @return \self
+	 * @return self|null
 	 */
 	public static function construct(array $_arrayMarket) {
 		$market = new self();
@@ -953,13 +966,13 @@ class repo_market {
 		}
 
 		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId();
-		$url .='&version=' . $_version ;
-		$url .='&jeedomversion=' . jeedom::version();
-		$url .='&osversion=' . system::getOsVersion();
-		$url .='&hwkey=' . jeedom::getHardwareKey();
-		$url .='&username=' . urlencode(config::byKey('market::username'));
-		$url .='&password=' . self::getPassword();
-		$url .='&password_type=sha1';
+		$url .= '&version=' . $_version;
+		$url .= '&jeedomversion=' . jeedom::version();
+		$url .= '&osversion=' . system::getOsVersion();
+		$url .= '&hwkey=' . jeedom::getHardwareKey();
+		$url .= '&username=' . urlencode(config::byKey('market::username'));
+		$url .= '&password=' . self::getPassword();
+		$url .= '&password_type=sha1';
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
 		log::add('update', 'alert', __('URL', __FILE__) . ' ' . $url);
 		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update') . ' 2>&1');
@@ -1061,7 +1074,7 @@ class repo_market {
 		}
 		if ($update->getSource() == 'market') {
 			$update->setConfiguration('version', 'beta');
-			$update->setLocalVersion(date('Y-m-d H:i:s',(int) strtotime('+10 minute' . date('Y-m-d H:i:s'))));
+			$update->setLocalVersion(date('Y-m-d H:i:s', (int) strtotime('+10 minute' . date('Y-m-d H:i:s'))));
 			$update->save();
 		}
 		$update->checkUpdate();

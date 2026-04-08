@@ -328,8 +328,6 @@ step_10_jeedom_installation() {
   echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
   chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
   ${WEBSERVER_HOME}/resources/install_composer.sh
-  rm -rf ${WEBSERVER_HOME}/vendor
-  rm -rf ${WEBSERVER_HOME}/composer.lock
   export COMPOSER_ALLOW_SUPERUSER=1
   cd ${WEBSERVER_HOME}
   composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader

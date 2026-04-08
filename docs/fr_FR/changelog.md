@@ -1,7 +1,29 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3
+
+- Diverses corrections de bugs et optimisations
+- Mise à jour dans les contrôles de version
+- Mise à jour du nommage des ports de communication ([Détails](https://github.com/jeedom/core/issues/3210))
+- Limitation de la taille maximale des fichiers de logs ([Détails](https://github.com/jeedom/core/pull/3045))
+- Ajout du contenu de la page "Santé" aux demandes d'assistance communautaire ([Détails](https://github.com/jeedom/core/pull/3224))
+- [Développeurs] Ajout de la prise en charge de configurations spécifiques au matériel via un fichier `core/config/specific.config.ini` dans le dossier du plugin ([Détails](https://github.com/jeedom/core/issues/3218))
+- [Développeurs] Ajout de la méthode `config::byValue($_value, string $_key = null)`([Détails](https://github.com/jeedom/core/pull/3212/changes/559a010))
+
+# 4.5.2
+
+- Mise à jour indispensable qui corrige un bug sur la vérification de la date empêchant tout lancement de scénario ou de tâche planifiée.
+
+# 4.5.1
+
+- Le déclencheur de scénarios `#user_connect#` inclut dorénavant le tag `#trigger_value#` qui renseigne le nom de l'utilisateur venant de se connecter ([Détails](https://github.com/jeedom/core/pull/3109))
+- Montée de version de nodejs 20 vers 22 ([Détails](https://github.com/jeedom/core/issues/3147))
+- La sauvegarde se fera maintenant a une heure aléatoire entre 00:10 et 9:59
+- Correction d'un warning sur les valeurs de tags null
+
 # 4.5
 
+- [Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`
 - Possibilité de rendre les colonnes des tableaux redimensionnables (seulement la liste des variables pour le moment ça sera étendu à d'autres tables si besoin) [LIEN](https://github.com/jeedom/core/issues/2499)
 - Ajout d'une alerte si l'espace disque de jeedom est trop faible (la vérification se fait une fois par jour) [LIEN](https://github.com/jeedom/core/issues/2438)
 - Ajout d'un bouton sur la fenêtre de configuration d'une commande au niveau du champ de calcul de valeur pour aller chercher une commande [LIEN](https://github.com/jeedom/core/issues/2776)
@@ -9,11 +31,12 @@
 - Les graphiques se mettent à jour automatiquement lors de l'arrivée de nouvelles valeurs [LIEN](https://github.com/jeedom/core/issues/2749)
 - Jeedom ajoute automatiquement la hauteur de l'image lors de la création des widgets pour éviter les soucis de chevauchement en mobile [LIEN](https://github.com/jeedom/core/issues/2539)
 - Refonte de la partie backup cloud [LIEN](https://github.com/jeedom/core/issues/2765)
-- **DEV** Mise en place d'un système de queue pour l'exécution d'actions [LIEN](https://github.com/jeedom/core/issues/2489)
+- [Développeurs] Mise en place d'un système de queue pour l'exécution d'actions [LIEN](https://github.com/jeedom/core/issues/2489)
 - Les tags des scénarios sont maintenant propres à l'instance du scénario (si vous avez deux lancements de scénarios très proches, les tags du dernier n'écrasent plus le premier) [LIEN](https://github.com/jeedom/core/issues/2763)
 - Changement sur la partie trigger des scénarios : [LIEN](https://github.com/jeedom/core/issues/2414)
   - ``triggerId()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``triggerId() == 587`` il faut le remplacer par ``#trigger_id# == 587``
   - ``triggerValue()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``triggerValue() == 10`` il faut le remplacer par ``#trigger_value# == 10``
+  -  ``trigger()`` est maintenant deprecated et sera retiré dans les futures mises à jour du core. Si vous avez ``trigger(#[objet][equipement][commande]#)`` il faut le remplacer par ``#trigger_name# == '[objet][equipement][commande]'``
   - ``#trigger#`` : Peut être :
     - ``api`` si le lancement a été déclenché par l'API,
     - ``TYPEcmd`` si le lancement a été déclenché par une commande, avec TYPE remplacé par l'id du plugin (ex virtualCmd),
@@ -21,7 +44,7 @@
     - ``user`` s'il a été lancé manuellement,
     - ``start`` pour un lancement au démarrage de Jeedom.
   - ``#trigger_id#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur de l'id de la commande qui l'a déclenché
-  - ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur du nom de la commande (sous forme [objet][équipement][commande])
+  - ``#trigger_name#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur du nom de la commande (sous forme '[objet][équipement][commande]'). Notez qu'en utilisant la syntaxe : ``#trigger_name# == '[objet][equipement][commande]'``, en cas de modification de nom de votre objet ou équipement ou commande, ce ne sera pas mis à jour automatiquement dans votre code.
   - ``#trigger_value#`` : Si c'est une commande qui a déclenché le scénario alors ce tag prend la valeur de la commande ayant déclenché le scénario
   - ``#trigger_message#`` : Message indiquant l'origine du lancement du scénario
 - Amélioration de la gestion des plugins sur github (plus de dépendances à une librairie tierce) [LIEN](https://github.com/jeedom/core/issues/2567)
@@ -69,6 +92,7 @@
 - Suppression du dossier vendor (utilisation de composer de manière normale), permet de réduire la taille du core [LIEN](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - Les paramètres spécifiques des widgets peuvent maintent être traduits [LIEN](https://github.com/jeedom/core/pull/2862)
 - Correction d'un bug sous mac sur les designs lors d'un clic droit [LIEN](https://github.com/jeedom/core/issues/2863)
+- Ajout de widget badge pour les commandes de type texte [LIEN](https://github.com/jeedom/core/issues/2864)
 - Amélioration du systeme de lancement des scénarios programmés [LIEN](https://github.com/jeedom/core/issues/2875)
 - Amélioration des messages d'erreur d'exception si le niveau de log est debug [LIEN](https://github.com/jeedom/core/issues/2886)
 - Sur la page de remplacement possibilité de demander la désactivation de l'équipement [LIEN](https://github.com/jeedom/core/issues/2893)
@@ -84,6 +108,8 @@
 - Ajout d'un bouton de mise à jour sur la ligne "core" en plus de celui en haut à droite [LIEN](https://github.com/jeedom/core/pull/2974)
 - Correction de l'écran "package" au niveau des packages python2 [LIEN](https://github.com/jeedom/core/pull/2973)
 - Correction d'un bug lors de la mise à jour des équipements sur la page de batterie [LIEN](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
+- Correction du système de file d'attente sur la partie DB [LIEN](https://github.com/jeedom/core/pull/3051).
 
 >**IMPORTANT**
 >
@@ -91,4 +117,4 @@
 
 >**IMPORTANT**
 >
-> La restauration d'un backup 4.4 peut dans certains cas finir par des erreurs dans l'interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.19.zip;unzip 4.4.19.zip;cd core-4.4.19;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.19;`. Vous pouvez lancer cette commande depuis l'interface rescue de jeedom (ajouter `&rescue=1` dans l'url), ou directement en ssh.
+> La restauration d'un backup 4.4 peut dans certains cas finir par des erreurs dans l'interface web. Rien de grave cela peut facilement se corriger il suffit de faire : `cd /tmp;wget https://github.com/jeedom/core/archive/refs/tags/4.4.20.zip;unzip 4.4.20.zip;cd core-4.4.20;cp -rf * /var/www/html/;rm -rf /tmp/master.zip;rm -rf /tmp/core-4.4.20;`. Vous pouvez lancer cette commande depuis l'interface rescue de jeedom (ajouter `&rescue=1` dans l'url), ou directement en ssh.

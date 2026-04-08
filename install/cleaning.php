@@ -46,7 +46,7 @@ try {
   foreach (cmd::all() as $cmd) {
     if (!is_object($cmd->getEqLogic())) {
       echo 'Remove cmd (no corresponding eqLogic found) : '.$cmd->getHumanName()."\n";
-      $cmd->remove(true);
+      $cmd->remove();
       continue;
     }
     echo 'Cleaning cmd : '.$cmd->getHumanName()."\n";
