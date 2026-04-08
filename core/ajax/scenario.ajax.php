@@ -161,7 +161,7 @@ try {
 						$return[$match[0]] = '';
 						try {
 							$eqLogic = eqLogic::byString($match[0]);
-							if (is_object($cmd)) {
+							if (is_object($eqLogic)) {
 								$return[$match[0]] = '#' . $eqLogic->getHumanName() . '#';
 							}
 						} catch (Exception $e) {

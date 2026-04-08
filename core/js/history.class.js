@@ -160,7 +160,7 @@ jeedom.history.graphUpdate = function(_params) {
       continue;
     }
     for(var chart in jeedom.history.chart){
-      for(var serie in jeedom.history.chart[chart]){
+      for(var serie in jeedom.history.chart[chart].chart.series){
         if(jeedom.history.chart[chart].chart.series[serie] && jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
           jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now()+(-1*(new Date()).getTimezoneOffset()*60*1000),_params[i].value])
         }

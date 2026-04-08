@@ -76,7 +76,7 @@ class scenario {
 
 	/**
 	 * Renvoie tous les objets scenario
-	 * @return [] scenario object scenario
+	 * @return scenario[]
 	 */
 	public static function all($_group = '') {
 		$values = array();
@@ -174,7 +174,7 @@ class scenario {
 	}
 	/**
 	 * return all scenarios ordered by [group][objectName][scenarioName]
-	 * @return [] array of scenario object
+	 * @return scenario[]
 	 */
 	public static function allOrderedByGroupObjectName($_asGroup = false) {
 		$scenarioList = array();
@@ -830,8 +830,6 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $_trigger
-	 * @param string $_message
 	 * @param boolean $_forceSyncMode
 	 * @return boolean
 	 */
@@ -888,8 +886,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $_trigger
-	 * @param string $_message
+	 * @param string $instance_id
 	 */
 	public function execute($instance_id = '') {
 		if (config::byKey('enableScenario') != 1) {
@@ -915,16 +912,20 @@ class scenario {
 				return;
 			}
 		}
-		$cmd = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
-		if (is_object($cmd)) {
-			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $cmd->getHumanName());
+		if($this->getTag('trigger') == 'scenario'){
+			$obj_trigger = scenario::byId(str_replace('#', '', $this->getTag('trigger_id')));
+		}else{
+			$obj_trigger = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
+		}
+		if (is_object($obj_trigger)) {
+			log::add('event', 'info', __('Exécution du scénario', __FILE__) . ' ' . $this->getHumanName() . ' ' . __('déclenché par :', __FILE__) . ' ' . $obj_trigger->getHumanName());
 			if ($this->getConfiguration('timeline::enable')) {
 				$timeline = new timeline();
 				$timeline->setType('scenario');
 				$timeline->setFolder($this->getConfiguration('timeline::folder'));
 				$timeline->setLink_id($this->getId());
 				$timeline->setName($this->getHumanName(true, true, true, true));
-				$timeline->setOptions(array('trigger' => $cmd->getHumanName(true)));
+				$timeline->setOptions(array('trigger' => $obj_trigger->getHumanName(true)));
 				$timeline->save();
 			}
 		} else {
@@ -965,7 +966,7 @@ class scenario {
 	/**
 	 *
 	 * @param string $_name
-	 * @return \scenario
+	 * @return scenario
 	 */
 	public function copy($_name) {
 		$scenarioCopy = clone $this;
@@ -1796,7 +1797,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @return string/object
+	 * @return string|object
 	 */
 	public function getSchedule() {
 		return is_json($this->schedule, $this->schedule);
@@ -1878,7 +1879,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string|int $timeout
+	 * @param string|int $_timeout
 	 * @return $this
 	 */
 	public function setTimeout($_timeout) {
@@ -1960,7 +1961,7 @@ class scenario {
 	}
 	/**
 	 *
-	 * @param string $description
+	 * @param string $_description
 	 * @return $this
 	 */
 	public function setDescription($_description) {
@@ -2027,7 +2028,7 @@ class scenario {
 	 * @return $this
 	 */
 	public function setTags($_tags) {
-		$this->_tags = $_tags;
+		$this->_tags = array_merge($this->_tags, $_tags);
 		return $this;
 	}
 

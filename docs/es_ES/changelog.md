@@ -2,6 +2,7 @@
 
 # 4.5
 
+- [Développeurs] Ajout de la fonction `$listener->removeEvent($_id)`
 - Posibilidad de cambiar el tamaño de las columnas de la tabla (solo la lista de variables por el momento, esto se extenderá a otras tablas si es necesario)) [ENLACE](https://github.com/jeedom/core/issues/2499)
 - Se agregó una alerta si el espacio en disco es demasiado bajo (la verificación se realiza una vez al día)) [ENLACE](https://github.com/jeedom/core/issues/2438)
 - Se agregó un botón a la ventana de configuración del pedido en el campo de cálculo del valor para recuperar un pedido [ENLACE](https://github.com/jeedom/core/issues/2776)
@@ -69,6 +70,7 @@
 - Eliminar la carpeta del proveedor (usando Composer de la manera normal) le permite reducir el tamaño del núcleo [ENLACE](https://github.com/jeedom/core/commit/3aa99c503b6b1903e6a07b346ceb4d03ca3c0c42)
 - La configuración específica del widget ahora se puede traducir [ENLACE](https://github.com/jeedom/core/pull/2862)
 - Se corrigió un error en Mac en los diseños al hacer clic derecho [ENLACE](https://github.com/jeedom/core/issues/2863)
+- Ajout de widget badge pour les commandes de type texte [ENLACE](https://github.com/jeedom/core/issues/2864)
 - Mejora del sistema de lanzamiento de escenarios programados [ENLACE](https://github.com/jeedom/core/issues/2875)
 - Mensajes de error de excepción mejorados si el nivel de registro es depuración [ENLACE](https://github.com/jeedom/core/issues/2886)
 - En la página de reposición posibilidad de solicitar la desactivación del equipo [ENLACE](https://github.com/jeedom/core/issues/2893)
@@ -84,6 +86,8 @@
 - Se agregó un botón de actualización a la línea "principal" además del que está en la parte superior derecha [ENLACE](https://github.com/jeedom/core/pull/2974)
 - Reparar la pantalla "paquete" en el nivel del paquete python2 [ENLACE](https://github.com/jeedom/core/pull/2973)
 - Se corrigió un error al actualizar el equipo en la página de la batería [ENLACE](https://github.com/jeedom/core/pull/3008)
+- La vérification de la connexion réseau est désormais effectuée de manière aléatoire toutes les 10 minutes afin d'éviter que toutes les box Jeedom ne tentent de se reconnecter simultanément en cas de microcoupure.
+- Correction du système de file d'attente sur la partie DB [ENLACE](https://github.com/jeedom/core/pull/3051).
 
 >**IMPORTANTE**
 >

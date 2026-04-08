@@ -19,7 +19,13 @@
         if ('#time#' == 'duration' || '#time#' == 'date') {
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
-        cmd.querySelector('.action_colorpicker_change').value = (_options.display_value != '') ? _options.display_value.substr(0, 7) : '#000000'
+        if (_options.display_value.length == 0) {
+          cmd.querySelector('.action_colorpicker_change').value = '#000000'
+        } else if (_options.display_value.startsWith('#')) {
+          cmd.querySelector('.action_colorpicker_change').value = _options.display_value.substr(0, 7)
+        } else {
+          cmd.querySelector('.action_colorpicker_change').value = '#' + _options.display_value.substr(0, 6)
+        }
       }
     })
 

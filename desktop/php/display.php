@@ -31,7 +31,7 @@ $plugin_enable = config::getPluginEnable();
 
 function jeedom_displayObjectGroup($object = -1) {
 	global $JEEDOM_INTERNAL_CONFIG;
-	global $display_objects, $display_eqlogics, $display_cmds;
+	global $display_objects, $display_eqlogics, $display_cmds, $plugin_enable;
 
 	if (!is_object($object) && $object == -1) {
 		$_index = 'none';

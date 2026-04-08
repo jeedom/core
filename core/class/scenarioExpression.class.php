@@ -194,17 +194,17 @@ class scenarioExpression {
 		if ($_period == 'day') $_period = '1 day';
 
 		if (ctype_digit($_period[0]) && !stristr($_period, "ago")) {
-			$_startTime = date('Y-m-d H:i:s',(int) strtotime('-' . $_period));
+			$_startTime = date('Y-m-d H:i:s', (int) strtotime('-' . $_period));
 		} else {
-			$_startTime = date('Y-m-d H:i:s',(int) strtotime($_period));
+			$_startTime = date('Y-m-d H:i:s', (int) strtotime($_period));
 		}
 		$_endTime = date('Y-m-d H:i:s');
 
 		if ($_period == 'today') {
 			$_startTime = date('Y-m-d') . ' 00:00:00';
 		} elseif ($_period == 'yesterday') {
-			$_startTime = date('Y-m-d',(int) strtotime('-1 day')) . ' 00:00:00';
-			$_endTime = date('Y-m-d',(int) strtotime('-1 day')) . ' 23:59:59';
+			$_startTime = date('Y-m-d', (int) strtotime('-1 day')) . ' 00:00:00';
+			$_endTime = date('Y-m-d', (int) strtotime('-1 day')) . ' 23:59:59';
 		}
 		return array($_startTime, $_endTime);
 	}
@@ -213,19 +213,20 @@ class scenarioExpression {
 		$_sValue = self::setTags($_sValue);
 		$_aValue = explode(";", $_sValue);
 		try {
-			$result = evaluate($_aValue);
+			$result = evaluate($_sValue);
 			if (is_string($result)) {
 				$result = $_aValue;
 			}
 		} catch (Exception $e) {
 			$result = $_aValue;
 		}
-		if (is_array($_aValue)) {
-			$nbr = mt_rand(0, count($_aValue) - 1);
-			return $_aValue[$nbr];
-		} else {
-			return $_aValue;
+		if (is_array($result)) {
+			if (count($result) === 0) {
+				return '';
+			}
+			return $result[array_rand($result)];
 		}
+		return $result;
 	}
 
 	public static function scenario($_scenario) {
@@ -261,7 +262,7 @@ class scenarioExpression {
 		$_period = trim(strtolower($_period));
 		if ($_period == 'day') $_period = '1 day';
 
-		if (count($args) > 2 || strpos($_period, '#') !== false || is_numeric($_period)) {
+		if (count($args) > 3 || strpos($_period, '#') !== false || is_numeric($_period)) {
 			$values = array();
 			foreach ($args as $arg) {
 				if (is_numeric($arg)) {
@@ -303,8 +304,8 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['avg'])) {
 			return '';
@@ -328,8 +329,8 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		return round($cmd->getTemporalAvg($_startTime, $_endTime), $_round);
 	}
 
@@ -458,8 +459,8 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['max'])) {
 			return '';
@@ -489,8 +490,8 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['min'])) {
 			return '';
@@ -642,8 +643,8 @@ class scenarioExpression {
 			$_endDate = func_get_arg(2);
 			$_value = null;
 		}
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 
 		return history::stateChanges($cmd_id, $_value, $_startTime, $_endTime);
 	}
@@ -724,8 +725,8 @@ class scenarioExpression {
 			$_endDate = date('Y-m-d H:i:s');
 		}
 
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		$_value = str_replace(',', '.', $_value);
 		$_decimal = strlen(substr(strrchr($_value, "."), 1));
 
@@ -769,8 +770,8 @@ class scenarioExpression {
 		if (!is_object($cmd) || $cmd->getIsHistorized() == 0) {
 			return '';
 		}
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique($_startTime, $_endTime);
 		if (!isset($historyStatistique['last']) || $historyStatistique['last'] === '') {
 			return '';
@@ -802,8 +803,8 @@ class scenarioExpression {
 			return '';
 		}
 		$_calc = str_replace(' ', '', $_calc);
-		$_startTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_startDate)));
-		$_endTime = date('Y-m-d H:i:s',(int) strtotime(self::setTags($_endDate)));
+		$_startTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_startDate)));
+		$_endTime = date('Y-m-d H:i:s', (int) strtotime(self::setTags($_endDate)));
 		$historyStatistique = $cmd->getStatistique(self::setTags($_startTime), self::setTags($_endTime));
 		return $historyStatistique[$_calc];
 	}
@@ -960,7 +961,7 @@ class scenarioExpression {
 			if (trim($_name) == '') {
 				return $_scenario->getTag('trigger_name');
 			}
-			if (trim(jeedom::toHumanReadable($_name),'#') == $_scenario->getTag('trigger_name')) {
+			if (trim(jeedom::toHumanReadable($_name), '#') == $_scenario->getTag('trigger_name')) {
 				return 1;
 			}
 			return 0;
@@ -1038,8 +1039,8 @@ class scenarioExpression {
 			if ($_date2 < 100) $_date2 = '00' . $_date2;
 			if ($_date2 < 1000) $_date2 = '0' . $_date2;
 		}
-		$d1 = str_replace(array('"','\'',"'"), '', self::setTags($_date1));
-		$d2 = str_replace(array('"','\'',"'"), '', self::setTags($_date2));
+		$d1 = str_replace(array('"', '\'', "'"), '', self::setTags($_date1));
+		$d2 = str_replace(array('"', '\'', "'"), '', self::setTags($_date2));
 		$date1 = new DateTime($d1);
 		$date2 = new DateTime($d2);
 		$duree = $date2->getTimestamp() - $date1->getTimestamp();
@@ -1275,6 +1276,9 @@ class scenarioExpression {
 		}
 		if ($_quote) {
 			foreach ($replace1 as &$value) {
+				if ($value === null) {
+					continue;
+				}
 				if (strpos($value, ' ') !== false || preg_match("/[a-zA-Z]/", $value) || $value === '') {
 					$value = '"' . trim($value, '"') . '"';
 				}
@@ -1386,7 +1390,7 @@ class scenarioExpression {
 		}
 		$this->checkBackground();
 		if ($this->getOptions('background', 0) == 1) {
-			$key = 'scenarioElement'.$this->getId().'::' . config::genKey(16).'::'.strtotime('now');
+			$key = 'scenarioElement' . $this->getId() . '::' . config::genKey(16) . '::' . strtotime('now');
 			cache::set($key, array('scenarioExpression' => $this, 'scenario' => $scenario), 60);
 			$cmd = __DIR__ . '/../php/jeeScenarioExpression.php';
 			$cmd .= ' key=' . $key;
@@ -1571,14 +1575,14 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								$actionScenario->addTag('trigger','scenario');
-								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
-								$actionScenario->addTag('trigger_name',trim($scenario->getHumanName(),'#'));
-								$actionScenario->addTag('trigger_id',$scenario->getId());
+								$actionScenario->addTag('trigger', 'scenario');
+								$actionScenario->addTag('trigger_message', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger_name', trim($scenario->getHumanName(), '#'));
+								$actionScenario->addTag('trigger_id', $scenario->getId());
 								return $actionScenario->launch();
 							} else {
-								$actionScenario->addTag('trigger','other');
-								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
+								$actionScenario->addTag('trigger', 'other');
+								$actionScenario->addTag('trigger_message', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
 								return $actionScenario->launch();
 							}
 							break;
@@ -1597,14 +1601,14 @@ class scenarioExpression {
 							}
 							$this->setLog($scenario, $GLOBALS['JEEDOM_SCLOG_TEXT']['launchScenario']['txt'] . $actionScenario->getName() . ' ' . __('options :', __FILE__) . ' ' . json_encode($actionScenario->getTags()));
 							if ($scenario !== null) {
-								$actionScenario->addTag('trigger','scenario');
-								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
-								$actionScenario->addTag('trigger_name',trim($scenario->getHumanName(),'#'));
-								$actionScenario->addTag('trigger_id',$scenario->getId());
+								$actionScenario->addTag('trigger', 'scenario');
+								$actionScenario->addTag('trigger_message', $GLOBALS['JEEDOM_SCLOG_TEXT']['startByScenario']['txt'] . $scenario->getHumanName());
+								$actionScenario->addTag('trigger_name', trim($scenario->getHumanName(), '#'));
+								$actionScenario->addTag('trigger_id', $scenario->getId());
 								return $actionScenario->launch(true);
 							} else {
-								$actionScenario->addTag('trigger','other');
-								$actionScenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
+								$actionScenario->addTag('trigger', 'other');
+								$actionScenario->addTag('trigger_message', $GLOBALS['JEEDOM_SCLOG_TEXT']['startCausedBy']['txt']);
 								return $actionScenario->launch(true);
 							}
 							break;
@@ -1791,8 +1795,8 @@ class scenarioExpression {
 					$tmp_file = jeedom::getTmpFolder('history_export') . '/' . $options['name'] . '.csv';
 					$cmd_parameters = array('files' => [$tmp_file], 'title' => $options['name'], 'message' => $options['name']);
 
-					$start = date('Y-m-d H:i:s',(int) strtotime($options['start']));
-					$end = date('Y-m-d H:i:s',(int) strtotime($options['end']));
+					$start = date('Y-m-d H:i:s', (int) strtotime($options['start']));
+					$end = date('Y-m-d H:i:s', (int) strtotime($options['end']));
 					$this->setLog($scenario, __('Export de l\'historique du', __FILE__) . ' ' . $start . ' ' . __('au', __FILE__) . ' ' . $end);
 
 					$histories = array();
@@ -1855,8 +1859,8 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyse':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'eqAnalyse', $options['export_type'], $options));
@@ -1865,8 +1869,8 @@ class scenarioExpression {
 							break;
 						case 'eqAnalyseAlert':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=eqAnalyse&report=1';
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$options['tab'] = 'alertEqlogic';
@@ -1876,8 +1880,8 @@ class scenarioExpression {
 							break;
 						case 'health':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=health&report=1';
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $url);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'health', $options['export_type'], $options));
@@ -1886,8 +1890,8 @@ class scenarioExpression {
 							break;
 						case 'timeline':
 							$url = network::getNetworkAccess('internal') . '/index.php?v=d&p=timeline&report=1&timeline=' . $options['timeline'];
-							if (isset($_parameters['theme']) && $_parameters['theme'] != '') {
-								$url .= '&theme=' . $_parameters['theme'];
+							if (isset($options['theme']) && $options['theme'] != '') {
+								$url .= '&theme=' . $options['theme'];
 							}
 							$this->setLog($scenario, __('Génération du rapport timeline', __FILE__) . ' ' . $options['timeline']);
 							$cmd_parameters['files'] = array(report::generate($url, 'other', 'timeline', $options['export_type'], $options));

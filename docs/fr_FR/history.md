@@ -93,10 +93,8 @@ Vous avez aussi accès à une gestion de formules de calcul qui vous permet de l
 
 #### Historique de commande
 
-Devant chaque donnée pouvant être affichée, vous retrouvez deux icônes :
-
-- **Poubelle** : Permet de supprimer les données enregistrées ; lors du clic, Jeedom demande s’il faut supprimer les données avant une certaine date ou toutes les données.
-- **Flèche** : Permet d’avoir un export CSV des données historisées.
+- Devant chaque donnée pouvant être affichée, vous retrouvez une icône **Poubelle** qui permet de supprimer les données enregistrées ; lors du clic, Jeedom demande s’il faut supprimer les données avant une certaine date ou toutes les données.
+- Dans **Configuration** vous trouvez à droite de chaque donnée, une icône **Flèche** qui permet d’avoir un export CSV des données historisées.
 
 ### Suppression de valeur incohérente
 

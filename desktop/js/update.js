@@ -640,32 +640,50 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#table_update .update')) {
-    if (_target.hasClass('disabled')) return
-    var id = _target.closest('tr').getAttribute('data-id')
-    var logicalId = _target.closest('tr').getAttribute('data-logicalid')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour :}}' + ' ' + logicalId + ' ?', function(result) {
-      if (result) {
-        jeeP.progress = -1
-        document.getElementById('progressbarContainer').removeClass('hidden')
-        document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled')
-        jeeP.updateProgressBar()
-        jeedomUtils.hideAlert()
-        jeedom.update.do({
-          id: id,
-          error: function(error) {
+    if (_target.hasClass('disabled')) return;
+    var id = _target.closest('tr').getAttribute('data-id');
+    var logicalId = _target.closest('tr').getAttribute('data-logicalid');
+
+    jeedom.plugin.get({
+        id: logicalId,
+        error: function(error) {
             jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function() {
-            jeeP.getJeedomLog(1, 'update')
-          }
-        })
-      }
-    })
-    return
-  }
+                message: error.message,
+                level: 'danger'
+            });
+        },
+        success: function(data) {
+            var isActivated = (data.activate !== undefined && data.activate !== null) ? data.activate : 1;
+            var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin :}} ' + logicalId + ' ?';
+            if (isActivated != 1) {
+                confirmationMessage = '{{Attention : Le plugin ' + logicalId + ' n\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}';
+            }
+
+            jeeDialog.confirm(confirmationMessage, function(result) {
+                if (result) {
+                    jeeP.progress = -1;
+                    document.getElementById('progressbarContainer').removeClass('hidden');
+                    document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled');
+                    jeeP.updateProgressBar();
+                    jeedomUtils.hideAlert();
+                    jeedom.update.do({
+                        id: id,
+                        error: function(error) {
+                            jeedomUtils.showAlert({
+                                message: error.message,
+                                level: 'danger'
+                            });
+                        },
+                        success: function() {
+                            jeeP.getJeedomLog(1, 'update');
+                        }
+                    });
+                }
+            });
+        }
+    });
+    return;
+}
 
   if (_target = event.target.closest('#table_update .remove')) {
     var id = _target.closest('tr').getAttribute('data-id')

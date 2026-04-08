@@ -1,0 +1,14 @@
+parameters:
+  level: 1
+  paths:
+    - core
+    - desktop
+    - install
+    - mobile
+  excludePaths:
+    - vendor/*
+  tmpDir: .phpstan.cache
+  reportUnmatchedIgnoredErrors: false
+
+includes:
+  - phpstan-baseline.neon
