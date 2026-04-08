@@ -26,26 +26,26 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class config {
 	/*     * *************************Attributs****************************** */
 
-    /** @var array<string, array<string, array<string, mixed>>> Default configuration values */
+	/** @var array<string, array<string, array<string, mixed>>> Default configuration values */
 	private static $defaultConfiguration = array();
 
-    /** @var array<string, mixed> Configuration cache */
+	/** @var array<string, mixed> Configuration cache */
 	private static $cache = array();
 
-    /** @var string[] List of configuration keys to encrypt */
+	/** @var string[] List of configuration keys to encrypt */
 	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
 
-    /** @var string[] Configuration keys that should not be cached */
-    private static $nocache = array('enableScenario');
+	/** @var string[] Configuration keys that should not be cached */
+	private static $nocache = array('enableScenario');
 
 	/*     * ***********************Methode static*************************** */
 
-    /**
-     * Gets default configuration for a plugin
-     *
-     * @param string $_plugin Plugin name
-     * @return array<string, array<string, mixed>> Default configuration
-     */
+	/**
+	 * Gets default configuration for a plugin
+	 *
+	 * @param string $_plugin Plugin name
+	 * @return array<string, array<string, mixed>> Default configuration
+	 */
 	public static function getDefaultConfiguration(string $_plugin = 'core'): array {
 		if (isset(self::$defaultConfiguration[$_plugin])) {
 			return self::$defaultConfiguration[$_plugin];
@@ -79,14 +79,14 @@ class config {
 		return self::$defaultConfiguration[$_plugin];
 	}
 
-    /**
-     * Saves a configuration value
-     *
-     * @param string $_key Configuration key
-     * @param mixed $_value Configuration value
-     * @param string $_plugin Plugin name
-     * @return bool Success status
-     */
+	/**
+	 * Saves a configuration value
+	 *
+	 * @param string $_key Configuration key
+	 * @param mixed $_value Configuration value
+	 * @param string $_plugin Plugin name
+	 * @return bool Success status
+	 */
 	public static function save($_key, $_value, $_plugin = 'core') {
 		$class = ($_plugin == 'core') ? 'config' : $_plugin;
 		if (is_object($_value) || is_array($_value)) {
@@ -140,13 +140,13 @@ class config {
 		return true;
 	}
 
-    /**
-     * Removes a configuration key
-     *
-     * @param string $_key Configuration key
-     * @param string $_plugin Plugin name
-     * @return bool Success status
-     */
+	/**
+	 * Removes a configuration key
+	 *
+	 * @param string $_key Configuration key
+	 * @param string $_plugin Plugin name
+	 * @return bool Success status
+	 */
 	public static function remove(string $_key, string $_plugin = 'core') {
 		if ($_key == "*" && $_plugin != 'core') {
 			$values = array(
@@ -174,15 +174,15 @@ class config {
 		return true;
 	}
 
-    /**
-     * Gets configuration value by key
-     *
-     * @param string $_key Configuration key
-     * @param string $_plugin Plugin name
-     * @param mixed $_default Default value
-     * @param bool $_forceFresh Force cache refresh
-     * @return string|mixed Configuration value
-     */
+	/**
+	 * Gets configuration value by key
+	 *
+	 * @param string $_key Configuration key
+	 * @param string $_plugin Plugin name
+	 * @param mixed $_default Default value
+	 * @param bool $_forceFresh Force cache refresh
+	 * @return string|mixed Configuration value
+	 */
 	public static function byKey($_key, $_plugin = 'core', $_default = '', $_forceFresh = false) {
 		if (!$_forceFresh && isset(self::$cache[$_plugin . '::' . $_key]) && !in_array($_key, self::$nocache)) {
 			return self::$cache[$_plugin . '::' . $_key];
@@ -217,15 +217,15 @@ class config {
 		return isset(self::$cache[$_plugin . '::' . $_key]) ? self::$cache[$_plugin . '::' . $_key] : '';
 	}
 
-    /**
-     * Gets multiple configuration values by keys
-     *
-     * @param array<string>|mixed $_keys Configuration keys
-     * @param string $_plugin Plugin name
-     * @param mixed $_default Default value
-     * @return array<string, mixed> Configuration values
-     * @throws Exception On error
-     */
+	/**
+	 * Gets multiple configuration values by keys
+	 *
+	 * @param array<string>|mixed $_keys Configuration keys
+	 * @param string $_plugin Plugin name
+	 * @param mixed $_default Default value
+	 * @return array<string, mixed> Configuration values
+	 * @throws Exception On error
+	 */
 	public static function byKeys($_keys, $_plugin = 'core', $_default = '') {
 		if (!is_array($_keys) || count($_keys) == 0) {
 			return array();
@@ -273,14 +273,14 @@ class config {
 		return $return;
 	}
 
-    /**
-     * Searches configuration by key pattern
-     *
-     * @param string $_key Key pattern to search
-     * @param string $_plugin Plugin name
-     * @return array<string, mixed>[] Matching configurations
-     * @throws Exception On error
-     */
+	/**
+	 * Searches configuration by key pattern
+	 *
+	 * @param string $_key Key pattern to search
+	 * @param string $_plugin Plugin name
+	 * @return array<string, mixed>[] Matching configurations
+	 * @throws Exception On error
+	 */
 	public static function byValue($_value, string $_key = null): array {
 		$values = array(
 			'value' => $_value
@@ -318,13 +318,13 @@ class config {
 		return $results;
 	}
 
-    /**
-     * Generates a random key
-     *
-     * @param int $_car Key length
-     * @return string Generated key
-     * @throws \Random\RandomException On random generation error
-     */
+	/**
+	 * Generates a random key
+	 *
+	 * @param int $_car Key length
+	 * @return string Generated key
+	 * @throws \Random\RandomException On random generation error
+	 */
 	public static function genKey($_car = 64) {
 		if ($_car > 256) {
 			throw new \Exception('Key length too long');
@@ -341,12 +341,12 @@ class config {
 		return $key;
 	}
 
-    /**
-     * Gets list of enabled plugins
-     *
-     * @return array<string, mixed> Enabled plugins
-     * @throws Exception On error
-     */
+	/**
+	 * Gets list of enabled plugins
+	 *
+	 * @return array<string, mixed> Enabled plugins
+	 * @throws Exception On error
+	 */
 	public static function getPluginEnable() {
 		$sql = 'SELECT `value`,`plugin`
 		FROM config
@@ -359,12 +359,12 @@ class config {
 		return $return;
 	}
 
-    /**
-     * Gets log levels by plugin
-     *
-     * @return array<string, mixed> Log levels
-     * @throws Exception On error
-     */
+	/**
+	 * Gets log levels by plugin
+	 *
+	 * @return array<string, mixed> Log levels
+	 * @throws Exception On error
+	 */
 	public static function getLogLevelPlugin() {
 		$sql = 'SELECT `value`,`key`
 		FROM config
@@ -377,12 +377,12 @@ class config {
 		return $return;
 	}
 
-    /**
-     * Gets generic types configuration
-     *
-     * @param bool $_coreOnly Get only core types
-     * @return array<string, array<string, mixed>> Generic types
-     */
+	/**
+	 * Gets generic types configuration
+	 *
+	 * @param bool $_coreOnly Get only core types
+	 * @return array<string, array<string, mixed>> Generic types
+	 */
 	public static function getGenericTypes($_coreOnly = false) {
 		$types = array(
 			'byType',
@@ -428,14 +428,14 @@ class config {
 
 	/*     * *********************Generic check value************************* */
 
-    /**
-     * Ensures value is between bounds
-     *
-     * @param int|float|mixed $_value Value to check
-     * @param int|float|null $_min Minimum bound
-     * @param int|float|null $_max Maximum bound
-     * @return float|int|mixed Checked value
-     */
+	/**
+	 * Ensures value is between bounds
+	 *
+	 * @param int|float|mixed $_value Value to check
+	 * @param int|float|null $_min Minimum bound
+	 * @param int|float|null $_max Maximum bound
+	 * @return float|int|mixed Checked value
+	 */
 	public static function checkValueBetween($_value, $_min = null, $_max = null) {
 		if ($_min !== null && $_value < $_min) {
 			return $_min;
@@ -451,13 +451,13 @@ class config {
 
 	/*     * *********************Action sur config************************* */
 
-    /**
-     * Handles DNS configuration changes
-     *
-     * @param int $_value New DNS allow status (0|1)
-     * @return void
-     * @throws Exception If DNS operation fails
-     */
+	/**
+	 * Handles DNS configuration changes
+	 *
+	 * @param int $_value New DNS allow status (0|1)
+	 * @return void
+	 * @throws Exception If DNS operation fails
+	 */
 	public static function postConfig_market_allowDns($_value) {
 		if ($_value == 1) {
 			if (!network::dns_run()) {
@@ -470,32 +470,32 @@ class config {
 		}
 	}
 
-    /**
-     * Updates day theme start hour
-     *
-     * @param string $_value Hour in format HH:mm
-     * @return void
-     */
+	/**
+	 * Updates day theme start hour
+	 *
+	 * @param string $_value Hour in format HH:mm
+	 * @return void
+	 */
 	public static function postConfig_theme_start_day_hour($_value) {
 		event::add('checkThemechange', array('theme_start_day_hour' => $_value));
 	}
 
-    /**
-     * Updates day theme end hour
-     *
-     * @param string $_value Hour in format HH:mm
-     * @return void
-     */
+	/**
+	 * Updates day theme end hour
+	 *
+	 * @param string $_value Hour in format HH:mm
+	 * @return void
+	 */
 	public static function postConfig_theme_end_day_hour($_value) {
 		event::add('checkThemechange', array('theme_end_day_hour' => $_value));
 	}
 
-    /**
-     * Refreshes object summaries after configuration change
-     *
-     * @param mixed $_value Not used
-     * @return void
-     */
+	/**
+	 * Refreshes object summaries after configuration change
+	 *
+	 * @param mixed $_value Not used
+	 * @return void
+	 */
 	public static function postConfig_object_summary($_value) {
 		$events = array();
 		try {
@@ -537,32 +537,32 @@ class config {
 		}
 	}
 
-    /**
-     * Validates history archive package value
-     *
-     * @param int $_value Archive package count
-     * @return int Validated value (minimum 1)
-     */
+	/**
+	 * Validates history archive package value
+	 *
+	 * @param int $_value Archive package count
+	 * @return int Validated value (minimum 1)
+	 */
 	public static function preConfig_historyArchivePackage($_value) {
 		return self::checkValueBetween($_value, 1);
 	}
 
-    /**
-     * Validates history archive time value
-     *
-     * @param int $_value Archive time in days
-     * @return int Validated value (minimum 2)
-     */
-    public static function preConfig_historyArchiveTime($_value) {
+	/**
+	 * Validates history archive time value
+	 *
+	 * @param int $_value Archive time in days
+	 * @return int Validated value (minimum 2)
+	 */
+	public static function preConfig_historyArchiveTime($_value) {
 		return self::checkValueBetween($_value, 2);
 	}
 
-    /**
-     * Ensures market password is hashed
-     *
-     * @param string $_value Password value
-     * @return string SHA1 hashed password
-     */
+	/**
+	 * Ensures market password is hashed
+	 *
+	 * @param string $_value Password value
+	 * @return string SHA1 hashed password
+	 */
 	public static function preConfig_market_password($_value) {
 		if (!is_sha1($_value)) {
 			return sha1($_value);
@@ -570,92 +570,92 @@ class config {
 		return $_value;
 	}
 
-    /**
-     * Validates widget margin value
-     *
-     * @param int $_value Margin in pixels
-     * @return int Validated value (minimum 0)
-     */
+	/**
+	 * Validates widget margin value
+	 *
+	 * @param int $_value Margin in pixels
+	 * @return int Validated value (minimum 0)
+	 */
 	public static function preConfig_widget_margin($_value) {
 		return self::checkValueBetween($_value, 0);
 	}
 
-    /**
-     * Validates widget width step value
-     *
-     * @param int $_value Width step in pixels
-     * @return int Validated value (minimum 1)
-     */
+	/**
+	 * Validates widget width step value
+	 *
+	 * @param int $_value Width step in pixels
+	 * @return int Validated value (minimum 1)
+	 */
 	public static function preConfig_widget_step_width($_value) {
 		return self::checkValueBetween($_value, 1);
 	}
 
-    /**
-     * Validates widget height step value
-     *
-     * @param int $_value Height step in pixels
-     * @return int Validated value (minimum 1)
-     */
+	/**
+	 * Validates widget height step value
+	 *
+	 * @param int $_value Height step in pixels
+	 * @return int Validated value (minimum 1)
+	 */
 	public static function preConfig_widget_step_height($_value) {
 		return self::checkValueBetween($_value, 1);
 	}
 
-    /**
-     * Validates background opacity value
-     *
-     * @param float $_value Opacity value
-     * @return float Validated value (between 0 and 1)
-     */
+	/**
+	 * Validates background opacity value
+	 *
+	 * @param float $_value Opacity value
+	 * @return float Validated value (between 0 and 1)
+	 */
 	public static function preConfig_css_background_opacity($_value) {
 		return self::checkValueBetween($_value, 0, 1);
 	}
 
-    /**
-     * Validates border radius value
-     *
-     * @param float $_value Border radius value
-     * @return float Validated value (between 0 and 1)
-     */
+	/**
+	 * Validates border radius value
+	 *
+	 * @param float $_value Border radius value
+	 * @return float Validated value (between 0 and 1)
+	 */
 	public static function preConfig_css_border_radius($_value) {
 		return self::checkValueBetween($_value, 0, 1);
 	}
 
-    /**
-     * Sanitizes name value
-     *
-     * @param string $_value Raw name
-     * @return string Sanitized name (removed special chars)
-     */
+	/**
+	 * Sanitizes name value
+	 *
+	 * @param string $_value Raw name
+	 * @return string Sanitized name (removed special chars)
+	 */
 	public static function preConfig_name($_value) {
 		return str_replace(array('\\', '/', "'", '"'), '', $_value);
 	}
 
-    /**
-     * Formats latitude value
-     *
-     * @param string $_value Raw latitude
-     * @return string Formatted latitude (decimal format)
-     */
+	/**
+	 * Formats latitude value
+	 *
+	 * @param string $_value Raw latitude
+	 * @return string Formatted latitude (decimal format)
+	 */
 	public static function preConfig_info_latitude($_value) {
 		return trim(str_replace(',', '.', $_value));
 	}
 
-    /**
-     * Formats longitude value
-     *
-     * @param string $_value Raw longitude
-     * @return string Formatted longitude (decimal format)
-     */
+	/**
+	 * Formats longitude value
+	 *
+	 * @param string $_value Raw longitude
+	 * @return string Formatted longitude (decimal format)
+	 */
 	public static function preConfig_info_longitude($_value) {
 		return trim(str_replace(',', '.', $_value));
 	}
 
-    /**
-     * Updates TTS engine configuration
-     *
-     * @param string $_value Engine identifier
-     * @return string Validated engine identifier
-     */
+	/**
+	 * Updates TTS engine configuration
+	 *
+	 * @param string $_value Engine identifier
+	 * @return string Validated engine identifier
+	 */
 	public static function preConfig_tts_engine($_value) {
 		try {
 			if ($_value != config::byKey('tts::engine')) {
@@ -668,24 +668,24 @@ class config {
 
 	/*     * *********************Stats************************************* */
 
-    /**
-     * Gets number of historized commands
-     *
-     * @return int Number of commands
-     * @throws Exception On error
-     */
+	/**
+	 * Gets number of historized commands
+	 *
+	 * @return int Number of commands
+	 * @throws Exception On error
+	 */
 	public static function getHistorizedCmdNum() {
 		$sql = 'SELECT COUNT(*) FROM `cmd` WHERE `isHistorized` = 1';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 		return $result[0]['COUNT(*)'];
 	}
 
-    /**
-     * Gets number of timelined commands
-     *
-     * @return int Number of commands
-     * @throws Exception On error
-     */
+	/**
+	 * Gets number of timelined commands
+	 *
+	 * @return int Number of commands
+	 * @throws Exception On error
+	 */
 	public static function getTimelinedCmdNum() {
 		$sql = 'SELECT COUNT(*) FROM `cmd` WHERE `configuration` LIKE \'%"timeline::enable":"1"%\'';
 		$result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
