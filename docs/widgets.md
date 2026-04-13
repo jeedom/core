@@ -231,29 +231,34 @@ Lors d'une nouvelle valeur Jeedom va chercher dans la page si la commande est l�
 Voila un exemple simple de code javascript à mettre dans votre widget :
 
 ```
+{% raw %}
 <script>
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
       if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
-        cmd.setAttribute('title', '{\{Date de valeur}}: ' + _options.valueDate + '<br>{\{Date de collecte}}: ' + _options.collectDate)
+        cmd.setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
         cmd.querySelector('.value').innerHTML = _options.display_value
         cmd.querySelector('.unit').innerHTML = _options.unit
       }
     }
     jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
 </script>
+{% endraw %}
 ```
 
 Ici deux choses importantes :
 
 ```
+{% raw %}
 jeedom.cmd.addUpdateFunction('#id#', function(_options) {
   if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
-    cmd.setAttribute('title', '{\{Date de valeur}}: ' + _options.valueDate + '<br>{\{Date de collecte}}: ' + _options.collectDate)
+    cmd.setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
     cmd.querySelector('.value').innerHTML = _options.display_value
     cmd.querySelector('.unit').innerHTML = _options.unit
   }
 }
+{% endraw %}
 ```
+
 La fonction est appelée lors d'une mise à jour du widget. Elle met alors à jour le code html du widget_template.
 
 ```
