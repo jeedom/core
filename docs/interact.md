@@ -93,13 +93,13 @@ La façon la plus simple de configurer une interaction, c’est de lui donner un
 
 Dans l’exemple qui suit, on peut voir dans le champ "Demande" la phrase exacte à fournir pour déclencher l’interaction. Ici, pour allumer le plafonnier du salon.
 
-![interact004](../images/interact004.png)
+![interact004](images/interact004.png)
 
 On peut voir, sur cette capture, la configuration pour avoir une interaction liée à une action spécifique. Cette action est définie dans la partie "Action" de la page.
 
 On peut très bien imaginer faire de même avec plusieurs actions pour allumer plusieurs lampes dans le salon comme l’exemple qui suit :
 
-![interact005](../images/interact005.png)
+![interact005](images/interact005.png)
 
 Dans les 2 exemples ci-dessus, la phrase modèle est identique mais les actions qui en découlent changent en fonction de ce qui est configuré dans la partie "Action", on peut donc déjà avec une interaction simple à phrase unique imaginer des actions combinées entre diverses commandes et divers scénarios (on peut aussi déclencher des scénarios dans la partie action des interactions).
 
@@ -113,31 +113,31 @@ Nous allons ici voir tout l’intérêt et toute la puissance des interactions, 
 
 On va reprendre ce qui a été fait plus haut, supprimer les actions que l’on avait ajoutées, et à la place de la phrase fixe, dans "Demande", nous allons utiliser les tags **\#commande\#** et **\#equipement\#**. Jeedom va donc remplacer ces tags par le nom des commandes et le nom de l’équipement (on peut voir l’importance d’avoir des noms de commande/équipement cohérents).
 
-![interact006](../images/interact006.png)
+![interact006](images/interact006.png)
 
 On peut donc constater ici que Jeedom a généré 152 phrases à partir de notre modèle. Toutefois, elles ne sont pas très bien construites et l’on a un peu de tout.
 
 Pour faire de l’ordre dans tout cela, on va utiliser les filtres (partie droite de notre page de configuration). Dans cet exemple, on veut générer des phrases pour allumer des lumières. On peut donc décocher le type de commande info (si je sauve, il ne me reste plus que 95 phrases générées), puis, dans les sous-types, on peut ne garder coché que "défaut" qui correspond au bouton d’action (ne reste donc plus que 16 phrases).
 
-![interact007](../images/interact007.png)
+![interact007](images/interact007.png)
 
 C’est mieux, mais on peut faire encore plus naturel. Si je prends l’exemple généré "On entrée", il serait bien de pouvoir transformer cette phrase en "allume l’entrée" ou en "allumer l’entrée". Pour faire cela, Jeedom dispose, sous le champ demande, d’un champ synonyme qui va nous permettre de nommer différemment le nom des commandes dans nos phrases "générées", ici c’est "on", j’ai même des "on2" dans les modules qui peuvent contrôler 2 sorties.
 
 Dans les synonymes, on va donc indiquer le nom de la commande et le(s) synonyme(s) à utiliser :
 
-![interact008](../images/interact008.png)
+![interact008](images/interact008.png)
 
 On peut voir ici une syntaxe un peu nouvelle pour les synonymes. Un nom de commande peut avoir plusieurs synonymes, ici "on" a comme synonyme "allume" et "allumer". La syntaxe est donc "*nom de la commande*" ***=*** "*synonyme 1*"***,*** "*synonyme 2*" (on peut mettre autant de synonyme que l’on veut). Puis, pour ajouter des synonymes pour un autre nom de commande, il suffit d’ajouter après le dernier synonyme une barre verticale "*\|*" à la suite de laquel vous pouvez à nouveau nommer la commande qui va avoir des synonymes comme pour la première partie, etc.
 
 C’est déjà mieux, mais il manque encore pour la commande "on" "entrée" le "l' " et pour d’autres le "la" ou "le" ou "un", etc. On pourrait modifier le nom de l’équipement pour l’ajouter, ce serait une solution, sinon on peut utiliser les variations dans la demande. Cela consiste à lister une série de mots possibles à un emplacement de la phrase, Jeedom va donc générer des phrases avec ces variations.
 
-![interact009](../images/interact009.png)
+![interact009](images/interact009.png)
 
 On a maintenant des phrases un peu plus correctes avec des phrases qui ne sont pas justes, pour notre exemple "on" "entrée". on trouve donc "Allume entrée", "Allume un entrée", "Allume une entrée", "Allume l’entrée" etc. On a donc toutes les variantes possibles avec ce que l’on a ajouté entre les "\[ \]" et ceci pour chaque synonyme, ce qui génère rapidement beaucoup de phrases (ici 168).
 
 Afin d’affiner et de ne pas avoir des choses improbables telles que "allume l’télé", on peut autoriser Jeedom à supprimer les demandes syntaxiquement incorrectes. Il va donc supprimer ce qui est trop éloigné de la syntaxe réelle d’une phrase. Dans notre cas, on passe de 168 phrases à 130 phrases.
 
-![interact010](../images/interact010.png)
+![interact010](images/interact010.png)
 
 Il devient donc important de bien construire ses phrases modèles et synonymes ainsi que de sélectionner les bons filtres pour ne pas générer trop de phrases inutiles. Personnellement, je trouve intéressant d’avoir quelques incohérences du style "un entrée" car si chez vous, vous avez une personne étrangère qui ne parle pas correctement le français, les interactions fonctionneront tout de même.
 
@@ -147,17 +147,17 @@ Jusqu’à présent, comme réponse à une interaction, nous avions une simple p
 
 Pour ce faire, nous allons à nouveau utiliser les Tag Jeedom. Pour nos lumières, on peut utiliser une phrase du style : J’ai bien allumé \#equipement\# (voir capture ci-dessous).
 
-![interact011](../images/interact011.png)
+![interact011](images/interact011.png)
 
 On peut aussi ajouter n’importe quelle valeur d’une autre commande comme une température, un nombre de personnes, etc.
 
-![interact012](../images/interact012.png)
+![interact012](images/interact012.png)
 
 ### Conversion binaire
 
 Les conversions binaires s’appliquent aux commandes de type info dont le sous-type est binaire (retourne 0 ou 1 uniquement). Il faut donc activer les bons filtres, comme on peut le voir sur la capture un peu plus bas (pour les catégories, on peut toutes les cocher, pour l’exemple je n’ai gardé que lumière).
 
-![interact013](../images/interact013.png)
+![interact013](images/interact013.png)
 
 Comme on peut le voir ici, j’ai conservé quasiment la même structure pour la demande (c’est volontaire pour se concentrer sur les spécificités). Bien sûr, j’ai adapté les synonymes pour avoir quelque chose de cohérent. Par contre, pour la réponse, il est **impératif** de mettre uniquement \#valeur\# qui représente le 0 ou 1 que Jeedom va remplacer par la conversion binaire qui suit.
 
@@ -189,7 +189,7 @@ Pour le champ "Regexp d’exclusion" dans la page de configuration de chaque int
 
 La capture d’écran qui suit montre l’interaction sans le Regexp. Dans la liste de gauche, je filtre les phrases pour ne vous montrer que les phrases qui vont être supprimées. En réalité il y a 76 phrases générées avec la configuration de l’interaction.
 
-![interact014](../images/interact014.png)
+![interact014](images/interact014.png)
 
 Comme vous pouvez le voir sur la capture suivante, j’ai ajouté une regexp simple qui va chercher le mot "Julie" dans les phrases générées et les supprimer. Toutefois, on peut voir dans la liste de gauche qu’il y a toujours des phrases avec le mot "julie", dans les expressions régulières, Julie n’est pas égale à julie, on appelle cela une sensibilité à la casse ou en bon français une majuscule est différente d’une minuscule. Comme on peut le voir dans la capture suivante, il ne reste plus que 71 phrases, les 5 avec un "Julie" ont été supprimées.
 
@@ -208,11 +208,11 @@ C’est une version extrêmement simple des expressions régulières mais déjà
 
 Une fois que vous pouvez écrire cela, vous avez compris les expressions régulières.
 
-![interact015](../images/interact015.png)
+![interact015](images/interact015.png)
 
 Pour résoudre le problème de majuscule et minuscule, on peut ajouter à notre expression une option qui va la rendre insensible à la casse, ou autrement dit, qui considère une lettre minuscule égale à une majuscule; pour ce faire, on doit simplement ajouter à la fin de notre expression un "i".
 
-![interact016](../images/interact016.png)
+![interact016](images/interact016.png)
 
 Avec l’ajout de l’option "i" on constate qu’il ne reste plus que 55 phrases générées et dans la liste de gauche avec le filtre julie pour rechercher les phrases qui contiennent ce mot, on constate qu’il y en a bien plus.
 
@@ -228,7 +228,7 @@ Liens utiles :
 
 Il est aussi possible de mettre plusieurs commandes info dans une réponse, par exemple pour avoir un résumé de situation.
 
-![interact021](../images/interact021.png)
+![interact021](images/interact021.png)
 
 Dans cet exemple on voit une phrase simple qui va nous retourner une réponse avec 3 températures différentes, on peut donc ici mettre un peu tout ce que l’on veut afin d’avoir un ensemble d’informations en une seule fois.
 
@@ -240,7 +240,7 @@ Dans cet exemple on voit une phrase simple qui va nous retourner une réponse av
 - La réponse sera "non il n’y a personne dans la chambre" ou "oui il y a quelqu’un dans la chambre"
 - La commande qui répond à ça est "\#\[Chambre de julie\]\[FGMS-001-2\]\[Présence\]\#"
 
-![interact017](../images/interact017.png)
+![interact017](images/interact017.png)
 
 Cette exemple cible précisément un équipement spécifique ce qui permet d’avoir une réponse personnalisée. On pourrait donc imaginer remplacer la réponse de l’exemple par "non il n’y a personne dans la chambre de *julie*\|oui il y a quelqu’un dans la chambre de *julie*"
 
@@ -251,7 +251,7 @@ Cette exemple cible précisément un équipement spécifique ce qui permet d’a
 - Il n’y a pas de commande qui réponde à ça dans la partie Action vu que c’est une interaction Multiple commandes
 - En ajoutant une expression régulière, on peut nettoyer les commandes que l’on ne veut pas voir pour n’avoir que les phrases sur les commandes "Présence".
 
-![interact018](../images/interact018.png)
+![interact018](images/interact018.png)
 
 Sans le Regexp, on obtient ici 11 phrases, or mon interaction a pour but de générer des phrases uniquement pour demander s’il y a quelqu’un dans une pièce, donc je n’ai pas besoin d’état de lampe ou autre comme les prises, ce qui peut être résolu avec le filtrage regexp. Pour rendre encore plus flexible, on peut ajouter des synonymes, mais dans ce cas il ne faudra pas oublier de modifier la regexp.
 
@@ -263,7 +263,7 @@ On pourrait écrire la phrase en dur comme par exemple "quelle est la températu
 
 Ici un exemple générique qui sert à connaître la température, l’humidité, la luminosité des différentes pièces (objet au sens Jeedom).
 
-![interact019](../images/interact019.png)
+![interact019](images/interact019.png)
 
 - On peut donc voir qu’une phrase générique type "Quelle est la température du salon" ou "Quelle est la luminosité de la chambre" peut être convertie en : "quelle est \[la \|l\\'\]\#commande\# objet" (l’utilisation de \[mot1 \| mot2\] permet de dire cette possibilité ou celle-là pour générer toutes les variantes possibles de la phrase avec mot1 ou mot2). Lors de la génération Jeedom va générer toutes les combinaisons possibles de phrases avec toutes les commandes existantes (en fonction des filtres) en remplaçant \#commande\# par le nom de la commande et \#objet\# par le nom de l’objet.
 - La réponse sera de type "21 °C" ou "200 lux". Il suffit de mettre : \#valeur\# \#unite\# (l’unité est à compléter dans la configuration de chaque commande pour laquelle on veut en avoir une)
@@ -277,7 +277,7 @@ Ajout de synonyme, permet de dire à Jeedom qu’une commande s’appelant "X" p
 
 On peut aussi ajouter un filtre Regexp pour enlever quelques commandes. En reprenant l’exemple simple, on voit des phrases "batterie" ou encore "latence", qui n’ont rien à voir avec notre interaction température/humidité/luminosité.
 
-![interact020](../images/interact020.png)
+![interact020](images/interact020.png)
 
 On peut donc voir un regexp :
 
@@ -295,7 +295,7 @@ Celui-ci permet de supprimer toutes les commandes qui ont l’un de ces mots dan
 
 Il est possible de piloter une lampe en pourcentage (variateur) ou un thermostat avec les interactions. Voici un exemple pour piloter son variateur sur une lampe avec des interactions :
 
-![interact022](../images/interact022.png)
+![interact022](images/interact022.png)
 
 Comme on le voit, il y a ici dans la demande le tag **\#consigne\#** (on peut mettre ce que l’on veut) qui est repris dans la commande du variateur pour appliquer la valeur voulue. Pour ce faire, on a 3 parties : \* Demande : dans laquelle on crée un tag qui va représenter la valeur qui sera envoyée à l’interaction. \* Réponse : on réutilise le tag pour la réponse afin d’être sûr que Jeedom a correctement compris la demande. \* Action : on met une action sur la lampe que l’on veut piloter et dans la valeur on lui passe notre tag *consigne*.
 
@@ -307,13 +307,13 @@ Comme on le voit, il y a ici dans la demande le tag **\#consigne\#** (on peut me
 
 On peut vouloir piloter toutes les commandes de type curseur avec une seule interaction. Avec l’exemple qui suit, on va donc pouvoir commander plusieurs variateurs avec une seule interaction et donc générer un ensemble de phrases pour les contrôler.
 
-![interact033](../images/interact033.png)
+![interact033](images/interact033.png)
 
 Dans cette interaction, on n’a pas de commande dans la partie action, on laisse Jeedom générer à partir des tags la liste de phrases. On peut voir le tag **\#slider\#**. Il est impératif d’utiliser ce tag pour les consignes dans une interaction multiple commandes, il peut ne pas être le dernier mot de la phrase. On peut aussi voir dans l’exemple que l’on peut utiliser dans la réponse un tag qui ne fait pas partie de la demande. La majorité des tags disponibles dans les scénarios sont disponibles aussi dans les interactions et donc peuvent être utilisés dans une réponse.
 
 Résultat de l’interaction :
 
-![interact034](../images/interact034.png)
+![interact034](images/interact034.png)
 
 On peut constater que le tag **\#equipement\#** qui n’est pas utilisé dans la demande est bien complété dans la réponse.
 
@@ -321,15 +321,15 @@ On peut constater que le tag **\#equipement\#** qui n’est pas utilisé dans la
 
 Il est possible de piloter une commande couleur par les interactions en demandant par exemple à Jeedom d’allumer un bandeau de led en bleu. Voilà l’interaction à faire :
 
-![interact023](../images/interact023.png)
+![interact023](images/interact023.png)
 
 Jusque là rien de bien compliqué, il faut en revanche avoir configuré les couleurs dans Jeedom pour que cela fonctionne; rendez-vous dans le menu → Configuration (en haut à droite) puis dans la partie "Configuration des interactions" :
 
-![interact024](../images/interact024.png)
+![interact024](images/interact024.png)
 
 Comme on peut le voir sur la capture, il n’y a pas de couleur configurée, il faut donc ajouter des couleurs avec le "+" à droite. Le nom de la couleur, c’est le nom que vous allez passer à l’interaction, puis dans la partie de droite (colonne "Code HTML"), en cliquant sur la couleur noire on peut choisir une nouvelle couleur.
 
-![interact025](../images/interact025.png)
+![interact025](images/interact025.png)
 
 On peut en ajouter autant que bon nous semble, on peut mettre comme nom n’importe lequel, ainsi on pourrait imaginer attribuer une couleur pour le nom de chaque membre de la famille.
 
@@ -340,7 +340,7 @@ Une fois configuré, vous dites "Allume le sapin en vert", Jeedom va rechercher 
 
 Il est possible de coupler une interaction à un scénario afin de réaliser des actions un peu plus complexes que l’exécution d’une simple action ou d’une demande d’information.
 
-![interact026](../images/interact026.png)
+![interact026](images/interact026.png)
 
 Cette exemple permet donc de lancer le scénario qui est lié dans la partie action, on peut bien sûr en avoir plusieurs.
 
@@ -348,7 +348,7 @@ Cette exemple permet donc de lancer le scénario qui est lié dans la partie act
 
 Les interactions permettent de faire beaucoup de choses en particulier. Vous pouvez programmer dynamiquement une action. Exemple : "Met le chauffage à 22 pour 14h50". Pour cela rien de plus simple, il suffit d’utiliser les tags \#time\# (si on définit une heure précise) ou \#duration\# (pour dans X temps, exemple dans 1 heure) :
 
-![interact23](../images/interact23.JPG)
+![interact23](images/interact23.JPG)
 
 > **Note**
 >
