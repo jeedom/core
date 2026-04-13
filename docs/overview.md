@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-hubspot
+---
+
 # Synthèse
 **Accueil → Synthèse**
 

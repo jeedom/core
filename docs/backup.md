@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-save
+---
+
 # Sauvegardes
 **Réglages → Système → Sauvegardes**
 

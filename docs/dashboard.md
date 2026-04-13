@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-tachometer-alt
+---
+
 # Dashboard
 **Accueil → Dashboard**
 

@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-search
+---
+
 # Recherche
 **Menu Analyse → Recherche**
 

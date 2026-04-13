@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-question-circle
+---
+
 # FAQ
 **Réglages → Version : FAQ**
 

@@ -1,4 +1,10 @@
+---
+lang: fr
+icon: fa-tasks
+---
+
 # Moteur de tâches
+
 **Réglages → Système → Moteur de tâches**
 
 Cette page informe de toutes les tâches applicatives Jeedom qui tournent sur le serveur.

@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-code
+---
+
 Voici une documentation sur les méthodes de l’API.
 
 Tout d’abord voici les spécifications (JSON RPC 2.0) :

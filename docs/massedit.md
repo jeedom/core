@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-layer-group
+---
+
 # Editeur en masse
 **Réglages → Système → Configuration | OS/DB**
 

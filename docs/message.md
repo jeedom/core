@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-envelope
+---
+
 # Centre de message
 **Barre de menu**
 

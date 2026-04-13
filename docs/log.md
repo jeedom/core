@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-file
+---
+
 # Logs
 **Analyse → Logs**
 

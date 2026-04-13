@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-sync-alt
+---
+
 # Centre de Mise à jour
 **Réglages → Système → Centre de Mise à jour**
 

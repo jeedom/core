@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-th
+---
+
 # Résumé Domotique
 **Analyse → Résumé domotique**
 

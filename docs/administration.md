@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-wrench
+---
+
 # Configuration
 **Réglages → Système → Configuration**
 

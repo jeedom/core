@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-pencil-alt
+---
+
 # Personnalisation Avancée
 **Réglages → Système → Personnalisation avancée**
 

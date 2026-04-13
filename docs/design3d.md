@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-cubes
+---
+
 # Design 3D
 **Accueil → Design3D**
 

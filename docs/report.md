@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-newspaper
+---
+
 # Rapport
 **Analyse → Rapport**
 

@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-chart-line
+---
+
 # Historique
 **Analyse → Historique**
 

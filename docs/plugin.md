@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-tags
+---
+
 # Gestion des plugins
 **Plugins → Gestion des plugins**
 

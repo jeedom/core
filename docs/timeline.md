@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-clock
+---
+
 # Timeline
 **Analyse → Timeline**
 

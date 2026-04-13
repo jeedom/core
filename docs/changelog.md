@@ -1,3 +1,8 @@
+---
+lang: fr
+title: Changelog
+---
+
 # Changelog Jeedom V4.5
 
 # 4.5.3

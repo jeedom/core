@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-paint-brush
+---
+
 # Design
 **Accueil → Design**
 

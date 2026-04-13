@@ -1,4 +1,9 @@
- # Remplacer
+---
+lang: fr
+icon: fa-random
+---
+
+# Remplacer
 
 ## Pourquoi un tel outil ?
 

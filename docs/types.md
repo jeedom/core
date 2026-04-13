@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-puzzle-piece
+---
+
 # Types d'équipement
 **Outils → Types d'équipement**
 

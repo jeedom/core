@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-object-group
+---
+
 # Objets
 **Outils → Objets**
 

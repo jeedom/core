@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-plug
+---
+
 # API HTTP
 
 Jeedom met à disposition des développeurs et des utilisateurs une API complète afin de pouvoir piloter Jeedom depuis n’importe quel objet connecté.

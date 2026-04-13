@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-medkit
+---
+
 # Santé
 **Analyse → Santé**
 

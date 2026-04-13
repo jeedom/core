@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-cogs
+---
+
 # Scénarios
 
 **Outils → Scénarios**

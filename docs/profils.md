@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-briefcase
+---
+
 # Préférences
 **Réglages → Préférences**
 

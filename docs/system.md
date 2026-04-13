@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-terminal
+---
+
 # Systeme
 
 Page réservé aux utilisateurs avancés, permet de lancer des commandes SSH directement depuis Jeedom

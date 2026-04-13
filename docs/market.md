@@ -1,5 +1,9 @@
-# Market Jeedom
+---
+lang: fr
+icon: fa-store
+---
 
+# Market Jeedom
 
 Doc un peu particulière car elle va traiter uniquement de votre page profil du Market.
 Disponible en allant sur votre nom d’utilisateur puis profil à partir du Market (un peu comme sur Jeedom).

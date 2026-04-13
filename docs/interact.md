@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-comments
+---
+
 # Interactions
 **Outils → Interactions**
 

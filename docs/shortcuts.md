@@ -1,4 +1,10 @@
-# Jeedom V4 - Raccourcis clavier / souris
+---
+lang: fr
+icon: fa-keyboard
+title : Raccourcis
+---
+
+# Raccourcis clavier / souris
 
 ### Général
 

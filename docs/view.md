@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-image
+---
+
 # Vues
 **Accueil → Vue**
 
