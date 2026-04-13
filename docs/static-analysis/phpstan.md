@@ -1,6 +1,6 @@
 ---
 lang: fr
-menu: false
+show_in_menu: false
 ---
 
 # Guide PHPStan pour Jeedom
