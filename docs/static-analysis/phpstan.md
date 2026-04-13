@@ -1,3 +1,8 @@
+---
+lang: fr
+menu: false
+---
+
 # Guide PHPStan pour Jeedom
 
 ## Installation locale

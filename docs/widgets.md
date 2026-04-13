@@ -1,3 +1,8 @@
+---
+lang: fr
+icon: fa-camera-retro
+---
+
 # Widgets
 
 Un widget est la représentation graphique d'une commande. Chaque widget est spécifique au type et au sous-type de la commande sur laquelle il doit être appliqué ainsi qu'à la version à partir de laquelle on accède à Jeedom *(desktop ou mobile)*.
