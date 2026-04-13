@@ -234,7 +234,7 @@ Voila un exemple simple de code javascript à mettre dans votre widget :
 <script>
     jeedom.cmd.addUpdateFunction('#id#', function(_options) {
       if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
-        cmd.setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+        cmd.setAttribute('title', '\{\{Date de valeur}}: ' + _options.valueDate + '<br>\{\{Date de collecte}}: ' + _options.collectDate)
         cmd.querySelector('.value').innerHTML = _options.display_value
         cmd.querySelector('.unit').innerHTML = _options.unit
       }
@@ -248,7 +248,7 @@ Ici deux choses importantes :
 ```
 jeedom.cmd.addUpdateFunction('#id#', function(_options) {
   if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
-    cmd.setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+    cmd.setAttribute('title', '\{\{Date de valeur}}: ' + _options.valueDate + '<br>\{\{Date de collecte}}: ' + _options.collectDate)
     cmd.querySelector('.value').innerHTML = _options.display_value
     cmd.querySelector('.unit').innerHTML = _options.unit
   }
