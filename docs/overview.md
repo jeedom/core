@@ -1,6 +1,6 @@
 ---
 lang: fr
-icon: fa-hubspot
+icon: fa-binoculars
 ---
 
 # Synthèse
