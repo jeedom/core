@@ -1,6 +1,7 @@
 ---
 lang: fr
 icon: fa-pencil-alt
+title: Personnalisation
 ---
 
 # Personnalisation Avancée
