@@ -28,6 +28,7 @@
     },
     success: function (scenarios) {
       const select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
+      if (!select) return
 
       const groupedScenarios = {}
       for (let i in scenarios) {

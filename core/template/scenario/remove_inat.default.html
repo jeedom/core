@@ -11,6 +11,7 @@
     },
     success: function (scenarios) {
       let select = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="scenario_id"]')
+      if (!select) return
       let currentScenario = document.querySelector('.scenarioAttr[data-l1key=id]')?.jeeValue() // Get current scenario number (if available)
       let hasSelected = false
       let newOption
