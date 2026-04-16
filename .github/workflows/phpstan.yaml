@@ -2,9 +2,9 @@ name: PHPStan
 
 on:
   push:
-    branches: [ alpha ]
+    branches: [ develop ]
   pull_request:
-    branches: [ alpha ]
+    branches: [ develop ]
 
 jobs:
   phpstan:
@@ -39,7 +39,7 @@ jobs:
 
   update-baseline:
     needs: phpstan
-    if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -75,10 +75,10 @@ jobs:
           title: '[CI] Update PHPStan baseline'
           body: |
             Mise à jour automatique du baseline PHPStan suite à la correction d'erreurs.
-            
+
             Cette PR a été générée automatiquement par le workflow CI/CD.
           branch: update-phpstan-baseline
-          base: alpha
+          base: develop
           delete-branch: true
           add-paths: |
             phpstan-baseline.neon
