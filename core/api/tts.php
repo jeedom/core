@@ -16,6 +16,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once __DIR__ . "/../php/core.inc.php";
+require_once __DIR__ . "/tts.func.php";
 
 if (user::isBan()) {
 	header("Status: 404 Not Found");
@@ -85,23 +86,19 @@ log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') wit
 
 try {
 	if ($engine == 'espeak') {
-		$voice = init('voice', 'fr+f4');
 		$avconv = 'avconv';
 		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
-		$cmd = 'espeak -v' . $voice . ' "' . $text . '" --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
+		$cmd = tts_buildEspeakCmd($text, init('voice', 'fr+f4'), $filename, $avconv);
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else if ($engine == 'pico') {
-		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
-		$lang = str_replace('_', '-', init('lang', config::byKey('language')));
 		$avconv = 'avconv';
 		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
-		$cmd = 'pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;';
-		$cmd .= $avconv . ' -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
+		$cmd = tts_buildPicoCmd($text, init('lang', config::byKey('language')), init('volume', '6'), $md5, $filename, $avconv);
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else {
