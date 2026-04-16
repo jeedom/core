@@ -37,6 +37,7 @@ try {
 
 		if (!isConnect()) {
 			if (config::byKey('sso:allowRemoteUser') == 1) {
+                $configs = config::byKeys(array('session_lifetime', 'sso:allowRemoteUser', 'sso:remoteUserHeader'));
 				$header = $configs['sso:remoteUserHeader'];
 				$header_value = $_SERVER[$header];
 				$user = user::byLogin($header_value);

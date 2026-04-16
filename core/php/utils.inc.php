@@ -1692,6 +1692,7 @@ function getTZoffsetMin() {
 }
 
 function pageTitle($_page) {
+    $return = $_page;
 	switch ($_page) {
 		case 'overview':
 			$return = __('Synthèse', __FILE__);
@@ -1786,9 +1787,6 @@ function pageTitle($_page) {
 				$return = __('Panel', __FILE__);
 				break;
 			}
-		default:
-			$return = $_page;
-			break;
 	}
 	return ucfirst($return);
 }
