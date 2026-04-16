@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 
 class cronTest extends TestCase {
 	public function testCreate() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		$cron1 = new cron();
 		$cron1->setClass('calendar');
 		$cron1->setFunction('pull');
@@ -35,7 +35,7 @@ class cronTest extends TestCase {
 		$cron2->setSchedule('00 00 * * * 2020');
 		$cron2->save();
 		
-		$this->assertSame($cron1->getId(), $cron2->getId());
+		$this->assertEquals($cron1->getId(), $cron2->getId());
 		
 		$cron1 = cron::byClassAndFunction('calendar', 'pull');
 		if (!is_object($cron1)) {
@@ -45,7 +45,7 @@ class cronTest extends TestCase {
 	}
 	
 	public function testCreateWithOption() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		$cron1 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(1)));
 		if (!is_object($cron1)) {
 			$cron1 = new cron();
@@ -81,7 +81,7 @@ class cronTest extends TestCase {
 		$cron3->setSchedule('00 00 * * * 2020');
 		$cron3->save();
 		
-		$this->assertSame($cron1->getId(), $cron3->getId());
+		$this->assertEquals($cron1->getId(), $cron3->getId());
 		
 		$cron1 = cron::byClassAndFunction('calendar', 'pull', array('event_id' => intval(1)));
 		if (!is_object($cron1)) {
