@@ -1,26 +1,8 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Static method cache\:\:set\(\) invoked with 4 parameters, 2\-3 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/ajax/cache.ajax.php
-
-		-
-			message: '#^Static call to instance method cmd\:\:dropInfluxDatabase\(\)\.$#'
-			identifier: method.staticCall
-			count: 1
-			path: core/ajax/cmd.ajax.php
-
-		-
 			message: '#^Static call to instance method cmd\:\:historyInfluxAll\(\)\.$#'
 			identifier: method.staticCall
-			count: 1
-			path: core/ajax/cmd.ajax.php
-
-		-
-			message: '#^Static method history\:\:getHistoryFromCalcul\(\) invoked with 6 parameters, 1\-5 required\.$#'
-			identifier: arguments.count
 			count: 1
 			path: core/ajax/cmd.ajax.php
 
@@ -31,40 +13,10 @@ parameters:
 			path: core/ajax/eqLogic.ajax.php
 
 		-
-			message: '#^Static method interactQuery\:\:byInteractDefId\(\) invoked with 2 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 2
-			path: core/ajax/interact.ajax.php
-
-		-
-			message: '#^Static method listener\:\:all\(\) invoked with 1 parameter, 0 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/ajax/listener.ajax.php
-
-		-
-			message: '#^Static method jeeObject\:\:getUISelectList\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/ajax/object.ajax.php
-
-		-
-			message: '#^Static method queue\:\:all\(\) invoked with 1 parameter, 0 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/ajax/queue.ajax.php
-
-		-
 			message: '#^Variable \$market might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
 			path: core/ajax/repo.ajax.php
-
-		-
-			message: '#^Variable \$return might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/ajax/report.ajax.php
 
 		-
 			message: '#^Variable \$converts might not be defined\.$#'
@@ -73,22 +25,10 @@ parameters:
 			path: core/ajax/scenario.ajax.php
 
 		-
-			message: '#^Result of static method user\:\:removeBanIp\(\) \(void\) is used\.$#'
-			identifier: staticMethod.void
-			count: 1
-			path: core/ajax/user.ajax.php
-
-		-
 			message: '#^Variable \$configs might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
 			path: core/ajax/user.ajax.php
-
-		-
-			message: '#^Static method jeedom\:\:update\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 2
-			path: core/api/jeeApi.php
 
 		-
 			message: '#^Variable \$cmd might not be defined\.$#'
@@ -127,42 +67,6 @@ parameters:
 			path: core/api/jeeApi.php
 
 		-
-			message: '#^Call to static method byId\(\) on an unknown class jeeNetwork\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/api/proApi.php
-
-		-
-			message: '#^Call to static method byId\(\) on an unknown class market\.$#'
-			identifier: class.notFound
-			count: 2
-			path: core/api/proApi.php
-
-		-
-			message: '#^Call to static method byLogicalId\(\) on an unknown class market\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/api/proApi.php
-
-		-
-			message: '#^Call to static method testMaster\(\) on an unknown class jeeNetwork\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/api/proApi.php
-
-		-
-			message: '#^Static method jeedom\:\:update\(\) invoked with 2 parameters, 0\-1 required\.$#'
-			identifier: arguments.count
-			count: 2
-			path: core/api/proApi.php
-
-		-
-			message: '#^Static method repo_market\:\:backup_restore\(\) invoked with 2 parameters, 1 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/api/proApi.php
-
-		-
 			message: '#^Instantiated class InfluxDB\\Client not found\.$#'
 			identifier: class.notFound
 			count: 2
@@ -179,12 +83,6 @@ parameters:
 			identifier: variable.undefined
 			count: 3
 			path: core/class/history.class.php
-
-		-
-			message: '#^Static call to instance method interactQuery\:\:replaceForContextual\(\)\.$#'
-			identifier: method.staticCall
-			count: 3
-			path: core/class/interactQuery.class.php
 
 		-
 			message: '#^Variable \$closest might not be defined\.$#'
@@ -257,18 +155,6 @@ parameters:
 			identifier: variable.undefined
 			count: 1
 			path: core/class/scenario.class.php
-
-		-
-			message: '#^Instantiated class SolarData\\SolarData not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/class/scenarioExpression.class.php
-
-		-
-			message: '#^Static method update\:\:getLastAvailableVersion\(\) invoked with 1 parameter, 0 required\.$#'
-			identifier: arguments.count
-			count: 1
-			path: core/class/update.class.php
 
 		-
 			message: '#^Variable \$url might not be defined\.$#'
