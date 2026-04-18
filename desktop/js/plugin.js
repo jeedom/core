@@ -235,7 +235,7 @@ if (!jeeFrontEnd.plugin) {
           }
 
           self.dom_container.querySelector('#div_plugin_functionality').empty()
-          count = 0
+          let count_functionality = 0
           var config_panel_html = '<div class="row">'
           config_panel_html += '<div class="col-sm-6">'
           for (var i in data.functionality) {
@@ -256,8 +256,8 @@ if (!jeeFrontEnd.plugin) {
               config_panel_html += '</label>'
             }
             config_panel_html += '</div>'
-            count++
-            if (count == 5) {
+            count_functionality++
+            if (count_functionality == 5) {
               config_panel_html += '</div>'
               config_panel_html += '<div class="col-sm-6">'
             }
