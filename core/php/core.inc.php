@@ -62,4 +62,6 @@ function jeedomAutoload($_classname) {
 	}
 }
 
+// Composer's autoloader (registered via vendor/autoload.php above) runs first.
+// jeedomAutoload is a fallback for legacy plugin classes without namespace.
 spl_autoload_register('jeedomAutoload');
