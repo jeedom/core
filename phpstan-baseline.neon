@@ -13,12 +13,6 @@ parameters:
 			path: core/ajax/eqLogic.ajax.php
 
 		-
-			message: '#^Variable \$market might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/ajax/repo.ajax.php
-
-		-
 			message: '#^Variable \$converts might not be defined\.$#'
 			identifier: variable.undefined
 			count: 2
