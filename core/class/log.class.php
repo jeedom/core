@@ -156,7 +156,7 @@ class log extends AbstractLogger {
 	}
 
 	private static function chunkLog(string $rawPath) {
-		if (strpos($rawPath, '.htaccess') !== false || !file_exists($rawPath)) {
+		if (strpos($rawPath, '.htaccess') !== false) {
 			return;
 		}
 
@@ -169,31 +169,25 @@ class log extends AbstractLogger {
 		$maxSizeLog = max(1, $maxSizeLog);
 		$maxBytes = $maxSizeLog * 1024 * 1024;
 
-		clearstatcache(true, $rawPath);
 		$fSize = filesize($rawPath);
-		if ($fSize < ($maxLineLog * 50)) { // 50 characters per line
-			return; // file too small
+		if ($fSize === false) {
+			return;
 		}
-		if ($fSize < $maxBytes) { // Check by nLines
-			$cmd = "wc -l " . escapeshellarg($rawPath);
-			$output = trim(com_shell::execute($cmd));
-			$nLines = (int) explode(' ', $output)[0];
-			if ($nLines <= $maxLineLog) {
+
+		if ($fSize < $maxBytes) {
+			$output = trim(com_shell::execute("wc -l < " . escapeshellarg($rawPath)));
+			if (ctype_digit($output) && (int)$output <= $maxLineLog) {
 				return;
-			} else {
-				log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " nLines: {$nLines}/{$maxLineLog}");
 			}
-		} else {
-			log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " Size {$fSize}/{$maxBytes}");
 		}
 
 		$sudo = system::getCmdSudo();
-		$tmpFile = escapeshellarg(jeedom::getTmpFolder() . '/log_chunk_' . uniqid('', true));
-		$shellPath = escapeshellarg(realpath($rawPath));
+		$tmpFile = escapeshellarg(jeedom::getTmpFolder() . '/' . uniqid('log_chunk_'));
+		$shellPath = escapeshellarg($rawPath);
 		try {
 			$bashCmd = "tail -c {$maxSizeLog}M {$shellPath} | tail -n {$maxLineLog} > {$tmpFile} && cat {$tmpFile} > {$shellPath}";
 			com_shell::execute("{$sudo} bash -o pipefail -c \"{$bashCmd}\"");
-		} catch (\Exception $e) {
+		} catch (\Throwable $e) {
 			log::add('jeedom', "error", "Caught exception in chunkLog(): " . $e->getMessage());
 
 			clearstatcache(true, $rawPath);
