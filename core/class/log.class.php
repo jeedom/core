@@ -155,7 +155,7 @@ class log extends AbstractLogger {
 		}
 	}
 
-	private static function chunkLog(string $rawPath) {
+  private static function chunkLog(string $rawPath) {
 		if (strpos($rawPath, '.htaccess') !== false || !file_exists($rawPath)) {
 			return;
 		}
@@ -165,24 +165,41 @@ class log extends AbstractLogger {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 
-		$sudo = system::getCmdSudo();
-		$tmpFile = tempnam(jeedom::getTmpFolder(), 'log_chunk_');
-		if ($tmpFile === false) {
-			log::add('jeedom', "error", 'Failed to create temporary file in chunkLog() for:' . basename($rawPath));
-			return;
-		}
-		$tmpFile = escapeshellarg($tmpFile);
 		$maxSizeLog = (int)self::getConfig('maxSizeLog', 10);
 		$maxSizeLog = max(1, $maxSizeLog);
-		$shellPath = escapeshellarg($rawPath);
+    $maxBytes = $maxSizeLog * 1024 *1024;
 
-		try {
-			com_shell::execute("{$sudo} tail -c {$maxSizeLog}M {$shellPath} | tail -n {$maxLineLog} > {$tmpFile} && {$sudo} cat {$tmpFile} > {$shellPath}");
+    clearstatcache(true, $rawPath);
+    $fSize = filesize($rawPath);
+    if($fSize < ($maxLineLog * 50)) { // 50 characters per line
+      return; // file too small
+    }
+    if($fSize < $maxBytes) { // Check by nLines
+      $cmd = "wc -l " . escapeshellarg($rawPath);
+      $output = trim(com_shell::execute($cmd));
+      $nLines = (int) explode(' ', $output)[0];
+      if ($nLines <= $maxLineLog) {
+        return;
+      }
+      else {
+        log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " nLines: $nLines/$maxLineLog");
+      }
+    }
+    else {
+      log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " Size $fSize/$maxBytes");
+    }
+    
+		$sudo = system::getCmdSudo();
+		$tmpFile = escapeshellarg(jeedom::getTmpFolder() . '/log_chunk_' . uniqid('', true));
+		$shellPath = escapeshellarg(realpath($rawPath));
+    try {
+      $bashCmd = "tail -c {$maxSizeLog}M {$shellPath} | tail -n {$maxLineLog} > {$tmpFile} && cat {$tmpFile} > {$shellPath}";
+      com_shell::execute("{$sudo} bash -o pipefail -c \"{$bashCmd}\"");
 		} catch (\Exception $e) {
 			log::add('jeedom', "error", "Caught exception in chunkLog(): " . $e->getMessage());
 
 			clearstatcache(true, $rawPath);
-			if (file_exists($rawPath) && filesize($rawPath) > (1024 * 1024 * $maxSizeLog)) {
+			if (file_exists($rawPath) && filesize($rawPath) > $maxBytes) {
 				// use truncate to empty file without destroying Inode
 				com_shell::execute("{$sudo} truncate -s 0 {$shellPath}");
 			}
@@ -191,7 +208,7 @@ class log extends AbstractLogger {
 		}
 	}
 
-	public static function getPathToLog($_log = 'core') {
+  public static function getPathToLog($_log = 'core') {
 		return __DIR__ . '/../../log/' . $_log;
 	}
 
