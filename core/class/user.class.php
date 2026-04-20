@@ -57,6 +57,14 @@ class user {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", __('LDAP Authentification', __FILE__));
+			// Configurer la verification des certificats SSL pour les certificats auto-signes
+			if (config::byKey('ldap:allow_selfsigned')) {
+				putenv('LDAPTLS_REQCERT=never');
+				ldap_set_option(NULL, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_NEVER);
+			} else {
+				putenv('LDAPTLS_REQCERT=demand');
+				ldap_set_option(NULL, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_DEMAND);
+			}
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 			if (!$ad) {
 				log::add("connection", "info", __('Connection LDAP Error', __FILE__));
@@ -65,6 +73,12 @@ class user {
 			log::add("connection", "info", __('LDAP Connection OK', __FILE__));
 			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+			// Appliquer l'option certificats auto-signes sur la connexion avant STARTTLS
+			if (config::byKey('ldap:allow_selfsigned')) {
+				ldap_set_option($ad, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_NEVER);
+			} else {
+				ldap_set_option($ad, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_DEMAND);
+			}
 			if (config::byKey('ldap:tls')) {
 				if (!ldap_start_tls($ad)) {
 					log::add("connection", "debug", __('start TLS KO', __FILE__));
@@ -153,9 +167,24 @@ class user {
 	}
 
 	public static function connectToLDAP() {
+		// Configurer la verification des certificats SSL pour les certificats auto-signes
+		if (config::byKey('ldap:allow_selfsigned')) {
+			putenv('LDAPTLS_REQCERT=never');
+			ldap_set_option(NULL, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_NEVER);
+		} else {
+			putenv('LDAPTLS_REQCERT=demand');
+			ldap_set_option(NULL, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_DEMAND);
+		}
+
 		$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 		ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 		ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
+		// Appliquer l'option certificats auto-signes sur la connexion avant STARTTLS
+		if (config::byKey('ldap:allow_selfsigned')) {
+			ldap_set_option($ad, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_NEVER);
+		} else {
+			ldap_set_option($ad, LDAP_OPT_X_TLS_REQUIRE_CERT, LDAP_OPT_X_TLS_DEMAND);
+		}
 		if (config::byKey('ldap:tls') && !ldap_start_tls($ad)) {
 			return false;
 		}
