@@ -181,10 +181,10 @@ class log extends AbstractLogger {
 			if ($nLines <= $maxLineLog) {
 				return;
 			} else {
-				log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " nLines: $nLines/$maxLineLog");
+				log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " nLines: {$nLines}/{$maxLineLog}");
 			}
 		} else {
-			log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " Size $fSize/$maxBytes");
+			log::add('jeedom', "debug", "Truncating " . basename($rawPath) . " Size {$fSize}/{$maxBytes}");
 		}
 
 		$sudo = system::getCmdSudo();
