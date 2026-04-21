@@ -163,7 +163,7 @@ class log extends AbstractLogger {
 		$maxLineLog = max((int)self::getConfig('maxLineLog', self::DEFAULT_MAX_LINE), self::DEFAULT_MAX_LINE);
 
 		$maxSizeLog = (int)self::getConfig('maxSizeLog', 10);
-		$maxSizeLog = max(1, $maxSizeLog);
+		$maxSizeLog = max(1, min(10, $maxSizeLog));
 		$maxBytes = $maxSizeLog * 1024 * 1024;
 
 		$fSize = filesize($rawPath);
