@@ -170,7 +170,7 @@ class log extends AbstractLogger {
 		$maxBytes = $maxSizeLog * 1024 * 1024;
 
 		$fSize = filesize($rawPath);
-		if ($fSize === false) {
+		if ($fSize === false || $fSize < ($maxLineLog * 50) ) {
 			return;
 		}
 
