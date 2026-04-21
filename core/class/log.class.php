@@ -160,7 +160,7 @@ class log extends AbstractLogger {
 			return;
 		}
 
-		$maxLineLog = (int)self::getConfig('maxLineLog', self::DEFAULT_MAX_LINE);
+		$maxLineLog = max((int)self::getConfig('maxLineLog', self::DEFAULT_MAX_LINE), self::DEFAULT_MAX_LINE);
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
