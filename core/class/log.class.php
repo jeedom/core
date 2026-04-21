@@ -191,7 +191,7 @@ class log extends AbstractLogger {
 			log::add('jeedom', "error", "Caught exception in chunkLog(): " . $e->getMessage());
 
 			clearstatcache(true, $rawPath);
-			if (file_exists($rawPath) && filesize($rawPath) > $maxBytes) {
+			if (file_exists($rawPath) && filesize($rawPath) > (10 *1024 *1024)) {
 				// use truncate to empty file without destroying Inode
 				com_shell::execute("{$sudo} truncate -s 0 {$shellPath}");
 			}
