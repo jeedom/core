@@ -21,8 +21,8 @@ jeedom.log.coloredThreshold = 300000
 jeedom.log.maxLines = 4000
 
 jeedom.log.list = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {
+  const paramsRequired = [];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -31,8 +31,8 @@ jeedom.log.list = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'list',
@@ -41,8 +41,8 @@ jeedom.log.list = function(_params) {
 }
 
 jeedom.log.removeAll = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {
+  const paramsRequired = [];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -51,8 +51,8 @@ jeedom.log.removeAll = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'removeAll',
@@ -63,9 +63,9 @@ jeedom.log.removeAll = function(_params) {
 // DEPRECATED: jeedom.log.getScTranslations -> remove in 4.6?
 jeedom.log.getScTranslations = function(_params) {
   jeedomUtils.deprecatedFunc('jeedom.log.getScTranslations', 'none', '4.6', '4.4')
-  var paramsSpecifics = {};
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const paramsSpecifics = {};
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'getScTranslations'
@@ -76,8 +76,8 @@ jeedom.log.getScTranslations = function(_params) {
 // DEPRECATED: jeedom.log.get -> remove in 4.6?
 jeedom.log.get = function(_params) {
   jeedomUtils.deprecatedFunc('jeedom.log.get', 'jeedom.log.getDelta', '4.6', '4.4')
-  var paramsRequired = ['log'];
-  var paramsSpecifics = {
+  const paramsRequired = ['log'];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -86,8 +86,8 @@ jeedom.log.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'get',
@@ -97,8 +97,8 @@ jeedom.log.get = function(_params) {
 }
 
 jeedom.log.getDelta = function(_params) {
-  var paramsRequired = ['log', 'position'];
-  var paramsSpecifics = {
+  const paramsRequired = ['log', 'position'];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -107,8 +107,8 @@ jeedom.log.getDelta = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'getDelta',
@@ -123,8 +123,8 @@ jeedom.log.getDelta = function(_params) {
 }
 
 jeedom.log.remove = function(_params) {
-  var paramsRequired = ['log'];
-  var paramsSpecifics = {
+  const paramsRequired = ['log'];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -133,8 +133,8 @@ jeedom.log.remove = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'remove',
@@ -144,8 +144,8 @@ jeedom.log.remove = function(_params) {
 }
 
 jeedom.log.clearAll = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {
+  const paramsRequired = [];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -154,8 +154,8 @@ jeedom.log.clearAll = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'clearAll',
@@ -164,8 +164,8 @@ jeedom.log.clearAll = function(_params) {
 }
 
 jeedom.log.clear = function(_params) {
-  var paramsRequired = ['log'];
-  var paramsSpecifics = {
+  const paramsRequired = ['log'];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -174,8 +174,8 @@ jeedom.log.clear = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/log.ajax.php';
   paramsAJAX.data = {
     action: 'clear',
@@ -258,14 +258,14 @@ jeedom.log.autoupdate = function(_params) {
     slaveId: _params.slaveId,
     global: (_params.callNumber == 1),
     success: function(result) {
-      var log = ''
-      var line
-      var isSysLog = (_params.display.id == 'pre_globallog') ? true : false
-      var isScenaroLog = (_params.display.id == 'pre_scenariolog') ? true : false
+      let log = ''
+      let line
+      const isSysLog = (_params.display.id == 'pre_globallog') ? true : false
+      const isScenaroLog = (_params.display.id == 'pre_scenariolog') ? true : false
 
       if (is_array(result)) {
         //line by line, numbered for system log:
-        for (var i in result.reverse()) {
+        for (const i in result.reverse()) {
           if (!isset(_params.search) || _params.search.value == '' || result[i].toLowerCase().indexOf(_params['search'].value.toLowerCase()) != -1) {
             line = result[i].trim()
             if (isSysLog) {
@@ -277,17 +277,17 @@ jeedom.log.autoupdate = function(_params) {
         }
       }
 
-      var colorMe = false
-      var dom_brutlogcheck = document.getElementById('brutlogcheck')
+      let colorMe = false
+      let isAuto = false
+      let dom_brutlogcheck = document.getElementById('brutlogcheck')
       if (dom_brutlogcheck == null) {
-        var isAuto = false
         dom_brutlogcheck = {
           checked: false
         }
       } else {
-        var isAuto = (dom_brutlogcheck.getAttribute('autoswitch') == 1) ? true : false
+        isAuto = (dom_brutlogcheck.getAttribute('autoswitch') == 1) ? true : false
       }
-      var isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
+      const isLong = (log.length > jeedom.log.coloredThreshold) ? true : false
 
       if (!dom_brutlogcheck.checked && !isLong) {
         colorMe = true
@@ -438,9 +438,9 @@ jeedom.log.autoUpdateDelta = function(_params) {
     return
   }
 
-  let dom_brutlogcheck = document.getElementById('brutlogcheck')
+  const dom_brutlogcheck = document.getElementById('brutlogcheck')
   // If element does NOT exists OR is disabled, Then colored
-  let colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
+  const colorMe = dom_brutlogcheck == null || !dom_brutlogcheck.checked
 
   jeedom.log.getDelta({
     log: _params.log,
@@ -505,7 +505,7 @@ jeedom.log.colorReplacement = {
 // DEPRECATED: jeedom.log.stringColorReplace -> remove in 4.6?
 jeedom.log.stringColorReplace = function(_str) {
   jeedomUtils.deprecatedFunc('jeedom.log.stringColorReplace', 'none', '4.6', '4.4')
-  for (var re in jeedom.log.colorReplacement) {
+  for (const re in jeedom.log.colorReplacement) {
     _str = _str.split(re).join(jeedom.log.colorReplacement[re])
   }
   //Avoid html code:
@@ -544,7 +544,7 @@ jeedom.log.scenarioColorReplace = function(_str) {
 
   }
   if (jeedom.log.colorScReplacement == null) return _str
-  for (var item in jeedom.log.colorScReplacement) {
+  for (const item in jeedom.log.colorScReplacement) {
     _str = _str.split(jeedom.log.colorScReplacement[item]['txt']).join(jeedom.log.colorScReplacement[item]['replace'].replace('::', jeedom.log.colorScReplacement[item]['txt']))
   }
   return _str
