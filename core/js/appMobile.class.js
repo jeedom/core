@@ -24,7 +24,7 @@ jeedom.appMobile.detected = function() {
 }
 
 jeedom.appMobile.postToApp = function (_action, _options = {}) {
-  let message = {}
+  const message = {}
   if (window.ReactNativeWebView != undefined) {
     message.action = _action
     message.options = _options
