@@ -18,6 +18,7 @@
         "Jeedom": "Jeedom",
         "Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens": "Maximale Anzahl von Elementebenen, die in Linkdiagrammen angezeigt werden",
         "Objet": "Objekt",
+        "Plugin": "Plugin",
         "Scénario": "Szenario",
         "Utilisateur": "Nutzer",
         "Vous n\\'êtes pas autorisé à faire cette action": "Sie dürfen diese Aktion nicht ausführen"
@@ -414,6 +415,7 @@
         "La clef ne peut pas être vide": "Der Schlüssel darf nicht leer sein",
         "Le type doit être un des suivants :": "Der Typ muss einer der folgenden sein:",
         "Link_id doit être un chiffre": "Link_id muss eine Nummer sein",
+        "Variable": "Variable",
         "Variable :": "Variable:"
     },
     "core\/class\/eqLogic.class.php": {
@@ -563,6 +565,8 @@
         "OK": "Ok",
         "Persistance du cache": "Cache-Persistenz",
         "Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire": "Für eine optimale Leistung sollte der Swapiness 20% nicht überschreiten, wenn Sie 1 GB oder weniger Speicher haben",
+        "Python": "Python",
+        "Python 3": "Python 3",
         "Restauration du cache": "Cache-Wiederherstellung",
         "Scénario actif": "Aktives Szenario",
         "Si la dernière heure enregistrée est fausse, il faut la remettre à zéro": "Wenn die zuletzt aufgezeichnete Stunde falsch ist, muss sie zurückgesetzt werden",
@@ -683,6 +687,42 @@
         "La methode n\\'existe pas": "Die Methode existiert nicht"
     },
     "core\/class\/recovery.class.php": {
+        "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64": "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64",
+        "Collecte des informations concernant l'image système": "Collecte des informations concernant l'image système",
+        "Début du téléchargement": "Début du téléchargement",
+        "Ecriture du fichier de configuration USB": "Ecriture du fichier de configuration USB",
+        "Erreur lors de la vérification de l'image système": "Erreur lors de la vérification de l'image système",
+        "Erreur lors du téléchargement": "Erreur lors du téléchargement",
+        "Espace disque disponible insuffisant": "Espace disque disponible insuffisant",
+        "Finalisation": "Finalisation",
+        "Finalisation de la procédure de restauration système": "Finalisation de la procédure de restauration système",
+        "Félicitations": "Félicitations",
+        "Image système invalide, reprise du téléchargement": "Image système invalide, reprise du téléchargement",
+        "Impossible d'accéder au périphérique USB, vérifier les logs http.error": "Impossible d'accéder au périphérique USB, vérifier les logs http.error",
+        "Impossible de mettre à jour le script de démarrage": "Impossible de mettre à jour le script de démarrage",
+        "Impossible de récupérer les informations relatives aux images systèmes": "Impossible de récupérer les informations relatives aux images systèmes",
+        "Impossible de trouver les informations requises concernant l'image système": "Impossible de trouver les informations requises concernant l'image système",
+        "Initialisation": "Initialisation",
+        "Initialisation de la procédure de restauration système": "Initialisation de la procédure de restauration système",
+        "Le nouveau système est prêt à être déployé automatiquement au prochain démarrage": "Le nouveau système est prêt à être déployé automatiquement au prochain démarrage",
+        "Le nouveau système est prêt à être installé depuis la clé USB de restauration": "Le nouveau système est prêt à être installé depuis la clé USB de restauration",
+        "Le script de démarrage a été mis à jour": "Le script de démarrage a été mis à jour",
+        "Le script de démarrage est à jour": "Le script de démarrage est à jour",
+        "Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT": "Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT",
+        "Périphérique USB non détecté": "Périphérique USB non détecté",
+        "Renommage du fichier de restauration système": "Renommage du fichier de restauration système",
+        "Restauration": "Restauration",
+        "Téléchargement annulé à la demande de l'utilisateur": "Téléchargement annulé à la demande de l'utilisateur",
+        "Téléchargement de l'image système": "Téléchargement de l'image système",
+        "Une erreur est survenue lors de la finalisation de la procédure de restauration système": "Une erreur est survenue lors de la finalisation de la procédure de restauration système",
+        "Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration": "Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration",
+        "Veuillez redémarrer pour effectuer la restauration": "Veuillez redémarrer pour effectuer la restauration",
+        "Vérification annulée à la demande de l'utilisateur": "Vérification annulée à la demande de l'utilisateur",
+        "Vérification de l'espace disque disponible": "Vérification de l'espace disque disponible",
+        "Vérification de l'intégrité de l'image système trouvée sur la cible": "Vérification de l'intégrité de l'image système trouvée sur la cible",
+        "Vérification de l'intégrité de l'image système téléchargée": "Vérification de l'intégrité de l'image système téléchargée",
+        "Vérification du périphérique USB": "Vérification du périphérique USB",
+        "Vérification du script de démarrage": "Vérification du script de démarrage",
         "en version": "in der Version"
     },
     "core\/class\/scenario.class.php": {
@@ -781,6 +821,7 @@
         "Suppression de la variable": "Variable löschen",
         "Suppression des blocs DANS et A programmés du scénario": "Löschen von programmierten IN- und A-Blöcken aus dem Szenario",
         "Type inconnu": "Unbekannter Typ",
+        "Variable": "Variable",
         "Veuillez trouver ci-joint le rapport": "Im Anhang finden Sie den Bericht",
         "Veuillez trouver ci-joint le rapport de santé généré le": "Anbei finden Sie den erstellten Gesundheitsbericht",
         "Veuillez trouver ci-joint le rapport url généré le": "Im Anhang finden Sie den URL-Bericht, der am erstellt wurde",
@@ -809,6 +850,10 @@
         "Scénario déclenché par": "Szenario ausgelöst durch"
     },
     "core\/class\/translate.class.php": {
+        "\" . $_content . \"": "\" . $_content . \"",
+        "\" . $text . \"": "\" . $text . \"",
+        "' . $text . '": "' . $text . '",
+        "(.*?)": "(.*?)",
         "content parts": "Inhaltsteile"
     },
     "core\/class\/update.class.php": {
@@ -896,6 +941,7 @@
         "Alarme armée": "Bewaffneter Alarm",
         "Alarme libérée": "Alarm ausgelöst",
         "Alarme mode": "Modusalarm",
+        "Album": "Album",
         "Alerte des commandes": "Bestellungen alarmieren",
         "Arrêt du scénario car il a dépassé son temps de timeout :": "Beenden des Szenarios, weil die Zeitüberschreitung überschritten wurde:",
         "Artiste": "Künstler",
@@ -937,6 +983,7 @@
         "Détection de fumée": "Raucherkennung",
         "Electricité": "Strom",
         "Eléments à lancer non trouvé": "Gegenstände zu werfen nicht gefunden",
+        "Energie": "Energie",
         "Enregistrement caméra": "Kameraaufnahme",
         "Environnement": "Umwelt",
         "Equipement désactivé - impossible d\\'exécuter la commande :": "Ausrüstung deaktiviert - Befehl kann nicht ausgeführt werden:",
@@ -983,6 +1030,7 @@
         "Minuteur pause": "Timer anhalten",
         "Minuteur reprendre": "Timer wieder aufnehmen",
         "Mise à jour du tag": "Tag-Update",
+        "Mode": "Mode",
         "Mode Etat": "Statusmodus",
         "Monitoring": "Überwachung",
         "Mouvement caméra vers la droite": "Kamerabewegung nach rechts",
@@ -1026,6 +1074,7 @@
         "Objets connectés": "Verbundene Objekte",
         "Off": "Aus",
         "On": "Wir",
+        "Organisation": "Organisation",
         "Ouvrant": "Öffnen",
         "Passerelle domotique": "Hausautomations-Gateway",
         "Pause": "Unterbrechung",
@@ -1059,6 +1108,7 @@
         "Robot": "Roboter",
         "Rotation": "Drehung",
         "Rotation Etat": "Zustandsrotation",
+        "Sabotage": "Sabotage",
         "Santé": "Gesundheit",
         "Scénario désactivé non lancement de la sous tâche": "Deaktiviertes Szenario, in dem die Unteraufgabe nicht gestartet wird",
         "Scénario exécuté automatiquement sur programmation": "Szenario wird beim Programmieren automatisch ausgeführt",
@@ -1073,12 +1123,14 @@
         "Sirène Etat": "Staatssirene",
         "Snapshot caméra": "Kamera-Schnappschuss",
         "Son (dB)": "Ton (dB)",
+        "Status": "Status",
         "Stop": "STOP",
         "Stop caméra": "Kamera stoppen",
         "Suivant": "Folgende",
         "Sécurité": "Sicherheit",
         "Température": "Temperatur",
         "Tension": "Spannung",
+        "Thermostat": "Thermostat",
         "Thermostat Déverrouillage": "Thermostat entsperren",
         "Thermostat Etat": "Thermostatstatus",
         "Thermostat Etat (HUMAIN)": "Thermostatstatus (MENSCH)",
@@ -1258,6 +1310,7 @@
         "Plein écran": "Ganzer Bildschirm",
         "Samedi": "Samstag",
         "Septembre": "September",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Sélectionner la commande": "Befehl auswählen",
         "Téléchargement CSV": "CSV-Download",
         "Téléchargement JPEG": "JPEG-Download",
@@ -1284,11 +1337,13 @@
         "Etat": "Zustand",
         "Historiser": "Chronik",
         "Id": "ICH WÜRDE",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Inverser": "Umgekehrt",
         "La valeur de la commande vaut par défaut la commande": "Der Wert des Befehls ist standardmäßig der Befehl",
         "Liste": "Auflistung",
         "Liste de valeur|texte séparé par ;": "Werteliste|Text getrennt durch;",
         "Logical ID": "Logische ID",
+        "Max": "Max",
         "Min": "Minimum",
         "Nom": "Name",
         "Nom de l'équipement ?": "Name der Ausrüstung?",
@@ -1358,6 +1413,7 @@
         "Lancement en arrière-plan non trouvé :": "Hintergrundstart nicht gefunden:"
     },
     "core\/php\/utils.inc.php": {
+        "(.*?)": "(.*?)",
         ". Faire, pour les nettoyer :": "Um sie zu reinigen:",
         "Base de données": "Datenbank",
         "Cette action n\\'est pas autorisée en mode démo": "Diese Aktion ist im Demo-Modus nicht zulässig",
@@ -1387,7 +1443,8 @@
         "Timeline": "Zeitleiste",
         "Trop de sessions, je ne peux pas lister :": "Zu viele Sitzungen kann ich nicht auflisten:",
         "Utilisateurs": "Benutzer",
-        "Vues": "Ansichten"
+        "Vues": "Ansichten",
+        "Widgets": "Widgets"
     },
     "core\/repo\/file.repo.php": {
         "Chemin": "Weg",
@@ -1397,6 +1454,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Führen Sie den folgenden Befehl in SSH aus: sudo chmod 777 -R",
         "Branche": "Zweig",
         "Branche pour le core Jeedom": "Jeedom Kernindustrie",
+        "Erreur lors du téléchargement": "Erreur lors du téléchargement",
         "Fichier non créé": "Datei nicht erstellt",
         "Fichier vide": "Leere Datei",
         "Impossible d\\'écrire dans le répertoire :": "In Verzeichnis kann nicht geschrieben werden:",
@@ -1442,6 +1500,7 @@
         "Taille": "Größe",
         "Type": "Typ",
         "Utilisation": "Verwendung",
+        "Votre version actuelle du core ne permet pas d\\'installer ce plugin": "Votre version actuelle du core ne permet pas d\\'installer ce plugin",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Möchten Sie zur Konfigurationsseite Ihres neuen Plugins gehen?"
     },
     "core\/repo\/market.list.repo.php": {
@@ -1606,6 +1665,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.binary.tmplicon.html": {
@@ -1613,6 +1673,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.binary.tmpliconline.html": {
@@ -1620,6 +1681,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.binary.tmplimg.html": {
@@ -1627,6 +1689,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.HygroThermographe.html": {
@@ -1634,6 +1697,7 @@
         "Date de valeur": "Datum der Wertstellung",
         "Echelle du widget": "Widget-Skala",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.badge.html": {
@@ -1643,6 +1707,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.compass.html": {
@@ -1655,6 +1720,7 @@
         "Echelle du widget, entre 0 et 1": "Widget-Skala zwischen 0 und 1",
         "Est": "Osten",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt",
         "Nord": "Norden",
         "Nord-Est": "Nordost",
@@ -1670,6 +1736,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.horizontal.html": {
@@ -1678,6 +1745,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.light.html": {
@@ -1685,6 +1753,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.line.html": {
@@ -1692,6 +1761,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.rain.html": {
@@ -1702,6 +1772,7 @@
         "Date de valeur": "Datum der Wertstellung",
         "Echelle du widget, entre 0 et 1": "Widget-Skala zwischen 0 und 1",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt",
         "Pas d'animation": "Keine Unterhaltung"
     },
@@ -1712,6 +1783,7 @@
         "Date de valeur": "Datum der Wertstellung",
         "Inverse la position de l'indicateur de valeur": "Kehrt die Position der Wertanzeige um",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.tile.html": {
@@ -1719,6 +1791,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.tmplmultistate.html": {
@@ -1726,6 +1799,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.numeric.vertical.html": {
@@ -1734,6 +1808,7 @@
         "Date de collecte": "Datum der Abholung",
         "Date de valeur": "Datum der Wertstellung",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Moyenne": "Durchschnitt"
     },
     "core\/template\/dashboard\/cmd.info.string.badge.html": {
@@ -1785,6 +1860,7 @@
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios"
     },
     "core\/template\/mobile\/cmd.info.binary.shutter.html": {
+        "Max": "Max",
         "Min": "Minimum",
         "Moyenne": "Durchschnitt"
     },
@@ -1804,6 +1880,7 @@
         "Valeur": "Wert"
     },
     "core\/template\/mobile\/cmd.info.numeric.shutter.html": {
+        "Max": "Max",
         "Min": "Minimum",
         "Moyenne": "Durchschnitt"
     },
@@ -1814,6 +1891,7 @@
     "core\/template\/scenario\/alert.default.html": {
         "Avertissement": "Warnung",
         "Important": "Wichtig",
+        "Information": "Information",
         "Message": "Nachricht",
         "Niveau": "Ebene",
         "Succès": "Erfolg",
@@ -1827,7 +1905,8 @@
         "Questions": "Fragen",
         "Réponse": "Antwort",
         "Réponses possibles (séparé par des ;)": "Mögliche Antworten (getrennt durch;)",
-        "Sélectionner la commande": "Befehl auswählen"
+        "Sélectionner la commande": "Befehl auswählen",
+        "Variable": "Variable"
     },
     "core\/template\/scenario\/changeTheme.default.html": {
         "theme": "Thema"
@@ -1925,6 +2004,7 @@
         "PDF": "Pdf",
         "PNG": "PNG",
         "Panel": "Platte",
+        "Plugin": "Plugin",
         "Principale": "Hauptsächlich",
         "Santé": "Gesundheit",
         "Sombre": "Dunkel",
@@ -2313,7 +2393,14 @@
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Möchten Sie das System wirklich neu starten?"
     },
     "desktop\/js\/recovery.js": {
-        "Erreur": "Fehler"
+        "Abandon, clé USB non détectée": "Abandon, clé USB non détectée",
+        "Annulation": "Annulation",
+        "Annuler la procédure de restauration système en cours ?": "Annuler la procédure de restauration système en cours ?",
+        "Clé USB détectée": "Clé USB détectée",
+        "Détection de la clé USB": "Détection de la clé USB",
+        "Erreur": "Fehler",
+        "Procédure annulée à la demande de l'utilisateur": "Procédure annulée à la demande de l'utilisateur",
+        "Veuillez insérer une clé USB dans le premier port en haut à droite": "Veuillez insérer une clé USB dans le premier port en haut à droite"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Nein",
@@ -2458,6 +2545,7 @@
         "Types Génériques sauvegardés": "Generische Typen gespeichert"
     },
     "desktop\/js\/update.js": {
+        "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Seien Sie vorsichtig, dieser Vorgang ist immer riskant und kann mehrere zehn Minuten dauern",
         "Aucune mise à jour en cours.": "Kein Update läuft",
         "Changelog": "Änderungsprotokoll",
@@ -2474,6 +2562,7 @@
         "Sauvegarder pour conserver les modifications": "Speichern, um Änderungen beizubehalten",
         "Supprimer": "Entfernen",
         "Vérifier": "überprüfen",
+        "Êtes-vous sûr de vouloir mettre à jour le plugin :": "Êtes-vous sûr de vouloir mettre à jour le plugin :",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Sind Sie sicher, dass Sie Pakete vom Typ aktualisieren möchten",
         "Êtes-vous sûr de vouloir supprimer :": "Sind Sie sicher, dass Sie löschen möchten:"
     },
@@ -2529,6 +2618,7 @@
         "Ajouter\/Editer viewZone": "ViewZone hinzufügen\/bearbeiten",
         "Année": "Jahr",
         "Aucun groupement": "Keine Gruppe",
+        "Camembert": "Camembert",
         "Colonne": "Spalte",
         "Configuration de la vue": "Konfiguration anzeigen",
         "Couleur": "Farbe",
@@ -2579,6 +2669,7 @@
         "Tableau": "Tabelle",
         "Tous": "Alle",
         "Type": "Typ",
+        "Variation": "Variation",
         "Visible": "Sichtbar",
         "Êtes-vous sûr de vouloir supprimer la vue": "Möchten Sie die Ansicht wirklich löschen?"
     },
@@ -2599,6 +2690,7 @@
         "Sauvegarde effectuée avec succès": "Speichern erfolgreich abgeschlossen",
         "Test": "Prüfung",
         "Time widget": "Zeit-Widget",
+        "Widgets": "Widgets",
         "Êtes-vous sûr de vouloir supprimer le widget": "Möchten Sie das Widget wirklich entfernen?"
     },
     "desktop\/modal\/about.php": {
@@ -2666,6 +2758,7 @@
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "Ersetzen Sie in allen Browsern, in denen ein Design angezeigt wird, dieses durch das angeforderte",
         "Tag": "Etikett",
         "Type générique": "Allgemeiner Typ",
+        "Variable": "Variable",
         "d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "offen. Sie können auch 4 Alarmstufen auswählen",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "um eine Anfrage zu stellen und dann die Antwort in einer Variablen zu speichern. Diese Aktion blockiert und endet nur, wenn",
         "de redémarrer": "Neustarten",
@@ -2761,6 +2854,7 @@
         "Maximum par jour": "Maximum pro Tag",
         "Maximum par mois": "Maximum pro Monat",
         "Maximum par semaine": "Maximum pro Woche",
+        "Minimum": "Minimum",
         "Minimum par année": "Minimum pro Jahr",
         "Minimum par heure": "Minimum pro Stunde",
         "Minimum par jour": "Minimum pro Tag",
@@ -2825,6 +2919,7 @@
         "Valeur retour d'état": "Das Wert der Rückkehr",
         "Valeurs interdites": "Verbotene Werte",
         "Valeurs possibles": "Mögliche Werte",
+        "Variation": "Variation",
         "Visible": "Sichtbar",
         "Voir": "Sehen",
         "Widget": "Widgets",
@@ -2878,9 +2973,11 @@
         "Limiter à": "Beschränken auf",
         "Lissage": "Glätten",
         "Maximum": "Maximal",
+        "Minimum": "Minimum",
         "Modifications sauvegardées avec succès": "Änderungen erfolgreich gespeichert",
         "Moyenne": "Durchschnitt",
         "Nom": "Name",
+        "Plugin": "Plugin",
         "Purge": "Spülen",
         "Timeline": "Zeitleiste",
         "Type": "Typ",
@@ -2891,6 +2988,7 @@
         "Affichage": "Anzeige",
         "Aire": "Fläche",
         "Aucun groupement": "Keine Gruppe",
+        "Camembert": "Camembert",
         "Colonne": "Spalte",
         "Droite": "Recht",
         "Echelle": "Maßstab",
@@ -2921,6 +3019,7 @@
         "Somme par jour": "Mengen pro Tag",
         "Somme par mois": "Mengen pro Monat",
         "Somme par semaine": "Mengen pro Woche",
+        "Variation": "Variation",
         "Visible": "Sichtbar"
     },
     "desktop\/modal\/cmd.history.php": {
@@ -2947,6 +3046,7 @@
         "Inverser": "Umgekehrt",
         "Nom": "Name",
         "Objet": "Objekt",
+        "Plugin": "Plugin",
         "Valider": "Validate"
     },
     "desktop\/modal\/cron.human.insert.php": {
@@ -2980,7 +3080,9 @@
         "Correction de la base de données": "Datenbank reparieren",
         "Corriger": "Richtig",
         "Corriger tout": "Alles reparieren",
+        "Index": "Index",
         "SQL": "SQL",
+        "Status": "Status",
         "Table": "Tabelle",
         "Vérification base de données": "Datenbanküberprüfung",
         "Êtes-vous sûr de vouloir corriger la table": "Sind Sie sicher, dass Sie die Tabelle korrigieren möchten?",
@@ -2989,6 +3091,7 @@
     "desktop\/modal\/editor.widget.creation.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Dashboard": "Armaturenbrett",
+        "Mobile": "Mobile",
         "Nom": "Name",
         "Sous-type": "Untertyp",
         "Type": "Typ",
@@ -3042,6 +3145,7 @@
         "Image": "Bild",
         "Image ajoutée avec succès": "Bild erfolgreich hinzugefügt",
         "Image enlevée": "Bild entfernt",
+        "Information": "Information",
         "Informations": "Information",
         "Informations brutes": "Rohdaten",
         "Informations complémentaires": "Weitere Informationen",
@@ -3074,6 +3178,7 @@
         "Template de widget": "Widget-Vorlage",
         "Tentative échouée": "Versuch fehlgeschlagen",
         "Texte de la cellule": "Zellentext",
+        "Transparent": "Transparent",
         "Type": "Typ",
         "Type de pile": "Batterietyp",
         "Valeur": "Wert",
@@ -3109,6 +3214,7 @@
         "Graphique de fond de tuile, paramètres de widget et optionnels.": "Kachelhintergrundgrafik, Widget und optionale Einstellungen",
         "Hauteur": "Höhe",
         "Heure": "Stunde",
+        "Information": "Information",
         "Jour": "Tag",
         "Lignes": "Linien",
         "Mise en forme de la tuile par défaut ou en mode tableau.": "Formatieren der Kachel standardmäßig oder im Tabellenmodus",
@@ -3129,6 +3235,7 @@
         "Style tableau": "Tabellenstil",
         "Tableau": "Tabelle",
         "Texte de la cellule": "Zellentext",
+        "Transparent": "Transparent",
         "Type": "Typ",
         "Type générique": "Allgemeiner Typ",
         "Valeur": "Wert",
@@ -3353,6 +3460,7 @@
         "Package": "Paket",
         "Rafraichir": "Auffrischen",
         "Remarque": "Bemerkung",
+        "Status": "Status",
         "Type": "Typ",
         "Version": "Ausführung",
         "Voulu par": "Gesucht von",
@@ -3431,8 +3539,10 @@
         "Niveau 2": "Stufe 2",
         "Niveau 3": "Stufe 3",
         "Nom": "Name",
+        "Normal": "Normal",
         "Opacité": "Opazität",
         "Par defaut": "Standard",
+        "Position": "Position",
         "Position X": "X-Position",
         "Position Y": "Y-Position",
         "Profondeur": "Tiefe",
@@ -3445,6 +3555,7 @@
         "Taille du widget": "Widget-Größe",
         "Texte": "Text",
         "Tous": "Alle",
+        "Transparent": "Transparent",
         "Type de zone": "Art des Gebiets",
         "Valeur entre 0 et 1. Une couleur de fond doit être définie.": "Wert zwischen 0 und 1. Eine Hintergrundfarbe muss definiert werden",
         "Widget au survol": "Hover-Widget"
@@ -3483,6 +3594,7 @@
         "Masquer quand le volet est ouvert": "Ausblenden, wenn der Verschluss geöffnet ist",
         "Masquer si": "Verstecken Sie, wenn",
         "Nom": "Name",
+        "Normal": "Normal",
         "Objet sauvegardé": "Gespeichertes Objekt",
         "Ouverture": "Öffnung",
         "Porte\/Fenêtre": "Tür \/ Fenster",
@@ -3524,6 +3636,7 @@
         "Modèle 3D": "3D-Modell",
         "Nom": "Name",
         "Nom object": "Objekt benennen",
+        "Position": "Position",
         "Puissance éclairage général (Défaut : 0.4)": "Allgemeine Beleuchtungsstärke (Standard: 0,4)",
         "Sauvegarder": "Zu schützen",
         "Supprimer": "Entfernen",
@@ -3553,6 +3666,7 @@
         "Lien": "Link",
         "Lien mort ou absent": "Totes oder fehlendes Glied",
         "Nom": "Name",
+        "Position": "Position",
         "Sauvegarder": "Zu schützen",
         "Supprimer": "Entfernen",
         "Supprimer l'image": "Bild löschen",
@@ -3671,6 +3785,7 @@
         "ID": "Identifikation",
         "Log": "Protokoll",
         "Log d'exécution du scénario": "Ausführungs Protokoll des Szenarios",
+        "Multi": "Multi",
         "Rafraîchir": "Aktualisieren",
         "Sauvegarder": "Zu schützen",
         "Scénario": "Szenario",
@@ -3724,6 +3839,7 @@
         "Note": "Notiz",
         "Ouvrir configuration de la commande.": "Offene Auftragskonfiguration",
         "Ouvrir la note.": "Öffnen Sie die Notiz",
+        "Plugin": "Plugin",
         "Recherche par": "Suche nach",
         "Rechercher": "Suchen nach",
         "Rechercher un équipement": "Suche nach Ausrüstung",
@@ -3732,6 +3848,7 @@
         "Résumé Domotique": "Übersicht Haus-Automatisierung",
         "Scénario": "Szenario",
         "Type Générique": "Generischer Typ",
+        "Variable": "Variable",
         "Voir les logs": "Siehe die Protokolle",
         "Vue": "Gesehen"
     },
@@ -3840,6 +3957,7 @@
         "Dashboard": "Armaturenbrett",
         "Le sous-type de la commande à replacer doit etre le meme que le sous-type de la commande remplacante": "Der Subtyp des zu ersetzenden Befehls muss mit dem Subtyp des Ersetzungsbefehls übereinstimmen",
         "Le type de la commande à replacer doit etre le meme que le type de la commande remplacante": "Die Art der zu ersetzenden Bestellung muss mit der Art der Ersatzbestellung übereinstimmen",
+        "Mobile": "Mobile",
         "Par": "Durch",
         "Remplacement réalisé avec succès. Nombre de widget remplacé :": "Austausch erfolgreich abgeschlossen. Anzahl der ersetzten Widgets:",
         "Remplacer": "Ersetzen",
@@ -3909,6 +4027,7 @@
         "Alternatif": "Alternative",
         "Altitude": "Höhe",
         "Altitude du bâtiment en mètres": "Höhe des Gebäudes in Metern",
+        "Analyse": "Analyse",
         "Anglais": "Englisch",
         "Archiver par paquet de": "Archiv nach Paket",
         "Arrondi": "Runden",
@@ -3919,6 +4038,7 @@
         "Aucun": "Nein",
         "Autorise l'affichage d'historique avec des dates dans le futur.": "Ermöglicht die Verlaufsanzeige mit Daten in der Zukunft",
         "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle": "Ermöglichen Sie die Installation von Abhängigkeiten desselben Plugins im Abstand von weniger als 45 Sekunden",
+        "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle": "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle",
         "Autoriser les dates dans le futur": "Termine in der Zukunft zulassen",
         "Avancée": "Fortschrittlich",
         "Basculer automatiquement de thème en fonction des horaires définis ci-dessous": "Wechseln Sie die Themen automatisch basierend auf den unten definierten Zeiten",
@@ -3928,6 +4048,7 @@
         "Base DN des utilisateurs": "Basis-DN",
         "Basique": "Basic",
         "Branches (Pas de support)": "Zweige (keine Unterstützung)",
+        "CP": "CP",
         "Cache": "Abdeckung",
         "Calcul": "Berechnung",
         "Catégories colorées": "Farbige Kategorien",
@@ -3971,6 +4092,7 @@
         "Defaut (support)": "Standard (Unterstützung)",
         "Dernière date connue": "Letztes bekanntes Datum",
         "Dernière date système connue par": "Letztes bekanntes Systemdatum",
+        "Desktop": "Desktop",
         "Distance de Levenshtein pour le calcul de correspondance<br>Nombre de différences entre les deux chaines en fonction du nombre de mots.": "Levenshtein Abstand zur Korrespondenzberechnung <br> Anzahl der Unterschiede zwischen den beiden Zeichenfolgen abhängig von der Anzahl der Wörter",
         "Domaine": "Domain",
         "Durée": "Dauer",
@@ -4092,6 +4214,8 @@
         "Mise à jour de": "Update von",
         "Mises à jour": "Updates",
         "Mises à jour\/Market": "Updates \/ Markt",
+        "Mobile": "Mobile",
+        "Mode": "Mode",
         "Mot de passe": "Passwort",
         "Mot de passe de l'utilisateur": "Benutzerpasswort",
         "Mot de passe de la base": "Basiskennwort",
@@ -4153,6 +4277,7 @@
         "Personnalisation": "Personalisierung",
         "Personnalisation avancée": "Erweiterte Anpassung",
         "Pleine largeur sur mobile": "Volle Breite auf Mobilgeräten",
+        "Plugin": "Plugin",
         "Plus la sensibilité est basse (de 1 à 99), plus la correspondance doit être exacte.": "Je niedriger die Empfindlichkeit (von 1 bis 99) ist, desto genauer ist die Entsprechung",
         "Poids des actions automatiques dans la réorganisation automatique des tuiles": "Gewicht automatischer Aktionen bei der automatischen Kachelreorganisation",
         "Poids des actions de consultation de l'historique dans la réorganisation automatique des tuiles": "Gewicht der Verlaufsabfrageaktionen bei der automatischen Kachelreorganisation",
@@ -4163,6 +4288,7 @@
         "Port redis": "Port wiederholen",
         "Port à utiliser (par défaut, LDAP : 389, LDAPS : 636)": "Zu verwendender Port (Standard, LDAP: 389, LDAPS: 636)",
         "Portugais (pas de support)": "Portugiesisch (keine Unterstützung)",
+        "Position": "Position",
         "Position et durée d'affichage des notifications en secondes (0 = infini)": "Position und Anzeigedauer der Benachrichtigungen in Sekunden (0 = unendlich)",
         "Postales": "Post",
         "Pour utiliser des icônes colorées, l'option Interface \/ Tuiles \/ Icônes widgets colorées doit être activée.": "Um farbige Symbole zu verwenden, muss die Option Benutzeroberfläche \/ Kacheln \/ Farbige Widgetsymbole aktiviert sein",
@@ -4318,6 +4444,7 @@
         "Activer le système cron": "Aktivieren Sie das Cron-System",
         "Ajouter": "Addieren",
         "Classe": "Klasse",
+        "Cron": "Cron",
         "Crée le": "Erstellt die",
         "Date lancement": "Startdatum",
         "Dernier lancement": "Letzter Start",
@@ -4335,6 +4462,7 @@
         "Queue id": "Schwanz-ID",
         "Rafraîchir": "Aktualisieren",
         "Sauvegarder": "Zu schützen",
+        "Status": "Status",
         "Statut": "Status",
         "Timeout (min)": "Zeitüberschreitung (min)",
         "Unique": "Single"
@@ -4463,6 +4591,7 @@
         "Extensions php": "PHP-Erweiterungen",
         "NOK": "NEIN",
         "OK": "Ok",
+        "Plugins": "Plugins",
         "Port configuré": "Konfigurierter Port",
         "Santé": "Gesundheit",
         "Santé de": "Gesundheit von",
@@ -4526,12 +4655,14 @@
         "Somme par semaine": "Mengen pro Woche",
         "Supprimer tout ou partie de cet historique.": "Löschen Sie diesen Verlauf ganz oder teilweise",
         "Sélectionner la commande": "Befehl auswählen",
+        "Variation": "Variation",
         "Vide l'affichage des courbes sur la zone.": "Löschen Sie die Anzeige der Kurven im Bereich",
         "Vider le champ de recherche": "Deaktivieren Sie das Suchfeld"
     },
     "desktop\/php\/index.php": {
         "Accueil": "Mein Haus",
         "Aide sur la page en cours": "Hilfe auf der aktuellen Seite",
+        "Analyse": "Analyse",
         "Centre de mise à jour": "Update Center",
         "Configuration": "Konfiguration",
         "Dashboard": "Armaturenbrett",
@@ -4557,12 +4688,14 @@
         "Outils": "Werkzeuge",
         "Personnalisation": "Personalisierung",
         "Personnalisation avancée": "Erweiterte Anpassung",
+        "Plugins": "Plugins",
         "Préférences": "Präferenzen",
         "Rapport": "Bericht",
         "Rapport de bug": "Fehlerbericht",
         "Recherche": "Suche",
         "Redémarrer": "Neu starten",
         "Remplacer": "Ersetzen",
+        "Restauration système": "Restauration système",
         "Réglages": "Einstellungen",
         "Résumé domotique": "Übersicht Haus-Automatisierung",
         "Santé": "Gesundheit",
@@ -4583,6 +4716,7 @@
         "Version": "Ausführung",
         "Version mobile": "Mobile Version",
         "Vue": "Gesehen",
+        "Widgets": "Widgets",
         "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "wird gestartet, bitte warten Sie 5 Minuten und aktualisieren Sie die Seite"
     },
     "desktop\/php\/interact.php": {
@@ -4617,6 +4751,7 @@
         "Nom": "Name",
         "Permet d'attendre le temps que l'état d'une lampe soit mis à jour par exemple": "Ermöglicht Ihnen beispielsweise zu warten, bis der Status einer Lampe aktualisiert wird",
         "Phrase(s)": "Phrase (n)",
+        "Plugins": "Plugins",
         "Rechercher une commande": "Suchen Sie nach einer Bestellung",
         "Rechercher | nom | :not(nom": "Suche | Name | :nicht(name",
         "Regexp d'exclusion": "Regexp-Ausschluss",
@@ -4783,6 +4918,7 @@
         "Mes plugins": "Meine Plugins",
         "Ouvrir": "Öffnen",
         "Panel": "Platte",
+        "Plugins": "Plugins",
         "Prérequis": "Voraussetzungen",
         "Rechercher": "Suchen nach",
         "Sauvegarder": "Zu schützen",
@@ -4811,6 +4947,7 @@
         "Design par défaut": "Standarddesign",
         "Designs 3D Plein écran": "3D-Designs im Vollbildmodus",
         "Designs Plein écran": "Vollbild-Designs",
+        "Desktop": "Desktop",
         "Déconnecter": "Trennen",
         "Déplier le panneau des vues": "Klappen Sie das Ansichtsfenster auf",
         "Error 401 Unauthorized": "Fehler 401 Nicht autorisiert",
@@ -4820,6 +4957,7 @@
         "Identification": "Identifizierung",
         "Informations complémentaires demandées par": "Zusätzliche Informationen angefordert von",
         "Interface": "Schnittstelle",
+        "Mobile": "Mobile",
         "Mot de passe": "Passwort",
         "Notifications": "Benachrichtigungen",
         "Objet affiché lors de l’arrivée sur le dashboard": "Objekt bei Ankunft auf dem Armaturenbrett angezeigt",
@@ -4852,13 +4990,22 @@
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
         "Annuler": "Abbrechen",
         "Arrêter": "Beenden",
+        "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64": "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64",
+        "Consulter la documentation dédiée pour plus de détails": "Consulter la documentation dédiée pour plus de détails",
         "Documentation": "Dokumentation",
+        "Impossible de mettre à jour le script de démarrage, vérifier les logs": "Impossible de mettre à jour le script de démarrage, vérifier les logs",
         "La dernière image système est téléchargée sur le support de stockage interne.": "La dernière image système est téléchargée sur le support de stockage interne",
         "La dernière image système est téléchargée sur une clé USB.": "La dernière image système est téléchargée sur une clé USB",
         "La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite.": "La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite",
         "La restauration du système est effectuée au prochain démarrage.": "La restauration du système est effectuée au prochain démarrage",
+        "Rafraîchir la page": "Rafraîchir la page",
         "Redémarrer": "Neu starten",
-        "Sauvegardes": "Sicherungen"
+        "Restauration USB": "Restauration USB",
+        "Restauration automatique": "Restauration automatique",
+        "Restauration système": "Restauration système",
+        "Sauvegardes": "Sicherungen",
+        "Une sauvegarde récente doit être téléchargée avant de restaurer le système": "Une sauvegarde récente doit être téléchargée avant de restaurer le système",
+        "intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution": "intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution"
     },
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Nicht autorisierter Zugriff",
@@ -4878,8 +5025,10 @@
         "Filtre par plugin": "Nach Plugin filtern",
         "Filtrer": "Filter",
         "Filtres": "Filter",
+        "Mode": "Mode",
         "Objets": "Objekte",
         "Options": "Optionen",
+        "Plugins": "Plugins",
         "Rechercher": "Suchen nach",
         "Remplace l’équipement et ses commandes (scénarios, etc.) ou copie seulement les propriétés souhaitées.": "Ersetzt die Ausrüstung und ihre Befehle (Szenarien usw.) oder kopiert nur die gewünschten Eigenschaften",
         "Remplacements": "Ersatz",
@@ -4902,6 +5051,7 @@
         "Extension": "Erweiterung",
         "Id rapport": "ID-Bericht",
         "Nom": "Name",
+        "Plugin": "Plugin",
         "Rapport(s)": "Berichte)",
         "Rechercher": "Suchen nach",
         "Santé": "Gesundheit",
@@ -5102,6 +5252,7 @@
         "ID": "Identifikation",
         "IP": "IPs",
         "Liste des utilisateurs": "Liste der Benutzer",
+        "Profil": "Profil",
         "Périphérique(s) enregistré(s)": "Registrierte Geräte",
         "Sauvegarder": "Zu schützen",
         "Session(s) active(s)": "Aktive Sitzung (en)",
@@ -5158,6 +5309,7 @@
         "Template": "Schablone",
         "Test": "Prüfung",
         "Type": "Typ",
+        "Widgets": "Widgets",
         "widget": "Widget",
         "widgets": "Widgets"
     },
@@ -5178,19 +5330,22 @@
     "mobile\/html\/cron.html": {
         "Action": "Aktion",
         "Date lancement": "Startdatum",
-        "Nom": "Name"
+        "Nom": "Name",
+        "Status": "Status"
     },
     "mobile\/html\/deamon.html": {
         "Action": "Aktion",
         "Date lancement": "Startdatum",
-        "Nom": "Name"
+        "Nom": "Name",
+        "Status": "Status"
     },
     "mobile\/html\/eqAnalyse.html": {
         "Alertes": "Warnungen",
         "Batteries": "Batterien"
     },
     "mobile\/html\/health.html": {
-        "Nom": "Name"
+        "Nom": "Name",
+        "Status": "Status"
     },
     "mobile\/html\/history.html": {
         "Aire": "Fläche",
@@ -5220,14 +5375,17 @@
         "Somme par heure": "Mengen pro Stunde",
         "Somme par jour": "Mengen pro Tag",
         "Somme par mois": "Mengen pro Monat",
-        "Somme par semaine": "Mengen pro Woche"
+        "Somme par semaine": "Mengen pro Woche",
+        "Variation": "Variation"
     },
     "mobile\/html\/home.html": {
+        "Analyse": "Analyse",
         "Autre": "Andere",
         "Designs": "Design",
         "Equipements": "Geräte",
         "Message(s)": "Nachricht (en)",
         "Messages": "Nachricht",
+        "Plugins": "Plugins",
         "Scénario": "Szenario",
         "Scénarios": "Szenarien",
         "Vues": "Ansichten"

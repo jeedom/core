@@ -415,6 +415,7 @@
         "La clef ne peut pas être vide": "La clave no puede estar vacía",
         "Le type doit être un des suivants :": "El tipo debe ser uno de los siguientes:",
         "Link_id doit être un chiffre": "Link_id debe ser un número",
+        "Variable": "Variable",
         "Variable :": "Variable:"
     },
     "core\/class\/eqLogic.class.php": {
@@ -575,6 +576,7 @@
         "Système à jour": "Sistema actualizado",
         "Taille base de données": "Tamaño de la base de datos",
         "Test de connexion au market": "Test de conexión al market",
+        "Total": "Total",
         "Version": "Versión",
         "Version Jeedom": "Versión Jeedom",
         "Version OS": "Versión SO",
@@ -685,6 +687,42 @@
         "La methode n\\'existe pas": "El método no existe"
     },
     "core\/class\/recovery.class.php": {
+        "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64": "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64",
+        "Collecte des informations concernant l'image système": "Collecte des informations concernant l'image système",
+        "Début du téléchargement": "Début du téléchargement",
+        "Ecriture du fichier de configuration USB": "Ecriture du fichier de configuration USB",
+        "Erreur lors de la vérification de l'image système": "Erreur lors de la vérification de l'image système",
+        "Erreur lors du téléchargement": "Erreur lors du téléchargement",
+        "Espace disque disponible insuffisant": "Espace disque disponible insuffisant",
+        "Finalisation": "Finalisation",
+        "Finalisation de la procédure de restauration système": "Finalisation de la procédure de restauration système",
+        "Félicitations": "Félicitations",
+        "Image système invalide, reprise du téléchargement": "Image système invalide, reprise du téléchargement",
+        "Impossible d'accéder au périphérique USB, vérifier les logs http.error": "Impossible d'accéder au périphérique USB, vérifier les logs http.error",
+        "Impossible de mettre à jour le script de démarrage": "Impossible de mettre à jour le script de démarrage",
+        "Impossible de récupérer les informations relatives aux images systèmes": "Impossible de récupérer les informations relatives aux images systèmes",
+        "Impossible de trouver les informations requises concernant l'image système": "Impossible de trouver les informations requises concernant l'image système",
+        "Initialisation": "Initialisation",
+        "Initialisation de la procédure de restauration système": "Initialisation de la procédure de restauration système",
+        "Le nouveau système est prêt à être déployé automatiquement au prochain démarrage": "Le nouveau système est prêt à être déployé automatiquement au prochain démarrage",
+        "Le nouveau système est prêt à être installé depuis la clé USB de restauration": "Le nouveau système est prêt à être installé depuis la clé USB de restauration",
+        "Le script de démarrage a été mis à jour": "Le script de démarrage a été mis à jour",
+        "Le script de démarrage est à jour": "Le script de démarrage est à jour",
+        "Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT": "Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT",
+        "Périphérique USB non détecté": "Périphérique USB non détecté",
+        "Renommage du fichier de restauration système": "Renommage du fichier de restauration système",
+        "Restauration": "Restauration",
+        "Téléchargement annulé à la demande de l'utilisateur": "Téléchargement annulé à la demande de l'utilisateur",
+        "Téléchargement de l'image système": "Téléchargement de l'image système",
+        "Une erreur est survenue lors de la finalisation de la procédure de restauration système": "Une erreur est survenue lors de la finalisation de la procédure de restauration système",
+        "Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration": "Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration",
+        "Veuillez redémarrer pour effectuer la restauration": "Veuillez redémarrer pour effectuer la restauration",
+        "Vérification annulée à la demande de l'utilisateur": "Vérification annulée à la demande de l'utilisateur",
+        "Vérification de l'espace disque disponible": "Vérification de l'espace disque disponible",
+        "Vérification de l'intégrité de l'image système trouvée sur la cible": "Vérification de l'intégrité de l'image système trouvée sur la cible",
+        "Vérification de l'intégrité de l'image système téléchargée": "Vérification de l'intégrité de l'image système téléchargée",
+        "Vérification du périphérique USB": "Vérification du périphérique USB",
+        "Vérification du script de démarrage": "Vérification du script de démarrage",
         "en version": "en versión"
     },
     "core\/class\/scenario.class.php": {
@@ -783,6 +821,7 @@
         "Suppression de la variable": "Eliminar variable",
         "Suppression des blocs DANS et A programmés du scénario": "Eliminación de bloques IN y A programados del escenario",
         "Type inconnu": "Tipo desconocido",
+        "Variable": "Variable",
         "Veuillez trouver ci-joint le rapport": "Por favor, adjunta el informe",
         "Veuillez trouver ci-joint le rapport de santé généré le": "Se adjunta el informe de salud generado el",
         "Veuillez trouver ci-joint le rapport url généré le": "Adjunte el informe de URL generado en",
@@ -811,6 +850,10 @@
         "Scénario déclenché par": "Escenario desencadenado por"
     },
     "core\/class\/translate.class.php": {
+        "\" . $_content . \"": "\" . $_content . \"",
+        "\" . $text . \"": "\" . $text . \"",
+        "' . $text . '": "' . $text . '",
+        "(.*?)": "(.*?)",
         "content parts": "partes de contenido"
     },
     "core\/class\/update.class.php": {
@@ -1062,6 +1105,7 @@
         "Redémarrage": "Reanudar",
         "Retour base": "De regreso a la base",
         "Retour à l\\'état normal des commandes": "Volver al estado normal del pedido",
+        "Robot": "Robot",
         "Rotation": "Rotación",
         "Rotation Etat": "Rotación de estado",
         "Sabotage": "Sabotaje",
@@ -1132,6 +1176,7 @@
         "Aucune entrée trouvée": "Entradas no encontradas",
         "Entrées par page": "Entradas por página",
         "Rechercher": "Buscar",
+        "de": "de",
         "entrées": "entradas",
         "à": "para"
     },
@@ -1147,6 +1192,7 @@
         "Avril": "Abril",
         "Chaque": "Cada",
         "Day of Month": "Dia del mes",
+        "De": "De",
         "Dimanche": "Domingo",
         "Décembre": "Diciembre",
         "Février": "Febrero",
@@ -1264,6 +1310,7 @@
         "Plein écran": "Pantalla completa",
         "Samedi": "Sábado",
         "Septembre": "Septiembre",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Sélectionner la commande": "Seleccione el comando",
         "Téléchargement CSV": "Descarga CSV",
         "Téléchargement JPEG": "Descarga JPEG",
@@ -1290,6 +1337,7 @@
         "Etat": "Estado",
         "Historiser": "Guardar historial",
         "Id": "IDENTIFICACIÓN",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Inverser": "Invertir",
         "La valeur de la commande vaut par défaut la commande": "El valor del comando es por defecto el comando",
         "Liste": "Listado",
@@ -1365,6 +1413,7 @@
         "Lancement en arrière-plan non trouvé :": "Lanzamiento en segundo plano no encontrado:"
     },
     "core\/php\/utils.inc.php": {
+        "(.*?)": "(.*?)",
         ". Faire, pour les nettoyer :": "Para limpiarlos:",
         "Base de données": "Base de datos",
         "Cette action n\\'est pas autorisée en mode démo": "Esta acción no está permitida en modo demo",
@@ -1381,6 +1430,7 @@
         "Mises à jour": "Actualizaciones",
         "Moteur de tâches": "Motor de tareas",
         "Objets": "Objetos",
+        "Panel": "Panel",
         "Personnalisation": "Personalización",
         "Préférences": "Preferencias",
         "Rapports": "Relaciones",
@@ -1393,7 +1443,8 @@
         "Timeline": "Cronología",
         "Trop de sessions, je ne peux pas lister :": "Demasiadas sesiones, no puedo enumerar:",
         "Utilisateurs": "Usuarios",
-        "Vues": "Vistas"
+        "Vues": "Vistas",
+        "Widgets": "Widgets"
     },
     "core\/repo\/file.repo.php": {
         "Chemin": "Ruta",
@@ -1403,6 +1454,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Ejecute el siguiente comando en SSH: sudo chmod 777 -R",
         "Branche": "Rama",
         "Branche pour le core Jeedom": "Rama para el núcleo Jeedom",
+        "Erreur lors du téléchargement": "Erreur lors du téléchargement",
         "Fichier non créé": "Archivo no creado",
         "Fichier vide": "Archivo vacío",
         "Impossible d\\'écrire dans le répertoire :": "No se puede escribir en el directorio:",
@@ -1448,6 +1500,7 @@
         "Taille": "Tamaño",
         "Type": "Tipo",
         "Utilisation": "Uso",
+        "Votre version actuelle du core ne permet pas d\\'installer ce plugin": "Votre version actuelle du core ne permet pas d\\'installer ce plugin",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "¿Quieres ir a la página de configuración de su nuevo plugin?"
     },
     "core\/repo\/market.list.repo.php": {
@@ -1852,7 +1905,8 @@
         "Questions": "Preguntas",
         "Réponse": "Respuesta",
         "Réponses possibles (séparé par des ;)": "Posibles respuestas (separadas por;)",
-        "Sélectionner la commande": "Seleccione el comando"
+        "Sélectionner la commande": "Seleccione el comando",
+        "Variable": "Variable"
     },
     "core\/template\/scenario\/changeTheme.default.html": {
         "theme": "tema"
@@ -1879,7 +1933,8 @@
         "Désactiver": "Desactivar",
         "Equipement": "Dispositivos",
         "Masquer": "Ocultar",
-        "Sélectionner un équipement": "Seleccione un dispositivo"
+        "Sélectionner un équipement": "Seleccione un dispositivo",
+        "Visible": "Visible"
     },
     "core\/template\/scenario\/event.default.html": {
         "Commande": "Ordenado",
@@ -1889,6 +1944,7 @@
     "core\/template\/scenario\/exportHistory.default.html": {
         "CSV": "CSV",
         "Commandes": "Comandos",
+        "De": "De",
         "Exporter en": "Exportar en",
         "Historique à exporter": "Historial para exportar",
         "Nom": "Nombre",
@@ -1947,6 +2003,7 @@
         "Largeur (px)": "Ancho (px)",
         "PDF": "PDF",
         "PNG": "PNG",
+        "Panel": "Panel",
         "Plugin": "Enchufar",
         "Principale": "Principal",
         "Santé": "Salud",
@@ -2003,7 +2060,8 @@
     "core\/template\/scenario\/widget.default.html": {
         "Activer": "Activar",
         "Désactiver": "Desactivar",
-        "Masquer": "Ocultar"
+        "Masquer": "Ocultar",
+        "Visible": "Visible"
     },
     "desktop\/common\/js\/ui.js": {
         "Historique": "Historial"
@@ -2034,6 +2092,7 @@
         "Testeur d'expression": "Probador de expresión",
         "Thème alternatif": "Tema alternativo",
         "Thème principal": "Tema principal",
+        "Variables": "Variables",
         "Voulez vous recharger la page maintenant ?": "¿Quieres volver a cargar la página ahora?"
     },
     "desktop\/js\/administration.js": {
@@ -2290,6 +2349,7 @@
         "Documentation": "Documentación",
         "Désactiver": "Desactivar",
         "Détails": "Detalles",
+        "Error": "Error",
         "Gestion Plugins": "Gestión de complementos",
         "Heartbeat (min)": "Latido del corazón (min)",
         "Inactif": "Inactivo",
@@ -2333,7 +2393,14 @@
         "Êtes-vous sûr de vouloir redémarrer le système ?": "¿Está seguro de que desea reiniciar el sistema?"
     },
     "desktop\/js\/recovery.js": {
-        "Erreur": "Error"
+        "Abandon, clé USB non détectée": "Abandon, clé USB non détectée",
+        "Annulation": "Annulation",
+        "Annuler la procédure de restauration système en cours ?": "Annuler la procédure de restauration système en cours ?",
+        "Clé USB détectée": "Clé USB détectée",
+        "Détection de la clé USB": "Détection de la clé USB",
+        "Erreur": "Error",
+        "Procédure annulée à la demande de l'utilisateur": "Procédure annulée à la demande de l'utilisateur",
+        "Veuillez insérer une clé USB dans le premier port en haut à droite": "Veuillez insérer une clé USB dans le premier port en haut à droite"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Ninguno",
@@ -2478,6 +2545,7 @@
         "Types Génériques sauvegardés": "Tipos genéricos guardados"
     },
     "desktop\/js\/update.js": {
+        "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Tenga cuidado, esta operación siempre es arriesgada y puede llevar varias decenas de minutos",
         "Aucune mise à jour en cours.": "No hay actualizaciones en progreso",
         "Changelog": "Cambios",
@@ -2494,6 +2562,7 @@
         "Sauvegarder pour conserver les modifications": "Guardar para conservar los cambios",
         "Supprimer": "Eliminar",
         "Vérifier": "Verificar",
+        "Êtes-vous sûr de vouloir mettre à jour le plugin :": "Êtes-vous sûr de vouloir mettre à jour le plugin :",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "¿Está seguro de que desea actualizar los paquetes de tipo",
         "Êtes-vous sûr de vouloir supprimer :": "Estas seguro que quieres borrarlo:"
     },
@@ -2514,6 +2583,7 @@
         "Identifiant": "IDENTIFICACIÓN",
         "L\\'utilisateur a bien été supprimé": "Se ha borrado el usuario",
         "Le login d\\'un utilisateur ne peut être vide !": "¡El inicio de sesión de un usuario no puede estar vacío!",
+        "Local": "Local",
         "Modification effectuée": "Modificación realizada",
         "Mot de passe": "Contraseña",
         "NOK": "No está bien",
@@ -2562,6 +2632,7 @@
         "Graphique": "Gráfico",
         "Groupement": "Agrupar",
         "Hauteur": "Altura",
+        "Invisible": "Invisible",
         "Jour": "Día",
         "Largeur": "Ancho",
         "Le nom de la viewZone ne peut être vide": "El nombre de la Viewzone no puede estar vació",
@@ -2599,6 +2670,7 @@
         "Tous": "Todos",
         "Type": "Tipo",
         "Variation": "Variación",
+        "Visible": "Visible",
         "Êtes-vous sûr de vouloir supprimer la vue": "¿Está seguro de que desea eliminar la vista?"
     },
     "desktop\/js\/widgets.js": {
@@ -2618,6 +2690,7 @@
         "Sauvegarde effectuée avec succès": "Guardado correctamente",
         "Test": "Prueba",
         "Time widget": "Widget de tiempo",
+        "Widgets": "Widgets",
         "Êtes-vous sûr de vouloir supprimer le widget": "¿Estás seguro de que quieres eliminar el widget?"
     },
     "desktop\/modal\/about.php": {
@@ -2685,6 +2758,7 @@
         "Sur tous les navigateurs qui affichent un design, le remplace par celui demandé": "En todos los navegadores que muestran un diseño, sustituido por uno solicitado",
         "Tag": "Etiqueta",
         "Type générique": "Tipo genérico",
+        "Variable": "Variable",
         "d'ouvert. Vous pouvez en plus choisir 4 niveaux d'alerte": "abierto. También puedes elegir 4 niveles de alerta",
         "de faire une demande puis de stocker la réponse dans une variable. Cette action est bloquante et ne finit que si": "para hacer una solicitud y luego almacenar la respuesta en una variable. Esta acción es de bloqueo y finaliza solo si",
         "de redémarrer": "Para reiniciar",
@@ -2745,6 +2819,7 @@
         "Durée avant retour d'état": "Duración antes de la devolución del estado",
         "Décocher pour désactiver l\\'action": "Desactive la casilla para desactivar Acción",
         "Défaut": "Por defecto",
+        "En": "En",
         "Envoyer Historique": "Enviar historial",
         "Envoyer à InfluxDB": "Enviar a InfluxDB",
         "Equipement(s)": "Equipo(s)",
@@ -2845,6 +2920,7 @@
         "Valeurs interdites": "Valores prohibidos",
         "Valeurs possibles": "Valores posibles",
         "Variation": "Variación",
+        "Visible": "Visible",
         "Voir": "Ver",
         "Widget": "Widgets",
         "avant la copie": "antes de copiar",
@@ -2919,6 +2995,7 @@
         "Empiler": "Pila",
         "Escalier": "Escalera",
         "Gauche": "Izquierda",
+        "Invisible": "Invisible",
         "Ligne": "Línea",
         "Maximum par année": "Máximo por año",
         "Maximum par heure": "Máximo por hora",
@@ -2942,7 +3019,8 @@
         "Somme par jour": "Suma por día",
         "Somme par mois": "Suma por mes",
         "Somme par semaine": "Cantidad por semana",
-        "Variation": "Variación"
+        "Variation": "Variación",
+        "Visible": "Visible"
     },
     "desktop\/modal\/cmd.history.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -3104,6 +3182,7 @@
         "Type": "Tipo",
         "Type de pile": "Tipo de Batería",
         "Valeur": "Valor",
+        "Visible": "Visible",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Puede encontrar aquí cualquier información adicional solicitada por un complemento en el equipo Jeedom",
         "minutes": "minutos",
         "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "¿Estás seguro de que deseas eliminar la imagen de este equipo?",
@@ -3160,6 +3239,7 @@
         "Type": "Tipo",
         "Type générique": "Tipo genérico",
         "Valeur": "Valor",
+        "Visible": "Visible",
         "Widget": "Widgets"
     },
     "desktop\/modal\/eqLogic.human.insert.php": {
@@ -3329,7 +3409,8 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "ID": "IDENTIFICACIÓN",
         "Informations": "Información",
-        "Nom": "Nombre"
+        "Nom": "Nombre",
+        "Visible": "Visible"
     },
     "desktop\/modal\/object.display.php": {
         "L\\'objet n\\'a aucun élément :": "El objeto no tiene elementos:",
@@ -3360,6 +3441,7 @@
         "Résumé Défini": "Resumen definido",
         "Sauvegarder": "Para salvaguardar",
         "Si grisé, alors il n'est pas remonté en résumé global": "Si está atenuado, entonces no ha subido en resumen general",
+        "Visible": "Visible",
         "sur la Synthèse": "en la síntesis",
         "sur le Dashboard": "En el Dashboard",
         "Êtes-vous sûr de vouloir supprimer l\\'objet": "¿Está seguro de que desea eliminar el objeto?"
@@ -3457,6 +3539,7 @@
         "Niveau 2": "Nivel 2",
         "Niveau 3": "Nivel 3",
         "Nom": "Nombre",
+        "Normal": "Normal",
         "Opacité": "Opacidad",
         "Par defaut": "Por defecto",
         "Position": "Posición",
@@ -3511,6 +3594,7 @@
         "Masquer quand le volet est ouvert": "Ocultar cuando el obturador está abierto",
         "Masquer si": "Ocultar si",
         "Nom": "Nombre",
+        "Normal": "Normal",
         "Objet sauvegardé": "Objeto guardado",
         "Ouverture": "Apertura",
         "Porte\/Fenêtre": "Puerta \/ ventana",
@@ -3599,6 +3683,7 @@
         "Dernier lancement": "Última ejecución",
         "Désactiver": "Desactivar",
         "Gestion automatique": "Gestión automática",
+        "Local": "Local",
         "NOK": "No está bien",
         "Nom": "Nombre",
         "OK": "Bueno",
@@ -3612,6 +3697,7 @@
         "Gestion automatique": "Gestión automática",
         "Installation": "Instalación",
         "Installation en cours": "Instalación en curso",
+        "Local": "Local",
         "NOK": "No está bien",
         "Nom": "Nombre",
         "OK": "Bueno",
@@ -3699,6 +3785,7 @@
         "ID": "IDENTIFICACIÓN",
         "Log": "Registro",
         "Log d'exécution du scénario": "Log de ejecución del escenario",
+        "Multi": "Multi",
         "Rafraîchir": "Refrescar",
         "Sauvegarder": "Para salvaguardar",
         "Scénario": "Escenario",
@@ -3707,6 +3794,7 @@
         "Sync": "Sincronizar",
         "Temps réel": "Tiempo real",
         "Timeline": "Cronología",
+        "Visible": "Visible",
         "Voir les logs": "Ver los registros",
         "Êtes-vous sûr de vouloir supprimer le scénario": "¿Estas seguro de que deseas eliminar el escenario?"
     },
@@ -3760,6 +3848,7 @@
         "Résumé Domotique": "Resumen Domótica",
         "Scénario": "Escenario",
         "Type Générique": "Tipo genérico",
+        "Variable": "Variable",
         "Voir les logs": "Ver los registros",
         "Vue": "Visto"
     },
@@ -3837,6 +3926,7 @@
         "Synthèse": "Síntesis",
         "Timeline": "Cronología",
         "Version mobile": "Version móvil",
+        "Visible": "Visible",
         "Visualisation": "Visualización",
         "Visualisation et exécution": "Visualización y ejecución",
         "Vue": "Visto",
@@ -4091,6 +4181,7 @@
         "Interface": "Interfaz",
         "Interface d’administration de la base de données.": "Interfaz de administración de bases de datos",
         "Interface d’administration système.": "Interfaz de administración del sistema",
+        "Interfaces": "Interfaces",
         "Italien (pas de support)": "Italiano (sin soporte)",
         "Jamais": "Nunca",
         "L'équipe": "El equipo",
@@ -4130,6 +4221,7 @@
         "Mot de passe de la base": "Contraseña base",
         "Moteur TTS": "Motor TTS",
         "Moteur de cache": "Motor de caché",
+        "Mysql": "Mysql",
         "Méthode de comptage": "Método de conteo",
         "N'autoriser que les méthodes api (regexp)": "Permitir solo métodos API (regexp)",
         "Ne charge pas jQuery\/Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode)": "No carga jQuery\/Boostrap y sus bibliotecas (Advertencia: los complementos instalados deben admitir este modo)",
@@ -4200,6 +4292,7 @@
         "Position et durée d'affichage des notifications en secondes (0 = infini)": "Posición y duración de visualización de las notificaciones en segundos (0 = infinito)",
         "Postales": "Postal",
         "Pour utiliser des icônes colorées, l'option Interface \/ Tuiles \/ Icônes widgets colorées doit être activée.": "Para usar iconos de colores, la opción Interfaz \/ Azulejos \/ Iconos de widget de colores debe estar habilitada",
+        "Principal": "Principal",
         "Principal de": "Director de",
         "Profondeur pour les commandes": "Profundidad para los comandos",
         "Profondeur pour les objets": "Profundidad para los objetos",
@@ -4351,6 +4444,7 @@
         "Activer le système cron": "Activar sistema cron",
         "Ajouter": "Agregar",
         "Classe": "Clase",
+        "Cron": "Cron",
         "Crée le": "Creó el",
         "Date lancement": "Fecha lanzamiento",
         "Dernier lancement": "Última ejecución",
@@ -4424,6 +4518,7 @@
         "ID": "IDENTIFICACIÓN",
         "Inactif": "Inactivo",
         "Inactifs": "Inactivo",
+        "Invisible": "Invisible",
         "Nom": "Nombre",
         "Nombre d'objets :": "Numero de objetos:",
         "Nombre d'équipements :": "Numero de equipos:",
@@ -4433,7 +4528,8 @@
         "Résumé": "Resumen",
         "Supprimer": "Eliminar",
         "Type": "Tipo",
-        "Vider": "Vaciar"
+        "Vider": "Vaciar",
+        "Visible": "Visible"
     },
     "desktop\/php\/editor.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado"
@@ -4599,6 +4695,7 @@
         "Recherche": "Buscar",
         "Redémarrer": "Reiniciar",
         "Remplacer": "Reemplazar",
+        "Restauration système": "Restauration système",
         "Réglages": "Ajustes",
         "Résumé domotique": "Resumen de domótica",
         "Santé": "Salud",
@@ -4615,9 +4712,11 @@
         "Toggle navigation": "Cambiar la navegación",
         "Types d'équipement": "Tipos de equipo",
         "Utilisateurs": "Usuarios",
+        "Variables": "Variables",
         "Version": "Versión",
         "Version mobile": "Version móvil",
         "Vue": "Visto",
+        "Widgets": "Widgets",
         "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "está comenzando, espere 5 minutos y actualice la página"
     },
     "desktop\/php\/interact.php": {
@@ -4781,6 +4880,7 @@
         "Sur la synthèse, définissez l'action au clic sur la vignette.": "En el resumen, defina la acción al hacer clic en la miniatura",
         "Tous": "Todos",
         "Type": "Tipo",
+        "Visible": "Visible",
         "Vue": "Visto",
         "Vue d'ensemble": "Resumen"
     },
@@ -4817,6 +4917,7 @@
         "Logs et surveillance": "Registros y monitoreo",
         "Mes plugins": "Mis plugins",
         "Ouvrir": "Abrir",
+        "Panel": "Panel",
         "Plugins": "Complementos",
         "Prérequis": "Prerrequisitos",
         "Rechercher": "Buscar",
@@ -4889,13 +4990,22 @@
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Annuler": "Cancelar",
         "Arrêter": "Parado",
+        "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64": "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64",
+        "Consulter la documentation dédiée pour plus de détails": "Consulter la documentation dédiée pour plus de détails",
         "Documentation": "Documentación",
+        "Impossible de mettre à jour le script de démarrage, vérifier les logs": "Impossible de mettre à jour le script de démarrage, vérifier les logs",
         "La dernière image système est téléchargée sur le support de stockage interne.": "La dernière image système est téléchargée sur le support de stockage interne",
         "La dernière image système est téléchargée sur une clé USB.": "La dernière image système est téléchargée sur une clé USB",
         "La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite.": "La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite",
         "La restauration du système est effectuée au prochain démarrage.": "La restauration du système est effectuée au prochain démarrage",
+        "Rafraîchir la page": "Rafraîchir la page",
         "Redémarrer": "Reiniciar",
-        "Sauvegardes": "Copias de seguridad"
+        "Restauration USB": "Restauration USB",
+        "Restauration automatique": "Restauration automatique",
+        "Restauration système": "Restauration système",
+        "Sauvegardes": "Copias de seguridad",
+        "Une sauvegarde récente doit être téléchargée avant de restaurer le système": "Une sauvegarde récente doit être téléchargée avant de restaurer le système",
+        "intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution": "intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution"
     },
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
@@ -5032,6 +5142,7 @@
         "Timeout": "Se acabó el tiempo",
         "Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.": "Un bucle le permite realizar una acción repetidamente un cierto número de veces. Por ejemplo: Le permite repetir una acción de 1 a X, es decir, X veces",
         "Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log": "Por favor guarda antes de probar. Esto puede no ser exitoso. <br>Ctrl+clic para guardar, ejecutar y abrir el registro",
+        "Visible": "Visible",
         "Vue d'ensemble": "Resumen",
         "scénario": "Escenario",
         "scénarios": "escenarios"
@@ -5055,6 +5166,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "Configuration": "Configuración ",
+        "Principal": "Principal",
         "Rafraîchir": "Refrescar",
         "Rechercher | nom | :not(nom": "Buscar | nombre | :sin nombre",
         "Supprimer": "Eliminar",
@@ -5197,7 +5309,9 @@
         "Template": "Plantilla",
         "Test": "Prueba",
         "Type": "Tipo",
-        "widget": "artilugio"
+        "Widgets": "Widgets",
+        "widget": "artilugio",
+        "widgets": "widgets"
     },
     "mobile\/html\/about.html": {
         "Auteur(s)": "Autor(es)",
@@ -5386,6 +5500,7 @@
         "Aucun": "Ninguno"
     },
     "mobile\/js\/timeline.js": {
+        "Principal": "Principal",
         "Rafraîchir": "Refrescar",
         "Timelines": "Cronologías"
     },

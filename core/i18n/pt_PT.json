@@ -437,6 +437,7 @@
         "inconnue": "Desconhecido",
         "jour": "dia",
         "jours": "dias",
+        "min": "min",
         "n\\'a pas envoyé de message depuis plus de": "não enviou uma mensagem por mais de"
     },
     "core\/class\/history.class.php": {
@@ -575,6 +576,7 @@
         "Système à jour": "Sistema atualizado",
         "Taille base de données": "Tamanho do banco de dados",
         "Test de connexion au market": "Teste de conexão ao Market",
+        "Total": "Total",
         "Version": "Versão",
         "Version Jeedom": "Versão Jeedom",
         "Version OS": "Versão do SO",
@@ -669,6 +671,7 @@
         "Vous devez attendre au moins 60 secondes entre deux lancements d\\'installation de dépendances": "Deve esperar pelo menos 60 segundos entre dois lançamentos de instalação de dependência",
         "Vous ne pouvez pas faire de rapport sur un plugin sans panneau": "Não pode relatar um plugin sem um painel",
         "avec #stype# :": "com #stype# :",
+        "min": "min",
         "n\\'a pas recu de message depuis": "não recebi uma mensagem desde",
         "non": "Não",
         "nous vous conseillons de désactiver le plugin et de contacter l\\'auteur": "aconselhamos a desativar o plugin e entrar em contato com o autor",
@@ -684,6 +687,42 @@
         "La methode n\\'existe pas": "O método não existe"
     },
     "core\/class\/recovery.class.php": {
+        "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64": "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64",
+        "Collecte des informations concernant l'image système": "Collecte des informations concernant l'image système",
+        "Début du téléchargement": "Début du téléchargement",
+        "Ecriture du fichier de configuration USB": "Ecriture du fichier de configuration USB",
+        "Erreur lors de la vérification de l'image système": "Erreur lors de la vérification de l'image système",
+        "Erreur lors du téléchargement": "Erreur lors du téléchargement",
+        "Espace disque disponible insuffisant": "Espace disque disponible insuffisant",
+        "Finalisation": "Finalisation",
+        "Finalisation de la procédure de restauration système": "Finalisation de la procédure de restauration système",
+        "Félicitations": "Félicitations",
+        "Image système invalide, reprise du téléchargement": "Image système invalide, reprise du téléchargement",
+        "Impossible d'accéder au périphérique USB, vérifier les logs http.error": "Impossible d'accéder au périphérique USB, vérifier les logs http.error",
+        "Impossible de mettre à jour le script de démarrage": "Impossible de mettre à jour le script de démarrage",
+        "Impossible de récupérer les informations relatives aux images systèmes": "Impossible de récupérer les informations relatives aux images systèmes",
+        "Impossible de trouver les informations requises concernant l'image système": "Impossible de trouver les informations requises concernant l'image système",
+        "Initialisation": "Initialisation",
+        "Initialisation de la procédure de restauration système": "Initialisation de la procédure de restauration système",
+        "Le nouveau système est prêt à être déployé automatiquement au prochain démarrage": "Le nouveau système est prêt à être déployé automatiquement au prochain démarrage",
+        "Le nouveau système est prêt à être installé depuis la clé USB de restauration": "Le nouveau système est prêt à être installé depuis la clé USB de restauration",
+        "Le script de démarrage a été mis à jour": "Le script de démarrage a été mis à jour",
+        "Le script de démarrage est à jour": "Le script de démarrage est à jour",
+        "Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT": "Le système de fichiers de la 1ère partition du périphérique USB n'est pas de type FAT",
+        "Périphérique USB non détecté": "Périphérique USB non détecté",
+        "Renommage du fichier de restauration système": "Renommage du fichier de restauration système",
+        "Restauration": "Restauration",
+        "Téléchargement annulé à la demande de l'utilisateur": "Téléchargement annulé à la demande de l'utilisateur",
+        "Téléchargement de l'image système": "Téléchargement de l'image système",
+        "Une erreur est survenue lors de la finalisation de la procédure de restauration système": "Une erreur est survenue lors de la finalisation de la procédure de restauration système",
+        "Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration": "Veuillez redémarrer avec la clé USB branchée dans le port en haut à droite pour effectuer la restauration",
+        "Veuillez redémarrer pour effectuer la restauration": "Veuillez redémarrer pour effectuer la restauration",
+        "Vérification annulée à la demande de l'utilisateur": "Vérification annulée à la demande de l'utilisateur",
+        "Vérification de l'espace disque disponible": "Vérification de l'espace disque disponible",
+        "Vérification de l'intégrité de l'image système trouvée sur la cible": "Vérification de l'intégrité de l'image système trouvée sur la cible",
+        "Vérification de l'intégrité de l'image système téléchargée": "Vérification de l'intégrité de l'image système téléchargée",
+        "Vérification du périphérique USB": "Vérification du périphérique USB",
+        "Vérification du script de démarrage": "Vérification du script de démarrage",
         "en version": "na versão"
     },
     "core\/class\/scenario.class.php": {
@@ -811,6 +850,10 @@
         "Scénario déclenché par": "Cenário acionado por"
     },
     "core\/class\/translate.class.php": {
+        "\" . $_content . \"": "\" . $_content . \"",
+        "\" . $text . \"": "\" . $text . \"",
+        "' . $text . '": "' . $text . '",
+        "(.*?)": "(.*?)",
         "content parts": "partes felizes"
     },
     "core\/class\/update.class.php": {
@@ -1119,6 +1162,7 @@
         "Volet Bouton Slider": "Botão Deslizante do Estore",
         "Volet Bouton Stop": "Botão Parar Estore",
         "Volet Etat": "Estado do Estore",
+        "Volume": "Volume",
         "Warning": "Aviso",
         "Zoom caméra vers l\\'arrière": "Zoom da câmera para trás",
         "Zoom caméra vers l\\'avant": "Zoom da câmera para a frente",
@@ -1132,6 +1176,7 @@
         "Aucune entrée trouvée": "Nenhuma entrada encontrada",
         "Entrées par page": "Entradas por página",
         "Rechercher": "Pesquisar",
+        "de": "de",
         "entrées": "entradas",
         "à": "às"
     },
@@ -1147,6 +1192,7 @@
         "Avril": "Abril",
         "Chaque": "Cada",
         "Day of Month": "Dia do mês",
+        "De": "De",
         "Dimanche": "Domingo",
         "Décembre": "Dezembro",
         "Février": "Fevereiro",
@@ -1264,6 +1310,7 @@
         "Plein écran": "Ecrã completo",
         "Samedi": "Sábado",
         "Septembre": "Setembro",
+        "Sortir du plein écran": "Sortir du plein écran",
         "Sélectionner la commande": "Selecionar o comando",
         "Téléchargement CSV": "Baixar CSV",
         "Téléchargement JPEG": "Baixar JPEG",
@@ -1290,6 +1337,7 @@
         "Etat": "Estado",
         "Historiser": "Histórico",
         "Id": "EU IRIA",
+        "Il est utilisé par:": "Il est utilisé par:",
         "Inverser": "Inverter",
         "La valeur de la commande vaut par défaut la commande": "O valor do comando é por padrão o comando",
         "Liste": "Lista",
@@ -1365,6 +1413,7 @@
         "Lancement en arrière-plan non trouvé :": "Lançamento em segundo plano não encontrado:"
     },
     "core\/php\/utils.inc.php": {
+        "(.*?)": "(.*?)",
         ". Faire, pour les nettoyer :": "Fazer, para os limpar:",
         "Base de données": "Base de dados",
         "Cette action n\\'est pas autorisée en mode démo": "Esta ação não é permitida no modo de demonstração",
@@ -1394,7 +1443,8 @@
         "Timeline": "Linha cronológica",
         "Trop de sessions, je ne peux pas lister :": "Muitas sessões, não consigo listar:",
         "Utilisateurs": "Utilizadores",
-        "Vues": "Vistas"
+        "Vues": "Vistas",
+        "Widgets": "Widgets"
     },
     "core\/repo\/file.repo.php": {
         "Chemin": "Caminho",
@@ -1404,6 +1454,7 @@
         ". Exécuter la commande suivante en SSH : sudo chmod 777 -R": "Execute o seguinte comando no SSH: sudo chmod 777 -R",
         "Branche": "Caminho",
         "Branche pour le core Jeedom": "Caminho para o  core Jeedom",
+        "Erreur lors du téléchargement": "Erreur lors du téléchargement",
         "Fichier non créé": "Ficheiro não criado",
         "Fichier vide": "Ficheiro vazio",
         "Impossible d\\'écrire dans le répertoire :": "Impossível escrever no diretório:",
@@ -1449,6 +1500,7 @@
         "Taille": "Tamanho",
         "Type": "Tipo",
         "Utilisation": "Uso",
+        "Votre version actuelle du core ne permet pas d\\'installer ce plugin": "Votre version actuelle du core ne permet pas d\\'installer ce plugin",
         "Voulez-vous aller sur la page de configuration de votre nouveau plugin ?": "Quer ir para a página de configuração de seu novo plugin?"
     },
     "core\/repo\/market.list.repo.php": {
@@ -1506,6 +1558,7 @@
         "Chemin": "Caminho",
         "Impossible d\\'écrire dans le répertoire :": "Impossível escrever no diretório:",
         "[Backup] Chemin": "[Backup] Caminho",
+        "[Backup] IP": "[Backup] IP",
         "[Backup] Mot de passe": "[Backup] Password",
         "[Backup] Partage": "[Backup] Partilha",
         "[Backup] Utilisateur": "[Backup] Utilizador"
@@ -1891,6 +1944,7 @@
     "core\/template\/scenario\/exportHistory.default.html": {
         "CSV": "CSV",
         "Commandes": "Comandos",
+        "De": "De",
         "Exporter en": "Exportar para",
         "Historique à exporter": "Histórico a exportar",
         "Nom": "Nome",
@@ -2339,7 +2393,14 @@
         "Êtes-vous sûr de vouloir redémarrer le système ?": "Tem certeza de que deseja reiniciar o sistema?"
     },
     "desktop\/js\/recovery.js": {
-        "Erreur": "Erro"
+        "Abandon, clé USB non détectée": "Abandon, clé USB non détectée",
+        "Annulation": "Annulation",
+        "Annuler la procédure de restauration système en cours ?": "Annuler la procédure de restauration système en cours ?",
+        "Clé USB détectée": "Clé USB détectée",
+        "Détection de la clé USB": "Détection de la clé USB",
+        "Erreur": "Erro",
+        "Procédure annulée à la demande de l'utilisateur": "Procédure annulée à la demande de l'utilisateur",
+        "Veuillez insérer une clé USB dans le premier port en haut à droite": "Veuillez insérer une clé USB dans le premier port en haut à droite"
     },
     "desktop\/js\/replace.js": {
         "Aucun": "Nenhum",
@@ -2484,6 +2545,7 @@
         "Types Génériques sauvegardés": "Modelos Genéricos guardados"
     },
     "desktop\/js\/update.js": {
+        "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?",
         "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Tenha cuidado, esta operação é sempre arriscada e pode levar várias dezenas de minutos",
         "Aucune mise à jour en cours.": "Nenhuma atualização em andamento",
         "Changelog": "Registo de alterações",
@@ -2500,6 +2562,7 @@
         "Sauvegarder pour conserver les modifications": "Salvar para manter as alterações",
         "Supprimer": "Eliminar",
         "Vérifier": "Verificar",
+        "Êtes-vous sûr de vouloir mettre à jour le plugin :": "Êtes-vous sûr de vouloir mettre à jour le plugin :",
         "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Tem certeza de que deseja atualizar os pacotes do tipo",
         "Êtes-vous sûr de vouloir supprimer :": "Tem certeza de que deseja excluir:"
     },
@@ -2520,6 +2583,7 @@
         "Identifiant": "EU IRIA",
         "L\\'utilisateur a bien été supprimé": "O utilizador foi excluído",
         "Le login d\\'un utilisateur ne peut être vide !": "O login de um utilizador não pode estar vazio!",
+        "Local": "Local",
         "Modification effectuée": "Alteração feita",
         "Mot de passe": "Password",
         "NOK": "NÃO",
@@ -2626,6 +2690,7 @@
         "Sauvegarde effectuée avec succès": "Backup concluído com êxito",
         "Test": "Teste",
         "Time widget": "Widget de tempo",
+        "Widgets": "Widgets",
         "Êtes-vous sûr de vouloir supprimer le widget": "Tem certeza que deseja remover o widget"
     },
     "desktop\/modal\/about.php": {
@@ -3474,6 +3539,7 @@
         "Niveau 2": "Nível 2",
         "Niveau 3": "Nível 3",
         "Nom": "Nome",
+        "Normal": "Normal",
         "Opacité": "Opacidade",
         "Par defaut": "Predefinido",
         "Position": "Posição",
@@ -3528,6 +3594,7 @@
         "Masquer quand le volet est ouvert": "Ocultar quando o estore estiver aberto",
         "Masquer si": "Esconder se",
         "Nom": "Nome",
+        "Normal": "Normal",
         "Objet sauvegardé": "Objeto salvo",
         "Ouverture": "Abertura",
         "Porte\/Fenêtre": "Porta\/Janela",
@@ -3616,6 +3683,7 @@
         "Dernier lancement": "último lançamento",
         "Désactiver": "Desativar",
         "Gestion automatique": "Gestão automática",
+        "Local": "Local",
         "NOK": "NÃO",
         "Nom": "Nome",
         "OK": "Ok",
@@ -3629,6 +3697,7 @@
         "Gestion automatique": "Gestão automática",
         "Installation": "Instalação",
         "Installation en cours": "Instalação em progresso",
+        "Local": "Local",
         "NOK": "NÃO",
         "Nom": "Nome",
         "OK": "Ok",
@@ -3956,6 +4025,7 @@
         "Ajouter un type de résumé": "Adicionar um tipo de resumo",
         "Allemand": "Alemão",
         "Alternatif": "Alternativa",
+        "Altitude": "Altitude",
         "Altitude du bâtiment en mètres": "Altitude do edifício em metros",
         "Analyse": "Análise",
         "Anglais": "Inglês",
@@ -3968,6 +4038,7 @@
         "Aucun": "Nenhum",
         "Autorise l'affichage d'historique avec des dates dans le futur.": "Permite a exibição do histórico com datas no futuro",
         "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle": "Permitir a instalação de dependências do mesmo plugin com menos de 45s de diferença",
+        "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle": "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle",
         "Autoriser les dates dans le futur": "Permitir datas no futuro",
         "Avancée": "Avançado",
         "Basculer automatiquement de thème en fonction des horaires définis ci-dessous": "Alternar temas automaticamente com base nos horários definidos abaixo",
@@ -3977,6 +4048,7 @@
         "Base DN des utilisateurs": "Base DN dos utilizadores",
         "Basique": "Básico",
         "Branches (Pas de support)": "Filiais (sem suporte)",
+        "CP": "CP",
         "Cache": "Escondido",
         "Calcul": "Cálculo",
         "Catégories colorées": "Categorias coloridas",
@@ -4106,8 +4178,10 @@
         "Interaction automatique, contextuelle & avertissement": "Interação automática, contextual e avisos",
         "Interactions": "Interações",
         "Interdire les méthodes api (regexp)": "Proibir métodos de API (regexp)",
+        "Interface": "Interface",
         "Interface d’administration de la base de données.": "Interface de administração da base de dados",
         "Interface d’administration système.": "Interface de administração do sistema",
+        "Interfaces": "Interfaces",
         "Italien (pas de support)": "Italiano (sem suporte)",
         "Jamais": "Nunca",
         "L'équipe": "A equipa",
@@ -4115,6 +4189,7 @@
         "La version mobile sera la même que la version desktop": "A versão móvel será a mesma que a versão desktop",
         "Langue": "Idioma",
         "Largeur": "Largura",
+        "Latitude": "Latitude",
         "Les appels API seront bloqués pour les méthodes du Core.": "As chamadas de API serão bloqueadas para métodos do Core",
         "Les tuiles prennent toute la largeur de l'écran en version mobile": "Os blocos ocupam toda a largura da tela na versão mobile",
         "Librairie LDAP non trouvée. Merci de l\\'installer avant de pouvoir utiliser la connexion LDAP": "Biblioteca LDAP não encontrada. Instale-a antes de poder usar a conexão LDAP",
@@ -4128,6 +4203,7 @@
         "Localhost": "Host local",
         "Log": "Registo",
         "Logs": "Registos",
+        "Longitude": "Longitude",
         "MAC": "MAC",
         "Marge": "Margem",
         "Masque IP locales": "Máscara IP local",
@@ -4216,6 +4292,7 @@
         "Position et durée d'affichage des notifications en secondes (0 = infini)": "Posição e exibição da duração das notificações em segundos (0 = infinito)",
         "Postales": "Postal",
         "Pour utiliser des icônes colorées, l'option Interface \/ Tuiles \/ Icônes widgets colorées doit être activée.": "Para usar ícones coloridos, a opção Interface \/ Tabelas \/ Ícones coloridos de widget deve estar habilitada",
+        "Principal": "Principal",
         "Principal de": "Diretor de",
         "Profondeur pour les commandes": "Profundidade para comandos",
         "Profondeur pour les objets": "Profundidade dos objetos",
@@ -4367,6 +4444,7 @@
         "Activer le système cron": "Ativar sistema cron",
         "Ajouter": "Adicionar",
         "Classe": "Aula",
+        "Cron": "Cron",
         "Crée le": "Criou o",
         "Date lancement": "Data de lançamento",
         "Dernier lancement": "último lançamento",
@@ -4617,6 +4695,7 @@
         "Recherche": "Pesquisa",
         "Redémarrer": "Reiniciar",
         "Remplacer": "Substituir",
+        "Restauration système": "Restauration système",
         "Réglages": "Configurações",
         "Résumé domotique": "Resumo domótica",
         "Santé": "Estado",
@@ -4637,6 +4716,7 @@
         "Version": "Versão",
         "Version mobile": "Versão móvel",
         "Vue": "Visto",
+        "Widgets": "Widgets",
         "est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.": "está a iniciar, aguarde 5 minutos e atualize a página"
     },
     "desktop\/php\/interact.php": {
@@ -4876,6 +4956,7 @@
         "IP": "IPs",
         "Identification": "Identificação",
         "Informations complémentaires demandées par": "Informações adicionais solicitadas por",
+        "Interface": "Interface",
         "Mobile": "Móvel",
         "Mot de passe": "Password",
         "Notifications": "Notificações",
@@ -4909,13 +4990,22 @@
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Annuler": "Cancelar",
         "Arrêter": "Parar",
+        "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64": "Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64",
+        "Consulter la documentation dédiée pour plus de détails": "Consulter la documentation dédiée pour plus de détails",
         "Documentation": "Documentação",
+        "Impossible de mettre à jour le script de démarrage, vérifier les logs": "Impossible de mettre à jour le script de démarrage, vérifier les logs",
         "La dernière image système est téléchargée sur le support de stockage interne.": "La dernière image système est téléchargée sur le support de stockage interne",
         "La dernière image système est téléchargée sur une clé USB.": "La dernière image système est téléchargée sur une clé USB",
         "La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite.": "La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite",
         "La restauration du système est effectuée au prochain démarrage.": "La restauration du système est effectuée au prochain démarrage",
+        "Rafraîchir la page": "Rafraîchir la page",
         "Redémarrer": "Reiniciar",
-        "Sauvegardes": "Backups"
+        "Restauration USB": "Restauration USB",
+        "Restauration automatique": "Restauration automatique",
+        "Restauration système": "Restauration système",
+        "Sauvegardes": "Backups",
+        "Une sauvegarde récente doit être téléchargée avant de restaurer le système": "Une sauvegarde récente doit être téléchargée avant de restaurer le système",
+        "intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution": "intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution"
     },
     "desktop\/php\/replace.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
@@ -5076,6 +5166,7 @@
     "desktop\/php\/timeline.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Configuration": "Configuração",
+        "Principal": "Principal",
         "Rafraîchir": "Recarregar",
         "Rechercher | nom | :not(nom": "Pesquisar | nome | :not(nome",
         "Supprimer": "Eliminar",
@@ -5218,7 +5309,9 @@
         "Template": "Modelo",
         "Test": "Teste",
         "Type": "Tipo",
-        "widget": "ferramenta"
+        "Widgets": "Widgets",
+        "widget": "ferramenta",
+        "widgets": "widgets"
     },
     "mobile\/html\/about.html": {
         "Auteur(s)": "Autor(es)",
@@ -5407,6 +5500,7 @@
         "Aucun": "Nenhum"
     },
     "mobile\/js\/timeline.js": {
+        "Principal": "Principal",
         "Rafraîchir": "Recarregar",
         "Timelines": "Linha cronológica"
     },
