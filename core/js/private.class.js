@@ -273,8 +273,6 @@ jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRe
   //Merge default and function specific parameters
   const params = domUtils.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
 
-  //Convert all objects in params to json
-  const param = null;
   for (const attr in params) {
     params[attr] = (typeof params[attr] == 'object') ? JSON.stringify(params[attr]) : params[attr];
   }

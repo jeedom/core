@@ -24,8 +24,8 @@ if (!jeeFrontEnd.log) {
       this.logListButtons = document.querySelectorAll('#ul_object .li_log')
 
       //autoclick first log:
-      var logfile = getUrlVars('logfile')
-      var log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
+      const logfile = getUrlVars('logfile')
+      const log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
       if (log != null) {
         log.click()
       } else {
@@ -37,28 +37,23 @@ if (!jeeFrontEnd.log) {
 
 //searching
 document.getElementById('in_searchLogFilter')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
-  if (search == '') {
+  const raw = event.target.value
+  if (raw == '') {
     jeeP.logListButtons.seen()
     return
   }
-  var not = search.startsWith(":not(")
-  if (not) {
-    search = search.replace(':not(', '')
-  }
-  search = jeedomUtils.normTextLower(search)
+
+  const terms = raw.split(',').map(t => t.trim()).filter(t => t.length > 0)
+
   jeeP.logListButtons.unseen()
-  var match, text
   jeeP.logListButtons.forEach(_bt => {
-    match = false
-    text = jeedomUtils.normTextLower(_bt.textContent)
-    if (text.includes(search)) {
-      match = true
-    }
-    if (not) match = !match
-    if (match) {
-      _bt.seen()
-    }
+    const text = jeedomUtils.normTextLower(_bt.textContent)
+    const match = terms.some(term => {
+      const not = term.startsWith(':not(')
+      const search = jeedomUtils.normTextLower(not ? term.slice(5, -1) : term)
+      return not ? !text.includes(search) : text.includes(search)
+    })
+    if (match) _bt.seen()
   })
 })
 
@@ -66,7 +61,7 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
 */
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
 
   // "Raw log" button clicked
   if (_target = event.target.closest('#brutlogcheck')) {

@@ -48,7 +48,7 @@ jeedom.view.toHtml = function(_params) {
   const paramsRequired = ['id', 'version'];
   const paramsSpecifics = {
     pre_success: function(data) {
-      result = jeedom.view.handleViewAjax({
+      const result = jeedom.view.handleViewAjax({
         view: data.result
       });
       result.raw = data.result;
@@ -135,7 +135,7 @@ jeedom.view.handleViewAjax = function(_params) {
       for (const j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
         configuration = JSON.stringify(viewData.configuration);
-        option = configuration.replace(/"/g, "'");
+        const option = configuration.replace(/"/g, "'");
         result.html += '<div class="viewZoneData hidden" data-cmdId="'+viewData.link_id+'" data-option="'+option+'" data-el="'+div_id+'" data-height="'+viewZone.configuration.height+'" data-dateRange="'+viewZone.configuration.dateRange+'"></div>';
       }
       result.html += '</div>';

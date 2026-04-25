@@ -55,10 +55,10 @@ jeedom.cmd.execute = function(_params) {
     return
   }
   const notify = _params.notify ?? true
-  if (notify) {
-    const eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget')
-    if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
-  }
+  const eqLogic = notify
+    ? document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget')
+    : null
+  if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = JSON.stringify(_params.value)
   }

@@ -695,6 +695,7 @@ jeedom.history.drawChart = function(_params) {
         }
 
         //cmd info string has no value:
+        let series
         if (data.result.timelineOnly) {
           if (!isset(jeedom.history.chart[_params.el]) || !isset(jeedom.history.chart[_params.el].nbTimeline)) {
             nbTimeline = 1
@@ -703,7 +704,7 @@ jeedom.history.drawChart = function(_params) {
             nbTimeline = jeedom.history.chart[_params.el].nbTimeline
           }
 
-          const series = {
+          series = {
             type: 'flags',
             visible: _visible,
             name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
@@ -742,7 +743,7 @@ jeedom.history.drawChart = function(_params) {
               data.result.data[i][1] = -data.result.data[i][1]
             }
           }
-          const series = {
+          series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
             visible: _visible,
