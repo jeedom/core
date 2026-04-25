@@ -970,7 +970,7 @@ class plugin {
 		$distrib = system::getDistrib();
 		if (isset($osVersion)) {
 			if ($distrib == 'debian' && version_compare(system::getOsVersion(), $osVersion) == -1 && $_state == 1) {
-				throw new Exception(__('Votre version Debian n\'est pas assez récente pour activer cette version du plugin, ' . $osVersion . ' minimum demandé', __FILE__));
+				throw new Exception(sprintf(__('Votre version Debian n\'est pas assez récente pour activer cette version du plugin, %s minimum demandé', __FILE__), $osVersion));
 			}
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);

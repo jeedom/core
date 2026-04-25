@@ -41,6 +41,7 @@ jobs:
           PRS_JSON=$(gh pr list \
             --state merged \
             --base develop \
+            --limit 1000 \
             --search "merged:>${{ steps.tagdate.outputs.date }}" \
             --json number,title,mergedAt,url,labels)
 
