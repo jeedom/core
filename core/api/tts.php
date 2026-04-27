@@ -86,22 +86,14 @@ log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') wit
 try {
 	if ($engine == 'espeak') {
 		$voice = init('voice', 'fr+f4');
-		$avconv = 'avconv';
-		if (!com_shell::commandExists('avconv')) {
-			$avconv = 'ffmpeg';
-		}
-		$cmd = 'espeak -v' . $voice . ' "' . $text . '" --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
+		$cmd = 'espeak-ng -v' . $voice . ' "' . $text . '" --stdout | ffmpeg -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else if ($engine == 'pico') {
 		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
 		$lang = str_replace('_', '-', init('lang', config::byKey('language')));
-		$avconv = 'avconv';
-		if (!com_shell::commandExists('avconv')) {
-			$avconv = 'ffmpeg';
-		}
 		$cmd = 'pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;';
-		$cmd .= $avconv . ' -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
+		$cmd .= 'ffmpeg -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else {
