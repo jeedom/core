@@ -61,7 +61,6 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
-  apt-get -y install software-properties-common
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
@@ -74,15 +73,13 @@ step_2_mainpackage() {
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
   apt-get -y install mariadb-client
-  apt-get -y install libav-tools
-  apt-get -y install espeak
-  apt-get -y install mbrola
+  apt-get -y install espeak-ng
   apt-get -y install net-tools
   apt-get -y install nmap
   apt-get -y install ffmpeg
   apt-get -y install usbutils
   apt-get -y install gettext
-  apt-get -y install libcurl3-gnutls
+  apt-get -y install libcurl4
   apt-get -y install chromium
   apt-get -y install librsync-dev
   apt-get -y install ssl-cert
