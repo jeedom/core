@@ -34,14 +34,14 @@ VOLUME ${WEBSERVER_HOME}
 VOLUME /var/lib/mysql
 
 #speed up build using docker cache
-RUN apt update -y 
-RUN apt -o Dpkg::Options::="--force-confdef" -y install software-properties-common \
-  ntp ca-certificates unzip curl sudo cron locate tar telnet wget logrotate dos2unix ntpdate htop \
+RUN apt update -y
+RUN apt -o Dpkg::Options::="--force-confdef" -y install chrony \
+  ca-certificates unzip curl sudo cron locate tar telnet wget logrotate dos2unix htop \
   iotop vim iftop smbclient git python3 python3-pip libexpat1 ssl-cert \
-  apt-transport-https xvfb cutycapt xauth at mariadb-client espeak net-tools nmap ffmpeg usbutils \
-  gettext libcurl3-gnutls chromium librsync-dev ssl-cert iputils-ping \
+  apt-transport-https xvfb cutycapt xauth at mariadb-client espeak-ng net-tools nmap ffmpeg usbutils \
+  gettext libcurl4 chromium librsync-dev ssl-cert iputils-ping \
   apache2 apache2-utils libexpat1 ssl-cert \
-  php libapache2-mod-php php-json php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc \
+  php libapache2-mod-php php-json php-mysql php-curl php-gd php-xml php-opcache php-soap php-xmlrpc \
   php-common php-dev php-zip php-ssh2 php-mbstring php-ldap php-yaml php-snmp && apt -y remove brltty
 
 COPY install/install.sh /tmp/
@@ -56,7 +56,7 @@ RUN sh /tmp/install.sh -s 8 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i
 RUN sh /tmp/install.sh -s 9 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 RUN sh /tmp/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
 RUN sh /tmp/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME} -d ${DATABASE} -i docker
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN echo >${WEBSERVER_HOME}/initialisation
 
 WORKDIR ${WEBSERVER_HOME}
