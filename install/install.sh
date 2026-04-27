@@ -66,8 +66,7 @@ step_2_mainpackage() {
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
-  apt-get -y install git python python-pip
-  apt-get -y install python3 python3-pip
+  apt-get -y install git python3 python3-pip
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
   apt-get -y install xvfb cutycapt xauth
