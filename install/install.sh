@@ -63,7 +63,7 @@ step_2_mainpackage() {
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
+  apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
   apt-get -y install git python3 python3-pip
