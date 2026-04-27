@@ -122,7 +122,6 @@ step_5_php() {
   apt_install php libapache2-mod-php php-json php-mysql
   apt install -y php-curl
   apt install -y php-gd
-  apt install -y php-imap
   apt install -y php-xml
   apt install -y php-opcache
   apt install -y php-soap

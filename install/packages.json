@@ -48,11 +48,6 @@
         "/php(.*?)-gd/"
       ]
     },
-    "php-imap": {
-      "alternative": [
-        "/php(.*?)-imap/"
-      ]
-    },
     "php-xml": {
       "alternative": [
         "/php(.*?)-xml/"
