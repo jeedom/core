@@ -31,7 +31,7 @@ function getTemplate(_folder, _version, _filename, _replace) {
     success: function(data) {
       if (isset(_replace) && _replace != null) {
         var reg = null;
-        for (i in _replace) {
+        for (var i in _replace) {
           reg = new RegExp(i, "g");
           data = data.replace(reg, _replace[i]);
         }
