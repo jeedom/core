@@ -12,7 +12,10 @@
     "apt-transport-https": {},
     "libcurl4": {
       "optional": true,
-      "remark": "{{Utilisé pour chromium}}"
+      "remark": "{{Utilisé pour chromium}}",
+      "alternative": [
+        "/libcurl4(t64)?/"
+      ]
     },
     "chromium": {
       "optional": true,
