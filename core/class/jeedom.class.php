@@ -296,10 +296,10 @@ class jeedom {
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
 			$majorVersion = intval($version);
 			if ($majorVersion > 0) {
-				if ($majorVersion < 11 || $majorVersion > 12) {
+				if ($majorVersion < 11 || $majorVersion > 13) {
 					$state = false;
 				}
-			} else if (strpos($version, 'bullseye') === false && strpos($version, 'bookworm') === false) {
+			} else if (strpos($version, 'bullseye') === false && strpos($version, 'bookworm') === false && strpos($version, 'trixie') === false) {
 				$state = false;
 			}
 		}
