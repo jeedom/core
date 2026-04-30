@@ -1720,7 +1720,8 @@ class jeedom {
 			return;
 		}
 		$ntpServer = config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org');
-		shell_exec(system::getCmdSudo() . "chronyd -q 'server " . $ntpServer . " iburst'");
+		shell_exec(system::getCmdSudo() . 'chronyc add server ' . $ntpServer . ' iburst');
+		shell_exec(system::getCmdSudo() . 'chronyc makestep');
 	}
 
 	public static function cleanDatabase() {
