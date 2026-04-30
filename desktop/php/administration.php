@@ -1230,44 +1230,6 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<legend>{{InfluxDB}}</legend>
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{URL du serveur InfluxDB}}</label>
-							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxURL">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-6 col-xs-6 control-label">{{Port du serveur InfluxDB}}</label>
-							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxPort">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Nom de la base}}</label>
-							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxTable">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Utilisateur de la base}}</label>
-							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxUser">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-6 col-xs-6 control-label">{{Mot de passe de la base}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control inputPassword" data-l1key="cmdInfluxPass">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Actions}}</label>
-							<div class="col-xs-6">
-								<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-								<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
-							</div>
-						</div>
-					</fieldset>
-				</form>
 
 
 				<legend>{{Spécial}}</legend>
