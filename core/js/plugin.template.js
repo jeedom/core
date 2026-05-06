@@ -26,16 +26,16 @@ if (!jeeFrontEnd.pluginTemplate) {
       if (is_numeric(getUrlVars('id'))) {
         jeeFrontEnd.pluginTemplate.displayEqlogic(null, getUrlVars('id'))
       }
-      let returnToThumbnailDisplay = document.querySelector('.eqLogicAction[data-action="returnToThumbnailDisplay"]')
+      const returnToThumbnailDisplay = document.querySelector('.eqLogicAction[data-action="returnToThumbnailDisplay"]')
       if (returnToThumbnailDisplay) {
         returnToThumbnailDisplay.removeAttribute('data-target')
         returnToThumbnailDisplay.removeAttribute('href')
       }
     },
     setTableDisplay: function() {
-      var butDisp = document.getElementById('bt_pluginDisplayAsTable')
+      const butDisp = document.getElementById('bt_pluginDisplayAsTable')
       if (!butDisp) return
-      var coreSupport = butDisp.dataset.coresupport == '1' ? true : false
+      const coreSupport = butDisp.dataset.coresupport == '1' ? true : false
       if (butDisp != null) {
         butDisp.removeClass('hidden') //Not shown on previous core versions
         if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
@@ -108,7 +108,7 @@ if (!jeeFrontEnd.pluginTemplate) {
             printEqLogic(data)
           }
           document.querySelectorAll('.cmd').remove()
-          for (var i in data.cmd) {
+          for (const i in data.cmd) {
             if (data.cmd[i].type == 'info') {
               data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '')
               data.cmd[i]['htmlstate'] = '<span class="cmdTableState"'
@@ -133,7 +133,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           document.querySelectorAll('.cmdTableState').forEach(_cmdState => {
             jeedom.cmd.addUpdateFunction(_cmdState.getAttribute('data-cmd_id'), function(_options) {
               _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
-              let cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
+              const cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
               if (cmd === null) {
                 return
               }
@@ -167,7 +167,7 @@ if (!jeeFrontEnd.pluginTemplate) {
     addCmdToTableDefault: function(_cmd) {
       if (document.getElementById('table_cmd') == null) return
       if (document.querySelector('#table_cmd thead') == null) {
-        table = '<thead>'
+        let table = '<thead>'
         table += '<tr>'
         table += '<th>{{Id}}</th>'
         table += '<th>{{Nom}}</th>'
@@ -184,12 +184,12 @@ if (!jeeFrontEnd.pluginTemplate) {
         document.getElementById('table_cmd').insertAdjacentHTML('beforeend', table)
       }
       if (!isset(_cmd)) {
-        var _cmd = { configuration: {} }
+        _cmd = { configuration: {} }
       }
       if (!isset(_cmd.configuration)) {
         _cmd.configuration = {}
       }
-      var tr = '<tr>'
+      let tr = '<tr>'
       tr += '<td style="min-width:50px;width:70px;">'
       tr += '<span class="cmdAttr" data-l1key="id"></span>'
       tr += '</td>'
@@ -241,7 +241,7 @@ if (!jeeFrontEnd.pluginTemplate) {
       tr += '</td>'
       tr += '</tr>'
 
-      let newRow = document.createElement('tr')
+      const newRow = document.createElement('tr')
       newRow.innerHTML = tr
       newRow.addClass('cmd')
       newRow.setAttribute('data-cmd_id', init(_cmd.id))
@@ -275,9 +275,9 @@ if (!jeeFrontEnd.pluginTemplate) {
               })
             },
             success: function(_data) {
-              var vars = getUrlVars()
-              var url = 'index.php?'
-              for (var i in vars) {
+              const vars = getUrlVars()
+              let url = 'index.php?'
+              for (const i in vars) {
                 if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
                   url += i + '=' + vars[i].replace('#', '') + '&'
                 }
@@ -294,10 +294,10 @@ if (!jeeFrontEnd.pluginTemplate) {
     saveEqLogic: function() {
       jeeFrontEnd.modifyWithoutSave = false
       modifyWithoutSave = false
-      var eqLogics = []
+      const eqLogics = []
       document.querySelectorAll('.eqLogic').forEach(_eqLogic => {
         if (_eqLogic.isVisible()) {
-          var eqLogic = _eqLogic.getJeeValues('.eqLogicAttr')[0]
+          let eqLogic = _eqLogic.getJeeValues('.eqLogicAttr')[0]
 
           //No subType will break:
           _eqLogic.querySelectorAll('tr.cmd select[data-l1key="subType"]').forEach(_select => {
@@ -330,15 +330,15 @@ if (!jeeFrontEnd.pluginTemplate) {
         success: function(data) {
           jeeFrontEnd.modifyWithoutSave = false
           modifyWithoutSave = false
-          var vars = getUrlVars()
-          var url = 'index.php?'
-          for (var i in vars) {
+          const vars = getUrlVars()
+          let url = 'index.php?'
+          for (const i in vars) {
             if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
               url += i + '=' + vars[i].replace('#', '') + '&'
             }
           }
 
-          var id
+          let id
           if (Array.isArray(data)) {
             id = data[0].id
           } else {
@@ -358,8 +358,8 @@ if (!jeeFrontEnd.pluginTemplate) {
       return false
     },
     copyEqLogic: function() {
-      var name = document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue()
-      var id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
+      const name = document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue()
+      const id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
       if (id != undefined && id != '') {
         jeeDialog.prompt({
           value: name + ' {{copie}}',
@@ -378,9 +378,9 @@ if (!jeeFrontEnd.pluginTemplate) {
                 success: function(data) {
                   jeeFrontEnd.modifyWithoutSave = false
                   modifyWithoutSave = false
-                  var vars = getUrlVars()
-                  var url = 'index.php?'
-                  for (var i in vars) {
+                  const vars = getUrlVars()
+                  let url = 'index.php?'
+                  for (const i in vars) {
                     if (i != 'id' && i != 'saveSuccessFull' && i != 'removeSuccessFull') {
                       url += i + '=' + vars[i].replace('#', '') + '&'
                     }
@@ -396,10 +396,10 @@ if (!jeeFrontEnd.pluginTemplate) {
       }
     },
     removeEqLogic: function() {
-      var eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
+      const eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
       if (eqLogicId != undefined) {
-        let thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type')
-        let textEqtype = thisEqType || eqType
+        const thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type')
+        const textEqtype = thisEqType || eqType
         jeedom.eqLogic.getUseBeforeRemove({
           id: eqLogicId,
           error: function(error) {
@@ -409,11 +409,11 @@ if (!jeeFrontEnd.pluginTemplate) {
             })
           },
           success: function(data) {
-            var text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + textEqtype + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
+            let text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + textEqtype + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
             if (Object.keys(data).length > 0) {
               text += ' </br> {{Il est utilisé par:}}</br>'
-              var complement = null
-              for (var i in data) {
+              let complement = null
+              for (const i in data) {
                 complement = ''
                 if ('sourceName' in data[i]) {
                   complement = ' (' + data[i].sourceName + ')'
@@ -434,9 +434,9 @@ if (!jeeFrontEnd.pluginTemplate) {
                     })
                   },
                   success: function() {
-                    var vars = getUrlVars()
-                    var url = 'index.php?'
-                    for (var i in vars) {
+                    const vars = getUrlVars()
+                    let url = 'index.php?'
+                    for (const i in vars) {
                       if (i != 'id' && i != 'removeSuccessFull' && i != 'saveSuccessFull') {
                         url += i + '=' + vars[i].replace('#', '') + '&'
                       }
@@ -465,14 +465,14 @@ jeeFrontEnd.pluginTemplate.init()
 
 //searching
 document.getElementById('in_searchEqlogic')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     document.querySelectorAll('.eqLogicDisplayCard').seen()
     return
   }
   document.querySelectorAll('.eqLogicDisplayCard').unseen()
   search = jeedomUtils.normTextLower(search)
-  var text
+  let text
   document.querySelectorAll('.eqLogicDisplayCard .name').forEach(_name => {
     text = jeedomUtils.normTextLower(_name.textContent)
     if (text.includes(search)) {
@@ -487,7 +487,7 @@ domUtils(function() {
     if (typeof Core_noEqContextMenu !== 'undefined') return false
     if (document.querySelector('.nav.nav-tabs') == null) return false
 
-    var pluginId = document.body.getAttribute('data-page') || getUrlVars('p')
+    const pluginId = document.body.getAttribute('data-page') || getUrlVars('p')
     jeedom.eqLogic.byType({
       type: pluginId,
       error: function(error) {
@@ -500,9 +500,9 @@ domUtils(function() {
         if (_eqs.length == 0) {
           return
         }
-        var eqsGroups = []
-        var humanName, humanCut, group, name
-        for (var i = 0; i < _eqs.length; i++) {
+        let eqsGroups = []
+        let humanName, humanCut, group, name
+        for (let i = 0; i < _eqs.length; i++) {
           humanName = _eqs[i].humanName
           humanCut = humanName.split(']')
           group = humanCut[0].substr(1)
@@ -511,11 +511,12 @@ domUtils(function() {
         }
         eqsGroups = Array.from(new Set(eqsGroups))
         eqsGroups.sort()
-        var eqsList = [], group, eqGroup
-        for (var i = 0; i < eqsGroups.length; i++) {
+        const eqsList = []
+        let eqGroup
+        for (let i = 0; i < eqsGroups.length; i++) {
           group = eqsGroups[i]
           eqsList[group] = []
-          for (var j = 0; j < _eqs.length; j++) {
+          for (let j = 0; j < _eqs.length; j++) {
             humanName = _eqs[j].humanName
             humanCut = humanName.split(']')
             eqGroup = humanCut[0].substr(1)
@@ -525,12 +526,12 @@ domUtils(function() {
           }
         }
         //set context menu!
-        var contextmenuitems = {}
-        var uniqId = 0, groupEq, items
-        for (var group in eqsList) {
+        const contextmenuitems = {}
+        let uniqId = 0, groupEq, items
+        for (const group in eqsList) {
           groupEq = eqsList[group]
           items = {}
-          for (var index in groupEq) {
+          for (const index in groupEq) {
             items[uniqId] = {
               'name': groupEq[index][0],
               'id': groupEq[index][1]
@@ -561,8 +562,8 @@ domUtils(function() {
                 }
                 jeedomUtils.hideAlert()
                 if (event.ctrlKey || event.which == 2) {
-                  var type = document.body.getAttribute('data-page')
-                  var url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
+                  const type = document.body.getAttribute('data-page')
+                  let url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
                   if (tabObj) url += tab
                   window.open(url).focus()
                 } else {
@@ -587,7 +588,7 @@ domUtils(function() {
     $("#table_cmd").sortable("destroy")
   }
 
-  var tableCmd = document.getElementById('table_cmd')
+  const tableCmd = document.getElementById('table_cmd')
   if (!tableCmd) return
   jeeFrontEnd.pluginTemplate.cmdSortable = Sortable.create(tableCmd.tBodies[0], {
     delay: 100,
@@ -612,7 +613,7 @@ document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
-    let bt = document.querySelector('.eqLogicAction[data-action="save"]')
+    const bt = document.querySelector('.eqLogicAction[data-action="save"]')
     if (bt != null && bt.isVisible()) {
       jeeFrontEnd.pluginTemplate.saveEqLogic()
     }
@@ -623,7 +624,7 @@ document.registerEvent('keydown', function(event) {
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_resetSearch')) {
     document.getElementById('in_searchEqlogic').jeeValue('').triggerEvent('keyup')
     return
@@ -641,7 +642,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('.eqLogicAction[data-action="returnToThumbnailDisplay"]')) {
     setTimeout(function() {
-      let id = document.querySelector('.tab-pane.active')?.getAttribute('id')
+      const id = document.querySelector('.tab-pane.active')?.getAttribute('id')
       document.querySelectorAll('.nav li.active').removeClass('active')
       document.querySelector('a[data-target="#' + id + '"]')?.closest('li').addClass('active')
     }, 500)
@@ -656,12 +657,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('.eqLogicDisplayCard')) {
     jeedomUtils.hideAlert()
-    let type = document.body.getAttribute('data-page')
-    let thisEqId = _target.getAttribute('data-eqlogic_id')
+    const type = document.body.getAttribute('data-page')
+    const thisEqId = _target.getAttribute('data-eqlogic_id')
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open('index.php?v=d&m=' + type + '&p=' + type + '&id=' + thisEqId).focus()
     } else {
-      let thisEqType = _target.getAttribute('data-eqLogic_type')
+      const thisEqType = _target.getAttribute('data-eqLogic_type')
       jeeFrontEnd.pluginTemplate.displayEqlogic(thisEqType, thisEqId)
     }
     return
@@ -718,9 +719,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.cmd .cmdAction[data-l1key="chooseIcon"]')) {
-    let cmd = _target.closest('.cmd')
-    let icon = cmd.querySelector('[data-l2key="icon"] > i')
-    let params = {}
+    const cmd = _target.closest('.cmd')
+    const icon = cmd.querySelector('[data-l2key="icon"] > i')
+    const params = {}
     if (icon) params.icon = icon.attributes.class.value
     jeedomUtils.chooseIcon(function(_icon) {
       cmd.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
@@ -738,7 +739,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.cmd .cmdAction[data-action="copy"]')) {
-    let cmd = _target.closest('.cmd').getJeeValues('.cmdAttr')[0]
+    const cmd = _target.closest('.cmd').getJeeValues('.cmdAttr')[0]
     cmd.id = ''
     if (typeof addCmdToTable === 'function') {
       addCmdToTable(cmd)
@@ -778,11 +779,11 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.eqLogicDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
-      let id = _target.getAttribute('data-eqlogic_id')
+      const id = _target.getAttribute('data-eqlogic_id')
       document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + id + '"]')?.triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
@@ -790,7 +791,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
 })
 
 document.getElementById('div_pageContainer').addEventListener('dblclick', function(event) {
-  var _target = null
+  let _target = null
   if (event.target.matches('.cmd input, textarea, select, span, a')) {
     event.stopPropagation()
     return
@@ -814,7 +815,7 @@ document.getElementById('div_pageContainer').addEventListener('dblclick', functi
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.eqLogic .eqLogicAttr')) {
     if (_target.isVisible()) {
       jeeFrontEnd.modifyWithoutSave = true

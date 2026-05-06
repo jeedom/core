@@ -11,6 +11,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-05-04 10:02:20 | Fix timeline folder field visibility on scenario page load | [#3305](https://github.com/jeedom/core/pull/3305) |
 | 2026-04-25 08:00:07 | Fix: translations string concatenation | [#3289](https://github.com/jeedom/core/pull/3289) |
 | 2026-04-21 11:24:20 | fix: prevent a possible SQL injection in archive process | [#3268](https://github.com/jeedom/core/pull/3268) |
 | 2026-04-20 11:11:26 | Fix: scenario expression execute without scenario | [#3228](https://github.com/jeedom/core/pull/3228) |
@@ -43,6 +44,14 @@ no entries
 ## Developer
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-05-06 10:00:20 | Refactor var to const/let in equipment and commands (2/4) | [#3301](https://github.com/jeedom/core/pull/3301) |
+| 2026-05-06 09:19:39 | Refactor var to const/let in admin/system + log search multi-term (4/4) | [#3303](https://github.com/jeedom/core/pull/3303) |
+| 2026-05-05 17:04:02 | Refactor var to const/let in core JS utilities (1/4) | [#3300](https://github.com/jeedom/core/pull/3300) |
+| 2026-05-05 17:02:29 | Refactor var to const/let in UI rendering files (3/4) | [#3302](https://github.com/jeedom/core/pull/3302) |
+| 2026-05-05 14:28:06 | add log in plugin autoloader | [#3276](https://github.com/jeedom/core/pull/3276) |
+| 2026-05-05 10:21:10 | Bump peter-evans/create-pull-request from 5 to 8 | [#3307](https://github.com/jeedom/core/pull/3307) |
+| 2026-05-05 10:20:50 | Bump actions/github-script from 7 to 9 | [#3308](https://github.com/jeedom/core/pull/3308) |
+| 2026-05-05 10:20:32 | Bump actions/checkout from 2 to 6 | [#3309](https://github.com/jeedom/core/pull/3309) |
 | 2026-04-25 11:58:25 | Increase PR list limit to 1000 iso 30 by default | [#3296](https://github.com/jeedom/core/pull/3296) |
 | 2026-04-24 17:12:16 | don't use core translations | [#3294](https://github.com/jeedom/core/pull/3294) |
 | 2026-04-24 15:04:14 | Bump docker/setup-qemu-action from 2 to 4 | [#3279](https://github.com/jeedom/core/pull/3279) |

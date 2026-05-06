@@ -19,8 +19,8 @@ jeedom.history.chart = []
 jeedom.history.chartDrawTime = 150
 
 jeedom.history.get = function(_params) {
-  var paramsRequired = ['cmd_id', 'dateStart', 'dateEnd']
-  var paramsSpecifics = {
+  const paramsRequired = ['cmd_id', 'dateStart', 'dateEnd']
+  const paramsSpecifics = {
     global: _params.global || true,
     pre_success: function(data) {
       if (data.result == undefined) return data
@@ -36,8 +36,8 @@ jeedom.history.get = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getHistory',
@@ -50,8 +50,8 @@ jeedom.history.get = function(_params) {
 }
 
 jeedom.history.getLast = function(_params) {
-  var paramsRequired = ['cmd_id', 'time']
-  var paramsSpecifics = {
+  const paramsRequired = ['cmd_id', 'time']
+  const paramsSpecifics = {
     global: _params.global || true,
     pre_success: function(data) {
       if (isset(jeedom.cmd.cache.byId[data.result.id])) {
@@ -66,8 +66,8 @@ jeedom.history.getLast = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = $.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getLastHistory',
@@ -78,16 +78,16 @@ jeedom.history.getLast = function(_params) {
 }
 
 jeedom.history.getInitDates = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getInitDates'
@@ -96,16 +96,16 @@ jeedom.history.getInitDates = function(_params) {
 }
 
 jeedom.history.removeHistoryInFutur = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/history.ajax.php'
   paramsAJAX.data = {
     action: 'removeHistoryInFutur'
@@ -114,16 +114,16 @@ jeedom.history.removeHistoryInFutur = function(_params) {
 }
 
 jeedom.history.copyHistoryToCmd = function(_params) {
-  var paramsRequired = ['source_id', 'target_id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['source_id', 'target_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'copyHistoryToCmd',
@@ -134,13 +134,13 @@ jeedom.history.copyHistoryToCmd = function(_params) {
 }
 
 jeedom.history.generatePlotBand = function(_startTime, _endTime) {
-  var plotBands = []
-  var day = 86400000
+  const plotBands = []
+  const day = 86400000
   if ((_endTime - _startTime) > (9 * day)) {
     return plotBands
   }
   _startTime = Math.floor(_startTime / day) * day
-  var plotBand
+  let plotBand
   while (_startTime < _endTime) {
     plotBand = {}
     plotBand.from = _startTime
@@ -155,12 +155,12 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 }
 
 jeedom.history.graphUpdate = function(_params) {
-  for (var i in _params) {
+  for (const i in _params) {
     if(_params[i].cmd_id == ''){
       continue;
     }
-    for(var chart in jeedom.history.chart){
-      for(var serie in jeedom.history.chart[chart].chart.series){
+    for(const chart in jeedom.history.chart){
+      for(const serie in jeedom.history.chart[chart].chart.series){
         if(jeedom.history.chart[chart].chart.series[serie] && jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
           jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now()+(-1*(new Date()).getTimezoneOffset()*60*1000),_params[i].value])
         }
@@ -171,8 +171,8 @@ jeedom.history.graphUpdate = function(_params) {
 
 jeedom.history.changePoint = function(_params) {
   // console.log('changePoint:', _params)
-  var paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue']
-  var paramsSpecifics = {
+  const paramsRequired = ['cmd_id', 'datetime', 'value', 'oldValue']
+  const paramsSpecifics = {
     error: function(error) {
       jeedomUtils.showAlert({
         message: error.message,
@@ -189,7 +189,7 @@ jeedom.history.changePoint = function(_params) {
         message: '{{La valeur a été éditée avec succès}}',
         level: 'success'
       })
-      var shown = document.getElementById('ul_history').querySelectorAll('li.li_history.active[data-cmd_id="' + _params.cmd_id + '"]')
+      const shown = document.getElementById('ul_history').querySelectorAll('li.li_history.active[data-cmd_id="' + _params.cmd_id + '"]')
       if (shown) {
         jeeFrontEnd.history.addChart(_params.cmd_id, 0)
         jeeFrontEnd.history.addChart(_params.cmd_id, 1)
@@ -202,8 +202,8 @@ jeedom.history.changePoint = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'changeHistoryPoint',
@@ -228,9 +228,9 @@ jeedom.history.modalchangePoint = function(event, _this, _params) {
     return
   }
 
-  var id = _this.series.userOptions.id
-  var datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
-  var value = _this.y
+  const id = _this.series.userOptions.id
+  const datetime = Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', _this.x)
+  const value = _this.y
   jeeDialog.prompt({
     title: "{{Edition d'historique}}",
     message: "<b>" + _this.series.name + "</b><br> {{date :}} <b>" + datetime + "</b><br>{{valeur :}} <b>" + value + "</b><br><i>{{Ne rien mettre pour supprimer la valeur}}</i>"
@@ -257,7 +257,7 @@ jeedom.history.drawChart = function(_params) {
   _params.option = init(_params.option, {
     derive: ''
   })
-  var _visible = (isset(_params.visible)) ? _params.visible : true
+  const _visible = (isset(_params.visible)) ? _params.visible : true
 
   //get command history
   domUtils.ajax({
@@ -297,7 +297,7 @@ jeedom.history.drawChart = function(_params) {
           return
         }
         if (!_params.noError) {
-          var message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name
+          let message = '{{Il n\'existe encore aucun historique pour cette commande :}} ' + data.result.history_name
           if (init(data.result.dateStart) != '') {
             message += (init(data.result.dateEnd) != '') ? ' {{du}} ' + data.result.dateStart + ' {{au}} ' + data.result.dateEnd : ' {{à partir de}} ' + data.result.dateStart
           } else {
@@ -333,27 +333,26 @@ jeedom.history.drawChart = function(_params) {
       @tsLast: last timestamp existing in data
       @tsEnd: dateEnd timestamp, data must end there and difference between end and start must be the same on both series
       */
-      var comparisonSerie = false
+      let comparisonSerie = false
       if (isset(_params.compare) && _params.compare == 1) comparisonSerie = true
 
       if (isset(jeedom.history.chart[_params.el]) && (jeedom.history.chart[_params.el].comparing)) {
-        var tsFirst, tsStart, tsLast, tsEnd
-        tsFirst = data.result.data[0][0]
-        tsStart = Date.parse(data.result.dateStart.replace(/-/g, '/') + ' GMT')
+        const tsFirst = data.result.data[0][0]
+        const tsStart = Date.parse(data.result.dateStart.replace(/-/g, '/') + ' GMT')
         if (tsStart < tsFirst) {
           data.result.data.unshift([tsStart, data.result.data[0][1]])
         }
 
-        if (!comparisonSerie) { //reference series, may ends at current time:
+        let tsEnd
+        if (!comparisonSerie) {
           tsEnd = Date.parse(data.result.dateEnd.replace(/-/g, '/') + ' GMT')
           jeedom.history.chart[_params.el].comparingToEnd = data.result.dateEnd
           jeedom.history.chart[_params.el].comparingTsDiff = tsEnd - tsStart
-        } else { //comparison series, must ends at same timestamp diff than reference one:
+        } else {
           tsEnd = tsStart + jeedom.history.chart[_params.el].comparingTsDiff
-          //remove leading and trailing over data:
           data.result.data = data.result.data.filter(v => v[0] <= tsEnd)
         }
-        tsLast = data.result.data.slice(-1)[0][0]
+        const tsLast = data.result.data.slice(-1)[0][0]
         if (tsEnd > tsLast) {
           data.result.data.push([tsEnd, data.result.data.slice(-1)[0][1]])
         }
@@ -366,21 +365,21 @@ jeedom.history.drawChart = function(_params) {
       _params.option.graphDerive = (data.result.derive == "1") ? true : false
 
       //series colors, options defined in core/js/jeedom.class.js jeedom.init():
-      var colors = Highcharts.getOptions().colors
-      var colorsNbr = colors.length
-      var colorUsed = []
-      var numSeries = 0
+      const colors = Highcharts.getOptions().colors
+      const colorsNbr = colors.length
+      const colorUsed = []
+      let numSeries = 0
       if (isset(jeedom.history.chart[_params.el]) && isset(jeedom.history.chart[_params.el].chart) && isset(jeedom.history.chart[_params.el].chart.series)) {
         if (jeedom.history.chart[_params.el].chart.series.length > colorsNbr) { //More series than colors, rotate colors:
           numSeries = Math.abs(jeedom.history.chart[_params.el].chart.series.length % colorsNbr) - 1
         } else { //Ensure no two series with same color:
           jeedom.history.chart[_params.el].chart.series.forEach((serie, index) => {
             if (!serie.userOptions.group) {
-              var sColorHindex = Highcharts.getOptions().colors.indexOf(serie.color)
+              const sColorHindex = Highcharts.getOptions().colors.indexOf(serie.color)
               if (!colorUsed.includes(sColorHindex)) colorUsed.push(sColorHindex)
             }
 
-            for (var i = 0; i < colorsNbr; i++) {
+            for (let i = 0; i < colorsNbr; i++) {
               if (!colorUsed.includes(i)) {
                 numSeries = i
                 break
@@ -389,7 +388,7 @@ jeedom.history.drawChart = function(_params) {
           })
         }
       }
-      var seriesNumber = numSeries + 1
+      let seriesNumber = numSeries + 1
       if (seriesNumber <= 0 || seriesNumber > colorsNbr) seriesNumber = 1
       if (!isset(_params.option.graphColor) || _params.option.graphColor === undefined) {
         _params.option.graphColor = colors[seriesNumber - 1]
@@ -408,7 +407,7 @@ jeedom.history.drawChart = function(_params) {
           _params.option.graphType = (isset(data.result.cmd.display) && init(data.result.cmd.display.graphType) != '') ? data.result.cmd.display.graphType : 'area'
         }
         if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
-          var split = data.result.cmd.display.groupingType.split('||')[0]
+          let split = data.result.cmd.display.groupingType.split('||')[0]
 		  split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
@@ -417,7 +416,7 @@ jeedom.history.drawChart = function(_params) {
         }
       }
 
-      var stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value'
+      const stacking = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? null : 'value'
       _params.option.graphStack = (_params.option.graphStack == undefined || _params.option.graphStack == null || _params.option.graphStack == 0) ? Math.floor(Math.random() * 10000 + 2) : 1
       _params.showLegend = (init(_params.showLegend, true) && init(_params.showLegend, true) != "0") ? true : false
       _params.showTimeSelector = (init(_params.showTimeSelector, true) && init(_params.showTimeSelector, true) != "0") ? true : false
@@ -426,7 +425,7 @@ jeedom.history.drawChart = function(_params) {
       _params.showAxis = (init(_params.option.graphScaleVisible, true) && init(_params.option.graphScaleVisible, true) != "0") ? true : false
 
       //define legend and reset graph:
-      var legend = {
+      const legend = {
         borderColor: 'transparent',
         borderWidth: 0,
         symbolHeight: 8,
@@ -441,7 +440,7 @@ jeedom.history.drawChart = function(_params) {
       }
 
       //___________________________jeedom default chart params:
-      var charts = {
+      const charts = {
         zoomType: 'xy',
         marginTop: 40, //ensure same top space for buttons with or without rangeSelector
         resetZoomButton: {
@@ -467,7 +466,7 @@ jeedom.history.drawChart = function(_params) {
 
             //default min/max set earlier in series
             //.doing initialized at 1 when chart created with first curve
-            var thisId = event.target.userOptions._jeeId
+            const thisId = event.target.userOptions._jeeId
             setTimeout(function() {
               try {
                 jeedom.history.setRangeSelectorButtons(event.target.userOptions._jeeId)
@@ -495,7 +494,7 @@ jeedom.history.drawChart = function(_params) {
           },
           render: function(event) {
             //shift dotted zones clipPaths to ensure no overlapping step mode:
-            var solidClip = null
+            let solidClip = null
             document.querySelectorAll('.highcharts-zone-graph-0.customSolidZone').forEach(function(element) {
               solidClip = element.getAttribute('clip-path').replace('url(#', '#').replace(')', '')
               document.querySelector(solidClip).style.transform = 'translate(5px)'
@@ -506,7 +505,7 @@ jeedom.history.drawChart = function(_params) {
             })
           },
           addSeries: function(event) {
-            var thisId = this._jeeId
+            const thisId = this._jeeId
             if (jeedom.history.chart[thisId].doing > 0) { //chart not done, loading several series at once:
               jeedom.history.chart[thisId].doing += 1
             } else {                                      //chart done (-1), loading another series later:
@@ -528,7 +527,7 @@ jeedom.history.drawChart = function(_params) {
             }
           },
           selection: function(event) {
-            var chartId = event.target._jeeId
+            const chartId = event.target._jeeId
 
             if (event.resetSelection) { //Zoom back after reset zoom button
               this.resetZoomButton.hide()
@@ -550,14 +549,14 @@ jeedom.history.drawChart = function(_params) {
               setTimeout(function() {
                 try {
                   if (jeedom.history.chart[chartId].comparing) {
-                    var options = {
+                    const options = {
                       type: 'selection',
                       redraw: true,
                       resetDateRange: true,
                     }
                     jeedom.history.chartCallback(chartId, options)
                   } else {
-                    var options = {
+                    const options = {
                       type: 'selection',
                       redraw: true,
                       extremeXmin: jeedom.history.chart[chartId].zoomPrevXmin,
@@ -599,7 +598,7 @@ jeedom.history.drawChart = function(_params) {
 
       //pie chart option from views:
       if (_params.option.graphType == 'pie') {
-        var series = {
+        const series = {
           type: _params.option.graphType,
           id: _params.cmd_id,
           cursor: 'pointer',
@@ -673,11 +672,11 @@ jeedom.history.drawChart = function(_params) {
 
       //not pie, standard curve history:
       if (_params.option.graphType != 'pie') {
-        var dataGrouping = {
+        let dataGrouping = {
           enabled: false
         }
         if (isset(_params.option.groupingType) && typeof _params.option.groupingType === 'string' && _params.option.groupingType != '') {
-          var split = _params.option.groupingType.split('||')[0]
+          let split = _params.option.groupingType.split('||')[0]
 		  split=split.split('::')
           _params.option.groupingType = {
             function: split[0],
@@ -696,6 +695,7 @@ jeedom.history.drawChart = function(_params) {
         }
 
         //cmd info string has no value:
+        let series
         if (data.result.timelineOnly) {
           if (!isset(jeedom.history.chart[_params.el]) || !isset(jeedom.history.chart[_params.el].nbTimeline)) {
             nbTimeline = 1
@@ -704,7 +704,7 @@ jeedom.history.drawChart = function(_params) {
             nbTimeline = jeedom.history.chart[_params.el].nbTimeline
           }
 
-          var series = {
+          series = {
             type: 'flags',
             visible: _visible,
             name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
@@ -723,7 +723,7 @@ jeedom.history.drawChart = function(_params) {
             }
           }
 
-          for (var i in data.result.data) {
+          for (const i in data.result.data) {
             series.data.push({
               x: data.result.data[i][0],
               title: data.result.data[i][1]
@@ -734,16 +734,16 @@ jeedom.history.drawChart = function(_params) {
             _params.option.graphType = 'area'
           }
           if (_params.calcul) {
-            for (var i in data.result.data) {
+            for (const i in data.result.data) {
               data.result.data[i][1] = _params.calcul(data.result.data[i][1])
             }
           }
           if (_params.option.invertData) {
-            for (var i in data.result.data) {
+            for (const i in data.result.data) {
               data.result.data[i][1] = -data.result.data[i][1]
             }
           }
-          var series = {
+          series = {
             dataGrouping: dataGrouping,
             type: _params.option.graphType,
             visible: _visible,
@@ -787,10 +787,10 @@ jeedom.history.drawChart = function(_params) {
 
           if (init(_params.option.groupingType) == '' && !comparisonSerie && _params.option.graphType != 'column') {
             //continue value to now, dotted if last value older than one minute (ts in millisecond):
-            var dateEnd = new Date(data.result.dateEnd)
+            const dateEnd = new Date(data.result.dateEnd)
             dateEnd.setTime(dateEnd.getTime() - dateEnd.getTimezoneOffset() * 60 * 1000)
-            var dateEndTs = dateEnd.getTime()
-            var diffms = dateEndTs - data.result.data[data.result.data.length - 1][0]
+            const dateEndTs = dateEnd.getTime()
+            const diffms = dateEndTs - data.result.data[data.result.data.length - 1][0]
             if (diffms > 60000) {
               series.zoneAxis = 'x'
               data.result.data.push([dateEndTs, data.result.data[data.result.data.length - 1][1]])
@@ -814,7 +814,7 @@ jeedom.history.drawChart = function(_params) {
         }
 
         //set axis position. View allow to set left/right on graph axis, or odd/even:
-        var axisOpposite
+        let axisOpposite
         if (_params.option.graphScale == undefined) {
           if (!isset(jeedom.history.chart[_params.el])) {
             axisOpposite = true
@@ -836,7 +836,7 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].yAxisScaling = true
 
           //dateRange buttons config:
-          var dateRange = ['all', '30 min', '1 hour', '1 day', '7 days', '1 month', '1 year'].indexOf(_params.dateRange)
+          let dateRange = ['all', '30 min', '1 hour', '1 day', '7 days', '1 month', '1 year'].indexOf(_params.dateRange)
           if (dateRange == -1) dateRange = 4
 
           jeedom.history.chart[_params.el].type = _params.option.graphType
@@ -1017,7 +1017,7 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].chart._jeeId = _params.el //else only in useroptions
           jeedom.history.chart[_params.el].doing = 1
 
-          var options = { default: {} }
+          const options = { default: {} }
           if (isset(_params.yAxisScaling) && _params.yAxisScaling !== '') options.default.yAxisScaling = _params.yAxisScaling
           if (isset(_params.yAxisByUnit) && _params.yAxisByUnit !== '') options.default.yAxisByUnit = _params.yAxisByUnit
           if (isset(_params.yAxisScalePercent) && _params.yAxisScalePercent !== '') options.default.yAxisScalePercent = _params.yAxisScalePercent
@@ -1057,7 +1057,7 @@ jeedom.history.drawChart = function(_params) {
             }, false)
           } else if (_params.option.graphStack != 1) {
             //add new yAxis:
-            var yAxis = {
+            const yAxis = {
               id: _params.cmd_id + '-yAxis',
               showEmpty: false,
               gridLineWidth: 0,
@@ -1129,7 +1129,7 @@ Hicharts events calls
 yAxis scaling
 */
 jeedom.history.initChart = function(_chartId, _options) {
-  var thisId = _chartId
+  const thisId = _chartId
   jeedom.history.chart[thisId].comparing = false
   jeedom.history.chart[thisId].zoom = false
   jeedom.history.chart[thisId].mode = jeedom.getPageType()
@@ -1158,7 +1158,7 @@ jeedom.history.initChart = function(_chartId, _options) {
     3: disabled
   */
 
-  var xStart = (jeedom.history.chart[thisId].rangeSelector === undefined ? -15 : 0)
+  const xStart = (jeedom.history.chart[thisId].rangeSelector === undefined ? -15 : 0)
 
   //Tracking button:
   jeedom.history.chart[thisId].btTracking = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-hand-pointer"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
@@ -1292,13 +1292,13 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
     selector: "div.chartContainer .highcharts-legend-item",
     position: function(opt, x, y) {
       //legend bottom graph, open menu upside if possible:
-      var menuHeight = opt.ctxMenu.clientHeight
-      var menuWidth = opt.ctxMenu.clientWidth
-      var winHeight = window.innerHeight
-      var winWidth = window.innerWidth
+      const menuHeight = opt.ctxMenu.clientHeight
+      const menuWidth = opt.ctxMenu.clientWidth
+      const winHeight = window.innerHeight
+      const winWidth = window.innerWidth
 
-      var newTop = y - menuHeight
-      var newLeft = x
+      let newTop = y - menuHeight
+      let newLeft = x
 
       if ((y - menuHeight - 20) < 0) {
         newTop = y
@@ -1312,17 +1312,17 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
       })
     },
     build: function(trigger) {
-      var __ctxel__ = trigger.parentNode.closest('div.chartContainer').getAttribute('id')
+      const __ctxel__ = trigger.parentNode.closest('div.chartContainer').getAttribute('id')
       if (isset(jeeFrontEnd.history) && isset(jeeFrontEnd.history.__ctxel__) && jeedom.history.chart[jeeFrontEnd.history.__ctxel__].comparing) return false
-      var chart = jeedom.history.chart[__ctxel__].chart
+      const chart = jeedom.history.chart[__ctxel__].chart
       if (!chart) return false
       if (jeedom.history.chart[chart._jeeId].type == 'pie') return false
       if (jeedom.history.chart[chart._jeeId].comparing) return false
 
-      var serieId = trigger.getAttribute('class').split('highcharts-series-')[1].split(' ')[0]
-      var cmdId = chart.series[serieId].userOptions.id
-      var axis = chart.get(cmdId)
-      var contextmenuitems = {}
+      const serieId = trigger.getAttribute('class').split('highcharts-series-')[1].split(' ')[0]
+      const cmdId = chart.series[serieId].userOptions.id
+      const axis = chart.get(cmdId)
+      const contextmenuitems = {}
       contextmenuitems['cmdid'] = { 'name': 'id: ' + cmdId, 'id': 'cmdid', 'disabled': true }
       contextmenuitems['isolate'] = { 'name': '{{Isoler}} (Ctrl Clic)', 'id': 'isolate', 'icon': 'fas fa-chart-line' }
       contextmenuitems['showall'] = { 'name': '{{Afficher tout}} (Alt Clic)', 'id': 'showall', 'icon': 'fas fa-poll-h' }
@@ -1332,7 +1332,7 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
         contextmenuitems['showaxis'] = { 'name': '{{Afficher axe}}', 'id': 'showaxis', 'icon': 'far fa-eye' }
       }
 
-      var idx = 0
+      let idx = 0
       Highcharts.getOptions().colors.forEach(function(color) {
         contextmenuitems['color_' + idx] = {
           'name': '<i class="fas fa-square" style="color:' + Highcharts.getOptions().colors[idx] + '!important;"></i>',
@@ -1375,7 +1375,7 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
             })
 
             //synch "yAxis Visible"
-            var allVisible = true
+            let allVisible = true
             chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach(function(yAxis) {
               if (!yAxis.visible) allVisible = false
             })
@@ -1389,10 +1389,10 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
             return
           }
           if (key.startsWith('color_')) {
-            var idx = key.split('_')[1]
-            var opacityHigh = 0.85
-            var opacityLow = 0.1
-            var newC = Highcharts.getOptions().colors[idx]
+            const idx = key.split('_')[1]
+            const opacityHigh = 0.85
+            const opacityLow = 0.1
+            const newC = Highcharts.getOptions().colors[idx]
             chart.series[serieId].update({
               color: newC,
               fillColor: {
@@ -1451,7 +1451,7 @@ Once chart is done
 jeedom.history.chartDone = function(_chartId) {
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].doing > 0) return false
-  var chart = jeedom.history.chart[_chartId].chart
+  const chart = jeedom.history.chart[_chartId].chart
   jeedom.history.chart[_chartId].doing = -1
   try {
     setTimeout(function() {
@@ -1483,7 +1483,7 @@ Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 jeedom.history.setAxisScales = function(_chartId, _options) {
   if (_chartId === undefined) return false
   if (jeedom.history.chart[_chartId].type == 'pie') return false
-  var chart = jeedom.history.chart[_chartId].chart
+  const chart = jeedom.history.chart[_chartId].chart
 
   //All done with render false, redraw at end if in _options
 
@@ -1505,11 +1505,11 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     }
   }
 
-  var units = {}
+  const units = {}
 
   //No scale | unit : All axis with same unit will get same min/max
   if (!jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var unit, mathMin, mathMax
+    let unit, mathMin, mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       if (axis.series.length == 0) return
       unit = axis.series[0].userOptions.unite
@@ -1525,11 +1525,11 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       units[unit].axis.push(axis.userOptions.id)
 
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function(key) { return key.y }))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function(key) { return key.y }))
+        mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function(key) { return key.y }))
+        mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x.y !== null).map(function(key) { return key.y }))
       } else if (axis.series[0].points) {
-        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function(key) { return key.y }))
-        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function(key) { return key.y }))
+        mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function(key) { return key.y }))
+        mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x.y !== null).map(function(key) { return key.y }))
       }
       if (mathMin < units[unit].min) units[unit].min = mathMin
       if (mathMax > units[unit].max) units[unit].max = mathMax
@@ -1566,8 +1566,8 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
 
   //No scale | No unit : (HighChart default) All axis will get same global min/max
   if (!jeedom.history.chart[_chartId].yAxisScaling && !jeedom.history.chart[_chartId].yAxisByUnit) {
-    var softMax = 0
-    var mathMax
+    let softMax = 0
+    let mathMax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.y }))
       if (mathMax > softMax) softMax = mathMax
@@ -1590,7 +1590,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
 
   //scale | unit : (Jeedom default)  All axis with same unit will get same min/max
   if (jeedom.history.chart[_chartId].yAxisScaling && jeedom.history.chart[_chartId].yAxisByUnit) {
-    var unit, mathMin, mathMax, cmin, cmax
+    let unit, mathMin, mathMax, cmin, cmax
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       if (axis.series.length == 0) return
       unit = axis.series[0].userOptions.unite
@@ -1606,11 +1606,11 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
       units[unit].axis.push(axis.userOptions.id)
 
       if (axis.series[0].data.length > 0) {
-        var mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
-        var mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
+        mathMin = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
+        mathMax = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
       } else if (axis.series[0].points) {
-        var mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
-        var mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
+        mathMin = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
+        mathMax = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
       }
 
       if (mathMin < units[unit].min) units[unit].min = mathMin
@@ -1649,14 +1649,14 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
 
   //scale | No unit : Each axis will get its own min/max
   if (jeedom.history.chart[_chartId].yAxisScaling && !jeedom.history.chart[_chartId].yAxisByUnit) {
-    var min, max
+    let min, max
     chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
       if (axis.series[0].data.length > 0) {
-        var min = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
-        var max = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
+        min = Math.min.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
+        max = Math.max.apply(Math, axis.series[0].data.filter(x => x !== null).map(function(key) { return key.options.y }))
       } else if (axis.series[0].points) {
-        var min = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
-        var max = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
+        min = Math.min.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
+        max = Math.max.apply(Math, axis.series[0].points.filter(x => x !== null).map(function(key) { return key.y }))
       }
 
       if (jeedom.history.chart[_chartId].comparing && axis.series[1]) {
@@ -1696,7 +1696,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
     if (Object.keys(units).length == 0) { //no unit
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
         if (axis.series.length == 0) return
-        var seriesColor = axis.series[0].color
+        const seriesColor = axis.series[0].color
         axis.update({
           visible: true,
           labels: {
@@ -1707,10 +1707,10 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
         }, false)
       })
     } else { //unit
-      var overUnits = Object.keys(units).filter(key => units[key].axis.length > 1)
+      const overUnits = Object.keys(units).filter(key => units[key].axis.length > 1)
       overUnits.forEach((unit, index) => {
         units[unit].axis.forEach((id, idx) => {
-          var axis = chart.get(id)
+          const axis = chart.get(id)
           if (idx == 0) {
             axis.update({
               visible: true,
@@ -1737,7 +1737,7 @@ jeedom.history.setAxisScales = function(_chartId, _options) {
   if (jeedom.history.chart[_chartId].mode == 'view') {
     if (Object.keys(units).length == 0) { //no unit
       chart.yAxis.filter(v => v.userOptions.id != 'navigator-y-axis').forEach((axis, index) => {
-        var seriesColor = axis.series[0].color
+        const seriesColor = axis.series[0].color
         axis.update({
           labels: {
             style: {
@@ -1771,7 +1771,7 @@ Toggle all yAxis scaling
 */
 jeedom.history.toggleyAxisScaling = function(_chartId) {
   if (jeedom.history.chart[_chartId].zoom) return
-  var chart = jeedom.history.chart[_chartId].chart
+  const chart = jeedom.history.chart[_chartId].chart
 
   jeedom.history.chart[_chartId].yAxisScaling = !jeedom.history.chart[_chartId].yAxisScaling
   if (!jeedom.history.chart[_chartId].yAxisScaling) {
@@ -1786,12 +1786,13 @@ jeedom.history.toggleyAxisScaling = function(_chartId) {
 Set inactive opacity for tracking
 */
 jeedom.history.toggleTracking = function(_chartId) {
-  var chart = jeedom.history.chart[_chartId].chart
+  const chart = jeedom.history.chart[_chartId].chart
+  let opacity
   if (jeedom.history.chart[_chartId].tracking) {
     jeedom.history.chart[_chartId].btTracking.setState(0)
-    var opacity = 1
+    opacity = 1
   } else {
-    var opacity = Highcharts.getOptions().jeedom.opacityLow
+    opacity = Highcharts.getOptions().jeedom.opacityLow
     jeedom.history.chart[_chartId].btTracking.setState(2)
   }
   jeedom.history.chart[_chartId].tracking = !jeedom.history.chart[_chartId].tracking
@@ -1813,7 +1814,7 @@ jeedom.history.toggleTracking = function(_chartId) {
 Toggle all yAxis visibility
 */
 jeedom.history.toggleYaxisVisible = function(_chartId) {
-  var chart = jeedom.history.chart[_chartId].chart
+  const chart = jeedom.history.chart[_chartId].chart
   if (jeedom.history.chart[_chartId].yAxisVisible) {
     jeedom.history.chart[_chartId].btToggleyaxisVisible.setState(0)
   } else {
@@ -1837,7 +1838,7 @@ jeedom.history.emptyChart = function(_chartId, _yAxis) {
   jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
     if (series.options && !isNaN(series.options.id)) {
       if (!series.name.includes('Navigator ')) {
-        var cmd_id = series.options.id
+        const cmd_id = series.options.id
         series.remove(false)
         if (_yAxis) {
           try {
@@ -1852,9 +1853,9 @@ jeedom.history.emptyChart = function(_chartId, _yAxis) {
 
 jeedom.history.setRangeSelectorButtons = function(_chartId) {
   if (_chartId === undefined || jeedom.history.chart[_chartId].chart === undefined || jeedom.history.chart[_chartId].chart.rangeSelector === undefined) return false
-  var chart = jeedom.history.chart[_chartId].chart
-  var min = chart.xAxis[0].dataMin
-  var max = chart.xAxis[0].dataMax
+  const chart = jeedom.history.chart[_chartId].chart
+  const min = chart.xAxis[0].dataMin
+  const max = chart.xAxis[0].dataMax
   chart.rangeSelector.buttonOptions.forEach(function(option, index) {
     if (max - (option._range + min) < 0) {
       chart.rangeSelector.buttons[index].addClass('warning')
@@ -1868,18 +1869,18 @@ jeedom.history.setRangeSelectorButtons = function(_chartId) {
 Handle rangeSelector buttons for dynamic reloading:
 */
 jeedom.history.handleRangeButton = function(_button, _chartId) {
-  var mStart = moment(jeedom.history.chart[_chartId].dateStart, 'YYYY-MM-DD')
-  var mEnd = moment(jeedom.history.chart[_chartId].dateEnd, 'YYYY-MM-DD hh:mm:ss')
-  var mRequestStart = mEnd.clone().subtract(_button.count, _button.type)
+  const mStart = moment(jeedom.history.chart[_chartId].dateStart, 'YYYY-MM-DD')
+  const mEnd = moment(jeedom.history.chart[_chartId].dateEnd, 'YYYY-MM-DD hh:mm:ss')
+  const mRequestStart = mEnd.clone().subtract(_button.count, _button.type)
 
   if (mRequestStart.isBefore(mStart)) {
-    var cmds = jeedom.history.chart[_chartId].cmd
+    const cmds = jeedom.history.chart[_chartId].cmd
 
     //delete all series and their yAxis, then reload them with larger date range and same parameters!
-    var chart = jeedom.history.chart[_chartId].chart
-    var dateEnd = jeedom.history.chart[_chartId].dateEnd
-    var done = 0
-    var cmd_id, cmd_option
+    const chart = jeedom.history.chart[_chartId].chart
+    const dateEnd = jeedom.history.chart[_chartId].dateEnd
+    let done = 0
+    let cmd_id, cmd_option
     jeedom.history.chart[_chartId].chart.series.forEach(function(series) {
       if (series.options && !isNaN(series.options.id)) {
         cmd_id = series.options.id
@@ -1911,7 +1912,7 @@ jeedom.history.handleRangeButton = function(_button, _chartId) {
       }
     })
 
-    var in_startDate = document.getElementById("in_startDate")
+    const in_startDate = document.getElementById("in_startDate")
     if (in_startDate) in_startDate.value = mRequestStart.format('YYYY-MM-DD')
 
     return true

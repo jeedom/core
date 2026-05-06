@@ -22,7 +22,7 @@ jobs:
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Build jeedom:bullseye
         # build current image for bullseye

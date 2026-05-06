@@ -18,8 +18,8 @@ jeedom.plugin = function () { };
 jeedom.plugin.cache = Array();
 
 jeedom.plugin.all = function (_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {
+  const paramsRequired = [];
+  const paramsSpecifics = {
     pre_success: function (data) {
       jeedom.plugin.cache.all = data.result;
       return data;
@@ -35,8 +35,8 @@ jeedom.plugin.all = function (_params) {
     _params.success(jeedom.plugin.cache.all);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'all',
@@ -46,16 +46,16 @@ jeedom.plugin.all = function (_params) {
 }
 
 jeedom.plugin.toggle = function (_params) {
-  var paramsRequired = ['id', 'state'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id', 'state'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'toggle',
@@ -66,16 +66,16 @@ jeedom.plugin.toggle = function (_params) {
 }
 
 jeedom.plugin.get = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getConf',
@@ -86,8 +86,8 @@ jeedom.plugin.get = function (_params) {
 }
 
 jeedom.plugin.getDependancyInfo = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {
     global: false,
   };
   try {
@@ -96,8 +96,8 @@ jeedom.plugin.getDependancyInfo = function (_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getDependancyInfo',
@@ -107,16 +107,16 @@ jeedom.plugin.getDependancyInfo = function (_params) {
 }
 
 jeedom.plugin.dependancyInstall = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'dependancyInstall',
@@ -126,16 +126,16 @@ jeedom.plugin.dependancyInstall = function (_params) {
 }
 
 jeedom.plugin.dependancyChangeAutoMode = function (_params) {
-  var paramsRequired = ['id', 'mode'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id', 'mode'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'dependancyChangeAutoMode',
@@ -146,8 +146,8 @@ jeedom.plugin.dependancyChangeAutoMode = function (_params) {
 }
 
 jeedom.plugin.getDeamonInfo = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {
     global: false,
   };
   try {
@@ -156,8 +156,8 @@ jeedom.plugin.getDeamonInfo = function (_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'getDeamonInfo',
@@ -167,16 +167,16 @@ jeedom.plugin.getDeamonInfo = function (_params) {
 }
 
 jeedom.plugin.deamonStart = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'deamonStart',
@@ -188,16 +188,16 @@ jeedom.plugin.deamonStart = function (_params) {
 }
 
 jeedom.plugin.deamonStop = function (_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'deamonStop',
@@ -207,16 +207,16 @@ jeedom.plugin.deamonStop = function (_params) {
 }
 
 jeedom.plugin.deamonChangeAutoMode = function (_params) {
-  var paramsRequired = ['id', 'mode'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id', 'mode'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'deamonChangeAutoMode',
@@ -227,16 +227,16 @@ jeedom.plugin.deamonChangeAutoMode = function (_params) {
 }
 
 jeedom.plugin.createCommunityPost = function (_params) {
-  var paramsRequired = ['type'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['type'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plugin.ajax.php';
   paramsAJAX.data = {
     action: 'createCommunityPost',

@@ -17,7 +17,7 @@ jobs:
         php: [7.4, 8.2]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup PHP ${{ matrix.php }} for dependencies
         uses: shivammathur/setup-php@v2
@@ -42,7 +42,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -71,7 +71,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.generate-baseline.outputs.baseline_changed == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: '[skip ci] Update PHPStan baseline'
           title: '[CI] Update PHPStan baseline'

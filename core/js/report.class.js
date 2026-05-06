@@ -17,16 +17,16 @@
 jeedom.report = function() {};
 
 jeedom.report.list = function(_params) {
-    var paramsRequired = ['type', 'id'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['type', 'id'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
         action: 'list',
@@ -37,16 +37,16 @@ jeedom.report.list = function(_params) {
 }
 
 jeedom.report.get = function(_params) {
-    var paramsRequired = ['type', 'id', 'report'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['type', 'id', 'report'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
         action: 'get',
@@ -58,16 +58,16 @@ jeedom.report.get = function(_params) {
 }
 
 jeedom.report.remove = function(_params) {
-    var paramsRequired = ['type', 'id', 'report'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['type', 'id', 'report'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
         action: 'remove',
@@ -79,16 +79,16 @@ jeedom.report.remove = function(_params) {
 }
 
 jeedom.report.removeAll = function(_params) {
-    var paramsRequired = ['type', 'id'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['type', 'id'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/report.ajax.php';
     paramsAJAX.data = {
         action: 'removeAll',

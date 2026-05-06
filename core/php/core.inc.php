@@ -68,10 +68,8 @@ function jeedomAutoload($_classname) {
 		if ($plugin_active == 1) {
 			try {
 				include_file('core', $classname, 'class', $classname);
-			} catch (Exception $e) {
-				
-			} catch (Error $e) {
-				
+			} catch (Throwable $e) {
+				log::add('plugin', 'error', $e->getMessage());
 			}
 		}
 	}

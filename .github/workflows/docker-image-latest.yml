@@ -31,7 +31,7 @@ jobs:
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: BRANCH name
         # adding infos in the $GITHUB_ENV file and summary
