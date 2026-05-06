@@ -17,16 +17,16 @@
 jeedom.recovery = function() { }
 
 jeedom.recovery.start = function(_params) {
-    var paramsRequired = ['hardware', 'mode']
-    var paramsSpecifics = {}
+    const paramsRequired = ['hardware', 'mode']
+    const paramsSpecifics = {}
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
         return
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-    var paramsAJAX = jeedom.private.getParamsAJAX(params)
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+    const paramsAJAX = jeedom.private.getParamsAJAX(params)
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
         action: 'start',
@@ -37,9 +37,9 @@ jeedom.recovery.start = function(_params) {
 }
 
 jeedom.recovery.cancel = function(_params) {
-    var paramsSpecifics = {}
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-    var paramsAJAX = jeedom.private.getParamsAJAX(params)
+    const paramsSpecifics = {}
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+    const paramsAJAX = jeedom.private.getParamsAJAX(params)
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
         action: 'cancel'
@@ -48,9 +48,9 @@ jeedom.recovery.cancel = function(_params) {
 }
 
 jeedom.recovery.getProgress = function(_params) {
-    var paramsSpecifics = {}
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-    var paramsAJAX = jeedom.private.getParamsAJAX(params)
+    const paramsSpecifics = {}
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+    const paramsAJAX = jeedom.private.getParamsAJAX(params)
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
         action: 'getProgress'
@@ -59,16 +59,16 @@ jeedom.recovery.getProgress = function(_params) {
 }
 
 jeedom.recovery.usbConnected = function(_params) {
-    var paramsRequired = ['hardware']
-    var paramsSpecifics = {}
+    const paramsRequired = ['hardware']
+    const paramsSpecifics = {}
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
         return
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-    var paramsAJAX = jeedom.private.getParamsAJAX(params)
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+    const paramsAJAX = jeedom.private.getParamsAJAX(params)
     paramsAJAX.url = 'core/ajax/recovery.ajax.php'
     paramsAJAX.data = {
         action: 'usbConnected',

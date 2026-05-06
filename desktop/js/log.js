@@ -24,8 +24,8 @@ if (!jeeFrontEnd.log) {
       this.logListButtons = document.querySelectorAll('#ul_object .li_log')
 
       //autoclick first log:
-      var logfile = getUrlVars('logfile')
-      var log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
+      const logfile = getUrlVars('logfile')
+      const log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
       if (log != null) {
         log.click()
       } else {
@@ -64,7 +64,7 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
 */
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
 
   // "Raw log" button clicked
   if (_target = event.target.closest('#brutlogcheck')) {

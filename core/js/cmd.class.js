@@ -32,13 +32,13 @@ jeedom.cmd.notifyEq = function(_eqlogic, _hide) {
     return
   }
   if (isElement_jQuery(_eqlogic)) _eqlogic = _eqlogic[0]
-  var refresh = _eqlogic.querySelector('.cmd.refresh')
+  let refresh = _eqlogic.querySelector('.cmd.refresh')
   if (refresh != null) {
     refresh.addClass('spinning')
   } else {
     _eqlogic.querySelector('.widget-name')?.insertAdjacentHTML('afterbegin', '<span class="cmd refresh pull-right remove"><i class="fas fa-sync"></i></span>')
   }
-  var refresh = _eqlogic.querySelector('.cmd.refresh')
+  refresh = _eqlogic.querySelector('.cmd.refresh')
   if (_hide && refresh != null) {
     setTimeout(function() {
       if (refresh.hasClass('remove')) {
@@ -54,22 +54,23 @@ jeedom.cmd.execute = function(_params) {
   if (jeedom.cmd.disableExecute) {
     return
   }
-  var notify = _params.notify ?? true
+  const notify = _params.notify ?? true
+  let eqLogic = null
   if (notify) {
-    var eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget')
-    if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
-  }
+    eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget') ?? null
+  if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
+}
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = JSON.stringify(_params.value)
   }
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     global: false,
     pre_success: function(data) {
       if (data.state != 'ok') {
         if (data.code == -32005) {
           if (jeedom.display.version == 'mobile') {
-            var result = prompt("{{Veuillez indiquer le code ?}}", "")
+            const result = prompt("{{Veuillez indiquer le code ?}}", "")
             if (result != null) {
               _params.codeAccess = result
               jeedom.cmd.execute(_params)
@@ -113,7 +114,7 @@ jeedom.cmd.execute = function(_params) {
           }
         } else if (data.code == -32006) {
           if (jeedom.display.version == 'mobile') {
-            var result = confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}")
+            const result = confirm("{{Êtes-vous sûr de vouloir faire cette action ?}}")
             if (result) {
               _params.confirmAction = 1
               jeedom.cmd.execute(_params)
@@ -180,10 +181,10 @@ jeedom.cmd.execute = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
-  var cache = 1
+  let cache = 1
   if (_params.cache !== undefined) {
     cache = _params.cache
   }
@@ -205,8 +206,8 @@ jeedom.cmd.execute = function(_params) {
 }
 
 jeedom.cmd.test = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     global: false,
     success: function(result) {
       switch (result.type) {
@@ -244,8 +245,8 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'slider':
-              let min = result.configuration.minValue || 0
-              let max = result.configuration.maxValue || 100
+              const min = result.configuration.minValue || 0
+              const max = result.configuration.maxValue || 100
               jeeDialog.prompt({
                 title: '{{Entrer une valeur entre}}' + ' ' + min + ' ' + '{{et}}' + ' ' + max ,
                 value: parseInt(min) + (parseInt(max) / 2),
@@ -307,9 +308,9 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'select':
-              let values = result.configuration.listValue.split(';')
-              let inputOptions = []
-              for (let i in values) {
+              const values = result.configuration.listValue.split(';')
+              const inputOptions = []
+              for (const i in values) {
                 inputOptions.push({ text: values[i].split('|')[1], value: values[i].split('|')[0] })
               }
               jeeDialog.prompt({
@@ -343,7 +344,7 @@ jeedom.cmd.test = function(_params) {
               })
               break
             case 'message':
-              let productName = JEEDOM_PRODUCT_NAME
+              const productName = JEEDOM_PRODUCT_NAME
               let content = `<input class="promptAttr" data-l1key="title" autocomplete="off" type="text" placeholder="${result.display.title_placeholder || `{{Titre pour la commande}} ${result.name}`}">`
               content += `<textarea class="promptAttr" data-l1key="message" placeholder="${result.display.message_placeholder || `{{Message pour la commande}} ${result.name}`}"></textarea>`
 
@@ -388,8 +389,8 @@ jeedom.cmd.test = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getCmd',
@@ -400,7 +401,7 @@ jeedom.cmd.test = function(_params) {
 
 //deprecated
 jeedom.cmd.refreshByEqLogic = function(_params) {
-  var cmds = document.querySelectorAll('.cmd[data-eqLogic_id="' + _params.eqLogic_id + '"]')
+  const cmds = document.querySelectorAll('.cmd[data-eqLogic_id="' + _params.eqLogic_id + '"]')
   if (cmds.length == 0) {
     return
   }
@@ -414,8 +415,8 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
       id: _cmd.getAttribute('data-cmd_id'),
       version: _cmd.getAttribute('data-version'),
       success: function(data) {
-        var html = domUtils.parseHTML(data.html).childNodes[0]
-        var uid = html.getAttribute('data-cmd_uid')
+        const html = domUtils.parseHTML(data.html).childNodes[0]
+        const uid = html.getAttribute('data-cmd_uid')
         if (uid != 'undefined') {
           cmd.setAttribute('data-cmd_uid', uid)
         }
@@ -427,8 +428,8 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 }
 
 jeedom.cmd.refreshValue = function(_params) {
-  var cmd = null
-  for (var i in _params) {
+  const cmd = null
+  for (const i in _params) {
     if(_params[i].cmd_id == ''){
       continue;
     }
@@ -445,7 +446,7 @@ jeedom.cmd.refreshValue = function(_params) {
     if (typeof jeedom.cmd.update[_params[i].cmd_id] == 'function') {
       jeedom.cmd.update[_params[i].cmd_id](_params[i])
     }
-    for (var j in jeedom.cmd.update[_params[i].cmd_id]) {
+    for (const j in jeedom.cmd.update[_params[i].cmd_id]) {
       jeedom.cmd.update[_params[i].cmd_id][j](_params[i])
     }
   }
@@ -463,13 +464,13 @@ jeedom.cmd.addUpdateFunction = function(_cmd_id, _function) {
     return
   }
   if (typeof jeedom.cmd.update[_cmd_id] == 'function') {
-    let prevFunction = jeedom.cmd.update[_cmd_id]
+    const prevFunction = jeedom.cmd.update[_cmd_id]
     if (prevFunction.toString() == _function.toString()) {
       return
     }
     jeedom.cmd.update[_cmd_id] = [prevFunction, _function]
   }
-  for (var i in jeedom.cmd.update[_cmd_id]) {
+  for (const i in jeedom.cmd.update[_cmd_id]) {
     if (jeedom.cmd.update[_cmd_id][i].toString() == _function.toString()) {
       return
     }
@@ -482,16 +483,16 @@ jeedom.cmd.resetUpdateFunction = function() {
 }
 
 jeedom.cmd.getWidgetHelp = function(_params) {
-  var paramsRequired = ['id', 'version']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id', 'version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getWidgetHelp',
@@ -503,16 +504,16 @@ jeedom.cmd.getWidgetHelp = function(_params) {
 }
 
 jeedom.cmd.toHtml = function(_params) {
-  var paramsRequired = ['id', 'version']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id', 'version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'toHtml',
@@ -523,16 +524,16 @@ jeedom.cmd.toHtml = function(_params) {
 }
 
 jeedom.cmd.replaceCmd = function(_params) {
-  var paramsRequired = ['source_id', 'target_id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['source_id', 'target_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'replaceCmd',
@@ -543,8 +544,8 @@ jeedom.cmd.replaceCmd = function(_params) {
 }
 
 jeedom.cmd.save = function(_params) {
-  var paramsRequired = ['cmd']
-  var paramsSpecifics = {
+  const paramsRequired = ['cmd']
+  const paramsSpecifics = {
     pre_success: function(data) {
       if (isset(jeedom.cmd.cache.byId[data.result.id])) {
         delete jeedom.cmd.cache.byId[data.result.id]
@@ -561,8 +562,8 @@ jeedom.cmd.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'save',
@@ -572,16 +573,16 @@ jeedom.cmd.save = function(_params) {
 }
 
 jeedom.cmd.setIsVisibles = function(_params) {
-  var paramsRequired = ['cmds', 'isVisible']
-  var paramsSpecifics = {}
+  const paramsRequired = ['cmds', 'isVisible']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'setIsVisibles',
@@ -592,8 +593,8 @@ jeedom.cmd.setIsVisibles = function(_params) {
 }
 
 jeedom.cmd.multiSave = function(_params) {
-  var paramsRequired = ['cmds']
-  var paramsSpecifics = {
+  const paramsRequired = ['cmds']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byId = []
       return data
@@ -605,8 +606,8 @@ jeedom.cmd.multiSave = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'multiSave',
@@ -616,8 +617,8 @@ jeedom.cmd.multiSave = function(_params) {
 }
 
 jeedom.cmd.byId = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byId[data.result.id] = data.result
       return data
@@ -629,12 +630,12 @@ jeedom.cmd.byId = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
     params.success(jeedom.cmd.cache.byId[params.id])
     return
   }
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'byId',
@@ -644,8 +645,8 @@ jeedom.cmd.byId = function(_params) {
 }
 
 jeedom.cmd.getHumanCmdName = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byId[data.result.id] = data.result
       return data
@@ -657,12 +658,12 @@ jeedom.cmd.getHumanCmdName = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.cmd.cache.byId[params.id]) && init(params.noCache, false) == false) {
     params.success(jeedom.cmd.cache.byId[params.id])
     return
   }
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getHumanCmdName',
@@ -672,8 +673,8 @@ jeedom.cmd.getHumanCmdName = function(_params) {
 }
 
 jeedom.cmd.byHumanName = function(_params) {
-  var paramsRequired = ['humanName']
-  var paramsSpecifics = {
+  const paramsRequired = ['humanName']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byHumanName[data.result.humanName] = data.result
       return data
@@ -685,12 +686,12 @@ jeedom.cmd.byHumanName = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.cmd.cache.byHumanName[params.humanName]) && init(params.noCache, false) == false) {
     params.success(jeedom.cmd.cache.byHumanName[params.humanName])
     return
   }
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'byHumanName',
@@ -700,16 +701,16 @@ jeedom.cmd.byHumanName = function(_params) {
 }
 
 jeedom.cmd.usedBy = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'usedBy',
@@ -719,16 +720,16 @@ jeedom.cmd.usedBy = function(_params) {
 }
 
 jeedom.cmd.dropInflux = function(_params) {
-  var paramsRequired = ['cmd_id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['cmd_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'dropInflux',
@@ -738,16 +739,16 @@ jeedom.cmd.dropInflux = function(_params) {
 }
 
 jeedom.cmd.historyInflux = function(_params) {
-  var paramsRequired = ['cmd_id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['cmd_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'historyInflux',
@@ -757,16 +758,16 @@ jeedom.cmd.historyInflux = function(_params) {
 }
 
 jeedom.cmd.dropDatabaseInflux = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'dropDatabaseInflux'
@@ -775,16 +776,16 @@ jeedom.cmd.dropDatabaseInflux = function(_params) {
 }
 
 jeedom.cmd.historyInfluxAll = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'historyInfluxAll'
@@ -810,7 +811,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
     _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]')?.seen()
   }
 
-  var selSubType = document.createElement('select')
+  const selSubType = document.createElement('select')
   selSubType.style.width = '120px'
   selSubType.style.marginTop = '5px'
   selSubType.addClass('cmdAttr', 'form-control', 'input-sm')
@@ -824,7 +825,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
       _params.error(error)
     },
     success: function(subType) {
-      for (var i in subType) {
+      for (const i in subType) {
         newOption = document.createElement('option')
         newOption.text = subType[i].name
         newOption.value = i
@@ -863,9 +864,9 @@ jeedom.cmd.changeSubType = function(_cmd) {
       _params.error(error)
     },
     success: function(subtype) {
-      for (var i in subtype) {
+      for (const i in subtype) {
         if (isset(subtype[i].visible)) {
-          var el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"]')
+          let el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"]')
           if (!el) continue
           if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
             el = el.parentNode
@@ -903,8 +904,8 @@ jeedom.cmd.changeSubType = function(_cmd) {
             }
           }
         } else {
-          for (var j in subtype[i]) {
-            var el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"][data-l2key="' + j + '"]')
+          for (const j in subtype[i]) {
+            let el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"][data-l2key="' + j + '"]')
             if (!el) continue
             if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
               el = el.parentNode
@@ -967,7 +968,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
 }
 
 jeedom.cmd.availableType = function() {
-  var selType = '<select style="width : 120px; margin-bottom : 3px;" class="cmdAttr form-control input-sm" data-l1key="type">'
+  let selType = '<select style="width : 120px; margin-bottom : 3px;" class="cmdAttr form-control input-sm" data-l1key="type">'
   selType += '<option value="info">{{Info}}</option>'
   selType += '<option value="action">{{Action}}</option>'
   selType += '</select>'
@@ -1007,7 +1008,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
         className: 'success',
         callback: {
           click: function(event) {
-            var args = {}
+            const args = {}
             args.cmd = {}
             args.human = mod_insertCmd.getValue()
             args.cmd.id = mod_insertCmd.getCmdId()
@@ -1043,7 +1044,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
     }
   }
 
-  var html = ''
+  let html = ''
   domUtils.ajax({
     type: "POST",
     url: "core/ajax/scenario.ajax.php",
@@ -1080,16 +1081,16 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
 }
 
 jeedom.cmd.displayActionsOption = function(_params) {
-  var paramsRequired = ['params']
-  var paramsSpecifics = {}
+  const paramsRequired = ['params']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.async = _params.async || true
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
@@ -1100,10 +1101,10 @@ jeedom.cmd.displayActionsOption = function(_params) {
 }
 
 jeedom.cmd.normalizeName = function(_tagname) {
-  var cmdName = _tagname.toLowerCase().trim()
-  var cmdTests = []
-  var cmdType = null
-  var cmdList = {
+  const cmdName = _tagname.toLowerCase().trim()
+  let cmdTests = []
+  const cmdType = null
+  const cmdList = {
     'on': 'on',
     'off': 'off',
     'monter': 'on',
@@ -1128,11 +1129,11 @@ jeedom.cmd.normalizeName = function(_tagname) {
     'stop': 'off',
     'go': 'on'
   }
-  var cmdTestsList = [' ', '-', '_']
-  for (var i in cmdTestsList) {
+  const cmdTestsList = [' ', '-', '_']
+  for (const i in cmdTestsList) {
     cmdTests = cmdTests.concat(cmdName.split(cmdTestsList[i]))
   }
-  for (var j in cmdTests) {
+  for (const j in cmdTests) {
     if (cmdList[cmdTests[j]]) {
       return cmdList[cmdTests[j]]
     }
@@ -1141,16 +1142,16 @@ jeedom.cmd.normalizeName = function(_tagname) {
 }
 
 jeedom.cmd.setOrder = function(_params) {
-  var paramsRequired = ['cmds']
-  var paramsSpecifics = {}
+  const paramsRequired = ['cmds']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'setOrder',
@@ -1160,16 +1161,16 @@ jeedom.cmd.setOrder = function(_params) {
 }
 
 jeedom.cmd.getDeadCmd = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'getDeadCmd'
@@ -1179,9 +1180,9 @@ jeedom.cmd.getDeadCmd = function(_params) {
 
 /* time widgets */
 jeedom.cmd.formatMomentDuration = function(_duration) {
-  var durationString = ''
-  var used = 0
-  var lang = jeeFrontEnd.language
+  let durationString = ''
+  let used = 0
+  const lang = jeeFrontEnd.language
 
   if (_duration._data.years > 0) {
     durationString += _duration._data.years + jeedom.config.locales[lang].duration.year
@@ -1221,10 +1222,11 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
   if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, keep for mobile during transition
   if (_type == 'date') {
     moment.locale(jeeFrontEnd.language.substring(0, 2))
+    let dateString
     if (isset(jeedom.config.locales[jeeFrontEnd.language].calendar)) {
-      var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales[jeeFrontEnd.language].calendar)
+      dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales[jeeFrontEnd.language].calendar)
     } else {
-      var dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
+      dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
     }
     _el.innerHTML = dateString
     return true
@@ -1234,29 +1236,30 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
     clearInterval(_el.getAttribute('data-interval'))
   }
 
-  var tsDate = moment(_date).unix() * 1000
-  var now = Date.now() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin) * 60000 + jeeFrontEnd.clientServerDiffDatetime
+  const tsDate = moment(_date).unix() * 1000
+  const now = Date.now() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin) * 60000 + jeeFrontEnd.clientServerDiffDatetime
 
-  var interval = 10000
+  let interval = 10000
+  let durationString
   //_past more than one second ?
   if (now - tsDate > 1000) {
-    var duration = moment.duration(moment() - moment(_date))
-    var durationSec = duration._milliseconds / 1000
+    const duration = moment.duration(moment() - moment(_date))
+    const durationSec = duration._milliseconds / 1000
     if (durationSec > 86399) {
       interval = 3600000
     } else if (durationSec > 3599) {
       interval = 60000
     }
-    var durationString = jeedom.cmd.formatMomentDuration(duration)
+    durationString = jeedom.cmd.formatMomentDuration(duration)
   } else {
-    var durationString = "0" + jeedom.config.locales[jeeFrontEnd.language].duration.second
+    durationString = "0" + jeedom.config.locales[jeeFrontEnd.language].duration.second
   }
   _el.innerHTML = durationString
 
   //set refresh interval:
-  var myinterval = setInterval(function() {
-    var duration = moment.duration(moment() - moment(_date))
-    var durationString = jeedom.cmd.formatMomentDuration(duration)
+  const myinterval = setInterval(function() {
+    const duration = moment.duration(moment() - moment(_date))
+    const durationString = jeedom.cmd.formatMomentDuration(duration)
     _el.innerHTML = durationString
   }, interval)
 

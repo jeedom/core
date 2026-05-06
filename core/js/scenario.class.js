@@ -25,8 +25,8 @@ if (!isset(jeedom.scenario.cache.byGroupObjectName)) {
 }
 
 jeedom.scenario.all = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {
+  const paramsRequired = []
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.scenario.cache.all = data.result
       return data
@@ -38,12 +38,12 @@ jeedom.scenario.all = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   if (isset(jeedom.scenario.cache.all) && jeedom.scenario.cache.all != null && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.all)
     return
   }
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'all',
@@ -52,10 +52,10 @@ jeedom.scenario.all = function(_params) {
 }
 
 jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
-  var asGroup = _params.asGroup ? _params.asGroup : 0
-  var asTag = _params.asTag ? _params.asTag : 0
-  var paramsRequired = []
-  var paramsSpecifics = {
+  const asGroup = _params.asGroup ? _params.asGroup : 0
+  const asTag = _params.asTag ? _params.asTag : 0
+  const paramsRequired = []
+  const paramsSpecifics = {
     pre_success: function(data) {
       if (!isset(jeedom.scenario.cache.byGroupObjectName)) jeedom.scenario.cache.byGroupObjectName = Array()
       if (asTag) return data
@@ -69,14 +69,14 @@ jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
   /*
   if (!asTag && isset(jeedom.scenario.cache.byGroupObjectName) && isset(jeedom.scenario.cache.byGroupObjectName[asGroup]) && jeedom.scenario.cache.byGroupObjectName[asGroup] != null  && init(_params.nocache, false) == false) {
     params.success(jeedom.scenario.cache.byGroupObjectName[asGroup])
     return
   }
   */
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'allOrderedByGroupObjectName',
@@ -87,8 +87,8 @@ jeedom.scenario.allOrderedByGroupObjectName = function(_params) {
 }
 
 jeedom.scenario.saveAll = function(_params) {
-  var paramsRequired = ['scenarios']
-  var paramsSpecifics = {}
+  const paramsRequired = ['scenarios']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -97,8 +97,8 @@ jeedom.scenario.saveAll = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'saveAll',
@@ -108,16 +108,16 @@ jeedom.scenario.saveAll = function(_params) {
 }
 
 jeedom.scenario.toHtml = function(_params) {
-  var paramsRequired = ['id', 'version']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id', 'version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'toHtml',
@@ -128,8 +128,8 @@ jeedom.scenario.toHtml = function(_params) {
 }
 
 jeedom.scenario.changeState = function(_params) {
-  var paramsRequired = ['id', 'state']
-  var paramsSpecifics = {
+  const paramsRequired = ['id', 'state']
+  const paramsSpecifics = {
     global: false
   }
   try {
@@ -138,8 +138,8 @@ jeedom.scenario.changeState = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'changeState',
@@ -150,8 +150,8 @@ jeedom.scenario.changeState = function(_params) {
 }
 
 jeedom.scenario.getTemplate = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {
+  const paramsRequired = []
+  const paramsSpecifics = {
     global: false
   }
   try {
@@ -160,8 +160,8 @@ jeedom.scenario.getTemplate = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'getTemplate',
@@ -170,16 +170,16 @@ jeedom.scenario.getTemplate = function(_params) {
 }
 
 jeedom.scenario.convertToTemplate = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'convertToTemplate',
@@ -190,16 +190,16 @@ jeedom.scenario.convertToTemplate = function(_params) {
 }
 
 jeedom.scenario.removeTemplate = function(_params) {
-  var paramsRequired = ['template']
-  var paramsSpecifics = {}
+  const paramsRequired = ['template']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'removeTemplate',
@@ -209,16 +209,16 @@ jeedom.scenario.removeTemplate = function(_params) {
 }
 
 jeedom.scenario.loadTemplateDiff = function(_params) {
-  var paramsRequired = ['template', 'id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['template', 'id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'loadTemplateDiff',
@@ -229,16 +229,16 @@ jeedom.scenario.loadTemplateDiff = function(_params) {
 }
 
 jeedom.scenario.applyTemplate = function(_params) {
-  var paramsRequired = ['template', 'id', 'convert']
-  var paramsSpecifics = {}
+  const paramsRequired = ['template', 'id', 'convert']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'applyTemplate',
@@ -256,23 +256,24 @@ jeedom.scenario.refreshValue = function(_params) {
       return
     }
   }
-  var sc = document.querySelector('.scenario-widget[data-scenario_id="' + _params.scenario_id + '"]')
+  const sc = document.querySelector('.scenario-widget[data-scenario_id="' + _params.scenario_id + '"]')
   if (sc == null) {
     return
   }
-  var version = sc.getAttribute('data-version')
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const version = sc.getAttribute('data-version')
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     global: false,
     success: function(result) {
+      let tile
       try {
-        var tile = domUtils.parseHTML(result)
+        tile = domUtils.parseHTML(result)
         sc.empty().appendChild(tile)
         sc.querySelector('.scenario-widget').replaceWith(...sc.querySelector('scenario-widget').childNodes)
       } catch (error) {
         console.error(error)
       }
-      var tile = domUtils.parseHTML(result)
+      tile = domUtils.parseHTML(result)
       sc.empty().appendChild(result.childNodes)
       if (jeedomUtils.userDevice.type == undefined) {
         sc.triggerEvent('create')
@@ -286,8 +287,8 @@ jeedom.scenario.refreshValue = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'toHtml',
@@ -298,8 +299,8 @@ jeedom.scenario.refreshValue = function(_params) {
 }
 
 jeedom.scenario.copy = function(_params) {
-  var paramsRequired = ['id', 'name']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id', 'name']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -308,8 +309,8 @@ jeedom.scenario.copy = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'copy',
@@ -320,16 +321,16 @@ jeedom.scenario.copy = function(_params) {
 }
 
 jeedom.scenario.byId = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'byId',
@@ -339,16 +340,16 @@ jeedom.scenario.byId = function(_params) {
 }
 
 jeedom.scenario.get = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'get',
@@ -358,8 +359,8 @@ jeedom.scenario.get = function(_params) {
 }
 
 jeedom.scenario.save = function(_params) {
-  var paramsRequired = ['scenario']
-  var paramsSpecifics = {}
+  const paramsRequired = ['scenario']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -368,8 +369,8 @@ jeedom.scenario.save = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'save',
@@ -379,8 +380,8 @@ jeedom.scenario.save = function(_params) {
 }
 
 jeedom.scenario.remove = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -389,8 +390,8 @@ jeedom.scenario.remove = function(_params) {
   }
   delete jeedom.scenario.cache.all
   delete jeedom.scenario.cache.byGroupObjectName
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'remove',
@@ -400,16 +401,16 @@ jeedom.scenario.remove = function(_params) {
 }
 
 jeedom.scenario.clearAllLogs = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'clearAllLogs'
@@ -418,16 +419,16 @@ jeedom.scenario.clearAllLogs = function(_params) {
 }
 
 jeedom.scenario.emptyLog = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'emptyLog',
@@ -456,7 +457,7 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
         className: 'success',
         callback: {
           click: function(event) {
-            var args = {}
+            const args = {}
             args.human = mod_insertScenario.getValue()
             args.id = mod_insertScenario.getId()
             if (args.human.trim() != '') {
@@ -480,16 +481,16 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
 }
 
 jeedom.scenario.testExpression = function(_params) {
-  var paramsRequired = ['expression']
-  var paramsSpecifics = {}
+  const paramsRequired = ['expression']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'testExpression',
@@ -499,16 +500,16 @@ jeedom.scenario.testExpression = function(_params) {
 }
 
 jeedom.scenario.setOrder = function(_params) {
-  var paramsRequired = ['scenarios']
-  var paramsSpecifics = {}
+  const paramsRequired = ['scenarios']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/scenario.ajax.php'
   paramsAJAX.data = {
     action: 'setOrder',
@@ -606,7 +607,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
 
   _params.parent.querySelectorAll('.expression').forEach(_expr => {
     //Empty Action block ?
-    var attrType = _expr.querySelector('.expressionAttr[data-l1key="type"]')
+    const attrType = _expr.querySelector('.expressionAttr[data-l1key="type"]')
     if (attrType) {
       if (attrType.value == 'condition') {
         _expr.querySelector('.expressionAttr[data-l1key="' + _params.type + '"]').jeeComplete({
@@ -614,8 +615,8 @@ jeedom.scenario.setAutoComplete = function(_params) {
           minLength: 1,
           source: function(request, response) {
             //return last term after last space:
-            var values = request.term.split(' ')
-            var term = values[values.length - 1]
+            const values = request.term.split(' ')
+            const term = values[values.length - 1]
             if (term == '') return false //only space entered
             response(
               jeedom.scenario.autoCompleteCondition.filter(item => item.includes(term))
@@ -636,8 +637,8 @@ jeedom.scenario.setAutoComplete = function(_params) {
             if (data.value.substr(-1) == '#') {
               data.value = data.value.slice(0, -1) + data.value
             } else {
-              var values = data.value.split(' ')
-              var term = values[values.length - 1]
+              const values = data.value.split(' ')
+              const term = values[values.length - 1]
               data.value = data.value.slice(0, -term.length) + data.value
             }
           }
