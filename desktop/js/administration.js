@@ -67,10 +67,10 @@ if (!jeeFrontEnd.administration) {
             })
             return
           }
-          var tbody = document.getElementById('table_objectSummary').tBodies[0]
+          const tbody = document.getElementById('table_objectSummary').tBodies[0]
           if (Sortable.get(tbody)) Sortable.get(tbody).destroy()
           tbody.empty()
-          for (var i in data.result) {
+          for (const i in data.result) {
             if (isset(data.result[i].key) && data.result[i].key == '') continue
             if (!isset(data.result[i].name)) continue
             if (!isset(data.result[i].key)) {
@@ -151,16 +151,16 @@ if (!jeeFrontEnd.administration) {
       if (!isset(_change) || _change === true) jeeFrontEnd.modifyWithoutSave = true
     },
     saveObjectSummary: function() {
-      var summary = {}
-      var temp = document.getElementById('table_objectSummary').tBodies[0].childNodes.getJeeValues('.objectSummaryAttr')
-      for (var i in temp) {
+      const summary = {}
+      const temp = document.getElementById('table_objectSummary').tBodies[0].childNodes.getJeeValues('.objectSummaryAttr')
+      for (const i in temp) {
         if (temp[i].key == '') {
           temp[i].key = temp[i].name
         }
         temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
         summary[temp[i].key] = temp[i]
       }
-      var value = {
+      const value = {
         'object:summary': summary
       }
       domUtils.ajax({
@@ -204,7 +204,7 @@ if (!jeeFrontEnd.administration) {
           success: function(data) {
             if (data == '' || typeof data != 'object') return
             jeeP.actionOptions = []
-            for (var i in data) {
+            for (const i in data) {
               jeeP.addActionOnMessage(data[i], channel)
             }
             jeedom.cmd.displayActionsOption({
@@ -217,7 +217,7 @@ if (!jeeFrontEnd.administration) {
                 })
               },
               success: function(data) {
-                for (var i in data) {
+                for (const i in data) {
                   document.getElementById(data[i].id).html(data[i].html.html)
                 }
                 jeedomUtils.taAutosize()
@@ -329,7 +329,7 @@ if (!jeeFrontEnd.administration) {
             return
           }
           document.getElementById('table_convertColor').tBodies[0].empty()
-          for (var color in data.result) {
+          for (const color in data.result) {
             jeeP.addConvertColor(color, data.result[color], false)
           }
         }
@@ -351,8 +351,8 @@ if (!jeeFrontEnd.administration) {
       if (!isset(_change) || _change === true) jeeFrontEnd.modifyWithoutSave = true
     },
     saveConvertColor: function() {
-      var value = {}
-      var colors = {}
+      const value = {}
+      const colors = {}
       document.querySelectorAll('#table_convertColor tbody tr').forEach(function(element) {
         colors[element.querySelector('.color').jeeValue()] = element.querySelector('.html').jeeValue()
       })
@@ -410,7 +410,7 @@ if (!jeeFrontEnd.administration) {
       jeedomUtils.hideAlert()
       jeeP.saveConvertColor()
       jeeP.saveObjectSummary()
-      var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
+      const config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
       document.querySelectorAll('.bt_addActionOnMessage').forEach(_bt => {
         let channel = _bt.getAttribute('data-channel')
         config['actionOnMessage' + channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage' + channel + ' .actionOnMessage').getJeeValues('.expressionAttr'))
@@ -434,9 +434,9 @@ if (!jeeFrontEnd.administration) {
               })
             },
             success: function(data) {
-              var reloadPage = false
+              let reloadPage = false
               try {
-                for (var key in jeeP.configReload) {
+                for (const key in jeeP.configReload) {
                   if (jeeP.configReload[key] != data[key]) {
                     reloadPage = true
                     break
@@ -447,7 +447,7 @@ if (!jeeFrontEnd.administration) {
               }
               if (reloadPage) {
                 jeeFrontEnd.modifyWithoutSave = false
-                var url = 'index.php?v=d&p=administration&saveSuccessFull=1'
+                let url = 'index.php?v=d&p=administration&saveSuccessFull=1'
                 if (window.location.hash != '') {
                   url += window.location.hash
                 }
@@ -479,8 +479,8 @@ jeeFrontEnd.administration.init()
 
 //searching
 document.getElementById('in_searchConfig').addEventListener('keyup', function(event) {
-  var search = this.value
-  var resultDiv = document.getElementById('searchResult')
+  let search = this.value
+  const resultDiv = document.getElementById('searchResult')
 
   //place back found els with unique span id to place them back to right place. Avoid cloning els to not break saveConfig().
   document.querySelectorAll('span[searchId]').forEach(_span => {
@@ -502,9 +502,9 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
   document.querySelectorAll('#config .nav-tabs, #config .tab-content').unseen()
 
   search = jeedomUtils.normTextLower(search)
-  var text, tooltip, tabId, tabName, newTabLink, el, searchId
-  var tabsArr = []
-  var thisTabLink
+  let text, tooltip, tabId, tabName, newTabLink, el, searchId
+  const tabsArr = []
+  let thisTabLink
 
   //Search in all labels and their tooltip:
   document.querySelectorAll('.form-group > .control-label').forEach(_label => {
@@ -525,7 +525,7 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
       if (!tabsArr.includes(tabId)) {
         tabName = document.querySelector('a[data-target="#' + tabId + '"]').innerHTML
         if (tabName != null) {
-          var newTabLink = document.createElement('div')
+          let newTabLink = document.createElement('div')
           newTabLink.innerHTML = '<a role="searchTabLink" data-target="#' + tabId + '">' + tabName + '</a>'
           resultDiv.appendChild(newTabLink)
           tabsArr.push(tabId)
@@ -537,7 +537,7 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
       if (el.getAttribute('searchId') == null) {
         searchId = domUtils.uniqueId('search-')
         el.setAttribute('searchId', searchId)
-        var newRefSpan = document.createElement('span')
+        const newRefSpan = document.createElement('span')
         newRefSpan.setAttribute('searchId', searchId)
         el.replaceWith(newRefSpan)
         thisTabLink.appendChild(el)
@@ -558,7 +558,7 @@ document.getElementById('bt_resetConfigSearch').addEventListener('click', functi
 /*Events delegations
 */
 document.getElementById('generaltab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_forceSyncHour')) {
     jeedomUtils.hideAlert()
     jeedom.forceSyncHour({
@@ -653,7 +653,7 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
 /**************************INTERFACE***********************************/
 //Init file upload buttons:
 document.querySelectorAll('input.bt_uploadImage').forEach(_button => {
-  var dataPage = _button.getAttribute('data-page')
+  const dataPage = _button.getAttribute('data-page')
   new jeeFileUploader({
     fileInput: _button,
     url: 'core/ajax/config.ajax.php?action=uploadImage&id=' + dataPage,
@@ -680,7 +680,7 @@ document.querySelectorAll('input.bt_uploadImage').forEach(_button => {
 /*Events delegations
 */
 document.getElementById('interfacetab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_resetThemeCookie')) {
     setCookie('currentTheme', '', -1)
     jeedomUtils.showAlert({
@@ -691,7 +691,7 @@ document.getElementById('interfacetab').addEventListener('click', function(event
   }
 
   if (_target = event.target.closest('.bt_removeBackgroundImage')) {
-    var dataPage = _target.getAttribute('data-page')
+    const dataPage = _target.getAttribute('data-page')
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cette image de fond ?}}', function(result) {
       if (result) {
         jeedom.config.removeImage({
@@ -722,9 +722,9 @@ document.getElementById('interfacetab').addEventListener('click', function(event
 /*Events delegations
 */
 document.getElementById('tablist').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_networkTab')) {
-    var tableBody = document.getElementById('networkInterfacesTable').tBodies[0]
+    const tableBody = document.getElementById('networkInterfacesTable').tBodies[0]
     if (tableBody.children.length == 0) {
       jeedom.network.getInterfacesInfo({
         error: function(error) {
@@ -737,7 +737,7 @@ document.getElementById('tablist').addEventListener('click', function(event) {
           let div = ''
           let options = '<option value="auto">{{Automatique}}</option>'
 
-          for (var i in _interfaces) {
+          for (const i in _interfaces) {
             div += '<tr>'
             div += '<td>' + _interfaces[i].ifname + '</td>'
             div += '<td data-interface="' + _interfaces[i].ifname + '">' + (_interfaces[i].addr_info && _interfaces[i].addr_info[0] ? _interfaces[i].addr_info[0].local : '') + '</td>'
@@ -768,7 +768,7 @@ document.getElementById('tablist').addEventListener('click', function(event) {
 
 
 document.getElementById('networktab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
 
   if (_target = event.target.closest('#bt_restartDns')) {
     jeedomUtils.hideAlert()
@@ -828,7 +828,7 @@ document.getElementById('networktab').addEventListener('click', function(event) 
 })
 
 document.getElementById('networktab').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if ((_target = event.target.closest('.configKey[data-l1key="market::allowDNS"]')) || (_target = event.target.closest('.configKey[data-l1key="network::disableMangement"]'))) {
     if (document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.jeeValue() == 1 && document.querySelector('.configKey[data-l1key="network::disableMangement"]').jeeValue() == 0) {
       document.querySelector('.configKey[data-l1key="externalProtocol"]').setAttribute('disabled', true)
@@ -885,7 +885,7 @@ document.getElementById('networktab').addEventListener('change', function(event)
 /*Events delegations
 */
 document.getElementById('logtab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_removeTimelineEvent')) {
     jeedom.timeline.deleteAll({
       error: function(error) {
@@ -895,7 +895,7 @@ document.getElementById('logtab').addEventListener('click', function(event) {
         })
       },
       success: function(data) {
-        var cmd = (cmd = document.getElementById('timelineEvents')) ? cmd.innerHTML = 0 : null
+        const cmd = (cmd = document.getElementById('timelineEvents')) ? cmd.innerHTML = 0 : null
         jeedomUtils.showAlert({
           message: '{{Evènements de la timeline supprimés avec succès}}',
           level: 'success'
@@ -936,7 +936,7 @@ document.getElementById('logtab').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.listCmdAction')) {
-    var el = _target.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key="cmd"]')
+    const el = _target.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
@@ -952,7 +952,7 @@ document.getElementById('logtab').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.listAction')) {
-    var el = _target.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key="cmd"]')
+    const el = _target.closest('.actionOnMessage').querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.getSelectActionModal({}, function(result) {
       el.jeeValue(result.human)
       jeedom.cmd.displayActionOption(result.human, '', function(html) {
@@ -964,7 +964,7 @@ document.getElementById('logtab').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.bt_selectAlertCmd')) {
-    var type = _target.getAttribute('data-type')
+    const type = _target.getAttribute('data-type')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action',
@@ -990,7 +990,7 @@ document.getElementById('logtab').addEventListener('click', function(event) {
 })
 
 document.getElementById('logtab').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.configKey[data-l1key="log::engine"]')) {
     if (_target.value == '') return
     let element = document.querySelector('.logEngine.' + _target.value)
@@ -1000,9 +1000,9 @@ document.getElementById('logtab').addEventListener('change', function(event) {
 })
 
 document.getElementById('logtab').addEventListener('focusout', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
-    var expression = _target.closest('.actionOnMessage').getJeeValues('.expressionAttr')
+    const expression = _target.closest('.actionOnMessage').getJeeValues('.expressionAttr')
     if (expression[0] && expression[0].options) {
       jeedom.cmd.displayActionOption(_target.value, init(expression[0].options), function(html) {
         _target.closest('.actionOnMessage').querySelector('.actionOptions').html(html)
@@ -1018,15 +1018,15 @@ document.getElementById('logtab').addEventListener('focusout', function(event) {
 /*Events delegations
 */
 document.getElementById('summarytab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_addObjectSummary')) {
     jeeP.addObjectSummary()
     return
   }
 
   if (_target = event.target.closest('.objectSummaryAction[data-l1key="chooseIcon"]')) {
-    var objectSummary = _target.closest('.objectSummary')
-    var icon = objectSummary.querySelector('span[data-l1key="icon"] > i')
+    const objectSummary = _target.closest('.objectSummary')
+    let icon = objectSummary.querySelector('span[data-l1key="icon"] > i')
     if (icon != null) {
       icon = icon.getAttribute('class')
     } else {
@@ -1040,8 +1040,8 @@ document.getElementById('summarytab').addEventListener('click', function(event) 
   }
 
   if (_target = event.target.closest('.objectSummaryAction[data-l1key="chooseIconNul"]')) {
-    var objectSummary = _target.closest('.objectSummary')
-    var icon = objectSummary.querySelector('span[data-l1key="iconnul"] > i')
+    const objectSummary = _target.closest('.objectSummary')
+    let icon = objectSummary.querySelector('span[data-l1key="iconnul"] > i')
     if (icon != null) {
       icon = icon.getAttribute('class')
     } else {
@@ -1061,7 +1061,7 @@ document.getElementById('summarytab').addEventListener('click', function(event) 
   }
 
   if (_target = event.target.closest('.objectSummaryAction[data-l1key="createVirtual"]')) {
-    var objectSummary = _target.closest('.objectSummary').querySelector('.objectSummaryAttr[data-l1key="key"]').jeeValue()
+    const objectSummary = _target.closest('.objectSummary').querySelector('.objectSummaryAttr[data-l1key="key"]').jeeValue()
     domUtils.ajax({
       type: "POST",
       url: "core/ajax/object.ajax.php",
@@ -1092,7 +1092,7 @@ document.getElementById('summarytab').addEventListener('click', function(event) 
 })
 
 document.getElementById('summarytab').addEventListener('dblclick', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.summIconContainer')) {
     _target.closest('.objectSummaryAttr').innerHTML = ''
     return
@@ -1100,7 +1100,7 @@ document.getElementById('summarytab').addEventListener('dblclick', function(even
 })
 
 document.getElementById('summarytab').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.objectSummaryAttr')) {
     jeeFrontEnd.modifyWithoutSave = true
     return
@@ -1112,7 +1112,7 @@ document.getElementById('summarytab').addEventListener('change', function(event)
 /*Events delegations
 */
 document.getElementById('eqlogictab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_influxDelete')) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
       if (result) {
@@ -1184,7 +1184,7 @@ document.getElementById('eqlogictab').addEventListener('click', function(event) 
 /*Events delegations
 */
 document.getElementById('interacttab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_addColorConvert')) {
     jeeP.addConvertColor()
     return
@@ -1196,7 +1196,7 @@ document.getElementById('interacttab').addEventListener('click', function(event)
   }
 
   if (_target = event.target.closest('.bt_resetColor')) {
-    var key = _target.getAttribute('data-l1key')
+    const key = _target.getAttribute('data-l1key')
     jeedom.getConfiguration({
       key: key,
       default: 1,
@@ -1219,7 +1219,7 @@ document.getElementById('interacttab').addEventListener('click', function(event)
 /*Events delegations
 */
 document.getElementById('securitytab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_testLdapConnection')) {
     jeedom.config.save({
       configuration: document.getElementById('config').getJeeValues('.configKey')[0],
@@ -1277,7 +1277,7 @@ document.getElementById('securitytab').addEventListener('click', function(event)
 })
 
 document.getElementById('securitytab').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.configKey[data-l1key="ldap:enable"]')) {
     if (_target.checked) {
       document.getElementById('div_config_ldap').seen()
@@ -1293,9 +1293,9 @@ document.getElementById('securitytab').addEventListener('change', function(event
 /*Events delegations
 */
 document.getElementById('updatetab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.testRepoConnection')) {
-    var repo = _target.getAttribute('data-repo')
+    const repo = _target.getAttribute('data-repo')
     jeedom.config.save({
       configuration: document.getElementById('config').getJeeValues('.configKey')[0],
       error: function(error) {
@@ -1355,7 +1355,7 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
 })
 
 document.getElementById('updatetab').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.enableRepository')) {
     if (_target.checked) {
       document.querySelectorAll('.repositoryConfiguration' + _target.getAttribute('data-repo')).seen()
@@ -1371,7 +1371,7 @@ document.getElementById('updatetab').addEventListener('change', function(event) 
 /*Events delegations
 */
 document.getElementById('cachetab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_cleanCache')) {
     jeedomUtils.hideAlert()
     jeeP.cleanCache()
@@ -1390,7 +1390,7 @@ document.getElementById('cachetab').addEventListener('click', function(event) {
 })
 
 document.getElementById('cachetab').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.configKey[data-l1key="cache::engine"]')) {
     document.querySelectorAll('.cacheEngine').unseen()
     if (_target.value == '') return
@@ -1405,7 +1405,7 @@ document.getElementById('cachetab').addEventListener('change', function(event) {
 /*Events delegations
 */
 document.getElementById('apitab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_regenerate_api')) {
     jeedomUtils.hideAlert()
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir réinitialiser la clé API de}}' + ' ' + _target.getAttribute('data-plugin') + ' ?', function(result) {
@@ -1448,7 +1448,7 @@ document.getElementById('apitab').addEventListener('click', function(event) {
 /*Events delegations
 */
 document.getElementById('ostab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_cleanFileSystemRight')) {
     jeedom.cleanFileSystemRight({
       error: function(error) {
@@ -1535,7 +1535,7 @@ document.getElementById('ostab').addEventListener('click', function(event) {
 
 /**************************--GLOBAL--***********************************/
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_saveGeneraleConfig')) {
     jeeP.saveConfig()
     return
@@ -1543,14 +1543,14 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.configKey')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
     return
   }
 })
 document.getElementById('div_pageContainer').addEventListener('mousedown', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.ispin-wrapper')) {
     jeeFrontEnd.modifyWithoutSave = true
     return

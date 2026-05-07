@@ -63,10 +63,10 @@ if (!jeeFrontEnd.user) {
           })
         },
         success: function(data) {
-          var table = document.getElementById('table_user')
+          const table = document.getElementById('table_user')
           table.tBodies[0].empty()
-          var disable, userTR, node
-          for (var i in data) {
+          let disable, userTR, node
+          for (const i in data) {
             let newRow = table.tBodies[0].insertRow(i)
             disable = ''
             if (data[i].login == 'internal_report' || data[i].login == 'jeedom_support') {
@@ -176,7 +176,7 @@ if (!jeeFrontEnd.user) {
       })
     },
     saveUsers: function() {
-      var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
+      const users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
       if (!jeeP.checkUsersLogins(users)) return
       jeedom.user.save({
         users: users,
@@ -233,7 +233,7 @@ function handleSupportAccess(enable) {
 */
 //div_administration
 document.getElementById('div_administration').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (event.target.matches('.userAttr')) {
     jeeFrontEnd.modifyWithoutSave = true
   }
@@ -248,7 +248,7 @@ document.getElementById('div_administration').addEventListener('click', function
       inputType: false,
       callback: function(result) {
         if (result) {
-          var user = [{
+          const user = [{
             login: result.newUserLogin,
             password: result.newUserMdp
           }]
@@ -281,7 +281,7 @@ document.getElementById('div_administration').addEventListener('click', function
   }
 
   if (_target = event.target.closest('#bt_supportAccess')) {
-    var enable = _target.getAttribute('data-enable');
+    const enable = _target.getAttribute('data-enable');
     if (enable == '1') {
         bootbox.confirm({
             message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
@@ -309,10 +309,10 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#table_user .bt_del_user')) {
     jeedomUtils.hideAlert();
-    var user = {
+    const user = {
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
     }
-    var userName = _target.closest('tr').querySelector('input[data-l1key="login"]').value
+    const userName = _target.closest('tr').querySelector('input[data-l1key="login"]').value
     jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
       if (result) {
         jeedom.user.remove({
@@ -338,7 +338,7 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#table_user .bt_change_mdp_user')) {
     jeedomUtils.hideAlert()
-    var user = {
+    const user = {
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
       login: _target.closest('tr').querySelector('input[data-l1key="login"]').value
     }
@@ -369,7 +369,7 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#table_user .bt_changeHash')) {
     jeedomUtils.hideAlert()
-    var user = {
+    const user = {
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
     }
     jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
@@ -487,7 +487,7 @@ document.getElementById('div_administration').addEventListener('click', function
 })
 
 document.getElementById('div_administration').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('select[data-l1key="profils"]')) {
     if (_target.value != 'restrict') {
       _target.closest('tr').querySelector('a.bt_manage_restrict_rights')?.addClass('disabled')
@@ -510,9 +510,9 @@ document.getElementById('div_administration').addEventListener('change', functio
 
 //tableSessions
 document.getElementById('tableSessions').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_deleteSession')) {
-    var id = _target.closest('tr').getAttribute('data-id')
+    const id = _target.closest('tr').getAttribute('data-id')
     jeeFrontEnd.user.deleteSession(_target.closest('tr').getAttribute('data-id'))
     return
   }
@@ -520,7 +520,7 @@ document.getElementById('tableSessions').addEventListener('click', function(even
 
 //div_Devices
 document.getElementById('div_Devices').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_removeAllRegisterDevice')) {
     jeedom.user.removeRegisterDevice({
       error: function(error) {
@@ -538,8 +538,8 @@ document.getElementById('div_Devices').addEventListener('click', function(event)
   }
 
   if (_target = event.target.closest('.bt_removeRegisterDevice')) {
-    var key = event.target.closest('tr').getAttribute('data-key')
-    var user_id = event.target.closest('tr').getAttribute('data-user_id')
+    const key = event.target.closest('tr').getAttribute('data-key')
+    const user_id = event.target.closest('tr').getAttribute('data-user_id')
     jeeFrontEnd.user.removeRegisterDevice(key, user_id)
     return
   }
