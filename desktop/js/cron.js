@@ -63,9 +63,9 @@ if (!jeeFrontEnd.cron) {
             jeeFrontEnd.cron.cronDataTable.destroy()
             delete jeeFrontEnd.cron.cronDataTable
           }
-          var table = document.getElementById('table_cron').querySelector('tbody')
+          const table = document.getElementById('table_cron').querySelector('tbody')
           table.empty()
-          for (var i in data) {
+          for (const i in data) {
             let newRow = document.createElement("tr")
             newRow.innerHTML = jeeP.addCron(data[i])
             newRow.setJeeValues(data[i], '.cronAttr')
@@ -82,11 +82,11 @@ if (!jeeFrontEnd.cron) {
     },
     addCron: function(_cron) {
       jeedomUtils.hideAlert()
-      var disabled = ''
+      const disabled = ''
       if (init(_cron.deamon) == 1) {
         disabled = 'disabled'
       }
-      var tr = '<tr>'
+      const tr = '<tr>'
       tr += '<td><span class="cronAttr label label-info" data-l1key="id"></span></td>'
       tr += '<td class="center">'
       tr += '<input type="checkbox"class="cronAttr" data-l1key="enable" checked ' + disabled + '/>'
@@ -118,8 +118,8 @@ if (!jeeFrontEnd.cron) {
       tr += init(_cron.runtime, '0') + 's'
       tr += '</td>'
       tr += '<td>'
-      var label = 'label label-info'
-      var state = init(_cron.state)
+      let label = 'label label-info'
+      let state = init(_cron.state)
       if (init(_cron.state) == 'run') {
         label = 'label label-success'
         state = '{{En cours}}'
@@ -175,9 +175,9 @@ if (!jeeFrontEnd.cron) {
       jeedom.listener.all({
         success: function(data) {
           domUtils.showLoading()
-          var table = document.getElementById('table_listener').querySelector('tbody')
+          const table = document.getElementById('table_listener').querySelector('tbody')
           table.empty()
-          for (var i in data) {
+          for (const i in data) {
             let newRow = document.createElement("tr")
             newRow.innerHTML = jeeP.addListener(data[i])
             newRow.setJeeValues(data[i], '.listenerAttr')
@@ -190,8 +190,8 @@ if (!jeeFrontEnd.cron) {
     },
     addListener: function(_listener) {
       jeedomUtils.hideAlert()
-      var disabled = ''
-      var tr = '<tr>'
+      const disabled = ''
+      const tr = '<tr>'
       tr += '<td class="option"><span class="listenerAttr" data-l1key="id"></span></td>'
       tr += '<td>'
       if (init(_listener.id) != '') {
@@ -217,7 +217,7 @@ if (!jeeFrontEnd.cron) {
           })
         },
         success: function(plugins) {
-          for (var i in plugins) {
+          for (const i in plugins) {
             if (plugins[i].hasOwnDeamon == 0) continue
 
             jeedom.plugin.getDeamonInfo({
@@ -230,7 +230,7 @@ if (!jeeFrontEnd.cron) {
                 })
               },
               success: function(deamonInfo) {
-                var html = '<tr>'
+                let html = '<tr>'
                 html += '<td>'
                 html += deamonInfo.plugin.name
                 html += '</td>'
@@ -284,9 +284,9 @@ if (!jeeFrontEnd.cron) {
             jeeFrontEnd.cron.queueDataTable.destroy()
             delete jeeFrontEnd.cron.queueDataTable
           }
-          var table = document.getElementById('table_queue').querySelector('tbody')
+          const table = document.getElementById('table_queue').querySelector('tbody')
           table.empty()
-          for (var i in data) {
+          for (const i in data) {
             let newRow = document.createElement("tr")
             newRow.innerHTML = jeeP.addQueue(data[i])
             newRow.setJeeValues(data[i], '.queueAttr')
@@ -303,7 +303,7 @@ if (!jeeFrontEnd.cron) {
     },
     addQueue: function(_queue) {
       jeedomUtils.hideAlert()
-      var tr = '<tr>'
+      const tr = '<tr>'
       tr += '<td><span class="queueAttr label label-info" data-l1key="id"></span></td>'
       tr += '<td>'
       tr += init(_queue.pid)
@@ -318,8 +318,8 @@ if (!jeeFrontEnd.cron) {
       tr += init(_queue.createTime)
       tr += '</td>'
       tr += '<td>'
-      var label = 'label label-info'
-      var state = init(_queue.state)
+      let label = 'label label-info'
+      let state = init(_queue.state)
       if (init(_queue.state) == 'run') {
         label = 'label label-success'
         state = '{{En cours}}'
@@ -388,7 +388,7 @@ document.getElementById('bt_save')?.addEventListener('click', function(event) {
 })
 
 document.getElementById('bt_changeCronState')?.addEventListener('click', function(event) {
-  var _target = event.target
+  const _target = event.target
   jeedom.config.save({
     configuration: {
       enableCron: _target.getAttribute('data-state')
@@ -421,7 +421,7 @@ document.registerEvent('keydown', function(event) {
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('ul.nav.nav-tabs')) {
     if (document.getElementById('tab_tableCron').hasClass('active')) {
       document.querySelector('div.floatingbar').seen()
@@ -433,7 +433,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('.cronAttr')) {
     jeeFrontEnd.modifyWithoutSave = true
   }
@@ -443,7 +443,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 //Table cron
 document.getElementById('table_cron')?.tBodies[0].addEventListener('click', function(event) {
   // console.log('click:', event.target)
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('.remove')) {
     _target.closest('tr').remove()
     if (jeeFrontEnd.cron.cronDataTable) jeeFrontEnd.cron.cronDataTable.refresh()
@@ -495,7 +495,7 @@ document.getElementById('table_cron')?.tBodies[0].addEventListener('click', func
 })
 
 document.getElementById('table_cron')?.tBodies[0].addEventListener('change', function(event) {
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('.cronAttr[data-l1key="deamon"]')) {
     if (_target.jeeValue() == 1) {
       _target.closest('tr').querySelector('.cronAttr[data-l1key="deamonSleepTime"]').seen()
@@ -510,7 +510,7 @@ document.getElementById('table_cron')?.tBodies[0].addEventListener('change', fun
 
 document.getElementById('table_queue')?.tBodies[0].addEventListener('click', function(event) {
   // console.log('click:', event.target)
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('.displayQueue')) {
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -526,7 +526,7 @@ document.getElementById('table_queue')?.tBodies[0].addEventListener('click', fun
 
 //Table listeners
 document.getElementById('table_listener')?.tBodies[0].addEventListener('click', function(event) {
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('.display')) {
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -537,7 +537,7 @@ document.getElementById('table_listener')?.tBodies[0].addEventListener('click', 
   }
 
   if (_target = event.target.closest('.removeListener')) {
-    var tr = _target.closest('tr')
+    const tr = _target.closest('tr')
     jeedom.listener.remove({
       id: tr.querySelector('span[data-l1key="id"]').innerHTML,
       success: function() {
@@ -550,10 +550,10 @@ document.getElementById('table_listener')?.tBodies[0].addEventListener('click', 
 
 //Table daemons
 document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', function(event) {
-  var _target = null
+  const _target = null
   if (_target = event.target.closest('.bt_deamonAction')) {
-    var plugin = _target.getAttribute('data-plugin')
-    var action = _target.getAttribute('data-action')
+    const plugin = _target.getAttribute('data-plugin')
+    const action = _target.getAttribute('data-action')
     if (action == 'start') {
       jeedom.plugin.deamonStart({
         id: plugin,

@@ -45,9 +45,9 @@ if (!jeeFrontEnd.view_edit) {
     },
     saveView: function(_viewResult) {
       jeedomUtils.hideAlert()
-      var view = document.getElementById('div_view').getJeeValues('.viewAttr')[0]
+      const view = document.getElementById('div_view').getJeeValues('.viewAttr')[0]
       view.zones = []
-      var viewZoneInfo, line, col
+      let viewZoneInfo, line, col
       document.querySelectorAll('.viewZone').forEach(function(_viewZone) {
         viewZoneInfo = _viewZone.getJeeValues('.viewZoneAttr')[0]
         if (viewZoneInfo.type == 'table') {
@@ -101,8 +101,8 @@ if (!jeeFrontEnd.view_edit) {
         _viewZone.configuration = {};
       }
       if (init(_viewZone.emplacement) == '') {
-        var id = document.querySelectorAll('#div_viewZones .viewZone').length
-        var div = '<div class="viewZone" id="div_viewZone' + id + '">'
+        const id = document.querySelectorAll('#div_viewZones .viewZone').length
+        let div = '<div class="viewZone" id="div_viewZone' + id + '">'
         div += '<legend><span class="viewZoneAttr" data-l1key="name"></span><span class="small viewtype"></span>'
         div += '<div class="input-group pull-right" style="display:inline-flex">'
         div += '<span class="input-group-btn" style="width: 100%;">'
@@ -167,15 +167,15 @@ if (!jeeFrontEnd.view_edit) {
           div += '<thead>'
           div += '<tr>'
           div += '<td></td>'
-          for (var i = 0; i < _viewZone.configuration.nbcol; i++) {
+          for (let i = 0; i < _viewZone.configuration.nbcol; i++) {
             div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>'
           }
           div += '</thead>'
           div += '<tbody>'
-          for (var j = 0; j < _viewZone.configuration.nbline; j++) {
+          for (let j = 0; j < _viewZone.configuration.nbline; j++) {
             div += '<tr class="viewData">';
             div += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
-            for (var i = 0; i < _viewZone.configuration.nbcol; i++) {
+            for (let i = 0; i < _viewZone.configuration.nbcol; i++) {
               div += '<td>'
               div += '<div class="input-group">'
               div += '<input class="form-control viewDataAttr roundedLeft" data-l1key="configuration" data-l2key="' + j + '" data-l3key="' + i + '" />'
@@ -221,7 +221,7 @@ if (!jeeFrontEnd.view_edit) {
       if (!isset(_viewData.configuration) || _viewData.configuration == '') {
         _viewData.configuration = {}
       }
-      var tr = '<tr>'
+      let tr = '<tr>'
       tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>'
 
       tr += '<td>'
@@ -314,7 +314,7 @@ if (!jeeFrontEnd.view_edit) {
       if (!isset(_viewData.configuration) || _viewData.configuration == '') {
         _viewData.configuration = {}
       }
-      var tr = '<tr>'
+      let tr = '<tr>'
       tr += '<td><i class="far fa-trash-alt cursor bt_removeViewData"></i></td>'
       tr += '<td>'
       tr += '<input class="viewDataAttr" data-l1key="link_id" style="display  : none;"/>'
@@ -347,12 +347,12 @@ if (!jeeFrontEnd.view_edit) {
           jeedomUtils.addOrUpdateUrl('view_id', data.id)
           document.querySelectorAll('#div_viewZones').empty()
           document.getElementById('div_view').setJeeValues(data, '.viewAttr')
-          var viewZone
-          for (var i in data.viewZone) {
+          const viewZone
+          for (const i in data.viewZone) {
             viewZone = data.viewZone[i]
             jeeP.addEditviewZone(viewZone)
-            for (var j in viewZone.viewData) {
-              var viewData = viewZone.viewData[j]
+            for (const j in viewZone.viewData) {
+              const viewData = viewZone.viewData[j]
               if (init(viewZone.type, 'widget') == 'graph') {
                 document.querySelectorAll('#div_viewZones .viewZone').last().querySelector('.div_viewData tbody').appendChild(jeeP.addGraphService(viewData))
               } else if (init(viewZone.type, 'widget') == 'table') {
@@ -385,7 +385,7 @@ Sortable.create(document.getElementById('ul_view'), {
   handle: 'i.fa-arrows-alt-v',
   removeCloneOnHide: true,
   onEnd: function (event) {
-    var views = []
+    const views = []
     document.querySelectorAll('#ul_view .li_view').forEach(_li => {
       views.push(_li.getAttribute('data-view_id'))
     })
@@ -426,7 +426,7 @@ document.registerEvent('keydown', function(event) {
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   //General ->
   if (_target = event.target.closest('#bt_viewResult')) {
     jeeP.saveView(true)
@@ -529,7 +529,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
             })
             return
           }
-          var viewZone = {
+          const viewZone = {
             name: result.name,
             emplacement: '',
             type: result.type
@@ -577,7 +577,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
             })
             return
           }
-          var viewZone = {
+          const viewZone = {
             name: result.name,
             emplacement: result.emplacement,
             type: result.type
@@ -701,7 +701,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.viewZoneAttr')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
   }

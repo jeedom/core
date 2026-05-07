@@ -23,13 +23,13 @@ if (!jeeFrontEnd.types) {
       this.generics = jeephp2js.generics
       this.gen_families = jeephp2js.gen_families
       this.genericsByFamily = {}
-      for (var i in this.gen_families) {
+      for (const i in this.gen_families) {
         this.genericsByFamily[this.gen_families[i]] = {}
       }
       this.setQueryButtons()
     },
     setFamiliesNumber: function() {
-      var ul
+      let ul
       document.querySelectorAll('span.spanNumber').forEach(_span => {
         ul = _span.closest('.eqlogicSortable').querySelector('ul.eqLogicSortable')
         _span.textContent = ' (' + ul.querySelectorAll('li.eqLogic').length + ')'
@@ -46,11 +46,11 @@ if (!jeeFrontEnd.types) {
       })
     },
     getSelectCmd: function(_family = '', _type, _subtype, _none = true) {
-      var htmlSelect = '<select class="modalCmdGenericSelect input-xs">'
+      let htmlSelect = '<select class="modalCmdGenericSelect input-xs">'
       if (_none) htmlSelect += '<option value="">{{Aucun}}</option>'
-      for (var group in this.genericsByFamily) {
+      for (const group in this.genericsByFamily) {
         if (_family != '' && group != _family) continue
-        for (var i in this.genericsByFamily[group]) {
+        for (const i in this.genericsByFamily[group]) {
           if (this.genericsByFamily[group][i].type.toLowerCase() == _type.toLowerCase() && (this.genericsByFamily[group][i].subtype.includes(_subtype) || this.genericsByFamily[group][i].subtype.length == 0)) {
             htmlSelect += '<option value="' + this.genericsByFamily[group][i].genkey + '">' + this.genericsByFamily[group][i].name + '</option>'
           }
@@ -98,12 +98,12 @@ if (!jeeFrontEnd.types) {
         },
       })
 
-      var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
-      var inner = '<table class="table table-condensed">'
+      const container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
+      let inner = '<table class="table table-condensed">'
       inner += '<td>{{Générique}}</td><td>{{Nom}}</td><td>{{Type}}</td><td>{{Sous type}}</td>'
 
-      var family, familyName, generics, generic, infos, actions
-      for (var familyId in jeeP.gen_families) {
+      let family, familyName, generics, generic, infos, actions
+      for (const familyId in jeeP.gen_families) {
         infos = []
         actions = []
         family = jeeP.gen_families[familyId]
@@ -124,13 +124,13 @@ if (!jeeFrontEnd.types) {
         infos.sort(jeeP.compareGenericName)
         actions.sort(jeeP.compareGenericName)
 
-        for (var idx in infos) {
+        for (const idx in infos) {
           generic = infos[idx]
           inner += '<tr>'
           inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-info">' + generic.type + '</td><td class="label">' + generic.subtype + '</td>'//<td>' + generic.comment + '</td>'
           inner += '</tr>'
         }
-        for (var idx in actions) {
+        for (const idx in actions) {
           generic = actions[idx]
           inner += '<tr>'
           inner += '<td>' + generic.genkey + '</td><td>' + generic.name + '</td><td class="label-warning">' + generic.type + '</td><td class="label">' + generic.subtype + '</td>'//<td>' + generic.comment + '</td>'
@@ -142,19 +142,19 @@ if (!jeeFrontEnd.types) {
     },
     //Modal apply:
     queryCmdsTypes: function(_butAuto) {
-      var genFamilyId = _butAuto.closest('div.eqlogicSortable').getAttribute('data-id')
-      var genFamily = jeeP.gen_families[genFamilyId]
+      const genFamilyId = _butAuto.closest('div.eqlogicSortable').getAttribute('data-id')
+      const genFamily = jeeP.gen_families[genFamilyId]
 
       //Get selected eqLogics and all their cmd data:
-      var queryEqIds = {}
+      const queryEqIds = {}
       queryEqIds[(_butAuto.closest('li.eqLogic').getAttribute('data-id'))] = { 'cmds': [] }
       _butAuto.closest('ul.eqLogicSortable').querySelectorAll('li.eqLogic.dragSelected').forEach(_handle => {
         if (_handle.querySelector('ul.eqLogicCmds')) {
           queryEqIds[_handle.getAttribute('data-id')] = { 'cmds': [] }
         }
       })
-      var cmd
-      for (var _id in queryEqIds) {
+      let cmd
+      for (const _id in queryEqIds) {
         document.querySelectorAll('li.eqLogic[data-id="' + _id + '"] li.cmd').forEach(_cmd => {
           cmd = {}
           cmd['id'] = _cmd.getAttribute('data-id')
@@ -171,11 +171,11 @@ if (!jeeFrontEnd.types) {
       }
 
       //Iterate for each generic in this family, each eqLogic selected, each eqLogic commands:
-      var thisGen, thisCmd
+      let thisGen, thisCmd
       Object.keys(jeeP.genericsByFamily[genFamily]).forEach(key => {
         thisGen = jeeP.genericsByFamily[genFamily][key]
-        for (var _id in queryEqIds) {
-          for (var _cmd in queryEqIds[_id].cmds) {
+        for (const _id in queryEqIds) {
+          for (const _cmd in queryEqIds[_id].cmds) {
             thisCmd = queryEqIds[_id].cmds[_cmd]
             if (thisGen.type.toLowerCase() != thisCmd.type.toLowerCase()) continue
             if (thisGen.subtype.length > 0 && !thisGen.subtype.includes(thisCmd.subtype)) continue
@@ -185,9 +185,9 @@ if (!jeeFrontEnd.types) {
       })
 
       //Find something in possibilities ...
-      var thisPoss, match
-      for (var _id in queryEqIds) {
-        for (var _cmd in queryEqIds[_id].cmds) {
+      let thisPoss, match
+      for (const _id in queryEqIds) {
+        for (const _cmd in queryEqIds[_id].cmds) {
           thisCmd = queryEqIds[_id].cmds[_cmd]
           if (thisCmd.possibilities.length == 0) continue
           if (thisCmd.possibilities.length == 1) {
@@ -195,7 +195,7 @@ if (!jeeFrontEnd.types) {
             thisCmd.queryGenericName = thisCmd.possibilities[0].name
             continue
           }
-          for (var poss in thisCmd.possibilities) {
+          for (const poss in thisCmd.possibilities) {
             thisPoss = thisCmd.possibilities[poss]
             match = false
 
@@ -247,15 +247,15 @@ if (!jeeFrontEnd.types) {
         },
       })
 
-      var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
+      const container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
       container.setAttribute('data-generic', genFamilyId)
-      var inner = '<br/>'
-      var eqName, cmdName, thisCmd, thisClass, select
-      for (var _id in queryEqIds) {
+      let inner = '<br/>'
+      let eqName, cmdName, thisCmd, thisClass, select
+      for (const _id in queryEqIds) {
         inner += '<div class="queryEq" data-id="' + _id + '">'
         eqName = document.querySelector('li.eqLogic[data-id="' + _id + '"]').getAttribute('data-name')
         inner += '<div class="center biggerText">' + eqName + '</div>'
-        for (var _cmd in queryEqIds[_id].cmds) {
+        for (const _cmd in queryEqIds[_id].cmds) {
           thisCmd = queryEqIds[_id].cmds[_cmd]
           // console.log(thisCmd)
           cmdName = document.querySelector('li.cmd[data-id="' + thisCmd.id + '"]').getAttribute('data-name')
@@ -281,9 +281,9 @@ if (!jeeFrontEnd.types) {
 
     },
     applyModalGeneric: function() {
-      var container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
-      var genFamilyId = container.getAttribute('data-generic')
-      var cmd, select, genericName
+      const container = document.querySelector('#md_applyCmdsTypes .jeeDialogContent')
+      const genFamilyId = container.getAttribute('data-generic')
+      let cmd, select, genericName
       container.querySelectorAll('.queryCmd').forEach(_queryCmd => {
         if (_queryCmd.querySelector('.cb_selCmd').checked) {
           select = _queryCmd.querySelector('.modalCmdGenericSelect')
@@ -302,8 +302,8 @@ if (!jeeFrontEnd.types) {
     },
     //Save:
     saveGenericTypes: function() {
-      var eqLogics = []
-      var eqGeneric
+      const eqLogics = []
+      const eqGeneric
       document.querySelectorAll('.eqlogicSortable').forEach(_listEqlogic => {
         eqGeneric = _listEqlogic.getAttribute('data-id')
         if (eqGeneric == 'none') {
@@ -332,7 +332,7 @@ if (!jeeFrontEnd.types) {
       }
 
       //save cmds:
-      var cmds = []
+      const cmds = []
       document.querySelectorAll('li.cmd').forEach(_cmd => {
         if (_cmd.getAttribute('data-changed') == '0') return true
         cmds.push({
@@ -385,7 +385,7 @@ if (!jeeFrontEnd.types) {
 jeeFrontEnd.types.init()
 
 //Sortable:
-var sortLists = document.getElementById('genericsContainer').querySelectorAll('.eqLogicSortable')
+const sortLists = document.getElementById('genericsContainer').querySelectorAll('.eqLogicSortable')
 sortLists.forEach(_group => {
   new Sortable(_group, {
     group: {
@@ -446,22 +446,22 @@ new jeeCtxMenu({
   appendTo: 'div#div_pageContainer',
   build: function(trigger) {
     trigger.addClass('hover')
-    var eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
-    var cmdId = trigger.getAttribute('data-id')
-    var cmdType = trigger.getAttribute('data-type')
-    var cmdSubType = trigger.getAttribute('data-subType')
+    const eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
+    const cmdId = trigger.getAttribute('data-id')
+    const cmdType = trigger.getAttribute('data-type')
+    const cmdSubType = trigger.getAttribute('data-subType')
 
-    var contextmenuitems = {}
+    const contextmenuitems = {}
     if (trigger.getAttribute('data-generic')) {
       contextmenuitems['deleteme'] = { 'name': '{{Supprimer}}', 'id': 'delete_me' }
       contextmenuitems['sep1'] = "---------"
     }
 
-    var items
-    var uniqId = 0
-    for (var group in jeeP.genericsByFamily) {
+    let items
+    let uniqId = 0
+    for (const group in jeeP.genericsByFamily) {
       items = {}
-      for (var i in jeeP.genericsByFamily[group]) {
+      for (const i in jeeP.genericsByFamily[group]) {
         if (jeeP.genericsByFamily[group][i].type.toLowerCase() == cmdType.toLowerCase() && (jeeP.genericsByFamily[group][i].subtype.includes(cmdSubType) || jeeP.genericsByFamily[group][i].subtype.length == 0)) {
           items[uniqId] = {
             //'name': '<span title="'+jeeP.genericsByFamily[group][i].comment+'">'+jeeP.genericsByFamily[group][i].name+'</span>',
@@ -491,7 +491,7 @@ new jeeCtxMenu({
           document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-generic', '')
         } else {
           //var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].node.innerText
-          var text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].name
+          const text = options.commands[key].id.split('::')[0] + jeephp2js.typeStringSep + options.commands[key].name
           document.querySelector('li.cmd[data-id="' + cmdId + '"] .genericType').textContent = text
           document.querySelector('li.cmd[data-id="' + cmdId + '"]').setAttribute('data-generic', options.commands[key].id.split('::')[1])
         }
@@ -514,16 +514,16 @@ new jeeCtxMenu({
   appendTo: 'div#div_pageContainer',
   build: function(trigger) {
     trigger.addClass('hover')
-    var eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
-    var eqIds = [trigger.getAttribute('data-id')]
+    const eqGeneric = trigger.closest('.eqlogicSortable').getAttribute('data-id')
+    let eqIds = [trigger.getAttribute('data-id')]
     trigger.closest('ul.eqLogicSortable').querySelectorAll('li.eqLogic.dragSelected').forEach(_hdl => {
       eqIds.push(_hdl.getAttribute('data-id'))
     })
     eqIds = [...new Set(eqIds)]
 
-    var contextmenuitems = {}
+    const contextmenuitems = {}
     contextmenuitems['none'] = { 'name': '{{Aucun}}', 'id': 'none' }
-    for (var group in jeeP.gen_families) {
+    for (const group in jeeP.gen_families) {
       contextmenuitems[group] = {
         'name': jeeP.gen_families[group],
         'id': group
@@ -532,10 +532,10 @@ new jeeCtxMenu({
 
     return {
       callback: function(key, options) {
-        var dataGeneric = options.commands[key].id
+        let dataGeneric = options.commands[key].id
         if (dataGeneric == 'none') dataGeneric = ''
-        var eqLogics = []
-        for (var idx in eqIds) {
+        const eqLogics = []
+        for (const idx in eqIds) {
           let eqlogic = document.querySelector('li.eqLogic[data-id="' + eqIds[idx] + '"]')
           eqLogics.push(eqlogic)
           eqlogic.setAttribute('data-generic', dataGeneric)
@@ -563,8 +563,8 @@ new jeeCtxMenu({
 //searching:
 document.getElementById('in_searchTypes')?.addEventListener('keyup', function(event) {
   try {
-    var search = this.value
-    var searchID = search
+    let search = this.value
+    let searchID = search
     if (isNaN(search)) searchID = false
 
     document.querySelectorAll('#genericsContainer .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
@@ -577,8 +577,8 @@ document.getElementById('in_searchTypes')?.addEventListener('keyup', function(ev
     }
 
     search = jeedomUtils.normTextLower(search)
-    var eqParent, eqId
-    var eqName, type, category
+    let eqParent, eqId
+    let eqName, type, category
     document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
       eqParent = _eqlogic.closest('.panel.panel-default')
       if (searchID) {
@@ -610,7 +610,7 @@ document.getElementById('in_searchTypes')?.addEventListener('keyup', function(ev
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_openAll')) {
     document.querySelectorAll('#genericsContainer .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
     if (event.ctrlKey || event.metaKey) {
@@ -640,7 +640,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if ((_target = event.target.matches('li.eqLogic') || (_target = event.target.matches('li.eqLogic span.eqName')))) {
     _target = event.target.closest('li.eqLogic')
-    var el = _target.querySelector('ul.eqLogicCmds')
+    const el = _target.querySelector('ul.eqLogicCmds')
     if (el?.isVisible()) {
       el?.unseen()
     } else {
@@ -650,7 +650,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_resetCmdsTypes')) {
-    var eqLogics = []
+    const eqLogics = []
     _target.closest('ul.eqLogicSortable').querySelectorAll('li.eqLogic').forEach(_handle => {
       if (_handle.hasClass('dragSelected') || _handle == _target.closest('li.eqLogic')) {
         eqLogics.push(_handle)
@@ -666,7 +666,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.cb_selCmd')) {
-    var state = _target.checked
+    const state = _target.checked
     if (event.ctrlKey) {
       _target.closest('.queryEq').querySelectorAll('.cb_selCmd').forEach(_selCmd => {
         _selCmd.checked = state
