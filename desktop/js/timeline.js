@@ -50,28 +50,30 @@ if (!jeeFrontEnd.timeline) {
           if (data.length == 0) return
           data.sort(jeeP.sortByDateConsistentASC)
           data = data.reverse()
-          var dataLength = data.length
-          var decayFactor = 130
+          const dataLength = data.length
+          const decayFactor = 130
 
           moment.locale(jeeFrontEnd.language.substring(0, 2))
 
-          var lastEvent = document.querySelector('#timelineContainer #events li.event:last-child')
+          const lastEvent = document.querySelector('#timelineContainer #events li.event:last-child')
+          let isFirstOfDay, isLastOfDay, prevDate, prevDateTs, content
+          let nextDate, thisDateTs
           if (lastEvent != null) {
-            var isFirstOfDay = data[0].date.substring(0, 10) != lastEvent.querySelector('div.date').innerHTML.substring(4) ? true : false
-            var isLastOfDay = false
-            var prevDate = moment(lastEvent.querySelector('div.date').innerHTML, 'ddd  YYYY-MM-DD').format("YYYY-MM-DD")
-            var prevDateTs = moment(prevDate + ' ' + lastEvent.querySelector('div.time').innerHTML, "YYYY-MM-DD hh:mm:ss").unix()
-            var content = ''
+            isFirstOfDay = data[0].date.substring(0, 10) != lastEvent.querySelector('div.date').innerHTML.substring(4) ? true : false
+            isLastOfDay = false
+            prevDate = moment(lastEvent.querySelector('div.date').innerHTML, 'ddd  YYYY-MM-DD').format("YYYY-MM-DD")
+            prevDateTs = moment(prevDate + ' ' + lastEvent.querySelector('div.time').innerHTML, "YYYY-MM-DD hh:mm:ss").unix()
+            content = ''
           } else {
-            var isFirstOfDay, isLastOfDay = false
-            var nextDate, thisDateTs = false
-            var prevDate = moment().format("YYYY-MM-DD")
-            var prevDateTs = moment().unix()
-            var content = '<div class="label-warning day">' + moment(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
+            isLastOfDay = false
+            thisDateTs = false
+            prevDate = moment().format("YYYY-MM-DD")
+            prevDateTs = moment().unix()
+            content = '<div class="label-warning day">' + moment(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
           }
 
-          var thisData, date, dateFull, time, lineClass, style, height, li
-          for (var i in data) {
+          let thisData, date, dateFull, time, lineClass, style, height, li
+          for (const i in data) {
             thisData = data[i]
             date = thisData.date.substring(0, 10)
             time = thisData.date.substring(11, 19)
@@ -169,11 +171,11 @@ if (!jeeFrontEnd.timeline) {
 
     },
     sortByDateConsistentASC: function(itemA, itemB) {
-      var valueA = itemA.date
-      var valueB = itemB.date
-      var a = moment(valueA)
-      var b = moment(valueB)
-      var r = 0
+      const valueA = itemA.date
+      const valueB = itemB.date
+      const a = moment(valueA)
+      const b = moment(valueB)
+      let r = 0
       if (a.isValid() && b.isValid()) {
         r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))
       }
@@ -190,18 +192,18 @@ jeeFrontEnd.timeline.init()
 
 //searching
 document.getElementById('in_searchTimeline')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     document.querySelectorAll('#events > li.event').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
   document.querySelectorAll('#events > li.event').unseen()
-  var match, text
+  let match, text
   document.querySelectorAll('#events > li.event').forEach(_li => {
     match = false
     text = jeedomUtils.normTextLower(_li.querySelector('.tml-cmd')?.textContent)
@@ -264,7 +266,7 @@ document.getElementById('sel_timelineFolder').addEventListener('change', functio
 //Specials
 document.getElementById('div_mainContainer').registerEvent('scroll', function(event) {
   if (jeeP == undefined || jeeP.isScrolling) return
-  let container = document.getElementById('div_mainContainer')
+  const container = document.getElementById('div_mainContainer')
   if (container.scrollTop >= container.scrollHeight - window.innerHeight) {
     jeeP.isScrolling = true
     jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
@@ -276,7 +278,7 @@ document.getElementById('div_mainContainer').registerEvent('scroll', function(ev
 /*Events delegations
 */
 document.getElementById('events').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_scenarioLog')) {
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -311,9 +313,9 @@ document.getElementById('events').addEventListener('click', function(event) {
 })
 
 document.getElementById('timelineBottom').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('a.bt_loadMore')) {
-    var more = parseInt(_target.getAttribute('data-load'))
+    const more = parseInt(_target.getAttribute('data-load'))
     jeeP.loadStart = jeeP.loadStart + jeeP.loadOffset + 1
     jeeP.loadOffset = more
     jeeP.displayTimelineSegment(jeeP.loadStart, jeeP.loadOffset)
