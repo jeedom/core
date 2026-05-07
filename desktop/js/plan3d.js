@@ -337,7 +337,7 @@ window.registerEvent('resize', function() {
     jeeFrontEnd.plan3d.camera.aspect = jeeFrontEnd.plan3d.SCREEN_WIDTH / jeeFrontEnd.plan3d.SCREEN_HEIGHT
     jeeFrontEnd.plan3d.camera.updateProjectionMatrix()
     jeeFrontEnd.plan3d.renderer.setSize(jeeFrontEnd.plan3d.SCREEN_WIDTH, jeeFrontEnd.plan3d.SCREEN_HEIGHT)
-  } catch (error) { }
+  } catch (error) { console.error('plan3d resize failed', error) }
 }, false)
 
 window.registerEvent('dblclick', function(event) {

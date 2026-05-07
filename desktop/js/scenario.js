@@ -1444,6 +1444,7 @@ jeeFrontEnd.scenario.init()
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
+  if (!document.querySelector('.scenarioAttr[data-l1key=id]')) return
 
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -2561,7 +2562,12 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
   if (_target = event.target.closest('i.bt_pasteElement')) {
     if (localStorage.getItem('jeedomScCopy')) {
-      jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
+      try {
+        jeeP.clipboard = JSON.parse(localStorage.getItem('jeedomScCopy'))
+      } catch (e) {
+        jeedomUtils.showAlert({ message: '{{Presse-papiers corrompu ou invalide.}}', level: 'danger' })
+        return false
+      }
     } else {
       return false
     }
@@ -2747,7 +2753,7 @@ try {
       }
     }
   })
-} catch (err) { }
+} catch (err) { console.error('scenario context menu init failed', err) }
 
 
 //general context menu
@@ -2908,4 +2914,4 @@ try {
       }
     }
   })
-} catch (err) { }
+} catch (err) { console.error('scenario context menu init failed', err) }

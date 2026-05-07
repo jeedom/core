@@ -81,7 +81,11 @@ if (!jeeFrontEnd.recovery) {
         async: false,
         success: function(_data) {
           if (_data) {
-            jeeP.updateProgress(JSON.parse(_data))
+            try {
+              jeeP.updateProgress(JSON.parse(_data))
+            } catch (err) {
+              console.error('recovery progress parse failed', err)
+            }
           }
         }
       })

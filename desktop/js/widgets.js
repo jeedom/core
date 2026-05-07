@@ -584,7 +584,13 @@ document.getElementById('div_widgetsList').addEventListener('change', function(e
               var readFile = new FileReader()
               readFile.readAsText(uploadedFile)
               readFile.onload = function(e) {
-                var objectData = JSON.parse(e.target.result)
+                var objectData
+                try {
+                  objectData = JSON.parse(e.target.result)
+                } catch (err) {
+                  jeedomUtils.showAlert({ message: '{{Fichier json invalide.}}', level: 'danger' })
+                  return
+                }
                 if (!isset(objectData.jeedomCoreVersion)) {
                   jeedomUtils.showAlert({
                     message: "{{Fichier json non compatible.}}",
@@ -776,7 +782,13 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
       var readFile = new FileReader()
       readFile.readAsText(uploadedFile)
       readFile.onload = function(e) {
-        var objectData = JSON.parse(e.target.result)
+        var objectData
+        try {
+          objectData = JSON.parse(e.target.result)
+        } catch (err) {
+          jeedomUtils.showAlert({ message: '{{Fichier json invalide.}}', level: 'danger' })
+          return
+        }
         if (!isset(objectData.jeedomCoreVersion)) {
           jeedomUtils.showAlert({
             message: "{{Fichier json non compatible.}}",

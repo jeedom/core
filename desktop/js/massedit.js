@@ -241,7 +241,13 @@ if (!jeeFrontEnd.massedit) {
         var readFile = new FileReader()
         readFile.readAsText(_fileHdl)
         readFile.onload = function(e) {
-          var massEditData = JSON.parse(e.target.result)
+          var massEditData
+          try {
+            massEditData = JSON.parse(e.target.result)
+          } catch (err) {
+            jeedomUtils.showAlert({ message: '{{Fichier json invalide.}}', level: 'danger' })
+            return
+          }
           var newFilter
           try {
             //type:
