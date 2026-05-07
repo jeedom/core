@@ -331,6 +331,7 @@ document.body.registerEvent('cmd::update', function(_event) {
 })
 
 window.registerEvent('resize', function() {
+  if (!jeeFrontEnd.plan3d.camera || !jeeFrontEnd.plan3d.renderer) return
   jeeFrontEnd.plan3d.SCREEN_WIDTH = document.getElementById('div_display3d').offsetWidth
   jeeFrontEnd.plan3d.SCREEN_HEIGHT = document.getElementById('div_display3d').offsetHeight - 5
   try {
