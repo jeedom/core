@@ -1322,7 +1322,7 @@ if (!jeeFrontEnd.scenario) {
         newStack.push(jeeP.getElement(_exp.querySelector('div.element')))
       })
 
-      if (newStack == this.undoStack[state - 1]) return
+      if (JSON.stringify(newStack) === JSON.stringify(this.undoStack[state - 1])) return
       if (state == 0) {
         state = this.undoState = this.undoStack.length
         this.reDo = 0

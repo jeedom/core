@@ -304,7 +304,8 @@ document.getElementById('div_administration').addEventListener('click', function
     } else {
         handleSupportAccess(enable);
     }
-}
+    return
+  }
 
 
   if (_target = event.target.closest('#table_user .bt_del_user')) {
