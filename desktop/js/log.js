@@ -37,7 +37,7 @@ if (!jeeFrontEnd.log) {
 
 //searching
 document.getElementById('in_searchLogFilter')?.addEventListener('keyup', function(event) {
-  var raw = event.target.value
+  const raw = event.target.value
   if (raw == '') {
     jeeP.logListButtons.seen()
     return
@@ -46,14 +46,14 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
   // Multi-term: comma-separated terms, each term can be prefixed with :not()
   // e.g. "error,warning" → show entries matching either
   //      "error,:not(daemon)" → show entries matching "error" but not "daemon"
-  var terms = raw.split(',').map(function(t) { return t.trim() }).filter(function(t) { return t.length > 0 })
+  const terms = raw.split(',').map(function(t) { return t.trim() }).filter(function(t) { return t.length > 0 })
 
   jeeP.logListButtons.unseen()
   jeeP.logListButtons.forEach(_bt => {
-    var text = jeedomUtils.normTextLower(_bt.textContent)
-    var match = terms.some(function(term) {
-      var not = term.startsWith(':not(')
-      var search = jeedomUtils.normTextLower(not ? term.slice(5, -1) : term)
+    const text = jeedomUtils.normTextLower(_bt.textContent)
+    const match = terms.some(function(term) {
+      const not = term.startsWith(':not(')
+      const search = jeedomUtils.normTextLower(not ? term.slice(5, -1) : term)
       return not ? !text.includes(search) : text.includes(search)
     })
     if (match) _bt.seen()
