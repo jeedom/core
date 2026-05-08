@@ -118,7 +118,7 @@ jeedom.changes = function() {
   try {
     jeedom.private.checkParamsRequired(paramsRequired)
   } catch (e) {
-    (paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics)
@@ -382,7 +382,7 @@ jeedom.getStringUsedBy = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -401,7 +401,7 @@ jeedom.getIdUsedBy = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -432,7 +432,7 @@ jeedom.getConfiguration = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -462,7 +462,7 @@ jeedom.getInfoApplication = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -480,7 +480,7 @@ jeedom.haltSystem = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -504,7 +504,7 @@ jeedom.ssh = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -530,7 +530,7 @@ jeedom.db = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -550,7 +550,7 @@ jeedom.dbcorrectTable = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -569,7 +569,7 @@ jeedom.rebootSystem = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -587,7 +587,7 @@ jeedom.systemCorrectPackage = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -606,7 +606,7 @@ jeedom.health = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -624,7 +624,7 @@ jeedom.forceSyncHour = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -724,7 +724,7 @@ jeedom.getGraphData = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -744,7 +744,7 @@ jeedom.getDocumentationUrl = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -765,7 +765,7 @@ jeedom.addWarnme = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -785,7 +785,7 @@ jeedom.getFileFolder = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -805,7 +805,7 @@ jeedom.getFileContent = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -824,7 +824,7 @@ jeedom.setFileContent = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -844,7 +844,7 @@ jeedom.deleteFile = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -863,7 +863,7 @@ jeedom.createFolder = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -883,7 +883,7 @@ jeedom.renameFolder = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -903,7 +903,7 @@ jeedom.deleteFolder = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -922,7 +922,7 @@ jeedom.createFile = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -942,7 +942,7 @@ jeedom.emptyRemoveHistory = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -960,7 +960,7 @@ jeedom.version = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -978,7 +978,7 @@ jeedom.removeImageIcon = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -997,7 +997,7 @@ jeedom.cleanFileSystemRight = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -1015,7 +1015,7 @@ jeedom.consistency = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -1033,7 +1033,7 @@ jeedom.cleanDatabase = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -1051,7 +1051,7 @@ jeedom.massEditSave = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -1071,7 +1071,7 @@ jeedom.massReplace = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -1092,7 +1092,7 @@ jeedom.systemGetUpgradablePackage = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
@@ -1112,7 +1112,7 @@ jeedom.systemUpgradablePackage = function(_params) {
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params?.error || paramsSpecifics.error || jeedom.private?.default_params?.error || console.error)(e)
     return
   }
   const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
