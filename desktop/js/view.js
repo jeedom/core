@@ -292,7 +292,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_gotoViewZone')) {
-    document.querySelector('.lg_viewZone[data-zone_id="' + _target.getAttribute('data-zone_id') + '"]').scrollIntoView()
+    const _zoneEl = document.querySelector('.lg_viewZone[data-zone_id="' + _target.getAttribute('data-zone_id') + '"]')
+    if (_zoneEl) _zoneEl.scrollIntoView()
     return
   }
 
