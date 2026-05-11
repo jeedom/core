@@ -53,6 +53,10 @@ switch ($argv[1]) {
                     if (!is_object($update)) {
                         $update = new update();
                     }
+                    // Purge configuration keys not belonging to market source to avoid orphaned data.
+                    foreach (['user', 'repository', 'token', 'url', 'path'] as $key) {
+                        $update->setConfiguration($key, null);
+                    }
                     $update->setLogicalId($argv[3]);
                     $update->setSource('market');
                     $update->setConfiguration('version', 'stable');

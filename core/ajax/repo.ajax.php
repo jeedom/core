@@ -65,7 +65,23 @@ try {
 		if ($update->getConfiguration('doNotUpdate') == 1) {
 			throw new Exception(__('Mise à jour et réinstallation désactivées sur ', __FILE__) . ' ' . $repo->getLogicalId());
 		}
-		$update->setSource(init('repo'));
+		// Purge configuration keys not belonging to the new source to avoid orphaned data.
+		$newSource = init('repo');
+		$allSourceKeys = [
+			'market' => ['market'],
+			'github' => ['user', 'repository', 'token'],
+			'url'    => ['url'],
+			'samba'  => ['path'],
+			'file'   => ['path'],
+		];
+		$keysToKeep = $allSourceKeys[$newSource] ?? [];
+		foreach ($allSourceKeys as $source => $sourceKeys) {
+			if ($source === $newSource) continue;
+			foreach (array_diff($sourceKeys, $keysToKeep) as $key) {
+				$update->setConfiguration($key, null);
+			}
+		}
+		$update->setSource($newSource);
 		$update->setLogicalId($repo->getLogicalId());
 		$update->setType($repo->getType());
 		$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));

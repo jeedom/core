@@ -149,6 +149,22 @@ try {
 		}
 		$old_update = $update;
 		utils::a2o($update, $update_json);
+		// Purge configuration keys not belonging to the new source to avoid orphaned data.
+		$newSource = $update->getSource();
+		$allSourceKeys = [
+			'market' => ['market'],
+			'github' => ['user', 'repository', 'token'],
+			'url'    => ['url'],
+			'samba'  => ['path'],
+			'file'   => ['path'],
+		];
+		$keysToKeep = $allSourceKeys[$newSource] ?? [];
+		foreach ($allSourceKeys as $source => $sourceKeys) {
+			if ($source === $newSource) continue;
+			foreach (array_diff($sourceKeys, $keysToKeep) as $key) {
+				$update->setConfiguration($key, null);
+			}
+		}
 		$update->save();
 		try {
 			$update->doUpdate();
