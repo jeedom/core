@@ -104,7 +104,7 @@ $productName = config::byKey('product_name');
 				repo: 'market',
 				error: function() {
 					document.querySelectorAll('.first_use').unseen()
-					document.querySelectorAll('.market_connect').removeClass('hidden')
+					document.querySelectorAll('.market_connect').seen()
 				},
 				success: function() {
 					jeedom.update.save({
@@ -172,7 +172,7 @@ $productName = config::byKey('product_name');
 						})
 					},
 					success: function() {
-						document.querySelectorAll('.market_connect').addClass('hidden')
+						document.querySelectorAll('.market_connect').unseen()
 						document.querySelectorAll('.first_use').seen()
 						document.getElementById('bt_install_jeeasy').triggerEvent('click')
 					}
