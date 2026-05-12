@@ -97,7 +97,7 @@ $productName = config::byKey('product_name');
 
 <script>
 	document.getElementById('md_firstUse').addEventListener('click', function(event) {
-		var _target = null
+		let _target = null
 
 		if (_target = event.target.closest('#bt_install_jeeasy')) {
 			jeedom.repo.test({
@@ -156,8 +156,8 @@ $productName = config::byKey('product_name');
 		}
 
 		if (_target = event.target.closest('#bt_validate_market')) {
-			username = document.getElementById('in_username_market').value.trim()
-			password = document.getElementById('in_password_market').value.trim()
+			const username = document.getElementById('in_username_market').value.trim()
+			const password = document.getElementById('in_password_market').value.trim()
 
 			if (username != '' && password != '') {
 				jeedom.config.save({
