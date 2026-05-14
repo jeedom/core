@@ -497,6 +497,7 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
+        $object = null;
 		if (isset($params['id'])) {
 			$object = jeeObject::byId($params['id']);
 		}
@@ -836,6 +837,7 @@ try {
 
 	if ($jsonrpc->getMethod() == 'cmd::save') {
 		unautorizedInDemo();
+        $cmd = null;
 		if (isset($params['id'])) {
 			$cmd = cmd::byId($params['id']);
 			if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
@@ -979,6 +981,7 @@ try {
 
 	if ($jsonrpc->getMethod() == 'scenario::save') {
 		unautorizedInDemo();
+        $scenario = null;
 		if (isset($params['id'])) {
 			$scenario = scenario::byId($params['id']);
 		}
@@ -1151,6 +1154,7 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
+        $update = null;
 		if (isset($params['plugin_id'])) {
 			$update = update::byId($params['plugin_id']);
 		}
@@ -1293,6 +1297,7 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
+        $update = null;
 		if (isset($params['plugin_id'])) {
 			$update = update::byId($params['plugin_id']);
 		}

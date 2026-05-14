@@ -183,6 +183,7 @@ try {
 	if (init('action') == 'applyTemplate') {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
+        $converts = [];
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . init('template'));
 		}

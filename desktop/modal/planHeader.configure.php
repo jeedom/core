@@ -138,6 +138,7 @@ sendVarToJS([
                 $tr .= $plan->getLink_id();
                 $tr .= '</td>';
                 $tr .= '<td>';
+                $link = null;
                 if (in_array($plan->getLink_type(),array('text','summary','graph','plan','view','zone','image'))) {
                   $tr .= '<span class="label label-default">N/A</span>';
                 } else {

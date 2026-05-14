@@ -296,6 +296,7 @@ class jeeObject {
 		}
 		$toRefreshCmd = array();
 		$global = array();
+        $events = [];
 		foreach ($objects as $object) {
 			$summaries = $object->getConfiguration('summary');
 			if (!is_array($summaries)) {
