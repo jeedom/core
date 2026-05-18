@@ -3,6 +3,8 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-05-11 08:56:25 | Feat: add while block in scenario | [#3234](https://github.com/jeedom/core/pull/3234) |
+| 2026-05-09 16:16:05 | Unify legacy time widgets into standard widgets | [#3332](https://github.com/jeedom/core/pull/3332) |
 | 2026-04-19 15:18:24 | Add healthcheck in the docker container | [#2998](https://github.com/jeedom/core/pull/2998) |
 
 ## Breaking changes
@@ -11,6 +13,17 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-05-18 17:27:23 | Code improvements and behavior fixes (PHPStan level 1) | [#3260](https://github.com/jeedom/core/pull/3260) |
+| 2026-05-18 15:41:29 | Fix jeedom update via api | [#3352](https://github.com/jeedom/core/pull/3352) |
+| 2026-05-18 15:40:15 | fix: expected type object, get string ($now) | [#3353](https://github.com/jeedom/core/pull/3353) |
+| 2026-05-18 09:22:48 | fix test expression result | [#3349](https://github.com/jeedom/core/pull/3349) |
+| 2026-05-12 15:01:09 | Fix & improvement: add safe guard in scenario in "for" loop, "wait" & "sleep" actions | [#3341](https://github.com/jeedom/core/pull/3341) |
+| 2026-05-12 10:50:34 | fix - time limit on php jeeplugin | [#3343](https://github.com/jeedom/core/pull/3343) |
+| 2026-05-12 09:39:52 | fix: remove Access-Control-Allow-Credentials with Allow-Origin: * | [#3277](https://github.com/jeedom/core/pull/3277) |
+| 2026-05-09 14:46:51 | fix: resolve TDZ ReferenceError for 'wg' in widgets.js | [#3333](https://github.com/jeedom/core/pull/3333) |
+| 2026-05-09 10:37:37 | fix: add force version update option during upgrade | [#3330](https://github.com/jeedom/core/pull/3330) |
+| 2026-05-09 08:50:04 | Fix/chunk log | [#3316](https://github.com/jeedom/core/pull/3316) |
+| 2026-05-08 11:44:36 | fix(desktop/js): correct 11 DOM and logic bugs (dashboard, object, plan, replace, eqAnalyse, administration, update) | [#3318](https://github.com/jeedom/core/pull/3318) |
 | 2026-05-04 10:02:20 | Fix timeline folder field visibility on scenario page load | [#3305](https://github.com/jeedom/core/pull/3305) |
 | 2026-04-25 08:00:07 | Fix: translations string concatenation | [#3289](https://github.com/jeedom/core/pull/3289) |
 | 2026-04-21 11:24:20 | fix: prevent a possible SQL injection in archive process | [#3268](https://github.com/jeedom/core/pull/3268) |
@@ -30,25 +43,34 @@ no entries
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
-| 2026-04-25 08:04:11 | Update translations | [#3295](https://github.com/jeedom/core/pull/3295) |
-| 2026-04-25 07:30:36 | Update translations | [#3293](https://github.com/jeedom/core/pull/3293) |
-| 2026-04-20 11:50:35 | Update translations | [#3285](https://github.com/jeedom/core/pull/3285) |
+| 2026-05-18 14:30:21 | Refactor error handling to use \Throwable instead of Exception and Error | [#3347](https://github.com/jeedom/core/pull/3347) |
+| 2026-05-18 14:21:29 | Refactor & code Cleanup in scenario | [#3346](https://github.com/jeedom/core/pull/3346) |
+| 2026-05-12 10:37:46 | refactor(dom.ui): seen(), unseen() and toggle() use hidden class consistently | [#3342](https://github.com/jeedom/core/pull/3342) |
+| 2026-05-11 09:08:24 | Update translations for 'while' block terminology | [#3339](https://github.com/jeedom/core/pull/3339) |
+| 2026-05-09 19:12:01 | Chore: secure parameter typehints | [#3317](https://github.com/jeedom/core/pull/3317) |
+| 2026-05-08 15:06:43 | refactor(desktop/js): replace var with const/let in display modules (dashboard, widgets, plan, plan3d, eqAnalyse) | [#3320](https://github.com/jeedom/core/pull/3320) |
+| 2026-05-06 15:22:08 | Optimize Jeedom core version retrieval by caching the result | [#3315](https://github.com/jeedom/core/pull/3315) |
+| 2026-05-06 10:00:20 | Refactor var to const/let in equipment and commands (2/4) | [#3301](https://github.com/jeedom/core/pull/3301) |
+| 2026-05-06 09:19:39 | Refactor var to const/let in admin/system + log search multi-term (4/4) | [#3303](https://github.com/jeedom/core/pull/3303) |
+| 2026-05-05 17:04:02 | Refactor var to const/let in core JS utilities (1/4) | [#3300](https://github.com/jeedom/core/pull/3300) |
+| 2026-05-05 17:02:29 | Refactor var to const/let in UI rendering files (3/4) | [#3302](https://github.com/jeedom/core/pull/3302) |
+| 2026-05-05 14:28:06 | add log in plugin autoloader | [#3276](https://github.com/jeedom/core/pull/3276) |
+| 2026-04-13 08:16:53 | feat: improve "do not remove log" feature | [#3245](https://github.com/jeedom/core/pull/3245) |
 | 2026-04-08 09:16:23 | chore: Correction *aucun* script | [#3246](https://github.com/jeedom/core/pull/3246) |
 | 2026-04-04 07:56:05 | chore: typo Securité | [#3241](https://github.com/jeedom/core/pull/3241) |
 
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-05-13 10:00:53 | docs: refactor Core widgets  and document scenario block execution time limits | [#3345](https://github.com/jeedom/core/pull/3345) |
 | 2026-04-20 11:02:18 | Auto-generated draft of release notes / changelog in develop | [#3278](https://github.com/jeedom/core/pull/3278) |
 
 ## Developer
 | Merge date | Title | PR |
 | --- | --- | --- |
-| 2026-05-06 10:00:20 | Refactor var to const/let in equipment and commands (2/4) | [#3301](https://github.com/jeedom/core/pull/3301) |
-| 2026-05-06 09:19:39 | Refactor var to const/let in admin/system + log search multi-term (4/4) | [#3303](https://github.com/jeedom/core/pull/3303) |
-| 2026-05-05 17:04:02 | Refactor var to const/let in core JS utilities (1/4) | [#3300](https://github.com/jeedom/core/pull/3300) |
-| 2026-05-05 17:02:29 | Refactor var to const/let in UI rendering files (3/4) | [#3302](https://github.com/jeedom/core/pull/3302) |
-| 2026-05-05 14:28:06 | add log in plugin autoloader | [#3276](https://github.com/jeedom/core/pull/3276) |
+| 2026-05-13 09:49:57 | feat: change docker image building workflow into matrix | [#3172](https://github.com/jeedom/core/pull/3172) |
+| 2026-05-09 17:30:24 | chore: translate PHPStan workflow PR body to English | [#3336](https://github.com/jeedom/core/pull/3336) |
+| 2026-05-09 07:43:23 | chore: ignore .claude settings directory | [#3329](https://github.com/jeedom/core/pull/3329) |
 | 2026-05-05 10:21:10 | Bump peter-evans/create-pull-request from 5 to 8 | [#3307](https://github.com/jeedom/core/pull/3307) |
 | 2026-05-05 10:20:50 | Bump actions/github-script from 7 to 9 | [#3308](https://github.com/jeedom/core/pull/3308) |
 | 2026-05-05 10:20:32 | Bump actions/checkout from 2 to 6 | [#3309](https://github.com/jeedom/core/pull/3309) |
@@ -65,6 +87,5 @@ no entries
 | 2026-04-17 21:11:17 | new workflow for translations | [#3251](https://github.com/jeedom/core/pull/3251) |
 | 2026-04-17 12:26:56 | Fix PHPStan workflow on branch deletion | [#3263](https://github.com/jeedom/core/pull/3263) |
 | 2026-04-16 22:32:24 | Use Composer dependency for PHPStan | [#3256](https://github.com/jeedom/core/pull/3256) |
-| 2026-04-13 08:16:53 | feat: improve "do not remove log" feature | [#3245](https://github.com/jeedom/core/pull/3245) |
 | 2026-04-03 15:27:29 | Update GitHub workflows to use 'develop' branch instead of 'alpha' and 'beta' | [#3240](https://github.com/jeedom/core/pull/3240) |
 

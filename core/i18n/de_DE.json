@@ -539,7 +539,6 @@
         "Erreur sur la configuration réseau interne :": "Interner Netzwerkkonfigurationsfehler:",
         "Erreur sur la connexion au market :": "Fehler beim Herstellen einer Verbindung zum Markt:",
         "Erreur sur la consolidation de l\\'historique :": "Fehler beim Konsolidieren des Verlaufs:",
-        "Erreur sur la démarrage des plugins :": "Fehler beim Starten der Plugins:",
         "Erreur sur la restauration du cache :": "Fehler beim Wiederherstellen des Caches:",
         "Erreur sur le démarrage des plugins :": "Fehler beim Starten der Plugins:",
         "Erreur sur le démarrage interne de Jeedom :": "Jeedom interner Startfehler:",
@@ -768,6 +767,9 @@
         "SINON": "SONST",
         "Scenario": "Szenario",
         "Sous-élément inconnu. Vérifiez l\\'ID :": "Unbekanntes Unterelement. Überprüfen Sie die ID:",
+        "TANT QUE": "SOLANGE",
+        "[For] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[For] Abbruch der Schleife wegen zu langer Ausführungszeit",
+        "[While] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[While] Abbruch der Schleife wegen zu langer Ausführungszeit",
         "trouvée dans le scénario :": "im Szenario gefunden:"
     },
     "core\/class\/scenarioExpression.class.php": {
@@ -812,7 +814,7 @@
         "Masquage de": "Maskierung von",
         "Mise à jour du tag": "Tag-Update",
         "Panel introuvable - Vérifiez l\\'id :": "Panel nicht gefunden - Überprüfen Sie die ID:",
-        "Pause de": "Pause von",
+        "Pause de %s seconde(s)": "Pause von %s Sekunden",
         "Rapport": "Bericht",
         "Rapport url du": "URL-Bericht",
         "Rapport équipement du": "Gerätebericht",
@@ -830,13 +832,13 @@
         "Veuillez trouver ci-joint le rapport équipement généré le": "Im Anhang finden Sie den Gerätebericht, der am erstellt wurde",
         "Vrai": "War",
         "Vue introuvable - Vérifiez l\\'id :": "Ansicht nicht gefunden - Überprüfen Sie die ID:",
-        "[Wait] Condition valide :": "[Warten] Gültige Bedingung:",
-        "[Wait] Condition valide par dépassement de temps :": "[Warten] Bedingung gültig für Zeitüberschreitung:",
+        "[Wait] Condition valide: %s": "[Warten] Gültige Bedingung: %s",
+        "[Wait] Début du wait, timeout: %ss": "[Warten] Beginn der Wartezeit, Timeout: %ss",
+        "[Wait] Dépassement du timeout: %s": "[Warten] Zeitüberschreitung: %s",
         "au": "bis",
         "du": "die",
         "généré le": "generiert am",
         "options :": "Optionen:",
-        "seconde(s)": "Sekunde (n)",
         "à": "bis"
     },
     "core\/class\/system.class.php": {
@@ -1616,14 +1618,6 @@
     "core\/template\/dashboard\/cmd.action.slider.sliderVertical.html": {
         "Affiche durée ou date de la valeur": "Zeigt die Dauer oder das Datum des Werts an",
         "Couleur d'arrière plan": "Hintergrundfarbe",
-        "Pas du changement de valeur": "Keine Wertänderung"
-    },
-    "core\/template\/dashboard\/cmd.action.slider.timeShutter.html": {
-        "Affiche durée ou date de la valeur": "Zeigt die Dauer oder das Datum des Werts an",
-        "Couleur de l'indicateur de valeur": "Wertanzeigefarbe",
-        "Date de collecte": "Datum der Abholung",
-        "Date de valeur": "Datum der Wertstellung",
-        "Inverse la position de l'indicateur de valeur": "Kehrt die Position der Wertanzeige um",
         "Pas du changement de valeur": "Keine Wertänderung"
     },
     "core\/template\/dashboard\/cmd.action.slider.tmplicon.html": {
@@ -2426,6 +2420,7 @@
         "Bloc Commentaire": "Kommentarblock",
         "Bloc Dans": "Block In",
         "Bloc Si\/Alors\/Sinon": "Wenn \/ Dann \/ Sonst blockieren",
+        "Bloc Tant que": "While-Block",
         "CODE": "Code",
         "COMMENTAIRE": "KOMMENTAR",
         "Choisir un Type Générique": "Wählen Sie einen generischen Typ",
@@ -2479,6 +2474,7 @@
         "Supprimer l\\'action": "Aktion löschen",
         "Sélectionner la commande": "Befehl auswählen",
         "Sélectionner un mot-clé": "Schlüsselwort auswählen",
+        "TANT QUE": "SOLANGE",
         "Template de scénario": "Szenariovorlage",
         "Valider": "Validate",
         "Vue d'ensemble des scénarios": "Überblick über Szenarien",
@@ -5106,6 +5102,7 @@
         "Permet de conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Ermöglicht Ihnen, Aktionen in Ihrem Szenario zu konditionieren. Zum Beispiel: Wenn mein Türöffnungsmelder ausgeht, schalten Sie das Licht ein",
         "Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.": "Ermöglicht es Ihnen, eine Aktion in X min auszuführen. Zum Beispiel: In 5 min mach das Licht aus",
         "Permet de lancer une action sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Ermöglicht Ihnen, eine Aktion für eines Ihrer Module, Szenarios oder anderes zu starten. Zum Beispiel: Schalten Sie Ihre Sirene auf EIN",
+        "Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.": "Ermöglicht die wiederholte Ausführung einer Aktion, solange eine Bedingung erfüllt ist. Beispiel: Solange die Lautstärke nicht bei 20 liegt, um 1 erhöhen.",
         "Prochain": "Nächste",
         "Programmation": "Programmierung",
         "Programmé": "Programmiert",
@@ -5120,6 +5117,7 @@
         "Supprimer": "Entfernen",
         "Supprimer les logs": "Protokolle löschen",
         "Synchrone": "Synchron",
+        "Tant que": "Solange",
         "Template": "Schablone",
         "Temps réel": "Echtzeit",
         "Timeline": "Zeitleiste",

@@ -30,14 +30,14 @@ class history {
 
 	/*     * ***********************Methode static*************************** */
 
-	public static function removeHistoryInFutur(){
+	public static function removeHistoryInFutur() {
 		$sql = 'DELETE FROM history 
 		WHERE `datetime` > :datetime';
 		DB::Prepare($sql, array('datetime' => date('Y-m-d H:i:s')), DB::FETCH_TYPE_ROW);
 		$sql = 'DELETE FROM historyArch 
 		WHERE `datetime` > :datetime';
 		DB::Prepare($sql, array('datetime' => date('Y-m-d H:i:s')), DB::FETCH_TYPE_ROW);
-	  }
+	}
 
 	public static function checkCurrentValueAndHistory() {
 		$sql = 'SELECT DISTINCT(cmd_id)
@@ -192,30 +192,29 @@ class history {
 		}
 		return $result;
 	}
-        
-        public static function byCmdIdAtDatetimeFromCalcul($_strcalcul, $_time, $_previous = true){
+
+	public static function byCmdIdAtDatetimeFromCalcul($_strcalcul, $_time, $_previous = true) {
 		$cmd_histories = array();
-                preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
-                if (count($matches[1]) > 0) {
-                    foreach ($matches[1] as $cmd_id) {
-                        if (is_numeric($cmd_id)) {
-                            $cmd = cmd::byId($cmd_id);
-                            $value = 0;
-                            if (is_object($cmd) && $cmd->getIsHistorized() == 1 && !$cmd->getConfiguration('isHistorizedCalc', 0)) {
-                                $result = history::byCmdIdAtDatetime($cmd_id, $_time, $_previous);
-                                if($result)
-                                    $value = $result->getValue();
-                            }
-                            elseif(is_object($cmd)){
-                                $value = history::byCmdIdAtDatetimeFromCalcul(jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time, $_previous);
-                            }
-                            $cmd_histories['#' . $cmd_id . '#'] = $value;
-                        }
-                    }
-                }
-                $calcul = template_replace($cmd_histories, $_strcalcul);
-                return floatval(jeedom::evaluateExpression($calcul));
-        }
+		preg_match_all("/#([0-9]*)#/", $_strcalcul, $matches);
+		if (count($matches[1]) > 0) {
+			foreach ($matches[1] as $cmd_id) {
+				if (is_numeric($cmd_id)) {
+					$cmd = cmd::byId($cmd_id);
+					$value = 0;
+					if (is_object($cmd) && $cmd->getIsHistorized() == 1 && !$cmd->getConfiguration('isHistorizedCalc', 0)) {
+						$result = history::byCmdIdAtDatetime($cmd_id, $_time, $_previous);
+						if ($result)
+							$value = $result->getValue();
+					} elseif (is_object($cmd)) {
+						$value = history::byCmdIdAtDatetimeFromCalcul(jeedom::fromHumanReadable($cmd->getConfiguration('calcul')), $_time, $_previous);
+					}
+					$cmd_histories['#' . $cmd_id . '#'] = $value;
+				}
+			}
+		}
+		$calcul = template_replace($cmd_histories, $_strcalcul);
+		return floatval(jeedom::evaluateExpression($calcul));
+	}
 
 	/**
 	 * Archive data from history into historyArch
@@ -266,7 +265,7 @@ class history {
 					continue;
 				}
 				$purgeTime = false;
-				if($cmd->getConfiguration('historyPurge', '') != 'never'){
+				if ($cmd->getConfiguration('historyPurge', '') != 'never') {
 					if ($cmd->getConfiguration('historyPurge', '') != '') {
 						$purgeTime = date('Y-m-d H:i:s', strtotime($cmd->getConfiguration('historyPurge', '')));
 					} else if (config::byKey('historyPurge') != '' && config::byKey('historyPurge') != 'never') {
@@ -357,7 +356,7 @@ class history {
 	}
 
 	public static function all($_cmd_id, $_startTime = null, $_endTime = null, $_groupingType = null, $_addFirstPreviousValue = false) {
-		$delta=false;
+		$delta = false;
 		$values = array(
 			'cmd_id' => $_cmd_id,
 		);
@@ -367,15 +366,15 @@ class history {
 		if ($_endTime !== null) {
 			$values['endTime'] = $_endTime;
 		}
-		$sql='';
+		$sql = '';
 		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
 			$sql .= 'SELECT ' . DB::buildField(__CLASS__);
 		} else {
 			$goupingTypeDelta = explode('||', $_groupingType);
-			if (count($goupingTypeDelta)>1){
-				$_groupingType=$goupingTypeDelta[0];
-				$delta=true;
-				if ($goupingTypeDelta[1]== 'delta'){
+			if (count($goupingTypeDelta) > 1) {
+				$_groupingType = $goupingTypeDelta[0];
+				$delta = true;
+				if ($goupingTypeDelta[1] == 'delta') {
 					$sql .= 'SELECT `cmd_id`,`datetime` as datetime, CAST(value - COALESCE(LAG(value) OVER (ORDER BY `datetime` ),0) AS DECIMAL(12,2)) as value FROM (';
 				}
 			}
@@ -397,7 +396,7 @@ class history {
 			}
 		}
 		$sql .= ' FROM (';
-		if ($_groupingType != null && strpos($_groupingType, '::') !== false && count($goupingType)>2) {
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false && count($goupingType) > 2) {
 			$functionFinest = 'AVG';
 			if ($goupingType[2] == 'high' || $goupingType[2] == 'max') {
 				$functionFinest = 'MAX';
@@ -433,7 +432,7 @@ class history {
 		}
 		$sql .= ') ';
 		$sql .= ')a ';
-		if ($_groupingType != null && strpos($_groupingType, '::') !== false && count($goupingType)>2) {
+		if ($_groupingType != null && strpos($_groupingType, '::') !== false && count($goupingType) > 2) {
 			if ($goupingType[3] == 'week') {
 				$sql .= ' GROUP BY CONCAT(YEAR(`datetime`), \'/\', WEEK(`datetime`,7))';
 			} else if ($goupingType[3] == 'hour') {
@@ -995,8 +994,7 @@ class history {
 				try {
 					$result = floatval(jeedom::evaluateExpression($calcul));
 					$value[$datetime] = $result;
-				} catch (Exception $e) {
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 				}
 			}
 		} else {
@@ -1030,15 +1028,17 @@ class history {
 		if ($cmd->getConfiguration('historizeRound') !== '' && is_numeric($cmd->getConfiguration('historizeRound')) && $cmd->getConfiguration('historizeRound') >= 0 && $this->getValue() !== null) {
 			$this->setValue(round($this->getValue(), $cmd->getConfiguration('historizeRound')));
 		}
-		if ( $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth'] 
-		    && $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0)) > 0 
-			&& $cmd->getConfiguration('historizeMode', 'none') != 'none' 
-			&& $this->getValue() !== null ) {
+		if (
+			$JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']
+			&& $cmd->getConfiguration('history::smooth', config::byKey('history::smooth', 'core', 0)) > 0
+			&& $cmd->getConfiguration('historizeMode', 'none') != 'none'
+			&& $this->getValue() !== null
+		) {
 			if ($this->getTableName() == 'history') {
 				$time = strtotime($this->getDatetime());
-				$time -= $time % $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0));
+				$time -= $time % $cmd->getConfiguration('history::smooth', config::byKey('history::smooth', 'core', 0));
 				if ($this->getValue() == 0) {
-					$this->setDatetime(date('Y-m-d H:i:00', $time + $cmd->getConfiguration('history::smooth', config::byKey('history::smooth','core',0))));
+					$this->setDatetime(date('Y-m-d H:i:00', $time + $cmd->getConfiguration('history::smooth', config::byKey('history::smooth', 'core', 0))));
 					$values = array(
 						'cmd_id' => $this->getCmd_id(),
 						'datetime' => date('Y-m-d H:i:00', strtotime($this->getDatetime())),

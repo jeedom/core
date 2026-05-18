@@ -539,7 +539,6 @@
         "Erreur sur la configuration réseau interne :": "Internal network configuration error:",
         "Erreur sur la connexion au market :": "Error connecting to the market:",
         "Erreur sur la consolidation de l\\'historique :": "Error on consolidating history:",
-        "Erreur sur la démarrage des plugins :": "Error starting plugins:",
         "Erreur sur la restauration du cache :": "Error restoring the cache:",
         "Erreur sur le démarrage des plugins :": "Error starting plugins:",
         "Erreur sur le démarrage interne de Jeedom :": "Jeedom internal startup error:",
@@ -768,6 +767,9 @@
         "SINON": "ELSE",
         "Scenario": "Scenario",
         "Sous-élément inconnu. Vérifiez l\\'ID :": "Unknown sub-element. Check the ID:",
+        "TANT QUE": "WHILE",
+        "[For] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[For] Loop termination due to excessive execution time",
+        "[While] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[While] Loop terminated due to excessive execution time",
         "trouvée dans le scénario :": "found in the scenario:"
     },
     "core\/class\/scenarioExpression.class.php": {
@@ -812,7 +814,7 @@
         "Masquage de": "Masking of",
         "Mise à jour du tag": "Tag update",
         "Panel introuvable - Vérifiez l\\'id :": "Panel not found - Check the id:",
-        "Pause de": "Pause of",
+        "Pause de %s seconde(s)": "Pause for %s second(s)",
         "Rapport": "Report",
         "Rapport url du": "Url report",
         "Rapport équipement du": "Equipment report",
@@ -830,13 +832,13 @@
         "Veuillez trouver ci-joint le rapport équipement généré le": "Please find attached the equipment report generated on",
         "Vrai": "True",
         "Vue introuvable - Vérifiez l\\'id :": "View not found - Check the id:",
-        "[Wait] Condition valide :": "[Wait] Valid condition:",
-        "[Wait] Condition valide par dépassement de temps :": "[Wait] Condition valid on timeout:",
+        "[Wait] Condition valide: %s": "[Wait] Valid condition: %s",
+        "[Wait] Début du wait, timeout: %ss": "[Wait] Start of wait, timeout: %ss",
+        "[Wait] Dépassement du timeout: %s": "[Wait] Timeout exceeded: %s",
         "au": "to",
         "du": "from",
         "généré le": "generated on",
         "options :": "options:",
-        "seconde(s)": "second (s)",
         "à": "to"
     },
     "core\/class\/system.class.php": {
@@ -1616,14 +1618,6 @@
     "core\/template\/dashboard\/cmd.action.slider.sliderVertical.html": {
         "Affiche durée ou date de la valeur": "Displays duration or date of the value",
         "Couleur d'arrière plan": "Background color",
-        "Pas du changement de valeur": "No change in value"
-    },
-    "core\/template\/dashboard\/cmd.action.slider.timeShutter.html": {
-        "Affiche durée ou date de la valeur": "Displays duration or date of the value",
-        "Couleur de l'indicateur de valeur": "Value indicator color",
-        "Date de collecte": "Date of collection",
-        "Date de valeur": "Value date",
-        "Inverse la position de l'indicateur de valeur": "Reverses the position of the value indicator",
         "Pas du changement de valeur": "No change in value"
     },
     "core\/template\/dashboard\/cmd.action.slider.tmplicon.html": {
@@ -2426,6 +2420,7 @@
         "Bloc Commentaire": "Comment block",
         "Bloc Dans": "In Block",
         "Bloc Si\/Alors\/Sinon": "If \/ Do \/ Else block",
+        "Bloc Tant que": "While block",
         "CODE": "CODE",
         "COMMENTAIRE": "COMMENT",
         "Choisir un Type Générique": "Choose a Generic Type",
@@ -2479,6 +2474,7 @@
         "Supprimer l\\'action": "Delete action",
         "Sélectionner la commande": "Select command",
         "Sélectionner un mot-clé": "Select a keyword",
+        "TANT QUE": "WHILE",
         "Template de scénario": "Scenario template",
         "Valider": "Save",
         "Vue d'ensemble des scénarios": "Overview of scenarios",
@@ -5106,6 +5102,7 @@
         "Permet de conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Allows you to condition actions in your scenario. For example: If my door opening sensor is triggered Then turn on the light",
         "Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.": "Allows you to do an action in X min. For example: In 5 min, turn off the light",
         "Permet de lancer une action sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Allows you to launch an action on one of your modules, scenarios or other. For example: Switch your siren to ON",
+        "Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.": "Allows you to perform an action repeatedly as long as a condition is true. For example: As long as the volume is not at 20, increase it by 1.",
         "Prochain": "Next",
         "Programmation": "Programming",
         "Programmé": "Programmed",
@@ -5120,6 +5117,7 @@
         "Supprimer": "Delete",
         "Supprimer les logs": "Delete logs",
         "Synchrone": "Synchronous",
+        "Tant que": "While",
         "Template": "Template",
         "Temps réel": "Real time",
         "Timeline": "Timeline",

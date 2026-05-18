@@ -127,58 +127,10 @@ parameters:
 			path: core/class/interactQuery.class.php
 
 		-
-			message: '#^Instantiated class virtual not found\.$#'
-			identifier: class.notFound
-			count: 2
-			path: core/class/jeeObject.class.php
-
-		-
-			message: '#^Instantiated class virtualCmd not found\.$#'
-			identifier: class.notFound
-			count: 4
-			path: core/class/jeeObject.class.php
-
-		-
 			message: '#^Variable \$events might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
 			path: core/class/jeeObject.class.php
-
-		-
-			message: '#^Variable \$ch might not be defined\.$#'
-			identifier: variable.undefined
-			count: 2
-			path: core/class/jsonrpcClient.class.php
-
-		-
-			message: '#^Variable \$http_status might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/class/jsonrpcClient.class.php
-
-		-
-			message: '#^Variable \$response might not be defined\.$#'
-			identifier: variable.undefined
-			count: 3
-			path: core/class/jsonrpcClient.class.php
-
-		-
-			message: '#^Instantiated class openvpn not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/class/network.class.php
-
-		-
-			message: '#^Variable \$listPlugin in isset\(\) always exists and is not nullable\.$#'
-			identifier: isset.variable
-			count: 1
-			path: core/class/plugin.class.php
-
-		-
-			message: '#^Variable \$return might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/class/scenario.class.php
 
 		-
 			message: '#^Variable \$url might not be defined\.$#'
@@ -199,55 +151,13 @@ parameters:
 			path: core/class/widgets.class.php
 
 		-
-			message: '#^Array has 2 duplicate keys with value ''THERMOSTAT_HUMIDITY'' \(''THERMOSTAT_HUMIDITY'', ''THERMOSTAT_HUMIDITY''\)\.$#'
-			identifier: array.duplicateKey
-			count: 1
-			path: core/config/jeedom.config.php
-
-		-
-			message: '#^Instantiated class elFinder not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/php/editor.connector.php
-
-		-
-			message: '#^Instantiated class elFinderConnector not found\.$#'
-			identifier: class.notFound
-			count: 1
-			path: core/php/editor.connector.php
-
-		-
-			message: '#^Result of function header \(void\) is used\.$#'
-			identifier: function.void
-			count: 1
-			path: core/php/utils.inc.php
-
-		-
-			message: '#^Variable \$matches might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/php/utils.inc.php
-
-		-
 			message: '#^Variable \$return might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
 			path: core/php/utils.inc.php
 
 		-
-			message: '#^Inner named functions are not supported by PHPStan\. Consider refactoring to an anonymous function, class method, or a top\-level\-defined function\. See issue \#165 \(https\://github\.com/phpstan/phpstan/issues/165\) for more details\.$#'
-			identifier: function.inner
-			count: 1
-			path: core/repo/market.repo.php
-
-		-
 			message: '#^Variable \$link might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
 			path: desktop/modal/planHeader.configure.php
-
-		-
-			message: '#^Variable \$plugin_exclude in isset\(\) always exists and is not nullable\.$#'
-			identifier: isset.variable
-			count: 1
-			path: install/backup.php

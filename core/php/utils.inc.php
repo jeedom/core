@@ -206,7 +206,8 @@ function redirect($_url, $_forceType = null) {
 		echo "window.location.href='$_url';";
 		echo '</script>';
 	} else {
-		exit(header("Location: $_url"));
+		header("Location: $_url");
+        exit;
 	}
 	return;
 }
@@ -1159,15 +1160,14 @@ function evaluate($_string) {
 		for ($i = 0; $i < $c; $i++) {
 			$string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $string);
 		}
-	} else {
-		$c = 0;
-	}
-	$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
-	if ($c > 0) {
+
+        $expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 		for ($i = 0; $i < $c; $i++) {
 			$expr = str_replace('--preparsed' . $i . '--', $matches[0][$i], $expr);
 		}
-	}
+	} else {
+        $expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
+    }
 	try {
 		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 	} catch (Exception $e) {

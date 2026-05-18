@@ -3373,6 +3373,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .elementIF { background-color: var(--scBlocIF) !important; }
   .subElementELSE { background-color: var(--scBlocElse) !important; }
   .elementFOR { background-color: var(--scBlocFOR) !important; }
+  .elementWHILE { background-color: var(--scBlocWHILE) !important; }
   .elementIN { background-color: var(--scBlocIN) !important; }
   .elementAT { background-color: var(--scBlocAT) !important; }
   .elementCODE { background-color: var(--scBlocCODE) !important; }
@@ -3783,8 +3784,9 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .element >.subElementIF >.expressions,
   .element .subElementAT .expressions,
-  .element .subElementFOR .expressions {
-    margin: -25px 25px 0 0px !important;
+  .element .subElementFOR .expressions,
+  .element .subElementWHILE .expressions {
+    margin: -25px 25px 0 10px !important;
   }
   .element > .subElementTHEN > .expressions {
     margin-top: 4px !important
@@ -3853,13 +3855,15 @@ div.eqLogic-widget.editingMode .panelLink {
   .elementIF.elementCollapse .expressions,
   .elementIN.elementCollapse .expressions,
   .elementAT.elementCollapse .expressions,
-  .elementFOR.elementCollapse .expressions {
+  .elementFOR.elementCollapse .expressions,
+  .elementWHILE.elementCollapse .expressions {
     display: block !important;
   }
   .elementIF.elementCollapse .expressionAttr,
   .elementIN.elementCollapse .expressionAttr,
   .elementAT.elementCollapse .expressionAttr,
-  .elementFOR.elementCollapse .expressionAttr {
+  .elementFOR.elementCollapse .expressionAttr,
+  .elementWHILE.elementCollapse .expressionAttr {
     opacity: 0.75;
     height: 24px !important;
     border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius) !important;
@@ -3867,7 +3871,8 @@ div.eqLogic-widget.editingMode .panelLink {
   .elementIF.elementCollapse .input-group-btn,
   .elementIN.elementCollapse .input-group-btn,
   .elementAT.elementCollapse .input-group-btn,
-  .elementFOR.elementCollapse .input-group-btn {
+  .elementFOR.elementCollapse .input-group-btn,
+  .elementWHILE.elementCollapse .input-group-btn {
     opacity: 0;
   }
 

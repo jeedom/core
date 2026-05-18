@@ -413,17 +413,17 @@ jeedomUtils.setJeedomTheme = function() {
   }
 
   jeedomUtils.switchTheme = function() {
-    var theme = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
-    var themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/shadows.css'
+    var theme = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css?v=' + jeeFrontEnd.jeedomVersion
+    var themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/shadows.css?v=' + jeeFrontEnd.jeedomVersion
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     var cssTag = document.getElementById('jeedom_theme_currentcss')
     cssTag.setAttribute('data-nochange', 1)
 
-    if (cssTag.attributes.href.value.split('?md5')[0] == theme) {
+    if (cssTag.attributes.href.value == theme) {
       document.body.setAttribute('data-theme', jeedom.theme.jeedom_theme_main)
-      theme = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
-      themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/shadows.css'
+      theme = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css?v=' + jeeFrontEnd.jeedomVersion
+      themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/shadows.css?v=' + jeeFrontEnd.jeedomVersion
       themeCook = 'default'
       themeButton = '<i class="fas fa-adjust"></i> {{Thème alternatif}}'
     } else {
@@ -476,7 +476,7 @@ jeedomUtils.checkThemechange = function() {
 
   //Should have themeCss, check currentTheme:
   var theme = jeedom.theme.jeedom_theme_alternate
-  var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
+  var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css?v=' + jeeFrontEnd.jeedomVersion
   var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
 
   //if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
@@ -487,17 +487,14 @@ jeedomUtils.checkThemechange = function() {
     || jeedom.theme.theme_changeAccordingTime == 0
   ) {
     theme = jeedom.theme.jeedom_theme_main
-    themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
+    themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css?v=' + jeeFrontEnd.jeedomVersion
   }
 
   var currentTheme = document.getElementById('jeedom_theme_currentcss').getAttribute('href')
-  if (currentTheme.indexOf('?md5') != -1) {
-    currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
-  }
   if (currentTheme != themeCss) {
     document.body.setAttribute('data-theme', theme)
     document.getElementById('jeedom_theme_currentcss').setAttribute('href', themeCss)
-    document.getElementById('shadows_theme_css')?.setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
+    document.getElementById('shadows_theme_css')?.setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css?v=' + jeeFrontEnd.jeedomVersion)
     jeedomUtils.setBackgroundImage('')
     jeedomUtils.triggerThemechange()
   }
@@ -1140,7 +1137,7 @@ jeedomUtils.initDataTables = function(_selector, _paging, _searching,_init) {
   document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
     if (_table._dataTable) {
       _table._dataTable.destroy()
-    } 
+    }
     new DataTable(_table, {
       columns: _init || [{ select: 0, sort: "asc" }],
       paging: _paging,
@@ -1166,7 +1163,7 @@ jeedomUtils.resizableTable = function(table) {
    div.addEventListener('mousedown', function (e) {
     curCol = e.target.parentElement;
     nxtCol = curCol.nextElementSibling;
-    pageX = e.pageX; 
+     pageX = e.pageX;
     var padding = paddingDiff(curCol);
     curColWidth = curCol.offsetWidth - padding;
     if (nxtCol)
@@ -1186,7 +1183,7 @@ jeedomUtils.resizableTable = function(table) {
      curCol.style.width = (curColWidth + diffX)+'px';
     }
    });
-   document.addEventListener('mouseup', function (e) { 
+    document.addEventListener('mouseup', function (e) {
     curCol = undefined;
     nxtCol = undefined;
     pageX = undefined;

@@ -44,7 +44,9 @@ class config {
 
 			if (file_exists(__DIR__ . '/../../data/custom/custom.config.ini')) {
 				$custom =  parse_ini_file(__DIR__ . '/../../data/custom/custom.config.ini', true);
-				self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
+				if (isset($custom['core'])) {
+					self::$defaultConfiguration[$_plugin]['core'] = array_merge(self::$defaultConfiguration[$_plugin]['core'], $custom['core']);
+				}
 			}
 		} else {
 			self::$defaultConfiguration[$_plugin] = array();

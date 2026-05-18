@@ -539,7 +539,6 @@
         "Erreur sur la configuration réseau interne :": "Erro de configuração da rede interna:",
         "Erreur sur la connexion au market :": "Erro ao conectar-se ao Market:",
         "Erreur sur la consolidation de l\\'historique :": "Erro ao consolidar o histórico:",
-        "Erreur sur la démarrage des plugins :": "Erro ao iniciar plugins:",
         "Erreur sur la restauration du cache :": "Erro ao restaurar a cache:",
         "Erreur sur le démarrage des plugins :": "Erro ao iniciar plugins:",
         "Erreur sur le démarrage interne de Jeedom :": "Erro no arranque interno do Jeedom:",
@@ -768,6 +767,9 @@
         "SINON": "SENÂO",
         "Scenario": "Cenário",
         "Sous-élément inconnu. Vérifiez l\\'ID :": "Sub-item desconhecido. Verifique o ID:",
+        "TANT QUE": "ENQUANTO",
+        "[For] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[For] Interrupção do ciclo devido a tempo de execução excessivamente longo",
+        "[While] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[Enquanto] Interrupção do ciclo devido a tempo de execução excessivamente longo",
         "trouvée dans le scénario :": "encontrado no cenário:"
     },
     "core\/class\/scenarioExpression.class.php": {
@@ -812,7 +814,7 @@
         "Masquage de": "Mascara de",
         "Mise à jour du tag": "Atualização de tags",
         "Panel introuvable - Vérifiez l\\'id :": "Painel não encontrado - Verifique o ID:",
-        "Pause de": "Pausa",
+        "Pause de %s seconde(s)": "Pausa de %s segundo(s)",
         "Rapport": "Relatório",
         "Rapport url du": "Relatório de Url",
         "Rapport équipement du": "Relatório de equipamento",
@@ -830,13 +832,13 @@
         "Veuillez trouver ci-joint le rapport équipement généré le": "Encontre em anexo o relatório do equipamento gerado em",
         "Vrai": "Verdadeiro",
         "Vue introuvable - Vérifiez l\\'id :": "Vista não encontrada - Verifique o ID:",
-        "[Wait] Condition valide :": "[Wait]Condição válida:",
-        "[Wait] Condition valide par dépassement de temps :": "[Wait] Condição válida para o tempo limite:",
+        "[Wait] Condition valide: %s": "[Wait] Condição válida: %s",
+        "[Wait] Début du wait, timeout: %ss": "[Wait] Início da espera, tempo limite: %ss",
+        "[Wait] Dépassement du timeout: %s": "[Wait] Excedido o tempo limite: %s",
         "au": "o",
         "du": "do",
         "généré le": "gerado em",
         "options :": "opções:",
-        "seconde(s)": "segundo(s)",
         "à": "às"
     },
     "core\/class\/system.class.php": {
@@ -1616,14 +1618,6 @@
     "core\/template\/dashboard\/cmd.action.slider.sliderVertical.html": {
         "Affiche durée ou date de la valeur": "Exibe a duração ou data do valor",
         "Couleur d'arrière plan": "Cor de fundo",
-        "Pas du changement de valeur": "Sem alteração no valor"
-    },
-    "core\/template\/dashboard\/cmd.action.slider.timeShutter.html": {
-        "Affiche durée ou date de la valeur": "Exibe a duração ou data do valor",
-        "Couleur de l'indicateur de valeur": "Cor do indicador de valor",
-        "Date de collecte": "Data de coleta",
-        "Date de valeur": "Data de validade",
-        "Inverse la position de l'indicateur de valeur": "Inverte a posição do indicador de valor",
         "Pas du changement de valeur": "Sem alteração no valor"
     },
     "core\/template\/dashboard\/cmd.action.slider.tmplicon.html": {
@@ -2426,6 +2420,7 @@
         "Bloc Commentaire": "Bloco de comentários",
         "Bloc Dans": "Bloco Em",
         "Bloc Si\/Alors\/Sinon": "Bloco Se\/Então\/Senão",
+        "Bloc Tant que": "Bloco Enquanto",
         "CODE": "CÓDIGO",
         "COMMENTAIRE": "COMENTÁRIO",
         "Choisir un Type Générique": "Escolha um tipo genérico",
@@ -2479,6 +2474,7 @@
         "Supprimer l\\'action": "Excluir a ação",
         "Sélectionner la commande": "Selecionar o comando",
         "Sélectionner un mot-clé": "Selecione uma palavra-chave",
+        "TANT QUE": "ENQUANTO",
         "Template de scénario": "Modelo de cenário",
         "Valider": "Validar",
         "Vue d'ensemble des scénarios": "Vista geral dos cenários",
@@ -5106,6 +5102,7 @@
         "Permet de conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Permite condicionar ações em seu cenário. Por exemplo: Se meu detector de abertura de porta disparar, acenda a luz",
         "Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.": "Permite que você faça uma ação em X min. Por exemplo: Em 5 min, apague a luz",
         "Permet de lancer une action sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Permite lançar uma ação em um de seus módulos, cenários ou outros. Por exemplo: Ligue a sirene",
+        "Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.": "Permite realizar uma ação repetidamente enquanto uma condição for verdadeira. Por exemplo: Enquanto o volume não estiver em 20, aumentar em 1.",
         "Prochain": "Próximo",
         "Programmation": "Programação",
         "Programmé": "Programado",
@@ -5120,6 +5117,7 @@
         "Supprimer": "Eliminar",
         "Supprimer les logs": "Apagar os registos",
         "Synchrone": "Síncrono",
+        "Tant que": "Enquanto",
         "Template": "Modelo",
         "Temps réel": "Tempo real",
         "Timeline": "Linha cronológica",

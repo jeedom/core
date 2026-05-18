@@ -58,6 +58,7 @@ Element.prototype.isHidden = function() {
   return (this.offsetParent === null)
 }
 Element.prototype.seen = function() {
+  this.removeClass('hidden')
   this.style.display = ''
   return this
 }
@@ -68,7 +69,7 @@ NodeList.prototype.seen = function() {
   return this
 }
 Element.prototype.unseen = function() {
-  this.style.display = 'none'
+  this.addClass('hidden')
   return this
 }
 NodeList.prototype.unseen = function() {
@@ -78,10 +79,10 @@ NodeList.prototype.unseen = function() {
   return this
 }
 Element.prototype.toggle = function() {
-  if (this.offsetParent === null){
-    this.style.display = ''
+  if (this.isHidden()) {
+    this.seen()
   } else {
-    this.style.display = 'none'
+    this.unseen()
   }
   return this
 }
@@ -921,12 +922,12 @@ var jeeDialog = (function() {
       template.appendChild(dialogFooter)
 
       let buttons = {}
-      for ( let button of Object.entries(_params.buttons)) {
-        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]],button[1])
+      for (let button of Object.entries(_params.buttons)) {
+        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]], button[1])
       }
 
       for (let defaultButton of Object.entries(_params.defaultButtons)) {
-        if (! isset(buttons[defaultButton[0]])) {
+        if (!isset(buttons[defaultButton[0]])) {
           buttons[defaultButton[0]] = defaultButton[1]
         }
       }
@@ -2106,10 +2107,10 @@ var jeeCtxMenu = function(_options) {
         ctxInstance.hide(event)
       }, 100)
     })
-  }else{
+  } else {
     document.addEventListener('click', event => {
       if (ctxMenuContainer.contains(event.target)) {
-        return;
+        return
       }
       setTimeout(function() {
         if (!ctxMenuContainer.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide

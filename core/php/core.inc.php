@@ -34,16 +34,14 @@ try {
 	if (isset($configs['timezone'])) {
 		date_default_timezone_set($configs['timezone']);
 	}
-} catch (Exception $e) {
-} catch (Error $e) {
+} catch (\Throwable $e) {
 }
 
 try {
 	if (isset($configs['log::level'])) {
 		log::define_error_reporting($configs['log::level']);
 	}
-} catch (Exception $e) {
-} catch (Error $e) {
+} catch (\Throwable $e) {
 }
 
 function jeedomAutoload($_classname) {

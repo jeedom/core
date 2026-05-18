@@ -65,7 +65,7 @@ class system {
 		return self::$_distrib;
 	}
 
-	public static function get($_key = '') {
+	public static function get(string $_key = '') {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()][$_key])) {
 			$return = self::$_command[self::getDistrib()][$_key];
@@ -93,9 +93,7 @@ class system {
 		return 'sudo ';
 	}
 
-	public static function fuserk($_port, $_protocol = 'tcp'): void {
-		if (!is_string($_port)) return;
-
+	public static function fuserk(string $_port, string $_protocol = 'tcp'): void {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
@@ -103,7 +101,7 @@ class system {
 		}
 	}
 
-	public static function ps($_find, $_without = null) {
+	public static function ps(string $_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
 		if ($_without != null) {
@@ -179,7 +177,7 @@ class system {
 		exec($cmd);
 	}
 
-	public static function php($arguments, $_sudo = false) {
+	public static function php(string $arguments, bool $_sudo = false) {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
 		}
@@ -200,7 +198,7 @@ class system {
 		return $arch;
 	}
 
-	public static function getUpgradablePackage($_type, $_forceRefresh = false) {
+	public static function getUpgradablePackage(string $_type, bool $_forceRefresh = false) {
 		$return = array($_type => array());
 		switch ($_type) {
 			case 'apt':
@@ -264,7 +262,7 @@ class system {
 		return $return;
 	}
 
-	public static function upgradePackage($_type, $_package = null) {
+	public static function upgradePackage(string $_type, $_package = null) {
 		$cmd = "set -x\n";
 		$cmd .= "echo '*******************Begin of package upgrade type " . $_type . "******************'\n";
 		switch ($_type) {
@@ -317,12 +315,12 @@ class system {
 		self::launchScriptPackage();
 	}
 
-	private static function getPython3VenvDir($_plugin) {
+	private static function getPython3VenvDir(string $_plugin) {
 		if ($_plugin == '') return '';
 		return __DIR__ . "/../../plugins/{$_plugin}/resources/python_venv";
 	}
 
-	public static function getCmdPython3($_plugin) {
+	public static function getCmdPython3(string $_plugin) {
 		if ($_plugin == '') return 'python3 ';
 
 		if (version_compare(self::getOsVersion(), '12', '<')) {
@@ -332,7 +330,7 @@ class system {
 		}
 	}
 
-	private static function splitpackageByPlugin($_type, $_plugin = '') {
+	private static function splitpackageByPlugin(string $_type, string $_plugin = '') {
 		if (version_compare(self::getOsVersion(), '12', '>=') && in_array($_type, ['pip3']) && $_plugin != '') {
 			return true;
 		} else {
@@ -340,7 +338,7 @@ class system {
 		}
 	}
 
-	public static function getInstallPackage($_type, $_plugin) {
+	public static function getInstallPackage(string $_type, string $_plugin) {
 		if (self::splitpackageByPlugin($_type, $_plugin)) {
 			$type_key = $_type . '::' . $_plugin;
 		} else {
@@ -448,7 +446,7 @@ class system {
 		return self::$_installPackage[$type_key];
 	}
 
-	public static function os_incompatible($_type, $_package, $_info): bool {
+	public static function os_incompatible(string $_type, string $_package, array $_info): bool {
 		if (isset($_info['denyDebianHigherEqual']) && self::getDistrib() == 'debian' && version_compare(self::getOsVersion(), $_info['denyDebianHigherEqual'], '>=')) {
 			return true;
 		}
@@ -466,7 +464,7 @@ class system {
 		return false;
 	}
 
-	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '', $_force = false) {
+	public static function checkAndInstall(array $_packages, bool $_fix = false, bool $_foreground = false, string $_plugin = '', bool $_force = false) {
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			if ($type == 'post-install' || $type == 'pre-install') {
@@ -773,7 +771,7 @@ class system {
 		self::launchScriptPackage($_plugin, $_force);
 	}
 
-	public static function installPackageInProgress($_plugin = ''): bool {
+	public static function installPackageInProgress(string $_plugin = ''): bool {
 		if (count(self::ps('^dpkg ')) > 0 || count(self::ps('^apt ')) > 0) {
 			return true;
 		}
@@ -799,7 +797,7 @@ class system {
 		return false;
 	}
 
-	public static function launchScriptPackage($_plugin = '', $_force = false) {
+	public static function launchScriptPackage(string $_plugin = '', bool $_force = false) {
 		if (!$_force && self::installPackageInProgress($_plugin)) {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours', __FILE__));
 		}
@@ -825,7 +823,7 @@ class system {
 		}
 	}
 
-	public static function installPackage($_type, $_package, $_version = '', $_plugin = '') {
+	public static function installPackage(string $_type, string $_package, string $_version = '', string $_plugin = '') {
 		switch ($_type) {
 			case 'apt':
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
@@ -842,7 +840,7 @@ class system {
 					if (preg_match('/[<>]/', $_version)) {
 						$_package .= $_version;
 						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
-					} 
+					}
 					$_package .= '==' . $_version;
 					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 				}
@@ -876,7 +874,7 @@ class system {
 		}
 	}
 
-	public static function checkHasExec($_exec) {
+	public static function checkHasExec(string $_exec) {
 		if (isset(self::$_hasExec[$_exec])) {
 			return self::$_hasExec[$_exec];
 		}
@@ -895,7 +893,7 @@ class system {
 		return self::$_os_version;
 	}
 
-	public static function checkInstallationLog($_plugin = ''): string {
+	public static function checkInstallationLog(string $_plugin = ''): string {
 		if (class_exists('log')) {
 			if ($_plugin != '') {
 				$log = log::getPathToLog($_plugin . '_packages');

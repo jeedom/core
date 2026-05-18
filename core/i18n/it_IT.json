@@ -539,7 +539,6 @@
         "Erreur sur la configuration réseau interne :": "Errore di configurazione della rete interna:",
         "Erreur sur la connexion au market :": "Errore durante la connessione al mercato:",
         "Erreur sur la consolidation de l\\'historique :": "Errore durante il consolidamento della cronologia:",
-        "Erreur sur la démarrage des plugins :": "Errore durante l'avvio dei plug-in:",
         "Erreur sur la restauration du cache :": "Errore durante il ripristino della cache:",
         "Erreur sur le démarrage des plugins :": "Errore durante l'avvio dei plug-in:",
         "Erreur sur le démarrage interne de Jeedom :": "Errore di avvio interno Jeedom:",
@@ -768,6 +767,9 @@
         "SINON": "COMUNQUE",
         "Scenario": "Scenario",
         "Sous-élément inconnu. Vérifiez l\\'ID :": "Sottoelemento sconosciuto. Controlla l'ID:",
+        "TANT QUE": "FINCHÉ",
+        "[For] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[For] Interruzione del ciclo a causa di un tempo di esecuzione troppo lungo",
+        "[While] Arrêt de la boucle pour cause de durée d\\'exécution trop longue": "[While] Interruzione del ciclo a causa di un tempo di esecuzione troppo lungo",
         "trouvée dans le scénario :": "presente nello scenario:"
     },
     "core\/class\/scenarioExpression.class.php": {
@@ -812,7 +814,7 @@
         "Masquage de": "Mascheramento di",
         "Mise à jour du tag": "Aggiornamento del tag",
         "Panel introuvable - Vérifiez l\\'id :": "Pannello non trovato - Controlla l'id:",
-        "Pause de": "Rompere da",
+        "Pause de %s seconde(s)": "Pausa di %s secondo(i)",
         "Rapport": "Rapporto",
         "Rapport url du": "URL del rapporto",
         "Rapport équipement du": "Rapporto sulle attrezzature del",
@@ -830,13 +832,13 @@
         "Veuillez trouver ci-joint le rapport équipement généré le": "In allegato si trova il rapporto sull'attrezzatura generato",
         "Vrai": "Vero",
         "Vue introuvable - Vérifiez l\\'id :": "Visualizza non trovato - Controlla l'id:",
-        "[Wait] Condition valide :": "[Attendi] Condizioni valide:",
-        "[Wait] Condition valide par dépassement de temps :": "[Attendi] Condizione valida per il timeout:",
+        "[Wait] Condition valide: %s": "[Attesa] Condizione valida: %s",
+        "[Wait] Début du wait, timeout: %ss": "[Wait] Inizio dell'attesa, timeout: %ss",
+        "[Wait] Dépassement du timeout: %s": "[Attesa] Superamento del timeout: %s",
         "au": "a",
         "du": "di",
         "généré le": "generato il",
         "options :": "opzioni:",
-        "seconde(s)": "secondo\/i",
         "à": "a"
     },
     "core\/class\/system.class.php": {
@@ -1616,14 +1618,6 @@
     "core\/template\/dashboard\/cmd.action.slider.sliderVertical.html": {
         "Affiche durée ou date de la valeur": "Visualizza la durata o la data del valore",
         "Couleur d'arrière plan": "Colore dello sfondo",
-        "Pas du changement de valeur": "Nessuna variazione di valore"
-    },
-    "core\/template\/dashboard\/cmd.action.slider.timeShutter.html": {
-        "Affiche durée ou date de la valeur": "Visualizza la durata o la data del valore",
-        "Couleur de l'indicateur de valeur": "Colore dell'indicatore di valore",
-        "Date de collecte": "Data di raccolta",
-        "Date de valeur": "Data di valuta",
-        "Inverse la position de l'indicateur de valeur": "Inverte la posizione dell'indicatore di valore",
         "Pas du changement de valeur": "Nessuna variazione di valore"
     },
     "core\/template\/dashboard\/cmd.action.slider.tmplicon.html": {
@@ -2426,6 +2420,7 @@
         "Bloc Commentaire": "Blocco commenti",
         "Bloc Dans": "Block In",
         "Bloc Si\/Alors\/Sinon": "Blocco If \/ Then \/ Altrimenti",
+        "Bloc Tant que": "Blocco \"Finché\"",
         "CODE": "Codice",
         "COMMENTAIRE": "COMMENTO",
         "Choisir un Type Générique": "Scegli un tipo generico",
@@ -2479,6 +2474,7 @@
         "Supprimer l\\'action": "Elimina azione",
         "Sélectionner la commande": "Seleziona comando",
         "Sélectionner un mot-clé": "Seleziona una parola chiave",
+        "TANT QUE": "FINCHÉ",
         "Template de scénario": "Modello di scenario",
         "Valider": "Convalidare",
         "Vue d'ensemble des scénarios": "Panoramica degli scenari",
@@ -5106,6 +5102,7 @@
         "Permet de conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière.": "Permet de conditionner des actions dans votre scénario. Par exemple : Si mon détecteur d’ouverture de porte se déclenche Alors allumer la lumière",
         "Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière.": "Permet de faire une action dans X min. Par exemple : Dans 5 min, éteindre la lumière",
         "Permet de lancer une action sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON.": "Permet de lancer une action sur un de vos modules, scénarios ou autre. Par exemple : Passer votre sirène sur ON",
+        "Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.": "Consente di eseguire un'azione ripetutamente finché una condizione è vera. Ad esempio: finché il volume non è a 20, aumentarlo di 1.",
         "Prochain": "Prossimo",
         "Programmation": "Programmazione",
         "Programmé": "Programmato",
@@ -5120,6 +5117,7 @@
         "Supprimer": "Elimina",
         "Supprimer les logs": "Elimina i log",
         "Synchrone": "Sincrono",
+        "Tant que": "Finché",
         "Template": "Sagoma",
         "Temps réel": "Tempo reale",
         "Timeline": "Cronologia",

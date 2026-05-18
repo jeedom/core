@@ -37,7 +37,7 @@ $_RESTRICTED = false;
 
 if (init('type') != '') {
 	try {
-		
+
 		if (init('type') == 'ask') {
 			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
 				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
@@ -1276,7 +1276,7 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		jeedom::update('');
+		jeedom::update();
 		$jsonrpc->makeSuccess('ok');
 	}
 

@@ -222,9 +222,7 @@ class plugin {
 			foreach ($results as $result) {
 				try {
 					$listPlugin[] = plugin::byId($result['plugin']);
-				} catch (Exception $e) {
-					log::add('plugin', 'error', log::exception($e), 'pluginNotFound::' . $result['plugin']);
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add('plugin', 'error', log::exception($e), 'pluginNotFound::' . $result['plugin']);
 				}
 			}
@@ -241,9 +239,7 @@ class plugin {
 					} else {
 						try {
 							$listPlugin[] = plugin::byId($pathInfoPlugin);
-						} catch (Exception $e) {
-							log::add('plugin', 'error', log::exception($e), 'pluginNotFound::' . $pathInfoPlugin);
-						} catch (Error $e) {
+						} catch (\Throwable $e) {
 							log::add('plugin', 'error', log::exception($e), 'pluginNotFound::' . $pathInfoPlugin);
 						}
 					}
@@ -273,7 +269,7 @@ class plugin {
 			}
 			return $return;
 		} else {
-			if (isset($listPlugin) && is_array($listPlugin) && count($listPlugin) > 0) {
+			if (is_array($listPlugin) && count($listPlugin) > 0) {
 				usort($listPlugin, 'plugin::orderPlugin');
 				return $listPlugin;
 			} else {
@@ -367,9 +363,7 @@ class plugin {
 				cache::set('plugin::cron::last', $plugin_id);
 				try {
 					$plugin_id::cron();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -398,9 +392,7 @@ class plugin {
 				cache::set('plugin::cron5::last', $plugin_id);
 				try {
 					$plugin_id::cron5();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron5 du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron5 du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -429,9 +421,7 @@ class plugin {
 				cache::set('plugin::cron10::last', $plugin_id);
 				try {
 					$plugin_id::cron10();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron10 du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron10 du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -460,9 +450,7 @@ class plugin {
 				cache::set('plugin::cron15::last', $plugin_id);
 				try {
 					$plugin_id::cron15();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron15 du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -491,9 +479,7 @@ class plugin {
 				cache::set('plugin::cron30::last', $plugin_id);
 				try {
 					$plugin_id::cron30();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cron30 du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cron30 du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -522,9 +508,7 @@ class plugin {
 				cache::set('plugin::cronDaily::last', $plugin_id);
 				try {
 					$plugin_id::cronDaily();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cronDaily du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cronDaily du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -553,9 +537,7 @@ class plugin {
 				cache::set('plugin::cronHourly::last', $plugin_id);
 				try {
 					$plugin_id::cronHourly();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction cronHourly du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction cronHourly du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -570,9 +552,7 @@ class plugin {
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::start();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction start du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -586,9 +566,7 @@ class plugin {
 				$plugin_id = $plugin->getId();
 				try {
 					$plugin_id::stop();
-				} catch (Exception $e) {
-					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add($plugin_id, 'error', __('Erreur sur la fonction stop du plugin :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -939,9 +917,7 @@ class plugin {
 					}
 				}
 			}
-		} catch (Exception $e) {
-			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin :', __FILE__) . ' ' . log::exception($e));
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_start du plugin :', __FILE__) . ' ' . log::exception($e));
 		}
 	}
@@ -955,9 +931,7 @@ class plugin {
 					$plugin_id::deamon_stop();
 				}
 			}
-		} catch (Exception $e) {
-			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin :', __FILE__) . ' ' . log::exception($e));
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add($plugin_id, 'error', __('Erreur sur la fonction deamon_stop du plugin :', __FILE__) . ' ' . log::exception($e));
 		}
 	}
@@ -989,8 +963,7 @@ class plugin {
 						$eqLogic->setIsEnable(0);
 						$eqLogic->setIsVisible(0);
 						$eqLogic->save();
-					} catch (Exception $e) {
-					} catch (Error $e) {
+					} catch (\Throwable $e) {
 					}
 				}
 			}
@@ -1003,16 +976,14 @@ class plugin {
 		} else if ($alreadyActive == 0 && $_state == 1) {
 			try {
 				include_file('core', $this->getId(), 'class', $this->getId());
-			} catch (Exception $e) {
-			} catch (Error $e) {
+			} catch (\Throwable $e) {
 			}
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
 				try {
 					$eqLogic->setIsEnable($eqLogic->getConfiguration('previousIsEnable', 1));
 					$eqLogic->setIsVisible($eqLogic->getConfiguration('previousIsVisible', 1));
 					$eqLogic->save();
-				} catch (Exception $e) {
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 				}
 			}
 		}
@@ -1049,11 +1020,7 @@ class plugin {
 			if (isset($out) && trim($out) != '') {
 				log::add($this->getId(), 'info', "Installation/remove/update result : " . $out);
 			}
-		} catch (Exception $e) {
-			config::save('active', $alreadyActive, $this->getId());
-			log::add('plugin', 'error', log::exception($e));
-			throw $e;
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			config::save('active', $alreadyActive, $this->getId());
 			log::add('plugin', 'error', log::exception($e));
 			throw $e;

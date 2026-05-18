@@ -22,22 +22,22 @@
 require_once __DIR__ . '/console.php';
 require_once __DIR__ . "/core.inc.php";
 
-function jeeQueue_errorHandler($queue, $class, $function,$datetimeStart, $e) {
-	$queue->setState('error');
-	$queue->setPID('');
-	$queue->setCache('runtime', strtotime('now') - $datetimeStart);
-	$logicalId = config::genKey();
-	if ($e->getCode() != 0) {
-		$logicalId = $queue->getHumanName() . '::' . $e->getCode();
-	}
-	echo '[Erreur] ' . $queue->getHumanName() . ' : ' . log::exception($e);
-	if (isset($class) && $class != '') {
-		log::add($class, 'error', __('Erreur sur', __FILE__) . ' ' . $queue->getHumanName() . ' : ' . log::exception($e), $logicalId);
-	} else if (isset($function) && $function != '') {
-		log::add($function, 'error', __('Erreur sur', __FILE__) . ' ' . $queue->getHumanName() . ' : ' . log::exception($e), $logicalId);
-	} else {
-		log::add('queue', 'error', __('Erreur sur', __FILE__) . ' ' . $queue->getHumanName() . ' : ' . log::exception($e), $logicalId);
-	}
+function jeeQueue_errorHandler($queue, $class, $function, $datetimeStart, $e) {
+    $queue->setState('error');
+    $queue->setPID('');
+    $queue->setCache('runtime', strtotime('now') - $datetimeStart);
+    $logicalId = config::genKey();
+    if ($e->getCode() != 0) {
+        $logicalId = $queue->getHumanName() . '::' . $e->getCode();
+    }
+    echo '[Erreur] ' . $queue->getHumanName() . ' : ' . log::exception($e);
+    if (isset($class) && $class != '') {
+        log::add($class, 'error', __('Erreur sur', __FILE__) . ' ' . $queue->getHumanName() . ' : ' . log::exception($e), $logicalId);
+    } else if (isset($function) && $function != '') {
+        log::add($function, 'error', __('Erreur sur', __FILE__) . ' ' . $queue->getHumanName() . ' : ' . log::exception($e), $logicalId);
+    } else {
+        log::add('queue', 'error', __('Erreur sur', __FILE__) . ' ' . $queue->getHumanName() . ' : ' . log::exception($e), $logicalId);
+    }
 }
 
 if (jeedom::isStarted() && config::byKey('enableQueue', 'core', 1, true) == 0) {
@@ -60,10 +60,10 @@ try {
             try {
                 call_user_func_array($queue->getClass() . '::' . $queue->getFunction(), $queue->getArguments());
             } catch (\Throwable $th) {
-                log::add('queue', 'error', __('[Erreur] ', __FILE__) . ' ' . $queue->getHumanName().' => '.$th->getMessage());
+                log::add('queue', 'error', __('[Erreur] ', __FILE__) . ' ' . $queue->getHumanName() . ' => ' . $th->getMessage());
                 $queue->setState('error');
                 $queue->setPID();
-                $queue->setCache('numberFailed',$queue->getCache('numberFailed',0)+1);
+                $queue->setCache('numberFailed', $queue->getCache('numberFailed', 0) + 1);
                 die();
             }
         } else {
@@ -77,10 +77,10 @@ try {
             try {
                 call_user_func_array($queue->getFunction(), $queue->getArguments());
             } catch (\Throwable $th) {
-                log::add('queue', 'error', __('[Erreur] ', __FILE__) . ' ' . $queue->getHumanName().' => '.$th->getMessage());
+                log::add('queue', 'error', __('[Erreur] ', __FILE__) . ' ' . $queue->getHumanName() . ' => ' . $th->getMessage());
                 $queue->setState('error');
                 $queue->setPID();
-                $queue->setCache('numberFailed',$queue->getCache('numberFailed',0)+1);
+                $queue->setCache('numberFailed', $queue->getCache('numberFailed', 0) + 1);
                 die();
             }
         } else {
@@ -92,8 +92,6 @@ try {
     }
     $queue->remove(false);
     die();
-} catch (Exception $e) {
-    jeeQueue_errorHandler($queue, $class, $function,$datetimeStart, $e);
-} catch (Error $e) {
-    jeeQueue_errorHandler($queue, $class, $function,$datetimeStart, $e);
+} catch (\Throwable $e) {
+    jeeQueue_errorHandler($queue, $class, $function, $datetimeStart, $e);
 }

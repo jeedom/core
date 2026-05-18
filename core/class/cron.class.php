@@ -37,9 +37,9 @@ class cron {
 	/*     * ***********************Méthodes statiques*************************** */
 
 	/**
-	* Return an array of all cron object
-	* @return array
-	*/
+	 * Return an array of all cron object
+	 * @return array
+	 */
 	public static function all($_order = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM cron';
@@ -50,10 +50,10 @@ class cron {
 	}
 
 	/**
-	* Get cron object associate to id
-	* @param int $_id
-	* @return object
-	*/
+	 * Get cron object associate to id
+	 * @param int $_id
+	 * @return object
+	 */
 	public static function byId($_id) {
 		$value = array(
 			'id' => $_id,
@@ -65,12 +65,12 @@ class cron {
 	}
 
 	/**
-	* Return cron object corresponding to parameters
-	* @param string $_class
-	* @param string $_function
-	* @param string $_option
-	* @return object
-	*/
+	 * Return cron object corresponding to parameters
+	 * @param string $_class
+	 * @param string $_function
+	 * @param string $_option
+	 * @return object
+	 */
 	public static function byClassAndFunction($_class, $_function, $_option = '') {
 		$value = array(
 			'class' => $_class,
@@ -88,12 +88,12 @@ class cron {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 	/**
-	*
-	* @param string $_class
-	* @param string $_function
-	* @param string|array $_option
-	* @return cron[]
-	*/
+	 *
+	 * @param string $_class
+	 * @param string $_function
+	 * @param string|array $_option
+	 * @return cron[]
+	 */
 	public static function searchClassAndFunction($_class, $_function, $_option = '') {
 		$value = array(
 			'class' => $_class,
@@ -104,10 +104,10 @@ class cron {
 		WHERE class=:class
 		AND `function`=:function';
 		if ($_option != '') {
-			if(is_array($_option)){
+			if (is_array($_option)) {
 				$value['option'] = json_encode($_option);
 				$sql .= ' AND JSON_CONTAINS(option,:option)';
-			}else{
+			} else {
 				$value['option'] = '%' . $_option . '%';
 				$sql .= ' AND `option` LIKE :option';
 			}
@@ -123,41 +123,39 @@ class cron {
 				if (!$c->isDue()) {
 					$c->getNextRunDate();
 				}
-			} catch (Exception $ex) {
-				$cron->remove();
-			} catch (Error $ex) {
+			} catch (\Throwable $ex) {
 				$cron->remove();
 			}
 		}
 	}
 
 	/**
-	* Return number of cron running
-	* @return int
-	*/
+	 * Return number of cron running
+	 * @return int
+	 */
 	public static function nbCronRun() {
 		return count(system::ps('jeeCron.php', array('grep', 'sudo', 'shell=/bin/bash - ', '/bin/bash -c ', posix_getppid(), getmypid())));
 	}
 
 	/**
-	* Return number of process on system
-	* @return int
-	*/
+	 * Return number of process on system
+	 * @return int
+	 */
 	public static function nbProcess() {
 		return count(system::ps('.'));
 	}
 
 	/**
-	* Return array of load average
-	* @return array
-	*/
+	 * Return array of load average
+	 * @return array
+	 */
 	public static function loadAvg() {
 		return sys_getloadavg();
 	}
 
 	/**
-	* Set jeecron pid of current process
-	*/
+	 * Set jeecron pid of current process
+	 */
 	public static function setPidFile() {
 		$path = jeedom::getTmpFolder() . '/jeeCron.pid';
 		$fp = fopen($path, 'w');
@@ -166,9 +164,9 @@ class cron {
 	}
 
 	/**
-	* Return the current pid of jeecron or empty if not running
-	* @return int
-	*/
+	 * Return the current pid of jeecron or empty if not running
+	 * @return int
+	 */
 	public static function getPidFile() {
 		$path = jeedom::getTmpFolder() . '/jeeCron.pid';
 		if (file_exists($path)) {
@@ -178,9 +176,9 @@ class cron {
 	}
 
 	/**
-	* Return state of jeecron master
-	* @return boolean
-	*/
+	 * Return state of jeecron master
+	 * @return boolean
+	 */
 	public static function jeeCronRun() {
 		$pid = self::getPidFile();
 		if ($pid == '' || !is_numeric($pid)) {
@@ -196,9 +194,9 @@ class cron {
 	/*     * *********************Méthodes d'instance************************* */
 
 	/**
-	* Check if cron object is valid before save
-	* @throws Exception
-	*/
+	 * Check if cron object is valid before save
+	 * @throws Exception
+	 */
 	public function preSave() {
 		if ($this->getFunction() == '') {
 			throw new Exception(__('La fonction ne peut pas être vide', __FILE__));
@@ -220,18 +218,18 @@ class cron {
 	}
 
 	/**
-	* Save cron object
-	* @return boolean
-	*/
+	 * Save cron object
+	 * @return boolean
+	 */
 	public function save() {
 		DB::save($this, false, true);
 		return true;
 	}
 
 	/**
-	* Remove cron object
-	* @return boolean
-	*/
+	 * Remove cron object
+	 * @return boolean
+	 */
 	public function remove($halt_before = true) {
 		if ($halt_before && $this->running()) {
 			$this->halt();
@@ -241,8 +239,8 @@ class cron {
 	}
 
 	/**
-	* Set cron to be start
-	*/
+	 * Set cron to be start
+	 */
 	public function start() {
 		if (!$this->running()) {
 			$this->setState('starting');
@@ -252,9 +250,9 @@ class cron {
 	}
 
 	/**
-	* Launch cron (this method must be only call by jeecron master)
-	* @throws Exception
-	*/
+	 * Launch cron (this method must be only call by jeecron master)
+	 * @throws Exception
+	 */
 	public function run($_noErrorReport = false) {
 		$cmd = __DIR__ . '/../php/jeeCron.php';
 		$cmd .= ' "cron_id=' . $this->getId() . '"';
@@ -273,9 +271,9 @@ class cron {
 	}
 
 	/**
-	* Check if this cron is currently running
-	* @return boolean
-	*/
+	 * Check if this cron is currently running
+	 * @return boolean
+	 */
 	public function running() {
 		if (($this->getState() == 'run' || $this->getState() == 'stoping') && $this->getPID() > 0) {
 			if (posix_getsid($this->getPID()) && (!file_exists('/proc/' . $this->getPID() . '/cmdline') || strpos(@file_get_contents('/proc/' . $this->getPID() . '/cmdline'), 'cron_id=' . $this->getId()) !== false)) {
@@ -289,9 +287,9 @@ class cron {
 	}
 
 	/**
-	* Refresh DB state of this cron
-	* @return boolean
-	*/
+	 * Refresh DB state of this cron
+	 * @return boolean
+	 */
 	public function refresh() {
 		if (($this->getState() == 'run' || $this->getState() == 'stoping') && !$this->running()) {
 			$this->setState('stop');
@@ -323,13 +321,13 @@ class cron {
 			if ($this->getPID() > 0) {
 				system::kill($this->getPID());
 				$retry = 0;
-				while ($this->running() && $retry < ( (int)(config::byKey('deamonsSleepTime')) + 5) ) {
+				while ($this->running() && $retry < ((int)(config::byKey('deamonsSleepTime')) + 5)) {
 					sleep(1);
 					system::kill($this->getPID());
 					$retry++;
 				}
 				$retry = 0;
-				while ($this->running() && $retry < ( (int)(config::byKey('deamonsSleepTime')) + 5) ) {
+				while ($this->running() && $retry < ((int)(config::byKey('deamonsSleepTime')) + 5)) {
 					sleep(1);
 					system::kill($this->getPID());
 					$retry++;
@@ -356,9 +354,9 @@ class cron {
 	}
 
 	/**
-	* Check if it's time to launch cron
-	* @return boolean
-	*/
+	 * Check if it's time to launch cron
+	 * @return boolean
+	 */
 	public function isDue($_datetime = null) {
 		//check if already sent on that minute
 		$last = strtotime($this->getLastRun());
@@ -366,25 +364,22 @@ class cron {
 		if (($now - $now % 60) == ($last - $last % 60)) {
 			return false;
 		}
-		return cronIsDue($this->getSchedule(),$_datetime);
+		return cronIsDue($this->getSchedule(), $_datetime);
 	}
 
 	public function getNextRunDate() {
 		try {
 			$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 			return $c->getNextRunDate()->format('Y-m-d H:i:s');
-		} catch (Exception $e) {
-
-		} catch (Error $e) {
-
+		} catch (\Throwable $e) {
 		}
 		return false;
 	}
 
 	/**
-	* Get human name of cron
-	* @return string
-	*/
+	 * Get human name of cron
+	 * @return string
+	 */
 	public function getName() {
 		if ($this->getClass() != '') {
 			return $this->getClass() . '::' . $this->getFunction() . '()';
@@ -435,25 +430,25 @@ class cron {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
 
 	public function setEnable($_enable) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->enable,$_enable);
+		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
 		$this->enable = $_enable;
 		return $this;
 	}
 
 	public function setClass($_class) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->class,$_class);
+		$this->_changed = utils::attrChanged($this->_changed, $this->class, $_class);
 		$this->class = $_class;
 		return $this;
 	}
 
 	public function setFunction($_function) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->function,$_function);
+		$this->_changed = utils::attrChanged($this->_changed, $this->function, $_function);
 		$this->function = $_function;
 		return $this;
 	}
@@ -475,7 +470,7 @@ class cron {
 	}
 
 	public function setSchedule($_schedule) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->schedule,$_schedule);
+		$this->_changed = utils::attrChanged($this->_changed, $this->schedule, $_schedule);
 		$this->schedule = $_schedule;
 		return $this;
 	}
@@ -485,7 +480,7 @@ class cron {
 	}
 
 	public function setDeamon($_deamons) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->deamon,$_deamons);
+		$this->_changed = utils::attrChanged($this->_changed, $this->deamon, $_deamons);
 		$this->deamon = $_deamons;
 		return $this;
 	}
@@ -499,7 +494,7 @@ class cron {
 	}
 
 	public function setTimeout($_timeout) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->timeout,$_timeout);
+		$this->_changed = utils::attrChanged($this->_changed, $this->timeout, $_timeout);
 		$this->timeout = $_timeout;
 		return $this;
 	}
@@ -513,7 +508,7 @@ class cron {
 	}
 
 	public function setDeamonSleepTime($_deamonSleepTime) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->deamonSleepTime,$_deamonSleepTime);
+		$this->_changed = utils::attrChanged($this->_changed, $this->deamonSleepTime, $_deamonSleepTime);
 		$this->deamonSleepTime = $_deamonSleepTime;
 		return $this;
 	}
@@ -531,13 +526,13 @@ class cron {
 
 	public function setOption($_option) {
 		$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
-		$this->_changed = utils::attrChanged($this->_changed,$this->option,$_option);
+		$this->_changed = utils::attrChanged($this->_changed, $this->option, $_option);
 		$this->option = $_option;
 		return $this;
 	}
 
 	public function setOnce($_once) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->once,$_once);
+		$this->_changed = utils::attrChanged($this->_changed, $this->once, $_once);
 		$this->once = $_once;
 		return $this;
 	}
@@ -559,5 +554,4 @@ class cron {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
 }

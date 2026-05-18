@@ -1017,8 +1017,7 @@ class cmd {
 						$calc = str_replace('#value#', $_value, $calc);
 					}
 					$_value = jeedom::evaluateExpression($calc);
-				} catch (Exception $ex) {
-				} catch (Error $ex) {
+				} catch (\Throwable $ex) {
 				}
 			}
 			switch ($this->getSubType()) {
@@ -2212,9 +2211,7 @@ class cmd {
 		$http->setLogError(false);
 		try {
 			$http->exec();
-		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
