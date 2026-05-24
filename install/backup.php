@@ -96,7 +96,7 @@ try {
 		echo "Checking  table " . $table . "...";
         $check_command = 'mariadbcheck';
 		if (! file_exists('/usr/bin/mariadbcheck')) {
-			$check_command = 'mysqlcheck'
+			$check_command = 'mysqlcheck';
 		}
 		system($check_command . ' ' . $str_db_connexion . ' --auto-repair --silent --tables ' . $table);
 		echo "OK" . "\n";
