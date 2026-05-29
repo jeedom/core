@@ -1582,6 +1582,7 @@ var jeeDialog = (function() {
         show: function() {
           setBackDrop(_options, true)
           this.dialog._jeeDialog.options.onShown()
+          this.dialog.seen()
           if (!_options.retainPosition || this.dialog.style.width == '') {
             if (!_options.fullScreen) {
               this.dialog.setAttribute('data-maximize', '0')
@@ -1592,7 +1593,6 @@ var jeeDialog = (function() {
           }
           document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
           this.dialog.addClass('active')
-          this.dialog.seen()
           setTimeout(function() {
             dialogContainer.querySelector('button[data-type="confirm"]')?.focus()
           })
@@ -1608,7 +1608,7 @@ var jeeDialog = (function() {
           this.dialog.unseen()
           this.dialog._jeeDialog.options.onClose()
           this.dialog.removeClass('active')
-          let _dialog = document.querySelectorAll('div.jeeDialog.jeeDialogMain:not([style*="display: none;"])')
+          let _dialog = document.querySelectorAll('div.jeeDialog.jeeDialogMain:not(.hidden)')
           _dialog[_dialog.length - 1]?.addClass('active')
           cleanBackdrop()
         },
