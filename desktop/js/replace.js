@@ -30,7 +30,7 @@ if (!jeeFrontEnd.replace) {
     //Filtering:
     applyFilter: function() {
       jeeP.filteredObjects = new Array()
-      var key = null
+      let key = null
       document.querySelectorAll('#objectFilter .objectFilterKey').forEach(_filter => {
         if (_filter.checked) {
           key = parseInt(_filter.getAttribute('data-key'))
@@ -38,7 +38,7 @@ if (!jeeFrontEnd.replace) {
           jeeP.filteredObjects.push(key)
         }
       })
-      var byPlugins = new Array()
+      const byPlugins = new Array()
       document.querySelectorAll('#pluginFilter .pluginFilterKey').forEach(_filter => {
         if (_filter.checked) {
           byPlugins.push(_filter.getAttribute('data-key'))
@@ -53,10 +53,10 @@ if (!jeeFrontEnd.replace) {
       })
 
       jeeP.sourcesEqContainer.empty()
-      var eqDiv = ''
-      var parentName
-      var selectReplaceEqlogics = jeeP.getEqlogicSelect(true)
-      var selectReplaceCmds
+      let eqDiv = ''
+      const parentName
+      const selectReplaceEqlogics = jeeP.getEqlogicSelect(true)
+      let selectReplaceCmds
       jeeP.filteredEqlogics.forEach(function(eqlogic) {
         parentName = jeephp2js.listObjects.filter(o => o.id == eqlogic.object_id)[0].name
         eqDiv = '<ul class="eqLogic cursor" data-id="' + eqlogic.id + '" data-name="' + eqlogic.name + '" data-parent="' + parentName + '">'
@@ -103,18 +103,18 @@ if (!jeeFrontEnd.replace) {
       jeeP.sourcesEqContainer.empty()
     },
     getHumanName: function(_eqLogicId) {
-      var parentId = jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].object_id
-      var parentName = jeephp2js.listObjects.filter(o => o.id == parentId)[0].name
-      var humanName = '[' + parentName + '][' + jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].name + ']'
+      const parentId = jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].object_id
+      const parentName = jeephp2js.listObjects.filter(o => o.id == parentId)[0].name
+      const humanName = '[' + parentName + '][' + jeephp2js.listEqlogics.filter(e => e.id == _eqLogicId)[0].name + ']'
       return humanName
     },
     //Replacer syncyhing:
     getEqlogicSelect: function(reset=false) {
       if (!this.filteredEqlogics) return ''
 
-      var select = '<select class="selectEqReplace">'
+      let select = '<select class="selectEqReplace">'
       select += '<option value=""></option>'
-      var parentName
+      const parentName
       this.filteredObjects.forEach(function(_id) {
         select += '<optgroup label="' + jeephp2js.listObjects.filter(o => o.id == _id)[0].name + '">'
         jeeP.filteredEqlogics.filter(o => o.object_id == _id).forEach(function(eqlogic) {
@@ -138,14 +138,14 @@ if (!jeeFrontEnd.replace) {
     },
     synchEqlogicsReplacers: function() {
       //Get all selected target eqlogics:
-      var eqReplacers = document.querySelectorAll('#eqSource select.selectEqReplace')
+      const eqReplacers = document.querySelectorAll('#eqSource select.selectEqReplace')
       jeeP.replacerEqList = new Array()
       eqReplacers.forEach(_select => {
         if (_select.value != '') jeeP.replacerEqList.push(_select.value)
       })
 
       //Check each eqlogic to synch state and select:
-      var thisId
+      let thisId
       document.querySelectorAll('#eqSource ul.eqLogic').forEach( _ul => {
         thisId = _ul.getAttribute('data-id')
         if (jeeP.replacerEqList.includes(thisId)) { //Already selected as target replacement
@@ -165,11 +165,11 @@ if (!jeeFrontEnd.replace) {
     //Selection:
     selectReplacerEqlogic: function(_selectEl) {
       //get source and target eqLogics Ids:
-      var thisEq = _selectEl.closest('ul.eqLogic')
-      var sourceEqId = thisEq.getAttribute('data-id')
-      var sourceEqName = thisEq.getAttribute('data-name')
-      var targetEqId = _selectEl.value
-      var targetEqName = _selectEl.querySelector('option[value="' + targetEqId + '"]').getAttribute('data-name')
+      const thisEq = _selectEl.closest('ul.eqLogic')
+      const sourceEqId = thisEq.getAttribute('data-id')
+      const sourceEqName = thisEq.getAttribute('data-name')
+      const targetEqId = _selectEl.value
+      const targetEqName = _selectEl.querySelector('option[value="' + targetEqId + '"]').getAttribute('data-name')
 
       //open cmds ul:
       if (_selectEl.value != '' && !thisEq.querySelector('ul').isVisible()) {
@@ -206,23 +206,23 @@ if (!jeeFrontEnd.replace) {
       jeeP.synchEqlogicsReplacers()
 
       //Get over each command to set its select option with target commands list:
-      var replacerCmdsInfo = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type == 'info')
-      var replacerCmdsAction = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type == 'action')
-      var cmdsObject = jeephp2js.listCommands.filter(o => o.eqLogic_id == sourceEqId)
-      var cmds = thisEq.querySelectorAll('.cmd')
-      var cmdSelect
+      const replacerCmdsInfo = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type == 'info')
+      const replacerCmdsAction = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type == 'action')
+      const cmdsObject = jeephp2js.listCommands.filter(o => o.eqLogic_id == sourceEqId)
+      const cmds = thisEq.querySelectorAll('.cmd')
+      let cmdSelect
       cmds.forEach( _cmd => {
-        var type = _cmd.getAttribute('data-type')
+        const type = _cmd.getAttribute('data-type')
         if (type == 'info') {
-          var optionsCmds = replacerCmdsInfo
+          let optionsCmds = replacerCmdsInfo
         } else {
-          var optionsCmds = replacerCmdsAction
+          let optionsCmds = replacerCmdsAction
         }
 
         cmdSelect = _cmd.querySelector('select')
         cmdSelect.empty()
-        var options = '<option value=""></option>'
-        var _cmd = jeephp2js.listCommands.filter(o => o.id == _cmd.getAttribute('data-id'))[0]
+        let options = '<option value=""></option>'
+        let _cmd = jeephp2js.listCommands.filter(o => o.id == _cmd.getAttribute('data-id'))[0]
         optionsCmds.forEach(function(optionsCmd) {
           if (_cmd.name.toLowerCase().trim() == optionsCmd.name.toLowerCase().trim() && _cmd.type == optionsCmd.type) {
             options += '<option selected value="' + optionsCmd.id + '">' + optionsCmd.name + '</option>'
@@ -235,24 +235,24 @@ if (!jeeFrontEnd.replace) {
     },
     //Get job done!
     doReplace: async function() {
-      var opt_mode = document.getElementById('opt_mode').value
-      var opt_copyEqProperties = document.getElementById('opt_copyEqProperties').checked
-      var opt_hideEqs = document.getElementById('opt_hideEqs').checked
-      var opt_disableEqs = document.getElementById('opt_disableEqs').checked
-      var opt_copyCmdProperties = document.getElementById('opt_copyCmdProperties').checked
-      var opt_removeHistory = document.getElementById('opt_removeHistory').checked
-      var opt_copyHistory = document.getElementById('opt_copyHistory').checked
+      const opt_mode = document.getElementById('opt_mode').value
+      const opt_copyEqProperties = document.getElementById('opt_copyEqProperties').checked
+      const opt_hideEqs = document.getElementById('opt_hideEqs').checked
+      const opt_disableEqs = document.getElementById('opt_disableEqs').checked
+      const opt_copyCmdProperties = document.getElementById('opt_copyCmdProperties').checked
+      const opt_removeHistory = document.getElementById('opt_removeHistory').checked
+      const opt_copyHistory = document.getElementById('opt_copyHistory').checked
 
       //Used for check and later parts sent:
-      var replaceEqs = {}
-      var replaceCmds = {}
+      let replaceEqs = {}
+      let replaceCmds = {}
       //Get all eqs and their cmds to send eq one by one:
-      var replace = {}
+      const replace = {}
 
       document.querySelectorAll('#eqSource ul.eqLogic').forEach(_eglogic => {
         if (_eglogic.querySelector('input.cb_selEqLogic').checked) {
-          var sourceEqId = _eglogic.getAttribute('data-id')
-          var targetEqId = _eglogic.querySelector(':scope > div.replacer select').value
+          const sourceEqId = _eglogic.getAttribute('data-id')
+          const targetEqId = _eglogic.querySelector(':scope > div.replacer select').value
 
           if (targetEqId != '') {
             replaceEqs[sourceEqId] = targetEqId
@@ -263,8 +263,8 @@ if (!jeeFrontEnd.replace) {
             }
 
             _eglogic.querySelectorAll('li.cmd').forEach(_cmd => {
-              var cmdId = _cmd.getAttribute('data-id')
-              var replaceId = _cmd.querySelector('select').value
+              const cmdId = _cmd.getAttribute('data-id')
+              const replaceId = _cmd.querySelector('select').value
               if (replaceId != '') {
                 replaceCmds[cmdId] = replaceId
 
@@ -294,8 +294,8 @@ if (!jeeFrontEnd.replace) {
         return true
       }
 
-      var requestLength = Object.keys(replaceEqs).length
-      var requestDone = 0
+      const requestLength = Object.keys(replaceEqs).length
+      let requestDone = 0
       document.getElementById('progressbar').style.width = '0.5%'
       document.getElementById('progresscontainer').removeClass('hidden').scrollIntoView(false)
 
@@ -304,10 +304,10 @@ if (!jeeFrontEnd.replace) {
         replaceCmds = replace[sourceEqId].cmds
 
         //UI:
-        var text = '  ' + jeeP.getHumanName(sourceEqId) + ' -> ' + jeeP.getHumanName(replace[sourceEqId].target) + '...';
+        const text = '  ' + jeeP.getHumanName(sourceEqId) + ' -> ' + jeeP.getHumanName(replace[sourceEqId].target) + '...';
         document.getElementById('progresslog').textContent = text
 
-        var promise = new Promise((resolve, reject) => {
+        const promise = new Promise((resolve, reject) => {
           jeedom.massReplace({
             global: false,
             options: {
@@ -333,7 +333,7 @@ if (!jeeFrontEnd.replace) {
             }
           })
         })
-        var result = await promise
+        const result = await promise
       }
 
       jeedomUtils.showAlert({
@@ -353,8 +353,8 @@ jeeFrontEnd.replace.init()
 //searching:
 document.getElementById('in_searchByName')?.addEventListener('keyup', function(event) {
   try {
-    var search = event.target.value
-    var searchID = search
+    let search = event.target.value
+    let searchID = search
     if (isNaN(search)) searchID = false
 
     if (search == '') {
@@ -363,7 +363,7 @@ document.getElementById('in_searchByName')?.addEventListener('keyup', function(e
     }
 
     search = jeedomUtils.normTextLower(search)
-    var eqLogic, eqName, eqParent, eqId
+    let eqLogic, eqName, eqParent, eqId
     jeeP.sourcesEqContainer.querySelectorAll('ul.eqLogic').forEach(eqLogic => {
       eqParent = jeedomUtils.normTextLower(eqLogic.getAttribute('data-parent'))
       if (searchID) {
@@ -408,7 +408,7 @@ document.getElementById('bt_replace').addEventListener('click', function(event) 
 */
 //Filters
 document.getElementById('accordionFilter').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_applyFilters')) {
     jeeP.applyFilter()
     return
@@ -458,7 +458,7 @@ document.getElementById('accordionFilter').addEventListener('click', function(ev
 })
 
 document.getElementById('accordionFilter').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('input.objectFilterKey')) {
     event.preventDefault()
     event.stopPropagation()
@@ -485,7 +485,7 @@ document.getElementById('accordionFilter').addEventListener('mouseup', function(
 })
 
 document.getElementById('accordionFilter').addEventListener('mousedown', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#objectFilter li a')) {
     event.preventDefault()
     let checkbox = _target.querySelector('input.objectFilterKey')
@@ -523,9 +523,9 @@ document.getElementById('accordionFilter').addEventListener('mousedown', functio
 
 //Replacement:
 document.getElementById('eqSource').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if ((_target = event.target.matches('ul.eqLogic')) || (_target = event.target.matches('.eqName'))) {
-    var el = event.target.closest('ul.eqLogic').querySelector('ul')
+    const el = event.target.closest('ul.eqLogic').querySelector('ul')
     if (el.isVisible()) {
       el.unseen()
     } else {
@@ -536,7 +536,7 @@ document.getElementById('eqSource').addEventListener('click', function(event) {
 })
 
 document.getElementById('eqSource').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('select.selectEqReplace')) {
     if(_target.closest('select.selectEqReplace').value == ''){
      	return; 

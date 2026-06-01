@@ -39,12 +39,12 @@ if (!jeeFrontEnd.massedit) {
     },
     addFilter: function() {
       document.getElementById('bt_testFilter').removeClass('disabled')
-      var newFilterHtml = ''
+      let newFilterHtml = ''
       newFilterHtml += '<div class="form-group filter">'
 
       newFilterHtml += '<div class="col-md-2 col-xs-3">'
       newFilterHtml += '<select class="selectFilterKey form-control input-sm">'
-      var keys = Object.keys(jeephp2js.typePossibilities[this._filterType_])
+      const keys = Object.keys(jeephp2js.typePossibilities[this._filterType_])
       keys.forEach((key, index) => {
         newFilterHtml += '<option value="' + key + '">' + key + '</option>'
       })
@@ -66,24 +66,24 @@ if (!jeeFrontEnd.massedit) {
       newFilterHtml += '</div>'
 
       document.getElementById('filter').insertAdjacentHTML('beforeend', newFilterHtml)
-      var newFilter = document.querySelectorAll('#filter > div.filter').last()
+      const newFilter = document.querySelectorAll('#filter > div.filter').last()
       newFilter.querySelector('.selectFilterKey').triggerEvent('change')
       return newFilter
     },
     setEdit: function() {
-      var newEditHtml = ''
+      let newEditHtml = ''
       newEditHtml += '<div class="edit">'
 
       newEditHtml += '<div class="col-md-2 col-xs-3">'
       newEditHtml += '<select class="selectEditKey form-control input-sm">'
-      var keys = Object.keys(jeephp2js.typePossibilities[this._filterType_])
+      const keys = Object.keys(jeephp2js.typePossibilities[this._filterType_])
       keys.forEach((key, index) => {
         newEditHtml += '<option value="' + key + '">' + key + '</option>'
       })
       newEditHtml += '</select>'
       newEditHtml += '</div>'
 
-      var editId = 'j' + Math.random().toString(36).substr(2, 9)
+      const editId = 'j' + Math.random().toString(36).substr(2, 9)
       newEditHtml += '<div class="col-md-3 col-xs-3">'
       newEditHtml += '<input class="selectEditValue form-control input-sm" type="text" value="" list="' + editId + '_EditvaluesList" />'
       newEditHtml += '<datalist id="' + editId + '_EditvaluesList">'
@@ -102,13 +102,13 @@ if (!jeeFrontEnd.massedit) {
       document.getElementById('edit').insertAdjacentHTML('beforeend', newEditHtml)
     },
     getFilters: function() {
-      var filters = []
+      const filters = []
       document.querySelectorAll('#filter > div.filter').forEach(_filterEl => {
-        var key = _filterEl.querySelector('.selectFilterKey').value
-        var value = _filterEl.querySelector('select.selectFilterValue').selectedOptions[0].text
-        var jValue = false
+        const key = _filterEl.querySelector('.selectFilterKey').value
+        const value = _filterEl.querySelector('select.selectFilterValue').selectedOptions[0].text
+        let jValue = false
         if (!(_filterEl.querySelector('.selectFilterJValue').disabled)) {
-          var jValue = _filterEl.querySelector('select.selectFilterJValue').selectedOptions[0].text
+          let jValue = _filterEl.querySelector('select.selectFilterJValue').selectedOptions[0].text
         }
         filters.push({
           'key': key,
@@ -119,13 +119,13 @@ if (!jeeFrontEnd.massedit) {
       return filters
     },
     getEdits: function() {
-      var edits = []
+      const edits = []
       document.querySelectorAll('#edit > .edit').forEach(function(edit) {
-        var key = edit.querySelector('select.selectEditKey').value
-        var value = edit.querySelector('.selectEditValue').value
-        var jValue = false
+        const key = edit.querySelector('select.selectEditKey').value
+        const value = edit.querySelector('.selectEditValue').value
+        let jValue = false
         if (edit.querySelector('.inputEditJValue').disabled != null) {
-          var jValue = edit.querySelector('.inputEditJValue').value
+          let jValue = edit.querySelector('.inputEditJValue').value
         }
         edits.push({
           'key': key,
@@ -136,10 +136,10 @@ if (!jeeFrontEnd.massedit) {
       return edits
     },
     getTestSQLstring: function(_filters) {
-      var sqlTable = this._filterType_
-      var sqlCmd = ''
+      const sqlTable = this._filterType_
+      const sqlCmd = ''
       sqlCmd = 'SELECT id, name FROM `' + sqlTable + '`'
-      for (var i = 0; i < _filters.length; i++) {
+      for (let i = 0; i < _filters.length; i++) {
         if (i == 0) {
           sqlCmd += ' WHERE '
         } else {
@@ -154,13 +154,13 @@ if (!jeeFrontEnd.massedit) {
       return sqlCmd
     },
     getExecSQLstring: function(_filters, _edits) {
-      var sqlTable = this._filterType_
-      var sqlCmd = ''
+      const sqlTable = this._filterType_
+      const sqlCmd = ''
 
-      var condition = 'WHERE' + this.getTestSQLstring(_filters).split('WHERE')[1]
+      const condition = 'WHERE' + this.getTestSQLstring(_filters).split('WHERE')[1]
 
       //only support one edit at that time:
-      var edit = _edits[0]
+      const edit = _edits[0]
       if (edit.jValue) {
         sqlCmd = 'UPDATE `' + sqlTable + '`'
         sqlCmd += ' SET `' + edit.key + '` = JSON_REPLACE(`' + edit.key + '`, "' + "$." + edit.value + '", "' + edit.jValue + '")'
@@ -175,12 +175,12 @@ if (!jeeFrontEnd.massedit) {
       return sqlCmd
     },
     getCleaningSpaceSQLstring: function(_edits) {
-      var sqlTable = this._filterType_
-      var sqlCmd = ''
+      const sqlTable = this._filterType_
+      const sqlCmd = ''
 
-      var condition = 'WHERE id in (' + this._editIds_.join(', ') + ')'
+      const condition = 'WHERE id in (' + this._editIds_.join(', ') + ')'
 
-      var edit = _edits[0]
+      const edit = _edits[0]
       if (edit.jValue) {
         sqlCmd = 'UPDATE `' + sqlTable + '`'
         sqlCmd += ' SET `' + edit.key + '` = REPLACE(`' + edit.key + '`, ": ", ":")'
@@ -205,9 +205,9 @@ if (!jeeFrontEnd.massedit) {
         },
         success: function(result) {
           document.getElementById('testResult').empty().seen()
-          var testResEl = document.getElementById('testResult')
+          const testResEl = document.getElementById('testResult')
           if (_mode == 0) {
-            for (var i in result.sql) {
+            for (const i in result.sql) {
               testResEl.insertAdjacentHTML('beforeend', '<div class="btn btn-xs btn-primary testSqlDiv" data-id="' + result.sql[i].id + '" style="margin:3px;">' + result.sql[i].name + ' (' + result.sql[i].id + ')' + '</div>')
             }
           }
@@ -220,8 +220,8 @@ if (!jeeFrontEnd.massedit) {
       })
     },
     downloadObjectAsJson: function(exportObj, exportName) {
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
-      var downloadAnchorNode = document.createElement('a')
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
+      const downloadAnchorNode = document.createElement('a')
       downloadAnchorNode.setAttribute("href", dataStr)
       downloadAnchorNode.setAttribute("target", "_blank")
       downloadAnchorNode.setAttribute("download", exportName + ".json")
@@ -238,26 +238,26 @@ if (!jeeFrontEnd.massedit) {
         return false
       }
       if (_fileHdl) {
-        var readFile = new FileReader()
+        const readFile = new FileReader()
         readFile.readAsText(_fileHdl)
         readFile.onload = function(e) {
-          var massEditData = JSON.parse(e.target.result)
-          var newFilter
+          let massEditData = JSON.parse(e.target.result)
+          const newFilter
           try {
             //type:
             document.getElementById('sel_FilterByType').value = massEditData.type
             document.getElementById('sel_FilterByType').triggerEvent('change')
 
             //filters:
-            for (var idx in massEditData.filters) {
+            for (const idx in massEditData.filters) {
               newFilter = jeeP.addFilter()
               //key:
               newFilter.querySelector('.selectFilterKey').value = massEditData.filters[idx].key
               newFilter.querySelector('.selectFilterKey').triggerEvent('change')
 
               //value:
-              var select = newFilter.querySelector('.selectFilterValue')
-              var option = Array.from(select.options).filter(op => op.textContent == massEditData.filters[idx].value)[0]
+              let select = newFilter.querySelector('.selectFilterValue')
+              let option = Array.from(select.options).filter(op => op.textContent == massEditData.filters[idx].value)[0]
               select.value = option.value
               select.triggerEvent('change')
 
@@ -271,7 +271,7 @@ if (!jeeFrontEnd.massedit) {
             }
 
             //edits:
-            for (var idx in massEditData.edits) {
+            for (const idx in massEditData.edits) {
               document.querySelector('.selectEditKey').value = massEditData.edits[idx].key
               document.querySelector('.selectEditKey').triggerEvent('change')
               document.querySelector('.selectEditValue').value = massEditData.edits[idx].value
@@ -294,11 +294,11 @@ if (!jeeFrontEnd.massedit) {
       }
     },
     execMassEdit: function() {
-      var filters = jeeP.getFilters()
-      var edits = jeeP.getEdits()
+      const filters = jeeP.getFilters()
+      const edits = jeeP.getEdits()
 
       //get ids of modifying items to clean spaces in json string later.
-      var sqlCmd = jeeP.getTestSQLstring(filters)
+      const sqlCmd = jeeP.getTestSQLstring(filters)
       jeeP.dbExecuteCommand(sqlCmd, 2)
 
       //exec user edition:
@@ -326,7 +326,7 @@ jeeFrontEnd.massedit.postInit()
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_addFilter')) {
     jeeP.addFilter()
     document.getElementById('testResult').empty().unseen()
@@ -335,8 +335,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_testFilter')) {
-    var filters = jeeP.getFilters()
-    var sqlCmd = jeeP.getTestSQLstring(filters)
+    const filters = jeeP.getFilters()
+    const sqlCmd = jeeP.getTestSQLstring(filters)
     document.getElementById('testSQL').empty().append(sqlCmd)
     jeeP.dbExecuteCommand(sqlCmd, 0)
     return
@@ -355,7 +355,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     event.preventDefault()
     event.stopPropagation()
     event.stopImmediatePropagation()
-    var thisId = _target.getAttribute('data-id')
+    const thisId = _target.getAttribute('data-id')
     jeedom[jeeP._filterType_]['byId']({
       id: thisId,
       error: function(error) {
@@ -368,7 +368,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
         if (isset(_item.result)) _item = _item.result
 
         if (jeeP._filterType_ == 'eqLogic') {
-          var url = 'index.php?v=d&p=' + _item.eqType_name + '&m=' + _item.eqType_name + '&id=' + _item.id
+          const url = 'index.php?v=d&p=' + _item.eqType_name + '&m=' + _item.eqType_name + '&id=' + _item.id
           window.open(url)
           return true
         }
@@ -381,12 +381,12 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
           return true
         }
         if (jeeP._filterType_ == 'object') {
-          var url = 'index.php?v=d&p=object&id=' + _item.id
+          const url = 'index.php?v=d&p=object&id=' + _item.id
           window.open(url)
           return true
         }
         if (jeeP._filterType_ == 'scenario') {
-          var url = 'index.php?v=d&p=scenario&id=' + _item.id
+          const url = 'index.php?v=d&p=scenario&id=' + _item.id
           window.open(url)
           return true
         }
@@ -396,9 +396,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_exportFilter')) {
-    var filters = jeeP.getFilters()
-    var edits = jeeP.getEdits()
-    var jsonData = {
+    const filters = jeeP.getFilters()
+    const edits = jeeP.getEdits()
+    const jsonData = {
       'type': jeeP._filterType_,
       'filters': filters,
       'edits': edits
@@ -414,7 +414,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#sel_FilterByType')) {
     jeeP.resetUI()
     jeeP._filterType_ = _target.value
@@ -424,14 +424,14 @@ document.getElementById('div_pageContainer').addEventListener('change', function
   }
 
   if (_target = event.target.closest('select.selectFilterKey')) {
-    var key = _target.value
-    var selectValues = _target.closest('div.form-group').querySelector('select.selectFilterValue')
-    var selectJValues = _target.closest('div.form-group').querySelector('select.selectFilterJValue')
+    const key = _target.value
+    const selectValues = _target.closest('div.form-group').querySelector('select.selectFilterValue')
+    const selectJValues = _target.closest('div.form-group').querySelector('select.selectFilterJValue')
     selectValues.empty()
     selectJValues.empty()
 
     //set possible values for key
-    var newOption
+    let newOption
     if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
       selectJValues.disabled = true
       jeephp2js.typePossibilities[jeeP._filterType_][key].forEach(function(item, index) {
@@ -442,7 +442,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
       })
     } else {
       selectJValues.removeAttribute('disabled')
-      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
+      const values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
       values.forEach((value, index) => {
         newOption = document.createElement('option')
         newOption.text = value
@@ -458,18 +458,18 @@ document.getElementById('div_pageContainer').addEventListener('change', function
     document.getElementById('testSQL').empty()
     document.getElementById('testResult').empty().unseen()
 
-    var selectKey = _target.closest('div.form-group').querySelector('select.selectFilterKey')
-    var key = selectKey.value
-    var value = _target.selectedOptions[0] ? _target.selectedOptions[0].text : ''
-    var selectJValues = _target.closest('div.form-group').querySelector('select.selectFilterJValue')
+    const selectKey = _target.closest('div.form-group').querySelector('select.selectFilterKey')
+    const key = selectKey.value
+    const value = _target.selectedOptions[0] ? _target.selectedOptions[0].text : ''
+    const selectJValues = _target.closest('div.form-group').querySelector('select.selectFilterJValue')
     selectJValues.empty()
 
     //does have json value ?
     if (selectJValues.disabled) return false
 
     //set json values for filter:
-    var newOption
-    var jValues = value in jeephp2js.typePossibilities[jeeP._filterType_][key] ? Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key][value]) : []
+    let newOption
+    const jValues = value in jeephp2js.typePossibilities[jeeP._filterType_][key] ? Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key][value]) : []
     jValues.forEach((jValue, index) => {
       newOption = document.createElement('option')
       newOption.text = jeephp2js.typePossibilities[jeeP._filterType_][key][value][index]
@@ -480,22 +480,22 @@ document.getElementById('div_pageContainer').addEventListener('change', function
   }
 
   if (_target = event.target.closest('select.selectEditKey')) {
-    var value = _target.value
+    const value = _target.value
     _target.closest('div.form-group').querySelector('input.selectEditValue').value = ''
-    var editValueId = _target.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
-    var inputJValue = _target.closest('div.form-group').querySelector('input.inputEditJValue')
+    const editValueId = _target.closest('div.form-group').querySelector('input.selectEditValue').getAttribute('list')
+    const inputJValue = _target.closest('div.form-group').querySelector('input.inputEditJValue')
     inputJValue.value = ''
 
     //set possible values for key if necessary
-    var inputValues = _target.closest('div.form-group').querySelector('#' + editValueId)
+    const inputValues = _target.closest('div.form-group').querySelector('#' + editValueId)
     inputValues.empty()
-    var key = _target.value
-    var newOption
+    const key = _target.value
+    let newOption
     if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
       inputJValue.disabled = true
     } else {
       inputJValue.removeAttribute('disabled')
-      var values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
+      const values = Object.keys(jeephp2js.typePossibilities[jeeP._filterType_][key])
       values.forEach((value, index) => {
         newOption = document.createElement('option')
         newOption.text = value
@@ -508,22 +508,22 @@ document.getElementById('div_pageContainer').addEventListener('change', function
   }
 
   if (_target = event.target.closest('select.selectEditValue')) {
-    var key = _target.closest('div.form-group').querySelector('select.selectEditKey').value
-    var value = _target.closest('div.form-group').querySelector('input.selectEditValue').value
+    const key = _target.closest('div.form-group').querySelector('select.selectEditKey').value
+    const value = _target.closest('div.form-group').querySelector('input.selectEditValue').value
     if (!isset(jeephp2js.typePossibilities[jeeP._filterType_][key][value])) {
       return false
     }
 
-    var inputJValue = _target.closest('div.form-group').querySelector('input.inputEditJValue')
+    const inputJValue = _target.closest('div.form-group').querySelector('input.inputEditJValue')
     inputJValue.value = ''
     //set possible json values for value:
-    var editJValueId = inputJValue.getAttribute('list')
-    var inputJValues = _target.closest('div.form-group').querySelector('#' + editJValueId)
+    const editJValueId = inputJValue.getAttribute('list')
+    const inputJValues = _target.closest('div.form-group').querySelector('#' + editJValueId)
     inputJValues.empty()
 
-    var jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
+    const jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
     if (!jValues || typeof jValues == 'string') return false
-    var newOption
+    let newOption
     jValues.forEach((jValue, index) => {
       newOption = document.createElement('option')
       newOption.text = jValue
