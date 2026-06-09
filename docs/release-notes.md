@@ -13,6 +13,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-09 12:07:46 | fix(desktop/js): correct logic bugs in scenario undo stack, massedit jValue guard, user event handler (Lot 3) | [#3326](https://github.com/jeedom/core/pull/3326) |
 | 2026-06-09 10:31:36 | fix (eqLogic plugin page) : Fix unit on cmd state (cmd table tab) | [#3362](https://github.com/jeedom/core/pull/3362) |
 | 2026-06-09 09:36:57 | Fix core widget translations broken after migration to jeetranslate workflow | [#3363](https://github.com/jeedom/core/pull/3363) |
 | 2026-05-29 20:29:40 | fix jeeDialogMain positioning when using hidden class | [#3359](https://github.com/jeedom/core/pull/3359) |
