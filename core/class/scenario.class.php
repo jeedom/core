@@ -45,7 +45,7 @@ class scenario {
 	private $_realTriggerValue = '';
 	/** @var bool */
 	private $_return = true;
-	private $_tags = array('#trigger#' => '','#trigger_name#' => '','#trigger_id#' => '','#trigger_message#' => '','#trigger_value#' => '');
+	private $_tags = array('#trigger#' => '', '#trigger_name#' => '', '#trigger_id#' => '', '#trigger_message#' => '', '#trigger_value#' => '');
 	private $_do = true;
 	private $_changed = false;
 
@@ -107,7 +107,7 @@ class scenario {
 			if (!is_array($result3)) {
 				$result3 = array();
 			}
-			return array_merge($result1, $result2,$result3);
+			return array_merge($result1, $result2, $result3);
 		} elseif ($_group === null) {
 			$sql = 'SELECT ' . DB::buildField(__CLASS__, 's') . '
 			FROM scenario s
@@ -138,7 +138,7 @@ class scenario {
 			if (!is_array($result3)) {
 				$result3 = array();
 			}
-			return array_merge($result1, $result2,$result3);
+			return array_merge($result1, $result2, $result3);
 		} else {
 			$values = array(
 				'group' => $_group,
@@ -169,7 +169,7 @@ class scenario {
 			if (!is_array($result3)) {
 				$result3 = array();
 			}
-			return array_merge($result1, $result2,$result3);
+			return array_merge($result1, $result2, $result3);
 		}
 	}
 	/**
@@ -375,14 +375,14 @@ class scenario {
 							} else {
 								$trigger_message .= ' genericType(' . $_generic . ')' . ' from ' . $_event->getHumanName();
 							}
-							$scenario->addTag('trigger_message',$trigger_message);
-							$scenario->addTag('trigger_value',$_value);
+							$scenario->addTag('trigger_message', $trigger_message);
+							$scenario->addTag('trigger_value', $_value);
 							if (is_object($_event)) {
-								$scenario->addTag('trigger_name',trim($_event->getHumanName(),'#'));
-								$scenario->addTag('trigger_id',$_event->getId());
-								$scenario->addTag('trigger',get_class($_event));
-							}else{
-								$scenario->addTag('trigger',trim($_event,'#'));
+								$scenario->addTag('trigger_name', trim($_event->getHumanName(), '#'));
+								$scenario->addTag('trigger_id', $_event->getId());
+								$scenario->addTag('trigger', get_class($_event));
+							} else {
+								$scenario->addTag('trigger', trim($_event, '#'));
 							}
 							$scenario->launch($_forceSyncMode);
 						}
@@ -414,19 +414,19 @@ class scenario {
 
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
-				$scenario_->addTag('trigger_message',$trigger_message);
+				$scenario_->addTag('trigger_message', $trigger_message);
 
-				$scenario_->addTag('trigger_value',$_value);
+				$scenario_->addTag('trigger_value', $_value);
 				if (is_object($_event)) {
-					$scenario_->addTag('trigger_name',trim($_event->getHumanName(),'#'));
-					$scenario_->addTag('trigger_id',$_event->getId());
-					$scenario_->addTag('trigger',get_class($_event));
-				}else{
-					$scenario_->addTag('trigger',$_event);
+					$scenario_->addTag('trigger_name', trim($_event->getHumanName(), '#'));
+					$scenario_->addTag('trigger_id', $_event->getId());
+					$scenario_->addTag('trigger', get_class($_event));
+				} else {
+					$scenario_->addTag('trigger', $_event);
 				}
 				if (is_array($_options) && count($_options) > 0) {
 					foreach ($_options as $key => $value) {
-						$scenario_->addTag($key,$value);
+						$scenario_->addTag($key, $value);
 					}
 				}
 				$scenario_->launch($_forceSyncMode);
@@ -684,7 +684,7 @@ class scenario {
 	 * @return string|object|array return value will depends on $_input received
 	 */
 	public static function fromHumanReadable($_input) {
-		if(empty($_input)){
+		if (empty($_input)) {
 			return $_input;
 		}
 		$isJson = false;
@@ -872,12 +872,12 @@ class scenario {
 			return $this->execute();
 		} else {
 			$instance_id = config::genKey(16);
-			cache::set('scenarioInstanceAttr'.$this->getId().'::'.$instance_id,array(
+			cache::set('scenarioInstanceAttr' . $this->getId() . '::' . $instance_id, array(
 				'tags' => $this->getTags()
 			));
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' intance_id='.$instance_id;
+			$cmd .= ' intance_id=' . $instance_id;
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}
@@ -891,9 +891,9 @@ class scenario {
 		if (config::byKey('enableScenario') != 1) {
 			return;
 		}
-		if($instance_id != ''){
-			$this->setTags(cache::byKey('scenarioInstanceAttr'.$this->getId().'::'.$instance_id)->getValue()['tags']);
-			cache::byKey('scenarioInstanceAttr'.$this->getId().'::'.$instance_id)->remove();
+		if ($instance_id != '') {
+			$this->setTags(cache::byKey('scenarioInstanceAttr' . $this->getId() . '::' . $instance_id)->getValue()['tags']);
+			cache::byKey('scenarioInstanceAttr' . $this->getId() . '::' . $instance_id)->remove();
 		}
 		if ($this->getIsActive() != 1) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['disableScenario']['txt']  . $this->getHumanName() . ' ' . __('sur :', __FILE__) . ' ' . $this->getTag('message') . ' ' . __('car il est désactivé', __FILE__));
@@ -911,9 +911,9 @@ class scenario {
 				return;
 			}
 		}
-		if($this->getTag('trigger') == 'scenario'){
+		if ($this->getTag('trigger') == 'scenario') {
 			$obj_trigger = scenario::byId(str_replace('#', '', $this->getTag('trigger_id')));
-		}else{
+		} else {
 			$obj_trigger = cmd::byId(str_replace('#', '', $this->getTag('trigger_id')));
 		}
 		if (is_object($obj_trigger)) {
@@ -1188,12 +1188,12 @@ class scenario {
 					$c = new Cron\CronExpression(checkAndFixCron($schedule), new Cron\FieldFactory);
 					$calculatedDate_tmp['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 					$calculatedDate_tmp['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
-					$schedule_exp = explode(' ',trim($schedule));
-					if(is_array($schedule_exp) && count($schedule_exp) == 6 ){
-					 	if($schedule_exp[5] != $c->getPreviousRunDate()->format('Y')){
+					$schedule_exp = explode(' ', trim($schedule));
+					if (is_array($schedule_exp) && count($schedule_exp) == 6) {
+						if ($schedule_exp[5] != $c->getPreviousRunDate()->format('Y')) {
 							$calculatedDate['prevDate'] = '';
 						}
-						if($schedule_exp[5] != $c->getNextRunDate()->format('Y')){
+						if ($schedule_exp[5] != $c->getNextRunDate()->format('Y')) {
 							$calculatedDate['nextDate'] = '';
 						}
 					}
@@ -1211,11 +1211,11 @@ class scenario {
 				$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
 				$calculatedDate['prevDate'] = $c->getPreviousRunDate()->format('Y-m-d H:i:s');
 				$calculatedDate['nextDate'] = $c->getNextRunDate()->format('Y-m-d H:i:s');
-				$schedule = explode(' ',$this->getSchedule());
-				if(count($schedule) == 6 && $schedule[5] != $c->getPreviousRunDate()->format('Y')){
+				$schedule = explode(' ', $this->getSchedule());
+				if (count($schedule) == 6 && $schedule[5] != $c->getPreviousRunDate()->format('Y')) {
 					$calculatedDate['prevDate'] = '';
 				}
-				if(count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')){
+				if (count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')) {
 					$calculatedDate['nextDate'] = '';
 				}
 			} catch (\Throwable $exc) {
@@ -1236,11 +1236,11 @@ class scenario {
 			return false;
 		}
 		$schedules = $this->getSchedule();
-		if(!is_array($schedules)){
+		if (!is_array($schedules)) {
 			$schedules = [$schedules];
 		}
 		foreach ($schedules as $schedule) {
-			if(cronIsDue($schedule,$_datetime,$this->getLastLaunch())){
+			if (cronIsDue($schedule, $_datetime, $this->getLastLaunch())) {
 				return true;
 			}
 		}
@@ -1645,23 +1645,23 @@ class scenario {
 		}
 	}
 
-	public function addTag($_key,$value){
+	public function addTag($_key, $value) {
 		$tag = $this->getTags();
-		$_key = '#'.trim($_key,'#').'#';
+		$_key = '#' . trim($_key, '#') . '#';
 		$tag[$_key] = $value;
 		$this->setTags($tag);
 	}
 
-	public function getTag($_key,$_default = ''){
+	public function getTag($_key, $_default = '') {
 		$tag = $this->getTags();
-		if(isset($tag[$_key])){
+		if (isset($tag[$_key])) {
 			return $tag[$_key];
 		}
-		if(isset($tag[trim($_key,'#')])){
-			return $tag[trim($_key,'#')];
+		if (isset($tag[trim($_key, '#')])) {
+			return $tag[trim($_key, '#')];
 		}
-		if(isset($tag['#'.trim($_key,'#').'#'])){
-			return $tag['#'.trim($_key,'#').'#'];
+		if (isset($tag['#' . trim($_key, '#') . '#'])) {
+			return $tag['#' . trim($_key, '#') . '#'];
 		}
 		return $_default;
 	}
@@ -2012,7 +2012,7 @@ class scenario {
 	 * @return array
 	 */
 	public function getTags() {
-		if(!is_array($this->_tags)){
+		if (!is_array($this->_tags)) {
 			return [];
 		}
 		return $this->_tags;
