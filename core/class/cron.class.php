@@ -22,16 +22,37 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class cron {
 	/*     * *************************Attributs****************************** */
 
+    /** @var int Unique identifier */
 	private $id;
+
+    /** @var int Task enabled status */
 	private $enable = 1;
+
+    /** @var string Class name for class methods */
 	private $class = '';
+
+    /** @var string Method to execute */
 	private $function;
+
+    /** @var string Cron schedule expression */
 	private $schedule = '';
+
+    /** @var int Maximum execution time in seconds */
 	private $timeout;
+
+    /** @var int Daemon mode status */
 	private $deamon = 0;
+
+    /** @var int Sleep time between daemon execution cycles */
 	private $deamonSleepTime;
+
+    /** @var string|null JSON encoded options */
 	private $option;
+
+    /** @var int Single execution flag */
 	private $once = 0;
+
+    /** @var bool Change tracking flag */
 	private $_changed = false;
 
 	/*     * ***********************Méthodes statiques*************************** */
@@ -115,6 +136,11 @@ class cron {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+    /**
+     * Removes invalid cron schedules
+     *
+     * @return void
+     */
 	public static function clean() {
 		$crons = self::all();
 		foreach ($crons as $cron) {
@@ -187,6 +213,12 @@ class cron {
 		return posix_getsid($pid);
 	}
 
+    /**
+     * Converts timestamp to cron expression
+     *
+     * @param int $_date Timestamp
+     * @return string Cron expression
+     */
 	public static function convertDateToCron($_date) {
 		return date('i', $_date) . ' ' . date('H', $_date) . ' ' . date('d', $_date) . ' ' . date('m', $_date) . ' *';
 	}
@@ -212,6 +244,11 @@ class cron {
 		}
 	}
 
+    /**
+     * Initializes a new cron task
+     *
+     * @return void
+     */
 	public function postInsert() {
 		$this->setState('stop');
 		$this->setPID();
@@ -298,20 +335,23 @@ class cron {
 		return true;
 	}
 
-	/*
-	* Set this cron to stop
-	*/
-
+    /**
+     * Signals task to stop
+     *
+     * @return void
+     */
 	public function stop() {
 		if ($this->running()) {
 			$this->setState('stoping');
 		}
 	}
 
-	/*
-	* Stop immediatly cron (this method must be only call by jeecron master)
-	*/
-
+    /**
+     * Forces immediate task termination
+     *
+     * @return bool Success status
+     * @throws Exception On termination failure
+     */
 	public function halt() {
 		if (!$this->running()) {
 			$this->setState('stop');
@@ -367,6 +407,11 @@ class cron {
 		return cronIsDue($this->getSchedule(), $_datetime);
 	}
 
+    /**
+     * Calculates next execution time
+     *
+     * @return false|string Next execution date or false on error
+     */
 	public function getNextRunDate() {
 		try {
 			$c = new Cron\CronExpression(checkAndFixCron($this->getSchedule()), new Cron\FieldFactory);
@@ -387,6 +432,11 @@ class cron {
 		return $this->getFunction() . '()';
 	}
 
+    /**
+     * Converts task to array format
+     *
+     * @return array<string, mixed> Task properties
+     */
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		$return['state'] = $this->getState();
@@ -398,26 +448,45 @@ class cron {
 
 	/*     * **********************Getteur Setteur*************************** */
 
+    /**
+     * @return int
+     */
 	public function getId() {
 		return $this->id;
 	}
 
+    /**
+     * @return string
+     */
 	public function getClass() {
 		return $this->class;
 	}
 
+    /**
+     * @return string
+     */
 	public function getFunction() {
 		return $this->function;
 	}
 
+    /**
+     * @return string
+     */
 	public function getLastRun() {
 		return $this->getCache('lastRun');
 	}
 
+    /**
+     * @return string
+     */
 	public function getState() {
 		return $this->getCache('state', 'stop');
 	}
 
+    /**
+     * @param int $_default Default value
+     * @return int
+     */
 	public function getEnable($_default = 0) {
 		if ($this->enable == '' || !is_numeric($this->enable)) {
 			return $_default;
@@ -425,66 +494,115 @@ class cron {
 		return $this->enable;
 	}
 
+    /**
+     * @param int|null $_default Default value
+     * @return int
+     */
 	public function getPID($_default = null) {
 		return $this->getCache('pid', $_default);
 	}
 
+    /**
+     * @param int $_id
+     * @return static
+     */
 	public function setId($_id) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
 
+    /**
+     * @param int $_enable
+     * @return static
+     */
 	public function setEnable($_enable) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
 		$this->enable = $_enable;
 		return $this;
 	}
 
+    /**
+     * @param string $_class
+     * @return static
+     */
 	public function setClass($_class) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->class, $_class);
 		$this->class = $_class;
 		return $this;
 	}
 
+    /**
+     * @param string $_function
+     * @return static
+     */
 	public function setFunction($_function) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->function, $_function);
 		$this->function = $_function;
 		return $this;
 	}
 
+    /**
+     * @param string $lastRun
+     * @return void
+     */
 	public function setLastRun($lastRun) {
 		$this->setCache('lastRun', $lastRun);
 	}
 
+    /**
+     * @param string $state One of 'stop', 'starting', 'run', 'stoping', 'error', 'Not found'
+     * @return void
+     */
 	public function setState($state) {
 		$this->setCache('state', $state);
 	}
 
+    /**
+     * @param int $pid
+     * @return void
+     */
 	public function setPID($pid = null) {
 		$this->setCache('pid', $pid);
 	}
 
+    /**
+     * @return string
+     */
 	public function getSchedule() {
 		return $this->schedule;
 	}
 
+    /**
+     * @param string $_schedule
+     * @return static
+     */
 	public function setSchedule($_schedule) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->schedule, $_schedule);
 		$this->schedule = $_schedule;
 		return $this;
 	}
 
+    /**
+     * @return int
+     */
 	public function getDeamon() {
 		return $this->deamon;
 	}
 
+    /**
+     * @param int $_deamons
+     * @return static
+     */
 	public function setDeamon($_deamons) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->deamon, $_deamons);
 		$this->deamon = $_deamons;
 		return $this;
 	}
 
+    /**
+     * @return int
+     */
 	public function getTimeout() {
 		$timeout = $this->timeout;
 		if ($timeout == 0) {
@@ -493,12 +611,19 @@ class cron {
 		return $timeout;
 	}
 
+    /**
+     * @param int $_timeout
+     * @return static
+     */
 	public function setTimeout($_timeout) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->timeout, $_timeout);
 		$this->timeout = $_timeout;
 		return $this;
 	}
 
+    /**
+     * @return int
+     */
 	public function getDeamonSleepTime() {
 		$deamonSleepTime = $this->deamonSleepTime;
 		if ($deamonSleepTime == 0) {
@@ -507,16 +632,27 @@ class cron {
 		return $deamonSleepTime;
 	}
 
+    /**
+     * @param int $_deamonSleepTime
+     * @return static
+     */
 	public function setDeamonSleepTime($_deamonSleepTime) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->deamonSleepTime, $_deamonSleepTime);
 		$this->deamonSleepTime = $_deamonSleepTime;
 		return $this;
 	}
 
+    /**
+     * @return mixed
+     */
 	public function getOption() {
 		return json_decode($this->option ?? '', true);
 	}
 
+    /**
+     * @param int $_default Default value
+     * @return int
+     */
 	public function getOnce($_default = 0) {
 		if ($this->once == '' || !is_numeric($this->once)) {
 			return $_default;
@@ -524,6 +660,10 @@ class cron {
 		return $this->once;
 	}
 
+    /**
+     * @param mixed $_option
+     * @return static
+     */
 	public function setOption($_option) {
 		$_option = json_encode($_option, JSON_UNESCAPED_UNICODE);
 		$this->_changed = utils::attrChanged($this->_changed, $this->option, $_option);
@@ -531,25 +671,46 @@ class cron {
 		return $this;
 	}
 
+    /**
+     * @param int $_once
+     * @return static
+     */
 	public function setOnce($_once) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->once, $_once);
 		$this->once = $_once;
 		return $this;
 	}
 
+    /**
+     * @param string $_key Cache key
+     * @param mixed $_default Default value
+     * @return mixed
+     */
 	public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('cronCacheAttr' . $this->getId())->getValue();
 		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
+    /**
+     * @param string $_key Cache key
+     * @param mixed|null $_value Value to store
+     * @return void
+     */
 	public function setCache($_key, $_value = null) {
 		cache::set('cronCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cronCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 	}
 
+    /**
+     * @return bool
+     */
 	public function getChanged() {
 		return $this->_changed;
 	}
 
+    /**
+     * @param bool $_changed
+     * @return static
+     */
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
 		return $this;

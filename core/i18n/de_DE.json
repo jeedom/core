@@ -857,7 +857,8 @@
         "\" . $text . \"": "\" . $text . \"",
         "' . $text . '": "' . $text . '",
         "(.*?)": "(.*?)",
-        "content parts": "Inhaltsteile"
+        "content parts": "Inhaltsteile",
+        "translation_keys": "Übersetzungsschlüssel"
     },
     "core\/class\/update.class.php": {
         "Action de pré-update...": "Aktion vor dem Update",
@@ -5174,14 +5175,15 @@
         "A n'utiliser que sur demande du support.": "Nur auf Anfrage des Supports zu verwenden",
         "Actions": "Lager",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Um auf zukünftige Updates des Kerns zugreifen zu können, aktualisieren Sie bitte die Linux-Umgebung Ihrer Box auf",
-        "Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : ": "Bitte beachten Sie, dass Sie sich nicht auf dem stabilen Zweig des Kerns befinden, also aktualisieren Sie auf die Version:",
+        "Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Achtung, Sie befinden sich nicht auf der stabilen Version des Kerns, das Update erfolgt daher auf dem Branch: ",
         "Aucun": "Nein",
-        "Avant toute mise à jour, merci de consulter le": "Bitte konsultieren Sie vor jedem Update die",
-        "Cette version ne bénéficie d'aucun support de Jeedom SAS.": "Diese Version profitiert nicht von der Unterstützung von Jeedom SAS",
+        "Cette version ne bénéficie pas du support officiel.": "Diese Version wird nicht offiziell unterstützt.",
+        "Changelog": "Änderungsprotokoll",
         "Continuer la mise à jour en cas d'erreur.": "Setzen Sie das Update im Fehlerfall fort",
         "Core et plugins": "Core und Plugins",
         "Dernière version": "Neueste Version",
         "Dernière vérification :": "Letzte Überprüfung:",
+        "En cas de mise à jour du core, veuillez prendre connaissance du": "Im Falle eines Core-Updates beachten Sie bitte die",
         "Erreur sur la vérification des mises à jour :": "Fehler beim Überprüfen auf Updates:",
         "Etat": "Zustand",
         "IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.": "WICHTIG: Hier werden nur veraltete Linux-Pakete angezeigt. Eine leere Liste bedeutet, dass Ihr Linux-System auf dem neuesten Stand ist",
@@ -5212,8 +5214,7 @@
         "Version installée": "Installierte Version",
         "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.": "Da Ihr aktuelles System ordnungsgemäß funktioniert und nicht mehr effizient genug ist, um dies unter den besten Bedingungen der Zukunft auch weiterhin tun zu können, bitten wir Sie, den Jeedom-Kern nicht mehr zu aktualisieren",
         "Vérifier les mises à jour": "Suchen Sie nach Updates",
-        "changelog": "Änderungsprotokoll",
-        "du Core": "vom Kern",
+        "au préalable": "vorher",
         "la documentation d\\'installation": "Installationsdokumentation",
         "pour plus d\\'informations.": "für mehr Informationen",
         "puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "Stellen Sie dann Ihr letztes Jeedom-Backup wieder her, anstatt das Betriebssystem direkt über die Befehlszeile zu aktualisieren. Zur Beratung"

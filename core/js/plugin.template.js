@@ -142,7 +142,7 @@ if (!jeeFrontEnd.pluginTemplate) {
                 title += ' - ' + _options.value
               }
               cmd.setAttribute('title', title)
-              cmd.empty().innerHTML = _options.value.substring(0, 50) + ' ' + _options.unit
+              cmd.empty().innerHTML = _options.value.substring(0, 50) + ' ' + _options.raw_unit
               cmd.style.color = 'var(--logo-primary-color)'
               setTimeout(function() {
                 cmd.style.color = null

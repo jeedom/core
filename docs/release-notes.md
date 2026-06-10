@@ -13,6 +13,13 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-10 20:20:09 | fix: changelog button in core update modal is now functional | [#3368](https://github.com/jeedom/core/pull/3368) |
+| 2026-06-10 20:19:48 | fix: drop obsolete global widgets.html i18n key | [#3367](https://github.com/jeedom/core/pull/3367) |
+| 2026-06-10 16:24:48 | fix: sanitiser les paramètres shell dans l'API TTS | [#3261](https://github.com/jeedom/core/pull/3261) |
+| 2026-06-09 12:07:46 | fix(desktop/js): correct logic bugs in scenario undo stack, massedit jValue guard, user event handler (Lot 3) | [#3326](https://github.com/jeedom/core/pull/3326) |
+| 2026-06-09 10:31:36 | fix (eqLogic plugin page) : Fix unit on cmd state (cmd table tab) | [#3362](https://github.com/jeedom/core/pull/3362) |
+| 2026-06-09 09:36:57 | Fix core widget translations broken after migration to jeetranslate workflow | [#3363](https://github.com/jeedom/core/pull/3363) |
+| 2026-05-29 20:29:40 | fix jeeDialogMain positioning when using hidden class | [#3359](https://github.com/jeedom/core/pull/3359) |
 | 2026-05-18 17:27:23 | Code improvements and behavior fixes (PHPStan level 1) | [#3260](https://github.com/jeedom/core/pull/3260) |
 | 2026-05-18 15:41:29 | Fix jeedom update via api | [#3352](https://github.com/jeedom/core/pull/3352) |
 | 2026-05-18 15:40:15 | fix: expected type object, get string ($now) | [#3353](https://github.com/jeedom/core/pull/3353) |
@@ -62,6 +69,7 @@ no entries
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-10 16:31:40 | Feat/phpdoc | [#3365](https://github.com/jeedom/core/pull/3365) |
 | 2026-05-13 10:00:53 | docs: refactor Core widgets  and document scenario block execution time limits | [#3345](https://github.com/jeedom/core/pull/3345) |
 | 2026-04-20 11:02:18 | Auto-generated draft of release notes / changelog in develop | [#3278](https://github.com/jeedom/core/pull/3278) |
 

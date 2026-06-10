@@ -19,40 +19,87 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../../core/php/core.inc.php';
 
-/*
-Translate system scan core/template/dashboard files and set them in i18n all under "core\/template\/widgets.html" path
--> translate::exec($string, 'core/template/widgets.html');
-*/
-
+/**
+ * Jeedom command management class
+ * @see eqLogic
+ * @see jeeObject
+ */
 class cmd {
 	/*	 * *************************Attributs****************************** */
 
+	/** @var int|''|null Command ID */
 	protected $id;
+
+	/** @var int|null Logical identifier for the command */
 	protected $logicalId;
+
+	/** @var string|null Generic type of command */
 	protected $generic_type;
+
+	/** @var string|null Equipment type */
 	protected $eqType;
+
+	/** @var string|null Command name */
 	protected $name;
+
+	/** @var int|null Display order */
 	protected $order;
+
+	/** @var string|null Command type ('action'|'info'|'string') */
 	protected $type;
+
+	/** @var string|null Command subtype ('binary'|'numeric'|'message'|'color'|'slider'|'string') */
 	protected $subType;
+
+	/** @var int|''|null ID of parent equipment */
 	protected $eqLogic_id;
+
+	/** @var int Historization flag */
 	protected $isHistorized = 0;
+
+	/** @var string Unit for values */
 	protected $unite = '';
+
+	/** @var string|null Command configuration */
 	protected $configuration;
+
+	/** @var array<string, mixed> Template configuration */
 	protected $template;
+
+	/** @var array<string, mixed> Display configuration */
 	protected $display;
+
+	/** @var mixed|null Current value */
 	protected $value = null;
+
+	/** @var int Visibility flag */
 	protected $isVisible = 1;
+
+	/** @var array<string, mixed> Alert configuration */
 	protected $alert;
+
+	/** @var string Collect date */
 	protected $_collectDate = '';
+
+	/** @var string Value date */
 	protected $_valueDate = '';
-	/** @var eqLogic */
+
+	/** @var eqLogic|null Parent equipment object */
 	protected $_eqLogic = null;
+
+	/** @var bool Flag for widget refresh */
 	protected $_needRefreshWidget;
+
+	/** @var bool Flag for alert refresh */
 	protected $_needRefreshAlert;
-	/** @var bool */
+
+	/** @var bool Change tracking flag */
 	protected $_changed = false;
+
+	/** @var array<string, string> Template array */
 	protected static $_templateArray = array();
+
+	/** @var array<string, int|string> Unit conversion mapping */
 	protected static $_unite_conversion = array(
 		's' => array(60, 's', 'min', 'h'),
 		'W' => array(1000, 'W', 'kW', 'MW'),
@@ -66,6 +113,13 @@ class cmd {
 	);
 	/*	 * ***********************Méthodes statiques*************************** */
 
+	/**
+	 * Cast an object or array of objects to specific command type
+	 *
+	 * @param object|static[] $_inputs Objects to cast
+	 * @param eqLogic|null $_eqLogic Parent equipment
+	 * @return static|static[] Casted object(s)
+	 */
 	private static function cast($_inputs, $_eqLogic = null) {
 		if (is_object($_inputs) && class_exists($_inputs->getEqType() . 'Cmd')) {
 			if ($_eqLogic !== null) {
@@ -91,8 +145,10 @@ class cmd {
 	}
 
 	/**
-	 * @param int|string $_id the id of the command
-	 * @return void|cmd void if $_id is not valid else the cmd
+	 * Get a command by ID
+	 *
+	 * @param int|string $_id Command ID
+	 * @return void|static Null if ID not valid, command object otherwise
 	 */
 	public static function byId($_id) {
 		if ($_id == '') {
@@ -108,8 +164,10 @@ class cmd {
 	}
 
 	/**
-	 * @param array<string|int> $_ids
-	 * @return void|array<cmd> void if $_ids is not valid else an array of cmd
+	 * Get multiple commands by IDs
+	 *
+	 * @param array<string|int> $_ids Array of command IDs
+	 * @return void|static[] Null if IDs not valid, array of commands otherwise
 	 */
 	public static function byIds($_ids) {
 		if (!is_array($_ids) || count($_ids) == 0) {
@@ -125,7 +183,9 @@ class cmd {
 	}
 
 	/**
-	 * @return array<cmd>
+	 * Get all commands
+	 *
+	 * @return static[] Array of all commands
 	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -134,6 +194,13 @@ class cmd {
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get historized commands
+	 *
+	 * @param bool $_state Historization state to filter
+	 * @return static[] Array of commands
+	 * @throws Exception
+	 */
 	public static function isHistorized($_state = true) {
 		$values = array(
 			'isHistorized' => ($_state) ? 1 : 0
@@ -145,6 +212,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get all history commands
+	 *
+	 * @return static[] Array of historical commands
+	 * @throws Exception
+	 */
 	public static function allHistoryCmd() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__, 'c') . '
 		FROM cmd c
@@ -166,13 +239,14 @@ class cmd {
 	}
 
 	/**
+	 * Get commands by equipment ID
 	 *
-	 * @param int|array<int> $_eqLogic_id
-	 * @param string $_type ['action'|'info']
-	 * @param bool $_visible
-	 * @param eqLogic $_eqLogic
-	 * @param bool $_has_generic_type
-	 * @return array<cmd>
+	 * @param int|int[] $_eqLogic_id Equipment ID(s)
+	 * @param string|null $_type Command type ('action'|'info'|null)
+	 * @param bool $_visible Filter on visible commands
+	 * @param eqLogic $_eqLogic Parent equipment
+	 * @param bool $_has_generic_type Filter on commands with generic type
+	 * @return static[] Array of commands
 	 */
 	public static function byEqLogicId($_eqLogic_id, $_type = null, $_visible = null, $_eqLogic = null, $_has_generic_type = null) {
 		$values = array();
@@ -206,10 +280,11 @@ class cmd {
 	}
 
 	/**
+	 * Get commands by logical ID
 	 *
-	 * @param string $_logical_id
-	 * @param string $_type ['action'|'info']
-	 * @return array<cmd>
+	 * @param string $_logical_id Logical ID to search
+	 * @param string|null $_type Command type ('action'|'info'|null)
+	 * @return static[] Array of commands
 	 */
 	public static function byLogicalId($_logical_id, $_type = null) {
 		$values = array(
@@ -227,11 +302,12 @@ class cmd {
 	}
 
 	/**
+	 * Get commands by generic type
 	 *
-	 * @param string|array<string> $_generic_type
-	 * @param int $_eqLogic_id
-	 * @param boolean $_one
-	 * @return cmd|array<cmd> first cmd if $_one is true otherwise an array of all cmd
+	 * @param string|string[] $_generic_type Generic type(s) to search
+	 * @param int|null $_eqLogic_id Equipment ID filter
+	 * @param bool $_one Return only first result
+	 * @return static|static[] First command if $_one is true otherwise array of commands
 	 */
 	public static function byGenericType($_generic_type, $_eqLogic_id = null, $_one = false) {
 		if (is_array($_generic_type)) {
@@ -262,11 +338,12 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+
 	/**
-	 * Search a command on eqType, logicalId, generic_type or name
+	 * Search commands by string
 	 *
-	 * @param string $_search the needle
-	 * @return array<cmd>
+	 * @param string $_search Search string
+	 * @return static[] Array of matching commands
 	 */
 	public static function searchByString($_search) {
 		$values = array(
@@ -279,10 +356,11 @@ class cmd {
 	}
 
 	/**
+	 * Search commands by configuration
 	 *
-	 * @param string|array<string> $_configuration
-	 * @param string $_eqType
-	 * @return array<cmd>
+	 * @param string|string[] $_configuration Configuration to search
+	 * @param string $_eqType Equipment type filter
+	 * @return static[] Array of matching commands
 	 */
 	public static function searchConfiguration($_configuration, $_eqType = null) {
 		if (!is_array($_configuration)) {
@@ -315,6 +393,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Search commands by display configuration
+	 *
+	 * @param array<string>|string $_display Display configuration to search
+	 * @param string|null $_eqType Equipment type filter
+	 * @return static[] Array of matching commands
+	 * @throws Exception
+	 */
 	public static function searchDisplay($_display, $_eqType = null) {
 		if (!is_array($_display)) {
 			$values = array(
@@ -343,6 +429,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Search commands by equipment configuration
+	 *
+	 * @param int $_eqLogic_id Equipment ID
+	 * @param string $_configuration Configuration to search
+	 * @param string|null $_type Command type filter ('action'|'info'|null)
+	 * @return static[] Array of matching commands
+	 * @throws Exception
+	 */
 	public static function searchConfigurationEqLogic($_eqLogic_id, $_configuration, $_type = null) {
 		$values = array(
 			'configuration' => '%' . $_configuration . '%',
@@ -359,6 +454,16 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Search commands by template
+	 *
+	 * @param string $_template Template to search
+	 * @param string|null $_eqType Equipment type filter
+	 * @param string|null $_type Command type filter ('action'|'info'|null)
+	 * @param string|null $_subtype Command subtype filter
+	 * @return static[] Array of matching commands
+	 * @throws Exception
+	 */
 	public static function searchTemplate($_template, $_eqType = null, $_type = null, $_subtype = null) {
 		$values = array(
 			'template' => '%' . $_template . '%',
@@ -382,6 +487,17 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get command by equipment ID and logical ID
+	 *
+	 * @param int $_eqLogic_id Equipment ID
+	 * @param int $_logicalId Logical ID
+	 * @param bool $_multiple Allow multiple results
+	 * @param string|null $_type Command type filter ('action'|'info'|null)
+	 * @param eqLogic|null $_eqLogic Parent equipment
+	 * @return static|static[] Command(s) found
+	 * @throws Exception
+	 */
 	public static function byEqLogicIdAndLogicalId($_eqLogic_id, $_logicalId, $_multiple = false, $_type = null, $_eqLogic = null) {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
@@ -408,6 +524,17 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get command by equipment ID and generic type
+	 *
+	 * @param int $_eqLogic_id Equipment ID
+	 * @param string $_generic_type Generic type
+	 * @param bool $_multiple Allow multiple results
+	 * @param string|null $_type Command type filter ('action'|'info'|null)
+	 * @param eqLogic|null $_eqLogic Parent equipment
+	 * @return static|static[] Command(s) found
+	 * @throws Exception
+	 */
 	public static function byEqLogicIdAndGenericType($_eqLogic_id, $_generic_type, $_multiple = false, $_type = null, $_eqLogic = null) {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
@@ -433,6 +560,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get commands by generic type and object ID
+	 *
+	 * @param string $_generic_type Generic type
+	 * @param int|null $_object_id Object ID filter
+	 * @param string|null $_type Command type filter ('action'|'info'|null)
+	 * @return static[]|void Array of commands or void if none found
+	 * @throws Exception
+	 */
 	public static function byGenericTypeObjectId($_generic_type, $_object_id = null, $_type = null) {
 		$values = array(
 			'generic_type' => $_generic_type
@@ -466,6 +602,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get commands by value
+	 *
+	 * @param mixed $_value Value to search
+	 * @param string|null $_type Command type filter ('action'|'info'|null)
+	 * @param bool $_onlyEnable Filter on enabled equipment only
+	 * @return static[] Array of matching commands
+	 * @throws Exception
+	 */
 	public static function byValue($_value, $_type = null, $_onlyEnable = false) {
 		$values = array(
 			'value' => $_value,
@@ -498,6 +643,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get command by equipment type, name and command name
+	 *
+	 * @param string $_eqType_name Equipment type
+	 * @param string $_eqLogic_name Equipment name
+	 * @param string $_cmd_name Command name
+	 * @return static Matching command
+	 * @throws Exception
+	 */
 	public static function byTypeEqLogicNameCmdName($_eqType_name, $_eqLogic_name, $_cmd_name) {
 		$values = array(
 			'eqType_name' => $_eqType_name,
@@ -516,6 +670,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get command by equipment ID and command name
+	 *
+	 * @param int $_eqLogic_id Equipment ID
+	 * @param string $_cmd_name Command name
+	 * @return static Matching command
+	 * @throws Exception
+	 */
 	public static function byEqLogicIdCmdName($_eqLogic_id, $_cmd_name) {
 		$values = array(
 			'eqLogic_id' => $_eqLogic_id,
@@ -528,6 +690,15 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get command by object name, equipment name and command name
+	 *
+	 * @param string $_object_name Object name
+	 * @param string $_eqLogic_name Equipment name
+	 * @param string $_cmd_name Command name
+	 * @return static Matching command
+	 * @throws Exception
+	 */
 	public static function byObjectNameEqLogicNameCmdName($_object_name, $_eqLogic_name, $_cmd_name) {
 		$values = array(
 			'eqLogic_name' => $_eqLogic_name,
@@ -554,6 +725,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get command by object name and command name
+	 *
+	 * @param string $_object_name Object name
+	 * @param string $_cmd_name Command name
+	 * @return static Matching command
+	 * @throws Exception
+	 */
 	public static function byObjectNameCmdName($_object_name, $_cmd_name) {
 		$values = array(
 			'object_name' => $_object_name,
@@ -568,6 +747,14 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Get commands by type and subtype
+	 *
+	 * @param string $_type Command type ('action'|'info')
+	 * @param string $_subType Command subtype
+	 * @return static[] Array of matching commands
+	 * @throws Exception
+	 */
 	public static function byTypeSubType($_type, $_subType = '') {
 		$values = array(
 			'type' => $_type,
@@ -582,6 +769,13 @@ class cmd {
 		return self::cast(DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * Replace command IDs with human readable format
+	 *
+	 * @param object|array<string, mixed>|string $_input Input to convert
+	 * @return object|array<string, mixed>|string Converted input
+	 * @throws ReflectionException
+	 */
 	public static function cmdToHumanReadable($_input) {
 		if (is_object($_input)) {
 			$reflections = array();
@@ -619,6 +813,13 @@ class cmd {
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
+	/**
+	 * Replace human readable format with command IDs
+	 *
+	 * @param string|object|array<string, mixed>|int|bool|null $_input Input to convert
+	 * @return array|bool|int|mixed|string|string[]|null Converted input
+	 * @throws ReflectionException
+	 */
 	public static function humanReadableToCmd($_input) {
 		$isJson = false;
 		if (is_json($_input)) {
@@ -672,6 +873,14 @@ class cmd {
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
+	/**
+	 * Get command from string representation
+	 *
+	 * @param string $_string String to convert to command
+	 * @return static Command object
+	 * @throws ReflectionException
+	 * @throws Exception
+	 */
 	public static function byString($_string) {
 		$cmd = self::byId(str_replace('#', '', self::humanReadableToCmd($_string)));
 		if (!is_object($cmd)) {
@@ -680,6 +889,14 @@ class cmd {
 		return $cmd;
 	}
 
+	/**
+	 * Replace command IDs with their values
+	 *
+	 * @param object|array<string, mixed>|string $_input Input to convert
+	 * @param bool $_quote Quote values
+	 * @return object|array<string, mixed>|string Converted input
+	 * @throws ReflectionException
+	 */
 	public static function cmdToValue($_input, $_quote = false) {
 		if (config::byKey('expression::autoQuote', 'core', 1) == 0) {
 			$_quote = false;
@@ -744,12 +961,25 @@ class cmd {
 		return str_replace(array_keys($replace), $replace, $_input);
 	}
 
+	/**
+	 * Get all distinct command types
+	 *
+	 * @return string[] Array of command types
+	 * @throws Exception
+	 */
 	public static function allType() {
 		$sql = 'SELECT distinct(type) as type
 		FROM cmd';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
+	/**
+	 * Get all distinct command subtypes
+	 *
+	 * @param string $_type Filter by command type
+	 * @return string[] Array of command subtypes
+	 * @throws Exception
+	 */
 	public static function allSubType($_type = '') {
 		$values = array();
 		$sql = 'SELECT distinct(subType) as subtype';
@@ -761,12 +991,24 @@ class cmd {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 	}
 
+	/**
+	 * Get all distinct command units
+	 *
+	 * @return string[] Array of units
+	 * @throws Exception
+	 */
 	public static function allUnite() {
 		$sql = 'SELECT distinct(unite) as unite
 		FROM cmd';
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL);
 	}
 
+	/**
+	 * Get all distinct command units
+	 *
+	 * @return string[] Array of units
+	 * @throws Exception
+	 */
 	public static function convertColor($_color) {
 		$colors = config::byKey('convertColor');
 		if (isset($colors[$_color])) {
@@ -775,6 +1017,12 @@ class cmd {
 		throw new Exception(__('Impossible de traduire la couleur en code hexadécimal :', __FILE__) . $_color);
 	}
 
+	/**
+	 * Get available widgets for version
+	 *
+	 * @param string $_version Version to check
+	 * @return array<string, array<string, array<string, array<string, int|string>>>> Available widgets
+	 */
 	public static function availableWidget($_version) {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
@@ -886,6 +1134,16 @@ class cmd {
 		return $return;
 	}
 
+	/**
+	 * Get widget selection options by type and subtype
+	 *
+	 * @param string|false $_type Command type ('action'|'info'|false)
+	 * @param string|false $_subtype Command subtype
+	 * @param string $_version Widget version
+	 * @param bool $_availWidgets Pre-loaded available widgets
+	 * @return int|string|void|null Options HTML string or error code
+	 * @throws Exception
+	 */
 	public static function getSelectOptionsByTypeAndSubtype($_type = false, $_subtype = false, $_version = 'dashboard', $_availWidgets = false) {
 		if ($_type === false || $_subtype === false) {
 			throw new Exception(__('Type ou sous-type de commande invalide', __FILE__));
@@ -931,6 +1189,12 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Return state after delay
+	 *
+	 * @param array<string, int> $_options Command options
+	 * @return void
+	 */
 	public static function returnState($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (is_object($cmd)) {
@@ -938,6 +1202,11 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Find commands without valid references
+	 *
+	 * @return array<string, string>[] List of dead commands
+	 */
 	public static function deadCmd() {
 		$return = array();
 		foreach ((cmd::all()) as $cmd) {
@@ -975,6 +1244,12 @@ class cmd {
 		return $return;
 	}
 
+	/**
+	 * Process command alerts
+	 *
+	 * @param array<string, int> $_options Command options
+	 * @return void
+	 */
 	public static function cmdAlert($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (!is_object($cmd)) {
@@ -984,6 +1259,14 @@ class cmd {
 	}
 
 	/*	 * *********************Méthodes d'instance************************* */
+
+	/**
+	 * Format command value according to its configuration
+	 *
+	 * @param array|object|null|string $_value Value to format
+	 * @param bool $_quote Add quotes around value
+	 * @return float|int|mixed|string Formatted value
+	 */
 	public function formatValue($_value, $_quote = false) {
 		if (is_array($_value) || is_object($_value)) {
 			return '';
@@ -1059,18 +1342,40 @@ class cmd {
 		return $_value;
 	}
 
+	/**
+	 * Get last stored value
+	 *
+	 * @return mixed|mixed[] Last value
+	 */
 	public function getLastValue() {
 		return $this->getConfiguration('lastCmdValue', null);
 	}
 
+	/**
+	 * Check if command can be removed
+	 *
+	 * @return bool False by default
+	 */
 	public function dontRemoveCmd() {
 		return false;
 	}
 
+	/**
+	 * Get database table name
+	 *
+	 * @return string Table name
+	 */
 	public function getTableName() {
 		return 'cmd';
 	}
 
+	/**
+	 * Save command to database
+	 *
+	 * @param bool $_direct Direct save without trigger
+	 * @return bool Success status
+	 * @throws Exception
+	 */
 	public function save($_direct = false) {
 		if ($this->getName() == '') {
 			throw new Exception(__('Le nom de la commande ne peut pas être vide :', __FILE__) . print_r($this, true));
@@ -1129,10 +1434,21 @@ class cmd {
 		return true;
 	}
 
+	/**
+	 * Refresh command from database
+	 *
+	 * @return void
+	 * @throws Exception
+	 */
 	public function refresh() {
 		DB::refresh($this);
 	}
 
+	/**
+	 * Remove command
+	 *
+	 * @return bool Success status
+	 */
 	public function remove() {
 		viewData::removeByTypeLinkId('cmd', $this->getId());
 		dataStore::removeByTypeLinkId('cmd', $this->getId());
@@ -1150,10 +1466,23 @@ class cmd {
 		return DB::remove($this);
 	}
 
+	/**
+	 * Execute command
+	 *
+	 * @param array<string, mixed> $_options Execution options
+	 * @return bool Execution status
+	 */
 	public function execute($_options = array()) {
 		return false;
 	}
 
+	/**
+	 * Execute pre/post command actions
+	 *
+	 * @param array<string, string> $_values Action values
+	 * @param string $_type Action type ('jeedomPreExecCmd'|'jeedomPostExecCmd')
+	 * @return void
+	 */
 	private function pre_postExecCmd($_values = array(), $_type = 'jeedomPreExecCmd') {
 
 		if (!is_array($this->getConfiguration($_type)) || count($this->getConfiguration($_type)) == 0) {
@@ -1192,6 +1521,12 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Execute pre-command actions
+	 *
+	 * @param array<string, string> $_values Action values
+	 * @return void
+	 */
 	public function preExecCmd($_values = array()) {
 		if (isset($_values['user_login'])) {
 			$this->setCache('lastExecutionUser', $_values['user_login']);
@@ -1201,10 +1536,21 @@ class cmd {
 		$this->pre_postExecCmd($_values, 'jeedomPreExecCmd');
 	}
 
+	/**
+	 * Execute post-command actions
+	 *
+	 * @param array<string, string> $_values Action values
+	 * @return void
+	 */
 	public function postExecCmd($_values = array()) {
 		$this->pre_postExecCmd($_values, 'jeedomPostExecCmd');
 	}
 
+	/**
+	 * Check if command is already in desired state
+	 *
+	 * @return bool State check result
+	 */
 	public function isAlreadyInStateAllow() {
 		if ($this->getConfiguration('alreadyInState') == 'deny') {
 			return false;
@@ -1225,6 +1571,13 @@ class cmd {
 		return true;
 	}
 
+	/**
+	 * Check if command is in specific state
+	 *
+	 * @param array<string, mixed> $_options Command options
+	 * @return bool State verification result
+	 * @throws Exception
+	 */
 	public function alreadyInState($_options) {
 		if ($this->getSubType() == 'message') {
 			return false;
@@ -1258,11 +1611,12 @@ class cmd {
 	}
 
 	/**
+	 * Execute command with options
 	 *
-	 * @param null|string $_options
-	 * @param bool $_sendNodeJsEvent
-	 * @param bool $_quote
-	 * @return void|string
+	 * @param null|string|array<string, mixed> $_options Execution options
+	 * @param bool $_sendNodeJsEvent Send NodeJS event
+	 * @param bool $_quote Quote values
+	 * @return void|string Command execution result
 	 * @throws Exception
 	 */
 	public function execCmd($_options = null, $_sendNodeJsEvent = false, $_quote = false) {
@@ -1392,6 +1746,14 @@ class cmd {
 	}
 
 	// Used by modals eqLogic.dashboard.edit and cmd.configure
+	/**
+	 * Get widget select options for version
+	 *
+	 * @param string $_version Widget version
+	 * @param bool $_availWidgets Pre-loaded available widgets
+	 * @return string HTML options string
+	 * @throws Exception
+	 */
 	public function getWidgetsSelectOptions($_version = 'dashboard', $_availWidgets = false) {
 		if (!$_availWidgets) {
 			$_availWidgets = self::availableWidget($_version);
@@ -1404,6 +1766,11 @@ class cmd {
 		return $display .= self::getSelectOptionsByTypeAndSubtype($this->getType(), $this->getSubType(), $_version, $_availWidgets);
 	}
 
+	/**
+	 * Get generic type select options
+	 *
+	 * @return string HTML options string
+	 */
 	public function getGenericTypeSelectOptions() {
 		$display = '<option value="">{{Aucun}}</option>';
 		$groups = array();
@@ -1440,7 +1807,15 @@ class cmd {
 		return $display;
 	}
 
+	/**
+	 * Get widget help text
+	 *
+	 * @param string $_version Widget version
+	 * @param string $_widgetName Widget name
+	 * @return string Help text
+	 */
 	public function getWidgetHelp($_version = 'dashboard', $_widgetName = '') {
+		$_version = jeedom::versionAlias($_version);
 		$widget = $this->getWidgetTemplateCode($_version, false, $_widgetName);
 		$widgetCode = $widget['template'];
 		$isCorewidget = $widget['isCoreWidget'];
@@ -1453,7 +1828,7 @@ class cmd {
 			} else {
 				$widgetHelp = strip_tags($widgetHelp, '<div>');
 				if ($isCorewidget) {
-					return translate::exec($widgetHelp, 'core/template/widgets.html');
+					return translate::exec($widgetHelp, 'core/template/' . $_version . '/' . $widget['widgetName'] . '.html');
 				} else {
 					return translate::exec($widgetHelp, $widget['widgetName']);
 				}
@@ -1463,12 +1838,26 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Clean widget code from template and helper content
+	 *
+	 * @param string $_template Widget template code
+	 * @return string Cleaned widget code
+	 */
 	public function cleanWidgetCode($_template) {
 		$_template = preg_replace('/<template>[\s\S]+?<\/template>/', '', $_template);
 		$_template = str_replace(array('<template>', '</template>'), '', $_template);
 		return $_template;
 	}
 
+	/**
+	 * Get widget template code
+	 *
+	 * @param string $_version Widget version
+	 * @param bool $_clean Clean template code
+	 * @param string $_widgetName Widget name
+	 * @return array<string, mixed> Widget template data
+	 */
 	public function getWidgetTemplateCode($_version = 'dashboard', $_clean = true, $_widgetName = '') {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$_version = jeedom::versionAlias($_version);
@@ -1611,9 +2000,18 @@ class cmd {
 		if ($_clean) {
 			$template = $this->cleanWidgetCode($template);
 		}
-		return array('template' => $template, 'isCoreWidget' => true);
+		return array('template' => $template, 'isCoreWidget' => true, 'widgetName' => $template_name);
 	}
 
+	/**
+	 * Auto-format value and unit
+	 *
+	 * @param int|float $_value Value to format
+	 * @param int $_decimal Number of decimals
+	 * @param string $_unit Unit string
+	 * @param bool $_space Add space between value and unit
+	 * @return array<float|int|string> Array with formatted value and unit
+	 */
 	public static function autoValueArray($_value, $_decimal = 99, $_unit = '', $_space = False) {
 		$_unit = str_replace("\"", "", $_unit);
 		$_unit = str_replace("\'", "", $_unit);
@@ -1627,6 +2025,14 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Format value based on modulo
+	 *
+	 * @param int|float $_value Value to format
+	 * @param int|float $_mod Modulo value
+	 * @param int|float $_maxdiv Maximum division
+	 * @return array<int|float> Formatted value array
+	 */
 	private static function autoValueFormat($_value, $_mod = 1000, $_maxdiv = 10) {
 		if ($_value < 0) {
 			$val = floatval(-$_value);
@@ -1645,6 +2051,14 @@ class cmd {
 		return array($val, $div);
 	}
 
+	/**
+	 * Generate HTML representation
+	 *
+	 * @param string $_version Template version
+	 * @param mixed $_options Widget options
+	 * @return string HTML code
+	 * @throws Exception
+	 */
 	public function toHtml($_version = 'dashboard', $_options = '') {
 		$_version = jeedom::versionAlias($_version);
 		$html = '';
@@ -1851,7 +2265,7 @@ class cmd {
 			return translate::exec($template, 'core/template/scenario/' . $widget['widgetName'] . '.html');
 		}
 		if ($isCorewidget) {
-			return translate::exec($template, 'core/template/widgets.html');
+			return translate::exec($template, 'core/template/' . $_version . '/' . $widget['widgetName'] . '.html');
 		}
 		if (isset($widget['widgetName'])) {
 			return translate::exec($template, $widget['widgetName']);
@@ -1859,6 +2273,15 @@ class cmd {
 		return $template;
 	}
 
+	/**
+	 * Process command event
+	 *
+	 * @param mixed $_value Event value
+	 * @param string|null $_datetime Event datetime
+	 * @param int $_loop Current loop count
+	 * @return void
+	 * @throws Exception
+	 */
 	public function event($_value, $_datetime = null, $_loop = 1) {
 		if ($_loop > 4 || $this->getType() != 'info') {
 			return;
@@ -1926,7 +2349,7 @@ class cmd {
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value, 0, 3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value, 0, 3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value, 0, 3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value, 0, 3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit, 'raw_unit' => $raw_unit);
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
@@ -1953,7 +2376,7 @@ class cmd {
 		$this->checkReturnState($value);
 		if (!$repeat) {
 			$this->checkCmdAlert($value);
-			if (isset($level) && $level != $this->getCache('alertLevel')) {
+			if ($level != $this->getCache('alertLevel')) {
 				$this->actionAlertLevel($level, $value);
 			}
 			if ($this->getConfiguration('timeline::enable')) {
@@ -1974,6 +2397,12 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Check command return state
+	 *
+	 * @param mixed $_value Value to check
+	 * @return void
+	 */
 	public function checkReturnState($_value) {
 		if (is_numeric($this->getConfiguration('returnStateTime')) && $this->getConfiguration('returnStateTime') > 0 && $_value != $this->getConfiguration('returnStateValue') && trim($this->getConfiguration('returnStateValue')) != '') {
 			$cron = cron::byClassAndFunction('cmd', 'returnState', array('cmd_id' => intval($this->getId())));
@@ -1991,6 +2420,12 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Check command alerts
+	 *
+	 * @param mixed $_value Value to check
+	 * @return void
+	 */
 	public function checkCmdAlert($_value) {
 		if ($this->getConfiguration('jeedomCheckCmdOperator') == '' || $this->getConfiguration('jeedomCheckCmdTest') == '' || !is_numeric($this->getConfiguration('jeedomCheckCmdTime', 0))) {
 			return;
@@ -2031,6 +2466,11 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Execute command alert actions
+	 *
+	 * @return void
+	 */
 	public function executeAlertCmdAction() {
 		if (!is_array($this->getConfiguration('actionCheckCmd'))) {
 			return;
@@ -2049,6 +2489,14 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Check alert level for value
+	 *
+	 * @param string $_value Value to check
+	 * @param bool $_allowDuring Allow duration check
+	 * @param string $_checkLevel Level to check
+	 * @return string Alert level
+	 */
 	public function checkAlertLevel($_value, $_allowDuring = true, $_checkLevel = 'none') {
 		if ($this->getType() != 'info' || ($this->getAlert('warningif') == '' && $this->getAlert('dangerif') == '')) {
 			return 'none';
@@ -2103,6 +2551,13 @@ class cmd {
 		return $returnLevel;
 	}
 
+	/**
+	 * Check alert level duration
+	 *
+	 * @param array<string, mixed> $_options Alert options
+	 * @return void
+	 * @throws Exception
+	 */
 	public static function duringAlertLevel($_options) {
 		$cmd = cmd::byId($_options['cmd_id']);
 		if (!is_object($cmd)) {
@@ -2121,6 +2576,14 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Execute alert level actions
+	 *
+	 * @param string $_level Alert level
+	 * @param mixed $_value Trigger value
+	 * @return void
+	 * @throws Exception
+	 */
 	public function actionAlertLevel($_level, $_value) {
 		if ($this->getType() != 'info') {
 			return;
@@ -2189,6 +2652,12 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Push command value to configured URL
+	 *
+	 * @param string $_value Value to push
+	 * @return void
+	 */
 	public function pushUrl($_value) {
 		$url = $this->getConfiguration('jeedomPushUrl');
 		if ($url == '') {
@@ -2228,6 +2697,13 @@ class cmd {
 		return $return;
 	}
 
+	/**
+	 * Process ask response
+	 *
+	 * @param mixed $_response Response value
+	 * @return bool Success status
+	 * @throws Exception
+	 */
 	public function askResponse($_response) {
 		if ($this->getCache('ask::variable', 'none') == 'none') {
 			return false;
@@ -2249,6 +2725,12 @@ class cmd {
 		return true;
 	}
 
+	/**
+	 * Empty command history
+	 *
+	 * @param string $_date Date before which to empty history
+	 * @return null Operation result
+	 */
 	public function emptyHistory($_date = '') {
 		if ($_date == '-1') {
 			$_date = '';
@@ -2256,6 +2738,13 @@ class cmd {
 		return history::emptyHistory($this->getId(), $_date);
 	}
 
+	/**
+	 * Add value to command history
+	 *
+	 * @param mixed $_value Value to historize
+	 * @param string $_datetime Date of the value
+	 * @return void
+	 */
 	public function addHistoryValue($_value, $_datetime = '') {
 		if ($this->getIsHistorized() == 1 && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
 			$history = new history();
@@ -2266,6 +2755,13 @@ class cmd {
 		}
 	}
 
+	/**
+	 * Get command statistics
+	 *
+	 * @param string $_startTime Start date
+	 * @param string $_endTime End date
+	 * @return array<string, mixed> Statistics data
+	 */
 	public function getStatistique($_startTime, $_endTime) {
 		if ($this->getType() != 'info' || $this->getType() == 'string') {
 			return array();
@@ -2273,6 +2769,13 @@ class cmd {
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 
+	/**
+	 * Get temporal average
+	 *
+	 * @param string $_startTime Start date
+	 * @param string $_endTime End date
+	 * @return array|float|int Average value
+	 */
 	public function getTemporalAvg($_startTime, $_endTime) {
 		if ($this->getType() != 'info' || $this->getType() == 'string') {
 			return array();
@@ -2280,10 +2783,22 @@ class cmd {
 		return history::getTemporalAvg($this->getId(), $_startTime, $_endTime);
 	}
 
+	/**
+	 * Get value trend
+	 *
+	 * @param string $_startTime Start date
+	 * @param string $_endTime End date
+	 * @return float Trend value
+	 */
 	public function getTendance($_startTime, $_endTime) {
 		return history::getTendance($this->getId(), $_startTime, $_endTime);
 	}
 
+	/**
+	 * Get associated info command
+	 *
+	 * @return static|static[]|false Associated command(s) or false if none
+	 */
 	public function getCmdValue() {
 		if (is_object($cmd = cmd::byId($this->getValue()))) {
 			return $cmd;
@@ -2308,6 +2823,13 @@ class cmd {
 		return false;
 	}
 
+	/**
+	 * Get human readable name
+	 *
+	 * @param bool $_tag Include HTML tags
+	 * @param bool $_prettify Prettify output
+	 * @return string Human readable name
+	 */
 	public function getHumanName($_tag = false, $_prettify = false) {
 		$name = '';
 		$eqLogic = $this->getEqLogic();
@@ -2322,10 +2844,26 @@ class cmd {
 		return $name;
 	}
 
+	/**
+	 * Get command history
+	 *
+	 * @param string|null $_dateStart Start date
+	 * @param string|null $_dateEnd End date
+	 * @param string|null $_groupingType Grouping type
+	 * @param bool $_addFirstPreviousValue Include previous value
+	 * @return history[] History data
+	 */
 	public function getHistory($_dateStart = null, $_dateEnd = null, $_groupingType = null, $_addFirstPreviousValue = false) {
 		return history::all($this->id, $_dateStart, $_dateEnd, $_groupingType, $_addFirstPreviousValue);
 	}
 
+	/**
+	 * Get last history entry
+	 *
+	 * @param string $_time Reference time
+	 * @param bool $_previous Include previous value
+	 * @return array<string, mixed> History data with value and unit
+	 */
 	public function getLastHistory($_time, $_previous = true) {
 		$value = 0;
 		if ($this->getIsHistorized() == 1) {
@@ -2341,14 +2879,37 @@ class cmd {
 		return (array('value' => $value, 'unite' => $this->getUnite()));
 	}
 
+	/**
+	 * Get oldest history entries
+	 *
+	 * @return historyArch[] Array of oldest history entries
+	 */
 	public function getOldest() {
 		return history::getOldestValue($this->id);
 	}
 
+	/**
+	 * Get history with multiple points
+	 *
+	 * @param string|null $_dateStart Start date
+	 * @param string|null $_dateEnd End date
+	 * @param string $_period Period type
+	 * @param int $_offset Time offset
+	 * @return history[] Array of history points
+	 * @throws Exception
+	 */
 	public function getPluralityHistory($_dateStart = null, $_dateEnd = null, $_period = 'day', $_offset = 0) {
 		return history::getPlurality($this->id, $_dateStart, $_dateEnd, $_period, $_offset);
 	}
 
+	/**
+	 * Check widget customization possibilities
+	 *
+	 * @param string $_key Feature key to check
+	 * @param bool $_default Default value if not found
+	 * @return array<string, bool>|bool|mixed Feature availability
+	 * @throws ReflectionException
+	 */
 	public function widgetPossibility($_key = '', $_default = true) {
 		$class = new ReflectionClass($this->getEqType_name());
 		$method_toHtml = $class->getMethod('toHtml');
@@ -2402,6 +2963,14 @@ class cmd {
 		return $return;
 	}
 
+	/**
+	 * Migrate command configuration to another command
+	 *
+	 * @param int $_sourceId Source command ID
+	 * @param int $_targetId Target command ID
+	 * @return static Migrated command
+	 * @throws Exception
+	 */
 	public static function migrateCmd($_sourceId, $_targetId) {
 		$sourceCmd = cmd::byId($_sourceId);
 		if (!is_object($sourceCmd)) {
@@ -2531,7 +3100,11 @@ class cmd {
 		}
 	}
 
-
+	/**
+	 * Export command configuration
+	 *
+	 * @return array<string, mixed> Exported configuration
+	 */
 	public function export() {
 		$cmd = clone $this;
 		$cmd->setId('');
@@ -2567,6 +3140,11 @@ class cmd {
 		return $return;
 	}
 
+	/**
+	 * Get direct URL access
+	 *
+	 * @return string Access URL
+	 */
 	public function getDirectUrlAccess() {
 		$url = '/core/api/jeeApi.php?apikey=' . config::byKey('api') . '&type=cmd&id=' . $this->getId();
 		if ($this->getType() == 'action') {
@@ -2588,6 +3166,12 @@ class cmd {
 		return network::getNetworkAccess('external') . $url;
 	}
 
+	/**
+	 * Check access code
+	 *
+	 * @param string $_code Code to verify
+	 * @return bool Access granted
+	 */
 	public function checkAccessCode($_code) {
 		if ($this->getType() != 'action' || trim($this->getConfiguration('actionCodeAccess')) == '') {
 			return true;
@@ -2598,12 +3182,27 @@ class cmd {
 		return false;
 	}
 
+	/**
+	 * Export command data for API
+	 *
+	 * @return mixed[]|mixed[][] Exported data
+	 * @throws Exception
+	 */
 	public function exportApi() {
 		$return = utils::o2a($this);
 		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd() : $this->getConfiguration('lastCmdValue', null);
 		return $return;
 	}
 
+	/**
+	 * Get command dependency graph data
+	 *
+	 * @param array<string, array<string, array<string, mixed>>> $_data Existing graph data
+	 * @param int $_level Current graph level
+	 * @param string|null $_drill Maximum drill level
+	 * @param bool $_include_use Include use
+	 * @return array[]|mixed|void Graph data
+	 */
 	public function getLinkData(&$_data = array('node' => array(), 'link' => array()), $_level = 0, $_drill = null, $_include_use = true) {
 		if ($_drill === null) {
 			$_drill = config::byKey('graphlink::cmd::drill');
@@ -2651,6 +3250,12 @@ class cmd {
 		return $_data;
 	}
 
+	/**
+	 * Get elements using this command
+	 *
+	 * @param bool $_array Return as array instead of objects
+	 * @return array<string, array<int, object>> List of using elements
+	 */
 	public function getUsedBy($_array = false) {
 		$return = array('cmd' => array(), 'eqLogic' => array(), 'scenario' => array(), 'plan' => array(), 'view' => array());
 		$cmds = array_merge(self::searchConfiguration('#' . $this->getId() . '#'), cmd::byValue($this->getId()));
@@ -2680,10 +3285,21 @@ class cmd {
 		return $return;
 	}
 
+	/**
+	 * Get elements used by this command
+	 *
+	 * @return array<string, array<int, object>> List of used elements
+	 */
 	public function getUse() {
 		return jeedom::getTypeUse(jeedom::fromHumanReadable(json_encode(utils::o2a($this))));
 	}
 
+	/**
+	 * Check command access rights
+	 *
+	 * @param user|null $_user User to check
+	 * @return bool Access granted
+	 */
 	public function hasRight($_user = null) {
 		if ($this->getType() == 'action') {
 			return $this->getEqLogic()->hasRight('x', $_user);
@@ -2694,48 +3310,104 @@ class cmd {
 
 	/*	 * **********************Getteur Setteur*************************** */
 
+	/**
+	 * Get command ID
+	 *
+	 * @return int|''
+	 */
 	public function getId() {
 		return $this->id;
 	}
 
+	/**
+	 * Get command name
+	 *
+	 * @return string|null
+	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 * Get command generic type
+	 *
+	 * @return string|null
+	 */
 	public function getGeneric_type() {
 		return $this->generic_type;
 	}
 
+	/**
+	 * Set command generic type
+	 *
+	 * @param string $_generic_type Generic type to set
+	 * @return static
+	 */
 	public function setGeneric_type($_generic_type) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->generic_type, $_generic_type);
 		$this->generic_type = $_generic_type;
 		return $this;
 	}
 
+	/**
+	 * Get command type
+	 *
+	 * @return string|null 'action'|'info'|'string'
+	 */
 	public function getType() {
 		return $this->type;
 	}
 
+	/**
+	 * Get command subtype
+	 *
+	 * @return string|null 'binary'|'numeric'|'message'|'color'|'slider'|'string'
+	 */
 	public function getSubType() {
 		return $this->subType;
 	}
 
+	/**
+	 * Get equipment type name
+	 *
+	 * @return string|null
+	 */
 	public function getEqType_name() {
 		return $this->eqType;
 	}
 
+	/**
+	 * Get parent equipment ID
+	 *
+	 * @return int|null
+	 */
 	public function getEqLogic_id() {
 		return $this->eqLogic_id;
 	}
 
+	/**
+	 * Get historization state
+	 *
+	 * @return int
+	 */
 	public function getIsHistorized() {
 		return $this->isHistorized;
 	}
 
+	/**
+	 * Get command unit
+	 *
+	 * @return string
+	 */
 	public function getUnite() {
 		return $this->unite;
 	}
 
+	/**
+	 * Get parent equipment object
+	 *
+	 * @return eqLogic|null
+	 */
 	public function getEqLogic() {
 		if ($this->_eqLogic === null) {
 			$this->setEqLogic(eqLogic::byId($this->eqLogic_id));
@@ -2744,17 +3416,31 @@ class cmd {
 	}
 
 	/**
-	 * @param eqLogic $_eqLogic
+	 * Set parent equipment object
+	 *
+	 * @param eqLogic|null $_eqLogic Parent equipment
+	 * @return static
 	 */
 	public function setEqLogic($_eqLogic) {
 		$this->_eqLogic = $_eqLogic;
 		return $this;
 	}
 
+	/**
+	 * Get event only status
+	 *
+	 * @return int
+	 */
 	public function getEventOnly() {
 		return 1;
 	}
 
+	/**
+	 * Set command ID
+	 *
+	 * @param int|'' $_id ID to set
+	 * @return static
+	 */
 	public function setId($_id = '') {
 		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
@@ -2762,9 +3448,10 @@ class cmd {
 	}
 
 	/**
+	 * Set command name
 	 *
-	 * @param string $_name
-	 * @return $this
+	 * @param string $_name Name to set
+	 * @return static
 	 */
 	public function setName($_name) {
 		$_name = substr(cleanComponanteName($_name), 0, 127);
@@ -2778,7 +3465,10 @@ class cmd {
 	}
 
 	/**
-	 * @param string $_type
+	 * Set command type
+	 *
+	 * @param string $_type Type to set
+	 * @return static
 	 */
 	public function setType($_type) {
 		if ($this->type != $_type) {
@@ -2790,7 +3480,10 @@ class cmd {
 	}
 
 	/**
-	 * @param string $_subType
+	 * Set command subtype
+	 *
+	 * @param string $_subType Subtype to set
+	 * @return static
 	 */
 	public function setSubType($_subType) {
 		if ($this->subType != $_subType) {
@@ -2801,18 +3494,36 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Set parent equipment ID
+	 *
+	 * @param int|'' $_eqLogic_id Equipment ID to set
+	 * @return static
+	 */
 	public function setEqLogic_id($_eqLogic_id) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->eqLogic_id, $_eqLogic_id);
 		$this->eqLogic_id = $_eqLogic_id;
 		return $this;
 	}
 
+	/**
+	 * Set historization state
+	 *
+	 * @param int $_isHistorized State to set
+	 * @return static
+	 */
 	public function setIsHistorized($_isHistorized) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->isHistorized, $_isHistorized);
 		$this->isHistorized = $_isHistorized;
 		return $this;
 	}
 
+	/**
+	 * Set command unit
+	 *
+	 * @param string $_unite Unit to set
+	 * @return static
+	 */
 	public function setUnite($_unite) {
 		if ($this->unite != $_unite) {
 			$this->_needRefreshWidget = true;
@@ -2822,10 +3533,24 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get template configuration
+	 *
+	 * @param string $_key Key to get
+	 * @param mixed $_default Default value
+	 * @return mixed|array<string, mixed>
+	 */
 	public function getTemplate($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->template, $_key, $_default);
 	}
 
+	/**
+	 * Set template configuration
+	 *
+	 * @param string $_key Key to set
+	 * @param mixed $_value Value to set
+	 * @return static
+	 */
 	public function setTemplate($_key, $_value) {
 		if (($_key == 'dashboard' || $_key == 'mobile') && strpos($_value, '::') === false) {
 			$_value = 'core::' . $_value;
@@ -2838,10 +3563,24 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get configuration value
+	 *
+	 * @param string $_key Key to get
+	 * @param mixed $_default Default value
+	 * @return array<string, mixed>|mixed
+	 */
 	public function getConfiguration($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->configuration, $_key, $_default);
 	}
 
+	/**
+	 * Set configuration value
+	 *
+	 * @param array<string, mixed>|string|int $_key
+	 * @param mixed $_value Value to set
+	 * @return static
+	 */
 	public function setConfiguration($_key, $_value) {
 		if ($_key == 'actionCodeAccess' && $_value != '') {
 			if (!is_sha1($_value) && !is_sha512($_value)) {
@@ -2854,10 +3593,24 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get display configuration
+	 *
+	 * @param string $_key Key to get
+	 * @param mixed $_default Default value
+	 * @return array<string, mixed>|mixed
+	 */
 	public function getDisplay($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->display, $_key, $_default);
 	}
 
+	/**
+	 * Set display configuration
+	 *
+	 * @param string $_key Key to set
+	 * @param mixed $_value Value to set
+	 * @return static
+	 */
 	public function setDisplay($_key, $_value) {
 		if ($this->getDisplay($_key, null) !== $_value) {
 			$this->_needRefreshWidget = true;
@@ -2867,10 +3620,24 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get alert configuration
+	 *
+	 * @param string $_key Key to get
+	 * @param mixed $_default Default value
+	 * @return array<string, mixed>|mixed
+	 */
 	public function getAlert($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->alert, $_key, $_default);
 	}
 
+	/**
+	 * Set alert configuration
+	 *
+	 * @param string $_key Key to set
+	 * @param mixed $_value Value to set
+	 * @return static
+	 */
 	public function setAlert($_key, $_value) {
 		$alert = utils::setJsonAttr($this->alert, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->alert, $alert);
@@ -2879,6 +3646,12 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get collect date
+	 *
+	 * @return string
+	 * @throws Exception
+	 */
 	public function getCollectDate() {
 		if ($this->_collectDate == '' && $this->getType() == 'info') {
 			$this->execCmd();
@@ -2886,11 +3659,23 @@ class cmd {
 		return $this->_collectDate;
 	}
 
+	/**
+	 * Set collect date
+	 *
+	 * @param string $_collectDate Date to set
+	 * @return static
+	 */
 	public function setCollectDate($_collectDate) {
 		$this->_collectDate = $_collectDate;
 		return $this;
 	}
 
+	/**
+	 * Get value date
+	 *
+	 * @return string
+	 * @throws Exception
+	 */
 	public function getValueDate() {
 		if ($this->_valueDate == '' && $this->getType() == 'info') {
 			$this->execCmd();
@@ -2898,25 +3683,53 @@ class cmd {
 		return $this->_valueDate;
 	}
 
+	/**
+	 * Set value date
+	 *
+	 * @param string $_valueDate Date to set
+	 * @return static
+	 */
 	public function setValueDate($_valueDate) {
 		$this->_valueDate = $_valueDate;
 		return $this;
 	}
 
+	/**
+	 * Get command value
+	 *
+	 * @return mixed|null
+	 */
 	public function getValue() {
 		return $this->value;
 	}
 
+	/**
+	 * Set command value
+	 *
+	 * @param mixed|null $_value Value to set
+	 * @return static
+	 */
 	public function setValue($_value) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->value, $_value);
 		$this->value = $_value;
 		return $this;
 	}
 
+	/**
+	 * Get visibility state
+	 *
+	 * @return int
+	 */
 	public function getIsVisible() {
 		return $this->isVisible;
 	}
 
+	/**
+	 * Set visibility state
+	 *
+	 * @param int $isVisible State to set
+	 * @return static
+	 */
 	public function setIsVisible($isVisible) {
 		if ($this->isVisible != $isVisible) {
 			$this->_needRefreshWidget = true;
@@ -2926,6 +3739,11 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get display order
+	 *
+	 * @return int
+	 */
 	public function getOrder() {
 		if ($this->order == '') {
 			return 0;
@@ -2933,6 +3751,12 @@ class cmd {
 		return $this->order;
 	}
 
+	/**
+	 * Set display order
+	 *
+	 * @param int $order Order to set
+	 * @return static
+	 */
 	public function setOrder($order) {
 		if ($this->order != $order) {
 			$this->_needRefreshWidget = true;
@@ -2942,42 +3766,86 @@ class cmd {
 		return $this;
 	}
 
+	/**
+	 * Get logical ID
+	 *
+	 * @return int|null
+	 */
 	public function getLogicalId() {
 		return $this->logicalId;
 	}
 
+	/**
+	 * Set logical ID
+	 *
+	 * @param int $_logicalId ID to set
+	 * @return static
+	 */
 	public function setLogicalId($_logicalId) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->logicalId, $_logicalId);
 		$this->logicalId = $_logicalId;
 		return $this;
 	}
 
+	/**
+	 * Get equipment type
+	 *
+	 * @return string|null
+	 */
 	public function getEqType() {
 		return $this->eqType;
 	}
 
+	/**
+	 * Set equipment type
+	 *
+	 * @param string $_eqType Type to set
+	 * @return static
+	 */
 	public function setEqType($_eqType) {
 		$this->_changed = utils::attrChanged($this->_changed, $this->eqType, $_eqType);
 		$this->eqType = $_eqType;
 		return $this;
 	}
 
+	/**
+	 * Get cache value
+	 *
+	 * @param string $_key Key to get
+	 * @param mixed $_default Default value
+	 * @return mixed
+	 */
 	public function getCache($_key = '', $_default = '') {
 		$cache = cache::byKey('cmdCacheAttr' . $this->getId())->getValue();
 		return utils::getJsonAttr($cache, $_key, $_default);
 	}
 
+	/**
+	 * Set cache value
+	 *
+	 * @param string $_key Key to set
+	 * @param mixed|null $_value Value to set
+	 * @return static
+	 */
 	public function setCache($_key, $_value = null) {
 		cache::set('cmdCacheAttr' . $this->getId(), utils::setJsonAttr(cache::byKey('cmdCacheAttr' . $this->getId())->getValue(), $_key, $_value));
 		return $this;
 	}
 
+	/**
+	 * Get changed state
+	 *
+	 * @return bool
+	 */
 	public function getChanged() {
 		return $this->_changed;
 	}
 
 	/**
-	 * @param bool $_changed
+	 * Set changed state
+	 *
+	 * @param bool $_changed State to set
+	 * @return static
 	 */
 	public function setChanged($_changed) {
 		$this->_changed = $_changed;
