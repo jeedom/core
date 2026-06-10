@@ -185,7 +185,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 							<label class="col-xs-6 control-label warning"><i class="fas fa-exclamation-triangle"></i> {{Script d'update à réappliquer}}</label>
 							<div class="col-xs-5">
 								<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
-									<option value="">{{Aucune}}</option>
+									<option value="">{{Aucun}}</option>
 									<?php
 									$updates = array();
 									foreach ((update::listCoreUpdate()) as $udpate) {

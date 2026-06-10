@@ -116,9 +116,10 @@ Voici les différents types de blocs disponibles :
 
 - **Si/Alors/Sinon** : Permet de réaliser des actions sous condition (si ceci, alors cela).
 - **Action** : Permet de lancer des actions simples sans aucune condition.
-- **Boucle** : Permet de réaliser des actions de manière répétitive de 1 jusqu’à un nombre défini (ou même la valeur d’un capteur, ou un nombre aléatoire…​).
+- **Boucle** : Permet de réaliser des actions de manière répétitive de 1 jusqu’à un nombre défini, un nombre aléatoire, la valeur d’un capteur, etc. *(durée maximale: 1 heure)*
 - **Dans** : Permet de lancer une action dans X minute(s) (0 est une valeur possible). La particularité est que les actions sont lancées en arrière-plan, elles ne bloquent donc pas la suite du scénario. C’est donc un bloc non bloquant.
 - **A** : Permet de dire à Jeedom de lancer les actions du bloc à une heure donnée (sous la forme hhmm). Ce bloc est non bloquant. Ex : 0030 pour 00h30, ou 0146 pour 1h46 et 1050 pour 10h50.
+- **Tant que** : Permet de réaliser des actions tant qu’une condition est vraie. *(durée maximale: 1 heure)*
 - **Code** : Permet d’écrire directement en code PHP (demande certaines connaissances et peut être risqué mais permet de n’avoir aucune contrainte).
 - **Commentaire** : Permet d’ajouter des commentaires à son scénario.
 
@@ -476,7 +477,7 @@ Et les exemples pratiques :
 
 En plus des commandes domotiques, vous avez accès aux actions suivantes :
 
-- **Pause** (sleep) : Pause de x seconde(s).
+- **Pause** (sleep) : Pause de x seconde(s). *(durée maximale: 1 heure)*
 - **variable** (variable) : Création/modification d’une variable ou de la valeur d’une variable.
 - **Supprimer variable** (delete_variable) : Permet de supprimer une variable.
 - **genericType(GENERIC, #[Object]#)** : Modification d'une commande info (event) ou action (execCmd) par Type Générique, dans un objet. Par exemple, éteindre toutes les lumières dans le Salon.
@@ -488,7 +489,7 @@ En plus des commandes domotiques, vous avez accès aux actions suivantes :
   - Désactiver : Désactive le scénario. Il ne se lance plus quelque soit les déclencheurs.
   - Remise à zéro des SI : Permet de remettre à zéro le statut des **SI**. Ce statut est utilisé pour la non répétition des actions d’un **SI**, si l’évaluation de la condition donne le même résultat que la précédente évaluation.
 - **Stop** (stop) : Arrête le scénario.
-- **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide (maximum 2h), le timeout est en seconde(s).
+- **Attendre** (wait) : Attend jusqu’à ce que la condition soit valide, le timeout est en seconde(s). *(durée maximale: 1 heure)*
 - **Aller au design** (gotodesign) : Change le design affiché sur tous les navigateurs par le design demandé.
 - **Ajouter un log** (log) : Permet de rajouter un message dans les logs.
 - **Créer un message** (message) : Permet d’ajouter un message dans le centre de messages.

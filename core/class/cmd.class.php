@@ -1305,8 +1305,7 @@ class cmd {
 						$calc = str_replace('#value#', $_value, $calc);
 					}
 					$_value = jeedom::evaluateExpression($calc);
-				} catch (Exception $ex) {
-				} catch (Error $ex) {
+				} catch (\Throwable $ex) {
 				}
 			}
 			switch ($this->getSubType()) {
@@ -1821,6 +1820,7 @@ class cmd {
      * @return string Help text
      */
 	public function getWidgetHelp($_version = 'dashboard', $_widgetName = '') {
+		$_version = jeedom::versionAlias($_version);
 		$widget = $this->getWidgetTemplateCode($_version, false, $_widgetName);
 		$widgetCode = $widget['template'];
 		$isCorewidget = $widget['isCoreWidget'];
@@ -1833,7 +1833,7 @@ class cmd {
 			} else {
 				$widgetHelp = strip_tags($widgetHelp, '<div>');
 				if ($isCorewidget) {
-					return translate::exec($widgetHelp, 'core/template/widgets.html');
+					return translate::exec($widgetHelp, 'core/template/' . $_version . '/' . $widget['widgetName'] . '.html');
 				} else {
 					return translate::exec($widgetHelp, $widget['widgetName']);
 				}
@@ -2005,7 +2005,7 @@ class cmd {
 		if ($_clean) {
 			$template = $this->cleanWidgetCode($template);
 		}
-		return array('template' => $template, 'isCoreWidget' => true);
+		return array('template' => $template, 'isCoreWidget' => true, 'widgetName' => $template_name);
 	}
 
     /**
@@ -2270,7 +2270,7 @@ class cmd {
 			return translate::exec($template, 'core/template/scenario/' . $widget['widgetName'] . '.html');
 		}
 		if ($isCorewidget) {
-			return translate::exec($template, 'core/template/widgets.html');
+			return translate::exec($template, 'core/template/' . $_version . '/' . $widget['widgetName'] . '.html');
 		}
 		if (isset($widget['widgetName'])) {
 			return translate::exec($template, $widget['widgetName']);
@@ -2354,7 +2354,7 @@ class cmd {
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value, 0, 3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value, 0, 3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value, 0, 3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value, 0, 3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit, 'raw_unit' => $raw_unit);
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);
@@ -2686,9 +2686,7 @@ class cmd {
 		$http->setLogError(false);
 		try {
 			$http->exec();
-		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
@@ -2822,12 +2820,7 @@ class cmd {
 		return;
 	}
 
-    /**
-     * Drop InfluxDB database
-     *
-     * @return void|null
-     */
-	public function dropInfluxDatabase() {
+	public static function dropInfluxDatabase() {
 		try {
 			$database = cmd::getInflux();
 			if ($database == '') {
@@ -2860,22 +2853,6 @@ class cmd {
 		return;
 	}
 
-    /**
-     * Send all history to InfluxDB
-     *
-     * @return void|null
-     */
-	public function historyInfluxAll() {
-		cmd::historyInflux('all');
-	}
-
-    /**
-     * Send history to InfluxDB
-     *
-     * @param array<string, string|int> $_params Parameters for history transfer
-     * @return void
-     * @throws Exception
-     */
 	public static function sendHistoryInflux($_params) {
 		$cmds = array();
 		if ($_params['cmd_id'] == 'all') {
@@ -2922,26 +2899,23 @@ class cmd {
 		}
 	}
 
-    /**
-     * Send command history to InfluxDB
-     *
-     * @param string $_type Type of history to send
-     * @return void
-     */
-	public function historyInflux($_type = '') {
+	/**
+	 * @param string|int $_type 'all' for all cmd, cmd id for specific cmd
+	 * @return void
+	 */
+	public static function historyInflux($_type = 'all') {
 		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('sendHistoryInflux');
 		if ($_type == 'all') {
 			$cron->setOption(array('cmd_id' => 'all'));
 		} else {
-			$cron->setOption(array('cmd_id' => intval($this->getId())));
+			$cron->setOption(array('cmd_id' => intval($_type)));
 		}
 		$cron->setLastRun(date('Y-m-d H:i:s'));
 		$cron->setOnce(1);
 		$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
 		$cron->save();
-		return;
 	}
 
     /**

@@ -28,7 +28,7 @@ if (init('scenarioElement_id') != '') {
 } else {
 	try {
 		$scenario = scenario::byId(init('scenario_id'));
-	} catch (Error $e) {
+	} catch (\Throwable $e) {
 		log::add('scenario', 'error', __('Scenario  :', __FILE__) . ' ' . init('scenario_id') . '. ' . __('Erreur :', __FILE__) . ' ' . log::exception($e));
 		cache::set('scenarioCacheAttr' . init('scenario_id'), utils::setJsonAttr(cache::byKey('scenarioCacheAttr' . init('scenario_id'))->getValue(), 'state', 'error'));
 		die();
@@ -37,8 +37,9 @@ if (init('scenarioElement_id') != '') {
 		log::add('scenario', 'info', __('Scénario non trouvé. Vérifiez ID :', __FILE__) . ' ' . init('scenario_id'));
 		die(__('Scénario non trouvé. Vérifiez ID :', __FILE__) . ' ' . init('scenario_id'));
 	}
-	if (is_numeric($scenario->getTimeout()) && $scenario->getTimeout() != '' && $scenario->getTimeout() != 0) {
-		set_time_limit($scenario->getTimeout(config::byKey('maxExecTimeScript', 'core', 1) * 60));
+	$timeout = $scenario->getTimeout();
+	if ($timeout > 0) {
+		set_time_limit($timeout);
 	}
 	try {
 		if ($scenario->getState() == 'in progress' && $scenario->getConfiguration('allowMultiInstance', 0) == 0) {
@@ -48,14 +49,7 @@ if (init('scenarioElement_id') != '') {
 			}
 		}
 		$scenario->execute(init('intance_id'));
-	} catch (Exception $e) {
-		log::add('scenario', 'error', __('Scenario  :', __FILE__) . ' ' . $scenario->getHumanName() . '. ' . __('Erreur :', __FILE__) . ' ' . log::exception($e));
-		$scenario->setState('error');
-		$scenario->setLog(__('Erreur :', __FILE__) . ' ' . log::exception($e));
-		$scenario->setPID('');
-		$scenario->persistLog();
-		die();
-	}catch (Error $e) {
+	} catch (\Throwable $e) {
 		log::add('scenario', 'error', __('Scenario  :', __FILE__) . ' ' . $scenario->getHumanName() . '. ' . __('Erreur :', __FILE__) . ' ' . log::exception($e));
 		$scenario->setState('error');
 		$scenario->setLog(__('Erreur :', __FILE__) . ' ' . log::exception($e));

@@ -3,7 +3,7 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 $allObject = jeeObject::buildTree(null, false);
-$config_objSummary = config::byKey('object:summary');
+$config_objSummary = (array) config::byKey('object:summary');
 
 sendVarToJS([
 	'jeephp2js.selectId' => init('id', '-1'),
@@ -102,7 +102,9 @@ $synthToActions = array(
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">{{Nom à afficher (si vide alors le nom de l'objet sera utilisé)}}</label>
+								<label class="col-sm-3 control-label">{{Nom à afficher}}
+									<sup><i class="fas fa-question-circle tooltips" title="{{Nom d'objet alternatif affiché sur le dashboard et la synthèse (facultatif)}}"></i></sup>
+								</label>
 								<div class="col-sm-7">
 									<input class="form-control objectAttr" type="text" data-l1key="configuration" data-l2key="display_name" placeholder="{{Nom à afficher}}" />
 								</div>

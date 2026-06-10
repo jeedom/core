@@ -43,7 +43,7 @@ try {
 	}
 
 	if (init('action') == 'all') {
-		$queues = queue::all(true);
+		$queues = queue::all();
 		foreach ($queues as $queue) {
 			$queue->refresh();
 		}

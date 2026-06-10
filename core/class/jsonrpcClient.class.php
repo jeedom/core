@@ -120,7 +120,7 @@ class jsonrpcClient {
 			}
 		}
 		$nbRetry = 0;
-		while ($nbRetry < $_maxRetry) {
+		do {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $this->apiAddr);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -163,7 +163,7 @@ class jsonrpcClient {
 			} else {
 				$nbRetry = $_maxRetry + 1;
 			}
-		}
+		} while ($nbRetry < $_maxRetry);
 		if ($http_status == 301) {
 			if (preg_match('/<a href="(.*)">/i', $response, $r)) {
 				$this->apiAddr = trim($r[1]);

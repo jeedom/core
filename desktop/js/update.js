@@ -111,7 +111,7 @@ if (!jeeFrontEnd.update) {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000)
           } else {
-            document.getElementById('bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
+            document.querySelector('#bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
             document.querySelectorAll('.bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
           }
         }

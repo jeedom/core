@@ -62,6 +62,11 @@ RUN echo >${WEBSERVER_HOME}/initialisation
 WORKDIR ${WEBSERVER_HOME}
 EXPOSE 80
 EXPOSE 443
+
+# check if apache is running
+HEALTHCHECK --interval=1m --timeout=3s --retries=5 --start-period=10s --start-interval=5s \
+  CMD curl -f http://localhost/ || exit 1
+
 COPY --chown=root:root --chmod=550 install/OS_specific/Docker/init.sh /root/
 COPY --chown=root:root --chmod=550 install/bashrc /root/.bashrc
 CMD ["bash", "/root/init.sh"]

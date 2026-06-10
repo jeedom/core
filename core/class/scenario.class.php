@@ -415,7 +415,7 @@ class scenario {
 		if (count($scenarios) > 0) {
 			foreach ($scenarios as $scenario_) {
 				$scenario_->addTag('trigger_message',$trigger_message);
-				
+
 				$scenario_->addTag('trigger_value',$_value);
 				if (is_object($_event)) {
 					$scenario_->addTag('trigger_name',trim($_event->getHumanName(),'#'));
@@ -640,9 +640,8 @@ class scenario {
 	}
 
 	/**
-	 * @name toHumanReadable()
-	 * @param object $_input
-	 * @return string
+	 * @param string|object|array $_input
+	 * @return string|object|array
 	 */
 	public static function toHumanReadable($_input) {
 		if (is_object($_input)) {
@@ -1028,13 +1027,12 @@ class scenario {
 		return $html;
 	}
 	/**
-	 *
+	 * @deprecated don't use this function anymore, it is only here for backward compatibility
 	 */
 	public function emptyCacheWidget() {
-		
 	}
+
 	/**
-	 *
 	 * @param bool $_only_class
 	 * @return string
 	 */
@@ -1199,8 +1197,7 @@ class scenario {
 							$calculatedDate['nextDate'] = '';
 						}
 					}
-				} catch (Exception $exc) {
-				} catch (Error $exc) {
+				} catch (\Throwable $exc) {
 				}
 				if ($calculatedDate['prevDate'] == '' || strtotime($calculatedDate['prevDate']) < strtotime($calculatedDate_tmp['prevDate'])) {
 					$calculatedDate['prevDate'] = $calculatedDate_tmp['prevDate'];
@@ -1221,11 +1218,10 @@ class scenario {
 				if(count($schedule) == 6 && $schedule[5] != $c->getNextRunDate()->format('Y')){
 					$calculatedDate['nextDate'] = '';
 				}
-			} catch (Exception $exc) {
-			} catch (Error $exc) {
+			} catch (\Throwable $exc) {
 			}
 		}
-		
+
 		return $calculatedDate;
 	}
 
@@ -1340,7 +1336,11 @@ class scenario {
 	 * @param string $_mode accepted value: ['text'|'array']
 	 * @return string|array depending $_mode parameter
 	 */
-	public function export($_mode = 'text') {
+	public function export(string $_mode = 'text') {
+		if ($_mode !== 'text' && $_mode !== 'array') {
+			$_mode = 'text';
+		}
+
 		if ($_mode == 'text') {
 			$return = '';
 			$return .= '- Nom du scénario : ' . $this->getName() . "\n";
@@ -1374,6 +1374,7 @@ class scenario {
 					$return .= "    " . $export . "\n";
 				}
 			}
+			return $return;
 		}
 		if ($_mode == 'array') {
 			$return = utils::o2a($this);
@@ -1430,8 +1431,8 @@ class scenario {
 			if (isset($return['_elements'])) {
 				unset($return['_elements']);
 			}
+			return $return;
 		}
-		return $return;
 	}
 	/**
 	 *
@@ -1869,16 +1870,12 @@ class scenario {
 			$this->_log = '';
 		}
 	}
-	/**
-	 *
-	 * @param int $_default
-	 * @return int
-	 */
-	public function getTimeout($_default = 0) {
+
+	public function getTimeout(): int {
 		return $this->timeout;
 	}
+
 	/**
-	 *
 	 * @param string|int $_timeout
 	 * @return $this
 	 */
@@ -1887,7 +1884,7 @@ class scenario {
 			$_timeout = 0;
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->timeout, $_timeout);
-		$this->timeout = $_timeout;
+		$this->timeout = (int)$_timeout;
 		return $this;
 	}
 
@@ -1990,7 +1987,7 @@ class scenario {
 		$this->configuration = $configuration;
 		return $this;
 	}
-	
+
 	/**
 	 * getReturn
 	 *

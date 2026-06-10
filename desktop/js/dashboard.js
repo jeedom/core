@@ -35,12 +35,12 @@ if (!jeeFrontEnd.dashboard) {
           element.parentNode.remove()
         })
         document.querySelectorAll('div.div_object').forEach(function(div_object) {
-          var objId = div_object.getAttribute('data-object_id')
+          const objId = div_object.getAttribute('data-object_id')
           jeeFrontEnd.dashboard.getObjectHtmlFromSummary(objId)
         })
       } else {
         document.querySelectorAll('div.div_object').forEach(function(div_object) {
-          var objId = div_object.getAttribute('data-object_id')
+          const objId = div_object.getAttribute('data-object_id')
           jeeFrontEnd.dashboard.getObjectHtml(objId)
         })
       }
@@ -73,13 +73,13 @@ if (!jeeFrontEnd.dashboard) {
     },
     filterByCategory: function() {
       //get defined categories:
-      var cats = []
+      const cats = []
       document.querySelectorAll('#categoryfilter .catFilterKey').forEach(function(element) {
         if (element.checked) cats.push(element.getAttribute('data-key'))
       })
 
       //check eqLogics cats:
-      var eqCats, catFound
+      let eqCats, catFound
       document.querySelectorAll('div.eqLogic-widget').forEach(function(eqLogic) {
         catFound = false
         if (eqLogic.hasAttribute('data-translate-category')) {
@@ -108,7 +108,7 @@ if (!jeeFrontEnd.dashboard) {
       }
 
       document.querySelectorAll('.div_displayEquipement').forEach(function(element) {
-        var visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
+        const visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
         if (visibles.length == 0) {
           element.closest('.div_object').unseen()
         } else {
@@ -186,10 +186,10 @@ if (!jeeFrontEnd.dashboard) {
         if (jeeFrontEnd.dashboard.draggables.length == 0) {
           //No draggies set yet:
           document.querySelectorAll('div.div_displayEquipement').forEach(_divObject => {
-            var pckry = Packery.data(_divObject)
+            const pckry = Packery.data(_divObject)
             pckry.getItemElements().forEach(function(itemElem, idx) {
               itemElem.setAttribute('data-order', idx + 1)
-              var draggie = new Draggabilly(itemElem)
+              const draggie = new Draggabilly(itemElem)
               jeeFrontEnd.dashboard.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
 
@@ -210,7 +210,7 @@ if (!jeeFrontEnd.dashboard) {
         }
 
         //show orders:
-        var value
+        let value
         document.querySelectorAll('.jeedomAlreadyPosition').forEach(function(element) {
           value = element.getAttribute('data-order')
           if (element.querySelector('.counterReorderJeedom')) {
@@ -237,7 +237,7 @@ if (!jeeFrontEnd.dashboard) {
     },
     getObjectHtmlFromSummary: function(_object_id) {
       if (_object_id == null) return
-      let self = this
+      const self = this
       self._object_id = _object_id
       self.summaryObjEqs = []
       self.summaryObjEqs[_object_id] = []
@@ -254,18 +254,18 @@ if (!jeeFrontEnd.dashboard) {
           })
         },
         success: function(data) {
-          var dom_divDisplayEq = document.getElementById('div_ob' + _object_id)
-          var nbEqs = data.length
+          const dom_divDisplayEq = document.getElementById('div_ob' + _object_id)
+          let nbEqs = data.length
           if (nbEqs == 0) {
             dom_divDisplayEq.closest('.div_object').parentNode.remove()
             return
           } else {
             dom_divDisplayEq.closest('.div_object').removeClass('hidden')
           }
-          for (var i = 0; i < nbEqs; i++) {
+          for (let i = 0; i < nbEqs; i++) {
             if (self.summaryObjEqs[self._object_id].includes(data[i].id)) {
               nbEqs--
-              return
+              continue
             }
             self.summaryObjEqs[self._object_id].push(data[i].id)
 
@@ -303,7 +303,7 @@ if (!jeeFrontEnd.dashboard) {
       })
     },
     getObjectHtml: function(_object_id) {
-      let self = this
+      const self = this
       jeedom.object.toHtml({
         id: _object_id,
         hideOnMain: (getUrlVars('childs') === false) ? 1 : 0,
@@ -318,7 +318,7 @@ if (!jeeFrontEnd.dashboard) {
           })
         },
         success: function(html) {
-          var dom_divDisplayEq = document.getElementById('div_ob' + _object_id)
+          const dom_divDisplayEq = document.getElementById('div_ob' + _object_id)
           try {
             if (html == '') {
               dom_divDisplayEq.closest('.div_object').parentNode.remove()
@@ -344,13 +344,14 @@ if (!jeeFrontEnd.dashboard) {
 
           //synch category filter:
           if (self.url_category != 'all') {
-            let cat = self.url_category.charAt(0).toUpperCase() + self.url_category.slice(1)
-            document.getElementById('dashTopBar button.dropdown-toggle').addClass('warning')
+            const cat = self.url_category.charAt(0).toUpperCase() + self.url_category.slice(1)
+            document.querySelector('#dashTopBar button.dropdown-toggle').addClass('warning')
             document.querySelectorAll('#categoryfilter .catFilterKey').forEach(function(element) {
               element.checked = false
             })
-            document.querySelector('#categoryfilter .catFilterKey[data-key="' + cat + '"]').checked = true
-            this.filterByCategory()
+            const catEl = document.querySelector('#categoryfilter .catFilterKey[data-key="' + cat + '"]')
+            if (catEl) catEl.checked = true
+            self.filterByCategory()
           }
 
           domUtils.hideLoading()
@@ -389,7 +390,7 @@ if (typeof jeephp2js.rootObjectId != 'undefined') {
       jeedomUtils.setBackgroundImage(_path)
     }
   })
-  let lia = document.querySelector('#dashOverviewPrev a[data-object_id="' + jeephp2js.rootObjectId + '"]')
+  const lia = document.querySelector('#dashOverviewPrev a[data-object_id="' + jeephp2js.rootObjectId + '"]')
   if (lia) lia.parentNode.addClass('active')
 }
 
@@ -398,7 +399,7 @@ jeeP.postInit()
 //searching
 document.getElementById('in_searchDashboard')?.addEventListener('keyup', function(event) {
   if (jeedomUI.isEditing) return
-  var search = this.value
+  let search = this.value
   document.querySelectorAll('.div_object:not(.hideByObjectSel)').seen()
   if (search == '') {
     document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').seen()
@@ -407,11 +408,11 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   }
 
   search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
-  var match, text
+  let match, text
   document.querySelectorAll('div.eqLogic-widget').forEach(function(element) {
     match = false
     text = jeedomUtils.normTextLower(element.querySelector('.widget-name > a')?.textContent)
@@ -451,14 +452,14 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
     }
   })
   document.querySelectorAll('.div_displayEquipement').forEach(function(element) {
-    var visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
+    const visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
     if (visibles.length == 0) element.closest('.div_object').unseen()
   })
   document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
 })
 document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', function(event) {
   if (jeedomUI.isEditing) return
-  document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checkd = true})
+  document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checked = true})
   document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
   document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
 })
@@ -466,7 +467,7 @@ document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', fu
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_editDashboardWidgetOrder')) {
     if (_target.getAttribute('data-mode') == 1) {
         _target.setAttribute('data-mode', 0)
@@ -487,7 +488,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.editOptions')) { //Edit mode tile icon
-    var eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
+    const eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
     jeeDialog.dialog({
       id: 'md_dashEdit',
       width: '600px',
@@ -516,13 +517,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_editDashboardTilesAutoResizeUp')) { //Edit mode resize up button
-    var id_object = _target.getAttribute('data-obecjtid')
-    var objectContainer = document.querySelector('#div_ob' + id_object + '.div_displayEquipement')
-    var arHeights = []
+    const id_object = _target.getAttribute('data-obecjtid')
+    const objectContainer = document.querySelector('#div_ob' + id_object + '.div_displayEquipement')
+    const arHeights = []
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
       arHeights.push(element.offsetHeight)
     })
-    var maxHeight = Math.max(...arHeights)
+    const maxHeight = Math.max(...arHeights)
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
       element.style.height = maxHeight + 'px'
     })
@@ -531,13 +532,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_editDashboardTilesAutoResizeDown')) { //Edit mode resize down button
-    var id_object = _target.getAttribute('data-obecjtid')
-    var objectContainer = document.querySelector('#div_ob' + id_object + '.div_displayEquipement')
-    var arHeights = []
+    const id_object = _target.getAttribute('data-obecjtid')
+    const objectContainer = document.querySelector('#div_ob' + id_object + '.div_displayEquipement')
+    const arHeights = []
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
       arHeights.push(element.offsetHeight)
     })
-    var minHeight = Math.min(...arHeights)
+    const minHeight = Math.min(...arHeights)
     objectContainer.querySelectorAll('div.eqLogic-widget, div.scenario-widget').forEach(function(element) {
       element.style.height = minHeight + 'px'
     })
@@ -557,7 +558,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.objectPreview')) { //
-    var url = 'index.php?v=d&p=dashboard&object_id=' + _target.getAttribute('data-object_id') + '&childs=0&btover=1'
+    const url = 'index.php?v=d&p=dashboard&object_id=' + _target.getAttribute('data-object_id') + '&childs=0&btover=1'
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -567,7 +568,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.li_object')) { //Dashboard mode list:
-    var object_id = _target.querySelector('a[data-object_id]')?.getAttribute('data-object_id')
+    const object_id = _target.querySelector('a[data-object_id]')?.getAttribute('data-object_id')
     if (document.querySelector('.div_object[data-object_id="' + object_id + '"]') != null && getUrlVars('summary') === false) { //Object already there as child
       jeedom.object.getImgPath({
         id: object_id,
@@ -608,7 +609,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 }, {buble: true})
 
 document.getElementById('div_pageContainer').addEventListener('mouseenter', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_overview')) { //bt_overview arrow:
     event.stopImmediatePropagation()
     event.stopPropagation()
@@ -622,9 +623,9 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
 
   if (_target = event.target.closest('.objectPreview')) { //Show summary in overview preview tiles
     document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen()
-    var width = window.outerWidth
-    var position = event.target.getBoundingClientRect()
-    var css = {
+    const width = window.outerWidth
+    const position = event.target.getBoundingClientRect()
+    const css = {
       top: position.top - 95 + 'px'
     }
     if (position.left > width / 2) {
@@ -634,7 +635,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
       css.left = position.left + 'px'
       css.right = 'unset'
     }
-    var summary = document.querySelector('.objectSummaryContainer.objectSummary' + _target.getAttribute('data-object_id'))
+    const summary = document.querySelector('.objectSummaryContainer.objectSummary' + _target.getAttribute('data-object_id'))
     summary.seen()
     Object.assign(summary.style, css)
     return
@@ -642,7 +643,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
 }, {capture: true})
 
 document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_overview')) { //bt_overview arrow:
     clearTimeout(jeeP.btOverviewTimer)
     event.stopImmediatePropagation()
@@ -660,18 +661,18 @@ document.getElementById('div_pageContainer').addEventListener('mouseleave', func
 }, {capture: true})
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.objectPreview')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = _target.getAttribute('data-object_id')
+      const id = _target.getAttribute('data-object_id')
       document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return
   }
 
   if (event.target.matches('#categoryfilter input.catFilterKey')) {
-    var checkbox = event.target.closest('li').querySelector('input.catFilterKey')
+    const checkbox = event.target.closest('li').querySelector('input.catFilterKey')
     if (checkbox == null) return
     event.preventDefault()
     event.stopPropagation()
@@ -694,10 +695,7 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
     event.stopImmediatePropagation()
     event.stopPropagation()
     event.preventDefault()
-    var checkbox = event.target.closest('li').querySelector('.catFilterKey')
-    if (checkbox == null) return
-
-    var checkbox = event.target.closest('li').querySelector('.catFilterKey')
+    const checkbox = event.target.closest('li').querySelector('.catFilterKey')
     if (checkbox == null) return
     if (event.which == 2) {
       if (document.querySelectorAll('.catFilterKey:checked').length == 1 && checkbox.checked) {
@@ -715,7 +713,7 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
 
 //Event for App Mobile:
 document.body.addEventListener('jeeObject::summary::update', function(_event) {
-  for (var i in _event.detail) {
+  for (const i in _event.detail) {
     if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
     if(_event.detail[i].object_id == 'global') {
       /* SEND UPDATE SUMMARY TO APP */

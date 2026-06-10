@@ -345,7 +345,8 @@ try {
 
 	if (init('action') == 'removeBanIp') {
 		unautorizedInDemo();
-		ajax::success(user::removeBanIp());
+        user::removeBanIp();
+		ajax::success();
 	}
 
 	if (init('action') == 'supportAccess') {

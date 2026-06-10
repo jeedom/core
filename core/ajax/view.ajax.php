@@ -164,12 +164,20 @@ try {
 		}
 		unautorizedInDemo();
 		$components = json_decode(init('components'), true);
-		$sql = '';
+		$allowedTypes = array('cmd', 'eqLogic', 'scenario');
 		foreach ($components as $component) {
 			if (!isset($component['viewZone_id']) || !is_numeric($component['viewZone_id']) || !is_numeric($component['id']) || !is_numeric($component['viewOrder']) || (isset($component['object_id']) && !is_numeric($component['object_id']))) {
 				continue;
 			}
-			$sql .= 'UPDATE viewData SET `order`= ' . $component['viewOrder'] . '  WHERE link_id=' . $component['id'] . ' AND type="' . $component['type'] . '" AND  viewZone_id=' . $component['viewZone_id'] . ';';
+			if (!isset($component['type']) || !in_array($component['type'], $allowedTypes)) {
+				continue;
+			}
+			DB::Prepare('UPDATE viewData SET `order`= :viewOrder WHERE link_id= :id AND type= :type AND viewZone_id= :viewZone_id', array(
+				'viewOrder' => $component['viewOrder'],
+				'id' => $component['id'],
+				'type' => $component['type'],
+				'viewZone_id' => $component['viewZone_id'],
+			), DB::FETCH_TYPE_ROW);
 			if ($component['type'] == 'eqLogic') {
 				unset($component['type']);
 				$eqLogic = eqLogic::byId($component['id']);
@@ -187,9 +195,6 @@ try {
 				utils::a2o($scenario, $component);
 				$scenario->save(true);
 			}
-		}
-		if ($sql != '') {
-			DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 		}
 		ajax::success();
 	}

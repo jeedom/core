@@ -302,6 +302,7 @@ try {
 			}
 			$curentVersion = init('update::reapply');
 		} else {
+			echo "Upgrading from: {$curentVersion} to " . jeedom::version(true) . "\n";
 			while (version_compare(jeedom::version(), $curentVersion, '>')) {
 				$nextVersion = incrementVersion($curentVersion);
 				$updateScript = __DIR__ . '/update/' . $nextVersion . '.php';
