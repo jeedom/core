@@ -139,12 +139,15 @@ class repo_market {
 				if (!is_object($update)) {
 					$update = new update();
 				}
+				// Purge configuration keys not belonging to market source to avoid orphaned data.
+				foreach (['user', 'repository', 'token', 'url', 'path'] as $key) {
+					$update->setConfiguration($key, null);
+				}
 				$update->setSource('market');
 				$update->setLogicalId($repo->getLogicalId());
 				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
 				$update->setConfiguration('version', $plugin['version']);
-				$update->setConfiguration('user', null);
 				$update->save();
 				$update->doUpdate();
 				$nbInstall++;
