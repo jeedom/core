@@ -2684,7 +2684,16 @@ class cmd {
 			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
-
+    
+	/**
+	 * Generate API URL for ask response
+	 *
+	 * @param string $_response Response value
+	 * @param string $_plugin Plugin name
+	 * @param string $_network Network type
+	 * @return string Generated URL
+	 * @throws Exception
+	 */
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
 		if ($this->getCache('ask::token') == null || $this->getCache('ask::token') == '' || strlen($this->getCache('ask::token')) < 60) {
 			$this->setCache('ask::token', config::genKey());
