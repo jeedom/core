@@ -393,7 +393,7 @@ try {
 	}
 
 	if (init('action') == 'resetHour') {
-		$cache = cache::delete('hour');
+		cache::delete('hour');
 		ajax::success();
 	}
 
