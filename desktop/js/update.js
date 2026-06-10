@@ -280,7 +280,7 @@ if (!jeeFrontEnd.update) {
           }
         }
       } else {
-        tr += '<a class="btn btn-xs" target="_blank" href="' + _update.changelog_url + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+        tr += '<a class="btn btn-xs" target="_blank" href="' + _update.changelog_url + '" id="bt_changelogCore"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
       }
       if (_update.type != 'core') {
         if (_update.status == 'UPDATE') {
@@ -542,6 +542,7 @@ if (!jeeFrontEnd.update) {
             var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
             newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
+            newContent.querySelector('#bt_warnChangelogCore').href = document.getElementById('bt_changelogCore').href
             newContent.querySelectorAll('[data-title]').forEach(_tooltip => {
               _tooltip.setAttribute('title', _tooltip.getAttribute('data-title'))
               _tooltip.removeAttribute('data-title')
