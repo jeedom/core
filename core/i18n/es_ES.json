@@ -857,7 +857,8 @@
         "\" . $text . \"": "\" . $text . \"",
         "' . $text . '": "' . $text . '",
         "(.*?)": "(.*?)",
-        "content parts": "partes de contenido"
+        "content parts": "partes de contenido",
+        "translation_keys": "claves de traducción"
     },
     "core\/class\/update.class.php": {
         "Action de pré-update...": "Acción previa a la actualización",
@@ -5174,14 +5175,15 @@
         "A n'utiliser que sur demande du support.": "Para ser utilizado sólo a petición de apoyo",
         "Actions": "Acciones",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Para poder acceder a futuras actualizaciones del core, actualiza el entorno Linux de tu controlador",
-        "Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : ": "Tenga en cuenta que no está en la rama estable del núcleo, por lo que actualizará a la versión:",
+        "Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Atención: no estás en la versión estable del núcleo, por lo que la actualización se realizará en la rama: ",
         "Aucun": "Ninguno",
-        "Avant toute mise à jour, merci de consulter le": "Antes de cualquier actualización, consulta el",
-        "Cette version ne bénéficie d'aucun support de Jeedom SAS.": "Esta versión no se beneficia de ningún soporte de Jeedom SAS",
+        "Cette version ne bénéficie pas du support officiel.": "Esta versión no cuenta con soporte oficial.",
+        "Changelog": "Cambios",
         "Continuer la mise à jour en cas d'erreur.": "Continuar la actualización en caso de error",
         "Core et plugins": "Core y plugins",
         "Dernière version": "Última versión",
         "Dernière vérification :": "Ultima verificación :",
+        "En cas de mise à jour du core, veuillez prendre connaissance du": "En caso de actualización del núcleo, consulte el",
         "Erreur sur la vérification des mises à jour :": "Error al buscar actualizaciones:",
         "Etat": "Estado",
         "IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.": "IMPORTANTE: Aquí solo se muestran los paquetes de Linux obsoletos. Una lista vacía que significa que su sistema Linux está actualizado",
@@ -5212,8 +5214,7 @@
         "Version installée": "Versión instalada",
         "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.": "Dado que tu sistema actual está funcionando correctamente y ya no es lo suficientemente eficiente como para poder continuar haciéndolo en las mejores condiciones en el futuro, te invitamos a no actualizar más el core de Jeedom",
         "Vérifier les mises à jour": "Verifica las actualizaciones",
-        "changelog": "registro de cambios",
-        "du Core": "del Core",
+        "au préalable": "previamente",
         "la documentation d\\'installation": "la documentación de instalación",
         "pour plus d\\'informations.": "para más informaciones",
         "puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "luego restaure su última copia de seguridad de Jeedom en lugar de actualizar directamente el sistema operativo desde la línea de comando. Para consultar"

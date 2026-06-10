@@ -857,7 +857,8 @@
         "\" . $text . \"": "\" . $text . \"",
         "' . $text . '": "' . $text . '",
         "(.*?)": "(.*?)",
-        "content parts": "happy parts"
+        "content parts": "happy parts",
+        "translation_keys": "translation_keys"
     },
     "core\/class\/update.class.php": {
         "Action de pré-update...": "Pre-update action",
@@ -5174,14 +5175,15 @@
         "A n'utiliser que sur demande du support.": "To be used only on request of support",
         "Actions": "Actions",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "In order to be able to access future updates of the core, please upgrade the Linux environment of your box to",
-        "Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : ": "Please note that you are not on the stable branch of the core, so you will update to the version:",
+        "Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Please note that you are not on the stable version of the core, so the update will be performed on the branch: ",
         "Aucun": "None",
-        "Avant toute mise à jour, merci de consulter le": "Before any update, please consult the",
-        "Cette version ne bénéficie d'aucun support de Jeedom SAS.": "This version does not benefit from any support from Jeedom SAS",
+        "Cette version ne bénéficie pas du support officiel.": "This version is not officially supported.",
+        "Changelog": "Changelog",
         "Continuer la mise à jour en cas d'erreur.": "Continue the update in case of error",
         "Core et plugins": "Core and plugins",
         "Dernière version": "Last version",
         "Dernière vérification :": "Last check:",
+        "En cas de mise à jour du core, veuillez prendre connaissance du": "If you update the core, please review the",
         "Erreur sur la vérification des mises à jour :": "Error checking for updates:",
         "Etat": "State",
         "IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.": "IMPORTANT: Only outdated Linux packages are displayed here. An empty list meaning that your Linux system is up to date",
@@ -5212,8 +5214,7 @@
         "Version installée": "Installed version",
         "Votre système actuel fonctionnant correctement et n\\'étant plus assez performant pour être en mesure de continuer à le faire dans les meilleures conditions à l\\'avenir, nous vous invitons à ne plus mettre à jour le core de Jeedom dorénavant.": "Since your current system is functioning correctly and is no longer efficient enough to be able to continue to do so under the best conditions in the future, we invite you not to update the Jeedom core anymore",
         "Vérifier les mises à jour": "Check for updates",
-        "changelog": "Changelog",
-        "du Core": "from Core",
+        "au préalable": "in advance",
         "la documentation d\\'installation": "installation documentation",
         "pour plus d\\'informations.": "for more information",
         "puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\\'OS en ligne de commande. Consulter": "then restore your latest Jeedom backup rather than directly updating the OS from the command line. See"
