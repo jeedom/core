@@ -113,9 +113,9 @@ class system {
 			}
 		}
 		$execCmd = shell_exec($cmd);
-      		if(!$execCmd){
+		if (!$execCmd) {
 			return $return;
-          	}
+		}
 		$results = explode("\n", trim($execCmd));
 		if (!is_array($results) || count($results) == 0) {
 			return $return;
@@ -418,7 +418,7 @@ class system {
 				break;
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
-				if(is_array($datas['dependencies']) && count($datas['dependencies']) > 0){
+				if (is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
 					foreach ($datas['dependencies'] as $key => $value) {
 						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 							'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
@@ -427,8 +427,8 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;'.self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
-				if(is_array($datas['installed']) && count($datas['installed']) > 0){
+				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;' . self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
+				if (is_array($datas['installed']) && count($datas['installed']) > 0) {
 					foreach ($datas['installed'] as $value) {
 						self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 					}
@@ -436,7 +436,7 @@ class system {
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
-				if(is_array($updates) && count($updates) > 0){
+				if (is_array($updates) && count($updates) > 0) {
 					foreach ($updates as $update) {
 						self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
 					}
@@ -513,7 +513,7 @@ class system {
 					$version = 'N/A';
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$composer_info = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/composer.json'), true);
-						if(isset($composer_info['version'])){
+						if (isset($composer_info['version'])) {
 							$version = $composer_info['version'];
 						}
 						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
@@ -865,7 +865,7 @@ class system {
 				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
 				if (strpos($_package, '/') === false) {
-					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
 					return '';
