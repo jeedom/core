@@ -629,13 +629,14 @@ class system {
 			}
 		}
 		$has_something_todo = false;
+		$first_type = [];
 		foreach ($return as $package => $info) {
 			if ((($info['status'] != 0 && !$info['reinstall']) || $info['status'] == 3) && !$_force) {
 				continue;
 			}
 			$has_something_todo = true;
-			if (!isset($first_type[$info['type']]) || $first_type[$info['type']] == true) {
-				$first_type[$info['type']] = false;
+			if (!isset($first_type[$info['type']])) {
+				$first_type[$info['type']] = true;
 				switch ($info['type']) {
 					case 'apt':
 						if ($_foreground) {
