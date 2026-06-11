@@ -4,10 +4,10 @@
 
 ### Nouvelles fonctionnalités
 
-- Ajout d'un `healthcheck` pour les installations sous Docker ([Détails](https://github.com/jeedom/core/pull/2998){:target="_blank"})
 - Ajout d'un bloc "Tant que" dans les scénarios ([Détails](https://github.com/jeedom/core/pull/3234){:target="_blank"})
 - Nouvelle méthode de traduction de l'interface ([Détails](https://github.com/jeedom/core/pull/3251){:target="_blank"})
 - Unification des anciens widgets horaires *(`timeXxxx`)* vers les widgets standards avec paramètre `time` correspondant ([Détails](https://github.com/jeedom/core/pull/3332){:target="_blank"})
+- [Avancé] Ajout d'un `healthcheck` pour les installations sous Docker ([Détails](https://github.com/jeedom/core/pull/2998){:target="_blank"})
 
 ### Correctifs
 
