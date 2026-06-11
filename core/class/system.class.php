@@ -636,7 +636,7 @@ class system {
 			}
 			$has_something_todo = true;
 			if (!isset($first_type[$info['type']])) {
-				$first_type[$info['type']] = true;
+				$first_type[$info['type']] = false;
 				switch ($info['type']) {
 					case 'apt':
 						if ($_foreground) {
