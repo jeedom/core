@@ -13,6 +13,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-11 10:18:09 | Fix syntax error in exception message for image validation | [#3371](https://github.com/jeedom/core/pull/3371) |
 | 2026-06-11 10:17:32 | Fix fatal error and PHP warning in system package manager | [#3370](https://github.com/jeedom/core/pull/3370) |
 | 2026-06-11 08:48:12 | Fix context menus display | [#3369](https://github.com/jeedom/core/pull/3369) |
 | 2026-06-10 20:20:09 | fix: changelog button in core update modal is now functional | [#3368](https://github.com/jeedom/core/pull/3368) |
