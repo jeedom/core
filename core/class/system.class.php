@@ -243,7 +243,7 @@ class system {
 				}
 				break;
 			case 'pip2':
-				if (self::os_incompatible('pip2', '', '')) {
+				if (self::os_incompatible('pip2', '', [])) {
 					return array();
 				}
 				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json 2>/dev/null'), true);
@@ -291,7 +291,7 @@ class system {
 				}
 				break;
 			case 'pip2':
-				if (self::os_incompatible('pip2', '', '')) {
+				if (self::os_incompatible('pip2', '', [])) {
 					return;
 				}
 				if ($_package == null) {
