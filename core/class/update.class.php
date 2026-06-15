@@ -570,6 +570,11 @@ class update {
 				return;
 			}
 			if (config::byKey('core::repo::provider') == 'default') {
+				if (self::isCoreBranchValid()) {
+					message::removeAll('core', 'core::branch::invalid');
+				} else {
+					message::add('core', __('La branche configurée pour le core (', __FILE__) . config::byKey('core::branch', 'core', 'master') . __(") n'existe plus sur le dépôt. Les mises à jour ne fonctionneront pas tant qu'une branche valide n'est pas sélectionnée dans Réglages -> Système -> Mises à jour / Réinitialisation.", __FILE__), '', 'core::branch::invalid');
+				}
 				$this->setRemoteVersion(self::getLastAvailableVersion());
 			} else {
 				$class = 'repo_' . config::byKey('core::repo::provider');
