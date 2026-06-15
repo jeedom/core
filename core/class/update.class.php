@@ -494,12 +494,13 @@ class update {
 	}
 
 	/**
-	 * Retourne la liste des branches et tags disponibles pour le core sur le dépôt par défaut.
-	 * Résultat mis en cache 24h (clé core::branch::default::list).
-	 * @param bool $_refresh force le rafraichissement du cache
-	 * @return array tableau contenant les clés 'branchs' et 'tags'
+	 * Get the list of branches and tags available for the core on the default repository.
+	 * The result is cached for 24h (key core::branch::default::list).
+	 *
+	 * @param bool $_refresh Force a refresh of the cache
+	 * @return array Array containing the 'branchs' and 'tags' keys
 	 */
-	public static function getCoreBranchList($_refresh = false) {
+	public static function getCoreBranchList(bool $_refresh = false) {
 		$lists = ($_refresh) ? array() : cache::byKey('core::branch::default::list')->getValue(array());
 		if (!isset($lists['branchs']) || !is_array($lists['branchs'])) {
 			$request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
@@ -523,8 +524,10 @@ class update {
 	}
 
 	/**
-	 * Vérifie que la branche (ou le tag) configurée pour le core existe toujours sur le dépôt.
-	 * Retourne true si la validité ne peut être déterminée (fournisseur custom, branche stable, ou liste distante indisponible).
+	 * Check that the branch (or tag) configured for the core still exists on the repository.
+	 * Returns true when validity cannot be determined (custom provider or remote list
+	 * unavailable) to avoid false positives.
+	 *
 	 * @return bool
 	 */
 	public static function isCoreBranchValid() {
@@ -532,9 +535,6 @@ class update {
 			return true;
 		}
 		$branch = config::byKey('core::branch', 'core', 'master');
-		if (in_array($branch, array('master', 'release', 'stable'))) {
-			return true;
-		}
 		$lists = self::getCoreBranchList();
 		if (strpos($branch, 'tag::') === 0) {
 			$name = substr($branch, strlen('tag::'));
@@ -554,6 +554,15 @@ class update {
 		return false;
 	}
 
+	/**
+	 * User-facing message shown when the configured core branch no longer exists on the repository.
+	 *
+	 * @return string
+	 */
+	public static function getCoreBranchInvalidMessage() {
+		return __("La branche configurée pour le core n'existe plus sur le dépôt. Allez dans Réglages -> Système -> Mises à jour/Market pour sélectionner une branche valide.", __FILE__);
+	}
+
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
 			log::add(__CLASS__, 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
@@ -567,7 +576,7 @@ class update {
 				if (self::isCoreBranchValid()) {
 					message::removeAll('core', 'core::branch::invalid');
 				} else {
-					message::add('core', __("La branche configurée pour le core n'existe plus sur le dépôt. Allez dans Réglages -> Système -> Mises à jour / Réinitialisation pour sélectionner une branche valide.", __FILE__), '', 'core::branch::invalid');
+					message::add('core', self::getCoreBranchInvalidMessage(), '', 'core::branch::invalid');
 				}
 				$this->setRemoteVersion(self::getLastAvailableVersion());
 			} else {
