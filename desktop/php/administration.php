@@ -1822,25 +1822,7 @@ $productName = config::byKey('product_name');
 												</optgroup>
 												<?php
 												if (config::byKey('core::repo::provider') == 'default') {
-													$lists = cache::byKey('core::branch::default::list')->getValue(array());
-													if (!isset($lists['branchs']) || !is_array($lists['branchs'])) {
-														$request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
-														$request_http->setHeader(array('User-agent: jeedom'));
-														try {
-															$lists['branchs'] = json_decode($request_http->exec(10, 1), true);
-														} catch (\Exception $e) {
-														}
-														cache::set('core::branch::default::list', $lists, 86400);
-													}
-													if (!isset($lists['tags']) || !is_array($lists['tags'])) {
-														$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
-														$request_http->setHeader(array('User-agent: jeedom'));
-														try {
-															$lists['tags'] = json_decode($request_http->exec(10, 1), true);
-														} catch (\Exception $e) {
-														}
-														cache::set('core::branch::default::list', $lists, 86400);
-													}
+													$lists = update::getCoreBranchList();
 													if (isset($lists['branchs']) && is_array($lists['branchs'])) {
 														echo '<optgroup label="{{Branches (Pas de support)}}">';
 														foreach ($lists['branchs'] as $branch) {
