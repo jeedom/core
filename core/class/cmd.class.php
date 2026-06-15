@@ -109,6 +109,7 @@ class cmd {
 		'o/s' => array(1000, 'o/s', 'Ko/s', 'Mo/s', 'Go/s', 'To/s'),
 		'Bps' => array(1000, 'Bps', 'Kbps', 'Mbps', 'Gbps', 'Tbps'),
 		'Hz' => array(1000, 'Hz', 'kHz', 'MHz', 'GHz'),
+		'mA' => array(1000, 'mA', 'A'),
 		'l' => array(1000, 'l', 'm<sup>3</sup>')
 	);
 	/*	 * ***********************Méthodes statiques*************************** */
