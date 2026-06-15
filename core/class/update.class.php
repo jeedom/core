@@ -493,6 +493,73 @@ class update {
 		return null;
 	}
 
+	/**
+	 * Retourne la liste des branches et tags disponibles pour le core sur le dépôt par défaut.
+	 * Le résultat est mis en cache 24h (clé core::branch::default::list).
+	 * @param bool $_refresh force le rafraichissement du cache
+	 * @return array tableau contenant les clés 'branchs' et 'tags'
+	 */
+	public static function getCoreBranchList($_refresh = false) {
+		$lists = ($_refresh) ? array() : cache::byKey('core::branch::default::list')->getValue(array());
+		if (!isset($lists['branchs']) || !is_array($lists['branchs'])) {
+			$request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
+			$request_http->setHeader(array('User-agent: jeedom'));
+			try {
+				$lists['branchs'] = json_decode($request_http->exec(10, 1), true);
+			} catch (\Exception $e) {
+			}
+			cache::set('core::branch::default::list', $lists, 86400);
+		}
+		if (!isset($lists['tags']) || !is_array($lists['tags'])) {
+			$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
+			$request_http->setHeader(array('User-agent: jeedom'));
+			try {
+				$lists['tags'] = json_decode($request_http->exec(10, 1), true);
+			} catch (\Exception $e) {
+			}
+			cache::set('core::branch::default::list', $lists, 86400);
+		}
+		return $lists;
+	}
+
+	/**
+	 * Vérifie que la branche (ou le tag) configurée pour le core existe toujours sur le dépôt.
+	 * Pour éviter les faux positifs, retourne true si la validité ne peut pas être déterminée
+	 * (fournisseur personnalisé, branche stable connue, ou liste distante indisponible).
+	 * @return bool true si la branche est valide (ou indéterminable), false si elle est introuvable
+	 */
+	public static function isCoreBranchValid() {
+		if (config::byKey('core::repo::provider') != 'default') {
+			return true;
+		}
+		$branch = config::byKey('core::branch', 'core', 'master');
+		if (in_array($branch, array('master', 'release', 'stable'))) {
+			return true;
+		}
+		$lists = self::getCoreBranchList();
+		if (strpos($branch, 'tag::') === 0) {
+			$tagName = substr($branch, strlen('tag::'));
+			if (!isset($lists['tags']) || !is_array($lists['tags']) || count($lists['tags']) == 0) {
+				return true;
+			}
+			foreach ($lists['tags'] as $tag) {
+				if (is_array($tag) && isset($tag['name']) && $tag['name'] == $tagName) {
+					return true;
+				}
+			}
+			return false;
+		}
+		if (!isset($lists['branchs']) || !is_array($lists['branchs']) || count($lists['branchs']) == 0) {
+			return true;
+		}
+		foreach ($lists['branchs'] as $remoteBranch) {
+			if (is_array($remoteBranch) && isset($remoteBranch['name']) && $remoteBranch['name'] == $branch) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public function checkUpdate() {
 		if ($this->getConfiguration('doNotUpdate') == 1 && $this->getType() != 'core') {
 			log::add(__CLASS__, 'alert', __('Vérification des mises à jour, mise à jour et réinstallation désactivées sur', __FILE__) . ' ' . $this->getLogicalId());
