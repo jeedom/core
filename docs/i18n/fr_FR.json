@@ -1866,7 +1866,7 @@
         "J'ai un problème d'identifiant BDD": "J'ai un problème d'identifiant BDD",
         "Il faut réinitialiser ceux-ci": "Il faut réinitialiser ceux-ci",
         "echo \"GRANT ALL PRIVILEGES ON jeedom": "echo \"GRANT ALL PRIVILEGES ON jeedom",
-        "cd \/usr\/share\/nginx\/www\/jeedom": "cd \/usr\/share\/nginx\/www\/jeedom",
+        "cd \/var\/www\/html": "cd \/var\/www\/html",
         "sudo cp core\/config\/common.config.sample": "sudo cp core\/config\/common.config.sample",
         "php core\/config\/common.config.php": "php core\/config\/common.config.php",
         "sudo sed -i -e \"s\/": "sudo sed -i -e \"s\/",

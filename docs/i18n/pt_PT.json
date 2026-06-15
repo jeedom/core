@@ -3304,7 +3304,7 @@
         "J'ai un problème d'identifiant BDD": "Estou com um problema no identificador BDD",
         "Il faut réinitialiser ceux-ci": "Estes devem ser redefinidos",
         "echo \"GRANT ALL PRIVILEGES ON jeedom": "eco \"CONCEDE TODOS OS PRIVILÉGIOS NO jeedom",
-        "cd \/usr\/share\/nginx\/www\/jeedom": "cd \/ usr \/ share \/ nginx \/ www \/ jeedom",
+        "cd \/var\/www\/html": "cd \/var\/www\/html",
         "sudo cp core\/config\/common.config.sample": "sudo cp core \/ config \/ common.config.sample",
         "php core\/config\/common.config.php": "php core \/ config \/ common.config.php",
         "sudo sed -i -e \"s\/": "sudo sed -i -e \"s \/",

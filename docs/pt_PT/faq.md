@@ -103,7 +103,7 @@ bdd_password = $ (cat / dev / urandom | tr-cd 'a-f0-9' | cabeça -c 15)
 echo "DROP USER 'jeedom' @ 'localhost'" | mysql -uroot -p
 echo "CREATE USER 'jeedom' @ 'localhost' IDENTIFICADO POR '$ {bdd_password}';" | mysql -uroot -p
 eco "CONCEDE TODOS OS PRIVILÉGIOS NO jeedom.* TO 'jeedom' @ 'localhost';" | mysql -uroot -p
-cd / usr / share / nginx / www / jeedom
+cd /var/www/html
 sudo cp core / config / common.config.sample.php core / config / common.config.php
 sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
 sudo chown www-data:www-data core / config / common.config.php
