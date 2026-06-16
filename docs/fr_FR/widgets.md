@@ -10,7 +10,7 @@ Voici les widgets intégrés au Core Jeedom, leurs usages et leurs paramètres d
 
 La plupart des widgets exposent des **paramètres optionnels** permettant d'ajuster leur rendu sans créer de widget personnalisé : couleur, échelle, comportement, etc. Ils se configurent dans la configuration avancée de la commande, onglet "Affichage" → section "**Paramètres optionnels widget**", sous forme de paires nom/valeur. Les paramètres disponibles varient selon le widget sélectionné et sont listés ci-dessous.
 
-Le paramètre **`time`** (`duration` | `date`) est commun à tous les widgets *(sauf HygroThermographe)* et affiche respectivement la durée écoulée ou la date du dernier changement de valeur.
+Le paramètre **`time`** (`duration`/`date`) est commun à tous les widgets *(sauf HygroThermographe)* et affiche respectivement la durée écoulée ou la date du dernier changement de valeur.
 
 #### Info / Binaire
 
@@ -115,7 +115,7 @@ Les équipements (ou tuiles) possèdent certains paramètres de configuration ac
 
 ## Widgets personnalisés
 
-La page Widgets, accessible par le menu **Outils → Widgets**, vous permet d'ajouter des widgets personnalisés en complément de ceux disponibles par défaut dans Jeedom.
+La page Widgets, accessible par le menu **Outils → Widgets**, permet d'ajouter des widgets personnalisés en complément de ceux disponibles par défaut dans Jeedom.
 
 Il existe deux types de widgets personnalisés :
 
@@ -138,12 +138,13 @@ Dans cette partie vous retrouverez l'ensemble des widgets que vous avez créés 
 
 ![Mes Widgets](./images/widgets1.png)
 
-> **Astuce**
-> Vous pouvez ouvrir un widget en faisant :
-> - `Clic` sur l'un d'entre eux.
-> - `Ctrl+Clic` ou `Clic+Centre` pour l'ouvrir dans un nouvel onglet du navigateur.
+>**INFORMATION**
+>
+>Vous pouvez ouvrir un widget en faisant :
+>- `Clic` sur l'un d'entre eux.
+>- `Ctrl+Clic` ou `Clic+Centre` pour l'ouvrir dans un nouvel onglet du navigateur.
 
-Le moteur de recherche vous permet de filtrer l'affichage des widgets selon différents critères (nom, type, sous-type, etc...). La touche `Echap` annule la recherche.
+Le moteur de recherche permet de filtrer l'affichage des widgets selon différents critères (nom, type, sous-type, etc...). La touche `Echap` annule la recherche.
 
 ![Recherche Widgets](./images/widgets2.png)
 
@@ -190,11 +191,12 @@ Les widgets Core de type remplacement disponibles sont :
 | Template Iconline | Info/Binaire, Action/Défaut |
 | Template Img | Info/Binaire, Action/Défaut, Action/Curseur |
 
-La case **Time widget**, si disponible, est équivalente au paramètre `time: duration` (voir [Commandes](#commandes)).
+La case **Time widget**, si disponible, est équivalente au paramètre `time: duration` (voir [Commandes](#Commandes)).
 
 Pour les template utilisant des images, il vous est proposé de paramétrer la largeur du widget en pixel en fonction du support (**Largeur desktop** & **Largeur mobile**). Des images différentes peuvent également être sélectionnées selon le thème actif de Jeedom *(light ou dark)*.
 
->**Astuce**
+>**INFORMATION**
+>
 >Pour les utilisateurs avancés il est possible de mettre des tags dans les valeurs de remplacement et de spécifier leur valeur dans la configuration avancée de la commande.
 >Si, par exemple, dans **Largeur desktop** vous mettez comme valeur `#largeur_desktop#` (**attention à bien mettre les** `#` **autour**) puis dans la configuration avancée d'une commande, onglet affichage → "**Paramètres optionnels widget**" vous ajoutez le paramètre `largeur_desktop` (**sans les** `#`) et lui donnez la valeur "**90**", ce widget personnalisé sur cette commande aura une largeur de 90 pixels. Cela permet d'adapter la taille du widget à chaque commande sans avoir à  faire un widget spécifique à chaque fois.
 
@@ -217,14 +219,14 @@ Les tests sont sous la forme : `#value# == 1`, `#value#` sera automatiquement re
 - `#value# >= 1 && #value# <= 5`
 - `#value# == 'toto'`
 
->**Note**
+>**IMPORTANT**
+>
 >Il est indispensable de faire apparaitre les apostrophes (**'**) autour du texte à comparer si la valeur est un texte *(info/autre)*.
 
->**Note**
->Pour les utilisateurs avancés, il est possible d'utiliser aussi des fonctions javascript telle que `#value#.match("^plop")`, ici on teste si le texte commence par `plop`.
-
->**Note**
->Il est possible d'afficher la valeur de la commande dans le widget en précisant `#value#` dans le code HTML du test. Pour afficher l'unité ajoutez `#unite#`.
+>**INFORMATION**
+>
+>Il est possible d'afficher la valeur de la commande dans le widget en précisant `#value#` dans le code HTML du test. Pour afficher l'unité ajoutez `#unite#`.\
+>Pour les utilisateurs avancés, il est possible d'utiliser aussi des fonctions javascript telle que `#value#.match("^plop")` pour vérifier si le texte commence par `plop`.
 
 ## Widget code
 
@@ -332,5 +334,6 @@ Pour se faire, il est nécessaire de prendre en compte 2 pré-requis :
     'go':'on'
 ```
 
->**Astuce**
+>**INFORMATION**
+>
 >Tant que le nom normalisé reste lisible il est possible d'adapter le nommage, par exemple *ouvrir_volet* ou *volet_fermer*, *marche_2* et *arret_2*, etc.
