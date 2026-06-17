@@ -5175,7 +5175,7 @@
         "A n'utiliser que sur demande du support.": "To be used only on request of support",
         "Actions": "Actions",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "In order to be able to access future updates of the core, please upgrade the Linux environment of your box to",
-        "Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Please note that you are not on the stable version of the core, so the update will be performed on the branch: ",
+        "Attention vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Please note that you are not using the stable version of the core, so the update will be performed on the branch: ",
         "Aucun": "None",
         "Cette version ne bénéficie pas du support officiel.": "This version is not officially supported.",
         "Changelog": "Changelog",

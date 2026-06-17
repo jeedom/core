@@ -5175,7 +5175,7 @@
         "A n'utiliser que sur demande du support.": "Nur auf Anfrage des Supports zu verwenden",
         "Actions": "Lager",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Um auf zukünftige Updates des Kerns zugreifen zu können, aktualisieren Sie bitte die Linux-Umgebung Ihrer Box auf",
-        "Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Achtung, Sie befinden sich nicht auf der stabilen Version des Kerns, das Update erfolgt daher auf dem Branch: ",
+        "Attention vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Achtung, Sie befinden sich nicht auf der stabilen Version des Kerns, das Update erfolgt daher auf dem Zweig: ",
         "Aucun": "Nein",
         "Cette version ne bénéficie pas du support officiel.": "Diese Version wird nicht offiziell unterstützt.",
         "Changelog": "Änderungsprotokoll",
