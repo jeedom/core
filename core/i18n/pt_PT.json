@@ -5175,7 +5175,7 @@
         "A n'utiliser que sur demande du support.": "Para ser usado apenas mediante solicitação de suporte",
         "Actions": "Ações",
         "Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\\'environnement Linux de votre box vers": "Para poder aceder a futuras atualizações do núcleo, atualize a versão do Linux da sua box para",
-        "Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Atenção, não está na versão estável do núcleo, pelo que a atualização será feita no ramo: ",
+        "Attention vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : ": "Atenção: não se encontra na versão estável do núcleo; por isso, a atualização será feita no ramo: ",
         "Aucun": "Nenhum",
         "Cette version ne bénéficie pas du support officiel.": "Esta versão não beneficia de suporte oficial.",
         "Changelog": "Registo de alterações",
