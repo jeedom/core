@@ -112,7 +112,11 @@ function jeedom_displayObjectGroup($object = -1) {
 		//cmds ul:
 		$div .= '<ul class="cmdSortable" style="display:none;" >';
 		foreach ($display_cmds[$eqLogic->getId()] as $cmd) {
-			$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">';
+			if ($cmd->getType() == 'info') {
+				$div .= '<li class="alert alert-info cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">';
+			} else {
+				$div .= '<li class="alert alert-warning cmd cursor" data-id="' . $cmd->getId() . '"  data-name="' . $cmd->getName() . '">';
+			}
 			$div .= '<input type="checkbox" class="cb_selCmd checkContext" data-context="eqId' . $eqLogic->getId() . '"> ';
 			$div .=  $cmd->getId() . ' | ' . $cmd->getName();
 			if ($cmd->getIsVisible() != 1) {
