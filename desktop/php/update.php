@@ -136,7 +136,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 					<?php $branch = config::byKey('core::branch');
 					if (!in_array($branch, ['master', 'release'])) { ?>
 						<div class="alert alert-danger">
-							{{Attention, vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : }} <?= $branch ?>.
+							{{Attention vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : }} <?= $branch ?>.
 							{{Cette version ne bénéficie pas du support officiel.}}
 						</div>
 					<?php } ?>
