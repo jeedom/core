@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-19 12:09:45 | Update display.php | [#3379](https://github.com/jeedom/core/pull/3379) |
 | 2026-05-11 08:56:25 | Feat: add while block in scenario | [#3234](https://github.com/jeedom/core/pull/3234) |
 | 2026-05-09 16:16:05 | Unify legacy time widgets into standard widgets | [#3332](https://github.com/jeedom/core/pull/3332) |
 | 2026-04-19 15:18:24 | Add healthcheck in the docker container | [#2998](https://github.com/jeedom/core/pull/2998) |
@@ -53,6 +54,7 @@ no entries
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-17 12:20:06 | chore: prepare 4.6.0 release | [#3372](https://github.com/jeedom/core/pull/3372) |
 | 2026-05-18 14:30:21 | Refactor error handling to use \Throwable instead of Exception and Error | [#3347](https://github.com/jeedom/core/pull/3347) |
 | 2026-05-18 14:21:29 | Refactor & code Cleanup in scenario | [#3346](https://github.com/jeedom/core/pull/3346) |
 | 2026-05-12 10:37:46 | refactor(dom.ui): seen(), unseen() and toggle() use hidden class consistently | [#3342](https://github.com/jeedom/core/pull/3342) |
@@ -100,7 +102,3 @@ no entries
 | 2026-04-16 22:32:24 | Use Composer dependency for PHPStan | [#3256](https://github.com/jeedom/core/pull/3256) |
 | 2026-04-03 15:27:29 | Update GitHub workflows to use 'develop' branch instead of 'alpha' and 'beta' | [#3240](https://github.com/jeedom/core/pull/3240) |
 
-## Uncategorized
-| Merge date | Title | PR |
-| --- | --- | --- |
-| 2026-06-17 12:20:06 | chore: prepare 4.6.0 release | [#3372](https://github.com/jeedom/core/pull/3372) |
