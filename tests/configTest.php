@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
 
 class configTest extends TestCase {
 	public function testSave() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		config::save('toto', 'toto');
 		$this->assertTrue(true);
 	}
@@ -30,7 +30,7 @@ class configTest extends TestCase {
 	* @depends testSave
 	*/
 	public function testLoad() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		$this->assertEquals('toto', config::byKey('toto'));
 	}
 	
@@ -38,7 +38,7 @@ class configTest extends TestCase {
 	* @depends testLoad
 	*/
 	public function testRemove() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		config::remove('toto');
 		$this->assertTrue(config::byKey('toto') == '');
 	}
@@ -47,7 +47,7 @@ class configTest extends TestCase {
 	* @depends testRemove
 	*/
 	public function testDefault() {
-		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
+		
 		$this->assertEquals('plop', config::byKey('toto', 'core', 'plop'));
 	}
 	
