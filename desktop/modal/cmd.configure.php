@@ -845,9 +845,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <table class="table table-condensed" id="table_widgetParametersCmd">
               <thead class="table">
                 <tr>
-                  <th style="width: 20%">Nom</th>
-                  <th style="width: 80%">Valeur</th>
-                  <th style="width: 1px">Action</th>
+                  <th style="width: 20%">{{Nom}}</th>
+                  <th style="width: 80%">{{Valeur}}</th>
+                  <th style="width: 1px">{{Action}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -863,7 +863,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     $tr .= '<input class="form-control value" value="' . htmlspecialchars($value, ENT_QUOTES) . '" />';
                     $tr .= '</td>';
                     $tr .= '<td>';
-                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
+                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> {{Supprimer}}</a>';
                     $tr .= '</td>';
                     $tr .= '</tr>';
                   }
@@ -1584,7 +1584,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         tr += '<input class="form-control value" />'
         tr += '</td>'
         tr += '<td>'
-        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>'
+        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> {{Supprimer}}</a>'
         tr += '</td>'
         tr += '</tr>'
         document.getElementById('table_widgetParametersCmd').tBodies[0].insertAdjacentHTML('beforeend', tr)
