@@ -147,7 +147,7 @@ class log extends AbstractLogger {
 		}
 		foreach ($paths as $path) {
 			if (is_file($path)) {
-				if ($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024)) {
+				if ($_onlyIfSizeExceeded && filesize($path) < ((int)self::getConfig('maxSizeLog', 5) * 1024 * 1024)) {
 					continue;
 				}
 				self::chunkLog($path);
@@ -165,7 +165,7 @@ class log extends AbstractLogger {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 
-		$maxSizeLog = (int)self::getConfig('maxSizeLog', 10);
+		$maxSizeLog = (int)self::getConfig('maxSizeLog', 5);
 		$maxSizeLog = max(1, $maxSizeLog);
 		$maxBytes = $maxSizeLog * 1024 * 1024;
 
