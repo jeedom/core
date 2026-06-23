@@ -365,7 +365,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
                   </label>
                   <div class="col-sm-6">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" type="number" min="0" max="9" step="1" maxlength="1" oninput="this.value = this.value.slice(0, 1)"/>
+                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" type="number" min="0" max="9" step="1" maxlength="1" oninput="this.value = this.value.slice(0, 1)" />
                   </div>
                 </div>
               <?php }
@@ -507,31 +507,31 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                    <option value="avg">{{Moyenne}}</option>
-                    <option value="min">{{Minimum}}</option>
-                    <option value="max">{{Maximum}}</option>
-                    <option value="none">{{Aucun}}</option>
-                  </select>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                      <option value="avg">{{Moyenne}}</option>
+                      <option value="min">{{Minimum}}</option>
+                      <option value="max">{{Maximum}}</option>
+                      <option value="none">{{Aucun}}</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
-                <sup><i class="fas fa-question-circle" title="{{Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
-                </label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
-                    <option value="">{{Default}}</option>
-                    <option value="-1">{{Aucun}}</option>
-                    <option value="60">{{1 min}}</option>
-                    <option value="300">{{5 min}}</option>
-                    <option value="600">{{10 min}}</option>
-                  </select>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
+                    <sup><i class="fas fa-question-circle" title="{{Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
+                      <option value="">{{Default}}</option>
+                      <option value="-1">{{Aucun}}</option>
+                      <option value="60">{{1 min}}</option>
+                      <option value="300">{{5 min}}</option>
+                      <option value="600">{{10 min}}</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
               <?php }
               ?>
               <div class="form-group">
@@ -554,47 +554,47 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($cmd->getIsHistorized() == 1 && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Paramètres d'affichage}}</label>
-                <div class="col-sm-2">
-                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="groupingType">
-                    <option value="">{{Aucun groupement}}</option>
-                    <option value="sum::hour">{{Somme par heure}}</option>
-                    <option value="average::hour">{{Moyenne par heure}}</option>
-                    <option value="low::hour">{{Minimum par heure}}</option>
-                    <option value="high::hour">{{Maximum par heure}}</option>
-                    <option value="sum::day">{{Somme par jour}}</option>
-                    <option value="average::day">{{Moyenne par jour}}</option>
-                    <option value="low::day">{{Minimum par jour}}</option>
-                    <option value="high::day">{{Maximum par jour}}</option>
-                    <option value="sum::week">{{Somme par semaine}}</option>
-                    <option value="average::week">{{Moyenne par semaine}}</option>
-                    <option value="low::week">{{Minimum par semaine}}</option>
-                    <option value="high::week">{{Maximum par semaine}}</option>
-                    <option value="sum::month">{{Somme par mois}}</option>
-                    <option value="average::month">{{Moyenne par mois}}</option>
-                    <option value="low::month">{{Minimum par mois}}</option>
-                    <option value="high::month">{{Maximum par mois}}</option>
-                    <option value="sum::year">{{Somme par année}}</option>
-                    <option value="average::year">{{Moyenne par année}}</option>
-                    <option value="low::year">{{Minimum par année}}</option>
-                    <option value="high::year">{{Maximum par année}}</option>
-                  </select>
-                </div>
-                <div class="col-sm-2">
-                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
-                    <option value="line">{{Ligne}}</option>
-                    <option value="area">{{Aire}}</option>
-                    <option value="column">{{Barre}}</option>
-                  </select>
-                </div>
-                <div class="col-sm-2">
-                  {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Paramètres d'affichage}}</label>
+                  <div class="col-sm-2">
+                    <select class="form-control cmdAttr" data-l1key="display" data-l2key="groupingType">
+                      <option value="">{{Aucun groupement}}</option>
+                      <option value="sum::hour">{{Somme par heure}}</option>
+                      <option value="average::hour">{{Moyenne par heure}}</option>
+                      <option value="low::hour">{{Minimum par heure}}</option>
+                      <option value="high::hour">{{Maximum par heure}}</option>
+                      <option value="sum::day">{{Somme par jour}}</option>
+                      <option value="average::day">{{Moyenne par jour}}</option>
+                      <option value="low::day">{{Minimum par jour}}</option>
+                      <option value="high::day">{{Maximum par jour}}</option>
+                      <option value="sum::week">{{Somme par semaine}}</option>
+                      <option value="average::week">{{Moyenne par semaine}}</option>
+                      <option value="low::week">{{Minimum par semaine}}</option>
+                      <option value="high::week">{{Maximum par semaine}}</option>
+                      <option value="sum::month">{{Somme par mois}}</option>
+                      <option value="average::month">{{Moyenne par mois}}</option>
+                      <option value="low::month">{{Minimum par mois}}</option>
+                      <option value="high::month">{{Maximum par mois}}</option>
+                      <option value="sum::year">{{Somme par année}}</option>
+                      <option value="average::year">{{Moyenne par année}}</option>
+                      <option value="low::year">{{Minimum par année}}</option>
+                      <option value="high::year">{{Maximum par année}}</option>
+                    </select>
                   </div>
-                <div class="col-sm-2">
-                  {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
+                  <div class="col-sm-2">
+                    <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
+                      <option value="line">{{Ligne}}</option>
+                      <option value="area">{{Aire}}</option>
+                      <option value="column">{{Barre}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
+                  </div>
+                  <div class="col-sm-2">
+                    {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
+                  </div>
                 </div>
-              </div>
               <?php } ?>
             </fieldset>
           </form>
@@ -845,9 +845,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <table class="table table-condensed" id="table_widgetParametersCmd">
               <thead class="table">
                 <tr>
-                  <th style="width: 20%">Nom</th>
-                  <th style="width: 80%">Valeur</th>
-                  <th style="width: 1px">Action</th>
+                  <th style="width: 20%">{{Nom}}</th>
+                  <th style="width: 80%">{{Valeur}}</th>
+                  <th style="width: 1px">{{Action}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -863,7 +863,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     $tr .= '<input class="form-control value" value="' . htmlspecialchars($value, ENT_QUOTES) . '" />';
                     $tr .= '</td>';
                     $tr .= '<td>';
-                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
+                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> {{Supprimer}}</a>';
                     $tr .= '</td>';
                     $tr .= '</tr>';
                   }
@@ -1162,7 +1162,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-        if (document.querySelector('#cmd_display #table_widgetParametersCmd')) { 
+        if (document.querySelector('#cmd_display #table_widgetParametersCmd')) {
           document.querySelector('#cmd_display #table_widgetParametersCmd')?.tBodies[0].childNodes.forEach(_tr => {
             if (_tr.nodeType != 3) {
               cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
@@ -1213,7 +1213,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   (function() { // Self Isolation!
     var jeeM = jeeFrontEnd.md_displayCmdConfigure
-    
+
     //Manage events outside parents delegations:
     document.getElementById('bt_cmdConfigureTest')?.addEventListener('click', function(event) {
       jeedom.cmd.test({
@@ -1495,7 +1495,11 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       var _target = null
 
       if (_target = event.target.closest('#bt_searchInfoCmdCalculValue')) {
-        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'info'
+          }
+        }, function(result) {
           document.querySelectorAll('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]')[0].insertAtCursor(result.human)
         })
       }
@@ -1580,7 +1584,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         tr += '<input class="form-control value" />'
         tr += '</td>'
         tr += '<td>'
-        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>'
+        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> {{Supprimer}}</a>'
         tr += '</td>'
         tr += '</tr>'
         document.getElementById('table_widgetParametersCmd').tBodies[0].insertAdjacentHTML('beforeend', tr)
