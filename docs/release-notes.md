@@ -57,6 +57,7 @@
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-23 11:59:28 | patch: remove nginx support | [#3376](https://github.com/jeedom/core/pull/3376) |
 | 2026-06-17 12:20:06 | chore: prepare 4.6.0 release | [#3372](https://github.com/jeedom/core/pull/3372) |
 | 2026-05-18 14:30:21 | Refactor error handling to use \Throwable instead of Exception and Error | [#3347](https://github.com/jeedom/core/pull/3347) |
 | 2026-05-18 14:21:29 | Refactor & code Cleanup in scenario | [#3346](https://github.com/jeedom/core/pull/3346) |
