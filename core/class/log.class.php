@@ -243,7 +243,7 @@ class log extends AbstractLogger {
 	}
 
 	private static function canRemoveLog(string $_log): bool {
-		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+		if (strpos($_log, 'http.error') !== false) {
 			return false;
 		}
 

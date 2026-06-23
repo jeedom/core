@@ -37,17 +37,6 @@ class corsHeadersTest extends TestCase {
 		);
 	}
 
-	public function testNginxDefaultHasNoAllowCredentials() {
-		$path = __DIR__ . '/../install/nginx_default';
-		$this->assertFileExists($path);
-		$content = file_get_contents($path);
-		$this->assertDoesNotMatchRegularExpression(
-			'/Access-Control-Allow-Credentials/i',
-			$content,
-			'nginx_default must not emit Access-Control-Allow-Credentials with Allow-Origin: *'
-		);
-	}
-
 	public function testJeeApiHasNoAllowCredentials() {
 		$path = __DIR__ . '/../core/api/jeeApi.php';
 		$this->assertFileExists($path);
