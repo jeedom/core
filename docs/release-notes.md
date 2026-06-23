@@ -9,7 +9,9 @@
 | 2026-04-19 15:18:24 | Add healthcheck in the docker container | [#2998](https://github.com/jeedom/core/pull/2998) |
 
 ## Breaking changes
-no entries
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-06-23 11:57:10 | chore: remove InfluxDB integration | [#3306](https://github.com/jeedom/core/pull/3306) |
 
 ## Fixes
 | Merge date | Title | PR |
