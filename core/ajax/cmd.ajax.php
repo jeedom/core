@@ -205,44 +205,6 @@ try {
 		ajax::success($return);
 	}
 
-	if (init('action') == 'dropInflux') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		$cmd = cmd::byId(init('cmd_id'));
-		if (!is_object($cmd)) {
-			throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('id'), 9999);
-		}
-		ajax::success($cmd->dropInflux());
-	}
-
-	if (init('action') == 'historyInflux') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		$cmd = cmd::byId(init('cmd_id'));
-		if (!is_object($cmd)) {
-			throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('id'), 9999);
-		}
-		cmd::historyInflux($cmd->getId());
-		ajax::success();
-	}
-
-	if (init('action') == 'dropDatabaseInflux') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		ajax::success(cmd::dropInfluxDatabase());
-	}
-
-	if (init('action') == 'historyInfluxAll') {
-		if (!isConnect('admin')) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
-		cmd::historyInflux('all');
-		ajax::success();
-	}
-
 	if (init('action') == 'getHumanCmdName') {
 		ajax::success(cmd::cmdToHumanReadable('#' . init('id') . '#'));
 	}

@@ -199,41 +199,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <input class="cmdAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="display:none;">
                   </div>
                 </div>
-                <?php if ($cmd->getType() == 'info') { ?>
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
-                    <div class="col-xs-1">
-                      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
-                    </div>
-                    <div class="col-xs-7"></div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
-                    <div class="col-xs-8">
-                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}">
-                    </div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Nom personnalisé Équipement}}</label>
-                    <div class="col-xs-8">
-                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
-                    </div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
-                    <div class="col-xs-8">
-                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
-                    </div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Actions}}</label>
-                    <div class="col-xs-8">
-                      <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-                      <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
-                    </div>
-                    <br /><br />
-                  </div>
-                <?php } ?>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Interdire dans les interactions automatiques}}</label>
                   <div class="col-xs-4">
@@ -1302,56 +1267,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         return
       }
 
-      if (_target = event.target.closest('#bt_influxDelete')) {
-        jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
-          if (result) {
-            jeedom.cmd.dropInflux({
-              cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: error.message,
-                  level: 'danger'
-                })
-              },
-              success: function(data) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: '{{Action envoyée avec succés}}',
-                  level: 'success'
-                })
-              }
-            })
-          }
-        })
-        return
-      }
-
-      if (_target = event.target.closest('#bt_influxHistory')) {
-        jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
-          if (result) {
-            jeedom.cmd.historyInflux({
-              cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: error.message,
-                  level: 'danger'
-                })
-              },
-              success: function(data) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: '{{Programmation envoyée avec succés}}',
-                  level: 'success'
-                })
-              }
-            })
-          }
-        })
-        return
-      }
-
       if (_target = event.target.closest('#bt_cmdConfigureReplaceMeBy')) {
         jeedom.cmd.getSelectModal({
           cmd: {
@@ -1479,14 +1394,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         return
       }
 
-      if (_target = event.target.closest('.cmdAttr[data-l2key="influx::enable"]')) {
-        if (_target.jeeValue() == 1) {
-          document.querySelectorAll('.selInflux').seen()
-        } else {
-          document.querySelectorAll('.selInflux').unseen()
-        }
-        return
-      }
     })
 
 
