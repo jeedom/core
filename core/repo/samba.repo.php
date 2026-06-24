@@ -236,8 +236,7 @@ class repo_samba {
 			$version = trim(file_get_contents(jeedom::getTmpFolder('samba') . '/version'));
 			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('samba') . '/version');
 			return $version;
-		} catch (Exception $e) {
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 		}
 		return null;
 	}

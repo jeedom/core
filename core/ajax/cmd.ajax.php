@@ -224,7 +224,8 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('id'), 9999);
 		}
-		ajax::success($cmd->historyInflux());
+		cmd::historyInflux($cmd->getId());
+		ajax::success();
 	}
 
 	if (init('action') == 'dropDatabaseInflux') {
@@ -238,7 +239,8 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		ajax::success(cmd::historyInfluxAll());
+		cmd::historyInflux('all');
+		ajax::success();
 	}
 
 	if (init('action') == 'getHumanCmdName') {
@@ -246,12 +248,12 @@ try {
 	}
 
 	if (init('action') == 'byEqLogic') {
-        if (init('typeCmd')) {
-            ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'), init('typeCmd'))));
-        } else {
-            ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
-        }
-     }
+		if (init('typeCmd')) {
+			ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'), init('typeCmd'))));
+		} else {
+			ajax::success(utils::o2a(cmd::byEqLogicId(init('eqLogic_id'))));
+		}
+	}
 
 	if (init('action') == 'getCmd') {
 		$cmd = cmd::byId(init('id'));
@@ -385,8 +387,8 @@ try {
 		}
 
 		if ($dateStart == '' && init('dateRange') != 'all') {
-			$now = date('Y-m-d');
-			$dateStart = $now->modify('- ' . init('dateRange'));
+			$now = new DateTime();
+			$dateStart = $now->modify('- ' . init('dateRange'))->format('Y-m-d');
 		}
 
 		$return['maxValue'] = '';
@@ -422,6 +424,13 @@ try {
 			}
 			$return['derive'] = $derive;
 			$groupingType = init('groupingType');
+			if (is_array($groupingType)) {
+				if (isset($groupingType['function']) && isset($groupingType['time'])) {
+					$groupingType = $groupingType['function'] . '::' . $groupingType['time'];
+				} else {
+					$groupingType = implode('::', array_values($groupingType));
+				}
+			}
 			if ($groupingType == '') {
 				$groupingType = $cmd->getDisplay('groupingType');
 			}
@@ -465,7 +474,7 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
-			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'), init('addFirstPreviousValue', false));
+			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
 					$info_history = array();
@@ -497,7 +506,7 @@ try {
 	if (init('action') == 'getLastHistory') {
 		$cmd = cmd::byId(init('id'));
 		$_time = date('Y-m-d H:i:s', strtotime(init('time')));
-		if(is_object($cmd)){
+		if (is_object($cmd)) {
 			ajax::success($cmd->getLastHistory($_time));
 		} else {
 			throw new Exception(__('Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens', __FILE__) . ' ' . init('id'));

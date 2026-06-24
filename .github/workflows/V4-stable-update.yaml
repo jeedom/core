@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout code and create/checkout local V4-stable branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0  # Fetches all history for all branches and tags
           ref: refs/heads/V4-stable

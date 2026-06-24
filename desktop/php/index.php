@@ -112,8 +112,7 @@ function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
 	$homeLogoSrc = config::byKey('logo_light');
 	$dataNoChange = false;
-	$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5=' . md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css') . '" rel="stylesheet">';
-	$themeJs = 'core2019_Light/desktop/core2019_Light';
+	$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/core2019_Light/desktop/core2019_Light.css?v=' . jeedom::version() . '" rel="stylesheet">';
 
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
@@ -126,8 +125,8 @@ function setTheme() {
 		}
 	}
 	if (init('rescue', 0) == 0) {
-		if (is_dir(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
-			$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?md5=' . md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css') . '" rel="stylesheet">';
+		if (file_exists(__DIR__ . "/../../core/themes/{$themeDefinition}/desktop/{$themeDefinition}.css")) {
+			$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?v=' . jeedom::version() . '" rel="stylesheet">';
 			if ($dataNoChange) $themeCss = str_replace('rel="stylesheet"', 'rel="stylesheet" data-nochange="1"', $themeCss);
 		}
 	}
@@ -137,9 +136,8 @@ function setTheme() {
 	}
 	echo $themeCss;
 	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
-		$shdPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/shadows.css';
-		if (file_exists($shdPath)) {
-			echo '<link id="shadows_theme_css" href="core/themes/' . $themeDefinition . '/desktop/shadows.css" rel="stylesheet">';
+		if (file_exists(__DIR__ . "/../../core/themes/{$themeDefinition}/desktop/shadows.css")) {
+			echo '<link id="shadows_theme_css" href="core/themes/' . $themeDefinition . '/desktop/shadows.css?v=' . jeedom::version() . '" rel="stylesheet">';
 		}
 	}
 }

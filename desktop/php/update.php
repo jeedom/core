@@ -127,11 +127,17 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
-						{{Avant toute mise à jour, merci de consulter le}} <span class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
+						{{En cas de mise à jour du core, veuillez prendre connaissance du}}
+						<a class="btn btn-xs" id="bt_warnChangelogCore" target="_blank"><i class="fas fa-book"></i>
+							{{Changelog}}
+						</a>
+						{{au préalable}}.
 					</div>
-					<?php if (config::byKey('core::branch') == 'beta' || config::byKey('core::branch') == 'alpha') { ?>
+					<?php $branch = config::byKey('core::branch');
+					if (!in_array($branch, ['master', 'release'])) { ?>
 						<div class="alert alert-danger">
-							{{Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : }} <?php echo config::byKey('core::branch'); ?>. {{Cette version ne bénéficie d'aucun support de Jeedom SAS.}}
+							{{Attention vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : }} <?= $branch ?>.
+							{{Cette version ne bénéficie pas du support officiel.}}
 						</div>
 					<?php } ?>
 
@@ -185,7 +191,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 							<label class="col-xs-6 control-label warning"><i class="fas fa-exclamation-triangle"></i> {{Script d'update à réappliquer}}</label>
 							<div class="col-xs-5">
 								<select id="sel_updateVersion" class="form-control input-sm updateOption" data-l1key="update::reapply">
-									<option value="">{{Aucune}}</option>
+									<option value="">{{Aucun}}</option>
 									<?php
 									$updates = array();
 									foreach ((update::listCoreUpdate()) as $udpate) {

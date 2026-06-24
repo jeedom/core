@@ -56,51 +56,51 @@ class user {
 	public static function connect(string $_login, string $_mdp) {
 		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
-			log::add("connection", "info", __('LDAP Authentification', __FILE__));
+			log::add("connection", "info", 'LDAP Authentication');
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
 			if (!$ad) {
-				log::add("connection", "info", __('Connection LDAP Error', __FILE__));
+				log::add("connection", "info", 'Connection LDAP Error');
 				return false;
 			}
-			log::add("connection", "info", __('LDAP Connection OK', __FILE__));
+			log::add("connection", "info", 'LDAP Connection OK');
 			ldap_set_option($ad, LDAP_OPT_PROTOCOL_VERSION, 3);
 			ldap_set_option($ad, LDAP_OPT_REFERRALS, 0);
 			if (config::byKey('ldap:tls')) {
 				if (!ldap_start_tls($ad)) {
-					log::add("connection", "debug", __('start TLS KO', __FILE__));
+					log::add("connection", "debug", 'start TLS KO');
 					return false;
 				} else {
-					log::add("connection", "debug", __('start TLS OK', __FILE__));
+					log::add("connection", "debug", 'start TLS OK');
 				}
 			}
 			if (config::byKey('ldap:samba4')) {
 				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_mdp)) {
-					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
+					log::add("connection", "info", 'LDAP bind user - login/password denied');
 					return false;
 				}
 			} else {
 				if (!ldap_bind($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
-					log::add("connection", "info", __('LDAP bind user - login/password denied', __FILE__));
+					log::add("connection", "info", 'LDAP bind user - login/password denied');
 					return false;
 				}
 			}
-			log::add("connection", "debug", __('LDAP Bind user - OK', __FILE__));
+			log::add("connection", "debug", 'LDAP Bind user - OK');
 			if (config::bykey('ldap:filter:admin') == "" && config::bykey('ldap:filter:user') == "" && config::bykey('ldap:filter:restrict') == "") {
-				log::add("connection", "warning", __('LDAP Profile Check - [WARNING] None filter was set, "', __FILE__) . $_login . __('"  authenticated as an administrator', __FILE__));
+				log::add("connection", "warning", 'LDAP Profile Check - [WARNING] None filter was set, "' . $_login . '"  authenticated as an administrator');
 				$profile = 'admin';
 			} else {
 				foreach (array('admin', 'user', 'restrict', 'none') as $profile) {
 					if ($profile == 'none') {
-						log::add("connection", "warning", __('LDAP Profile Check - [WARNING] No profile has been set for "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
+						log::add("connection", "warning", 'LDAP Profile Check - [WARNING] No profile has been set for "' . $_login . '" user in the LDAP');
 						break;
 					}
 					if (config::bykey('ldap:filter:' . $profile) != "") {
 						$filters = '(&(' . config::bykey('ldap::usersearch') . '=' . $_login . ')' . config::bykey('ldap:filter:' . $profile) . ')';
-						log::add("connection", "debug", __('LDAP Profile Check - filter:, "' . $filters . '"', __FILE__));
+						log::add("connection", "debug", 'LDAP Profile Check - filter:, "' . $filters . '"');
 						$result = ldap_search($ad, config::byKey('ldap:basedn'), $filters);
 						$entries = ldap_get_entries($ad, $result);
 						if ($entries['count'] > 0) {
-							log::add("connection", "info", __('LDAP Profile Check - The "', __FILE__) . $profile . __('" profile was FOUND for "', __FILE__) . $_login . __('" user in the LDAP', __FILE__));
+							log::add("connection", "info", 'LDAP Profile Check - The "' . $profile . '" profile was FOUND for "' . $_login . '" user in the LDAP');
 							break;
 						}
 					}
@@ -121,17 +121,17 @@ class user {
 					->setOptions('lastConnection', date('Y-m-d H:i:s'))
 					->setProfils($profile);
 				$user->save();
-				log::add("connection", "info", __('User created from the LDAP :', __FILE__) . ' ' . $_login);
+				log::add("connection", "info", 'User created from the LDAP: ' . $_login);
 				jeedom::event('user_connect', false, array('trigger_value' => $_login));
 				// TODO : if username == password => change ldap password
-				log::add('event', 'info', __('User connection accepted', __FILE__) . ' ' . $_login);
+				log::add('event', 'info', 'User connection accepted: ' . $_login);
 				return $user;
 			} else {
 				$user = self::byLogin($_login);
 				if (is_object($user)) {
 					$user->remove();
 				}
-				log::add("connection", "info", __('User not allowed to access to Jeedom according to the LDAP (', __FILE__) . $_login . ')');
+				log::add("connection", "info", "User not allowed to access to Jeedom according to the LDAP ({$_login})");
 			}
 		}
 		$user = user::byLoginAndPassword($_login, $sMdp);
@@ -139,15 +139,15 @@ class user {
 			$user = user::byLoginAndPassword($_login, sha1($_mdp));
 			if (is_object($user)) {
 				$user->setPassword($sMdp);
-				log::add('event', 'info', __('Local account found for', __FILE__) . ' ' . $_login);
+				log::add('event', 'info', 'Local account found for: ' . $_login);
 			}
 		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
 			jeedom::event('user_connect', false, array('trigger_value' => $_login));
-			log::add('event', 'info', __('Local account found for', __FILE__) . ' ' . $_login);
-			log::add('event', 'info', __('User connection accepted', __FILE__) . ' ' . $_login);
+			log::add('event', 'info', 'Local account found for: ' . $_login);
+			log::add('event', 'info', 'User connection accepted: ' . $_login);
 		}
 		return $user;
 	}
@@ -276,10 +276,10 @@ class user {
 
 	public static function failedLogin(): void {
 		$current_ip = getClientIp();
-		$failed_login = cache::byKey('security::failed_login::'.$current_ip);
-		cache::set('security::failed_login::'.$current_ip,($failed_login->getValue(0)+1), config::byKey('security::timeLoginFailed'));
-		if(($failed_login->getValue(0)+1) > config::byKey('security::maxFailedLogin')){
-		    $ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
+		$failed_login = cache::byKey('security::failed_login::' . $current_ip);
+		cache::set('security::failed_login::' . $current_ip, ($failed_login->getValue(0) + 1), config::byKey('security::timeLoginFailed'));
+		if (($failed_login->getValue(0) + 1) > config::byKey('security::maxFailedLogin')) {
+			$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
 			$ban_ips[$current_ip] = strtotime('now');
 			cache::set('security::banip', json_encode($ban_ips));
 		}
@@ -309,13 +309,13 @@ class user {
 		}
 		if (count($ban_ips) > 0 && is_int(intval(config::byKey('security::bantime')))) {
 			foreach ($ban_ips as $ip => $datetime) {
-				if(!is_int(intval($datetime))){
+				if (!is_int(intval($datetime))) {
 					continue;
 				}
 				if (intval(config::byKey('security::bantime')) == -1 || intval($datetime) + intval(config::byKey('security::bantime')) > strtotime('now')) {
 					if ($ip == $current_ip) {
 						jeedom::event('ip_ban', false, ['ip' => $ip, 'datetime' => intval($datetime)]);
-                      	return true;
+						return true;
 					}
 					continue;
 				}
@@ -421,7 +421,7 @@ class user {
 
 	public function preInsert(): void {
 		if (is_object(self::byLogin($this->getLogin()))) {
-			throw new Exception(__('Ce nom d\'utilisateur est déja pris', __FILE__));
+			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
 		}
 	}
 
@@ -430,15 +430,15 @@ class user {
 			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
 		}
 		if ($this->getPassword() == '') {
-			throw new Exception(__('Le mot de passe ne peut etre vide', __FILE__));
+			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
 		}
 		$admins = user::byProfils('admin', true);
 		if (count($admins) == 1 && $admins[0]->getId() == $this->getId()) {
 			if ($this->getProfils() == 'admin' && $this->getEnable() == 0) {
-				throw new Exception(__('Vous ne pouvez désactiver le dernier utilisateur', __FILE__));
+				throw new Exception(__('Vous ne pouvez pas désactiver le dernier utilisateur', __FILE__));
 			}
 			if ($this->getProfils() != 'admin') {
-				throw new Exception(__('Vous ne pouvez changer le profil du dernier administrateur', __FILE__));
+				throw new Exception(__('Vous ne pouvez pas changer le profil du dernier administrateur', __FILE__));
 			}
 		}
 	}
@@ -457,7 +457,7 @@ class user {
 
 	public function preRemove(): void {
 		if (count(user::byProfils('admin', true)) == 1 && ($this->getProfils() == 'admin' && $this->getEnable() == 1)) {
-			throw new Exception(__('Vous ne pouvez supprimer le dernier administrateur', __FILE__));
+			throw new Exception(__('Vous ne pouvez pas supprimer le dernier administrateur', __FILE__));
 		}
 	}
 
@@ -513,7 +513,7 @@ class user {
 		if ($_password != '') {
 			$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
 		} else {
-			throw new Exception(__('Le mot de passe ne peut etre vide', __FILE__));
+			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->password, $_password);
 		$this->password = $_password;

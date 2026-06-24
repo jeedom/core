@@ -64,7 +64,7 @@ try {
 		}
 		if ($update->getConfiguration('doNotUpdate') == 1) {
 			throw new Exception(__('Mise à jour et réinstallation désactivées sur ', __FILE__) . ' ' . $repo->getLogicalId());
-		}		
+		}
 		$update->setSource(init('repo'));
 		$update->setLogicalId($repo->getLogicalId());
 		$update->setType($repo->getType());
@@ -85,7 +85,7 @@ try {
 		unautorizedInDemo();
 		$class = 'repo_' . init('repo');
 		$repo = $class::byId(init('id'));
-		if (!is_object($market)) {
+		if (!is_object($repo)) {
 			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . init('id'));
 		}
 		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
@@ -93,7 +93,7 @@ try {
 			if (is_object($update)) {
 				$update->remove();
 			} else {
-				$market->remove();
+				$repo->remove();
 			}
 		} catch (Exception $e) {
 			if (is_object($update)) {

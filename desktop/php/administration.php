@@ -41,7 +41,7 @@ $productName = config::byKey('product_name');
 			<li role="presentation"><a data-target="#repporttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-newspaper" title="{{Rapports}}"></i><span> {{Rapports}}</span></a></li>
 			<li role="presentation"><a data-target="#graphlinktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-sitemap" title="{{Liens}}"></i><span> {{Liens}}</span></a></li>
 			<li role="presentation"><a data-target="#interacttab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-microphone" title="{{Interactions}}"></i><span> {{Interactions}}</span></a></li>
-			<li role="presentation"><a data-target="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt" title="{{Securité}}"></i><span> {{Securité}}</span></a></li>
+			<li role="presentation"><a data-target="#securitytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-shield-alt" title="{{Sécurité}}"></i><span> {{Sécurité}}</span></a></li>
 			<li role="presentation"><a data-target="#updatetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-credit-card" title="{{Mises à jour}}"></i><span> {{Mises à jour/Market}}</span></a></li>
 			<li role="presentation"><a data-target="#cachetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="far fa-hdd" title="{{Cache}}"></i><span> {{Cache}}</span></a></li>
 			<li role="presentation"><a data-target="#apitab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-key" title="{{API}}"></i><span> {{API}}</span></a></li>
@@ -1134,15 +1134,15 @@ $productName = config::byKey('product_name');
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Limiter à une valeur toutes les}}
-							<sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeurs historisées par les commandes en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" title="{{Limite le nombre de valeurs historisées par les commandes en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
-							<select class="form-control configKey" data-l1key="history::smooth">
-								<option value="-2">{{Aucun}}</option>
-								<option value="60">{{1 min}}</option>
-								<option value="300">{{5 min}}</option>
-								<option value="600">{{10 min}}</option>
-							</select>
+								<select class="form-control configKey" data-l1key="history::smooth">
+									<option value="-2">{{Aucun}}</option>
+									<option value="60">{{1 min}}</option>
+									<option value="300">{{5 min}}</option>
+									<option value="600">{{10 min}}</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
@@ -1767,11 +1767,11 @@ $productName = config::byKey('product_name');
 									foreach ($ban_ips as $ip => $datetime) {
 										$div .= '<tr>';
 										$div .= '<td>' . $ip . '</td>';
-										$div .= '<td>' . date('Y-m-d H:i:s',(int) $datetime) . '</td>';
+										$div .= '<td>' . date('Y-m-d H:i:s', (int) $datetime) . '</td>';
 										if (config::byKey('security::bantime') == -1) {
 											$div .= '<td>{{Jamais}}</td>';
 										} else {
-											$div .= '<td>' . date('Y-m-d H:i:s',(int) ($datetime + config::byKey('security::bantime'))) . '</td>';
+											$div .= '<td>' . date('Y-m-d H:i:s', (int) ($datetime + config::byKey('security::bantime'))) . '</td>';
 										}
 										$div .= '</tr>';
 									}
@@ -1820,52 +1820,52 @@ $productName = config::byKey('product_name');
 												<optgroup label="{{Defaut (support)}}">
 													<option value="master">{{Stable}}</option>
 												</optgroup>
-												<?php 
-												if(config::byKey('core::repo::provider') == 'default'){
+												<?php
+												if (config::byKey('core::repo::provider') == 'default') {
 													$lists = cache::byKey('core::branch::default::list')->getValue(array());
-													if(!isset($lists['branchs']) || !is_array($lists['branchs'])){
+													if (!isset($lists['branchs']) || !is_array($lists['branchs'])) {
 														$request_http = new com_http('https://api.github.com/repos/jeedom/core/branches');
 														$request_http->setHeader(array('User-agent: jeedom'));
 														try {
 															$lists['branchs'] = json_decode($request_http->exec(10, 1), true);
 														} catch (\Exception $e) {
 														}
-														cache::set('core::branch::default::list',$lists,86400);
+														cache::set('core::branch::default::list', $lists, 86400);
 													}
-													if(!isset($lists['tags']) || !is_array($lists['tags'])){
+													if (!isset($lists['tags']) || !is_array($lists['tags'])) {
 														$request_http = new com_http('https://api.github.com/repos/jeedom/core/tags');
 														$request_http->setHeader(array('User-agent: jeedom'));
 														try {
 															$lists['tags'] = json_decode($request_http->exec(10, 1), true);
 														} catch (\Exception $e) {
 														}
-														cache::set('core::branch::default::list',$lists,86400);
-												  }
-												if(isset($lists['branchs']) && is_array($lists['branchs'])){
-													echo '<optgroup label="{{Branches (Pas de support)}}">';
-													foreach ($lists['branchs'] as $branch) {
-														if(!is_array($branch) || !isset($branch['name'])){
-															continue;
-														}
-														if(in_array($branch['name'],array('V4-stable','master'))){
-															continue;
-														}
-														echo '<option value="'.$branch['name'].'">'.$branch['name'].'</option>';
+														cache::set('core::branch::default::list', $lists, 86400);
 													}
-													echo '</optgroup>';
-												}
-												if(isset($lists['tags']) && is_array($lists['tags'])){
-													echo '<optgroup label="{{Tags (Pas de support)}}">';
-													foreach ($lists['tags'] as $tag) {
-														if(!is_array($tag) || !isset($tag['name'])){
-															continue;
+													if (isset($lists['branchs']) && is_array($lists['branchs'])) {
+														echo '<optgroup label="{{Branches (Pas de support)}}">';
+														foreach ($lists['branchs'] as $branch) {
+															if (!is_array($branch) || !isset($branch['name'])) {
+																continue;
+															}
+															if (in_array($branch['name'], array('V4-stable', 'master'))) {
+																continue;
+															}
+															echo '<option value="' . $branch['name'] . '">' . $branch['name'] . '</option>';
 														}
-														echo '<option value="tag::'.$tag['name'].'">'.$tag['name'].'</option>';
+														echo '</optgroup>';
 													}
-													echo '</optgroup>';
+													if (isset($lists['tags']) && is_array($lists['tags'])) {
+														echo '<optgroup label="{{Tags (Pas de support)}}">';
+														foreach ($lists['tags'] as $tag) {
+															if (!is_array($tag) || !isset($tag['name'])) {
+																continue;
+															}
+															echo '<option value="tag::' . $tag['name'] . '">' . $tag['name'] . '</option>';
+														}
+														echo '</optgroup>';
+													}
 												}
-											}
-											?>
+												?>
 											</select>
 											<span class="input-group-btn">
 												<a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>

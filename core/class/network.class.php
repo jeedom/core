@@ -328,7 +328,7 @@ class network {
 			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
-		if (!is_object($plugin)) {
+		if (!is_object($plugin) || !class_exists('openvpn')) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
 		}
 		if (!$plugin->isActive()) {

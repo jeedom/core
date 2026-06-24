@@ -111,7 +111,7 @@ if (!jeeFrontEnd.update) {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000)
           } else {
-            document.getElementById('bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
+            document.querySelector('#bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
             document.querySelectorAll('.bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
           }
         }
@@ -237,8 +237,8 @@ if (!jeeFrontEnd.update) {
             default:
               updClass = 'label-danger'
           }
-          if (typeof _update.configuration.user!== 'undefined'){
-            tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version +' - '+ _update.configuration.user + '</span>'
+          if (typeof _update.configuration.user !== 'undefined') {
+            tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + ' - ' + _update.configuration.user + '</span>'
           } else {
             tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
           }
@@ -267,7 +267,7 @@ if (!jeeFrontEnd.update) {
         if (_update.configuration && _update.configuration.version == 'beta') {
           if (isset(_update.plugin) && isset(_update.plugin.changelog_beta) && _update.plugin.changelog_beta != '') {
             tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog_beta + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          } else if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') { 
+          } else if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
             tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
           } else {
             tr += '<a class="btn btn-xs disabled"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
@@ -280,7 +280,7 @@ if (!jeeFrontEnd.update) {
           }
         }
       } else {
-        tr += '<a class="btn btn-xs" target="_blank" href="'+_update.changelog_url+'"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+        tr += '<a class="btn btn-xs" target="_blank" href="' + _update.changelog_url + '" id="bt_changelogCore"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
       }
       if (_update.type != 'core') {
         if (_update.status == 'UPDATE') {
@@ -542,6 +542,7 @@ if (!jeeFrontEnd.update) {
             var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
             newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
+            newContent.querySelector('#bt_warnChangelogCore').href = document.getElementById('bt_changelogCore').href
             newContent.querySelectorAll('[data-title]').forEach(_tooltip => {
               _tooltip.setAttribute('title', _tooltip.getAttribute('data-title'))
               _tooltip.removeAttribute('data-title')
@@ -640,50 +641,50 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#table_update .update')) {
-    if (_target.hasClass('disabled')) return;
-    var id = _target.closest('tr').getAttribute('data-id');
-    var logicalId = _target.closest('tr').getAttribute('data-logicalid');
+    if (_target.hasClass('disabled')) return
+    var id = _target.closest('tr').getAttribute('data-id')
+    var logicalId = _target.closest('tr').getAttribute('data-logicalid')
 
     jeedom.plugin.get({
-        id: logicalId,
-        error: function(error) {
-            jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-            });
-        },
-        success: function(data) {
-            var isActivated = (data.activate !== undefined && data.activate !== null) ? data.activate : 1;
-            var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin :}} ' + logicalId + ' ?';
-            if (isActivated != 1) {
-                confirmationMessage = '{{Attention : Le plugin ' + logicalId + ' n\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}';
-            }
-
-            jeeDialog.confirm(confirmationMessage, function(result) {
-                if (result) {
-                    jeeP.progress = -1;
-                    document.getElementById('progressbarContainer').removeClass('hidden');
-                    document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled');
-                    jeeP.updateProgressBar();
-                    jeedomUtils.hideAlert();
-                    jeedom.update.do({
-                        id: id,
-                        error: function(error) {
-                            jeedomUtils.showAlert({
-                                message: error.message,
-                                level: 'danger'
-                            });
-                        },
-                        success: function() {
-                            jeeP.getJeedomLog(1, 'update');
-                        }
-                    });
-                }
-            });
+      id: logicalId,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        var isActivated = (data.activate !== undefined && data.activate !== null) ? data.activate : 1
+        var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin :}} ' + logicalId + ' ?'
+        if (isActivated != 1) {
+          confirmationMessage = '{{Attention : Le plugin ' + logicalId + ' n\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}'
         }
-    });
-    return;
-}
+
+        jeeDialog.confirm(confirmationMessage, function(result) {
+          if (result) {
+            jeeP.progress = -1
+            document.getElementById('progressbarContainer').removeClass('hidden')
+            document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled')
+            jeeP.updateProgressBar()
+            jeedomUtils.hideAlert()
+            jeedom.update.do({
+              id: id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                jeeP.getJeedomLog(1, 'update')
+              }
+            })
+          }
+        })
+      }
+    })
+    return
+  }
 
   if (_target = event.target.closest('#table_update .remove')) {
     var id = _target.closest('tr').getAttribute('data-id')

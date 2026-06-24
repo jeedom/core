@@ -1,0 +1,117 @@
+name: Generate draft release notes
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Get last tag
+        id: lasttag
+        run: |
+          TAG=$(git describe --tags --abbrev=0)
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Get tag date
+        id: tagdate
+        run: |
+          DATE=$(git log -1 --format=%cI ${{ steps.lasttag.outputs.tag }})
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+
+      - name: Generate markdown file
+        id: genmd
+        run: |
+          mkdir -p docs
+
+          echo "# All changes since release ${{ steps.lasttag.outputs.tag }}" > docs/release-notes.md
+          echo "" >> docs/release-notes.md
+          PRS_JSON=$(gh pr list \
+            --state merged \
+            --base develop \
+            --limit 1000 \
+            --search "merged:>${{ steps.tagdate.outputs.date }}" \
+            --json number,title,mergedAt,url,labels)
+
+          add_section() {
+            local title="$1"
+            local label="$2"
+            local rows
+
+            echo "## $title" >> docs/release-notes.md
+
+            rows=$(echo "$PRS_JSON" | jq -r --arg label "$label" '
+              map(select((.title | startswith("[CI]")) | not))
+              | map(select(any(.labels[]?; (.name | ascii_downcase) == ($label | ascii_downcase))))
+              | sort_by(.mergedAt) | reverse | .[]
+              | "| \(.mergedAt | fromdateiso8601 | strflocaltime("%Y-%m-%d %H:%M:%S")) | \(.title | gsub("\\|"; "\\\\|")) | [#\(.number)](\(.url)) |"
+            ')
+
+            if [ -z "$rows" ]; then
+              echo "no entries" >> docs/release-notes.md
+            else
+              echo "| Merge date | Title | PR |" >> docs/release-notes.md
+              echo "| --- | --- | --- |" >> docs/release-notes.md
+              echo "$rows" >> docs/release-notes.md
+            fi
+
+            echo "" >> docs/release-notes.md
+          }
+
+          add_section "New core features" "changelog-feat"
+          add_section "Breaking changes" "changelog-breaking"
+          add_section "Fixes" "changelog-fix"
+          add_section "Others" "changelog-other"
+          add_section "Documentations" "changelog-docs"
+          add_section "Developer" "changelog-dev"
+
+          UNCATEGORIZED_ROWS=$(echo "$PRS_JSON" | jq -r '
+            map(select((.title | startswith("[CI]")) | not))
+            | map(select(
+              ((any(.labels[]?; (.name | ascii_downcase) == "changelog-feat")) | not) and
+              ((any(.labels[]?; (.name | ascii_downcase) == "changelog-breaking")) | not) and
+              ((any(.labels[]?; (.name | ascii_downcase) == "changelog-fix")) | not) and
+              ((any(.labels[]?; (.name | ascii_downcase) == "changelog-other")) | not) and
+              ((any(.labels[]?; (.name | ascii_downcase) == "changelog-docs")) | not) and
+              ((any(.labels[]?; (.name | ascii_downcase) == "changelog-dev")) | not)
+            ))
+            | sort_by(.mergedAt) | reverse | .[]
+            | "| \(.mergedAt | fromdateiso8601 | strflocaltime("%Y-%m-%d %H:%M:%S")) | \(.title | gsub("\\|"; "\\\\|")) | [#\(.number)](\(.url)) |"
+          ')
+          if [ -n "$UNCATEGORIZED_ROWS" ]; then
+            echo "## Uncategorized" >> docs/release-notes.md
+            echo "| Merge date | Title | PR |" >> docs/release-notes.md
+            echo "| --- | --- | --- |" >> docs/release-notes.md
+            echo "$UNCATEGORIZED_ROWS" >> docs/release-notes.md
+          fi
+
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TZ: Europe/Paris
+
+      - name: Commit markdown file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add docs/release-notes.md
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Update release-notes.md [skip ci]"
+          git push

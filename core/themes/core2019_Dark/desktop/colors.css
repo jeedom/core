@@ -3,7 +3,7 @@ Theme Core 2019 @Jeedom
 colors Dark
 */
 :root {
-  --lineheight : 1.42em;
+  --lineheight: 1.42em;
   /* keep it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
@@ -55,22 +55,23 @@ colors Dark
   --lb-info-color: rgb(80, 160, 180);
   --lb-yellow-color: rgb(210, 180, 0);
   --al-info-color: rgb(80, 120, 170);
-  --al-primary-color:  rgb(50, 110, 160);
+  --al-primary-color: rgb(50, 110, 160);
   --al-success-color: rgb(50, 130, 60);
   --al-warning-color: rgb(195, 125, 40);
   --al-danger-color: rgb(185, 58, 62);
   --bt-success-color: rgb(150, 201, 39);
 
-  --scBlocIF: rgb(65,90,110);
-  --scBlocElse: rgb(50,75,95);
-  --scBlocACTION: rgb(132,120,112);
-  --scBlocIN: rgb(75,128,62);
-  --scBlocAT: rgb(92,122,132);
-  --scBlocFOR: rgb(152,116,22);
-  --scBlocCODE: rgb(160,60,25);
-  --scBlocCOM: rgb(60,60,60);
+  --scBlocIF: rgb(65, 90, 110);
+  --scBlocElse: rgb(50, 75, 95);
+  --scBlocACTION: rgb(132, 120, 112);
+  --scBlocIN: rgb(75, 128, 62);
+  --scBlocAT: rgb(92, 122, 132);
+  --scBlocFOR: rgb(152, 116, 22);
+  --scBlocWHILE: rgb(102, 82, 120);
+  --scBlocCODE: rgb(160, 60, 25);
+  --scBlocCOM: rgb(60, 60, 60);
 
-  --scBlocSep: rgb(35,35,35);
+  --scBlocSep: rgb(35, 35, 35);
 
   --shd-color: rgba(15, 15, 15, 0.55);
 }

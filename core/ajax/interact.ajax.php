@@ -30,7 +30,7 @@ try {
 		$results = utils::o2a(interactDef::all());
 		foreach ($results as &$result) {
 			$result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
-			$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
+			$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
 			if (isset($result['link_type']) && $result['link_type'] == 'cmd' && $result['link_id'] != '') {
 				$link_id = '';
 				foreach (explode('&&', $result['link_id']) as $cmd_id) {
@@ -49,7 +49,7 @@ try {
 	if (init('action') == 'byId') {
 		$result = utils::o2a(interactDef::byId(init('id')));
 		$result['nbInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
-		$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id'], true));
+		$result['nbEnableInteractQuery'] = count(interactQuery::byInteractDefId($result['id']));
 		ajax::success(jeedom::toHumanReadable($result));
 	}
 

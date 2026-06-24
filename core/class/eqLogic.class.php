@@ -608,7 +608,7 @@ class eqLogic {
 	/*     * *********************Méthodes d'instance************************* */
 
 	public function batteryWidget($_version = 'dashboard') {
-		if($this->getConfiguration('battery::disable',0) == 1){
+		if ($this->getConfiguration('battery::disable', 0) == 1) {
 			return '';
 		}
 		$html = '';
@@ -808,7 +808,7 @@ class eqLogic {
 
 		if ($this->getAlert() != '') {
 			$alert = $this->getAlert();
-			if($this->getConfiguration('battery::disable',0) == 0 || ($alert['key'] != 'batterywarning' && $alert['key'] != 'batterydanger')){
+			if ($this->getConfiguration('battery::disable', 0) == 0 || ($alert['key'] != 'batterywarning' && $alert['key'] != 'batterydanger')) {
 				$replace['#alert_name#'] = $alert['name'];
 				$replace['#alert_icon#'] = $alert['icon'];
 				$replace['#background-color#'] = $alert['color'];
@@ -1001,7 +1001,7 @@ class eqLogic {
 				$this->setConfiguration('createtime', date('Y-m-d H:i:s'));
 				$this->setDisplay('backGraph::info', 0);
 			}
-			if($this->getConfiguration('battery::disable',0) == 1){
+			if ($this->getConfiguration('battery::disable', 0) == 1) {
 				$this->setStatus(array('battery' => null, 'batterydanger' => 0, 'batterywarning' => 0));
 			}
 			if ($this->getDisplay('layout::dashboard') != 'table') {
@@ -1141,10 +1141,10 @@ class eqLogic {
 		}
 		$currentpourcent = null;
 		if ($_pourcent === '' || !is_numeric($_pourcent)) {
-			$_pourcent = $this->getStatus('battery',100);
-			$_datetime = $this->getStatus('batteryDatetime',date('Y-m-d H:i:s'));
+			$_pourcent = $this->getStatus('battery', 100);
+			$_datetime = $this->getStatus('batteryDatetime', date('Y-m-d H:i:s'));
 		} else {
-			$currentpourcent = $this->getStatus('battery',100);
+			$currentpourcent = $this->getStatus('battery', 100);
 		}
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
@@ -1181,7 +1181,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] ' . $message,
+								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}
@@ -1211,7 +1211,7 @@ class eqLogic {
 						$cmd = cmd::byId(str_replace('#', '', $id));
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
-								'title' => __('[' . config::byKey('name', 'core', 'JEEDOM') . ']', __FILE__) . ' ' . $message,
+								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
 								'message' => config::byKey('name', 'core', 'JEEDOM') . ' : ' . $message,
 							));
 						}
@@ -1550,12 +1550,12 @@ class eqLogic {
 		return $return;
 	}
 
-	public function getCustomImage(){
+	public function getCustomImage() {
 		if ($this->getConfiguration('image::sha512') == '') {
 			return null;
 		}
 		$filename = 'eqLogic' . $this->getId() . '-' . $this->getConfiguration('image::sha512') . '.' . $this->getConfiguration('image::type');
-		if(file_exists(__DIR__ . '/../../data/eqLogic/'.$filename)){
+		if (file_exists(__DIR__ . '/../../data/eqLogic/' . $filename)) {
 			return 'data/eqLogic/' . $filename;
 		}
 		return null;
@@ -1563,7 +1563,7 @@ class eqLogic {
 
 	public function getImage() {
 		$customImage = $this->getCustomImage();
-		if($customImage !== null){
+		if ($customImage !== null) {
 			return $customImage;
 		}
 		$plugin = plugin::byId($this->getEqType_name());

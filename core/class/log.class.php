@@ -147,7 +147,7 @@ class log extends AbstractLogger {
 		}
 		foreach ($paths as $path) {
 			if (is_file($path)) {
-				if ($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024)) {
+				if ($_onlyIfSizeExceeded && filesize($path) < ((int)self::getConfig('maxSizeLog', 5) * 1024 * 1024)) {
 					continue;
 				}
 				self::chunkLog($path);
@@ -155,28 +155,44 @@ class log extends AbstractLogger {
 		}
 	}
 
-	public static function chunkLog($_path) {
-		if (strpos($_path, '.htaccess') !== false) {
+	private static function chunkLog(string $rawPath) {
+		if (strpos($rawPath, '.htaccess') !== false) {
 			return;
 		}
-		$maxLineLog = self::getConfig('maxLineLog');
+
+		$maxLineLog = (int)self::getConfig('maxLineLog', self::DEFAULT_MAX_LINE);
 		if ($maxLineLog < self::DEFAULT_MAX_LINE) {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
+
+		$maxSizeLog = (int)self::getConfig('maxSizeLog', 5);
+		$maxSizeLog = max(1, $maxSizeLog);
+		$maxBytes = $maxSizeLog * 1024 * 1024;
+
+		if (filesize($rawPath) < $maxBytes) {
+			$output = trim(com_shell::execute("wc -l < " . escapeshellarg($rawPath)));
+			if (ctype_digit($output) && (int)$output <= $maxLineLog) {
+				// file is smaller than max size and has less lines than max lines, no need to chunk it
+				return;
+			}
+		}
+
+		$sudo = system::getCmdSudo();
+		$shellPath = escapeshellarg($rawPath);
+		$tmpFile = escapeshellarg(jeedom::getTmpFolder() . '/' . uniqid('log_chunk_'));
+
 		try {
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $_path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $_path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' echo "$(tail -n ' . $maxLineLog . ' ' . $_path . ')" > ' . $_path);
-		} catch (\Exception $e) {
-		}
-		@chown($_path, system::get('www-uid'));
-		@chgrp($_path, system::get('www-gid'));
-		if (filesize($_path) > (1024 * 1024 * 10)) {
-			com_shell::execute(system::getCmdSudo() . 'truncate -s 0 ' . $_path);
-		}
-		if (filesize($_path) > (1024 * 1024 * 10)) {
-			com_shell::execute(system::getCmdSudo() . 'cat /dev/null > ' . $_path);
-		}
-		if (filesize($_path) > (1024 * 1024 * 10)) {
-			com_shell::execute(system::getCmdSudo() . ' rm -f ' . $_path);
+			com_shell::execute("{$sudo} tail -c {$maxSizeLog}M {$shellPath} | tail -n {$maxLineLog} > {$tmpFile} && {$sudo} cat {$tmpFile} > {$shellPath}");
+		} catch (\Throwable $e) {
+			log::add('jeedom', "error", "Caught exception in chunkLog(): " . $e->getMessage());
+
+			clearstatcache(true, $rawPath);
+			if (file_exists($rawPath) && filesize($rawPath) > $maxBytes) {
+				// use truncate to empty file without destroying Inode
+				com_shell::execute("{$sudo} truncate -s 0 {$shellPath}");
+			}
+		} finally {
+			com_shell::execute("{$sudo} rm -f {$tmpFile}");
 		}
 	}
 
@@ -187,16 +203,15 @@ class log extends AbstractLogger {
 	/**
 	 * Check authorisation to emptying log file
 	 */
-	public static function authorizeClearLog($_log, $_subPath = '') {
+	public static function authorizeClearLog(string $_log, string $_subPath = ''): bool {
 		$path = self::getPathToLog($_subPath . $_log);
-		return !((strpos($_log, '.htaccess') !== false)
-			|| (!file_exists($path) || !is_file($path)));
+		return !((strpos($_log, '.htaccess') !== false) || (!file_exists($path) || !is_file($path)));
 	}
 
 	/**
 	 * Empty log file
 	 */
-	public static function clear($_log) {
+	public static function clear(string $_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
 			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . '> /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path);
@@ -205,38 +220,106 @@ class log extends AbstractLogger {
 		return;
 	}
 
-	public static function clearAll() {
+	public static function clearAll(): void {
 		foreach (ls(self::getPathToLog(''), '*', false, array('files')) as $log)
 			self::clear($log);
+		return;
+	}
+
+	private static function getActiveDaemonPluginIdsSortedByLength(): array {
+		static $activePluginsWithDaemon = null;
+		if ($activePluginsWithDaemon === null) {
+			$activePluginsWithDaemon = [];
+			foreach (plugin::listPlugin(true) as $plugin) {
+				if ($plugin->getHasOwnDeamon() == 0) continue;
+				$activePluginsWithDaemon[] = $plugin->getId();
+			}
+			usort($activePluginsWithDaemon, function ($a, $b) {
+				return strlen($b) - strlen($a);
+			});
+		}
+
+		return $activePluginsWithDaemon;
+	}
+
+	private static function canRemoveLog(string $_log): bool {
+		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+			return false;
+		}
+
+		if (substr($_log, -9) === '_packages' || substr($_log, -7) === '_update') {
+			return true;
+		}
+
+		// if a new core log is added to the codebase, add it here to prevent a plugin with the same name from protecting it by mistake.
+		static $coreLogNames = [
+			'api',
+			'apipro',
+			'backup',
+			'cmd',
+			'connection',
+			'cron',
+			'cron_execution',
+			'debug_translate',
+			'design',
+			'event',
+			'expression',
+			'history',
+			'http.com',
+			'interact',
+			'jeedom',
+			'jeedomAlert',
+			'jeeEvent',
+			'listener',
+			'listener_execution',
+			'market',
+			'monitoring_cloud',
+			'network',
+			'plugin',
+			'queue',
+			'report',
+			'scenario',
+			'starting',
+			'tts',
+			'update',
+		];
+		if (in_array($_log, $coreLogNames)) {
+			return true;
+		}
+
+		$plugins = self::getActiveDaemonPluginIdsSortedByLength();
+		foreach ($plugins as $plugin) {
+			if (strpos($_log, $plugin) === 0) {
+				if ($_log !== $plugin) {
+					return false;
+				}
+				return true;
+			}
+		}
+
 		return true;
 	}
 
 	/**
 	 * Delete log file
 	 */
-	public static function remove($_log) {
-		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+	public static function remove(string $_log) {
+		if (!self::canRemoveLog($_log)) {
 			self::clear($_log);
 			return;
 		}
-		if (endsWith($_log, 'd') || endsWith($_log, 'd_1') || endsWith($_log, 'd_2') || endsWith($_log, 'd_3')) {
-			self::clear($_log);
-			return;
-		}
+
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
 			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path . ';rm ' . $path . ' 2>&1 > /dev/null');
-
-
-
 			return true;
 		}
 	}
 
-	public static function removeAll() {
+	public static function removeAll(): void {
 		foreach (ls(self::getPathToLog(''), '*', false, array('files')) as $log)
 			self::remove($log);
-		return true;
+		return;
 	}
 
 	/**

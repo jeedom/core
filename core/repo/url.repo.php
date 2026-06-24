@@ -22,43 +22,42 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class repo_url {
 	/*     * *************************Attributs****************************** */
-	
+
 	public static $_name = 'URL';
-	
+
 	public static $_scope = array(
 		'plugin' => true,
 		'backup' => false,
 		'hasConfiguration' => true,
 		'core' => true,
 	);
-	
+
 	/*     * ***********************Méthodes statiques*************************** */
-	
-	public static function getConfigurationOption(){
+
+	public static function getConfigurationOption() {
 		return array(
 			'parameters_for_add' => array(
 				'url' => array(
-					'name' => __('URL du fichier ZIP',__FILE__),
+					'name' => __('URL du fichier ZIP', __FILE__),
 					'type' => 'input',
 				),
 			),
 			'configuration' => array(
 				'core::url' => array(
-					'name' => __('URL core Jeedom',__FILE__),
+					'name' => __('URL core Jeedom', __FILE__),
 					'type' => 'input',
 				),
 				'core::version' => array(
-					'name' => __('URL version core Jeedom',__FILE__),
+					'name' => __('URL version core Jeedom', __FILE__),
 					'type' => 'input',
 				),
 			),
 		);
 	}
-	
+
 	public static function checkUpdate($_update) {
-		
 	}
-	
+
 	public static function downloadObject($_update) {
 		$tmp_dir = jeedom::getTmpFolder('url');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
@@ -75,23 +74,22 @@ class repo_url {
 		log::add('update', 'alert', $result);
 		return array('path' => $tmp, 'localVersion' => date('Y-m-d H:i:s'));
 	}
-	
+
 	public static function deleteObjet($_update) {
-		
 	}
-	
+
 	public static function objectInfo($_update) {
 		return array(
 			'doc' => '',
 			'changelog' => '',
 		);
 	}
-	
+
 	public static function downloadCore($_path) {
 		exec('wget --no-check-certificate --progress=dot --dot=mega ' . config::byKey('url::core::url') . ' -O ' . $_path);
 		return;
 	}
-	
+
 	public static function versionCore() {
 		if (config::byKey('url::core::version') == '') {
 			return null;
@@ -107,16 +105,12 @@ class repo_url {
 			$version = trim(file_get_contents(jeedom::getTmpFolder('url') . '/version'));
 			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('url') . '/version');
 			return $version;
-		} catch (Exception $e) {
-			
-		} catch (Error $e) {
-			
+		} catch (\Throwable $e) {
 		}
 		return null;
 	}
-	
+
 	/*     * *********************Methode d'instance************************* */
-	
+
 	/*     * **********************Getteur Setteur*************************** */
-	
 }

@@ -377,9 +377,9 @@ document.getElementById('in_searchByName')?.addEventListener('keyup', function(e
       } else {
         eqName = jeedomUtils.normTextLower(eqLogic.getAttribute('data-name'))
         if (eqName.includes(search)) {
-          eqLogic.unseen()
-        } else {
           eqLogic.seen()
+        } else {
+          eqLogic.unseen()
         }
       }
     })

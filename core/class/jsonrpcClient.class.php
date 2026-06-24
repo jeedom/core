@@ -120,7 +120,7 @@ class jsonrpcClient {
 			}
 		}
 		$nbRetry = 0;
-		while ($nbRetry < $_maxRetry) {
+		do {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $this->apiAddr);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -138,21 +138,22 @@ class jsonrpcClient {
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 			}
-			if(config::byKey('proxyEnabled')) {
-				if(config::byKey('proxyAddress') == ''){ 
-				// throw new Exception(__('renseigne l\'adresse', __FILE__));
-				$this->error = 'Erreur address ';
-			} else if (config::byKey('proxyPort') == ''){
-			// throw new Exception(__('renseigne le port', __FILE__));
-			} else {
-				curl_setopt($ch, CURLOPT_PROXY, config::byKey('proxyAddress'));
-				curl_setopt($ch, CURLOPT_PROXYPORT, config::byKey('proxyPort'));
-				if(!empty(config::byKey('proxyLogin') || config::byKey('proxyPassword'))){
-					curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'proxyLogin:proxyPassword');
+			if (config::byKey('proxyEnabled') == 1) {
+				$proxyAddress = config::byKey('proxyAddress');
+				$proxyPort = config::byKey('proxyPort');
+				if ($proxyAddress != '' && $proxyPort != '') {
+					curl_setopt($ch, CURLOPT_PROXY, $proxyAddress);
+					curl_setopt($ch, CURLOPT_PROXYPORT, $proxyPort);
+					$proxyLogin = config::byKey('proxyLogin');
+					$proxyPassword = config::byKey('proxyPassword');
+					if (!empty($proxyLogin) || !empty($proxyPassword)) {
+						curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyLogin . ':' . $proxyPassword);
+					}
+				} else {
+					$this->error = 'Proxy enabled but address or port is missing';
+					log::add('connection', 'error', $this->error);
 				}
-				log::add('Connection', 'debug', $ch);
-			} 
-		}
+			}
 			$response = curl_exec($ch);
 			$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			$nbRetry++;
@@ -162,7 +163,7 @@ class jsonrpcClient {
 			} else {
 				$nbRetry = $_maxRetry + 1;
 			}
-		}
+		} while ($nbRetry < $_maxRetry);
 		if ($http_status == 301) {
 			if (preg_match('/<a href="(.*)">/i', $response, $r)) {
 				$this->apiAddr = trim($r[1]);

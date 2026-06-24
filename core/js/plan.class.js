@@ -18,16 +18,16 @@ jeedom.plan = function() {};
 jeedom.plan.cache = Array();
 
 jeedom.plan.remove = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  const paramsRequired = [];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'remove',
@@ -40,8 +40,8 @@ jeedom.plan.remove = function(_params) {
 }
 
 jeedom.plan.execute = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {
     global: false
   };
   try {
@@ -50,8 +50,8 @@ jeedom.plan.execute = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'execute',
@@ -61,8 +61,8 @@ jeedom.plan.execute = function(_params) {
 }
 
 jeedom.plan.save = function(_params) {
-  var paramsRequired = ['plans'];
-  var paramsSpecifics = {
+  const paramsRequired = ['plans'];
+  const paramsSpecifics = {
     global: _params.global || true,
   };
   try {
@@ -71,9 +71,9 @@ jeedom.plan.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
 
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'save',
@@ -83,16 +83,16 @@ jeedom.plan.save = function(_params) {
 }
 
 jeedom.plan.byId = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'get',
@@ -102,16 +102,16 @@ jeedom.plan.byId = function(_params) {
 }
 
 jeedom.plan.getObjectPlan = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'getObjectPlan',
@@ -122,16 +122,16 @@ jeedom.plan.getObjectPlan = function(_params) {
 }
 
 jeedom.plan.create = function(_params) {
-  var paramsRequired = ['plan'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['plan'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'create',
@@ -142,16 +142,16 @@ jeedom.plan.create = function(_params) {
 }
 
 jeedom.plan.copy = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  const paramsRequired = [];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'copy',
@@ -164,16 +164,16 @@ jeedom.plan.copy = function(_params) {
 }
 
 jeedom.plan.byPlanHeader = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'planHeader',
@@ -185,16 +185,16 @@ jeedom.plan.byPlanHeader = function(_params) {
 }
 
 jeedom.plan.removeImageHeader = function(_params) {
-  var paramsRequired = ['planHeader_id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['planHeader_id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'removeImageHeader',
@@ -204,16 +204,16 @@ jeedom.plan.removeImageHeader = function(_params) {
 }
 
 jeedom.plan.saveHeader = function(_params) {
-  var paramsRequired = ['planHeader'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['planHeader'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'savePlanHeader',
@@ -223,16 +223,16 @@ jeedom.plan.saveHeader = function(_params) {
 }
 
 jeedom.plan.copyHeader = function(_params) {
-  var paramsRequired = ['id', 'name'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id', 'name'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'copyPlanHeader',
@@ -243,16 +243,16 @@ jeedom.plan.copyHeader = function(_params) {
 }
 
 jeedom.plan.removeHeader = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'removePlanHeader',
@@ -262,16 +262,16 @@ jeedom.plan.removeHeader = function(_params) {
 }
 
 jeedom.plan.getHeader = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'getPlanHeader',
@@ -282,8 +282,8 @@ jeedom.plan.getHeader = function(_params) {
 }
 
 jeedom.plan.allHeader = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {
+  const paramsRequired = [];
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.plan.cache.all = data.result;
       return data;
@@ -295,12 +295,12 @@ jeedom.plan.allHeader = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
   if (isset(jeedom.plan.cache.all)) {
     params.success(jeedom.plan.cache.all);
     return;
   }
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/plan.ajax.php';
   paramsAJAX.data = {
     action: 'allHeader',

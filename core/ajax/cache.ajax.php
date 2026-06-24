@@ -28,7 +28,7 @@ try {
 
 	if (init('action') == 'set') {
 		unautorizedInDemo();
-		cache::set(init('key'), init('value'), init('lifetime', 0), init('options', null));
+		cache::set(init('key'), init('value'), init('lifetime', 0));
 		ajax::success();
 	}
 
@@ -39,7 +39,8 @@ try {
 
 	if (init('action') == 'remove') {
 		unautorizedInDemo();
-		ajax::success(cache::delete(init('key')));
+		cache::delete(init('key'));
+		ajax::success();
 	}
 
 	if (init('action') == 'flush') {

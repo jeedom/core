@@ -484,7 +484,7 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
 
   //place back found els with unique span id to place them back to right place. Avoid cloning els to not break saveConfig().
   document.querySelectorAll('span[searchId]').forEach(_span => {
-    el = document.querySelector('#searchResult [searchId="' + _span.getAttribute('searchId') + '"]')
+    const el = document.querySelector('#searchResult [searchId="' + _span.getAttribute('searchId') + '"]')
     if (el != null) {
       el.removeAttribute('searchId')
       _span.replaceWith(el)
