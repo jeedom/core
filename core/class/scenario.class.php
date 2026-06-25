@@ -1872,7 +1872,7 @@ class scenario {
 	}
 
 	public function getTimeout(): int {
-		return $this->timeout;
+		return (int)$this->timeout;
 	}
 
 	/**
