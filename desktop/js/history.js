@@ -44,7 +44,7 @@ if (!jeeFrontEnd.history) {
         this.loadIds = this.loadIds.split('-')
         if (is_numeric(this.loadIds[0])) {
           this.loadIds.forEach(function(cmd_id) {
-            var li = document.querySelector('.li_history[data-cmd_id="' + cmd_id + '"]')
+            const li = document.querySelector('.li_history[data-cmd_id="' + cmd_id + '"]')
             if (li) {
               li.addClass('active')
               jeeFrontEnd.history.addChart(cmd_id, 1)
@@ -68,12 +68,12 @@ if (!jeeFrontEnd.history) {
     //grouping/type/variation/step Compare mode available only if one curve in chart
     setChartOptions: function() {
       if (!isset(jeedom.history.chart[this.__el__])) return
-      var _disabled = true
-      var currentSeries = jeedom.history.chart[this.__el__].chart.series.filter(key => !key.name.includes('Navigator '))
+      let _disabled = true
+      const currentSeries = jeedom.history.chart[this.__el__].chart.series.filter(key => !key.name.includes('Navigator '))
 
       if (currentSeries.length == 1) { //only one series in chart:
-        var serieId = currentSeries[0].userOptions.id
-        var isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history')?.getAttribute('data-calcul') === null ? false : true
+        const serieId = currentSeries[0].userOptions.id
+        const isCalcul = document.querySelector('li.li_history[data-cmd_id="' + serieId + '"] a.history')?.getAttribute('data-calcul') === null ? false : true
         if (isCalcul) {
           this.__lastId__ = null
           document.getElementById('cb_derive').checked = false
@@ -84,16 +84,16 @@ if (!jeeFrontEnd.history) {
           this.__lastId__ = currentSeries[currentSeries.length - 1].userOptions.id
           _disabled = false
           if (isset(currentSeries[0].userOptions.dataGrouping)) {
-            var grouping = currentSeries[0].userOptions.dataGrouping.enabled
+            const grouping = currentSeries[0].userOptions.dataGrouping.enabled
             if (grouping) {
-              var groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
+              const groupingType = currentSeries[0].userOptions.dataGrouping.approximation + '::' + currentSeries[0].userOptions.dataGrouping.units[0][0]
               document.getElementById('sel_groupingType').value = groupingType
             } else {
               document.getElementById('sel_groupingType').selectedIndex = 0
             }
           }
 
-          var type = currentSeries[0].userOptions.type
+          const type = currentSeries[0].userOptions.type
           if (type == 'areaspline') type = 'area'
           document.getElementById('sel_chartType').value = type
           document.getElementById('cb_derive').checked = currentSeries[0].userOptions.derive
@@ -131,8 +131,8 @@ if (!jeeFrontEnd.history) {
       }
 
       //Add series:
-      var dateStart = document.getElementById('in_startDate').value
-      var dateEnd = document.getElementById('in_endDate').value
+      const dateStart = document.getElementById('in_startDate').value
+      const dateEnd = document.getElementById('in_endDate').value
       jeedom.history.drawChart({
         cmd_id: _cmd_id,
         el: this.__el__,
@@ -199,10 +199,10 @@ if (!jeeFrontEnd.history) {
         width: 720,
         height: 260,
         callback: function() {
-          var contentEl = jeeDialog.get('#md_historyCompare', 'content')
+          const contentEl = jeeDialog.get('#md_historyCompare', 'content')
 
           if (contentEl.querySelector('#md_getCompareRange') == null) {
-            var newContent = document.getElementById('md_getCompareRange-template').cloneNode(true)
+            const newContent = document.getElementById('md_getCompareRange-template').cloneNode(true)
             newContent.setAttribute('id', 'md_getCompareRange')
             newContent.removeClass('hidden')
             contentEl.appendChild(newContent)
@@ -210,17 +210,17 @@ if (!jeeFrontEnd.history) {
 
           //Set modal events:
           document.getElementById('md_getCompareRange').addEventListener('change', function(event) {
-            var _target = null
-            var _md = document.getElementById('md_getCompareRange')
+            let _target = null
+            const _md = document.getElementById('md_getCompareRange')
             if (_target = event.target.closest('#md_getCompareRange input.in_datepicker')) {
-              var fromStart = moment(_md.querySelector('#in_compareStart1').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
-              var fromEnd = moment(_md.querySelector('#in_compareEnd1').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
-              var toStart = moment(_md.querySelector('#in_compareStart2').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
-              var toEnd = moment(_md.querySelector('#in_compareEnd2').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
+              const fromStart = moment(_md.querySelector('#in_compareStart1').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
+              const fromEnd = moment(_md.querySelector('#in_compareEnd1').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
+              const toStart = moment(_md.querySelector('#in_compareStart2').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
+              const toEnd = moment(_md.querySelector('#in_compareEnd2').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
 
-              var diffPeriod = fromEnd.diff(fromStart, 'days')
-              var cdiffPeriod = toEnd.diff(toStart, 'days')
-              var text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + document.getElementById('sel_comparePeriod').selectedOptions[0].text
+              const diffPeriod = fromEnd.diff(fromStart, 'days')
+              const cdiffPeriod = toEnd.diff(toStart, 'days')
+              const text = '{{Comparer}} ' + diffPeriod + ' {{jours avec}} ' + cdiffPeriod + ' {{jours il y a}} ' + document.getElementById('sel_comparePeriod').selectedOptions[0].text
               _md.querySelector('.spanCompareDiffResult').textContent = text
               if (diffPeriod != cdiffPeriod) {
                 _md.querySelector('.spanCompareDiff').seen()
@@ -231,12 +231,12 @@ if (!jeeFrontEnd.history) {
             }
 
             if (_target = event.target.closest('#md_getCompareRange #sel_setPeriod')) {
-              var startDate = _md.querySelector('#in_compareEnd1').value
-              var num = event.target.value.split('.')[0]
-              var type = event.target.value.split('.')[1]
+              let startDate = _md.querySelector('#in_compareEnd1').value
+              const num = event.target.value.split('.')[0]
+              const type = event.target.value.split('.')[1]
 
-              var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
-              var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
+              let m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
+              let endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareStart1').value = endDate
 
               //range to compare with:
@@ -252,12 +252,12 @@ if (!jeeFrontEnd.history) {
             }
 
             if (_target = event.target.closest('#md_getCompareRange #sel_comparePeriod')) {
-              var startDate = _md.querySelector('#in_compareEnd1').value
-              var num = event.target.value.split('.')[0]
-              var type = event.target.value.split('.')[1]
+              let startDate = _md.querySelector('#in_compareEnd1').value
+              const num = event.target.value.split('.')[0]
+              const type = event.target.value.split('.')[1]
 
-              var m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
-              var endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
+              let m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
+              let endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareEnd2').value = endDate
 
               startDate = _md.querySelector('#in_compareStart1').value
@@ -269,7 +269,7 @@ if (!jeeFrontEnd.history) {
             }
           })
 
-          var _md = document.getElementById('md_getCompareRange')
+          const _md = document.getElementById('md_getCompareRange')
           _md.querySelector('#in_compareStart1').value = document.querySelector('#in_startDate').value
           _md.querySelector('#sel_setPeriod').triggerEvent('change')
           _md.querySelector('#sel_comparePeriod').triggerEvent('change')
@@ -302,8 +302,8 @@ if (!jeeFrontEnd.history) {
     },
     compareChart: function(_cmd_id) {
       //compare:
-      var fromStart, fromEnd, toStart, toEnd
-      var _md = document.getElementById('md_getCompareRange')
+      const fromStart, fromEnd, toStart, toEnd
+      const _md = document.getElementById('md_getCompareRange')
       fromStart = _md.querySelector('#in_compareStart1').value + ' 00:00:00'
       fromEnd = _md.querySelector('#in_compareEnd1').value + ' 23:59:59'
       toStart = _md.querySelector('#in_compareStart2').value + ' 00:00:00'
@@ -356,8 +356,8 @@ if (!jeeFrontEnd.history) {
       })
     },
     setCalculList: function() {
-      var elCalculList = document.getElementById('historyCalculs')
-      var isOpened = false
+      const elCalculList = document.getElementById('historyCalculs')
+      let isOpened = false
       if (elCalculList != null && elCalculList.querySelector('.displayObject i.fas')?.hasClass('fa-arrow-circle-down')) isOpened = true
       jeedom.config.load({
         configuration: 'calculHistory',
@@ -370,12 +370,12 @@ if (!jeeFrontEnd.history) {
           elCalculList.empty()
           if (data.length == 0) return
 
-          var html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
+          let html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
           html += '<br/>'
           html += '<div class="cmdList" data-object_id="jeedom-config-calculs" style="display:none;margin-left : 20px;">'
-          for (var i in data) {
+          for (const i in data) {
             if (isset(data[i].calcul) && data[i].calcul != '') {
-              var dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
+              const dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
               html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
               html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>';
               html += '</li>';
@@ -405,12 +405,12 @@ window.registerEvent("resize", function history(event) {
 */
 //Options
 document.getElementById('div_historyOptions').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_validChangeDate')) {
     if (jeedom.history.chart[jeeP.__el__] === undefined) return
     jeedom.history.chart[jeeP.__el__].chart.series.forEach(_series => {
       if (_series.options && !isNaN(_series.options.id)) {
-        var cmdId = _series.options.id
+        const cmdId = _series.options.id
         jeeP.addChart(cmdId, 0)
         jeeP.addChart(cmdId, 1)
       }
@@ -441,12 +441,12 @@ document.getElementById('div_historyOptions').addEventListener('click', function
 })
 
 document.getElementById('div_historyOptions').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#sel_groupingType')) {
     if (event.isTrigger == 3) return
     if (jeeP.__lastId__ == null) return
-    var currentId = jeeP.__lastId__
-    var groupingType = _target.value
+    const currentId = jeeP.__lastId__
+    const groupingType = _target.value
     jeeP.addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {
@@ -471,8 +471,8 @@ document.getElementById('div_historyOptions').addEventListener('change', functio
   if (_target = event.target.closest('#sel_chartType')) {
     if (event.isTrigger == 3) return
     if (jeeP.__lastId__ == null) return
-    var currentId = jeeP.__lastId__
-    var graphType = _target.value
+    const currentId = jeeP.__lastId__
+    const graphType = _target.value
     jeeP.addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {
@@ -497,8 +497,8 @@ document.getElementById('div_historyOptions').addEventListener('change', functio
   if (_target = event.target.closest('#cb_derive')) {
     if (event.isTrigger == 3) return
     if (jeeP.__lastId__ == null) return
-    var currentId = jeeP.__lastId__
-    var graphDerive = _target.checked ? '1' : '0'
+    const currentId = jeeP.__lastId__
+    const graphDerive = _target.checked ? '1' : '0'
     jeeP.addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {
@@ -523,8 +523,8 @@ document.getElementById('div_historyOptions').addEventListener('change', functio
   if (_target = event.target.closest('#cb_step')) {
     if (event.isTrigger == 3) return
     if (jeeP.__lastId__ == null) return
-    var currentId = jeeP.__lastId__
-    var graphStep = _target.checked ? '1' : '0'
+    const currentId = jeeP.__lastId__
+    const graphStep = _target.checked ? '1' : '0'
     jeeP.addChart(currentId, 0)
     jeedom.cmd.save({
       cmd: {
@@ -548,7 +548,7 @@ document.getElementById('div_historyOptions').addEventListener('change', functio
 })
 //Sidebar:
 document.getElementById('sidebar').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_findCmdCalculHistory')) {
     jeedom.cmd.getSelectModal({
       cmd: {
@@ -563,7 +563,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_displayCalculHistory')) {
-    var calcul = document.getElementById('in_calculHistory').jeeValue()
+    const calcul = document.getElementById('in_calculHistory').jeeValue()
     if (calcul != '') jeeP.addChart(calcul, 1)
     return
   }
@@ -630,9 +630,9 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
     if (_target.hasClass('remove') || _target.hasClass('export')) return
     if (isset(jeedom.history.chart[jeeP.__el__]) && jeedom.history.chart[jeeP.__el__].comparing) return
 
-    var options = null
+    let options = null
     if (_target.hasClass('historycalcul')) {
-      var options = {
+      let options = {
         graphType: _target.getAttribute('data-graphtype'),
         groupingType: _target.getAttribute('data-groupingtype'),
         graphStep: (_target.getAttribute('data-graphstep') == 0) ? false : true,
@@ -652,7 +652,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
 })
 
 document.getElementById('sidebar').addEventListener('keyup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('ul li input.filter')) {
     if (event.target.value == '') {
       document.querySelectorAll('#ul_history .cmdList').unseen()

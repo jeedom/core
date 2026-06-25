@@ -60,8 +60,8 @@ if (!jeeFrontEnd.view) {
           }
 
           try {
-            var summary = ''
-            for (var i in html.raw.viewZone) {
+            let summary = ''
+            for (const i in html.raw.viewZone) {
               summary += '<li style="padding:0px 0px"><a style="padding:2px 20px" class="cursor bt_gotoViewZone" data-zone_id="' + html.raw.viewZone[i].id + '">' + html.raw.viewZone[i].name + '</a></li>'
             }
             document.getElementById('ul_viewSummary').empty().insertAdjacentHTML('beforeend', summary)
@@ -80,7 +80,7 @@ if (!jeeFrontEnd.view) {
             jeedomUtils.positionEqLogic()
 
             document.querySelectorAll('div.eqLogicZone').forEach(_zone => {
-              var pckry = new Packery(_zone, {
+              const pckry = new Packery(_zone, {
                 isLayoutInstant: true,
                 transitionDuration: 0,
             })
@@ -100,10 +100,10 @@ if (!jeeFrontEnd.view) {
           //draw graphs:
           document.querySelectorAll('.chartToDraw').forEach(_chart => {
             _chart.querySelectorAll('.viewZoneData').forEach(_zone => {
-              var cmdId = _zone.getAttribute('data-cmdid')
-              var el = _zone.getAttribute('data-el')
-              var options = json_decode(_zone.getAttribute('data-option').replace(/'/g, '"'))
-              var height = _zone.getAttribute('data-height')
+              const cmdId = _zone.getAttribute('data-cmdid')
+              const el = _zone.getAttribute('data-el')
+              const options = json_decode(_zone.getAttribute('data-option').replace(/'/g, '"'))
+              const height = _zone.getAttribute('data-height')
               jeedom.history.drawChart({
                 cmd_id: cmdId,
                 el: el,
@@ -137,7 +137,7 @@ if (!jeeFrontEnd.view) {
         }
         return
       }
-      var divEquipements = document.querySelector('div.div_displayView')
+      const divEquipements = document.querySelector('div.div_displayView')
       if (_mode == 0 || _mode == '0') { //Exit edit mode:
         jeeFrontEnd.modifyWithoutSave = false
         jeedomUI.isEditing = false
@@ -168,10 +168,10 @@ if (!jeeFrontEnd.view) {
         if (jeeFrontEnd.view.draggables.length == 0) {
           //No draggies set yet:
           document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
-            var pckry = Packery.data(_divObject)
+            const pckry = Packery.data(_divObject)
             pckry.getItemElements().forEach(function(itemElem, idx) {
               itemElem.setAttribute('data-vieworder', idx + 1)
-              var draggie = new Draggabilly(itemElem)
+              const draggie = new Draggabilly(itemElem)
               jeeFrontEnd.view.draggables.push(draggie)
               pckry.bindDraggabillyEvents(draggie)
 
@@ -193,7 +193,7 @@ if (!jeeFrontEnd.view) {
         }
 
         //show orders:
-        var value
+        let value
         divEquipements.querySelectorAll('.jeedomAlreadyPosition').forEach(_draggable => {
           value = _draggable.getAttribute('data-vieworder')
           if (_draggable.querySelector(".counterReorderJeedom") != null) {
@@ -236,7 +236,7 @@ jeeFrontEnd.view.init()
 
 //Event for App Mobile:
 document.body.addEventListener('jeeObject::summary::update', function(_event) {
-  for (var i in _event.detail) {
+  for (const i in _event.detail) {
     if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
     if(_event.detail[i].object_id == 'global') {
       /* SEND UPDATE SUMMARY TO APP */
@@ -254,7 +254,7 @@ window.registerEvent("resize", function view(event) {
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_editViewWidgetOrder')) {
     if (_target.getAttribute('data-mode') == '1') {
       document.getElementById('md_dashEdit')?.remove()
@@ -297,7 +297,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.editOptions')) {
-    var eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
+    const eqId = _target.closest('div.eqLogic-widget').getAttribute('data-eqlogic_id')
     jeeDialog.dialog({
       id: 'md_dashEdit',
       width: '600px',

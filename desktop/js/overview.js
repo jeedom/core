@@ -50,15 +50,15 @@ if (!jeeFrontEnd.overview) {
         })
       })
 
-      var targetNode = document.getElementById('objectOverviewContainer')
+      const targetNode = document.getElementById('objectOverviewContainer')
       if (targetNode) this._SummaryObserver_.observe(targetNode, this.observerConfig)
     },
     updateSummary: function(_className) {
       _className = _className.replace('objectSummaryContainer ', '')
-      var parent = document.querySelector('.' + _className).closest('.objectPreview')
+      const parent = document.querySelector('.' + _className).closest('.objectPreview')
       if (parent == null) return
       parent.querySelector('.topPreview')?.querySelectorAll('.objectSummaryParent')?.remove()
-      var pResume = parent.querySelector('.resume')
+      const pResume = parent.querySelector('.resume')
       if (pResume == null) return
       pResume.querySelectorAll('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').forEach(function(element) {
         parent.querySelector('.topPreview').appendChild(element)
@@ -70,9 +70,9 @@ if (!jeeFrontEnd.overview) {
       this.checkResumeEmpty()
     },
     checkResumeEmpty: function() {
-      var button
+      let button
       document.querySelectorAll('.objectPreview').forEach(function(element) {
-        var visibles = [...element.querySelectorAll('.objectSummaryParent')].filter(el => el.isVisible())
+        const visibles = [...element.querySelectorAll('.objectSummaryParent')].filter(el => el.isVisible())
         if (visibles.length == 0) {
           button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
           element.querySelector('.bt_config')?.remove()
@@ -105,8 +105,8 @@ if (!jeeFrontEnd.overview) {
           jeeP.modal.querySelector('div.jeeDialogTitle > span.title').innerHTML = _title
           jeeP.modal._jeeDialog.show()
 
-          var nbEqs = data.length
-          for (var i = 0; i < nbEqs; i++) {
+          let nbEqs = data.length
+          for (let i = 0; i < nbEqs; i++) {
             if (self.summaryObjEqs[_object_id].includes(data[i].id)) {
               nbEqs--
               return
@@ -132,10 +132,10 @@ if (!jeeFrontEnd.overview) {
                 if (nbEqs == 0) {
                   //adapt modal size:
                   let bRect = document.body.getBoundingClientRect()
-                  var fullWidth = 0
-                  var fullHeight = 0
-                  var thisWidth = 0
-                  var thisHeight = 0
+                  let fullWidth = 0
+                  let fullHeight = 0
+                  let thisWidth = 0
+                  let thisHeight = 0
 
                   document.querySelectorAll('#md_overviewSummary div.eqLogic-widget').forEach(function(element) {
                     thisWidth = element.offsetWidth
@@ -165,7 +165,7 @@ if (!jeeFrontEnd.overview) {
                   })
 
                   //check is inside screen:
-                  var modalLeft = self.modal.offsetLeft
+                  const modalLeft = self.modal.offsetLeft
                   if (modalLeft + fullWidth + 26 > bRect.width || modalLeft < 5) {
                     self.modal.style.left = bRect.width - fullWidth - 50 + 'px'
                   }
@@ -195,7 +195,7 @@ jeeFrontEnd.overview.init()
 
 //move to top summary:
 document.querySelectorAll('.objectPreview').forEach(function(element) {
-  var parent = element.querySelector('.topPreview')
+  const parent = element.querySelector('.topPreview')
   element.querySelectorAll('.objectSummaryParent[data-summary="temperature"], .objectSummaryParent[data-summary="motion"], .objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="humidity"]').forEach(function(el) {
     parent.appendChild(el)
   })
@@ -227,13 +227,13 @@ jeeP.modalContent.addEventListener('click', function(event) {
     event.stopImmediatePropagation()
     event.stopPropagation()
     if (event.ctrlKey || event.metaKey) {
-      var cmdIds = []
+      let cmdIds = []
       event.target.closest('div.eqLogic-widget').querySelectorAll('.history[data-cmd_id]').forEach(function(cmd) {
         cmdIds.push(cmd.getAttribute('data-cmd_id'))
       })
       cmdIds = cmdIds.join('-')
     } else {
-      var cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
+      let cmdIds = event.target.closest('.history[data-cmd_id]').getAttribute('data-cmd_id')
     }
     jeeDialog.dialog({
       id: 'md_cmdHistory',
@@ -246,9 +246,9 @@ jeeP.modalContent.addEventListener('click', function(event) {
 
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.objectPreview .name')) {
-    var url = 'index.php?v=d&p=dashboard&object_id=' + _target.closest('.objectPreview').getAttribute('data-object_id') + '&btover=1'
+    const url = 'index.php?v=d&p=dashboard&object_id=' + _target.closest('.objectPreview').getAttribute('data-object_id') + '&btover=1'
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -263,21 +263,21 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
     event.stopPropagation()
     event.preventDefault()
-    var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
-    var summaryType = _target.getAttribute('data-summary')
+    const objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
+    const summaryType = _target.getAttribute('data-summary')
 
-    var icon = _target.querySelector('i') //?.outerHTML
+    const icon = _target.querySelector('i') //?.outerHTML
     if (icon) {
-      var title = icon.outerHTML + ' ' +  _target.closest('.objectPreview').querySelector('.topPreview .name').textContent
+      let title = icon.outerHTML + ' ' +  _target.closest('.objectPreview').querySelector('.topPreview .name').textContent
     } else {
-      var title = _target.closest('.objectPreview').querySelector('.name').textContent
+      let title = _target.closest('.objectPreview').querySelector('.name').textContent
     }
     jeeP.getSummaryHtml(objectId, summaryType, title)
     return
   }
 
   if (_target = event.target.closest('.objectPreview')) {
-    var url = _target.getAttribute('data-url')
+    const url = _target.getAttribute('data-url')
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
       window.open(url).focus()
     } else {
@@ -287,19 +287,19 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.objectPreview .bt_config')) {
-    var objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
-    var url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
+    const objectId = event.target.closest('.objectPreview').getAttribute('data-object_id')
+    const url = 'index.php?v=d&p=object&id=' + objectId + '#summarytab'
     jeedomUtils.loadPage(url)
     return
   }
 })
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.objectPreview .name')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = event.target.closest('.objectPreview').getAttribute('data-object_id')
+      const id = event.target.closest('.objectPreview').getAttribute('data-object_id')
       document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return
@@ -307,8 +307,8 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
 
   if (_target = event.target.closest('.objectSummaryParent')) {
     if (event.which == 2) {
-      var id = _target.getAttribute('data-object_id')
-      var url = 'index.php?v=d&p=dashboard&summary=' + _target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
+      const id = _target.getAttribute('data-object_id')
+      const url = 'index.php?v=d&p=dashboard&summary=' + _target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
       window.open(url).focus()
       return
     }
@@ -318,7 +318,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     if (event.which == 2) {
       if (event.target.hasClass('topPreview') || event.target.hasClass('name')) return
       event.preventDefault()
-      var id = event.target.getAttribute('data-object_id') || event.target.closest('.objectPreview').getAttribute('data-object_id')
+      const id = event.target.getAttribute('data-object_id') || event.target.closest('.objectPreview').getAttribute('data-object_id')
       document.querySelector('.objectPreview[data-object_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return

@@ -48,7 +48,7 @@ if (!jeeFrontEnd.object) {
             return
           }
           if (isset(data.result.result.filepath)) {
-            var filePath = data.result.result.filepath
+            let filePath = data.result.result.filepath
             filePath = '/data/object/' + filePath.split('/data/object/')[1]
             document.querySelector('.objectImg').seen().querySelector('img').src = filePath
           } else {
@@ -98,9 +98,9 @@ if (!jeeFrontEnd.object) {
           }
 
           if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
-            var bodyStyles = window.getComputedStyle(document.body)
-            var objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
-            var objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
+            const bodyStyles = window.getComputedStyle(document.body)
+            let objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
+            let objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
 
             if (objectBkgdColor !== '' && objectBkgdColor != null) {
               objectBkgdColor = jeedomUtils.rgbToHex(objectBkgdColor)
@@ -129,12 +129,12 @@ if (!jeeFrontEnd.object) {
 
           //set summary tab:
           if (isset(data.configuration) && isset(data.configuration.summary)) {
-            var el
-            var summary = data.configuration.summary
-            for (var i in summary) {
+            const el
+            const summary = data.configuration.summary
+            for (const i in summary) {
               el = document.querySelector('.type' + i)
               if (el != null) {
-                for (var j in summary[i]) {
+                for (const j in summary[i]) {
                   jeeP.addSummaryInfo('.type' + i, summary[i][j])
                 }
                 if (summary[i].length != 0) {
@@ -143,13 +143,13 @@ if (!jeeFrontEnd.object) {
               }
             }
           } else {
-            var summary = {}
+            const summary = {}
           }
 
           //set eqlogics tab:
           jeeP.addEqlogicsInfo(_id, data.name, summary)
 
-          var hash = window.location.hash
+          const hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id)
           if (hash == '') {
             document.querySelector('.nav-tabs a[data-target="#objecttab"]')?.click()
@@ -168,7 +168,7 @@ if (!jeeFrontEnd.object) {
       if (!isset(_summary)) {
         _summary = {}
       }
-      var div = '<div class="summary">'
+      let div = '<div class="summary">'
       div += '<div class="form-group">'
       div += '<label class="col-xs-1 col-sm-1 control-label hidden-xs">{{Commande}}</label>'
       div += '<div class="col-xs-12 col-sm-4 has-success">'
@@ -205,7 +205,7 @@ if (!jeeFrontEnd.object) {
           })
         },
         success: function(eqLogics) {
-          var summarySelect = '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">'
+          let summarySelect = '<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">'
           summarySelect += '<i class="fas fa-tags"></i>&nbsp;&nbsp;{{Résumé(s)}}&nbsp;&nbsp;<span class="caret"></span>'
           summarySelect += '</button>'
           summarySelect += '<ul class="dropdown-menu" role="menu" style="top:unset;left:unset;height: 190px;overflow: auto;">'
@@ -216,9 +216,9 @@ if (!jeeFrontEnd.object) {
           }
           summarySelect += '</ul>'
 
-          var nbEqs = eqLogics.length
-          var thisEq, thisId, thisEqName, panel, nbCmds, ndCmdsInfo, humanName
-          for (var i = 0; i < nbEqs; i++) {
+          const nbEqs = eqLogics.length
+          let thisEq, thisId, thisEqName, panel, nbCmds, ndCmdsInfo, humanName
+          for (let i = 0; i < nbEqs; i++) {
             thisEq = eqLogics[i]
             thisId = thisEq.id
             thisEqName = thisEq.name
@@ -235,7 +235,7 @@ if (!jeeFrontEnd.object) {
 
             nbCmds = thisEq.cmds.length
             ndCmdsInfo = 0
-            for (var j = 0; j < nbCmds; j++) {
+            for (let j = 0; j < nbCmds; j++) {
               if (thisEq.cmds[j].type != 'info') continue
 
               ndCmdsInfo += 1
@@ -258,8 +258,8 @@ if (!jeeFrontEnd.object) {
           }
 
           //set select values:
-          for (var i in _summay) {
-            for (var j in _summay[i]) {
+          for (const i in _summay) {
+            for (const j in _summay[i]) {
               jeeP.updateSummaryButton(_summay[i][j].cmd, i, true)
             }
           }
@@ -267,11 +267,11 @@ if (!jeeFrontEnd.object) {
       })
     },
     updateSummaryButton: function(_cmd, _key, _state) {
-      var cmdDiv = document.querySelector('#eqLogicsCmds div[data-cmdname="' + _cmd + '"]')
+      const cmdDiv = document.querySelector('#eqLogicsCmds div[data-cmdname="' + _cmd + '"]')
       if (cmdDiv == null) return //cmd is not from this object!
       cmdDiv.querySelector('ul input[data-value="' + _key + '"]').checked = _state
-      var txtDiv = cmdDiv.querySelector('.buttontext')
-      var summaryName = jeephp2js.configObjSummary[_key].name
+      const txtDiv = cmdDiv.querySelector('.buttontext')
+      const summaryName = jeephp2js.configObjSummary[_key].name
       if (_state) {
         //add new summary:
         cmdDiv.querySelector('i').addClass('warning')
@@ -282,8 +282,8 @@ if (!jeeFrontEnd.object) {
         }
       } else {
         //remove summary:
-        var hasSummary = false
-        var newText = ''
+        let hasSummary = false
+        let newText = ''
         txtDiv.textContent = ''
         cmdDiv.querySelectorAll('ul input').forEach(_check => {
           if (_check.checked) {
@@ -305,8 +305,8 @@ if (!jeeFrontEnd.object) {
       }
     },
     updateSummaryTabNbr: function(type) {
-      var tab = document.querySelector('.summarytabnumber' + type)
-      var nbr = document.querySelector('#summarytab' + type).querySelectorAll('.summary').length
+      const tab = document.querySelector('.summarytabnumber' + type)
+      const nbr = document.querySelector('#summarytab' + type).querySelectorAll('.summary').length
       tab.empty()
       if (nbr > 0) tab.append('(' + nbr + ')')
     },
@@ -314,7 +314,7 @@ if (!jeeFrontEnd.object) {
     reOrderChilds: function(_cardId) {
       document.querySelectorAll('div.objectDisplayCard[data-father_id="' + _cardId + '"]').forEach(_card => {
         _card.parentNode.insertBefore(_card, _card.nextSibling)
-        var recId = _card.getAttribute('data-object_id')
+        const recId = _card.getAttribute('data-object_id')
         if (document.querySelector('div.objectDisplayCard[data-father_id="' + recId + '"]') != null) jeeFrontEnd.object.reOrderChilds(recId)
       })
     },
@@ -327,7 +327,7 @@ if (!jeeFrontEnd.object) {
         },
         success: function(data) {
           jeeFrontEnd.object.objectList = Array()
-          var decay
+          let decay
           data.forEach(function(object) {
             decay = object.configuration.parentNumber
             jeeFrontEnd.object.objectList.push({
@@ -342,7 +342,7 @@ if (!jeeFrontEnd.object) {
           })
 
           if (_reorder) {
-            var objectContainer = document.querySelector('#objectPanel .objectListContainer')
+            const objectContainer = document.querySelector('#objectPanel .objectListContainer')
             data.forEach(_object => {
               decay = parseInt(jeeFrontEnd.object.objectList.filter(x => x.id == _object.id)[0].parentNumber)
               objectContainer.querySelector('.objectDisplayCard[data-object_id="' + _object.id + '"] .name .hiddenAsCard').textContent = '\u00A0\u00A0\u00A0'.repeat(decay)
@@ -352,7 +352,7 @@ if (!jeeFrontEnd.object) {
       })
     },
     saveObject: function() {
-      var object = document.querySelectorAll('.object').getJeeValues('.objectAttr')[0]
+      const object = document.querySelectorAll('.object').getJeeValues('.objectAttr')[0]
       if (!isset(object.configuration)) {
         object.configuration = {}
       }
@@ -360,7 +360,7 @@ if (!jeeFrontEnd.object) {
         object.configuration.summary = {}
       }
 
-      var type, summaries, data
+      const type, summaries, data
       document.querySelectorAll('#summarytab .div_summary').forEach(function(divSummary) {
         type = divSummary.getAttribute('data-type')
         object.configuration.summary[type] = []
@@ -381,7 +381,7 @@ if (!jeeFrontEnd.object) {
         },
         success: function(data) {
           jeeFrontEnd.modifyWithoutSave = false
-          var url = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1'
+          const url = 'index.php?v=d&p=object&id=' + data.id + '&saveSuccessFull=1'
           if (window.location.hash != '') {
             url += window.location.hash
           }
@@ -400,10 +400,10 @@ try {
     selector: '.nav.nav-tabs',
     appendTo: 'div#div_pageContainer',
     build: function(trigger) {
-      var thisObjectId = document.querySelector('span.objectAttr[data-l1key="id"]').textContent
-      var contextmenuitems = {}
-      var idx = 0
-      for (var object of jeeP.objectList) {
+      const thisObjectId = document.querySelector('span.objectAttr[data-l1key="id"]').textContent
+      const contextmenuitems = {}
+      let idx = 0
+      for (const object of jeeP.objectList) {
         contextmenuitems[idx] = {
           'name': thisObjectId == object.id ? '\u3009' + object.tag : object.tag,
           'disabled': thisObjectId == object.id ? true : false,
@@ -417,7 +417,7 @@ try {
       return {
         callback: function(key, options, event) {
           if (event.ctrlKey || event.metaKey || event.which == 2) {
-            var url = 'index.php?v=d&p=object&id=' + options.commands[key].id
+            const url = 'index.php?v=d&p=object&id=' + options.commands[key].id
             if (window.location.hash != '') {
               url += window.location.hash
             }
@@ -438,13 +438,13 @@ try {
     selector: "#objectPanel .objectDisplayCard",
     appendTo: 'div#div_pageContainer',
     build: function(trigger) {
-      var thisObjectId = trigger.getAttribute('data-object_id')
-      var thisFatherId = trigger.getAttribute('data-father_id')
-      var thisName = trigger.getAttribute('data-object_name')
-      var isActive = !trigger.hasClass('inactive')
+      const thisObjectId = trigger.getAttribute('data-object_id')
+      const thisFatherId = trigger.getAttribute('data-father_id')
+      const thisName = trigger.getAttribute('data-object_name')
+      const isActive = !trigger.hasClass('inactive')
 
       //id, visible:
-      var contextmenuitems = {}
+      const contextmenuitems = {}
       contextmenuitems['thisObjectId'] = {'name': thisName + ' (id: ' + thisObjectId + ')', 'id': 'thisObjectId', 'disabled': true}
       if (isActive) {
         contextmenuitems['hide'] = {'name': '{{Rendre invisible}}', 'id': 'hide', 'icon': 'fas fa-toggle-on'}
@@ -453,7 +453,7 @@ try {
       }
 
       //configuration hideOnDashboard, hideOnOverview:
-      var thisObjectFromList = jeeP.objectList.filter(x => x.id == thisObjectId)[0]
+      const thisObjectFromList = jeeP.objectList.filter(x => x.id == thisObjectId)[0]
       if (thisObjectFromList.hideOnOverview == '0') {
         contextmenuitems['hideSynthesis'] = {'name': '{{Rendre invisible sur la Synthèse}}', 'id': 'hideSynthesis', 'icon': 'fas fa-toggle-on'}
       } else {
@@ -466,7 +466,7 @@ try {
       }
 
       //parent submenu:
-      var parentItems = {}
+      const parentItems = {}
       parentItems[0] = {
         'name': '<span class="label labelObjectHuman">None</span>',
         'disabled': (thisFatherId == '') ? true : false,
@@ -474,8 +474,8 @@ try {
         'jId': '',
         'isHtmlName': true,
       }
-      var idx = 1
-      for (var object of jeeP.objectList) {
+      let idx = 1
+      for (const object of jeeP.objectList) {
         parentItems[idx] = {
           'name': thisFatherId == object.id ? '\u3009' + object.tag : object.tag,
           'disabled': (thisObjectId == object.id) ? true : false,
@@ -491,8 +491,8 @@ try {
       }
 
       //position after submenu:
-      var afterItems = {}
-      for (var object of jeeP.objectList) {
+      const afterItems = {}
+      for (const object of jeeP.objectList) {
         afterItems[idx] = {
           'name': object.tag,
           'disabled': (thisFatherId != object.father_id || thisObjectId == object.id) ? true : false,
@@ -510,8 +510,8 @@ try {
       return {
         callback: function(key, options) {
           if (options.commands[key].jType == 'parent') {
-            var objectId = options.commands[key].jId
-            var object = {
+            const objectId = options.commands[key].jId
+            const object = {
               id: thisObjectId,
               father_id: objectId
             }
@@ -521,8 +521,8 @@ try {
                 jeedomUtils.showAlert({message: error.message, level: 'danger'})
               },
               success: function(data) {
-                var dispCard = document.querySelector('.objectDisplayCard[data-object_id="' + data.id + '"]')
-                var span = '<span class="hiddenAsCard">' + '&nbsp;&nbsp;&nbsp;'.repeat(data.configuration.parentNumber) + '</span>' + data.name
+                const dispCard = document.querySelector('.objectDisplayCard[data-object_id="' + data.id + '"]')
+                const span = '<span class="hiddenAsCard">' + '&nbsp;&nbsp;&nbsp;'.repeat(data.configuration.parentNumber) + '</span>' + data.name
                 dispCard.querySelector('.name').empty().insertAdjacentHTML('beforeend', span)
                 dispCard.setAttribute('data-father_id', objectId)
                 jeeP.getObjectList(true)
@@ -532,7 +532,7 @@ try {
           }
 
           if (options.commands[key].jType == 'after') {
-            var objectId = options.commands[key].jId
+            const objectId = options.commands[key].jId
 
             //move them so we can store them in right order and setOrder()
             let dispCard = document.querySelector('.objectDisplayCard[data-object_id="' + objectId + '"]')
@@ -541,7 +541,7 @@ try {
             document.querySelector('.objectDisplayCard[data-position="' + afterPosition + '"]').after(document.querySelector('.objectDisplayCard[data-object_id="' + thisObjectId + '"]'))
              jeeP.reOrderChilds(thisObjectId)
 
-            var objects = []
+            const objects = []
             document.querySelectorAll('div.objectDisplayCard').forEach(_card => {
               objects.push(_card.getAttribute('data-object_id'))
             })
@@ -559,7 +559,7 @@ try {
           }
 
           if (key == 'hide') {
-            var object = {
+            const object = {
               id: thisObjectId,
               isVisible: "0"
             }
@@ -576,7 +576,7 @@ try {
           }
 
           if (key == 'show') {
-            var object = {
+            const object = {
               id: thisObjectId,
               isVisible: "1"
             }
@@ -594,7 +594,7 @@ try {
 
           //hide on synthesis / dashboard:
           if (key == 'hideSynthesis') {
-            var object = {
+            const object = {
               id: thisObjectId,
               configuration: {hideOnOverview: "1"}
             }
@@ -602,7 +602,7 @@ try {
           }
 
           if (key == 'showSynthesis') {
-            var object = {
+            const object = {
               id: thisObjectId,
               configuration: {hideOnOverview: "0"}
             }
@@ -610,7 +610,7 @@ try {
           }
 
           if (key == 'hideDashboard') {
-            var object = {
+            const object = {
               id: thisObjectId,
               configuration: {hideOnDashboard: "1"}
             }
@@ -618,7 +618,7 @@ try {
           }
 
           if (key == 'showDashboard') {
-            var object = {
+            const object = {
               id: thisObjectId,
               configuration: {hideOnDashboard: "0"}
             }
@@ -643,19 +643,19 @@ try {
 
 //searching
 document.getElementById('in_searchObject')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     document.querySelectorAll('.objectDisplayCard').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
 
   document.querySelectorAll('.objectDisplayCard').unseen()
-  var match, text
+  let match, text
   document.querySelectorAll('.objectDisplayCard .name').forEach(_name => {
     match = false
     text = jeedomUtils.normTextLower(_name.textContent)
@@ -673,7 +673,7 @@ document.getElementById('bt_resetObjectSearch')?.addEventListener('click', funct
 
 //eqLogics tab searching
 document.getElementById('in_searchCmds')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
     document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').seen()
@@ -683,7 +683,7 @@ document.getElementById('in_searchCmds')?.addEventListener('keyup', function(eve
   document.querySelectorAll('#eqLogicsCmds .panel-collapse.in').removeClass('in')
   document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').unseen()
   document.querySelectorAll('#eqLogicsCmds .panel-collapse').forEach(_panel => { _panel.setAttribute('data-show', '0') })
-  var text
+  let text
   document.querySelectorAll('#eqLogicsCmds .form-group[data-cmdname]').forEach(_eqLogic => {
     text = jeedomUtils.normTextLower(_eqLogic.getAttribute('data-cmdname'))
     if (text.indexOf(search) >= 0) {
@@ -718,7 +718,7 @@ document.registerEvent('keydown', function(event) {
 */
 //ThumbnailDisplay
 document.getElementById('div_resumeObjectList').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_addObject')) {
     jeeDialog.prompt("{{Nom du nouvel objet}} ?", function(result) {
       if (result !== null) {
@@ -756,7 +756,7 @@ document.getElementById('div_resumeObjectList').addEventListener('click', functi
   if (_target = event.target.closest('.objectDisplayCard')) {
     if (_target.closest('.objectSummaryParent') != null) return
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-      var url = '/index.php?v=d&p=object&id=' + _target.getAttribute('data-object_id')
+      const url = '/index.php?v=d&p=object&id=' + _target.getAttribute('data-object_id')
       window.open(url).focus()
     } else {
       jeeP.printObject(_target.getAttribute('data-object_id'))
@@ -770,30 +770,30 @@ document.getElementById('div_resumeObjectList').addEventListener('click', functi
 
   if (_target = event.target.closest('#objectPanel .objectSummaryParent')) {
     event.stopPropagation()
-    var summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
-    var objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
+    const summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
+    const objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
     event.target.closest('.objectDisplayCard').triggerEvent('click', {detail: {summaryType: summaryType}})
     return
   }
 })
 
 document.getElementById('div_resumeObjectList').addEventListener('mousedown', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#objectPanel .objectSummaryParent')) { //Open object summary config on summmary click
     event.stopPropagation()
-    var summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
-    var objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
+    const summaryType = _target.closest('.objectSummaryParent').getAttribute('data-summary')
+    const objectId = _target.closest('.objectDisplayCard').getAttribute('data-object_id')
     event.target.closest('.objectDisplayCard').triggerEvent('click', {detail: {summaryType: summaryType}})
     return
   }
 })
 
 document.getElementById('div_resumeObjectList').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.objectDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = _target.getAttribute('data-object_id')
+      const id = _target.getAttribute('data-object_id')
       document.querySelector('.objectDisplayCard[data-object_id="' + id + '"]').triggerEvent('click', {detail: {ctrlKey: true}})
     }
     return
@@ -803,7 +803,7 @@ document.getElementById('div_resumeObjectList').addEventListener('mouseup', func
 
 //Object
 document.getElementById('div_conf').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
     setTimeout(function() {
       document.querySelector('.nav li.active').removeClass('active')
@@ -858,7 +858,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_chooseIcon')) {
-    var _icon = document.querySelector('div[data-l2key="icon"] > i')
+    let _icon = document.querySelector('div[data-l2key="icon"] > i')
     if (_icon != null) {
       _icon = _icon.getAttribute('class')
     } else {
@@ -974,15 +974,15 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.addSummary')) {
-    var type = _target.getAttribute('data-type')
+    const type = _target.getAttribute('data-type')
     jeeP.addSummaryInfo('.type' + type)
     jeeFrontEnd.modifyWithoutSave = true
     return
   }
 
   if (_target = event.target.closest('.listCmdInfo')) {
-    var el = _target.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
-    var type = _target.closest('.div_summary').dataset.type
+    const el = _target.closest('.summary').querySelector('.summaryAttr[data-l1key="cmd"]')
+    const type = _target.closest('.div_summary').dataset.type
     jeedom.cmd.getSelectModal({
       object: {
         id: document.querySelector('.objectAttr[data-l1key="id"]').innerHTML
@@ -1000,8 +1000,8 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.bt_removeSummary')) {
-    var cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').value
-    var type = _target.closest('.div_summary').dataset.type
+    const cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').value
+    const type = _target.closest('.div_summary').dataset.type
     _target.closest('.summary').remove()
     jeeP.updateSummaryTabNbr(type)
     jeeP.updateSummaryButton(cmd, type, false)
@@ -1011,7 +1011,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 
   if (_target = event.target.closest('ul.dropdown-menu a')) {
     if (event.target.type == 'checkbox') return
-    var checkbox = _target.querySelector('input[type="checkbox"]')
+    const checkbox = _target.querySelector('input[type="checkbox"]')
     checkbox.checked = !checkbox.checked
     checkbox.triggerEvent('change')
     event.stopPropagation()
@@ -1020,7 +1020,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 })
 
 document.getElementById('div_conf').addEventListener('dblclick', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.objectAttr[data-l1key="display"][data-l2key="icon"]')) {
     _target.closest('.objectAttr[data-l2key="icon"]').innerHTML = ''
     jeeFrontEnd.modifyWithoutSave = true
@@ -1029,7 +1029,7 @@ document.getElementById('div_conf').addEventListener('dblclick', function(event)
 })
 
 document.getElementById('div_conf').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('select[data-l2key="synthToAction"]')) {
     document.querySelectorAll('select[data-l2key="synthToView"], select[data-l2key="synthToPlan"], select[data-l2key="synthToPlan3d"]').forEach(_select => {
       _select.parentNode.addClass('hidden')
@@ -1040,14 +1040,14 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
   }
 
   if (_target = event.target.closest('ul.dropdown-menu input[type="checkbox"]')) {
-    var type = _target.getAttribute('data-value')
-    var cmd = _target.closest('.form-group').getAttribute('data-cmdname')
-    var state = _target.checked
+    const type = _target.getAttribute('data-value')
+    const cmd = _target.closest('.form-group').getAttribute('data-cmdname')
+    const state = _target.checked
     jeeP.updateSummaryButton(cmd, type, state)
     jeeFrontEnd.modifyWithoutSave = true
 
-    var el = document.querySelector('.type' + type)
-    var summary = {
+    const el = document.querySelector('.type' + type)
+    const summary = {
       cmd: cmd,
       enable: "1",
       invert: "0"

@@ -80,7 +80,7 @@ if (!jeeFrontEnd.plugin) {
           self.dom_container.querySelector('#span_plugin_name').innerHTML = data.name
 
           if (isset(data.update) && isset(data.update.localVersion)) {
-            var localVer = data.update.localVersion
+            let localVer = data.update.localVersion
             if (localVer.length > 20) localVer = localVer.substring(0, 20) + '...'
             self.dom_container.querySelector('#span_plugin_install_date').innerHTML = localVer
           } else {
@@ -141,8 +141,8 @@ if (!jeeFrontEnd.plugin) {
           }
 
           //dependencies and daemon divs:
-          var divPluginDependancy = self.dom_container.querySelector('#div_plugin_dependancy')
-          var divPluginDeamon = self.dom_container.querySelector('#div_plugin_deamon')
+          const divPluginDependancy = self.dom_container.querySelector('#div_plugin_dependancy')
+          const divPluginDeamon = self.dom_container.querySelector('#div_plugin_deamon')
           divPluginDependancy.closest('.panel').parentNode.addClass('col-md-6')
           divPluginDeamon.closest('.panel').parentNode.addClass('col-md-6')
           if (data.hasDependency == 0 || data.activate != 1) {
@@ -172,7 +172,7 @@ if (!jeeFrontEnd.plugin) {
           }
 
           //top right buttons:
-          var spanRightButton = self.dom_container.querySelector('#span_right_button')
+          const spanRightButton = self.dom_container.querySelector('#span_right_button')
           let title = '{{Rafraichir la page}}'
           let button = '<a class="btn btn-sm roundedLeft bt_refreshPluginInfo" title="' + title + '"><i class="fas fa-sync"></i><span class="hidden-768"> {{Rafraichir}}</span></a>'
           spanRightButton.empty().insertAdjacentHTML('beforeend', button)
@@ -213,7 +213,7 @@ if (!jeeFrontEnd.plugin) {
           self.dom_container.querySelector('#div_configPanel').unseen()
           self.dom_container.querySelector('#div_plugin_panel').empty()
           if (isset(data.display) && data.display != '') {
-            var config_panel_html = '<div class="form-group">'
+            let config_panel_html = '<div class="form-group">'
             config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau desktop}}</label>'
             config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">'
             config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayDesktopPanel" />'
@@ -224,7 +224,7 @@ if (!jeeFrontEnd.plugin) {
           }
 
           if (isset(data.mobile) && data.mobile != '') {
-            var config_panel_html = '<div class="form-group">'
+            let config_panel_html = '<div class="form-group">'
             config_panel_html += '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-6 control-label">{{Afficher le panneau mobile}}</label>'
             config_panel_html += '<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">'
             config_panel_html += '<input type="checkbox" class="configKey tooltips" data-l1key="displayMobilePanel" />'
@@ -236,9 +236,9 @@ if (!jeeFrontEnd.plugin) {
 
           self.dom_container.querySelector('#div_plugin_functionality').empty()
           let count_functionality = 0
-          var config_panel_html = '<div class="row">'
+          let config_panel_html = '<div class="row">'
           config_panel_html += '<div class="col-sm-6">'
-          for (var i in data.functionality) {
+          for (const i in data.functionality) {
             config_panel_html += '<div class="form-group">'
             config_panel_html += '<label class="col-lg-3 col-md-4 col-sm-4 col-xs-6 control-label">' + i + '</label>'
             config_panel_html += '<label class="col-lg-2 col-md-2 col-sm-3 col-xs-6">'
@@ -268,7 +268,7 @@ if (!jeeFrontEnd.plugin) {
 
           self.dom_container.querySelector('#div_plugin_toggleState').empty()
           if (data.checkVersion != -1) {
-            var html = '<form class="form-horizontal"><fieldset>'
+            let html = '<form class="form-horizontal"><fieldset>'
             html += '<div class="form-group">'
             html += '<label class="col-sm-2 col-xs-6 control-label">{{Statut}}</label>'
             html += '<div class="col-sm-4 col-xs-6">'
@@ -295,8 +295,8 @@ if (!jeeFrontEnd.plugin) {
             self.dom_container.querySelector('#div_plugin_toggleState').closest('.panel').removeClass('panel-default', 'panel-success').addClass('panel-danger')
             self.dom_container.querySelector('#div_plugin_toggleState').insertAdjacentHTML('beforeend', '{{Votre version de}} ' + JEEDOM_PRODUCT_NAME + ' {{ne permet pas d\'activer ce plugin}}')
           }
-          var log_conf = ''
-          for (var i in data.logs) {
+          let log_conf = ''
+          for (const i in data.logs) {
             log_conf = '<form class="form-horizontal">'
             log_conf += '<div class="form-group">'
             log_conf += '<label class="col-sm-3 control-label">{{Niveau log}}</label>'
@@ -312,7 +312,7 @@ if (!jeeFrontEnd.plugin) {
             log_conf += '<div class="form-group">'
             log_conf += '<label class="col-sm-3 control-label">{{Logs}}</label>'
             log_conf += '<div class="col-sm-9">'
-            for (var j in data.logs[i].log) {
+            for (const j in data.logs[i].log) {
               log_conf += '<a class="btn btn-info btn-sm bt_plugin_conf_view_log" data-slaveId="' + data.logs[i].id + '" data-log="' + data.logs[i].log[j] + '"><i class="fas fa-paperclip"></i>  ' + data.logs[i].log[j].charAt(0).toUpperCase() + data.logs[i].log[j].slice(1) + '</a> '
             }
             log_conf += '</div>'
@@ -336,7 +336,7 @@ if (!jeeFrontEnd.plugin) {
           log_conf += '</form>'
 
           self.dom_container.querySelector('#div_plugin_log').empty().insertAdjacentHTML('beforeend', log_conf)
-          var dom_divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
+          const dom_divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
           dom_divPluginConfiguration.empty()
           if (data.checkVersion != -1) {
             if (data.configurationPath != '' && data.activate == '1') {
@@ -444,7 +444,7 @@ if (!jeeFrontEnd.plugin) {
             level: 'success'
           })
           jeeFrontEnd.modifyWithoutSave = false
-          var postSave = document.getElementById('span_plugin_id').innerHTML + '_postSaveConfiguration'
+          const postSave = document.getElementById('span_plugin_id').innerHTML + '_postSaveConfiguration'
           if (typeof window[postSave] == 'function') {
             window[postSave]()
           }
@@ -472,12 +472,12 @@ if (!jeeFrontEnd.plugin) {
       }
 
       if (_event.target.closest('.pluginDisplayCard') != null) {
-        var pluginId = _event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
+        const pluginId = _event.target.closest('.pluginDisplayCard').getAttribute('data-plugin_id')
       } else {
-        var pluginId = _event.target.getAttribute('data-plugin_id')
+        const pluginId = _event.target.getAttribute('data-plugin_id')
       }
 
-      var url = '/index.php?v=d&m=' + pluginId + '&p=' + pluginId
+      const url = '/index.php?v=d&m=' + pluginId + '&p=' + pluginId
       if (_aux) {
         window.open(url).focus()
       } else {
@@ -491,7 +491,7 @@ jeeFrontEnd.plugin.init()
 
 //searching:
 document.getElementById('in_searchPlugin')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     document.querySelectorAll('.pluginDisplayCard').seen()
     return
@@ -499,7 +499,7 @@ document.getElementById('in_searchPlugin')?.addEventListener('keyup', function(e
   search = jeedomUtils.normTextLower(search)
 
   document.querySelectorAll('.pluginDisplayCard').unseen()
-  var text
+  let text
   document.querySelectorAll('.pluginDisplayCard .name').forEach(_name => {
     text = jeedomUtils.normTextLower(_name.textContent)
     if (text.includes(search)) {
@@ -525,7 +525,7 @@ document.registerEvent('keydown', function(event) {
 */
 //Plugin list page:
 document.getElementById('div_resumePluginList')?.addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.pullInstall')) {
     jeedom.repo.pullInstall({
       repo: _target.getAttribute('data-repo'),
@@ -590,12 +590,12 @@ document.getElementById('div_resumePluginList')?.addEventListener('click', funct
 })
 
 document.getElementById('div_resumePluginList')?.addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('div.pluginDisplayCard')) {
     event.stopPropagation()
     if (event.which == 2) {
       event.preventDefault()
-      var pluginId = _target.getAttribute('data-plugin_id')
+      const pluginId = _target.getAttribute('data-plugin_id')
       document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
@@ -614,7 +614,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('mouseup', fun
 
 //Plugin configuration, page or modale:
 document.getElementById('div_confPlugin')?.addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
     setTimeout(function() {
       document.querySelectorAll('.nav li.active').removeClass('active')
@@ -789,7 +789,7 @@ document.getElementById('div_confPlugin')?.addEventListener('click', function(ev
 })
 
 document.getElementById('div_confPlugin')?.addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_openPluginPage')) {
     if (event.which == 2) {
       event.stopPropagation()
@@ -801,7 +801,7 @@ document.getElementById('div_confPlugin')?.addEventListener('mouseup', function(
 })
 
 document.getElementById('div_confPlugin')?.addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.configKey')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
     return

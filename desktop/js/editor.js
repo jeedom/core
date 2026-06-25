@@ -48,7 +48,7 @@ if (!jeeFrontEnd.editor) {
                 className: 'success',
                 callback: {
                   click: function(event) {
-                    var SubType = document.querySelector('.selectWidgetSubType[data-type="' + document.getElementById('sel_widgetType')?.value + '"]')?.value
+                    const SubType = document.querySelector('.selectWidgetSubType[data-type="' + document.getElementById('sel_widgetType')?.value + '"]')?.value
                     if (!SubType || SubType.value == '') {
                       jeedomUtils.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
                       return
@@ -57,8 +57,8 @@ if (!jeeFrontEnd.editor) {
                       jeedomUtils.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
                       return
                     }
-                    var name = 'cmd.'+document.getElementById('sel_widgetType').value+'.'+SubType+'.'+document.getElementById('in_widgetName').value+'.html'
-                    var filePath = 'data/customTemplates/' + document.getElementById('sel_widgetVersion').value + '/'
+                    const name = 'cmd.'+document.getElementById('sel_widgetType').value+'.'+SubType+'.'+document.getElementById('in_widgetName').value+'.html'
+                    const filePath = 'data/customTemplates/' + document.getElementById('sel_widgetVersion').value + '/'
                     jeedom.createFile({
                       path: filePath,
                       name: name,
@@ -68,11 +68,11 @@ if (!jeeFrontEnd.editor) {
                       success: function() {
                         document.getElementById('md_widgetCreation')._jeeDialog.destroy()
                         jeedomUtils.showAlert({message: '{{Fichier enregistré avec succès}}', level: 'success'})
-                        var hash = jeeP.getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
+                        let hash = jeeP.getHashFromPath(filePath.replace('data/customTemplates/', '').replace('/', ''))
                         jeeFrontEnd.editor._elfInstance.exec('open', hash)
                         //jeeFrontEnd.editor._elfInstance.exec('reload')
 
-                        var path = filePath.replace('data/customTemplates/', '') + name
+                        const path = filePath.replace('data/customTemplates/', '') + name
                         hash = jeeP.getHashFromPath(path)
                         setTimeout(function() {
                           jeeFrontEnd.editor._elfInstance.exec('edit', hash)
@@ -146,9 +146,9 @@ if (!jeeFrontEnd.editor) {
           return $.Deferred().done()
         }
         this.getActive = function() {
-          var myClass = ''
-          var myIcon = ''
-          var $button = $('#elfinder .elfinder-button-icon-jee_onoffcustom + .elfinder-button-text')
+          let myClass = ''
+          let myIcon = ''
+          const $button = $('#elfinder .elfinder-button-icon-jee_onoffcustom + .elfinder-button-text')
           if (this.config == 1) {
             myClass = 'btn-warning'
             myIcon = ' <i class="fas fa-toggle-on"></i>'
@@ -185,7 +185,7 @@ jeeFrontEnd.editor.init()
 
 CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
-var options = {
+let options = {
   url: 'core/php/editor.connector.php?root='+root,
   baseUrl: '3rdparty/elfinder/',
   cssAutoLoad: false,
@@ -255,10 +255,10 @@ var options = {
           },
           load : function(textarea) {
             let self = this
-            var elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
-            var fileUrl = elfinderInstance.url(self.file.hash)
+            const elfinderInstance = $('#elfinder').elfinder(options).elfinder('instance')
+            let fileUrl = elfinderInstance.url(self.file.hash)
             fileUrl = fileUrl.replace('/core/php/../../', '')
-            var modal = textarea.closest('.ui-front')
+            const modal = textarea.closest('.ui-front')
             modal.querySelector('.elfinder-dialog-title').innerHTML = fileUrl
 
             this.myCodeMirror = CodeMirror.fromTextArea(textarea, {
@@ -270,10 +270,10 @@ var options = {
               foldGutter: true,
               gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
             })
-            var editor = this.myCodeMirror
+            const editor = this.myCodeMirror
 
             //Auto mode set:
-            var info, m, mode, spec;
+            let info, m, mode, spec;
             if (!info) {
               info = CodeMirror.findModeByMIME(self.file.mime);
             }

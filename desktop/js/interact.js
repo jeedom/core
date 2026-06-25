@@ -44,45 +44,45 @@ if (!jeeFrontEnd.interact) {
           document.querySelectorAll('.interactAttr[data-l1key="filtres"]').forEach(_filter => {
             _filter.selected = false
           })
-          var option = null
+          let option = null
           if (isset(data.filtres) && isset(data.filtres.type) && isPlainObject(data.filtres.type)) {
-            for (var i in data.filtres.type) {
+            for (const i in data.filtres.type) {
               if (data.filtres.type[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="type"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.subtype) && isPlainObject(data.filtres.subtype)) {
-            for (var i in data.filtres.subtype) {
+            for (const i in data.filtres.subtype) {
               if (data.filtres.subtype[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="subtype"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.unite) && isPlainObject(data.filtres.unite)) {
-            for (var i in data.filtres.unite) {
+            for (const i in data.filtres.unite) {
               if (data.filtres.unite[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="unite"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.object) && isPlainObject(data.filtres.object)) {
-            for (var i in data.filtres.object) {
+            for (const i in data.filtres.object) {
               if (data.filtres.object[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="object"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.plugin) && isPlainObject(data.filtres.plugin)) {
-            for (var i in data.filtres.plugin) {
+            for (const i in data.filtres.plugin) {
               if (data.filtres.plugin[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="plugin"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.category) && isPlainObject(data.filtres.category)) {
-            for (var i in data.filtres.category) {
+            for (const i in data.filtres.category) {
               if (data.filtres.category[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="category"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.actions) && isset(data.actions.cmd) && Array.isArray(data.actions.cmd) && data.actions.cmd.length != null) {
-            for (var i in data.actions.cmd) {
+            for (const i in data.actions.cmd) {
               jeeP.addAction(data.actions.cmd[i], 'action', '{{Action}}')
             }
           }
           jeedomUtils.taAutosize()
 
-          var hash = window.location.hash
+          const hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id)
           if (hash == '') {
             document.querySelector('.nav-tabs a[href="#generaltab"]')?.click()
@@ -100,7 +100,7 @@ if (!jeeFrontEnd.interact) {
               })
             },
             success: function(data) {
-              for (var i in data) {
+              for (const i in data) {
                 if (data[i].html != '') {
                   document.getElementById(data[i].id).html(data[i].html.html)
                 }
@@ -120,7 +120,7 @@ if (!jeeFrontEnd.interact) {
       if (!isset(_action.options)) {
         _action.options = {}
       }
-      var div = '<div class="' + _type + '">'
+      let div = '<div class="' + _type + '">'
       div += '<div class="form-group ">'
       div += '<div class="col-sm-5">'
       div += '<div class="input-group input-group-sm">'
@@ -134,7 +134,7 @@ if (!jeeFrontEnd.interact) {
       div += '</span>'
       div += '</div>'
       div += '</div>'
-      var actionOption_id = jeedomUtils.uniqId()
+      const actionOption_id = jeedomUtils.uniqId()
       div += '<div class="col-sm-7 actionOptions" id="' + actionOption_id + '"></div>'
       document.getElementById('div_' + _type).insertAdjacentHTML('beforeend', div)
       document.querySelectorAll('#div_' + _type + ' .' + _type + '').last().setJeeValues(_action, '.expressionAttr')
@@ -157,7 +157,7 @@ if (!jeeFrontEnd.interact) {
             if (interacts.length == 0) {
               return
             }
-            var interactGroups = []
+            let interactGroups = []
             for (i = 0; i < interacts.length; i++) {
               group = interacts[i].group
               if (group == null) continue
@@ -167,13 +167,13 @@ if (!jeeFrontEnd.interact) {
             }
             interactGroups = Array.from(new Set(interactGroups))
             interactGroups.sort()
-            var interactList = []
-            for (var i = 0; i < interactGroups.length; i++) {
+            const interactList = []
+            for (let i = 0; i < interactGroups.length; i++) {
               group = interactGroups[i]
               interactList[group] = []
-              for (var j = 0; j < interacts.length; j++) {
-                var sc = interacts[j]
-                var scGroup = sc.group
+              for (let j = 0; j < interacts.length; j++) {
+                const sc = interacts[j]
+                let scGroup = sc.group
                 if (scGroup == null) continue
                 if (scGroup == "") scGroup = 'Aucun'
                 if (scGroup.toLowerCase() != group.toLowerCase()) continue
@@ -182,15 +182,15 @@ if (!jeeFrontEnd.interact) {
               }
             }
             //set context menu!
-            var contextmenuitems = {}
-            var uniqId = 0
-            for (var group in interactList) {
-              var groupinteracts = interactList[group]
-              var items = {}
-              for (var index in groupinteracts) {
-                var sc = groupinteracts[index]
-                var scName = sc[0]
-                var scId = sc[1]
+            const contextmenuitems = {}
+            let uniqId = 0
+            for (const group in interactList) {
+              const groupinteracts = interactList[group]
+              const items = {}
+              for (const index in groupinteracts) {
+                const sc = groupinteracts[index]
+                const scName = sc[0]
+                const scId = sc[1]
                 items[uniqId] = {
                   'name': scName,
                   'id': scId
@@ -212,7 +212,7 @@ if (!jeeFrontEnd.interact) {
                 callback: function(key, options, event) {
                   if (!jeedomUtils.checkPageModified()) {
                     if (event.ctrlKey || event.metaKey || event.which == 2) {
-                      var url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
+                      const url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
                       if (window.location.hash != '') {
                         url += window.location.hash
                       }
@@ -261,7 +261,7 @@ if (!jeeFrontEnd.interact) {
     },
     //Get filters for save / duplicate
     getInteractFilters: function() {
-      var filters = {}
+      const filters = {}
       filters.type = {}
       document.querySelectorAll('option[data-l1key="filtres"][data-l2key="type"]').forEach(_option => {
         filters.type[_option.getAttribute('data-l3key')] = (_option.selected) ? '1' : '0'
@@ -321,20 +321,20 @@ document.registerEvent('keydown', function(event) {
 
 //searching
 document.getElementById('in_searchInteract')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     document.querySelectorAll('#accordionInteract .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     document.querySelectorAll('.interactDisplayCard').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
   document.querySelectorAll('#accordionInteract .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
   document.querySelectorAll('.interactDisplayCard').unseen()
-  var match, text
+  let match, text
   document.querySelectorAll('.interactDisplayCard .name').forEach(_name => {
     match = false
     text = jeedomUtils.normTextLower(_name.textContent)
@@ -355,7 +355,7 @@ document.getElementById('in_searchInteract')?.addEventListener('keyup', function
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.interactAttr')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
     return
@@ -364,7 +364,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 
 //ThumbnailDisplay
 document.getElementById('interactThumbnailDisplay').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_openAll')) {
     document.querySelectorAll('#accordionInteract .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
     return
@@ -382,7 +382,7 @@ document.getElementById('interactThumbnailDisplay').addEventListener('click', fu
 
   if (_target = event.target.closest('.interactDisplayCard')) {
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-      var url = '/index.php?v=d&p=interact&id=' + _target.getAttribute('data-interact_id')
+      const url = '/index.php?v=d&p=interact&id=' + _target.getAttribute('data-interact_id')
       window.open(url).focus()
     } else {
       jeeP.printInteract(_target.getAttribute('data-interact_id'))
@@ -449,7 +449,7 @@ document.getElementById('interactThumbnailDisplay').addEventListener('click', fu
 })
 
 document.getElementById('interactThumbnailDisplay').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.interactDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
@@ -463,7 +463,7 @@ document.getElementById('interactThumbnailDisplay').addEventListener('mouseup', 
 
 //Interaction
 document.getElementById('div_conf').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_interactThumbnailDisplay')) {
     if (jeedomUtils.checkPageModified()) return
     document.getElementById('div_conf').unseen()
@@ -473,7 +473,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_chooseIcon')) {
-    var _icon = document.querySelector('div[data-l2key="icon"] > i')
+    let _icon = document.querySelector('div[data-l2key="icon"] > i')
     if (_icon != null) {
       _icon = _icon.getAttribute('class')
     } else {
@@ -489,7 +489,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   if (_target = event.target.closest('#bt_duplicate')) {
     jeeDialog.prompt("{{Nom}} ?", function(result) {
       if (result !== null) {
-        var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
+        const interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
         interact.filtres = jeeFrontEnd.interact.getInteractFilters()
         interact.actions = {}
         interact.actions.cmd = document.querySelectorAll('#div_action .action').getJeeValues('.expressionAttr')
@@ -514,7 +514,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_saveInteract')) {
-    var interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
+    const interact = document.querySelectorAll('.interact').getJeeValues('.interactAttr')[0]
     interact.filtres = jeeFrontEnd.interact.getInteractFilters()
     interact.actions = {}
     interact.actions.cmd = document.querySelectorAll('#div_action .action').getJeeValues('.expressionAttr')
@@ -588,8 +588,8 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.listCmd')) {
-    var type = _target.getAttribute('data-type')
-    var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+    const type = _target.getAttribute('data-type')
+    const el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.cmd.getSelectModal({
       cmd: {
         type: 'action'
@@ -606,8 +606,8 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.listAction')) {
-    var type = _target.getAttribute('data-type')
-    var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+    const type = _target.getAttribute('data-type')
+    const el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
     jeedom.getSelectActionModal({}, function(result) {
       el.jeeValue(result.human)
       jeeFrontEnd.modifyWithoutSave = true
@@ -620,7 +620,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.bt_removeAction')) {
-    var type = _target.getAttribute('data-type')
+    const type = _target.getAttribute('data-type')
     _target.closest('.' + type).remove()
     jeeFrontEnd.modifyWithoutSave = true
     return
@@ -628,7 +628,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 })
 
 document.getElementById('div_conf').addEventListener('dblclick', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.interactAttr[data-l1key="display"][data-l2key="icon"]')) {
     _target.remove()
     return
@@ -636,10 +636,10 @@ document.getElementById('div_conf').addEventListener('dblclick', function(event)
 })
 
 document.getElementById('div_conf').addEventListener('focusout', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
-    var type = _target.getAttribute('data-type')
-    var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
+    const type = _target.getAttribute('data-type')
+    const expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
     jeedom.cmd.displayActionOption(_target.jeeValue(), init(expression[0].options), function(html) {
       _target.closest('.' + type).querySelector('.actionOptions').html(html)
       jeedomUtils.taAutosize()

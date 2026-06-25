@@ -33,8 +33,8 @@ if (!jeeFrontEnd.report) {
         },
         success: function(data) {
           document.querySelectorAll('#ul_report .li_report').remove()
-          var ul = '';
-          for (var i in data) {
+          let ul = '';
+          for (const i in data) {
             ul += '<li class="cursor li_report" data-type=' + _type + ' data-id=' + _id + ' data-report="' + i + '"><a>' + i + '</a></li>'
           }
           document.getElementById('ul_report').insertAdjacentHTML('beforeend', ul)
@@ -55,10 +55,10 @@ if (!jeeFrontEnd.report) {
         success: function(data) {
           document.getElementById('div_reportForm').setJeeValues(data, '.reportAttr').seen()
           document.getElementById('div_imgreport')?.empty()
-          var type = document.querySelector('#div_reportForm .reportAttr[data-l1key="type"]').jeeValue()
-          var id = document.querySelector('#div_reportForm .reportAttr[data-l1key="id"]').jeeValue()
-          var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key="filename"]').jeeValue()
-          var extension =document.querySelector('#div_reportForm .reportAttr[data-l1key="extension"]').jeeValue()
+          const type = document.querySelector('#div_reportForm .reportAttr[data-l1key="type"]').jeeValue()
+          const id = document.querySelector('#div_reportForm .reportAttr[data-l1key="id"]').jeeValue()
+          const filename = document.querySelector('#div_reportForm .reportAttr[data-l1key="filename"]').jeeValue()
+          const extension =document.querySelector('#div_reportForm .reportAttr[data-l1key="extension"]').jeeValue()
           if (extension != 'pdf') {
             let img = '<img class="img-responsive" src="core/php/downloadFile.php?pathfile=data/report/' + type + '/' + id + '/' + filename + '.' + extension + '" />'
             document.getElementById('div_imgreport')?.insertAdjacentHTML('beforeend', img)
@@ -79,17 +79,17 @@ jeeFrontEnd.report.init()
 
 //Manage events outside parents delegations:
 document.getElementById('bt_download')?.addEventListener('click', function(event) {
-  var type = document.querySelector('#div_reportForm .reportAttr[data-l1key="type"]').jeeValue()
-  var id = document.querySelector('#div_reportForm .reportAttr[data-l1key="id"]').jeeValue()
-  var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key="filename"]').jeeValue()
-  var extension = document.querySelector('#div_reportForm .reportAttr[data-l1key="extension"]').jeeValue()
+  const type = document.querySelector('#div_reportForm .reportAttr[data-l1key="type"]').jeeValue()
+  const id = document.querySelector('#div_reportForm .reportAttr[data-l1key="id"]').jeeValue()
+  const filename = document.querySelector('#div_reportForm .reportAttr[data-l1key="filename"]').jeeValue()
+  const extension = document.querySelector('#div_reportForm .reportAttr[data-l1key="extension"]').jeeValue()
   window.open('core/php/downloadFile.php?pathfile=data/report/' + type + '/' + id + '/' + filename + '.' + extension, "_blank", null)
 })
 
 document.getElementById('bt_remove')?.addEventListener('click', function(event) {
-  var filename = document.querySelector('#div_reportForm .reportAttr[data-l1key="filename"]').jeeValue()
-  var extension = document.querySelector('#div_reportForm .reportAttr[data-l1key="extension"]').jeeValue()
-  var report = filename + '.' + extension
+  const filename = document.querySelector('#div_reportForm .reportAttr[data-l1key="filename"]').jeeValue()
+  const extension = document.querySelector('#div_reportForm .reportAttr[data-l1key="extension"]').jeeValue()
+  const report = filename + '.' + extension
   jeedom.report.remove({
     type: document.querySelector('#div_reportForm .reportAttr[data-l1key="type"]').jeeValue(),
     id: document.querySelector('#div_reportForm .reportAttr[data-l1key="id"]').jeeValue(),
@@ -129,10 +129,10 @@ document.getElementById('bt_removeAll')?.addEventListener('click', function(even
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.li_type')) {
-    var currentType = document.querySelector('.li_type.active').getAttribute('data-type')
-    var newType = _target.getAttribute('data-type')
+    const currentType = document.querySelector('.li_type.active').getAttribute('data-type')
+    const newType = _target.getAttribute('data-type')
     document.querySelectorAll('.li_type').removeClass('active')
     _target.addClass('active')
     document.querySelectorAll('.reportType').unseen()
