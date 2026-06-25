@@ -23,14 +23,14 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 
 <div id="md_about" class="col-lg-12" data-modalType="md_about">
   <form class="form-horizontal col-lg-12">
-    <br/>
+    <br />
     <div class="center">
-      <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="40">
+      <img id="logoJeedom" style="position: relative; top:-5px;" height="40">
       <br>
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
       <a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
       <a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
-      <?php if (config::byKey('doc::base_url', 'core') != ''){ ?>
+      <?php if (config::byKey('doc::base_url', 'core') != '') { ?>
         <a class="badge cursor" href="<?php echo config::byKey('doc::base_url', 'core'); ?>" target="_blank">Doc</a> |
       <?php } ?>
       <a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
@@ -80,58 +80,60 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
 </div>
 
 <script>
-(function() {// Self Isolation!
-  var currentTheme = document.body.getAttribute('data-theme')
-  if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
-    document.getElementById('logoJeedom').src = jeedom.theme.logo_dark
-  }
+  (function() { // Self Isolation!
+    var currentTheme = document.body.getAttribute('data-theme')
+    if (currentTheme !== undefined && currentTheme.endsWith('Dark')) {
+      document.getElementById('logoJeedom').src = jeedom.theme.logo_dark
+    } else {
+      document.getElementById('logoJeedom').src = jeedom.theme.logo_light
+    }
 
-  document.querySelector('#md_about #bt_changelogCore').addEventListener('click', function(event) {
-    jeedom.getDocumentationUrl({
-      page: 'changelog',
-      theme: document.body.getAttribute('data-theme'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_about', 'dialog'),
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(url) {
-        window.open(url,'_blank')
-      }
+    document.querySelector('#md_about #bt_changelogCore').addEventListener('click', function(event) {
+      jeedom.getDocumentationUrl({
+        page: 'changelog',
+        theme: document.body.getAttribute('data-theme'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_about', 'dialog'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(url) {
+          window.open(url, '_blank')
+        }
+      })
     })
-  })
 
-  document.querySelector('#md_about #bt_faq').addEventListener('click', function(event) {
-    jeedom.getDocumentationUrl({
-      page: 'faq',
-      theme: document.body.getAttribute('data-theme'),
-      error: function(error) {
-        jeedomUtils.showAlert({
-          attachTo: jeeDialog.get('#md_about', 'dialog'),
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(url) {
-        window.open(url,'_blank')
-      }
+    document.querySelector('#md_about #bt_faq').addEventListener('click', function(event) {
+      jeedom.getDocumentationUrl({
+        page: 'faq',
+        theme: document.body.getAttribute('data-theme'),
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_about', 'dialog'),
+            message: error.message,
+            level: 'danger'
+          })
+        },
+        success: function(url) {
+          window.open(url, '_blank')
+        }
+      })
     })
-  })
 
-  document.querySelector('#md_about #bt_firstUse').addEventListener('click', function(event) {
-    jeeDialog.dialog({
-      id: 'md_firstUse',
-      title: "{{Bienvenue dans Jeedom}}",
-      width: window.innerWidth > 800 ? 720 : '80vw',
-      height: window.innerHeight > 600 ? 400 : '80vw',
-      zIndex: 1040,
-      onClose: function() {
-        jeeDialog.get('#md_firstUse').destroy()
-      },
-      contentUrl: 'index.php?v=d&modal=first.use'
+    document.querySelector('#md_about #bt_firstUse').addEventListener('click', function(event) {
+      jeeDialog.dialog({
+        id: 'md_firstUse',
+        title: "{{Bienvenue dans Jeedom}}",
+        width: window.innerWidth > 800 ? 720 : '80vw',
+        height: window.innerHeight > 600 ? 400 : '80vw',
+        zIndex: 1040,
+        onClose: function() {
+          jeeDialog.get('#md_firstUse').destroy()
+        },
+        contentUrl: 'index.php?v=d&modal=first.use'
+      })
     })
-  })
-})()
+  })()
 </script>
