@@ -2758,10 +2758,7 @@ class cmd {
 		if ($this->getType() != 'info' || $this->getIsHistorized() != 1) {
 			return;
 		}
-		if ($_value === null || $_value === '') {
-			return;
-		}
-		if ($_value < $this->getConfiguration('minValue', $_value) || $_value > $this->getConfiguration('maxValue', $_value)) {
+		if ($_value === null || $_value === '' || $_value < $this->getConfiguration('minValue', $_value) || $_value > $this->getConfiguration('maxValue', $_value)) {
 			return;
 		}
 
