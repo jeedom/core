@@ -20,5 +20,7 @@ no entries
 no entries
 
 ## Developer
-no entries
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-06-26 16:47:36 | Remove V4-stable-update workflow | [#3397](https://github.com/jeedom/core/pull/3397) |
 
