@@ -99,7 +99,7 @@ class cmd {
 	/** @var array<string, string> Template array */
 	protected static $_templateArray = array();
 
-	/** @var array<string, int|string> Unit conversion mapping */
+	/** @var array<string, array<int|string>> Unit conversion mapping */
 	protected static $_unite_conversion = array(
 		's' => array(60, 's', 'min', 'h'),
 		'W' => array(1000, 'W', 'kW', 'MW'),
