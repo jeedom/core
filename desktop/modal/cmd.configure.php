@@ -1487,7 +1487,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
           historizeMode.jeeValue(previousMode && previousMode !== 'none' ? previousMode : 'avg')
           historizeMode.closest('.form-group').seen()
           const previousSmooth = jeephp2js.md_cmdConfigure_cmdInfo.configuration['history::smooth']
-          historizeSmooth.jeeValue(previousSmooth !== '-1' ? previousSmooth : '')
+          historizeSmooth.jeeValue(previousSmooth && previousSmooth !== '-1' ? previousSmooth : '')
           historizeSmooth.closest('.form-group').seen()
         } else {
           historizeMode.closest('.form-group').unseen()
