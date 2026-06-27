@@ -99,7 +99,7 @@ class cmd {
 	/** @var array<string, string> Template array */
 	protected static $_templateArray = array();
 
-	/** @var array<string, int|string> Unit conversion mapping */
+	/** @var array<string, array<int|string>> Unit conversion mapping */
 	protected static $_unite_conversion = array(
 		's' => array(60, 's', 'min', 'h'),
 		'W' => array(1000, 'W', 'kW', 'MW'),
@@ -2684,7 +2684,7 @@ class cmd {
 			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
-    
+
 	/**
 	 * Generate API URL for ask response
 	 *
@@ -2755,13 +2755,18 @@ class cmd {
 	 * @return void
 	 */
 	public function addHistoryValue($_value, $_datetime = '') {
-		if ($this->getIsHistorized() == 1 && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
-			$history = new history();
-			$history->setCmd_id($this->getId());
-			$history->setValue($_value);
-			$history->setDatetime($_datetime);
-			return $history->save($this);
+		if ($this->getType() != 'info' || $this->getIsHistorized() != 1) {
+			return;
 		}
+		if ($_value === null || $_value === '' || $_value < $this->getConfiguration('minValue', $_value) || $_value > $this->getConfiguration('maxValue', $_value)) {
+			return;
+		}
+
+		$history = new history();
+		$history->setCmd_id($this->getId());
+		$history->setValue($_value);
+		$history->setDatetime($_datetime);
+		$history->save($this);
 	}
 
 	/**
