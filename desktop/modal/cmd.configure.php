@@ -473,7 +473,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
                 <div class="form-group">
-                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}
+                    <sup><i class="fas fa-question-circle" title="{{Mode de lissage des historiques (défaut : moyenne). Attention : aucun lissage conserve toutes les données en historique au risque de remplir la base}}"></i></sup>
+                  </label>
                   <div class="col-sm-6">
                     <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
                       <option value="avg">{{Moyenne}}</option>
@@ -485,7 +487,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
                 <div class="form-group">
                   <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
-                    <sup><i class="fas fa-question-circle" title="{{Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
+                    <sup><i class="fas fa-question-circle" title="{{Regroupe les valeurs reçues dans une même fenêtre de temps en une seule. Nécessite un mode de lissage pour fonctionner}}"></i></sup>
                   </label>
                   <div class="col-sm-6">
                     <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
@@ -501,7 +503,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               ?>
               <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">{{Purger historique}}
-                  <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
+                  <sup><i class="fas fa-question-circle" title="{{Purge les historiques si plus anciens que}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
                   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
@@ -988,7 +990,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             version: 'dashboard',
             widgetName: _widgetName,
             error: function(error) {
-              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
+              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce widget}}'
             },
             success: function(data) {
               document.getElementById('optionalParamHelp').empty().innerHTML = data.html
@@ -1393,7 +1395,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         }
         return
       }
-
     })
 
 
