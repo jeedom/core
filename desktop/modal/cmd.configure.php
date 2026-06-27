@@ -1214,7 +1214,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
         jeedom.cmd.getSelectModal({
           cmd: {
@@ -1255,7 +1255,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
      */
     //cmd information tab
     document.getElementById('cmd_information')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
         let displayIconParent = _target.closest('.displayIconParent')
         let icon = displayIconParent.querySelector('[data-l2key="icon"] > i')
@@ -1376,7 +1376,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_information')?.addEventListener('dblclick', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
         _target.innerHTML = ''
         return
@@ -1384,12 +1384,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_information')?.addEventListener('change', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAttr[data-l2key="timeline::enable"]')) {
         if (_target.jeeValue() == 1) {
-          document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').seen()
+          document.querySelector('.cmdAttr[data-l2key="timeline::folder"]').seen()
         } else {
-          document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').unseen()
+          document.querySelector('.cmdAttr[data-l2key="timeline::folder"]').unseen()
         }
         return
       }
@@ -1399,7 +1399,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //cmd configuration tab
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
 
       if (_target = event.target.closest('#bt_searchInfoCmdCalculValue')) {
         jeedom.cmd.getSelectModal({
@@ -1407,7 +1407,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             type: 'info'
           }
         }, function(result) {
-          document.querySelectorAll('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]')[0].insertAtCursor(result.human)
+          document.querySelector('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]').insertAtCursor(result.human)
         })
       }
 
@@ -1463,7 +1463,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_configuration')?.addEventListener('focusout', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
         var type = _target.getAttribute('data-type')
         var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
@@ -1480,7 +1480,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //cmd display tab
     document.getElementById('cmd_display')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
 
       if (_target = event.target.closest('#bt_addWidgetParametersCmd')) {
         var tr = '<tr>'
@@ -1510,7 +1510,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_display')?.addEventListener('change', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('select[data-l1key="template"][data-l2key="dashboard"]')) {
         jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(_target.value)
         return
