@@ -14,7 +14,9 @@ no entries
 | 2026-06-25 13:40:05 | fix in case pdo hydratation set timeout to null | [#3393](https://github.com/jeedom/core/pull/3393) |
 
 ## Others
-no entries
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-06-27 21:01:28 | Use guard clauses in cmd->addHistoryValue | [#3400](https://github.com/jeedom/core/pull/3400) |
 
 ## Documentations
 no entries
