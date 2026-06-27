@@ -473,6 +473,20 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
                 <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de rétention}}
+                    <sup><i class="fas fa-question-circle" title="{{Limite l'historique à la dernière valeur, ou aux première et dernière valeurs, du jour ou du mois}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyRetentionMode">
+                      <option value="none">{{Aucun}}</option>
+                      <option value="current_day">{{Dernière valeur du jour}}</option>
+                      <option value="current_day_keep_first">{{Première et dernière valeur du jour}}</option>
+                      <option value="current_month">{{Dernière valeur du mois}}</option>
+                      <option value="current_month_keep_first">{{Première et dernière valeur du mois}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}
                     <sup><i class="fas fa-question-circle" title="{{Mode de lissage des historiques (défaut : moyenne). Attention : aucun lissage conserve toutes les données en historique au risque de remplir la base}}"></i></sup>
                   </label>
@@ -1459,6 +1473,28 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             jeedomUtils.taAutosize()
           })
         })
+        return
+      }
+    })
+
+    document.getElementById('cmd_configuration')?.addEventListener('change', function(event) {
+      let _target = null
+      if (_target = event.target.closest('.cmdAttr[data-l2key="historyRetentionMode"]')) {
+        const historizeMode = document.querySelector('.cmdAttr[data-l2key="historizeMode"]')
+        const historizeSmooth = document.querySelector('.cmdAttr[data-l2key="history::smooth"]')
+        if (_target.jeeValue() == 'none') {
+          const previousMode = jeephp2js.md_cmdConfigure_cmdInfo.configuration.historizeMode
+          historizeMode.jeeValue(previousMode && previousMode !== 'none' ? previousMode : 'avg')
+          historizeMode.closest('.form-group').seen()
+          const previousSmooth = jeephp2js.md_cmdConfigure_cmdInfo.configuration['history::smooth']
+          historizeSmooth.jeeValue(previousSmooth !== '-1' ? previousSmooth : '')
+          historizeSmooth.closest('.form-group').seen()
+        } else {
+          historizeMode.closest('.form-group').unseen()
+          historizeMode.jeeValue('none')
+          historizeSmooth.closest('.form-group').unseen()
+          historizeSmooth.jeeValue('-1')
+        }
         return
       }
     })
