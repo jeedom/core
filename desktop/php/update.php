@@ -38,6 +38,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 } else {
 	sendVarToJS('jeephp2js.isUpdating', '1');
 }
+sendVarToJS('jeephp2js.updateOptions', config::byKey('update::options', 'core', []));
 ?>
 
 <div class="row row-overflow">

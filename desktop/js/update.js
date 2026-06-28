@@ -537,9 +537,9 @@ if (!jeeFrontEnd.update) {
         height: window.innerHeight > 500 ? 440 : window.innerHeight - 80,
         top: window.innerHeight > 500 ? 120 : 0,
         callback: function() {
-          var contentEl = jeeDialog.get('#md_update', 'content')
+          const contentEl = jeeDialog.get('#md_update', 'content')
           if (contentEl.querySelector('#md_specifyUpdate') == null) {
-            var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
+            const newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
             newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
             newContent.querySelector('#bt_warnChangelogCore').href = document.getElementById('bt_changelogCore').href
@@ -548,6 +548,35 @@ if (!jeeFrontEnd.update) {
               _tooltip.removeAttribute('data-title')
             })
             jeedomUtils.initTooltips(document.getElementById('md_update'))
+          }
+
+          if (jeephp2js.updateOptions) {
+            try {
+              const options = typeof jeephp2js.updateOptions === 'string' ? JSON.parse(jeephp2js.updateOptions) : jeephp2js.updateOptions
+
+              Object.keys(options).forEach(function(key) {
+                const el = contentEl.querySelector('[data-l1key="' + key + '"], [data-l2key="' + key + '"]')
+                if (el) {
+                  if (el.type === 'checkbox') {
+                    el.checked = options[key] == 1
+                  } else {
+                    el.value = options[key]
+                  }
+                }
+              });
+
+              const forceCheck = contentEl.querySelector('input[data-l1key="force"]')
+              if (forceCheck && forceCheck.checked) {
+                const check_backupBefore = contentEl.querySelector('.updateOption[data-l1key="backup::before"]')
+                if (check_backupBefore) {
+                  check_backupBefore.setAttribute('data-state', check_backupBefore.checked)
+                  check_backupBefore.checked = false;
+                  check_backupBefore.setAttribute('disabled', '')
+                }
+              }
+            } catch (e) {
+              console.error('Erreur lors du traitement des options mémorisées', e)
+            }
           }
 
           contentEl.querySelector('input[data-l1key="force"]').addEventListener('click', function(event) {
@@ -567,12 +596,51 @@ if (!jeeFrontEnd.update) {
           jeeDialog.get('#md_update', 'content').querySelector('#md_specifyUpdate').removeClass('hidden')
         },
         buttons: {
+          saveOptions: {
+            label: '<i class="fas fa-save"></i> {{Sauvegarder les options}}',
+            className: 'btn-default',
+            callback: {
+              click: function(event) {
+                if (event) {
+                  event.preventDefault()
+                  event.stopPropagation()
+                }
+
+                const options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
+                jeephp2js.updateOptions = options
+                jeedom.config.save({
+                  configuration: {
+                    'update::options': JSON.stringify(options)
+                  },
+                  error: function(error) {
+                    jeedomUtils.showAlert({
+                      message: error.message,
+                      level: 'danger'
+                    })
+                  },
+                  success: function(data) {
+                    jeedomUtils.showAlert({
+                      message: '{{Options de mise à jour sauvegardées}}',
+                      level: 'success'
+                    })
+                  }
+                });
+                
+                return false
+              }
+            }
+          },
           confirm: {
             label: '{{Mettre à jour}}',
             className: 'success',
             callback: {
               click: function(event) {
-                var options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
+                if (event) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+
+                const options = document.getElementById('md_specifyUpdate').getJeeValues('.updateOption')[0]
                 jeedomUtils.hideAlert()
                 jeeDialog.get('#md_update').hide()
                 jeeP.progress = 0
