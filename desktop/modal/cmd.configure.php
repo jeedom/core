@@ -478,7 +478,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                   </label>
                   <div class="col-sm-6">
                     <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyRetentionMode">
-                      <option value="none">{{Aucun}}</option>
+                      <option value="none">{{Normal}}</option>
                       <option value="current_day">{{Dernière valeur du jour}}</option>
                       <option value="current_day_keep_first">{{Première et dernière valeur du jour}}</option>
                       <option value="current_month">{{Dernière valeur du mois}}</option>
