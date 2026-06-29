@@ -190,11 +190,10 @@ if (!jeeFrontEnd.update) {
     },
     addUpdate: function(_update) {
       if (init(_update.status) == '') {
-        _update.status = 'OK'
+        _update.status = 'ok'
       }
-      _update.status = _update.status.toUpperCase()
       var labelClass = 'label-success'
-      if (_update.status == 'UPDATE') {
+      if (_update.status == 'update') {
         labelClass = 'label-warning'
         if (_update.type == 'core' || _update.type == 'plugin') {
           if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') jeeP.hasUpdate = true
@@ -202,7 +201,7 @@ if (!jeeFrontEnd.update) {
       }
 
       var tr = '<tr>'
-      tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
+      tr += '<td style="width:40px"><span class="updateAttr text-uppercase label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
       tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>'
       if (_update.name == 'jeedom') {
