@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-06-29 16:12:13 | Add history retention mode | [#3401](https://github.com/jeedom/core/pull/3401) |
 | 2026-06-25 16:40:35 | Update Jeedom logos to new branding | [#3392](https://github.com/jeedom/core/pull/3392) |
 
 ## Breaking changes
