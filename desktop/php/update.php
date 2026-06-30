@@ -145,7 +145,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<label><i class="fas fa-home"></i> Core</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Pré-update}}
-								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="preUpdate" /><i class="fas fa-retweet"></i>
@@ -153,7 +153,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Sauvegarder avant}}
-								<sup><i class="fas fa-question-circle" data-title="{{Réalise une sauvegarde avant de lancer la mise à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Réaliser une sauvegarde avant de démarrer la mise à jour}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked /><i class="fas fa-save"></i>
@@ -161,15 +161,15 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour le Core}}
-								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, le Core sera mis à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, le Core sera mis à jour}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-pen-alt"></i>
+								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-sync-alt"></i>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mode forcé}}
-								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="force" /><i class="fas fa-user-injured"></i>
@@ -178,10 +178,10 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<label><i class="fas fa-tasks"></i> Plugins</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour les plugins}}
-								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mis à jour après le Core.}}"></i></sup>
+								<sup><i class="fas fa-question-circle warning" data-title="{{Tous les plugins ayant une mise à jour disponible seront mis à jour après le Core}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="plugins" checked /><i class="fas fa-pen-alt"></i>
+								<input type="checkbox" class="updateOption" data-l1key="plugins" /><i class="fas fa-layer-group"></i>
 							</div>
 						</div>
 						<hr class="hrPrimary">
