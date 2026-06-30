@@ -190,11 +190,10 @@ if (!jeeFrontEnd.update) {
     },
     addUpdate: function(_update) {
       if (init(_update.status) == '') {
-        _update.status = 'OK'
+        _update.status = 'ok'
       }
-      _update.status = _update.status.toUpperCase()
       var labelClass = 'label-success'
-      if (_update.status == 'UPDATE') {
+      if (_update.status == 'update') {
         labelClass = 'label-warning'
         if (_update.type == 'core' || _update.type == 'plugin') {
           if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') jeeP.hasUpdate = true
@@ -202,7 +201,7 @@ if (!jeeFrontEnd.update) {
       }
 
       var tr = '<tr>'
-      tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
+      tr += '<td style="width:40px"><span class="updateAttr text-uppercase label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
       tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>'
       if (_update.name == 'jeedom') {
@@ -283,7 +282,7 @@ if (!jeeFrontEnd.update) {
         tr += '<a class="btn btn-xs" target="_blank" href="' + _update.changelog_url + '" id="bt_changelogCore"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
       }
       if (_update.type != 'core') {
-        if (_update.status == 'UPDATE') {
+        if (_update.status == 'update') {
           if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
             tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
           } else {
@@ -296,7 +295,7 @@ if (!jeeFrontEnd.update) {
             tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
           }
         }
-      } else if (_update.status == 'UPDATE' && jeephp2js.showUpdate == '1') {
+      } else if (_update.status == 'update' && jeephp2js.showUpdate == '1') {
         tr += '<a class="btn btn-warning btn-xs updateJeedom"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
       }
       if (_update.type != 'core') {
