@@ -168,7 +168,7 @@ if (init('type') != '') {
 						$_tags = array();
 						$args = arg2array(init('tags'));
 						foreach ($args as $key => $value) {
-							$_tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value), $scenario);
+							$_tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags($value, $scenario);
 						}
 						$scenario->setTags($_tags);
 					} else if (is_array(init('tags'))) {
