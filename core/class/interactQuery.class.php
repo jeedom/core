@@ -830,7 +830,8 @@ class interactQuery {
 			$cron->setSchedule(cron::convertDateToCron($executeDate));
 			$cron->save();
 			$replace['#valeur#'] = date('Y-m-d H:i:s', $executeDate);
-			$result = scenarioExpression::setTags(str_replace(array_keys($replace), $replace, $reply));
+			$tmpReply = str_replace(array_keys($replace), $replace, $reply);
+			$result = scenarioExpression::setTags($tmpReply);
 			return $result;
 		}
 		$replace['#valeur#'] = '';
@@ -869,7 +870,8 @@ class interactQuery {
 					if (isset($options['tags'])) {
 						$options['tags'] = arg2array($options['tags']);
 						foreach ($options['tags'] as $key => $value) {
-							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags(trim($value));
+							$tmpValue = trim($value);
+							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags($tmpValue);
 						}
 					}
 					$options['tags'] = array_merge($replace, $tags);
