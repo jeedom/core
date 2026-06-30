@@ -870,8 +870,7 @@ class interactQuery {
 					if (isset($options['tags'])) {
 						$options['tags'] = arg2array($options['tags']);
 						foreach ($options['tags'] as $key => $value) {
-							$tmpValue = trim($value);
-							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags($tmpValue);
+							$tags['#' . trim(trim($key), '#') . '#'] = scenarioExpression::setTags($value);
 						}
 					}
 					$options['tags'] = array_merge($replace, $tags);
