@@ -29,7 +29,7 @@ jobs:
 
       - name: Restore PHPStan cache
         id: cache-phpstan
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@v6
         with:
           path: phpstan.phar
           key: phpstan-1
