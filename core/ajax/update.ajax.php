@@ -65,6 +65,7 @@ try {
 	if (init('action') == 'checkAllUpdate') {
 		unautorizedInDemo();
 		update::checkAllUpdate();
+		update::refreshUpdateMessage();
 		ajax::success();
 	}
 
@@ -81,6 +82,7 @@ try {
 			}
 			$update->doUpdate();
 			if ($update->getType() != 'core') {
+				update::refreshUpdateMessage();
 				log::add('update', 'alert', __("Launch cron dependancy plugins", __FILE__));
 				try {
 					$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
@@ -124,6 +126,7 @@ try {
 			throw new Exception(__('Aucune correspondance pour l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		$update->checkUpdate();
+		update::refreshUpdateMessage();
 		ajax::success();
 	}
 

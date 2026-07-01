@@ -143,6 +143,28 @@ class update {
 		}
 	}
 
+	public static function refreshUpdateMessage() {
+		$updates = self::byStatus('update');
+		$toUpdate = [];
+		foreach ($updates as $update) {
+			if ($update->getConfiguration('doNotUpdate', 0) == 0) {
+				$toUpdate[] = $update->getLogicalId();
+			}
+		}
+		if (!empty($toUpdate)) {
+			$msg = __('De nouvelles mises à jour sont disponibles', __FILE__) . ' : ' . implode(', ', $toUpdate);
+			$action = '<a href="/index.php?v=d&p=update">' . __('Centre de mise à jour', __FILE__) . '</a>';
+			foreach (message::byPlugin(__CLASS__) as $updateMessage) {
+				if ($updateMessage->getMessage() !== $msg) {
+					$updateMessage->remove();
+				}
+			}
+			message::add(__CLASS__, $msg, $action, 'newUpdate');
+		} else {
+			message::removeAll(__CLASS__);
+		}
+	}
+
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
