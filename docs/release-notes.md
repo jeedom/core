@@ -29,3 +29,8 @@ no entries
 | --- | --- | --- |
 | 2026-06-26 16:47:36 | Remove V4-stable-update workflow | [#3397](https://github.com/jeedom/core/pull/3397) |
 
+## Uncategorized
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-07-01 18:15:21 | chore(deps): bump actions/checkout from 6 to 7 | [#3412](https://github.com/jeedom/core/pull/3412) |
+| 2026-07-01 18:14:57 | chore(deps): bump actions/cache from 5 to 6 | [#3411](https://github.com/jeedom/core/pull/3411) |
