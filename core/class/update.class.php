@@ -144,9 +144,8 @@ class update {
 	}
 
 	public static function refreshUpdateMessage() {
-		$updates = self::byStatus('update');
 		$toUpdate = [];
-		foreach ($updates as $update) {
+		foreach (self::byStatus('update') as $update) {
 			if ($update->getConfiguration('doNotUpdate', 0) == 0) {
 				$toUpdate[] = $update->getLogicalId();
 			}
