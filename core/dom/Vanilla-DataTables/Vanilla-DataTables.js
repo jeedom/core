@@ -1013,8 +1013,10 @@
                 } else {
                     cb = b.cells[column].content.toLowerCase()
                 }
-                ca = !isNaN(ca) ? parseInt(ca, 10) : ca
-                cb = !isNaN(cb) ? parseInt(cb, 10) : cb
+                if (!isNaN(ca) && !isNaN(cb)) {
+                    ca = parseInt(ca, 10)
+                    cb = parseInt(cb, 10)
+                }
                 var result = direction === "asc" ? (ca > cb ? 1 : -1) : (ca < cb ? 1 : -1)
                 return result
             })
@@ -1053,12 +1055,12 @@
             rows.sort(function(a, b) {
                 var cha = a.cells[column].node.querySelector('input:not([type="checkbox"])')
                 var chb = b.cells[column].node.querySelector('input:not([type="checkbox"])')
-                var ca = cha != null ? cha.value.trim().toLowerCase() : -1
-                var cb = chb != null ? chb.value.trim().toLowerCase() : -1
-                if (ca === "") ca = -1
-                if (cb === "") cb = -1
-                ca = !isNaN(ca) ? parseInt(ca, 10) : ca
-                cb = !isNaN(cb) ? parseInt(cb, 10) : cb
+                var ca = cha != null ? cha.value.trim().toLowerCase() : ""
+                var cb = chb != null ? chb.value.trim().toLowerCase() : ""
+                if (ca !== "" && cb !== "" && !isNaN(ca) && !isNaN(cb)) {
+                    ca = parseInt(ca, 10)
+                    cb = parseInt(cb, 10)
+                }
 
                 var result = direction === "asc" ? (ca > cb ? 1 : -1) : (ca < cb ? 1 : -1)
                 return result
@@ -1091,10 +1093,12 @@
             rows.sort(function(a, b) {
                 var cha = a.cells[column].node.querySelector('select')
                 var chb = b.cells[column].node.querySelector('select')
-                var ca = cha ? cha.value.toLowerCase() : -1
-                var cb = chb ? chb.value.toLowerCase() : -1
-                ca = !isNaN(ca) ? parseInt(ca, 10) : ca
-                cb = !isNaN(cb) ? parseInt(cb, 10) : cb
+                var ca = cha ? cha.value.toLowerCase() : ""
+                var cb = chb ? chb.value.toLowerCase() : ""
+                if (ca !== "" && cb !== "" && !isNaN(ca) && !isNaN(cb)) {
+                    ca = parseInt(ca, 10)
+                    cb = parseInt(cb, 10)
+                }
                 var result = direction === "asc" ? (ca > cb ? 1 : -1) : (ca < cb ? 1 : -1)
                 return result
             })
@@ -1104,10 +1108,12 @@
             rows.sort(function(a, b) {
                 var cha = a.cells[column].node.querySelector('select')
                 var chb = b.cells[column].node.querySelector('select')
-                var ca = cha ? cha.selectedOptions[0].getAttribute('data-sorton').toLowerCase() || 1000 : 1000
-                var cb = chb ? chb.selectedOptions[0].getAttribute('data-sorton').toLowerCase() || 1000 : 1000
-                ca = !isNaN(ca) ? parseInt(ca, 10) : ca
-                cb = !isNaN(cb) ? parseInt(cb, 10) : cb
+                var ca = cha ? (cha.selectedOptions[0].getAttribute('data-sorton') || '').toLowerCase() || "1000" : "1000"
+                var cb = chb ? (chb.selectedOptions[0].getAttribute('data-sorton') || '').toLowerCase() || "1000" : "1000"
+                if (!isNaN(ca) && !isNaN(cb)) {
+                    ca = parseInt(ca, 10)
+                    cb = parseInt(cb, 10)
+                }
                 var result = direction === "asc" ? (ca > cb ? 1 : -1) : (ca < cb ? 1 : -1)
                 return result
             })
@@ -1115,10 +1121,12 @@
         },
         sortCustom: function(rows, column, direction, value) {
             rows.sort(function(a, b) {
-                var ca = a.cells[column].node.getAttribute('data-sorton')
-                var cb = b.cells[column].node.getAttribute('data-sorton')
-                ca = !isNaN(ca) ? parseInt(ca, 10) : ca
-                cb = !isNaN(cb) ? parseInt(cb, 10) : cb
+                var ca = a.cells[column].node.getAttribute('data-sorton') || ""
+                var cb = b.cells[column].node.getAttribute('data-sorton') || ""
+                if (ca !== "" && cb !== "" && !isNaN(ca) && !isNaN(cb)) {
+                    ca = parseInt(ca, 10)
+                    cb = parseInt(cb, 10)
+                }
                 var result = direction === "asc" ? (ca > cb ? 1 : -1) : (ca < cb ? 1 : -1)
                 return result
             })
