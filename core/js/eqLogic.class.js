@@ -173,29 +173,67 @@ jeedom.eqLogic.usedBy = function(_params) {
 
 jeedom.eqLogic.remove = function(_params) {
   const paramsRequired = ['id', 'type']
-  const paramsSpecifics = {
-    pre_success: function(data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
-        delete jeedom.eqLogic.cache.byId[_params.id]
-      }
-      return data
-    }
-  }
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params.error || jeedom.private.default_params.error)(e)
     return
   }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  const paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
-  paramsAJAX.data = {
-    action: 'remove',
-    type: _params.type,
-    id: _params.id
-  }
-  domUtils.ajax(paramsAJAX)
+  jeedom.eqLogic.getUseBeforeRemove({
+    id: _params.id,
+    error: function(error) {
+      jeedomUtils.showAlert({ message: error.message, level: 'danger' })
+    },
+    success: function(data) {
+      let text = "{{Êtes-vous sûr de vouloir supprimer l'équipement}} " + _params.type
+      if (_params.name) {
+        text += ' <b>' + _params.name + '</b>'
+      }
+      text += ' ?'
+      if (Object.keys(data).length > 0) {
+        text += ' </br> {{Il est utilisé par:}}</br>'
+        let complement = null
+        for (const i in data) {
+          complement = ('sourceName' in data[i]) ? ' (' + data[i].sourceName + ')' : ''
+          text += '- <a href="' + data[i].url + '" target="_blank">' + data[i].type + '</a> : <b>' + data[i].name + '</b>' + complement + ' <sup><a href="' + data[i].url + '" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
+        }
+      }
+      jeeDialog.confirm(text, function(result) {
+        if (!result) return
+
+        // Fires only once the actual removal succeeds server-side:
+        const paramsSpecifics = {
+          pre_success: function(data) {
+            if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+              delete jeedom.eqLogic.cache.byId[_params.id]
+            }
+            return data
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            modifyWithoutSave = false
+            const vars = getUrlVars()
+            let url = 'index.php?'
+            for (const i in vars) {
+              if (i != 'id' && i != 'removeSuccessFull' && i != 'saveSuccessFull') {
+                url += i + '=' + vars[i].replace('#', '') + '&'
+              }
+            }
+            jeedomUtils.loadPage(url + 'removeSuccessFull=1')
+          }
+        }
+        const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+        const paramsAJAX = jeedom.private.getParamsAJAX(params)
+        paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
+        paramsAJAX.data = {
+          action: 'remove',
+          type: _params.type,
+          id: _params.id
+        }
+        domUtils.ajax(paramsAJAX)
+      })
+    }
+  })
 }
 
 jeedom.eqLogic.copy = function(_params) {
