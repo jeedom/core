@@ -843,25 +843,15 @@ sendVarToJS([
       jeeFrontEnd.md_eqLogicConfigure.eqlogicSave(event)
     })
     document.getElementById('bt_eqLogicConfigureRemove')?.addEventListener('click', function(event) {
-      jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer cet équipement ?}}', function(result) {
-        if (result) {
-          jeedom.eqLogic.remove({
-            id: jeephp2js.md_eqLogicConfigure_Info.id,
-            type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
-            error: function(error) {
-              jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              jeedomUtils.showAlert({
-                attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
-                message: '{{Equipement supprimé avec succès}}',
-                level: 'success'
-              })
-            }
+      jeedom.eqLogic.remove({
+        id: jeephp2js.md_eqLogicConfigure_Info.id,
+        type: jeephp2js.md_eqLogicConfigure_Info.eqType_name,
+        name: jeephp2js.md_eqLogicConfigure_Info.name,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            attachTo: jeeDialog.get('#md_eqLogicConfigure', 'dialog'),
+            message: error.message,
+            level: 'danger'
           })
         }
       })
