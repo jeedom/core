@@ -82,13 +82,11 @@ jeedom.changes = function() {
           continue
         }
         if (isset(data.result[i].option)) {
-          if (typeof jQuery === 'function' && !jeedom.vanillaEvents.includes(data.result[i].name)) {
-            $('body').trigger(data.result[i].name, data.result[i].option)
-          } else {
+          if (jeedom.vanillaEvents.includes(data.result[i].name) || typeof jQuery !== 'function') {
             document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+          } else {
+            $('body').trigger(data.result[i].name, data.result[i].option)
           }
-        } else {
-          document.body.dispatchEvent(new CustomEvent(data.result[i].name))
         }
       }
       if (cmd_update.length > 0) {
