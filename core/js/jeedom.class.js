@@ -87,6 +87,8 @@ jeedom.changes = function() {
           } else {
             $('body').trigger(data.result[i].name, data.result[i].option)
           }
+        } else {
+          document.body.dispatchEvent(new CustomEvent(data.result[i].name))
         }
       }
       if (cmd_update.length > 0) {
