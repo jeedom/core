@@ -21,6 +21,7 @@ jeedom.display = {}
 jeedom.connect = 0
 jeedom.theme = {}
 jeedom.changes_timeout = null
+jeedom.vanillaEvents = ['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme']
 
 jeeFrontEnd = {
   __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
@@ -81,14 +82,10 @@ jeedom.changes = function() {
           continue
         }
         if (isset(data.result[i].option)) {
-          if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
-            document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
+          if (typeof jQuery === 'function' && !jeedom.vanillaEvents.includes(data.result[i].name)) {
+            $('body').trigger(data.result[i].name, data.result[i].option)
           } else {
-            if (typeof jQuery === 'function') {
-              $('body').trigger(data.result[i].name, data.result[i].option)
-            } else {
-              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
-            }
+            document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
@@ -107,9 +104,9 @@ jeedom.changes = function() {
     },
     error: function(_error) {
       if (typeof (user_id) != "undefined" && jeedom.connect == 100) {
-        if(_error.message !== 'Unknown error'){
+        if (_error.message !== 'Unknown error') {
           jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message)
-        }      
+        }
       }
       jeedom.connect++
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
