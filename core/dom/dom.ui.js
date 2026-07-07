@@ -93,9 +93,7 @@ NodeList.prototype.toggle = function() {
   return this
 }
 Element.prototype.empty = function() {
-  while (this.firstChild) {
-    this.removeChild(this.lastChild)
-  }
+  this.replaceChildren()
   return this
 }
 NodeList.prototype.empty = function() {
@@ -1804,7 +1802,7 @@ var jeeCtxMenu = function(_options) {
       display: null
     })
     _ctxMenu.seen()
-    
+
     //Is there use positionning:
     if (ctxInstance.options.position) {
       ctxInstance.options.position.apply(ctxInstance, [ctxInstance, _event.clientX, _event.clientY])
