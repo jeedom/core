@@ -179,7 +179,9 @@ class plugin {
 	}
 
 	public static function forceDisablePlugin($_id) {
-		config::save('active', 0, $_id);
+		if (config::byKey('active', $_id) == 1) {
+			config::save('active', 0, $_id);
+		}
 		$values = array(
 			'eqType_name' => $_id,
 		);
