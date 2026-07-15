@@ -685,7 +685,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue"></div>')
   jeeDialog.dialog({
     id: 'mod_insertActionValue',
-    title: '{{Sélectionner une commande}}',
+    title: '{{Sélectionner une action}}',
     height: 310,
     width: 800,
     top: '20vh',
