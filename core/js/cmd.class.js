@@ -248,7 +248,7 @@ jeedom.cmd.test = function(_params) {
               const min = result.configuration.minValue || 0
               const max = result.configuration.maxValue || 100
               jeeDialog.prompt({
-                title: '{{Entrer une valeur entre}}' + ' ' + min + ' ' + '{{et}}' + ' ' + max,
+                title: '{{Saisir une valeur entre ' + min + ' et ' + max + '}}',
                 value: parseInt(min) + (parseInt(max) / 2),
                 callback: function(result) {
                   if (result === null) {
@@ -910,7 +910,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCmdValue" ></div>')
   jeeDialog.dialog({
     id: 'mod_insertCmdValue',
-    title: '{{Sélectionner la commande}}',
+    title: '{{Sélectionner une commande}}',
     height: 250,
     width: 800,
     top: '20vh',
