@@ -58,8 +58,8 @@ jeedom.cmd.execute = function(_params) {
   let eqLogic = null
   if (notify) {
     eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget') ?? null
-  if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
-}
+    if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
+  }
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = JSON.stringify(_params.value)
   }
@@ -248,7 +248,7 @@ jeedom.cmd.test = function(_params) {
               const min = result.configuration.minValue || 0
               const max = result.configuration.maxValue || 100
               jeeDialog.prompt({
-                title: '{{Entrer une valeur entre}}' + ' ' + min + ' ' + '{{et}}' + ' ' + max ,
+                title: '{{Entrer une valeur entre}}' + ' ' + min + ' ' + '{{et}}' + ' ' + max,
                 value: parseInt(min) + (parseInt(max) / 2),
                 callback: function(result) {
                   if (result === null) {
@@ -430,12 +430,12 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   const cmd = null
   for (const i in _params) {
-    if(_params[i].cmd_id == ''){
-      continue;
+    if (_params[i].cmd_id == '') {
+      continue
     }
     //update tile graph info:
     if (document.querySelector('.eqlogicbackgraph[data-cmdid="' + _params[i].cmd_id + '"]') != null) {
-      jeedom.eqLogic.drawGraphInfo(document.querySelector('.eqlogicbackgraph[data-cmdid="' + _params[i].cmd_id + '"]').closest('.eqLogic').getAttribute('data-eqLogic_uid'),_params[i].cmd_id)
+      jeedom.eqLogic.drawGraphInfo(document.querySelector('.eqlogicbackgraph[data-cmdid="' + _params[i].cmd_id + '"]').closest('.eqLogic').getAttribute('data-eqLogic_uid'), _params[i].cmd_id)
     }
     if (document.querySelector('.cmd[data-cmd_id="' + _params[i].cmd_id + '"]')?.hasClass('noRefresh')) {
       continue
@@ -453,8 +453,8 @@ jeedom.cmd.refreshValue = function(_params) {
 }
 
 jeedom.cmd.addUpdateFunction = function(_cmd_id, _function) {
-  if(_cmd_id == ''){
-    return;
+  if (_cmd_id == '') {
+    return
   }
   if (!isset(jeedom.cmd.update)) {
     jeedom.cmd.update = []
@@ -720,8 +720,8 @@ jeedom.cmd.usedBy = function(_params) {
 }
 
 jeedom.cmd.changeType = function(_cmd, _subType) {
-  if(_cmd.length == 0){
-    return; 
+  if (_cmd.length == 0) {
+    return
   }
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
@@ -773,8 +773,8 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
 }
 
 jeedom.cmd.changeSubType = function(_cmd) {
-  if(_cmd.length == 0){
-    return; 
+  if (_cmd.length == 0) {
+    return
   }
   if (isElement_jQuery(_cmd)) {
     _cmd = _cmd[0]
