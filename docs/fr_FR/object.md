@@ -21,7 +21,7 @@ La vue d’ensemble vous permet de visualiser l’ensemble des objets dans Jeedo
 
 - **ID** : ID de l’objet.
 - **Objet** : Nom de l’objet.
-- **Père** : Nom de l’objet parent.
+- **Parent** : Nom de l’objet parent.
 - **Visible** : Visibilité de l’objet.
 - **Masqué** : Indique si l’objet est masqué sur le Dashboard.
 - **Résumé Défini** : Indique le nombre de commandes par résumé. Ce qui est en bleu est pris en compte dans le résumé global.
@@ -73,7 +73,7 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 
 > **Conseil**
 >
-> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard, par le Résumé Domotique (outils -> résumé domotique) , sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
+> Vous pouvez modifier l’ordre d’affichage des objets dans le Dashboard, par le Résumé Domotique (Analyse -> résumé domotique) , sélectionnez votre objet avec la souris avec un glisser/déposer pour lui donner une nouvelle place.
 
 > **Conseil**
 >
