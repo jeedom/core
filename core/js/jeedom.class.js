@@ -107,9 +107,9 @@ jeedom.changes = function() {
     },
     error: function(_error) {
       if (typeof (user_id) != "undefined" && jeedom.connect == 100) {
-        if(_error.message !== 'Unknown error'){
+        if (_error.message !== 'Unknown error') {
           jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message)
-        }      
+        }
       }
       jeedom.connect++
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
@@ -685,7 +685,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue"></div>')
   jeeDialog.dialog({
     id: 'mod_insertActionValue',
-    title: '{{Sélectionner la commande}}',
+    title: '{{Sélectionner une commande}}',
     height: 310,
     width: 800,
     top: '20vh',
