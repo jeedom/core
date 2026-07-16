@@ -47,6 +47,28 @@ if (!jeeFrontEnd.plugin) {
         }
       }
     },
+    installSuccess: function(_logicalId) {
+      jeedomUtils.showAlert({
+        message: '{{Plugin installé avec succès}}',
+        level: 'success'
+      })
+      jeeDialog.confirm({
+        message: '{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}',
+        buttons: {
+          cancel: {
+            label: '<i class="fa fa-times"></i> {{Non}}',
+          },
+          confirm: {
+            label: '<i class="fa fa-check"></i> {{Oui}}',
+          }
+        },
+        callback: function(result) {
+          if (result) {
+            jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + _logicalId)
+          }
+        }
+      })
+    },
     displayPlugin: function(_pluginId) {
       jeedomUtils.hideAlert()
       let self = this
@@ -564,7 +586,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('click', funct
   if (_target = event.target.closest('#bt_addPluginFromOtherSource')) {
     jeeDialog.dialog({
       id: 'jee_modal',
-      title: "{{Ajouter un plugin}}",
+      title: "{{Installer un plugin}}",
       contentUrl: 'index.php?v=d&modal=update.add'
     })
     return

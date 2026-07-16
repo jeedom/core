@@ -26,18 +26,6 @@ sendVarToJS('market_display_info', $market_array);
     <div class='col-sm-3'>
       <center>
         <?php
-        $default_image = 'core/img/no_image.gif';
-        switch ($market->getType()) {
-          case 'widget':
-            $default_image = 'core/img/no-image-widget.png';
-            break;
-          case 'plugin':
-            $default_image = 'core/img/no-image-plugin.png';
-            break;
-          case 'script':
-            $default_image = 'core/img/no-image-script.png';
-            break;
-        }
         $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
         echo '<img src="' . $urlPath . '" class="img-responsive" style="height : 200px;" onerror="this.onerror=null;this.src=&quot;core/img/no-image-plugin.png&quot;;"/>';
         ?>
@@ -346,10 +334,8 @@ sendVarToJS('market_display_info', $market_array);
       }
 
       if (_target = event.target.closest('.bt_installFromMarket')) {
-        var id = _target.getAttribute('data-market_id')
-        var logicalId = _target.getAttribute('data-market_logicalId')
         jeedom.repo.install({
-          id: id,
+          id: _target.getAttribute('data-market_id'),
           repo: 'market',
           version: _target.getAttribute('data-version'),
           error: function(error) {
@@ -359,20 +345,7 @@ sendVarToJS('market_display_info', $market_array);
             })
           },
           success: function(data) {
-            if (market_display_info.type == 'plugin') {
-              jeeDialog.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
-                if (result) {
-                  jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId)
-                }
-              })
-            }
-            if (typeof refreshListAfterMarketObjectInstall == 'function') {
-              refreshListAfterMarketObjectInstall()
-            }
-            jeedomUtils.showAlert({
-              message: '{{Plugin installé avec succès}}',
-              level: 'success'
-            })
+            jeeFrontEnd.plugin.installSuccess(_target.getAttribute('data-market_logicalId'))
           }
         })
         return
