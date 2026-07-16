@@ -154,6 +154,7 @@ try {
 			$update->doUpdate();
 		} catch (Exception $e) {
 			if ($new) {
+				$update->deleteObjet();
 				throw $e;
 			} else {
 				$update = $old_update;
