@@ -22,8 +22,6 @@ Can also be called in modale, triggering plugin button click for direct access t
 
 "use strict"
 
-
-
 if (!jeeFrontEnd.plugin) {
   jeeFrontEnd.plugin = {
     init: function() {
@@ -112,17 +110,17 @@ if (!jeeFrontEnd.plugin) {
           } else {
             self.dom_container.querySelector('#span_plugin_usedSpace').innerHTML = ''
           }
-          
+
           if (isset(data.category) && isset(jeephp2js.pluginCategories[data.category])) {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = jeephp2js.pluginCategories[data.category].name
           } else {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
           if (isset(data.source)) {
-            if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.user)){
-                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source +' - '+data.update.configuration.user
+            if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.user)) {
+              self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source + ' - ' + data.update.configuration.user
             } else {
-                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
+              self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
             }
           } else {
             self.dom_container.querySelector('#span_plugin_source').innerHTML = ''
