@@ -73,41 +73,46 @@ class repo_market {
 			'configuration' => array(
 				'address' => array(
 					'name' => __('Adresse', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'username' => array(
 					'name' => __('Nom d\'utilisateur', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'password' => array(
 					'name' => __('Mot de passe', __FILE__),
-					'type' => 'password_noshow',
+					'type' => 'password_noshow'
 				),
 				'no_ssl_verify' => array(
 					'name' => __('Pas de validation SSL (non recommandé)', __FILE__),
-					'type' => 'checkbox',
+					'type' => 'checkbox'
 				),
 				'cloud::backup::name' => array(
 					'name' => __('[Backup cloud] Nom du dossier de backup', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'cloud::backup::password' => array(
 					'name' => __('[Backup cloud] Mot de passe', __FILE__),
-					'type' => 'password',
+					'type' => 'password'
 				),
 				'cloud::backup::password_confirmation' => array(
 					'name' => __('[Backup cloud] Mot de passe (confirmation)', __FILE__),
-					'type' => 'password',
+					'type' => 'password'
 				),
 				'cloud::monitoring::disable' => array(
 					'name' => __('[Monitoring cloud] Désactiver', __FILE__),
-					'type' => 'checkbox',
+					'type' => 'checkbox'
 				)
 			),
 			'parameters_for_add' => array(
 				'version' => array(
-					'name' => __('Version : beta, stable', __FILE__),
-					'type' => 'input',
+					'name' => __('Version à installer', __FILE__),
+					'type' => 'select',
+					'options' => array(
+						'stable' => __('Stable', __FILE__),
+						'beta' => __('Beta', __FILE__),
+					),
+					'tooltip' => __("Sélectionner la version du plugin à installer", __FILE__)
 				),
 			),
 		);

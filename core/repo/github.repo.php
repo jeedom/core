@@ -39,42 +39,48 @@ class repo_github {
 		return array(
 			'parameters_for_add' => array(
 				'user' => array(
-					'name' =>  __('Utilisateur ou organisation du dépôt', __FILE__),
+					'name' =>  __('Propriétaire du dépôt', __FILE__),
 					'type' => 'input',
+					'tooltip' => __("Renseigner le nom de l'utilisateur ou de l'organisation propriétaire du dépôt Github", __FILE__),
+					'placeholder' => 'jeedom'
 				),
 				'repository' => array(
 					'name' =>  __('Nom du dépôt', __FILE__),
 					'type' => 'input',
+					'tooltip' => __("Renseigner le nom du dépôt Github", __FILE__),
+					'placeholder' => 'plugin-PLUGIN_ID'
 				),
 				'token' => array(
 					'name' =>  __('Token (facultatif)', __FILE__),
-					'type' => 'input'
+					'type' => 'input',
+					'tooltip' => __("Si nécessaire, renseigner votre token d'accès au dépôt privé", __FILE__)
 				),
 				'version' => array(
-					'name' =>  __('Branche', __FILE__),
+					'name' =>  __('Branche/Version', __FILE__),
 					'type' => 'input',
-					'default' => 'master',
+					'tooltip' => __("Renseigner la version plugin à installer (master, beta ou autre)", __FILE__),
+					'placeholder' => 'master'
 				),
 			),
 			'configuration' => array(
 				'token' => array(
 					'name' =>  __('Token (facultatif)', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'core::user' => array(
 					'name' =>  __('Utilisateur ou organisation du dépôt pour le core Jeedom', __FILE__),
 					'type' => 'input',
-					'default' => 'jeedom',
+					'default' => 'jeedom'
 				),
 				'core::repository' => array(
 					'name' =>  __('Nom du dépôt pour le core Jeedom', __FILE__),
 					'type' => 'input',
-					'default' => 'core',
+					'default' => 'core'
 				),
 				'core::branch' => array(
 					'name' =>  __('Branche pour le core Jeedom', __FILE__),
 					'type' => 'input',
-					'default' => 'stable',
+					'default' => 'stable'
 				),
 			),
 		);
@@ -126,9 +132,9 @@ class repo_github {
 
 	public static function downloadObject($_update) {
 		$token = $_update->getConfiguration('token', config::byKey('github::token', 'core', ''));
-		$branch = self::getBranchInfo($_update);
+		$pluginId = $_update->getLogicalId();
 		$tmp_dir = jeedom::getTmpFolder('github');
-		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
+		$tmp = $tmp_dir . '/' . $pluginId . '.zip';
 		if (file_exists($tmp)) {
 			unlink($tmp);
 		}
@@ -138,8 +144,18 @@ class repo_github {
 		if (!is_writable($tmp_dir)) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
+		$user = $_update->getConfiguration('user');
+		$repository = $_update->getConfiguration('repository');
+		$version = $_update->getConfiguration('version');
+		if (empty($user) || empty($repository) || empty($version)) {
+			$_update->setConfiguration('user', empty($user) ? 'jeedom' : $user)
+				->setConfiguration('repository', empty($repository) ? 'plugin-' . $pluginId : $repository)
+				->setConfiguration('version', empty($version) ? 'master' : $version)
+				->save();
+		}
+		$branch = self::getBranchInfo($_update);
 		$url = 'https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/zipball/' . $_update->getConfiguration('version', 'master');
-		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $_update->getLogicalId() . '...');
+		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $pluginId . '...');
 		if ($token == '') {
 			exec('curl -s -f -L -o ' . escapeshellarg($tmp) . ' ' . escapeshellarg($url) . ' 2>&1', $output, $return_code);
 		} else {
