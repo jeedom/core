@@ -46,9 +46,9 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 		<span class="label label-info" id="span_lastUpdateCheck"></span>
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-check"></i> {{Vérifier les mises à jour}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
+				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-sync-alt"></i> {{Mettre à jour}}
 					</a><?php } ?>
 			</span>
 		</div>
@@ -128,7 +128,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 				<fieldset>
 					<div class="alert alert-warning">
 						{{En cas de mise à jour du core, veuillez prendre connaissance du}}
-						<a class="btn btn-xs" id="bt_warnChangelogCore" target="_blank"><i class="fas fa-book"></i>
+						<a class="btn btn-xs" id="bt_warnChangelogCore" target="_blank"><i class="fas fa-file-code"></i>
 							{{Changelog}}
 						</a>
 						{{au préalable}}.

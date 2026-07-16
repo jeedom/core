@@ -5021,7 +5021,7 @@ div.eqLogic-widget.editingMode .panelLink {
     }
     table.ui-table-reflow.table-condensed tbody tr {
       display: table;
-      flex: 0 1 150px;
+      flex: 150px;
       margin: 2px;
       margin-bottom: 22px !important;
     }
