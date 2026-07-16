@@ -445,7 +445,7 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertScenarioValue"></div>')
   jeeDialog.dialog({
     id: 'mod_insertScenarioValue',
-    title: '{{Sélectionner le scénario}}',
+    title: '{{Sélectionner un scénario}}',
     height: 250,
     width: 800,
     top: '20vh',
