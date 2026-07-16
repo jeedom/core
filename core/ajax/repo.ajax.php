@@ -59,8 +59,10 @@ try {
 			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . init('id'));
 		}
 		$update = update::byTypeAndLogicalId($repo->getType(), $repo->getLogicalId());
+		$new = false;
 		if (!is_object($update)) {
 			$update = new update();
+			$new = true;
 		}
 		if ($update->getConfiguration('doNotUpdate') == 1) {
 			throw new Exception(__('Mise à jour et réinstallation désactivées sur ', __FILE__) . ' ' . $repo->getLogicalId());
@@ -71,7 +73,14 @@ try {
 		$update->setLocalVersion($repo->getDatetime(init('version', 'stable')));
 		$update->setConfiguration('version', init('version', 'stable'));
 		$update->save();
-		$update->doUpdate();
+		try {
+			$update->doUpdate();
+		} catch (Exception $e) {
+			if ($new) {
+				$update->deleteObjet();
+			}
+			throw $e;
+		}
 		ajax::success();
 	}
 
