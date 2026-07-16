@@ -23,7 +23,9 @@ no entries
 | 2026-06-27 21:01:28 | Use guard clauses in cmd->addHistoryValue | [#3400](https://github.com/jeedom/core/pull/3400) |
 
 ## Documentations
-no entries
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-07-16 09:18:32 | 2 wording corrections in Objects documentation (object.md) | [#3422](https://github.com/jeedom/core/pull/3422) |
 
 ## Developer
 | Merge date | Title | PR |
