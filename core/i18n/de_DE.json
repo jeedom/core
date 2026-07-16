@@ -1207,18 +1207,17 @@
         "Action": "Aktion",
         "Action exécutée avec succès": "Aktion erfolgreich abgeschlossen",
         "Annuler": "Abbrechen",
-        "Entrer une valeur entre": "Geben Sie einen Wert zwischen ein",
         "Info": "Die Info",
         "Message": "Nachricht",
         "Message pour la commande": "Nachricht zur Bestellung",
         "Quelle couleur (#rrggbb) ?": "Welche Farbe (#rrggbb)?",
         "Résultat de la commande :": "Ergebnis der Bestellung:",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Saisir une valeur entre ' + min + ' et ' + max + '": "Geben Sie einen Wert zwischen ' + min + ' und ' + max + ' ein",
+        "Sélectionner une commande": "Befehl auswählen",
         "Titre pour la commande": "Titel für Bestellung",
         "Valeur ?": "Wert ?",
         "Valider": "Validate",
         "Veuillez indiquer le code ?": "Bitte geben Sie den Code an?",
-        "et": "und",
         "Êtes-vous sûr de vouloir faire cette action ?": "Sind Sie sicher, dass Sie diese Aktion ausführen möchten?"
     },
     "core\/js\/config.class.js": {
@@ -1292,7 +1291,7 @@
         "Samedi": "Samstag",
         "Septembre": "September",
         "Sortir du plein écran": "Vollbildmodus beenden",
-        "Sélectionner la commande": "Befehl auswählen",
+        "Sélectionner une action": "Eine Aktion auswählen",
         "Téléchargement CSV": "CSV-Download",
         "Téléchargement JPEG": "JPEG-Download",
         "Téléchargement PDF": "PDF Herunterladen",
@@ -1342,7 +1341,7 @@
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Abbrechen",
-        "Sélectionner le scénario": "Wählen Sie das Szenario aus",
+        "Sélectionner un scénario": "Ein Szenario auswählen",
         "Valider": "Validate"
     },
     "core\/php\/authentification.php": {
