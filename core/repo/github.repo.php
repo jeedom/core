@@ -35,44 +35,44 @@ class repo_github {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function getConfigurationOption(){
+	public static function getConfigurationOption() {
 		return array(
 			'parameters_for_add' => array(
 				'user' => array(
-					'name' =>  __('Utilisateur ou organisation du dépôt',__FILE__),
+					'name' =>  __('Utilisateur ou organisation du dépôt', __FILE__),
 					'type' => 'input',
 				),
 				'repository' => array(
-					'name' =>  __('Nom du dépôt',__FILE__),
+					'name' =>  __('Nom du dépôt', __FILE__),
 					'type' => 'input',
 				),
 				'token' => array(
-					'name' =>  __('Token (facultatif)',__FILE__),
+					'name' =>  __('Token (facultatif)', __FILE__),
 					'type' => 'input'
 				),
 				'version' => array(
-					'name' =>  __('Branche',__FILE__),
+					'name' =>  __('Branche', __FILE__),
 					'type' => 'input',
 					'default' => 'master',
 				),
 			),
 			'configuration' => array(
 				'token' => array(
-					'name' =>  __('Token (facultatif)',__FILE__),
+					'name' =>  __('Token (facultatif)', __FILE__),
 					'type' => 'input',
 				),
 				'core::user' => array(
-					'name' =>  __('Utilisateur ou organisation du dépôt pour le core Jeedom',__FILE__),
+					'name' =>  __('Utilisateur ou organisation du dépôt pour le core Jeedom', __FILE__),
 					'type' => 'input',
 					'default' => 'jeedom',
 				),
 				'core::repository' => array(
-					'name' =>  __('Nom du dépôt pour le core Jeedom',__FILE__),
+					'name' =>  __('Nom du dépôt pour le core Jeedom', __FILE__),
 					'type' => 'input',
 					'default' => 'core',
 				),
 				'core::branch' => array(
-					'name' =>  __('Branche pour le core Jeedom',__FILE__),
+					'name' =>  __('Branche pour le core Jeedom', __FILE__),
 					'type' => 'input',
 					'default' => 'stable',
 				),
@@ -113,19 +113,19 @@ class repo_github {
 		$_update->save();
 	}
 
-	public static function getBranchInfo($_update){
+	public static function getBranchInfo($_update) {
 		$headers = array('User-agent: jeedom');
-		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
-		if($token != ''){
-			$headers[] = 'Authorization: Bearer '.$token;
+		$token = $_update->getConfiguration('token', config::byKey('github::token', 'core', ''));
+		if ($token != '') {
+			$headers[] = 'Authorization: Bearer ' . $token;
 		}
-		$request_http = new com_http('https://api.github.com/repos/'.$_update->getConfiguration('user').'/'.$_update->getConfiguration('repository').'/branches/'.$_update->getConfiguration('version', 'master'));
+		$request_http = new com_http('https://api.github.com/repos/' . $_update->getConfiguration('user') . '/' . $_update->getConfiguration('repository') . '/branches/' . $_update->getConfiguration('version', 'master'));
 		$request_http->setHeader($headers);
 		return json_decode($request_http->exec(10, 1), true);
 	}
 
 	public static function downloadObject($_update) {
-		$token = $_update->getConfiguration('token',config::byKey('github::token','core',''));
+		$token = $_update->getConfiguration('token', config::byKey('github::token', 'core', ''));
 		$branch = self::getBranchInfo($_update);
 		$tmp_dir = jeedom::getTmpFolder('github');
 		$tmp = $tmp_dir . '/' . $_update->getLogicalId() . '.zip';
@@ -188,7 +188,7 @@ class repo_github {
 	}
 
 	public static function versionCore() {
-		$url = 'https://raw.githubusercontent.com/'.config::byKey('github::core::user', 'core', 'jeedom').'/'.config::byKey('github::core::repository', 'core', 'core').'/' . config::byKey('github::core::branch', 'core', 'stable') . '/core/config/version';
+		$url = 'https://raw.githubusercontent.com/' . config::byKey('github::core::user', 'core', 'jeedom') . '/' . config::byKey('github::core::repository', 'core', 'core') . '/' . config::byKey('github::core::branch', 'core', 'stable') . '/core/config/version';
 		$request_http = new com_http($url);
 		return trim($request_http->exec(30));
 	}
