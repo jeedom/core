@@ -1207,18 +1207,17 @@
         "Action": "Acción",
         "Action exécutée avec succès": "Acción ejecutada con éxito",
         "Annuler": "Cancelar",
-        "Entrer une valeur entre": "Introduzca un valor entre",
         "Info": "Información",
         "Message": "Mensaje",
         "Message pour la commande": "Mensaje para pedido",
         "Quelle couleur (#rrggbb) ?": "¿De qué color (#rrggbb)?",
         "Résultat de la commande :": "Resultado del comando :",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Saisir une valeur entre ' + min + ' et ' + max + '": "Introduce un valor entre «+ min +» y «+ max +»",
+        "Sélectionner une commande": "Seleccionar un comando",
         "Titre pour la commande": "Titulo de pedido",
         "Valeur ?": "Valor ?",
         "Valider": "Validar",
         "Veuillez indiquer le code ?": "Por favor, indique el código ?",
-        "et": "y",
         "Êtes-vous sûr de vouloir faire cette action ?": "¿Seguro que quieres hacer esta acción?"
     },
     "core\/js\/config.class.js": {
@@ -1292,7 +1291,7 @@
         "Samedi": "Sábado",
         "Septembre": "Septiembre",
         "Sortir du plein écran": "Salir del modo de pantalla completa",
-        "Sélectionner la commande": "Seleccione el comando",
+        "Sélectionner une action": "Seleccionar una acción",
         "Téléchargement CSV": "Descarga CSV",
         "Téléchargement JPEG": "Descarga JPEG",
         "Téléchargement PDF": "Descargar PDF",
@@ -1342,7 +1341,7 @@
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Cancelar",
-        "Sélectionner le scénario": "Seleccione el escenario",
+        "Sélectionner un scénario": "Seleccionar un escenario",
         "Valider": "Validar"
     },
     "core\/php\/authentification.php": {

@@ -1207,18 +1207,17 @@
         "Action": "Action",
         "Action exécutée avec succès": "Action successfully completed",
         "Annuler": "Cancel",
-        "Entrer une valeur entre": "Enter a value between",
         "Info": "Info",
         "Message": "Message",
         "Message pour la commande": "Command message",
         "Quelle couleur (#rrggbb) ?": "What color (#rrggbb)?",
         "Résultat de la commande :": "Command result:",
-        "Sélectionner la commande": "Select command",
+        "Saisir une valeur entre ' + min + ' et ' + max + '": "Enter a value between ' + min + ' and ' + max + '",
+        "Sélectionner une commande": "Select a command",
         "Titre pour la commande": "Command title",
         "Valeur ?": "Value ?",
         "Valider": "Save",
         "Veuillez indiquer le code ?": "Please indicate the code?",
-        "et": "and",
         "Êtes-vous sûr de vouloir faire cette action ?": "Are you sure you want to do this action?"
     },
     "core\/js\/config.class.js": {
@@ -1292,7 +1291,7 @@
         "Samedi": "Saturday",
         "Septembre": "September",
         "Sortir du plein écran": "Sortir du plein écran",
-        "Sélectionner la commande": "Select command",
+        "Sélectionner une action": "Select an action",
         "Téléchargement CSV": "CSV download",
         "Téléchargement JPEG": "JPEG download",
         "Téléchargement PDF": "PDF download",
@@ -1342,7 +1341,7 @@
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Cancel",
-        "Sélectionner le scénario": "Select the scenario",
+        "Sélectionner un scénario": "Select a scenario",
         "Valider": "Save"
     },
     "core\/php\/authentification.php": {
