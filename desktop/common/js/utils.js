@@ -1752,26 +1752,14 @@ jeedomUtils.cleanModals = function(_modals = '') {
 }
 
 //Context menu on checkbox
-jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
+jeedomUtils.setCheckboxStateByType = function(_type, _state) {
   if (!isset(_type)) return false
   if (!isset(_state)) _state = -1
   var checkboxes = document.querySelectorAll(_type)
   if (checkboxes == null) return
-  var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
-  var execCallback = false
   checkboxes.forEach(function(checkbox) {
-    execCallback = false
-    if (_state == -1) {
-      checkbox.checked = !checkbox.checked
-      execCallback = true
-    } else {
-      if (checkbox.checked != _state) {
-        checkbox.checked = _state
-        execCallback = true
-      }
-    }
-    if (isCallback && execCallback) {
-      _callback(checkbox)
+    if (_state == -1 || checkbox.checked != _state) {
+      checkbox.click()
     }
   })
 }
@@ -1791,7 +1779,7 @@ jeedomUtils.getElementType = function(_el) {
   }
   return thisType
 }
-jeedomUtils.setCheckContextMenu = function(_callback) {
+jeedomUtils.setCheckContextMenu = function() {
   let ctxSelector = 'input[type="checkbox"].checkContext, input[type="radio"].checkContext'
   try {
     document.querySelector('.contextmenu-checkbox')._jeeCtxMenu.destroy()
@@ -1807,22 +1795,19 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
       all: {
         name: "{{Sélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.trigger)
-          jeedomUtils.setCheckboxStateByType(thisType, 1, _callback)
+          jeedomUtils.setCheckboxStateByType(jeedomUtils.getElementType(opt.trigger), 1)
         }
       },
       none: {
         name: "{{Désélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.trigger)
-          jeedomUtils.setCheckboxStateByType(thisType, 0, _callback)
+          jeedomUtils.setCheckboxStateByType(jeedomUtils.getElementType(opt.trigger), 0)
         }
       },
       invert: {
         name: "{{Inverser la sélection}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.trigger)
-          jeedomUtils.setCheckboxStateByType(thisType, -1, _callback)
+          jeedomUtils.setCheckboxStateByType(jeedomUtils.getElementType(opt.trigger), -1)
         }
       }
     }
