@@ -585,7 +585,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('click', funct
 
   if (_target = event.target.closest('#bt_addPluginFromOtherSource')) {
     jeeDialog.dialog({
-      id: 'jee_modal',
+      id: 'jee_modal3',
       title: "{{Installer un plugin}}",
       contentUrl: 'index.php?v=d&modal=update.add'
     })
