@@ -2515,26 +2515,24 @@
         "Types Génériques sauvegardés": "Tipos genéricos guardados"
     },
     "desktop\/js\/update.js": {
-        "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Atención: El complemento ' + logicalId + ' no está activado. ¿Seguro que quieres actualizarlo?",
-        "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Tenga cuidado, esta operación siempre es arriesgada y puede llevar varias decenas de minutos",
+        "Attention : Le plugin \" + logicalId + \" n'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Atención: El complemento «+ logicalId +» no está activado. ¿Estás seguro de que quieres actualizarlo?",
         "Aucune mise à jour en cours.": "No hay actualizaciones en progreso",
         "Changelog": "Cambios",
-        "Dernière verification des mises à jour": "Última comprobación de actualización",
-        "L\\'opération a échoué. Veuillez aller sur l\\'onglet informations et consulter la log pour savoir pourquoi.": "La operación falló. Vaya a la pestaña de información y consulte el registro para averiguar por qué",
+        "Dernière vérification des mises à jour": "Última comprobación de actualizaciones",
+        "L'opération a échoué. Veuillez aller sur l'onglet informations et consulter la log pour plus de détails.": "La operación ha fallado. Ve a la pestaña «Información» y consulta el registro para obtener más detalles.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "La actualización parece estar bloqueada (sin cambios durante 10 minutos. Verifique el registro)",
         "Log de mise à jour": "Actualizar registro",
         "Mettre à jour": "Actualizar",
         "Mise à jour lancée avec succès.": "Actualización iniciada con éxito",
         "Mise(s) à jour terminée(s) avec succès.": "Actualización (es) completada con éxito",
-        "Ne pas mettre à jour": "No actualizar",
+        "Ne pas mettre à jour ce plugin (sauvegarder pour enregistrer)": "No actualizar este complemento (haz clic en «Guardar» para guardar los cambios)",
         "Options de mise à jour": "Opciones de actualización",
         "Réinstaller": "Restablecer",
-        "Sauvegarder pour conserver les modifications": "Guardar para conservar los cambios",
         "Supprimer": "Eliminar",
         "Vérifier": "Verificar",
-        "Êtes-vous sûr de vouloir mettre à jour le plugin :": "¿Seguro que quieres actualizar el plugin?",
-        "Êtes-vous sûr de vouloir mettre à jour les packages de type": "¿Está seguro de que desea actualizar los paquetes de tipo",
-        "Êtes-vous sûr de vouloir supprimer :": "Estas seguro que quieres borrarlo:"
+        "Êtes-vous sûr de vouloir mettre à jour le plugin ' + logicalId + ' ?": "¿Estás seguro de que quieres actualizar el plugin «+ logicalId +»?",
+        "Êtes-vous sûr de vouloir mettre à jour les packages de type ' + type + ' ? Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "¿Estás seguro de que quieres actualizar los paquetes de tipo «+ tipo +»? Ten en cuenta que esta operación siempre conlleva riesgos y puede tardar varias decenas de minutos.",
+        "Êtes-vous sûr de vouloir supprimer le plugin ' + logicalId + ' ?": "¿Estás seguro de que quieres eliminar el plugin «+logicalId+»?"
     },
     "desktop\/js\/user.js": {
         "Actif": "Activo",
