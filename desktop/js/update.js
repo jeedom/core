@@ -97,7 +97,7 @@ if (!jeeFrontEnd.update) {
                   clearTimeout(jeeP.alertTimeout)
                 }
                 jeedomUtils.showAlert({
-                  message: "{{L'opération a échoué. Veuillez aller sur l'onglet informations et consulter la log pour plus de détails.}}",
+                  message: '{{L\'opération a échoué. Veuillez aller sur l\'onglet Information et consulter la log pour plus de détails.}}',
                   level: 'danger'
                 })
                 _autoUpdate = 0
@@ -257,7 +257,7 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:160px;" data-order="' + Date.parse(_update.updateDate) + '"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
       if (_update.type != 'core') {
-        tr += '<label title="{{Ne pas mettre à jour ce plugin (sauvegarder pour enregistrer)}}" for="' + _update.name + '">'
+        tr += '<label title="{{Ne pas mettre à jour ce plugin}}" for="' + _update.name + '">'
         tr += '<i class="fas fa-lock cursor"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate">'
         tr += '</label>'
       }
@@ -649,9 +649,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       },
       success: function(data) {
         var isActivated = (data.activate !== undefined && data.activate !== null) ? data.activate : 1
-        var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin ' + logicalId + ' ?}}'
+        var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin}} ' + logicalId + ' ?'
         if (isActivated != 1) {
-          confirmationMessage = "{{Attention : Le plugin " + logicalId + " n'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}"
+          confirmationMessage = '{{Attention : Le plugin}} ' + logicalId + ' {{n\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}'
         }
 
         jeeDialog.confirm(confirmationMessage, function(result) {
@@ -683,7 +683,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('#table_update .remove')) {
     var id = _target.closest('tr').getAttribute('data-id')
     var logicalId = _target.closest('tr').getAttribute('data-logicalid')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin ' + logicalId + ' ?}}', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} ' + logicalId + ' ?', function(result) {
       if (result) {
         jeedomUtils.hideAlert()
         jeedom.update.remove({
@@ -749,7 +749,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       return
     }
     let type = _target.getAttribute('data-type')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type ' + type + ' ? Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}} ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
       if (!result) {
         return
       }
