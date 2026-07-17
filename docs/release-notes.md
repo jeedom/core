@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-07-17 12:21:21 | Harmonize buttons and icons on the update page | [#3426](https://github.com/jeedom/core/pull/3426) |
 | 2026-07-05 12:36:06 | Recovery use new build-provided product_name for Smart/Atlas | [#3398](https://github.com/jeedom/core/pull/3398) |
 | 2026-06-30 15:36:39 | Uncheck default plugins update | [#3406](https://github.com/jeedom/core/pull/3406) |
 | 2026-06-29 16:12:13 | Add history retention mode | [#3401](https://github.com/jeedom/core/pull/3401) |
