@@ -2515,24 +2515,26 @@
         "Types Génériques sauvegardés": "Generic types saved"
     },
     "desktop\/js\/update.js": {
-        "Attention : Le plugin \" + logicalId + \" n'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Warning: The \" + logicalId + \" plugin is not enabled. Are you sure you want to update it?",
+        "Attention : Le plugin": "Note: The plugin",
+        "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Please note that this process is always risky and may take several tens of minutes",
         "Aucune mise à jour en cours.": "No update in progress",
         "Changelog": "Changelog",
         "Dernière vérification des mises à jour": "Last check for updates",
-        "L'opération a échoué. Veuillez aller sur l'onglet informations et consulter la log pour plus de détails.": "The operation failed. Please go to the \"Information\" tab and check the log for more details.",
+        "L\\'opération a échoué. Veuillez aller sur l\\'onglet Information et consulter la log pour plus de détails.": "The operation failed. Please go to the Information tab and check the log for more details.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "The update seems to be blocked (no change for 10min. Check the log)",
         "Log de mise à jour": "Update Log",
         "Mettre à jour": "Update",
         "Mise à jour lancée avec succès.": "Update launched successfully",
         "Mise(s) à jour terminée(s) avec succès.": "Update completed successfully",
-        "Ne pas mettre à jour ce plugin (sauvegarder pour enregistrer)": "Do not update this plugin (click \"Save\" to save)",
+        "Ne pas mettre à jour ce plugin": "Do not update this plugin",
         "Options de mise à jour": "Update Options",
         "Réinstaller": "Reinstall",
         "Supprimer": "Delete",
         "Vérifier": "Check",
-        "Êtes-vous sûr de vouloir mettre à jour le plugin ' + logicalId + ' ?": "Are you sure you want to update the ' + logicalId + ' plugin?",
-        "Êtes-vous sûr de vouloir mettre à jour les packages de type ' + type + ' ? Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Are you sure you want to update the ' + type + ' packages? Please note that this operation is always risky and may take several tens of minutes.",
-        "Êtes-vous sûr de vouloir supprimer le plugin ' + logicalId + ' ?": "Are you sure you want to delete the ' + logicalId + ' plugin?"
+        "n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "is not enabled. Are you sure you want to update it?",
+        "Êtes-vous sûr de vouloir mettre à jour le plugin": "Are you sure you want to update the plugin?",
+        "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Are you sure you want to update packages of type",
+        "Êtes-vous sûr de vouloir supprimer le plugin": "Are you sure you want to remove the plugin"
     },
     "desktop\/js\/user.js": {
         "Actif": "Active",
