@@ -2515,26 +2515,24 @@
         "Types Génériques sauvegardés": "Tipi generici salvati"
     },
     "desktop\/js\/update.js": {
-        "Attention : Le plugin ' + logicalId + ' n\\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Attenzione: il plugin ' + logicalId + ' non è attivato. Sei sicuro di volerlo aggiornare?",
-        "Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Attenzione: questa operazione è sempre rischiosa e può richiedere diverse decine di minuti",
+        "Attention : Le plugin \" + logicalId + \" n'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?": "Attenzione: il plugin \" + logicalId + \" non è attivato. Sei sicuro di volerlo aggiornare?",
         "Aucune mise à jour en cours.": "Aucune mise à jour en cours",
         "Changelog": "Registro delle modifiche",
-        "Dernière verification des mises à jour": "Ultimo controllo degli aggiornamenti",
-        "L\\'opération a échoué. Veuillez aller sur l\\'onglet informations et consulter la log pour savoir pourquoi.": "L\\'opération a échoué. Veuillez aller sur l\\'onglet informations et consulter la log pour savoir pourquoi",
+        "Dernière vérification des mises à jour": "Ultimo controllo degli aggiornamenti",
+        "L'opération a échoué. Veuillez aller sur l'onglet informations et consulter la log pour plus de détails.": "L'operazione non è andata a buon fine. Si prega di accedere alla scheda \"Informazioni\" e consultare il log per ulteriori dettagli.",
         "La mise à jour semble être bloquée (pas de changement depuis 10min. Vérifiez le log)": "L'aggiornamento sembra essere bloccato (nessun cambiamento da 10 minuti. Controlla il log)",
         "Log de mise à jour": "Registro degli aggiornamenti",
         "Mettre à jour": "Aggiornare",
         "Mise à jour lancée avec succès.": "Mise à jour lancée avec succès",
         "Mise(s) à jour terminée(s) avec succès.": "Mise(s) à jour terminée(s) avec succès",
-        "Ne pas mettre à jour": "Non aggiornare",
+        "Ne pas mettre à jour ce plugin (sauvegarder pour enregistrer)": "Non aggiornare questo plugin (salvare per confermare)",
         "Options de mise à jour": "Opzioni di aggiornamento",
         "Réinstaller": "Reinstallare",
-        "Sauvegarder pour conserver les modifications": "Salva per conservare le modifiche",
         "Supprimer": "Elimina",
         "Vérifier": "Verifica",
-        "Êtes-vous sûr de vouloir mettre à jour le plugin :": "Sei sicuro di voler aggiornare il plugin:",
-        "Êtes-vous sûr de vouloir mettre à jour les packages de type": "Sei sicuro di voler aggiornare i pacchetti di tipo",
-        "Êtes-vous sûr de vouloir supprimer :": "Sei sicuro di voler eliminare:"
+        "Êtes-vous sûr de vouloir mettre à jour le plugin ' + logicalId + ' ?": "Sei sicuro di voler aggiornare il plugin ' + logicalId + '?",
+        "Êtes-vous sûr de vouloir mettre à jour les packages de type ' + type + ' ? Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes": "Sei sicuro di voler aggiornare i pacchetti di tipo ' + tipo + '? Attenzione: questa operazione è sempre rischiosa e può richiedere diverse decine di minuti",
+        "Êtes-vous sûr de vouloir supprimer le plugin ' + logicalId + ' ?": "Sei sicuro di voler eliminare il plugin ' + logicalId + '?"
     },
     "desktop\/js\/user.js": {
         "Actif": "Beni",
