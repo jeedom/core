@@ -1753,11 +1753,14 @@ jeedomUtils.cleanModals = function(_modals = '') {
 
 //Context menu on checkbox
 jeedomUtils.setCheckboxStateByType = function(_type, _state) {
-  if (!isset(_type)) return false
-  if (!isset(_state)) _state = -1
-  var checkboxes = document.querySelectorAll(_type)
-  if (checkboxes == null) return
-  checkboxes.forEach(function(checkbox) {
+  if (!isset(_type)) {
+    return false
+  }
+  if (!isset(_state)) {
+    _state = -1
+  }
+
+  document.querySelectorAll(_type).forEach(function(checkbox) {
     if (_state == -1 || checkbox.checked != _state) {
       checkbox.click()
     }
