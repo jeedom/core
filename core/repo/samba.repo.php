@@ -40,30 +40,31 @@ class repo_samba {
 		return array(
 			'parameters_for_add' => array(
 				'path' => array(
-					'name' => __('Chemin', __FILE__),
+					'name' => __('Chemin du fichier ZIP', __FILE__),
 					'type' => 'input',
+					'tooltip' => __("Renseigner le chemin du plugin compressé", __FILE__) . ' (*.zip)'
 				),
 			),
 			'configuration' => array(
 				'backup::ip' => array(
 					'name' => __('[Backup] IP', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'backup::username' => array(
 					'name' => __('[Backup] Utilisateur', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'backup::password' => array(
 					'name' => __('[Backup] Mot de passe', __FILE__),
-					'type' => 'password',
+					'type' => 'password'
 				),
 				'backup::share' => array(
 					'name' => __('[Backup] Partage', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'backup::folder' => array(
 					'name' => __('[Backup] Chemin', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 			),
 		);

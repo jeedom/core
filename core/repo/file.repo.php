@@ -33,20 +33,20 @@ class repo_file {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function getConfigurationOption(){
+	public static function getConfigurationOption() {
 		return array(
-          	'translate_name' => __('Fichier',__FILE__),
+			'translate_name' => __('Fichier', __FILE__),
 			'parameters_for_add' => array(
 				'path' => array(
-					'name' =>  __('Chemin',__FILE__),
+					'name' =>  __('Fichier ZIP', __FILE__),
 					'type' => 'file',
+					'tooltip' => __("Téléverser le plugin compressé", __FILE__) . ' (*.zip)'
 				),
 			),
 		);
 	}
 
 	public static function checkUpdate($_update) {
-
 	}
 
 	public static function downloadObject($_update) {
@@ -54,7 +54,6 @@ class repo_file {
 	}
 
 	public static function deleteObjet($_update) {
-
 	}
 
 	public static function objectInfo($_update) {
@@ -67,5 +66,4 @@ class repo_file {
 	/*     * *********************Methode d'instance************************* */
 
 	/*     * **********************Getteur Setteur*************************** */
-
 }

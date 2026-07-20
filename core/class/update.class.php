@@ -535,7 +535,7 @@ class update {
 
 	public function preSave() {
 		if ($this->getLogicalId() == '') {
-			throw new Exception(__('Le logical ID ne peut pas être vide', __FILE__));
+			throw new Exception(__("L'identifiant du plugin ne peut pas être vide", __FILE__));
 		}
 		if ($this->getName() == '') {
 			$this->setName($this->getLogicalId());

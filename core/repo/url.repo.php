@@ -38,18 +38,19 @@ class repo_url {
 		return array(
 			'parameters_for_add' => array(
 				'url' => array(
-					'name' => __('URL du fichier ZIP', __FILE__),
+					'name' => __('Adresse du fichier ZIP', __FILE__),
 					'type' => 'input',
+					'tooltip' => __("Renseigner l'adresse du plugin compressé", __FILE__) . ' (*.zip)'
 				),
 			),
 			'configuration' => array(
 				'core::url' => array(
 					'name' => __('URL core Jeedom', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'core::version' => array(
 					'name' => __('URL version core Jeedom', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 			),
 		);

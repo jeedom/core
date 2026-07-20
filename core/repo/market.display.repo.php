@@ -26,18 +26,6 @@ sendVarToJS('market_display_info', $market_array);
     <div class='col-sm-3'>
       <center>
         <?php
-        $default_image = 'core/img/no_image.gif';
-        switch ($market->getType()) {
-          case 'widget':
-            $default_image = 'core/img/no-image-widget.png';
-            break;
-          case 'plugin':
-            $default_image = 'core/img/no-image-plugin.png';
-            break;
-          case 'script':
-            $default_image = 'core/img/no-image-script.png';
-            break;
-        }
         $urlPath = config::byKey('market::address') . '/' . $market->getImg('icon');
         echo '<img src="' . $urlPath . '" class="img-responsive" style="height : 200px;" onerror="this.onerror=null;this.src=&quot;core/img/no-image-plugin.png&quot;;"/>';
         ?>
@@ -116,23 +104,23 @@ sendVarToJS('market_display_info', $market_array);
       <?php
       $purchase_info = null;
       if (config::byKey('market::apikey') != '' || (config::byKey('market::username') != '' && config::byKey('market::password') != '')) {
-          $purchase_info = repo_market::getPurchaseInfo();
+        $purchase_info = repo_market::getPurchaseInfo();
       }
       if ($market->getCertification() == 'Premium') {
-          echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
+        echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Nous Contacter}}</span>';
       } else {
-          if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && $market->getPurchase() == 1) {
-              echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Plugin deja acheté et/ou inclus dans votre service Pack}}</span>';
+        if (isset($purchase_info['user_id']) && is_numeric($purchase_info['user_id']) && $market->getPurchase() == 1) {
+          echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Plugin deja acheté et/ou inclus dans votre service Pack}}</span>';
+        } else {
+          if ($market->getCost() > 0) {
+            if ($market->getCost() != $market->getRealCost()) {
+              echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
+            }
+            echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
           } else {
-              if ($market->getCost() > 0) {
-                  if ($market->getCost() != $market->getRealCost()) {
-                      echo '<span data-l1key="rating" style="font-size: 1em;text-decoration:line-through;">' . number_format($market->getRealCost(), 2) . ' €</span> ';
-                  }
-                  echo '<span data-l1key="rating" style="font-size: 1.5em;">' . number_format($market->getCost(), 2) . ' € TTC</span>';
-              } else {
-                  echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
-              }
+            echo '<span data-l1key="rating" style="font-size: 1.5em;">{{Gratuit}}</span>';
           }
+        }
       }
       ?>
     </div>
@@ -283,38 +271,38 @@ sendVarToJS('market_display_info', $market_array);
   (function() { // Self Isolation!
 
     function compareVersionsCore(v1, v2) {
-        const v1Parts = v1.split('.').map(Number);
-        const v2Parts = v2.split('.').map(Number);
+      const v1Parts = v1.split('.').map(Number);
+      const v2Parts = v2.split('.').map(Number);
 
-        for (let i = 0; i < Math.max(v1Parts.length, v2Parts.length); i++) {
-            const v1Part = v1Parts[i] || 0;
-            const v2Part = v2Parts[i] || 0;
+      for (let i = 0; i < Math.max(v1Parts.length, v2Parts.length); i++) {
+        const v1Part = v1Parts[i] || 0;
+        const v2Part = v2Parts[i] || 0;
 
-            if (v1Part > v2Part) return 1;
-            if (v1Part < v2Part) return -1;
-        }
+        if (v1Part > v2Part) return 1;
+        if (v1Part < v2Part) return -1;
+      }
 
-        return 0;
+      return 0;
     }
 
     jeedom.version({
-        success: function(version) {
-            if(compareVersionsCore(market_display_info.parameters.minJeedomVersion, version) > 0) {
-                var installButtons = document.querySelectorAll('.bt_installFromMarket');
-                installButtons.forEach(function(installButton) {
-                    installButton.style.display = 'none';
-                });
-              var buyButtons = document.querySelectorAll('.buyButtons');
-                     buyButtons.forEach(function(buyButton) {
-                          buyButton.style.display = 'none';
-                      });
-     
-              var warningDiv = document.getElementById('warningVersion'); 
-              if (warningDiv) {
-                  warningDiv.style.display = 'block';
-              }
-            }
+      success: function(version) {
+        if (compareVersionsCore(market_display_info.parameters.minJeedomVersion, version) > 0) {
+          var installButtons = document.querySelectorAll('.bt_installFromMarket');
+          installButtons.forEach(function(installButton) {
+            installButton.style.display = 'none';
+          });
+          var buyButtons = document.querySelectorAll('.buyButtons');
+          buyButtons.forEach(function(buyButton) {
+            buyButton.style.display = 'none';
+          });
+
+          var warningDiv = document.getElementById('warningVersion');
+          if (warningDiv) {
+            warningDiv.style.display = 'block';
+          }
         }
+      }
     });
 
 
@@ -346,10 +334,8 @@ sendVarToJS('market_display_info', $market_array);
       }
 
       if (_target = event.target.closest('.bt_installFromMarket')) {
-        var id = _target.getAttribute('data-market_id')
-        var logicalId = _target.getAttribute('data-market_logicalId')
         jeedom.repo.install({
-          id: id,
+          id: _target.getAttribute('data-market_id'),
           repo: 'market',
           version: _target.getAttribute('data-version'),
           error: function(error) {
@@ -359,20 +345,7 @@ sendVarToJS('market_display_info', $market_array);
             })
           },
           success: function(data) {
-            if (market_display_info.type == 'plugin') {
-              jeeDialog.confirm('{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}', function(result) {
-                if (result) {
-                  jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + logicalId)
-                }
-              })
-            }
-            if (typeof refreshListAfterMarketObjectInstall == 'function') {
-              refreshListAfterMarketObjectInstall()
-            }
-            jeedomUtils.showAlert({
-              message: '{{Plugin installé avec succès}}',
-              level: 'success'
-            })
+            jeeFrontEnd.plugin.installSuccess(_target.getAttribute('data-market_logicalId'))
           }
         })
         return
