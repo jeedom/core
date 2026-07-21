@@ -156,13 +156,15 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 
 jeedom.history.graphUpdate = function(_params) {
   for (const i in _params) {
-    if(_params[i].cmd_id == ''){
-      continue;
-    }
-    for(const chart in jeedom.history.chart){
-      for(const serie in jeedom.history.chart[chart].chart.series){
-        if(jeedom.history.chart[chart].chart.series[serie] && jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
-          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now()+(-1*(new Date()).getTimezoneOffset()*60*1000),_params[i].value])
+    if (_params[i].cmd_id == '') continue
+    for (const chart in jeedom.history.chart) {
+      const cmd = jeedom.history.chart[chart].cmd[_params[i].cmd_id]
+      for (const serie in jeedom.history.chart[chart].chart.series) {
+        if (jeedom.history.chart[chart].chart.series[serie]?.options.id == _params[i].cmd_id) {
+          let value = _params[i].value
+          if (typeof cmd?.calcul === 'function') value = cmd.calcul(value)
+          if (cmd?.option?.invertData) value = -value
+          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000),value])
         }
       }
     }
@@ -1095,7 +1097,8 @@ jeedom.history.drawChart = function(_params) {
         }
         jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
           option: _params.option,
-          dateRange: _params.dateRange
+          dateRange: _params.dateRange,
+          calcul: _params.calcul
         }
       }
 
