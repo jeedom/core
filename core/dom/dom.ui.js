@@ -971,7 +971,11 @@ var jeeDialog = (function() {
         })
       }
     }
-    _footer.appendChild(button)
+    if (_button[0] === 'cancel') {
+      _footer.prepend(button)
+    } else {
+      _footer.appendChild(button)
+    }
     return button
   }
 
@@ -1804,7 +1808,7 @@ var jeeCtxMenu = function(_options) {
       display: null
     })
     _ctxMenu.seen()
-    
+
     //Is there use positionning:
     if (ctxInstance.options.position) {
       ctxInstance.options.position.apply(ctxInstance, [ctxInstance, _event.clientX, _event.clientY])
