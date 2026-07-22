@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-07-22 10:57:14 | Sync update notification message after each relevant action | [#3410](https://github.com/jeedom/core/pull/3410) |
 | 2026-07-20 19:06:23 | Unify plugin install prompts and revamp the add plugin modal | [#3428](https://github.com/jeedom/core/pull/3428) |
 | 2026-07-17 12:21:21 | Harmonize buttons and icons on the update page | [#3426](https://github.com/jeedom/core/pull/3426) |
 | 2026-07-05 12:36:06 | Recovery use new build-provided product_name for Smart/Atlas | [#3398](https://github.com/jeedom/core/pull/3398) |
