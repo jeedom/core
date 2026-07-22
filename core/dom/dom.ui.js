@@ -93,9 +93,7 @@ NodeList.prototype.toggle = function() {
   return this
 }
 Element.prototype.empty = function() {
-  while (this.firstChild) {
-    this.removeChild(this.lastChild)
-  }
+  this.replaceChildren()
   return this
 }
 NodeList.prototype.empty = function() {
