@@ -16,6 +16,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-07-22 10:51:13 | Fix plugin custom events never reaching native addEventListener listeners | [#3416](https://github.com/jeedom/core/pull/3416) |
 | 2026-07-22 10:44:28 | Always place the cancel button before confirm in jeeDialog footers | [#3423](https://github.com/jeedom/core/pull/3423) |
 | 2026-07-22 10:43:46 | Avoid config pollution when a plugin lookup fails on a non-existent id | [#3421](https://github.com/jeedom/core/pull/3421) |
 | 2026-07-17 16:29:00 | Fix broken translations on the update page | [#3431](https://github.com/jeedom/core/pull/3431) |
