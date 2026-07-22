@@ -348,9 +348,9 @@ try {
 	}
 	echo "[PROGRESS][90]\n";
 	try {
-		message::removeAll('update', 'newUpdate');
 		echo "Check update\n";
 		update::checkAllUpdate();
+		update::refreshUpdateMessage();
 		echo "OK\n";
 	} catch (Exception $ex) {
 		echo "***ERROR*** " . $ex->getMessage() . "\n";
