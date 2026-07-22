@@ -16,6 +16,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-07-22 10:43:46 | Avoid config pollution when a plugin lookup fails on a non-existent id | [#3421](https://github.com/jeedom/core/pull/3421) |
 | 2026-07-17 16:29:00 | Fix broken translations on the update page | [#3431](https://github.com/jeedom/core/pull/3431) |
 | 2026-06-25 13:40:05 | fix in case pdo hydratation set timeout to null | [#3393](https://github.com/jeedom/core/pull/3393) |
 
