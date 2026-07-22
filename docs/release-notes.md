@@ -16,6 +16,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-07-22 10:55:38 | Scope clearToasts to the dialog being closed | [#3414](https://github.com/jeedom/core/pull/3414) |
 | 2026-07-22 10:52:07 | Fix setTags() reference error in interactQuery | [#3407](https://github.com/jeedom/core/pull/3407) |
 | 2026-07-22 10:51:13 | Fix plugin custom events never reaching native addEventListener listeners | [#3416](https://github.com/jeedom/core/pull/3416) |
 | 2026-07-22 10:44:28 | Always place the cancel button before confirm in jeeDialog footers | [#3423](https://github.com/jeedom/core/pull/3423) |
