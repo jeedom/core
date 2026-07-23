@@ -1299,7 +1299,7 @@ jeedomUtils.initSpinners = function() {
       wrapOverflow: true,
       parse: Number,
       onChange: function() {
-        _spin.triggerEvent('change', { bubbles: true })
+        _spin.triggerEvent('change')
       }
     }
     new ISpin(_spin, options)
