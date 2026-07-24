@@ -156,15 +156,29 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 
 jeedom.history.graphUpdate = function(_params) {
   for (const i in _params) {
-    if (_params[i].cmd_id == '') continue
+    const cmd_id = _params[i].cmd_id
+    if (cmd_id == '') {
+      continue
+    }
     for (const chart in jeedom.history.chart) {
-      const cmd = jeedom.history.chart[chart].cmd[_params[i].cmd_id]
+      const cmd = jeedom.history.chart[chart].cmd[cmd_id]
+      let value = _params[i].value
+      if (typeof cmd?.calcul === 'function') {
+        value = cmd.calcul(value)
+      }
+      if (jeedom.history.chart[chart].type == 'pie') {
+        const point = jeedom.history.chart[chart].chart.series[0]?.points.find(p => p.id == cmd_id)
+        if (point) {
+          point.update(value)
+        }
+        continue
+      }
+      if (cmd?.option?.invertData) {
+        value = -value
+      }
       for (const serie in jeedom.history.chart[chart].chart.series) {
-        if (jeedom.history.chart[chart].chart.series[serie]?.options.id == _params[i].cmd_id) {
-          let value = _params[i].value
-          if (typeof cmd?.calcul === 'function') value = cmd.calcul(value)
-          if (cmd?.option?.invertData) value = -value
-          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000),value])
+        if (jeedom.history.chart[chart].chart.series[serie]?.options.id == cmd_id) {
+          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
         }
       }
     }
@@ -410,7 +424,7 @@ jeedom.history.drawChart = function(_params) {
         }
         if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
           let split = data.result.cmd.display.groupingType.split('||')[0]
-		  split = split.split('::')
+          split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -600,13 +614,18 @@ jeedom.history.drawChart = function(_params) {
 
       //pie chart option from views:
       if (_params.option.graphType == 'pie') {
+        let pieValue = data.result.data[data.result.data.length - 1][1]
+        if (typeof _params.calcul === 'function') {
+          pieValue = _params.calcul(pieValue)
+        }
         const series = {
           type: _params.option.graphType,
           id: _params.cmd_id,
           cursor: 'pointer',
           data: [{
-            y: data.result.data[data.result.data.length - 1][1],
-            name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite, 
+            id: _params.cmd_id,
+            y: pieValue,
+            name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
             color: _params.option.graphColor
           }],
         }
@@ -665,7 +684,8 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.initChart(_params.el)
         } else {
           jeedom.history.chart[_params.el].chart.series[0].addPoint({
-            y: data.result.data[data.result.data.length - 1][1],
+            id: _params.cmd_id,
+            y: pieValue,
             name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
             color: _params.option.graphColor
           })
@@ -679,7 +699,7 @@ jeedom.history.drawChart = function(_params) {
         }
         if (isset(_params.option.groupingType) && typeof _params.option.groupingType === 'string' && _params.option.groupingType != '') {
           let split = _params.option.groupingType.split('||')[0]
-		  split=split.split('::')
+          split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -735,7 +755,7 @@ jeedom.history.drawChart = function(_params) {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
-          if (_params.calcul) {
+          if (typeof _params.calcul === 'function') {
             for (const i in data.result.data) {
               data.result.data[i][1] = _params.calcul(data.result.data[i][1])
             }
@@ -1095,11 +1115,11 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].dateEnd = _params.dateEnd
 
         }
-        jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
-          option: _params.option,
-          dateRange: _params.dateRange,
-          calcul: _params.calcul
-        }
+      }
+      jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
+        option: _params.option,
+        dateRange: _params.dateRange,
+        calcul: _params.calcul
       }
 
       jeedom.history.chart[_params.el].dateStart = data.result.dateStart
