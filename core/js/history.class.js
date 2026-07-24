@@ -182,11 +182,9 @@ jeedom.history.graphUpdate = function(_params) {
       if (cmd?.option?.invertData) {
         value = -value
       }
-      for (const serie in jeedom.history.chart[chart].chart.series) {
-        if (jeedom.history.chart[chart].chart.series[serie]?.options.id == cmd_id) {
-          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
-          break
-        }
+      const serie = jeedom.history.chart[chart].chart.series.find(s => s?.options.id == cmd_id)
+      if (serie) {
+        serie.addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
       }
     }
   }
