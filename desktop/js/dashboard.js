@@ -157,7 +157,7 @@ if (!jeeFrontEnd.dashboard) {
         document.getElementById('in_searchDashboard').readOnly = false
         if (!isset(_save) || _save) document.getElementById('md_dashEdit')?.remove()
       } else { //Enter edit mode!
-        document.getElementById('div_displayObject').style.height = (document.getElementById('div_displayObject').offsetHeight*1.2)+'px'
+        document.getElementById('div_displayObject').style.height = (document.getElementById('div_displayObject').offsetHeight * 1.2) + 'px'
         document.querySelectorAll('.widget-name a.reportModeHidden, .scenario-widget .widget-name a').addClass('disabled')
         jeedomUI.isEditing = true
         jeedom.cmd.disableExecute = true
@@ -288,7 +288,7 @@ if (!jeeFrontEnd.dashboard) {
                 if (nbEqs == 0) {
                   jeedomUtils.positionEqLogic()
                   domUtils.hideLoading()
-                  new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
+                  new Packery(dom_divDisplayEq, { isLayoutInstant: true, transitionDuration: 0 })
 
                   if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
@@ -340,7 +340,7 @@ if (!jeeFrontEnd.dashboard) {
           }
 
           jeedomUtils.positionEqLogic()
-          new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
+          new Packery(dom_divDisplayEq, { isLayoutInstant: true, transitionDuration: 0 })
 
           //synch category filter:
           if (self.url_category != 'all') {
@@ -459,7 +459,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
 })
 document.getElementById('bt_resetDashboardSearch')?.addEventListener('click', function(event) {
   if (jeedomUI.isEditing) return
-  document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checked = true})
+  document.querySelectorAll('#categoryfilter li .catFilterKey').forEach(cat => { cat.checked = true })
   document.querySelectorAll('#dashTopBar button.dropdown-toggle').removeClass('warning')
   document.getElementById('in_searchDashboard').jeeValue('').triggerEvent('keyup')
 })
@@ -470,20 +470,20 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   let _target = null
   if (_target = event.target.closest('#bt_editDashboardWidgetOrder')) {
     if (_target.getAttribute('data-mode') == 1) {
-        _target.setAttribute('data-mode', 0)
-        jeedomUtils.hideAlert()
-        jeeFrontEnd.modifyWithoutSave = false
-        jeedomUtils.enableTooltips()
-        document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
-        document.querySelectorAll('.counterReorderJeedom').remove()
-        jeeP.editWidgetMode(0)
-        document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
-      } else {
-        _target.setAttribute('data-mode', 1)
-        jeedomUtils.disableTooltips()
-        document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
-        jeeP.editWidgetMode(1)
-      }
+      _target.setAttribute('data-mode', 0)
+      jeedomUtils.hideAlert()
+      jeeFrontEnd.modifyWithoutSave = false
+      jeedomUtils.enableTooltips()
+      document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').unseen()
+      document.querySelectorAll('.counterReorderJeedom').remove()
+      jeeP.editWidgetMode(0)
+      document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
+    } else {
+      _target.setAttribute('data-mode', 1)
+      jeedomUtils.disableTooltips()
+      document.querySelectorAll('div.div_object .bt_editDashboardTilesAutoResizeUp, div.div_object .bt_editDashboardTilesAutoResizeDown').seen()
+      jeeP.editWidgetMode(1)
+    }
     return
   }
 
@@ -581,7 +581,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       jeeP.displayChildObject(object_id, false)
       jeedomUtils.addOrUpdateUrl('object_id', object_id)
       return
-    } else  if (_target.querySelector('a[data-object_id]') != null) {
+    } else if (_target.querySelector('a[data-object_id]') != null) {
       jeedomUtils.loadPage(_target.querySelector('a[data-object_id]').getAttribute('data-href'))
       return
     }
@@ -606,7 +606,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     event.target.focus()
     return
   }
-}, {buble: true})
+}, { buble: true })
 
 document.getElementById('div_pageContainer').addEventListener('mouseenter', function(event) {
   let _target = null
@@ -614,7 +614,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
     event.stopImmediatePropagation()
     event.stopPropagation()
     if (jeedomUI.isEditing) return
-      if (document.getElementById('dashOverviewPrev').isVisible()) return
+    if (document.getElementById('dashOverviewPrev').isVisible()) return
     jeeP.btOverviewTimer = setTimeout(function() {
       document.getElementById('dashOverviewPrev').seen()
     }, 300)
@@ -640,7 +640,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseenter', func
     Object.assign(summary.style, css)
     return
   }
-}, {capture: true})
+}, { capture: true })
 
 document.getElementById('div_pageContainer').addEventListener('mouseleave', function(event) {
   let _target = null
@@ -658,7 +658,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseleave', func
     }
     return
   }
-}, {capture: true})
+}, { capture: true })
 
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
   let _target = null
@@ -666,7 +666,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     if (event.which == 2) {
       event.preventDefault()
       const id = _target.getAttribute('data-object_id')
-      document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
+      document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
   }
@@ -714,8 +714,8 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
 //Event for App Mobile:
 document.body.addEventListener('jeeObject::summary::update', function(_event) {
   for (const i in _event.detail) {
-    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
-    if(_event.detail[i].object_id == 'global') {
+    if (isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if (_event.detail[i].object_id == 'global') {
       /* SEND UPDATE SUMMARY TO APP */
       jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
     }
