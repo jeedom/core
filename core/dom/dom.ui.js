@@ -2398,8 +2398,8 @@ var jeeResize = function(_selector, _options) {
     document.body.removeEventListener('touchend', resizeEnd, false)
     document.body.removeEventListener('pointermove', resizing, false)
     document.body.removeEventListener('touchmove', resizing, false)
-    if (currentRszr.options.end) {
-      currentRszr.options.end.apply(currentRszr.rszElement, [event, currentRszr.element])
+    if (currentRszr.options.stop) {
+      currentRszr.options.stop.apply(currentRszr.rszElement, [event, currentRszr.element])
     }
   }
 

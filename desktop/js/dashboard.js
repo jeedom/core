@@ -177,7 +177,8 @@ if (!jeeFrontEnd.dashboard) {
             Packery.data(element.closest('.div_displayEquipement')).layout()
           },
           stop: function(event, element) {
-            jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false)
+            if (element.hasAttribute('data-eqlogic_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false, false)
+            if (element.hasAttribute('data-scenario_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-scenario_id'), false, true)
             Packery.data(element.closest('.div_displayEquipement')).layout()
           }
         })
