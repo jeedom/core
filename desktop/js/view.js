@@ -83,7 +83,7 @@ if (!jeeFrontEnd.view) {
               var pckry = new Packery(_zone, {
                 isLayoutInstant: true,
                 transitionDuration: 0,
-            })
+              })
               pckry.getItemElements().forEach(function(itemElem, idx) {
                 itemElem.setAttribute('data-vieworder', idx + 1)
               })
@@ -237,8 +237,8 @@ jeeFrontEnd.view.init()
 //Event for App Mobile:
 document.body.addEventListener('jeeObject::summary::update', function(_event) {
   for (var i in _event.detail) {
-    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
-    if(_event.detail[i].object_id == 'global') {
+    if (isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if (_event.detail[i].object_id == 'global') {
       /* SEND UPDATE SUMMARY TO APP */
       jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
     }
