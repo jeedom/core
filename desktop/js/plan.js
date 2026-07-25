@@ -265,6 +265,7 @@ if (!jeeFrontEnd.plan) {
       _plan = init(_plan, {})
       _plan.position = init(_plan.position, {})
       _plan.css = init(_plan.css, {})
+      _plan.css.zoom = (init(_plan.css.zoom, 1) == '') ? 1 : init(_plan.css.zoom, 1)
       let css_selector = ''
       let another_css = ''
 
@@ -290,7 +291,7 @@ if (!jeeFrontEnd.plan) {
       }
       const node = domUtils.DOMparseHTML(_html)
       node.setAttribute('data-plan_id', _plan.id)
-      node.setAttribute('data-zoom', init(_plan.css.zoom, 1))
+      node.setAttribute('data-zoom', _plan.css.zoom)
       node.addClass('jeedomAlreadyPosition', 'noResize')
 
       //set widget style:
@@ -299,8 +300,8 @@ if (!jeeFrontEnd.plan) {
       style['position'] = 'absolute'
       style['top'] = init(_plan.position.top, '10') + 'px'
       style['left'] = init(_plan.position.left, '10') + 'px'
-      if (init(_plan.css.zoom, 1) != 1) {
-        style['scale'] = init(_plan.css.zoom, 1)
+      if (_plan.css.zoom != 1) {
+        style['scale'] = _plan.css.zoom
       }
       style['transform-origin'] = '0 0'
 
