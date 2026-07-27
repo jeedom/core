@@ -83,7 +83,7 @@ if (!jeeFrontEnd.view) {
               var pckry = new Packery(_zone, {
                 isLayoutInstant: true,
                 transitionDuration: 0,
-            })
+              })
               pckry.getItemElements().forEach(function(itemElem, idx) {
                 itemElem.setAttribute('data-vieworder', idx + 1)
               })
@@ -223,7 +223,8 @@ if (!jeeFrontEnd.view) {
             Packery.data(element.closest('.eqLogicZone')).layout()
           },
           stop: function(event, element) {
-            jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false)
+            if (element.hasAttribute('data-eqlogic_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false, false)
+            if (element.hasAttribute('data-scenario_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-scenario_id'), false, true)
             Packery.data(element.closest('.eqLogicZone')).layout()
           }
         })
@@ -237,8 +238,8 @@ jeeFrontEnd.view.init()
 //Event for App Mobile:
 document.body.addEventListener('jeeObject::summary::update', function(_event) {
   for (var i in _event.detail) {
-    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
-    if(_event.detail[i].object_id == 'global') {
+    if (isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if (_event.detail[i].object_id == 'global') {
       /* SEND UPDATE SUMMARY TO APP */
       jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
     }
