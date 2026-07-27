@@ -1016,6 +1016,18 @@ jeedomUtils.initDisplayAsTable = function() {
   }
 }
 
+jeedomUtils.sanitizeHTML = function(_html) {
+  const doc = new DOMParser().parseFromString(_html, 'text/html')
+  doc.querySelectorAll('script, style, iframe, object, embed, link, meta, form, base').forEach(el => el.remove())
+  doc.body.querySelectorAll('*').forEach(el => {
+    for (const attr of [...el.attributes]) {
+      if (attr.name.toLowerCase().startsWith('on')) {
+        el.removeAttribute(attr.name)
+      }
+    }
+  })
+  return doc.body.innerHTML
+}
 
 jeedomUtils.TOOLTIPSOPTIONS = {
   onTrigger: (instance, event) => {
@@ -1023,8 +1035,10 @@ jeedomUtils.TOOLTIPSOPTIONS = {
       instance.reference.setAttribute('data-title', instance.reference.getAttribute('title'))
       instance.reference.removeAttribute('title')
     }
-    if (instance.reference.getAttribute('data-title') == '') return false
-    instance.setContent(instance.reference.getAttribute('data-title'))
+    if (instance.reference.getAttribute('data-title') == '') {
+      return false
+    }
+    instance.setContent(jeedomUtils.sanitizeHTML(instance.reference.getAttribute('data-title')))
     return true
   },
   lazy: false,
