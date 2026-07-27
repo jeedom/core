@@ -290,7 +290,11 @@ if (!jeeFrontEnd.plan) {
       }
       const node = domUtils.DOMparseHTML(_html)
       node.setAttribute('data-plan_id', _plan.id)
-      node.setAttribute('data-zoom', init(_plan.css.zoom, 1))
+      let zoom = parseFloat(_plan.css.zoom)
+      if (isNaN(zoom)) {
+        zoom = 1
+      }
+      node.setAttribute('data-zoom', zoom)
       node.addClass('jeedomAlreadyPosition', 'noResize')
 
       //set widget style:
@@ -299,8 +303,8 @@ if (!jeeFrontEnd.plan) {
       style['position'] = 'absolute'
       style['top'] = init(_plan.position.top, '10') + 'px'
       style['left'] = init(_plan.position.left, '10') + 'px'
-      if (init(_plan.css.zoom, 1) != 1) {
-        style['scale'] = init(_plan.css.zoom, 1)
+      if (zoom != 1) {
+        style['scale'] = zoom
       }
       style['transform-origin'] = '0 0'
 
@@ -565,16 +569,11 @@ if (!jeeFrontEnd.plan) {
           jeeFrontEnd.plan.draggables.push(draggie)
 
           draggie.on('dragStart', function(event, pointer) {
-
             //Is locked:
             if (this.element.hasClass('locked')) this.dragEnd()
 
             //Handle zoom:
-            this.containementBrect = document.querySelector('div.div_displayObject').getBoundingClientRect()
             this.zoomScale = parseFloat(this.element.getAttribute('data-zoom'))
-            if (this.zoomScale != 1) {
-              this.options.containment = false
-            }
 
             //Handle grid snap
             if (jeeFrontEnd.planEditOption.grid == 1) {
@@ -591,52 +590,32 @@ if (!jeeFrontEnd.plan) {
           draggie.on('dragMove', function(event, pointer, moveVector) {
             //Handle zoom move / containement:
             if (this.zoomScale != 1) {
-
               //Fix zoomed move:
               this.dragPoint.x = moveVector.x / this.zoomScale
               this.dragPoint.y = moveVector.y / this.zoomScale
 
-              //Check zoomed containement:
-              /*Doesn't work
-              var eRect = this.element.getBoundingClientRect()
-              console.log('eRect:',eRect)
-
-              console.log('position:', this.position)
-              console.log(this.dragPoint)
-
-              if (eRect.left < this.containementBrect.left) {
-                console.log('>>>>>>> OUT LEFT')
-                this.setPosition(this.position.x + this.dragPoint.x, this.position.y + this.dragPoint.y)
-                this.pointerDone()
-                this.dragEnd()
+              //Keep grid snap working when zoomed:
+              if (this.dragStep) {
+                this.dragPoint.x = getNearestMultiple(this.dragPoint.x, this.dragStep)
+                this.dragPoint.y = getNearestMultiple(this.dragPoint.y, this.dragStep)
               }
-              */
-            }
 
-            /*
-            if (this.zoomScale != 1) {
-              var matrix = window.getComputedStyle(this.element).getPropertyValue('transform')
-              var matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
-              var tx = matrixValues[4]
-              var ty = matrixValues[5]
-              var txFactor = tx * this.zoomScale
-              var tyFactor = ty * this.zoomScale
-              var deltaX = this.element.offsetLeft - (tx * this.zoomScale)
-              if ((this.element.offsetLeft + txFactor) < 0) this.dragEnd()
-              if ((this.element.offsetTop + tyFactor) < 0) this.dragEnd()
-
-              var realWidth = this.element.clientWidth * this.zoomScale
-              var realRight = this.element.getBoundingClientRect().left + realWidth
-
-              console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
-
-              //Test ok, not solution--
-              if (realRight >= this.containementBrect.right) {
-                this.dragEnd()
+              //Keep the widget within the design bounds (containSize/relativeStartPosition ignore the zoom, correct for it here):
+              if (this.containSize) {
+                const overflowX = this.element.offsetWidth * (this.zoomScale - 1)
+                const overflowY = this.element.offsetHeight * (this.zoomScale - 1)
+                const minX = -this.relativeStartPosition.x / this.zoomScale
+                const minY = -this.relativeStartPosition.y / this.zoomScale
+                const maxX = (this.containSize.width - overflowX) / this.zoomScale
+                const maxY = (this.containSize.height - overflowY) / this.zoomScale
+                this.dragPoint.x = Math.max(minX, Math.min(maxX, this.dragPoint.x))
+                this.dragPoint.y = Math.max(minY, Math.min(maxY, this.dragPoint.y))
               }
-            }
-            */
 
+              //Final position must match what was shown during the drag, not Draggabilly's own (zoom-unaware) calculation:
+              this.position.x = this.startPosition.x + this.dragPoint.x * this.zoomScale
+              this.position.y = this.startPosition.y + this.dragPoint.y * this.zoomScale
+            }
           })
 
           draggie.on('dragEnd', function(event, pointer) {
@@ -698,8 +677,33 @@ if (!jeeFrontEnd.plan) {
 
             element.querySelector('.camera')?.triggerEvent('resize')
           },
-          stop: function(event, ui) {
+          stop: function(event, element) {
             jeeFrontEnd.modifyWithoutSave = true
+
+            //Bring the widget back within the design bounds if the resize left it overflowing (zoom is not accounted for during the live resize):
+            if (this.zoomScale != 1) {
+              const containRect = document.querySelector('.div_displayObject').getBoundingClientRect()
+              const elemRect = element.getBoundingClientRect()
+              const overflowLeft = containRect.left - elemRect.left
+              const overflowTop = containRect.top - elemRect.top
+              const overflowRight = elemRect.right - containRect.right
+              const overflowBottom = elemRect.bottom - containRect.bottom
+
+              if (overflowLeft > 0) {
+                element.style.left = element.offsetLeft + overflowLeft + 'px'
+                element.style.width = element.offsetWidth - overflowLeft / this.zoomScale + 'px'
+              }
+              if (overflowTop > 0) {
+                element.style.top = element.offsetTop + overflowTop + 'px'
+                element.style.height = element.offsetHeight - overflowTop / this.zoomScale + 'px'
+              }
+              if (overflowRight > 0) {
+                element.style.width = element.offsetWidth - overflowRight / this.zoomScale + 'px'
+              }
+              if (overflowBottom > 0) {
+                element.style.height = element.offsetHeight - overflowBottom / this.zoomScale + 'px'
+              }
+            }
             //jeeP.savePlan(false, false)
           },
         })
