@@ -17,6 +17,7 @@ no entries
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-07-27 16:35:09 | Sanitize dynamic tooltip content before rendering it as HTML | [#3440](https://github.com/jeedom/core/pull/3440) |
 | 2026-07-24 14:08:25 | Fix transformations and pie chart handling on real-time history graph updates | [#3434](https://github.com/jeedom/core/pull/3434) |
 | 2026-07-22 18:33:00 | Fire real click/change events when toggling checkboxes via the context menu | [#3427](https://github.com/jeedom/core/pull/3427) |
 | 2026-07-22 10:55:38 | Scope clearToasts to the dialog being closed | [#3414](https://github.com/jeedom/core/pull/3414) |
