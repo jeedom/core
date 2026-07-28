@@ -64,7 +64,7 @@ function jeedomAutoload(string $_classname): void {
 		}
 		if ($plugin_active == 1) {
 			try {
-				if (file_exists(__DIR__ . "/../../plugins/$classname/core/class/$_classname.class.php")) {
+				if ($classname !== $_classname && file_exists(__DIR__ . "/../../plugins/$classname/core/class/$_classname.class.php")) {
 					include_file('core', $_classname, 'class', $classname);
 				} else {
 					include_file('core', $classname, 'class', $classname);
