@@ -57,16 +57,12 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id, $_full = false) {
+	public static function byId(string $_id, bool $_full = false): plugin {
 		global $JEEDOM_INTERNAL_CONFIG;
-		if (is_string($_id) && isset(self::$_cache[$_id . '::' . $_full])) {
+		if (isset(self::$_cache[$_id . '::' . $_full])) {
 			return self::$_cache[$_id . '::' . $_full];
 		}
-		if (!file_exists($_id) || strpos($_id, '/') === false) {
-			$path = self::getPathById($_id);
-		} else {
-			$path = $_id;
-		}
+		$path = self::resolvePath($_id);
 		if (!file_exists($path)) {
 			self::forceDisablePlugin($_id);
 			throw new Exception('Plugin introuvable : ' . $_id);
