@@ -199,6 +199,13 @@ class plugin {
 		return __DIR__ . '/../../plugins/' . $_id . '/plugin_info/info.json';
 	}
 
+	private static function resolvePath(string $_id): string {
+		if (!file_exists($_id) || strpos($_id, '/') === false) {
+			return self::getPathById($_id);
+		}
+		return $_id;
+	}
+
 	public function getPathToConfigurationById() {
 		if (file_exists(__DIR__ . '/../../plugins/' . $this->id . '/plugin_info/configuration.php')) {
 			return 'plugins/' . $this->id . '/plugin_info/configuration.php';
@@ -599,13 +606,15 @@ class plugin {
 		}
 	}
 
-	public static function isInstalled($_pluginId): bool {
-		try {
-			plugin::byId($_pluginId);
+	public static function isInstalled(string $_pluginId): bool {
+		if (isset(self::$_cache[$_pluginId . '::'])) {
 			return true;
-		} catch (Exception $e) {
+		}
+		$path = self::resolvePath($_pluginId);
+		if (!file_exists($path)) {
 			return false;
 		}
+		return is_array(json_decode(file_get_contents($path), true));
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
