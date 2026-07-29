@@ -20,14 +20,7 @@ if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-$pluginJeeEasy = false;
-try {
-	if(is_object(plugin::byId('jeeasy'))) {
-		$pluginJeeEasy = true;
-	}
-} catch (\Throwable $th) {
-	
-}
+$pluginJeeEasy = plugin::isInstalled('jeeasy');
 
 
 $showDoc = false;

@@ -200,15 +200,8 @@ class cache {
 				continue;
 			}
 			preg_match_all('/dependancy(.*)/', $cache->getKey(), $matches);
-			if (isset($matches[1][0])) {
-				try {
-					$plugin = plugin::byId($matches[1][0]);
-					if (!is_object($plugin)) {
-						cache::delete($cache->getKey());
-					}
-				} catch (Exception $e) {
-					cache::delete($cache->getKey());
-				}
+			if (isset($matches[1][0]) && !plugin::isInstalled($matches[1][0])) {
+				cache::delete($cache->getKey());
 			}
 		}
 	}

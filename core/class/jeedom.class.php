@@ -562,9 +562,7 @@ class jeedom {
 			return config::byKey('apimarket');
 		}
 		if (config::byKey('api', $_plugin) == '') {
-			try {
-				plugin::byId($_plugin);
-			} catch (\Throwable $th) {
+			if (!plugin::isInstalled($_plugin)) {
 				return '';
 			}
 			config::save('api', config::genKey(), $_plugin);
