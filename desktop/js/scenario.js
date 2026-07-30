@@ -1673,28 +1673,7 @@ document.querySelector('.scenarioAttr[data-l2key="timeline::enable"]').addEventL
   }
 })
 
-var select = document.getElementById('in_addElementType')
-var input = document.getElementById('in_addElementTypeFilter')
-var allOptions = Array.from(select.options)
-
-function filterOptions() {
-  const text = input.value.trim().toLowerCase().stripAccents()
-
-  select.innerHTML = ''
-
-  allOptions
-    .filter(option => {
-      const optionText = option.textContent.toLowerCase().stripAccents()
-      return text === '' || optionText.includes(text)
-    })
-    .forEach(option => {
-      select.add(option.cloneNode(true))
-    })
-}
-
-input.addEventListener('input', filterOptions)
-
-select.addEventListener('change', function (event) {
+document.getElementById('in_addElementType').addEventListener('change', function (event) {
   document.querySelectorAll('.addElementTypeDescription').unseen()
   document.querySelectorAll('.addElementTypeDescription.' + this.jeeValue()).seen()
 })
@@ -2042,8 +2021,6 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
       }
     }
-    input.value = ''
-    input.triggerEvent('input')
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.show() //=> #bt_addElementSave
     return
   }
