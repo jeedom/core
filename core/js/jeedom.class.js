@@ -172,9 +172,6 @@ jeedom.init = function() {
 
   document.body.addEventListener('cmd::update', function(_event) {
     jeedom.cmd.refreshValue(_event.detail)
-  })
-
-  document.body.addEventListener('cmd::update', function(_event) {
     jeedom.history.graphUpdate(_event.detail)
   })
 

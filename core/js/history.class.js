@@ -161,7 +161,13 @@ jeedom.history.graphUpdate = function(_params) {
       continue
     }
     for (const chart in jeedom.history.chart) {
+      if (jeedom.history.chart[chart].comparing) {
+        continue
+      }
       const cmd = jeedom.history.chart[chart].cmd[cmd_id]
+      if (cmd?.option?.groupingType || cmd?.option?.graphDerive) {
+        continue
+      }
       let value = _params[i].value
       if (typeof cmd?.calcul === 'function') {
         value = cmd.calcul(value)
@@ -176,10 +182,10 @@ jeedom.history.graphUpdate = function(_params) {
       if (cmd?.option?.invertData) {
         value = -value
       }
-      for (const serie in jeedom.history.chart[chart].chart.series) {
-        if (jeedom.history.chart[chart].chart.series[serie]?.options.id == cmd_id) {
-          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
-        }
+      const serie = jeedom.history.chart[chart].chart.series.find(s => s?.options.id == cmd_id)
+      if (serie) {
+        serie.addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
+        jeedom.history.setAxisScales(chart, { redraw: true })
       }
     }
   }
