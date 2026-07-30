@@ -57,16 +57,12 @@ class plugin {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
-	public static function byId($_id, $_full = false) {
+	public static function byId(string $_id, bool $_full = false): plugin {
 		global $JEEDOM_INTERNAL_CONFIG;
-		if (is_string($_id) && isset(self::$_cache[$_id . '::' . $_full])) {
+		if (isset(self::$_cache[$_id . '::' . $_full])) {
 			return self::$_cache[$_id . '::' . $_full];
 		}
-		if (!file_exists($_id) || strpos($_id, '/') === false) {
-			$path = self::getPathById($_id);
-		} else {
-			$path = $_id;
-		}
+		$path = self::resolvePath($_id);
 		if (!file_exists($path)) {
 			self::forceDisablePlugin($_id);
 			throw new Exception('Plugin introuvable : ' . $_id);
@@ -197,6 +193,13 @@ class plugin {
 
 	public static function getPathById($_id) {
 		return __DIR__ . '/../../plugins/' . $_id . '/plugin_info/info.json';
+	}
+
+	private static function resolvePath(string $_id): string {
+		if (!file_exists($_id) || strpos($_id, '/') === false) {
+			return self::getPathById($_id);
+		}
+		return $_id;
 	}
 
 	public function getPathToConfigurationById() {
@@ -599,13 +602,15 @@ class plugin {
 		}
 	}
 
-	public static function isInstalled($_pluginId): bool {
-		try {
-			plugin::byId($_pluginId);
+	public static function isInstalled(string $_pluginId): bool {
+		if (isset(self::$_cache[$_pluginId . '::'])) {
 			return true;
-		} catch (Exception $e) {
+		}
+		$path = self::resolvePath($_pluginId);
+		if (!file_exists($path)) {
 			return false;
 		}
+		return is_array(json_decode(file_get_contents($path), true));
 	}
 
 	/*     * *********************Méthodes d'instance************************* */
