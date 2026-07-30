@@ -285,6 +285,7 @@ if (!jeeFrontEnd.history) {
             callback: {
               click: function(event) {
                 jeedom.history.chart[jeeP.__el__].comparing = true
+                jeedom.history.chart[jeeP.__el__].zoom = false
                 document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach(_check => { _check.checked = true })
                 document.getElementById('bt_compare').removeClass('btn-success').addClass('btn-danger')
                 jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({

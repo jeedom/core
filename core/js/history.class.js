@@ -898,7 +898,7 @@ jeedom.history.drawChart = function(_params) {
                         this.visible = true
                       }
                     }
-                    if (!jeedom.history.chart[this.chart._jeeId].zoom) jeedom.history.setAxisScales(this.chart._jeeId, { redraw: true })
+                    jeedom.history.setAxisScales(this.chart._jeeId, { redraw: true })
                     return false
                   }
                 }
@@ -1510,8 +1510,9 @@ jeedom.history.chartDone = function(_chartId) {
 Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 */
 jeedom.history.setAxisScales = function(_chartId, _options) {
-  if (_chartId === undefined) return false
-  if (jeedom.history.chart[_chartId].type == 'pie') return false
+  if (_chartId === undefined || jeedom.history.chart[_chartId].type == 'pie' || jeedom.history.chart[_chartId].zoom) {
+    return false
+  }
   const chart = jeedom.history.chart[_chartId].chart
 
   //All done with render false, redraw at end if in _options
