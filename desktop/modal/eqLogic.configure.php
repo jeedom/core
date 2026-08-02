@@ -169,9 +169,9 @@ sendVarToJS([
                 $display .= '<td>';
                 if ($cmd->getType() == 'info') {
                   $value = htmlspecialchars($cmd->execCmd());
-                  $title = '{{Date de valeur}} : ' . $cmd->getValueDate() . '<br>{{Date de collecte}} : ' .  $cmd->getCollectDate();
+                  $title = '{{Date de valeur}}: ' . $cmd->getValueDate() . '<br>{{Date de collecte}}: ' .  $cmd->getCollectDate();
                   if (strlen($value) > 50) {
-                    $title .= '<br>{{Valeur}} : ' . $value;
+                    $title .= '<br>{{Valeur}}: ' . $value;
                     $value = trim(substr($value, 0, 50)) . '...';
                   }
                   $display .= '<span class="eqLogicConfigure_cmdValue" data-cmd_id="' . $cmd->getid() . '" title=" ' . htmlspecialchars($title) . '">' . $value . ' ' . $cmd->getUnite() . '<span>';
@@ -611,18 +611,18 @@ sendVarToJS([
         //Dynamic values:
         document.querySelectorAll('#md_eqLogicConfigure .eqLogicConfigure_cmdValue').forEach(_cmd => {
           jeedom.cmd.addUpdateFunction(_cmd.getAttribute('data-cmd_id'), function(_options) {
-            _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
+            let displayValue = String(_options.value).replace(/<[^>]*>?/gm, '')
             let cmd = document.querySelector('#md_eqLogicConfigure .eqLogicConfigure_cmdValue[data-cmd_id="' + _options.cmd_id + '"]')
             if (cmd === null) {
               return
             }
-            let title = '{{Date de valeur}} : ' + _options.valueDate + '<br>{{Date de collecte}} : ' + _options.collectDate
-            if (_options.value.length > 50) {
-              title += '<br>{{Valeur}} : ' + _options.value
-              _options.value = _options.value.trim().substring(0, 50) + '...'
+            let title = '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate
+            if (displayValue.length > 50) {
+              title += '<br>{{Valeur}}: ' + displayValue
+              displayValue = displayValue.trim().substring(0, 50) + '...'
             }
             cmd.setAttribute('title', title)
-            cmd.empty().innerHTML = _options.value + ' ' + _options.unit
+            cmd.empty().innerHTML = displayValue + ' ' + _options.unit
             cmd.style.color = 'var(--logo-primary-color)'
             setTimeout(function() {
               cmd.style.color = null
