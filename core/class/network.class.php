@@ -302,21 +302,7 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		try {
-			$plugin = plugin::byId('openvpn');
-			if (!is_object($plugin)) {
-				$update = update::byLogicalId('openvpn');
-				if (!is_object($update)) {
-					$update = new update();
-				}
-				$update->setLogicalId('openvpn');
-				$update->setSource('market');
-				$update->setConfiguration('version', 'stable');
-				$update->save();
-				$update->doUpdate();
-				$plugin = plugin::byId('openvpn');
-			}
-		} catch (Exception $e) {
+		if (!plugin::isInstalled('openvpn')) {
 			$update = update::byLogicalId('openvpn');
 			if (!is_object($update)) {
 				$update = new update();
@@ -326,7 +312,11 @@ class network {
 			$update->setConfiguration('version', 'stable');
 			$update->save();
 			$update->doUpdate();
+		}
+		try {
 			$plugin = plugin::byId('openvpn');
+		} catch (Exception $e) {
+			$plugin = null;
 		}
 		if (!is_object($plugin) || !class_exists('openvpn')) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
