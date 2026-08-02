@@ -312,59 +312,42 @@ try {
 		global $JEEDOM_INTERNAL_CONFIG;
 		$return = array();
 		$data = array();
-		$dateStart = null;
-		$dateEnd = null;
-		if (init('dateRange') != '' && init('dateRange') != 'all') {
-			if (is_json(init('dateRange'))) {
-				$dateRange = json_decode(init('dateRange'), true);
-				if (isset($dateRange['start'])) {
-					$dateStart = $dateRange['start'];
-				}
-				if (isset($dateRange['end'])) {
-					$dateEnd = $dateRange['end'];
-				}
-			} else {
-				$dateEnd = date('Y-m-d H:i:s');
-				$dateStart = date('Y-m-d H:i:s', strtotime('- ' . init('dateRange') . ' ' . $dateEnd));
-			}
-		}
-
-		if (init('dateStart') != '') {
-			$dateStart = init('dateStart');
-		}
-
-		if (init('dateEnd') != '') {
-			$dateEnd = init('dateEnd');
-			if ($dateEnd == date('Y-m-d')) {
-				$dateEnd = date('Y-m-d H:i:s');
-			}
-		}
-
-		if (init('allowFuture', 0) == 0 && config::byKey('history::allowFuture', 'core', 0) == '0' && strtotime($dateEnd) > strtotime('now')) {
+		$dateRange = init('dateRange');
+		$dateStart = init('dateStart') ?: null;
+		$dateEnd = init('dateEnd') ?: null;
+		if ($dateEnd == date('Y-m-d')) {
 			$dateEnd = date('Y-m-d H:i:s');
 		}
 
-		if ($dateStart == '' && init('dateRange') == '') {
-			$dateStart =  init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))));
+		if ($dateRange != '' && $dateRange != 'all') {
+			if (is_json($dateRange)) {
+				$decodedRange = json_decode($dateRange, true);
+				if ($dateStart === null && isset($decodedRange['start'])) {
+					$dateStart = $decodedRange['start'];
+				}
+				if ($dateEnd === null && isset($decodedRange['end'])) {
+					$dateEnd = $decodedRange['end'];
+				}
+			} else {
+				if ($dateEnd === null) {
+					$dateEnd = date('Y-m-d H:i:s');
+				}
+				if ($dateStart === null) {
+					$dateStart = date('Y-m-d H:i:s', strtotime('- ' . $dateRange . ' ' . $dateEnd));
+				}
+			}
+		} else if ($dateRange == '' && $dateStart === null) {
+			$dateStart = init('startDate', date('Y-m-d', strtotime(config::byKey('history::defautShowPeriod') . ' ' . date('Y-m-d'))));
 		}
 
-		if ($dateStart == '' && init('dateRange') != 'all') {
-			$now = new DateTime();
-			$dateStart = $now->modify('- ' . init('dateRange'))->format('Y-m-d');
+		if ($dateEnd !== null && init('allowFuture', 0) == 0 && config::byKey('history::allowFuture', 'core', 0) == '0' && strtotime($dateEnd) > strtotime('now')) {
+			$dateEnd = date('Y-m-d H:i:s');
 		}
 
 		$return['maxValue'] = '';
 		$return['minValue'] = '';
-		if ($dateStart === null) {
-			$return['dateStart'] = '';
-		} else {
-			$return['dateStart'] = $dateStart;
-		}
-		if ($dateEnd === null) {
-			$return['dateEnd'] = '';
-		} else {
-			$return['dateEnd'] = $dateEnd;
-		}
+		$return['dateStart'] = ($dateStart === null) ? '' : $dateStart;
+		$return['dateEnd'] = ($dateEnd === null) ? date('Y-m-d H:i:s') : $dateEnd;
 
 		if (is_numeric(init('id'))) {
 			$cmd = cmd::byId(init('id'));
