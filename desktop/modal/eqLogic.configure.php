@@ -56,17 +56,16 @@ sendVarToJS([
     <div class="tab-content" id="div_displayEqLogicConfigure">
       <div role="tabpanel" class="tab-pane active" id="eqLogic_information">
         <form class="form-horizontal">
-          
-		  <div class="row">
-        	<div class="col-sm-6">
-        	  <legend><i class="fas fa-clipboard-list"></i> {{Général}}</legend>
+          <div class="row">
+            <div class="col-sm-6">
+              <legend><i class="fas fa-clipboard-list"></i> {{Général}}</legend>
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Nom}}</label>
                 <div class="col-sm-8">
                   <input type="text" class="eqLogicAttr form-control input-sm" data-l1key="name">
                 </div>
-            </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{ID unique}}</label>
                 <div class="col-sm-8">
                   <span class="eqLogicAttr label label-sm label-primary" data-l1key="id"></span>
@@ -87,8 +86,8 @@ sendVarToJS([
                   }
                   ?>
                 </div>
-             </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{ID logique}}</label>
                 <div class="col-sm-8">
                   <span class="eqLogicAttr label label-sm label-primary" data-l1key="logicalId"></span>
@@ -102,8 +101,8 @@ sendVarToJS([
                   <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="createtime"></span> -
                   <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="updatetime"></span>
                 </div>
-             </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
                 <div class="col-sm-8">
                   <span class="label label-sm label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
@@ -115,8 +114,8 @@ sendVarToJS([
                 <div class="col-sm-8">
                   <span class="label label-sm label-info"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
                 </div>
-            </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{Tag(s)}}</label>
                 <div class="col-sm-8">
                   <input class="eqLogicAttr form-control input-sm" data-l1key="tags">
@@ -131,22 +130,22 @@ sendVarToJS([
               </div>
             </div>
             <div class="col-sm-6">
-                    <legend>{{Image}}</legend>
-                    <div class="form-group">
-                    	<div class="col-sm-7 col-sm-offset-3">
-                    		<span class="btn btn-default btn-file">
-                    			<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageEqLogic" type="file" name="file" accept="image/*">
-                    		</span>
-                    		<a class="btn btn-danger" id="bt_removeEqLogicImage"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
-                   		</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-7 col-sm-offset-3 eqLogicImg">
-							<img class="img-responsive" src="<?php echo $eqLogic->getImage(); ?>" width="240px" style="min-height : 50px" />
-                        </div>
-					</div>
-                    
-            </div>	        
+              <legend>{{Image}}</legend>
+              <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                  <span class="btn btn-default btn-file">
+                    <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageEqLogic" type="file" name="file" accept="image/*">
+                  </span>
+                  <a class="btn btn-danger" id="bt_removeEqLogicImage"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3 eqLogicImg">
+                  <img class="img-responsive" src="<?php echo $eqLogic->getImage(); ?>" width="240px" style="min-height : 50px" />
+                </div>
+              </div>
+
+            </div>
           </div>
           <legend><i class="fas fa-list-alt"></i> {{Commandes}}</legend>
           <table class="table table-condensed">
@@ -503,48 +502,48 @@ sendVarToJS([
 
       <div role="tabpanel" class="tab-pane" id="eqLogic_specialAttributesPlugin">
         <form class="form-horizontal">
-        <br/>
+          <br />
           <div class="alert alert-info">{{Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom}}</div>
           <?php
-            try {
-              $plugins = plugin::listPlugin(true);
-              foreach ($plugins as $plugin) {
-                $specialAttributes = $plugin->getSpecialAttributes();
-                if (!isset($specialAttributes['eqLogic']) || !is_array($specialAttributes['eqLogic']) || count($specialAttributes['eqLogic']) == 0) {
-                  continue;
-                }
-                $spAttr = '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} ' . $plugin->getName() . '</legend>';
-                foreach ($specialAttributes['eqLogic'] as $key => $config) {
-                  $spAttr .= '<div class="form-group">';
-                  $spAttr .= '<label class="col-sm-3 control-label">' . $config['name'][translate::getLanguage()] . '</label>';
-                  $spAttr .= '<div class="col-sm-7">';
-                  switch ($config['type']) {
-                    case 'input':
-                      $spAttr .= '<input class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
-                      break;
-                    case 'checkbox':
-                        $spAttr .= '<input type="checkbox" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
-                        break;
-                    case 'number':
-                      $spAttr .= '<input type="number" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '" min="' . (isset($config['min']) ? $config['min'] : '') . '" max="' . (isset($config['max']) ? $config['max'] : '') . '" />';
-                      break;
-                    case 'select':
-                      $spAttr .= '<select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '">';
-                      foreach ($config['values'] as $value) {
-                        $spAttr .= '<option value="' . $value['value'] . '">' . $value['name'] . '</option>';
-                      }
-                      $spAttr .= '</select>';
-                      break;
-                  }
-                  $spAttr .= '</div>';
-                  $spAttr .= '</div>';
-                }
-                echo $spAttr;
+          try {
+            $plugins = plugin::listPlugin(true);
+            foreach ($plugins as $plugin) {
+              $specialAttributes = $plugin->getSpecialAttributes();
+              if (!isset($specialAttributes['eqLogic']) || !is_array($specialAttributes['eqLogic']) || count($specialAttributes['eqLogic']) == 0) {
+                continue;
               }
-            } catch (\Exception $e) {
+              $spAttr = '<legend><i class="fas fa-users-cog"></i> {{Informations complémentaires demandées par}} ' . $plugin->getName() . '</legend>';
+              foreach ($specialAttributes['eqLogic'] as $key => $config) {
+                $spAttr .= '<div class="form-group">';
+                $spAttr .= '<label class="col-sm-3 control-label">' . $config['name'][translate::getLanguage()] . '</label>';
+                $spAttr .= '<div class="col-sm-7">';
+                switch ($config['type']) {
+                  case 'input':
+                    $spAttr .= '<input class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+                    break;
+                  case 'checkbox':
+                    $spAttr .= '<input type="checkbox" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '"/>';
+                    break;
+                  case 'number':
+                    $spAttr .= '<input type="number" class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '" min="' . (isset($config['min']) ? $config['min'] : '') . '" max="' . (isset($config['max']) ? $config['max'] : '') . '" />';
+                    break;
+                  case 'select':
+                    $spAttr .= '<select class="form-control eqLogicAttr" data-l1key="configuration" data-l2key="plugin::' . $plugin->getId() . '::' . $key . '">';
+                    foreach ($config['values'] as $value) {
+                      $spAttr .= '<option value="' . $value['value'] . '">' . $value['name'] . '</option>';
+                    }
+                    $spAttr .= '</select>';
+                    break;
+                }
+                $spAttr .= '</div>';
+                $spAttr .= '</div>';
+              }
+              echo $spAttr;
             }
-            ?>
-          </form>
+          } catch (\Exception $e) {
+          }
+          ?>
+        </form>
       </div>
 
 
@@ -580,10 +579,10 @@ sendVarToJS([
         document.querySelectorAll('#md_eqLogicConfigure .advanceWidgetParameterColorTransparent').forEach(_transparent => {
           _transparent?.triggerEvent('change')
         })
-          
-       try {
-        	jeeFrontEnd.md_eqLogicConfigure.bckUploader.destroy()
-       } catch (error) {}
+
+        try {
+          jeeFrontEnd.md_eqLogicConfigure.bckUploader.destroy()
+        } catch (error) {}
         jeeFrontEnd.md_eqLogicConfigure.bckUploader = new jeeFileUploader({
           fileInput: document.getElementById('bt_uploadImageEqLogic'),
           replaceFileInput: false,
@@ -594,19 +593,19 @@ sendVarToJS([
               jeedomUtils.showAlert({
                 message: data.result.result,
                 level: 'danger'
-                })
-                return
-              }
-              if (isset(data.result.result.filepath)) {
-                document.querySelector('#md_eqLogicConfigure .eqLogicImg').seen().querySelector('img').src = data.result.result.filepath
-              } else {
-              	document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
-              }
-              jeedomUtils.showAlert({
-                message: '{{Image ajoutée avec succès}}',
-                level: 'success'
-                })
-              }
+              })
+              return
+            }
+            if (isset(data.result.result.filepath)) {
+              document.querySelector('#md_eqLogicConfigure .eqLogicImg').seen().querySelector('img').src = data.result.result.filepath
+            } else {
+              document.querySelector('#md_eqLogicConfigure .eqLogicImg').unseen()
+            }
+            jeedomUtils.showAlert({
+              message: '{{Image ajoutée avec succès}}',
+              level: 'success'
+            })
+          }
         })
 
         //Dynamic values:
@@ -648,13 +647,13 @@ sendVarToJS([
         }
       },
       synchModalToEq: function() {
-        if(document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]')){
+        if (document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]')) {
           document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="name"]').value = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="name"').value
         }
-        if(document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]')){
+        if (document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]')) {
           document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isEnable"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isEnable"').checked
         }
-        if(document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]')){
+        if (document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]')) {
           document.querySelector('#div_pageContainer input.eqLogicAttr[data-l1key="isVisible"]').checked = document.querySelector('#eqLogic_information input.eqLogicAttr[data-l1key="isVisible"').checked
         }
       },
@@ -880,10 +879,10 @@ sendVarToJS([
         })
         return
       }
-      
+
       if (_target = event.target.closest('#bt_removeEqLogicImage')) {
-         jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image cet équipement ?}}', function(result) {
-         if (result) {
+        jeeDialog.confirm('{{Êtes-vous sûr de vouloir enlever l\'image cet équipement ?}}', function(result) {
+          if (result) {
             jeedom.eqLogic.removeImage({
               id: jeephp2js.md_eqLogicConfigure_Info.id,
               error: function(error) {
@@ -908,7 +907,6 @@ sendVarToJS([
         })
         return
       }
-      
     })
 
     document.getElementById('eqLogic_information')?.addEventListener('dblclick', function(event) {
@@ -992,9 +990,9 @@ sendVarToJS([
       var _target = null
 
       if (_target = event.target.closest('.eqLogicAttr[data-l1key="configuration"][data-l2key="battery::disable"]')) {
-        if(document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="battery::disable"]').jeeValue() == 1){
+        if (document.querySelector('.eqLogicAttr[data-l1key="configuration"][data-l2key="battery::disable"]').jeeValue() == 1) {
           document.querySelectorAll('.eqLogicHideNoBattery').unseen();
-        }else{
+        } else {
           document.querySelectorAll('.eqLogicHideNoBattery').seen();
         }
       }
