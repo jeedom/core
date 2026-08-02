@@ -1168,8 +1168,9 @@ try {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
 		}
 		$jsonrpc->makeSuccess($plugin->dependancy_info());
@@ -1180,8 +1181,9 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->dependancy_install();
@@ -1192,8 +1194,9 @@ try {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
 		}
 		$jsonrpc->makeSuccess($plugin->deamon_info());
@@ -1216,8 +1219,9 @@ try {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		if (!isset($params['debug'])) {
@@ -1235,8 +1239,9 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->deamon_stop();
@@ -1248,8 +1253,9 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->deamon_changeAutoMode($params['mode']);

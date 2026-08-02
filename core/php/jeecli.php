@@ -59,8 +59,9 @@ switch ($argv[1]) {
                 }
                 $update->save();
                 $update->doUpdate();
-                $plugin = plugin::byId($argv[3]);
-                if (!is_object($plugin)) {
+                try {
+                    $plugin = plugin::byId($argv[3]);
+                } catch (Exception $e) {
                     echo "Error plugin not found";
                     die();
                 }
