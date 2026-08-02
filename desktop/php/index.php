@@ -239,8 +239,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	include_file('3rdparty', 'highstock/highcharts-more', 'js');
 	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+	include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
+	include_file('3rdparty', 'highstock/modules/export-data', 'js');
 
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
