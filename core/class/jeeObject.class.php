@@ -559,7 +559,7 @@ class jeeObject {
 			$update->setConfiguration('version', 'stable');
 			$update->save();
 			$update->doUpdate();
-			sleep(2);
+			// sleep(2); // legacy workaround from 2016 (3cbb2d597), no dependancy_install() here and doUpdate() is fully synchronous, unclear it was ever needed. Kept commented instead of removed pending real-world confirmation.
 		}
 		try {
 			$plugin = plugin::byId('virtual');
