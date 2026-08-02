@@ -1461,6 +1461,7 @@ jeedomUtils.setJeedomMenu = function() {
     if (_target = event.target.closest('a')) {
       if (_target.hasClass('noOnePageLoad')) return
       if (_target.getAttribute('href') == undefined || _target.getAttribute('href') == '' || _target.getAttribute('href') == '#') return
+      if (_target.hasAttribute('download')) return
       if (_target.getAttribute('href').match("^data:")) return
       if (_target.getAttribute('href').match("^http")) return
       if (_target.getAttribute('href').match("^#")) return
