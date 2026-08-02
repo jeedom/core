@@ -53,6 +53,13 @@ class jsonrpc {
 		}
 	}
 	
+	/**
+	 * Sends an error response and ends execution
+	 *
+	 * @param int $_code Error code
+	 * @param string $_message Error message
+	 * @return never
+	 */
 	public function makeError($_code, $_message) {
 		$return = array(
 			'jsonrpc' => '2.0',
@@ -71,6 +78,12 @@ class jsonrpc {
 		exit;
 	}
 	
+	/**
+	 * Sends a success response and ends execution
+	 *
+	 * @param mixed $_result Data to send in response
+	 * @return never
+	 */
 	public function makeSuccess($_result = null) {
 		if(is_object($_result)){
 			$_result = utils::o2a($_result);
