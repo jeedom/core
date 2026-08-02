@@ -184,6 +184,10 @@ jeedom.history.graphUpdate = function(_params) {
       }
       const serie = jeedom.history.chart[chart].chart.series.find(s => s?.options.id == cmd_id)
       if (serie) {
+        if (serie.zones.length) {
+          serie.points[serie.points.length - 1].remove(false)
+          serie.update({ zones: [] }, false)
+        }
         serie.addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
         jeedom.history.setAxisScales(chart, { redraw: true })
       }
