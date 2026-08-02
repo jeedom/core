@@ -1,14 +1,13 @@
-/*
- Highcharts Gantt JS v10.3.2 (2022-11-28)
-
- StaticScale
-
- (c) 2016-2021 Torstein Honsi, Lars A. V. Cabrera
-
- License: www.highcharts.com/license
-*/
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/static-scale",["highcharts"],function(b){a(b);a.Highcharts=b;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function b(a,c,f,b){a.hasOwnProperty(c)||(a[c]=b.apply(null,f),"function"===typeof CustomEvent&&window.dispatchEvent(new CustomEvent("HighchartsModuleLoaded",{detail:{path:c,module:a[c]}})))}a=a?a._modules:{};
-b(a,"Extensions/StaticScale.js",[a["Core/Axis/Axis.js"],a["Core/Chart/Chart.js"],a["Core/Utilities.js"]],function(a,c,b){var g=b.addEvent,f=b.defined,h=b.isNumber,k=b.pick;g(a,"afterSetOptions",function(){var a=this.chart.options.chart;!this.horiz&&h(this.options.staticScale)&&(!a.height||a.scrollablePlotArea&&a.scrollablePlotArea.minHeight)&&(this.staticScale=this.options.staticScale)});c.prototype.adjustHeight=function(){"adjustHeight"!==this.redrawTrigger&&((this.axes||[]).forEach(function(a){var b=
-a.chart,c=!!b.initiatedScale&&b.options.animation,d=a.options.staticScale;if(a.staticScale&&f(a.min)){var e=k(a.brokenAxis&&a.brokenAxis.unitLength,a.max+a.tickInterval-a.min)*d;e=Math.max(e,d);d=e-b.plotHeight;!b.scrollablePixelsY&&1<=Math.abs(d)&&(b.plotHeight=e,b.redrawTrigger="adjustHeight",b.setSize(void 0,b.chartHeight+d,c));a.series.forEach(function(a){(a=a.sharedClipKey&&b.sharedClips[a.sharedClipKey])&&a.attr(b.inverted?{width:b.plotHeight}:{height:b.plotHeight})})}}),this.initiatedScale=
-!0);this.redrawTrigger=null};g(c,"render",c.prototype.adjustHeight)});b(a,"masters/modules/static-scale.src.js",[],function(){})});
-//# sourceMappingURL=static-scale.js.map
+!/**
+ * Highcharts Gantt JS v12.6.0 (2026-04-13)
+ * @module highcharts/modules/static-scale
+ * @requires highcharts
+ *
+ * StaticScale
+ *
+ * (c) 2016-2026 Highsoft AS
+ * Author: Torstein Hønsi, Lars A. V. Cabrera
+ *
+ * A commercial license may be required depending on use.
+ * See www.highcharts.com/license
+ */function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e(t._Highcharts):"function"==typeof define&&define.amd?define("highcharts/modules/static-scale",["highcharts/highcharts"],function(t){return e(t)}):"object"==typeof exports?exports["highcharts/modules/static-scale"]=e(t._Highcharts):t.Highcharts=e(t.Highcharts)}("u"<typeof window?this:window,t=>(()=>{"use strict";var e={944:e=>{e.exports=t}},r={};function i(t){var o=r[t];if(void 0!==o)return o.exports;var s=r[t]={exports:{}};return e[t](s,s.exports,i),s.exports}i.n=t=>{var e=t&&t.__esModule?()=>t.default:()=>t;return i.d(e,{a:e}),e},i.d=(t,e)=>{for(var r in e)i.o(e,r)&&!i.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:e[r]})},i.o=(t,e)=>Object.prototype.hasOwnProperty.call(t,e);var o={};i.d(o,{default:()=>u});var s=i(944),n=i.n(s);let{doc:a,win:c}=n();function l(t,e,r,i={}){let o="function"==typeof t&&t.prototype||t;Object.hasOwnProperty.call(o,"hcEvents")||(o.hcEvents={});let s=o.hcEvents;n().Point&&t instanceof n().Point&&t.series&&t.series.chart&&(t.series.chart.runTrackerClick=!0);let a=t.addEventListener;a&&a.call(t,e,r,!!n().supportsPassiveEvents&&{passive:void 0===i.passive?-1!==e.indexOf("touch"):i.passive,capture:!1}),s[e]||(s[e]=[]);let c={fn:r,order:"number"==typeof i.order?i.order:1/0};return s[e].push(c),s[e].sort((t,e)=>t.order-e.order),function(){!function(t,e,r){function i(e,r){let i=t.removeEventListener;i&&i.call(t,e,r,!1)}function o(r){let o,s;if(t.nodeName){e?(o={})[e]=!0:o=r;var n=o,a=function(t,e){if(r[e])for(s=r[e].length;s--;)i(e,r[e][s].fn)};for(let t in n)Object.hasOwnProperty.call(n,t)&&a.call(n[t],n[t],t,n)}}let s="function"==typeof t&&t.prototype||t;if(Object.hasOwnProperty.call(s,"hcEvents")){let t=s.hcEvents;if(e){let s=t[e]||[];r?(t[e]=s.filter(function(t){return r!==t.fn}),i(e,r)):(o(t),t[e]=[])}else o(t),delete s.hcEvents}}(t,e,r)}}function h(){var t;let e=this.chart.userOptions.chart;!this.horiz&&"number"==typeof(t=this.options.staticScale)&&!isNaN(t)&&t<1/0&&t>-1/0&&(!e?.height||e.scrollablePlotArea?.minHeight)&&(this.staticScale=this.options.staticScale)}function p(){if("adjustHeight"!==this.redrawTrigger){for(let t of this.axes||[]){let e=t.chart,r=t.options.staticScale;if(t.staticScale&&r&&null!=t.min&&null!=t.max){let i=(t.brokenAxis?.unitLength??t.max+t.tickInterval-t.min)*r,o=(i=Math.max(i,r))-e.plotHeight;!e.scrollablePixelsY&&Math.abs(o)>=1&&(e.plotHeight=i,e.redrawTrigger="adjustHeight",e.setSize(void 0,e.chartHeight+o,!!e.initiatedScale&&void 0)),t.series.forEach(function(t){let r=t.sharedClipKey&&e.sharedClips[t.sharedClipKey];r&&r.attr(e.inverted?{width:e.plotHeight}:{height:e.plotHeight})})}}this.initiatedScale=!0}this.redrawTrigger=void 0}Array.prototype.find;let f=n();({compose:function(t,e){let r=e.prototype;r.adjustHeight||(l(t,"afterSetOptions",h),r.adjustHeight=p,l(e,"render",r.adjustHeight))}}).compose(f.Axis,f.Chart);let u=n();return o.default})());

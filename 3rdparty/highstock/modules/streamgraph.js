@@ -1,14 +1,13 @@
-/*
- Highcharts JS v10.3.2 (2022-11-28)
-
- Streamgraph module
-
- (c) 2010-2021 Torstein Honsi
-
- License: www.highcharts.com/license
-*/
-(function(a){"object"===typeof module&&module.exports?(a["default"]=a,module.exports=a):"function"===typeof define&&define.amd?define("highcharts/modules/streamgraph",["highcharts"],function(d){a(d);a.Highcharts=d;return a}):a("undefined"!==typeof Highcharts?Highcharts:void 0)})(function(a){function d(a,e,d,f){a.hasOwnProperty(e)||(a[e]=f.apply(null,d),"function"===typeof CustomEvent&&window.dispatchEvent(new CustomEvent("HighchartsModuleLoaded",{detail:{path:e,module:a[e]}})))}a=a?a._modules:{};
-d(a,"Series/Streamgraph/StreamgraphSeries.js",[a["Core/Series/SeriesRegistry.js"],a["Core/Utilities.js"]],function(a,e){var d=this&&this.__extends||function(){var a=function(b,c){a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(a,c){a.__proto__=c}||function(a,c){for(var b in c)c.hasOwnProperty(b)&&(a[b]=c[b])};return a(b,c)};return function(b,c){function d(){this.constructor=b}a(b,c);b.prototype=null===c?Object.create(c):(d.prototype=c.prototype,new d)}}(),f=a.seriesTypes.areaspline,
-h=e.merge;e=e.extend;var g=function(a){function b(){var c=null!==a&&a.apply(this,arguments)||this;c.data=void 0;c.points=void 0;c.options=void 0;return c}d(b,a);b.prototype.streamStacker=function(a,b,d){a[0]-=b.total/2;a[1]-=b.total/2;this.stackedYData[d]=a};b.defaultOptions=h(f.defaultOptions,{fillOpacity:1,lineWidth:0,marker:{enabled:!1},stacking:"stream"});return b}(f);e(g.prototype,{negStacks:!1});a.registerSeriesType("streamgraph",g);"";return g});d(a,"masters/modules/streamgraph.src.js",[],
-function(){})});
-//# sourceMappingURL=streamgraph.js.map
+!/**
+ * Highcharts JS v12.6.0 (2026-04-13)
+ * @module highcharts/modules/streamgraph
+ * @requires highcharts
+ *
+ * Streamgraph module
+ *
+ * (c) 2010-2026 Highsoft AS
+ * Author: Torstein Hønsi
+ *
+ * A commercial license may be required depending on use.
+ * See www.highcharts.com/license
+ */function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(e._Highcharts,e._Highcharts.SeriesRegistry):"function"==typeof define&&define.amd?define("highcharts/modules/streamgraph",["highcharts/highcharts"],function(e){return t(e,e.SeriesRegistry)}):"object"==typeof exports?exports["highcharts/modules/streamgraph"]=t(e._Highcharts,e._Highcharts.SeriesRegistry):e.Highcharts=t(e.Highcharts,e.Highcharts.SeriesRegistry)}("u"<typeof window?this:window,(e,t)=>(()=>{"use strict";var r={512:e=>{e.exports=t},944:t=>{t.exports=e}},o={};function a(e){var t=o[e];if(void 0!==t)return t.exports;var s=o[e]={exports:{}};return r[e](s,s.exports,a),s.exports}a.n=e=>{var t=e&&e.__esModule?()=>e.default:()=>e;return a.d(t,{a:t}),t},a.d=(e,t)=>{for(var r in t)a.o(t,r)&&!a.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},a.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t);var s={};a.d(s,{default:()=>g});var n=a(944),i=a.n(n),c=a(512),p=a.n(c);let{doc:l,win:h}=i();function u(e){return f(e)&&"number"==typeof e.nodeType}function f(e,t){let r;return!!e&&"object"==typeof e&&(!t||"[object Array]"!==(r=Object.prototype.toString.call(e))&&"[object Array Iterator]"!==r)}Array.prototype.find;let{areaspline:d}=p().seriesTypes;class y extends d{streamStacker(e,t,r){e[0]-=t.total/2,e[1]-=t.total/2,this.stackedYData&&(this.stackedYData[r]=Math.max.apply(0,e))}}y.defaultOptions=function(e,...t){let r,o=[e,...t],a={},s=function(e,t){return"object"!=typeof e&&(e={}),function(e,t,r){for(let r in e)Object.hasOwnProperty.call(e,r)&&t.call((0,e[r]),e[r],r,e)}(t,function(r,o){if("__proto__"!==o&&"constructor"!==o){let a;!f(r,!0)||(a=r?.constructor,f(r,!0)&&!u(r)&&a?.name&&"Object"!==a.name)||u(r)?e[o]=t[o]:e[o]=s(e[o]||{},r)}}),e};!0===e&&(a=o[1],o=Array.prototype.slice.call(o,2));let n=o.length;for(r=0;r<n;r++)a=s(a,o[r]);return a}(d.defaultOptions,{fillOpacity:1,lineWidth:0,marker:{enabled:!1},stacking:"stream"}),function(e,t,r,o={}){let a="function"==typeof e&&e.prototype||e;Object.hasOwnProperty.call(a,"hcEvents")||(a.hcEvents={});let s=a.hcEvents;i().Point&&e instanceof i().Point&&e.series&&e.series.chart&&(e.series.chart.runTrackerClick=!0);let n=e.addEventListener;n&&n.call(e,t,r,!!i().supportsPassiveEvents&&{passive:void 0===o.passive?-1!==t.indexOf("touch"):o.passive,capture:!1}),s[t]||(s[t]=[]);let c={fn:r,order:"number"==typeof o.order?o.order:1/0};s[t].push(c),s[t].sort((e,t)=>e.order-t.order)}(y,"afterGetExtremes",e=>{e.dataExtremes.dataMin=-e.dataExtremes.dataMax}),function(e,t){let r;for(r in e||(e={}),t)e[r]=t[r]}(y.prototype,{negStacks:!1}),p().registerSeriesType("streamgraph",y);let g=i();return s.default})());
