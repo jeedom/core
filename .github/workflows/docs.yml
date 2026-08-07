@@ -1,0 +1,68 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - release
+    paths:
+      - docs/**
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Tag/branch/SHA to publish from (backfill an already-shipped version). Leave empty to use the current ref."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  changes:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      fr_fr: ${{ steps.filter.outputs.fr_fr }}
+      translated: ${{ steps.filter.outputs.translated }}
+      images: ${{ steps.filter.outputs.images }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            fr_fr:
+              - 'docs/fr_FR/**'
+            translated:
+              - 'docs/en_US/**'
+              - 'docs/es_ES/**'
+              - 'docs/de_DE/**'
+            images:
+              - 'docs/images/**'
+
+  translate:
+    needs: changes
+    if: needs.changes.outputs.fr_fr == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jeedom/jeetranslate-docs@main
+        with:
+          deepl_api_key: ${{ secrets.DEEPL_API_KEY }}
+          target_languages: en_US,es_ES,de_DE
+
+  # publish:
+  #   needs: changes
+  #   if: >
+  #     always() &&
+  #     (github.event_name == 'workflow_dispatch' ||
+  #      needs.changes.outputs.translated == 'true' ||
+  #      needs.changes.outputs.images == 'true')
+  #   uses: jeedom/workflows/.github/workflows/docs-publish.yml@main
+  #   with:
+  #     repo_kind: core
+  #     source_ref: ${{ github.event.inputs.ref }}
+  #   secrets:
+  #     docs_repo_token: ${{ secrets.DOCS_REPO_TOKEN }}
+  # Kept disabled until jeedom/documentations' `rework` branch (jeedom/documentations#166)
+  # is merged to master: that branch restructures the target repo, publishing before then
+  # would write into the current, still-duplicated layout.
