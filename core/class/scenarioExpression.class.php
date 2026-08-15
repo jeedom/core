@@ -1809,8 +1809,9 @@ class scenarioExpression {
 							$cmd_parameters['message'] = __('Veuillez trouver ci-joint le rapport', __FILE__) . ' ' . $plan->getName() . ' ' . __('généré le', __FILE__) . ' ' . date('Y-m-d H:i:s');
 							break;
 						case 'plugin':
-							$plugin = plugin::byId($options['plugin_id']);
-							if (!is_object($plugin)) {
+							try {
+								$plugin = plugin::byId($options['plugin_id']);
+							} catch (Exception $e) {
 								throw new Exception(__('Panel introuvable - Vérifiez l\'id :', __FILE__) . ' ' . $options['plugin_id']);
 							}
 							self::setLog($scenario, __('Génération du rapport', __FILE__) . ' ' . $plugin->getName());

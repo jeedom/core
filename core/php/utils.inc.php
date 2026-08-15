@@ -207,7 +207,7 @@ function redirect($_url, $_forceType = null) {
 		echo '</script>';
 	} else {
 		header("Location: $_url");
-        exit;
+		exit;
 	}
 	return;
 }
@@ -1161,13 +1161,13 @@ function evaluate($_string) {
 			$string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $string);
 		}
 
-        $expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
+		$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 		for ($i = 0; $i < $c; $i++) {
 			$expr = str_replace('--preparsed' . $i . '--', $matches[0][$i], $expr);
 		}
 	} else {
-        $expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
-    }
+		$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
+	}
 	try {
 		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 	} catch (Exception $e) {
@@ -1807,11 +1807,13 @@ function endsWith($haystack, $needle) {
 }
 
 function getWhiteListFolders($_plugin = 'all') {
-	$pluginsAll = ($_plugin != 'all') ? array($_plugin) : plugin::listPlugin(true,    false,   true,  true);
+	$pluginsAll = ($_plugin != 'all') ? array($_plugin) : plugin::listPlugin(true, false, true, true);
 	$result = array();
 	foreach ($pluginsAll as $pluginId) {
+		if (!plugin::isInstalled($pluginId)) {
+			continue;
+		}
 		$plugin = plugin::byId($pluginId);
-		if (!is_object($plugin)) continue;
 
 		$publicFolders = $plugin->getWhiteListFolders();
 		if (count($publicFolders) == 0) continue;
