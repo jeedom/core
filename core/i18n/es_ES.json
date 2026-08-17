@@ -1232,8 +1232,10 @@
     },
     "core\/js\/eqLogic.class.js": {
         "Annuler": "Cancelar",
+        "Il est utilisé par:": "Lo utilizan:",
         "Sélectionner un équipement": "Seleccione un dispositivo",
-        "Valider": "Validar"
+        "Valider": "Validar",
+        "Êtes-vous sûr de vouloir supprimer l'équipement": "¿Estás seguro de que quieres eliminar el equipo?"
     },
     "core\/js\/history.class.js": {
         "30 min": "30 minutos",
@@ -1317,7 +1319,6 @@
         "Etat": "Estado",
         "Historiser": "Guardar historial",
         "Id": "IDENTIFICACIÓN",
-        "Il est utilisé par:": "Lo utilizan:",
         "Inverser": "Invertir",
         "La valeur de la commande vaut par défaut la commande": "El valor del comando es por defecto el comando",
         "Liste": "Listado",
@@ -1336,8 +1337,7 @@
         "Valeur retour d\\'état": "Valor de retorno de estado",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Por favor, active el dispositivo antes de probar uno de sus comandos",
         "Veuillez d\\'abord sélectionner un": "Primero seleccione un",
-        "copie": "Copiar",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "¿Está seguro de que desea eliminar el equipo?"
+        "copie": "Copiar"
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Cancelar",
@@ -3109,7 +3109,6 @@
         "Enlever l'image": "Quitar imagen",
         "Envoyer": "Enviar",
         "Equipement non trouvé": "Equipo no encontrado",
-        "Equipement supprimé avec succès": "Equipo eliminado con éxito",
         "Escalier": "Escalera",
         "Graphique de fond": "Gráfico de fondo",
         "Graphique des liens": "Gráfico de enlaces",
@@ -3162,8 +3161,7 @@
         "Visible": "Visible",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Puede encontrar aquí cualquier información adicional solicitada por un complemento en el equipo Jeedom",
         "minutes": "minutos",
-        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "¿Estás seguro de que deseas eliminar la imagen de este equipo?",
-        "Êtes-vous sûr de vouloir supprimer cet équipement ?": "¿Estás seguro de que deseas eliminar este equipo?"
+        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "¿Estás seguro de que deseas eliminar la imagen de este equipo?"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Acceso no autorizado",
