@@ -12,7 +12,9 @@
 | 2026-06-25 16:40:35 | Update Jeedom logos to new branding | [#3392](https://github.com/jeedom/core/pull/3392) |
 
 ## Breaking changes
-no entries
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-08-17 12:18:51 | Centralize eqLogic remove confirmation and post-delete redirect | [#3415](https://github.com/jeedom/core/pull/3415) |
 
 ## Fixes
 | Merge date | Title | PR |
