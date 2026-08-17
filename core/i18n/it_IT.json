@@ -1232,8 +1232,10 @@
     },
     "core\/js\/eqLogic.class.js": {
         "Annuler": "Cancella",
+        "Il est utilisé par:": "È utilizzato da:",
         "Sélectionner un équipement": "Seleziona attrezzatura",
-        "Valider": "Convalidare"
+        "Valider": "Convalidare",
+        "Êtes-vous sûr de vouloir supprimer l'équipement": "Sei sicuro di voler eliminare l'apparecchiatura?"
     },
     "core\/js\/history.class.js": {
         "30 min": "30 minuti",
@@ -1317,7 +1319,6 @@
         "Etat": "Stato",
         "Historiser": "Storicizza",
         "Id": "Id",
-        "Il est utilisé par:": "È utilizzato da:",
         "Inverser": "Inverti",
         "La valeur de la commande vaut par défaut la commande": "Il valore dell'ordine è, per impostazione predefinita, l'ordine stesso",
         "Liste": "Elenco",
@@ -1336,8 +1337,7 @@
         "Valeur retour d\\'état": "Valore di ritorno dello stato",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Si prega di attivare l'apparecchiatura prima di testare uno dei suoi controlli",
         "Veuillez d\\'abord sélectionner un": "Si prega di selezionare a",
-        "copie": "copia",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sei sicuro di voler eliminare l'apparecchiatura"
+        "copie": "copia"
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Cancella",
@@ -3109,7 +3109,6 @@
         "Enlever l'image": "Rimuovi l'immagine",
         "Envoyer": "Invia",
         "Equipement non trouvé": "Attrezzatura non trovata",
-        "Equipement supprimé avec succès": "Dispositivo rimosso con successo",
         "Escalier": "Passi",
         "Graphique de fond": "Immagine di sfondo",
         "Graphique des liens": "Link grafici",
@@ -3162,8 +3161,7 @@
         "Visible": "Visibile",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Qui potete trovare tutte le informazioni aggiuntive richieste da un plugin sulle apparecchiature Jeedom",
         "minutes": "minuti",
-        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Sei sicuro di voler rimuovere l'immagine di questo dispositivo?",
-        "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Sei sicuro di voler eliminare il dispositivo?"
+        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Sei sicuro di voler rimuovere l'immagine di questo dispositivo?"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Accesso non autorizzato",

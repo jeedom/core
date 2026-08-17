@@ -1232,8 +1232,10 @@
     },
     "core\/js\/eqLogic.class.js": {
         "Annuler": "Abbrechen",
+        "Il est utilisé par:": "Es wird verwendet von:",
         "Sélectionner un équipement": "Ausrüstung auswählen",
-        "Valider": "Validate"
+        "Valider": "Validate",
+        "Êtes-vous sûr de vouloir supprimer l'équipement": "Möchten Sie das Gerät wirklich löschen?"
     },
     "core\/js\/history.class.js": {
         "30 min": "30 Minuten",
@@ -1317,7 +1319,6 @@
         "Etat": "Zustand",
         "Historiser": "Chronik",
         "Id": "ICH WÜRDE",
-        "Il est utilisé par:": "Es wird verwendet von:",
         "Inverser": "Umgekehrt",
         "La valeur de la commande vaut par défaut la commande": "Der Wert des Befehls ist standardmäßig der Befehl",
         "Liste": "Auflistung",
@@ -1336,8 +1337,7 @@
         "Valeur retour d\\'état": "Statusrückgabewert",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Bitte aktivieren Sie das Gerät, bevor Sie eine der Steuerungen testen",
         "Veuillez d\\'abord sélectionner un": "Bitte wählen Sie a",
-        "copie": "Kopieren",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Sind Sie sicher, dass Sie das Gerät löschen möchten?"
+        "copie": "Kopieren"
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Abbrechen",
@@ -3109,7 +3109,6 @@
         "Enlever l'image": "Bild entfernen",
         "Envoyer": "Senden",
         "Equipement non trouvé": "Gerät nicht gefunden",
-        "Equipement supprimé avec succès": "Ausrüstung erfolgreich gelöscht",
         "Escalier": "Treppe",
         "Graphique de fond": "Hintergrundgrafik",
         "Graphique des liens": "Grafik-Links",
@@ -3162,8 +3161,7 @@
         "Visible": "Sichtbar",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "Hier finden Sie alle zusätzlichen Informationen, die von einem Plugin zu Jeedom-Geräten angefordert werden",
         "minutes": "Protokoll",
-        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Möchten Sie das Bild dieses Geräts wirklich entfernen?",
-        "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Möchten Sie dieses Gerät wirklich löschen?"
+        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Möchten Sie das Bild dieses Geräts wirklich entfernen?"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Unautorisierter Zugriff",
