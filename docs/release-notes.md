@@ -40,6 +40,7 @@
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-08-17 13:33:18 | incorrect translation | [#3463](https://github.com/jeedom/core/pull/3463) |
 | 2026-07-22 10:45:14 | Modernize Element.prototype.empty using replaceChildren | [#3417](https://github.com/jeedom/core/pull/3417) |
 | 2026-06-27 21:01:28 | Use guard clauses in cmd->addHistoryValue | [#3400](https://github.com/jeedom/core/pull/3400) |
 
