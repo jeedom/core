@@ -1232,6 +1232,7 @@
     },
     "core\/js\/eqLogic.class.js": {
         "Annuler": "Cancel",
+        "Il est utilisé par:": "It is used by:",
         "Sélectionner un équipement": "Select equipment",
         "Valider": "Save",
         "Êtes-vous sûr de vouloir supprimer l'équipement": "Are you sure you want to remove the device?"
