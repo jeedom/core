@@ -59,8 +59,8 @@ class plugin {
 
 	public static function byId(string $_id, bool $_full = false): plugin {
 		global $JEEDOM_INTERNAL_CONFIG;
-		if (isset(self::$_cache[$_id . '::' . $_full])) {
-			return self::$_cache[$_id . '::' . $_full];
+		if (($cached = self::getFromCache($_id, $_full)) !== null) {
+			return $cached;
 		}
 		$path = self::resolvePath($_id);
 		if (!file_exists($path)) {
@@ -170,7 +170,7 @@ class plugin {
 				}
 			}
 		}
-		self::$_cache[$plugin->id . '::' . $_full] = $plugin;
+		self::addToCache($plugin->id, $_full, $plugin);
 		return $plugin;
 	}
 
@@ -200,6 +200,16 @@ class plugin {
 			return self::getPathById($_id);
 		}
 		return $_id;
+	}
+
+	private static function getFromCache(string $_id, bool $_full): ?plugin {
+		$key = $_id . '::' . ($_full ? '1' : '0');
+		return self::$_cache[$key] ?? null;
+	}
+
+	private static function addToCache(string $_id, bool $_full, plugin $_plugin): void {
+		$key = $_id . '::' . ($_full ? '1' : '0');
+		self::$_cache[$key] = $_plugin;
 	}
 
 	public function getPathToConfigurationById() {
@@ -603,7 +613,7 @@ class plugin {
 	}
 
 	public static function isInstalled(string $_pluginId): bool {
-		if (isset(self::$_cache[$_pluginId . '::'])) {
+		if (self::getFromCache($_pluginId, false) !== null) {
 			return true;
 		}
 		$path = self::resolvePath($_pluginId);
