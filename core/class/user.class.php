@@ -389,6 +389,10 @@ class user {
 		);
 		$user->setOptions('registerDevice', $registerDevice);
 		$user->save();
+		log::audit('User internal_report created', [
+			'login' => $user->getLogin(),
+			'reason' => 'Report access enabled',
+		]);
 		try {
 			$sessions = listSession();
 			foreach ($sessions as $id => $session) {
@@ -421,6 +425,10 @@ class user {
 			);
 			$user->setOptions('registerDevice', $registerDevice);
 			$user->save();
+			log::audit('User jeedom_support created', [
+				'login' => $user->getLogin(),
+				'reason' => 'Support access enabled',
+			]);
 			repo_market::supportAccess(true, $user->getHash() . '-' . $key);
 		} else {
 			$user = user::byLogin('jeedom_support');
@@ -607,6 +615,9 @@ class user {
 			$this->setHash($hash);
 			$this->setOptions('hashGenerated', date('Y-m-d H:i:s'));
 			$this->save();
+			log::audit('User key (re)generated', [
+				'login' => $this->getLogin()
+			]);
 		}
 		return $this->hash;
 	}

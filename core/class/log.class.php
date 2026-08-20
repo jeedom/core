@@ -637,7 +637,16 @@ class log extends AbstractLogger {
 		}
 	}
 
-	/*     * *********************Methode d'instance************************* */
-
-	/*     * **********************Getteur Setteur*************************** */
+	public static function audit(string $message, array $context = array()) {
+		$parts = [];
+		foreach ($context as $key => $value) {
+			if (is_scalar($value)) {
+				$parts[] = $key . '=' . $value;
+			} else {
+				$parts[] = $key . '=' . json_encode($value, JSON_UNESCAPED_UNICODE);
+			}
+		}
+		$suffix = $parts ? ' [' . implode(' | ', $parts) . ']' : '';
+		self::add('audit', 'info', $message . $suffix);
+	}
 }

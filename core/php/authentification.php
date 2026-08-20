@@ -37,7 +37,7 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 		ini_set('session.cookie_secure', 1);
 		session_name('__Host-PHPSESSID');
 	}
-}else if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
+} else if (isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
 	throw new Exception('session does not exist');
 }
 @session_start();
@@ -84,21 +84,35 @@ if (init('logout') == 1) {
 
 /* * **************************Definition des function************************** */
 
-function login($_login, $_password, $_twoFactor = null) {
+function login(string $_login, string $_password, ?string $_twoFactor = null): bool {
 	$user = user::connect($_login, $_password);
 	if (!is_object($user) || $user->getEnable() == 0) {
+		log::audit('User connection refused', [
+			'login' => $_login,
+			'ip' => getClientIp(),
+			'reason' => 'Invalid login or password or user disabled',
+		]);
 		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+		log::audit('User connection refused', [
+			'login' => $_login,
+			'ip' => getClientIp(),
+			'reason' => 'User is local only',
+		]);
 		user::failedLogin();
 		sleep(5);
 		return false;
 	}
-	$sMdp = (!is_sha512($_password)) ? sha512($_password) : $_password;
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
+			log::audit('User connection refused', [
+				'login' => $_login,
+				'ip' => getClientIp(),
+				'reason' => 'Invalid or missing two factor authentication code',
+			]);
 			user::failedLogin();
 			sleep(5);
 			return false;
@@ -109,23 +123,41 @@ function login($_login, $_password, $_twoFactor = null) {
 	session_regenerate_id(true);
 	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur :', __FILE__) . ' ' . $_login);
+	log::audit('User login', [
+		'login' => $_login,
+		'ip' => getClientIp(),
+	]);
 	return true;
 }
 
-function loginByHash($_key) {
+function loginByHash(string $_key): bool {
 	$key = explode('-', $_key);
 	$user = user::byHash($key[0]);
 	if (!is_object($user) || $user->getEnable() == 0) {
+		log::audit('User connection refused', [
+			'ip' => getClientIp(),
+			'reason' => 'Invalid hash or user disabled',
+		]);
 		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
+		log::audit('User connection refused', [
+			'login' => $user->getLogin(),
+			'ip' => getClientIp(),
+			'reason' => 'User is local only',
+		]);
 		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if (!isset($key[1])) {
+		log::audit('User connection refused', [
+			'login' => $user->getLogin(),
+			'ip' => getClientIp(),
+			'reason' => 'Missing registered device key',
+		]);
 		user::failedLogin();
 		sleep(5);
 		return false;
@@ -133,6 +165,11 @@ function loginByHash($_key) {
 	$rdk = sha512($key[1]);
 	$registerDevice = $user->getOptions('registerDevice', array());
 	if (!is_array($registerDevice) || !isset($registerDevice[$rdk])) {
+		log::audit('User connection refused', [
+			'login' => $user->getLogin(),
+			'ip' => getClientIp(),
+			'reason' => 'Invalid registered device key',
+		]);
 		user::failedLogin();
 		sleep(5);
 		return false;
@@ -148,10 +185,18 @@ function loginByHash($_key) {
 	$_SESSION['user'] = $user;
 	@session_write_close();
 	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef :', __FILE__) . ' ' . $user->getLogin());
+	log::audit('User login by registered device', [
+		'login' => $user->getLogin(),
+		'ip' => getClientIp(),
+	]);
 	return true;
 }
 
 function logout() {
+	log::audit('User logout', [
+		'login' => $_SESSION['user']->getLogin(),
+		'ip' => getClientIp(),
+	]);
 	@session_start();
 	if (version_compare(PHP_VERSION, '7.3') >= 0) {
 		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);

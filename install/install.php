@@ -61,6 +61,10 @@ try {
 		$user->setPassword(sha512('admin'));
 		$user->setProfils('admin');
 		$user->save();
+		log::audit('User admin created', [
+			'login' => $user->getLogin(),
+			'reason' => 'First install, creating admin user',
+		]); // TODO: mips: decision to take because default loglevel is 400 (error), as defined in default.config.ini; call to log::audit() is there to raise the discussion
 	} catch (\Exception $e) {
 		echo "***ERROR*** " . $e->getMessage() . "\n";
 	}
