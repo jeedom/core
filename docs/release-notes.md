@@ -19,6 +19,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-08-20 13:27:53 | Simplify OpenVPN and virtual plugin auto-install checks | [#3454](https://github.com/jeedom/core/pull/3454) |
 | 2026-08-18 20:06:11 | Fix stale dashed tail not clearing on live history chart update | [#3456](https://github.com/jeedom/core/pull/3456) |
 | 2026-08-15 17:41:40 | Restore unreachable error handling when plugin::byId can't find a plugin | [#3455](https://github.com/jeedom/core/pull/3455) |
 | 2026-07-30 14:10:24 | Fix real-time graph updates: skip inconsistent cases and rescale the Y axis | [#3437](https://github.com/jeedom/core/pull/3437) |
