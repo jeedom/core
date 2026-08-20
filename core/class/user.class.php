@@ -171,6 +171,11 @@ class user {
 		return false;
 	}
 
+	/**
+	 * Get user by login
+	 *
+	 * @return user
+	 */
 	public static function byLogin($_login) {
 		$values = array(
 			'login' => $_login,
@@ -181,6 +186,11 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Get user by hash
+	 *
+	 * @return user
+	 */
 	public static function byHash($_hash) {
 		$values = array(
 			'hash' => $_hash,
@@ -195,6 +205,11 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Get user by login and hash
+	 *
+	 * @return user
+	 */
 	public static function byLoginAndHash($_login, $_hash) {
 		$values = array(
 			'login' => $_login,
@@ -207,6 +222,11 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Get user by login and password
+	 *
+	 * @return user
+	 */
 	public static function byLoginAndPassword(string $_login, string $_password) {
 		$values = array(
 			'login' => $_login,
@@ -220,8 +240,9 @@ class user {
 	}
 
 	/**
+	 * Get all users
 	 *
-	 * @return array de tous les utilisateurs
+	 * @return user[] Array of all users
 	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -229,6 +250,11 @@ class user {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Search users by right
+	 *
+	 * @return user[] Array of users with the specified right
+	 */
 	public static function searchByRight(string $_rights) {
 		$values = array(
 			'rights' => '%"' . $_rights . '":1%',
@@ -241,7 +267,12 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByOptions($_search) {
+	/**
+	 * Search users by options
+	 *
+	 * @return user[] Array of users with the specified options
+	 */
+	public static function searchByOptions(string $_search) {
 		$value = array(
 			'search' => '%' . $_search . '%'
 		);
@@ -251,7 +282,12 @@ class user {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byProfils($_profils, $_enable = false) {
+	/**
+	 * Search users by profils
+	 *
+	 * @return user[] Array of users with the specified profils
+	 */
+	public static function byProfils(string $_profils, bool $_enable = false) {
 		$values = array(
 			'profils' => $_profils,
 		);
@@ -264,7 +300,12 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byEnable($_enable) {
+	/**
+	 * Search users by enable status
+	 *
+	 * @return user[] Array of users with the specified enable status
+	 */
+	public static function byEnable(bool $_enable) {
 		$values = array(
 			'enable' => $_enable,
 		);
@@ -361,7 +402,7 @@ class user {
 		return $user->getHash() . '-' . $key;
 	}
 
-	public static function supportAccess($_enable = true) {
+	public static function supportAccess($_enable = true): void {
 		if ($_enable) {
 			$user = user::byLogin('jeedom_support');
 			if (!is_object($user)) {
@@ -391,7 +432,7 @@ class user {
 		}
 	}
 
-	public static function deadCmd() {
+	public static function deadCmd(): array {
 		$return = array();
 		foreach ((user::all()) as $user) {
 			$cmd = $user->getOptions('notification::cmd');
@@ -404,7 +445,7 @@ class user {
 		return $return;
 	}
 
-	public static function regenerateHash() {
+	public static function regenerateHash(): void {
 		foreach ((user::all()) as $user) {
 			if ($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash', 0) == 1 || $user->getEnable() == 0) {
 				continue;
@@ -451,7 +492,7 @@ class user {
 		$this->getOptions('twoFactorAuthentification', utils::decrypt($this->getOptions('twoFactorAuthentification')));
 	}
 
-	public function save() {
+	public function save(): bool {
 		return DB::save($this);
 	}
 
@@ -461,7 +502,7 @@ class user {
 		}
 	}
 
-	public function remove() {
+	public function remove(): bool {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getLogin(), 'date' => date('Y-m-d H:i:s'), 'type' => 'user'));
 		return DB::remove($this);
 	}
