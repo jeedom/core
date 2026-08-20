@@ -48,13 +48,13 @@ class user {
 	}
 
 	/**
-	 * Retourne un object utilisateur (si les information de connection sont valide)
-	 * @param string $_login nom d'utilisateur
-	 * @param string $_mdp motsz de passe en sha512
-	 * @return user object user
+	 * Return user object if login and password are correct, else return false
+	 * @param string $_login login
+	 * @param string $_pswd password in sha512 or plain text
+	 * @return user|false object user or false if authentication fails
 	 */
-	public static function connect(string $_login, string $_mdp) {
-		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
+	public static function connect(string $_login, string $_pswd) {
+		$hashedPassword = (!is_sha512($_pswd)) ? sha512($_pswd) : $_pswd;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", 'LDAP Authentication');
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
@@ -74,12 +74,12 @@ class user {
 				}
 			}
 			if (config::byKey('ldap:samba4')) {
-				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_mdp)) {
+				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_pswd)) {
 					log::add("connection", "info", 'LDAP bind user - login/password denied');
 					return false;
 				}
 			} else {
-				if (!ldap_bind($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+				if (!ldap_bind($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), $_pswd)) {
 					log::add("connection", "info", 'LDAP bind user - login/password denied');
 					return false;
 				}
@@ -109,7 +109,7 @@ class user {
 			if ($profile != 'none') {
 				$user = self::byLogin($_login);
 				if (is_object($user)) {
-					$user->setPassword($sMdp)
+					$user->setPassword($hashedPassword)
 						->setOptions('lastConnection', date('Y-m-d H:i:s'))
 						->setProfils($profile);
 					$user->save();
@@ -117,12 +117,12 @@ class user {
 				}
 				$user = (new user)
 					->setLogin($_login)
-					->setPassword($sMdp)
+					->setPassword($hashedPassword)
 					->setOptions('lastConnection', date('Y-m-d H:i:s'))
 					->setProfils($profile);
 				$user->save();
 				log::add("connection", "info", 'User created from the LDAP: ' . $_login);
-				jeedom::event('user_connect', false, array('trigger_value' => $_login));
+				jeedom::event('user_connect', false, array('trigger_value' => $_login));  # FIXME: mips: user is NOT actually connected at this point, so this event is misleading. It should be moved after the checks on two factor authentication and localOnly.
 				// TODO : if username == password => change ldap password
 				log::add('event', 'info', 'User connection accepted: ' . $_login);
 				return $user;
@@ -134,20 +134,19 @@ class user {
 				log::add("connection", "info", "User not allowed to access to Jeedom according to the LDAP ({$_login})");
 			}
 		}
-		$user = user::byLoginAndPassword($_login, $sMdp);
+		$user = user::byLoginAndPassword($_login, $hashedPassword);
 		if (!is_object($user)) {
-			$user = user::byLoginAndPassword($_login, sha1($_mdp));
+			$user = user::byLoginAndPassword($_login, sha1($_pswd));
 			if (is_object($user)) {
-				$user->setPassword($sMdp);
-				log::add('event', 'info', 'Local account found for: ' . $_login);
+				$user->setPassword($hashedPassword);
+				log::add('audit', 'info', 'Password migrated from sha1 to sha512 for: ' . $_login);
 			}
 		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
-			jeedom::event('user_connect', false, array('trigger_value' => $_login));
+			jeedom::event('user_connect', false, array('trigger_value' => $_login)); # FIXME: mips: user is NOT actually connected at this point, so this event is misleading. It should be moved after the checks on two factor authentication and localOnly.
 			log::add('event', 'info', 'Local account found for: ' . $_login);
-			log::add('event', 'info', 'User connection accepted: ' . $_login);
 		}
 		return $user;
 	}
