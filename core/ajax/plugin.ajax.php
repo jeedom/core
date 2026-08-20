@@ -30,7 +30,7 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin = plugin::byId(init('id'),init('full',0));
+		$plugin = plugin::byId(init('id'), (bool) init('full', 0));
 		$update = update::byLogicalId(init('id'));
 		$return = utils::o2a($plugin);
 		$return['activate'] = $plugin->isActive();
@@ -47,8 +47,9 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin = plugin::byId(init('id'));
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
+		} catch (Exception $e) {
 			throw new Exception(__('Plugin introuvable :', __FILE__) . ' ' . init('id'));
 		}
 		$plugin->setIsEnable(init('state'));
@@ -68,9 +69,10 @@ try {
 		}
 
 		$return = array('state' => 'nok', 'log' => 'nok');
-		$plugin = plugin::byId(init('id'));
-		if (is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
 			$return = $plugin->dependancy_info();
+		} catch (Exception $e) {
 		}
 		ajax::success($return);
 	}
@@ -80,8 +82,9 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId(init('id'));
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
+		} catch (Exception $e) {
 			ajax::success();
 		}
 		ajax::success($plugin->dependancy_install(true));
@@ -92,8 +95,9 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId(init('id'));
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
+		} catch (Exception $e) {
 			ajax::success();
 		}
 		ajax::success($plugin->dependancy_changeAutoMode(init('mode')));
@@ -103,11 +107,12 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$plugin_id = init('id');
 		$return = array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0);
-		$plugin = plugin::byId(init('id'));
-		if (is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
 			$return = $plugin->deamon_info();
+		} catch (Exception $e) {
+			$plugin = null;
 		}
 		$return['plugin'] = utils::o2a($plugin);
 		ajax::success($return);
@@ -118,9 +123,9 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$plugin_id = init('id');
-		$plugin = plugin::byId(init('id'));
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
+		} catch (Exception $e) {
 			ajax::success();
 		}
 		ajax::success($plugin->deamon_start(init('forceRestart', 0)));
@@ -131,8 +136,9 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId(init('id'));
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
+		} catch (Exception $e) {
 			ajax::success();
 		}
 		ajax::success($plugin->deamon_stop());
@@ -143,8 +149,9 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId(init('id'));
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId(init('id'));
+		} catch (Exception $e) {
 			ajax::success();
 		}
 		ajax::success($plugin->deamon_changeAutoMode(init('mode')));

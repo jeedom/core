@@ -1232,8 +1232,10 @@
     },
     "core\/js\/eqLogic.class.js": {
         "Annuler": "Cancel",
+        "Il est utilisé par:": "It is used by:",
         "Sélectionner un équipement": "Select equipment",
-        "Valider": "Save"
+        "Valider": "Save",
+        "Êtes-vous sûr de vouloir supprimer l'équipement": "Are you sure you want to remove the device?"
     },
     "core\/js\/history.class.js": {
         "30 min": "30 mins",
@@ -1317,7 +1319,6 @@
         "Etat": "State",
         "Historiser": "Historize",
         "Id": "ID",
-        "Il est utilisé par:": "Il est utilisé par:",
         "Inverser": "Invert",
         "La valeur de la commande vaut par défaut la commande": "The value of the command is by default the command",
         "Liste": "List",
@@ -1336,8 +1337,7 @@
         "Valeur retour d\\'état": "Status return value",
         "Veuillez activer l\\'équipement avant de tester une de ses commandes": "Please activate the equipment before testing any of its commands",
         "Veuillez d\\'abord sélectionner un": "Please first select a",
-        "copie": "copy",
-        "Êtes-vous sûr de vouloir supprimer l\\'équipement": "Are you sure you want to delete the equipment"
+        "copie": "copy"
     },
     "core\/js\/scenario.class.js": {
         "Annuler": "Cancel",
@@ -3109,7 +3109,6 @@
         "Enlever l'image": "Remove image",
         "Envoyer": "Send",
         "Equipement non trouvé": "Equipment not found",
-        "Equipement supprimé avec succès": "Equipment deleted successfully",
         "Escalier": "Steps",
         "Graphique de fond": "Background graphic",
         "Graphique des liens": "Links chart",
@@ -3162,8 +3161,7 @@
         "Visible": "Visible",
         "Vous pouvez trouver ici toute informations complementaires demandées par un plugin sur les équipements Jeedom": "You can find here any additional information requested by a plugin on Jeedom equipment",
         "minutes": "minutes",
-        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Are you sure you want to remove the image from this equipment?",
-        "Êtes-vous sûr de vouloir supprimer cet équipement ?": "Are you sure you want to delete this equipment?"
+        "Êtes-vous sûr de vouloir enlever l\\'image cet équipement ?": "Are you sure you want to remove the image from this equipment?"
     },
     "desktop\/modal\/eqLogic.dashboard.edit.php": {
         "Accès non autorisé": "Unauthorized access",

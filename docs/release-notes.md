@@ -12,11 +12,16 @@
 | 2026-06-25 16:40:35 | Update Jeedom logos to new branding | [#3392](https://github.com/jeedom/core/pull/3392) |
 
 ## Breaking changes
-no entries
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-08-17 12:18:51 | Centralize eqLogic remove confirmation and post-delete redirect | [#3415](https://github.com/jeedom/core/pull/3415) |
 
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-08-20 13:27:53 | Simplify OpenVPN and virtual plugin auto-install checks | [#3454](https://github.com/jeedom/core/pull/3454) |
+| 2026-08-18 20:06:11 | Fix stale dashed tail not clearing on live history chart update | [#3456](https://github.com/jeedom/core/pull/3456) |
+| 2026-08-15 17:41:40 | Restore unreachable error handling when plugin::byId can't find a plugin | [#3455](https://github.com/jeedom/core/pull/3455) |
 | 2026-07-30 14:10:24 | Fix real-time graph updates: skip inconsistent cases and rescale the Y axis | [#3437](https://github.com/jeedom/core/pull/3437) |
 | 2026-07-30 12:27:42 | Remove stale mistranslated German "Batterie" translation | [#3448](https://github.com/jeedom/core/pull/3448) |
 | 2026-07-27 17:04:17 | Fix widget size (zoom) breaking grid snap and containment in the design editor | [#3441](https://github.com/jeedom/core/pull/3441) |
@@ -37,6 +42,8 @@ no entries
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-08-18 20:15:41 | Make plugin::byId/isInstalled cache handling and full parameter typing explicit | [#3453](https://github.com/jeedom/core/pull/3453) |
+| 2026-08-17 13:33:18 | incorrect translation | [#3463](https://github.com/jeedom/core/pull/3463) |
 | 2026-07-22 10:45:14 | Modernize Element.prototype.empty using replaceChildren | [#3417](https://github.com/jeedom/core/pull/3417) |
 | 2026-06-27 21:01:28 | Use guard clauses in cmd->addHistoryValue | [#3400](https://github.com/jeedom/core/pull/3400) |
 
@@ -48,6 +55,7 @@ no entries
 ## Developer
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-08-18 08:21:10 | Remove PHP 7.3 workflow from GitHub Actions | [#3465](https://github.com/jeedom/core/pull/3465) |
 | 2026-07-30 14:11:05 | Speed up plugin::isInstalled and use it instead of byId for existence checks | [#3446](https://github.com/jeedom/core/pull/3446) |
 | 2026-07-01 18:15:21 | chore(deps): bump actions/checkout from 6 to 7 | [#3412](https://github.com/jeedom/core/pull/3412) |
 | 2026-07-01 18:14:57 | chore(deps): bump actions/cache from 5 to 6 | [#3411](https://github.com/jeedom/core/pull/3411) |

@@ -398,62 +398,21 @@ if (!jeeFrontEnd.pluginTemplate) {
     removeEqLogic: function() {
       const eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
       if (eqLogicId != undefined) {
-        const thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type')
-        const textEqtype = thisEqType || eqType
-        jeedom.eqLogic.getUseBeforeRemove({
+        const thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type') || eqType
+        jeedom.eqLogic.remove({
           id: eqLogicId,
+          type: thisEqType,
+          name: document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue(),
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
-          },
-          success: function(data) {
-            let text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + textEqtype + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
-            if (Object.keys(data).length > 0) {
-              text += ' </br> {{Il est utilisé par:}}</br>'
-              let complement = null
-              for (const i in data) {
-                complement = ''
-                if ('sourceName' in data[i]) {
-                  complement = ' (' + data[i].sourceName + ')'
-                }
-                text += '- ' + '<a href="' + data[i].url + '" target="_blank">' + data[i].type + '</a> : <b>' + data[i].name + '</b>' + complement + ' <sup><a href="' + data[i].url + '" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
-              }
-            }
-            text = text.substring(0, text.length - 2)
-            jeeDialog.confirm(text, function(result) {
-              if (result) {
-                jeedom.eqLogic.remove({
-                  type: thisEqType || eqType,
-                  id: eqLogicId,
-                  error: function(error) {
-                    jeedomUtils.showAlert({
-                      message: error.message,
-                      level: 'danger'
-                    })
-                  },
-                  success: function() {
-                    const vars = getUrlVars()
-                    let url = 'index.php?'
-                    for (const i in vars) {
-                      if (i != 'id' && i != 'removeSuccessFull' && i != 'saveSuccessFull') {
-                        url += i + '=' + vars[i].replace('#', '') + '&'
-                      }
-                    }
-                    jeeFrontEnd.modifyWithoutSave = false
-                    modifyWithoutSave = false
-                    url += 'removeSuccessFull=1'
-                    jeedomUtils.loadPage(url)
-                  }
-                })
-              }
-            })
           }
         })
       } else {
         jeedomUtils.showAlert({
-          message: '{{Veuillez d\'abord sélectionner un}} ' + textEqtype,
+          message: '{{Veuillez d\'abord sélectionner un}} ' + eqType,
           level: 'danger'
         })
       }
