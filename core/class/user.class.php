@@ -31,7 +31,7 @@ class user {
 	private $options;
 	private $rights;
 	private $enable = 1;
-	private $hash;
+	private string $hash = '';
 	private $_changed = false;
 
 
@@ -404,16 +404,17 @@ class user {
 		return $return;
 	}
 
-	public static function regenerateHash() {
+	public static function regenerateHashes() {
 		foreach ((user::all()) as $user) {
-			if ($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash', 0) == 1 || $user->getEnable() == 0) {
-				continue;
+			if ($user->getHash() != '') {
+				if ($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash', 0) == 1 || $user->getEnable() == 0) {
+					continue;
+				}
+				if (strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')) {
+					continue;
+				}
 			}
-			if (strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')) {
-				continue;
-			}
-			$user->setHash('');
-			$user->getHash();
+			$user->regenerateHash()->save();
 		}
 	}
 
@@ -440,6 +441,9 @@ class user {
 			if ($this->getProfils() != 'admin') {
 				throw new Exception(__('Vous ne pouvez pas changer le profil du dernier administrateur', __FILE__));
 			}
+		}
+		if ($this->getHash() == '') {
+			$this->regenerateHash();
 		}
 	}
 
@@ -468,6 +472,16 @@ class user {
 
 	public function refresh(): void {
 		DB::refresh($this);
+	}
+
+	private function regenerateHash() {
+		do {
+			$_hash = config::genKey();
+		} while (is_object(self::byHash($_hash)));
+
+		$this->setHash($_hash);
+		$this->setOptions('hashGenerated', date('Y-m-d H:i:s'));
+		return $this;
 	}
 
 	/**
@@ -559,19 +573,13 @@ class user {
 	}
 
 	public function getHash() {
-		if ($this->hash == '' && $this->id != '') {
-			$hash = config::genKey();
-			while (is_object(self::byHash($hash))) {
-				$hash = config::genKey();
-			}
-			$this->setHash($hash);
-			$this->setOptions('hashGenerated', date('Y-m-d H:i:s'));
-			$this->save();
-		}
 		return $this->hash;
 	}
 
-	public function setHash($_hash) {
+	public function setHash(string $_hash) {
+		if ($_hash == '') {
+			return $this->regenerateHash();
+		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->hash, $_hash);
 		$this->hash = $_hash;
 		return $this;
