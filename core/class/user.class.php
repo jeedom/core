@@ -37,6 +37,12 @@ class user {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
+	/**
+	 * Return user object if exists
+	 *
+	 * @param int|string $_id user ID
+	 * @return user|null user object if exists, null otherwise
+	 */
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
