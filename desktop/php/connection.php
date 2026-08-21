@@ -25,7 +25,7 @@
 						<div class="passwd">
 							<label>{{Mot de passe}}</label>
 							<div class="input-group">
-								<input type="password" id="in_login_password">
+								<input type="password" class="roundedLeft" id="in_login_password">
 								<span class="input-group-btn">
 									<a class="btn btn-default form-control bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
 								</span>
