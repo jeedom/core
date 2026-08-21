@@ -158,6 +158,14 @@ body {
 	border: solid 1px #999;
 }
 
+.veen .wrapper .input-group-btn .btn {
+	height: 40px;
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .veen .wrapper input {
 	margin-top: -6px;
 }
