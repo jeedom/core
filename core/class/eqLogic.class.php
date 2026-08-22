@@ -1358,7 +1358,7 @@ class eqLogic {
 		}
 	}
 
-	public function import($_configuration, $_dontRemove = false) {
+	public function import(array $_configuration, bool $_dontRemove = false, bool $_direct = false): void {
 		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {
 			foreach ($_configuration['configuration'] as $key => $value) {
@@ -1455,7 +1455,7 @@ class eqLogic {
 				}
 			}
 		}
-		$this->save();
+		$this->save($_direct);
 	}
 
 	public function export($_withCmd = true) {
