@@ -158,12 +158,10 @@ body {
 	border: solid 1px #999;
 }
 
-.veen .wrapper .input-group-btn .btn {
+.veen .wrapper .bt_showPassConnection {
 	height: 40px;
 	width: 40px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	line-height: 27px;
 }
 
 .veen .wrapper input {
