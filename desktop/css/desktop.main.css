@@ -5,6 +5,17 @@ Desktop
 
 @import url("dom.ui.css");
 
+@font-face {
+  font-family: 'Font Awesome Free';
+  font-weight: 400;
+  src: url('../../3rdparty/font-awesome/webfonts/fa-regular-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Font Awesome Free';
+  font-weight: 900;
+  src: url('../../3rdparty/font-awesome/webfonts/fa-solid-900.woff2') format('woff2');
+}
+
 /* ______Commons */
   ::-webkit-scrollbar {
     width:10px;
