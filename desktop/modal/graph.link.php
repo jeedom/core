@@ -94,8 +94,8 @@ sendVarToJS([
             .attr('alignment-baseline', 'central')
             .attr('text-anchor', 'middle')
             .text(String.fromCodePoint(parseInt(node.data.icon, 16)))
-          if (node.data.fontfamily == 'Font Awesome 5 Free') {
-            img.attr('class', 'fas')
+          if (node.data.fontfamily == 'Font Awesome Free') {
+            img.attr('font-weight', 900)
           }
           text.attr("y", node.data.texty * 1.5)
           text.attr("x", node.data.textx)
