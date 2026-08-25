@@ -64,7 +64,7 @@ if (!$objectId) {
   }
 
   // No cache for Font-Awesome, as it's faster to fetch the json file directly
-  $res = json_decode(file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/icons.json'), true);
+  $res = json_decode(file_get_contents(__DIR__ . '/../../3rdparty/font-awesome/icons.json'), true);
   sort($res['icons']);
   $icon_Struct['Font-Awesome'] = $res['icons'];
   ksort($icon_Struct);

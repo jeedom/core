@@ -24,5 +24,5 @@ foreach (ls($root_dir, '*') as $dir) {
 	}
 }
 
-echo '<link rel="stylesheet" href="3rdparty/font-awesome5/css/all.min.css">' . "\n";
+echo '<link rel="stylesheet" href="3rdparty/font-awesome/css/all.min.css">' . "\n";
 echo '<link rel="stylesheet" href="core/css/icon/icons.css">' . "\n";
