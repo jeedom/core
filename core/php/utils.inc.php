@@ -1474,12 +1474,11 @@ function sha512($_string) {
 function findCodeIcon($_icon) {
 	$icon = trim(str_replace(array('fa ', 'fas ', 'fab ', 'far ', 'icon ', '></i>', '<i', 'class="', '"', 'icon_green', 'icon_blue', 'icon_yellow', 'icon_orange', 'icon_red'), '', trim($_icon)));
 
-	$re = '/.' . $icon . ':.*\n.*content:.*"(.*?)";/m';
-
-	$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome5/css/all.css');
+	$re = '/\.' . $icon . '(?::before)?\s*\{[^}]*?(?:content|--fa)\s*:\s*"(.*?)"/';
+	$css = file_get_contents(__DIR__ . '/../../3rdparty/font-awesome/css/all.css');
 	preg_match($re, $css, $matches);
 	if (isset($matches[1])) {
-		return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome 5 Free');
+		return array('icon' => trim($matches[1], '\\'), 'fontfamily' => 'Font Awesome Free');
 	}
 
 	foreach (ls(__DIR__ . '/../css/icon', '*') as $dir) {
