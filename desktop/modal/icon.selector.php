@@ -264,21 +264,24 @@ include_file('3rdparty', 'tree/tree', 'js');
         this.icon_tree.reload()
       },
       iconTreeOnScroll: function() {
-        var view = document.querySelector('#md_iconSelector .tab-content').getBoundingClientRect();
-        var legends = document.querySelectorAll('#tabicon .imgContainer legend');
-        var i = 0;
+        if (document.querySelector('#md_iconSelector div.tab-pane.active')?.id != 'tabicon') {
+          return;
+        }
+        const view = document.querySelector('#md_iconSelector .tab-content').getBoundingClientRect();
+        const legends = document.querySelectorAll('#tabicon .imgContainer legend');
+        let i = 0;
         while (i < legends.length && legends[i].getBoundingClientRect().bottom < view.top) {
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i].className))?.parentNode.removeClass('selected');
           i += 1;
         }
         if (i < legends.length && legends[i].getBoundingClientRect().bottom < view.bottom) { // In view
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.addClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i].className))?.parentNode.addClass('selected');
           i += 1;
         } else { // Out of view, select last
-          document.querySelector('#treeFolder-icon .' + (legends[i - 1].className)).parentNode.addClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i - 1]?.className))?.parentNode.addClass('selected');
         }
         while (i < legends.length) {
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i].className))?.parentNode.removeClass('selected');
           i += 1;
         }
       },
