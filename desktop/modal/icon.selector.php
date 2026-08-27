@@ -105,13 +105,13 @@ sendVarToJS([
     </ul>
   <?php } ?>
   <div class="tab-content" style="overflow-y:scroll;max-height: 100%">
-    <div id="tabicon" role="tabpanel" class="tab-pane active" <?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
+    <div id="tabicon" role="tabpanel" class="tab-pane<?php echo (!$objectId) ? ' active' : '' ?>" <?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
       <div class="imgContainer" <?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
         <div id="treeFolder-icon" class="div_treeFolder"></div>
         <div class="div_imageGallery"></div>
       </div>
     </div>
-    <div id="tabobjectbg" role="tabpanel" class="tab-pane active" <?php if (!$objectId) echo ' style="display:none;"' ?>>
+    <div id="tabobjectbg" role="tabpanel" class="tab-pane<?php echo ($objectId) ? ' active' : '' ?>" <?php if (!$objectId) echo ' style="display:none;"' ?>>
       <div class="imgContainer" <?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
         <div id="treeFolder-bg" class="div_treeFolder"></div>
         <div class="div_imageGallery"></div>
