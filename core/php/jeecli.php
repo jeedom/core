@@ -108,7 +108,7 @@ switch ($argv[1]) {
                     echo "User " . $argv[3] . " not found";
                     die();
                 }
-                $user->setPassword(sha512($argv[4]));
+                $user->setPassword($argv[4]);
                 $user->save();
                 break;
             case 'add':
@@ -127,7 +127,7 @@ switch ($argv[1]) {
                 }
                 $user = new user();
                 $user->setLogin($argv[3]);
-                $user->setPassword(sha512($argv[4]));
+                $user->setPassword($argv[4]);
                 $user->setProfils('admin');
                 $user->save();
                 break;

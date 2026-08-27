@@ -58,7 +58,7 @@ try {
 	try {
 		$user = new user();
 		$user->setLogin('admin');
-		$user->setPassword(sha512('admin'));
+		$user->setPassword('admin');
 		$user->setProfils('admin');
 		$user->save();
 	} catch (\Exception $e) {

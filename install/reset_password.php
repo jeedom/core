@@ -38,7 +38,7 @@ if (!is_object($user)) {
   die();
 }
 $password = config::genKey();
-$user->setPassword(sha512($password));
+$user->setPassword($password);
 $user->save();
 echo "Operation successfull, your new password for user " . $user->getLogin() . " is " . $password . "\n";
 die();

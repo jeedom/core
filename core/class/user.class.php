@@ -56,11 +56,10 @@ class user {
 	/**
 	 * Return user object if login and password are correct, else return false
 	 * @param string $_login login
-	 * @param string $_pswd password in sha512 or plain text
+	 * @param string $_pswd password in plain text
 	 * @return user|false object user or false if authentication fails
 	 */
 	public static function connect(string $_login, string $_pswd) {
-		$hashedPassword = (!is_sha512($_pswd)) ? sha512($_pswd) : $_pswd;
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", 'LDAP Authentication');
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
@@ -115,7 +114,7 @@ class user {
 			if ($profile != 'none') {
 				$user = self::byLogin($_login);
 				if (is_object($user)) {
-					$user->setPassword($hashedPassword)
+					$user->setPassword($_pswd)
 						->setOptions('lastConnection', date('Y-m-d H:i:s'))
 						->setProfils($profile);
 					$user->save();
@@ -123,7 +122,7 @@ class user {
 				}
 				$user = (new user)
 					->setLogin($_login)
-					->setPassword($hashedPassword)
+					->setPassword($_pswd)
 					->setOptions('lastConnection', date('Y-m-d H:i:s'))
 					->setProfils($profile);
 				$user->save();
@@ -140,12 +139,18 @@ class user {
 				log::add("connection", "info", "User not allowed to access to Jeedom according to the LDAP ({$_login})");
 			}
 		}
-		$user = user::byLoginAndPassword($_login, $hashedPassword);
-		if (!is_object($user)) {
-			$user = user::byLoginAndPassword($_login, sha1($_pswd));
-			if (is_object($user)) {
-				$user->setPassword($hashedPassword);
-				log::add('audit', 'info', 'Password migrated from sha1 to sha512 for: ' . $_login);
+		$user = self::byLogin($_login);
+		if (is_object($user)) {
+			$storedPassword = $user->getPassword();
+			if (password_verify($_pswd, $storedPassword)) {
+				if (password_needs_rehash($storedPassword, PASSWORD_DEFAULT)) {
+					$user->setPassword($_pswd);
+				}
+			} elseif (hash_equals($storedPassword, sha512($_pswd))) {
+				$user->setPassword($_pswd);
+				log::add('audit', 'info', 'Password migrated from sha512 to native hash for: ' . $_login);
+			} else {
+				$user = false;
 			}
 		}
 		if (is_object($user)) {
@@ -224,23 +229,6 @@ class user {
 		FROM user
 		WHERE login=:login
 		AND hash=:hash';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-	}
-
-	/**
-	 * Get user by login and password
-	 *
-	 * @return user
-	 */
-	public static function byLoginAndPassword(string $_login, string $_password) {
-		$values = array(
-			'login' => $_login,
-			'password' => $_password,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM user
-		WHERE login=:login
-		AND password=:password';
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
@@ -381,7 +369,7 @@ class user {
 			$user->setOptions('twoFactorAuthentificationSecret', $google2fa->generateSecretKey());
 			$user->setOptions('twoFactorAuthentification', 1);
 		}
-		$user->setPassword(sha512(config::genKey(255)));
+		$user->setPassword(config::genKey(255));
 		$user->setOptions('localOnly', 1);
 		$user->setProfils('admin');
 		$user->setEnable(1);
@@ -414,7 +402,7 @@ class user {
 				$user = new user();
 				$user->setLogin('jeedom_support');
 			}
-			$user->setPassword(sha512(config::genKey(255)));
+			$user->setPassword(config::genKey(255));
 			$user->setProfils('admin');
 			$user->setEnable(1);
 			$key = config::genKey();
@@ -557,7 +545,7 @@ class user {
 
 	public function setPassword(string $_password): self {
 		if ($_password != '') {
-			$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
+			$_password = password_hash($_password, PASSWORD_DEFAULT);
 		} else {
 			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
 		}

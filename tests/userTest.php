@@ -27,12 +27,12 @@ class userTest extends TestCase {
 		);
 		$user = new user();
 		utils::a2o($user, $user_array);
-		$user->setPassword(sha512($user_array['password']));
+		$user->setPassword($user_array['password']);
 		$user->save();
 
 		$this->assertTrue((is_numeric($user->getId()) && $user->getId() != ''));
 		$this->assertEquals($user_array['login'], $user->getLogin());
-		$this->assertEquals(sha512($user_array['password']), $user->getPassword());
+		$this->assertTrue(password_verify($user_array['password'], $user->getPassword()));
 		return $user;
 	}
 

@@ -156,8 +156,8 @@ try {
 		echo "No admin user found, creating one...";
 		$user = (new \user())
 			->setLogin('admin')
-			->setPassword(sha512('admin'))
-			->setProfils('admin', 1);
+			->setPassword('admin')
+			->setProfils('admin');
 		$user->save();
 		echo "OK (admin/admin)\n";
 	}
