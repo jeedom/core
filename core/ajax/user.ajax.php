@@ -351,7 +351,8 @@ try {
 
 	if (init('action') == 'supportAccess') {
 		unautorizedInDemo();
-		ajax::success(user::supportAccess(init('enable')));
+		user::supportAccess(init('enable'));
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
