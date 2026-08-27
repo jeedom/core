@@ -166,7 +166,7 @@ include_file('3rdparty', 'tree/tree', 'js');
         this.setModal()
 
         TreeConfig.leaf_icon = '<i class="far fa-folder cursor"></i>'
-        TreeConfig.parent_icon = '<i class="far fa-folder-tree cursor"></i>'
+        TreeConfig.parent_icon = ''
         TreeConfig.open_icon = '<i class="far fa-folder-open cursor"></i>'
         TreeConfig.close_icon = '<i class="far fa-folder cursor"></i>'
 
