@@ -1,0 +1,75 @@
+name: ESLint
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Run ESLint baseline check
+        run: npm run lint:check
+
+  update-baseline:
+    needs: eslint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Delete existing branch if exists
+        run: |
+          if git ls-remote --heads origin update-eslint-baseline | grep -q update-eslint-baseline; then
+            git push origin --delete update-eslint-baseline
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Regenerate baseline
+        id: regen
+        run: |
+          cp eslint-baseline.json eslint-baseline.json.old
+          npm run lint:baseline
+          if ! diff -q eslint-baseline.json eslint-baseline.json.old > /dev/null; then
+            echo "baseline_changed=true" >> $GITHUB_OUTPUT
+          fi
+          rm -f eslint-baseline.json.old
+
+      - name: Create Pull Request
+        if: steps.regen.outputs.baseline_changed == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: '[skip ci] Update ESLint baseline'
+          title: '[CI] Update ESLint baseline'
+          body: |
+            Mise à jour automatique du baseline ESLint suite à la correction d'erreurs.
+
+            Cette PR a été générée automatiquement par le workflow CI.
+          branch: update-eslint-baseline
+          base: develop
+          delete-branch: true
+          add-paths: |
+            eslint-baseline.json
