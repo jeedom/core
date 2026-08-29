@@ -81,10 +81,16 @@ if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	JEEDOM_INSTALL=0
-	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
-	chmod +x /root/install.sh
-	/root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+
+	# do not re-install jeedom
+	if [ ! -f ${WEBSERVER_HOME}/core/php/core.inc.php ]; then
+		echo 'download again Jeedom'
+		if ! /root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}; then
+			echo "ERROR: step 6 failed, aborting"
+			exit 1
+		fi
+ 	fi
+
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
@@ -103,6 +109,15 @@ else
 		sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
 		/root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
+	fi
+fi
+
+# check that vendor directory exists
+if [ ! -d ${WEBSERVER_HOME}/vendor ]; then
+	# jeedom installation : install composer
+	if ! /root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -i docker; then
+		echo "ERROR: step 10 failed, aborting"
+		exit 1
 	fi
 fi
 
