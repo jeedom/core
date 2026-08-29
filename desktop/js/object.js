@@ -847,7 +847,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
           success: function() {
             jeeFrontEnd.modifyWithoutSave = false
             document.getElementById('bt_gotoDashboard').querySelectorAll(':scope li a').forEach(_link => {
-              if (_link.href.includes(removeId)) _link.parentNode.remove()
+              if (_link.href.includes(id)) _link.parentNode.remove()
             })
             jeedomUtils.loadPage('index.php?v=d&p=object&removeSuccessFull=1')
           }

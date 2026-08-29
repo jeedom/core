@@ -170,9 +170,11 @@ if (!jeeFrontEnd.backup) {
               options += '<option value="' + data[i] + '">' + data[i] + '</option>'
             }
           } else {
-            document.querySelector('.bt_restoreRepoBackup[data-repo="' + _repo + '"]').addClass('disabled')
+            const _btEl = document.querySelector('.bt_restoreRepoBackup[data-repo="' + _repo + '"]')
+            if (_btEl) _btEl.addClass('disabled')
           }
-          document.querySelector('.sel_restoreCloudBackup[data-repo="' + _repo + '"]').innerHTML = options
+          const _selEl = document.querySelector('.sel_restoreCloudBackup[data-repo="' + _repo + '"]')
+          if (_selEl) _selEl.innerHTML = options
         }
       })
     },

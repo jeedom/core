@@ -2113,6 +2113,7 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
       document.getElementById('scenarioThumbnailDisplay').unseen()
       jeeP.printScenario(_target.getAttribute('data-scenario_id'))
     }
+    return
   }
 
   if (_target = event.target.closest('.action_link')) {
@@ -2266,10 +2267,12 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
   if (_target = event.target.closest('#bt_cancelElementSave')) {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
+    return
   }
 
   if (_target = event.target.closest('#bt_crossElementSave')) {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
+    return
   }
 
   if (_target = event.target.closest('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
