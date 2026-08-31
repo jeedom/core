@@ -96,7 +96,6 @@ function login($_login, $_password, $_twoFactor = null) {
 		sleep(5);
 		return false;
 	}
-	$sMdp = (!is_sha512($_password)) ? sha512($_password) : $_password;
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
 			user::failedLogin();
