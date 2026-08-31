@@ -131,8 +131,23 @@ class repo_samba {
 		);
 	}
 
-	public static function makeSambaCommand($_cmd, $_type = 'backup') {
-		return system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -U "' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . '" -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
+	private static function makeSambaCommand(string $_cmd, string $_type = 'backup'): string {
+		$authfile = self::createAuthFile($_type);
+		return '(' . system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -A ' . $authfile . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"; ec=$?; ' . system::getCmdSudo() . 'rm -f ' . $authfile . '; exit $ec)';
+	}
+
+	/**
+	 * Write username/password to a private temp file so they never appear in the process command line
+	 * @param string $_type
+	 * @return string path to the authentication file
+	 */
+	private static function createAuthFile(string $_type): string {
+		$authfile = jeedom::getTmpFolder('samba') . '/.smbauth_' . bin2hex(random_bytes(16));
+		$content = 'username = ' . config::byKey('samba::' . $_type . '::username') . "\n"
+			. 'password = ' . config::byKey('samba::' . $_type . '::password') . "\n";
+		file_put_contents($authfile, $content);
+		chmod($authfile, 0600);
+		return $authfile;
 	}
 
 	public static function sortByDatetime($a, $b) {
