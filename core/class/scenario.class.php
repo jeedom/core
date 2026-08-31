@@ -815,6 +815,7 @@ class scenario {
 	 */
 	public function testTrigger($_event) {
 		foreach (($this->getTrigger()) as $trigger) {
+			$trigger = trim($trigger);
 			$trigger = str_replace(array('#variable(', ')#'), array('variable(', ')'), $trigger);
 			$trigger = str_replace(array('#genericType(', ')#'), array('genericType(', ')'), $trigger);
 			if ($trigger == $_event) {
