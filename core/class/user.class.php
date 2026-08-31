@@ -527,8 +527,8 @@ class user {
 		return $this->login;
 	}
 
-	public function getPassword() {
-		return $this->password;
+	public function getPassword(): string {
+		return (string) $this->password;
 	}
 
 	public function setId($_id): self {
