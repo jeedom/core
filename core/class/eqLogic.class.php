@@ -1358,7 +1358,15 @@ class eqLogic {
 		}
 	}
 
-	public function import(array $_configuration, bool $_dontRemove = false, bool $_direct = false): void {
+	/**
+	 * import configuration into the eqLogic
+	 *
+	 * @param array $_configuration
+	 * @param boolean $_dontRemove
+	 * @param boolean $_direct - It will be propagated to the eqLogic::save() method, if true, it will not trigger pre/post insert/update/save hooks
+	 * @return void
+	 */
+	public function import(array $_configuration, bool $_dontRemove = false, bool $_direct = false) {
 		$cmdClass = $this->getEqType_name() . 'Cmd';
 		if (isset($_configuration['configuration'])) {
 			foreach ($_configuration['configuration'] as $key => $value) {
