@@ -31,7 +31,7 @@ class user {
 	private $options;
 	private $rights;
 	private $enable = 1;
-	private string $hash = '';
+	private ?string $hash = '';
 	private $_changed = false;
 
 
@@ -572,15 +572,15 @@ class user {
 		return $this;
 	}
 
-	public function getHash() {
-		return $this->hash;
+	public function getHash(): string {
+		return (string) $this->hash;
 	}
 
 	public function setHash(string $_hash) {
 		if ($_hash == '') {
 			return $this->regenerateHash();
 		}
-		$this->_changed = utils::attrChanged($this->_changed, $this->hash, $_hash);
+		$this->_changed = utils::attrChanged($this->_changed, $this->getHash(), $_hash);
 		$this->hash = $_hash;
 		return $this;
 	}
