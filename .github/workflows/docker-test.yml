@@ -1,5 +1,5 @@
-# build docker image based on debian bullseye and bookworm
-# start both containers and run sick.php
+# build docker image based on debian bullseye, bookworm and trixie
+# start all containers and run sick.php
 # stop & clean
 name: Docker Test Image
 
@@ -22,7 +22,7 @@ jobs:
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Build jeedom:bullseye
         # build current image for bullseye
@@ -52,9 +52,23 @@ jobs:
           done;
           docker exec jeedom_bookworm php sick.php
 
+      - name: Build jeedom:trixie
+        # build current image for trixie
+        run: |
+          docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 .
+      - name: run jeedom:trixie and check
+        # run current image for trixie and check it
+        run: |
+          docker run -p 82:80 -d --rm --name jeedom_trixie jeedom:trixie
+          until [ "`docker inspect -f {{.State.Health.Status}} jeedom_trixie`" == "healthy" ]; do
+            echo "waiting container to be healthy..."
+            sleep 5;
+          done;
+          docker exec jeedom_trixie php sick.php
+
       - name: Clean docker image
         continue-on-error: true
         run: |
-          docker stop jeedom_bullseye jeedom_bookworm || true
-          docker rm jeedom_bullseye jeedom_bookworm || true
-          docker rmi jeedom:bullseye jeedom:bookworm || true
+          docker stop jeedom_bullseye jeedom_bookworm jeedom_trixie || true
+          docker rm jeedom_bullseye jeedom_bookworm jeedom_trixie || true
+          docker rmi jeedom:bullseye jeedom:bookworm jeedom:trixie || true
