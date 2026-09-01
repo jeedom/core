@@ -146,8 +146,7 @@ try {
 		unautorizedInDemo();
 		$users = array();
 		foreach ((user::all()) as $user) {
-			$user_info = utils::o2a($user);
-			$users[] = $user_info;
+			$users[] = utils::o2a($user);
 		}
 		ajax::success($users);
 	}
