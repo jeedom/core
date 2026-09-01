@@ -67,6 +67,7 @@ step_2_mainpackage() {
   apt-get -y install git python3 python3-pip
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
+  apt-get -y install gnupg
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
   apt-get -y install mariadb-client
