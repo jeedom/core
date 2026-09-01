@@ -19,7 +19,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once dirname(__DIR__).'/core/php/console.php';
+require_once dirname(__DIR__) . '/core/php/console.php';
 
 set_time_limit(1800);
 echo "[START INSTALL]\n";
@@ -45,7 +45,7 @@ try {
 	echo "\nInstallation of Jeedom\n";
 	echo "Installating database...";
 	try {
-		DB::compareAndFix(json_decode(file_get_contents(__DIR__.'/database.json'),true));
+		DB::compareAndFix(json_decode(file_get_contents(__DIR__ . '/database.json'), true));
 	} catch (\Exception $e) {
 		echo "***ERROR*** " . $e->getMessage() . "\n";
 	}
@@ -55,13 +55,13 @@ try {
 	config::save('api', config::genKey());
 	require_once __DIR__ . '/consistency.php';
 	echo "Creating user (admin,admin)\n";
-	try{
+	try {
 		$user = new user();
 		$user->setLogin('admin');
-		$user->setPassword(sha512('admin'));
+		$user->setPassword('admin');
 		$user->setProfils('admin');
 		$user->save();
-	}catch (\Exception $e) {
+	} catch (\Exception $e) {
 		echo "***ERROR*** " . $e->getMessage() . "\n";
 	}
 	config::save('log::level', 400);
