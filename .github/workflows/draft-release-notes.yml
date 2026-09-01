@@ -25,12 +25,6 @@ jobs:
           TAG=$(git describe --tags --abbrev=0)
           echo "tag=$TAG" >> $GITHUB_OUTPUT
 
-      - name: Get tag date
-        id: tagdate
-        run: |
-          DATE=$(git log -1 --format=%cI ${{ steps.lasttag.outputs.tag }})
-          echo "date=$DATE" >> $GITHUB_OUTPUT
-
       - name: Generate markdown file
         id: genmd
         run: |
@@ -38,12 +32,20 @@ jobs:
 
           echo "# All changes since release ${{ steps.lasttag.outputs.tag }}" > docs/release-notes.md
           echo "" >> docs/release-notes.md
-          PRS_JSON=$(gh pr list \
-            --state merged \
-            --base develop \
-            --limit 1000 \
-            --search "merged:>${{ steps.tagdate.outputs.date }}" \
-            --json number,title,mergedAt,url,labels)
+
+          # Use git ancestry (not commit dates) to find PRs not yet released: a release
+          # branch can be cut and stabilized for a while before the tag is actually pushed,
+          # so the tag's commit date can be later than PRs on develop meant for the *next*
+          # release. Relying on dates then wrongly excludes those PRs once the tag exists.
+          PR_NUMBERS=$(git log ${{ steps.lasttag.outputs.tag }}..HEAD --pretty=format:%s \
+            | grep -oP '(?:\(#|Merge pull request #)\K[0-9]+' \
+            | sort -un)
+
+          PRS_JSON="[]"
+          for num in $PR_NUMBERS; do
+            pr=$(gh pr view "$num" --json number,title,mergedAt,url,labels 2>/dev/null) || continue
+            [ -n "$pr" ] && PRS_JSON=$(jq --argjson pr "$pr" '. + [$pr]' <<< "$PRS_JSON")
+          done
 
           add_section() {
             local title="$1"
