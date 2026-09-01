@@ -37,7 +37,7 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 		ini_set('session.cookie_secure', 1);
 		session_name('__Host-PHPSESSID');
 	}
-}else if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
+} else if (isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
 	throw new Exception('session does not exist');
 }
 @session_start();
@@ -96,7 +96,6 @@ function login($_login, $_password, $_twoFactor = null) {
 		sleep(5);
 		return false;
 	}
-	$sMdp = (!is_sha512($_password)) ? sha512($_password) : $_password;
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
 			user::failedLogin();

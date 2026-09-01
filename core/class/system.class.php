@@ -65,7 +65,7 @@ class system {
 		return self::$_distrib;
 	}
 
-	public static function get($_key = '') {
+	public static function get(string $_key = '') {
 		$return = '';
 		if (isset(self::$_command[self::getDistrib()][$_key])) {
 			$return = self::$_command[self::getDistrib()][$_key];
@@ -93,9 +93,7 @@ class system {
 		return 'sudo ';
 	}
 
-	public static function fuserk($_port, $_protocol = 'tcp'): void {
-		if (!is_string($_port)) return;
-
+	public static function fuserk(string $_port, string $_protocol = 'tcp'): void {
 		if (file_exists($_port)) {
 			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
 		} else {
@@ -103,7 +101,7 @@ class system {
 		}
 	}
 
-	public static function ps($_find, $_without = null) {
+	public static function ps(string $_find, $_without = null) {
 		$return = array();
 		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
 		if ($_without != null) {
@@ -115,9 +113,9 @@ class system {
 			}
 		}
 		$execCmd = shell_exec($cmd);
-      		if(!$execCmd){
+		if (!$execCmd) {
 			return $return;
-          	}
+		}
 		$results = explode("\n", trim($execCmd));
 		if (!is_array($results) || count($results) == 0) {
 			return $return;
@@ -179,7 +177,7 @@ class system {
 		exec($cmd);
 	}
 
-	public static function php($arguments, $_sudo = false) {
+	public static function php(string $arguments, bool $_sudo = false) {
 		if ($_sudo) {
 			return exec(self::getCmdSudo() . ' php ' . $arguments);
 		}
@@ -200,7 +198,7 @@ class system {
 		return $arch;
 	}
 
-	public static function getUpgradablePackage($_type, $_forceRefresh = false) {
+	public static function getUpgradablePackage(string $_type, bool $_forceRefresh = false) {
 		$return = array($_type => array());
 		switch ($_type) {
 			case 'apt':
@@ -245,7 +243,7 @@ class system {
 				}
 				break;
 			case 'pip2':
-				if (self::os_incompatible('pip2', '', '')) {
+				if (self::os_incompatible('pip2', '', [])) {
 					return array();
 				}
 				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json 2>/dev/null'), true);
@@ -264,7 +262,7 @@ class system {
 		return $return;
 	}
 
-	public static function upgradePackage($_type, $_package = null) {
+	public static function upgradePackage(string $_type, $_package = null) {
 		$cmd = "set -x\n";
 		$cmd .= "echo '*******************Begin of package upgrade type " . $_type . "******************'\n";
 		switch ($_type) {
@@ -293,7 +291,7 @@ class system {
 				}
 				break;
 			case 'pip2':
-				if (self::os_incompatible('pip2', '', '')) {
+				if (self::os_incompatible('pip2', '', [])) {
 					return;
 				}
 				if ($_package == null) {
@@ -317,12 +315,12 @@ class system {
 		self::launchScriptPackage();
 	}
 
-	private static function getPython3VenvDir($_plugin) {
+	private static function getPython3VenvDir(string $_plugin) {
 		if ($_plugin == '') return '';
 		return __DIR__ . "/../../plugins/{$_plugin}/resources/python_venv";
 	}
 
-	public static function getCmdPython3($_plugin) {
+	public static function getCmdPython3(string $_plugin) {
 		if ($_plugin == '') return 'python3 ';
 
 		if (version_compare(self::getOsVersion(), '12', '<')) {
@@ -332,7 +330,7 @@ class system {
 		}
 	}
 
-	private static function splitpackageByPlugin($_type, $_plugin = '') {
+	private static function splitpackageByPlugin(string $_type, string $_plugin = '') {
 		if (version_compare(self::getOsVersion(), '12', '>=') && in_array($_type, ['pip3']) && $_plugin != '') {
 			return true;
 		} else {
@@ -340,7 +338,7 @@ class system {
 		}
 	}
 
-	public static function getInstallPackage($_type, $_plugin) {
+	public static function getInstallPackage(string $_type, string $_plugin) {
 		if (self::splitpackageByPlugin($_type, $_plugin)) {
 			$type_key = $_type . '::' . $_plugin;
 		} else {
@@ -420,7 +418,7 @@ class system {
 				break;
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
-				if(is_array($datas['dependencies']) && count($datas['dependencies']) > 0){
+				if (is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
 					foreach ($datas['dependencies'] as $key => $value) {
 						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 							'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
@@ -429,8 +427,8 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;'.self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
-				if(is_array($datas['installed']) && count($datas['installed']) > 0){
+				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;' . self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
+				if (is_array($datas['installed']) && count($datas['installed']) > 0) {
 					foreach ($datas['installed'] as $value) {
 						self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 					}
@@ -438,7 +436,7 @@ class system {
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
-				if(is_array($updates) && count($updates) > 0){
+				if (is_array($updates) && count($updates) > 0) {
 					foreach ($updates as $update) {
 						self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
 					}
@@ -448,7 +446,7 @@ class system {
 		return self::$_installPackage[$type_key];
 	}
 
-	public static function os_incompatible($_type, $_package, $_info): bool {
+	public static function os_incompatible(string $_type, string $_package, array $_info): bool {
 		if (isset($_info['denyDebianHigherEqual']) && self::getDistrib() == 'debian' && version_compare(self::getOsVersion(), $_info['denyDebianHigherEqual'], '>=')) {
 			return true;
 		}
@@ -466,7 +464,7 @@ class system {
 		return false;
 	}
 
-	public static function checkAndInstall($_packages, $_fix = false, $_foreground = false, $_plugin = '', $_force = false) {
+	public static function checkAndInstall(array $_packages, bool $_fix = false, bool $_foreground = false, string $_plugin = '', bool $_force = false) {
 		$return = array();
 		foreach ($_packages as $type => $value) {
 			if ($type == 'post-install' || $type == 'pre-install') {
@@ -515,7 +513,7 @@ class system {
 					$version = 'N/A';
 					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
 						$composer_info = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/composer.json'), true);
-						if(isset($composer_info['version'])){
+						if (isset($composer_info['version'])) {
 							$version = $composer_info['version'];
 						}
 						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
@@ -631,12 +629,13 @@ class system {
 			}
 		}
 		$has_something_todo = false;
+		$first_type = [];
 		foreach ($return as $package => $info) {
 			if ((($info['status'] != 0 && !$info['reinstall']) || $info['status'] == 3) && !$_force) {
 				continue;
 			}
 			$has_something_todo = true;
-			if (!isset($first_type[$info['type']]) || $first_type[$info['type']] == true) {
+			if (!isset($first_type[$info['type']])) {
 				$first_type[$info['type']] = false;
 				switch ($info['type']) {
 					case 'apt':
@@ -773,7 +772,7 @@ class system {
 		self::launchScriptPackage($_plugin, $_force);
 	}
 
-	public static function installPackageInProgress($_plugin = ''): bool {
+	public static function installPackageInProgress(string $_plugin = ''): bool {
 		if (count(self::ps('^dpkg ')) > 0 || count(self::ps('^apt ')) > 0) {
 			return true;
 		}
@@ -799,7 +798,7 @@ class system {
 		return false;
 	}
 
-	public static function launchScriptPackage($_plugin = '', $_force = false) {
+	public static function launchScriptPackage(string $_plugin = '', bool $_force = false) {
 		if (!$_force && self::installPackageInProgress($_plugin)) {
 			throw new \Exception(__('Installation de package impossible car il y a déjà une installation en cours', __FILE__));
 		}
@@ -825,7 +824,7 @@ class system {
 		}
 	}
 
-	public static function installPackage($_type, $_package, $_version = '', $_plugin = '') {
+	public static function installPackage(string $_type, string $_package, string $_version = '', string $_plugin = '') {
 		switch ($_type) {
 			case 'apt':
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
@@ -842,7 +841,7 @@ class system {
 					if (preg_match('/[<>]/', $_version)) {
 						$_package .= $_version;
 						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
-					} 
+					}
 					$_package .= '==' . $_version;
 					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
 				}
@@ -867,7 +866,7 @@ class system {
 				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
 			case 'composer':
 				if (strpos($_package, '/') === false) {
-					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
 				}
 				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
 					return '';
@@ -876,7 +875,7 @@ class system {
 		}
 	}
 
-	public static function checkHasExec($_exec) {
+	public static function checkHasExec(string $_exec) {
 		if (isset(self::$_hasExec[$_exec])) {
 			return self::$_hasExec[$_exec];
 		}
@@ -895,7 +894,7 @@ class system {
 		return self::$_os_version;
 	}
 
-	public static function checkInstallationLog($_plugin = ''): string {
+	public static function checkInstallationLog(string $_plugin = ''): string {
 		if (class_exists('log')) {
 			if ($_plugin != '') {
 				$log = log::getPathToLog($_plugin . '_packages');

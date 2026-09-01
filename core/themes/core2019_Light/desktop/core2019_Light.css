@@ -2,7 +2,7 @@
 Theme Core 2019 @Jeedom
 */
 
-@import url("colors.css");
+@import url("colors.css?v=2");
 
 a,
 span.cursor > i,
@@ -111,4 +111,3 @@ div.div_viewZone {
 #div_displayObject .btn:hover {
   color: var(--txt-color) !important;
 }
-

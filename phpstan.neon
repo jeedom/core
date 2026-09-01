@@ -9,6 +9,8 @@ parameters:
     - vendor/*
   tmpDir: .phpstan.cache
   reportUnmatchedIgnoredErrors: false
+  bootstrapFiles:
+    - 3rdparty/elfinder/php/autoload.php
 
 includes:
   - phpstan-baseline.neon

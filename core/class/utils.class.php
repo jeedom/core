@@ -19,14 +19,34 @@
 /* * ***************************Includes********************************* */
 require_once __DIR__ . '/../php/core.inc.php';
 
+/**
+ * Utility functions for Jeedom core system
+ *
+ * Provides helper methods for object conversion, JSON manipulation,
+ * encryption/decryption and asynchronous execution
+ *
+ * @see config For system configuration
+ * @see cron For async execution
+ */
 class utils {
 	/*     * *************************Attributs****************************** */
 
+    /** @var array<string, ReflectionProperty[]> Cached reflection properties by class */
 	private static $properties = array();
+
+    /** @var string|null|false Encryption key */
 	private static $jeedom_encryption = null;
 
 	/*     * ***********************Methode static*************************** */
 
+    /**
+     * Checks if attributes have changed between old and new values
+     *
+     * @param bool $_changed Current change status
+     * @param array|mixed $_old Previous value
+     * @param array|mixed $_new New value
+     * @return bool True if values are different
+     */
 	public static function attrChanged($_changed, $_old, $_new) {
 		if ($_changed) {
 			return true;
@@ -40,11 +60,14 @@ class utils {
 		return ($_old != $_new);
 	}
 
-	/**
-	 * @param object $_object
-	 * @param bool $_noToArray
-	 * @return array
-	 */
+    /**
+     * Converts object(s) to array representation
+     *
+     * @param object[]|object|mixed $_object Object(s) to convert
+     * @param bool $_noToArray Skip toArray() method if true
+     * @return array<string, mixed>[]|array<string, mixed> Array representation
+     * @throws ReflectionException
+     */
 	public static function o2a($_object, $_noToArray = false) {
 		if (is_array($_object)) {
 			$return = array();
@@ -81,6 +104,13 @@ class utils {
 		return $array;
 	}
 
+    /**
+     * Populates object properties from array data
+     *
+     * @param object $_object Object to populate
+     * @param iterable<string, mixed> $_data Source data
+     * @return void
+     */
 	public static function a2o(&$_object, $_data) {
 		if (is_array($_data)) {
 			foreach ($_data as $key => $value) {
@@ -114,6 +144,16 @@ class utils {
 		}
 	}
 
+    /**
+     * Processes JSON objects for class synchronization
+     *
+     * @param string $_class Target class name
+     * @param array<array<string, mixed>>|string $_ajaxList New objects data
+     * @param array|null $_dbList Existing objects
+     * @param bool $_remove Remove missing objects
+     * @return void
+     * @throws Exception On invalid input
+     */
 	public static function processJsonObject($_class, $_ajaxList, $_dbList = null,$_remove = true) {
 		if (!is_array($_ajaxList)) {
 			if (is_json($_ajaxList)) {
@@ -147,7 +187,14 @@ class utils {
 			}
 		}
 	}
-
+    /**
+     * Sets JSON attribute value(s)
+     *
+     * @param array<string, mixed>|string|mixed $_attr Current attributes
+     * @param array<string, mixed>|string|int $_key Key to set or array of key/values
+     * @param mixed|null $_value Value to set if key is string
+     * @return array|bool|mixed Updated attributes
+     */
 	public static function setJsonAttr($_attr, $_key, $_value = null) {
 		if ($_value === null && !is_array($_key)) {
 			if (!is_array($_attr)) {
@@ -167,6 +214,14 @@ class utils {
 		return $_attr;
 	}
 
+    /**
+     * Gets JSON attribute value(s)
+     *
+     * @param mixed $_attr Source attributes
+     * @param string[]|string $_key Key(s) to retrieve
+     * @param mixed $_default Default value if not found
+     * @return array|bool|mixed|string Attribute value(s)
+     */
 	public static function getJsonAttr(&$_attr, $_key = '', $_default = '') {
 		if (is_array($_attr)) {
 			if ($_key == '') {
@@ -198,6 +253,14 @@ class utils {
 	}
 
 	/*     * ******************Encrypt/decrypt*************************** */
+
+    /**
+     * Gets encryption password from configuration
+     *
+     * @return false|string|null Encryption key
+     * @throws Exception If key file cannot be read
+     * @see config::genKey() For key generation
+     */
 	public static function getEncryptionPassword() {
 		if (self::$jeedom_encryption == null) {
 			if (!file_exists(__DIR__ . '/../../data/jeedom_encryption.key')) {
@@ -208,6 +271,15 @@ class utils {
 		return self::$jeedom_encryption;
 	}
 
+    /**
+     * Encrypts plaintext using AES-256-CBC
+     *
+     * @param string $plaintext Text to encrypt
+     * @param string|null $password Custom password (uses system key if null)
+     * @return string|null Encrypted text prefixed with 'crypt:'
+     * @throws Exception On encryption failure
+     * @see self::getEncryptionPassword() For default key
+     */
 	public static function encrypt($plaintext, $password = null) {
 		if ($plaintext === '') {
 			return null;
@@ -227,6 +299,15 @@ class utils {
 		return 'crypt:' . base64_encode($iv . $hmac . $ciphertext);
 	}
 
+    /**
+     * Decrypts ciphertext using AES-256-CBC
+     *
+     * @param string $ciphertext Encrypted text
+     * @param string|null $password Custom password (uses system key if null)
+     * @return false|string|null Decrypted text
+     * @throws Exception On decryption failure
+     * @see self::getEncryptionPassword() For default key
+     */
 	public static function decrypt($ciphertext, $password = null) {
 		if (empty($ciphertext)) {
 			return null;

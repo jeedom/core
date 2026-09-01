@@ -109,16 +109,16 @@ jeedom.config.locales = {
 }
 
 jeedom.config.save = function(_params) {
-    var paramsRequired = ['configuration'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['configuration'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'addKey',
@@ -129,8 +129,8 @@ jeedom.config.save = function(_params) {
 }
 
 jeedom.config.load = function(_params) {
-    var paramsRequired = ['configuration'];
-    var paramsSpecifics = {
+    const paramsRequired = ['configuration'];
+    const paramsSpecifics = {
         global: _params.global || true
     };
     try {
@@ -139,8 +139,8 @@ jeedom.config.load = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'getKey',
@@ -152,16 +152,16 @@ jeedom.config.load = function(_params) {
 }
 
 jeedom.config.remove = function(_params) {
-    var paramsRequired = ['configuration'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['configuration'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'removeKey',
@@ -172,16 +172,16 @@ jeedom.config.remove = function(_params) {
 }
 
 jeedom.config.removeImage = function(_params) {
-    var paramsRequired = ['id'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['id'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/config.ajax.php';
     paramsAJAX.data = {
         action: 'removeImage',
@@ -197,7 +197,7 @@ jeedom.config.getGenericTypeModal = function(_options, callback) {
     if (!isset(_options.type)) {
         _options.type = 'info'
     }
-    var url = 'index.php?v=d&modal=genericType.human.insert&type=' + _options.type
+    let url = 'index.php?v=d&modal=genericType.human.insert&type=' + _options.type
     if (_options.object) url += '&object=' + _options.object
 
     document.getElementById('mod_insertGenericType')?.remove()
@@ -216,7 +216,7 @@ jeedom.config.getGenericTypeModal = function(_options, callback) {
             className: 'success',
             callback: {
               click: function(event) {
-                var args = {}
+                const args = {}
                 args.human = mod_insertGenericType.getValue()
                 args.id = mod_insertGenericType.getId()
                 if (args.human.trim() != '') {

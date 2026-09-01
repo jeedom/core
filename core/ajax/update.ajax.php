@@ -48,14 +48,14 @@ try {
 			if ($update->getType() == 'core') {
 				if (config::byKey('core::repo::provider') == 'default') {
 					$infos['branch'] = config::byKey('core::branch', 'core', 'Unknown');
-				}else{
-					$infos['branch'] = config::byKey('core::repo::provider').' - custom';
+				} else {
+					$infos['branch'] = config::byKey('core::repo::provider') . ' - custom';
 				}
 				$theme = 'light';
 				if (strpos(config::byKey('jeedom_theme_main'), 'Dark') !== false) {
 					$theme = 'dark';
 				}
-				$infos['changelog_url'] = config::byKey('doc::base_url', 'core') . '/' . config::byKey('language', 'core', 'fr_FR') . '/core/' . substr(jeedom::version(), 0, 3) . '/changelog?theme=' . $theme;
+				$infos['changelog_url'] = config::byKey('doc::base_url', 'core') . '/' . config::byKey('language', 'core', 'fr_FR') . '/core/' . substr($update->getRemoteVersion(), 0, 3) . '/changelog?theme=' . $theme;
 			}
 			$return[] = $infos;
 		}
@@ -65,6 +65,7 @@ try {
 	if (init('action') == 'checkAllUpdate') {
 		unautorizedInDemo();
 		update::checkAllUpdate();
+		update::refreshUpdateMessage();
 		ajax::success();
 	}
 
@@ -81,6 +82,7 @@ try {
 			}
 			$update->doUpdate();
 			if ($update->getType() != 'core') {
+				update::refreshUpdateMessage();
 				log::add('update', 'alert', __("Launch cron dependancy plugins", __FILE__));
 				try {
 					$cron = cron::byClassAndFunction('plugin', 'checkDeamon');
@@ -124,6 +126,7 @@ try {
 			throw new Exception(__('Aucune correspondance pour l\'ID :', __FILE__) . ' ' . init('id'));
 		}
 		$update->checkUpdate();
+		update::refreshUpdateMessage();
 		ajax::success();
 	}
 
@@ -154,6 +157,7 @@ try {
 			$update->doUpdate();
 		} catch (Exception $e) {
 			if ($new) {
+				$update->deleteObjet();
 				throw $e;
 			} else {
 				$update = $old_update;
@@ -165,7 +169,7 @@ try {
 
 	if (init('action') == 'saves') {
 		unautorizedInDemo();
-		utils::processJsonObject('update', init('updates'),null,false);
+		utils::processJsonObject('update', init('updates'), null, false);
 		ajax::success();
 	}
 

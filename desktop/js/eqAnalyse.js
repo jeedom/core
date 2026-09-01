@@ -43,7 +43,7 @@ if (!jeeFrontEnd.eqAnalyse) {
       this.eqlogicsEls = document.querySelectorAll('div.batteryListContainer > div.eqLogic-widget')
     },
     getRemoveCmd: function(_id) {
-      for (var i in jeephp2js.removeHistory) {
+      for (const i in jeephp2js.removeHistory) {
         if (jeephp2js.removeHistory[i].type == 'cmd' && jeephp2js.removeHistory[i].id == _id) return jeephp2js.removeHistory[i]
       }
       return false
@@ -57,10 +57,10 @@ if (!jeeFrontEnd.eqAnalyse) {
           })
         },
         success: function(data) {
-          var tr = ''
-          var removed
-          for (var i in data) {
-            for (var j in data[i].cmd) {
+          let tr = ''
+          let removed
+          for (const i in data) {
+            for (const j in data[i].cmd) {
               tr += '<tr>'
               tr += '<td>'
               tr += data[i].name
@@ -75,7 +75,7 @@ if (!jeeFrontEnd.eqAnalyse) {
 
               removed = jeeFrontEnd.eqAnalyse.getRemoveCmd(data[i].cmd[j].who.replaceAll('#', ''))
               if (removed) {
-                tr += ' <span class="lebel label-sm label-info">' + removed.name + '</span>'
+                tr += ' <span class="label label-sm label-info">' + removed.name + '</span>'
                 tr += ' {{Supprimée le}} ' + removed.date
               }
 
@@ -87,7 +87,7 @@ if (!jeeFrontEnd.eqAnalyse) {
               tr += '</tr>'
             }
           }
-          let tableDeadCmd = document.getElementById('table_deadCmd')
+          const tableDeadCmd = document.getElementById('table_deadCmd')
           tableDeadCmd.tBodies[0].empty().insertAdjacentHTML('beforeend', tr)
           if (tableDeadCmd._dataTable) tableDeadCmd._dataTable.refresh()
         }
@@ -103,18 +103,18 @@ document.getElementById('in_search')?.addEventListener('keyup', function(event) 
   if (jeeP.eqlogicsEls.length == 0) {
     return
   }
-  var search = event.target.closest('#in_search').value
+  let search = event.target.closest('#in_search').value
   if (search == '') {
     jeeP.eqlogicsEls.seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
 
-  var match, text
+  let match, text
   jeeP.eqlogicsEls.forEach(_el => {
     match = false
     text = jeedomUtils.normTextLower(_el.querySelector('.widget-name').textContent)
@@ -143,7 +143,7 @@ window.registerEvent("resize", function eqAnalyse(event) {
 
 //Manage events outside parents delegations:
 document.getElementById('bt_massConfigureEqLogic')?.addEventListener('click', function(event) {
-  var field = "{{Alertes Communications}}"
+  const field = "{{Alertes Communications}}"
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Configuration en masse}}",
@@ -155,7 +155,7 @@ document.getElementById('bt_massConfigureEqLogic')?.addEventListener('click', fu
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#tab_alerts')) {
     setTimeout(function() {
       jeedomUtils.positionEqLogic()

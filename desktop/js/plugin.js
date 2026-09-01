@@ -22,8 +22,6 @@ Can also be called in modale, triggering plugin button click for direct access t
 
 "use strict"
 
-
-
 if (!jeeFrontEnd.plugin) {
   jeeFrontEnd.plugin = {
     init: function() {
@@ -48,6 +46,28 @@ if (!jeeFrontEnd.plugin) {
           jeedomUtils.initTooltips()
         }
       }
+    },
+    installSuccess: function(_logicalId) {
+      jeedomUtils.showAlert({
+        message: '{{Plugin installé avec succès}}',
+        level: 'success'
+      })
+      jeeDialog.confirm({
+        message: '{{Voulez-vous aller sur la page de configuration de votre nouveau plugin ?}}',
+        buttons: {
+          cancel: {
+            label: '<i class="fa fa-times"></i> {{Non}}',
+          },
+          confirm: {
+            label: '<i class="fa fa-check"></i> {{Oui}}',
+          }
+        },
+        callback: function(result) {
+          if (result) {
+            jeedomUtils.loadPage('index.php?v=d&p=plugin&id=' + _logicalId)
+          }
+        }
+      })
     },
     displayPlugin: function(_pluginId) {
       jeedomUtils.hideAlert()
@@ -112,17 +132,17 @@ if (!jeeFrontEnd.plugin) {
           } else {
             self.dom_container.querySelector('#span_plugin_usedSpace').innerHTML = ''
           }
-          
+
           if (isset(data.category) && isset(jeephp2js.pluginCategories[data.category])) {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = jeephp2js.pluginCategories[data.category].name
           } else {
             self.dom_container.querySelector('#span_plugin_category').innerHTML = ''
           }
           if (isset(data.source)) {
-            if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.user)){
-                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source +' - '+data.update.configuration.user
+            if (isset(data.update) && isset(data.update.configuration) && isset(data.update.configuration.user)) {
+              self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source + ' - ' + data.update.configuration.user
             } else {
-                self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
+              self.dom_container.querySelector('#span_plugin_source').innerHTML = data.source
             }
           } else {
             self.dom_container.querySelector('#span_plugin_source').innerHTML = ''
@@ -565,8 +585,8 @@ document.getElementById('div_resumePluginList')?.addEventListener('click', funct
 
   if (_target = event.target.closest('#bt_addPluginFromOtherSource')) {
     jeeDialog.dialog({
-      id: 'jee_modal',
-      title: "{{Ajouter un plugin}}",
+      id: 'jee_modal3',
+      title: "{{Installer un plugin}}",
       contentUrl: 'index.php?v=d&modal=update.add'
     })
     return

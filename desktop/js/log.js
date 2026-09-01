@@ -24,8 +24,8 @@ if (!jeeFrontEnd.log) {
       this.logListButtons = document.querySelectorAll('#ul_object .li_log')
 
       //autoclick first log:
-      var logfile = getUrlVars('logfile')
-      var log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
+      const logfile = getUrlVars('logfile')
+      const log = document.querySelector('#div_displayLogList .li_log[data-log="' + logfile + '"]')
       if (log != null) {
         log.click()
       } else {
@@ -37,21 +37,20 @@ if (!jeeFrontEnd.log) {
 
 //searching
 document.getElementById('in_searchLogFilter')?.addEventListener('keyup', function(event) {
-  var search = event.target.value
+  let search = event.target.value
   if (search == '') {
     jeeP.logListButtons.seen()
     return
   }
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
   search = jeedomUtils.normTextLower(search)
   jeeP.logListButtons.unseen()
-  var match, text
   jeeP.logListButtons.forEach(_bt => {
-    match = false
-    text = jeedomUtils.normTextLower(_bt.textContent)
+    let match = false
+    const text = jeedomUtils.normTextLower(_bt.textContent)
     if (text.includes(search)) {
       match = true
     }
@@ -66,7 +65,7 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
 */
 //div_pageContainer events delegation:
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
 
   // "Raw log" button clicked
   if (_target = event.target.closest('#brutlogcheck')) {

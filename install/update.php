@@ -302,6 +302,7 @@ try {
 			}
 			$curentVersion = init('update::reapply');
 		} else {
+			echo "Upgrading from: {$curentVersion} to " . jeedom::version(true) . "\n";
 			while (version_compare(jeedom::version(), $curentVersion, '>')) {
 				$nextVersion = incrementVersion($curentVersion);
 				$updateScript = __DIR__ . '/update/' . $nextVersion . '.php';
@@ -347,9 +348,9 @@ try {
 	}
 	echo "[PROGRESS][90]\n";
 	try {
-		message::removeAll('update', 'newUpdate');
 		echo "Check update\n";
 		update::checkAllUpdate();
+		update::refreshUpdateMessage();
 		echo "OK\n";
 	} catch (Exception $ex) {
 		echo "***ERROR*** " . $ex->getMessage() . "\n";

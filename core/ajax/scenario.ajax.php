@@ -89,11 +89,12 @@ try {
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
-		$expr = jeedom::fromHumanReadable(init('expression'));
+		$expression = trim(init('expression'));
+		$expr = jeedom::fromHumanReadable($expression);
 		$return['evaluate'] = scenarioExpression::setTags($expr, $scenario, true);
 		$return['result'] = evaluate($return['evaluate']);
 		$return['correct'] = 'ok';
-		if (trim($return['result']) == trim($return['evaluate'])) {
+		if (!is_numeric($expression) && trim($return['result']) == $expression) {
 			$return['correct'] = 'nok';
 		}
 		ajax::success($return);

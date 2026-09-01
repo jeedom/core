@@ -257,7 +257,7 @@ class recovery {
 		}
 		if ($sha256 != $_sha256) {
 			unlink($_filepath);
-			throw new Exception(__("Erreur lors de la vérification de l'image système", __FILE__) . ' (' . $sha256 . ' != ' . $_sha256) . ')';
+			throw new Exception(__("Erreur lors de la vérification de l'image système", __FILE__) . ' (' . $sha256 . ' != ' . $_sha256 . ')');
 		}
 	}
 

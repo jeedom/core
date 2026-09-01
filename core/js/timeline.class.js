@@ -17,16 +17,16 @@
 jeedom.timeline = function() {};
 
 jeedom.timeline.getLength = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  const paramsRequired = [];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'getLength',
@@ -36,16 +36,16 @@ jeedom.timeline.getLength = function(_params) {
 }
 
 jeedom.timeline.byFolder = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  const paramsRequired = [];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'byFolder',
@@ -57,16 +57,16 @@ jeedom.timeline.byFolder = function(_params) {
 }
 
 jeedom.timeline.deleteAll = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  const paramsRequired = [];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'deleteAll'
@@ -75,16 +75,16 @@ jeedom.timeline.deleteAll = function(_params) {
 }
 
 jeedom.timeline.listFolder = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {};
+  const paramsRequired = [];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/timeline.ajax.php';
   paramsAJAX.data = {
     action: 'listFolder'
@@ -93,16 +93,16 @@ jeedom.timeline.listFolder = function(_params) {
 }
 
 jeedom.timeline.removeEventInFutur = function(_params) {
-  var paramsRequired = []
-  var paramsSpecifics = {}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/timeline.ajax.php'
   paramsAJAX.data = {
     action: 'removeEventInFutur'
@@ -114,8 +114,8 @@ jeedom.timeline.autocompleteFolder = function() {
   jeedom.timeline.listFolder({
     global: false,
     success: function(data) {
-      var availableTags = []
-      for (var i in data) {
+      const availableTags = []
+      for (const i in data) {
         if (data[i] != 'main') {
           availableTags.push(data[i])
         }
@@ -130,16 +130,16 @@ jeedom.timeline.autocompleteFolder = function() {
           },
           select: function(event, data) {
             //Ensure timeline folders comma sperated:
-            var inputValue = data.item.value
-            var term = data.value
+            let inputValue = data.item.value
+            const term = data.value
             if (inputValue.includes(' ')) {
-              var values = inputValue.split(' ')
+              const values = inputValue.split(' ')
               values.pop()
               inputValue = values.join(',') + ',' + data.value
             }
-            var values = inputValue.split(',')
+            const values = inputValue.split(',')
             values.pop()
-            var newValue = values.join(',') + ',' + data.value
+            let newValue = values.join(',') + ',' + data.value
             if (newValue.substring(0, 1) == ',') newValue = newValue.substr(1)
 
             data.item.value = newValue

@@ -19,26 +19,26 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once dirname(__DIR__).'/core/php/console.php';
+require_once dirname(__DIR__) . '/core/php/console.php';
 require_once __DIR__ . '/../core/php/core.inc.php';
 
 echo "Reset user password\n";
 echo "List of user : \n";
 foreach (user::all() as $user) {
-  if($user->getLogin() == 'internal_report' || $user->getLogin() == 'jeedom_support'){
+  if ($user->getLogin() == 'internal_report' || $user->getLogin() == 'jeedom_support') {
     continue;
   }
-  echo '- '.$user->getLogin()."\n";
+  echo '- ' . $user->getLogin() . "\n";
 }
 echo "Please type login : \n";
 $username = trim(fgets(STDIN));
 $user = user::byLogin($username);
-if(!is_object($user)){
+if (!is_object($user)) {
   echo "User $username not found\n";
   die();
 }
 $password = config::genKey();
-$user->setPassword(sha512($password));
+$user->setPassword($password);
 $user->save();
-echo "Operation successfull, your new password for user ".$user->getLogin()." is ".$password."\n";
+echo "Operation successfull, your new password for user " . $user->getLogin() . " is " . $password . "\n";
 die();

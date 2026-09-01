@@ -34,14 +34,14 @@ if (!isset(jeedom.eqLogic.cache.byId)) {
   jeedom.eqLogic.cache.byId = Array()
 }
 
-if(!isset(jeedom.eqLogic.cache.byLogical)){
+if (!isset(jeedom.eqLogic.cache.byLogical)) {
   jeedom.eqLogic.cache.byLogical = Array()
 
 }
 
 jeedom.eqLogic.save = function(_params) {
-  var paramsRequired = ['type', 'eqLogics']
-  var paramsSpecifics = {
+  const paramsRequired = ['type', 'eqLogics']
+  const paramsSpecifics = {
     pre_success: function(data) {
       if (isset(jeedom.eqLogic.cache.byId[data.result.id])) {
         delete jeedom.eqLogic.cache.byId[data.result.id]
@@ -61,8 +61,8 @@ jeedom.eqLogic.save = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.async = _params.async || true
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
@@ -74,16 +74,16 @@ jeedom.eqLogic.save = function(_params) {
 }
 
 jeedom.eqLogic.byType = function(_params) {
-  var paramsRequired = ['type']
-  var paramsSpecifics = {}
+  const paramsRequired = ['type']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'listByType',
@@ -93,16 +93,16 @@ jeedom.eqLogic.byType = function(_params) {
 }
 
 jeedom.eqLogic.byObjectId = function(_params) {
-  var paramsRequired = ['object_id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['object_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'listByObject',
@@ -115,16 +115,16 @@ jeedom.eqLogic.byObjectId = function(_params) {
 }
 
 jeedom.eqLogic.simpleSave = function(_params) {
-  var paramsRequired = ['eqLogic']
-  var paramsSpecifics = {}
+  const paramsRequired = ['eqLogic']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'simpleSave',
@@ -134,16 +134,16 @@ jeedom.eqLogic.simpleSave = function(_params) {
 }
 
 jeedom.eqLogic.getUseBeforeRemove = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'getUseBeforeRemove',
@@ -153,16 +153,16 @@ jeedom.eqLogic.getUseBeforeRemove = function(_params) {
 }
 
 jeedom.eqLogic.usedBy = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'usedBy',
@@ -172,35 +172,73 @@ jeedom.eqLogic.usedBy = function(_params) {
 }
 
 jeedom.eqLogic.remove = function(_params) {
-  var paramsRequired = ['id', 'type']
-  var paramsSpecifics = {
-    pre_success: function(data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
-        delete jeedom.eqLogic.cache.byId[_params.id]
-      }
-      return data
-    }
-  }
+  const paramsRequired = ['id', 'type']
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
-  paramsAJAX.data = {
-    action: 'remove',
-    type: _params.type,
-    id: _params.id
-  }
-  domUtils.ajax(paramsAJAX)
+  jeedom.eqLogic.getUseBeforeRemove({
+    id: _params.id,
+    error: function(error) {
+      jeedomUtils.showAlert({ message: error.message, level: 'danger' })
+    },
+    success: function(data) {
+      let text = "{{Êtes-vous sûr de vouloir supprimer l'équipement}} " + _params.type
+      if (_params.name) {
+        text += ' <b>' + _params.name + '</b>'
+      }
+      text += ' ?'
+      if (Object.keys(data).length > 0) {
+        text += ' </br> {{Il est utilisé par:}}</br>'
+        let complement = null
+        for (const i in data) {
+          complement = ('sourceName' in data[i]) ? ' (' + data[i].sourceName + ')' : ''
+          text += '- <a href="' + data[i].url + '" target="_blank">' + data[i].type + '</a> : <b>' + data[i].name + '</b>' + complement + ' <sup><a href="' + data[i].url + '" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
+        }
+      }
+      jeeDialog.confirm(text, function(result) {
+        if (!result) return
+
+        // Fires only once the actual removal succeeds server-side:
+        const paramsSpecifics = {
+          pre_success: function(data) {
+            if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+              delete jeedom.eqLogic.cache.byId[_params.id]
+            }
+            return data
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            modifyWithoutSave = false
+            const vars = getUrlVars()
+            let url = 'index.php?'
+            for (const i in vars) {
+              if (i != 'id' && i != 'removeSuccessFull' && i != 'saveSuccessFull') {
+                url += i + '=' + vars[i].replace('#', '') + '&'
+              }
+            }
+            jeedomUtils.loadPage(url + 'removeSuccessFull=1')
+          }
+        }
+        const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+        const paramsAJAX = jeedom.private.getParamsAJAX(params)
+        paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
+        paramsAJAX.data = {
+          action: 'remove',
+          type: _params.type,
+          id: _params.id
+        }
+        domUtils.ajax(paramsAJAX)
+      })
+    }
+  })
 }
 
 jeedom.eqLogic.copy = function(_params) {
-  var paramsRequired = ['id', 'name']
-  var paramsSpecifics = {
+  const paramsRequired = ['id', 'name']
+  const paramsSpecifics = {
     pre_success: function(data) {
       if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
         delete jeedom.eqLogic.cache.byId[_params.id]
@@ -214,8 +252,8 @@ jeedom.eqLogic.copy = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'copy',
@@ -226,8 +264,8 @@ jeedom.eqLogic.copy = function(_params) {
 }
 
 jeedom.eqLogic.print = function(_params) {
-  var paramsRequired = ['id', 'type']
-  var paramsSpecifics = {
+  const paramsRequired = ['id', 'type']
+  const paramsSpecifics = {
     pre_success: function(data) {
       if (data.result && data.result.cmd) {
         jeedom.eqLogic.cache.getCmd[_params.id] = data.result.cmd
@@ -241,8 +279,8 @@ jeedom.eqLogic.print = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'get',
@@ -255,29 +293,29 @@ jeedom.eqLogic.print = function(_params) {
 }
 
 jeedom.eqLogic.toHtml = function(_params) {
-  var paramsRequired = ['id', 'version']
-  var paramsSpecifics = {}
+  const paramsRequired = ['id', 'version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'toHtml',
     id: _params.id,
     version: _params.version,
-    global : _params.global || false
+    global: _params.global || false
   }
   domUtils.ajax(paramsAJAX)
 }
 
 jeedom.eqLogic.getCmd = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.eqLogic.cache.getCmd[_params.id] = data.result
       return data
@@ -293,20 +331,20 @@ jeedom.eqLogic.getCmd = function(_params) {
     _params.success(jeedom.eqLogic.cache.getCmd[_params.id])
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/cmd.ajax.php'
   paramsAJAX.data = {
     action: 'byEqLogic',
     eqLogic_id: _params.id,
-    ...(_params.typeCmd ? { typeCmd: _params.typeCmd } : {}) 
+    ...(_params.typeCmd ? { typeCmd: _params.typeCmd } : {})
   }
   domUtils.ajax(paramsAJAX)
 }
 
 jeedom.eqLogic.byId = function(_params) {
-  var paramsRequired = ['id']
-  var paramsSpecifics = {
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.eqLogic.cache.byId[data.result.id] = data.result
       return data
@@ -322,8 +360,8 @@ jeedom.eqLogic.byId = function(_params) {
     _params.success(jeedom.eqLogic.cache.byId[_params.id])
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'byId',
@@ -333,27 +371,27 @@ jeedom.eqLogic.byId = function(_params) {
 }
 
 jeedom.eqLogic.removeImage = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'removeImage',
     id: _params.id
-  };
-  domUtils.ajax(paramsAJAX);
+  }
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.eqLogic.byLogical = function(_params) {
-  var paramsRequired = ['logical', 'type']
-  var paramsSpecifics = {
+  const paramsRequired = ['logical', 'type']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.eqLogic.cache.byLogical[data.result.logical, data.result.type] = data.result
       return data
@@ -369,8 +407,8 @@ jeedom.eqLogic.byLogical = function(_params) {
     _params.success(jeedom.eqLogic.cache.byLogical[_params.logical, _params.type])
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'byLogical',
@@ -388,8 +426,8 @@ jeedom.eqLogic.buildSelectCmd = function(_params) {
     id: _params.id,
     async: false,
     success: function(cmds) {
-      var result = ''
-      for (var i in cmds) {
+      let result = ''
+      for (const i in cmds) {
         if ((init(_params.filter.type, 'all') == 'all' || cmds[i].type == _params.filter.type) &&
           (init(_params.filter.subType, 'all') == 'all' || cmds[i].subType == _params.filter.subType) &&
           (init(_params.filter.isHistorized, 'all') == 'all' || cmds[i].isHistorized == _params.filter.isHistorized)
@@ -421,11 +459,11 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
         className: 'success',
         callback: {
           click: function(event) {
-            var args = {}
+            const args = {}
             args.human = mod_insertEqLogic.getValue()
             args.id = mod_insertEqLogic.getId()
             if (args.human.trim() != '') {
-                callback(args)
+              callback(args)
             }
             document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
           }
@@ -445,17 +483,17 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
 }
 
 jeedom.eqLogic.refreshValue = function(_params) {
-  var paramsRequired = []
-  var eqLogics = {}
-  var sends = {}
-  var eqLogic = null
-  var page = document.body.getAttribute('data-page')
+  const paramsRequired = []
+  const eqLogics = {}
+  const sends = {}
+  let eqLogic = null
+  const page = document.body.getAttribute('data-page')
 
-  for (var i in _params) {
+  for (const i in _params) {
     eqLogic = document.querySelector('.eqLogic[data-eqLogic_id="' + _params[i].eqLogic_id + '"]')
     if (eqLogic != null) {
       if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') { //Remove it
-        let parent = eqLogic.parentNode
+        const parent = eqLogic.parentNode
         eqLogic.remove()
         if (parent.querySelectorAll('.eqLogic').length == 0) {
           if (page == 'dashboard') {
@@ -482,13 +520,13 @@ jeedom.eqLogic.refreshValue = function(_params) {
   if (Object.keys(eqLogics).length == 0) {
     return
   }
-  var paramsSpecifics = {
+  const paramsSpecifics = {
     global: false,
     noDisplayError: true,
     success: function(result) {
-      var eqLogic = null
-      var uid = null
-      for (var i in result) {
+      let eqLogic = null
+      let uid = null
+      for (const i in result) {
         tile = domUtils.parseHTML(result[i].html)
         if (tile.childNodes.length == 0) {
           continue
@@ -500,6 +538,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (isElement_jQuery(eqLogic)) eqLogic = eqLogic[0]
         if (eqLogic == null) {
           if (page == 'dashboard') {
+            let object_div, previousEqLogic
             if ((object_div = document.getElementById('div_ob' + result[i].object_id)) != null) {
               if (object_div.querySelector('.eqLogic')?.getAttribute('data-order') >= result[i].order) {
                 object_div.querySelector('.eqLogic').before(tile)
@@ -509,9 +548,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
                 object_div.html(result[i].html, true)
               }
               jeedomUtils.positionEqLogic(result[i].id)
-              var packer = Packery.data(object_div)
+              const packer = Packery.data(object_div)
               if (packer != undefined) packer.destroy()
-              new Packery(object_div, {isLayoutInstant: true, transitionDuration: 0})
+              new Packery(object_div, { isLayoutInstant: true, transitionDuration: 0 })
 
               document.querySelectorAll('div.eqLogic-widget').forEach(function(element, idx) {
                 element.setAttribute('data-order', idx + 1)
@@ -521,7 +560,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
             document.querySelector('.alertListContainer').html(result[i].html, true)
             jeedomUtils.positionEqLogic(result[i].id, false)
             jeedomUtils.initTooltips()
-            let container = document.querySelector('.alertListContainer')
+            const container = document.querySelector('.alertListContainer')
             Packery.data(container).destroy()
             new Packery(container, { itemSelector: "#alertEqlogic .eqLogic-widget", isLayoutInstant: true, transitionDuration: 0 })
           } else if (page == 'plan' && !jeeFrontEnd.planEditOption.state) { //no create if plan is in edition
@@ -536,8 +575,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
               },
               success: function(plans) {
                 try {
-                  var object
-                  for (var ii in plans) {
+                  let object
+                  for (const ii in plans) {
                     if (plans[ii].plan.link_id == result[i].id) {
                       object = jeeP.displayObject(plans[ii].plan, plans[ii].html, true)
                       if (object != undefined) {
@@ -547,7 +586,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
                           jeeFrontEnd.plan.cssStyleString = ''
                         }
                       }
-                      break;
+                      break
                     }
                   }
                 } catch (e) { console.error(e) }
@@ -558,8 +597,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
           if (page == 'eqAnalyse' && result[i].alert == '') {
             eqLogic.remove()
             if (document.querySelector('.alertListContainer')?.querySelectorAll('.eqLogic').length > 0) {
-              let container = document.querySelector('.alertListContainer')
-              var packer = Packery.data(container)
+              const container = document.querySelector('.alertListContainer')
+              const packer = Packery.data(container)
               if (packer != undefined) packer.destroy()
             }
             continue
@@ -591,7 +630,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
         } else if (typeof jeedomUI !== 'undefined' && typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
-          jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing,false)
+          jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing, false)
         }
       }
     }
@@ -602,8 +641,8 @@ jeedom.eqLogic.refreshValue = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'toHtml',
@@ -613,9 +652,9 @@ jeedom.eqLogic.refreshValue = function(_params) {
 }
 
 jeedom.eqLogic.initGraphInfo = function(_eqLogicUid, _doNotHighlightGraphCmd) {
-  var divGraph = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"]:not(.zone-widget) div.eqlogicbackgraph')
+  const divGraph = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"]:not(.zone-widget) div.eqlogicbackgraph')
   if (divGraph != null) {
-    var cmdId = divGraph.dataset.cmdid
+    const cmdId = divGraph.dataset.cmdid
     if (!_doNotHighlightGraphCmd || _doNotHighlightGraphCmd === false) {
       document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] div.cmd-widget[data-cmd_id="' + cmdId + '"] .cmdName')?.insertAdjacentHTML('afterbegin', '<span class="graphInfoCmd">• </span>')
     }
@@ -624,18 +663,19 @@ jeedom.eqLogic.initGraphInfo = function(_eqLogicUid, _doNotHighlightGraphCmd) {
 }
 
 jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
-  var drawEqEl = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] .eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
+  const drawEqEl = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] .eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
   if (drawEqEl == null) return
   drawEqEl.empty()
   if (drawEqEl.length == 0) return false
+  let topMargin
   if (drawEqEl.hasClass('fixedbackgraph')) {
-    var topMargin = 0
+    topMargin = 0
   } else {
-    var topMargin = 35
+    topMargin = 35
   }
-  var dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
-  var dateStart
-  var decay = drawEqEl.dataset.format
+  const dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
+  let dateStart
+  const decay = drawEqEl.dataset.format
   switch (decay) {
     case 'hour':
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 2 * 60 * 1000
@@ -670,12 +710,12 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
     success: function(result) {
       if (result.data.length == 0) return false
       if (result.timelineOnly) return false
-      var now = (moment().unix() + (jeeFrontEnd.serverTZoffsetMin * 60)) * 1000
-      var values = result.data.map(function(elt) {
+      const now = (moment().unix() + (jeeFrontEnd.serverTZoffsetMin * 60)) * 1000
+      const values = result.data.map(function(elt) {
         return elt[1]
       })
-      var minValue = result.cmd.subType == 'binary' ? 0 : Math.min.apply(null, values)
-      var maxValue = result.cmd.subType == 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
+      const minValue = result.cmd.subType == 'binary' ? 0 : Math.min.apply(null, values)
+      const maxValue = result.cmd.subType == 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
       result.data.push([now, result.data.slice(-1)[0][1]])
       new Highcharts.StockChart({
         chart: {
@@ -754,16 +794,16 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
 }
 
 jeedom.eqLogic.setOrder = function(_params) {
-  var paramsRequired = ['eqLogics']
-  var paramsSpecifics = {}
+  const paramsRequired = ['eqLogics']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'setOrder',
@@ -773,16 +813,16 @@ jeedom.eqLogic.setOrder = function(_params) {
 }
 
 jeedom.eqLogic.setGenericType = function(_params) {
-  var paramsRequired = ['eqLogics']
-  var paramsSpecifics = {}
+  const paramsRequired = ['eqLogics']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'setGenericType',
@@ -792,16 +832,16 @@ jeedom.eqLogic.setGenericType = function(_params) {
 }
 
 jeedom.eqLogic.removes = function(_params) {
-  var paramsRequired = ['eqLogics']
-  var paramsSpecifics = {}
+  const paramsRequired = ['eqLogics']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'removes',
@@ -811,16 +851,16 @@ jeedom.eqLogic.removes = function(_params) {
 }
 
 jeedom.eqLogic.setIsVisibles = function(_params) {
-  var paramsRequired = ['eqLogics', 'isVisible']
-  var paramsSpecifics = {}
+  const paramsRequired = ['eqLogics', 'isVisible']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'setIsVisibles',
@@ -831,16 +871,16 @@ jeedom.eqLogic.setIsVisibles = function(_params) {
 }
 
 jeedom.eqLogic.setIsEnables = function(_params) {
-  var paramsRequired = ['eqLogics', 'isEnable']
-  var paramsSpecifics = {}
+  const paramsRequired = ['eqLogics', 'isEnable']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'setIsEnables',
@@ -851,16 +891,16 @@ jeedom.eqLogic.setIsEnables = function(_params) {
 }
 
 jeedom.eqLogic.htmlAlert = function(_params) {
-  var paramsRequired = ['version']
-  var paramsSpecifics = {}
+  const paramsRequired = ['version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'htmlAlert',
@@ -870,16 +910,16 @@ jeedom.eqLogic.htmlAlert = function(_params) {
 }
 
 jeedom.eqLogic.htmlBattery = function(_params) {
-  var paramsRequired = ['version']
-  var paramsSpecifics = {}
+  const paramsRequired = ['version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
     return
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  var paramsAJAX = jeedom.private.getParamsAJAX(params)
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'htmlBattery',

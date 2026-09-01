@@ -23,7 +23,7 @@ if (!jeeFrontEnd.connection) {
       if (this.deepUrl.includes('logout')) this.deepUrl = ''
       window.jeeP = this
 
-      document.getElementById('jeedom_theme_currentcss').href = 'core/themes/core2019_Light/desktop/core2019_Light.css'
+      document.getElementById('jeedom_theme_currentcss').href = 'core/themes/core2019_Light/desktop/core2019_Light.css?v=' + jeeFrontEnd.jeedomVersion
       document.title = JEEDOM_PRODUCT_NAME + ' - Login'
     },
     askMarket: function() {
@@ -233,7 +233,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
     event.stopPropagation();
     var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode;
     var input = _el.closest('.input-group').querySelector('input');
-    
+
     if (input.getAttribute('type') === 'password') {
         input.setAttribute('type', 'text');
     } else {

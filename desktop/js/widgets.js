@@ -53,8 +53,8 @@ if (!jeeFrontEnd.widgets) {
           document.getElementById('div_templateReplace').empty()
           if (typeof data.replace != 'undefined' && data.replace.length > 0) {
             document.querySelectorAll('.type_replace').seen()
-            var replace = ''
-            for (var i in data.replace) {
+            let replace = ''
+            for (const i in data.replace) {
               replace += '<div class="form-group">'
               if (jeeP.widget_parameters_opt[data.replace[i]]) {
                 replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + jeeP.widget_parameters_opt[data.replace[i]].name + '</label>'
@@ -132,17 +132,17 @@ if (!jeeFrontEnd.widgets) {
 
           document.querySelectorAll('.widgets').setJeeValues(data, '.widgetsAttr')
           if (isset(data.test)) {
-            for (var i in data.test) {
+            for (const i in data.test) {
               jeeP.addTest(data.test[i])
             }
           }
 
-          var usedBy = ''
-          for (var i in data.usedBy) {
+          let usedBy = ''
+          for (const i in data.usedBy) {
             usedBy += '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + i + '">' + data.usedBy[i] + '</span> '
           }
           document.getElementById('div_usedBy').empty().insertAdjacentHTML('beforeend', usedBy)
-          var template = 'cmd.'
+          let template = 'cmd.'
           if (data.type && data.type !== null) {
             template += data.type + '.'
           } else {
@@ -170,7 +170,7 @@ if (!jeeFrontEnd.widgets) {
               })
             },
             success: function(data) {
-              let previewEL = document.getElementById('div_widgetPreview')
+              const previewEL = document.getElementById('div_widgetPreview')
               previewEL.empty().html(data.html)
               if (previewEL.querySelector('div.eqLogic-widget') != null) previewEL.querySelector('div.eqLogic-widget').style.position = 'relative'
             }
@@ -187,7 +187,7 @@ if (!jeeFrontEnd.widgets) {
       if (!isset(_test)) {
         _trigger = {}
       }
-      var div = '<div class="test">'
+      let div = '<div class="test">'
       div += '<div class="form-group">'
       div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>'
       div += '<div class="col-sm-3">'
@@ -218,14 +218,14 @@ if (!jeeFrontEnd.widgets) {
       div += '</div>'
       div += '</div>'
 
-      let replaceDiv = document.getElementById('div_templateTest')
+      const replaceDiv = document.getElementById('div_templateTest')
       replaceDiv.insertAdjacentHTML('beforeend', div)
       replaceDiv.querySelectorAll('.test').last().setJeeValues(_test, '.testAttr')
 
     },
     downloadObjectAsJson: function(exportObj, exportName) {
-      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
-      var downloadAnchorNode = document.createElement('a')
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj))
+      const downloadAnchorNode = document.createElement('a')
       downloadAnchorNode.setAttribute("href", dataStr)
       downloadAnchorNode.setAttribute("target", "_blank")
       downloadAnchorNode.setAttribute("download", exportName + ".json")
@@ -235,12 +235,12 @@ if (!jeeFrontEnd.widgets) {
     },
     applyToCmd: function() {
       //store usedBy:
-      var checkedId = []
+      const checkedId = []
       document.querySelectorAll('#div_usedBy .cmdAdvanceConfigure').forEach(_cmd => {
         checkedId.push(_cmd.getAttribute('data-cmd_id'))
       })
-      let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-      let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
+      const type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+      const subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
       jeeDialog.dialog({
         id: 'md_cmdConfigureSelectMultiple',
         title: "{{Appliquer ce widget à}}",
@@ -252,7 +252,7 @@ if (!jeeFrontEnd.widgets) {
             }
           })
           document.getElementById('bt_cmdSelectMultipleApply').addEventListener('click', function(event) {
-            var widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
+            const widgets = document.querySelectorAll('.widgets').getJeeValues('.widgetsAttr')[0]
             widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
             jeedom.widgets.save({
               widgets: widgets,
@@ -264,13 +264,13 @@ if (!jeeFrontEnd.widgets) {
               },
               success: function(data) {
                 jeeFrontEnd.modifyWithoutSave = false
-                var cmd = {
+                const cmd = {
                   template: {
                     dashboard: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue(),
                     mobile: 'custom::' + document.querySelector('.widgetsAttr[data-l1key="name"]').jeeValue()
                   }
                 }
-                var cmdDefault = {
+                const cmdDefault = {
                   template: {
                     dashboard: 'default',
                     mobile: 'default'
@@ -278,15 +278,15 @@ if (!jeeFrontEnd.widgets) {
                 }
 
                 document.querySelectorAll('#table_cmdConfigureSelectMultiple tbody tr').forEach(_tr => {
-                  var thisId = _tr.getAttribute('data-cmd_id')
+                  const thisId = _tr.getAttribute('data-cmd_id')
                   if (_tr.querySelector('.selectMultipleApplyCmd').checked) {
                     if (!checkedId.includes(thisId)) {
                       //show in usedBy
-                      var thisObject = _tr.childNodes[1].textContent
-                      var thisEq = _tr.childNodes[2].textContent
-                      var thisName = _tr.childNodes[3].textContent
-                      var cmdHumanName = '[' + thisObject + '][' + thisEq + '][' + thisName + ']'
-                      var newSpan = '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + thisId + '">' + cmdHumanName + '</span>'
+                      const thisObject = _tr.childNodes[1].textContent
+                      const thisEq = _tr.childNodes[2].textContent
+                      const thisName = _tr.childNodes[3].textContent
+                      const cmdHumanName = '[' + thisObject + '][' + thisEq + '][' + thisName + ']'
+                      const newSpan = '<span class="label label-info cursor cmdAdvanceConfigure" data-cmd_id="' + thisId + '">' + cmdHumanName + '</span>'
                       document.getElementById('div_usedBy').insertAdjacentHTML('beforeend', newSpan)
                     }
                     cmd.id = thisId
@@ -332,7 +332,7 @@ if (!jeeFrontEnd.widgets) {
       })
     },
     saveWidget: function() {
-      var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
+      const widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
       widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
       jeedom.widgets.save({
         widgets: widgets,
@@ -365,23 +365,23 @@ try {
     success: function(_widgets) {
       if (_widgets.length == 0) return
 
-      var widgetsList = []
+      const widgetsList = []
       widgetsList['info'] = []
       widgetsList['action'] = []
-      for (var i = 0; i < _widgets.length; i++) {
+      let groupWidgets, items, wg, wgName, wgId
+      for (let i = 0; i < _widgets.length; i++) {
         wg = _widgets[i]
         if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
         if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
       }
 
       //set context menu!
-      var contextmenuitems = {}
-      var uniqId = 0
-      var groupWidgets, items, wg, wgName, wgId
-      for (var group in widgetsList) {
+      const contextmenuitems = {}
+      let uniqId = 0
+      for (const group in widgetsList) {
         groupWidgets = widgetsList[group]
         items = {}
-        for (var index in groupWidgets) {
+        for (const index in groupWidgets) {
           wg = groupWidgets[index]
           wgName = wg[0]
           wgId = wg[1]
@@ -429,20 +429,20 @@ document.registerEvent('keydown', function(event) {
 
 //searching
 document.getElementById('in_searchWidgets')?.addEventListener('keyup', function() {
-  var search = this.value
+  let search = this.value
   if (search == '') {
     document.querySelectorAll('#accordionWidgets .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     document.querySelectorAll('.widgetsDisplayCard').seen()
     return
   }
   search = jeedomUtils.normTextLower(search)
-  var not = search.startsWith(":not(")
+  const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
   }
   document.querySelectorAll('#accordionWidgets .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
   document.querySelectorAll('.widgetsDisplayCard').unseen()
-  var match, text
+  let match, text
 
   document.querySelectorAll('.widgetsDisplayCard .name').forEach(scName => {
     match = false
@@ -466,7 +466,7 @@ document.getElementById('in_searchWidgets')?.addEventListener('keyup', function(
 */
 //ThumbnailDisplay
 document.getElementById('div_widgetsList').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_openAll')) {
     document.querySelectorAll('#accordionWidgets .accordion-toggle.collapsed').forEach(_panel => { _panel.click() })
     return
@@ -533,7 +533,7 @@ document.getElementById('div_widgetsList').addEventListener('click', function(ev
 
   if (_target = event.target.closest('.widgetsDisplayCard')) {
     if ((isset(event.detail) && event.detail.ctrlKey) || event.ctrlKey || event.metaKey) {
-      var url = '/index.php?v=d&p=widgets&id=' + _target.getAttribute('data-widgets_id')
+      const url = '/index.php?v=d&p=widgets&id=' + _target.getAttribute('data-widgets_id')
       window.open(url).focus()
     } else {
       jeeP.printWidget(_target.getAttribute('data-widgets_id'))
@@ -543,11 +543,11 @@ document.getElementById('div_widgetsList').addEventListener('click', function(ev
 })
 
 document.getElementById('div_widgetsList').addEventListener('mouseup', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.widgetsDisplayCard')) {
     if (event.which == 2) {
       event.preventDefault()
-      var id = _target.getAttribute('data-widgets_id')
+      const id = _target.getAttribute('data-widgets_id')
       document.querySelector('.widgetsDisplayCard[data-widgets_id="' + id + '"] .name').triggerEvent('click', { detail: { ctrlKey: true } })
     }
     return
@@ -555,10 +555,10 @@ document.getElementById('div_widgetsList').addEventListener('mouseup', function(
 })
 
 document.getElementById('div_widgetsList').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#uploadFile')) {
     jeedomUtils.hideAlert()
-    var uploadedFile = event.target.files[0]
+    const uploadedFile = event.target.files[0]
     if (uploadedFile.type !== "application/json") {
       jeedomUtils.showAlert({
         message: "{{L'import de widget se fait au format json à partir d'un widget précédemment exporté.}}",
@@ -581,10 +581,10 @@ document.getElementById('div_widgetsList').addEventListener('change', function(e
               })
             },
             success: function(data) {
-              var readFile = new FileReader()
+              const readFile = new FileReader()
               readFile.readAsText(uploadedFile)
               readFile.onload = function(e) {
-                var objectData = JSON.parse(e.target.result)
+                const objectData = JSON.parse(e.target.result)
                 if (!isset(objectData.jeedomCoreVersion)) {
                   jeedomUtils.showAlert({
                     message: "{{Fichier json non compatible.}}",
@@ -595,7 +595,7 @@ document.getElementById('div_widgetsList').addEventListener('change', function(e
                 objectData.id = data.id
                 objectData.name = data.name
                 if (isset(objectData.test)) {
-                  for (var i in objectData.test) {
+                  for (const i in objectData.test) {
                     jeeP.addTest(objectData.test[i])
                   }
                 }
@@ -630,7 +630,7 @@ document.getElementById('div_widgetsList').addEventListener('change', function(e
 
 //Widget
 document.getElementById('div_conf').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
     setTimeout(function() {
       document.querySelector('.nav li.active').removeClass('active')
@@ -649,7 +649,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_exportWidgets')) {
-    var widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
+    const widgets = document.getElementById('div_conf').getJeeValues('.widgetsAttr')[0]
     widgets.test = document.querySelectorAll('#div_templateTest .test').getJeeValues('.testAttr')
     widgets.id = ""
     jeedom.version({
@@ -659,7 +659,6 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
       }
     })
     return false
-    return
   }
 
   if (_target = event.target.closest('#bt_saveWidgets')) {
@@ -668,7 +667,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_removeWidgets')) {
-    let name = document.querySelector('input[data-l1key="name"]').value
+    const name = document.querySelector('input[data-l1key="name"]').value
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le widget}} <span style="font-weight: bold ;">' + name + '</span> ?', function(result) {
       if (result) {
         jeedom.widgets.remove({
@@ -690,7 +689,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_chooseIcon')) {
-    var _icon = document.querySelector('div[data-l2key="icon"] > i')
+    let _icon = document.querySelector('div[data-l2key="icon"] > i')
     if (_icon != null) {
       _icon = _icon.getAttribute('class')
     } else {
@@ -704,8 +703,8 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#div_templateReplace .chooseIcon')) {
-    var params = { img: true }
-    let input = _target.closest('div').querySelector('input').value
+    const params = { img: true }
+    const input = _target.closest('div').querySelector('input').value
     if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6)
     jeedomUtils.chooseIcon(function(_icon) {
       _target.closest('.form-group').querySelector('.widgetsAttr[data-l1key="replace"]').jeeValue(_icon)
@@ -715,8 +714,8 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#div_templateTest .chooseIcon')) {
-    var params = { img: true }
-    let input = _target.closest('div').querySelector('input').value
+    const params = { img: true }
+    const input = _target.closest('div').querySelector('input').value
     if (input.startsWith('<i class=')) params.icon = input.substring(10, input.length - 6)
     jeedomUtils.chooseIcon(function(_icon) {
       _target.closest('.input-group').querySelector('.testAttr').jeeValue(_icon)
@@ -748,7 +747,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
 })
 
 document.getElementById('div_conf').addEventListener('dblclick', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.widgetsAttr[data-l1key="display"][data-l2key="icon"]')) {
     _target.innerHTML = ''
     jeeFrontEnd.modifyWithoutSave = true
@@ -757,14 +756,14 @@ document.getElementById('div_conf').addEventListener('dblclick', function(event)
 })
 
 document.getElementById('div_conf').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.widgetsAttr')) {
     jeeFrontEnd.modifyWithoutSave = true
   }
 
   if (_target = event.target.closest('#bt_importWidgets')) {
     jeedomUtils.hideAlert()
-    var uploadedFile = _target.files[0]
+    const uploadedFile = _target.files[0]
     if (uploadedFile.type !== "application/json") {
       jeedomUtils.showAlert({
         message: "{{L'import de widgets se fait au format json à partir de widgets précedemment exporté.}}",
@@ -773,10 +772,10 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
       return false
     }
     if (uploadedFile) {
-      var readFile = new FileReader()
+      const readFile = new FileReader()
       readFile.readAsText(uploadedFile)
       readFile.onload = function(e) {
-        var objectData = JSON.parse(e.target.result)
+        const objectData = JSON.parse(e.target.result)
         if (!isset(objectData.jeedomCoreVersion)) {
           jeedomUtils.showAlert({
             message: "{{Fichier json non compatible.}}",
@@ -788,7 +787,7 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
         objectData.id = document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue()
         objectData.name = document.querySelector('.widgetsAttr[data-l1key=name]').jeeValue()
         if (isset(objectData.test)) {
-          for (var i in objectData.test) {
+          for (const i in objectData.test) {
             jeeP.addTest(objectData.test[i])
           }
         }
@@ -806,8 +805,8 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
 
   if (_target = event.target.closest('.selectWidgetTemplate')) {
     if (jeeP.isLoadging) return
-    let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
-    let subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
+    const type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+    const subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
     jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + _target.value)
     return
   }
@@ -826,7 +825,7 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
     document.getElementById('div_templateTest').empty()
     document.getElementById('div_usedBy').empty()
     document.querySelectorAll('.selectWidgetTemplate').unseen().removeClass('widgetsAttr')
-    let type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
+    const type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
     document.querySelector('.selectWidgetTemplate[data-type="' + type + '"][data-subtype="' + event.target.jeeValue() + '"]')?.seen().addClass('widgetsAttr').triggerEvent('change')
     return
   }

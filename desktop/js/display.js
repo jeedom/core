@@ -27,10 +27,7 @@ if (!jeeFrontEnd.display) {
       this.tableRemoveHistory = document.getElementById('table_removeHistory')
 
       this.setSortables()
-      var checkContextMenuCallback = function(_el) {
-        _el.triggerEvent('change')
-      }
-      jeedomUtils.setCheckContextMenu(checkContextMenuCallback)
+      jeedomUtils.setCheckContextMenu()
     },
     setSortables: function() {
       //Accordion set objects order:

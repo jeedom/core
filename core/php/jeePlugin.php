@@ -32,14 +32,15 @@ if (isset($argv)) {
 	}
 }
 try {
-	set_time_limit(config::byKey('maxExecTimeScript', 'core', 10));
+	set_time_limit(config::byKey('maxExecTimeScript', 'core', 10)*60);
 
 	$plugin_id = init('plugin_id');
 	if ($plugin_id == '') {
 		throw new Exception(__('Le plugin ID ne peut être vide', __FILE__));
 	}
-	$plugin = plugin::byId($plugin_id);
-	if (!is_object($plugin)) {
+	try {
+		$plugin = plugin::byId($plugin_id);
+	} catch (Exception $e) {
 		throw new Exception(__('Plugin non trouvé :', __FILE__) . ' ' . init('plugin_id'));
 	}
 	$function = init('function');

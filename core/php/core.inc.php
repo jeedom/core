@@ -34,16 +34,14 @@ try {
 	if (isset($configs['timezone'])) {
 		date_default_timezone_set($configs['timezone']);
 	}
-} catch (Exception $e) {
-} catch (Error $e) {
+} catch (\Throwable $e) {
 }
 
 try {
 	if (isset($configs['log::level'])) {
 		log::define_error_reporting($configs['log::level']);
 	}
-} catch (Exception $e) {
-} catch (Error $e) {
+} catch (\Throwable $e) {
 }
 
 function jeedomAutoload($_classname) {
@@ -68,10 +66,8 @@ function jeedomAutoload($_classname) {
 		if ($plugin_active == 1) {
 			try {
 				include_file('core', $classname, 'class', $classname);
-			} catch (Exception $e) {
-				
-			} catch (Error $e) {
-				
+			} catch (Throwable $e) {
+				log::add('plugin', 'error', $e->getMessage());
 			}
 		}
 	}

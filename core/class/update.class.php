@@ -132,10 +132,7 @@ class update {
 					if ($update->getStatus() != 'hold' && $update->getStatus() == 'update' && $update->getType() != 'core') {
 						try {
 							$update->doUpdate();
-						} catch (Exception $e) {
-							log::add(__CLASS__, 'alert', log::exception($e));
-							$error = true;
-						} catch (Error $e) {
+						} catch (\Throwable $e) {
 							log::add(__CLASS__, 'alert', log::exception($e));
 							$error = true;
 						}
@@ -143,6 +140,27 @@ class update {
 				}
 			}
 			return $error;
+		}
+	}
+
+	public static function refreshUpdateMessage() {
+		$toUpdate = [];
+		foreach (self::byStatus('update') as $update) {
+			if ($update->getConfiguration('doNotUpdate', 0) == 0) {
+				$toUpdate[] = $update->getLogicalId();
+			}
+		}
+		if (!empty($toUpdate)) {
+			$msg = __('De nouvelles mises à jour sont disponibles', __FILE__) . ' : ' . implode(', ', $toUpdate);
+			$action = '<a href="/index.php?v=d&p=update">' . __('Centre de mise à jour', __FILE__) . '</a>';
+			foreach (message::byPlugin(__CLASS__) as $updateMessage) {
+				if ($updateMessage->getMessage() !== $msg) {
+					$updateMessage->remove();
+				}
+			}
+			message::add(__CLASS__, $msg, $action, 'newUpdate');
+		} else {
+			message::removeAll(__CLASS__);
 		}
 	}
 
@@ -383,19 +401,16 @@ class update {
 							foreach (eqLogic::byType($this->getLogicalId()) as $eqLogic) {
 								try {
 									$eqLogic->remove();
-								} catch (Exception $e) {
-								} catch (Error $e) {
+								} catch (\Throwable $e) {
 								}
 							}
 							try {
 								$plugin->setIsEnable(0);
-							} catch (Exception $e) {
-							} catch (Error $e) {
+							} catch (\Throwable $e) {
 							}
 						}
 						config::remove('*', $this->getLogicalId());
-					} catch (Exception $e) {
-					} catch (Error $e) {
+					} catch (\Throwable $e) {
 					}
 					break;
 			}
@@ -404,7 +419,7 @@ class update {
 				if (class_exists($class) && method_exists($class, 'deleteObjet') && config::byKey($this->getSource() . '::enable') == 1) {
 					$class::deleteObjet($this);
 				}
-			} catch (Exception $e) {
+			} catch (\Throwable $e) {
 			}
 			switch ($this->getType()) {
 				case 'plugin':
@@ -437,8 +452,7 @@ class update {
 						$plugin->callInstallFunction('pre_update');
 						log::add(__CLASS__, 'alert', __("OK\n", __FILE__));
 					}
-				} catch (Exception $e) {
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 				}
 		}
 	}
@@ -469,10 +483,7 @@ class update {
 						}
 						shell_exec('find ' . $cibDir . '/' . $folder . '/* -mtime +7 -type f ! -iname "custom.*" ! -iname "common.config.php" ! -path "./vendor/*"  -delete 2>/dev/null');
 					}
-				} catch (Exception $e) {
-					$this->remove();
-					throw new Exception(__("Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur", __FILE__));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					$this->remove();
 					throw new Exception(__("Impossible d'installer le plugin. Le nom du plugin est différent de l'ID ou le plugin n'est pas correctement formé. Veuillez contacter l'auteur", __FILE__));
 				}
@@ -497,9 +508,7 @@ class update {
 			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
 			$request_http = new com_http($url);
 			return trim($request_http->exec(30));
-		} catch (Exception $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		}
 		return null;
@@ -540,15 +549,14 @@ class update {
 				if (class_exists($class) && method_exists($class, 'checkUpdate') && config::byKey($this->getSource() . '::enable') == 1) {
 					$class::checkUpdate($this);
 				}
-			} catch (Exception $ex) {
-			} catch (Error $ex) {
+			} catch (\Throwable $ex) {
 			}
 		}
 	}
 
 	public function preSave() {
 		if ($this->getLogicalId() == '') {
-			throw new Exception(__('Le logical ID ne peut pas être vide', __FILE__));
+			throw new Exception(__("L'identifiant du plugin ne peut pas être vide", __FILE__));
 		}
 		if ($this->getName() == '') {
 			$this->setName($this->getLogicalId());

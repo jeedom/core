@@ -20,7 +20,7 @@ require_once __DIR__ . '/utils.inc.php';
 $root_dir = __DIR__ . '/../../data/fonts/';
 foreach (ls($root_dir, '*') as $dir) {
 	if (is_dir($root_dir . $dir) && file_exists($root_dir . $dir . '/style.css')) {
-		echo '<link rel="stylesheet" href="data/fonts/' . $dir . 'style.css?md5=' . md5($root_dir . $dir . '/style.css') . '">' . "\n";
+		echo '<link rel="stylesheet" href="data/fonts/' . $dir . 'style.css?md5=' . md5_file($root_dir . $dir . '/style.css') . '">' . "\n";
 	}
 }
 

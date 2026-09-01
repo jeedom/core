@@ -2,7 +2,7 @@
  * Set of configuration default, variables and functions
  * @namespace jeedom.private
  */
-var init = function(_param, _default) {
+const _init = function(_param, _default) {
   return (typeof _param == 'number') ? _param : (typeof _param != 'boolean' || _param) && (_param !== false && _param || _default || '');
 }
 
@@ -79,7 +79,7 @@ jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
  */
 jeedom.private.getParamsAJAX = function(_params) {
   // Special case parameter type
-  var typeInData = false;
+  let typeInData = false;
   if (!['POST', 'GET'].includes(_params.type)) {
     typeInData = true;
     _params.data = _params.data || {};
@@ -87,7 +87,7 @@ jeedom.private.getParamsAJAX = function(_params) {
     _params.type = 'POST'; //Use POST
   }
 
-  var paramsAJAX = {
+  const paramsAJAX = {
     type: _params.type,
     dataType: _params.dataType,
     async: _params.async,
@@ -106,7 +106,7 @@ jeedom.private.getParamsAJAX = function(_params) {
         });
       } else {
         //Directly send data object to caller
-        var result = init(data.result, jeedom.private.no_result);
+        let result = _init(data.result, jeedom.private.no_result);
 
         if (data.result === false) {
           result = false;
@@ -151,13 +151,13 @@ jeedom.private.checkParamValue = function(_params) {
     };
   }
 
-  var value = _params.value;
-  var regexp = _params.regexp;
-  var name = _params.name || 'One parameter';
+  let value = _params.value;
+  const regexp = _params.regexp;
+  const name = _params.name || 'One parameter';
 
   if (typeof value == 'object') {
     //Recursivity for array or object
-    for (var i in value) {
+    for (const i in value) {
       checkParamValue({
         name: name,
         value: value[i],
@@ -194,17 +194,17 @@ jeedom.private.checkParamValue = function(_params) {
  * @return {string} ret.missing.toString : return missing parameter as string (used for display)
  */
 jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
-  var missings = Array();
-  var group = Array();
-  var missingAtLeastOneParam = false;
-  var optionalGroupNumber = 0;
-  var ok = null;
-  for (var key in _paramsRequired) {
+  const missings = Array();
+  const group = Array();
+  let missingAtLeastOneParam = false;
+  let optionalGroupNumber = 0;
+  let ok = null;
+  for (const key in _paramsRequired) {
     if (typeof _paramsRequired[key] === 'object') {
       optionalGroupNumber++;
       ok = false;
       //One is enough, but need all present / missing parameters:
-      for (var key2 in _paramsRequired[key]) {
+      for (const key2 in _paramsRequired[key]) {
         if (_params.hasOwnProperty(_paramsRequired[key][key2])) {
           ok = true;
         } else {
@@ -241,14 +241,14 @@ jeedom.private.checkParamsRequired = function(_params, _paramsRequired) {
   }
 
   if (missingAtLeastOneParam) {
-    var tostring = 'Parameters missing : ';
-    var miss = null;
-    for (var i in missings) {
+    let tostring = 'Parameters missing : ';
+    let miss = null;
+    for (const i in missings) {
       miss = missings[i];
       tostring += miss.name + ' ';
 
       //If optionnal parameter, define if optionnal group is set
-      var checkedstring = miss.optional && (group[miss.group.id].checked) ? 'yes' : 'no' || '';
+      const checkedstring = miss.optional && (group[miss.group.id].checked) ? 'yes' : 'no' || '';
       tostring += (miss.optional) ? '[optional, group=' + miss.group.id + ' checked=' + checkedstring + ']' : '[needed]';
       tostring += ', ';
     }
@@ -271,15 +271,13 @@ jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRe
   //Throw execption if error
   jeedom.private.checkParamsRequired(_params, _paramsRequired || []);
   //Merge default and function specific parameters
-  var params = domUtils.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
+  const params = domUtils.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
 
-  //Convert all objects in params to json
-  var param = null;
-  for (var attr in params) {
+  for (const attr in params) {
     params[attr] = (typeof params[attr] == 'object') ? JSON.stringify(params[attr]) : params[attr];
   }
 
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
 
   return {
     params: params,
@@ -294,7 +292,7 @@ jeedom.private.checkParamsValue = function(_params) {
   if (Object.prototype.toString.call(_params) == '[object Object]') {
     jeedom.private.checkParamValue(_params);
   } else {
-    for (var i in _params) {
+    for (const i in _params) {
       jeedom.private.checkParamValue(_params[i]);
     }
   }

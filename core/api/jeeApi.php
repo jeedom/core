@@ -37,7 +37,7 @@ $_RESTRICTED = false;
 
 if (init('type') != '') {
 	try {
-		
+
 		if (init('type') == 'ask') {
 			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
 				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
@@ -64,10 +64,10 @@ if (init('type') != '') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
 		}
 
-		if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), init('type'))){
+		if (config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), init('type'))) {
 			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
 		}
-		if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), init('type'))){
+		if (config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), init('type'))) {
 			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
 		}
 		$type = init('type');
@@ -174,8 +174,8 @@ if (init('type') != '') {
 					} else if (is_array(init('tags'))) {
 						$scenario->setTags(init('tags'));
 					}
-					$scenario->addTag('trigger','api');
-					$scenario->addTag('trigger_message',__('Scénario exécuté sur appel API', __FILE__));
+					$scenario->addTag('trigger', 'api');
+					$scenario->addTag('trigger_message', __('Scénario exécuté sur appel API', __FILE__));
 					$scenario_return = $scenario->launch();
 					if (is_string($scenario_return)) {
 						$return = $scenario_return;
@@ -237,7 +237,7 @@ if (init('type') != '') {
 		if ($type == 'fullData') {
 			log::add('api', 'debug', __('Demande API pour les commandes', __FILE__));
 			header('Content-Type: application/json');
-			echo json_encode(jeeObject::fullData(null,$_USER_GLOBAL), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
+			echo json_encode(jeeObject::fullData(null, $_USER_GLOBAL), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'variable') {
@@ -281,10 +281,10 @@ try {
 		throw new Exception(__('Requête invalide. Version JSON-RPC invalide :', __FILE__) . ' ' . $jsonrpc->getJsonrpc(), -32001);
 	}
 
-	if(config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), $jsonrpc->getMethod())){
+	if (config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), $jsonrpc->getMethod())) {
 		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__));
 	}
-	if(config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), $jsonrpc->getMethod())){
+	if (config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), $jsonrpc->getMethod())) {
 		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
 	}
 
@@ -909,8 +909,8 @@ try {
 			$jsonrpc->makeSuccess($scenario->stop());
 		}
 		if ($params['state'] == 'run') {
-			$scenario->addTag('trigger','api');
-			$scenario->addTag('trigger_message',__('Scénario exécuté sur appel API', __FILE__));
+			$scenario->addTag('trigger', 'api');
+			$scenario->addTag('trigger_message', __('Scénario exécuté sur appel API', __FILE__));
 			$jsonrpc->makeSuccess($scenario->launch());
 		}
 		if ($params['state'] == 'enable') {
@@ -1168,8 +1168,9 @@ try {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
 		}
 		$jsonrpc->makeSuccess($plugin->dependancy_info());
@@ -1180,8 +1181,9 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->dependancy_install();
@@ -1192,8 +1194,9 @@ try {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin', 'user'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
 		}
 		$jsonrpc->makeSuccess($plugin->deamon_info());
@@ -1216,8 +1219,9 @@ try {
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		if (!isset($params['debug'])) {
@@ -1235,8 +1239,9 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->deamon_stop();
@@ -1248,8 +1253,9 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->deamon_changeAutoMode($params['mode']);
@@ -1276,7 +1282,7 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		jeedom::update('');
+		jeedom::update();
 		$jsonrpc->makeSuccess('ok');
 	}
 
@@ -1412,8 +1418,8 @@ try {
 	/*         * *********Catch exeption*************** */
 } catch (Exception $e) {
 	$message = $e->getMessage();
-	if(!isset($jsonrpc) || !is_object($jsonrpc)){
-		if(!isset($request)){
+	if (!isset($jsonrpc) || !is_object($jsonrpc)) {
+		if (!isset($request)) {
 			$request = init('request');
 			if ($request == '') {
 				$request = file_get_contents("php://input");

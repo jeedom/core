@@ -97,7 +97,7 @@ if (!jeeFrontEnd.update) {
                   clearTimeout(jeeP.alertTimeout)
                 }
                 jeedomUtils.showAlert({
-                  message: '{{L\'opération a échoué. Veuillez aller sur l\'onglet informations et consulter la log pour savoir pourquoi.}}',
+                  message: '{{L\'opération a échoué. Veuillez aller sur l\'onglet Information et consulter la log pour plus de détails.}}',
                   level: 'danger'
                 })
                 _autoUpdate = 0
@@ -111,7 +111,7 @@ if (!jeeFrontEnd.update) {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000)
           } else {
-            document.getElementById('bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
+            document.querySelector('#bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
             document.querySelectorAll('.bt_' + _log + 'Jeedom .fa-refresh')?.unseen()
           }
         }
@@ -183,18 +183,17 @@ if (!jeeFrontEnd.update) {
         },
         success: function(data) {
           let span = document.getElementById('span_lastUpdateCheck')
-          span.title = '{{Dernière verification des mises à jour}}'
+          span.title = '{{Dernière vérification des mises à jour}}'
           span.jeeValue(data['update::lastCheck'])
         }
       })
     },
     addUpdate: function(_update) {
       if (init(_update.status) == '') {
-        _update.status = 'OK'
+        _update.status = 'ok'
       }
-      _update.status = _update.status.toUpperCase()
       var labelClass = 'label-success'
-      if (_update.status == 'UPDATE') {
+      if (_update.status == 'update') {
         labelClass = 'label-warning'
         if (_update.type == 'core' || _update.type == 'plugin') {
           if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') jeeP.hasUpdate = true
@@ -202,7 +201,7 @@ if (!jeeFrontEnd.update) {
       }
 
       var tr = '<tr>'
-      tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
+      tr += '<td style="width:40px"><span class="updateAttr text-uppercase label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
       tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>'
       if (_update.name == 'jeedom') {
@@ -237,8 +236,8 @@ if (!jeeFrontEnd.update) {
             default:
               updClass = 'label-danger'
           }
-          if (typeof _update.configuration.user!== 'undefined'){
-            tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version +' - '+ _update.configuration.user + '</span>'
+          if (typeof _update.configuration.user !== 'undefined') {
+            tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + ' - ' + _update.configuration.user + '</span>'
           } else {
             tr += ' <span class="label ' + updClass + ' hidden-992">' + _update.configuration.version + '</span>'
           }
@@ -258,51 +257,44 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:160px;" data-order="' + Date.parse(_update.updateDate) + '"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
       if (_update.type != 'core') {
-        tr += '<i class="fas fa-pencil-ruler" title="{{Ne pas mettre à jour}}"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'
-        tr += '<label class="cursor fontweightnormal hidden-1280" for="' + _update.name + '"></label>'
+        tr += '<label title="{{Ne pas mettre à jour ce plugin}}" for="' + _update.name + '">'
+        tr += '<i class="fas fa-lock cursor"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate">'
+        tr += '</label>'
       }
       tr += '</td>'
-      tr += '<td>'
+      tr += '<td class="input-group">'
       if (_update.type != 'core') {
-        if (_update.configuration && _update.configuration.version == 'beta') {
-          if (isset(_update.plugin) && isset(_update.plugin.changelog_beta) && _update.plugin.changelog_beta != '') {
-            tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog_beta + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          } else if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') { 
-            tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          } else {
-            tr += '<a class="btn btn-xs disabled"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          }
-        } else {
-          if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
-            tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          } else {
-            tr += '<a class="btn btn-xs disabled"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-          }
+        let pluginChangelog = false
+        if (_update.configuration && _update.configuration.version == 'beta' && isset(_update.plugin) && isset(_update.plugin.changelog_beta) && _update.plugin.changelog_beta != '') {
+          pluginChangelog = _update.plugin.changelog_beta
+        } else if (isset(_update.plugin) && isset(_update.plugin.changelog) && _update.plugin.changelog != '') {
+          pluginChangelog = _update.plugin.changelog
         }
+        if (pluginChangelog) {
+          tr += '<a class="btn btn-xs roundedLeft" target="_blank" href="' + pluginChangelog + '"><i class="fas fa-file-code"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+        } else {
+          tr += '<a class="btn btn-xs roundedLeft disabled"><i class="fas fa-file-code"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+        }
+
+        tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
+
+        const canUpdate = !_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0'
+        if (_update.status == 'update') {
+          tr += '<a class="btn btn-warning btn-xs update' + (!canUpdate ? ' disabled' : '') + '"><i class="fas fa-sync-alt"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
+        } else {
+          tr += '<a class="btn btn-warning btn-xs update' + (!canUpdate ? ' disabled' : '') + '"><i class="fas fa-redo-alt"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
+        }
+
+        tr += '<a class="btn btn-danger btn-xs roundedRight remove"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a> '
       } else {
-        tr += '<a class="btn btn-xs" target="_blank" href="'+_update.changelog_url+'"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
-      }
-      if (_update.type != 'core') {
-        if (_update.status == 'UPDATE') {
-          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
-            tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
-          } else {
-            tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
-          }
+        tr += '<a class="btn btn-xs roundedLeft" target="_blank" href="' + _update.changelog_url + '" id="bt_changelogCore"><i class="fas fa-file-code"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
+        if (_update.status == 'update' && jeephp2js.showUpdate == '1') {
+          tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
+          tr += '<a class="btn btn-warning btn-xs roundedRight updateJeedom"><i class="fas fa-sync-alt"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
         } else {
-          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
-            tr += '<a class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
-          } else {
-            tr += '<a class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></a> '
-          }
+          tr += '<a class="btn btn-info btn-xs roundedRight checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
         }
-      } else if (_update.status == 'UPDATE' && jeephp2js.showUpdate == '1') {
-        tr += '<a class="btn btn-warning btn-xs updateJeedom"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></a> '
       }
-      if (_update.type != 'core') {
-        tr += '<a class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a> '
-      }
-      tr += '<a class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></a>'
       tr += '</td>'
       tr += '</tr>'
       let newRow = document.createElement('tr')
@@ -542,6 +534,7 @@ if (!jeeFrontEnd.update) {
             var newContent = document.getElementById('md_specifyUpdate-template').cloneNode(true)
             newContent.setAttribute('id', 'md_specifyUpdate')
             contentEl.appendChild(newContent)
+            newContent.querySelector('#bt_warnChangelogCore').href = document.getElementById('bt_changelogCore').href
             newContent.querySelectorAll('[data-title]').forEach(_tooltip => {
               _tooltip.setAttribute('title', _tooltip.getAttribute('data-title'))
               _tooltip.removeAttribute('data-title')
@@ -567,7 +560,7 @@ if (!jeeFrontEnd.update) {
         },
         buttons: {
           confirm: {
-            label: '{{Mettre à jour}}',
+            label: '<i class="fas fa-sync-alt"></i> {{Mettre à jour}}',
             className: 'success',
             callback: {
               click: function(event) {
@@ -629,8 +622,10 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#table_update input[data-l2key="doNotUpdate"]')) {
-    _target._tippy.show()
-    setTimeout(() => { _target._tippy.hide() }, 1500)
+    if (event.isTrusted) {
+      _target.closest('label')._tippy.show()
+      setTimeout(() => { _target.closest('label')._tippy.hide() }, 1500)
+    }
     if (_target.checked) {
       _target.closest('tr').querySelector('a.btn.update').addClass('disabled')
     } else {
@@ -640,55 +635,55 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#table_update .update')) {
-    if (_target.hasClass('disabled')) return;
-    var id = _target.closest('tr').getAttribute('data-id');
-    var logicalId = _target.closest('tr').getAttribute('data-logicalid');
+    if (_target.hasClass('disabled')) return
+    var id = _target.closest('tr').getAttribute('data-id')
+    var logicalId = _target.closest('tr').getAttribute('data-logicalid')
 
     jeedom.plugin.get({
-        id: logicalId,
-        error: function(error) {
-            jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-            });
-        },
-        success: function(data) {
-            var isActivated = (data.activate !== undefined && data.activate !== null) ? data.activate : 1;
-            var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin :}} ' + logicalId + ' ?';
-            if (isActivated != 1) {
-                confirmationMessage = '{{Attention : Le plugin ' + logicalId + ' n\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}';
-            }
-
-            jeeDialog.confirm(confirmationMessage, function(result) {
-                if (result) {
-                    jeeP.progress = -1;
-                    document.getElementById('progressbarContainer').removeClass('hidden');
-                    document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled');
-                    jeeP.updateProgressBar();
-                    jeedomUtils.hideAlert();
-                    jeedom.update.do({
-                        id: id,
-                        error: function(error) {
-                            jeedomUtils.showAlert({
-                                message: error.message,
-                                level: 'danger'
-                            });
-                        },
-                        success: function() {
-                            jeeP.getJeedomLog(1, 'update');
-                        }
-                    });
-                }
-            });
+      id: logicalId,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        var isActivated = (data.activate !== undefined && data.activate !== null) ? data.activate : 1
+        var confirmationMessage = '{{Êtes-vous sûr de vouloir mettre à jour le plugin}} ' + logicalId + ' ?'
+        if (isActivated != 1) {
+          confirmationMessage = '{{Attention : Le plugin}} ' + logicalId + ' {{n\'est pas activé. Êtes-vous sûr de vouloir le mettre à jour ?}}'
         }
-    });
-    return;
-}
+
+        jeeDialog.confirm(confirmationMessage, function(result) {
+          if (result) {
+            jeeP.progress = -1
+            document.getElementById('progressbarContainer').removeClass('hidden')
+            document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled')
+            jeeP.updateProgressBar()
+            jeedomUtils.hideAlert()
+            jeedom.update.do({
+              id: id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                jeeP.getJeedomLog(1, 'update')
+              }
+            })
+          }
+        })
+      }
+    })
+    return
+  }
 
   if (_target = event.target.closest('#table_update .remove')) {
     var id = _target.closest('tr').getAttribute('data-id')
     var logicalId = _target.closest('tr').getAttribute('data-logicalid')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer :}}' + ' ' + logicalId + ' ?', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le plugin}} ' + logicalId + ' ?', function(result) {
       if (result) {
         jeedomUtils.hideAlert()
         jeedom.update.remove({
@@ -754,7 +749,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       return
     }
     let type = _target.getAttribute('data-type')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}}' + ' : ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
+    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}} ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function(result) {
       if (!result) {
         return
       }

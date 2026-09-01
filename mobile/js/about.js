@@ -6,10 +6,12 @@ function initAbout() {
   var currentTheme = $('body').attr('data-theme')
   if (currentTheme.endsWith('Dark')) {
     $('#logoJeedom').attr('src', jeedom.theme.logo_dark)
+  } else {
+    $('#logoJeedom').attr('src', jeedom.theme.logo_light)
   }
   $('.licenceText').removeClass('ui-body-inherit')
   $.ajax({
-    url:'../desktop/modal/about.txt',
+    url: '../desktop/modal/about.txt',
     success: function(data) {
       $('.licenceText').val(data)
     }
@@ -22,7 +24,7 @@ function initAbout() {
   })
 
   jeedom.config.load({
-    configuration:{'core::repo::provider':'','core::branch':'','hardware_name' : ''},
+    configuration: { 'core::repo::provider': '', 'core::branch': '', 'hardware_name': '' },
     success: function(data) {
       $('#jeedomProvider').text(data['core::repo::provider'])
       $('#jeedomBranch').text(data['core::branch'])

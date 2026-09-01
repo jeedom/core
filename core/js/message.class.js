@@ -19,16 +19,16 @@ jeedom.message = function() {};
 jeedom.message.cache = Array();
 
 jeedom.message.all = function(_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {};
+    const paramsRequired = [];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: "all",
@@ -38,16 +38,16 @@ jeedom.message.all = function(_params) {
 }
 
 jeedom.message.remove = function(_params) {
-    var paramsRequired = ['id'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['id'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: 'removeMessage',
@@ -57,16 +57,16 @@ jeedom.message.remove = function(_params) {
 }
 
 jeedom.message.clear = function(_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {};
+    const paramsRequired = [];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: 'clearMessage',
@@ -76,8 +76,8 @@ jeedom.message.clear = function(_params) {
 }
 
 jeedom.message.number = function(_params) {
-    var paramsRequired = [];
-    var paramsSpecifics = {
+    const paramsRequired = [];
+    const paramsSpecifics = {
         global: false,
         noDisplayError: true,
     };
@@ -87,8 +87,8 @@ jeedom.message.number = function(_params) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/message.ajax.php';
     paramsAJAX.data = {
         action: 'nbMessage',

@@ -102,12 +102,12 @@ if (!jeeFrontEnd.object) {
             var objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
             var objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')
 
-            if (!objectBkgdColor === undefined) {
+            if (objectBkgdColor !== '' && objectBkgdColor != null) {
               objectBkgdColor = jeedomUtils.rgbToHex(objectBkgdColor)
             } else {
               objectBkgdColor = '#696969'
             }
-            if (!objectTxtColor === undefined) {
+            if (objectTxtColor !== '' && objectTxtColor != null) {
               objectTxtColor = jeedomUtils.rgbToHex(objectTxtColor)
             } else {
               objectTxtColor = '#ebebeb'
@@ -1000,7 +1000,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.bt_removeSummary')) {
-    var cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').values
+    var cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').value
     var type = _target.closest('.div_summary').dataset.type
     _target.closest('.summary').remove()
     jeeP.updateSummaryTabNbr(type)

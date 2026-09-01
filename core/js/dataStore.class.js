@@ -17,16 +17,16 @@
 jeedom.dataStore = function() {};
 
 jeedom.dataStore.save = function(_params) {
-    var paramsRequired = ['id', 'value', 'type', 'key', 'link_id'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['id', 'value', 'type', 'key', 'link_id'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.async = _params.async || true;
 
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
@@ -42,16 +42,16 @@ jeedom.dataStore.save = function(_params) {
 }
 
 jeedom.dataStore.byTypeLinkIdKey = function(_params) {
-    var paramsRequired = ['type', 'linkId', 'key', 'usedBy'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['type', 'linkId', 'key', 'usedBy'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
         action: 'byTypeLinkIdKey',
@@ -64,16 +64,16 @@ jeedom.dataStore.byTypeLinkIdKey = function(_params) {
 }
 
 jeedom.dataStore.all = function(_params) {
-    var paramsRequired = ['type', 'usedBy'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['type', 'usedBy'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
         action: 'all',
@@ -103,7 +103,7 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
             className: 'success',
             callback: {
               click: function(event) {
-                var args = {}
+                const args = {}
                 args.human = mod_insertDataStore.getValue()
                 args.id = mod_insertDataStore.getId()
                 if (args.human.trim() != '') {
@@ -127,16 +127,16 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
 }
 
 jeedom.dataStore.remove = function(_params) {
-    var paramsRequired = ['id'];
-    var paramsSpecifics = {};
+    const paramsRequired = ['id'];
+    const paramsSpecifics = {};
     try {
         jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
     } catch (e) {
         (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
         return;
     }
-    var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-    var paramsAJAX = jeedom.private.getParamsAJAX(params);
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
     paramsAJAX.url = 'core/ajax/dataStore.ajax.php';
     paramsAJAX.data = {
         action: 'remove',

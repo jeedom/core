@@ -18,8 +18,8 @@ jeedom.view = function() {};
 jeedom.view.cache = Array();
 
 jeedom.view.all = function(_params) {
-  var paramsRequired = [];
-  var paramsSpecifics = {
+  const paramsRequired = [];
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.view.cache.all = data.result;
       return data;
@@ -35,8 +35,8 @@ jeedom.view.all = function(_params) {
     _params.success(jeedom.view.cache.all);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'all',
@@ -45,10 +45,10 @@ jeedom.view.all = function(_params) {
 }
 
 jeedom.view.toHtml = function(_params) {
-  var paramsRequired = ['id', 'version'];
-  var paramsSpecifics = {
+  const paramsRequired = ['id', 'version'];
+  const paramsSpecifics = {
     pre_success: function(data) {
-      result = jeedom.view.handleViewAjax({
+      const result = jeedom.view.handleViewAjax({
         view: data.result
       });
       result.raw = data.result;
@@ -62,8 +62,8 @@ jeedom.view.toHtml = function(_params) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: "get",
@@ -75,16 +75,16 @@ jeedom.view.toHtml = function(_params) {
 }
 
 jeedom.view.copy = function(_params) {
-  var paramsRequired = ['id', 'name'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id', 'name'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'copy',
@@ -95,19 +95,19 @@ jeedom.view.copy = function(_params) {
 }
 
 jeedom.view.handleViewAjax = function(_params) {
-  var result = {
+  const result = {
     html: '',
     scenario: [],
     cmd: [],
     eqLogic: []
   };
-  var colIdx = 0
-  var viewZone = null;
-  var div_class = null;
-  var div_id = null;
-  var viewData = null;
-  var configuration = null;
-  for (var i in _params.view.viewZone) {
+  let colIdx = 0
+  let viewZone = null;
+  let div_class = null;
+  let div_id = null;
+  let viewData = null;
+  let configuration = null;
+  for (const i in _params.view.viewZone) {
     viewZone = _params.view.viewZone[i];
     if (colIdx == 0) result.html += '<div class="col-xs-12 div_rowZones">';
     div_class = 'div_viewZone ';
@@ -123,7 +123,7 @@ jeedom.view.handleViewAjax = function(_params) {
     /*         * *****************viewZone widget***************** */
     if (viewZone.type == 'widget') {
       result.html += '<div id="' + div_id + '" class="eqLogicZone posEqWidthRef" data-viewZone-id="' + viewZone.id + '">';
-      for (var j in viewZone.viewData) {
+      for (const j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
         result.html += viewData.html;
         result[viewData.type].push(viewData.id);
@@ -132,10 +132,10 @@ jeedom.view.handleViewAjax = function(_params) {
     } else if (viewZone.type == 'graph') {
       result.html += '<div id="' + div_id + '" class="chartContainer"></div>';
       result.html += '<div class="chartToDraw">';
-      for (var j in viewZone.viewData) {
+      for (const j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
         configuration = JSON.stringify(viewData.configuration);
-        option = configuration.replace(/"/g, "'");
+        const option = configuration.replace(/"/g, "'");
         result.html += '<div class="viewZoneData hidden" data-cmdId="'+viewData.link_id+'" data-option="'+option+'" data-el="'+div_id+'" data-height="'+viewZone.configuration.height+'" data-dateRange="'+viewZone.configuration.dateRange+'"></div>';
       }
       result.html += '</div>';
@@ -152,16 +152,16 @@ jeedom.view.handleViewAjax = function(_params) {
 }
 
 jeedom.view.remove = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'remove',
@@ -171,16 +171,16 @@ jeedom.view.remove = function(_params) {
 }
 
 jeedom.view.save = function(_params) {
-  var paramsRequired = ['id', 'view'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id', 'view'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'save',
@@ -191,16 +191,16 @@ jeedom.view.save = function(_params) {
 }
 
 jeedom.view.get = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'get',
@@ -210,16 +210,16 @@ jeedom.view.get = function(_params) {
 }
 
 jeedom.view.setComponentOrder = function(_params) {
-  var paramsRequired = ['components'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['components'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'setComponentOrder',
@@ -229,16 +229,16 @@ jeedom.view.setComponentOrder = function(_params) {
 }
 
 jeedom.view.setOrder = function(_params) {
-  var paramsRequired = ['views'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['views'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'setOrder',
@@ -248,16 +248,16 @@ jeedom.view.setOrder = function(_params) {
 }
 
 jeedom.view.removeImage = function(_params) {
-  var paramsRequired = ['id'];
-  var paramsSpecifics = {};
+  const paramsRequired = ['id'];
+  const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
   } catch (e) {
     (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
     return;
   }
-  var params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  var paramsAJAX = jeedom.private.getParamsAJAX(params);
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
   paramsAJAX.url = 'core/ajax/view.ajax.php';
   paramsAJAX.data = {
     action: 'removeImage',
