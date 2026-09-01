@@ -10,6 +10,7 @@
 | 2026-06-30 15:36:39 | Uncheck default plugins update | [#3406](https://github.com/jeedom/core/pull/3406) |
 | 2026-06-29 16:12:13 | Add history retention mode | [#3401](https://github.com/jeedom/core/pull/3401) |
 | 2026-06-25 16:40:35 | Update Jeedom logos to new branding | [#3392](https://github.com/jeedom/core/pull/3392) |
+| 2026-06-19 12:09:45 | Update display.php | [#3379](https://github.com/jeedom/core/pull/3379) |
 
 ## Breaking changes
 | Merge date | Title | PR |
@@ -17,6 +18,7 @@
 | 2026-09-01 08:12:25 | migrate password sha512 to php native | [#3476](https://github.com/jeedom/core/pull/3476) |
 | 2026-09-01 08:05:52 | add option to avoid infinite save loops in eqLogic import | [#3471](https://github.com/jeedom/core/pull/3471) |
 | 2026-08-17 12:18:51 | Centralize eqLogic remove confirmation and post-delete redirect | [#3415](https://github.com/jeedom/core/pull/3415) |
+| 2026-06-23 11:57:10 | chore: remove InfluxDB integration | [#3306](https://github.com/jeedom/core/pull/3306) |
 
 ## Fixes
 | Merge date | Title | PR |
@@ -42,6 +44,7 @@
 | 2026-07-16 09:33:46 | Harmonize wording of selection modal titles | [#3424](https://github.com/jeedom/core/pull/3424) |
 | 2026-06-30 11:29:16 | Prevent recording uppercase status in update database | [#3405](https://github.com/jeedom/core/pull/3405) |
 | 2026-06-25 13:40:05 | fix in case pdo hydratation set timeout to null | [#3393](https://github.com/jeedom/core/pull/3393) |
+| 2026-06-23 11:10:53 | Fix missing translations in cmd.configure modal | [#3384](https://github.com/jeedom/core/pull/3384) |
 
 ## Others
 | Merge date | Title | PR |
@@ -51,6 +54,7 @@
 | 2026-07-30 14:11:05 | Speed up plugin::isInstalled and use it instead of byId for existence checks | [#3446](https://github.com/jeedom/core/pull/3446) |
 | 2026-07-22 10:45:14 | Modernize Element.prototype.empty using replaceChildren | [#3417](https://github.com/jeedom/core/pull/3417) |
 | 2026-06-27 21:01:28 | Use guard clauses in cmd->addHistoryValue | [#3400](https://github.com/jeedom/core/pull/3400) |
+| 2026-06-23 11:59:28 | patch: remove nginx support | [#3376](https://github.com/jeedom/core/pull/3376) |
 
 ## Documentations
 | Merge date | Title | PR |
@@ -65,3 +69,7 @@
 | 2026-07-01 18:14:57 | chore(deps): bump actions/cache from 5 to 6 | [#3411](https://github.com/jeedom/core/pull/3411) |
 | 2026-06-26 16:47:36 | Remove V4-stable-update workflow | [#3397](https://github.com/jeedom/core/pull/3397) |
 
+## Uncategorized
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-06-23 14:25:02 | chore: merge back release to develop | [#3386](https://github.com/jeedom/core/pull/3386) |
