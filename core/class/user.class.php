@@ -501,9 +501,6 @@ class user {
 		]);
 	}
 
-	public function postUpdate(): void {
-	}
-
 	public function encrypt(): void {
 		$this->getOptions('twoFactorAuthentification', utils::encrypt($this->getOptions('twoFactorAuthentification')));
 	}
