@@ -191,6 +191,18 @@ class jeedom {
 			'key' => 'uptodate'
 		);
 
+		if (config::byKey('core::repo::provider') == 'default') {
+			$branch = config::byKey('core::branch', 'core', 'master');
+			$state = update::isCoreBranchValid();
+			$return[] = array(
+				'name' => __('Branche du core', __FILE__),
+				'state' => $state,
+				'result' => ($state) ? $branch : $branch . ' (' . __('introuvable', __FILE__) . ')',
+				'comment' => ($state) ? '' : update::getCoreBranchInvalidMessage(),
+				'key' => 'coreBranch'
+			);
+		}
+
 		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
 		$return[] = array(
 			'name' => __('Cron actif', __FILE__),
