@@ -1184,7 +1184,7 @@ class jeedom {
 			report::clean();
 			DB::optimize();
 			listener::clean();
-			user::regenerateHash();
+			user::regenerateHashes();
 			jeeObject::cronDaily();
 			timeline::clean(false);
 		} catch (\Throwable $e) {

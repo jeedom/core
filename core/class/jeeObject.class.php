@@ -147,7 +147,7 @@ class jeeObject {
 	}
 
 	public static function fromHumanReadable($_input) {
-		if(empty($_input)){
+		if (empty($_input)) {
 			return $_input;
 		}
 		$isJson = false;
@@ -503,7 +503,7 @@ class jeeObject {
 			if (!isset($def[$key]['hidenulnumber'])) {
 				$def[$key]['hidenulnumber'] = 0;
 			}
-            
+
 			$return[$key]['icon'] = array();
 			if (isset($def[$key]['icon']) && $def[$key]['icon'] != '') {
 				$def[$key]['icon'] = substr(substr($def[$key]['icon'], 10), 0, -6);
@@ -517,7 +517,7 @@ class jeeObject {
 				$return[$key]['icon']['name'] = $iconName;
 				$return[$key]['icon']['color'] = $iconColor;
 			}
-            
+
 			$return[$key]['iconnul'] = array();
 			if (isset($def[$key]['iconnul']) && $def[$key]['iconnul'] != '') {
 				$def[$key]['iconnul'] = substr(substr($def[$key]['iconnul'], 10), 0, -6);
@@ -530,9 +530,8 @@ class jeeObject {
 				$return[$key]['iconnul']['type'] = $libName;
 				$return[$key]['iconnul']['name'] = $iconName;
 				$return[$key]['iconnul']['color'] = $iconColor;
-			}
-			else $return[$key]['iconnul'] = $return[$key]['icon'];
-          
+			} else $return[$key]['iconnul'] = $return[$key]['icon'];
+
 			$return[$key]['displayzerovalue'] = $allowDisplayZero;
 			$return[$key]['hidenulnumber'] = $def[$key]['hidenulnumber'];
 			$return[$key]['value'] = $result;
@@ -550,22 +549,7 @@ class jeeObject {
 			return;
 		}
 		global $JEEDOM_INTERNAL_CONFIG;
-		try {
-			$plugin = plugin::byId('virtual');
-			if (!is_object($plugin)) {
-				$update = update::byLogicalId('virtual');
-				if (!is_object($update)) {
-					$update = new update();
-				}
-				$update->setLogicalId('virtual');
-				$update->setSource('market');
-				$update->setConfiguration('version', 'stable');
-				$update->save();
-				$update->doUpdate();
-				sleep(2);
-				$plugin = plugin::byId('virtual');
-			}
-		} catch (Exception $e) {
+		if (!plugin::isInstalled('virtual')) {
 			$update = update::byLogicalId('virtual');
 			if (!is_object($update)) {
 				$update = new update();
@@ -575,8 +559,12 @@ class jeeObject {
 			$update->setConfiguration('version', 'stable');
 			$update->save();
 			$update->doUpdate();
-			sleep(2);
+			// sleep(2); // legacy workaround from 2016 (3cbb2d597), no dependancy_install() here and doUpdate() is fully synchronous, unclear it was ever needed. Kept commented instead of removed pending real-world confirmation.
+		}
+		try {
 			$plugin = plugin::byId('virtual');
+		} catch (Exception $e) {
+			$plugin = null;
 		}
 		if (!is_object($plugin) || !class_exists('virtual') || !class_exists('virtualCmd')) {
 			throw new Exception(__('Le plugin virtuel doit être installé', __FILE__));

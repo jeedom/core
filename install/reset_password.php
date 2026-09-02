@@ -38,7 +38,7 @@ if (!is_object($user)) {
   die();
 }
 $password = config::genKey();
-$user->setPassword(sha512($password));
+$user->setPassword($password);
 $user->save();
 log::audit('User password reset by console', [
   'login' => $user->getLogin(),
