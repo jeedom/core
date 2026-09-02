@@ -264,18 +264,24 @@ try {
 		unautorizedInDemo();
 		if (init('key') == '' && init('user_id') == '') {
 			if (!isConnect('admin')) {
-				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-			}
-			foreach ((user::all()) as $user) {
-				if ($user->getId() == $_SESSION['user']->getId()) {
-					@session_start();
-					$_SESSION['user']->refresh();
-					$_SESSION['user']->setOptions('registerDevice', array());
-					$_SESSION['user']->save();
-					@session_write_close();
-				} else {
-					$user->setOptions('registerDevice', array());
-					$user->save();
+				// If not admin, only allow to remove all the register devices for the current user
+				@session_start();
+				$_SESSION['user']->refresh();
+				$_SESSION['user']->setOptions('registerDevice', array());
+				$_SESSION['user']->save();
+				@session_write_close();
+			} else {
+				foreach ((user::all()) as $user) {
+					if ($user->getId() == $_SESSION['user']->getId()) {
+						@session_start();
+						$_SESSION['user']->refresh();
+						$_SESSION['user']->setOptions('registerDevice', array());
+						$_SESSION['user']->save();
+						@session_write_close();
+					} else {
+						$user->setOptions('registerDevice', array());
+						$user->save();
+					}
 				}
 			}
 			ajax::success();
