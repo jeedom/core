@@ -110,7 +110,6 @@ switch ($argv[1]) {
                 }
                 $user->setPassword($argv[4]);
                 $user->save();
-                echo "Password of user " . $argv[3] . " changed with success";
                 break;
             case 'add':
                 if (!isset($argv[3]) || !isset($argv[4])) {
@@ -131,7 +130,6 @@ switch ($argv[1]) {
                 $user->setPassword($argv[4]);
                 $user->setProfils('admin');
                 $user->save();
-                echo "User " . $argv[3] . " created with success";
                 break;
             default:
                 echo "No action provide : list,password";
