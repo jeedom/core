@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-08-27 13:50:54 | Enhance Samba command security with temporary authentication file | [#3475](https://github.com/jeedom/core/pull/3475) |
 | 2026-07-22 10:57:14 | Sync update notification message after each relevant action | [#3410](https://github.com/jeedom/core/pull/3410) |
 | 2026-07-20 19:06:23 | Unify plugin install prompts and revamp the add plugin modal | [#3428](https://github.com/jeedom/core/pull/3428) |
 | 2026-07-17 12:21:21 | Harmonize buttons and icons on the update page | [#3426](https://github.com/jeedom/core/pull/3426) |
@@ -23,8 +24,8 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-02 10:52:02 | Fix history charts on views/designs never showing the continuation-to-now dash | [#3458](https://github.com/jeedom/core/pull/3458) |
 | 2026-08-31 14:59:18 | Refactor user hash regeneration to avoid double save side effects | [#3470](https://github.com/jeedom/core/pull/3470) |
-| 2026-08-27 13:50:54 | Enhance Samba command security with temporary authentication file | [#3475](https://github.com/jeedom/core/pull/3475) |
 | 2026-08-20 13:27:53 | Simplify OpenVPN and virtual plugin auto-install checks | [#3454](https://github.com/jeedom/core/pull/3454) |
 | 2026-08-18 20:06:11 | Fix stale dashed tail not clearing on live history chart update | [#3456](https://github.com/jeedom/core/pull/3456) |
 | 2026-08-15 17:41:40 | Restore unreachable error handling when plugin::byId can't find a plugin | [#3455](https://github.com/jeedom/core/pull/3455) |
@@ -44,6 +45,7 @@
 | 2026-07-16 09:33:46 | Harmonize wording of selection modal titles | [#3424](https://github.com/jeedom/core/pull/3424) |
 | 2026-06-30 11:29:16 | Prevent recording uppercase status in update database | [#3405](https://github.com/jeedom/core/pull/3405) |
 | 2026-06-25 13:40:05 | fix in case pdo hydratation set timeout to null | [#3393](https://github.com/jeedom/core/pull/3393) |
+| 2026-06-25 13:39:19 | fix in case pdo hydratation set timeout to null | [#3395](https://github.com/jeedom/core/pull/3395) |
 | 2026-06-23 11:10:53 | Fix missing translations in cmd.configure modal | [#3384](https://github.com/jeedom/core/pull/3384) |
 
 ## Others
@@ -72,7 +74,3 @@
 | 2026-06-26 16:47:36 | Remove V4-stable-update workflow | [#3397](https://github.com/jeedom/core/pull/3397) |
 | 2026-06-23 14:25:02 | chore: merge back release to develop | [#3386](https://github.com/jeedom/core/pull/3386) |
 
-## Uncategorized
-| Merge date | Title | PR |
-| --- | --- | --- |
-| 2026-06-25 13:39:19 | fix in case pdo hydratation set timeout to null | [#3395](https://github.com/jeedom/core/pull/3395) |
