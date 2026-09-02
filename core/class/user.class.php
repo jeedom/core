@@ -128,7 +128,7 @@ class user {
 					->setProfils($profile);
 				$user->save();
 				log::add("connection", "info", 'User created from the LDAP: ' . $_login);
-				jeedom::event('user_connect', false, array('trigger_value' => $_login));  # FIXME: mips: user is NOT actually connected at this point, so this event is misleading. It should be moved after the checks on two factor authentication and localOnly.
+				jeedom::event('user_connect', false, array('trigger_value' => $_login));
 				// TODO : if username == password => change ldap password
 				log::add('event', 'info', 'User connection accepted: ' . $_login);
 				return $user;
@@ -159,7 +159,7 @@ class user {
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
-			jeedom::event('user_connect', false, array('trigger_value' => $_login)); # FIXME: mips: user is NOT actually connected at this point, so this event is misleading. It should be moved after the checks on two factor authentication and localOnly.
+			jeedom::event('user_connect', false, array('trigger_value' => $_login));
 			log::add('event', 'info', 'Local account found for: ' . $_login);
 		}
 		return $user;
