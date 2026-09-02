@@ -59,7 +59,9 @@ if (init('type') != '') {
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action', __FILE__));
 		}
 		if (!jeedom::apiAccess(init('apikey', init('api')), $plugin)) {
-			user::failedLogin();
+			user::failedLogin([
+				'reason' => __('API key invalide ou non autorisée dans ce contexte', __FILE__),
+			]);
 			sleep(5);
 			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
 		}
@@ -277,8 +279,11 @@ try {
 	$jsonrpc = new jsonrpc($request);
 
 	if ($jsonrpc->getJsonrpc() != '2.0') {
-		user::failedLogin();
-		throw new Exception(__('Requête invalide. Version JSON-RPC invalide :', __FILE__) . ' ' . $jsonrpc->getJsonrpc(), -32001);
+		$msg = __('Requête invalide. Version JSON-RPC invalide :', __FILE__) . ' ' . $jsonrpc->getJsonrpc();
+		user::failedLogin([
+			'reason' => $msg,
+		]);
+		throw new Exception($msg, -32001);
 	}
 
 	if (config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), $jsonrpc->getMethod())) {
@@ -315,19 +320,28 @@ try {
 
 		if ($jsonrpc->getMethod() == 'user::getHash') {
 			if (!isset($params['login']) || !isset($params['password']) || $params['login'] == '' || $params['password'] == '') {
-				user::failedLogin();
+				user::failedLogin([
+					'login' => $params['login'],
+					'reason' => __('Nom d\'utilisateur ou mot de passe vide', __FILE__),
+				]);
 				sleep(5);
 				throw new Exception(__('L\'identifiant ou le mot de passe ne peuvent pas être vide', __FILE__), -32001);
 			}
 			$user = user::connect($params['login'], $params['password']);
 			if (!is_object($user) || $user->getEnable() != 1) {
-				user::failedLogin();
+				user::failedLogin([
+					'login' => $params['login'],
+					'reason' => __('Nom d\'utilisateur ou mot de passe invalide ou utilisateur désactivé', __FILE__),
+				]);
 				sleep(5);
 				throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
 			}
 			if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 				if (!isset($params['twoFactorCode']) || trim($params['twoFactorCode']) == '' || !$user->validateTwoFactorCode($params['twoFactorCode'])) {
-					user::failedLogin();
+					user::failedLogin([
+						'login' => $params['login'],
+						'reason' => __('Code d\'authentification à deux facteurs invalide ou manquant', __FILE__),
+					]);
 					sleep(5);
 					throw new Exception(__('Echec lors de l\'authentification', __FILE__), -32001);
 				}

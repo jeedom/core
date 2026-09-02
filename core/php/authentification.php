@@ -87,33 +87,27 @@ if (init('logout') == 1) {
 function login(string $_login, string $_password, ?string $_twoFactor = null): bool {
 	$user = user::connect($_login, $_password);
 	if (!is_object($user) || $user->getEnable() == 0) {
-		log::audit('User connection refused', [
+		user::failedLogin([
 			'login' => $_login,
-			'ip' => getClientIp(),
-			'reason' => 'Invalid login or password or user disabled',
+			'reason' => __('Nom d\'utilisateur ou mot de passe invalide ou utilisateur désactivé', __FILE__),
 		]);
-		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		log::audit('User connection refused', [
+		user::failedLogin([
 			'login' => $_login,
-			'ip' => getClientIp(),
-			'reason' => 'User is local only',
+			'reason' => __('Utilisateur local uniquement', __FILE__),
 		]);
-		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
-			log::audit('User connection refused', [
+			user::failedLogin([
 				'login' => $_login,
-				'ip' => getClientIp(),
-				'reason' => 'Invalid or missing two factor authentication code',
+				'reason' => __('Code d\'authentification à deux facteurs invalide ou manquant', __FILE__),
 			]);
-			user::failedLogin();
 			sleep(5);
 			return false;
 		}
@@ -134,43 +128,36 @@ function loginByHash(string $_key): bool {
 	$key = explode('-', $_key);
 	$user = user::byHash($key[0]);
 	if (!is_object($user) || $user->getEnable() == 0) {
-		log::audit('User connection refused', [
-			'ip' => getClientIp(),
-			'reason' => 'Invalid hash or user disabled',
+		user::failedLogin([
+			'login' => $key[0],
+			'reason' => __('Clé API utilisateur invalide ou utilisateur désactivé', __FILE__)
 		]);
-		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		log::audit('User connection refused', [
+		user::failedLogin([
 			'login' => $user->getLogin(),
-			'ip' => getClientIp(),
-			'reason' => 'User is local only',
+			'reason' => __('Utilisateur local uniquement', __FILE__),
 		]);
-		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	if (!isset($key[1])) {
-		log::audit('User connection refused', [
+		user::failedLogin([
 			'login' => $user->getLogin(),
-			'ip' => getClientIp(),
-			'reason' => 'Missing registered device key',
+			'reason' => __('Clé de périphérique enregistrée manquante', __FILE__),
 		]);
-		user::failedLogin();
 		sleep(5);
 		return false;
 	}
 	$rdk = sha512($key[1]);
 	$registerDevice = $user->getOptions('registerDevice', array());
 	if (!is_array($registerDevice) || !isset($registerDevice[$rdk])) {
-		log::audit('User connection refused', [
+		user::failedLogin([
 			'login' => $user->getLogin(),
-			'ip' => getClientIp(),
-			'reason' => 'Invalid registered device key',
+			'reason' => __('Périphérique non enregistré ou clé invalide', __FILE__),
 		]);
-		user::failedLogin();
 		sleep(5);
 		return false;
 	}

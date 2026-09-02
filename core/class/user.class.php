@@ -311,14 +311,21 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function failedLogin(): void {
+	public static function failedLogin(array $_context = []): void {
 		$current_ip = getClientIp();
 		$failed_login = cache::byKey('security::failed_login::' . $current_ip);
-		cache::set('security::failed_login::' . $current_ip, ($failed_login->getValue(0) + 1), config::byKey('security::timeLoginFailed'));
-		if (($failed_login->getValue(0) + 1) > config::byKey('security::maxFailedLogin')) {
+		$newValue = $failed_login->getValue(0) + 1;
+		$maxValue = config::byKey('security::maxFailedLogin');
+		cache::set('security::failed_login::' . $current_ip, $newValue, config::byKey('security::timeLoginFailed'));
+		$_context['ip'] = $current_ip;
+		log::audit("Login failed ({$newValue}/{$maxValue})", $_context);
+		if ($newValue > $maxValue) {
 			$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
 			$ban_ips[$current_ip] = strtotime('now');
 			cache::set('security::banip', json_encode($ban_ips));
+			log::audit('IP banned', [
+				'ip' => $current_ip,
+			]);
 		}
 	}
 
