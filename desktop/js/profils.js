@@ -92,14 +92,14 @@ jeedom.user.get({
   }
 })
 
-
 //Manage events outside parents delegations:
 if (jeephp2js.profils_user_id == -1) {
   document.getElementById('bt_genUserKeyAPI')?.addEventListener('click', function (event) {
-    var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
-    profil.hash = ''
+
     jeedom.user.saveProfils({
-      profils: profil,
+      profils: {
+        hash: ''
+      },
       error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
