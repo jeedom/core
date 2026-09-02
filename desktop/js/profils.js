@@ -20,7 +20,7 @@ if (!jeeFrontEnd.profils) {
   jeeFrontEnd.profils = {
     tableDevices: null,
     deviceDataTable: null,
-    init: function() {
+    init: function () {
       /* Not used, also loaded as modal!
       window.jeeP = this
       */
@@ -35,33 +35,33 @@ if (!jeeFrontEnd.profils) {
         })
       }
     },
-    removeRegisterDevice: function(_key, _userId) {
+    removeRegisterDevice: function (_key, _userId) {
       if (!isset(_userId)) _userId = ''
       jeedom.user.removeRegisterDevice({
         key: _key,
         user_id: _userId,
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           jeeFrontEnd.modifyWithoutSave = false
           window.location.reload()
         }
       })
     },
-    deleteSession: function(_id) {
+    deleteSession: function (_id) {
       jeedom.user.deleteSession({
         id: _id,
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           window.location.reload()
         }
       })
@@ -71,7 +71,7 @@ if (!jeeFrontEnd.profils) {
 
 jeeFrontEnd.profils.init()
 
-document.registerEvent('keydown', function(event) {
+document.registerEvent('keydown', function (event) {
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
     document.getElementById("bt_saveProfils").click()
@@ -80,16 +80,14 @@ document.registerEvent('keydown', function(event) {
 
 jeedom.user.get({
   id: jeephp2js.profils_user_id,
-  error: function(error) {
+  error: function (error) {
     jeedomUtils.showAlert({
       message: error.message,
       level: 'danger'
     })
   },
-  success: function(data) {
+  success: function (data) {
     document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
-    let pass = document.getElementById('in_passwordCheck')
-    if (pass) pass.value = data.password
     jeeFrontEnd.modifyWithoutSave = false
   }
 })
@@ -97,30 +95,30 @@ jeedom.user.get({
 
 //Manage events outside parents delegations:
 if (jeephp2js.profils_user_id == -1) {
-  document.getElementById('bt_genUserKeyAPI')?.addEventListener('click', function(event) {
+  document.getElementById('bt_genUserKeyAPI')?.addEventListener('click', function (event) {
     var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
     profil.hash = ''
     jeedom.user.saveProfils({
       profils: profil,
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function() {
+      success: function () {
         jeedomUtils.showAlert({
           message: "{{Opération effectuée}}",
           level: 'success'
         })
         jeedom.user.get({
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function(data) {
+          success: function (data) {
             document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
             jeeFrontEnd.modifyWithoutSave = false
           }
@@ -129,16 +127,16 @@ if (jeephp2js.profils_user_id == -1) {
     })
   })
 
-  document.getElementById('bt_removeAllRegisterDevice')?.addEventListener('click', function(event) {
+  document.getElementById('bt_removeAllRegisterDevice')?.addEventListener('click', function (event) {
     jeedom.user.removeRegisterDevice({
       key: '',
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function(data) {
+      success: function (data) {
         jeeFrontEnd.modifyWithoutSave = false
         window.location.reload()
       }
@@ -146,7 +144,7 @@ if (jeephp2js.profils_user_id == -1) {
   })
 }
 
-document.getElementById('bt_saveProfils')?.addEventListener('click', function(event) {
+document.getElementById('bt_saveProfils')?.addEventListener('click', function (event) {
   jeedomUtils.hideAlert()
   var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   if (jeephp2js.profils_user_id == -1) {
@@ -159,25 +157,25 @@ document.getElementById('bt_saveProfils')?.addEventListener('click', function(ev
     }
     jeedom.user.saveProfils({
       profils: profil,
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function() {
+      success: function () {
         jeedomUtils.showAlert({
           message: "{{Sauvegarde effectuée}}",
           level: 'success'
         })
         jeedom.user.get({
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function(data) {
+          success: function (data) {
             document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
             jeeFrontEnd.modifyWithoutSave = false
           }
@@ -188,25 +186,25 @@ document.getElementById('bt_saveProfils')?.addEventListener('click', function(ev
     profil.id = jeephp2js.profils_user_id;
     jeedom.user.save({
       users: [profil],
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function() {
+      success: function () {
         jeedomUtils.showAlert({
           message: "{{Sauvegarde effectuée}}",
           level: 'success'
         })
         jeedom.user.get({
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function(data) {
+          success: function (data) {
             jeeFrontEnd.modifyWithoutSave = false
           }
         })
@@ -216,7 +214,7 @@ document.getElementById('bt_saveProfils')?.addEventListener('click', function(ev
   return false
 })
 
-document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListener('click', function(event) {
+document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListener('click', function (event) {
   var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   jeeDialog.dialog({
     id: 'jee_modal',
@@ -227,7 +225,7 @@ document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListen
 
 /*Events delegations
 */
-document.getElementById('div_pageContainer').addEventListener('click', function(event) {
+document.getElementById('div_pageContainer').addEventListener('click', function (event) {
   var _target = null
   if (jeephp2js.profils_user_id == -1) {
     if (_target = event.target.closest('.bt_removeRegisterDevice')) {
@@ -242,7 +240,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 })
 
-document.getElementById('interfacetab').addEventListener('click', function(event) {
+document.getElementById('interfacetab').addEventListener('click', function (event) {
   var _target = null
   if (_target = event.target.closest('.bt_selectWarnMeCmd')) {
     jeedom.cmd.getSelectModal({
@@ -250,7 +248,7 @@ document.getElementById('interfacetab').addEventListener('click', function(event
         type: 'action',
         subType: 'message'
       }
-    }, function(result) {
+    }, function (result) {
       document.querySelector('.userAttr[data-l1key="options"][data-l2key="notification::cmd"]').jeeValue(result.human)
       jeeFrontEnd.modifyWithoutSave = true
     })
@@ -258,7 +256,7 @@ document.getElementById('interfacetab').addEventListener('click', function(event
   }
 })
 
-document.getElementById('div_pageContainer').addEventListener('change', function(event) {
+document.getElementById('div_pageContainer').addEventListener('change', function (event) {
   if (event.target.matches('.userAttr')) {
     jeeFrontEnd.modifyWithoutSave = true
   }
