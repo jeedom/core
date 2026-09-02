@@ -110,9 +110,6 @@ switch ($argv[1]) {
                 }
                 $user->setPassword($argv[4]);
                 $user->save();
-                log::audit('User password changed by console', [
-                    'login' => $user->getLogin(),
-                ]);
                 echo "Password of user " . $argv[3] . " changed with success";
                 break;
             case 'add':
@@ -134,9 +131,6 @@ switch ($argv[1]) {
                 $user->setPassword($argv[4]);
                 $user->setProfils('admin');
                 $user->save();
-                log::audit('User created by console', [
-                    'login' => $user->getLogin(),
-                ]);
                 echo "User " . $argv[3] . " created with success";
                 break;
             default:

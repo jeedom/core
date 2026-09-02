@@ -637,7 +637,7 @@ class log extends AbstractLogger {
 		}
 	}
 
-	public static function audit(string $message, array $context = array()) {
+	public static function audit(string $message, array $context = array()): void {
 		$parts = [];
 		foreach ($context as $key => $value) {
 			if (is_scalar($value)) {

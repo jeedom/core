@@ -159,10 +159,6 @@ try {
 			->setPassword('admin')
 			->setProfils('admin');
 		$user->save();
-		log::audit('User admin created', [
-			'login' => $user->getLogin(),
-			'reason' => 'No admin user found, creating one',
-		]);
 		echo "OK (admin/admin)\n";
 	}
 } catch (Exception $e) {
