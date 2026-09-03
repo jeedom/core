@@ -32,6 +32,14 @@ foreach (user::all() as $user) {
 }
 echo "Please type login : \n";
 $username = trim(fgets(STDIN));
+if ($username == '') {
+  echo "Username cannot be empty\n";
+  die();
+}
+if ($username == 'internal_report' || $username == 'jeedom_support') {
+  echo "You cannot reset password for this user\n";
+  die();
+}
 $user = user::byLogin($username);
 if (!is_object($user)) {
   echo "User $username not found\n";

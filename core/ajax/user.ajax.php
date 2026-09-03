@@ -166,6 +166,11 @@ try {
 				if (config::byKey('ldap::enable') == '1') {
 					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
+
+				if ($user_json['login'] == 'internal_report' || $user_json['login'] == 'jeedom_support') {
+					throw new Exception(__('Vous ne pouvez pas créer un utilisateur avec ce login', __FILE__));
+				}
+
 				$user = new user();
 
 				$keyWhitelist = ['login', 'password']; // Only allow login and password to be set when creating a new user
@@ -189,6 +194,12 @@ try {
 					if (isset($user_json['profils']) && $user_json['profils'] != 'admin') {
 						throw new Exception(__('Vous ne pouvez pas changer le profil du compte avec lequel vous êtes connecté', __FILE__));
 					}
+				}
+				if ($user->getLogin() == 'internal_report' || $user->getLogin() == 'jeedom_support') {
+					continue; // Do not allow to modify these users
+				}
+				if ($user_json['login'] == 'internal_report' || $user_json['login'] == 'jeedom_support') {
+					throw new Exception(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $user_json['login']));
 				}
 			}
 			utils::a2o($user, $user_json);
