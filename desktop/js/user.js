@@ -228,6 +228,16 @@ function handleSupportAccess(enable) {
   });
 }
 
+function generateRandomPassword() {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+  let pass = '';
+  for (let i = 0; i < 16; i++) {
+    pass += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return pass;
+}
+
 
 /*Events delegations
 */
@@ -240,9 +250,25 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#bt_addUser')) {
     jeedomUtils.hideAlert()
-    let content = '<input class="promptAttr" data-l1key="newUserLogin" autocomplete="off" type="text" placeholder="{{Identifiant}}">'
-    content += '<input class="promptAttr" data-l1key="newUserMdp" autocomplete="off" type="text" placeholder="{{Mot de passe}}">'
-    jeeDialog.prompt({
+
+    const content =
+      '<input class="promptAttr" data-l1key="newUserLogin" autocomplete="off" type="text" placeholder="{{Identifiant}}">' +
+      '<div class="input-group">' +
+      '<input type="text" class="promptAttr roundedLeft inputPassword" data-l1key="newUserPswd" autocomplete="off">' +
+      '<span class="input-group-btn">' +
+      '<a class="btn btn-sm bt_generatePass" title="{{Générer un mot de passe aléatoire}}" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-random"></i>' +
+      '</a>' +
+
+      '</span>' +
+      '<span class="input-group-btn" >' +
+      '<a class="btn btn-sm bt_showPass roundedRight" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-eye"></i>' +
+      '</a>' +
+      '</span>' +
+      '</div>';
+
+    const newUserDialog = jeeDialog.prompt({
       title: "{{Ajouter un utilisateur}}",
       message: content,
       inputType: false,
@@ -250,7 +276,7 @@ document.getElementById('div_administration').addEventListener('click', function
         if (result) {
           var user = [{
             login: result.newUserLogin,
-            password: result.newUserMdp
+            password: result.newUserPswd
           }]
           jeedom.user.save({
             users: user,
@@ -272,6 +298,14 @@ document.getElementById('div_administration').addEventListener('click', function
         }
       }
     })
+
+    newUserDialog.querySelector('.bt_generatePass').addEventListener('click', function () {
+      newUserDialog.querySelector('input[data-l1key="newUserPswd"]').value = generateRandomPassword();
+    });
+    newUserDialog.querySelector('input[data-l1key="newUserPswd"]').value = generateRandomPassword();
+
+    jeedomUtils.initTooltips()
+
     return
   }
 
@@ -339,32 +373,60 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#table_user .bt_change_mdp_user')) {
     jeedomUtils.hideAlert()
-    var user = {
+    const user = {
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
       login: _target.closest('tr').querySelector('input[data-l1key="login"]').value
     }
-    jeeDialog.prompt("{{Quel est le nouveau mot de passe ?}}", function (result) {
-      if (result !== null) {
-        user.password = result
-        jeedom.user.save({
-          users: [user],
-          error: function (error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function () {
-            jeeP.printUsers()
-            jeedomUtils.showAlert({
-              message: '{{Sauvegarde effectuée}}',
-              level: 'success'
-            })
-            jeeFrontEnd.modifyWithoutSave = false
-          }
-        })
+    const content =
+      '<div class="input-group">' +
+      '<input type="text" class="promptAttr roundedLeft inputPassword" data-l1key="result" autocomplete="off">' +
+      '<span class="input-group-btn">' +
+      '<a class="btn btn-sm bt_generatePass" title="{{Générer un mot de passe aléatoire}}" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-random"></i>' +
+      '</a>' +
+
+      '</span>' +
+      '<span class="input-group-btn" >' +
+      '<a class="btn btn-sm bt_showPass roundedRight" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-eye"></i>' +
+      '</a>' +
+      '</span>' +
+      '</div>';
+
+    const changePswdDialog = jeeDialog.prompt({
+      title: "{{Quel est le nouveau mot de passe ?}}",
+      message: content,
+      inputType: false,
+      callback: function (newPswd) {
+        if (newPswd) {
+          user.password = newPswd
+          jeedom.user.save({
+            users: [user],
+            error: function (error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function () {
+              jeeP.printUsers()
+              jeedomUtils.showAlert({
+                message: '{{Sauvegarde effectuée}}',
+                level: 'success'
+              })
+              jeeFrontEnd.modifyWithoutSave = false
+            }
+          })
+        }
       }
     })
+
+    changePswdDialog.querySelector('.bt_generatePass').addEventListener('click', function () {
+      changePswdDialog.querySelector('input[data-l1key="result"]').value = generateRandomPassword();
+    });
+
+    jeedomUtils.initTooltips()
+
     return
   }
 
