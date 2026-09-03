@@ -274,7 +274,7 @@ document.getElementById('div_administration').addEventListener('click', function
       inputType: false,
       callback: function (result) {
         if (result) {
-          var user = [{
+          const user = [{
             login: result.newUserLogin,
             password: result.newUserPswd
           }]
