@@ -1311,7 +1311,7 @@ var jeeDialog = (function () {
               if (typeof _callback === 'function') {
                 var data = event.target.closest('div.jeeDialog').querySelector('div.jeeDialogContent').getJeeValues('.promptAttr')[0]
                 var key = event.target.closest('button').getAttribute('data-type')
-                if (Object.keys(data).length == 1) data = data.result
+                if (Object.keys(data).length == 1) data = Object.values(data)[0]
                 if (data == '') data = null
                 _callback.apply(this, [data, key])
               }
