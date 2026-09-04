@@ -185,6 +185,7 @@ class jeedom {
 		// Updates
 		$nbNeedUpdate = update::nbNeedUpdate();
 		$updateState = true;
+		$coreNeedUpdate = false;
 		if ($nbNeedUpdate > 0) {
 			$coreUpdate = update::byTypeAndLogicalId('core', 'jeedom');
 			$coreNeedUpdate = is_object($coreUpdate) && $coreUpdate->getStatus() == 'update';
@@ -244,6 +245,7 @@ class jeedom {
 
 		// Scenarios
 		$scenarioState = config::byKey('enableScenario', 'core', 0, true) == 1;
+		$scenarioComment = __('Le moteur de scénarios est actif', __FILE__);
 		if (!$scenarioState) {
 			$nbScenario = DB::Prepare('SELECT COUNT(*) as nb FROM scenario', array(), DB::FETCH_TYPE_ROW)['nb'];
 			if ($nbScenario > 0) {
@@ -257,12 +259,12 @@ class jeedom {
 			'name' => __('Moteur de scénarios', __FILE__),
 			'state' => $scenarioState,
 			'result' => ($scenarioState === true) ? 'OK' : 'NOK',
-			'comment' => ($scenarioState === true) ? __('Le moteur de scénarios est actif', __FILE__) : $scenarioComment,
+			'comment' => $scenarioComment,
 			'key' => 'scenario::enable'
 		);
 
 		// Core version
-		$coreVersionState = ($nbNeedUpdate > 0 && $coreNeedUpdate) ? 2 : true;
+		$coreVersionState = ($coreNeedUpdate) ? 2 : true;
 		$coreName = (config::byKey('mbState') == 0) ? ' Jeedom' : '';
 		$return[] = array(
 			'name' => __('Version core', __FILE__) . $coreName,
@@ -390,6 +392,7 @@ class jeedom {
 
 		// Network external
 		$externalState = network::test('external');
+		$externalComment = __("Configuration de l'accès réseau externe", __FILE__);
 		if (!$externalState) {
 			if (config::byKey('market::allowDNS') == 1 || config::byKey('externalAddr', 'core', '') != '') {
 				$externalComment = __("Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)", __FILE__);
@@ -402,7 +405,7 @@ class jeedom {
 			'name' => __('Configuration accès externe', __FILE__),
 			'state' => $externalState,
 			'result' => ($externalState === true) ? 'OK' : 'NOK',
-			'comment' => ($externalState === true) ? __("Configuration de l'accès réseau externe", __FILE__) : $externalComment,
+			'comment' => $externalComment,
 			'key' => 'network::external'
 		);
 
