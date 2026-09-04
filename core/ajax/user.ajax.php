@@ -178,7 +178,7 @@ try {
 				$user_json['profils'] = 'user'; // Default profile for new users is 'user'
 				$user_json['options']['api::mode'] = 'disable';
 			} else {
-				$keyWhitelist = ['login', 'password', 'hash', 'profils', 'enable', 'options'];
+				$keyWhitelist = ['login', 'password', 'hash', 'profils', 'enable', 'options', 'rights'];
 				$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
 
 				if (isset($user_json['password']) && $user_json['password'] == '') {
