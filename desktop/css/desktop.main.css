@@ -4163,6 +4163,10 @@ div.eqLogic-widget.editingMode .panelLink {
     ry: var(--border-radius);
     stroke: transparent;
   }
+  div.chartContainer .highcharts-button > span {
+    left: 7.5px !important;
+    top: 5px !important;
+  }
   div.chartContainer .highcharts-button.highcharts-button-pressed > rect,
   div.chartContainer .highcharts-button.highcharts-button-pressed span {
     stroke: transparent;
@@ -4205,9 +4209,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .highcharts-tooltip .highcharts-tooltip-box text tspan {
     fill: rgb(var(--contrast-color)) !important;
     font-weight: 400 !important;
-  }
-  .highcharts-tooltip .highcharts-shadow {
-    display: none;
   }
   .highcharts-label.highcharts-point path {
     fill: var(--btnEq-default-color) !important;

@@ -137,14 +137,31 @@ jeedom.init = function() {
     accessibility: {
       enabled: false
     },
+    chart: {
+      style: {
+        fontSize: '15px'
+      }
+    },
     jeedom: {
       opacityHigh: 0.85,
       opacityLow: 0.1
     },
+    xAxis: {
+      dateTimeLabelFormats: {
+        day: '%e %B',
+        week: '%e %B',
+        month: '%B \'%y'
+      },
+      tickLength: 7,
+      labels: {
+        distance: 6,
+        style: {
+          fontSize: '11px'
+        }
+      }
+    },
     lang: {
-      months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
-      shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
-      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}'],
+      locale: jeeFrontEnd.language.replace('_', '-'),
       downloadCSV: '{{Téléchargement CSV}}',
       downloadJPEG: '{{Téléchargement JPEG}}',
       downloadPDF: '{{Téléchargement PDF}}',
@@ -154,6 +171,11 @@ jeedom.init = function() {
       printChart: '{{Imprimer}}',
       viewFullscreen: '{{Plein écran}}',
       exitFullscreen: '{{Sortir du plein écran}}',
+      rangeSelector: {
+        allTitle: '{{Afficher tout}}',
+        monthTitle: '{{Afficher le mois}}',
+        yearTitle: "{{Afficher l'année}}"
+      }
     },
     colors: [
       cssComputedStyle.getPropertyValue('--al-info-color'),
