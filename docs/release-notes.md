@@ -24,6 +24,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-04 16:12:23 | Security fix: prevent password hash and 2FA secret leakage in user data responses | [#3482](https://github.com/jeedom/core/pull/3482) |
 | 2026-09-02 10:52:02 | Fix history charts on views/designs never showing the continuation-to-now dash | [#3458](https://github.com/jeedom/core/pull/3458) |
 | 2026-08-31 14:59:18 | Refactor user hash regeneration to avoid double save side effects | [#3470](https://github.com/jeedom/core/pull/3470) |
 | 2026-08-20 13:27:53 | Simplify OpenVPN and virtual plugin auto-install checks | [#3454](https://github.com/jeedom/core/pull/3454) |
