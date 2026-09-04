@@ -1374,9 +1374,9 @@ var jeeDialog = (function () {
           if (_options.pattern) {
             content.setAttribute('pattern', _options.pattern)
           } else {
-            if (options.inputType === 'date') {
+            if (_options.inputType === 'date') {
               content.setAttribute('pattern', '[0-9]{4}-[0-9]{2}-[0-9]{2}')
-            } else if (options.inputType === 'time') {
+            } else if (_options.inputType === 'time') {
               content.setAttribute('pattern', '[0-9]{2}:[0-9]{2}:[0-9]{2}')
             }
           }
