@@ -295,10 +295,10 @@ class jeedom {
 			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
 			$majorVersion = intval($version);
 			if ($majorVersion > 0) {
-				if ($majorVersion < 11 || $majorVersion > 12) {
+				if ($majorVersion < config::byKey('os::min') || $majorVersion > config::byKey('os::max')) {
 					$state = false;
 				}
-			} else if (strpos($version, 'bullseye') === false && strpos($version, 'bookworm') === false) {
+			} else if (strpos($version, 'bookworm') === false && strpos($version, 'trixie') === false) {
 				$state = false;
 			}
 		}
@@ -1647,7 +1647,9 @@ class jeedom {
 		if (config::byKey('disable_ntp', 'core', 0) == 1) {
 			return;
 		}
-		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
+		$ntpServer = config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org');
+		shell_exec(system::getCmdSudo() . 'chronyc add server ' . $ntpServer . ' iburst');
+		shell_exec(system::getCmdSudo() . 'chronyc makestep');
 	}
 
 	public static function cleanDatabase() {

@@ -85,19 +85,11 @@ log::add('tts', 'debug', 'Generate tts for ' . $filename . ' (' . $text . ') wit
 
 try {
 	if ($engine == 'espeak') {
-		$avconv = 'avconv';
-		if (!com_shell::commandExists('avconv')) {
-			$avconv = 'ffmpeg';
-		}
-		$cmd = tts_buildEspeakCmd($text, init('voice', 'fr+f4'), $filename, $avconv);
+		$cmd = tts_buildEspeakCmd($text, init('voice', 'fr+f4'), $filename);
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else if ($engine == 'pico') {
-		$avconv = 'avconv';
-		if (!com_shell::commandExists('avconv')) {
-			$avconv = 'ffmpeg';
-		}
-		$cmd = tts_buildPicoCmd($text, init('lang', config::byKey('language')), init('volume', '6'), $md5, $filename, $avconv);
+		$cmd = tts_buildPicoCmd($text, init('lang', config::byKey('language')), init('volume', '6'), $md5, $filename);
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else {
@@ -154,12 +146,11 @@ function tts_sanitizeLang(string $_lang): string {
  * @param string $_text     Text to synthesize.
  * @param string $_voice    espeak voice identifier.
  * @param string $_filename Destination MP3 path.
- * @param string $_avconv   Transcoder binary name (defaults to "ffmpeg"). Must be a trusted constant, not user input.
  * @return string Full shell command, ready for exec/shell_exec.
  */
-function tts_buildEspeakCmd(string $_text, string $_voice, string $_filename, string $_avconv = 'ffmpeg'): string {
-	return 'espeak -v' . escapeshellarg($_voice) . ' ' . escapeshellarg($_text)
-		. ' --stdout | ' . $_avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 '
+function tts_buildEspeakCmd(string $_text, string $_voice, string $_filename): string {
+	return 'espeak-ng -v' . escapeshellarg($_voice) . ' ' . escapeshellarg($_text)
+		. ' --stdout | ffmpeg -i - -ar 44100 -ac 2 -ab 192k -f mp3 '
 		. escapeshellarg($_filename) . ' > /dev/null 2>&1';
 }
 
@@ -171,16 +162,15 @@ function tts_buildEspeakCmd(string $_text, string $_voice, string $_filename, st
  * @param string $_volume   Volume adjustment in dB, cast through floatval().
  * @param string $_md5      Unique identifier used to name the intermediate WAV file.
  * @param string $_filename Destination MP3 path.
- * @param string $_avconv   Transcoder binary name (defaults to "ffmpeg"). Must be a trusted constant, not user input.
  * @return string Full shell command, ready for exec/shell_exec.
  * @see tts_sanitizeLang()
  */
-function tts_buildPicoCmd(string $_text, string $_lang, string $_volume, string $_md5, string $_filename, string $_avconv = 'ffmpeg'): string {
+function tts_buildPicoCmd(string $_text, string $_lang, string $_volume, string $_md5, string $_filename): string {
 	$lang = tts_sanitizeLang($_lang);
 	$volume = '-af "volume=' . floatval($_volume) . 'dB"';
 	$cmd = 'pico2wave -l=' . escapeshellarg($lang) . ' -w=' . escapeshellarg($_md5 . '.wav')
 		. ' ' . escapeshellarg($_text) . ' > /dev/null 2>&1;';
-	$cmd .= $_avconv . ' -i ' . escapeshellarg($_md5 . '.wav') . ' -ar 44100 ' . $volume
+	$cmd .= 'ffmpeg -i ' . escapeshellarg($_md5 . '.wav') . ' -ar 44100 ' . $volume
 		. ' -ac 2 -ab 192k -f mp3 ' . escapeshellarg($_filename)
 		. ' > /dev/null 2>&1;rm ' . escapeshellarg($_md5 . '.wav');
 	return $cmd;

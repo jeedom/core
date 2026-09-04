@@ -1,5 +1,5 @@
-# build docker image based on debian bullseye and bookworm
-# start both containers and run sick.php
+# build docker image based on debian bullseye, bookworm and trixie
+# start all containers and run sick.php
 # stop & clean
 name: Docker Test Image
 
@@ -18,6 +18,10 @@ on:
 jobs:
   buildAndTestDockerImg:
     runs-on: ubuntu-latest
+    # init.sh re-downloads Jeedom from the git ref named by VERSION at container startup,
+    # so it must point at the branch under test instead of defaulting to master
+    env:
+      PR_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Check Out Repo
         # Check out the repo, using current branch
@@ -27,7 +31,7 @@ jobs:
       - name: Build jeedom:bullseye
         # build current image for bullseye
         run: |
-          docker build -t jeedom:bullseye --build-arg DEBIAN=bullseye --build-arg DATABASE=1 .
+          docker build -t jeedom:bullseye --build-arg DEBIAN=bullseye --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
       - name: run jeedom:bullseye and check
         # run current image for bullseye and check it
         run: |
@@ -41,7 +45,7 @@ jobs:
       - name: Build jeedom:bookworm
         # build current image for bookworm
         run: |
-          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 .
+          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
       - name: run jeedom:bookworm and check
         # run current image for bookworm and check it
         run: |
@@ -52,9 +56,23 @@ jobs:
           done;
           docker exec jeedom_bookworm php sick.php
 
+      - name: Build jeedom:trixie
+        # build current image for trixie
+        run: |
+          docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
+      - name: run jeedom:trixie and check
+        # run current image for trixie and check it
+        run: |
+          docker run -p 82:80 -d --rm --name jeedom_trixie jeedom:trixie
+          until [ "`docker inspect -f {{.State.Health.Status}} jeedom_trixie`" == "healthy" ]; do
+            echo "waiting container to be healthy..."
+            sleep 5;
+          done;
+          docker exec jeedom_trixie php sick.php
+
       - name: Clean docker image
         continue-on-error: true
         run: |
-          docker stop jeedom_bullseye jeedom_bookworm || true
-          docker rm jeedom_bullseye jeedom_bookworm || true
-          docker rmi jeedom:bullseye jeedom:bookworm || true
+          docker stop jeedom_bullseye jeedom_bookworm jeedom_trixie || true
+          docker rm jeedom_bullseye jeedom_bookworm jeedom_trixie || true
+          docker rmi jeedom:bullseye jeedom:bookworm jeedom:trixie || true
