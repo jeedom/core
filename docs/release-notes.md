@@ -54,6 +54,7 @@
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-04 21:38:24 | Fix hardcoded result property and incorrect options variable | [#3487](https://github.com/jeedom/core/pull/3487) |
 | 2026-08-18 20:15:41 | Make plugin::byId/isInstalled cache handling and full parameter typing explicit | [#3453](https://github.com/jeedom/core/pull/3453) |
 | 2026-08-17 13:33:18 | incorrect translation | [#3463](https://github.com/jeedom/core/pull/3463) |
 | 2026-07-30 14:11:05 | Speed up plugin::isInstalled and use it instead of byId for existence checks | [#3446](https://github.com/jeedom/core/pull/3446) |
