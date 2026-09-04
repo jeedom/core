@@ -244,6 +244,17 @@ class user {
 	}
 
 	/**
+	 * Convert user to array, stripping sensitive data (password hash, 2FA secret)
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		unset($return['password'], $return['options']['twoFactorAuthentificationSecret']);
+		return $return;
+	}
+
+	/**
 	 * Search users by right
 	 *
 	 * @return user[] Array of users with the specified right
