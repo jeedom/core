@@ -256,7 +256,11 @@
         "Utilisateur non trouvé :": "Utilizador não encontrado:",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Deve desativar a autenticação LDAP para adicionar um utilizador",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir supprimer un utilisateur": "Deve desativar a autenticação LDAP para poder excluir um utilizador",
-        "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Não pode excluir a conta à qual está conectado"
+        "Vous ne pouvez pas changer le profil du compte avec lequel vous êtes connecté": "Não é possível alterar o perfil da conta com a qual está conectado",
+        "Vous ne pouvez pas créer un utilisateur avec ce login: %s": "Não é possível criar um utilizador com este nome de utilizador: %s",
+        "Vous ne pouvez pas désactiver le compte avec lequel vous êtes connecté": "Não é possível desativar a conta com a qual está ligado",
+        "Vous ne pouvez pas supprimer le compte avec lequel vous êtes connecté": "Não pode excluir a conta à qual está conectado",
+        "Vous ne pouvez pas utiliser ce login: %s": "Não é possível utilizar este nome de utilizador: %s"
     },
     "core\/ajax\/view.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
