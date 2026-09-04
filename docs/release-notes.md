@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-04 21:28:50 | Update Highstock/Highcharts to 12.6.0 | [#3457](https://github.com/jeedom/core/pull/3457) |
 | 2026-08-27 13:50:54 | Enhance Samba command security with temporary authentication file | [#3475](https://github.com/jeedom/core/pull/3475) |
 | 2026-07-22 10:57:14 | Sync update notification message after each relevant action | [#3410](https://github.com/jeedom/core/pull/3410) |
 | 2026-07-20 19:06:23 | Unify plugin install prompts and revamp the add plugin modal | [#3428](https://github.com/jeedom/core/pull/3428) |
