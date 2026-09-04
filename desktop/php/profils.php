@@ -296,14 +296,20 @@ $objectOptions = jeeObject::getUISelectList(false);
 
 								<div class="form-group">
 									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Mot de passe}}</label>
-									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<input type="text" class="inputPassword userAttr form-control" data-l1key="password" />
+									<div class="input-group col-lg-3 col-md-4 col-sm-5 col-xs-6">
+										<input type="text" class="inputPassword userAttr form-control roundedLeft" data-l1key="password" />
+										<span class="input-group-btn">
+											<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+										</span>
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Retapez le mot de passe}}</label>
-									<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-										<input type="text" class="inputPassword form-control" id="in_passwordCheck" />
+									<div class="input-group col-lg-3 col-md-4 col-sm-5 col-xs-6">
+										<input type="text" class="inputPassword form-control roundedLeft" id="in_passwordCheck" />
+										<span class="input-group-btn">
+											<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+										</span>
 									</div>
 								</div>
 							<?php }
@@ -370,7 +376,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								</thead>
 								<tbody>
 									<?php
-									foreach (($user->getOptions('registerDevice',array())) as $key => $value) {
+									foreach (($user->getOptions('registerDevice', array())) as $key => $value) {
 										$tr = '';
 										$tr .= '<tr data-key="' . $key . '">';
 										$tr .= '<td title="' . $key . '">';

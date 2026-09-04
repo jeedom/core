@@ -168,6 +168,8 @@ document.getElementById('bt_saveProfils')?.addEventListener('click', function (e
           message: "{{Sauvegarde effectuée}}",
           level: 'success'
         })
+        document.querySelector('.userAttr[data-l1key="password"]').value = ''
+        document.getElementById('in_passwordCheck').value = ''
         jeedom.user.get({
           error: function (error) {
             jeedomUtils.showAlert({
