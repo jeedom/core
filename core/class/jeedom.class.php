@@ -173,355 +173,432 @@ class jeedom {
 
 	public static function health() {
 		$return = array();
+		// Hardware
 		$return[] = array(
 			'name' => __('Matériel', __FILE__),
 			'state' => true,
-			'result' => jeedom::getHardwareName(),
-			'comment' => '',
+			'result' => ucfirst(jeedom::getHardwareName()),
+			'comment' => __('Type de matériel utilisé', __FILE__),
 			'key' => 'hardware'
 		);
 
+		// Updates
 		$nbNeedUpdate = update::nbNeedUpdate();
-		$state = ($nbNeedUpdate == 0) ? true : false;
+		$updateState = true;
+		if ($nbNeedUpdate > 0) {
+			$coreUpdate = update::byTypeAndLogicalId('core', 'jeedom');
+			$coreNeedUpdate = is_object($coreUpdate) && $coreUpdate->getStatus() == 'update';
+			if ($coreNeedUpdate) {
+				$updateState = false;
+			} else {
+				$updateState = 2;
+			}
+		}
 		$return[] = array(
-			'name' => __('Système à jour', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : $nbNeedUpdate,
-			'comment' => '',
+			'name' => __('Mises à jour', __FILE__),
+			'state' => $updateState,
+			'result' => ($updateState === true) ? 'OK' : $nbNeedUpdate,
+			'comment' => ($updateState === true) ? __('Aucune mise à jour en attente', __FILE__) : __('Nombre de mises à jour en attente', __FILE__),
 			'key' => 'uptodate'
 		);
 
-		$state = (config::byKey('enableCron', 'core', 1, true) != 0) ? true : false;
+		// Start date
+		$product_name = config::byKey('product_name');
+		$isStarted = self::isStarted();
 		$return[] = array(
-			'name' => __('Cron actif', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Erreur cron : les crons sont désactivés. Allez dans Réglages -> Système -> Moteur de tâches pour les réactiver', __FILE__),
-			'key' => 'cron::enable'
-		);
-
-		$state = (config::byKey('enableScenario') == 0 && count(scenario::all()) > 0) ? false : true;
-		$return[] = array(
-			'name' => __('Scénario actif', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Erreur scénario : tous les scénarios sont désactivés. Allez dans Outils -> Scénarios pour les réactiver', __FILE__),
-			'key' => 'scenario::enable'
-		);
-
-		$state = self::isStarted();
-		$return[] = array(
-			'name' => __('Démarré', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) . ' ' . file_get_contents(self::getTmpFolder() . '/started') : __('NOK', __FILE__),
-			'comment' => '',
+			'name' => __('Démarrage', __FILE__),
+			'state' => $isStarted,
+			'result' => ($isStarted) ? file_get_contents(self::getTmpFolder() . '/started') : 'NOK',
+			'comment' => ($isStarted) ? __('Date de démarrage de', __FILE__) . ' ' . $product_name : $product_name . ' ' . __('est en cours de démarrage, patienter quelques minutes puis rafraîchir la page', __FILE__),
 			'key' => 'isStarted'
 		);
 
-		$state = self::isDateOk();
-		$cache = cache::byKey('hour');
-		$lastKnowDate = $cache->getValue();
-		if ($lastKnowDate === "") {
-			$lastKnowDate = 0;
+		// Crons
+		$cronState = config::byKey('enableCron', 'core', 0, true) == 1;
+		$return[] = array(
+			'name' => __('Moteur de tâches', __FILE__),
+			'state' => $cronState,
+			'result' => ($cronState) ? 'OK' : 'NOK',
+			'comment' => ($cronState) ? __('Le système cron est actif', __FILE__) : __('Activer le système cron (Réglages > Système > Moteur de tâches)', __FILE__),
+			'key' => 'cron::enable'
+		);
+
+		// System date
+		$dateState = self::isDateOk();
+		$lastKnowDate = cache::byKey('hour')->getValue(0);
+		if ($lastKnowDate == 0) {
+			$dateState = 2;
+			$lastKnowDate = '-';
+			$dateComment = __("Aucune heure enregistrée, patienter 1 heure maximum", __FILE__);
+		} else {
+			$lastKnowDate = gmdate('Y-m-d H:i:s', $lastKnowDate);
+			$dateComment = ($dateState) ? __('Date actuelle (dernière heure enregistrée)', __FILE__) : __('Remettre à zéro la dernière date connue (Réglages > Système > Configuration, onglet Général)', __FILE__);
 		}
 		$return[] = array(
-			'name' => __('Date système (dernière heure enregistrée)', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) . ' ' . date('Y-m-d H:i:s') . ' (' . gmdate('Y-m-d H:i:s', $lastKnowDate) . ')' : date('Y-m-d H:i:s'),
-			'comment' => ($state) ? '' : __('Si la dernière heure enregistrée est fausse, il faut la remettre à zéro', __FILE__),
+			'name' => __('Date système', __FILE__),
+			'state' => $dateState,
+			'result' => date('Y-m-d H:i:s') . ' (' . $lastKnowDate . ')',
+			'comment' => $dateComment,
 			'key' => 'hour'
 		);
 
-		$state = self::isCapable('sudo', true);
+		// Scenarios
+		$scenarioState = config::byKey('enableScenario', 'core', 0, true) == 1;
+		if (!$scenarioState) {
+			$nbScenario = DB::Prepare('SELECT COUNT(*) as nb FROM scenario', array(), DB::FETCH_TYPE_ROW)['nb'];
+			if ($nbScenario > 0) {
+				$scenarioComment = __('Activer le moteur de scénarios (Outils -> Scénarios)', __FILE__);
+			} else {
+				$scenarioState = 2;
+				$scenarioComment = __('Le moteur de scénarios est désactivé sans scénarios existants', __FILE__);
+			}
+		}
+		$return[] = array(
+			'name' => __('Moteur de scénarios', __FILE__),
+			'state' => $scenarioState,
+			'result' => ($scenarioState === true) ? 'OK' : 'NOK',
+			'comment' => ($scenarioState === true) ? __('Le moteur de scénarios est actif', __FILE__) : $scenarioComment,
+			'key' => 'scenario::enable'
+		);
+
+		// Core version
+		$coreVersionState = ($nbNeedUpdate > 0 && $coreNeedUpdate) ? 2 : true;
+		$coreName = (config::byKey('mbState') == 0) ? ' Jeedom' : '';
+		$return[] = array(
+			'name' => __('Version core', __FILE__) . $coreName,
+			'state' => $coreVersionState,
+			'result' => self::version(),
+			'comment' => ($coreVersionState === true) ? __('Version du core', __FILE__) . $coreName : __('Une mise à jour du core est disponible', __FILE__),
+			'key' => 'jeedom::version'
+		);
+
+		// Sudo rights
+		$sudoState = self::isCapable('sudo', true);
 		$return[] = array(
 			'name' => __('Droits sudo', __FILE__),
-			'state' => ($state) ? 1 : 2,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Appliquez les droits root à Jeedom', __FILE__),
+			'state' => $sudoState ?: 2,
+			'result' => ($sudoState) ? 'OK' : 'NOK',
+			'comment' => ($sudoState) ? __("Droits d'administration des dossiers et fichiers", __FILE__) : __('Ajouter "www-data ALL=(ALL) NOPASSWD: ALL" à la fin du fichier sudoers', __FILE__),
 			'key' => 'sudo::right'
 		);
 
-		$mbState = config::byKey('mbState');
-		if ($mbState == 0) {
-			$return[] = array(
-				'name' => __('Version Jeedom', __FILE__),
-				'state' => true,
-				'result' => self::version(),
-				'comment' => '',
-				'key' => 'jeedom::version'
-			);
+		// OS version
+		$distrib = system::getDistrib();
+		$osVersion = system::getOsVersion();
+		$osState = true;
+		if ($distrib != 'debian') {
+			$osState = false;
 		} else {
-			$return[] = array(
-				'name' => __('Version', __FILE__),
-				'state' => true,
-				'result' => self::version(),
-				'comment' => '',
-				'key' => 'jeedom::version'
-			);
+			$majorVersion = intval($osVersion);
+			if ($majorVersion > 0) {
+				if ($majorVersion < config::byKey('os::min') || $majorVersion > config::byKey('os::max')) {
+					$osState = false;
+				}
+			} else if (strpos($osVersion, 'bookworm') === false && strpos($osVersion, 'trixie') === false) {
+				$osState = false;
+			}
 		}
-
 		$return[] = array(
-			'name' => __('Version OS', __FILE__),
-			'state' => (system::getDistrib() == 'debian' && version_compare(system::getOsVersion(), config::byKey('os::min'), '>=')),
-			'result' => system::getDistrib() . ' ' . system::getOsVersion(),
-			'comment' => '',
+			'name' => __('Version système', __FILE__),
+			'state' => $osState,
+			'result' => ucfirst($distrib) . ' ' . $osVersion,
+			'comment' => ($osState) ? __("Version du système", __FILE__) : __("Ce système n'est pas officiellement supporté (voir la documentation sur la compatibilité logicielle)", __FILE__),
 			'key' => 'os::version'
 		);
 
-		$state = version_compare(phpversion(), '5.5', '>=');
+		// Cache persist
+		$cacheState = cache::isPersistOk();
 		$return[] = array(
-			'name' => __('Version PHP', __FILE__),
-			'state' => $state,
-			'result' => phpversion(),
-			'comment' => ($state) ? '' : __('Si vous êtes en version 5.4.x on vous indiquera quand la version 5.5 sera obligatoire', __FILE__),
-			'key' => 'php::version'
+			'name' => __('Persistance du cache', __FILE__),
+			'state' => $cacheState,
+			'result' => ($cacheState) ? 'OK' : 'NOK',
+			'comment' => ($cacheState) ? __('Persistance du cache après redémarrage', __FILE__) : __('Certaines informations peuvent être perdues après redémarrage, attendre 30 minutes maximum ou démarrer la tâche cache::persist manuellement (Réglages > Système > Moteur de tâches)', __FILE__),
+			'key' => 'cache::persist'
 		);
 
-		$apaches = count(system::ps('apache2'));
-		$return[] = array(
-			'name' => __('Nombre de processus Apache', __FILE__),
-			'state' => ($apaches > 0),
-			'result' => $apaches,
-			'comment' => '',
-			'key' => 'apache'
+		// Kernel version
+		$hostname = php_uname('n');
+		$release = php_uname('r');
+		$machine = php_uname('m');
+		$buildDate = preg_replace(
+			array('/^#.*(\d{4}-\d{2}-\d{2}[\dTZ:]*)\)?.*$/', '/^#\d+ SMP\S*\s*/'),
+			array('$1', ''),
+			php_uname('v')
 		);
-
-		$state = true;
-		$version = '';
-		$uname = shell_exec('uname -a');
-		if (system::getDistrib() != 'debian') {
-			$state = false;
-		} else {
-			$version = trim(strtolower(file_get_contents('/etc/debian_version')));
-			$majorVersion = intval($version);
-			if ($majorVersion > 0) {
-				if ($majorVersion < config::byKey('os::min') || $majorVersion > config::byKey('os::max')) {
-					$state = false;
-				}
-			} else if (strpos($version, 'bookworm') === false && strpos($version, 'trixie') === false) {
-				$state = false;
-			}
+		$kernelState = false;
+		if (in_array($machine, array('x86_64', 'aarch64'))) {
+			$kernelState = version_compare(strtok($release, '-'), '4.4', '>=') ? true : 2;
+		} elseif ($machine == 'armv7l') {
+			$kernelState = 2;
 		}
 		$return[] = array(
-			'name' => __('Version OS', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? $uname . ' [' . $version . ']' : $uname,
-			'comment' => ($state) ? '' : __("Cet OS n'est pas pris en charge, toute demande de support pourra donc être refusée (voir la documentation sur la compatibilité logicielle).", __FILE__)
+			'name' => __('Version noyau', __FILE__),
+			'state' => $kernelState,
+			'result' => $hostname . ' ' . $release . ' ' . $machine . ' (' . $buildDate . ')',
+			'comment' => ($kernelState === true) ? __('Version du noyau Linux', __FILE__) : __("Ce noyau Linux n'est pas officiellement supporté (voir la documentation sur la compatibilité matérielle)", __FILE__),
+			'key' => 'kernel::version'
 		);
 
-		$version = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
+		// Apache private tmp
+		$apacheTmpState = true;
+		if (jeedom::getHardwareName() != 'docker') {
+			$apacheTmpState = trim(shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l')) == 0;
+		}
 		$return[] = array(
-			'name' => __('Version database', __FILE__),
+			'name' => __('Dossier temporaire Apache', __FILE__),
+			'state' => $apacheTmpState,
+			'result' => ($apacheTmpState) ? 'OK' : 'NOK',
+			'comment' => ($apacheTmpState) ? __('Accès au dossier temporaire Apache', __FILE__) : __('Désactiver Apache PrivateTmp', __FILE__),
+			'key' => 'apache2::privateTmp'
+		);
+
+		// Database version
+		$dbVersion = DB::Prepare('select version()', array(), DB::FETCH_TYPE_ROW);
+		$return[] = array(
+			'name' => __('Version base de données', __FILE__),
 			'state' => true,
-			'result' => $version['version()'],
-			'comment' => '',
+			'result' => $dbVersion['version()'],
+			'comment' => __('Version de la base de données', __FILE__),
 			'key' => 'database::version'
 		);
 
-		$value = self::checkSpaceLeft();
+		// Network internal
+		$internalState = network::test('internal');
 		$return[] = array(
-			'name' => __('Espace disque libre', __FILE__),
-			'state' => ($value > 10),
-			'result' => $value . ' %',
-			'comment' => '',
-			'key' => 'space::root'
-		);
-
-		$nb_active_connection = DB::Prepare('show status where `variable_name` = \'Threads_connected\'', array(), DB::FETCH_TYPE_ROW);
-		$max_used_connection = DB::Prepare('SHOW STATUS WHERE `variable_name` = \'Max_used_connections\';', array(), DB::FETCH_TYPE_ROW);
-		$allow_connection = DB::Prepare('SHOW VARIABLES LIKE \'max_connections\'', array(), DB::FETCH_TYPE_ROW);
-		$return[] = array(
-			'name' => __('Connexion active/max/autorisée', __FILE__),
-			'state' => true,
-			'result' => $nb_active_connection['Value'] . '/' . $max_used_connection['Value'] . '/' . $allow_connection['Value'],
-			'comment' => '',
-			'key' => 'database::connexion'
-		);
-
-		$size = DB::Prepare('SELECT SUM(data_length + index_length) as size FROM information_schema.tables WHERE table_schema = \'jeedom\' GROUP BY table_schema;', array(), DB::FETCH_TYPE_ROW);
-		$return[] = array(
-			'name' => __('Taille base de données', __FILE__),
-			'state' => true,
-			'result' => sizeFormat($size['size']),
-			'comment' => '',
-			'key' => 'database::size'
-		);
-
-		$value = self::checkSpaceLeft(self::getTmpFolder());
-		$return[] = array(
-			'name' => __('Espace disque libre tmp', __FILE__),
-			'state' => ($value > 10),
-			'result' => $value . ' %',
-			'comment' => ($value > 10) ? '' : __('En cas d\'erreur essayez de redémarrer. Si le problème persiste, testez en désactivant les plugins un à un jusqu\'à trouver le coupable', __FILE__),
-			'key' => 'space::tmp'
-		);
-
-		$values = getSystemMemInfo();
-		$value = round(($values['MemAvailable'] / $values['MemTotal']) * 100);
-		$return[] = array(
-			'name' => __('Mémoire disponible', __FILE__),
-			'state' => ($value > 15),
-			'result' => $value . ' % (' . __('Total', __FILE__) . ' ' . round($values['MemTotal'] / 1024) . ' Mo)',
-			'comment' => '',
-		);
-
-		$value = shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l');
-		$return[] = array(
-			'name' => __('Mémoire suffisante', __FILE__),
-			'state' => ($value == 0),
-			'result' => $value,
-			'comment' => ($value == 0) ? '' : __('Nombre de processus tués par le noyau pour manque de mémoire. Votre système manque de mémoire. Essayez de réduire le nombre de plugins ou de scénarios', __FILE__),
-		);
-
-		$value = shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk0" | grep "card status" | wc -l');
-		if (!is_numeric($value)) {
-			$value = 0;
-		}
-		$value2 = @shell_exec('sudo dmesg | grep "I/O error" | wc -l');
-		if (is_numeric($value2)) {
-			$value += $value2;
-		}
-		$return[] = array(
-			'name' => __('Erreur I/O', __FILE__),
-			'state' => ($value == 0),
-			'result' => $value,
-			'comment' => ($value == 0) ? '' : __('Il y a des erreurs disque, cela peut indiquer un soucis avec le disque ou un problème d\'alimentation', __FILE__),
-			'key' => 'io_error'
-		);
-
-		if ($values['SwapTotal'] != 0 && $values['SwapTotal'] !== null) {
-			$value = round(($values['SwapFree'] / $values['SwapTotal']) * 100);
-			$ok = ($value > 15);
-			if ($ok && ($values['MemTotal']  + $values['SwapTotal']) < (1900 * 1024)) {
-				$ok = false;
-			}
-			$return[] = array(
-				'name' => __('Swap disponible', __FILE__),
-				'state' => $ok,
-				'result' => $value . ' % (' . __('Total', __FILE__) . ' ' . round($values['SwapTotal'] / 1024) . ' Mo)',
-				'comment' => ($ok) ? '' : __('Le swap libre n\'est pas suffisant ou il y a moins de 2Go de mémoire sur le système et un swap inférieure à 1Go', __FILE__),
-				'key' => 'swap'
-			);
-		} else {
-			$return[] = array(
-				'name' => __('Swap disponible', __FILE__),
-				'state' => 2,
-				'result' => __('Inconnue', __FILE__),
-				'comment' => '',
-				'key' => 'swap'
-			);
-		}
-
-		$value = shell_exec('sudo cat /proc/sys/vm/swappiness');
-		$ok = ($value <= 20);
-		if ($values['MemTotal'] >= (1024 * 1024)) {
-			$ok = true;
-		}
-		$return[] = array(
-			'name' => __('Swappiness', __FILE__),
-			'state' => $ok,
-			'result' => $value . '%',
-			'comment' => ($ok) ? '' : __('Pour des performances optimales le swapiness ne doit pas dépasser 20% si vous avez 1Go ou moins de mémoire', __FILE__),
-			'key' => 'swapiness'
-		);
-
-		$values = sys_getloadavg();
-		$return[] = array(
-			'name' => __('Charge', __FILE__),
-			'state' => ($values[2] < 20),
-			'result' => round($values[0], 2) . ' - ' . round($values[1], 2) . ' - ' . round($values[2], 2),
-			'comment' => '',
-			'key' => 'load'
-		);
-
-		$state = network::test('internal');
-		$return[] = array(
-			'name' => __('Configuration réseau interne', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'name' => __('Configuration accès interne', __FILE__),
+			'state' => $internalState,
+			'result' => ($internalState) ? 'OK' : 'NOK',
+			'comment' => ($internalState) ? __("Configuration de l'accès réseau interne", __FILE__) : __("Configurer l'accès réseau interne (Réglages > Système > Configuration, onglet Réseaux)", __FILE__),
 			'key' => 'network::internal'
 		);
 
-		$state = network::test('external');
+		// PHP version
+		$phpVersion = phpversion();
+		$phpState = true;
+		if (version_compare($phpVersion, '7.4', '<')) {
+			$phpState = false;
+		} else if (version_compare($phpVersion, '8', '<')) {
+			$phpState = 2;
+		}
 		$return[] = array(
-			'name' => __('Configuration réseau externe', __FILE__),
-			'state' => $state,
-			'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-			'comment' => ($state) ? '' : __('Allez sur Réglages -> Système -> Configuration -> onglet Réseaux, puis configurez correctement la partie réseau', __FILE__),
+			'name' => __('Version', __FILE__) . ' PHP',
+			'state' => $phpState,
+			'result' => $phpVersion,
+			'comment' => ($phpState === true) ? __('Version de PHP', __FILE__) : __("Cette version de PHP n'est pas officiellement supportée (voir la documentation sur la compatibilité logicielle)", __FILE__),
+			'key' => 'php::version'
+		);
+
+		// Network external
+		$externalState = network::test('external');
+		if (!$externalState) {
+			if (config::byKey('market::allowDNS') == 1 || config::byKey('externalAddr', 'core', '') != '') {
+				$externalComment = __("Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)", __FILE__);
+			} else {
+				$externalState = 2;
+				$externalComment = __("Configurer l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)", __FILE__);
+			}
+		}
+		$return[] = array(
+			'name' => __('Configuration accès externe', __FILE__),
+			'state' => $externalState,
+			'result' => ($externalState === true) ? 'OK' : 'NOK',
+			'comment' => ($externalState === true) ? __("Configuration de l'accès réseau externe", __FILE__) : $externalComment,
 			'key' => 'network::external'
 		);
 
-		$value = shell_exec('node --version');
+		// Python version
+		$pythonState = false;
+		if (shell_exec('which python3') != '') {
+			$pythonState = true;
+			$pythonVersion = trim(shell_exec("python3 --version | sed 's/^Python//'"));
+		} else if (shell_exec('which python') != '') {
+			$pythonVersion = trim(shell_exec("python --version | sed 's/^Python//'"));
+		}
 		$return[] = array(
-			'name' => __('Node', __FILE__),
-			'state' => true,
-			'result' => $value,
-			'comment' => '',
+			'name' => __('Version', __FILE__) . ' Python',
+			'state' => $pythonState,
+			'result' => $pythonVersion ?? 'NOK',
+			'comment' => ($pythonState) ? __('Version de Python', __FILE__) : __("Python 3 n'est pas installé", __FILE__),
+			'key' => 'python::version'
+		);
+
+		// Sufficient memory
+		$killedProcesses = trim(shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l'));
+		$killedState = $killedProcesses == 0;
+		$return[] = array(
+			'name' => __('Mémoire suffisante', __FILE__),
+			'state' => $killedState,
+			'result' => ($killedState) ? 'OK' : $killedProcesses,
+			'comment' => ($killedState) ? __("Mémoire suffisante pour l'ensemble des processus", __FILE__) : __('Le noyau a dû arrêter des processus par manque de mémoire depuis le dernier démarrage. Si le problème persiste, revoir les plugins/scénarios', __FILE__),
+			'key' => 'memory::killed'
+		);
+
+		// Node.js version
+		$nodeVersion = trim(shell_exec("node --version | tr -d 'v'"));
+		$installScript = file_get_contents(__DIR__ . '/../../resources/install_nodejs.sh');
+		preg_match("/minVer='([^']+)'/", $installScript, $matches);
+		$nodeState = version_compare($nodeVersion, $matches[1], '>=');
+		$return[] = array(
+			'name' => __('Version', __FILE__) . ' Node.js',
+			'state' => $nodeState,
+			'result' => $nodeVersion,
+			'comment' => ($nodeState) ? __('Version de Node.js', __FILE__) : __("Cette version de Node.js n'est pas officiellement supportée, vérifier les packages système (Réglages > Système > Configuration, onglet OS/DB)", __FILE__),
 			'key' => 'node::version'
 		);
 
-		if (shell_exec('which python') != '') {
-			$value = shell_exec('python --version 2>&1'); // prior python 3.4, 'python --version' output was on stderr
-			$return[] = array(
-				'name' => __('Python', __FILE__),
-				'state' => true,
-				'result' => $value,
-				'comment' => '',
-				'key' => 'python::version'
-			);
+		// I/O errors
+		$ioCount = trim(shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk" | grep "card status" | wc -l'));
+		if (!is_numeric($ioCount)) {
+			$ioCount = 0;
 		}
-
-		if (shell_exec('which python3') != '') {
-			$value = shell_exec('python3 --version');
-			$return[] = array(
-				'name' => __('Python 3', __FILE__),
-				'state' => true,
-				'result' => $value,
-				'comment' => '',
-				'key' => 'python3::version'
-			);
+		$ioCount2 = trim(shell_exec('sudo dmesg | grep "I/O error" | wc -l'));
+		if (is_numeric($ioCount2)) {
+			$ioCount += $ioCount2;
 		}
+		$ioState = $ioCount == 0;
+		$return[] = array(
+			'name' => __('Erreurs disque', __FILE__),
+			'state' => ($ioState),
+			'result' => ($ioState) ? 'OK' : $ioCount,
+			'comment' => ($ioState) ? __("Erreurs d'écriture sur le support de stockage", __FILE__) : __("Des erreurs d'écriture ont été détectées sur le support de stockage, possiblement un problème matériel (SD/eMMC, disque, câblage) ou d'alimentation", __FILE__),
+			'key' => 'io_error'
+		);
 
+		// System load
+		$systemLoads = sys_getloadavg();
+		$nproc = trim(shell_exec('nproc'));
+		$loadState = true;
+		if ($systemLoads[2] > $nproc) {
+			$loadState = false;
+		} else if ($systemLoads[1] > $nproc) {
+			$loadState = 2;
+		}
+		$return[] = array(
+			'name' => __('Charge système', __FILE__),
+			'state' => $loadState,
+			'result' => round($systemLoads[0], 2) . ' - ' . round($systemLoads[1], 2) . ' - ' . round($systemLoads[2], 2),
+			'comment' => __('Charge du système (1 minute - 5 minutes - 15 minutes)', __FILE__),
+			'key' => 'load'
+		);
 
-		$cache_health = array('comment' => '', 'name' => __('Persistance du cache', __FILE__), 'key' => 'cache::persit');
-		if (cache::isPersistOk()) {
-			if (config::byKey('cache::engine') != 'FilesystemCache' && config::byKey('cache::engine') != 'PhpFileCache') {
-				$cache_health['state'] = true;
-				$cache_health['result'] = __('OK', __FILE__);
-			} else {
-				$filename = __DIR__ . '/../../cache.tar.gz';
-				$cache_health['state'] = true;
-				$cache_health['result'] = __('OK', __FILE__) . ' (' . date('Y-m-d H:i:s', filemtime($filename)) . ')';
+		// Apache processes
+		$return[] = array(
+			'name' => __('Processus Apache', __FILE__),
+			'state' => true,
+			'result' => count(system::ps('apache2')),
+			'comment' => __("Nombre de processus Apache en cours d'exécution", __FILE__),
+			'key' => 'apache'
+		);
+
+		// Available memory
+		$systemMemInfo = getSystemMemInfo();
+		$availableMem = cmd::autoValueArray($systemMemInfo['MemAvailable'] * 1024, 1, 'io');
+		$totalMem = cmd::autoValueArray($systemMemInfo['MemTotal'] * 1024, 1, 'io');
+		$percentMem = round(($systemMemInfo['MemAvailable'] / $systemMemInfo['MemTotal']) * 100);
+		$memState = true;
+		if ($percentMem < 15) {
+			$memState = false;
+		} else if ($percentMem < 20) {
+			$memState = 2;
+		}
+		$return[] = array(
+			'name' => __('Mémoire disponible', __FILE__),
+			'state' => $memState,
+			'result' => $percentMem . '% (' . $availableMem[0] . $availableMem[1] . '/' . $totalMem[0] . $totalMem[1] . ')',
+			'comment' => __("Pourcentage de mémoire disponible (libre/total)", __FILE__),
+			'key' => 'memory::free'
+		);
+
+		// Database connections
+		$nb_active_connection = DB::Prepare('show status where `variable_name` = \'Threads_connected\'', array(), DB::FETCH_TYPE_ROW);
+		$max_used_connection = DB::Prepare('SHOW STATUS WHERE `variable_name` = \'Max_used_connections\';', array(), DB::FETCH_TYPE_ROW);
+		$allow_connection = DB::Prepare('SHOW VARIABLES LIKE \'max_connections\'', array(), DB::FETCH_TYPE_ROW);
+		$dbConnState = true;
+		if ($max_used_connection['Value'] >= ($allow_connection['Value'] * 0.9)) {
+			$dbConnState = false;
+		} else if ($max_used_connection['Value'] >= ($allow_connection['Value'] * 0.7)) {
+			$dbConnState = 2;
+		}
+		$return[] = array(
+			'name' => __('Connexions base de données', __FILE__),
+			'state' => $dbConnState,
+			'result' => $nb_active_connection['Value'] . '/' . $max_used_connection['Value'] . '/' . $allow_connection['Value'],
+			'comment' => ($dbConnState === true) ? __('Nombre de connexions à la base de données (actives/maximales/autorisées)', __FILE__) : __('Le nombre maximal de connexions à la base de données approche la limite autorisée (actives/maximales/autorisées)', __FILE__),
+			'key' => 'database::connexion'
+		);
+
+		// Available swap
+		$swapState = false;
+		$swapResult = 'NOK';
+		if ($systemMemInfo['SwapTotal'] > 0) {
+			$availableSwap = cmd::autoValueArray($systemMemInfo['SwapFree'] * 1024, 1, 'io');
+			$totalSwap = cmd::autoValueArray($systemMemInfo['SwapTotal'] * 1024, 1, 'io');
+			$percentSwap = round(($systemMemInfo['SwapFree'] / $systemMemInfo['SwapTotal']) * 100);
+			$swapResult = $percentSwap . '% (' . $availableSwap[0] . $availableSwap[1] . '/' . $totalSwap[0] . $totalSwap[1] . ')';
+			$swapState = true;
+			if ($percentSwap < 15) {
+				$swapState = false;
+			} else if ($percentSwap < 20) {
+				$swapState = 2;
 			}
-		} else {
-			$cache_health['state'] = false;
-			$cache_health['result'] = __('NOK', __FILE__);
-			$cache_health['comment'] = __('Votre cache n\'est pas sauvegardé. En cas de redémarrage, certaines informations peuvent être perdues. Essayez de lancer (à partir du moteur de tâches) la tâche cache::persist.', __FILE__);
 		}
-		$return[] = $cache_health;
+		$return[] = array(
+			'name' => __('Swap disponible', __FILE__),
+			'state' => $swapState,
+			'result' => $swapResult,
+			'comment' => __("Pourcentage de swap disponible (libre/total)", __FILE__),
+			'key' => 'swap'
+		);
 
-		if (jeedom::getHardwareName() != 'docker') {
-			$state = shell_exec('systemctl show apache2 | grep  PrivateTmp | grep yes | wc -l');
-			$return[] = array(
-				'name' => __('Apache private tmp', __FILE__),
-				'state' => $state,
-				'result' => ($state) ? __('OK', __FILE__) : __('NOK', __FILE__),
-				'comment' => ($state) ? '' : __('Veuillez désactiver le private tmp d\'Apache (Jeedom ne peut marcher avec).', __FILE__) . '</a>',
-				'key' => 'apache2::privateTmp'
-			);
+		// Swappiness
+		$swappiness = trim(shell_exec('sudo cat /proc/sys/vm/swappiness'));
+		$swappinessState = 2;
+		if ($swappiness <= 20 || $systemMemInfo['MemTotal'] >= (1024 * 1024)) {
+			$swappinessState = true;
 		}
+		$return[] = array(
+			'name' => __('Swappiness', __FILE__),
+			'state' => $swappinessState,
+			'result' => $swappiness . '%',
+			'comment' => ($swappinessState === true) ? __('Pourcentage de mémoire utilisée avant recours au swap', __FILE__) : __('Pour des performances optimales le swappiness ne doit pas dépasser 20% avec 1Go ou moins de mémoire', __FILE__),
+			'key' => 'swapiness'
+		);
 
-		foreach ((update::listRepo()) as $repo) {
-			if (!$repo['enable']) {
-				continue;
-			}
-			$class = $repo['class'];
-			if (!class_exists($class) || !method_exists($class, 'health')) {
-				continue;
-			}
-			$return += array_merge($return, $class::health());
-		}
+		// Available space
+		$freeDisk = disk_free_space('/');
+		$totalDisk = disk_total_space('/');
+		$availableSpace = cmd::autoValueArray($freeDisk, 1, 'io');
+		$totalSpace = cmd::autoValueArray($totalDisk, 1, 'io');
+		$percentSpace = round(($freeDisk / $totalDisk) * 100);
+		$return[] = array(
+			'name' => __('Espace disque disponible', __FILE__),
+			'state' => $percentSpace > 10,
+			'result' => $percentSpace . '% (' . $availableSpace[0] . $availableSpace[1] . '/' . $totalSpace[0] . $totalSpace[1] . ')',
+			'comment' => __("Pourcentage d'espace disque disponible (libre/total)", __FILE__),
+			'key' => 'space::root'
+		);
+
+		// Available tmp space
+		$tmpSpace = self::checkSpaceLeft(self::getTmpFolder());
+		$tmpSpaceState = $tmpSpace > 10;
+		$return[] = array(
+			'name' => __('Espace temporaire disponible', __FILE__),
+			'state' => $tmpSpaceState,
+			'result' => $tmpSpace . '%',
+			'comment' => ($tmpSpaceState) ? __("Pourcentage d'espace temporaire disponible", __FILE__) : __('Espace temporaire faible, si persistant après redémarrage désactiver les plugins un à un pour identifier le responsable', __FILE__),
+			'key' => 'space::tmp'
+		);
+
+		// Database size
+		$dbSize = DB::Prepare('SELECT SUM(data_length + index_length) as size FROM information_schema.tables WHERE table_schema = \'jeedom\' GROUP BY table_schema;', array(), DB::FETCH_TYPE_ROW);
+		$dbSize = cmd::autoValueArray($dbSize['size'], 2, 'io');
+		$return[] = array(
+			'name' => __('Taille base de données', __FILE__),
+			'state' => true,
+			'result' => $dbSize[0] . $dbSize[1],
+			'comment' => __('Taille de la base de données', __FILE__),
+			'key' => 'database::size'
+		);
 
 		return $return;
 	}
