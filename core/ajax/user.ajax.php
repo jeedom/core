@@ -167,8 +167,8 @@ try {
 					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
 
-				if ($user_json['login'] == 'internal_report' || $user_json['login'] == 'jeedom_support') {
-					throw new Exception(__('Vous ne pouvez pas créer un utilisateur avec ce login', __FILE__));
+				if (isset($user_json['login']) && in_array($user_json['login'], ['internal_report', 'jeedom_support'])) {
+					throw new Exception(sprintf(__('Vous ne pouvez pas créer un utilisateur avec ce login: %s', __FILE__), $user_json['login']));
 				}
 
 				$user = new user();
@@ -198,7 +198,7 @@ try {
 				if ($user->getLogin() == 'internal_report' || $user->getLogin() == 'jeedom_support') {
 					continue; // Do not allow to modify these users
 				}
-				if ($user_json['login'] == 'internal_report' || $user_json['login'] == 'jeedom_support') {
+				if (isset($user_json['login']) && in_array($user_json['login'], ['internal_report', 'jeedom_support'])) {
 					throw new Exception(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $user_json['login']));
 				}
 			}
