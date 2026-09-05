@@ -338,6 +338,17 @@ step_10_jeedom_installation() {
 step_11_jeedom_post() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 11 - Jeedom post-install${NORMAL}"
+
+  if [ "${VERSION}" != "master" ]; then
+    echo "Jeedom version is not master, set custom branch to ${VERSION}${NORMAL}"
+    CONFIG_FILE="${WEBSERVER_HOME}/data/custom/custom.config.ini"
+    mkdir -p "$(dirname "${CONFIG_FILE}")"
+    cat > "${CONFIG_FILE}" <<EOF
+[core]
+core::branch = ${VERSION}
+EOF
+  fi
+
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
 
