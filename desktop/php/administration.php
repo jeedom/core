@@ -968,7 +968,7 @@ $productName = config::byKey('product_name');
 									</div>
 								</div>
 								<?php
-								$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
+								$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event', 'audit');
 								$div = '<div id="logsForms"';
 								foreach ($other_log as $name) {
 									$div .= '<form class="form-horizontal">';

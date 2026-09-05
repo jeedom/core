@@ -34,6 +34,7 @@ class user {
 	private ?string $hash = '';
 	private $_changed = false;
 
+	private $_changes_trace = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
@@ -148,7 +149,9 @@ class user {
 				}
 			} elseif (hash_equals($storedPassword, sha512($_pswd))) {
 				$user->setPassword($_pswd);
-				log::add('audit', 'info', 'Password migrated from sha512 to native hash for: ' . $_login);
+				log::audit('Password migrated from sha512 to native hash', [
+					'login' => $_login
+				]);
 			} else {
 				$user = false;
 			}
@@ -319,14 +322,21 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function failedLogin(): void {
+	public static function failedLogin(array $_context = []): void {
 		$current_ip = getClientIp();
 		$failed_login = cache::byKey('security::failed_login::' . $current_ip);
-		cache::set('security::failed_login::' . $current_ip, ($failed_login->getValue(0) + 1), config::byKey('security::timeLoginFailed'));
-		if (($failed_login->getValue(0) + 1) > config::byKey('security::maxFailedLogin')) {
+		$newValue = $failed_login->getValue(0) + 1;
+		$maxValue = config::byKey('security::maxFailedLogin');
+		cache::set('security::failed_login::' . $current_ip, $newValue, config::byKey('security::timeLoginFailed'));
+		$_context['ip'] = $current_ip;
+		log::audit("Login failed ({$newValue}/{$maxValue})", $_context);
+		if ($newValue > $maxValue) {
 			$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
 			$ban_ips[$current_ip] = strtotime('now');
 			cache::set('security::banip', json_encode($ban_ips));
+			log::audit('IP banned', [
+				'ip' => $current_ip,
+			]);
 		}
 	}
 
@@ -492,6 +502,23 @@ class user {
 		}
 	}
 
+	public function postSave(): void {
+		foreach ($this->_changes_trace as $change) {
+			log::audit($change, [
+				'login' => $this->getLogin(),
+				'profils' => $this->getProfils(),
+			]);
+		}
+		$this->_changes_trace = array();
+	}
+
+	public function postInsert(): void {
+		log::audit('User created', [
+			'login' => $this->getLogin(),
+			'profils' => $this->getProfils(),
+		]);
+	}
+
 	public function encrypt(): void {
 		$this->getOptions('twoFactorAuthentification', utils::encrypt($this->getOptions('twoFactorAuthentification')));
 	}
@@ -513,6 +540,13 @@ class user {
 	public function remove(): bool {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getLogin(), 'date' => date('Y-m-d H:i:s'), 'type' => 'user'));
 		return DB::remove($this);
+	}
+
+	public function postRemove(): void {
+		log::audit('User removed', [
+			'login' => $this->getLogin(),
+			'profils' => $this->getProfils(),
+		]);
 	}
 
 	public function refresh(): void {
@@ -564,6 +598,7 @@ class user {
 
 	public function setLogin($_login): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->login, $_login);
+		$this->traceChange($this->login, $_login, "User login updated (old login: {$this->login}");
 		$this->login = $_login;
 		return $this;
 	}
@@ -575,6 +610,7 @@ class user {
 			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->password, $_password);
+		$this->traceChange($this->password, $_password, "User password updated");
 		$this->password = $_password;
 		return $this;
 	}
@@ -603,6 +639,7 @@ class user {
 	public function setRights($_key, $_value): self {
 		$rights = utils::setJsonAttr($this->rights, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->rights, $rights);
+		$this->traceChange($this->rights, $rights, "User rights updated");
 		$this->rights = $rights;
 		return $this;
 	}
@@ -613,6 +650,7 @@ class user {
 
 	public function setEnable($_enable): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
+		$this->traceChange($this->enable, $_enable, $_enable == 1 ? "User enabled" : "User disabled");
 		$this->enable = $_enable;
 		return $this;
 	}
@@ -626,6 +664,8 @@ class user {
 			return $this->regenerateHash();
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->getHash(), $_hash);
+
+		$this->traceChange($this->getHash(), $_hash, "User hash updated");
 		$this->hash = $_hash;
 		return $this;
 	}
@@ -636,8 +676,15 @@ class user {
 
 	public function setProfils($_profils): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->profils, $_profils);
+		$this->traceChange($this->profils, $_profils, "User profile updated (old profile: {$this->profils})");
 		$this->profils = $_profils;
 		return $this;
+	}
+
+	private function traceChange($old, $new, string $message): void {
+		if ($old != '' && $old != $new) {
+			$this->_changes_trace[] = $message;
+		}
 	}
 
 	public function getChanged() {
