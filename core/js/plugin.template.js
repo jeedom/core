@@ -113,7 +113,7 @@ if (!jeeFrontEnd.pluginTemplate) {
               data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '')
               data.cmd[i]['htmlstate'] = '<span class="cmdTableState"'
               data.cmd[i]['htmlstate'] += 'data-cmd_id="' + data.cmd[i].id + '"'
-              data.cmd[i]['htmlstate'] += 'title="{{Date de valeur}} : ' + data.cmd[i].valueDate + '<br/>{{Date de collecte}} : ' + data.cmd[i].collectDate
+              data.cmd[i]['htmlstate'] += 'title="{{Date de valeur}}: ' + data.cmd[i].valueDate + '<br/>{{Date de collecte}}: ' + data.cmd[i].collectDate
               if (data.cmd[i].state.length > 50) {
                 data.cmd[i]['htmlstate'] += '<br/>' + data.cmd[i].state.replaceAll('"', '&quot;')
               }
@@ -132,17 +132,17 @@ if (!jeeFrontEnd.pluginTemplate) {
           }
           document.querySelectorAll('.cmdTableState').forEach(_cmdState => {
             jeedom.cmd.addUpdateFunction(_cmdState.getAttribute('data-cmd_id'), function(_options) {
-              _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
+              let displayValue = String(_options.value).replace(/<[^>]*>?/gm, '')
               const cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
               if (cmd === null) {
                 return
               }
-              let title = '{{Date de collecte}} : ' + _options.collectDate + '<br/>{{Date de valeur}} ' + _options.valueDate
-              if (_options.value.length > 50) {
-                title += ' - ' + _options.value
+              let title = '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate
+              if (displayValue.length > 50) {
+                title += ' - ' + displayValue
               }
               cmd.setAttribute('title', title)
-              cmd.empty().innerHTML = _options.value.substring(0, 50) + ' ' + _options.raw_unit
+              cmd.empty().innerHTML = displayValue.substring(0, 50) + ' ' + _options.raw_unit
               cmd.style.color = 'var(--logo-primary-color)'
               setTimeout(function() {
                 cmd.style.color = null
