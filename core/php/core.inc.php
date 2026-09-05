@@ -44,10 +44,9 @@ try {
 } catch (\Throwable $e) {
 }
 
-function jeedomAutoload($_classname) {
-	/* core class always in /core/class : */
-	$path = __DIR__ . "/../../core/class/$_classname.class.php";
-	if (file_exists($path)) {
+function jeedomAutoload(string $_classname): void {
+	if (file_exists(__DIR__ . "/../../core/class/$_classname.class.php")) {
+		/* core class always in /core/class : */
 		include_file('core', $_classname, 'class');
 	} else if (substr($_classname, 0, 4) === 'com_') {
 		/* class com_$1 in /core/com/$1.com.php */
@@ -65,7 +64,11 @@ function jeedomAutoload($_classname) {
 		}
 		if ($plugin_active == 1) {
 			try {
-				include_file('core', $classname, 'class', $classname);
+				if ($classname !== $_classname && file_exists(__DIR__ . "/../../plugins/$classname/core/class/$_classname.class.php")) {
+					include_file('core', $_classname, 'class', $classname);
+				} else {
+					include_file('core', $classname, 'class', $classname);
+				}
 			} catch (Throwable $e) {
 				log::add('plugin', 'error', $e->getMessage());
 			}
