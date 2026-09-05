@@ -249,7 +249,7 @@ class jeedom {
 		if (!$scenarioState) {
 			$nbScenario = DB::Prepare('SELECT COUNT(*) as nb FROM scenario', array(), DB::FETCH_TYPE_ROW)['nb'];
 			if ($nbScenario > 0) {
-				$scenarioComment = __('Activer le moteur de scénarios (Outils -> Scénarios)', __FILE__);
+				$scenarioComment = __('Activer le moteur de scénarios (Outils > Scénarios)', __FILE__);
 			} else {
 				$scenarioState = 2;
 				$scenarioComment = __('Le moteur de scénarios est désactivé sans scénarios existants', __FILE__);
