@@ -252,7 +252,7 @@ class jeedom {
 				$scenarioComment = __('Activer le moteur de scénarios (Outils > Scénarios)', __FILE__);
 			} else {
 				$scenarioState = 2;
-				$scenarioComment = __('Le moteur de scénarios est désactivé sans scénarios existants', __FILE__);
+				$scenarioComment = __('Le moteur de scénarios est désactivé sans scénarios existants (Outils > Scénarios)', __FILE__);
 			}
 		}
 		$return[] = array(
