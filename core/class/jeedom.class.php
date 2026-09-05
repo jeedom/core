@@ -220,7 +220,7 @@ class jeedom {
 			'name' => __('Moteur de tâches', __FILE__),
 			'state' => $cronState,
 			'result' => ($cronState) ? 'OK' : 'NOK',
-			'comment' => ($cronState) ? __('Le système cron est actif', __FILE__) : __('Activer le système cron (Réglages > Système > Moteur de tâches)', __FILE__),
+			'comment' => ($cronState) ? __('Le moteur de tâches est actif', __FILE__) : __('Activer le système cron (Réglages > Système > Moteur de tâches)', __FILE__),
 			'key' => 'cron::enable'
 		);
 
