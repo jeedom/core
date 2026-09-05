@@ -427,7 +427,7 @@ class jeedom {
 			'name' => __('Version Python', __FILE__),
 			'state' => $pythonState,
 			'result' => $pythonVersion ?? 'NOK',
-			'comment' => ($pythonState) ? __('Version de Python', __FILE__) : __("Python 3 n'est pas installé", __FILE__),
+			'comment' => ($pythonState) ? __('Version de Python', __FILE__) : __('Python 3 est nécessaire pour certains plugins, vérifier les packages système (Réglages > Système > Configuration, onglet OS/DB)', __FILE__),
 			'key' => 'python::version'
 		);
 
@@ -438,20 +438,29 @@ class jeedom {
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => $killedState,
 			'result' => ($killedState) ? 'OK' : $killedProcesses,
-			'comment' => ($killedState) ? __("Mémoire suffisante pour l'ensemble des processus", __FILE__) : __('Le noyau a dû arrêter des processus par manque de mémoire depuis le dernier démarrage. Si le problème persiste, revoir les plugins/scénarios', __FILE__),
+			'comment' => ($killedState) ? __("Mémoire suffisante pour l'ensemble des processus", __FILE__) : __('Le noyau a dû arrêter des processus par manque de mémoire, revoir les plugins/scénarios si le problème persiste après redémarrage', __FILE__),
 			'key' => 'memory::killed'
 		);
 
 		// Node.js version
 		$nodeVersion = trim(shell_exec("node --version | tr -d 'v'"));
 		$installScript = file_get_contents(__DIR__ . '/../../resources/install_nodejs.sh');
-		preg_match("/minVer='([^']+)'/", $installScript, $matches);
-		$nodeState = version_compare($nodeVersion, $matches[1], '>=');
+		preg_match("/minVer='([^']+)'/", $installScript, $nodeMinVer);
+		preg_match("/installVer='([^']+)'/", $installScript, $nodeInstallVer);
+		$nodeState = true;
+		$nodeComment = __('Version de Node.js', __FILE__);
+		if (version_compare($nodeVersion, $nodeMinVer[1], '<')) {
+			$nodeState = false;
+			$nodeComment = sprintf(__('Node.js %s est nécessaire pour certains plugins, lancer la vérification générale (Réglages > Système > Configuration, onglet OS/DB)', __FILE__), $nodeInstallVer[1]);
+		} else if (version_compare(intval($nodeVersion), $nodeInstallVer[1], '>')) {
+			$nodeState = 2;
+			$nodeComment = __('Cette version de Node.js est plus récente que celle attendue', __FILE__) . ' (' . $nodeInstallVer[1] . ')';
+		}
 		$return[] = array(
 			'name' => __('Version Node.js', __FILE__),
 			'state' => $nodeState,
 			'result' => $nodeVersion,
-			'comment' => ($nodeState) ? __('Version de Node.js', __FILE__) : __("Cette version de Node.js n'est pas officiellement supportée, vérifier les packages système (Réglages > Système > Configuration, onglet OS/DB)", __FILE__),
+			'comment' => $nodeComment,
 			'key' => 'node::version'
 		);
 
@@ -594,7 +603,7 @@ class jeedom {
 			'name' => __('Espace temporaire disponible', __FILE__),
 			'state' => $tmpSpaceState,
 			'result' => $tmpSpace . '%',
-			'comment' => ($tmpSpaceState) ? __("Pourcentage d'espace temporaire disponible", __FILE__) : __('Espace temporaire faible, si persistant après redémarrage désactiver les plugins un à un pour identifier le responsable', __FILE__),
+			'comment' => ($tmpSpaceState) ? __("Pourcentage d'espace temporaire disponible", __FILE__) : __('Espace temporaire faible, désactiver les plugins un à un pour identifier le responsable si le problème persiste après redémarrage', __FILE__),
 			'key' => 'space::tmp'
 		);
 
