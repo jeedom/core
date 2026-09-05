@@ -230,7 +230,7 @@ class jeedom {
 		if ($lastKnowDate == 0) {
 			$dateState = 2;
 			$lastKnowDate = '-';
-			$dateComment = __("Aucune heure enregistrée, patienter 1 heure maximum", __FILE__);
+			$dateComment = __("Aucune heure enregistrée pour le moment, patienter jusqu'à la prochaine heure", __FILE__);
 		} else {
 			$lastKnowDate = gmdate('Y-m-d H:i:s', $lastKnowDate);
 			$dateComment = ($dateState) ? __('Date actuelle (dernière heure enregistrée)', __FILE__) : __('Remettre à zéro la dernière date connue (Réglages > Système > Configuration, onglet Général)', __FILE__);
@@ -310,7 +310,7 @@ class jeedom {
 			'name' => __('Version système', __FILE__),
 			'state' => $osState,
 			'result' => ucfirst($distrib) . ' ' . $osVersion,
-			'comment' => ($osState) ? __("Version du système", __FILE__) : __("Ce système n'est pas officiellement supporté (voir la documentation sur la compatibilité logicielle)", __FILE__),
+			'comment' => ($osState) ? __('Version du système', __FILE__) : __("Ce système n'est pas officiellement supporté (voir la documentation sur la compatibilité logicielle)", __FILE__),
 			'key' => 'os::version'
 		);
 
@@ -320,7 +320,7 @@ class jeedom {
 			'name' => __('Persistance du cache', __FILE__),
 			'state' => $cacheState,
 			'result' => ($cacheState) ? 'OK' : 'NOK',
-			'comment' => ($cacheState) ? __('Persistance du cache après redémarrage', __FILE__) : __('Certaines informations peuvent être perdues après redémarrage, attendre 30 minutes maximum ou démarrer la tâche cache::persist manuellement (Réglages > Système > Moteur de tâches)', __FILE__),
+			'comment' => ($cacheState) ? __('Persistance du cache après redémarrage', __FILE__) : __("Certaines informations peuvent être perdues après redémarrage, patienter jusqu'à la prochaine demi-heure ou démarrer la tâche cache::persist manuellement (Réglages > Système > Moteur de tâches)", __FILE__),
 			'key' => 'cache::persist'
 		);
 
@@ -523,7 +523,7 @@ class jeedom {
 			'name' => __('Mémoire disponible', __FILE__),
 			'state' => $memState,
 			'result' => $percentMem . '% (' . $availableMem[0] . $availableMem[1] . '/' . $totalMem[0] . $totalMem[1] . ')',
-			'comment' => __("Pourcentage de mémoire disponible (libre/total)", __FILE__),
+			'comment' => __('Pourcentage de mémoire disponible (libre/total)', __FILE__),
 			'key' => 'memory::free'
 		);
 
@@ -564,7 +564,7 @@ class jeedom {
 			'name' => __('Swap disponible', __FILE__),
 			'state' => $swapState,
 			'result' => $swapResult,
-			'comment' => __("Pourcentage de swap disponible (libre/total)", __FILE__),
+			'comment' => __('Pourcentage de swap disponible (libre/total)', __FILE__),
 			'key' => 'swap'
 		);
 
