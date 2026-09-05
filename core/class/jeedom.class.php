@@ -210,7 +210,7 @@ class jeedom {
 			'name' => __('Démarrage', __FILE__),
 			'state' => $isStarted,
 			'result' => ($isStarted) ? file_get_contents(self::getTmpFolder() . '/started') : 'NOK',
-			'comment' => ($isStarted) ? __('Date de démarrage de', __FILE__) . ' ' . $product_name : $product_name . ' ' . __('est en cours de démarrage, patienter quelques minutes puis rafraîchir la page', __FILE__),
+			'comment' => ($isStarted) ? sprintf(__('Date de démarrage de %s', __FILE__), $product_name) : sprintf(__('%s est en cours de démarrage, patienter quelques minutes puis rafraîchir la page', __FILE__), $product_name),
 			'key' => 'isStarted'
 		);
 
@@ -265,12 +265,18 @@ class jeedom {
 
 		// Core version
 		$coreVersionState = ($coreNeedUpdate) ? 2 : true;
-		$coreName = (config::byKey('mbState') == 0) ? ' Jeedom' : '';
+		if (config::byKey('mbState') == 0) {
+			$coreVersionName = __('Version core Jeedom', __FILE__);
+			$coreVersionComment = __('Version du core Jeedom', __FILE__);
+		} else {
+			$coreVersionName = __('Version core', __FILE__);
+			$coreVersionComment = __('Version du core', __FILE__);
+		}
 		$return[] = array(
-			'name' => __('Version core', __FILE__) . $coreName,
+			'name' => $coreVersionName,
 			'state' => $coreVersionState,
 			'result' => self::version(),
-			'comment' => ($coreVersionState === true) ? __('Version du core', __FILE__) . $coreName : __('Une mise à jour du core est disponible', __FILE__),
+			'comment' => ($coreVersionState === true) ? $coreVersionComment : __('Une mise à jour du core est disponible', __FILE__),
 			'key' => 'jeedom::version'
 		);
 
@@ -383,7 +389,7 @@ class jeedom {
 			$phpState = 2;
 		}
 		$return[] = array(
-			'name' => __('Version', __FILE__) . ' PHP',
+			'name' => __('Version PHP', __FILE__),
 			'state' => $phpState,
 			'result' => $phpVersion,
 			'comment' => ($phpState === true) ? __('Version de PHP', __FILE__) : __("Cette version de PHP n'est pas officiellement supportée (voir la documentation sur la compatibilité logicielle)", __FILE__),
@@ -418,7 +424,7 @@ class jeedom {
 			$pythonVersion = trim(shell_exec("python --version | sed 's/^Python//'"));
 		}
 		$return[] = array(
-			'name' => __('Version', __FILE__) . ' Python',
+			'name' => __('Version Python', __FILE__),
 			'state' => $pythonState,
 			'result' => $pythonVersion ?? 'NOK',
 			'comment' => ($pythonState) ? __('Version de Python', __FILE__) : __("Python 3 n'est pas installé", __FILE__),
@@ -442,7 +448,7 @@ class jeedom {
 		preg_match("/minVer='([^']+)'/", $installScript, $matches);
 		$nodeState = version_compare($nodeVersion, $matches[1], '>=');
 		$return[] = array(
-			'name' => __('Version', __FILE__) . ' Node.js',
+			'name' => __('Version Node.js', __FILE__),
 			'state' => $nodeState,
 			'result' => $nodeVersion,
 			'comment' => ($nodeState) ? __('Version de Node.js', __FILE__) : __("Cette version de Node.js n'est pas officiellement supportée, vérifier les packages système (Réglages > Système > Configuration, onglet OS/DB)", __FILE__),
