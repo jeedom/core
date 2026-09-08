@@ -129,7 +129,6 @@ class user {
 				$user->save();
 				log::add("connection", "info", 'User created from the LDAP: ' . $_login);
 				// TODO : if username == password => change ldap password
-				log::add('event', 'info', 'User connection accepted: ' . $_login);
 				return $user;
 			} else {
 				$user = self::byLogin($_login);
@@ -158,7 +157,6 @@ class user {
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
-			log::add('event', 'info', 'Local account found for: ' . $_login);
 		}
 		return $user;
 	}
