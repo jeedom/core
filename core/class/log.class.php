@@ -255,6 +255,7 @@ class log extends AbstractLogger {
 		static $coreLogNames = [
 			'api',
 			'apipro',
+			'audit',
 			'backup',
 			'cmd',
 			'connection',
