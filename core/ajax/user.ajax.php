@@ -36,7 +36,7 @@ try {
 		}
 
 		if (!isConnect()) {
-			if (config::byKey('sso:allowRemoteUser') == 1) {
+			if (config::byKey('sso:allowRemoteUser') == 1) { //FIXME: this seems to duplicate the code in core/php/authentification.php, maybe we should refactor this to avoid duplication
 				$header = $configs['sso:remoteUserHeader'];
 				$header_value = $_SERVER[$header];
 				$user = user::byLogin($header_value);
@@ -44,7 +44,11 @@ try {
 					@session_start();
 					$_SESSION['user'] = $user;
 					@session_write_close();
-					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $_SESSION['user']->getLogin());
+					jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
+					log::audit('User login by REMOTE_USER', [
+						'login' => $user->getLogin(),
+						'ip' => getClientIp(),
+					]);
 				}
 			}
 			$user = user::connect(init('username'), init('password'));
@@ -52,7 +56,6 @@ try {
 				throw new Exception(__('Double authentification requise', __FILE__), -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
-				log::add('connection', 'info', network::getClientIp() . ' - ' . __('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 				throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 			}
 		}
@@ -79,7 +82,6 @@ try {
 			$_SESSION['user']->save();
 			@session_write_close();
 		}
-		log::add('connection', 'info', network::getClientIp() . ' - ' . __('Connexion réussie pour : ', __FILE__) . $_SESSION['user']->getLogin());
 		ajax::success();
 	}
 
