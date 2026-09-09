@@ -13,12 +13,6 @@ parameters:
 			path: core/ajax/scenario.ajax.php
 
 		-
-			message: '#^Variable \$configs might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/ajax/user.ajax.php
-
-		-
 			message: '#^Variable \$cmd might not be defined\.$#'
 			identifier: variable.undefined
 			count: 1
