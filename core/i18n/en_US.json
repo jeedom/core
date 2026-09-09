@@ -247,8 +247,6 @@
     "core\/ajax\/user.ajax.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Aucune méthode correspondante à :": "No method corresponding to:",
-        "Connexion de l\\'utilisateur par REMOTE_USER :": "User login by REMOTE_USER:",
-        "Connexion réussie pour : ": "Login successful for: ",
         "Double authentification requise": "Dual authentication required",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Password or invalid user name",
         "User ID inconnu": "User ID unknown",
@@ -1379,9 +1377,6 @@
         "Clé API utilisateur invalide ou utilisateur désactivé": "Invalid user API key or user disabled",
         "Clé de périphérique enregistrée manquante": "Missing registered device key",
         "Code d\\'authentification à deux facteurs invalide ou manquant": "Invalid or missing two-factor authentication code",
-        "Connexion de l\\'utilisateur :": "User login:",
-        "Connexion de l\\'utilisateur par REMOTE_USER :": "User login by REMOTE_USER:",
-        "Connexion de l\\'utilisateur par clef :": "User login by key:",
         "Nom d\\'utilisateur ou mot de passe invalide ou utilisateur désactivé": "Invalid username or password, or user account disabled",
         "Périphérique non enregistré ou clé invalide": "Device not registered or invalid key",
         "Utilisateur local uniquement": "Local user only"
