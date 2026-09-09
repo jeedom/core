@@ -67,7 +67,11 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
 		@session_write_close();
-		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $user->getLogin());
+		jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
+		log::audit('User login by REMOTE_USER', [
+			'login' => $user->getLogin(),
+			'ip' => getClientIp(),
+		]);
 	}
 }
 
@@ -116,7 +120,7 @@ function login(string $_login, string $_password, ?string $_twoFactor = null): b
 	$_SESSION['user'] = $user;
 	session_regenerate_id(true);
 	@session_write_close();
-	log::add('connection', 'info', __('Connexion de l\'utilisateur :', __FILE__) . ' ' . $_login);
+	jeedom::event('user_connect', false, array('trigger_value' => $_login));
 	log::audit('User login', [
 		'login' => $_login,
 		'ip' => getClientIp(),
@@ -171,7 +175,7 @@ function loginByHash(string $_key): bool {
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
-	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef :', __FILE__) . ' ' . $user->getLogin());
+	jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
 	log::audit('User login by registered device', [
 		'login' => $user->getLogin(),
 		'ip' => getClientIp(),
