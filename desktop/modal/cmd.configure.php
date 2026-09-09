@@ -122,6 +122,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                       ?>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <label class="col-xs-4 control-label">{{Sélection par index de valeur}}</label>
+                    <div class="col-xs-8">
+                      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="listValueSelected" />
+                    </div>
+                  </div>
                 <?php } ?>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Dernière exécution par}}</label>
