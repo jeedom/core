@@ -36,21 +36,6 @@ try {
 		}
 
 		if (!isConnect()) {
-			if (config::byKey('sso:allowRemoteUser') == 1) { //FIXME: this seems to duplicate the code in core/php/authentification.php, maybe we should refactor this to avoid duplication
-				$header = $configs['sso:remoteUserHeader'];
-				$header_value = $_SERVER[$header];
-				$user = user::byLogin($header_value);
-				if (is_object($user) && $user->getEnable() == 1) {
-					@session_start();
-					$_SESSION['user'] = $user;
-					@session_write_close();
-					jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
-					log::audit('User login by REMOTE_USER', [
-						'login' => $user->getLogin(),
-						'ip' => getClientIp(),
-					]);
-				}
-			}
 			$user = user::connect(init('username'), init('password'));
 			if (is_object($user) && network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '' && init('twoFactorCode') == '') {
 				throw new Exception(__('Double authentification requise', __FILE__), -32012);
