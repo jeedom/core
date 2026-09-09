@@ -247,8 +247,6 @@
     "core\/ajax\/user.ajax.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
         "Aucune méthode correspondante à :": "Nenhum método correspondente a:",
-        "Connexion de l\\'utilisateur par REMOTE_USER :": "Login do usuário por REMOTE_USER:",
-        "Connexion réussie pour : ": "Ligação bem-sucedida para: ",
         "Double authentification requise": "Autenticação dupla necessária",
         "Mot de passe ou nom d\\'utilisateur incorrect": "Senha ou nome de usuário inválido",
         "User ID inconnu": "ID de usuário desconhecido",
@@ -1379,9 +1377,6 @@
         "Clé API utilisateur invalide ou utilisateur désactivé": "Chave API do utilizador inválida ou utilizador desativado",
         "Clé de périphérique enregistrée manquante": "Falta a chave do dispositivo registado",
         "Code d\\'authentification à deux facteurs invalide ou manquant": "Código de autenticação de dois fatores inválido ou em falta",
-        "Connexion de l\\'utilisateur :": "Login do utilizador:",
-        "Connexion de l\\'utilisateur par REMOTE_USER :": "Login do usuário por REMOTE_USER:",
-        "Connexion de l\\'utilisateur par clef :": "Login do utilizador por chave:",
         "Nom d\\'utilisateur ou mot de passe invalide ou utilisateur désactivé": "Nome de utilizador ou palavra-passe inválida ou utilizador desativado",
         "Périphérique non enregistré ou clé invalide": "Dispositivo não registado ou chave inválida",
         "Utilisateur local uniquement": "Apenas utilizador local"
