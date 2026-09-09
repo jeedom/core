@@ -304,15 +304,17 @@ try {
 			}
 			ajax::success();
 		}
-		if (init('user_id') != '') {
+		$targetUserId = init('user_id');
+		$targetUser = null;
+		if ($targetUserId != '') {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 			}
-			$user = user::byId(init('user_id'));
-			if (!is_object($user)) {
-				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . init('user_id'));
+			$targetUser = user::byId($targetUserId);
+			if (!is_object($targetUser)) {
+				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . $targetUserId);
 			}
-			$registerDevice = $user->getOptions('registerDevice', array());
+			$registerDevice = $targetUser->getOptions('registerDevice', array());
 		} else {
 			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
 		}
@@ -322,9 +324,9 @@ try {
 		} elseif (isset($registerDevice[init('key')])) {
 			unset($registerDevice[init('key')]);
 		}
-		if (init('user_id') != '') {
-			$user->setOptions('registerDevice', $registerDevice);
-			$user->save();
+		if (is_object($targetUser)) {
+			$targetUser->setOptions('registerDevice', $registerDevice);
+			$targetUser->save();
 		} else {
 			@session_start();
 			$_SESSION['user']->refresh();
