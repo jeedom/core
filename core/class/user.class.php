@@ -250,6 +250,9 @@ class user {
 	public function toArray() {
 		$return = utils::o2a($this, true);
 		unset($return['password'], $return['options']['twoFactorAuthentificationSecret']);
+		foreach ($return['options']['registerDevice'] ?? array() as &$registerDevice) {
+			unset($registerDevice['session_id']);
+		}
 		return $return;
 	}
 
