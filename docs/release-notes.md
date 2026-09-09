@@ -27,6 +27,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-09 18:00:41 | Review user_connect & audit log fine tuning | [#3504](https://github.com/jeedom/core/pull/3504) |
 | 2026-09-08 09:56:11 | Refactor user input handling: add validation and sanitization methods for login and password | [#3500](https://github.com/jeedom/core/pull/3500) |
 | 2026-09-07 10:06:59 | Rework health() diagnostics and fix inconsistent checks | [#3491](https://github.com/jeedom/core/pull/3491) |
 | 2026-09-07 09:59:54 | Fix shared cmd::update value mutation breaking live chart updates | [#3452](https://github.com/jeedom/core/pull/3452) |
