@@ -53,11 +53,7 @@ if (user::isBan()) {
 }
 
 if (!isConnect() && isset($_COOKIE['registerDevice']) && !loginByHash($_COOKIE['registerDevice'])) {
-	if (version_compare(PHP_VERSION, '7.3') >= 0) {
-		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-	} else {
-		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-	}
+	setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 }
 
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
@@ -189,13 +185,8 @@ function logout() {
 		'ip' => getClientIp(),
 	]);
 	@session_start();
-	if (version_compare(PHP_VERSION, '7.3') >= 0) {
-		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		setcookie('__Host-PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-	} else {
-		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-		setcookie('__Host-PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-	}
+	setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
+	setcookie('__Host-PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 	session_unset();
 	session_destroy();
 	return;
