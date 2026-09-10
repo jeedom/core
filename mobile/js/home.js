@@ -58,8 +58,8 @@ function initHome() {
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
-          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name.replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '">'
-          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name
+          li += '<a href="#" class="link ui-bottom-sheet-link ui-btn ui-btn-inline waves-effect waves-button" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + (objects[i].configuration?.display_name || objects[i].name).replace(/\"/g, "\'") + '" data-option="' + objects[i].id + '">'
+          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + (objects[i].configuration?.display_name || objects[i].name)
           li += '<span class="summaryMenu"><span class="objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a>'
           summaries.push({object_id : objects[i].id})
         }

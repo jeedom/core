@@ -775,7 +775,7 @@ class eqLogic {
 			'#translate_category#' => $translate_category,
 			'#style#' => '',
 			'#logicalId#' => $this->getLogicalId(),
-			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getName() : __('Aucun', __FILE__),
+			'#object_name#' => (is_object($this->getObject())) ? $this->getObject()->getDisplayName() : __('Aucun', __FILE__),
 			'#height#' => $this->getDisplay('height', 'auto'),
 			'#width#' => $this->getDisplay('width', 'auto'),
 			'#uid#' => $uid,
