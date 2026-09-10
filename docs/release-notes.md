@@ -84,6 +84,7 @@
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-10 14:42:25 | Add automated documentation translation and publishing workflow | [#3460](https://github.com/jeedom/core/pull/3460) |
 | 2026-07-16 09:18:32 | 2 wording corrections in Objects documentation (object.md) | [#3422](https://github.com/jeedom/core/pull/3422) |
 
 ## Developer
