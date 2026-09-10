@@ -45,9 +45,9 @@ Vous retrouverez [ici](https://doc.jeedom.com/fr_FR/installation/) toutes les po
 
 # Changelog
 
-Vous trouverez un *changelog* complet, par version ici : [changelog](https://doc.jeedom.com/fr_FR/core/4.4/changelog).
+Vous trouverez un *changelog* complet, par version ici : [changelog](https://doc.jeedom.com/fr_FR/core/4.6/changelog).
 
-*You will find changelog per version here: [changelog](https://doc.jeedom.com/en_US/core/4.4/changelog).*
+*You will find changelog per version here: [changelog](https://doc.jeedom.com/en_US/core/4.5/changelog).*
 
 # Développeurs
 
