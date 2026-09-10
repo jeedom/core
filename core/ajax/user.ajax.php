@@ -56,11 +56,7 @@ try {
 				'ip' => getClientIp(),
 				'session_id' => session_id(),
 			);
-			if (version_compare(PHP_VERSION, '7.3') >= 0) {
-				setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-			} else {
-				setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-			}
+			setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 			@session_start();
 			$_SESSION['user']->refresh();
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
