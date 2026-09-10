@@ -70,6 +70,7 @@
 ## Others
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-10 09:59:13 | Chore: Update PHP version checks to require PHP 7.4 or higher | [#3509](https://github.com/jeedom/core/pull/3509) |
 | 2026-09-07 09:48:19 | Chore: clean useless filter | [#3450](https://github.com/jeedom/core/pull/3450) |
 | 2026-09-07 09:45:59 | Remove dead widget plugin template lookup | [#3447](https://github.com/jeedom/core/pull/3447) |
 | 2026-09-04 21:38:24 | Fix hardcoded result property and incorrect options variable | [#3487](https://github.com/jeedom/core/pull/3487) |
