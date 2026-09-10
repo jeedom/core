@@ -48,3 +48,4 @@ tmp/*
 .env
 .phpstan.cache
 phpstan.phar
+node_modules/

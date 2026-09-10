@@ -1,0 +1,13 @@
+{
+  "name": "jeedom-core-eslint",
+  "private": true,
+  "description": "ESLint configuration for Jeedom core JS files (CI only).",
+  "scripts": {
+    "lint": "eslint core/js desktop/js",
+    "lint:check": "node .github/scripts/eslint-baseline-check.js",
+    "lint:baseline": "node .github/scripts/eslint-baseline-check.js --update"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1"
+  }
+}
