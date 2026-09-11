@@ -19,6 +19,7 @@
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 
 #[Group('integration')]
 class cacheTest extends TestCase {
@@ -61,14 +62,21 @@ class cacheTest extends TestCase {
 		$this->assertEquals(null, $cache->getValue());
 	}
 
-	public function testExistDeleteAndFlush() {
+	public function testExistAndDelete() {
 		$key = 'cache_test_' . bin2hex(random_bytes(4));
 		cache::set($key, 'value');
 		$this->assertTrue(cache::exist($key));
 		cache::delete($key);
 		$this->assertFalse(cache::exist($key));
+	}
+
+	#[RunInSeparateProcess]
+	public function testFlush() {
+		$key = 'cache_test_' . bin2hex(random_bytes(4));
 		cache::set($key, 'value');
+		$this->assertTrue(cache::exist($key));
 		cache::flush();
 		$this->assertFalse(cache::exist($key));
+		mkdir(jeedom::getTmpFolder() . '/cache', 0774, true);
 	}
 }
