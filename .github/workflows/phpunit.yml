@@ -58,7 +58,9 @@ jobs:
       - name: Prepare test runtime ownership
         run: |
           mkdir -p log plugins /tmp/jeedom
-          sudo chown -R www-data:www-data . /tmp/jeedom
+          sudo usermod -aG www-data "$USER"
+          sudo chown -R "$USER:www-data" log plugins /tmp/jeedom
+          sudo chmod -R g+rwX log plugins /tmp/jeedom
 
       - name: Run PHPUnit
-        run: sudo -u www-data -- vendor/bin/phpunit --do-not-cache-result --configuration phpunit.xml.dist
+        run: sg www-data -c 'vendor/bin/phpunit --do-not-cache-result --configuration phpunit.xml.dist'
