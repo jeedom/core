@@ -29,13 +29,13 @@ class logTest extends TestCase {
 
 	public static function getLogs() {
 		return array(
-			array('StreamHandler', 'foo', false, true),
+			array('StreamHandler', 'foo', false, null),
 		);
 	}
 
 	public static function getReturnListe() {
 		return array(
-			array('StreamHandler', array('http.error')),
+			array('StreamHandler', array('StreamHandler')),
 		);
 	}
 
