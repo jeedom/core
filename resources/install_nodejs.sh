@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-installVer='22' 	#NodeJS major version to be installed
-minVer='22'	      #min NodeJS major version to be accepted
+installVer='24' 	#NodeJS major version to be installed
+minVer='24'	      #min NodeJS major version to be accepted
 
 # vérifier si toujours nécessaire, cette source traine encore sur certaines smart et si une source est invalide -> nodejs ne s'installera pas
 if ls /etc/apt/sources.list.d/deb-multimedia.list* &>/dev/null; then
@@ -26,7 +26,7 @@ fi
 # sur smart, je désactive le repo.jeedom car toujours un risque à l'heure actuel que nodejs s'install pas bien
 # toReAddRepo=0
 if [ -f /media/boot/multiboot/meson64_odroidc2.dtb.linux ]; then
-  hasRepo=$(grep "repo.jeedom.com" /etc/apt/sources.list | wc -l)
+  hasRepo=$(grep "repo.jeedom.com" /etc/apt/sources.list 2>/dev/null | wc -l)
   if [ "$hasRepo" -ne "0" ]; then
     echo "Désactivation de la source repo.jeedom.com qui n'existe plus !"
 #     toReAddRepo=1
@@ -84,6 +84,18 @@ then
 fi
 fi
 
+#buster doesn't support NodeJS 24
+lsb_release -c | grep bullseye
+if [ $? -eq 0 ]
+then
+  today=$(date +%Y%m%d)
+  if [[ "$today" > "20260831" ]];
+  then
+  echo "== ATTENTION Debian 11 Bullseye n'est officiellement plus supportée depuis le 31 aout 2026, merci de mettre à jour votre distribution !!!"
+  exit 1
+fi
+fi
+
 #x86 32 bits not supported by nodesource anymore
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
@@ -118,18 +130,10 @@ else
 
   if [[ $arch == "armv6l" ]]
   then
-    #version to install for armv6 (to check on https://unofficial-builds.nodejs.org)
-    if [[ $installVer == "12" ]]; then
-      armVer="12.22.12"
-    elif [[ $installVer == "14" ]]; then
-      armVer="14.21.3"
-    elif [[ $installVer == "16" ]]; then
-      armVer="16.20.2"
-    elif [[ $installVer == "18" ]]; then
-      armVer="18.18.0"
-    elif [[ $installVer == "20" ]]; then
-      armVer="20.8.0"
-    fi
+    #version to install for armv6 (to check on https://unofficial-builds.nodejs.org), nodejs 24 not supported anymore, installing nodejs 22 on best effort
+    $installVer=22
+    armVer="22.23.2"
+
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
     wget https://unofficial-builds.nodejs.org/download/release/${armVer}/node-v${armVer}-linux-armv6l.tar.gz
     tar -xvf node-v${armVer}-linux-armv6l.tar.gz
