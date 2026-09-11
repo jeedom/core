@@ -640,6 +640,41 @@ class user {
 		return utils::getJsonAttr($this->options, $_key, $_default);
 	}
 
+	public static function registerDeviceLifetime(): int {
+		$registerDeviceLifetime = (int) config::byKey('security::registerDeviceLifetime', 'core', 30);
+		return $registerDeviceLifetime * 24 * 3600;
+	}
+
+	public static function cleanExpiredRegisterDevices(): void {
+		$expiration = time() - self::registerDeviceLifetime();
+		foreach (self::all() as $user) {
+			$registerDevice = $user->getOptions('registerDevice', array());
+			if (!is_array($registerDevice)) {
+				continue;
+			}
+			$changed = false;
+			foreach ($registerDevice as $key => $value) {
+				if (!is_array($value) || !isset($value['datetime']) || strtotime($value['datetime']) < $expiration) {
+					unset($registerDevice[$key]);
+					$changed = true;
+				}
+			}
+			if ($changed) {
+				$user->setOptions('registerDevice', $registerDevice);
+				$user->save();
+			}
+		}
+	}
+
+	public function isRegisterDeviceValid(string $_key, ?array $_registerDevice = null): bool {
+		$registerDevice = $_registerDevice ?? $this->getOptions('registerDevice', array());
+		return is_array($registerDevice)
+			&& isset($registerDevice[$_key])
+			&& is_array($registerDevice[$_key])
+			&& isset($registerDevice[$_key]['datetime'])
+			&& strtotime($registerDevice[$_key]['datetime']) >= time() - self::registerDeviceLifetime();
+	}
+
 	public function setOptions($_key, $_value) {
 		if ($_key == 'registerDevice' && is_array($_value) &&  count($_value) > 20) {
 			uasort($_value, function ($a, $b) {
