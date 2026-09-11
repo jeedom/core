@@ -1525,7 +1525,7 @@ $productName = config::byKey('product_name');
 								<sub>j</sub>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="number" class="configKey form-control" data-l1key="security::registerDeviceLifetime" min="7" max="90">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::registerDeviceLifetime" min="7" max="90">
 							</div>
 						</div>
 						<div class="form-group">
