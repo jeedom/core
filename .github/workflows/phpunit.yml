@@ -55,11 +55,10 @@ jobs:
       - name: Initialize Jeedom test instance
         run: php install/install.php
 
-      - name: Prepare writable test directories
+      - name: Prepare test runtime ownership
         run: |
           mkdir -p log plugins /tmp/jeedom
-          sudo chown -R "$(id -u):$(id -g)" log plugins /tmp/jeedom
-          sudo chmod -R a+rwX log plugins /tmp/jeedom
+          sudo chown -R www-data:www-data . /tmp/jeedom
 
       - name: Run PHPUnit
-        run: vendor/bin/phpunit --configuration phpunit.xml.dist
+        run: sudo -u www-data -- vendor/bin/phpunit --do-not-cache-result --configuration phpunit.xml.dist
