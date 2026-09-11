@@ -55,5 +55,10 @@ jobs:
       - name: Initialize Jeedom test instance
         run: php install/install.php
 
+      - name: Prepare writable test directories
+        run: |
+          mkdir -p log plugins /tmp/jeedom
+          chmod -R a+rwX log plugins /tmp/jeedom
+
       - name: Run PHPUnit
         run: vendor/bin/phpunit --configuration phpunit.xml.dist
