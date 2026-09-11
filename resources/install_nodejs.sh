@@ -84,7 +84,7 @@ then
 fi
 fi
 
-#buster doesn't support NodeJS 24
+#bullseye doesn't support NodeJS 24
 lsb_release -c | grep bullseye
 if [ $? -eq 0 ]
 then
