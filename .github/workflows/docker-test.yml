@@ -4,10 +4,7 @@
 name: Docker Test Image
 
 on:
-  # only relevant for changes to the install/packaging pipeline itself: sick.php only checks
-  # that the environment bootstraps (folders, DB connection), not any application/plugin code.
-  # Paths below are exactly what install.sh/init.sh/Dockerfile actually invoke in this flow,
-  # not the whole install/ folder (which also holds unrelated update/*.php migration scripts).
+  # sick.php only checks that the environment boots (folders, DB), not application code, so this only matters for changes to the install pipeline itself.
   pull_request:
     branches:
       - 'develop'
