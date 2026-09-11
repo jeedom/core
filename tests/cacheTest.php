@@ -18,8 +18,9 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 
-
+#[Group('integration')]
 class cacheTest extends TestCase {
 	public function testSave() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
@@ -58,5 +59,16 @@ class cacheTest extends TestCase {
 		sleep(2);
 		$cache = cache::byKey('toto');
 		$this->assertEquals(null, $cache->getValue());
+	}
+
+	public function testExistDeleteAndFlush() {
+		$key = 'cache_test_' . bin2hex(random_bytes(4));
+		cache::set($key, 'value');
+		$this->assertTrue(cache::exist($key));
+		cache::delete($key);
+		$this->assertFalse(cache::exist($key));
+		cache::set($key, 'value');
+		cache::flush();
+		$this->assertFalse(cache::exist($key));
 	}
 }

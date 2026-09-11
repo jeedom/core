@@ -17,7 +17,9 @@
 */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('integration')]
 class historyArchiveSqlInjectionTest extends TestCase {
 
 	/** @var callable[] */

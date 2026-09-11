@@ -18,7 +18,9 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('integration')]
 class scenarioExpressionTest extends TestCase {
 
 	public function testCalculCondition() {

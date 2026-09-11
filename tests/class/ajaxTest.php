@@ -18,7 +18,9 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('unit')]
 class ajaxTest extends TestCase {
 	public static function getSuccessResponses() {
 		return array(

@@ -18,6 +18,9 @@
 
 require_once __DIR__ . '/support/AjaxIntegrationTestCase.php';
 
+use PHPUnit\Framework\Attributes\Group;
+
+#[Group('integration')]
 class viewAjaxSqlInjectionTest extends AjaxIntegrationTestCase {
 
 	public function testValidComponentTypeUpdatesTheOrder(): void {

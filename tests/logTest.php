@@ -18,7 +18,9 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('integration')]
 class logTest extends TestCase {
 	public static function getEngines() {
 		return array(
@@ -59,6 +61,15 @@ class logTest extends TestCase {
 			array(500, E_ERROR | E_PARSE),
 			array(550, E_ERROR | E_PARSE),
 			array(600, E_ERROR | E_PARSE),
+		);
+	}
+
+	public static function getConvertedLogLevels() {
+		return array(
+			array(100, 'debug'),
+			array(400, 'error'),
+			array(600, 'none'),
+			array(999, 'none'),
 		);
 	}
 
@@ -119,5 +130,23 @@ class logTest extends TestCase {
 	public function testErrorReporting($level, $result) {
 		log::define_error_reporting($level);
 		$this->assertSame($result, error_reporting());
+	}
+
+	#[DataProvider('getConvertedLogLevels')]
+	public function testConvertLogLevel($level, $expected) {
+		$this->assertSame($expected, log::convertLogLevel($level));
+	}
+
+	public function testAuthorizeClearLog() {
+		$name = 'log_test_' . bin2hex(random_bytes(4));
+		$path = log::getPathToLog($name);
+		$this->assertFalse(log::authorizeClearLog($name));
+		file_put_contents($path, 'content');
+		try {
+			$this->assertTrue(log::authorizeClearLog($name));
+			$this->assertFalse(log::authorizeClearLog('.htaccess'));
+		} finally {
+			unlink($path);
+		}
 	}
 }

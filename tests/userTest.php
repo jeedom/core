@@ -18,7 +18,9 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('integration')]
 class userTest extends TestCase {
 	public function testCreate() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
@@ -42,6 +44,11 @@ class userTest extends TestCase {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$user = user::connect('test', 'test');
 		$this->assertEquals($user->getId(), $_user->getId());
+	}
+
+	#[Depends('testCreate')]
+	public function testRejectsIncorrectPassword($_user) {
+		$this->assertFalse(user::connect($_user->getLogin(), 'incorrect-password'));
 	}
 
 	#[Depends('testCreate')]

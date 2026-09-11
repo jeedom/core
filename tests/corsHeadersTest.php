@@ -17,6 +17,7 @@
 */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Regression test: `Access-Control-Allow-Credentials: true` combined with
@@ -24,6 +25,7 @@ use PHPUnit\Framework\TestCase;
  * credentials directive is dead code that misleads reviewers about the
  * intended cross-origin policy. It must not reappear in the shipped config.
  */
+#[Group('unit')]
 class corsHeadersTest extends TestCase {
 
 	public function testHtaccessHasNoAllowCredentials() {

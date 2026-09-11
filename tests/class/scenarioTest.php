@@ -18,7 +18,9 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('unit')]
 class scenarioTest extends TestCase {
 
 	public static function getGetSets() {
@@ -80,5 +82,11 @@ class scenarioTest extends TestCase {
 		$scenario->persistLog();
 		$this->assertTrue(file_exists($path));
 		shell_exec('rm ' . $path);
+	}
+
+	public function testSetLogIncludesScenarioPrefix() {
+		$scenario = new scenario();
+		$scenario->setLog('message');
+		$this->assertStringContainsString('[SCENARIO] message', $scenario->getLog());
 	}
 }

@@ -17,7 +17,9 @@
 */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('integration')]
 class cronTest extends TestCase {
 	public function testCreate() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
