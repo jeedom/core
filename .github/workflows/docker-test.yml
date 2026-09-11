@@ -18,15 +18,22 @@ on:
 jobs:
   buildAndTestDockerImg:
     runs-on: ubuntu-latest
-    # init.sh re-downloads Jeedom from the git ref named by VERSION at container startup,
-    # so it must point at the branch under test instead of defaulting to master
-    env:
-      PR_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Check Out Repo
         # Check out the repo, using current branch
         # https://github.com/marketplace/actions/checkout
         uses: actions/checkout@v7
+
+      - name: Resolve branch to test
+        # init.sh re-downloads Jeedom from the git ref named by VERSION at container startup,
+        # always from jeedom/core, so head_ref only resolves for branches pushed there.
+        # A fork PR's head_ref doesn't exist in jeedom/core: use base_ref (develop) instead.
+        run: |
+          if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "PR_BRANCH=${{ github.base_ref }}" >> "$GITHUB_ENV"
+          else
+            echo "PR_BRANCH=${{ github.head_ref || github.ref_name }}" >> "$GITHUB_ENV"
+          fi
 
       - name: Build jeedom:bookworm
         # build current image for bookworm
