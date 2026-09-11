@@ -19,6 +19,7 @@ on:
       - 'install/OS_specific/Docker/**'
       - 'resources/install_composer.sh'
       - 'resources/install_nodejs.sh'
+      - 'sick.php'
       - '.github/workflows/docker-test.yml'
   # this is to manually trigger the worklow
   workflow_dispatch:
