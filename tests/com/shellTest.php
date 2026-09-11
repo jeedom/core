@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class shellTest extends TestCase {
 	/******************* Base ********************/
-	public function getBackgrounds() {
+	public static function getBackgrounds() {
 		return array(
 			array(true),
 			array(false),

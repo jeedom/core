@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 class scenarioTest extends TestCase {
 
-	public function getGetSets() {
+	public static function getGetSets() {
 		return array(
 			array('Id', 'foo', 'foo'),
 			array('Name', 'foo', 'foo'),

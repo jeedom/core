@@ -21,7 +21,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
 
 class pluginTest extends TestCase {
-	public function getSources() {
+	public static function getSources() {
 		return array(
 			array('market', array(
 				'version' => 'stable',

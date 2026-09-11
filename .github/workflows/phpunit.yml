@@ -52,8 +52,8 @@ jobs:
             -e 's/#PASSWORD#/jeedom-test/' \
             core/config/common.config.php
 
-      - name: Initialize test schema
-        run: php install/database.php
+      - name: Initialize Jeedom test instance
+        run: php install/install.php
 
       - name: Run PHPUnit
         run: vendor/bin/phpunit --configuration phpunit.xml.dist

@@ -20,26 +20,26 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class logTest extends TestCase {
-	public function getEngins() {
+	public static function getEngins() {
 		return array(
 			array('StreamHandler'),
 			array('foo'),
 		);
 	}
 
-	public function getLogs() {
+	public static function getLogs() {
 		return array(
 			array('StreamHandler', 'foo', false, true),
 		);
 	}
 
-	public function getReturnListe() {
+	public static function getReturnListe() {
 		return array(
 			array('StreamHandler', array('http.error')),
 		);
 	}
 
-	public function getLevels() {
+	public static function getLevels() {
 		return array(
 			array('StreamHandler', 'debug'),
 			array('StreamHandler', 'info'),
@@ -49,7 +49,7 @@ class logTest extends TestCase {
 		);
 	}
 
-	public function getErrorReporting() {
+	public static function getErrorReporting() {
 		return array(
 			array(100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
 			array(200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),

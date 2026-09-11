@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class ajaxTest extends TestCase {
-	public function getSuccessResponses() {
+	public static function getSuccessResponses() {
 		return array(
 			array(
 				array('foo' => 'bar', 'bar' => 'baz'),
@@ -29,7 +29,7 @@ class ajaxTest extends TestCase {
 		);
 	}
 
-	public function getErrorResponses() {
+	public static function getErrorResponses() {
 		return array(
 			array(
 				array('foo' => 'bar', 'bar' => 'baz'),
