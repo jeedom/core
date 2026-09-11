@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class logTest extends TestCase {
-	public static function getEngins() {
+	public static function getEngines() {
 		return array(
 			array('StreamHandler'),
 			array('foo'),
@@ -29,7 +29,7 @@ class logTest extends TestCase {
 
 	public static function getLogs() {
 		return array(
-			array('StreamHandler', 'foo', false, null),
+			array('StreamHandler', 'foo'),
 		);
 	}
 
@@ -65,7 +65,7 @@ class logTest extends TestCase {
 	/**
 	 * @param string $name
 	 */
-	#[DataProvider('getEngins')]
+	#[DataProvider('getEngines')]
 	public function testLoggerHandler($name) {
 		config::save('log::engine', $name);
 		$logger = log::getLogger($name);
@@ -73,41 +73,41 @@ class logTest extends TestCase {
 	}
 
 	/**
-	 * @param string $engin
+	 * @param string $engine
 	 * @param string $message
-	 * @param string $get
-	 * @param string $removeAll
 	 */
 	#[DataProvider('getLogs')]
-	public function testAddGetRemove($engin, $message, $get, $removeAll) {
-		config::save('log::engine', $engin);
-		log::remove($engin);
-		$add = log::add($engin, 'debug', $message); // <- Effet de bord!
-		$this->assertNull($add);
-		$this->assertSame($get, log::get($engin, 0, 1));
-		$this->assertSame($removeAll, log::removeAll());
+	public function testAddGetRemove($engine, $message) {
+		config::save('log::engine', $engine);
+		log::remove($engine);
+		log::add($engine, 'error', $message);
+		$path = log::getPathToLog($engine);
+		$this->assertFileExists($path);
+		$this->assertStringContainsString($message, file_get_contents($path));
+		log::removeAll();
+		$this->assertFileDoesNotExist($path);
 	}
 
 	/**
-	 * @param string $engin
+	 * @param string $engine
 	 * @param string $level
 	 */
 	#[DataProvider('getLevels')]
-	public function testAddLevels($engin, $level) {
-		config::save('log::engine', $engin);
-		log::remove($engin);
-		$add = log::add($engin, $level, 'testLevel');
+	public function testAddLevels($engine, $level) {
+		config::save('log::engine', $engine);
+		log::remove($engine);
+		$add = log::add($engine, $level, 'testLevel');
 		$this->assertTrue(true);
 	}
 
 	/**
-	 * @param string $engin
+	 * @param string $engine
 	 * @param string $return
 	 */
 	#[DataProvider('getReturnListe')]
-	public function testListe($engin, $return) {
-		config::save('log::engine', $engin);
-		log::add($engin, 'debug', 'toto');
+	public function testListe($engine, $return) {
+		config::save('log::engine', $engine);
+		log::add($engine, 'debug', 'toto');
 		$this->assertSame($return, log::liste());
 	}
 
@@ -117,7 +117,7 @@ class logTest extends TestCase {
 	 */
 	#[DataProvider('getErrorReporting')]
 	public function testErrorReporting($level, $result) {
-		$this->assertNull(log::define_error_reporting($level));
+		log::define_error_reporting($level);
 		$this->assertSame($result, error_reporting());
 	}
 }

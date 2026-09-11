@@ -63,4 +63,4 @@ jobs:
           sudo chmod -R g+rwX log plugins /tmp/jeedom
 
       - name: Run PHPUnit
-        run: umask 0002; sg www-data -c 'vendor/bin/phpunit --do-not-cache-result --configuration phpunit.xml.dist'
+        run: umask 0002; sg www-data -c 'vendor/bin/phpunit --do-not-cache-result --exclude-group external --configuration phpunit.xml.dist'

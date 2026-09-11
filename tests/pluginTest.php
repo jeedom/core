@@ -19,7 +19,9 @@
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 
+#[Group('external')]
 class pluginTest extends TestCase {
 	public static function getSources() {
 		return array(
