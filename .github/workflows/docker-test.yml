@@ -4,10 +4,25 @@
 name: Docker Test Image
 
 on:
-  # only trigger CI when pull request on following branches
+  # only relevant for changes to the install/packaging pipeline itself: sick.php only checks
+  # that the environment bootstraps (folders, DB connection), not any application/plugin code.
+  # Paths below are exactly what install.sh/init.sh/Dockerfile actually invoke in this flow,
+  # not the whole install/ folder (which also holds unrelated update/*.php migration scripts).
   pull_request:
     branches:
       - 'develop'
+    paths:
+      - 'Dockerfile'
+      - 'install/install.sh'
+      - 'install/install.php'
+      - 'install/apache_default'
+      - 'install/apache_remoteip'
+      - 'install/apache_security'
+      - 'install/bashrc'
+      - 'install/OS_specific/Docker/**'
+      - 'resources/install_composer.sh'
+      - 'resources/install_nodejs.sh'
+      - '.github/workflows/docker-test.yml'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -24,21 +39,10 @@ jobs:
         # https://github.com/marketplace/actions/checkout
         uses: actions/checkout@v7
 
-      - name: Resolve branch to test
-        # init.sh re-downloads Jeedom from the git ref named by VERSION at container startup,
-        # always from jeedom/core, so head_ref only resolves for branches pushed there.
-        # A fork PR's head_ref doesn't exist in jeedom/core: use base_ref (develop) instead.
-        run: |
-          if [ -n "${{ github.event.pull_request.head.repo.full_name }}" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
-            echo "PR_BRANCH=${{ github.base_ref }}" >> "$GITHUB_ENV"
-          else
-            echo "PR_BRANCH=${{ github.head_ref || github.ref_name }}" >> "$GITHUB_ENV"
-          fi
-
       - name: Build jeedom:bookworm
         # build current image for bookworm
         run: |
-          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
+          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 .
       - name: run jeedom:bookworm and check
         # run current image for bookworm and check it
         run: |
@@ -52,7 +56,7 @@ jobs:
       - name: Build jeedom:trixie
         # build current image for trixie
         run: |
-          docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
+          docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 .
       - name: run jeedom:trixie and check
         # run current image for trixie and check it
         run: |
