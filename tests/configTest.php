@@ -17,6 +17,7 @@
 */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Depends;
 
 
 class configTest extends TestCase {
@@ -25,31 +26,23 @@ class configTest extends TestCase {
 		config::save('toto', 'toto');
 		$this->assertTrue(true);
 	}
-	
-	/**
-	* @depends testSave
-	*/
+
+	#[Depends('testSave')]
 	public function testLoad() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$this->assertEquals('toto', config::byKey('toto'));
 	}
-	
-	/**
-	* @depends testLoad
-	*/
+
+	#[Depends('testLoad')]
 	public function testRemove() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		config::remove('toto');
 		$this->assertTrue(config::byKey('toto') == '');
 	}
-	
-	/**
-	* @depends testRemove
-	*/
+
+	#[Depends('testRemove')]
 	public function testDefault() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$this->assertEquals('plop', config::byKey('toto', 'core', 'plop'));
 	}
-	
 }
-?>

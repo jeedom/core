@@ -13,10 +13,11 @@
       "php-http/discovery": true
     },
     "platform": {
-      "php": "7.4"
+      "php": "8.2"
     }
   },
   "require-dev": {
-    "phpstan/phpstan": "^2.1"
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^11.5"
   }
 }

@@ -15,50 +15,47 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-use PHPUnit\Framework\TestCase;
 
-class ajaxTest extends TestCase
-{
-	public function getSuccessResponses()
-	{
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+
+class ajaxTest extends TestCase {
+	public function getSuccessResponses() {
 		return array(
 			array(
-				array('foo'=>'bar','bar'=>'baz'),
+				array('foo' => 'bar', 'bar' => 'baz'),
 				'{"state":"ok","result":{"foo":"bar","bar":"baz"}}',
 			),
 		);
 	}
-	
-	public function getErrorResponses()
-	{
+
+	public function getErrorResponses() {
 		return array(
 			array(
-				array('foo'=>'bar','bar'=>'baz'),
+				array('foo' => 'bar', 'bar' => 'baz'),
 				1234,
 				'{"state":"error","result":{"foo":"bar","bar":"baz"},"code":1234}',
 			),
 		);
 	}
-	
+
 	/**
-	* @dataProvider getSuccessResponses
-	* @param mixed $data
-	* @param string $out
-	*/
-	public function testSuccess($data, $out)
-	{
+	 * @param mixed $data
+	 * @param string $out
+	 */
+	#[DataProvider('getSuccessResponses')]
+	public function testSuccess($data, $out) {
 		$response = ajax::getResponse($data);
 		$this->assertEquals($out, $response);
 	}
-	
+
 	/**
-	* @dataProvider getErrorResponses
-	* @param mixed $data
-	* @param int $code
-	* @param string $out
-	*/
-	public function testError($data, $code, $out)
-	{
+	 * @param mixed $data
+	 * @param int $code
+	 * @param string $out
+	 */
+	#[DataProvider('getErrorResponses')]
+	public function testError($data, $code, $out) {
 		$response = ajax::getResponse($data, $code);
 		$this->assertEquals($out, $response);
 	}

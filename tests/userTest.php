@@ -17,6 +17,7 @@
 */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\Depends;
 
 class userTest extends TestCase {
 	public function testCreate() {
@@ -36,18 +37,14 @@ class userTest extends TestCase {
 		return $user;
 	}
 
-	/**
-	 * @depends testCreate
-	 */
+	#[Depends('testCreate')]
 	public function testConnect($_user) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$user = user::connect('test', 'test');
 		$this->assertEquals($user->getId(), $_user->getId());
 	}
 
-	/**
-	 * @depends testCreate
-	 */
+	#[Depends('testCreate')]
 	public function testRemove($_user) {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';
 		$id = $_user->getId();

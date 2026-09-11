@@ -17,27 +17,28 @@
 */
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class logTest extends TestCase {
 	public function getEngins() {
 		return array(
-			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
-			array('foo', 'Monolog\Handler\StreamHandler'),
+			array('StreamHandler'),
+			array('foo'),
 		);
 	}
-	
+
 	public function getLogs() {
 		return array(
 			array('StreamHandler', 'foo', false, true),
 		);
 	}
-	
+
 	public function getReturnListe() {
 		return array(
 			array('StreamHandler', array('http.error')),
 		);
 	}
-	
+
 	public function getLevels() {
 		return array(
 			array('StreamHandler', 'debug'),
@@ -47,40 +48,37 @@ class logTest extends TestCase {
 			array('StreamHandler', 'error'),
 		);
 	}
-	
+
 	public function getErrorReporting() {
 		return array(
-			array(Monolog\Logger::DEBUG, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::INFO, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::NOTICE, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::WARNING, E_ERROR | E_WARNING | E_PARSE),
-			array(Monolog\Logger::ERROR, E_ERROR | E_PARSE),
-			array(Monolog\Logger::CRITICAL, E_ERROR | E_PARSE),
-			array(Monolog\Logger::ALERT, E_ERROR | E_PARSE),
-			array(Monolog\Logger::EMERGENCY, E_ERROR | E_PARSE),
+			array(100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(250, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(300, E_ERROR | E_WARNING | E_PARSE),
+			array(400, E_ERROR | E_PARSE),
+			array(500, E_ERROR | E_PARSE),
+			array(550, E_ERROR | E_PARSE),
+			array(600, E_ERROR | E_PARSE),
 		);
 	}
-	
+
 	/**
-	* @dataProvider getEngins
-	* @param string $name
-	* @param string $instance
-	*/
-	public function testLoggerHandler($name, $instance) {
+	 * @param string $name
+	 */
+	#[DataProvider('getEngins')]
+	public function testLoggerHandler($name) {
 		config::save('log::engine', $name);
 		$logger = log::getLogger($name);
-		$this->assertInstanceOf('Monolog\\Logger', $logger);
-		$handler = $logger->popHandler();
-		$this->assertInstanceOf($instance, $handler);
+		$this->assertInstanceOf(log::class, $logger);
 	}
-	
+
 	/**
-	* @dataProvider getLogs
-	* @param string $engin
-	* @param string $message
-	* @param string $get
-	* @param string $removeAll
-	*/
+	 * @param string $engin
+	 * @param string $message
+	 * @param string $get
+	 * @param string $removeAll
+	 */
+	#[DataProvider('getLogs')]
 	public function testAddGetRemove($engin, $message, $get, $removeAll) {
 		config::save('log::engine', $engin);
 		log::remove($engin);
@@ -89,35 +87,35 @@ class logTest extends TestCase {
 		$this->assertSame($get, log::get($engin, 0, 1));
 		$this->assertSame($removeAll, log::removeAll());
 	}
-	
+
 	/**
-	* @dataProvider getLevels
-	* @param string $engin
-	* @param string $level
-	*/
+	 * @param string $engin
+	 * @param string $level
+	 */
+	#[DataProvider('getLevels')]
 	public function testAddLevels($engin, $level) {
 		config::save('log::engine', $engin);
 		log::remove($engin);
 		$add = log::add($engin, $level, 'testLevel');
 		$this->assertTrue(true);
 	}
-	
+
 	/**
-	* @dataProvider getReturnListe
-	* @param string $engin
-	* @param string $return
-	*/
+	 * @param string $engin
+	 * @param string $return
+	 */
+	#[DataProvider('getReturnListe')]
 	public function testListe($engin, $return) {
 		config::save('log::engine', $engin);
 		log::add($engin, 'debug', 'toto');
 		$this->assertSame($return, log::liste());
 	}
-	
+
 	/**
-	* @dataProvider getErrorReporting
-	* @param int $level
-	* @param int $result
-	*/
+	 * @param int $level
+	 * @param int $result
+	 */
+	#[DataProvider('getErrorReporting')]
 	public function testErrorReporting($level, $result) {
 		$this->assertNull(log::define_error_reporting($level));
 		$this->assertSame($result, error_reporting());

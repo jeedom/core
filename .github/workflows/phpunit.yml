@@ -1,0 +1,59 @@
+name: PHPUnit
+
+on:
+  push:
+    branches:
+      - chore/restore-phpunits
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_DATABASE: jeedom_test
+          MARIADB_USER: jeedom
+          MARIADB_PASSWORD: jeedom-test
+          MARIADB_ROOT_PASSWORD: root-test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mariadb-admin ping -h localhost -uroot -proot-test"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: pdo_mysql
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Configure test database
+        run: |
+          cp core/config/common.config.sample.php core/config/common.config.php
+          sed -i \
+            -e 's/#HOST#/127.0.0.1/' \
+            -e 's/#PORT#/3306/' \
+            -e 's/#DBNAME#/jeedom_test/' \
+            -e 's/#USERNAME#/jeedom/' \
+            -e 's/#PASSWORD#/jeedom-test/' \
+            core/config/common.config.php
+
+      - name: Initialize test schema
+        run: php install/database.php
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --configuration phpunit.xml.dist

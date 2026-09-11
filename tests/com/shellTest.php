@@ -15,7 +15,9 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class shellTest extends TestCase {
 	/******************* Base ********************/
@@ -25,31 +27,30 @@ class shellTest extends TestCase {
 			array(false),
 		);
 	}
-	
+
 	public function testGetCmd() {
 		$shell = new com_shell('ls');
 		$this->assertSame('ls', $shell->getCmd());
 	}
-	
+
 	public function testCommandExist() {
 		$shell = new com_shell();
 		$this->assertTrue($shell->commandExist('ls'));
 		$this->assertFalse($shell->commandExist('foo'));
 	}
-	
+
 	/**
-	* @dataProvider getBackgrounds
-	* @var bool $in
-	*/
+	 * @var bool $in
+	 */
+	#[DataProvider('getBackgrounds')]
 	public function testBackground($in) {
 		$shell = new com_shell();
 		$shell->setBackground($in);
 		$this->assertSame($in, $shell->getBackground());
 	}
-	
+
 	public function testExec() {
-		if (file_exists('foo.txt'))
-		{
+		if (file_exists('foo.txt')) {
 			$this->markTestSkipped(
 				'Un fichier foo.txt existe. Veuillez le supprimer.'
 			);
@@ -58,26 +59,25 @@ class shellTest extends TestCase {
 		$return = $shell->exec();
 		$this->assertEmpty($return);
 		$this->assertTrue(file_exists('foo.txt'));
-		
+
 		$shell = new com_shell('rm foo.txt');
 		$return = $shell->exec();
 		$this->assertEmpty($return);
 		$this->assertFalse(file_exists('foo.txt'));
-		
+
 		$shell = new com_shell('echo foo');
 		$return = $shell->exec();
 		$this->assertSame('foo', $return);
 	}
-	
+
 	/*************** Improvement *****************/
 	public function testInstance() {
 		$shell = com_shell::getInstance();
 		$this->assertInstanceOf('com_shell', $shell);
 	}
-	
+
 	public function testExecute() {
-		if (file_exists('bar.txt'))
-		{
+		if (file_exists('bar.txt')) {
 			$this->markTestSkipped(
 				'Un fichier bar.txt existe. Veuillez le supprimer.'
 			);
@@ -85,15 +85,15 @@ class shellTest extends TestCase {
 		$result = com_shell::execute('touch bar.txt');
 		$this->assertEmpty($result);
 		$this->assertTrue(file_exists('bar.txt'));
-		
+
 		$result = com_shell::execute('rm bar.txt');
 		$this->assertEmpty($result);
 		$this->assertFalse(file_exists('bar.txt'));
-		
+
 		$result = com_shell::execute('echo bar');
 		$this->assertSame('bar', $result);
 	}
-	
+
 	public function testCache() {
 		$shell = com_shell::getInstance();
 		$shell->clearHistory();
@@ -104,7 +104,7 @@ class shellTest extends TestCase {
 		$result = $shell->exec();
 		$this->assertSame('foo', $result);
 	}
-	
+
 	public function testHistory() {
 		$shell = com_shell::getInstance();
 		$shell->clearHistory();

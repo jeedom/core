@@ -15,10 +15,12 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
+
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class scenarioTest extends TestCase {
-	
+
 	public function getGetSets() {
 		return array(
 			array('Id', 'foo', 'foo'),
@@ -53,13 +55,13 @@ class scenarioTest extends TestCase {
 			array('Description', 'foo', 'foo'),
 		);
 	}
-	
+
 	/**
-	* @dataProvider getGetSets
-	* @param unknown $attribute
-	* @param unknown $in
-	* @param unknown $out
-	*/
+	 * @param unknown $attribute
+	 * @param unknown $in
+	 * @param unknown $out
+	 */
+	#[DataProvider('getGetSets')]
 	public function testGetterSetter($attribute, $in, $out) {
 		$scenario = new scenario();
 		$getter = 'get' . $attribute;
@@ -67,7 +69,7 @@ class scenarioTest extends TestCase {
 		$scenario->$setter($in);
 		$this->assertSame($out, $scenario->$getter());
 	}
-	
+
 	public function testPersistLog() {
 		$path = __DIR__ . '/../../log/scenarioLog/scenarioTest.log';
 		if (file_exists($path)) {
