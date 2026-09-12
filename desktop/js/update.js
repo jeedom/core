@@ -85,7 +85,6 @@ if (!jeeFrontEnd.update) {
                   clearTimeout(jeeP.alertTimeout)
                 }
                 _autoUpdate = 0
-                document.querySelectorAll('.bt_refreshOsPackageUpdate').removeClass('disabled')
                 jeedomUtils.reloadPagePrompt('{{Mise(s) à jour terminée(s) avec succès.}}')
               }
               //update error:
@@ -101,7 +100,6 @@ if (!jeeFrontEnd.update) {
                   level: 'danger'
                 })
                 _autoUpdate = 0
-                document.querySelectorAll('.bt_refreshOsPackageUpdate').removeClass('disabled')
               }
             }
           }
@@ -454,72 +452,6 @@ if (!jeeFrontEnd.update) {
       clearTimeout(jeeP.alertTimeout)
       jeeP.alertTimeout = setTimeout(jeeP.alertTimeout, 60000 * 10)
     },
-    //packages updates:
-    printOsUpdate: function (_forceRefresh) {
-      this.osUpdateChecked = 1
-      jeedom.systemGetUpgradablePackage({
-        type: 'all',
-        forceRefresh: _forceRefresh,
-        error: function (error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function (data) {
-          document.querySelectorAll('#os .bt_OsPackageUpdate').addClass('disabled')
-
-          const osTable = document.getElementById('table_osUpdate')
-          osTable.tBodies[0].empty()
-
-          const tr_updates = []
-          for (const type of Object.keys(data)) { //apt pip3
-            const OSPackages = Object.keys(data[type])
-            if (OSPackages.length > 0) {
-              document.querySelector('#os .bt_OsPackageUpdate[data-type="' + type + '"]').removeClass('disabled')
-              for (const OSPackage of OSPackages) {
-                tr_updates.push(jeeFrontEnd.update.addOsUpdate(data[type][OSPackage]))
-              }
-            }
-
-          }
-
-          for (const tr of tr_updates) {
-            osTable.tBodies[0].appendChild(tr)
-          }
-
-          if (osTable._dataTable) {
-            osTable._dataTable.refresh()
-          } else {
-            jeeFrontEnd.update.osDataTable = new DataTable(osTable, {
-              columns: [
-                { select: 0, sort: "asc" }
-              ],
-              paging: false,
-              searchable: true
-            })
-          }
-        }
-      })
-    },
-    addOsUpdate: function (_update) {
-      let tr = '<tr>'
-      tr += '<td>'
-      tr += '<span class="osUpdateAttr" data-l1key="type"></span>'
-      tr += '</td>'
-      tr += '<td>'
-      tr += '<span class="osUpdateAttr" data-l1key="name"></span>'
-      tr += '</td>'
-      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="localVersion">' + _update.current_version + '</span></td>'
-      tr += '<td style="width:160px;"><span class="label label-primary" data-l1key="remoteVersion">' + _update.new_version + '</span></td>'
-      tr += '</tr>'
-      const newRow = document.createElement('tr')
-      newRow.innerHTML = tr
-      newRow.setAttribute('data-logicalId', init(_update.name))
-      newRow.setAttribute('data-type', init(_update.type))
-      newRow.setJeeValues(_update, '.osUpdateAttr')
-      return newRow
-    },
     //modal update:
     getUpdateModal: function () {
       jeeDialog.dialog({
@@ -569,7 +501,6 @@ if (!jeeFrontEnd.update) {
                 jeeDialog.get('#md_update').hide()
                 jeeP.progress = 0
                 document.getElementById('progressbarContainer').removeClass('hidden')
-                document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled')
                 jeeP.updateProgressBar()
                 jeedom.update.doAll({
                   options: options,
@@ -601,7 +532,6 @@ if (jeephp2js.isUpdating == '1') {
   jeedomUtils.hideAlert()
   jeeP.progress = 7
   document.getElementById('progressbarContainer').removeClass('hidden')
-  document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled')
   jeeP.updateProgressBar()
   jeeP.getJeedomLog(1, 'update')
 }
@@ -658,7 +588,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function 
           if (result) {
             jeeP.progress = -1
             document.getElementById('progressbarContainer').removeClass('hidden')
-            document.querySelector('.bt_refreshOsPackageUpdate').addClass('disabled')
             jeeP.updateProgressBar()
             jeedomUtils.hideAlert()
             jeedom.update.do({
@@ -733,46 +662,6 @@ document.getElementById('div_pageContainer').addEventListener('click', function 
       success: function (data) {
         jeedomUtils.loadPage('index.php?v=d&p=update&saveSuccessFull=1')
       }
-    })
-    return
-  }
-
-  if (_target = event.target.closest('.bt_refreshOsPackageUpdate')) {
-    if (jeeP.osUpdateChecked == 0 || _target.getAttribute('data-forceRefresh') == "1") {
-      jeeP.printOsUpdate(_target.getAttribute('data-forceRefresh'))
-    }
-    return
-  }
-
-  if (_target = event.target.closest('.bt_OsPackageUpdate')) {
-    if (_target.getAttribute('disabled')) {
-      return
-    }
-    const type = _target.getAttribute('data-type')
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir mettre à jour les packages de type}} ' + type + ' ? {{Attention cette opération est toujours risquée et peut prendre plusieurs dizaines de minutes}}.', function (result) {
-      if (!result) {
-        return
-      }
-      jeedom.systemUpgradablePackage({
-        type: type,
-        error: function (error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function (data) {
-          jeedomUtils.showAlert({
-            message: '{{Mise à jour lancée avec succès.}}',
-            level: 'success'
-          })
-          jeeDialog.dialog({
-            id: 'jee_modal',
-            title: "{{Log de mise à jour}}",
-            contentUrl: 'index.php?v=d&modal=log.display&log=packages'
-          })
-        }
-      })
     })
     return
   }
