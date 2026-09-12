@@ -1411,11 +1411,17 @@ try {
 		if (!is_array($registerDevice)) {
 			$registerDevice = array();
 		}
-		$rdk = (!isset($params['rdk']) || !isset($registerDevice[sha512($params['rdk'])])) ? config::genKey() : $params['rdk'];
-		$registerDevice[sha512($rdk)] = array();
-		$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
-		$registerDevice[sha512($rdk)]['ip'] = getClientIp();
-		$registerDevice[sha512($rdk)]['session_id'] = session_id();
+		$rdk = $params['rdk'] ?? '';
+		$rdkHash = ($rdk != '') ? sha512($rdk) : '';
+		if ($rdk == '' || !$_USER_GLOBAL->isRegisterDeviceValid($rdkHash)) {
+			$rdk = config::genKey();
+			$rdkHash = sha512($rdk);
+		}
+		$registerDevice[$rdkHash] = array(
+			'datetime' => date('Y-m-d H:i:s'),
+			'ip' => getClientIp(),
+			'session_id' => session_id(),
+		);
 		$_USER_GLOBAL->setOptions('registerDevice', $registerDevice);
 		$_USER_GLOBAL->save();
 		log::add('api', 'debug', 'RDK :' . $rdk);
