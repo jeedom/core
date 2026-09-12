@@ -473,7 +473,7 @@ if (!jeeFrontEnd.update) {
           osTable.tBodies[0].empty()
 
           var tr_updates = []
-          for (var type of Object.keys(data)) { //apt pip2 pip3
+          for (var type of Object.keys(data)) { //apt pip3
             var OSPackages = Object.keys(data[type])
             if (OSPackages.length > 0) {
               document.querySelector('#os .bt_OsPackageUpdate[data-type="' + type + '"]').removeClass('disabled')
