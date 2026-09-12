@@ -4,10 +4,24 @@
 name: Docker Test Image
 
 on:
-  # only trigger CI when pull request on following branches
+  # sick.php only checks that the environment boots (folders, DB), not application code, so this only matters for changes to the install pipeline itself.
   pull_request:
     branches:
       - 'develop'
+    paths:
+      - '.github/workflows/docker-test.yml'
+      - '.dockerignore'
+      - 'Dockerfile'
+      - 'install/install.sh'
+      - 'install/install.php'
+      - 'install/apache_default'
+      - 'install/apache_remoteip'
+      - 'install/apache_security'
+      - 'install/bashrc'
+      - 'install/OS_specific/Docker/**'
+      - 'resources/install_composer.sh'
+      - 'resources/install_nodejs.sh'
+      - 'sick.php'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -18,10 +32,6 @@ on:
 jobs:
   buildAndTestDockerImg:
     runs-on: ubuntu-latest
-    # init.sh re-downloads Jeedom from the git ref named by VERSION at container startup,
-    # so it must point at the branch under test instead of defaulting to master
-    env:
-      PR_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Check Out Repo
         # Check out the repo, using current branch
@@ -31,30 +41,40 @@ jobs:
       - name: Build jeedom:bookworm
         # build current image for bookworm
         run: |
-          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
+          docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 .
       - name: run jeedom:bookworm and check
         # run current image for bookworm and check it
+        timeout-minutes: 10
         run: |
           docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
           until [ "`docker inspect -f {{.State.Health.Status}} jeedom_bookworm`" == "healthy" ]; do
             echo "waiting container to be healthy..."
             sleep 5;
           done;
+          docker logs jeedom_bookworm | grep -vi "password"
           docker exec jeedom_bookworm php sick.php
+      - name: dump bookworm logs on failure
+        if: failure()
+        run: docker logs jeedom_bookworm | grep -vi "password" || true
 
       - name: Build jeedom:trixie
         # build current image for trixie
         run: |
-          docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 --build-arg VERSION=$PR_BRANCH .
+          docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 .
       - name: run jeedom:trixie and check
         # run current image for trixie and check it
+        timeout-minutes: 10
         run: |
           docker run -p 82:80 -d --rm --name jeedom_trixie jeedom:trixie
           until [ "`docker inspect -f {{.State.Health.Status}} jeedom_trixie`" == "healthy" ]; do
             echo "waiting container to be healthy..."
             sleep 5;
           done;
+          docker logs jeedom_trixie | grep -vi "password"
           docker exec jeedom_trixie php sick.php
+      - name: dump trixie logs on failure
+        if: failure()
+        run: docker logs jeedom_trixie | grep -vi "password" || true
 
       - name: Clean docker image
         continue-on-error: true
