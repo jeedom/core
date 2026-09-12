@@ -9,6 +9,8 @@ on:
     branches:
       - 'develop'
     paths:
+      - '.github/workflows/docker-test.yml'
+      - '.dockerignore'
       - 'Dockerfile'
       - 'install/install.sh'
       - 'install/install.php'
@@ -20,7 +22,6 @@ on:
       - 'resources/install_composer.sh'
       - 'resources/install_nodejs.sh'
       - 'sick.php'
-      - '.github/workflows/docker-test.yml'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
