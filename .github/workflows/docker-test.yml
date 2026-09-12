@@ -43,13 +43,18 @@ jobs:
           docker build -t jeedom:bookworm --build-arg DEBIAN=bookworm --build-arg DATABASE=1 .
       - name: run jeedom:bookworm and check
         # run current image for bookworm and check it
+        timeout-minutes: 10
         run: |
           docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
           until [ "`docker inspect -f {{.State.Health.Status}} jeedom_bookworm`" == "healthy" ]; do
             echo "waiting container to be healthy..."
             sleep 5;
           done;
+          docker logs jeedom_bookworm | grep -vi "password"
           docker exec jeedom_bookworm php sick.php
+      - name: dump bookworm logs on failure
+        if: failure()
+        run: docker logs jeedom_bookworm | grep -vi "password" || true
 
       - name: Build jeedom:trixie
         # build current image for trixie
@@ -57,13 +62,18 @@ jobs:
           docker build -t jeedom:trixie --build-arg DEBIAN=trixie --build-arg DATABASE=1 .
       - name: run jeedom:trixie and check
         # run current image for trixie and check it
+        timeout-minutes: 10
         run: |
           docker run -p 82:80 -d --rm --name jeedom_trixie jeedom:trixie
           until [ "`docker inspect -f {{.State.Health.Status}} jeedom_trixie`" == "healthy" ]; do
             echo "waiting container to be healthy..."
             sleep 5;
           done;
+          docker logs jeedom_trixie | grep -vi "password"
           docker exec jeedom_trixie php sick.php
+      - name: dump trixie logs on failure
+        if: failure()
+        run: docker logs jeedom_trixie | grep -vi "password" || true
 
       - name: Clean docker image
         continue-on-error: true
