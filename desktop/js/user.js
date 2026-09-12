@@ -20,7 +20,7 @@ if (!jeeFrontEnd.user) {
   jeeFrontEnd.user = {
     tableDevices: null,
     deviceDataTable: null,
-    init: function() {
+    init: function () {
       window.jeeP = this
       this.tableDevices = document.getElementById('tableDevices')
       this.deviceDataTable = new DataTable(this.tableDevices, {
@@ -35,7 +35,7 @@ if (!jeeFrontEnd.user) {
       jeeFrontEnd.modifyWithoutSave = false
       domUtils.hideLoading()
     },
-    checkUsersLogins: function(_users) {
+    checkUsersLogins: function (_users) {
       _users = _users.map(a => a.login)
       if (_users.includes('')) {
         jeedomUtils.showAlert({
@@ -46,23 +46,23 @@ if (!jeeFrontEnd.user) {
       }
       if (new Set(_users).size !== _users.length) {
         jeedomUtils.showAlert({
-        message: '{{Deux utilisateurs ne peuvent avoir le même login !}}',
+          message: '{{Deux utilisateurs ne peuvent avoir le même login !}}',
           level: 'danger'
         })
         return false
       }
       return true
     },
-    printUsers: function() {
+    printUsers: function () {
       domUtils.showLoading()
       jeedom.user.all({
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           var table = document.getElementById('table_user')
           table.tBodies[0].empty()
           var disable, userTR, node
@@ -91,7 +91,7 @@ if (!jeeFrontEnd.user) {
             userTR += '</select>'
             userTR += '</td>'
             userTR += '<td>'
-            if(disable != 'disabled'){
+            if (disable != 'disabled') {
               userTR += '<select class="userAttr form-control input-sm" data-l1key="options" data-l2key="api::mode">'
               userTR += '<option value="enable">{{Activé}}</option>'
               userTR += '<option value="disable">{{Désactivé}}</option>'
@@ -144,49 +144,49 @@ if (!jeeFrontEnd.user) {
         }
       })
     },
-    removeRegisterDevice: function(_key, _userId) {
+    removeRegisterDevice: function (_key, _userId) {
       if (!isset(_userId)) _userId = ''
       jeedom.user.removeRegisterDevice({
         key: _key,
         user_id: _userId,
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           jeeFrontEnd.modifyWithoutSave = false
           window.location.reload()
         }
       })
     },
-    deleteSession: function(_id) {
+    deleteSession: function (_id) {
       jeedom.user.deleteSession({
         id: _id,
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function(data) {
+        success: function (data) {
           window.location.reload()
         }
       })
     },
-    saveUsers: function() {
+    saveUsers: function () {
       var users = document.getElementById('table_user').querySelectorAll('tbody tr').getJeeValues('.userAttr')
       if (!jeeP.checkUsersLogins(users)) return
       jeedom.user.save({
         users: users,
-        error: function(error) {
+        error: function (error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
         },
-        success: function() {
+        success: function () {
           jeeP.printUsers()
           jeedomUtils.showAlert({
             message: '{{Sauvegarde effectuée}}',
@@ -202,7 +202,7 @@ if (!jeeFrontEnd.user) {
 jeeFrontEnd.user.init()
 
 //Register events on top of page container:
-document.registerEvent('keydown', function(event) {
+document.registerEvent('keydown', function (event) {
   if (jeedomUtils.getOpenedModal()) return
   if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
     event.preventDefault()
@@ -214,25 +214,35 @@ document.registerEvent('keydown', function(event) {
 
 function handleSupportAccess(enable) {
   jeedom.user.supportAccess({
-      enable: enable,
-      error: function(error) {
-          jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-          });
-      },
-      success: function(data) {
-          jeeFrontEnd.modifyWithoutSave = false;
-          jeedomUtils.loadPage('index.php?v=d&p=user');
-      }
+    enable: enable,
+    error: function (error) {
+      jeedomUtils.showAlert({
+        message: error.message,
+        level: 'danger'
+      });
+    },
+    success: function (data) {
+      jeeFrontEnd.modifyWithoutSave = false;
+      jeedomUtils.loadPage('index.php?v=d&p=user');
+    }
   });
+}
+
+function generateRandomPassword() {
+  const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+  let pass = '';
+  for (let i = 0; i < 16; i++) {
+    pass += chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  return pass;
 }
 
 
 /*Events delegations
 */
 //div_administration
-document.getElementById('div_administration').addEventListener('click', function(event) {
+document.getElementById('div_administration').addEventListener('click', function (event) {
   var _target = null
   if (event.target.matches('.userAttr')) {
     jeeFrontEnd.modifyWithoutSave = true
@@ -240,27 +250,43 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#bt_addUser')) {
     jeedomUtils.hideAlert()
-    let content = '<input class="promptAttr" data-l1key="newUserLogin" autocomplete="off" type="text" placeholder="{{Identifiant}}">'
-    content += '<input class="promptAttr" data-l1key="newUserMdp" autocomplete="off" type="text" placeholder="{{Mot de passe}}">'
-    jeeDialog.prompt({
+
+    const content =
+      '<input class="promptAttr" data-l1key="newUserLogin" autocomplete="off" type="text" placeholder="{{Identifiant}}">' +
+      '<div class="input-group">' +
+      '<input type="text" class="promptAttr roundedLeft inputPassword" data-l1key="newUserPswd" autocomplete="off">' +
+      '<span class="input-group-btn">' +
+      '<a class="btn btn-sm bt_generatePass" title="{{Générer un mot de passe aléatoire}}" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-random"></i>' +
+      '</a>' +
+
+      '</span>' +
+      '<span class="input-group-btn" >' +
+      '<a class="btn btn-sm bt_showPass roundedRight" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-eye"></i>' +
+      '</a>' +
+      '</span>' +
+      '</div>';
+
+    const newUserDialog = jeeDialog.prompt({
       title: "{{Ajouter un utilisateur}}",
       message: content,
       inputType: false,
-      callback: function(result) {
+      callback: function (result) {
         if (result) {
-          var user = [{
+          const user = [{
             login: result.newUserLogin,
-            password: result.newUserMdp
+            password: result.newUserPswd
           }]
           jeedom.user.save({
             users: user,
-            error: function(error) {
+            error: function (error) {
               jeedomUtils.showAlert({
                 message: error.message,
                 level: 'danger'
               })
             },
-            success: function() {
+            success: function () {
               jeeP.printUsers()
               jeedomUtils.showAlert({
                 message: '{{Sauvegarde effectuée}}',
@@ -272,6 +298,14 @@ document.getElementById('div_administration').addEventListener('click', function
         }
       }
     })
+
+    newUserDialog.querySelector('.bt_generatePass').addEventListener('click', function () {
+      newUserDialog.querySelector('input[data-l1key="newUserPswd"]').value = generateRandomPassword();
+    });
+    newUserDialog.querySelector('input[data-l1key="newUserPswd"]').value = generateRandomPassword();
+
+    jeedomUtils.initTooltips()
+
     return
   }
 
@@ -283,26 +317,26 @@ document.getElementById('div_administration').addEventListener('click', function
   if (_target = event.target.closest('#bt_supportAccess')) {
     var enable = _target.getAttribute('data-enable');
     if (enable == '1') {
-        bootbox.confirm({
-            message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
-            buttons: {
-                confirm: {
-                    label: "Oui",
-                    className: "btn-success"
-                },
-                cancel: {
-                    label: "Non",
-                    className: "btn-danger"
-                }
-            },
-            callback: function(result) {
-                if (result) {
-                    handleSupportAccess(enable);
-                }
-            }
-        });
+      bootbox.confirm({
+        message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
+        buttons: {
+          confirm: {
+            label: "Oui",
+            className: "btn-success"
+          },
+          cancel: {
+            label: "Non",
+            className: "btn-danger"
+          }
+        },
+        callback: function (result) {
+          if (result) {
+            handleSupportAccess(enable);
+          }
+        }
+      });
     } else {
-        handleSupportAccess(enable);
+      handleSupportAccess(enable);
     }
     return
   }
@@ -314,17 +348,17 @@ document.getElementById('div_administration').addEventListener('click', function
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
     }
     var userName = _target.closest('tr').querySelector('input[data-l1key="login"]').value
-    jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function(result) {
+    jeeDialog.confirm('{{Vous allez supprimer l\'utilisateur :}}' + ' ' + userName, function (result) {
       if (result) {
         jeedom.user.remove({
           id: user.id,
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function() {
+          success: function () {
             jeeP.printUsers()
             jeedomUtils.showAlert({
               message: '{{L\'utilisateur a bien été supprimé}}',
@@ -339,32 +373,60 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#table_user .bt_change_mdp_user')) {
     jeedomUtils.hideAlert()
-    var user = {
+    const user = {
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
       login: _target.closest('tr').querySelector('input[data-l1key="login"]').value
     }
-    jeeDialog.prompt("{{Quel est le nouveau mot de passe ?}}", function(result) {
-      if (result !== null) {
-        user.password = result
-        jeedom.user.save({
-          users: [user],
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function() {
-            jeeP.printUsers()
-            jeedomUtils.showAlert({
-              message: '{{Sauvegarde effectuée}}',
-              level: 'success'
-            })
-            jeeFrontEnd.modifyWithoutSave = false
-          }
-        })
+    const content =
+      '<div class="input-group">' +
+      '<input type="text" class="promptAttr roundedLeft inputPassword" data-l1key="result" autocomplete="off">' +
+      '<span class="input-group-btn">' +
+      '<a class="btn btn-sm bt_generatePass" title="{{Générer un mot de passe aléatoire}}" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-random"></i>' +
+      '</a>' +
+
+      '</span>' +
+      '<span class="input-group-btn" >' +
+      '<a class="btn btn-sm bt_showPass roundedRight" style="margin-bottom:5px !important;">' +
+      '<i class="fas fa-eye"></i>' +
+      '</a>' +
+      '</span>' +
+      '</div>';
+
+    const changePswdDialog = jeeDialog.prompt({
+      title: "{{Quel est le nouveau mot de passe ?}}",
+      message: content,
+      inputType: false,
+      callback: function (newPswd) {
+        if (newPswd) {
+          user.password = newPswd
+          jeedom.user.save({
+            users: [user],
+            error: function (error) {
+              jeedomUtils.showAlert({
+                message: error.message,
+                level: 'danger'
+              })
+            },
+            success: function () {
+              jeeP.printUsers()
+              jeedomUtils.showAlert({
+                message: '{{Sauvegarde effectuée}}',
+                level: 'success'
+              })
+              jeeFrontEnd.modifyWithoutSave = false
+            }
+          })
+        }
       }
     })
+
+    changePswdDialog.querySelector('.bt_generatePass').addEventListener('click', function () {
+      changePswdDialog.querySelector('input[data-l1key="result"]').value = generateRandomPassword();
+    });
+
+    jeedomUtils.initTooltips()
+
     return
   }
 
@@ -373,18 +435,18 @@ document.getElementById('div_administration').addEventListener('click', function
     var user = {
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML
     }
-    jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function(result) {
+    jeeDialog.confirm("{{Êtes-vous sûr de vouloir changer la clef API de l\'utilisateur ?}}", function (result) {
       if (result) {
         user.hash = ''
         jeedom.user.save({
           users: [user],
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function() {
+          success: function () {
             jeeP.printUsers()
             jeedomUtils.showAlert({
               message: '{{Modification effectuée}}',
@@ -420,13 +482,13 @@ document.getElementById('div_administration').addEventListener('click', function
   if (_target = event.target.closest('#table_user .bt_disableTwoFactorAuthentification')) {
     jeedom.user.removeTwoFactorCode({
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function(data) {
+      success: function (data) {
         jeeP.printUsers()
       }
     })
@@ -463,18 +525,18 @@ document.getElementById('div_administration').addEventListener('click', function
       value: select_list[0].value,
       inputType: 'select',
       inputOptions: select_list,
-      callback: function(to) {
+      callback: function (to) {
         if (to == null) return
         jeedom.user.copyRights({
           to: to,
           from: from,
-          error: function(error) {
+          error: function (error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function(data) {
+          success: function (data) {
             jeedomUtils.showAlert({
               message: '{{Droits copié avec succes}}',
               level: 'success'
@@ -487,7 +549,7 @@ document.getElementById('div_administration').addEventListener('click', function
   }
 })
 
-document.getElementById('div_administration').addEventListener('change', function(event) {
+document.getElementById('div_administration').addEventListener('change', function (event) {
   var _target = null
   if (_target = event.target.closest('select[data-l1key="profils"]')) {
     if (_target.value != 'restrict') {
@@ -510,7 +572,7 @@ document.getElementById('div_administration').addEventListener('change', functio
 
 
 //tableSessions
-document.getElementById('tableSessions').addEventListener('click', function(event) {
+document.getElementById('tableSessions').addEventListener('click', function (event) {
   var _target = null
   if (_target = event.target.closest('.bt_deleteSession')) {
     var id = _target.closest('tr').getAttribute('data-id')
@@ -520,17 +582,17 @@ document.getElementById('tableSessions').addEventListener('click', function(even
 })
 
 //div_Devices
-document.getElementById('div_Devices').addEventListener('click', function(event) {
+document.getElementById('div_Devices').addEventListener('click', function (event) {
   var _target = null
   if (_target = event.target.closest('#bt_removeAllRegisterDevice')) {
     jeedom.user.removeRegisterDevice({
-      error: function(error) {
+      error: function (error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function(data) {
+      success: function (data) {
         jeeFrontEnd.modifyWithoutSave = false
         jeedomUtils.loadPage('index.php?v=d&p=user')
       }
@@ -545,4 +607,3 @@ document.getElementById('div_Devices').addEventListener('click', function(event)
     return
   }
 })
-
