@@ -63,9 +63,6 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a data-target="#coreplugin" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-archive"></i> {{Core et plugins}}</a></li>
-			<?php if (!in_array(jeedom::getHardwareName(), array('miniplus', 'smart', 'Atlas', 'Luna'))) { ?>
-				<li role="presentation"><a data-target="#os" aria-controls="profile" role="tab" data-toggle="tab" class="bt_refreshOsPackageUpdate" data-forceRefresh="0"><i class="fas fa-box"></i> {{OS/Package}}</a></li>
-			<?php } ?>
 			<li role="presentation"><a data-target="#log" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-info"></i> {{Informations}}</a></li>
 		</ul>
 
@@ -92,34 +89,6 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 				<div id="div_log">
 					<pre id="pre_updateInfo"></pre>
 				</div>
-			</div>
-
-
-			<div role="tabpanel" class="tab-pane" id="os" style="overflow:auto;overflow-x: hidden">
-				<div class="alert alert-info">{{IMPORTANT : Ne sont affichés ici que les packages Linux n’étant pas à jour. Une liste vide signifiant que votre système Linux est à jour.}}</div>
-
-				<div class="input-group pull-right" style="display:inline-flex">
-					<span class="input-group-btn">
-						<a class="bt_refreshOsPackageUpdate btn btn-success roundedLeft" data-forceRefresh="1"><i class="fas fa-sync"></i> {{Mettre à jour la liste}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning roundedRight disabled" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
-					</span>
-				</div>
-
-				<table class="ui-table-reflow table table-condensed" id="table_osUpdate">
-					<thead>
-						<tr>
-							<th style="width:50px">{{Type}}</th>
-							<th>{{Nom}}</th>
-							<th>{{Version installée}}</th>
-							<th>{{Dernière version}}</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
-
 			</div>
 		</div>
 

@@ -328,22 +328,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'systemGetUpgradablePackage') {
-		if (init('type') == 'all') {
-			$return = system::getUpgradablePackage('apt', init('forceRefresh', false));
-			$return = array_merge($return, system::getUpgradablePackage('pip2', init('forceRefresh', false)));
-			$return = array_merge($return, system::getUpgradablePackage('pip3', init('forceRefresh', false)));
-			ajax::success($return);
-		} else {
-			ajax::success(system::getUpgradablePackage(init('type'), init('forceRefresh', false)));
-		}
-	}
-
-	if (init('action') == 'systemUpgradablePackage') {
-		unautorizedInDemo();
-		ajax::success(system::upgradePackage(init('type')));
-	}
-
 	if (init('action') == 'health') {
 		ajax::success(jeedom::health());
 	}
