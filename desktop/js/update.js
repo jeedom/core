@@ -21,13 +21,11 @@ if (!jeeFrontEnd.update) {
     replaceLogLines: ['OK', '. OK', '.OK', 'OK .', 'OK.'],
     regExLogProgress: /\[PROGRESS\]\[(\d.*)]/gm,
     updtDataTable: null,
-    osDataTable: null,
     init: function () {
       window.jeeP = this
       this.hasUpdate = false
       this.progress = -2
       this.alertTimeout = null
-      this.osUpdateChecked = 0
       //___log interceptor beautifier___
       this.prevUpdateText = ''
       this.newLogClean = '<pre id="pre_updateInfo_clean" style="display:none;"><i>{{Aucune mise à jour en cours.}}</i></pre>'
