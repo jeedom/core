@@ -8,12 +8,11 @@
   🇫🇷 <strong>Français</strong> | 🇬🇧 <a href="README.md">English</a>
 </p>
 
-<a href="https://www.jeedom.com" style="float:right">
-  <img src="core/img/logo-jeedom_Light.png" alt="Site web" width="100">
-</a>
+<img src="core/img/logo-jeedom_Light.png" alt="Site web" width="100" align="right">
 
 # Jeedom - La domotique innovante
 <p align="center">
+  <a href="https://jeedom.com">Site web</a>  -
   <a href="https://doc.jeedom.com">Documentation</a>  -
   <a href="https://community.jeedom.com">Forum</a>  -
   <a href="https://blog.jeedom.com">Blog</a>  -
