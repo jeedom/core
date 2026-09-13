@@ -3,7 +3,7 @@
 
 Jeedom propose un moteur de recherche interne.
 
-![Recherche](./images/search_intro.gif)
+![Recherche](../images/search_intro.gif)
 
 Vous pouvez faire des recherches de différents types :
 

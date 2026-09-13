@@ -14,7 +14,7 @@ Jeedom possède une version mobile adaptée à l’utilisation sur mobile et tab
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés), le nom d’utilisateur et le mot de passe par défaut sont admin/admin. A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
 
 ### Je n'arrive plus à me connecter à mon Jeedom
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les IP sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe, voir [ici](https://doc.jeedom.com/fr_FR/howto/reset.password).
+Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les IP sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe, voir [ici](https://doc.jeedom.com/howto/fr_FR/reset.password).
 
 ### Je ne vois pas tous mes équipements sur le Dashboard
 Souvent cela est dû au fait que les équipements sont affectés à un objet qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
@@ -42,7 +42,7 @@ Elles sont dans le dossier /var/www/html/backup
 
 ### Peut-on mettre Jeedom en https ?
 Oui : Soit vous avez un pack power ou plus, dans ce cas il vous
-suffit d’utiliser le [DNS Jeedom](https://jeedom.github.io/documentation/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
+suffit d’utiliser le [DNS Jeedom](https://doc.jeedom.com/howto/fr_FR/mise_en_place_dns_jeedom). Soit avec un DNS et vous savez mettre en place un certificat valide, dans ce cas c’est une installation standard d’un certificat.
 
 ### Comment se connecter en SSH ?
 Voila une [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), partie "Sous Windows : Putty". Le "hostname" étant l'ip de votre Jeedom, les identifiants étant :
@@ -117,7 +117,7 @@ Encore une fois cela est souvent dû à un plugin en beta alors que Jeedom est e
 
 ### Je n’ai plus accès à Jeedom, ni par l’interface web ni en console par SSH
 Cette erreur n’est pas due à Jeedom, mais à un problème avec le système.
-Si celui-ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware. Voici la [documentation](https://doc.jeedom.com/fr_FR/installation/smart) pour la Smart
+Si celui-ci persiste suite à une réinstallation, il est conseillé de voir avec le SAV pour un souci hardware. Voici la [documentation](https://doc.jeedom.com/installation/fr_FR/recovery) pour la Smart
 
 ### Mon scénario ne s’arrête plus/pas
 Il est conseillé de regarder les commandes exécutées par le scénario, souvent cela vient d’une commande qui ne se termine pas.
