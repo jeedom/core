@@ -8,8 +8,8 @@
   🇬🇧 <strong>English</strong> | 🇫🇷 <a href="README.fr.md">Français</a>
 </p>
 
-<a href="https://www.jeedom.com">
-  <img align="right" src="core/img/logo-jeedom_Light.png" alt="Website" width="100">
+<a href="https://www.jeedom.com" style="float:right">
+  <img src="core/img/logo-jeedom_Light.png" alt="Website" width="100">
 </a>
 
 # Jeedom - Innovative Home Automation
