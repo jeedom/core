@@ -1,64 +1,78 @@
-
-<img align="right" src="https://www.jeedom.com/site/logo.png" width="100">
-
-[![GitHub license](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://github.com/jeedom/core/blob/master/LICENSE)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/jeedom/core/graphs/commit-activity)
-[![GitHub contributors](https://img.shields.io/github/contributors/jeedom/core.svg)](https://github.com/jeedom/core/graphs/contributors/)
-[![Website www.jeedom.com](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://www.jeedom.com/)
-[![Try it now!](https://img.shields.io/badge/PWD-Try%20it%20now-blue?logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/pifou25/jeedom-core/alpha/docker-compose.yml)
-
-# Jeedom - La domotique innovante | *Innovative Home Automation*
-<p align="center">
-<a href="https://www.jeedom.com/">Site</a>  -
-<a href="https://blog.jeedom.com/">Blog</a>  -
-<a href="https://community.jeedom.com/">Community</a>  -
-<a href="https://market.jeedom.com/">Market</a>  -
-<a href="https://doc.jeedom.com/">Doc</a>
-</p>
+[![license](https://img.shields.io/github/license/jeedom/core?color=blue)](https://github.com/jeedom/core/blob/master/LICENSE)
+[![release](https://img.shields.io/github/v/release/jeedom/core)](https://github.com/jeedom/core/releases)
+[![last commit](https://img.shields.io/github/last-commit/jeedom/core)](https://github.com/jeedom/core/releases)
+[![contributors](https://img.shields.io/github/contributors/jeedom/core.svg)](https://github.com/jeedom/core/graphs/contributors/)
+[![documentation](https://img.shields.io/website?url=https%3A%2F%2Fdoc.jeedom.com&label=documentation&up_message=ok&up_color=brightgreen&down_message=nok&down_color=red)](https://doc.jeedom.com/)
 
 <p align="center">
-<img src="https://doc.jeedom.com/img/img_home.png" width="80%">
+  🇬🇧 <strong>English</strong> | 🇫🇷 <a href="README.fr.md">Français</a>
 </p>
 
-# Introduction
+<a href="https://www.jeedom.com">
+  <img align="right" src="core/img/logo-jeedom_Light.png" alt="Website" width="100">
+</a>
 
-Jeedom est un logiciel Open-Source gratuit qui peut s’installer sur n’importe quel système Linux.
-- [Presentation](https://doc.jeedom.com/fr_FR/presentation/index)
-- [Concepts](https://doc.jeedom.com/fr_FR/concept/)
-
-*Jeedom is free open-source software that can be installed on any Linux system.*
-- *[Presentation](https://doc.jeedom.com/en_US/presentation/index)*
-- *[Concepts](https://doc.jeedom.com/en_US/concept/)*
-
-
-# Installation
-
-Vous retrouverez [ici](https://doc.jeedom.com/fr_FR/installation/) toutes les possibilités d'installation de Jeedom.
+# Jeedom - Innovative Home Automation
 <p align="center">
-<a href="https://www.jeedom.com/site/fr/box.html">Les solutions domotiques plug & play Jeedom</a>
+  <a href="https://doc.jeedom.com">Documentation</a>  -
+  <a href="https://community.jeedom.com">Forum</a>  -
+  <a href="https://blog.jeedom.com">Blog</a>  -
+  <a href="https://market.jeedom.com">Market</a>
+  <img src="core/img/img_home.png" width="80%">
 </p>
 
-*You will find [here](https://doc.jeedom.com/en_US/installation/) all the possibilities to install Jeedom.*
-<p align="center">
-  <a href="https://www.jeedom.com/site/en/box.html"><i>Jeedom Plug&Play home automation solutions</i></a>
-</p>
+Jeedom is a free, open source, multi-protocol home automation software that lets you centralize and manage your connected devices to make your home truly smart. It does not require access to external servers to function, guaranteeing complete privacy.
 
-# Changelog
+Thanks to intuitive, easy-to-use scenarios, you can create automations that reflect who you are. Widgets, views and designs make it easy to build the interface of your choice.
 
-Vous trouverez un *changelog* complet, par version ici : [changelog](https://doc.jeedom.com/fr_FR/core/4.4/changelog).
+## Plugins
 
-*You will find changelog per version here: [changelog](https://doc.jeedom.com/en_US/core/4.4/changelog).*
+Jeedom is built around the core, which acts as the central engine providing the base functions, and plugins that use it to offer features tailored to your hardware and your needs.
 
-# Développeurs
+Plugins can come from different sources *(official or third-party)*, the main one being the [Jeedom Market](https://market.jeedom.com). Jeedom's decentralized architecture also makes it easy to quickly create your own plugin tailored to your requirements *(see the [General documentation - Plugin development](#general-documentation) section)*.
 
-[Contribuer au développement de Jeedom](https://doc.jeedom.com/fr_FR/contribute/)
+## Documentation
 
-[Développement de plugin](https://doc.jeedom.com/fr_FR/dev/)
+The complete documentation is available at: https://doc.jeedom.com/home/en_US. It is made up of several sections grouped together on this site to provide all the information you need in one place.
 
-*[Contribute to the development of Jeedom](https://doc.jeedom.com/en_US/contribute/)*
+### General documentation
 
-*[Plugin development](https://doc.jeedom.com/en_US/dev/)*
+General documentation covers universal topics that aren't specific to the core or to plugins, such as:
 
-<br/>
+- [**Installation**](https://doc.jeedom.com/installation/en_US/): guides for installing Jeedom on any 64-bit Debian Linux system.
+- [**Overview**](https://doc.jeedom.com/presentation/en_US/): an overview of the software and its main features.
+- [**Concepts**](https://doc.jeedom.com/concept/en_US/): an overview of the usage concepts and possibilities offered by Jeedom.
+- [**Beta testing and contributions**](https://doc.jeedom.com/contribute/en_US/beta): detailed procedure for beta testers and contributors.
+- [**Plugin development**](https://doc.jeedom.com/dev/en_US/): guides covering the different stages of developing a Jeedom plugin.
 
-##### *Jeedom: Free, Opened, Cloudless, Multiprotocol solution since 2014.*
+### Core documentation
+
+Documentation specific to Jeedom's core is available both locally in the [docs/en_US](docs/en_US/) folder and in the **User manuals** and **Configuration manuals** sections of the documentation site.
+
+#### User manuals
+
+Each Jeedom feature has its own detailed user manual, for example:
+
+- [**Changelog**](https://doc.jeedom.com/core/changelog): the changelog lists the changes made in each version of Jeedom.
+- [**Plugins**](https://doc.jeedom.com/core/plugin): install, configure and make the most of Jeedom plugins.
+- [**Scenarios**](https://doc.jeedom.com/core/scenario): details all the possibilities for setting up custom automations.
+- [**Widgets**](https://doc.jeedom.com/core/widgets): lets you customize how commands are displayed in the interface.
+- [**FAQ**](https://doc.jeedom.com/core/faq): answers to the most frequently asked questions.
+
+#### Configuration manuals
+
+Guides in this category explain how to configure Jeedom to suit your own criteria:
+
+- [**Administration**](https://doc.jeedom.com/core/administration): brings together most of Jeedom's configurable settings.
+- [**Users**](https://doc.jeedom.com/core/user): lets you manage Jeedom users and configure their access and permissions.
+- [**Preferences**](https://doc.jeedom.com/core/profils): customization of the interface and security for the current user.
+- [**Advanced customization**](https://doc.jeedom.com/core/custom): advanced interface customization *(`CSS` and/or `Javascript`)*.
+- [**Backups**](https://doc.jeedom.com/core/backup): configuring local and remote Jeedom backups.
+
+### Plugin documentation
+
+Each Jeedom plugin has its own documentation and changelog, accessible by category *(Home protocol, Energy, Monitoring, Security, Programming, etc.)* in the **Official plugins** section for those developed by the Jeedom team, or **Third-party plugins** for those from external developers.
+
+---
+
+<small>*Jeedom is a free, open source, privacy-respecting and multi-protocol home automation solution since 2014*</small>
