@@ -1,6 +1,6 @@
 [![license](https://img.shields.io/github/license/jeedom/core?color=blue)](https://github.com/jeedom/core/blob/master/LICENSE)
 [![release](https://img.shields.io/github/v/release/jeedom/core)](https://github.com/jeedom/core/releases)
-[![last commit](https://img.shields.io/github/last-commit/jeedom/core)](https://github.com/jeedom/core/releases)
+[![last commit](https://img.shields.io/github/last-commit/jeedom/core)](https://github.com/jeedom/core/commits)
 [![contributors](https://img.shields.io/github/contributors/jeedom/core.svg)](https://github.com/jeedom/core/graphs/contributors/)
 [![documentation](https://img.shields.io/website?url=https%3A%2F%2Fdoc.jeedom.com&label=documentation&up_message=ok&up_color=brightgreen&down_message=nok&down_color=red)](https://doc.jeedom.com/)
 
