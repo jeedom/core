@@ -1279,6 +1279,7 @@ class jeedom {
 			DB::optimize();
 			listener::clean();
 			user::regenerateHashes();
+			user::cleanExpiredRegisterDevices();
 			jeeObject::cronDaily();
 			timeline::clean(false);
 		} catch (\Throwable $e) {

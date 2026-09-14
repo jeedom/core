@@ -1520,6 +1520,15 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des périphériques enregistrés}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'inactivité avant expiration du périphérique enregistré, entre 7 et 90 jours.}}"></i></sup>
+								<sub>j</sub>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::registerDeviceLifetime" min="7" max="90">
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Nombre d'échecs tolérés}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Passé ce nombre, l'IP sera bannie.}}"></i></sup>
 							</label>

@@ -668,6 +668,13 @@ class config {
 		return $_value;
 	}
 
+	public static function preConfig_security_registerDeviceLifetime($_value): int {
+		if (!is_numeric($_value)) {
+			return 30;
+		}
+		return max(7, min(90, (int) $_value));
+	}
+
 	/*     * *********************Stats************************************* */
 
 	/**

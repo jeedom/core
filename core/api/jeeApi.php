@@ -1407,17 +1407,27 @@ try {
 		if (!is_object($_USER_GLOBAL)) {
 			throw new Exception(__('Utilisateur non défini', __FILE__), -32500);
 		}
-		$registerDevice = $_USER_GLOBAL->getOptions('registerDevice', array());
-		if (!is_array($registerDevice)) {
-			$registerDevice = array();
+		$registeredDevices = $_USER_GLOBAL->getOptions('registerDevice', array());
+		if (!is_array($registeredDevices)) {
+			$registeredDevices = array();
 		}
-		$rdk = (!isset($params['rdk']) || !isset($registerDevice[sha512($params['rdk'])])) ? config::genKey() : $params['rdk'];
-		$registerDevice[sha512($rdk)] = array();
-		$registerDevice[sha512($rdk)]['datetime'] = date('Y-m-d H:i:s');
-		$registerDevice[sha512($rdk)]['ip'] = getClientIp();
-		$registerDevice[sha512($rdk)]['session_id'] = session_id();
-		$_USER_GLOBAL->setOptions('registerDevice', $registerDevice);
-		$_USER_GLOBAL->save();
+		$rdk = $params['rdk'] ?? '';
+		$rdkHash = ($rdk != '') ? sha512($rdk) : '';
+		$requiresRegistration = $rdk == '' || !user::isValidRegisteredDevice($registeredDevices, $rdkHash);
+		if ($requiresRegistration) {
+			$rdk = config::genKey();
+			$rdkHash = sha512($rdk);
+		}
+		$clientIp = getClientIp();
+		if ($requiresRegistration || $registeredDevices[$rdkHash]['ip'] !== $clientIp || strtotime($registeredDevices[$rdkHash]['datetime']) < time() - 24 * 3600) {
+			$registeredDevices[$rdkHash] = array(
+				'datetime' => date('Y-m-d H:i:s'),
+				'ip' => $clientIp,
+				'session_id' => session_id(),
+			);
+			$_USER_GLOBAL->setOptions('registerDevice', $registeredDevices);
+			$_USER_GLOBAL->save();
+		}
 		log::add('api', 'debug', 'RDK :' . $rdk);
 		log::add('api', 'debug', 'Demande du GetJson');
 		$return = array();
