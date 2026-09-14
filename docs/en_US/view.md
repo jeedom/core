@@ -4,7 +4,7 @@
 Views allow you to create custom displays.
 It's not as powerful as the designs, but it lets you create a more personalized display than the Dashboard in just a few minutes, featuring various objects, graphs, or commands.
 
-{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Tip**
 >
@@ -80,7 +80,7 @@ When you press the **Add Curve** button, Jeedom displays a list of historical co
 - **Stack**: Stacks the curve with other curves of the same type.
 - **Variation**: Plots only the variations relative to the previous value.
 
-{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Tip**
 >

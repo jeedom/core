@@ -6,7 +6,7 @@
 Das Dashboard ist eine der Hauptseiten von Jeedom und zeigt einen Überblick über Ihr gesamtes Hausautomationssystem an.
 Dieser Bericht (im Gegensatz zu Ansichten und Designs) wird automatisch von Jeedom erstellt und umfasst alle sichtbaren Objekte sowie deren Geräte.
 
-{% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 - 1: Hauptmenü von Jeedom.
 - 2: Zusammenfassung [Dokumentation zu den Zusammenfassungen.](https://doc.jeedom.com/concept/de_DE/summary).

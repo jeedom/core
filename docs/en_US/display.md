@@ -3,7 +3,7 @@
 
 This page brings together all the different elements configured on your Jeedom on a single page. It also provides access to features for organizing devices and commands, advanced configuration options, and display customization options.
 
-{% include lightbox.html src="images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 ## Information
 

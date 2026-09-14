@@ -3,7 +3,7 @@
 
 Auf dieser Seite können Sie die verschiedenen auf Ihrem Jeedom konfigurierten Elemente auf einer einzigen Seite zusammenfassen. Außerdem bietet sie Zugriff auf Funktionen zur Organisation von Geräten und Befehlen, auf deren erweiterte Konfiguration sowie auf Möglichkeiten zur Anpassung der Anzeige.
 
-{% include lightbox.html src="images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 ## Informationen
 
