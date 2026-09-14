@@ -1267,11 +1267,14 @@ function isConnect($_right = '') {
 	if (!is_object($user)) {
 		return false;
 	}
-	if (!$_SESSION['user']->is_Connected()) {
+	if (!$user->isValidAndEnabled()) {
+		return false;
+	}
+	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
 		return false;
 	}
 	if ($_right != '') {
-		return ($_SESSION['user']->getProfils() == $_right);
+		return ($user->getProfils() == $_right);
 	}
 	return true;
 }
