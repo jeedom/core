@@ -3,9 +3,9 @@
 
 La page *Synthèse* vous propose une synthèse visuelle et centralisée de vos objets et de leurs résumés.
 
-![Synthèse](./images/synthesis_intro.gif)
+![Synthèse](../images/synthesis_intro.gif)
 
-Pour qu'elle prenne tout son sens, il faut sur chaque objet, configurer les résumés et une image de fond : [Voir documentation sur les résumés.](/fr_FR/concept/summary)
+Pour qu'elle prenne tout son sens, il faut sur chaque objet, configurer les résumés et une image de fond : [Voir documentation sur les résumés.](https://doc.jeedom.com/concept/fr_FR/summary)
 
 Vous pouvez la configurer comme page par défaut dans **Réglages → Préférences**, en desktop et/ou mobile.
 
