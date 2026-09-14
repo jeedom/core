@@ -482,9 +482,9 @@ class user {
 		return $_params;
 	}
 
-	public static function raiseForInvalidLogin(array $_params): void {
-		if (isset($_params['login']) && in_array($_params['login'], ['internal_report', 'jeedom_support'])) {
-			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_params['login']));
+	public static function raiseForInvalidLogin(string $_login): void {
+		if ($_login != '' && in_array($_login, ['internal_report', 'jeedom_support'])) {
+			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_login));
 		}
 	}
 
@@ -748,5 +748,54 @@ class user {
 	public function setChanged($_changed): self {
 		$this->_changed = $_changed;
 		return $this;
+	}
+
+	public function sendResetPasswordLink(): void {
+		self::raiseForInvalidLogin($this->getLogin());
+		$cmdOption = $this->getOptions('notification::cmd');
+		if ($cmdOption == '') {
+			log::add('audit', 'info', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : aucune commande de notification configurée, aucun envoi');
+			sleep(rand(2, 5));
+			return;
+		}
+		$cmd = cmd::byId(str_replace('#', '', $cmdOption));
+		if (!is_object($cmd)) {
+			log::add('audit', 'info', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : commande de notification introuvable, aucun envoi');
+			sleep(rand(2, 5));
+			return;
+		}
+		try {
+			$key = config::genKey();
+			cache::set('user::resetPassword::' . $key, $this->getLogin(), 300);
+			$link = network::getNetworkAccess() . '/index.php?&rpk=' . $key;
+			$cmd->execCmd(array(
+				'title' => __('Réinitialisation de votre mot de passe', __FILE__),
+				'message' => __('Voici votre lien de réinitialisation de mot de passe (valable 5 minutes) : ', __FILE__) . $link,
+			));
+			log::add('audit', 'info', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : lien envoyé');
+		} catch (\Exception $e) {
+			log::add('audit', 'warning', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : échec de l\'envoi (' . $e->getMessage() . ')');
+		}
+	}
+
+	public static function resetPasswordFromToken(string $_key, string $_newPassword): bool {
+		$cache = cache::byKey('user::resetPassword::' . $_key);
+		$login = $cache->getValue();
+		if ($login == '') {
+			return false;
+		}
+		self::raiseForInvalidLogin($login);
+		if (($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
+			$cache->remove();
+			return false;
+		}
+		$user = self::byLogin($login);
+		if (!is_object($user)) {
+			$cache->remove();
+			return false;
+		}
+		$user->setPassword($_newPassword)->save();
+		$cache->remove();
+		return true;
 	}
 }

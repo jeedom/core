@@ -73,11 +73,44 @@ try {
 		ajax::success($_SESSION['user']->getHash());
 	}
 
+	if (init('action') == 'askPassword') {
+		$username = trim(strip_tags(init('username')));
+		$current_ip = getClientIp();
+		$resetPasswordThrottleKey = 'security::resetPassword::' . $current_ip;
+		if ($current_ip != '' && cache::byKey($resetPasswordThrottleKey)->getValue('') != '') {
+			log::add('audit', 'info', network::getClientIp() . ' - ' . __('Demande de réinitialisation du mot de passe ignorée : trop de demandes', __FILE__) . ' - ' . $username);
+			ajax::success();
+		}
+		if ($current_ip != '') {
+			cache::set($resetPasswordThrottleKey, 1, 300);
+		}
+		try {
+
+			$user = user::byLogin($username);
+			if (!is_object($user)) {
+				throw new Exception(__('Utilisateur inconnu', __FILE__));
+			}
+			$user->sendResetPasswordLink();
+		} catch (Exception $e) {
+			sleep(rand(2, 5));
+			log::add('audit', 'warning', network::getClientIp() . ' - ' . __('Demande de réinitialisation du mot de passe pour : ', __FILE__) . $username . ' - ' . $e->getMessage());
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'resetPasswordFromToken') {
+		try {
+			$result = user::resetPasswordFromToken(init('token'), init('newPassword'));
+			ajax::success($result);
+		} catch (Exception $e) {
+			log::add('audit', 'warning', network::getClientIp() . ' - ' . __('Erreur lors de la réinitialisation du mot de passe', __FILE__) . $e->getMessage());
+			ajax::success(false);
+		}
+	}
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
-	ajax::init();
 
 	if (init('action') == 'validateTwoFactorCode') {
 		unautorizedInDemo();
@@ -150,7 +183,7 @@ try {
 					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
 
-				user::raiseForInvalidLogin($user_json);
+				user::raiseForInvalidLogin($user_json['login'] ?? '');
 
 				$user = new user();
 
@@ -163,7 +196,7 @@ try {
 					continue; // Do not allow to modify these users
 				}
 
-				user::raiseForInvalidLogin($user_json);
+				user::raiseForInvalidLogin($user_json['login'] ?? '');
 				$keyWhitelist = ['login', 'password', 'hash', 'profils', 'enable', 'options', 'rights'];
 				$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
 				$user_json = user::cleanPasswordAndHashInput($user_json);
