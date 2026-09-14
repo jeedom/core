@@ -23,7 +23,7 @@ Définit certains comportements de l’interface
 
 ### Notifications
 
-- **Commande de notification utilisateur** : Commande par défaut pour vous joindre (commande de type message).
+- **Commande de notification utilisateur** : Commande par défaut pour vous joindre (commande de type message). Cette commande doit être renseignée pour que la procédure automatique en cas de mot de passe perdu puisse aboutir.
 
 ## Onglet Sécurité
 

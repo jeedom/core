@@ -188,6 +188,9 @@ body {
 
 #in_login_password,
 #in_login_username,
+#in_lostpassword_username,
+#in_reset_password,
+#in_reset_passwordToo,
 #cb_storeConnection {
 	background: rgb(240, 240, 240) !important;
 }
