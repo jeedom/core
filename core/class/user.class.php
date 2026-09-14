@@ -667,8 +667,7 @@ class user {
 	}
 
 	public static function isValidRegisteredDevice(array $registeredDevices, string $key): bool {
-		return is_array($registeredDevices)
-			&& isset($registeredDevices[$key])
+		return isset($registeredDevices[$key])
 			&& is_array($registeredDevices[$key])
 			&& isset($registeredDevices[$key]['datetime'])
 			&& strtotime($registeredDevices[$key]['datetime']) >= time() - self::registerDeviceLifetime();
