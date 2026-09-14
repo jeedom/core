@@ -4,7 +4,7 @@
 Las vistas permiten crear pantallas personalizadas.
 No es tan potente como los diseños, pero permite, en tan solo unos minutos, conseguir una visualización más personalizada que el Dashboard, con diferentes objetos, gráficos o controles.
 
-{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Consejo**
 >
@@ -80,7 +80,7 @@ Al pulsar el botón **Añadir curva**, Jeedom muestra la lista de comandos regis
 - **Apilar**: Apila la curva con las demás curvas del mismo tipo.
 - **Variación**: Solo dibuja las variaciones con respecto al valor anterior.
 
-{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Consejo**
 >

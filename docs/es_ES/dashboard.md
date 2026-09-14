@@ -6,7 +6,7 @@
 El panel de control es una de las páginas principales de Jeedom; muestra un resumen de todo tu sistema domótico.
 Este informe (a diferencia de las vistas y los diseños) lo genera automáticamente Jeedom e incluye todos los objetos visibles y sus dispositivos.
 
-{% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 - 1: Menú principal de Jeedom.
 - 2: Resumen general [Documentación sobre los resúmenes.](https://doc.jeedom.com/concept/es_ES/summary).

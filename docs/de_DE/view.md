@@ -4,7 +4,7 @@
 Mit „Ansichten“ lassen sich individuelle Darstellungen erstellen.
 Es ist zwar nicht so leistungsstark wie die Designs, ermöglicht es aber, in wenigen Minuten eine individuellere Ansicht als das Dashboard zu erstellen, mit verschiedenen Objekten, Grafiken oder Steuerelementen.
 
-{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Tipp**
 >
@@ -80,7 +80,7 @@ Wenn Sie auf die Schaltfläche **Kurve hinzufügen** klicken, zeigt Jeedom die L
 - **Stapeln**: Stapelt die Kurve mit den anderen Kurven desselben Typs.
 - **Veränderung**: Zeichnet nur die Veränderungen gegenüber dem vorherigen Wert.
 
-{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Tipp**
 >
