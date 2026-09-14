@@ -198,123 +198,6 @@ class system {
 		return $arch;
 	}
 
-	public static function getUpgradablePackage(string $_type, bool $_forceRefresh = false) {
-		$return = array($_type => array());
-		switch ($_type) {
-			case 'apt':
-				if ($_forceRefresh) {
-					shell_exec(system::getCmdSudo() . ' apt update 2>/dev/null');
-				}
-				$lines = explode("\n", shell_exec(system::getCmdSudo() . ' apt list --upgradable 2>/dev/null'));
-				foreach ($lines as $line) {
-					if (strpos($line, '/') === false) {
-						continue;
-					}
-					$infos = array_values(array_filter(explode(" ", $line)));
-					$name = explode("/", $infos[0])[0];
-					$return[$_type][$name] = array(
-						'name' => $name,
-						'type' => 'apt',
-						'platform' => $infos[2],
-						'current_version' => trim($infos[5], ']'),
-						'new_version' => $infos[1],
-					);
-				}
-				break;
-			case 'pip3':
-				if (version_compare(self::getOsVersion(), '12', '>=')) {
-					return array();
-				}
-				$ignore_package = array('dbus-python', 'gpg', 'pycairo', 'pycurl', 'PyGObject');
-				$ignore_arg = '';
-				foreach ($ignore_package as $package) {
-					$ignore_arg .= " --exclude {$package}";
-				}
-				$datas = json_decode(shell_exec(system::getCmdSudo() . " pip3 list {$ignore_arg} --outdated --format=json 2>/dev/null"), true);
-				if (count($datas) > 0) {
-					foreach ($datas as $value) {
-						$return[$_type][$value['name']] = array(
-							'name' => $value['name'],
-							'type' => 'pip3',
-							'current_version' => $value['version'],
-							'new_version' => $value['latest_version'],
-						);
-					}
-				}
-				break;
-			case 'pip2':
-				if (self::os_incompatible('pip2', '', [])) {
-					return array();
-				}
-				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json 2>/dev/null'), true);
-				if (count($datas) > 0) {
-					foreach ($datas as $value) {
-						$return[$_type][$value['name']] = array(
-							'name' => $value['name'],
-							'type' => 'pip2',
-							'current_version' => $value['version'],
-							'new_version' => $value['latest_version'],
-						);
-					}
-				}
-				break;
-		}
-		return $return;
-	}
-
-	public static function upgradePackage(string $_type, $_package = null) {
-		$cmd = "set -x\n";
-		$cmd .= "echo '*******************Begin of package upgrade type " . $_type . "******************'\n";
-		switch ($_type) {
-			case 'apt':
-				if ($_package == null) {
-					$cmd .= system::getCmdSudo() . " apt update\n";
-					$cmd .= system::getCmdSudo() . ' apt -o Dpkg::Options::="--force-confdef" -y upgrade' . "\n";
-				} else {
-					$cmd .= self::installPackage($_type, $_package);
-				}
-				break;
-			case 'pip3':
-				if (version_compare(self::getOsVersion(), '12', '>=')) {
-					return;
-				}
-				if ($_package == null) {
-					$packages = self::getUpgradablePackage($_type);
-					if (count($packages) == '') {
-						return;
-					}
-					foreach ($packages[$_type] as $package) {
-						$cmd .= self::installPackage($_type, $package['name']) . "\n";
-					}
-				} else {
-					$cmd .= self::installPackage($_type, $_package) . "\n";
-				}
-				break;
-			case 'pip2':
-				if (self::os_incompatible('pip2', '', [])) {
-					return;
-				}
-				if ($_package == null) {
-					$packages = self::getUpgradablePackage($_type);
-					if (count($packages) == '') {
-						return '';
-					}
-					foreach ($packages[$_type] as $package) {
-						$cmd .= self::installPackage($_type, $package['name']) . "\n";
-					}
-				} else {
-					$cmd .= self::installPackage($_type, $_package) . "\n";
-				}
-				break;
-		}
-		$cmd .= "echo '*******************End of package installation******************'\n";
-		if (file_exists('/tmp/jeedom_fix_package')) {
-			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
-		}
-		file_put_contents('/tmp/jeedom_fix_package', $cmd);
-		self::launchScriptPackage();
-	}
-
 	private static function getPython3VenvDir(string $_plugin) {
 		if ($_plugin == '') return '';
 		return __DIR__ . "/../../plugins/{$_plugin}/resources/python_venv";
@@ -368,17 +251,6 @@ class system {
 				if ($npm != '') {
 					self::$_installPackage[$type_key]['npm'] = array(
 						'version' => $npm
-					);
-				}
-				break;
-			case 'pip2':
-				if (version_compare(self::getOsVersion(), '11', '>=')) {
-					return self::$_installPackage[$type_key];
-				}
-				$datas = json_decode(shell_exec(self::getCmdSudo() . ' pip2 list --format=json 2>/dev/null'), true);
-				foreach ($datas as $value) {
-					self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array(
-						'version' => $value['version']
 					);
 				}
 				break;
@@ -454,9 +326,6 @@ class system {
 			return true;
 		}
 		if (version_compare(self::getOsVersion(), '11', '>=')) {
-			if ($_type == 'pip2') {
-				return true;
-			}
 			if ($_type == 'apt' && strpos($_package, 'python-') !== false) {
 				return true;
 			}
@@ -831,11 +700,6 @@ class system {
 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
 				}
 				return self::getCmdSudo() . ' apt install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
-			case 'pip2':
-				if (version_compare(self::getOsVersion(), '11', '>=')) {
-					return '';
-				}
-				return self::getCmdSudo() . ' pip2 install --force-reinstall --upgrade ' . $_package;
 			case 'pip3':
 				if ($_version != '') {
 					if (preg_match('/[<>]/', $_version)) {
