@@ -1,31 +1,31 @@
-# Santé
+# Gesundheit
 **Analyse → Gesundheit**
 
-Auf der Seite Jeedom Health erhalten Sie einen schnellen Überblick über den Gesundheitszustand Ihres Jeedom.
-Es zeigt auch (wenn Plugins es verwenden) den Gesundheitszustand des Plugins an.
+Auf der Seite „Status“ von Jeedom erhalten Sie einen schnellen Überblick über den Status Ihres Jeedom-Systems.
+Außerdem zeigt sie (sofern die Plugins diese Funktion nutzen) den Status jedes einzelnen Plugins an.
 
-> **Notiz**
+> **Hinweis**
 >
-> Klicken Sie auf das Symbol oben rechts, um auf den Benchmark Ihres Jeedom zuzugreifen.
+> Mit einem Klick auf das Symbol oben rechts gelangen Sie zum Benchmark Ihres Jeedom.
 
-Die Gesundheitsseite von Jeedom wird in Form einer Doppeltabelle dargestellt.
-In der ersten Spalte finden Sie eine Beschreibung dessen, was Jeedom überprüft. Der Status wird in der zweiten Spalte angezeigt.
-Tooltips können Ihnen Tipps zur Auflösung geben, wenn die Überprüfung nicht in Ordnung ist.
+Die Gesundheitsseite von Jeedom ist als doppelte Tabelle aufgebaut.
+In der ersten Spalte finden Sie eine Beschreibung dessen, was Jeedom überprüft; der Status wird in der zweiten Spalte angezeigt.
+Tooltips können Ihnen Hinweise zur Fehlerbehebung geben, falls die Überprüfung nicht erfolgreich ist.
 
-Unten finden Sie den Zustand für jedes Plugin. Ein Klick auf den Namen des Plugins gibt die Gesundheitsdetails an.
+Unten finden Sie den Status jedes Plugins. Ein Klick auf den Namen des Plugins zeigt dessen Statusdetails an.
 
-Rechts finden Sie die Symbole :
+Auf der rechten Seite finden Sie folgende Symbole:
 
--   Zugriffsport für Plugin-Hardware (Zwave-Schlüsseltyp).
--   Dämonenmodus.
--   Anzeige der Gerätegesundheitsseite des Plugins.
--   Anzeige der Plugin-Konfigurationsseite.
--   Gesamtzustand des Plugins.
+-   Zugangsport zur Hardware des Plugins (Typ: Z-Wave-Schlüssel).
+-   Daemon-Modus.
+-   Anzeige der Seite „Gerätezustand“ des Plugins.
+-   Anzeige der Konfigurationsseite des Plugins.
+-   Gesamtstatus des Plugins.
 
-> **Notiz**
+> **Hinweis**
 >
 > Die Symbole können je nach Plugin variieren.
 
-> **Notiz**
+> **Hinweis**
 >
-> Wenn die Linie grün ist, ist im Allgemeinen alles in Ordnung und wenn sie rot ist, gibt es ein Problem.
+> Im Allgemeinen bedeutet eine grüne Linie, dass alles in Ordnung ist, und eine rote Linie, dass ein Problem vorliegt.

@@ -1,247 +1,247 @@
-# Home Automation Summary
-**Analysis → Home automation summary**
+# Summary: Home Automation
+**Analysis → Home Automation Summary**
 
-This page allows you to gather on a single page the different elements configured on your Jeedom. It also gives access to functions for organizing equipment and controls, to their advanced configuration and to display configuration possibilities.
+This page brings together all the different elements configured on your Jeedom on a single page. It also provides access to features for organizing devices and commands, advanced configuration options, and display customization options.
 
 {% include lightbox.html src="images/doc-display_01.jpg" data="Display" title="Display" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-## Informations
+## Information
 
-On the top of the page, we find :
-- **Number of objects** : Total number of objects configured in our Jeedom, including inactive elements.
-- **Number of equipments** : Same for the equipment.
-- **Number of commands** : Same for commands.
-- **Inactive** : Check this box if you want inactive items to be displayed on this page.
-- **To research** : Search for a particular item. It can be the name of a device, a command or the name of the plugin by which the device was created.
-- **CSV export** : Allows you to export all objects, equipment and their commands to a CSV file.
+At the top of the page, you'll find:
+- **Number of objects**: Total number of objects configured in our Jeedom, including inactive ones.
+- **Number of devices**: Same as for devices.
+- **Number of commands**: Same as for commands.
+- **Inactive**: Check this box if you want inactive items to be displayed on this page.
+- **Search**: Allows you to search for a specific item. This could be the name of a device, a command, or the name of the plugin used to create the device.
+- **Export CSV**: Allows you to export all objects, devices, and their commands to a CSV file.
 
-You also have a tab **Historical**, displaying the history of commands, equipment, objects, views, design, 3d design, scenarios and deleted users.
+There is also a **History** tab, which displays the history of deleted commands, devices, objects, views, designs, 3D designs, scenarios, and users.
 
-## Object frames
+## Object frameworks
 
-Below there is one frame per object. In each frame, we find the list of equipment that have this object as parent.
-The first frame **None** represents devices that have no assigned parent.
+Below, there is one frame per object. Each frame contains a list of devices that are associated with that object.
+The first box, **None**, represents devices that do not have a parent assigned to them.
 
-For each object, next to its label, two buttons are available.
-- The first is used to open the object configuration page in a new tab.
-- The second provides some information on the object,
+For each object, there are two buttons next to its label.
+- The first one opens the object's configuration page in a new tab.
+- The second provides some information about the object,
 
-> **Advice**
+> **Tip**
 >
-> The background color of the object frames depends on the color chosen in the configuration of the object.
+> The background color of object frames depends on the color selected in the object's settings.
 
-> **Advice**
+> **Tip**
 >
-> With a click and drop on the objects or equipment, you can change their order or even assign them to another object. It is from the order established on this page that the display of the Dashboard is calculated.
+> By dragging and dropping objects or devices, you can change their order or even assign them to another object. The Dashboard display is calculated based on the order established on this page.
 
-## The equipments
+## Equipment
 
-On each equipment we find :
+Each device features:
 
-- A **check box** to select the equipment (you can select several). If at least one device is selected, you have action buttons that appear in the upper left to **DELETE**, give back **visible**/**invisible**,  **active**/**Inactive** selected equipment.
-- L'**id** equipment.
-- THE **kind** equipment : Identifier of the plugin to which it belongs.
-- THE **name** equipment.
-- **Inactive** (small cross) : Means that the equipment is inactive (if it is not there, the equipment is active).
-- **Invisible** (crossed eye) : Means that the equipment is invisible (if it is not there, the equipment is visible).
+- A **checkbox** to select devices (you can select multiple devices). If at least one device is selected, action buttons appear in the upper-left corner to **delete**, make the selected devices **visible**/**invisible**, or set them to **active**/**inactive**.
+- The **id** of the device.
+- The **type** of device: The identifier of the plugin to which it belongs.
+- The **name** of the device.
+- **Inactive** (small cross): Indicates that the device is inactive (if the cross is not present, the device is active).
+- **Invisible** (crossed-out eye): Indicates that the device is invisible (if this symbol is not present, the device is visible).
 
-If the equipment plugin is disabled, the two icons on the right do not appear:
-- **External link** (square with arrow) : Allows to open in a new tab the equipment configuration page.
-- **Advanced configuration** (toothed wheel) : opens the advanced equipment configuration window.
+If the device plugin is disabled, the two icons on the right will not appear:
+- **External link** (square with an arrow): Opens the device's configuration page in a new tab.
+- **Advanced Settings** (gear icon): Opens the device's advanced settings window.
 
-> By clicking on the line containing the name of the equipment, you will display all the commands for this equipment. By clicking on an command, you will access the command configuration window.
+> Clicking on the line containing the device name will display all the commands for that device. Clicking on a command will then open the command configuration window.
 
-## Advanced equipment configuration
+## Advanced Configuration of a Device
 
-> **Advice**
+> **Tip**
 >
-> It is possible to access (if the plugin supports it) directly to this window from the equipment configuration page by clicking on the advanced configuration button
+> If the plugin supports it, you can access this window directly from the device's configuration page by clicking the "Advanced Configuration" button.
 
-The window of **Advanced equipment configuration** allows to modify it. First, at the top right, some buttons available :
+The **advanced device settings** window allows you to modify the device's settings. First, in the upper-right corner, there are a few buttons available:
 
-- **Information** : displays the raw properties of the equipment.
-- **Links** : Allows to display the links of the equipment with the objects, commands, scenarios, variables, interactions… in graphic form (in this one, a double click on an element will take you to its configuration).
-- **Log** : displays the events of the equipment in question.
-- **To safeguard** : Save the modifications made on the equipment.
-- **DELETE** : Remove equipment.
+- **Information**: Displays the raw properties of the device.
+- **Links**: Displays the device’s links to objects, commands, scenarios, variables, interactions, and more in a graphical format (in this view, double-clicking an item takes you to its configuration).
+- **Log**: Displays events related to the device in question.
+- **Save**: Saves the changes made to the device.
+- **Delete**: Deletes the device.
 
-### Information tab
+### "Information" tab
 
-The tab **Information** contains general information about the equipment and its controls :
+The **Information** tab contains general information about the device as well as its commands:
 
-- **Id** : Unique identifier in the Jeedom database.
-- **Name** : Name of equipment.
-- **Logical ID** : Logical identifier of the equipment (can be empty).
-- **Object ID** : Unique identifier of the parent object (can be empty).
-- **Creation date** : Equipment creation date.
-- **Enable** : Check the box to activate the equipment (don't forget to save).
-- **Visible** : Check the box to make the equipment visible (don't forget to save).
-- **Kind** : Identifier of the plugin by which it was created.
-- **Failed attempt** : Number of failed consecutive communications attempts with the equipment.
-- **Date of last communication** : Date of the last communication of the equipment.
-- **Last update** : Date of last communication with the equipment.
-- **Tags** : equipment tags, to be separated by ','. It allows on the Dashboard to make custom filters
+- **ID**: Unique identifier in the Jeedom database.
+- **Name**: Name of the device.
+- **Logical ID**: Logical identifier for the device (may be empty).
+- **Object ID**: Unique identifier of the parent object (may be empty).
+- **Creation Date**: The date the device was created.
+- **Enable**: Check the box to enable the device (don't forget to save).
+- **Visible**: Check the box to make the device visible (don't forget to save).
+- **Type**: The ID of the plugin used to create it.
+- **Failed attempt**: Number of consecutive failed communication attempts with the device.
+- **Date of Last Communication**: The date of the device's last communication.
+- **Last Update**: Date of the last communication with the device.
+- **Tags**: device tags, separated by ','s. This allows you to create custom filters on the Dashboard
 
-Below you will find a table with the list of equipment commands with, for each, a link to their configuration.
+Below is a table listing the device commands, each with a link to its configuration.
 
-### View tab
+### Display tab
 
-In the tab **Display**, you will be able to configure certain tile display behaviors on the Dashboard or on mobile.
+In the **Display** tab, you can configure certain display settings for the tile on the Dashboard or on mobile devices.
 
 #### Widget
 
--  **Visible** : Check the box to make the equipment visible.
-- **Show name** : Check the box to display the name of the equipment on the tile.
-- **Display object name** : Check the box to display the name of the parent object of the equipment, next to the tile.
+-  **Visible**: Check the box to make the device visible.
+- **Show Name**: Check the box to display the device name on the tile.
+- **Show object name**: Check the box to display the name of the device's parent object next to the tile.
 
-### Optional parameters on the tile
+### Optional settings on the tile
 
-Below, there are optional display parameters that can be applied to the equipment. These parameters are composed of a name and a value. Just click on **Add** to apply one
-new. For equipment, only the value **style** is currently used, it allows to insert CSS code on the equipment in question.
+Below that, you’ll find optional display settings that you can apply to the device. These settings consist of a name and a value. Simply click **Add** to apply one.
+New. For devices, only the **style** value is currently used; it allows you to insert CSS code for the device in question.
 
-> **Advice**
+> **Tip**
 >
-> Do not forget to save after any modification.
+> Don't forget to save after making any changes.
 
-### Layout tab
+### "Layout" tab
 
-This part allows you to choose between the standard layout of the commands (side by side in the widget), or in table mode. Nothing to set in default mode. Here are the options available in mode
-**Painting** :
+This section lets you choose between the standard layout for commands (side-by-side in the widget) or grid mode. There are no settings to adjust in default mode. Here are the options available in grid mode:
+**Table**:
 - **Number of lines**
 - **Number of columns**
-- **Center in boxes** : Check the box to center commands in cells.
-- **General style of boxes (CSS)** : Allows you to define the general style in CSS code.
-- **Table style (CSS)** : Allows you to define the style of the table only.
+- **Center in boxes**: Check the box to center the commands within the boxes.
+- **General Box Style (CSS)**: Allows you to define the general style using CSS code.
+- **Table style (CSS)**: Allows you to define the table's style only.
 
-Below for each box, the **detailed configuration** It allows you to
-this :
-- **Box text** : Add text in addition to the command (or all by itself, if there is no command in the box).
-- **Case style (CSS)** : Modify the specific CSS style of the box (note that it overwrites and replaces the general CSS of boxes).
+Below each box, the **detailed configuration** allows you to
+this:
+- **Text in the box**: Add text in addition to the command (or on its own, if there is no command in the box).
+- **Box Style (CSS)**: Modify the specific CSS style of the box (note that this overrides and replaces the general CSS for boxes).
 
-> **Advice**
+> **Tip**
 >
-> In a box in the table, if you want to put 2 commands one below the other, don&#39;t forget to add a line break after the first in the **Advanced configuration** of it.
+> If you want to place two commands one below the other in a table cell, don’t forget to add a line break after the first one in its **advanced settings**.
 
 ### Alerts tab
 
-This tab allows you to have information on the battery of the equipment and to define alerts in relation to it. Here are the types of information that can be found :
+This tab allows you to view information about the device's battery and set up alerts related to it. Here are the types of information you can find:
 
 - **Battery type**,
-- **Latest feedback**,
-- **Remaining level**, (if of course your equipment runs on battery).
+- **Latest update**,
+- **Remaining battery level** (assuming, of course, that your device is battery-powered).
 
-Below, you can also define the specific battery alert thresholds for this equipment. If you leave the boxes empty, those are the default thresholds that will be applied.
+Below, you can also set specific battery alert thresholds for this device. If you leave the fields blank, the default thresholds will be applied.
 
-You can also manage the timeout, in minutes, of the equipment. For example, 30 tells jeedom that if the equipment has not communicated for 30 minutes, then it must be put on alert.
+You can also set the device’s timeout in minutes. For example, entering “30” tells Jeedom that if the device hasn’t communicated for 30 minutes, it should trigger an alert.
 
-> **Advice**
+> **Tip**
 >
-> The global parameters are in **→ Settings → System Configuration : Logs** Or **Equipment**
+> Global settings can be found under **Settings→System→Configuration: Logs** or **Devices**
 
-### Comment tab
+### "Comments" tab
 
-Allows you to write a comment about the equipment.
+Allows you to write a comment about the device.
 
-## Advanced configuration of a command
+## Advanced Configuration of a Command
 
-First, at the top right, some buttons available :
+First, in the upper right corner, there are a few buttons available:
 
-- **Test** : Used to test the command.
-- **Links** : Allows to display the links of the equipment with objects, commands, scenarios, variables, interactions…. in graphic form.
-- **Log** : Displays the events of the equipment in question.
-- **Information** : Displays the raw properties of the equipment.
--  **To apply to** : Allows the same configuration to be applied to several commands.
-- **To safeguard** : Save the modifications made on the equipment.
+- **Test**: Allows you to test the command.
+- **Links**: Displays the links between devices and objects, commands, scenarios, variables, interactions, etc., in graphical form.
+- **Log**: Displays events for the device in question.
+- **Information**: Displays the raw properties of the device.
+-  **Apply to**: Allows you to apply the same configuration to multiple commands.
+- **Save**: Saves the changes made to the device.
 
-> **Advice**
+> **Tip**
 >
-> In a graphic, a double click on an element brings you to its configuration.
+> In a diagram, double-clicking an element takes you to its configuration.
 
 > **Note**
 >
-> Depending on the type of command, the information / actions displayed may change.
+> Depending on the type of command, the information or actions displayed may vary.
 
-### Information tab
+### "Information" tab
 
-The tab **Information** contains general information about the command :
+The **Information** tab contains general information about the command:
 
-- **Id** : Unique identifier in the database.
-- **Logical ID** : Logical identifier of the command (can be empty).
-- **Name** : Name of the command.
-- **Kind** : Type of command (action or info).
-- **Subtype** : Command subtype (binary, digital, etc.)).
-- **Direct url** : Provides the URL to access this equipment. (right click, copy the link address) The URL will launch the command for a **action** and return the information for a **info**.
-- **Unit** : Control unit.
-- **Command triggering an update** : Gives the identifier of another command which, if this other command changes, will force the update of the displayed command.
-- **Visible** : Check this box to make the command visible.
-- **Follow in the timeline** : Check this box to make this command visible in the timeline when it is used. You can specify a specific timeline in the field that appears if the option is checked.
-- **Prohibit in automatic interactions** : prohibits automatic interactions on this command
-- **Icon** : Allows you to change the command icon.
+- **ID**: Unique identifier in the database.
+- **Logical ID**: Logical identifier of the command (may be empty).
+- **Name**: Name of the command.
+- **Type**: Type of command (action or information).
+- **Subtype**: Subtype of the command (binary, numeric, etc.).
+- **Direct URL**: Provides the URL to access this device. (Right-click, copy link address.) The URL will trigger a command for an **action** and return information for an **info** query.
+- **Unit**: Command unit.
+- **Command that triggers an update**: Specifies the ID of another command; if that command changes, it will force an update of the displayed command.
+- **Visible**: Check this box to make the command visible.
+- **Show in Timeline**: Check this box to make this command visible in the timeline when it is used. You can specify a particular timeline in the field that appears when this option is checked.
+- **Disable automatic interactions**: Disables automatic interactions for this command
+- **Icon**: Allows you to change the command’s icon.
 
-You also have three other orange buttons underneath :
+There are also three other orange buttons below:
 
-- **This command replaces the ID** : Allows you to replace a command ID with the command in question. Useful if you have deleted an equipment in Jeedom and you have scenarios that use commands from it.
-- **This command replaces the command** : Replace command with current command.
-- **Replace this command with the command** : Conversely, replace the command with another command.
+- **This command replaces the ID**: Allows you to replace a command ID with the command itself. Useful if you have deleted a device in Jeedom and have scenarios that use commands from that device.
+- **This command replaces the command**: Replaces a command with the current command.
+- **Replace this command with the command**: The opposite—replaces the command with another command.
 
 > **Note**
 >
-> This kind of action replaces commands everywhere in Jeedom (scenario, interaction, command, equipment….).
+> This type of action replaces commands throughout Jeedom (scenarios, interactions, commands, devices, etc.).
 
-Below, you will find the list of the different equipment, commands, scenarios or interactions that use this command. Click on it to go directly to their respective configuration.
+Below, you'll find a list of the various devices, commands, scenarios, and interactions that use this command. Clicking on any of them will take you directly to their respective configuration.
 
 ### Configuration tab
 
-#### For an info type command :
+#### For an "info" type command:
 
-- **Calculation and rounding**
-    - **Algorithm (\#value\# for value)** : Allows you to make an operation on the value of the command before processing by Jeedom, example : `#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
-    - **Rounded (number after decimal point)** : Used to round the value of the command (Example : put 2 to transform 16.643,345 in 16.64).
-- **Generic type** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
-- **Action on value, if** : Lets do some sort of mini scenarios. You can, for example, say that if the value is worth more than 50 for 3 minutes, then you have to do such action. This allows, for example, to turn off a light X minutes after it has turned on.
+- **Calculation and Rounding**
+    - **Calculation formula (\#value\# for the value)**: Allows you to perform an operation on the command value before it is processed by Jeedom. Example: `#value# - 0.2` to subtract 0.2 (offset on a temperature sensor).
+    - **Rounding (decimal place)**: Allows you to round the command value (Example: enter 2 to round 16.643345 to 16.64).
+- **Generic Type**: Allows you to configure the generic type of the command (Jeedom attempts to detect this in auto mode). This information is used by the mobile app.
+- **Action based on value, if**: Allows you to create mini-scenarios. For example, you can specify that if the value remains above 50 for 3 minutes, then a certain action should be performed. This allows you, for example, to turn off a light X minutes after it turns on.
 
-- **Historical**
-    - **Historicize** : Check the box to have the values of this command logged. (See **Analysis → History**)
-    - **Smoothing mode** : Mode of **smoothing** or d'**archiving** allows you to choose how to archive the data. By default, this is a **average**. It is also possible to choose the **maximum**, THE **minimum**, Or **None**. **None** lets tell Jeedom that it should not perform archiving on this command (both during the first 5 mins period and with the archiving task). This option is dangerous because Jeedom keeps everything : so there will be a lot more data kept.
-    - **Purge history if older than** : Lets tell Jeedom to delete all data older than a certain period. May be practical not to keep data if it is not necessary and therefore limit the amount of information recorded by Jeedom. Please note that the purge is triggered at night, so you must wait for the night to pass before having the effective action of the purge.
+- **History**
+    - **Log**: Check this box to log the values for this command. (See **Analysis→History**)
+    - **Smoothing Mode**: The **smoothing** or **archiving** mode lets you choose how to archive the data. By default, it uses the **average**. You can also choose the **maximum**, the **minimum**, or **none**. **None** tells Jeedom not to archive data for this command (neither during the first 5-minute period nor via the archiving task). This option is risky because Jeedom retains everything; consequently, much more data will be stored.
+    - **Clear history older than**: This allows you to tell Jeedom to delete all data older than a certain period. This can be useful for avoiding the storage of unnecessary data and thus limiting the amount of information recorded by Jeedom. Please note that the purge runs at night, so you must wait until the night is over before the purge takes effect.
 
-- **Values management**
-    - **Prohibited value** : If the command takes one of these values, Jeedom ignores it before applying it.
-    - **Status return value** : Returns the command to this value after a certain time.
-    - **Duration before return of status (min)** : Time before return to the above value.
+- **Value Management**
+    - **Prohibited value**: If the command takes one of these values, Jeedom ignores it before applying it.
+    - **Status Return Value**: Sets the command to return to this value after a certain amount of time.
+    - **Time to return to previous state (min)**: Time until the value returns to the one specified above.
 
-- **Others**
-    - **Management of the repetition of values** : In automatic if the command goes up 2 times the same value in a row, then Jeedom will not take into account the 2nd ascent (avoids triggering a scenario several times, unless the command is of binary type). You can force the repetition of the value or prohibit it completely.
-    - **Push url** : Allows to add a URL to call in case of update of the command. You can use the following tags : `#value#`for the value of the command,`#cmd_name#`for the name of the command,`#cmd_id#`for the unique identifier of the command,`#humanname#`for the full name of the command (ex : `#[SalTHE de bain][Hydrometrie][Humidité]#`),`#eq_name#`for the name of the equipment.
+- **Other**
+    - **Value Repetition Management**: By default, if a command sends the same value twice in a row, Jeedom will ignore the second value (this prevents a scenario from being triggered multiple times, unless the command is of a binary type). You can force the value to be repeated or disable repetition entirely.
+    - **Push URL**: Allows you to add a URL to be called when the command is updated. You can use the following tags: `#value#` for the command value, `#cmd_name#` for the command name, `#cmd_id#` for the command's unique ID, `#humanname#` for the full name of the command (e.g., `#[Salle de bain][Hydrometrie][Humidité]#`), `#eq_name#` for the device name.
 
-#### For an action command :
+#### For an action command:
 
--  **Generic type** : Allows you to configure the generic type of the command (Jeedom tries to find it by itself in auto mode). This information is used by the mobile application.
-- **Confirm action** : Check this box to have Jeedom request confirmation when the action is launched from the interface of this command.
-- **Access code** : Allows to define a code that Jeedom will ask when the action is launched from the interface of this command.
-- **Action before execution of the command** : Add commands **Before** each execution of the command.
-- **Action after execution of the command** : Add commands **after** each execution of the command.
+-  **Generic Type**: Allows you to configure the generic type of the command (Jeedom attempts to detect this in auto mode). This information is used by the mobile app.
+- **Confirm Action**: Check this box to have Jeedom prompt for confirmation when the action is triggered from this command’s interface.
+- **Access Code**: Allows you to set a code that Jeedom will request when the action is triggered from this command’s interface.
+- **Action before command execution**: Allows you to add commands **before** each time the command is executed.
+- **Action after command execution**: Allows you to add commands **after** each time the command is executed.
 
 ### Alerts tab
 
-Allows you to define an alert level (**warning** Or **hazard**) depending on certain conditions. For example, if `value&gt; 8` for 30 minutes then the equipment can go on alert **warning**.
+Allows you to set an alert level (**warning** or **danger**) based on certain conditions. For example, if `value > 8` for 30 minutes, the system may trigger a **warning**.
 
 > **Note**
 >
-> On the page **→ Settings → System Configuration : Logs**, you can configure a message type command that will allow Jeedom to notify you if the warning or danger threshold is reached.
+> On the **Settings→System→Configuration: Logs** page, you can configure a message-type command that will allow Jeedom to notify you if the warning or danger threshold is reached.
 
-### View tab
+### Display tab
 
-In this part, you will be able to configure certain widget display behaviors on the Dashboard, views, design and on mobile.
+In this section, you’ll be able to configure certain display settings for the widget on the Dashboard, as well as views, design, and mobile settings.
 
-- **Widget** : Allows you to choose the widget on desktop or mobile (note that you need the widget plugin and that you can also do it from it).
-- **Visible** : Check to make the command visible.
-- **Show name** : Check to make the name of the command visible, depending on the context.
-- **Display name and icon** : Check to make the icon visible in addition to the command name.
-- **Wrapped line before widget** : Check **before the widget** Or **after the widget** to add a line break before or after the widget (to force for example a column display of the different commands of the equipment instead of default lines)
+- **Widget**: Lets you choose the widget for desktop or mobile (note that you need the widget plugin, and you can also do this from within the plugin).
+- **Visible**: Check this box to make the command visible.
+- **Show Name**: Check this box to display the command name, depending on the context.
+- **Show Name and Icon**: Check this box to display the icon in addition to the command name.
+- **Force line break before the widget**: Check **before the widget** or **after the widget** to add a line break before or after the widget (for example, to force the device's various commands to be displayed in columns instead of the default lines)
 
-Below, there are optional display parameters that can be passed to the widget. These parameters depend on the widget in question, so you have to look at its file on the Market to know them.
+Below that, you'll find optional display settings that you can apply to the widget. These settings depend on the specific widget, so you'll need to check its listing on the Market to find out what they are.
 
-> **Advice**
+> **Tip**
 >
-> Do not forget to save after any modification.
+> Don't forget to save after making any changes.

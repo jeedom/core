@@ -1,9 +1,9 @@
 # ModalDisplay
 
-La página **Visualización modal** es un contenedor simple para cargar el contenido de una ventana (*modal* O *diálogo*) página completa.
+La página **ModalDisplay** es un sencillo contenedor que permite cargar el contenido de una ventana (*modal* o *de diálogo*) a pantalla completa.
 
-Se utiliza en particular en los siguientes casos:
-- Menú de análisis : Ctrl Click / Click Center en *Tiempo real*
-- Menú de herramientas : Ctrl Click / Click Center en *Notas*, *Probador de expresión*, *Variables*
+Se utiliza, entre otros, en los siguientes casos:
+- Menú Análisis: Ctrl + clic / clic central en *Tiempo real*
+- Menú Herramientas: Ctrl + clic / clic central en *Notas*, *Comprobador de expresiones*, *Variables*
 
-> Con un clic normal (clic izquierdo), estos menús abren una ventana que muestra el contenido sobre el resto de la interfaz. Aquí, el contenido de la ventana se muestra en esta página, cargado en una nueva pestaña del navegador, para facilitar su uso cuando el usuario lo desee.
+> Con un clic normal (clic izquierdo), estos menús abren una ventana que muestra el contenido superpuesto al resto de la interfaz. En este caso, el contenido de la ventana se muestra en esta página, que se carga en una nueva pestaña del navegador, para facilitar su uso cuando el usuario lo desee.

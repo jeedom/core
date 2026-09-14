@@ -1,90 +1,90 @@
-# Objets
+# Objects
 **Tools → Objects**
 
-THE **Objects** allow you to define the tree structure of your home automation.
+**Objects** allow you to define the structure of your home automation system.
 
-All the equipment you create must belong to an object and are therefore more easily identifiable. We then say that the object is the **parent** equipment.
+All devices you create must belong to an object, which makes them easier to find. In this case, the object is said to be the **parent** of the device.
 
-To give free choice to personalization, you can name these objects as you wish. Usually, we will define the different parts of his house, like the name of the rooms (this is also the recommended configuration).
+To give you the freedom to customize, you can name these objects however you like. Typically, you’ll use them to identify different areas of your home, such as the names of the rooms (which is, in fact, the recommended setup).
 
-![Objects](./images/object_intro.gif)
+![Objects](../images/object_intro.gif)
 
-## Gestion
+## Management
 
-You have two options :
-- **Add** : Create a new object.
-- **Overview** : Displays the list of objects created and their configuration.
+You have two options:
+- **Add**: Allows you to create a new object.
+- **Overview**: Displays a list of the created objects and their configurations.
 
 ## Overview
 
-The overview allows you to view all the objects in Jeedom, as well as their configuration :
+The overview allows you to view all objects in Jeedom, as well as their configuration:
 
-- **ID** : Object ID.
-- **Object** : Object name.
-- **Dad** : Name of parent object.
-- **Visible** : Object visibility.
-- **Mask** : Indicates if the object is hidden on the Dashboard.
-- **Summary Defined** : Indicates the number of commands per summary. What is in blue is taken into account in the global summary.
-- **Hidden Dashboard Summary** : Indicates hidden summaries on the Dashboard.
-- **Hidden Mobile Summary** : Show hidden summaries on mobile.
+- **ID**: Object ID.
+- **Object**: Name of the object.
+- **Parent**: Name of the parent object.
+- **Visible**: Visibility of the object.
+- **Hidden**: Indicates whether the object is hidden on the Dashboard.
+- **Summary Defined**: Indicates the number of commands per summary. Items in blue are included in the overall summary.
+- **Hidden Dashboard Summary**: Shows the summaries that are hidden on the Dashboard.
+- **Hidden Mobile Summary**: Indicates summaries that are hidden on mobile devices.
 
 ## My objects
 
-Once you have created an object, it will appear in this part.
+Once you've created an object, it will appear in this section.
 
-> **Advice**
+> **Tip**
 >
-> You can open an object by doing :
+> You can open an object by doing the following:
 > - Click on one of them.
-> - Ctrl Clic or Clic Center to open it in a new browser tab.
+> - Ctrl-click or middle-click to open it in a new browser tab.
 
-You have a search engine to filter the display of objects. The Escape key cancels the search.
-To the right of the search field, three buttons found in several places in Jeedom:
+You have a search engine that allows you to filter the list of objects. Pressing the Esc key cancels the search.
+To the right of the search field are three buttons that appear in several places throughout Jeedom:
 
-- The cross to cancel the search.
-- The open folder to unfold all the panels and display all the objects.
-- The closed folder to fold all the panels.
+- The cross icon to cancel the search.
+- The folder is open to expand all the panels and display all the objects.
+- The folder closes to fold up all the panels.
 
-Once on the configuration of an object, you have a contextual menu with the Right Click on the tabs of the object. You can also use a Ctrl Click or Center Click to directly open another object in a new browser tab.
+Once you're in an object's configuration, you can access a context menu by right-clicking on the object's tabs. You can also use Ctrl+click or the middle mouse button to open another object directly in a new browser tab.
 
-## Object tab
+## "Object" tab
 
-By clicking on an object, you access its configuration page. Whatever changes you make, don&#39;t forget to save your changes.
+Clicking on an object takes you to its configuration page. Whatever changes you make, don't forget to save them.
 
-Here are the different characteristics to configure an object :
+Here are the various properties for configuring an object:
 
-#### Settings :
+#### Settings:
 
-- **Object name** : The name of your object.
-- **Parent object** : Indicates the parent of the current object, this makes it possible to define a hierarchy between the objects. For example : The living room is related to the apartment. An object can have only one parent but several objects can have the same parent.
-- **Visible** : Check this box to make this object visible.
-- **Hide on the Dashboard** : Check this box to hide the object on the Dashboard. It is still kept in the list, which allows it to be displayed, but only explicitly.
-- **Hide on summary** : Check this box to hide the object on the summary'. It is still kept in the list, which allows it to be displayed, but only explicitly.
-- **Action from synthesis** : Here you can indicate a view or a design to go to when you click on the object from the Summary. *Default : Dashboard*.
+- **Object Name**: The name of your object.
+- **Parent object**: Indicates the parent of the current object; this allows you to define a hierarchy among objects. For example: The living room has the apartment as its parent. An object can have only one parent, but multiple objects can share the same parent.
+- **Visible**: Check this box to make this object visible.
+- **Hide on the Dashboard**: Check this box to hide the object on the Dashboard. It will still appear in the list, so you can view it, but only if you explicitly select it.
+- **Hide on Summary**: Check this box to hide the object on the summary. It is still retained in the list, which allows you to display it, but only explicitly.
+- **Action from the Overview**: Here, you can specify a view or design to navigate to when you click on the object from the Overview. *Default: Dashboard*.
 
-#### Display :
+#### Display:
 
-- **Icon** : Allows you to choose an icon for your object.
-- **Custom colors** : Activates the taking into account of the two custom color parameters below.
-- **Tag color** : Allows you to choose the color of the object and the equipment attached to it.
-- **Tag text color** : Allows you to choose the color of the text of the object. This text will be over the **Tag color**. You choose a color to make the text readable.
-- **Only on synthesis** : Allows you to put an image for the Synthesis without it being used as a background image, especially on the page *Dashboard* of this object.
-- **Picture** : You have the option to upload an image or delete it. In jpeg format this image will be the background image of the object when you display it on the Dashboard. It will also be used for the thumbnail of the piece on the Synthesis.
+- **Icon**: Lets you choose an icon for your object.
+- **Custom Colors**: Makes the two custom color settings below active.
+- **Tag Color**: Allows you to choose the color of the object and the devices associated with it.
+- **Tag Text Color**: Allows you to choose the color of the object’s text. This text will appear over the **tag color**. It’s up to you to choose a color that makes the text legible.
+- **For the summary only**: Allows you to add an image to the summary without using it as a background image, particularly on this object's *Dashboard* page.
+- **Image**: You can upload an image or delete it. If saved in JPEG format, this image will serve as the background image for the object when you view it on the Dashboard. It will also be used as the thumbnail for the room on the Overview page.
 
-> **Advice**
+> **Tip**
 >
-> You can change the display order of objects in the Dashboard, through the Home Automation Summary (tools -> home automation summary), select your object with the mouse with drag/drop to give it a new place.
+> You can change the order in which objects appear on the Dashboard by going to the Home Automation Summary (Analysis -> Home Automation Summary) and selecting an object with your mouse, then dragging and dropping it to a new location.
 
-> **Advice**
+> **Tip**
 >
-> You can see a graph representing all the elements of Jeedom attached to this object by clicking on the button **Links**, top right.
+> You can view a diagram showing all Jeedom elements associated with this object by clicking the **Links** button in the upper-right corner.
 
-> **Advice**
+> **Tip**
 >
-> When a device is created and no parent has been defined, it will have as parent : **None**.
+> When a device is created and no parent has been defined, its parent will be: **None**.
 
-## Summary tabs
+## Summaries Tabs
 
-[See abstracts documentation.](/en_US/concept/summary)
+[See the documentation on summaries.](https://doc.jeedom.com/concept/en_US/summary)
 
 

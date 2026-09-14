@@ -1,104 +1,104 @@
-# Vues
+# Views
 **Home → View**
 
-Views allow you to create custom views.
-It is not as powerful as the designs but it allows in a few minutes to have a more personalized display than the Dashboard, with equipment of different objects, graphics, or controls.
+Views allow you to create custom displays.
+It's not as powerful as the designs, but it lets you create a more personalized display than the Dashboard in just a few minutes, featuring various objects, graphs, or commands.
 
 {% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Advice**
+> **Tip**
 >
-> You can choose the default view in your profile when clicking on the view menu.
+> In your profile, you can select the default view when you click the Views menu.
 
-## Principe
+## Principle
 
-We can also put equipment tiles, graphs (which can be composed of several data) or table zones (which contain the widgets of the commands).
+You can add equipment tiles, charts (which can consist of multiple data points), or table areas (which contain command widgets).
 
-On a View, we find :
+A View includes:
 
-- A button at the top left to show or hide the list of Views, as well as the button to add one.
-- The pencil on the right to edit the order and size of the equipment, in the same way as the Dashboard.
-- A button *Full Edition* allowing to edit the zones and elements of the View.
+- A button in the upper-left corner to show or hide the list of Views, as well as a button to add a new one.
+- Use the pencil icon on the right to edit the order and size of the devices, just as you would on the Dashboard.
+- A *Full Edit* button that allows you to edit the zones and elements in the View.
 
-> **Advice**
+> **Tip**
 >
-> You can, in your profile, modify this option so that the list of Views is visible by default.
+> In your profile, you can change this setting so that the list of Views is visible by default.
 
-## Adding / Editing a view
+## Add/Edit a View
 
-The principle is quite simple : a View is made up of areas. Each zone is of type *chart*, *widget* Or *painting *. Depending on this type, you can add graphics, equipment, or commands to it.
+The concept is fairly simple: a View consists of zones. Each zone is either a *graph*, *widget*, or *table*. Depending on the type, you can add graphs, devices, or commands to it.
 
-- On the left of the page we find the list of Views as well as a creation button.
-- A button at the top right allows you to edit the Current View (Configuration).
-- A button to add a zone. You will then be asked for the name and type of zone.
-- A button *Display the result*, to exit the complete editing mode and display this View.
-- A button allowing to save this View.
-- A button allowing to delete this View.
+- On the left side of the page, you'll find the list of Views as well as a create button.
+- A button in the upper-right corner lets you edit the Current View (Configuration).
+- A button to add a zone. You will then be prompted to enter the zone name and type.
+- A *View Result* button that allows you to exit full-edit mode and display this view.
+- A button to save this View.
+- A button to delete this View.
 
-> **Advice**
+> **Tip**
 >
-> You can move the order of the zones by dragging and dropping.
+> You can reorder the zones using drag-and-drop.
 
-On each zone you have the following general options :
+For each zone, you have the following general options:
 
-- **Width** : Defines the width of the area (in desktop mode only). 1 for the width of 1/12 of the navigator, 12 for the total width.
-- A button allowing to add an element to this zone, depending on the type of zone (see below).
-- **Edit** : Allows you to change the name of the zone.
-- **DELETE** : Delete the zone.
+- **Width**: Sets the width of the zone (in desktop mode only). 1 for a width of 1/12 of the browser, 12 for the full width.
+- A button that allows you to add an item to this zone, depending on the zone type (see below).
+- **Edit**: Allows you to change the name of the zone.
+- **Delete**: Deletes the zone.
 
-### Equipment type zone
+### Equipment Type Zone
 
-An equipment type zone allows you to add equipment :
+A "Type Equipment" zone allows you to add equipment:
 
-- **Add equipment** : Allows you to add / modify equipment to display in the area.
+- **Add Device**: Allows you to add or edit devices to be displayed in the area.
 
-> **Advice**
+> **Tip**
 >
-> You can delete an item of equipment directly by clicking on the trash can to the left of it.
+> You can delete a device directly by clicking the trash can icon to the left of it.
 
-> **Advice**
+> **Tip**
 >
-> It is possible to change the order of the tiles in the area by dragging and dropping.
+> You can change the order of the tiles in the area by dragging and dropping them.
 
 
-### Graphic type area
+### Graphical type area
 
-A graphics type area allows you to add graphics to your view, it has the following options :
+A chart type lets you add charts to your View; it has the following options:
 
-- **Period** : Allows you to choose the display period of the graphics (30 min, 1 day, 1 week, 1 month, 1 year or all).
-- **Add curve** : Add / edit graphics.
+- **Time Period**: Allows you to select the time period for the graphs (30 min, 1 day, 1 week, 1 month, 1 year, or all).
+- **Add Curve**: Allows you to add or edit graphs.
 
-When you press the button **Add curve**, Jeedom displays the list of historical commands and you can choose the one to add. Once done you have access to the following options :
+When you press the **Add Curve** button, Jeedom displays a list of historical commands, and you can choose which one to add. Once you’ve done that, you’ll have access to the following options:
 
-- **Garbage can** : Remove command from chart.
-- **Name** : Name of the command to draw.
-- **Color** : Color of the curve.
-- **Kind** : Type of curve.
-- **Group** : Allows grouping of data (maximum type per day).
-- **Ladder** : Scale (right or left) of the curve.
-- **Stairs** : Displays the staircase curve.
-- **Stack** : Stacks the curve with the other type curves.
-- **Variation** : Only draw variations with the previous value.
+- **Trash Can**: Removes the command from the graph.
+- **Name**: Name of the command to be drawn.
+- **Color**: Color of the curve.
+- **Type**: Curve type.
+- **Grouping**: Allows you to group data (such as the maximum type per day).
+- **Scale**: Scale (right or left) of the curve.
+- **Staircase**: Displays the staircase curve.
+- **Stack**: Stacks the curve with other curves of the same type.
+- **Variation**: Plots only the variations relative to the previous value.
 
 {% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-> **Advice**
+> **Tip**
 >
-> You can change the order of the graphics in the area by dragging and dropping.
+> You can change the order of the charts in the area by dragging and dropping them.
 
-### Array type area
+### Table-type zone
 
-Here you have the buttons :
+Here are the buttons:
 
-- **Add column** : Add a column to the table.
-- **Add line** : Add a row to the table.
+- **Add Column**: Allows you to add a column to the table.
+- **Add Row**: Allows you to add a row to the table.
 
 > **Note**
 >
-> It is possible to reorganize the rows by dragging and dropping but not the columns.
+> You can rearrange the rows using drag-and-drop, but not the columns.
 
-Once you have added your rows / columns you can add information in the boxes :
+Once you've added your rows and columns, you can enter information in the cells:
 
 - A text.
-- HTML code (javascript possible but strongly discouraged).
-- The Widget of an order : The button on the right allows you to choose the command to display.
+- HTML code (JavaScript is possible but strongly discouraged).
+- The Control Widget: The button on the right lets you choose the command to display.

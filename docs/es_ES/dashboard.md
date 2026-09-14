@@ -1,73 +1,73 @@
-# Dashboard
-**Inicio → Tablero**
+# Panel de control
+**Inicio → Panel de control**
 
-<small>[Raccourcis clavier/souris](shortcuts.md)</small>
+<small>[Atajos de teclado y ratón](shortcuts.md)</small>
 
-El tablero es una de las páginas principales de Jeedom, muestra un informe de toda su domótica.
-Jeedom genera automáticamente este informe (a diferencia de las vistas y los diseños) e incluye todos los objetos visibles y sus equipos.
+El panel de control es una de las páginas principales de Jeedom; muestra un resumen de todo tu sistema domótico.
+Este informe (a diferencia de las vistas y los diseños) lo genera automáticamente Jeedom e incluye todos los objetos visibles y sus dispositivos.
 
 {% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-- 1 : Menú principal de Jeedom.
-- 2 : Resumen global [Documentación abstracta.](/es_ES/concept/summary).
-- 3 : Tiempo del navegador, acceso directo a la línea de tiempo.
-- 4 : Botón para acceder a la documentación de la página actual.
-- 5 : Nombre de su Jeedom, acceso directo a la configuración.
-- 6 : Modo de edición (reordenar / redimensionar mosaicos).
-- 7 : Filtrar por categorias.
-- 8 : Objeto : Icono, nombre y resumen, y su equipo.
-- 9 : Equipo de azulejos.
-- 10 : Solicitar widget.
+- 1: Menú principal de Jeedom.
+- 2: Resumen general [Documentación sobre los resúmenes.](https://doc.jeedom.com/concept/es_ES/summary).
+- 3: Hora del navegador, acceso directo a la línea de tiempo.
+- 4: Botón para acceder a la documentación de la página actual.
+- 5: Nombre de tu Jeedom, acceso directo a la configuración.
+- 6: Modo de edición (Reordenar / cambiar el tamaño de los mosaicos).
+- 7: Filtrar por categorías.
+- 8: Objeto: Icono, nombre y resumen, y sus equipos.
+- 9: Ficha de un equipo.
+- 10: Widget de un comando.
 
 > **Consejo**
 >
-> El orden de visualización de los objetos en el Tablero es el visible en **Análisis → Resumen de domótica**. En esta página puedes cambiar el orden arrastrando y soltando.
+> El orden en el que se muestran los objetos en el panel de control es el mismo que el que aparece en **Análisis → Resumen de domótica**. En esta página puedes modificar el orden arrastrando y soltando los objetos.
 
-Para que el equipo aparezca en el Tablero, debe :
-- Estar activo.
+Para que un dispositivo aparezca en el panel de control, debe:
+- Mantenerte activo.
 - Ser visible.
-- Tener como objeto principal un objeto visible en el Tablero.
+- Tener como objeto padre un objeto visible en el panel de control.
 
-Cuando el equipo aparece por primera vez en el Tablero, Jeedom intenta dimensionar correctamente su mosaico para mostrar todos los comandos y sus widgets.
-Para mantener un tablero equilibrado, puede cambiar al modo Editar con el lápiz en la parte superior derecha de la barra de búsqueda, para cambiar el tamaño y / o reordenar los mosaicos del equipo.
+La primera vez que el dispositivo aparece en el Dashboard, Jeedom intenta ajustar correctamente el tamaño de su mosaico para mostrar todos los controles y sus widgets.
+Para mantener un panel de control equilibrado, puedes pasar al modo de edición haciendo clic en el lápiz situado en la esquina superior derecha de la barra de búsqueda, con el fin de cambiar el tamaño y/o reordenar los mosaicos de los dispositivos.
 
-Al mover el mouse sobre un pedido, aparece un marcador de color en la parte inferior izquierda del mosaico :
-- Azul para un pedido de información. Si está registrado, un clic en él abre la ventana de registro.
+Al pasar el ratón por encima de un comando, aparece un marcador de color en la parte inferior izquierda del mosaico:
+- Azul para solicitar información sobre un comando. Si está registrado en el historial, al hacer clic sobre él se abre la ventana del historial.
 - Naranja para un comando de acción. Un clic activará la acción.
 
-Además, puede hacer clic en el título del mosaico (el nombre del equipo) para abrir directamente la página de configuración de este equipo.
+Además, puedes hacer clic en el título del mosaico (el nombre del dispositivo) para abrir directamente la página de configuración de dicho dispositivo.
 
 > **Consejo**
 >
-> Es posible ir directamente a un solo objeto en su domótica, a través del menú **Inicio → Panel de control → Nombre del objeto**.
-> Esto te permite tener solo el equipo que te interesa y cargar la página más rápidamente.
+> Puedes acceder directamente a un objeto concreto de tu sistema de domótica a través del menú **Inicio → Panel de control → Nombre del objeto**.
+> Esto permite que solo se muestren los dispositivos que te interesan y que la página se cargue más rápido.
 
-- Tiene en la parte superior izquierda un pequeño icono para mostrar el árbol de objetos al pasar el mouse.
-- Un campo de búsqueda le permite buscar equipos por nombre, categoría, complemento, etiqueta, etc.
-- El icono a la derecha del campo de búsqueda se utiliza para filtrar los equipos mostrados según su categoría. Un clic central permite seleccionar rápidamente una sola categoría.
-- En el extremo derecho, un botón le permite cambiar al modo de edición, modificar el orden de los mosaicos (haga clic y suelte el widget) o cambiar su tamaño. También puede reorganizar el orden de los pedidos en un mosaico.
+- En la esquina superior izquierda hay un pequeño icono que permite mostrar el árbol de objetos al pasar el cursor por encima.
+- Un campo de búsqueda permite buscar un dispositivo por su nombre, categoría, plugin, etiqueta, etc.
+- El icono situado a la derecha del campo de búsqueda permite filtrar los dispositivos que se muestran según su categoría. Al hacer clic en el centro, se puede seleccionar rápidamente una sola categoría.
+- En el extremo derecho, hay un botón que permite pasar al modo de edición para modificar el orden de los mosaicos (hacer clic y arrastrar sobre el widget) o cambiar su tamaño. También puedes reorganizar el orden de los comandos dentro de un mosaico.
 
-- Al hacer clic en el resumen de un objeto, filtra para mostrar solo el equipo relacionado con este objeto y que está relacionado con este resumen de objeto.
+- Al hacer clic en un resumen de objeto, se filtra la lista para mostrar únicamente los equipos que tienen ese objeto como padre y que están relacionados con dicho resumen de objeto.
 
-- Un clic en un pedido de tipo de información muestra el historial del pedido (si es histórico).
-- Un comando Ctrl + clic en un tipo de información muestra el historial de todos los comandos (históricos) para este mosaico.
-- Un clic en la información *tiempo* de un comando de acción muestra el historial del comando (si está historizado).
+- Al hacer clic en un comando de tipo «información», se muestra el historial del comando (si está registrado).
+- Al pulsar Ctrl+clic en un comando de tipo «información», se muestra el historial de todos los comandos (registrados) de ese mosaico.
+- Al hacer clic en la información *time* de un comando de acción, se muestra el historial del comando (si se ha registrado).
 
 ## Modo de edición
 
-En modo edición (*el lápiz en la esquina superior derecha*), puede cambiar el tamaño de los mosaicos y su disposición en el Tablero.
+En el modo de edición (*el lápiz situado en la esquina superior derecha*), puedes cambiar el tamaño de los mosaicos y su disposición en el panel de control.
 
-Los íconos de actualización del equipo se reemplazan por un ícono que permite acceder a su configuración. Este icono abre una ventana de edición con los parámetros de visualización del equipo y sus controles.
+Los iconos de actualización de los dispositivos se sustituyen por un icono que permite acceder a su configuración. Este icono abre una ventana de edición que incluye los parámetros de visualización del dispositivo y sus controles.
 
-![Modo de edición](./images/EditDashboardModal.gif)
+![Modo de edición](../images/EditDashboardModal.gif)
 
-En cada objeto, a la derecha de su nombre y resumen, dos iconos le permiten alinear la altura de todos los mosaicos del objeto en el más alto o más bajo.
+En cada objeto, a la derecha de su nombre y resumen, hay dos iconos que permiten ajustar la altura de todas las fichas del objeto a la más alta o a la más baja.
 
-## Barra de menú Jeedom
+## Barra de menú de Jeedom
 
 > **Consejo**
 >
-> - Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
-> - Haga clic en el nombre de Jeedom (barra de menú) : Abre Configuración → Sistema → Configuración.
-> - Haga clic en ? (Barra de menú) : Abrir ayuda en la página actual.
-> - Escapar en un campo de investigación : Borrar el campo y cancelar esta búsqueda.
+> - Haz clic en el reloj (barra de menú): abre la línea de tiempo.
+> - Haz clic en el nombre de Jeedom (barra de menú): se abre Ajustes → Sistema → Configuración.
+> - Haz clic en el signo «?» (barra de menú): abre la ayuda de la página actual.
+> - Tecla Esc en un campo de búsqueda: borra el contenido del campo y cancela la búsqueda.

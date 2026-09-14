@@ -1,38 +1,38 @@
-# Editor de masas
-**Configuración → Sistema → Configuración | OS / DB**
+# Editor masivo
+**Ajustes → Sistema → Configuración | SO/BD**
 
-Esta herramienta le permite editar una gran cantidad de equipos, comandos, objetos o escenarios. Es completamente genérico y utiliza automáticamente el esquema y la estructura de la base de datos de Jeedom. Por lo tanto, admite complementos y la configuración de sus equipos.
+Esta herramienta permite editar un gran número de dispositivos, comandos, objetos o escenarios. Es totalmente genérica y adopta automáticamente el esquema y la estructura de la base de datos de Jeedom. De este modo, es compatible con los complementos y la configuración de sus dispositivos.
 
 > **Atención**
 >
-> Si esta herramienta es bastante fácil de usar, está destinada a usuarios avanzados. De hecho, es muy simple cambiar cualquier parámetro en docenas de dispositivos o cientos de comandos y, por lo tanto, hacer que ciertas funciones no funcionen, ver incluso el Core.
+> Aunque esta herramienta resulta bastante fácil de usar, está dirigida a usuarios avanzados. De hecho, es muy sencillo modificar cualquier parámetro en decenas de dispositivos o cientos de comandos y, por lo tanto, dejar inoperativas ciertas funciones, o incluso el Core.
 
-## Utilisation
+## Uso
 
-La parte *Filtrado* le permite seleccionar lo que desea editar, luego agregar filtros de selección de acuerdo con sus parámetros. Un botón de prueba permite, sin ninguna modificación, mostrarle los elementos seleccionados por los filtros ingresados.
+La sección *Filtro* te permite seleccionar lo que deseas editar y, a continuación, añadir filtros de selección según sus parámetros. Un botón de prueba te permite, sin realizar ningún cambio, ver los elementos seleccionados por los filtros indicados.
 
-La parte *Edición* le permite cambiar los parámetros de estos elementos.
+La sección *Edición* permite modificar los parámetros de estos elementos.
 
-- **Columna** : Configuración.
-- **Valor** : El valor del parámetro.
-- **Valor json** : La propiedad del parámetro / valor si es de tipo json (clave-> valor).
+- **Columna**: Parámetro.
+- **Valor**: El valor del parámetro.
+- **Valor JSON**: La propiedad del parámetro o su valor si es de tipo JSON (clave->valor).
 
-### Exemples:
+### Ejemplos:
 
 #### Cambiar el nombre de un grupo de escenarios
 
-- En el juego *Filtrado*, Seleccione **Guión**.
-- Haga clic en el botón **+** para agregar un filtro.
-- En este filtro, seleccione la columna *grupo*, y resalte el nombre del grupo para cambiar el nombre.
-- Haga clic en el botón *Prueba* para mostrar los escenarios de este grupo.
-- En el juego *Edición*, seleccionar columna *grupo*, luego pon el nombre que quieras en el valor.
-- Haga clic en **Ejecutar** arriba a la derecha.
+- En la sección *Filtro*, selecciona **Escenario**.
+- Haz clic en el botón **+** para añadir un filtro.
+- En este filtro, selecciona la columna *grupo* y, como valor, el nombre del grupo que deseas renombrar.
+- Haz clic en el botón *Prueba* para ver los escenarios de este grupo.
+- En la sección *Edición*, selecciona la columna *group* y, a continuación, introduce el nombre que desees en el campo «Valor».
+- Haz clic en **Ejecutar**, en la esquina superior derecha.
 
-#### Hacer invisible todo el equipamiento de un objeto / habitación:
+#### Ocultar todos los dispositivos de un objeto o una habitación:
 
-- En el juego *Filtrado*, Seleccione **Equipo**.
-- Haga clic en el botón **+** para agregar un filtro.
-- En este filtro, seleccione la columna *id_objeto*, y en valor la identificación del objeto en cuestión (visible desde Herramientas / Objetos, Descripción general).
-- Haga clic en el botón *Prueba* para mostrar los escenarios de este grupo.
-- En el juego *Edición*, seleccionar columna *es visible*, luego ingrese el valor 0.
-- Haga clic en **Ejecutar** arriba a la derecha.
+- En la sección *Filtro*, selecciona **Equipos**.
+- Haz clic en el botón **+** para añadir un filtro.
+- En este filtro, selecciona la columna *object_id* y, como valor, introduce el ID del objeto en cuestión (visible en Herramientas/Objetos, Vista general).
+- Haz clic en el botón *Prueba* para ver los escenarios de este grupo.
+- En la sección *Edición*, selecciona la columna *isvisible* e introduce el valor 0.
+- Haz clic en **Ejecutar**, en la esquina superior derecha.

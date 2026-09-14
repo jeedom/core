@@ -1,9 +1,9 @@
 # ModalDisplay
 
-Die Seite **ModalDisplay** ist ein einfacher Container zum Laden des Inhalts eines Fensters (*modal* Oder *Dialog*) volle Seite.
+Die Seite **ModalDisplay** ist ein einfacher Container, mit dem der Inhalt eines Fensters (*modal* oder *Dialog*) im Vollbildmodus geladen werden kann.
 
-Es wird insbesondere in den folgenden Fällen verwendet:
-- Analysemenü : Strg Klicken / Klicken Sie auf Mitte *Echtzeit*
-- Menü Extras : Strg Klicken / Klicken Sie auf Mitte *Notizen*, *Expressionstester*, *Variablen*
+Sie wird insbesondere in folgenden Fällen eingesetzt:
+- Menü „Analyse“: Strg-Klick / Klick in der Mitte auf *Echtzeit*
+- Menü „Extras“: Strg-Klick / Mittelklick auf *Notizen*, *Ausdrucksprüfer*, *Variablen*
 
-> Mit einem normalen Klick (Linksklick) öffnen diese Menüs ein Fenster und zeigen den Inhalt über den Rest der Benutzeroberfläche an. Hier wird der Inhalt des Fensters auf dieser Seite angezeigt und in eine neue Browser-Registerkarte geladen, um die Verwendung zu erleichtern, wenn der Benutzer dies wünscht.
+> Bei einem normalen Klick (Linksklick) öffnen diese Menüs ein Fenster, dessen Inhalt über dem Rest der Benutzeroberfläche angezeigt wird. Hier wird der Inhalt des Fensters auf dieser Seite angezeigt, die in einem neuen Browser-Tab geladen wird, um die Nutzung zu vereinfachen, wann immer der Nutzer dies wünscht.

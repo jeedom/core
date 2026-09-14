@@ -1,45 +1,45 @@
 # Preferencias
 **Configuración → Preferencias**
 
-La página de Preferencias le permite configurar ciertos comportamientos de Jeedom específicos del usuario.
+La página «Preferencias» te permite configurar determinados comportamientos de Jeedom específicos para cada usuario.
 
-## Pestaña de preferencias
+## Pestaña «Preferencias»
 
-### Interface
+### Interfaz
 
-Define ciertos comportamientos de interfaz
+Define determinados comportamientos de la interfaz
 
-- **Página predeterminada** : Página que se mostrará de forma predeterminada al conectarse a una computadora de escritorio o un dispositivo móvil.
-- **Objeto predeterminado** : Objeto para mostrar por defecto al llegar al Tablero / móvil.
+- **Página predeterminada**: Página que se mostrará por defecto al iniciar sesión desde un ordenador o un dispositivo móvil.
+- **Objeto por defecto**: Objeto que se mostrará por defecto al acceder al panel de control o al móvil.
 
-- **Vista predeterminada** : Ver para mostrar de forma predeterminada a la llegada en el Panel de control / móvil.
-- **Despliegue el panel de vista** : Se usa para hacer que el menú de vista (izquierda) sea visible en las vistas de forma predeterminada.
+- **Vista predeterminada**: Vista que se mostrará por defecto al acceder al panel de control o a la aplicación móvil.
+- **Desplegar el panel de vistas**: Permite que el menú de vistas (a la izquierda) aparezca visible por defecto en las vistas.
 
-- **Diseño por defecto** : Diseñe para mostrar por defecto a su llegada al Tablero / móvil.
-- **Diseño de pantalla completa** : Visualización predeterminada en pantalla completa al llegar a los diseños.
+- **Diseño predeterminado**: Diseño que se mostrará por defecto al acceder al panel de control o a la aplicación móvil.
+- **Diseño a pantalla completa**: visualización predeterminada a pantalla completa al acceder a los diseños.
 
-- **Diseño 3D por defecto** : Diseño 3D para mostrar por defecto al llegar al Tablero / móvil.
-- **Diseño de pantalla completa en 3D** : Visualización predeterminada en pantalla completa a la llegada en diseños 3D.
+- **Diseño 3D predeterminado**: Diseño 3D que se mostrará por defecto al acceder al panel de control o a la aplicación móvil.
+- **Diseños en 3D a pantalla completa**: Visualización predeterminada a pantalla completa al acceder a los diseños en 3D.
 
-### Notifications
+### Notificaciones
 
-- **Comando de notificación del usuario** : Comando predeterminado para unirse a usted (comando de tipo de mensaje).
+- **Comando de notificación al usuario**: comando predeterminado para ponerse en contacto contigo (comando de tipo mensaje).
 
-## Pestaña de seguridad
+## Pestaña «Seguridad»
 
-- **Autenticación de 2 pasos** : permite configurar la autenticación en 2 pasos (como recordatorio, es un código que cambia cada X segundos que se muestra en una aplicación móvil, escriba *autenticador de google*). Tenga en cuenta que solo se solicitará la doble autenticación para conexiones externas. Por lo tanto, para conexiones locales, no se solicitará el código.
+- **Autenticación en dos pasos**: permite configurar la autenticación en dos pasos (a modo de recordatorio, se trata de un código que cambia cada X segundos y que aparece en una aplicación móvil, como *Google Authenticator*). Cabe destacar que la autenticación de dos pasos solo se solicitará para las conexiones externas; por lo tanto, para las conexiones locales no se pedirá el código.
 
-  **Importante** si durante la configuración de la doble autenticación tienes un error, es necesario comprobar que Jeedom (ver en la página de salud) y tu teléfono están bien al mismo tiempo (1 min de diferencia es suficiente para que no funcione).
+**Importante**: si al configurar la autenticación de dos factores se produce un error, comprueba que Jeedom (consulta la página de estado) y tu teléfono tengan la misma hora (una diferencia de tan solo 1 minuto es suficiente para que no funcione).
 
-- **Contraseña** : Le permite cambiar su contraseña (no olvide volver a escribirla a continuación)).
+- **Contraseña**: Te permite cambiar tu contraseña (no olvides volver a escribirla en el campo de abajo).
 
-- **Hash de usuario** : Tu clave de API de usuario.
+- **Hash del usuario**: Tu clave API de usuario.
 
 ### Sesiones activas
 
-Aquí tiene la lista de sus sesiones conectadas actualmente, su ID, su IP, así como la fecha de la última comunicación. Al hacer clic en &quot;Desconectar&quot; esto desconectará al usuario. Tenga cuidado si está en un dispositivo registrado, esto también eliminará el registro.
+Aquí tienes la lista de tus sesiones actualmente conectadas, su ID, su dirección IP y la fecha de la última comunicación. Al hacer clic en «Desconectar», se desconectará al usuario. Atención: si está conectado desde un dispositivo registrado, esto también eliminará el registro.
 
 ### Dispositivos registrados
 
-Aquí encontrará la lista de todos los dispositivos registrados (que se conectan sin autenticación) a su Jeedom, así como la fecha del último uso.
-Aquí puede eliminar el registro de un dispositivo. Atención, no lo desconecta, solo impedirá su reconexión automática.
+Aquí encontrarás la lista de todos los dispositivos registrados (que se conectan sin autenticación) en tu Jeedom, así como la fecha de su último uso.
+Aquí puedes eliminar el registro de un dispositivo. Ten en cuenta que esto no lo desconecta, sino que simplemente impedirá que se vuelva a conectar automáticamente.

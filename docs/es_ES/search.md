@@ -1,103 +1,103 @@
-# Recherche
-**Menú de análisis → Buscar**
+# Búsqueda
+**Menú Análisis → Búsqueda**
 
-Jeedom ofrece un buscador interno.
+Jeedom cuenta con un motor de búsqueda interno.
 
-![Investigación](./images/search_intro.gif)
+![Búsqueda](../images/search_intro.gif)
 
-Puedes hacer búsquedas de diferentes tipos :
+Puedes realizar diferentes tipos de búsquedas:
 
 ## Por equipo
 
-Seleccione un dispositivo con el icono a la derecha del campo.
+Selecciona un dispositivo con el icono situado a la derecha del campo.
 
-El motor se mostrará en las tablas a continuación :
+El motor mostrará en las tablas siguientes:
 
-- EL **Escenarios** usando este equipo.
-- EL **diseños** mostrando este equipo.
-- EL **vistas** mostrando este equipo.
-- EL **interacciones** usando este equipo.
-- Los otros **equipo** usando este equipo.
-- EL **pedidos** usando este equipo.
+- Los **escenarios** que utilizan este equipo.
+- Los **diseños** que incluyen este equipamiento.
+- Las **vistas** que muestran este equipo.
+- Las **interacciones** que utilizan este equipo.
+- Otros **dispositivos** que utilizan este dispositivo.
+- Los **comandos** que utilizan este equipo.
 
-## Por orden
+## Por pedido
 
-Seleccione un pedido con el icono a la derecha del campo.
+Selecciona un comando con el icono situado a la derecha del campo.
 
-El motor se mostrará en las tablas a continuación :
+El motor mostrará en las tablas siguientes:
 
-- EL **Escenarios** usando este comando.
-- EL **diseños** mostrando este comando.
-- EL **vistas** mostrando este comando.
-- EL **interacciones** usando este comando.
-- EL **equipo** usando este comando.
-- Los otros **pedidos** usando este comando.
+- Los **escenarios** que utilizan este comando.
+- Los **diseños** que incluyen este comando.
+- Las **vistas** que muestran este comando.
+- Las **interacciones** que utilizan este comando.
+- Los **dispositivos** que utilizan este comando.
+- Otros **comandos** que utilizan este comando.
 
-## Por variable
+## Por Variable
 
-Seleccione una variable de la lista desplegable.
+Selecciona una variable en la lista desplegable.
 
-El motor se mostrará en las tablas a continuación :
+El motor mostrará en las tablas siguientes:
 
-- EL **Escenarios** usando esta variable.
-- EL **interacciones** usando esta variable.
-- EL **equipo** usando esta variable.
-- EL **pedidos** usando esta variable.
+- Los **escenarios** que utilizan esta variable.
+- Las **interacciones** que utilizan esta variable.
+- Los **dispositivos** que utilizan esta variable.
+- Los **comandos** que utilizan esta variable.
 
-## Por plugin
+## Por Plugin
 
-Seleccione un complemento de la lista desplegable.
+Selecciona un complemento de la lista desplegable.
 
-El motor se mostrará en las tablas a continuación :
+El motor mostrará en las tablas siguientes:
 
-- EL **Escenarios** usando este complemento.
-- EL **diseños** mostrando este complemento.
-- EL **vistas** mostrando este complemento.
-- EL **interacciones** usando este complemento.
-- EL **equipo** usando este complemento.
-- EL **pedidos** usando este complemento.
+- Los **escenarios** que utilizan este complemento.
+- Los **diseños** que incluyen este complemento.
+- Las **vistas** que muestran este complemento.
+- Las **interacciones** que utilizan este complemento.
+- Los **dispositivos** que utilizan este complemento.
+- Los **comandos** que utilizan este complemento.
 
-## Por palabra
+## Por Mot
 
-Ingrese una cadena de caracteres en el campo de búsqueda. Validar con *ingresar* o con el botón *Investigar*.
+Introduce una cadena de caracteres en el campo de búsqueda. Confirma con *Intro* o con el botón *Buscar*.
 
-El motor se mostrará en las tablas a continuación :
+El motor mostrará en las tablas siguientes:
 
-- EL **Escenarios** usando esta cuerda.
-	Buscar en expresiones, comentarios, bloques de código.
-- EL **interacciones** usando esta cuerda.
-	Buscar en campos *Pedido*.
-- EL **equipo** usando esta cuerda.
-	Buscar en campos *nombre*, *ID lógico*, *tipoeq*, *cómo*, *etiquetas*.
-- EL **pedidos** usando esta cuerda.
-	Buscar en campos *nombre*, *ID lógico*, *tipoeq*, *tipo_genérico*, .
-- EL **notas** usando esta cuerda.
-	Búsqueda de texto de notas.
+- Los **escenarios** que utilizan esta cadena.
+Buscar en expresiones, comentarios y bloques de código.
+- Las **interacciones** que utilizan esta cadena.
+Buscar en los campos *Solicitud*.
+- Los **dispositivos** que utilizan este canal.
+Buscar en los campos *name*, *logicalId*, *eqType*, *comment* y *tags*.
+- Los **comandos** que utilizan esta cadena.
+Búsqueda en los campos *name*, *logicalId*, *eqType*, *generic_type*, .
+- Las **notas** que utilizan esta cadena.
+Buscar en el texto de las notas.
 
 ## Por ID
 
-Ingrese un número correspondiente a una identificación buscada en el campo de búsqueda. Validar con *ingresar* o con el botón *Investigar*.
+Introduce un número que corresponda al ID que buscas en el campo de búsqueda. Confirma pulsando *Intro* o el botón *Buscar*.
 
-El motor se mostrará en las tablas a continuación :
+El motor mostrará en las tablas siguientes:
 
-- EL **Escenario** tener esta identificación.
-- EL **diseño** tener esta identificación.
-- Allá **vista** tener esta identificación.
-- L'**interacción** tener esta identificación.
-- L'**equipo** tener esta identificación.
-- Allá **orden** tener esta identificación.
-- Allá **nota** tener esta identificación.
+- El **escenario** con este ID.
+- El **diseño** con este ID.
+- La **vista** con este ID.
+- La **interacción** con este ID.
+- El **equipo** con este ID.
+- El **comando** con este ID.
+- La **nota** con este ID.
 
 ## Resultados
 
-Para cada tipo de resultado, permite acciones:
-- **Escenarios** : Abra el registro del escenario o vaya a la página del escenario, con la búsqueda activa del término buscado.
-- **diseños** : Mostrar diseño.
-- **vistas** : Mostrar vista.
-- **interacciones** : Abra la página de configuración de interacción.
-- **equipo** : Abra la página de configuración del equipo.
-- **pedidos** : Abrir la configuración del pedido.
-- **notas** : Nota abierta.
+Para cada uno de los tipos de resultado, permite realizar las siguientes acciones:
+- **escenarios**: Abrir el registro del escenario o ir a la página del escenario, con la búsqueda activa del término buscado.
+- **diseños**: Mostrar el diseño.
+- **vistas**: Mostrar la vista.
+- **Interacciones**: Abre la página de configuración de la interacción.
+- **Equipo**: Abre la página de configuración del equipo.
+- **Comandos**: Abrir la configuración del comando.
+- **notas**: Abrir la nota.
 
-Cada una de estas opciones abre una pestaña diferente en su navegador para no perder la búsqueda actual.
+Cada una de estas opciones abre otra pestaña en tu navegador para que no pierdas la búsqueda en curso.
 
