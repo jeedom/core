@@ -1407,25 +1407,25 @@ try {
 		if (!is_object($_USER_GLOBAL)) {
 			throw new Exception(__('Utilisateur non défini', __FILE__), -32500);
 		}
-		$registerDevice = $_USER_GLOBAL->getOptions('registerDevice', array());
-		if (!is_array($registerDevice)) {
-			$registerDevice = array();
+		$registeredDevices = $_USER_GLOBAL->getOptions('registerDevice', array());
+		if (!is_array($registeredDevices)) {
+			$registeredDevices = array();
 		}
 		$rdk = $params['rdk'] ?? '';
 		$rdkHash = ($rdk != '') ? sha512($rdk) : '';
-		$requiresRegistration = $rdk == '' || !$_USER_GLOBAL->isRegisterDeviceValid($rdkHash, $registerDevice);
+		$requiresRegistration = $rdk == '' || !user::isValidRegisteredDevice($registeredDevices, $rdkHash);
 		if ($requiresRegistration) {
 			$rdk = config::genKey();
 			$rdkHash = sha512($rdk);
 		}
 		$clientIp = getClientIp();
-		if ($requiresRegistration || $registerDevice[$rdkHash]['ip'] !== $clientIp || strtotime($registerDevice[$rdkHash]['datetime']) < time() - 24 * 3600) {
-			$registerDevice[$rdkHash] = array(
+		if ($requiresRegistration || $registeredDevices[$rdkHash]['ip'] !== $clientIp || strtotime($registeredDevices[$rdkHash]['datetime']) < time() - 24 * 3600) {
+			$registeredDevices[$rdkHash] = array(
 				'datetime' => date('Y-m-d H:i:s'),
 				'ip' => $clientIp,
 				'session_id' => session_id(),
 			);
-			$_USER_GLOBAL->setOptions('registerDevice', $registerDevice);
+			$_USER_GLOBAL->setOptions('registerDevice', $registeredDevices);
 			$_USER_GLOBAL->save();
 		}
 		log::add('api', 'debug', 'RDK :' . $rdk);

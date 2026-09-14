@@ -154,11 +154,11 @@ function loginByHash(string $_key): bool {
 		return false;
 	}
 	$rdk = sha512($key[1]);
-	$registerDevice = $user->getOptions('registerDevice', array());
-	if (!is_array($registerDevice)) {
-		$registerDevice = array();
+	$registeredDevices = $user->getOptions('registerDevice', array());
+	if (!is_array($registeredDevices)) {
+		$registeredDevices = array();
 	}
-	if (!$user->isRegisterDeviceValid($rdk)) {
+	if (!user::isValidRegisteredDevice($registeredDevices, $rdk)) {
 		user::failedLogin([
 			'login' => $user->getLogin(),
 			'reason' => __('Périphérique non enregistré ou clé invalide', __FILE__),
@@ -166,12 +166,12 @@ function loginByHash(string $_key): bool {
 		sleep(5);
 		return false;
 	}
-	$registerDevice[$rdk] = array(
+	$registeredDevices[$rdk] = array(
 		'datetime' => date('Y-m-d H:i:s'),
 		'ip' => getClientIp(),
 		'session_id' => session_id(),
 	);
-	$user->setOptions('registerDevice', $registerDevice);
+	$user->setOptions('registerDevice', $registeredDevices);
 	$user->save();
 	setRegisterDeviceCookie($_key);
 	@session_start();
@@ -210,25 +210,25 @@ function updateRegisterDeviceActivity() {
 		return;
 	}
 	$registerDeviceKey = sha512($key[1]);
-	$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
-	if (!is_array($registerDevice)) {
+	$registeredDevices = $_SESSION['user']->getOptions('registerDevice', array());
+	if (!is_array($registeredDevices)) {
 		return;
 	}
 
-	if (!$_SESSION['user']->isRegisterDeviceValid($registerDeviceKey, $registerDevice)) {
+	if (!user::isValidRegisteredDevice($registeredDevices, $registerDeviceKey)) {
 		return;
 	}
 
 	$now = time();
-	$lastActivity = strtotime($registerDevice[$registerDeviceKey]['datetime']);
+	$lastActivity = strtotime($registeredDevices[$registerDeviceKey]['datetime']);
 	if ($lastActivity === false || $lastActivity < $now - 24 * 3600) {
-		$registerDevice[$registerDeviceKey] = array(
+		$registeredDevices[$registerDeviceKey] = array(
 			'datetime' => date('Y-m-d H:i:s', $now),
 			'ip' => getClientIp(),
 			'session_id' => session_id(),
 		);
 		setRegisterDeviceCookie($_COOKIE['registerDevice']);
-		$_SESSION['user']->setOptions('registerDevice', $registerDevice);
+		$_SESSION['user']->setOptions('registerDevice', $registeredDevices);
 		$_SESSION['user']->save();
 	}
 }

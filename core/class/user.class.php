@@ -666,13 +666,12 @@ class user {
 		}
 	}
 
-	public function isRegisterDeviceValid(string $_key, ?array $_registerDevice = null): bool {
-		$registerDevice = $_registerDevice ?? $this->getOptions('registerDevice', array());
-		return is_array($registerDevice)
-			&& isset($registerDevice[$_key])
-			&& is_array($registerDevice[$_key])
-			&& isset($registerDevice[$_key]['datetime'])
-			&& strtotime($registerDevice[$_key]['datetime']) >= time() - self::registerDeviceLifetime();
+	public static function isValidRegisteredDevice(array $registeredDevices, string $key): bool {
+		return is_array($registeredDevices)
+			&& isset($registeredDevices[$key])
+			&& is_array($registeredDevices[$key])
+			&& isset($registeredDevices[$key]['datetime'])
+			&& strtotime($registeredDevices[$key]['datetime']) >= time() - self::registerDeviceLifetime();
 	}
 
 	public function setOptions($_key, $_value) {
