@@ -86,6 +86,7 @@
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-14 15:22:49 | Rework the documentation: new bilingual README, fixed broken links/images, dropped unsupported pt_PT | [#3515](https://github.com/jeedom/core/pull/3515) |
 | 2026-09-10 14:42:25 | Add automated documentation translation and publishing workflow | [#3460](https://github.com/jeedom/core/pull/3460) |
 | 2026-07-16 09:18:32 | 2 wording corrections in Objects documentation (object.md) | [#3422](https://github.com/jeedom/core/pull/3422) |
 
