@@ -1,96 +1,96 @@
 # HTTP-API
 
-Jeedom bietet Entwicklern und Benutzern eine vollständige API, mit der sie Jeedom von jedem verbundenen Objekt aus steuern können.
+Jeedom stellt Entwicklern und Nutzern eine umfassende API zur Verfügung, um Jeedom von jedem vernetzten Objekt aus steuern zu können.
 
-Es stehen zwei APIs zur Verfügung : ein entwicklerorientierter JSON RPC 2-Pilot.0 und eine andere über URL und HTTP-Anfrage.
+Es stehen zwei APIs zur Verfügung: eine entwicklerorientierte API, die über JSON-RPC 2.0 gesteuert wird, und eine weitere über URL und HTTP-Anfragen.
 
-Diese API ist sehr einfach durch einfache HTTP-Anfragen über URL zu verwenden.
+Diese API lässt sich ganz einfach über einfache HTTP-Anfragen per URL nutzen.
 
-> **Notiz**
+> **Hinweis**
 >
-> Für die gesamte Dokumentation gilt \#IP\_JEEDOM\# entspricht Ihrer Jeedom-Zugriffs-URL. Dies ist (sofern Sie nicht mit Ihrem lokalen Netzwerk verbunden sind) die Internetadresse, mit der Sie von außen auf Jeedom zugreifen.
+> In dieser gesamten Dokumentation entspricht \#IP\_JEEDOM\# Ihrer URL für den Zugriff auf Jeedom. Dabei handelt es sich (sofern Sie nicht mit Ihrem lokalen Netzwerk verbunden sind) um die Internetadresse, über die Sie von außen auf Jeedom zugreifen.
 
-> **Notiz**
+> **Hinweis**
 >
-> Für die gesamte Dokumentation gilt \#API\_KEY\# entspricht Ihrem API-Schlüssel, der für Ihre Installation spezifisch ist. Um es zu finden, gehen Sie zum Menü "Allgemein" → "Konfiguration" → Registerkarte "Allgemein"".
+> In dieser gesamten Dokumentation steht \#API\_KEY\# für Ihren API-Schlüssel, der für Ihre Installation spezifisch ist. Um ihn zu finden, gehen Sie im Menü auf „Allgemein“ → „Konfiguration“ → Registerkarte „Allgemein“.
 
-> **Notiz**
+> **Hinweis**
 >
-> Bei POST-Anfragen kann jeder Abfrageparameter im Hauptteil der Anfrage im Format „form-data“ oder „x-www-form-urlencoded“ gesendet werden.
-> Abfrageparameter und Hauptinhalt können zusammen verwendet werden. Beachten Sie jedoch, dass Abfrageparameter Vorrang vor Hauptinhalt haben.
+> Bei POST-Anfragen kann jeder Abfrageparameter im Request-Body im Format „form-data“ oder „x-www-form-urlencoded“ übermittelt werden.
+> Abfrageparameter und der Inhalt des Body-Teils können gemeinsam verwendet werden, wobei zu beachten ist, dass Abfrageparameter Vorrang vor dem Inhalt des Body-Teils haben.
 
 ## Szenario
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = Szenario & id = \#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Szenario & ID=#ID#&action=#ACTION#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=scenario&id=\#ID\#&action=\#ACTION\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=scenario&id=#ID#&action=#ACTION#)
 
-- **Ausweis** : entspricht Ihrer Szenario-ID. Die ID finden Sie auf der entsprechenden Szenarioseite unter "Extras" → "Szenarien" nach Auswahl des Szenarios neben dem Namen der Registerkarte "Allgemein"". Ein anderer Weg, um es zu finden : Klicken Sie unter "Extras" → "Szenarien" auf "Übersicht"".
-- **Aktion** : entspricht der Aktion, die Sie anwenden möchten. Verfügbare Befehle sind : "start "," stop "," deaktivieren "und" aktivieren "um das Szenario zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
-- **Tags** \ [Optional \] : Wenn die Aktion "Start" ist, können Sie Tags an das Szenario übergeben (siehe Dokumentation zu den Szenarien) in der Form tags = toto% 3D1% 20tata% 3D2 (beachten Sie, dass% 20 einem Leerzeichen und% 3D entspricht = ).
+- **id**: Entspricht der ID Ihres Szenarios. Die ID finden Sie auf der Seite des betreffenden Szenarios unter „Extras“ → „Szenarien“, nachdem Sie das Szenario ausgewählt haben, neben dem Namen der Registerkarte „Allgemein“. Eine weitere Möglichkeit, sie zu finden: Klicken Sie unter „Extras“ → „Szenarien“ auf „Übersicht“.
+- **Aktion**: Bezeichnet die Aktion, die Sie ausführen möchten. Die verfügbaren Befehle sind: „start“, „stop“, „disable“ und „enable“, um das Szenario jeweils zu starten, zu stoppen, zu deaktivieren oder zu aktivieren.
+- **Tags** \[optional\]: Wenn die Aktion „start“ lautet, können Sie dem Szenario Tags übergeben (siehe Dokumentation zu Szenarien) in der Form tags=toto%3D1%20tata%3D2 (beachten Sie, dass %20 einem Leerzeichen und %3D dem Zeichen = entspricht).
 
-> **Notiz**
+> **Hinweis**
 >
-> Versuchen Sie nicht, „php“ zu verwenden://input‘, um Daten an Ihr Szenario zu übergeben, dafür sind Tags vorhanden.
+> Versuchen Sie nicht, „php://input“ zu verwenden, um Daten an Ihr Skript zu übergeben – dafür sind die Tags da.
 
-##  Info / Aktionsbefehl
+##  Info/Bestellvorgang
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = cmd & id = \#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = cmd & id=#ID#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=cmd&id=\#ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=cmd&id=#ID#)
 
-- **Ausweis** : entspricht der ID dessen, was Sie steuern möchten oder von dem Sie Informationen erhalten möchten.
+- **id**: Entspricht der ID des Geräts, das Sie steuern möchten oder von dem Sie Informationen erhalten möchten.
 
-Der einfachste Weg, um diese URL zu erhalten, ist das Aufrufen der Seite **Analyse → Zusammenfassung der Hausautomation**, Um nach der Bestellung zu suchen und dann die erweiterte Konfiguration (das "Zahnrad" -Symbol) zu öffnen, sehen Sie dort eine URL, die je nach Typ und Subtyp der Bestellung bereits alles enthält, was Sie benötigen.
+Am einfachsten erhalten Sie diese URL, indem Sie auf die Seite **Analyse → Hausautomationsübersicht** gehen, den Befehl suchen und dann dessen erweiterte Einstellungen (das „Zahnrad“-Symbol) öffnen. Dort sehen Sie eine URL, die je nach Typ und Untertyp des Befehls bereits alle erforderlichen Angaben enthält.
 
-> **Notiz**
+> **Hinweis**
 >
-> Für das Feld \ ist es möglich#ID\# mehrere Bestellungen gleichzeitig aufgeben. Dazu müssen Sie ein Array in json übergeben (ex% 5B12,58,23% 5D, beachten Sie, dass \ [und \] codiert werden müssen, daher% 5B und% 5D). Jeedoms Rückkehr wird ein Json sein.
+> Im Feld \#ID\# können mehrere Befehle auf einmal übermittelt werden. Dazu muss ein Array im JSON-Format übergeben werden (z. B. %5B12,58,23%5D; dabei ist zu beachten, dass \[ und \] kodiert werden müssen, daher %5B und %5D). Die Rückmeldung von Jeedom erfolgt im JSON-Format.
 
-> **Notiz**
+> **Hinweis**
 >
-> Parameter müssen für URLs codiert werden, Sie können ein Tool verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
+> Die Parameter müssen für die URLs kodiert werden. Sie können dazu ein Tool verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
-## Interaction
+## Interaktion
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = interagiere & query = \#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = interagieren & abfragen=#QUERY#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=interact&query=\#QUERY\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=interact&query=#QUERY#)
 
-- **Abfrage** : Frage an Jeedom zu stellen.
-- **utf8** \ [Optional \] : teilt Jeedom mit, ob die Abfrage in utf8 codiert werden soll, bevor versucht wird zu antworten.
-- **leereAntwort** \ [Optional \] : 0 damit Jeedom antwortet, auch wenn er es nicht versteht, 1 sonst.
-- **Profil** \ [Optional \] : Benutzername der Person, die die Interaktion initiiert.
-- **antworten\_cmd** \ [Optional \] : Bestellnummer zur Beantwortung der Anfrage.
+- **query**: Frage, die an Jeedom gestellt werden soll.
+- **utf8** \[optional\]: Teilt Jeedom mit, ob die Abfrage vor der Beantwortung in UTF-8 kodiert werden soll.
+- **emptyReply** \[optional\]: 0, damit Jeedom auch dann antwortet, wenn es den Befehl nicht verstanden hat; andernfalls 1.
+- **Profil** \[optional\]: Benutzername der Person, die die Interaktion auslöst.
+- **reply\_cmd** \[optional\]: ID des Befehls, der zur Beantwortung der Anfrage verwendet werden soll.
 
-## Message
+## Nachricht
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = message & category = \#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = message & category=#CATEGORY#&message=#MESSAGE#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=message&category=\#CATEGORY\#&message=\#MESSAGE\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=message&category=#CATEGORY#&message=#MESSAGE#)
 
-- **Kategorie** : Nachrichtenkategorie, die dem Nachrichtenzentrum hinzugefügt werden soll.
-- **Nachricht** : Denken Sie bei der betreffenden Nachricht daran, die Nachricht zu verschlüsseln (Leerzeichen wird zu %20, = %3D…)). Sie können ein Werkzeug verwenden, [Hier](https://meyerweb.com/eric/tools/dencoder/).
+- **Kategorie**: Kategorie der Nachricht, die dem Nachrichtencenter hinzugefügt werden soll.
+- **Nachricht**: Die betreffende Nachricht. Achten Sie darauf, die Nachricht korrekt zu kodieren (Leerzeichen wird zu %20, = zu %3D…). Sie können ein Tool verwenden, [hier](https://meyerweb.com/eric/tools/dencoder/).
 
-## Objet
+## Objekt
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = Objekt](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Objekt)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=object](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=object)
 
-Gibt die Liste aller Jeedom-Objekte in Form eines JSON zurück.
+Gibt die Liste aller Jeedom-Objekte im JSON-Format zurück.
 
-## Equipement
+## Ausstattung
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = eqLogic & object\_id = \#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = eqLogic & object_id=#OBJECT_ID#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=eqLogic&object\_id=\#OBJECT\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=eqLogic&object_id=#OBJECT_ID#)
 
-- **Objekt\_id** : ID des Objekts, dessen Ausrüstung wir wiederherstellen möchten.
+- **object\_id**: ID der Objekte, deren Geräte abgerufen werden sollen.
 
-## Commande
+## Bestellung
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = command & eqLogic\_id = \#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = command & eqLogic_id=#EQLOGIC_ID#)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=command&eqLogic\_id=\#EQLOGIC\_ID\#](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=command&eqLogic_id=#EQLOGIC_ID#)
 
-- **eqLogic\_id** : ID der Ausrüstung, von der Bestellungen abgerufen werden sollen.
+- **eqLogic\_id**: ID des Geräts, von dem die Befehle abgerufen werden sollen.
 
 ## Vollständige Daten
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = fullData)
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=fullData](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=fullData)
 
-Gibt alle Objekte, Geräte, Befehle (und deren Wert, wenn es sich um Informationen handelt) in json zurück.
+Gibt alle Objekte, Geräte und Befehle (sowie deren Werte, sofern es sich um Informationen handelt) im JSON-Format zurück.
 
 ## Variable
 
-VoHier l'URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#& type = variable & name = \#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#& type = Variable & Name=#NAME#&value=)*WERT*
+Hier ist die URL = [http://\#IP\_JEEDOM\#/core/api/jeeApi.php?apikey=\#APIKEY\#&type=variable&name=\#NAME\#&value=](http://#IP_JEEDOM#/core/api/jeeApi.php?apikey=#APIKEY#&type=variable&name=#NAME#&value=)*VALUE*
 
-- **Name** : Name der Variablen, deren Wert gewünscht wird (Lesen des Werts).
-- **WERT** \ [Optional \] : Wenn "Wert" angegeben ist, nimmt die Variable diesen Wert an (Schreiben eines Werts)).
+- **name**: Name der Variablen, deren Wert abgerufen werden soll (Auslesen des Werts).
+- **value** \[optional\]: Wenn „value“ angegeben wird, nimmt die Variable diesen Wert an (Schreiben eines Werts).

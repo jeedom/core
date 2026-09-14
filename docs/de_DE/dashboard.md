@@ -1,73 +1,73 @@
 # Dashboard
-**Home → Dashboard**
+**Startseite → Dashboard**
 
-<small>[Raccourcis clavier/souris](shortcuts.md)</small>
+<small>[Tastatur- und Maus-Shortcuts](shortcuts.md)</small>
 
-Das Dashboard ist eine der Hauptseiten von Jeedom. Es zeigt einen Bericht über Ihre gesamte Hausautomation an.
-Dieser Bericht wird (im Gegensatz zu Ansichten und Designs) von Jeedom automatisch generiert und umfasst alle sichtbaren Objekte und deren Ausrüstung.
+Das Dashboard ist eine der Hauptseiten von Jeedom und zeigt einen Überblick über Ihr gesamtes Hausautomationssystem an.
+Dieser Bericht (im Gegensatz zu Ansichten und Designs) wird automatisch von Jeedom erstellt und umfasst alle sichtbaren Objekte sowie deren Geräte.
 
 {% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
-- 1 : Jeedom Hauptmenü.
-- 2 : Globale Zusammenfassung [Abstrakte Dokumentation.](/de_DE/concept/summary).
-- 3 : Browserzeit, Verknüpfung zur Zeitleiste.
-- 4 : Schaltfläche, um auf die Dokumentation der aktuellen Seite zuzugreifen.
-- 5 : Name Ihres Jeedom, Verknüpfung zur Konfiguration.
-- 6 : Bearbeitungsmodus (Kacheln neu anordnen / in der Größe ändern).
-- 7 : Nach Kategorien filtern.
-- 8 : Objekt : Symbol, Name und Zusammenfassung sowie deren Ausstattung.
-- 9 : Gerätekachel.
-- 10 : Widget bestellen.
+- 1: Hauptmenü von Jeedom.
+- 2: Zusammenfassung [Dokumentation zu den Zusammenfassungen.](https://doc.jeedom.com/concept/de_DE/summary).
+- 3: Browser-Uhrzeit, Verknüpfung zur Zeitleiste.
+- 4: Schaltfläche zum Aufrufen der Dokumentation zur aktuellen Seite.
+- 5: Name Ihres Jeedom, Verknüpfung zur Konfiguration.
+- 6: Bearbeitungsmodus (Kacheln neu anordnen / Größe ändern).
+- 7: Nach Kategorien filtern.
+- 8: Objekt: Symbol, Name und Zusammenfassung sowie die zugehörige Ausstattung.
+- 9: Kachel eines Geräts.
+- 10: Widget für eine Steuerung.
 
-> **Beratung**
+> **Tipp**
 >
-> Die Anzeigereihenfolge der Objekte im Dashboard ist die in **Analyse → Zusammenfassung der Hausautomation**. Auf dieser Seite können Sie die Reihenfolge per Drag & Drop ändern.
+> Die Reihenfolge, in der die Objekte auf dem Dashboard angezeigt werden, entspricht der Reihenfolge unter **Analyse → Hausautomationsübersicht**. Auf dieser Seite können Sie die Reihenfolge per Drag & Drop ändern.
 
-Damit Geräte im Dashboard angezeigt werden, muss dies der Fall sein :
-- Sei aktiv.
-- Sei sichtbar.
-- Haben Sie als übergeordnetes Objekt ein Objekt im Dashboard sichtbar.
+Damit ein Gerät auf dem Dashboard angezeigt wird, muss es:
+- Aktiv sein.
+- Sichtbar sein.
+- Ein auf dem Dashboard sichtbares Objekt als übergeordnetes Objekt haben.
 
-Beim ersten Erscheinen der Ausrüstung im Dashboard versucht Jeedom, die Größe der Kachel korrekt anzupassen, um alle Befehle und ihre Widgets anzuzeigen.
-Um ein ausgewogenes Dashboard zu erhalten, können Sie mit dem Stift oben rechts in der Suchleiste in den Bearbeitungsmodus wechseln, um die Größe der Gerätekacheln zu ändern und / oder sie neu zu ordnen.
+Wenn das Gerät zum ersten Mal auf dem Dashboard erscheint, versucht Jeedom, die Größe der Kachel so anzupassen, dass alle Befehle und deren Widgets angezeigt werden.
+Um ein ausgewogenes Dashboard zu gewährleisten, können Sie über den Bleistift oben rechts in der Suchleiste in den Bearbeitungsmodus wechseln, um die Größe der Geräte-Kacheln anzupassen und/oder deren Reihenfolge zu ändern.
 
-Wenn Sie die Maus über eine Bestellung bewegen, wird unten links auf der Kachel eine farbige Markierung angezeigt :
-- Blau für eine Info-Bestellung. Wenn es protokolliert ist, öffnet ein Klick darauf das Protokollfenster.
-- Orange für einen Aktionsbefehl. Ein Klick löst die Aktion aus.
+Wenn Sie mit der Maus über einen Befehl fahren, erscheint unten links auf der Kachel eine farbige Markierung:
+- Blau für eine Info-Anfrage. Wenn diese protokolliert wurde, öffnet ein Klick darauf das Verlaufsfenster.
+- Orange für eine Aktionsbefehlsschaltfläche. Ein Klick löst die Aktion aus.
 
-Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um die Konfigurationsseite dieses Geräts direkt zu öffnen.
+Außerdem können Sie auf den Titel der Kachel (den Namen des Geräts) klicken, um direkt die Konfigurationsseite dieses Geräts zu öffnen.
 
-> **Beratung**
+> **Tipp**
 >
-> Über das Menü können Sie direkt zu einem einzelnen Objekt in Ihrer Hausautomation wechseln **Home → Dashboard → Objektname**.
-> Dies ermöglicht Ihnen, nur die Geräte zur Verfügung zu haben, die Sie interessieren, und die Seite schneller zu laden.
+> Sie können direkt zu einem einzelnen Objekt Ihres Hausautomationssystems navigieren, indem Sie im Menü **Startseite → Dashboard → Name des Objekts** auswählen.
+> So werden nur die Geräte angezeigt, die Sie interessieren, und die Seite wird schneller geladen.
 
-- Oben links befindet sich ein kleines Symbol, mit dem der Baum der Objekte beim Schweben angezeigt wird.
-- In einem Suchfeld können Sie nach Geräten nach Name, Kategorie, Plugin, Tag usw. suchen.
-- Das Symbol rechts neben dem Suchfeld wird verwendet, um die angezeigten Geräte nach ihrer Kategorie zu filtern. Mit einem mittleren Klick können Sie schnell eine einzelne Kategorie auswählen.
-- Ganz rechts können Sie über eine Schaltfläche in den Bearbeitungsmodus wechseln, die Reihenfolge der Kacheln ändern (Klicken-Drop auf das Widget) oder ihre Größe ändern. Sie können die Reihenfolge der Bestellungen in einer Kachel auch neu anordnen.
+- Oben links befindet sich ein kleines Symbol, mit dem Sie beim Darüberfahren mit der Maus die Struktur der Objekte anzeigen können.
+- Über ein Suchfeld können Sie ein Gerät anhand seines Namens, seiner Kategorie, seines Plugins, eines Tags usw. suchen.
+- Mit dem Symbol rechts neben dem Suchfeld können Sie die angezeigten Geräte nach ihrer Kategorie filtern. Durch einen Klick in die Mitte können Sie schnell eine einzelne Kategorie auswählen.
+- Ganz rechts befindet sich eine Schaltfläche, mit der Sie in den Bearbeitungsmodus wechseln können, um die Reihenfolge der Kacheln zu ändern (klicken und auf das Widget ziehen) oder ihre Größe anzupassen. Sie können auch die Reihenfolge der Befehle innerhalb einer Kachel neu anordnen.
 
-- Durch Klicken auf eine Objektzusammenfassung filtern Sie, um nur die Geräte anzuzeigen, die sich auf dieses Objekt beziehen und die sich auf diese Objektzusammenfassung beziehen.
+- Wenn Sie auf eine Zusammenfassung eines Objekts klicken, filtern Sie die Anzeige so, dass nur die Geräte angezeigt werden, die diesem Objekt untergeordnet sind und die diese Zusammenfassung des Objekts betreffen.
 
-- Ein Klick auf eine Bestellung vom Informationstyp zeigt den Verlauf der Bestellung an (sofern er historisch ist).
-- Ein Strg + Klicken auf einen Befehl vom Typ Information zeigt den Verlauf aller Befehle (historisch) für diese Kachel an.
-- Ein Klick auf die Informationen *Zeit* eines Aktionsbefehls zeigt den Verlauf des Befehls an (falls er historisiert ist).
+- Durch einen Klick auf einen Befehl vom Typ „Information“ wird der Verlauf des Befehls angezeigt (sofern dieser protokolliert wurde).
+- Durch Strg+Klick auf einen Befehl vom Typ „Information“ wird der Verlauf aller (protokollierten) Befehle dieser Kachel angezeigt.
+- Durch einen Klick auf die Angabe *time* eines Befehls wird der Verlauf des Befehls angezeigt (sofern dieser protokolliert wurde).
 
 ## Bearbeitungsmodus
 
-Im Bearbeitungsmodus (*der Bleistift oben rechts*), Sie können die Größe der Kacheln und ihre Anordnung im Dashboard ändern.
+Im Bearbeitungsmodus (*der Bleistift ganz oben rechts*) können Sie die Größe der Kacheln und deren Anordnung auf dem Dashboard ändern.
 
-Die Geräteaktualisierungssymbole werden durch ein Symbol ersetzt, das den Zugriff auf ihre Konfiguration ermöglicht. Dieses Symbol öffnet ein Bearbeitungsfenster mit den Anzeigeparametern des Geräts und seiner Steuerelemente.
+Die Aktualisierungssymbole der Geräte werden durch ein Symbol ersetzt, über das Sie auf deren Konfiguration zugreifen können. Dieses Symbol öffnet ein Bearbeitungsfenster mit den Anzeigeeinstellungen für das Gerät und dessen Bedienelemente.
 
-![Bearbeitungsmodus](./images/EditDashboardModal.gif)
+![Bearbeitungsmodus](../images/EditDashboardModal.gif)
 
-Auf jedem Objekt rechts neben seinem Namen und seiner Zusammenfassung können Sie mit zwei Symbolen die Höhe aller Kacheln des Objekts am höchsten oder niedrigsten ausrichten.
+Bei jedem Objekt befinden sich rechts neben dem Namen und der Zusammenfassung zwei Symbole, mit denen Sie die Höhe aller Kacheln des Objekts an die höchste oder die niedrigste anpassen können.
 
-## Jeedom Menüleiste
+## Jeedom-Menüleiste
 
-> **Beratung**
+> **Tipp**
 >
-> - Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-> - Klicken Sie auf den Namen des Jeedom (Menüleiste)) : Öffnet Einstellungen → System → Konfiguration.
-> - Klicken Sie auf ? (Menüleiste) : Öffnen Sie die Hilfe auf der aktuellen Seite.
-> - Flucht auf ein Forschungsfeld : Löschen Sie das Feld und brechen Sie diese Suche ab.
+> - Klick auf die Uhr (Menüleiste): Öffnet die Zeitleiste.
+> - Klicken Sie auf den Namen von Jeedom (Menüleiste): Öffnet „Einstellungen“ → „System“ → „Konfiguration“.
+> - Klick auf das ? (Menüleiste): Öffnet die Hilfe zur aktuellen Seite.
+> - Esc-Taste in einem Suchfeld: Leert das Feld und bricht die Suche ab.

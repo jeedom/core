@@ -1,31 +1,31 @@
-# Logs
+# Protokolle
 **Analyse → Protokolle**
 
-Protokolle sind Protokolldateien, mit denen Sie verfolgen können, was in Ihrer Hausautomation geschieht. In den meisten Fällen werden die Protokolle nur zum Debuggen und Lösen von Problemen durch das Support-Team verwendet.
+Protokolle sind Logdateien, mit denen sich die Vorgänge im Hausautomationssystem nachverfolgen lassen. In den meisten Fällen dienen die Protokolle lediglich der Fehlerbehebung und der Problemlösung durch das Support-Team.
 
-> **Beratung**
+> **Tipp**
 >
-> Wenn die Seite geöffnet wird, wird das erste verfügbare Protokoll angezeigt.
+> Beim Öffnen der Seite wird der erste verfügbare Eintrag angezeigt.
 
-Die Seite Protokolle ist recht einfach :
-Links eine Liste der verfügbaren Protokolle mit einem Suchfeld zum Filtern des Namens der Protokolle.
-Oben rechts 5 Tasten :
+Die Seite „Logs“ ist recht einfach aufgebaut:
+Auf der linken Seite befindet sich eine Liste der verfügbaren Protokolle mit einem Suchfeld, um die Protokolle nach Namen zu filtern.
+Oben rechts befinden sich 5 Schaltflächen:
 
-- **Zur Recherche** : Ermöglicht das Filtern der Anzeige des aktuellen Protokolls.
-- **Pause / Resume** : Unterbrechen / Fortsetzen der Echtzeitaktualisierung des aktuellen Protokolls.
-- **Download** : Laden Sie das aktuelle Protokoll herunter.
-- **Leer** : Löschen Sie das aktuelle Protokoll.
-- **LÖSCHEN** : Löschen Sie das aktuelle Protokoll. Wenn Jeedom es braucht, wird es automatisch neu erstellt.
-- **Löschen Sie alle Protokolle** : Löschen Sie alle vorhandenen Protokolle.
+- **Suchen**: Ermöglicht das Filtern der Anzeige des aktuellen Protokolls.
+- **Pause/Fortsetzen**: Ermöglicht es, die Echtzeit-Aktualisierung des aktuellen Protokolls anzuhalten bzw. fortzusetzen.
+- **Herunterladen**: Ermöglicht das Herunterladen des aktuellen Protokolls.
+- **Leeren**: Ermöglicht das Leeren des aktuellen Protokolls.
+- **Löschen**: Hiermit können Sie das aktuelle Protokoll löschen. Falls Jeedom es benötigt, wird es automatisch neu erstellt.
+- **Alle Protokolle löschen**: Löscht alle vorhandenen Protokolle.
 
-> **Beratung**
+> **Tipp**
 >
-> Beachten Sie, dass das http-Protokoll.Fehler kann nicht gelöscht werden. Wenn Sie es löschen (z. B. in der Befehlszeile), wird es sich nicht selbst neu erstellen. Sie müssen das System neu starten.
+> Bitte beachten Sie, dass das http.error-Protokoll nicht gelöscht werden darf. Es ist unerlässlich; wenn Sie es löschen (beispielsweise über die Befehlszeile), wird es nicht automatisch neu erstellt, sondern Sie müssen das System neu starten.
 
 ## Echtzeit
 
-Das &quot;Ereignis&quot; -Protokoll ist etwas Besonderes. Damit es funktioniert, muss es sich zunächst auf Info- oder Debug-Ebene befinden und anschließend alle Ereignisse oder Aktionen auflisten, die bei der Heimautomation auftreten. Um darauf zuzugreifen, müssen Sie entweder zur Protokollseite oder unter Analyse → Echtzeit gehen.
+Das „Event“-Protokoll ist etwas speziell. Damit es funktioniert, muss es zunächst auf die Stufe „Info“ oder „Debug“ eingestellt sein. Anschließend erfasst es alle Ereignisse oder Aktionen, die im Bereich der Hausautomation stattfinden. Um darauf zuzugreifen, muss man entweder die Protokollseite aufrufen oder zu „Analyse“ → „Echtzeit“ wechseln.
 
-Sobald Sie darauf klicken, erhalten Sie ein Fenster, das in Echtzeit aktualisiert wird und Ihnen alle Ereignisse Ihrer Hausautomation anzeigt.
+Sobald Sie darauf geklickt haben, öffnet sich ein Fenster, das in Echtzeit aktualisiert wird und Ihnen alle Ereignisse Ihres Hausautomationssystems anzeigt.
 
-Oben rechts haben Sie ein Suchfeld (funktioniert nur, wenn Sie nicht pausieren) und eine Schaltfläche zum Pausieren (nützlich zum Beispiel zum Kopieren / Einfügen).
+Oben rechts finden Sie ein Suchfeld (funktioniert nur, wenn Sie nicht in der Pause sind) und eine Schaltfläche zum Anhalten (nützlich, um beispielsweise etwas zu kopieren und einzufügen).

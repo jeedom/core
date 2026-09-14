@@ -1,14 +1,14 @@
 # Centro de mensajes
 **Barra de menú**
 
-El centro de mensajes reúne todos los mensajes importantes que debe consultar. Está a la izquierda del tiempo, a la derecha de la barra de menú de Jeedom.
+El centro de mensajes reúne todos los mensajes importantes que debes consultar. Se encuentra a la izquierda de la hora, a la derecha de la barra de menú de Jeedom.
 
-Solo es accesible cuando hay mensajes, haciendo clic en la cantidad de mensajes.
+Solo se puede acceder a ella cuando hay mensajes, haciendo clic en el número de mensajes.
 
-Es bastante simple. Le muestra la fecha y hora del mensaje, el complemento que lo envió y el mensaje en cuestión. Puede, presionando el botón al comienzo de la línea de un mensaje, eliminar el mensaje en cuestión (volverá si el problema sigue vigente)).
+Es bastante sencillo. Te muestra la fecha y la hora del mensaje, el complemento que lo ha enviado y el mensaje en cuestión. Si pulsas el botón que aparece al principio de la línea de un mensaje, puedes borrar dicho mensaje (volverá a aparecer si el problema persiste).
 
-En la parte superior, hay un selector para filtrar mensajes en un complemento en particular y en el extremo derecho un botón para vaciar todos los mensajes.
+En la parte superior hay un selector para filtrar los mensajes de un complemento concreto y, en el extremo derecho, un botón para borrar todos los mensajes.
 
 > **Consejo**
 >
-> Cuando tenga un error en el centro de mensajes, primero intente eliminar el mensaje y luego vea si el error regresa antes de contactar al soporte. A veces es solo debido a un problema de conexión de red.
+> Si aparece un error en el centro de mensajes, prueba primero a borrar el mensaje y comprueba si el error vuelve a aparecer antes de ponerte en contacto con el servicio de asistencia. A veces se debe simplemente a un problema de conexión a la red.

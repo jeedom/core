@@ -1,155 +1,155 @@
-# Plugins-Verwaltung
-**Plugins → Plugins-Verwaltung**
+# Verwaltung von Plugins
+**Plugins → Plugin-Verwaltung**
 
-Diese Seite bietet Zugriff auf Plugin-Konfigurationen.
-Sie können nämlich auch die Plugins manipulieren : herunterladen, aktualisieren und aktivieren,…
+Auf dieser Seite können Sie auf die Einstellungen der Plugins zugreifen.
+Sie können Plugins auch verwalten, d. h.: sie herunterladen, aktualisieren und aktivieren, …​
 
-Es gibt daher eine Liste von Plugins in alphabetischer Reihenfolge und einen Link zum Markt.
+Dort findet man also die Liste der Plugins in alphabetischer Reihenfolge sowie einen Link zum Market.
 - Deaktivierte Plugins sind ausgegraut.
-- Plugins, die nicht in der Version sind *stabil* Wir haben einen orangefarbenen Punkt vor ihrem Namen.
+- Plugins, die nicht in der *stabile* Version vorliegen, sind mit einem orangefarbenen Punkt vor ihrem Namen gekennzeichnet.
 
-Durch Klicken auf ein Plugin greifen Sie auf dessen Konfiguration zu. Oben finden Sie den Namen des Plugins, dann in Klammern den Namen in Jeedom (ID) und schließlich den Typ der installierten Version (Stable, Beta)).
+Wenn Sie auf ein Plugin klicken, gelangen Sie zu dessen Konfiguration. Oben sehen Sie den Namen des Plugins, dann in Klammern dessen Namen in Jeedom (ID) und schließlich den Typ der installierten Version (stabil, Beta).
 
 > **Wichtig**
 >
-> Beim Herunterladen eines Plugins ist es standardmäßig deaktiviert. Sie müssen es also selbst aktivieren.
+> Wenn Sie ein Plugin herunterladen, ist dieses standardmäßig deaktiviert. Sie müssen es daher selbst aktivieren.
 
-## Gestion
+## Verwaltung
 
-Hier haben Sie drei Tasten :
+Hier sehen Sie drei Schaltflächen:
 
-- **Markt synchronisieren** : Wenn Sie ein Plugin über einen Webbrowser in Ihrem Market-Konto installieren (außer Jeedom), können Sie eine Synchronisierung erzwingen, um es zu installieren.
-- **Markt** : Öffnen Sie den Jeedom Market, wählen Sie ein Plugin aus und installieren Sie es auf Ihrem Jeedom.
-- **Plugins** : Sie können hier ein Plugin von einer Github, Samba-Quelle installieren, ...
+- **Market synchronisieren**: Wenn Sie ein Plugin über einen Webbrowser in Ihrem Market-Konto (außerhalb von Jeedom) installieren, können Sie eine Synchronisierung erzwingen, um es zu installieren.
+- **Market**: Öffnet den Jeedom Market, um ein Plugin auszuwählen und auf Ihrem Jeedom zu installieren.
+- **Plugins**: Hier können Sie ein Plugin aus einer Github-, Samba- oder einer anderen Quelle installieren.
 
-### Markt synchronisieren
+### Market synchronisieren
 
-Gehen Sie in einem Browser zu [Markt](https://market.jeedom.com).
+Rufen Sie über einen Browser die Seite [Markt](https://market.jeedom.com).
 Melden Sie sich bei Ihrem Konto an.
-Klicken Sie auf ein Plugin und wählen Sie *Stabil installieren* Oder *Installieren Sie die Beta* (wenn Ihr Marktkonto dies zulässt).
+Klicken Sie auf ein Plugin und wählen Sie dann *Stabile Version installieren* oder *Beta-Version installieren* (sofern Ihr Market-Konto dies zulässt).
 
-Wenn Ihr Marktkonto in Ihrem Jeedom korrekt konfiguriert ist (Konfiguration → Updates / Markt → Registerkarte Markt), können Sie auf klicken *Markt synchronisieren* oder warten Sie, bis es sich von selbst niedergelassen hat.
+Wenn Ihr Market-Konto in Ihrem Jeedom korrekt eingerichtet ist (Einstellungen → Updates/Market → Registerkarte „Market“), können Sie auf *Market synchronisieren* klicken oder warten, bis die Installation automatisch erfolgt.
 
-### Market
+### Markt
 
-Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche "Market" (und Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit erhalten Sie die Seite.
+Um ein neues Plugin zu installieren, klicken Sie einfach auf die Schaltfläche „Market“ (vorausgesetzt, Jeedom ist mit dem Internet verbunden). Nach einer kurzen Ladezeit wird die Seite angezeigt.
 
-> **Beratung**
+> **Tipp**
 >
-> Sie müssen Ihre Marktkontoinformationen in der Administration eingegeben haben (Konfiguration → Updates / Markt → Registerkarte Markt), um die Plugins zu finden, die Sie beispielsweise bereits gekauft haben.
+> Sie müssen Ihre Market-Kontodaten im Admin-Bereich eingegeben haben (Konfiguration → Updates/Market → Registerkarte „Market“), um beispielsweise die Plugins zu finden, die Sie bereits gekauft haben.
 
-Oben im Fenster befinden sich Filter :
-- **Free / Pay** : zeigt nur kostenlos oder kostenpflichtig an.
-- **Amtlicher / Empfohlen** : Zeigt nur offizielle oder empfohlene Plugins an.
-- **Dropdown-Menü Kategorie** : zeigt nur bestimmte Kategorien von Plugins an.
-- **Zur Recherche** : Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung)).
-- **Benutzername** : Zeigt den Benutzernamen für die Verbindung zum Markt sowie den Verbindungsstatus an.
+Oben im Fenster finden Sie Filter:
+- **Kostenlos/Kostenpflichtig**: Hiermit können Sie wählen, ob nur kostenlose oder nur kostenpflichtige Angebote angezeigt werden sollen.
+- **Offiziell/Empfohlen**: Hiermit werden nur offizielle oder empfohlene Plugins angezeigt.
+- **Dropdown-Menü „Kategorie“**: Ermöglicht es, nur bestimmte Plugin-Kategorien anzuzeigen.
+- **Suchen**: Ermöglicht die Suche nach einem Plugin (im Namen oder in der Beschreibung).
+- **Benutzername**: Zeigt den Benutzernamen an, der für die Anmeldung beim Market verwendet wird, sowie den Verbindungsstatus.
 
-> **Beratung**
+> **Tipp**
 >
-> Das kleine Kreuz setzt den betreffenden Filter zurück
+> Mit dem kleinen Kreuz können Sie den betreffenden Filter zurücksetzen.
 
-Wenn Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um die Datei aufzurufen. Dieses Blatt enthält insbesondere viele Informationen zum Plugin :
+Sobald Sie das gewünschte Plugin gefunden haben, klicken Sie einfach darauf, um die Detailansicht aufzurufen. Diese Detailansicht enthält zahlreiche Informationen zum Plugin, darunter:
 
-- Wenn es offiziell / empfohlen ist oder veraltet ist (Sie sollten auf jeden Fall vermeiden, veraltete Plugins zu installieren).
-- 4 Aktionen :
-    - **Stabil installieren** : ermöglicht die Installation des Plugins in seiner stabilen Version.
-    - **Installieren Sie die Beta** : ermöglicht die Installation des Plugins in seiner Beta-Version (nur für Betatester).
-    - **Installieren Sie pro** : ermöglicht die Installation der Pro-Version (sehr wenig verwendet).
-    - **LÖSCHEN** : Wenn das Plugin derzeit installiert ist, können Sie es mit dieser Schaltfläche entfernen.
+- Ob es offiziell ist/empfohlen wird oder veraltet ist (die Installation veralteter Plugins sollte unbedingt vermieden werden).
+- 4 Schritte:
+    - **Stabile Version installieren**: Ermöglicht die Installation der stabilen Version des Plugins.
+    - **Beta installieren**: Ermöglicht die Installation der Beta-Version des Plugins (nur für Betatester).
+    - **Pro-Version installieren**: Ermöglicht die Installation der Pro-Version (wird sehr selten verwendet).
+    - **Entfernen**: Wenn das Plugin derzeit installiert ist, können Sie es über diese Schaltfläche entfernen.
 
-Nachfolgend finden Sie die Beschreibung des Plugins, die Kompatibilität (wenn Jeedom eine Inkompatibilität feststellt, werden Sie benachrichtigt), die Meinungen zum Plugin (Sie können es hier notieren) und zusätzliche Informationen (der Autor, die Person, die es erstellt hat) das neueste Update, ein Link zum Dokument, die Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche &quot;Changelog&quot;, mit der Sie den gesamten Änderungsverlauf abrufen können. Eine Schaltfläche &quot;Dokumentation&quot;, die auf die Dokumentation des Plugins verweist. Dann haben Sie die verfügbare Sprache und die verschiedenen Informationen zum Datum der letzten stabilen Version.
+Darunter finden Sie die Beschreibung des Plugins, Angaben zur Kompatibilität (falls Jeedom eine Inkompatibilität feststellt, wird Sie das System darauf hinweisen), Bewertungen des Plugins (hier können Sie es bewerten) sowie weitere Informationen (Autor, Person, die das letzte Update durchgeführt hat, Link zur Dokumentation, Anzahl der Downloads). Auf der rechten Seite finden Sie eine Schaltfläche „Changelog“, über die Sie den gesamten Änderungsverlauf einsehen können, sowie eine Schaltfläche „Dokumentation“, die zur Dokumentation des Plugins führt. Anschließend werden die verfügbare Sprache und verschiedene Informationen zum Datum der letzten stabilen Version angezeigt.
 
 > **Wichtig**
 >
-> Es wird wirklich nicht empfohlen, ein Beta-Plugin auf ein Nicht-Beta-Jeedom zu setzen, da dies zu vielen Betriebsproblemen führen kann.
+> Es ist wirklich nicht empfehlenswert, ein Beta-Plugin auf einem Jeedom-System zu installieren, das nicht in der Beta-Phase ist, da dies zu zahlreichen Funktionsstörungen führen kann.
 
 > **Wichtig**
 >
-> Einige Plugins sind kostenpflichtig. In diesem Fall bietet Ihnen das Plugin den Kauf an. Sobald Sie fertig sind, müssen Sie ungefähr zehn Minuten warten (Zahlungsüberprüfungszeit) und dann zur Plugin-Datei zurückkehren, um sie normal zu installieren.
+> Einige Plugins sind kostenpflichtig. In diesem Fall wird Ihnen auf der Plugin-Seite angeboten, das Plugin zu kaufen. Sobald Sie den Kauf abgeschlossen haben, müssen Sie etwa zehn Minuten warten (Zeit für die Zahlungsbestätigung) und dann zur Plugin-Seite zurückkehren, um es wie gewohnt zu installieren.
 
 ### Plugins
 
-Sie können Jeedom ein Plugin aus einer Datei oder einem Github-Repository hinzufügen. Dazu müssen Sie in der Jeedom-Konfiguration die entsprechende Funktion im Abschnitt "Updates / Market" aktivieren".
+Sie können ein Plugin zu Jeedom hinzufügen, entweder aus einer Datei oder aus einem GitHub-Repository. Dazu müssen Sie in der Jeedom-Konfiguration im Bereich „Updates/Market“ die entsprechende Funktion aktivieren.
 
-Achtung, beim Hinzufügen durch eine Zip-Datei muss der Name der Zip mit der ID des Plugins übereinstimmen und beim Öffnen der ZIP muss ein Plugin\_info-Ordner vorhanden sein.
+Bitte beachten Sie: Wenn Sie eine ZIP-Datei hinzufügen, muss der Name der ZIP-Datei mit der ID des Plugins übereinstimmen, und beim Öffnen der ZIP-Datei muss ein Ordner „plugin\_info“ vorhanden sein.
 
 ## Meine Plugins
 
-Durch Klicken auf das Symbol eines Plugins öffnen Sie dessen Konfigurationsseite.
+Wenn Sie auf das Symbol eines Plugins klicken, öffnen Sie dessen Konfigurationsseite.
 
-> **Beratung**
+> **Tipp**
 >
-> Sie können bei gedrückter Strg-Taste oder Klick-Mitte die Konfiguration in einer neuen Browser-Registerkarte öffnen.
+> Sie können mit Strg+Klick oder einem Klick mit der mittleren Maustaste die Konfiguration in einem neuen Browser-Tab öffnen.
 
-### Oben rechts einige Schaltflächen :
+### Oben rechts befinden sich einige Schaltflächen:
 
-- **Details** : Ermöglicht es Ihnen, die Plugin-Seite auf dem Markt zu finden.
-- **Dokumentation** : Ermöglicht den direkten Zugriff auf die Plugin-Dokumentationsseite.
-- **Änderungsprotokoll** : Sehen wir uns das Plugin-Änderungsprotokoll an, falls vorhanden.
-- **Hilfe** : Ermöglicht Ihnen, automatisch eine Hilfeanfrage im Forum zu erstellen.
-- **LÖSCHEN** : Entfernen Sie das Plugin aus Ihrem Jeedom. Bitte beachten Sie, dass dadurch auch alle Geräte dauerhaft aus diesem Plugin entfernt werden.
+- **Details**: Hier gelangen Sie zur Seite des Plugins im Market.
+- **Dokumentation**: Ermöglicht den direkten Zugriff auf die Dokumentationsseite des Plugins.
+- **Changelog**: Zeigt das Changelog des Plugins an, sofern vorhanden.
+- **Support**: Ermöglicht es, automatisch eine Supportanfrage im Forum zu erstellen.
+- **Löschen**: Löscht das Plugin aus Ihrem Jeedom. Achtung: Dadurch werden auch alle Geräte dieses Plugins endgültig gelöscht.
 
-### Unten links befindet sich ein Bereich **Zustand** mit :
+### Unten links befindet sich ein Bereich „**Status**“ mit:
 
-- **Status** : Hier können Sie den Status des Plugins anzeigen (aktiv / inaktiv).
-- **Kategorie** : Die Kategorie des Plugins, die angibt, in welchem Untermenü es sich befindet.
-- **Autor** : Der Autor des Plugins, Link zum Markt und die Plugins dieses Autors.
-- **Lizenz** : Gibt die Lizenz des Plugins an, bei dem es sich im Allgemeinen um AGPL handelt.
+- **Status**: Hier können Sie den Status des Plugins einsehen (aktiv / inaktiv).
+- **Kategorie**: Die Kategorie des Plugins, die angibt, in welchem Untermenü es zu finden ist.
+- **Autor**: Der Autor des Plugins, Link zum Marktplatz und zu den Plugins dieses Autors.
+- **Lizenz**: Gibt die Lizenz des Plugins an, bei der es sich in der Regel um die AGPL handelt.
 
-- **Aktion** : Ermöglicht das Aktivieren oder Deaktivieren des Plugins. Die Taste **Offen** Ermöglicht den direkten Zugriff auf die Plugin-Seite.
-- **Version** : Die Version des installierten Plugins.
-- **Voraussetzungen** : Gibt die für das Plugin erforderliche Jeedom-Mindestversion an.
+- **Aktion**: Hiermit können Sie das Plugin aktivieren oder deaktivieren. Über die Schaltfläche **Öffnen** gelangen Sie direkt zur Seite des Plugins.
+- **Version**: Die installierte Version des Plugins.
+- **Voraussetzungen**: Gibt die für das Plugin erforderliche Mindestversion von Jeedom an.
 
 
-### Rechts finden wir die Gegend **Protokoll und Überwachung** was erlaubt zu definieren :
+### Auf der rechten Seite befindet sich der Bereich **Protokollierung und Überwachung**, in dem Folgendes festgelegt werden kann:
 
-- Die Ebene der für das Plugin spezifischen Protokolle (dieselbe Möglichkeit finden Sie unter Administration → Konfiguration auf der Registerkarte Protokolle unten auf der Seite).
-- Plugin-Protokolle anzeigen.
-- Herzschlag : Alle 5 Minuten überprüft Jeedom, ob in den letzten X Minuten mindestens ein Plugin-Gerät kommuniziert hat (wenn Sie die Funktionalität deaktivieren möchten, geben Sie einfach 0 ein).
-- Starten Sie den Dämon neu : Wenn der Hertbeat schief geht, startet Jeedom den Daemon neu.
+- Die plugin-spezifische Protokollstufe (diese Option finden Sie auch unter „Verwaltung“ → „Konfiguration“ auf der Registerkarte „Protokolle“ am Ende der Seite).
+- Die Protokolle des Plugins anzeigen.
+- Heartbeat: Alle 5 Minuten prüft Jeedom, ob mindestens ein Gerät des Plugins in den letzten X Minuten Daten übertragen hat (wenn Sie diese Funktion deaktivieren möchten, geben Sie einfach 0 ein).
+- Daemon neu starten: Wenn der Heartbeat fehlschlägt, startet Jeedom den Daemon neu.
 
-Wenn das Plugin Abhängigkeiten und / oder einen Dämon hat, werden diese zusätzlichen Bereiche unter den oben genannten Bereichen angezeigt.
+Wenn das Plugin Abhängigkeiten und/oder einen Daemon hat, werden diese zusätzlichen Felder unter den oben genannten Feldern angezeigt.
 
-### Nebengebäude :
+### Abhängigkeiten:
 
-- **Name** : Im Allgemeinen wird lokal sein.
-- **Status** : Abhängigkeitsstatus, OK oder NOK.
-- **Einrichtung** : Ermöglicht das Installieren oder Neuinstallieren von Abhängigkeiten (wenn Sie dies nicht manuell tun und diese NOK sind, kümmert sich Jeedom nach einer Weile um sich selbst).
-- **Letzte Installation** : Datum der letzten Abhängigkeitsinstallation.
+- **Name**: In der Regel lokal.
+- **Status**: Status der Abhängigkeiten, OK oder NOK.
+- **Installation**: Ermöglicht die Installation oder Neuinstallation von Abhängigkeiten (falls Sie dies nicht manuell tun und diese fehlerhaft sind, übernimmt Jeedom dies nach einer Weile automatisch).
+- **Letzte Installation**: Datum der letzten Installation der Abhängigkeiten.
 
-### Dämon :
+### Dämon:
 
-- **Name** : Im Allgemeinen wird lokal sein.
-- **Status** : Daemon-Status, OK oder NOK.
-- **Konfiguration** : OK, wenn alle Kriterien für die Ausführung des Dämons erfüllt sind oder die Ursache für die Blockierung angegeben ist.
-- **(Neustarten** : Ermöglicht das Starten oder Neustarten des Dämons.
-- **Anschlag** : Wird zum Stoppen des Dämons verwendet (nur in dem Fall, in dem die automatische Verwaltung deaktiviert ist).
-- **Automatische Verwaltung** : Aktiviert oder deaktiviert die automatische Verwaltung (wodurch Jeedom den Dämon selbst verwalten und bei Bedarf neu starten kann. Sofern nicht anders angegeben, ist es ratsam, die automatische Verwaltung aktiv zu lassen).
-- **Letzter Start** : Datum des letzten Starts des Daemons.
+- **Name**: In der Regel lokal.
+- **Status**: Status des Daemons, OK oder NOK.
+- **Konfiguration**: OK, wenn alle Voraussetzungen für den Betrieb des Daemons erfüllt sind, oder gibt den Grund für die Blockierung an.
+- **(Neu)Starten**: Ermöglicht das Starten oder Neustarten des Daemons.
+- **Beenden**: Ermöglicht das Beenden des Daemons (nur wenn die automatische Verwaltung deaktiviert ist).
+- **Automatische Verwaltung**: Hiermit können Sie die automatische Verwaltung aktivieren oder deaktivieren (dadurch kann Jeedom den Daemon selbst verwalten und bei Bedarf neu starten. Sofern nicht anders angegeben, wird empfohlen, die automatische Verwaltung aktiviert zu lassen).
+- **Letzter Start**: Datum des letzten Starts des Daemons.
 
-> **Beratung**
+> **Tipp**
 >
-> Einige Plugins haben einen Konfigurationsteil. Wenn dies der Fall ist, wird es unter den oben beschriebenen Abhängigkeits- und Dämonzonen angezeigt.
-> In diesem Fall finden Sie Informationen zur Konfiguration des betreffenden Plugins in der Dokumentation.
+> Einige Plugins verfügen über einen Konfigurationsbereich. Ist dies der Fall, wird dieser unter den oben beschriebenen Bereichen „Abhängigkeiten“ und „Daemon“ angezeigt.
+> In diesem Fall sollten Sie in der Dokumentation des jeweiligen Plugins nachlesen, wie es konfiguriert wird.
 
-### Unten befindet sich ein Funktionsbereich. Auf diese Weise können Sie feststellen, ob das Plugin eine der Jeedom-Kernfunktionen verwendet, z :
+### Darunter befindet sich ein Bereich mit den Funktionen. Hier kann man sehen, ob das Plugin eine der Jeedom-Kernfunktionen nutzt, wie zum Beispiel:
 
-- **Interagieren** : Spezifische Wechselwirkungen.
-- **Cron** : Ein Cron pro Minute.
-- **Cron5** : Ein Cron alle 5 Minuten.
-- **Cron10** : Ein Cron alle 10 Minuten.
-- **Cron15** : Ein Cron alle 15 Minuten.
-- **Cron30** : Ein Cron alle 30 Minuten.
-- **CronHourly** : Ein Cron pro Stunde.
-- **CronDaily** : Ein täglicher Cron.
-- **deadcmd** : Ein Cron für tote Kommandeure.
-- **Gesundheit** : Eine alte Gesundheit.
+- **Interact**: Spezifische Interaktionen.
+- **Cron**: Ein Cron-Job pro Minute.
+- **Cron5**: Ein Cron-Job alle 5 Minuten.
+- **Cron10**: Ein Cron-Job alle 10 Minuten.
+- **Cron15**: Ein Cron-Job alle 15 Minuten.
+- **Cron30**: Ein Cron-Job alle 30 Minuten.
+- **CronHourly**: Ein Cron-Job jede Stunde.
+- **CronDaily**: Ein täglicher Cron-Job.
+- **deadcmd**: Ein Cron-Job für inaktive Befehle.
+- **health**: Ein Cron-Job für „health“.
 
-> **Beratung**
+> **Tipp**
 >
-> Wenn das Plugin eine dieser Funktionen verwendet, können Sie dies ausdrücklich verhindern, indem Sie das Kontrollkästchen &quot;Aktivieren&quot; deaktivieren, das daneben angezeigt wird.
+> Wenn das Plugin eine dieser Funktionen nutzt, können Sie dies gezielt unterbinden, indem Sie das nebenstehende Kontrollkästchen „Aktivieren“ deaktivieren.
 
-### Panel
+### Bedienfeld
 
-Wir finden einen Panel-Bereich, der die Anzeige des Panels auf dem Dashboard oder auf dem Handy aktiviert oder deaktiviert, wenn das Plugin eines anbietet.
+Es gibt einen Abschnitt „Panel“, über den Sie die Anzeige des Panels auf dem Dashboard oder auf Mobilgeräten aktivieren oder deaktivieren können, sofern das Plugin diese Funktion bietet.

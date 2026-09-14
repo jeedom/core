@@ -1,38 +1,38 @@
-# Masseneditor
-**Einstellungen → System → Konfiguration | Betriebssystem / DB**
+# Massen-Editor
+**Einstellungen → System → Konfiguration | OS/DB**
 
-Mit diesem Tool können Sie eine große Anzahl von Geräten, Befehlen, Objekten oder Szenarien bearbeiten. Es ist vollständig generisch und verwendet automatisch das Schema und die Struktur der Jeedom-Datenbank. Es unterstützt somit Plugins und die Konfiguration ihrer Geräte.
+Mit diesem Tool lassen sich zahlreiche Geräte, Befehle, Objekte oder Szenarien bearbeiten. Es ist vollkommen generisch und übernimmt automatisch das Schema und die Struktur der Jeedom-Datenbank. Somit unterstützt es die Plugins und die Konfiguration der dazugehörigen Geräte.
 
-> **Aufmerksamkeit**
+> **Achtung**
 >
-> Wenn dieses Tool recht einfach zu bedienen ist, ist es für fortgeschrittene Benutzer gedacht. Tatsächlich ist es sehr einfach, jeden Parameter auf Dutzenden von Geräten oder Hunderten von Befehlen zu ändern und daher bestimmte Funktionen außer Betrieb zu setzen, siehe sogar den Core.
+> Auch wenn sich dieses Tool als recht benutzerfreundlich erweist, richtet es sich doch an fortgeschrittene Nutzer. Tatsächlich ist es nämlich sehr einfach, beliebige Einstellungen an Dutzenden von Geräten oder Hunderten von Befehlen zu ändern und dadurch bestimmte Funktionen oder sogar den Core außer Betrieb zu setzen.
 
-## Utilisation
+## Anwendung
 
-Das Teil *Gefiltert* ermöglicht es Ihnen, auszuwählen, was Sie bearbeiten möchten, und fügen Sie dann Auswahlfilter gemäß ihren Parametern hinzu. Eine Testschaltfläche ermöglicht es Ihnen, ohne Änderungen die Elemente anzuzeigen, die durch die eingegebenen Filter ausgewählt wurden.
+Im Bereich *Filter* können Sie auswählen, was Sie bearbeiten möchten, und anschließend Auswahlfilter entsprechend deren Parametern hinzufügen. Über eine Testschaltfläche können Sie sich – ohne Änderungen vorzunehmen – die durch die eingegebenen Filter ausgewählten Elemente anzeigen lassen.
 
-Das Teil *Ausgabe* ermöglicht es Ihnen, Parameter dieser Elemente zu ändern.
+Im Bereich *Bearbeiten* können Sie die Einstellungen für diese Elemente ändern.
 
-- **Spalte** : Rahmen.
-- **Wert** : Der Wert des Parameters.
-- **Json-Wert** : Die Eigenschaft des Parameters / Werts, wenn er vom Typ json ist (Schlüssel-> Wert).
+- **Spalte**: Parameter.
+- **Wert**: Der Wert des Parameters.
+- **JSON-Wert**: Die Eigenschaft des Parameters bzw. der Wert, wenn dieser vom Typ JSON ist (Schlüssel->Wert).
 
-### Exemples:
+### Beispiele:
 
-#### Benennen Sie eine Szenariogruppe um
+#### Eine Szenario-Gruppe umbenennen
 
-- Im Spiel *Gefiltert*, wählen **Szenario**.
-- Klicken Sie auf die Schaltfläche **+** einen Filter hinzufügen.
-- Wählen Sie in diesem Filter die Spalte *Gruppe*, und markieren Sie den Namen der Gruppe, die Sie umbenennen möchten.
-- Klicken Sie auf die Schaltfläche *Prüfen* um die Szenarien dieser Gruppe anzuzeigen.
-- Im Spiel *Ausgabe*, Spalte auswählen *Gruppe*, dann geben Sie den gewünschten Namen in den Wert ein.
-- Klicke auf **Ausführen** oben rechts.
+- Wählen Sie im Bereich *Filter* die Option **Szenario** aus.
+- Klicken Sie auf die Schaltfläche **+**, um einen Filter hinzuzufügen.
+- Wählen Sie in diesem Filter die Spalte *group* aus und geben Sie als Wert den Namen der Gruppe ein, die umbenannt werden soll.
+- Klicken Sie auf die Schaltfläche *Test*, um die Szenarien dieser Gruppe anzuzeigen.
+- Wählen Sie im Bereich *Bearbeitung* die Spalte *Gruppe* aus und geben Sie dann den gewünschten Namen als Wert ein.
+- Klicken Sie oben rechts auf **Ausführen**.
 
-#### Machen Sie die gesamte Ausrüstung eines Objekts / Raums unsichtbar:
+#### Alle Geräte eines Objekts/Raums unsichtbar machen:
 
-- Im Spiel *Gefiltert*, wählen **Ausrüstung**.
-- Klicken Sie auf die Schaltfläche **+** einen Filter hinzufügen.
-- Wählen Sie in diesem Filter die Spalte *Objekt Identifikation*, und als Wert die ID des betreffenden Objekts (sichtbar unter Tools / Objects, Overview).
-- Klicken Sie auf die Schaltfläche *Prüfen* um die Szenarien dieser Gruppe anzuzeigen.
-- Im Spiel *Ausgabe*, Spalte auswählen *istsichtbar*, dann geben Sie den Wert 0 ein.
-- Klicke auf **Ausführen** oben rechts.
+- Wählen Sie im Bereich *Filter* die Option **Geräte** aus.
+- Klicken Sie auf die Schaltfläche **+**, um einen Filter hinzuzufügen.
+- Wählen Sie in diesem Filter die Spalte *object_id* aus und geben Sie als Wert die ID des betreffenden Objekts ein (zu finden unter „Extras/Objekte“, „Übersicht“).
+- Klicken Sie auf die Schaltfläche *Test*, um die Szenarien dieser Gruppe anzuzeigen.
+- Wählen Sie im Bereich *Bearbeitung* die Spalte *isvisible* aus und geben Sie dann den Wert 0 ein.
+- Klicken Sie oben rechts auf **Ausführen**.
