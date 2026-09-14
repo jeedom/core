@@ -1413,17 +1413,21 @@ try {
 		}
 		$rdk = $params['rdk'] ?? '';
 		$rdkHash = ($rdk != '') ? sha512($rdk) : '';
-		if ($rdk == '' || !$_USER_GLOBAL->isRegisterDeviceValid($rdkHash)) {
+		$requiresRegistration = $rdk == '' || !$_USER_GLOBAL->isRegisterDeviceValid($rdkHash, $registerDevice);
+		if ($requiresRegistration) {
 			$rdk = config::genKey();
 			$rdkHash = sha512($rdk);
 		}
-		$registerDevice[$rdkHash] = array(
-			'datetime' => date('Y-m-d H:i:s'),
-			'ip' => getClientIp(),
-			'session_id' => session_id(),
-		);
-		$_USER_GLOBAL->setOptions('registerDevice', $registerDevice);
-		$_USER_GLOBAL->save();
+		$clientIp = getClientIp();
+		if ($requiresRegistration || $registerDevice[$rdkHash]['ip'] !== $clientIp || strtotime($registerDevice[$rdkHash]['datetime']) < time() - 24 * 3600) {
+			$registerDevice[$rdkHash] = array(
+				'datetime' => date('Y-m-d H:i:s'),
+				'ip' => $clientIp,
+				'session_id' => session_id(),
+			);
+			$_USER_GLOBAL->setOptions('registerDevice', $registerDevice);
+			$_USER_GLOBAL->save();
+		}
 		log::add('api', 'debug', 'RDK :' . $rdk);
 		log::add('api', 'debug', 'Demande du GetJson');
 		$return = array();
