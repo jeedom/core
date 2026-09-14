@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-14 09:15:53 | feat: Enhance register device management with lifetime configuration | [#3511](https://github.com/jeedom/core/pull/3511) |
 | 2026-09-08 08:58:08 | Feature: add audit log | [#3493](https://github.com/jeedom/core/pull/3493) |
 | 2026-09-04 21:34:21 | Add Debian 13 Trixie compatibility and raises minimum required to Debian 12 | [#3483](https://github.com/jeedom/core/pull/3483) |
 | 2026-09-04 21:28:50 | Update Highstock/Highcharts to 12.6.0 | [#3457](https://github.com/jeedom/core/pull/3457) |
