@@ -912,6 +912,7 @@
         "Impossible de créer le dossier  :": "Não foi possível criar a pasta:",
         "Impossible de décompresser l'archive zip": "Não é possível descompactar o arquivo zip",
         "L'identifiant du plugin ne peut pas être vide": "O identificador do plugin não pode estar vazio",
+        "La source \"%s\" est introuvable ou inactive.": "A fonte «%s» não foi encontrada ou está inativa.",
         "OK": "Ok",
         "OK\\n": "Ok",
         "Post-installation de": "Pós-Instalação de",

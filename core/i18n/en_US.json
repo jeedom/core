@@ -912,6 +912,7 @@
         "Impossible de créer le dossier  :": "Unable to create folder:",
         "Impossible de décompresser l'archive zip": "Unable to unpack zip archive",
         "L'identifiant du plugin ne peut pas être vide": "The plugin ID cannot be empty",
+        "La source \"%s\" est introuvable ou inactive.": "The source \"%s\" cannot be found or is inactive.",
         "OK": "OK",
         "OK\\n": "Okay",
         "Post-installation de": "Post-installation of",
