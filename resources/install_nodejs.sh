@@ -136,8 +136,6 @@ else
 
   if [[ $arch == "armv6l" ]]
   then
-    #version to install for armv6 (to check on https://unofficial-builds.nodejs.org), nodejs 24 not supported anymore, installing nodejs 22 on best effort
-    $installVer=22
     armVer="22.23.2"
 
     echo "Jeedom Mini ou Raspberry 1, 2 ou zéro détecté, non supporté mais on essaye l'utilisation du paquet non-officiel ${armVer} pour armv6l"
