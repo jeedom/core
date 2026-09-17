@@ -96,6 +96,12 @@ then
 fi
 fi
 
+#version to install for armv6 (to check on https://unofficial-builds.nodejs.org), nodejs 24 not supported anymore, installing nodejs 22 on best effort
+if [[ $arch == "armv6l" ]]
+then
+    minVer='22'
+fi
+
 #x86 32 bits not supported by nodesource anymore
 bits=$(getconf LONG_BIT)
 if { [ "$arch" = "i386" ] || [ "$arch" = "i686" ]; } && [ "$bits" -eq "32" ]
