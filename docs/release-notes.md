@@ -20,6 +20,7 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-17 16:20:52 | Update Node.js version to 24 and adjust armv6 handling | [#3512](https://github.com/jeedom/core/pull/3512) |
 | 2026-09-01 08:12:25 | migrate password sha512 to php native | [#3476](https://github.com/jeedom/core/pull/3476) |
 | 2026-09-01 08:05:52 | add option to avoid infinite save loops in eqLogic import | [#3471](https://github.com/jeedom/core/pull/3471) |
 | 2026-08-17 12:18:51 | Centralize eqLogic remove confirmation and post-delete redirect | [#3415](https://github.com/jeedom/core/pull/3415) |
@@ -88,7 +89,7 @@
 | --- | --- | --- |
 | 2026-09-14 19:57:17 | Fix broken lightbox image paths in doc pages | [#3523](https://github.com/jeedom/core/pull/3523) |
 | 2026-09-14 18:57:16 | Remove obsolete and mismatched documentation files | [#3522](https://github.com/jeedom/core/pull/3522) |
-| 2026-09-14 15:22:49 | Rework the documentation: new bilingual README, fixed broken links/images, dropped unsupported pt_PT | [#3515](https://github.com/jeedom/core/pull/3515) |
+| 2026-09-14 15:22:49 | Rework documentation: bilingual README, fixed broken links/images, dropped pt_PT | [#3515](https://github.com/jeedom/core/pull/3515) |
 | 2026-09-10 14:42:25 | Add automated documentation translation and publishing workflow | [#3460](https://github.com/jeedom/core/pull/3460) |
 | 2026-07-16 09:18:32 | 2 wording corrections in Objects documentation (object.md) | [#3422](https://github.com/jeedom/core/pull/3422) |
 
