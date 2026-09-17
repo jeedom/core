@@ -586,10 +586,14 @@ class user {
 
 	/**
 	 *
-	 * @return boolean vrai si l'utilisateur est valide
+	 * @deprecated Replaced by user::isValidAndEnabled()
 	 */
 	public function is_Connected(): bool {
-		return (is_numeric($this->id) && $this->login != '');
+		return $this->isValidAndEnabled();
+	}
+
+	public function isValidAndEnabled(): bool {
+		return (is_numeric($this->id) && $this->login != '' && $this->enable == 1);
 	}
 
 	public function validateTwoFactorCode($_code) {
