@@ -29,6 +29,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-17 18:22:11 | fix localOnly session and deprecate is_Connected method | [#3520](https://github.com/jeedom/core/pull/3520) |
 | 2026-09-17 18:18:54 | fix(update): throw exception for unavailable source | [#3526](https://github.com/jeedom/core/pull/3526) |
 | 2026-09-17 16:40:21 | Fix visible password input in user management | [#3488](https://github.com/jeedom/core/pull/3488) |
 | 2026-09-12 14:06:09 | Fix Docker Test CI failing for pull requests from forks | [#3513](https://github.com/jeedom/core/pull/3513) |
