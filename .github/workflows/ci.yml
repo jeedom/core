@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ developn, chore/clean-workflow ]
+    branches: [ develop, chore/clean-workflow ]
   pull_request:
     branches: [ develop ]
   workflow_dispatch:
@@ -15,17 +15,13 @@ jobs:
 
   composer-validate:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php: [7.4, 8.2, 8.4]
     steps:
       - uses: actions/checkout@v7
 
-      - name: Validate dependencies php${{ matrix.php }}
+      - name: Validate composer dependencies
         uses: php-actions/composer@v6
         with:
-          php_version: ${{ matrix.php }}
+          php_version: 7.4
           command: validate
           args: --no-check-publish
 
@@ -44,7 +40,7 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer update --ignore-platform-reqs
+        run: composer install --no-interaction --prefer-dist
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse --configuration phpstan.neon --error-format=github

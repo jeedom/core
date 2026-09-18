@@ -9,6 +9,10 @@ on:
         description: 'Reason'
         default: 'Manual launch'
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update-baseline:
     runs-on: ubuntu-latest
@@ -24,13 +28,13 @@ jobs:
           php-version: 8.2
 
       - name: Install Dependencies
-        run: composer update --ignore-platform-reqs
+        run: composer install --no-interaction --prefer-dist
 
       - name: Generate new baseline
         id: generate-baseline
         run: |
           cp phpstan-baseline.neon phpstan-baseline.neon.old
-          vendor/bin/phpstan analyse --configuration phpstan.neon --generate-baseline
+          vendor/bin/phpstan analyse --configuration phpstan.neon --generate-baseline --error-format=github
           if ! diff -q phpstan-baseline.neon phpstan-baseline.neon.old > /dev/null; then
             echo "baseline_changed=true" >> $GITHUB_OUTPUT
           fi
