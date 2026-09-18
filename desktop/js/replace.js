@@ -129,7 +129,8 @@ if (!jeeFrontEnd.replace) {
       return select
     },
     resetEqlogicSelect: function(eqlogicId=-1) {
-      document.querySelector('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] select.selectEqReplace').jeeValue('')
+      const _selEl = document.querySelector('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] select.selectEqReplace')
+      if (_selEl) _selEl.jeeValue('')
     },
     resetCmdSelects: function(eqlogicId=-1) {
       document.querySelectorAll('#eqSource ul.eqLogic[data-id="' + eqlogicId + '"] li.cmd').forEach( _cmd => {
