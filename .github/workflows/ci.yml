@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ develop, chore/clean-workflow ]
+    branches: [ develop ]
   pull_request:
     branches: [ develop ]
   workflow_dispatch:

@@ -2,7 +2,7 @@ name: Update PHPStan baseline
 
 on:
   push:
-    branches: [ develop, chore/clean-workflow ]
+    branches: [ develop ]
   workflow_dispatch:
     inputs:
       logLevel:
