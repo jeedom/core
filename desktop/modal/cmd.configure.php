@@ -1160,7 +1160,15 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
         //Get pre/post exec actions:
         cmd.configuration.actionCheckCmd = {}
-        cmd.configuration.actionCheckCmd = document.querySelectorAll('#div_actionCheckCmd .actionCheckCmd').getJeeValues('.expressionAttr')
+		    const actionCheckCmd = document.querySelectorAll('#div_actionCheckCmd .actionCheckCmd').getJeeValues('.expressionAttr')
+        if (Array.isArray(actionCheckCmd)) {
+            actionCheckCmd.forEach(action => {
+                if (action.options) {
+                    delete action.options.filter
+                }
+            });
+        }
+        cmd.configuration.actionCheckCmd = actionCheckCmd
         cmd.configuration.jeedomPreExecCmd = document.querySelectorAll('#div_actionPreExecCmd .actionPreExecCmd').getJeeValues('.expressionAttr')
         cmd.configuration.jeedomPostExecCmd = document.querySelectorAll('#div_actionPostExecCmd .actionPostExecCmd').getJeeValues('.expressionAttr')
         jeedom.cmd.save({
