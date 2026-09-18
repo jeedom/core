@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ developn, chore/clean-workflow ]
+  pull_request:
+    branches: [ develop ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Reason'
+        default: 'Manual launch'
+
+jobs:
+
+  composer-validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.4, 8.2, 8.4]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Validate dependencies php${{ matrix.php }}
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php }}
+          command: validate
+          args: --no-check-publish
+
+  phpstan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.4, 8.2, 8.4]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP ${{ matrix.php }} for dependencies
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install Composer dependencies
+        run: composer update --ignore-platform-reqs
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --configuration phpstan.neon --error-format=github
