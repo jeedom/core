@@ -32,6 +32,10 @@ $google2fa_url = $google2fa->getQRCodeInline(
   $_SESSION['user']->getLogin(),
   $_SESSION['user']->getOptions('twoFactorAuthentificationSecret')
 );
+//Without the imagick extension, getQRCodeInline() returns raw SVG markup instead of a data URL
+if (strpos($google2fa_url, 'data:') !== 0) {
+  $google2fa_url = 'data:image/svg+xml;base64,'.base64_encode($google2fa_url);
+}
 ?>
 
 <div id="md_twoFactAuth" data-modalType="md_twoFactAuth">
