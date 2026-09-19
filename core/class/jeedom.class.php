@@ -691,7 +691,7 @@ class jeedom {
 				}
 				break;
 			case 'localhost':
-				if (getClientIp() != '127.0.0.1') {
+				if (network::getClientIp() != '127.0.0.1') {
 					return false;
 				}
 				break;
