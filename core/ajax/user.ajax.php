@@ -53,7 +53,7 @@ try {
 			}
 			$registerDevice[sha512($rdk)] = array(
 				'datetime' => date('Y-m-d H:i:s'),
-				'ip' => getClientIp(),
+				'ip' => network::getClientIp(),
 				'session_id' => session_id(),
 			);
 			setRegisterDeviceCookie(sha512($_SESSION['user']->getHash()) . '-' . $rdk);

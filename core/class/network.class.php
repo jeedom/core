@@ -43,17 +43,113 @@ class network {
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
 	}
 
-	public static function getClientIp() {
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			return $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
-			return $_SERVER['HTTP_X_REAL_IP'];
-		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-			return $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
-			return $_SERVER['REMOTE_ADDR'];
+	private static function extractValidIp(string $value): string {
+		if (empty($value)) {
+			return '';
 		}
-		return '';
+
+		$ip = trim(explode(',', $value)[0]);
+
+		return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
+	}
+
+	private static function ipMatchesNetwork(string $ip, string $network): bool {
+		$ipBinary = inet_pton($ip);
+		if ($ipBinary === false) {
+			return false;
+		}
+
+		$parts = explode('/', $network, 2);
+		$networkBinary = inet_pton($parts[0]);
+		if ($networkBinary === false || strlen($networkBinary) !== strlen($ipBinary)) {
+			return false;
+		}
+		if (count($parts) === 1) {
+			return $ipBinary === $networkBinary;
+		}
+
+		$prefixLength = filter_var($parts[1], FILTER_VALIDATE_INT);
+		$maxPrefixLength = strlen($ipBinary) * 8;
+		if ($prefixLength === false || $prefixLength < 0 || $prefixLength > $maxPrefixLength) {
+			return false;
+		}
+
+		$bytesToCompare = intdiv($prefixLength, 8);
+		$remainingBits = $prefixLength % 8;
+		if ($bytesToCompare > 0 && substr($ipBinary, 0, $bytesToCompare) !== substr($networkBinary, 0, $bytesToCompare)) {
+			return false;
+		}
+		if ($remainingBits > 0) {
+			$mask = chr((0xFF << (8 - $remainingBits)) & 0xFF);
+			return (ord($ipBinary[$bytesToCompare]) & ord($mask)) === (ord($networkBinary[$bytesToCompare]) & ord($mask));
+		}
+		return true;
+	}
+
+	private static function isTrustedProxy(string $ip): bool {
+		if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
+			return false;
+		}
+		$trustedProxiesConfiguration = trim(config::byKey('security::trustedProxies', 'core', ''));
+		$logicalId = 'trustedProxiesMigration';
+		if ($trustedProxiesConfiguration === '') {
+			if (count(message::byPluginLogicalId('core', $logicalId)) === 0) {
+				$message = __('La configuration des proxys de confiance est absente. Les en-têtes de proxy sont temporairement acceptés. Votre installation est vulnérable.', __FILE__);
+				$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
+				message::add('core', $message, $action, $logicalId);
+			}
+			return true;
+		}
+		message::removeByPluginLogicalId('core', $logicalId);
+		if (strtolower($trustedProxiesConfiguration) === 'none') {
+			return false;
+		}
+
+		$trustedProxies = explode(';', $trustedProxiesConfiguration);
+		foreach ($trustedProxies as $trustedProxy) {
+			$trustedProxy = trim($trustedProxy);
+			if ($trustedProxy === '') {
+				continue;
+			}
+			if (self::ipMatchesNetwork($ip, $trustedProxy)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static function getClientIp(): string {
+		$remoteIp = self::extractValidIp($_SERVER['REMOTE_ADDR'] ?? '');
+		$alternative_sources = array(
+			'HTTP_CF_CONNECTING_IP',
+			'HTTP_X_REAL_IP',
+			'HTTP_X_FORWARDED_FOR',
+		);
+
+		$headerIps = array();
+		foreach ($alternative_sources as $source) {
+			if (!empty($_SERVER[$source])) {
+				$ip = self::extractValidIp($_SERVER[$source]);
+				if ($ip !== '') {
+					$headerIps[$source] = $ip;
+				}
+			}
+		}
+
+		if (count(array_unique($headerIps)) > 1) {
+			log::add('network', 'warning', __('Les en-têtes d\'adresse IP du proxy ne sont pas cohérents, utilisation de REMOTE_ADDR', __FILE__) . ' : ' . json_encode($headerIps));
+			return $remoteIp;
+		}
+		$headerIp = reset($headerIps);
+		if ($headerIp === false) {
+			$headerIp = '';
+		}
+
+		// users behind jeedom DNS and using openVPN will have the remoteIP == headerIP and that will be the end user IP, so they don't need to configure a proxy.
+		if ($remoteIp === $headerIp || $headerIp === '' || !self::isTrustedProxy($remoteIp)) {
+			return $remoteIp;
+		}
+		return $headerIp;
 	}
 
 	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {

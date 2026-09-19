@@ -226,23 +226,11 @@ function convertDuration($time) {
 	return $result;
 }
 
+/**
+ * @deprecated Use network::getClientIp() instead.
+ */
 function getClientIp() {
-	$sources = array(
-		'HTTP_CF_CONNECTING_IP',
-		'HTTP_X_REAL_IP',
-		'HTTP_X_FORWARDED_FOR',
-		'HTTP_CLIENT_IP',
-		'REMOTE_ADDR',
-	);
-	foreach ($sources as $source) {
-		if (isset($_SERVER[$source])) {
-			if (strpos($_SERVER[$source], ',') !== false) {
-				return explode(',', $_SERVER[$source])[0];
-			}
-			return str_replace(' ', '', $_SERVER[$source]);
-		}
-	}
-	return '';
+	return network::getClientIp();
 }
 
 function mySqlIsHere() {
