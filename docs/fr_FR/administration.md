@@ -121,7 +121,6 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 > **Important**
 >
 > Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et du filtre parental de votre box Internet (sur livebox il faut par exemple le pare-feu en niveau moyen).
-- **Durée de vie des sessions (heure)** : durée de vie des sessions PHP, il est déconseillé de toucher à ce paramètre.
 
 ## Onglet Logs
 
@@ -274,6 +273,19 @@ Voici donc les différentes options disponibles :
 
 ## Onglet Sécurité
 
+### Connexion
+
+- **Durée de vie des sessions (heure)** : durée de vie des sessions PHP, il est déconseillé de toucher à ce paramètre.
+- **Durée de vie des périphériques enregistrés** : durée d’inactivité avant l’expiration d’un périphérique enregistré, entre 3 et 90 jours.
+- **Nombre d’échecs tolérés** : définit le nombre de tentatives successives autorisées avant de bannir l’IP
+- **Temps maximum entre les échecs (en secondes)** : temps maximum pour que 2 tentatives soient considérées comme successives
+- **Durée du bannissement (en secondes), -1 pour infini** : temps de bannissement de l’IP
+- **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
+- **Proxys de confiance** : liste des adresses IP ou réseaux des reverse proxys autorisés à transmettre l’adresse IP du client via les en-têtes HTTP. Plusieurs valeurs peuvent être séparées par `;`. Les adresses IP exactes ainsi que les réseaux CIDR IPv4 et IPv6 sont acceptés, par exemple `127.0.0.1;172.18.0.0/16;2001:db8::/32`.
+  - Les en-têtes `X-Real-IP`, `X-Forwarded-For` et `CF-Connecting-IP` ne sont pris en compte que si l’adresse de la connexion correspond à un proxy de confiance configuré. En cas d’absence ou de conflit entre ces en-têtes, Jeedom utilise `REMOTE_ADDR`.
+  - Si cette configuration est vide, Jeedom conserve temporairement le comportement historique et accepte les en-têtes de proxy. Un message est ajouté au centre des messages afin de vous inviter à configurer cette option.
+  - Cochez **Aucun** si Jeedom est accessible directement et n’est pas utilisé derrière un reverse proxy.
+
 ### LDAP
 
 - **Activer l’authentification LDAP** : active l’authentification à travers un AD (LDAP).
@@ -288,15 +300,11 @@ Voici donc les différentes options disponibles :
 - **Filtre utilisateurs limités (optionnel)** : filtre utilisateurs limités sur l’AD (pour la gestion des groupes par exemple)
 - **Autoriser REMOTE\_USER** : Active le REMOTE\_USER (utilisé en SSO par exemple).
 
-### Connexion
-
-- **Nombre d’échecs tolérés** : définit le nombre de tentatives successives autorisées avant de bannir l’IP
-- **Temps maximum entre les échecs (en secondes)** : temps maximum pour que 2 tentatives soient considérées comme successives
-- **Durée du bannissement (en secondes), -1 pour infini** : temps de bannissement de l’IP
-- **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
-- **Supprimer les IPs bannies** : Permet de vider la liste des IP actuellement bannies
+### IPs bannies
 
 La liste des IP bannies se trouve au bas de cette page. Vous y trouverez l’IP, la date de bannissement et la date de fin de bannissement programmée.
+
+- **Supprimer les IPs bannies** : Permet de vider la liste des IP actuellement bannies
 
 ## Onglet Mise à jour/Market
 
