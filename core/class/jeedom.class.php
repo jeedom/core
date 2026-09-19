@@ -676,7 +676,7 @@ class jeedom {
 			case 'disable':
 				return false;
 			case 'whiteip':
-				$ip = getClientIp();
+				$ip = network::getClientIp();
 				$find = false;
 				$whiteIps = explode(';', config::byKey('security::whiteips'));
 				if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
