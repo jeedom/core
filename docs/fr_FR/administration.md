@@ -83,44 +83,43 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 > Cependant, en cas de mauvaise manipulation de votre Jeedom, l’équipe Jeedom ne pourra être tenue pour responsable et pourra refuser toute demande de support.
 
 - **Accès interne** : informations pour joindre Jeedom à partir d’un équipement du même réseau que Jeedom (LAN)
-    - **OK/NOK** : indique si la configuration réseau interne est correcte.
-    - **Protocole** : le protocole à utiliser, souvent HTTP.
-    - **Adresse URL ou IP** : IP de Jeedom à renseigner.
-    - **Port** : le port de l’interface web de Jeedom, en général 80.
-        Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même.
-    - **Complément** : le fragment d’URL complémentaire (exemple : /Jeedom) pour accéder à Jeedom.
+  - **Gestion automatique** : Par défaut Jeedom va tenter de déterminer automatiquement l'interface et l'IP liée à l'accès interne. Vous pouvez désactiver ce comporement en cochant cette case mais ce n'est pas recommandé.
+  - **Protocole** : le protocole à utiliser, souvent HTTP.
+  - **Adresse URL ou IP** : IP de Jeedom à renseigner si la gestion automatique est désactivée.
+  - **Port** : le port de l’interface web de Jeedom, en général 80.
+      Attention changer le port ici ne change pas le port réel de Jeedom qui restera le même.
+  - **Complément** : le fragment d’URL complémentaire (exemple : /Jeedom) pour accéder à Jeedom.
+  - **Interfaces** : Cette partie peut ne pas apparaître en fonction de la compatibilité avec votre matériel. Vous y trouverez la liste de vos interfaces réseaux.
 
 - **Accès externe** : informations pour joindre Jeedom de l’extérieur du réseau local. À ne remplir que si vous n’utilisez pas le DNS Jeedom.
-    - **OK/NOK** : indique si la configuration réseau externe est correcte.
-    - **Protocole** : protocole utilisé pour l’accès extérieur.
-    - **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon, donnez l’URL pointant sur l’adresse IP externe de votre réseau.
-    - **Complément** : le fragment d’URL complémentaire (exemple : /Jeedom) pour accéder à Jeedom.
-
-- **Proxy pour Market** : activation du proxy.
-    - Cocher la case activer le proxy.
-    - **Adresse Proxy** : Renseigner l'adresse du proxy,
-    - **Port du Proxy** : Renseigner le port du proxy,
-    - **Login** : Renseigner le login du proxy,
-    - **Mot de passe** : Renseigner le mot de passe.
-
-> **Conseil**
->
-> Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le port est le 80 (par défaut). Pour utiliser HTTPS depuis l’extérieur, un plugin letsencrypt est maintenant disponible sur le market.
-
-> **Conseil**
->
-> Pour savoir si vous avez besoin de définir une valeur dans le champ **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
-
-- **Gestion avancée** : Cette partie peut ne pas apparaître, en fonction de la compatibilité avec votre matériel.
-    Vous y trouverez la liste de vos interfaces réseaux. Vous pourrez indiquer à Jeedom de ne pas monitorer le réseau en cliquant sur **désactiver la gestion du réseau par Jeedom** (à cocher si Jeedom n’est connecté à aucun réseau). Vous pouvez aussi y préciser la plage d'ip locale sous la forme 192.168.1.* (à n'utiliser que dans des installations de type Docker).
-- **Proxy Market** : permet un accès distant à votre Jeedom sans avoir besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box Internet.
-    - **Utiliser les DNS Jeedom** : active les DNS Jeedom (attention cela nécessite au moins un service pack).
+  - **Gestion automatique** : Si la gestion automatique de l'accès externe est désactivée, Jeeodom considèrera toujours l'accès comme ok et utilisera la configuration ci-dessous sans condition (y compris lors de l'utilisation des DNS Jeedom). Il est déconseillé de désactiver la gestion automatique.
+  - **Protocole** : protocole utilisé pour l’accès extérieur.
+  - **Adresse URL ou IP** : IP externe, si elle est fixe. Sinon, donnez l’URL pointant sur l’adresse IP externe de votre réseau.
+  - **Complément** : le fragment d’URL complémentaire (exemple : /Jeedom) pour accéder à Jeedom.
+  - **DNS Market** : permet un accès distant à votre Jeedom sans avoir besoin d’un DNS, d’une IP fixe ou d’ouvrir les ports de votre box Internet.
+    - **Activer les DNS Jeedom** : active les DNS Jeedom (attention cela nécessite au moins un service pack).
     - **Statut DNS** : statut du DNS HTTP.
     - **Gestion** : permet d’arrêter et relancer le service DNS Jeedom.
+
+> **Conseil**
+>
+> Si vous êtes en HTTPS le port est le 443 (par défaut) et en HTTP le port est le 80 (par défaut).
+>
+> Pour savoir si vous avez besoin de définir une valeur dans le champ **complément**, regardez, quand vous vous connectez à Jeedom dans votre navigateur Internet, si vous devez ajouter /Jeedom (ou autre chose) après l’IP.
 
 > **Important**
 >
 > Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et du filtre parental de votre box Internet (sur livebox il faut par exemple le pare-feu en niveau moyen).
+
+- **Réseau local** :
+    Vous pouvez aussi y préciser les adresses des réseaux locaux, séparés par `;`. Les IP exactes, masques, plages IPv4 et réseaux CIDR sont acceptés, par exemple `192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24`.
+
+- **Proxy pour Market** :
+  - **Activer le proxy** Cocher la case activer le proxy.
+  - **Adresse Proxy** : Renseigner l'adresse du proxy,
+  - **Port du Proxy** : Renseigner le port du proxy,
+  - **Login** : Renseigner le login du proxy,
+  - **Mot de passe** : Renseigner le mot de passe.
 
 ## Onglet Logs
 
@@ -280,7 +279,7 @@ Voici donc les différentes options disponibles :
 - **Nombre d’échecs tolérés** : définit le nombre de tentatives successives autorisées avant de bannir l’IP
 - **Temps maximum entre les échecs (en secondes)** : temps maximum pour que 2 tentatives soient considérées comme successives
 - **Durée du bannissement (en secondes), -1 pour infini** : temps de bannissement de l’IP
-- **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies
+- **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies. Plusieurs valeurs peuvent être séparées par `;`. Les IP exactes, masques, plages IPv4 et réseaux CIDR sont acceptés, par exemple `127.0.0.1;192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24`.
 - **Proxys de confiance** : liste des adresses IP ou réseaux des reverse proxys autorisés à transmettre l’adresse IP du client via les en-têtes HTTP. Plusieurs valeurs peuvent être séparées par `;`. Les adresses IP exactes ainsi que les réseaux CIDR IPv4 et IPv6 sont acceptés, par exemple `127.0.0.1;172.18.0.0/16;2001:db8::/32`.
   - Les en-têtes `X-Real-IP`, `X-Forwarded-For` et `CF-Connecting-IP` ne sont pris en compte que si l’adresse de la connexion correspond à un proxy de confiance configuré. En cas d’absence ou de conflit entre ces en-têtes, Jeedom utilise `REMOTE_ADDR`.
   - Si cette configuration est vide, Jeedom conserve temporairement le comportement historique et accepte les en-têtes de proxy. Un message est ajouté au centre des messages afin de vous inviter à configurer cette option.
