@@ -21,16 +21,16 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class network {
 
-	public static function getUserLocation() {
+	public static function getUserLocation(): string {
 		$client_ip = self::getClientIp();
 		$jeedom_ip = self::getNetworkAccess('internal', 'ip', '', false);
 		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
 			return 'external';
 		}
 		if (config::byKey('network::localip') != '') {
-			$localIps = explode(';', config::byKey('network::localip'));
-			foreach ($localIps as $localIp) {
-				if (netMatch($localIp, $client_ip)) {
+			$localNetworkIps = explode(';', config::byKey('network::localip'));
+			foreach ($localNetworkIps as $localNetworkIp) {
+				if (netMatch($localNetworkIp, $client_ip)) {
 					return 'internal';
 				}
 			}
@@ -53,7 +53,18 @@ class network {
 		return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
 	}
 
-	private static function ipMatchesNetwork(string $ip, string $network): bool {
+	/**
+	 * Checks whether an IP address belongs to an IP address or CIDR network.
+	 *
+	 * @param string $ip IP address to check
+	 * @param string $network IP address or CIDR network in IPv4 or IPv6 format
+	 * @return bool True when the IP matches the network, false for invalid or non-matching values
+	 *
+	 * @example network::ipMatchesNetwork('192.168.1.10', '192.168.1.10')
+	 * @example network::ipMatchesNetwork('192.168.1.10', '192.168.1.0/24')
+	 * @example network::ipMatchesNetwork('2001:db8::10', '2001:db8::/32')
+	 */
+	public static function ipMatchesNetwork(string $ip, string $network): bool {
 		$ipBinary = inet_pton($ip);
 		if ($ipBinary === false) {
 			return false;

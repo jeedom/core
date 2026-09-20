@@ -1031,19 +1031,22 @@ function sizeFormat($size) {
  * @param string $ip
  * @return boolean
  */
-function netMatch($network, $ip) {
+function netMatch(string $network, string $ip): bool {
 	$ip = trim($ip);
 	if ($ip == trim($network)) {
 		return true;
 	}
 	$network = str_replace(' ', '', $network);
 	if (strpos($network, '*') !== false) {
+		if (strpos($network, '-') !== false) {
+			return false;
+		}
 		if (strpos($network, '/') !== false) {
 			$asParts = explode('/', $network);
 			if ($asParts[0]) {
 				$network = $asParts[0];
 			} else {
-				$network = null;
+				return false;
 			}
 		}
 		$nCount = substr_count($network, '*');
@@ -1061,21 +1064,7 @@ function netMatch($network, $ip) {
 
 	$d = strpos($network, '-');
 	if ($d === false) {
-		if (strpos($network, '/') === false) {
-			if ($ip == $network) {
-				return true;
-			}
-			return false;
-		}
-		$ip_arr = explode('/', $network);
-		if (!preg_match("@\d*\.\d*\.\d*\.\d*@", $ip_arr[0], $matches)) {
-			$ip_arr[0] .= ".0"; // Alternate form 194.1.4/24
-		}
-		$network_long = ip2long($ip_arr[0]);
-		$x = ip2long($ip_arr[1]);
-		$mask = long2ip($x) == $ip_arr[1] ? $x : (0xffffffff << (32 - $ip_arr[1]));
-		$ip_long = ip2long($ip);
-		return ($ip_long & $mask) == ($network_long & $mask);
+		return network::ipMatchesNetwork($ip, $network);
 	} else {
 		$from = trim(ip2long(substr($network, 0, $d)));
 		$to = trim(ip2long(substr($network, $d + 1)));
