@@ -45,7 +45,7 @@ try {
 	if (method_exists('system', 'checkAndInstall')) {
 		try {
 			echo "Check jeedom package...";
-			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/packages.json'), true), true);
+			system::checkAndInstall(json_decode(file_get_contents(__DIR__ . '/packages.json'), true), true, true);
 			echo "OK\n";
 		} catch (Exception $ex) {
 			echo "***ERROR*** " . $ex->getMessage() . "\n";
