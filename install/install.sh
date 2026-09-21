@@ -252,7 +252,10 @@ step_8_jeedom_customization() {
   echo '' > /etc/apache2/mods-available/alias.conf
 
   mkdir /etc/systemd/system/apache2.service.d
-  echo "[Service]" > /etc/systemd/system/apache2.service.d/override.conf
+  echo "[Unit]" > /etc/systemd/system/apache2.service.d/override.conf
+  echo "After=mariadb.service" >> /etc/systemd/system/apache2.service.d/override.conf
+  echo "Wants=mariadb.service" >> /etc/systemd/system/apache2.service.d/override.conf
+  echo "[Service]" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "Restart=always" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "RestartSec=10" >> /etc/systemd/system/apache2.service.d/override.conf
