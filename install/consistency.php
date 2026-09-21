@@ -147,7 +147,7 @@ try {
 		$cron = new cron();
 		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
 	}
-	if(config::byKey('market::cloudUpload', 0) == 1){
+	if (config::byKey('market::cloudUpload', 0) == 1) {
 		$cron->setSchedule(rand(10, 59) . ' 0' . rand(0, 9) . ' * * *');
 	}
 	$cron->setClass('jeedom');
@@ -387,12 +387,12 @@ try {
 		$cron = new cron();
 		$cron->setClass('network');
 		$cron->setFunction('cron10');
-		$rand_min = rand(0,9);
+		$rand_min = rand(0, 9);
 		$cronString = '';
-		for($i=0;$i<6;$i++){
-			$cronString .= ($rand_min+($i*10)).',';
+		for ($i = 0; $i < 6; $i++) {
+			$cronString .= ($rand_min + ($i * 10)) . ',';
 		}
-		$cronString = trim($cronString,',').' * * * *';
+		$cronString = trim($cronString, ',') . ' * * * *';
 		$cron->setSchedule($cronString);
 		$cron->setEnable(1);
 		$cron->setDeamon(0);
@@ -424,7 +424,7 @@ try {
 		echo "Remove unused ngrok folder...\n";
 		shell_exec(system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../script/ngrok');
 	}
-	
+
 	echo "Check jeedom object...";
 	foreach (jeeObject::all() as $object) {
 		try {
@@ -456,7 +456,7 @@ try {
 		} catch (Exception $exc) {
 		}
 	}
-	
+
 	echo "OK\n";
 
 	if (!file_exists(__DIR__ . '/../data/php/user.function.class.php')) {
@@ -504,14 +504,14 @@ try {
 	echo "OK\n";
 
 	echo "Check nodejs...";
-    echo shell_exec('sudo ' . __DIR__ . '/../resources/install_nodejs.sh');
+	echo shell_exec('sudo ' . __DIR__ . '/../resources/install_nodejs.sh');
 	echo "OK\n";
 
 	echo "Check apache security file...";
 	$apache_security = file_get_contents('/etc/apache2/conf-available/security.conf');
-	if(strpos($apache_security,'jeedom.com') !== false && md5_file(__DIR__ . '/apache_security') != md5_file('/etc/apache2/conf-available/security.conf')){
+	if (strpos($apache_security, 'jeedom.com') !== false && md5_file(__DIR__ . '/apache_security') != md5_file('/etc/apache2/conf-available/security.conf')) {
 		echo "\nApache is configure in security mode and need update I will update file....";
-		echo shell_exec('sudo cp '.__DIR__ . '/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl reload apache2" | sudo at now');
+		echo shell_exec('sudo cp ' . __DIR__ . '/apache_security /etc/apache2/conf-available/security.conf;sudo a2enmod headers;echo "systemctl reload apache2" | sudo at now');
 		echo "OK\n";
 	}
 } catch (Exception $e) {
