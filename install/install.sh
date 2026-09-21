@@ -64,7 +64,7 @@ step_2_mainpackage() {
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
-  apt-get -y install git python3 python3-pip
+  apt-get -y install git python3 python3-pip python3-venv
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
   apt-get -y install gnupg
