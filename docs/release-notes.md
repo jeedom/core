@@ -21,6 +21,7 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-17 18:22:11 | fix localOnly session and deprecate is_Connected method | [#3520](https://github.com/jeedom/core/pull/3520) |
 | 2026-09-17 16:20:52 | Update Node.js version to 24 and adjust armv6 handling | [#3512](https://github.com/jeedom/core/pull/3512) |
 | 2026-09-01 08:12:25 | migrate password sha512 to php native | [#3476](https://github.com/jeedom/core/pull/3476) |
 | 2026-09-01 08:05:52 | add option to avoid infinite save loops in eqLogic import | [#3471](https://github.com/jeedom/core/pull/3471) |
@@ -30,7 +31,8 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
-| 2026-09-17 18:22:11 | fix localOnly session and deprecate is_Connected method | [#3520](https://github.com/jeedom/core/pull/3520) |
+| 2026-09-22 17:59:35 | Fix crash and boot race when the database isn't ready at startup | [#3536](https://github.com/jeedom/core/pull/3536) |
+| 2026-09-22 17:59:18 | Fix apt/dpkg lock race during installation | [#3535](https://github.com/jeedom/core/pull/3535) |
 | 2026-09-17 18:18:54 | fix(update): throw exception for unavailable source | [#3526](https://github.com/jeedom/core/pull/3526) |
 | 2026-09-17 16:40:21 | Fix visible password input in user management | [#3488](https://github.com/jeedom/core/pull/3488) |
 | 2026-09-12 14:06:09 | Fix Docker Test CI failing for pull requests from forks | [#3513](https://github.com/jeedom/core/pull/3513) |
