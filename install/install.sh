@@ -351,6 +351,7 @@ step_11_jeedom_post() {
       echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
       exit 1
     fi
+    chmod 644 /etc/cron.d/jeedom
   fi
   if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
     echo "*/5 * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
@@ -358,6 +359,7 @@ step_11_jeedom_post() {
       echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
       exit 1
     fi
+    chmod 644 /etc/cron.d/jeedom_watchdog
   fi
   usermod -a -G dialout,tty www-data
   if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
