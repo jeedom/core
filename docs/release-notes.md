@@ -31,6 +31,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-22 19:13:52 | Fix Jeedom cron jobs silently ignored due to insecure cron.d permissions | [#3537](https://github.com/jeedom/core/pull/3537) |
 | 2026-09-22 17:59:35 | Fix crash and boot race when the database isn't ready at startup | [#3536](https://github.com/jeedom/core/pull/3536) |
 | 2026-09-22 17:59:18 | Fix apt/dpkg lock race during installation | [#3535](https://github.com/jeedom/core/pull/3535) |
 | 2026-09-17 18:18:54 | fix(update): throw exception for unavailable source | [#3526](https://github.com/jeedom/core/pull/3526) |
