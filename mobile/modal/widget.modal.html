@@ -1,4 +1,8 @@
 <?php
+if (!isConnect('admin')) {
+	throw new Exception('{{401 - Accès non autorisé}}');
+}
+
 $data = init('data');
 $type = init('type');
 ?>
