@@ -1,0 +1,877 @@
+[
+  {
+    "file": "core/js/cmd.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'dateString' is already defined."
+  },
+  {
+    "file": "core/js/cmd.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'durationString' is already defined."
+  },
+  {
+    "file": "core/js/cmd.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'el' is already defined."
+  },
+  {
+    "file": "core/js/cmd.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'refresh' is already defined."
+  },
+  {
+    "file": "core/js/cmd.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'result' is already defined."
+  },
+  {
+    "file": "core/js/core.js",
+    "ruleId": "no-redeclare",
+    "message": "'hashes' is already defined."
+  },
+  {
+    "file": "core/js/core.js",
+    "ruleId": "no-redeclare",
+    "message": "'path' is already defined."
+  },
+  {
+    "file": "core/js/eqLogic.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'packer' is already defined."
+  },
+  {
+    "file": "core/js/eqLogic.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'topMargin' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMax' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMax' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMax' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMax' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMin' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMin' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'mathMin' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'max' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'min' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'opacity' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'options' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'series' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'series' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'split' is already defined."
+  },
+  {
+    "file": "core/js/history.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'unit' is already defined."
+  },
+  {
+    "file": "core/js/log.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'isAuto' is already defined."
+  },
+  {
+    "file": "core/js/object.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'updated' is already defined."
+  },
+  {
+    "file": "core/js/plugin.template.js",
+    "ruleId": "no-redeclare",
+    "message": "'_cmd' is already defined."
+  },
+  {
+    "file": "core/js/plugin.template.js",
+    "ruleId": "no-redeclare",
+    "message": "'group' is already defined."
+  },
+  {
+    "file": "core/js/plugin.template.js",
+    "ruleId": "no-redeclare",
+    "message": "'group' is already defined."
+  },
+  {
+    "file": "core/js/plugin.template.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "core/js/scenario.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'tile' is already defined."
+  },
+  {
+    "file": "core/js/timeline.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'values' is already defined."
+  },
+  {
+    "file": "core/js/view.class.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/administration.js",
+    "ruleId": "no-redeclare",
+    "message": "'el' is already defined."
+  },
+  {
+    "file": "desktop/js/administration.js",
+    "ruleId": "no-redeclare",
+    "message": "'icon' is already defined."
+  },
+  {
+    "file": "desktop/js/administration.js",
+    "ruleId": "no-redeclare",
+    "message": "'objectSummary' is already defined."
+  },
+  {
+    "file": "desktop/js/administration.js",
+    "ruleId": "no-redeclare",
+    "message": "'objectSummary' is already defined."
+  },
+  {
+    "file": "desktop/js/backup.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/dashboard.js",
+    "ruleId": "no-redeclare",
+    "message": "'arHeights' is already defined."
+  },
+  {
+    "file": "desktop/js/dashboard.js",
+    "ruleId": "no-redeclare",
+    "message": "'checkbox' is already defined."
+  },
+  {
+    "file": "desktop/js/dashboard.js",
+    "ruleId": "no-redeclare",
+    "message": "'id_object' is already defined."
+  },
+  {
+    "file": "desktop/js/dashboard.js",
+    "ruleId": "no-redeclare",
+    "message": "'objectContainer' is already defined."
+  },
+  {
+    "file": "desktop/js/database.js",
+    "ruleId": "no-redeclare",
+    "message": "'col' is already defined."
+  },
+  {
+    "file": "desktop/js/database.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/database.js",
+    "ruleId": "no-redeclare",
+    "message": "'value' is already defined."
+  },
+  {
+    "file": "desktop/js/display.js",
+    "ruleId": "no-redeclare",
+    "message": "'eqLogics' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'currentId' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'currentId' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'currentId' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'endDate' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'m_startDate' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'num' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'options' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'startDate' is already defined."
+  },
+  {
+    "file": "desktop/js/history.js",
+    "ruleId": "no-redeclare",
+    "message": "'type' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'el' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'sc' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'type' is already defined."
+  },
+  {
+    "file": "desktop/js/interact.js",
+    "ruleId": "no-redeclare",
+    "message": "'type' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'filters' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'idx' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'inputJValue' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'jValue' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'jValue' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'jValues' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'key' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'key' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'key' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'newOption' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'newOption' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'newOption' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'selectJValues' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'url' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'url' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'value' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'value' is already defined."
+  },
+  {
+    "file": "desktop/js/massedit.js",
+    "ruleId": "no-redeclare",
+    "message": "'values' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'object' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'objectId' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'summary' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'type' is already defined."
+  },
+  {
+    "file": "desktop/js/object.js",
+    "ruleId": "no-redeclare",
+    "message": "'type' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'cmdIds' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'id' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'id' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'objectId' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'title' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'url' is already defined."
+  },
+  {
+    "file": "desktop/js/overview.js",
+    "ruleId": "no-redeclare",
+    "message": "'url' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'img' is already defined."
+  },
+  {
+    "file": "desktop/js/plan.js",
+    "ruleId": "no-redeclare",
+    "message": "'style' is already defined."
+  },
+  {
+    "file": "desktop/js/plan3d.js",
+    "ruleId": "no-redeclare",
+    "message": "'hemiLight' is already defined."
+  },
+  {
+    "file": "desktop/js/plugin.js",
+    "ruleId": "no-redeclare",
+    "message": "'config_panel_html' is already defined."
+  },
+  {
+    "file": "desktop/js/plugin.js",
+    "ruleId": "no-redeclare",
+    "message": "'config_panel_html' is already defined."
+  },
+  {
+    "file": "desktop/js/plugin.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/plugin.js",
+    "ruleId": "no-redeclare",
+    "message": "'pluginId' is already defined."
+  },
+  {
+    "file": "desktop/js/replace.js",
+    "ruleId": "no-redeclare",
+    "message": "'_cmd' is already defined."
+  },
+  {
+    "file": "desktop/js/replace.js",
+    "ruleId": "no-redeclare",
+    "message": "'optionsCmds' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'clickedBloc' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'element' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'expression' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'id' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'idx' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'items' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'j' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'k' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'k' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'k' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'msg' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'newEL' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'newEL' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'scenario' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'scenario' is already defined."
+  },
+  {
+    "file": "desktop/js/scenario.js",
+    "ruleId": "no-redeclare",
+    "message": "'scenario' is already defined."
+  },
+  {
+    "file": "desktop/js/system.js",
+    "ruleId": "no-redeclare",
+    "message": "'command' is already defined."
+  },
+  {
+    "file": "desktop/js/timeline.js",
+    "ruleId": "no-redeclare",
+    "message": "'content' is already defined."
+  },
+  {
+    "file": "desktop/js/timeline.js",
+    "ruleId": "no-redeclare",
+    "message": "'isFirstOfDay' is already defined."
+  },
+  {
+    "file": "desktop/js/timeline.js",
+    "ruleId": "no-redeclare",
+    "message": "'isLastOfDay' is already defined."
+  },
+  {
+    "file": "desktop/js/timeline.js",
+    "ruleId": "no-redeclare",
+    "message": "'prevDate' is already defined."
+  },
+  {
+    "file": "desktop/js/timeline.js",
+    "ruleId": "no-redeclare",
+    "message": "'prevDateTs' is already defined."
+  },
+  {
+    "file": "desktop/js/types.js",
+    "ruleId": "no-redeclare",
+    "message": "'_cmd' is already defined."
+  },
+  {
+    "file": "desktop/js/types.js",
+    "ruleId": "no-redeclare",
+    "message": "'_id' is already defined."
+  },
+  {
+    "file": "desktop/js/types.js",
+    "ruleId": "no-redeclare",
+    "message": "'_id' is already defined."
+  },
+  {
+    "file": "desktop/js/types.js",
+    "ruleId": "no-redeclare",
+    "message": "'idx' is already defined."
+  },
+  {
+    "file": "desktop/js/types.js",
+    "ruleId": "no-redeclare",
+    "message": "'thisCmd' is already defined."
+  },
+  {
+    "file": "desktop/js/update.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/update.js",
+    "ruleId": "no-redeclare",
+    "message": "'id' is already defined."
+  },
+  {
+    "file": "desktop/js/update.js",
+    "ruleId": "no-redeclare",
+    "message": "'id' is already defined."
+  },
+  {
+    "file": "desktop/js/update.js",
+    "ruleId": "no-redeclare",
+    "message": "'logicalId' is already defined."
+  },
+  {
+    "file": "desktop/js/update.js",
+    "ruleId": "no-redeclare",
+    "message": "'offset' is already defined."
+  },
+  {
+    "file": "desktop/js/update.js",
+    "ruleId": "no-redeclare",
+    "message": "'updClass' is already defined."
+  },
+  {
+    "file": "desktop/js/user.js",
+    "ruleId": "no-redeclare",
+    "message": "'user' is already defined."
+  },
+  {
+    "file": "desktop/js/user.js",
+    "ruleId": "no-redeclare",
+    "message": "'user' is already defined."
+  },
+  {
+    "file": "desktop/js/view_edit.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/widgets.js",
+    "ruleId": "no-redeclare",
+    "message": "'i' is already defined."
+  },
+  {
+    "file": "desktop/js/widgets.js",
+    "ruleId": "no-redeclare",
+    "message": "'params' is already defined."
+  },
+  {
+    "file": "desktop/js/widgets.js",
+    "ruleId": "no-unreachable",
+    "message": "Unreachable code."
+  }
+]
