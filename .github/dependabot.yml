@@ -11,3 +11,5 @@ updates:
     target-branch: "develop"
     schedule:
       interval: "monthly"
+    ignore:
+      - dependency-name: "StephaneBour/actions-php-lint"

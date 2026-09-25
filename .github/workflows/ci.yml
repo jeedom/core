@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Reason'
+        default: 'Manual launch'
+
+jobs:
+
+  composer-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Validate composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: 7.4
+          command: validate
+          args: --no-check-publish
+
+  php-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Do not upgrade this action to 8.4 or upper; PHP 7.4 linting is required.
+      - uses: StephaneBour/actions-php-lint@7.4
+        with:
+          dir: '.'
+
+  phpstan:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.4, 8.2, 8.4]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP ${{ matrix.php }} for dependencies
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --configuration phpstan.neon --error-format=github
