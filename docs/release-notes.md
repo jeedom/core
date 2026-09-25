@@ -3,6 +3,8 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-17 18:29:07 | Add input validation and update configuration fields in administratin / security | [#3517](https://github.com/jeedom/core/pull/3517) |
+| 2026-09-14 09:15:53 | feat: Enhance register device management with lifetime configuration | [#3511](https://github.com/jeedom/core/pull/3511) |
 | 2026-09-08 08:58:08 | Feature: add audit log | [#3493](https://github.com/jeedom/core/pull/3493) |
 | 2026-09-04 21:34:21 | Add Debian 13 Trixie compatibility and raises minimum required to Debian 12 | [#3483](https://github.com/jeedom/core/pull/3483) |
 | 2026-09-04 21:28:50 | Update Highstock/Highcharts to 12.6.0 | [#3457](https://github.com/jeedom/core/pull/3457) |
@@ -19,6 +21,8 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-17 18:22:11 | fix localOnly session and deprecate is_Connected method | [#3520](https://github.com/jeedom/core/pull/3520) |
+| 2026-09-17 16:20:52 | Update Node.js version to 24 and adjust armv6 handling | [#3512](https://github.com/jeedom/core/pull/3512) |
 | 2026-09-01 08:12:25 | migrate password sha512 to php native | [#3476](https://github.com/jeedom/core/pull/3476) |
 | 2026-09-01 08:05:52 | add option to avoid infinite save loops in eqLogic import | [#3471](https://github.com/jeedom/core/pull/3471) |
 | 2026-08-17 12:18:51 | Centralize eqLogic remove confirmation and post-delete redirect | [#3415](https://github.com/jeedom/core/pull/3415) |
@@ -27,6 +31,12 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-22 19:13:52 | Fix Jeedom cron jobs silently ignored due to insecure cron.d permissions | [#3537](https://github.com/jeedom/core/pull/3537) |
+| 2026-09-22 17:59:35 | Fix crash and boot race when the database isn't ready at startup | [#3536](https://github.com/jeedom/core/pull/3536) |
+| 2026-09-22 17:59:18 | Fix apt/dpkg lock race during installation | [#3535](https://github.com/jeedom/core/pull/3535) |
+| 2026-09-17 18:18:54 | fix(update): throw exception for unavailable source | [#3526](https://github.com/jeedom/core/pull/3526) |
+| 2026-09-17 16:40:21 | Fix visible password input in user management | [#3488](https://github.com/jeedom/core/pull/3488) |
+| 2026-09-12 14:06:09 | Fix Docker Test CI failing for pull requests from forks | [#3513](https://github.com/jeedom/core/pull/3513) |
 | 2026-09-10 08:24:24 | Remove session_id from registeredDevice options in toArray method | [#3507](https://github.com/jeedom/core/pull/3507) |
 | 2026-09-09 18:00:41 | Review user_connect & audit log fine tuning | [#3504](https://github.com/jeedom/core/pull/3504) |
 | 2026-09-08 09:56:11 | Refactor user input handling: add validation and sanitization methods for login and password | [#3500](https://github.com/jeedom/core/pull/3500) |
@@ -84,12 +94,17 @@
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-25 16:15:34 | Harmonize the CI status badge in the READMEs | [#3541](https://github.com/jeedom/core/pull/3541) |
+| 2026-09-14 19:57:17 | Fix broken lightbox image paths in doc pages | [#3523](https://github.com/jeedom/core/pull/3523) |
+| 2026-09-14 18:57:16 | Remove obsolete and mismatched documentation files | [#3522](https://github.com/jeedom/core/pull/3522) |
+| 2026-09-14 15:22:49 | Rework documentation: bilingual README, fixed broken links/images, dropped pt_PT | [#3515](https://github.com/jeedom/core/pull/3515) |
 | 2026-09-10 14:42:25 | Add automated documentation translation and publishing workflow | [#3460](https://github.com/jeedom/core/pull/3460) |
 | 2026-07-16 09:18:32 | 2 wording corrections in Objects documentation (object.md) | [#3422](https://github.com/jeedom/core/pull/3422) |
 
 ## Developer
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-25 13:30:53 | Chore: clean workflow | [#3530](https://github.com/jeedom/core/pull/3530) |
 | 2026-09-07 09:36:53 | Drop bullseye from CI and Docker Hub build matrices | [#3492](https://github.com/jeedom/core/pull/3492) |
 | 2026-09-01 10:51:55 | Refactor draft release notes workflow to remove tag date retrieval and improve PR fetching logic | [#3481](https://github.com/jeedom/core/pull/3481) |
 | 2026-09-01 08:55:47 | Merge back to develop hotfix 4.6.1 | [#3480](https://github.com/jeedom/core/pull/3480) |

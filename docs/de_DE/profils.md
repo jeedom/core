@@ -1,45 +1,45 @@
-# Vorlieben
-**Einstellungen → Einstellungen**
+# Einstellungen
+**Einstellungen → Voreinstellungen**
 
-Auf der Seite &quot;Einstellungen&quot; können Sie bestimmte benutzerspezifische Jeedom-Verhaltensweisen konfigurieren.
+Auf der Seite „Einstellungen“ können Sie bestimmte benutzerspezifische Funktionen von Jeedom konfigurieren.
 
-## Registerkarte &quot;Einstellungen&quot;
+## Registerkarte „Einstellungen“
 
-### Interface
+### Benutzeroberfläche
 
-Definiert bestimmte Schnittstellenverhalten
+Legt bestimmte Verhaltensweisen der Benutzeroberfläche fest
 
-- **Standardseite** : Seite, die standardmäßig angezeigt wird, wenn eine Verbindung zum Desktop oder Handy hergestellt wird.
-- **Standardobjekt** : Objekt, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
+- **Standardseite**: Die Seite, die standardmäßig angezeigt wird, wenn man sich über einen Desktop-Computer oder ein Mobilgerät anmeldet.
+- **Standardobjekt**: Objekt, das standardmäßig angezeigt wird, wenn man das Dashboard bzw. die mobile App aufruft.
 
-- **Standardansicht** : Ansicht, die standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
-- **Klappen Sie das Ansichtsfenster auf** : Wird verwendet, um das Ansichtsmenü (links) standardmäßig in den Ansichten sichtbar zu machen.
+- **Standardansicht**: Die Ansicht, die standardmäßig angezeigt wird, wenn man das Dashboard bzw. die mobile App aufruft.
+- **Ansichtsleiste einblenden**: Damit wird das Ansichtsmenü (links) standardmäßig in den Ansichten angezeigt.
 
-- **Standarddesign** : Design, das standardmäßig bei der Ankunft im Dashboard / Handy angezeigt wird.
-- **Vollbild-Design** : Standardanzeige im Vollbildmodus bei Ankunft bei Designs.
+- **Standarddesign**: Das Design, das standardmäßig angezeigt wird, wenn man das Dashboard aufruft / auf dem Handy.
+- **Vollbild-Design**: Standardmäßig wird beim Aufrufen der Designs eine Vollbildansicht angezeigt.
 
-- **Standard-3D-Design** : 3D-Design wird standardmäßig angezeigt, wenn Sie auf dem Dashboard / Handy ankommen.
-- **Vollbild-3D-Design** : Standardanzeige im Vollbildmodus bei Ankunft in 3D-Designs.
+- **Standard-3D-Design**: Das 3D-Design, das standardmäßig angezeigt wird, wenn man das Dashboard bzw. die mobile App aufruft.
+- **3D-Design im Vollbildmodus**: Standardmäßig wird beim Aufrufen der 3D-Designs der Vollbildmodus angezeigt.
 
-### Notifications
+### Benachrichtigungen
 
-- **Benutzerbenachrichtigungsbefehl** : Standardbefehl, um sich Ihnen anzuschließen (Nachrichtentyp Befehl).
+- **Benachrichtigungsbefehl**: Standardbefehl, um Sie zu erreichen (Befehl vom Typ „Nachricht“).
 
-## Registerkarte &quot;Sicherheit&quot;
+## Registerkarte „Sicherheit“
 
-- **2-stufige Authentifizierung** : Ermöglicht die Konfiguration der Authentifizierung in zwei Schritten (zur Erinnerung: Es handelt sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen Anwendung angezeigt wird *Google Authentifikator*). Beachten Sie, dass eine doppelte Authentifizierung nur für externe Verbindungen angefordert wird. Bei lokalen Verbindungen wird der Code daher nicht angefordert.
+- **Zwei-Faktor-Authentifizierung**: Hiermit lässt sich die Zwei-Faktor-Authentifizierung einrichten (zur Erinnerung: Dabei handelt es sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen App wie *Google Authenticator* angezeigt wird). Bitte beachten Sie, dass die Zwei-Faktor-Authentifizierung nur bei externen Verbindungen erforderlich ist. Bei lokalen Verbindungen wird der Code daher nicht abgefragt.
 
-  **Wichtig** Wenn Sie während der Konfiguration der doppelten Authentifizierung einen Fehler haben, müssen Sie überprüfen, ob Jeedom (siehe auf der Gesundheitsseite) und Ihr Telefon gleichzeitig in Ordnung sind (1 Minute Unterschied reicht aus, damit es nicht funktioniert).
+**Wichtig**: Wenn bei der Einrichtung der Zwei-Faktor-Authentifizierung ein Fehler auftritt, überprüfen Sie bitte, ob Jeedom (siehe Seite „Status“) und Ihr Smartphone auf die gleiche Uhrzeit eingestellt sind (schon eine Abweichung von einer Minute reicht aus, damit es nicht funktioniert).
 
-- **Passwort** : Ermöglicht das Ändern Ihres Passworts (vergessen Sie nicht, es unten erneut einzugeben).
+- **Passwort**: Hier können Sie Ihr Passwort ändern (vergessen Sie nicht, es unten noch einmal einzugeben).
 
-- **Benutzer-Hash** : Ihr Benutzer-API-Schlüssel.
+- **Benutzer-Hash**: Ihr Benutzer-API-Schlüssel.
 
 ### Aktive Sitzungen
 
-Hier haben Sie die Liste Ihrer aktuell verbundenen Sitzungen, ihre ID, ihre IP sowie das Datum der letzten Kommunikation. Durch Klicken auf &quot;Trennen&quot; wird der Benutzer getrennt. Seien Sie vorsichtig, wenn es sich auf einem registrierten Gerät befindet. Dadurch wird auch die Registrierung gelöscht.
+Hier finden Sie eine Liste Ihrer derzeit angemeldeten Sitzungen mit deren ID, IP-Adresse sowie dem Datum der letzten Kommunikation. Wenn Sie auf „Abmelden“ klicken, wird der Benutzer abgemeldet. Achtung: Befindet sich der Benutzer auf einem registrierten Gerät, wird dadurch auch die Registrierung gelöscht.
 
 ### Registrierte Geräte
 
-Hier finden Sie die Liste aller registrierten Geräte (die ohne Authentifizierung eine Verbindung herstellen) zu Ihrem Jeedom sowie das Datum der letzten Verwendung.
-Hier können Sie die Registrierung eines Geräts löschen. Achtung, es trennt es nicht, sondern verhindert nur die automatische Wiederverbindung.
+Hier finden Sie eine Liste aller bei Ihrem Jeedom registrierten Geräte (die sich ohne Authentifizierung verbinden) sowie das Datum der letzten Nutzung.
+Hier können Sie die Registrierung eines Geräts löschen. Bitte beachten Sie, dass das Gerät dadurch nicht getrennt wird, sondern lediglich die automatische Wiederverbindung verhindert wird.

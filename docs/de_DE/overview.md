@@ -1,50 +1,50 @@
-# Synthese
-**Home → Zusammenfassung**
+# Zusammenfassung
+**Startseite → Übersicht**
 
-Die Seite *Synthese* bietet Ihnen eine zentralisierte visuelle Synthese Ihrer Objekte und ihrer Zusammenfassungen.
+Die Seite *Übersicht* bietet Ihnen eine visuelle und zentralisierte Übersicht über Ihre Objekte und deren Zusammenfassungen.
 
-![Synthese](./images/synthesis_intro.gif)
+![Zusammenfassung](../images/synthesis_intro.gif)
 
-Damit es seine volle Bedeutung annehmen kann, muss es für jedes Objekt die Zusammenfassungen und ein Hintergrundbild konfigurieren : [Siehe Abstracts-Dokumentation.](/de_DE/concept/summary)
+Damit dies richtig funktioniert, müssen für jedes Objekt die Zusammenfassungen und ein Hintergrundbild konfiguriert werden: [Siehe Dokumentation zu den Zusammenfassungen.](https://doc.jeedom.com/concept/de_DE/summary)
 
-Sie können es als Standardseite in konfigurieren **Einstellungen → Einstellungen**, auf dem Desktop und / oder auf dem Handy.
+Sie können sie unter **Einstellungen → Voreinstellungen** als Standardseite festlegen, sowohl für den Desktop als auch für Mobilgeräte.
 
-## Affichage
+## Anzeige
 
-Auf jedem Objekt werden sein Hintergrundbild und seine Zusammenfassungen angezeigt :
+Zu jedem Objekt werden dessen Hintergrundbild und Zusammenfassungen angezeigt:
 
-Abhängig von der Art der Zusammenfassung (Schlüssel), sichtbar in **Einstellungen → System → Konfiguration / Zusammenfassungen** :
-- Oben links : Der Name des Objekts.
-- Oben rechts : Temperatur (*Temperatur*) und Feuchtigkeit (*Luftfeuchtigkeit*).
-- Unter dem Titel : Alarm (*Sicherheit*) und Bewegung (*Bewegung*), grün oder rot gefärbt, je nachdem, ob Warnungen / Bewegungen ausgeführt werden.
-- Unten : Alle anderen Fachzusammenfassungen.
+Je nach Art der Zusammenfassung (Schlüssel), einsehbar unter **Einstellungen → System → Konfiguration / Zusammenfassungen**:
+- Oben links: Der Name des Objekts.
+- Oben rechts: Temperatur (*temperature*) und Luftfeuchtigkeit (*humidity*).
+- Unter den Überschriften: Alarm (*security*) und Bewegung (*motion*), die je nachdem, ob ein oder mehrere Alarme bzw. Bewegungen vorliegen, grün oder rot eingefärbt sind.
+- Unten: Alle weiteren Zusammenfassungen zum Objekt.
 
-Die Konfiguration der Anzeige des Objekts erfolgt in **Werkzeuge → Objekte** :
+Die Konfiguration der Objektanzeige erfolgt unter **Extras → Objekte**:
 - Sein Name.
-- Wenn es sichtbar ist. Sie können ein Objekt jedoch auch im Dashboard sichtbar lassen, aber ankreuzen *Zusammenfassung ausblenden*.
+- Wenn es sichtbar ist. Sie können ein Objekt jedoch auch auf dem Dashboard sichtbar lassen, indem Sie das Kontrollkästchen *In der Übersicht ausblenden* aktivieren.
 - Sein Hintergrundbild.
-- Wenn das Hintergrundbild nur auf der Zusammenfassungsseite oder auch einmal im Hintergrund auf dem Objekt verwendet werden soll.
-- Die Elemente seiner Zusammenfassungen in der Registerkarte *Zusammenfassung*.
+- Soll das Hintergrundbild nur auf der Übersichtsseite oder auch als Hintergrund im Objekt selbst verwendet werden?
+- Die Elemente seiner Zusammenfassungen auf der Registerkarte *Zusammenfassung*.
 
-> **Beratung**
+> **Tipp**
 >
-> Die Anzeigereihenfolge von Objekten ist die von *Übersicht Haus-Automatisierung*, die Sie nachbestellen können (Analyse → Zusammenfassung der Hausautomation).
+> Die Reihenfolge der Objekte entspricht der Reihenfolge in der *Hausautomationsübersicht*, die Sie neu anordnen können (Analyse → Hausautomationsübersicht).
 
-> **Notiz**
+> **Hinweis**
 >
-> Wenn für ein Objekt keine Zusammenfassung definiert ist, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration / Zusammenfassungen des Objekts zugreifen können.
+> Wenn für ein Objekt keine Zusammenfassung definiert ist, wird oben rechts eine Schaltfläche angezeigt, über die Sie auf die Konfiguration bzw. die Zusammenfassungen des Objekts zugreifen können.
 
-## Fonctions
+## Funktionen
 
-Für jedes Objekt können Sie klicken :
-- Über den Titel des Objekts wird das Dashboard dieses Objekts mit seinen untergeordneten Objekten angezeigt (auch über das Menü zugänglich *Home → Dashboard → Objekt*).
-- Auf dem Bild nur die Ausrüstungsseite dieses Objekts öffnen.
-- Auf einem Zusammenfassungselement, um die Elemente dieses Objekts dieses Typs anzuzeigen. Diese werden modal angezeigt, ohne die Seite zu ändern, und ermöglichen es Ihnen, einen Verschluss schnell zu schließen, ein Licht einzuschalten usw. Die Größe des Modals passt sich an das Gerät an, das angezeigt werden muss, aber Sie können es verschieben. Selbst wenn das Modal der Zusammenfassungen geöffnet ist, können Sie auf andere Zusammenfassungen klicken.
+Bei jedem Objekt können Sie auf Folgendes klicken:
+- Klicken Sie auf den Titel des Objekts, um das Dashboard dieses Objekts mit seinen untergeordneten Objekten anzuzeigen (auch über das Menü *Startseite → Dashboard → Objekt* erreichbar).
+- Klicken Sie auf das Bild, um die Seite mit den Geräten dieses Objekts zu öffnen.
+- Klicken Sie auf ein Zusammenfassungselement, um die Elemente dieses Objekts bzw. dieses Typs anzuzeigen. Diese werden in einem Popup-Fenster angezeigt, ohne dass die Seite gewechselt wird, und ermöglichen es Ihnen, schnell einen Rollladen zu schließen, ein Licht einzuschalten usw. Die Größe des Popup-Fensters passt sich den anzuzeigenden Geräten an, Sie können es jedoch verschieben. Auch wenn das Übersichts-Modalfenster geöffnet ist, können Sie auf andere Übersichten klicken.
 
 
-> **Beratung**
+> **Tipp**
 >
-> Strg Klicken oder Mitte Klicken Sie auf das Objekt oder ein Zusammenfassungselement öffnet eine weitere Registerkarte Ihres Browsers.
+> Strg-Klick oder Klick mit der mittleren Maustaste auf das Objekt oder ein Zusammenfassungselement öffnet einen weiteren Tab in Ihrem Browser.
 
-Wenn Sie in der Synthese auf ein Objekt klicken, wird die Schaltfläche links neben der Suchleiste durch eine Schaltfläche ersetzt, mit der eine Vorschau der Teile angezeigt werden kann, um schneller dorthin zu gelangen.
+Wenn Sie in der Übersicht auf ein Objekt klicken, wird die Schaltfläche links neben der Suchleiste durch eine Schaltfläche ersetzt, mit der Sie eine Raumübersicht anzeigen können, um schneller dorthin zu gelangen.
 

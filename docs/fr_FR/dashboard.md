@@ -6,10 +6,10 @@
 Le dashboard est une des pages principales de Jeedom, il affiche un compte-rendu de toute votre domotique.
 Ce compte-rendu (contrairement aux vues et designs) est auto-généré par Jeedom et comprend l'ensemble des objets visibles et leurs équipements.
 
-{% include lightbox.html src="images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-dashboard-legends.png" data="Dashboard" title="Dashboard" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 - 1 : Menu principal de Jeedom.
-- 2 : Résumé global [Documentation sur les résumés.](/fr_FR/concept/summary).
+- 2 : Résumé global [Documentation sur les résumés.](https://doc.jeedom.com/concept/fr_FR/summary).
 - 3 : Heure du navigateur, raccourci vers la Timeline.
 - 4 : Bouton pour accéder à la documentation de la page en cours.
 - 5 : Nom de votre Jeedom, raccourci vers la configuration.
@@ -59,7 +59,7 @@ En mode édition (*le crayon tout en haut à droite*), vous pouvez changer la ta
 
 Les icônes refresh des équipements sont remplacées par une icône permettant d'accéder à leur configuration. Cette icône ouvre une fenêtre d'édition comportant les paramètres d'affichage de l'équipement et de ses commandes.
 
-![Mode édition](./images/EditDashboardModal.gif)
+![Mode édition](../images/EditDashboardModal.gif)
 
 Sur chaque objet, à droite de son nom et résumé, deux icônes permettent d'aligner la hauteur de toutes les tuiles de l'objet sur la plus haute ou la moins haute.
 

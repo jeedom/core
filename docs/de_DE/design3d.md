@@ -1,114 +1,114 @@
 # 3D-Design
 **Startseite → Design3D**
 
-Auf dieser Seite können Sie eine 3D-Ansicht Ihres Hauses erstellen, die abhängig vom Status der verschiedenen Informationen in Ihrer Hausautomation reagieren kann.
+Auf dieser Seite können Sie eine 3D-Ansicht Ihres Zuhauses erstellen, die je nach Status der verschiedenen Daten Ihres Hausautomationssystems reagieren kann.
 
 
-> **Beratung**
+> **Tipp**
 >
-> Dank des Untermenüs ist es möglich, direkt zu einem 3D-Design zu wechseln.
+> Über das Untermenü kann man direkt zu einem 3D-Entwurf wechseln.
 
-## 3D-Modell importieren
+## Import des 3D-Modells
 
 > **WICHTIG**
 >
-> Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen. Dies muss mit Software von Drittanbietern erfolgen. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
+> Sie können Ihr 3D-Modell nicht direkt in Jeedom erstellen, sondern müssen dafür eine Drittanbieter-Software verwenden. Wir empfehlen das sehr gute SweetHome3d (http://www.sweethome3d.com/fr/).
 
-Sobald Ihr 3D-Modell erstellt wurde, muss es im OBJ-Format exportiert werden. Wenn Sie SweetHome3d verwenden, erfolgt dies über das Menü "3D-Ansicht" und dann über "In OBJ-Format exportieren"". Nehmen Sie dann alle generierten Dateien und fügen Sie sie in eine Zip-Datei ein (aufgrund der Texturen können viele Dateien vorhanden sein).
-
-> **WICHTIG**
->
-> Die Dateien müssen sich im Stammverzeichnis der Zip-Datei befinden und dürfen sich nicht in einem Unterordner befinden.
-
-> **AUFMERKSAMKEIT**
->
-> Ein 3D-Modell ist ziemlich groß (es kann mehrere hundert MB darstellen)). Je größer es ist, desto länger ist die Renderzeit in Jeedom.
-
-Sobald Ihr 3D-Modell exportiert wurde, müssen Sie in Jeedom ein neues 3D-Design erstellen. Dazu müssen Sie in den Bearbeitungsmodus wechseln, indem Sie auf den kleinen Stift rechts klicken, dann auf das + klicken, diesem neuen 3D-Design einen Namen geben und es dann bestätigen.
-
-Jeedom wechselt automatisch zum neuen 3D-Design. Sie müssen in den Bearbeitungsmodus zurückkehren und auf die kleinen gekerbten Räder klicken.
-
-Von diesem Bildschirm aus können Sie :
-
-- Ändern Sie den Namen Ihres Designs
-- Fügen Sie einen Zugangscode hinzu
-- Wählen Sie ein Symbol
-- Importieren Sie Ihr 3D-Modell
-
-Klicken Sie auf der Ebene &quot;3D-Modell&quot; auf die Schaltfläche &quot;Senden&quot; und wählen Sie Ihre Zip-Datei aus
-
-> **AUFMERKSAMKEIT**
->
-> Jeedom autorisiert den Import einer Datei mit maximal 150 Monaten !
-
-> **AUFMERKSAMKEIT**
->
-> Sie müssen eine Zip-Datei haben.
-
-> **Beratung**
->
-> Nachdem die Datei importiert wurde (sie kann je nach Größe der Datei sehr lang sein), müssen Sie die Seite aktualisieren, um das Ergebnis anzuzeigen (F5).
-
-
-## Konfiguration von Elementen
+Sobald Sie Ihr 3D-Modell erstellt haben, müssen Sie es im OBJ-Format exportieren. Wenn Sie SweetHome3D verwenden, erfolgt dies über das Menü „3D-Ansicht“ und dann „Als OBJ exportieren“. Anschließend müssen Sie alle erzeugten Dateien in eine ZIP-Datei packen (aufgrund der Texturen kann es viele Dateien geben).
 
 > **WICHTIG**
 >
-> Die Konfiguration kann nur im Bearbeitungsmodus erfolgen.
+> Die Dateien müssen sich im Stammverzeichnis der ZIP-Datei befinden und dürfen nicht in einem Unterordner liegen.
 
-Doppelklicken Sie auf das Element, das Sie konfigurieren möchten, um ein Element im 3D-Design zu konfigurieren. Dies zeigt ein Fenster an, in dem Sie können :
+> **ACHTUNG**
+>
+> Ein 3D-Modell ist ziemlich groß (es kann mehrere hundert MB umfassen). Je größer es ist, desto länger dauert das Rendern in Jeedom.
 
-- Geben Sie einen Verbindungstyp an (derzeit ist nur Ausrüstung vorhanden)
-- Geben Sie den Link zu dem betreffenden Element ein. Hier können Sie momentan nur einen Link zu einem Gerät setzen. Dies ermöglicht es beim Klicken auf den Gegenstand, die Ausrüstung aufzurufen
-- Spezifität definieren : Es gibt einige, die wir gleich danach sehen werden. Dies ermöglicht es, den Gerätetyp und damit die Anzeige von Informationen festzulegen
+Sobald Sie Ihr 3D-Modell exportiert haben, müssen Sie in Jeedom ein neues 3D-Design erstellen. Wechseln Sie dazu in den Bearbeitungsmodus, indem Sie auf den kleinen Bleistift rechts klicken, klicken Sie anschließend auf das „+“, geben Sie diesem neuen 3D-Design einen Namen und bestätigen Sie die Eingabe.
 
-### Licht
+Jeedom wechselt automatisch zum neuen 3D-Design. Sie müssen erneut in den Bearbeitungsmodus wechseln und auf die kleinen Zahnräder klicken.
 
-- Status : Die Lichtstatussteuerung kann binär (0 oder 1), digital (0 bis 100%) oder farbig sein
-- Leistung : Lampenleistung (bitte beachten Sie, dass dies möglicherweise nicht die Realität widerspiegelt))
+Auf diesem Bildschirm haben Sie folgende Möglichkeiten:
 
-### Texte
+- Den Namen Ihres Designs ändern
+- Zugangscode hinzufügen
+- Ein Symbol auswählen
+- 3D-Modell importieren
 
-- Text : anzuzeigender Text (Sie können dort Befehle eingeben, der Text wird bei Änderung automatisch aktualisiert)
+Klicken Sie auf die Schaltfläche „Senden“ unter „3D-Modell“ und wählen Sie Ihre ZIP-Datei aus.
+
+> **ACHTUNG**
+>
+> Jeedom erlaubt den Import einer Datei mit einer maximalen Größe von 150 MB!
+
+> **ACHTUNG**
+>
+> Es muss sich zwingend um eine ZIP-Datei handeln.
+
+> **Tipp**
+>
+> Sobald der Import der Datei abgeschlossen ist (dies kann je nach Dateigröße eine Weile dauern), müssen Sie die Seite aktualisieren, um das Ergebnis zu sehen (F5).
+
+
+## Konfiguration der Komponenten
+
+> **WICHTIG**
+>
+> Die Konfiguration kann nur im Bearbeitungsmodus vorgenommen werden.
+
+Um ein Element im 3D-Design zu konfigurieren, doppelklicken Sie auf das Element, das Sie konfigurieren möchten. Daraufhin wird ein Fenster angezeigt, in dem Sie folgende Möglichkeiten haben:
+
+- Geben Sie einen Linktyp an (derzeit ist nur „Ausstattung“ verfügbar)
+- Geben Sie den Link zum betreffenden Element ein. Derzeit können Sie hier nur einen Link zu einem Gerät einfügen. Dadurch wird beim Anklicken des Elements das Gerät angezeigt.
+- Spezifikation festlegen: Hier gibt es mehrere Optionen, die wir gleich im Folgenden betrachten werden. Damit lässt sich der Gerätetyp und somit die Anzeige der Informationen festlegen.
+
+### Beleuchtung
+
+- Status: Der Befehl zum Lichtstatus kann ein binärer Wert (0 oder 1), ein numerischer Wert (von 0 bis 100 %) oder eine Farbe sein
+- Leistung: Nennleistung der Glühbirne (Achtung: Diese Angabe entspricht möglicherweise nicht der tatsächlichen Leistung)
+
+### Text
+
+- Text: Anzuzeigender Text (Sie können hier Befehle eingeben; der Text wird bei einer Änderung automatisch aktualisiert)
 - Textgröße
 - Textfarbe
-- Texttransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
+- Transparenz des Textes: von 0 (unsichtbar) bis 1 (sichtbar)
 - Hintergrundfarbe
-- Hintergrundtransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
-- Randfarbe
-- Grenztransparenz : von 0 (unsichtbar) bis 1 (sichtbar))
-- Platz über dem Objekt : Ermöglicht die Angabe des Abstands des Texts zum Element
+- Hintergrundtransparenz: von 0 (unsichtbar) bis 1 (sichtbar)
+- Farbe des Rahmens
+- Transparenz des Rahmens: von 0 (unsichtbar) bis 1 (sichtbar)
+- Abstand oberhalb des Objekts: Hiermit kann der Abstand des Textes zum Element festgelegt werden
 
-### Tür / Fenster
+### Tür/Fenster
 
-#### Tür / Fenster
+#### Tür/Fenster
 
-- Zustand : Tür- / Fensterstatus, 1 geschlossen und 0 offen
+- Status: Status der Tür/des Fensters, 1 = geschlossen und 0 = geöffnet
 - Rotation
-	- Aktivieren : Aktiviert die Drehung der Tür / des Fensters beim Öffnen
-	- Öffnung : Am besten testen Sie, ob es zu Ihrer Tür / Ihrem Fenster passt
-- Translation
-	- Aktivieren : aktiviert die Übersetzung beim Öffnen (Schiebetür- / Fenstertyp))
-	- Sinn : Richtung, in die sich die Tür / das Fenster bewegen soll (Sie haben oben / unten / rechts / links)
-	- Wiederholung : Standardmäßig bewegt sich die Tür / das Fenster einmal in der angegebenen Richtung, aber Sie können diesen Wert erhöhen
-- Verstecken, wenn die Tür / das Fenster geöffnet ist
-	- Aktivieren : Blendet das Element aus, wenn die Tür / das Fenster geöffnet ist
-- Couleur
-	- Farbe öffnen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geöffnet ist
-	- Farbe geschlossen : Wenn Sie das Kontrollkästchen aktivieren, nimmt das Element diese Farbe an, wenn die Tür / das Fenster geschlossen ist
+	- Aktivieren: Aktiviert die Drehung der Tür/des Fensters beim Öffnen
+	- Öffnen: Am besten probieren Sie es aus, damit es zu Ihrer Tür/Ihrem Fenster passt
+- Übersetzung
+	- Aktivieren: Aktiviert die Verschiebung beim Öffnen (Typ Schiebefenster/-tür)
+	- Richtung: Richtung, in die sich die Tür/das Fenster bewegen soll (Sie haben die Optionen „oben“, „unten“, „rechts“ und „links“)
+	- Wiederholen: Standardmäßig bewegt sich die Tür/das Fenster um das Einfache ihrer/seiner Abmessung in die angegebene Richtung, Sie können diesen Wert jedoch erhöhen
+- Ausblenden, wenn die Tür/das Fenster geöffnet ist
+	- Aktivieren: Blendet das Element aus, wenn die Tür/das Fenster geöffnet ist
+- Farbe
+	- Farbe bei geöffnetem Zustand: Wenn dieses Kontrollkästchen aktiviert ist, wird diese Farbe angezeigt, wenn die Tür/das Fenster geöffnet ist
+	- Farbe bei geschlossenem Zustand: Wenn dieses Kontrollkästchen aktiviert ist, nimmt das Element diese Farbe an, wenn die Tür/das Fenster geschlossen ist
 
-#### Volet
+#### Rollladen
 
-- Zustand : Verschlussstatus, 0 offen und anderer Wert geschlossen
-- Ausblenden, wenn der Verschluss geöffnet ist
-	- Aktivieren : Blenden Sie das Element aus, wenn der Verschluss geöffnet ist
-- Couleur
-	- Farbe geschlossen : Wenn diese Option aktiviert ist, nimmt das Element diese Farbe an, wenn der Verschluss geschlossen ist
+- Status: Status des Rollladens, 0 = offen, andere Werte = geschlossen
+- Ausblenden, wenn der Rollladen geöffnet ist
+	- Aktivieren: Blendet das Element aus, wenn der Reiter geöffnet ist
+- Farbe
+	- Farbe bei geschlossenem Fenster: Wenn dieses Kontrollkästchen aktiviert ist, nimmt das Element diese Farbe an, wenn das Fenster geschlossen ist
 
 ### Bedingte Farbe
 
-Wenn die Bedingung gültig ist, können Sie dem Element die ausgewählte Farbe geben. Sie können so viele Farben / Bedingungen festlegen, wie Sie möchten.
+Wenn die Bedingung erfüllt ist, wird das Element in der ausgewählten Farbe angezeigt. Sie können beliebig viele Farben und Bedingungen festlegen.
 
-> **Beratung**
+> **Tipp**
 >
-> Die Bedingungen werden in der Reihenfolge ausgewertet, die erste, die wahr ist, wird genommen, die folgenden werden daher nicht bewertet
+> Die Bedingungen werden der Reihe nach ausgewertet; die erste, die wahr ist, wird berücksichtigt, die folgenden werden daher nicht ausgewertet.

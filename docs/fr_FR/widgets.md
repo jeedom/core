@@ -124,7 +124,7 @@ Il existe deux types de widgets personnalisés :
 
 ### Gestion
 
-![Widgets](./images/widgets.png)
+![Widgets](../images/widgets.png)
 
 Quatre options s’offrent à vous :
 - **Ajouter** : Permet d'ajouter un widget *Core*.
@@ -136,7 +136,7 @@ Quatre options s’offrent à vous :
 
 Dans cette partie vous retrouverez l'ensemble des widgets que vous avez créés classés par type.
 
-![Mes Widgets](./images/widgets1.png)
+![Mes Widgets](../images/widgets1.png)
 
 >**INFORMATION**
 >
@@ -146,7 +146,7 @@ Dans cette partie vous retrouverez l'ensemble des widgets que vous avez créés 
 
 Le moteur de recherche permet de filtrer l'affichage des widgets selon différents critères (nom, type, sous-type, etc...). La touche `Echap` annule la recherche.
 
-![Recherche Widgets](./images/widgets2.png)
+![Recherche Widgets](../images/widgets2.png)
 
 A droite du champ de recherche, trois boutons que l'on retrouve à plusieurs endroits dans Jeedom:
 
@@ -244,7 +244,7 @@ En mode code vous avez accès à différents tags pour les commandes, en voici u
 - **#uid#** : identifiant unique pour cette génération du widget (si il y a plusieurs fois la même commande, cas des designs:  seul cet identifiant est réellement unique)
 - **#valueDate#** : date de la valeur de la commande
 - **#collectDate#** : date de collecte de la commande
-- **#alertLevel#** : niveau d'alerte (voir [ici](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) pour la liste)
+- **#alertLevel#** : niveau d'alerte (none, warning, danger)
 - **#hide_history#** : si l'historique (valeur max, min, moyenne, tendance) doit être masqué ou non. Comme pour le #hide_name# il vaut vide ou hidden, et peut donc être utilisé directement dans une class. IMPORTANT si ce tag n'est pas trouvé sur votre widget alors les tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# et #tendance# ne seront pas remplacés par Jeedom.
 - **#minHistoryValue#** : valeur minimale sur la période (période définie dans la configuration de Jeedom par l'utilisateur)
 - **#averageHistoryValue#** : valeur moyenne sur la période (période définie dans la configuration de Jeedom par l'utilisateur)
@@ -307,7 +307,7 @@ Pour se faire, il est nécessaire de prendre en compte 2 pré-requis :
 - Les **2 commandes action/défaut** doivent être liées à une commande **info/binaire** qui se chargera de mémoriser l'état actuel de l'appareil.
 
 >**Exemple**
->![Widget ToggleLink](./images/widgets5.png)
+>![Widget ToggleLink](../images/widgets5.png)
 
 >**Conseil**
 >Décocher la case *"Afficher"* de la commande info/binaire qui n'aura pas besoin d'être affichée.

@@ -44,4 +44,4 @@
 >**INFORMATION**
 >
 >Cette version introduit également une nouvelle organisation dans le développement de Jeedom, reposant dorénavant sur 3 branches principales : `develop` *(intégration continue)* → `release` *(prochaine stable)* → `master` *(stable)*. Les anciennes branches `alpha`, `beta` et `V4-stable` seront supprimées prochainement.\
->Les documentations [Bêta-test de Jeedom](https://doc.jeedom.com/fr_FR/beta/){:target="_blank"}, [Contribuer à la documentation](https://doc.jeedom.com/fr_FR/contribute/doc){:target="_blank"} et [Contribuer au core ou aux plugins](https://doc.jeedom.com/fr_FR/contribute/core){:target="_blank"} ont été réécrites en conséquence.
+>Les documentations [Bêta-test de Jeedom](https://doc.jeedom.com/contribute/fr_FR/beta){:target="_blank"}, [Contribuer à la documentation](https://doc.jeedom.com/contribute/fr_FR/doc){:target="_blank"} et [Contribuer au core ou aux plugins](https://doc.jeedom.com/contribute/fr_FR/core){:target="_blank"} ont été réécrites en conséquence.

@@ -7,7 +7,7 @@ Tous les équipements que vous créez doivent appartenir à un objet et sont ain
 
 Pour laisser libre choix à la personnalisation, vous pouvez nommer ces objets comme vous le voulez. Usuellement, on y définira les différentes parties de sa maison, comme le nom des pièces (c’est d’ailleurs la configuration recommandée).
 
-![Objets](./images/object_intro.gif)
+![Objets](../images/object_intro.gif)
 
 ## Gestion
 
@@ -85,6 +85,6 @@ Voici donc les différentes caractéristiques pour configurer un objet :
 
 ## Onglets Résumés
 
-[Voir documentation sur les résumés.](/fr_FR/concept/summary)
+[Voir documentation sur les résumés.](https://doc.jeedom.com/concept/fr_FR/summary)
 
 

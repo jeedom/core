@@ -1,93 +1,93 @@
-# Mercado de la libertad
+# Mercado Jeedom
 
 
-Doc un poco especial porque solo se ocupará de su página de perfil de Market.
-Disponible yendo a su nombre de usuario y luego al perfil de Market (un poco como en Jeedom).
+Este documento es un poco especial, ya que se centrará exclusivamente en tu página de perfil del Market.
+Está disponible accediendo a tu nombre de usuario y luego a tu perfil desde el Market (algo parecido a como se hace en Jeedom).
 
-Esto se divide en varias partes :
+Esta se divide en varias partes:
 
 ## Mi perfil
 
-Aquí es donde podrá ajustar diferentes parámetros de su perfil :
+Aquí es donde podrás configurar los distintos parámetros de tu perfil:
 
 - **Perfil**
-    - **Acceso** : Su inicio de sesión en el mercado, no se puede cambiar.
-    - **Nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
-    - **Primer nombre** : Su nombre (esta información solo es útil para hacer que los correos electrónicos sean más agradables).
-    - **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
-    - **Correo electrónico** : Su email.
-    - **Idioma** : Tu idioma.
-    - **Contraseña &amp;&amp; Confirmar contraseña** : Le permite cambiar su contraseña.
+    - **Nombre de usuario**: Tu nombre de usuario en el Market; no se puede cambiar.
+    - **Nombre**: Tu nombre (esta información solo sirve para que los correos electrónicos sean más amables).
+    - **Nombre**: Tu nombre (esta información solo sirve para que los correos electrónicos sean más agradables).
+    - **Nombre de usuario en el foro**: Tu nombre de usuario en el foro.
+    - **Correo electrónico**: Tu correo electrónico.
+    - **Idioma**: Tu idioma.
+    - **Contraseña && Confirmar contraseña**: Permite cambiar tu contraseña.
 
-Para desarrolladores :
-- **Nombre de usuario en el foro** : Tu nombre de usuario en el foro.
-- **Correo público** : Su correo electrónico para recibir nuestras comunicaciones.
-- **Cuenta Paypal** : El correo electrónico de su cuenta Paypal (solo se usa para pagar a los desarrolladores).
+Para los desarrolladores:
+- **Nombre de usuario en el foro**: Tu nombre de usuario en el foro.
+- **Correo electrónico público**: Tu dirección de correo electrónico para recibir posibles comunicaciones por nuestra parte.
+- **Cuenta de PayPal**: Tu dirección de correo electrónico asociada a la cuenta de PayPal (que solo se utilizará para pagar a los desarrolladores).
 
-Para los profesionales :
-- **Cuenta de correo electrónico del instalador** : Su correo electrónico de contacto profesional.
-- **Soporte de solicitudes de destinatario** : saber quién recibirá los correos electrónicos de soporte (cliente final, instalador o ambos).
-    - **UGE**
-- **Usuario** : Condiciones generales de uso (tenga cuidado de leerlas porque lo comprometen).
-- **Revelador** : condiciones de uso para desarrolladores.
+Para profesionales:
+- **Cuenta de correo electrónico del instalador**: Tu correo electrónico de contacto profesional.
+- **Destinatario de las solicitudes de asistencia**: saber quién recibirá los correos electrónicos de asistencia (cliente final, instalador o ambos).
+    - **Condiciones generales de uso**
+- **Usuario**: condiciones generales de uso (lee atentamente estas condiciones, ya que son vinculantes).
+- **Desarrollador**: condiciones generales de uso para desarrolladores.
     - **Entradas**
-- **Numero de entradas** : Número de boletos para el mes actual y su límite.
-- **Apoyo** : Botón para enviar una solicitud de soporte (también accesible mediante el signo de exclamación en la esquina superior derecha del Market o en su Jeedom).
-    - **Acceso a betas**
-- **Habilitar el acceso a complementos beta** : Permite el acceso a los complementos de betas (tenga en cuenta que esto le impedirá acceder al soporte).
-    - **Resumen** Aquí encontrará un resumen de sus diferentes derechos y servicios.
+- **Número de tickets**: Número de tickets del mes en curso y tu límite.
+- **Asistencia técnica**: Botón para enviar una solicitud de asistencia técnica (también accesible mediante el signo de exclamación situado en la esquina superior derecha del Market o en tu Jeedom).
+    - **Acceso a las versiones beta**
+- **Activar el acceso a los complementos beta**: Permite activar el acceso a los complementos beta (atención: esto te impedirá acceder al servicio de asistencia).
+    - **Resumen** Aquí encontrarás un resumen de tus diferentes derechos y servicios.
 
 > **Consejo**
 >
-> No olvides guardar.
+> No te olvides de guardar.
 
-## Mis jeedoms
+## Mis Jeedoms
 
 - **Nivel**
-    - **Jeedom** : Su nivel de paquete de servicio.
-    - **Ingrese un número de paquete de servicio** : Le permite ingresar su número de paquete de servicio (se puede encontrar en el correo electrónico enviado por Jeedom durante su pedido).
+    - **Jeedom**: tu nivel de servicio.
+    - **Introducir un número de Service Pack**: Permite introducir tu número de Service Pack (lo encontrarás en el correo electrónico que te envió Jeedom al realizar el pedido).
 - **Clave de instalación**
-    - **Número de llaves de instalación** : Muestra el número de instalaciones de Jeedom actualmente vinculadas a su cuenta, así como el límite autorizado.
+    - **Número de claves de instalación**: Muestra el número de instalaciones de Jeedom vinculadas actualmente a tu cuenta, así como el límite permitido.
 
 > **Consejo**
 >
-> Es posible que Market a veces le pida que restablezca sus claves de instalación, esto es normal, solo siga lo que se solicita.
+> Es posible que, en ocasiones, el Market te pida que restablezcas tus claves de instalación; es normal, solo tienes que seguir las instrucciones que te indiquen.
 
-- **Mis jeedoms** : Aquí es donde se enumeran todos tus Jeedoms
-    - **Nombre** : El nombre que desea darle a su Jeedom (se puede encontrar en el nombre de la copia de seguridad si tiene la suscripción de copia de seguridad en la nube).
-    - **Estado** : Veamos el estado de la libertad en cuestión.
-    - **IP local / remota** : IP o dirección de este Jeedom, configúrelo en Jeedom, si no pone nada será la última IP conocida.
-    - **DNS** : Le permite personalizar el nombre de su DNS.
-    - **URL** : Enumere las diferentes URL de acceso de Jeedom.
-    - **Servidor DNS** : Le informa el servidor DNS al que está conectado.
-    - **Estado DNS** : Le permite ver el estado del DNS.
-    - **Fecha de creación** : Fecha de creación de este Jeedom en su cuenta de Market (como recordatorio, esto se hace automáticamente cuando lo vincula al Market).
-    - **última actualización** : Última comunicación de Jeedom con el mercado.
-    - **Hardware** : Nombre de hardware Jeedom.
-    - **Versión** : Versión Jeedom instalada.
+- **Mis Jeedom**: Aquí es donde se muestran todos tus Jeedom
+    - **Nombre**: El nombre que quieras darle a tu Jeedom (aparecerá en el nombre de la copia de seguridad si tienes la suscripción a la copia de seguridad en la nube).
+    - **Estado**: Permite ver el estado del Jeedom en cuestión.
+    - **IP local/remota**: IP o dirección de este Jeedom; se configura en Jeedom; si no se introduce nada, se utilizará la última IP conocida.
+    - **DNS**: Permite personalizar el nombre de tu DNS.
+    - **URL**: Enumera las diferentes URL de acceso a Jeedom.
+    - **Servidor DNS**: Le indica el servidor DNS al que está conectado.
+    - **Estado del DNS**: Permite ver el estado del DNS.
+    - **Fecha de creación**: Fecha en la que se creó este Jeedom en tu cuenta de Market (te recordamos que esto se hace automáticamente al vincularlo a Market).
+    - **Última actualización**: Última comunicación de Jeedom con el Market.
+    - **Hardware**: Nombre del hardware de Jeedom.
+    - **Versión**: La versión de Jeedom instalada.
 
 > **Consejo**
 >
-> No olvides guardar.
+> No te olvides de guardar.
 
 ## Mis copias de seguridad
 
-En esta pestaña puede consultar las copias de seguridad presentes en Market y descargar una. A continuación tiene acceso al enlace para comprar 1,3,6 o 12 meses de suscripción de copia de seguridad en la nube.
+En esta pestaña puedes consultar las copias de seguridad disponibles en el Market y descargar una. Debajo encontrarás el enlace para comprar una suscripción de 1, 3, 6 o 12 meses al servicio de copias de seguridad en la nube.
 
-## Mis SMS / llamadas
+## Mis SMS/Llamadas
 
-En esta pestaña puede consultar su saldo de SMS / Llamadas (utilizable con el complemento del mercado telefónico). A continuación tiene las diferentes opciones para comprar saldo adicional.
+En esta pestaña puedes consultar tu saldo de SMS y llamadas (utilizable con el complemento Phone Market). Debajo encontrarás las diferentes opciones para comprar saldo adicional.
 
-## Mis compras / promociones / donaciones
+## Mis compras/ofertas/donaciones
 
-Aquí encontrará todas sus compras y puede solicitar la devolución de la factura o recibo por correo electrónico.
+Aquí encontrarás todas tus compras y podrás solicitar que te reenvíen el correo electrónico con la factura o el recibo.
 
 > **Importante**
 >
-> Si compra un complemento oficial, recibirá una factura. Sin embargo, para un complemento de terceros es un recibo, para la factura debe solicitar al desarrollador.
+> Si compras un complemento oficial, recibirás una factura. En cambio, en el caso de un complemento de terceros, se emite un recibo; para obtener la factura, debes solicitarla al desarrollador.
 
-También puede ingresar desde esta pestaña un código de promoción (un código para un complemento, por ejemplo, que el desarrollador podría enviarle) y hacer una donación.
+Desde esta pestaña también puedes introducir un código promocional (por ejemplo, un código para un complemento que te haya facilitado el desarrollador) y hacer una donación.
 
 ## Mis desarrollos
 
-Si es un desarrollador, encontrará aquí la lista de todas sus ventas durante un período, la lista de sus pagos, así como un resumen de la cantidad de descargas, la cantidad de ventas
+Si eres desarrollador, aquí encontrarás la lista de todas tus ventas durante un periodo determinado, la lista de tus pagos, así como un resumen del número de descargas, del número de ventas…​

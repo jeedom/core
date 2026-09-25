@@ -8,7 +8,7 @@ BLANC="\\033[0;02m"
 BLANCLAIR="\\033[1;08m"
 JAUNE="\\033[1;33m"
 CYAN="\\033[1;36m"
-  
+
 service_mariadb(){
   service mysql $1
   if [ $? -ne 0 ]; then
@@ -81,28 +81,36 @@ if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	JEEDOM_INSTALL=0
-	rm -rf /root/install.sh
-	wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
-	chmod +x /root/install.sh
-	/root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+	if [ -f ${WEBSERVER_HOME}/initialisation ]; then
+		echo 'Jeedom code already present from image build, skipping download'
+		INSTALL_SCRIPT=${WEBSERVER_HOME}/install/install.sh
+		chmod +x ${INSTALL_SCRIPT}
+		rm -f ${WEBSERVER_HOME}/initialisation
+	else
+		rm -rf /root/install.sh
+		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
+		INSTALL_SCRIPT=/root/install.sh
+		chmod +x ${INSTALL_SCRIPT}
+		${INSTALL_SCRIPT} -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
+	fi
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
 		service_mariadb restart
 		MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
 		echo "DROP USER 'jeedom'@'localhost';" | mysql > /dev/null 2>&1
-		echo  "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
-		echo  "DROP DATABASE IF EXISTS jeedom;" | mysql
-		echo  "CREATE DATABASE jeedom;" | mysql
-		echo  "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
+		echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
+		echo "DROP DATABASE IF EXISTS jeedom;" | mysql
+		echo "CREATE DATABASE jeedom;" | mysql
+		echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
 		cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#USERNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PORT#/3306/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
-		/root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
-		/root/install.sh -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
+		${INSTALL_SCRIPT} -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
+		${INSTALL_SCRIPT} -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
 	fi
 fi
 

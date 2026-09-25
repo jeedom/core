@@ -668,6 +668,41 @@ class config {
 		return $_value;
 	}
 
+	public static function preConfig_session_lifetime($_value): int {
+		if (!is_numeric($_value)) {
+			return 24;
+		}
+		return max(1, min(8760, (int) $_value));
+	}
+
+	public static function preConfig_security_registerDeviceLifetime($_value): int {
+		if (!is_numeric($_value)) {
+			return 30;
+		}
+		return max(3, min(90, (int) $_value));
+	}
+
+	public static function preConfig_security_maxFailedLogin($_value): int {
+		if (!is_numeric($_value)) {
+			return 6;
+		}
+		return max(0, (int) $_value);
+	}
+
+	public static function preConfig_security_timeLoginFailed($_value): int {
+		if (!is_numeric($_value)) {
+			return 300;
+		}
+		return max(0, (int) $_value);
+	}
+
+	public static function preConfig_security_bantime($_value): int {
+		if (!is_numeric($_value)) {
+			return 600;
+		}
+		return max(-1, (int) $_value);
+	}
+
 	/*     * *********************Stats************************************* */
 
 	/**

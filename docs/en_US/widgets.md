@@ -1,80 +1,318 @@
 # Widgets
 
-A widget is the graphic representation of an order. Each widget is specific to the type and subtype of the command to which it must be applied as well as the version from which Jeedom is accessed *(desktop or mobile)*.
+A widget is the graphical representation of a command on the dashboard or in the mobile version. The Jeedom Core automatically assigns a widget based on the command’s type *(Info or Action)* and subtype *(Binary, Numeric, Other, Slider, etc.)*. You can select a different one from those available via the command’s advanced settings, under the “Display” tab → “**Widget**”.
 
 ## Default widgets
 
-Before taking a look at the customization of widgets, let's discover the possibilities offered by certain widgets present by default in the Core Jeedom.
+Here are the widgets built into the Jeedom Core, their uses, and their customization settings.
 
-### Équipements
+### Commands
 
-The devices (or tiles) have certain configuration parameters accessible via the advanced configuration of the device, "Display" tab → "**Optional parameters on the tile**".
+Most widgets offer **optional settings** that allow you to customize their appearance without creating a custom widget: color, scale, behavior, etc. These settings are configured in the command’s advanced settings, under the “Display” tab → “**Optional Widget Settings**” section, in the form of name/value pairs. The available settings vary depending on the selected widget and are listed below.
 
-##### Optional parameter (s))
+The ** setting`time`** (`duration`/`date`) is common to all widgets *(except HygroThermograph)* and displays, respectively, the elapsed time or the date of the last value change.
 
-- **dashboard_class / mobile_class** : allows to add a class to the equipment. For example `col2` for devices in mobile version will allow doubling the width of the widget.
+#### Info / Binary
 
-### HygroThermographe
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Shutter | Visual representation of a shutter with position shown as a percentage | `color` |
+| Alert | Green checkmark (ON) / Red alert (OFF) | |
+| Port | Green (ON) when port is closed / red (OFF) when port is open | |
+| Flood | Green water drop with a line through it (ON) / blue water drop (OFF) | |
+| Heat | Red flame (ON) / cross (OFF) | |
+| Icon | Green checkmark (ON) / red X (OFF) | |
+| Light | Light bulb on (yellow) / light bulb off | |
+| Line | Green checkmark (ON) / red X (OFF), inline display with name | |
+| Lock | Lock closed (ON) / red open lock (OFF) | |
+| Presence | Green checkmark (ON) / red motion icon (OFF) | |
+| Outlet | Outlet icon (ON) / cross (OFF) | |
+| Window | Green (ON) when closed / red (OFF) when open | |
 
-This widget is a bit special because it is a multi-command widget, i.e. it assembles the value of several commands. Here he takes temperature and humidity commands. To configure it, you must assign the widget to the temperature and humidity controls of your equipment.
+#### Info / Digital
 
-![WidgAnd HygroThermographe](./images/widgets3.png)
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Badge | Value displayed in a colored badge | `color`, `fontcolor` |
+| Compass | Compass showing direction in degrees | `needle_color`, `ns_color`, `oe_color`, `scale` |
+| Gauge | Arc-shaped gauge | `color` |
+| Horizontal | Horizontal progress bar | `color` |
+| Hygrothermograph | Combined temperature and humidity display *(multi-function widget, without commands `time`)* | `scale` |
+| Light | Lightbulb icon (on/off depending on the value) with value and unit | |
+| Line | Name, value, and unit displayed on a single line (compact format) | |
+| Rain | Water level or precipitation | `color`, `scale`, `showRange`, `animate` |
+| Shutter | Shutter with position slider (in %) | `color`, `invert` |
+| Tile | Name displayed as a title above the value and unit | |
+| Vertical | Vertical progress bar | `color` |
+| HeatPiloteWire | 4-state control wire: comfort, frost protection, eco, off | |
+| HeatPiloteWireQubino | Qubino control wire: 6 settings—comfort, eco, frost protection, off | |
 
-##### Optional parameter (s))
+#### Info / Other
 
-- **scale** *(échelle)* : Allows you to change the size of the widget, by filling in the parameter **scale** to `0.5`, the widget will be 2 times smaller.
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Badge | Text value in a colored badge | `color`, `fontcolor` |
+| ButtonImage | Button that opens a modal window displaying the image whose URL is the value of the command | |
+| Color | Displays the color corresponding to a hexadecimal code | `showValue` |
+| Line | Name and text value displayed on a single line (compact format) | |
+| Multiline | Multi-line text value with scrolling | `maxHeight`, `minHeight`, `backgroundColor` |
+| Tile | Name displayed as a title above the text value | |
 
->**IMPORTANT**      
->It is ABSOLUTELY necessary that the generic types are indicated; `Temperature` on the temperature control and` Humidity` on the humidity control (this is configured in the advanced configuration of the control, configuration tab).
+#### Action / Color
 
->**NOTE**      
-> Attention on a design it is important not to put a command alone with this widget it will not work since it is a widget using the value of several commands, it is absolutely necessary to put the complete widget
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Default | Full color picker (color wheel + hex value) | |
+| Picker | Simplified Color Picker | |
 
-### Multiline
+#### Action / Default
 
-This widget is used to display the content of an info / other command on several lines.
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Alert | Bell icon indicating the status of the associated command (red = active, green with a line through it = inactive) | |
+| BinaryDefault | Icon indicating the status of the associated command (green checkmark = active, red X = inactive) | |
+| BinarySwitch | ON/OFF toggle switch | `color`, `color_switch` |
+| BtnAlert | Button with a bell icon indicating the status of the associated command | |
+| Button | Simple action button | |
+| Circle | Solid circle (ON) / empty circle (OFF) | |
+| Fan | Fan (ON) / cross (OFF) | |
+| Garage | Closed garage (green) / Open garage (red) | |
+| Light | Light bulb on (yellow) / light bulb off | |
+| Lock | Lock closed (ON) / orange lock open (OFF) | |
+| Outlet | Outlet icon (ON) / cross (OFF) | |
+| Sprinkle | Blue sprinkler (ON) / cross (OFF) | |
+| Toggle | Switch: yellow (ON) / off (OFF) | |
+| ToggleLine | Yellow on/off switch, inline display | |
 
-##### Optional parameter (s))
+#### Action / Slider
 
-- **maxHeight** *(max height)* : Allows you to set the maximum height of the widget (an elevator *(scrollbar)* will appear on the side if the text exceeds).
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Button | Slider with + and − buttons for precise adjustment | `step`, `width` |
+| Shutter | Specialized slider for adjusting a shutter's position | `color`, `step`, `invert` |
+| Slider | Horizontal slider | `color`, `step` |
+| SliderVertical | Vertical Slider | `color`, `step` |
+| Value | Direct numeric input field | `color`, `step`, `noslider`, `width` |
+| Light | Light bulb on (yellow) / light bulb off | |
 
-### Slider Button
+#### Action / List
 
-Widget for action / cursor control with button "**+**" and a button "**-**" allowing to act with precision on a value.
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Select | Drop-down list of predefined values | |
 
-##### Optional parameter (s))
+#### Action / Message
 
-- **step** *(pas)* : Allows you to set the value change step *(0.5 by default)*.
+| Widget | Description | Optional settings |
+|--------|-------------|----------------------|
+| Input | Form for sending a message with a subject and body | `title`, `title_placeholder`, `title_possibility_list`, `title_disable`, `message_placeholder`, `message`, `message_disable` |
 
-### Rain
+### Equipment
 
-Widget for displaying water levels.
+Devices (or tiles) have certain configuration settings that can be accessed via the device's advanced settings, under the "Display" tab → "**Optional tile settings**":
 
-![WidgAnd Rain](./images/widgets4.png)
+- **dashboard_class/mobile_class**: allows you to add a class to the device. For example `col2` for mobile devices will double the width of the widget.
 
-##### Optional parameter (s))
+## Custom widgets
 
-- **scale** *(échelle)* : Allows you to change the size of the widget, by filling in the parameter **scale** to `0.5`, the widget will be 2 times smaller.
-- **showRange** : Set to `1` to display the minimum and maximum values of the command.
-- **animate** : Disable the animation of the widget with a value of `0`.
+The Widgets page, accessible via the **Tools → Widgets** menu, allows you to add custom widgets in addition to those available by default in Jeedom.
 
-### ON / OFF Icon Toggle
+There are two types of custom widgets:
 
-Regarding widgets for switches *(on / off, turn on / off, open / close, etc...)*, it may be considered more visually pleasing to display only an icon reflecting the status of the device to be controlled.
+- *Core* widgets based on a template. These widgets are managed by the Jeedom Core and are therefore maintained by the development team. Their compatibility with future updates to Jeedom is guaranteed.
+- *Third-party* widgets based on user-provided code. Unlike Core widgets, the Jeedom development team has no control over the code embedded in these widgets, so their compatibility with future updates is not guaranteed. These widgets must therefore be maintained by the user.
 
-This possibility can be used both with default widgets and with custom widgets.
+### Management
 
-To do so, it is necessary to take into account 2 prerequisites :
+![Widgets](../images/widgets.png)
 
-- THE **2 action / fault commands** must be linked to an order **info / binary** which will store the current state of the device.
+You have four options:
+- **Add**: Allows you to add a *Core* widget.
+- **Import**: Allows you to import a widget from a previously exported JSON file.
+- **Code**: Opens the *Third-Party* widgets editing page.
+- **Replace**: Opens a window that allows you to replace one widget with another on all devices using it.
 
->**Example**      
->![ToggleLink Widget](./images/widgets5.png)
+### My widgets
 
->**Advice**     
->Uncheck *"Afficher"* of the info / binary command which will not need to be displayed.
+In this section, you'll find all the widgets you've created, organized by type.
 
-- In order for the Jeedom Core to be able to identify which command corresponds to which action, it is essential to respect the following naming for **2 action / fault commands** :
+![My Widgets](../images/widgets1.png)
+
+>**INFORMATION**
+>
+>You can open a widget by doing the following:
+>- `Clic` on one of them.
+>- `Ctrl+Clic` or `Clic+Centre` to open it in a new browser tab.
+
+The search engine allows you to filter the display of widgets based on various criteria (name, type, subtype, etc.). The button `Echap` Cancel search.
+
+![Search for Widgets](../images/widgets2.png)
+
+To the right of the search field are three buttons that appear in several places in Jeedom:
+
+- **The cross** to cancel the search.
+- **The open folder** to expand all panels and display the widgets.
+- **The folder is closed** to collapse all panels and hide the widgets.
+
+Once on a widget's configuration page, a context menu is available to the `Clic Droit` on the widget tabs. You can also use a `Ctrl+Clic` or `Clic+Centre` to open another widget directly in a new browser tab.
+
+### Creating a widget
+
+Once you're on the **Tools → Widgets** page, click the "**Add**" button and give your new widget a name.
+
+Next:
+- You choose whether it applies to an action command of type **Action** or an info command of type **Info**.
+- Based on your previous selection, you will need to **select the subtype** of the command.
+- Finally, **the template** from among those that will be available based on your previous selections.
+- Once you've selected a template, Jeedom displays its configuration options below.
+
+### Templates
+
+#### Defining a template
+
+Simply put, it’s code (HTML/JS) built into the Core, parts of which can be configured by the user via the **Widgets** menu’s graphical interface. Based on this same foundation and taking into account the elements you enter in the template, the Core will generate unique widgets that match the display you want to achieve.
+
+Depending on the type of widget, you can usually customize the icons, add images of your choice, and/or embed HTML code.
+
+There are two types of templates:
+
+- The "**simple**" ones: such as an icon/image for "**ON**" and an icon/image for "**OFF**".
+- "**Multistates**": This allows you to define, for example, one image if the command value is "**XX**" and another if it is greater than "**YY**" or less than "**ZZ**". This also works for text values: one image if the value is "**toto**," another if it is "**plop**," and so on...
+
+#### Replacement
+
+This is what's called a simple template. Here, you just need to specify that "**ON**" corresponds to a certain icon or image *(using the "Choose" button)*, "**OFF**" to another icon or image, and so on...
+
+The available replacement Core types are:
+
+| Widget | Types/Subtypes |
+|--------|-----------------|
+| Icon Template | Info/Binary, Action/Default, Action/Slider |
+| Iconline Template | Info/Binary, Action/Default |
+| Image Template | Info/Binary, Action/Default, Action/Slider |
+
+The **Time widget** field, if available, is equivalent to the setting `time: duration` (see [Commands](#Commandes)).
+
+For templates that use images, you can set the widget width in pixels based on the device type (**Desktop width** & **Mobile width**). Different images can also be selected depending on the active Jeedom theme *(light or dark)*.
+
+>**INFORMATION**
+>
+>Advanced users can include tags in the placeholder values and specify their values in the command's advanced settings.
+>For example, if you enter a value for **Desktop Width** `#largeur_desktop#` (**be sure to include the** `#` **around**), then in the advanced settings for a command, under the Display tab → "**Optional widget settings**," add the parameter `largeur_desktop` (**excluding the** `#`) and set it to "**90**," this custom widget on that command will be 90 pixels wide. This allows you to adjust the widget's size for each command without having to create a specific widget each time.
+
+#### Test
+
+These are known as multistate templates *(multiple states)*. Instead of setting an image for "**ON**" and/or "**OFF**" as in the previous example, you will assign an icon based on whether a condition *(test)* is met. If the condition is true, the widget will display the icon or image in question.
+
+The available multi-state Core widgets of type multistate are:
+
+| Widget | Types/Subtypes |
+|--------|-----------------|
+| Multistate Template | Information/Digital, Information/Other |
+| Multistateline Template | Info/Other |
+
+As before, different images can be selected based on the active theme in Jeedom, and the **Time widget** checkbox displays the time elapsed since the last status change.
+
+The tests are in the following format: `#value# == 1`, `#value#` will be automatically replaced by the current value of the command. You can also do, for example:
+
+- `#value# > 1`
+- `#value# >= 1 && #value# <= 5`
+- `#value# == 'toto'`
+
+>**IMPORTANT**
+>
+>It is essential to include apostrophes (**'**) around the text to be compared if the value is text *(info/other)*.
+
+>**INFORMATION**
+>
+>You can display the command value in the widget by specifying `#value#` in the test HTML code. To display the unit, add `#unite#`.\
+>For advanced users, it is also possible to use JavaScript functions such as `#value#.match("^plop")` to check if the text begins with `plop`.
+
+## Widget code
+
+### Tags
+
+In code mode, you have access to various tags for commands. Here is a list (not necessarily exhaustive):
+
+- **#name#**: command name
+- **#valueName#**: name of the command value, and = #name# when it is an info-type command
+- **#minValue#**: the minimum value the command can take (if the command is of the slider type)
+- **#maxValue#**: the maximum value the command can take (if the command is of the slider type)
+- **#hide_name#**: empty or "hidden" if the user has requested that the widget's name be hidden; to be placed directly within a class tag
+- **#id#**: command ID
+- **#state#**: command value; empty for an action-type command if it is not linked to a state command
+- **#uid#**: unique identifier for this generation of the widget (if the same command appears multiple times—as is the case with designs—only this identifier is truly unique)
+- **#valueDate#**: date of the command value
+- **#collectDate#**: command pickup date
+- **#alertLevel#**: alert level (none, warning, danger)
+- **#hide_history#**: Whether or not the history (max, min, average, trend) should be hidden. As with #hide_name#, it can be empty or set to "hidden," and can therefore be used directly in a class. IMPORTANT: If this tag is not found on your widget, then the tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue#, and #trend# will not be replaced by Jeedom.
+- **#minHistoryValue#**: minimum value over the period (period defined by the user in the Jeedom configuration)
+- **#averageHistoryValue#**: average value over the period (period defined by the user in the Jeedom configuration)
+- **#maxHistoryValue#**: maximum value over the period (period defined by the user in the Jeedom configuration)
+- **#trend#**: trend over the period (period defined by the user in Jeedom's configuration). Note that "trend" is directly a class for icons: fas fa-arrow-up, fas fa-arrow-down, or fas fa-minus
+
+### Updating Values
+
+When a new value is received, Jeedom checks the page to see if the command is there and checks jeedom.cmd.update to see if there is an update function. If so, it calls it with a single argument, which is an object in the following format:
+
+```
+{display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'}
+```
+
+Here's a simple example of JavaScript code to put in your widget:
+
+```
+<script>
+    jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+      if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
+        cmd.setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+        cmd.querySelector('.value').innerHTML = _options.display_value
+        cmd.querySelector('.unit').innerHTML = _options.unit
+      }
+    }
+    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+</script>
+```
+
+Here are two important points:
+
+```
+jeedom.cmd.addUpdateFunction('#id#', function(_options) {
+  if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
+    cmd.setAttribute('title', '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate)
+    cmd.querySelector('.value').innerHTML = _options.display_value
+    cmd.querySelector('.unit').innerHTML = _options.unit
+  }
+}
+```
+This function is called when the widget is updated. It then updates the HTML code of the widget_template.
+
+```
+jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
+```
+Calling this function initializes the widget.
+
+### Examples
+
+You'll find [here](https://github.com/Jeedom/core/tree/master/core/template) Examples of widgets (in the dashboard and mobile folders)
+
+## ON/OFF icon toggle
+
+Regarding widgets for switches *(on/off, turn on/off, open/close, etc.)*, it may be considered more visually appealing to display only an icon reflecting the status of the device being controlled.
+
+This feature works with both default widgets and custom widgets.
+
+To do this, you need to consider two prerequisites:
+
+- The **2 action/default commands** must be linked to an **info/binary** command that will store the device's current status.
+
+>**Example**
+>![ToggleLink Widget](../images/widgets5.png)
+
+>**Tip**
+>Uncheck the *"Show"* box for the info/binary command that does not need to be displayed.
+
+- In order for the Jeedom Core to be able to identify which command corresponds to which action, it is essential to follow the naming convention below for the **2 action/default commands**:
 ```
     'on':'on',
     'off':'off',
@@ -86,181 +324,16 @@ To do so, it is necessary to take into account 2 prerequisites :
     'fermer':'off',
     'activer':'on',
     'desactiver':'off',
-    'disable':'off',
+    'désactiver':'off',
     'lock':'on',
     'unlock':'off',
     'marche':'on',
     'arret':'off',
-    'stop':'off',
+    'arrêt':'off',
     'stop':'off',
     'go':'on'
 ```
 
->**Trick**      
->As long as the standardized name remains readable, it is possible to adapt the naming, for example *open_volet* Or *shutter_close*, *walk_2* And *stop_2*, etc.
-
-## Custom widgets
-
-The Widgets page, accessible from the menu **Tools → Widgets**, allows you to add custom widgets in addition to those available by default in Jeedom.
-
-There are two types of custom widgets :
-
-- Widgets *Core* template-based. These widgets are managed by the Jeedom Core and therefore monitored by the development team. Their compatibility is assured with future evolutions of Jeedom.
-- Widgets *Third party* based on user code. Unlike Core widgets, the Jeedom development team does not have control over the code inserted into these widgets, their compatibility with future developments is not guaranteed. These widgets therefore need to be maintained by the user.
-
-### Gestion
-
-![Widgets](./images/widgets.png)
-
-You have four options :
-- **Add** : Allows you to add a widget *Core*.
-- **Import** : Allows you to import a widget as a previously exported json file.
-- **Code** : Access the widget editing page *Third party*.
-- **Replacement** : Opens a window allowing you to replace a widget with another on all devices using it.
-
-### My widgets
-
-In this part you will find all the widgets that you have created classified by type.
-
-![Mes Widgets](./images/widgets1.png)
-
-> **Trick**      
-> You can open a widget by doing :
-> - `Click` on one of them.
-> - `Ctrl + Click` or` Click + Center` to open it in a new browser tab.
-
-The search engine allows you to filter the display of widgets according to different criteria (name, type, subtype, etc...). The `Esc` key cancels the search.
-
-![Recherche Widgets](./images/widgets2.png)
-
-To the right of the search field, three buttons that can be found in several places in Jeedom:
-
-- **The cross** to cancel the search.
-- **The open file** to unfold all panels and display widgets.
-- **The closed file** to collapse all panels and hide widgets.
-
-Once on the configuration page of a widget, a context menu is accessible by `` Right Click '' on the tabs of the widget. You can also use a `Ctrl + Click` or` Click + Center` to directly open another widget in a new browser tab.
-
-### Creating a widget
-
-Once on the page **Tools → Widgets** you have to click on the button "**Add**" and give a name to your new widget.
-
-Afterwards :
-- You choose whether it applies to an order of type **Action** Or **Info**.
-- Depending on the previous choice, you will have to **choose the subtype** of the order.
-- Finally **the template** among those which will be available according to the previous choices.
-- Once the template has been chosen, Jeedom displays the configuration options for it below.
-
-### The templates
-
-#### Definition of a template
-
-To put it simply, it's code (HTML / JS), integrated into the Core, some parts of which are configurable by the user via the graphical interface of the menu **Widgets**. From the same database and taking into account the elements that you will enter in the template, the Core will generate unique widgets corresponding to the display you want to obtain.
-
-Depending on the type of widget, you can generally customize the icons, put the images of your choice and / or embed HTML code.
-
-There are two types of template :
-
-- THE "**simple**" : as an icon / image for the "**On**" and an icon / image for the "**Off**".
-- THE "**multistates**" : This allows you to define, for example, an image if the command has the value "**XX**" and another so greater than "**YY**" or if less than "**ZZ**". Also works for text values, an image if the value is "**toto**", another if "**plop**" And so on...
-
-#### Remplacement
-
-This is called a simple template, here you just have to say that the "**On**" matches such icon / image *(using the choose button)*, THE "**Off**" to such other icon / image, etc...      
-
-The box **Time-widget**, if available, displays the duration since the last change of state under the widget.
-
-For templates using images, you can configure the width of the widget in pixels depending on the support (**Desktop width** & **Movable width**). Different images can also be selected according to the active theme of Jeedom *(light or dark)*.
-
->**Trick**     
->For advanced users, it is possible to put tags in the replacement values and to specify their value in the advanced configuration of the command.    
->If, for example, in **Desktop width** you put as value `#largeur_desktop#` (**be careful to put the** `#` **autour**) puis dans la configuration avancée d'une commande, onglAnd affichage → "**Paramètres optionnels widget**" vous ajoutez THE paramètre `largeur_desktop` (**sans les** `#`) and give it the value "**90**", this custom widget on this command will be 90 pixels wide. This allows you to adapt the size of the widget to each order without having to make a specific widget each time.
-
-#### Test
-
-This is called multistate templates *(several states)*. Instead of putting an image for the "**On** and / or for the "**Off** as in the previous case, you will assign an icon according to the validation of a condition *(test)*. If this is true then the widget will display the icon / image in question.
-
-As before, different images can be selected depending on the theme active on Jeedom and the box **Time-widget** displays the duration since the last change of state.
-
-The tests are in the form : `#value# == 1`, `#value#`will be automatically replaced by the current value of the command. You can also do for example :
-
-- `#value# > 1`
-- `#value# >= 1 && #value# <= 5`
-- `#value# == 'toto'`
-
->**NOTE**     
->It is essential to show the apostrophes (**'**) around the text to compare if the value is text *(info / other)*.
-
->**NOTE**     
->For advanced users, it is also possible to use javascript functions such as `#value#.match ("^ plop") `, here we test if the text starts with` plop`.
-
->**NOTE**     
->It is possible to display the value of the command in the widget by specifying `#value#`in the HTML code of the test. To display the unit add `#unite#`.
-
-## Code Widget
-
-### Tags
-
-In code mode you have access to different tags for orders, here is a list (not necessarily exhaustive)) :
-
-- **#name#** : command name
-- **#valueName#** : name of the command value, and = #name# when it's an info type command
-- **#minValue#** : minimum value that the command can take (if the command is of type slider)
-- **#maxValue#** : maximum value that can take the command (if the command is of type slider)
-- **#hide_name#** : empty or hidden if the user asked to hide the name of the widget, to put it directly in a class tag
-- **#id#** : command id
-- **#state#** : value of the command, empty for an action type command if it is not linked to a status command
-- **#uid#** : unique identifier for this generation of the widget (if there is several times the same command, case of designs:  only this identifier is really unique)
-- **#valueDate#** : date of the command value
-- **#collectDate#** : date of the command collect
-- **#alertLevel#** : alert level (see [here](https://github.com/Jeedom/core/blob/alpha/core/config/Jeedom.config.php#L67) for the list)
-- **#hide_history#** : whether the history (max, min, average, trend) should be hidden or not. As for the #hide_name# it is empty or hidden, and can therefore be used directly in a class. IMPORTANT if this tag is not found on your widget then the tags #minHistoryValue#, #averageHistoryValue#, #maxHistoryValue# And #tendance# will not be replaced by Jeedom.
-- **#minHistoryValue#** : minimum value over the period (period defined in the Jeedom configuration by the user)
-- **#averageHistoryValue#** : average value over the period (period defined in the Jeedom configuration by the user)
-- **#maxHistoryValue#** : maximum value over the period (period defined in the Jeedom configuration by the user)
-- **#tendance#** : trend over the period (period defined in the configuration of Jeedom by the user). Attention the trend is directly a class for icon : fas fa-arrow-up, fas fa-arrow-down or fas fa-minus
-
-### Update values
-
-When a new value Jeedom will search in the page if the command is there and in Jeedom.cmd.update if there is an update function. If yes it calls it with a single argument which is an object in the form :
-
-```
-{display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#'}
-```
-
-Here is a simple example of javascript code to put in your widget :
-
-```
-<script>
-    jeedom.cmd.addUpdateFunction('#id#', function (_options) {
-      if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
-        cmd.setAttribute('title', '{{Value date}}: ' + _options.valueDate + '<br>{{Collect date}}: ' + _options.collectDate)
-        cmd.querySelector('.value').innerHTML = _options.display_value
-        cmd.querySelector('.unit').innerHTML = _options.unit
-      }
-    }
-    jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
-</script>
-```
-
-Here are two important things :
-
-```
-jeedom.cmd.addUpdateFunction('#id#', function (_options) {
-  if (is_object(cmd = document.querySelector('.cmd[data-cmd_id="#id#"]'))) {
-    cmd.setAttribute('title', '{{Value date}}: ' + _options.valueDate + '<br>{{Collect date}}: ' + _options.collectDate)
-    cmd.querySelector('.value').innerHTML = _options.display_value
-    cmd.querySelector('.unit').innerHTML = _options.unit
-  }
-}
-```
-The function is called during an update of the widget. It then updates the html code of the widget_template.
-
-```
-jeedom.cmd.refreshValue([{ cmd_id: '#id#', value: '#value#', display_value: '#state#', valueDate: '#valueDate#', collectDate: '#collectDate#', alertLevel: '#alertLevel#', unit: '#unite#' }])
-```
- The call to this function for the initialization of the widget.
-
-### Exemples
-
- You will find [here](https://github.com/Jeedom/core/tree/master/core/template) examples of widgets (in dashboard and mobile folders)
+>**INFORMATION**
+>
+>As long as the standardized name remains readable, you can adapt the naming convention—for example, *open_shutter* or *close_shutter*, *on_2* and *off_2*, etc.

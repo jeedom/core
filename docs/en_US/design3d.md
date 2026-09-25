@@ -1,114 +1,114 @@
-# 3D design
+# 3D Design
 **Home → Design3D**
 
-This page allows you to create a 3D view of your home that can react depending on the state of the various information in your home automation.
+This page lets you create a 3D view of your home that can respond based on the status of various data points in your home automation system.
 
 
-> **Advice**
+> **Tip**
 >
-> It is possible to go directly to a 3D design thanks to the submenu.
+> You can go directly to a 3D design using the submenu.
 
 ## Importing the 3D model
 
 > **IMPORTANT**
 >
-> You cannot create your 3D model directly in Jeedom, it must be done using third-party software. Nous recommandons le très bon SweetHome3d (http://www.sweethome3d.com/fr/).
+> You cannot create your 3D model directly in Jeedom; you must do so using third-party software. We recommend the excellent SweetHome3D (http://www.sweethome3d.com/fr/).
 
-Once your 3D model has been created, it must be exported in OBJ format. If you use SweetHome3d this is done from the "3D View" menu then "Export to OBJ format". Then take all the generated files and put them in a zip file (there can be a lot of files due to the textures).
+Once you’ve created your 3D model, you’ll need to export it in OBJ format. If you’re using SweetHome3D, you can do this by going to the “3D View” menu and selecting “Export to OBJ.” Next, gather all the generated files and place them in a ZIP file (there may be a lot of files due to the textures).
 
 > **IMPORTANT**
 >
-> The files must be at the root of the zip and not in a sub-folder.
+> The files must be in the root directory of the ZIP file, not in a subfolder.
 
-> **ATTENTION**
+> **WARNING**
 >
-> A 3D model is quite large (it can represent several hundred MB). The larger it is, the longer the rendering time in Jeedom.
+> A 3D model can be quite large (it may be several hundred MB). The larger it is, the longer it will take to render in Jeedom.
 
-Once your 3D model is exported, in Jeedom you must create a new 3D design. To do this, you must switch to edit mode by clicking on the small pencil on the right, then click on the +, give a name to this new 3D design then validate.
+Once you’ve exported your 3D model, you’ll need to create a new 3D design in Jeedom. To do this, switch to edit mode by clicking the small pencil icon on the right, then click the + button, give the new 3D design a name, and confirm.
 
-Jeedom will automatically switch to the new 3D design, you must return to edit mode and click on the small notched wheels.
+Jeedom will automatically switch to the new 3D design; you’ll need to go back to edit mode and click on the little cogwheel icons.
 
-From this screen you can :
+From this screen, you can:
 
-- Change the name of your design
+- Rename your design
 - Add an access code
 - Choose an icon
-- Import your 3D model
+- Import Your 3D Model
 
-Click on the &quot;send&quot; button at the &quot;3D Model&quot; level and select your zip file
+Click the "Send" button under "3D Model" and select your ZIP file
 
-> **ATTENTION**
+> **WARNING**
 >
-> Jeedom authorizes the import of a file of 150mo maximum !
+> Jeedom allows you to import a file up to 150 MB in size!
 
-> **ATTENTION**
+> **WARNING**
 >
-> You must have a zip file.
+> A ZIP file is required.
 
-> **Advice**
+> **Tip**
 >
-> Once the file has been imported (it can be quite long depending on the size of the file), you need to refresh the page to see the result (F5).
+> Once the file has been imported (this may take a while, depending on the file size), you'll need to refresh the page to see the result (F5).
 
 
-## Configuration of elements
+## Configuring Components
 
 > **IMPORTANT**
 >
-> Configuration can only be done in edit mode.
+> Configuration can only be performed in edit mode.
 
-To configure an element on the 3D design, double click on the element you want to configure. This will display a window where you can :
+To configure an element in the 3D design, double-click the element you want to configure. This will open a window where you can:
 
-- Indicate a type of link (currently only Equipment exists)
-- Enter the link to the element in question. Here you can only put a link to a device for the moment. This allows when clicking on the item to bring up the equipment
-- Define specificity : there there are several that we will see right after, this allows to specify the type of equipment and therefore the display of information
+- Specify a link type (currently, only “Equipment” is available)
+- Enter the link to the item in question. For now, you can only enter a link to a device here. This allows the device to appear when you click on the item.
+- Define the specific type: there are several options, which we’ll look at next; this allows you to specify the type of device and, consequently, the information displayed
 
-### Light
+### Lighting
 
-- Status : Light status control can be binary (0 or 1), digital (0 to 100%) or color
-- Power : bulb power (please note this may not reflect reality))
+- Status: The light status command can be binary (0 or 1), numerical (0 to 100%), or color-based
+- Power: bulb wattage (note that this may not reflect actual conditions)
 
-### Texte
+### Text
 
-- Text : text to display (you can put commands there, the text will be automatically updated on change thereof)
+- Text: text to display (you can include commands here; the text will automatically update when the command changes)
 - Text size
 - Text color
-- Text transparency : from 0 (invisible) to 1 (visible)
+- Text transparency: from 0 (invisible) to 1 (visible)
 - Background color
-- Background transparency : from 0 (invisible) to 1 (visible)
+- Background transparency: from 0 (invisible) to 1 (visible)
 - Border color
-- Border transparency : from 0 (invisible) to 1 (visible)
-- Space above the object : allows to indicate the spacing of the text compared to the element
+- Border transparency: from 0 (invisible) to 1 (visible)
+- Spacing above the object: specifies the spacing of the text relative to the element
 
-### Door / Window
+### Door/Window
 
-#### Door / Window
+#### Door/Window
 
-- State : Door / Window status, 1 closed and 0 open
+- Status: Port/Window status; 1 = closed, 0 = open
 - Rotation
-	- Enable : activates the rotation of the Door / Window when opening
-	- Opening : the best is to test so that it matches your Door / Window
+	- Enable: Enables the door/window to rotate when opened
+	- Opening: It's best to test it to make sure it fits your door or window
 - Translation
-	- Enable : activates translation when opening (sliding door / window type))
-	- Sense : direction in which the Door / Window should move (you have up / down / right / left)
-	- Repeat : by default the Door / Window moves once its dimension in the given direction but you can increase this value
-- Hide when the Door / Window is open
-	- Enable : Hides the element if the Door / Window is open
-- Couleur
-	- Open color : if tick the element will take this color if the Door / Window is open
-	- Color closed : if tick the element will take this color if the Door / Window is closed
+	- Enable: Enables translation when opening (Sliding Door/Window type)
+	- Direction: the direction in which the port/window should move (you have up/down/right/left)
+	- Repeat: By default, the port/window moves a distance equal to its size in the specified direction, but you can increase this value
+- Hide when the Door/Window is open
+	- Enable: Hides the item if the port/window is open
+- Color
+	- Open color: If checked, the item will take on this color when the port or window is open
+	- Closed color: If checked, the item will take on this color when the port/window is closed
 
-#### Volet
+#### Shutter
 
-- State : shutter status, 0 open and other value closed
+- Status: shutter status; 0 = open, other values = closed
 - Hide when the shutter is open
-	- Enable : hide the element if the shutter is open
-- Couleur
-	- Color closed : if tick the element will take this color if the shutter is closed
+	- Enable: Hides the element if the shutter is open
+- Color
+	- Closed color: If checked, the item will take on this color when the shutter is closed
 
 ### Conditional color
 
-If the condition is valid, allows to give the chosen color to the element. You can put as many colors / conditions as you want.
+If the condition is true, this sets the element to the selected color. You can add as many colors and conditions as you like.
 
-> **Advice**
+> **Tip**
 >
-> The conditions are evaluated in order, the first one which is true will be taken, the following ones will therefore not be evaluated
+> The conditions are evaluated in order; the first one that is true will be selected, so the subsequent ones will not be evaluated

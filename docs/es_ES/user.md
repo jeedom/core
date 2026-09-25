@@ -1,57 +1,57 @@
-# Utilisateurs
-**Configuración → Sistema → Usuarios**
+# Usuarios
+**Ajustes → Sistema → Usuarios**
 
-Esta página le permite definir la lista de usuarios autorizados para conectarse a Jeedom, así como sus derechos de administrador.
+Esta página permite definir la lista de usuarios autorizados a iniciar sesión en Jeedom, así como sus derechos de administrador.
 
-En la página tienes tres botones :
+En la página hay tres botones:
 
-- Agregar usuario.
-- Para salvaguardar.
-- Acceso de soporte abierto.
+- Añadir un usuario.
+- Guardar.
+- Abrir una solicitud de asistencia.
 
 ## Lista de usuarios
 
-- **Nombre del usuario** : ID de usuario.
-- **Activo** : Le permite desactivar la cuenta sin eliminarla.
-- **Local** : Permite la conexión del usuario solo si está en la red local de Jeedom.
-- **Perfil** : Le permite elegir el perfil de usuario :
-    - **Administrador** : El usuario obtiene todos los derechos (edición / consulta) sobre Jeedom.
-    - **Usuario** : El usuario puede ver Tablero, vistas, diseños, etc. y actuar sobre equipos / controles. Sin embargo, no tendrá acceso a la configuración de los controles / equipos ni a la configuración de Jeedom.
-    - **Usuario limitado** : El usuario solo ve el equipo autorizado (configurable con el botón "Derechos"").
-- **Clave API** : Clave API personal del usuario.
-- **Doble autenticación** : Indica si la autenticación doble está activa (OK) o no (NOK).
-- **Fecha de la última conexión** : Fecha de inicio de sesión del último usuario. Tenga en cuenta que esta es la fecha de conexión real, por lo que si guarda su computadora, la fecha de conexión no se actualiza cada vez que regresa.
-- **Derechos** : Modificar derechos de usuario.
-- **Contraseña** : Le permite cambiar la contraseña del usuario.
-- **BORRAR** : Eliminar usuario.
-- **Regenerar clave API** : Regenerar clave de API de usuario.
-- **Administrar derechos** : Le permite administrar con precisión los derechos de los usuarios (tenga en cuenta que el perfil debe estar en "usuario limitado"").
+- **Nombre de usuario**: Identificador del usuario.
+- **Activo**: Permite desactivar la cuenta sin eliminarla.
+- **Local**: Permite la conexión del usuario únicamente si se encuentra en la red local de Jeedom.
+- **Perfil**: Permite seleccionar el perfil del usuario:
+    - **Administrador**: El usuario tiene todos los derechos (edición/consulta) en Jeedom.
+    - **Usuario**: El usuario puede ver el panel de control, las vistas, los diseños, etc., y manejar los dispositivos y controles. Sin embargo, no tendrá acceso a la configuración de los controles ni de los dispositivos, ni a la configuración de Jeedom.
+    - **Usuario con acceso limitado**: El usuario solo ve los dispositivos autorizados (configurable mediante el botón «Derechos»).
+- **Clave API**: Clave API personal del usuario.
+- **Autenticación de dos factores**: Indica si la autenticación de dos factores está activa (OK) o no (NOK).
+- **Fecha de la última conexión**: Fecha de la última conexión del usuario. Atención: aquí se indica la fecha real de conexión, por lo que, si registras tu ordenador, la fecha de conexión no se actualiza cada vez que vuelves a conectarte.
+- **Derechos**: Permite modificar los derechos del usuario.
+- **Contraseña**: Permite cambiar la contraseña del usuario.
+- **Eliminar**: Permite eliminar al usuario.
+- **Regenerar clave API**: Regenera la clave API del usuario.
+- **Gestionar permisos**: Permite gestionar con precisión los permisos del usuario (atención: el perfil debe estar en «usuario limitado»).
 
 ## Gestión de derechos
 
-Al hacer clic en &quot;Derechos&quot;, aparece una ventana que le permite administrar los derechos del usuario con precisión. La primera pestaña muestra los diferentes equipos. El segundo presenta los escenarios.
+Al hacer clic en «Derechos», aparece una ventana que te permite gestionar con precisión los derechos del usuario. La primera pestaña muestra los distintos dispositivos. La segunda presenta los escenarios.
 
 > **Importante**
 >
-> El perfil debe ser limitado; de lo contrario, no se tendrán en cuenta las restricciones establecidas aquí.
+> El perfil debe estar restringido; de lo contrario, no se tendrá en cuenta ninguna restricción establecida aquí.
 
-Obtiene una tabla que permite, para cada dispositivo y cada escenario, definir los derechos del usuario :
-- **Ninguno** : el usuario no ve el equipo / escenario.
-- **Visualización** : el usuario ve el equipo / escenario pero no puede actuar sobre él.
-- **Visualización y ejecución** : el usuario ve el equipo / escenario y puede actuar sobre él (encender una lámpara, iniciar el escenario, etc).
+Aparecerá una tabla que te permitirá definir los derechos del usuario para cada dispositivo y cada escenario:
+- **Ninguna**: el usuario no ve el equipo ni el escenario.
+- **Visualización**: el usuario ve el equipo o el escenario, pero no puede intervenir en él.
+- **Visualización y ejecución**: el usuario ve el equipo o el escenario y puede interactuar con él (encender una lámpara, activar el escenario, etc.).
 
-## Sesiones activas))
+## Sesión(es) activa(s)
 
-Muestra las sesiones del navegador activas en su Jeedom, con información del usuario, su IP y desde cuándo. Puede cerrar la sesión del usuario con el botón **Desconectar**.
+Muestra las sesiones de navegador activas en tu Jeedom, con la información del usuario, su IP y desde cuándo. Puedes desconectar al usuario con el botón **Desconectar**.
 
-## Dispositivo (s) registrado (s))
+## Dispositivo(s) registrado(s)
 
-Enumere los dispositivos (ordenadores, móviles, etc.) que han registrado su autenticación en su Jeedom.
-Puede ver qué usuario, su IP, cuándo y eliminar el registro para este dispositivo.
+Muestra los dispositivos (ordenadores, móviles, etc.) que se han autenticado en tu Jeedom.
+Puedes ver qué usuario, su dirección IP y en qué fecha, y eliminar el registro de ese dispositivo.
 
 > **Nota**
 >
-> El mismo usuario puede haber registrado diferentes dispositivos. Por ejemplo, su computadora de escritorio, computadora portátil, móvil, etc.
+> Un mismo usuario puede tener registrados varios dispositivos. Por ejemplo, su ordenador de sobremesa, su portátil, su móvil, etc.
 
 
 

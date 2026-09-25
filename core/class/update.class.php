@@ -383,6 +383,8 @@ class update {
 					}
 				}
 				$this->postInstallUpdate($info);
+			} else {
+				throw new Exception(sprintf(__('La source "%s" est introuvable ou inactive.', __FILE__), $this->getSource()));
 			}
 		}
 		$this->refresh();

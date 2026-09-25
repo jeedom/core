@@ -586,10 +586,14 @@ class user {
 
 	/**
 	 *
-	 * @return boolean vrai si l'utilisateur est valide
+	 * @deprecated Replaced by user::isValidAndEnabled()
 	 */
 	public function is_Connected(): bool {
-		return (is_numeric($this->id) && $this->login != '');
+		return $this->isValidAndEnabled();
+	}
+
+	public function isValidAndEnabled(): bool {
+		return (is_numeric($this->id) && $this->login != '' && $this->enable == 1);
 	}
 
 	public function validateTwoFactorCode($_code) {
@@ -638,6 +642,39 @@ class user {
 
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
+	}
+
+	public static function registerDeviceLifetime(): int {
+		$registerDeviceLifetime = (int) config::byKey('security::registerDeviceLifetime', 'core', 30);
+		return $registerDeviceLifetime * 24 * 3600;
+	}
+
+	public static function cleanExpiredRegisterDevices(): void {
+		$expiration = time() - self::registerDeviceLifetime();
+		foreach (self::all() as $user) {
+			$registerDevice = $user->getOptions('registerDevice', array());
+			if (!is_array($registerDevice)) {
+				continue;
+			}
+			$changed = false;
+			foreach ($registerDevice as $key => $value) {
+				if (!is_array($value) || !isset($value['datetime']) || strtotime($value['datetime']) < $expiration) {
+					unset($registerDevice[$key]);
+					$changed = true;
+				}
+			}
+			if ($changed) {
+				$user->setOptions('registerDevice', $registerDevice);
+				$user->save();
+			}
+		}
+	}
+
+	public static function isValidRegisteredDevice(array $registeredDevices, string $key): bool {
+		return isset($registeredDevices[$key])
+			&& is_array($registeredDevices[$key])
+			&& isset($registeredDevices[$key]['datetime'])
+			&& strtotime($registeredDevices[$key]['datetime']) >= time() - self::registerDeviceLifetime();
 	}
 
 	public function setOptions($_key, $_value) {
