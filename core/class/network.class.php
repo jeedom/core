@@ -48,8 +48,7 @@ class network {
 			return '';
 		}
 
-		$ip = trim(explode(',', $value)[0]);
-
+		$ip = trim($value);
 		return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
 	}
 
@@ -102,16 +101,9 @@ class network {
 			return false;
 		}
 		$trustedProxiesConfiguration = trim(config::byKey('security::trustedProxies', 'core', ''));
-		$logicalId = 'trustedProxiesMigration';
 		if ($trustedProxiesConfiguration === '') {
-			if (count(message::byPluginLogicalId('core', $logicalId)) === 0) {
-				$message = __('La configuration des proxys de confiance est absente. Les en-têtes de proxy sont temporairement acceptés. Votre installation est vulnérable.', __FILE__);
-				$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
-				message::add('core', $message, $action, $logicalId);
-			}
-			return true;
+			return false;
 		}
-		message::removeByPluginLogicalId('core', $logicalId);
 		if (strtolower($trustedProxiesConfiguration) === 'none') {
 			return false;
 		}
@@ -129,38 +121,129 @@ class network {
 		return false;
 	}
 
-	public static function getClientIp(): string {
-		$remoteIp = self::extractValidIp($_SERVER['REMOTE_ADDR'] ?? '');
-		$alternative_sources = array(
-			'HTTP_CF_CONNECTING_IP',
-			'HTTP_X_REAL_IP',
-			'HTTP_X_FORWARDED_FOR',
-		);
+	/**
+	 * Returns the IP if it is a public IP, otherwise returns an empty string.
+	 *
+	 * @param string $ip
+	 * @return string
+	 */
+	private static function returnIfPublicIp(string $ip): string {
+		if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
+			return $ip;
+		}
+		$message = sprintf(__('La configuration de vos proxys de confiance semble incorrecte: requête contenant des headers X-Forwarded-For et/ou X-Real-IP reçue depuis une IP privée (%s).', __FILE__), $ip);
+		$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
+		log::add('network', 'warning', $message);
+		message::add('core', $message, $action);
+		return '';
+	}
 
-		$headerIps = array();
-		foreach ($alternative_sources as $source) {
-			if (!empty($_SERVER[$source])) {
-				$ip = self::extractValidIp($_SERVER[$source]);
-				if ($ip !== '') {
-					$headerIps[$source] = $ip;
-				}
+	private static function hasTrustedProxyConfiguration(): bool {
+		$trustedProxiesConfiguration = trim(config::byKey('security::trustedProxies', 'core', ''));
+		$logicalId = 'trustedProxiesMigration';
+		if ($trustedProxiesConfiguration !== '') {
+			message::removeByPluginLogicalId('core', $logicalId);
+			return true;
+		}
+
+		if (count(message::byPluginLogicalId('core', $logicalId)) === 0) {
+			log::add('network', 'warning', 'Trusted proxies configuration is missing, your installation may be vulnerable.');
+			$message = __('La configuration des proxys de confiance est absente. Les en-têtes de proxy sont temporairement acceptés. Votre installation est vulnérable.', __FILE__);
+			$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
+			message::add('core', $message, $action, $logicalId);
+		}
+		return false;
+	}
+
+	/**
+	 * Resolves the client IP from the X-Forwarded-For header and trusted proxies.
+	 *
+	 * @param string $remoteIp IP address of the direct connection
+	 * @return string|null Client IP, empty string for an invalid or unresolved header, or null when absent
+	 */
+	private static function getClientIpFromXForwardedFor(string $remoteIp): ?string {
+		if (empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			return null;
+		}
+
+		$forwardedIps = array();
+		foreach (explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']) as $value) {
+			$forwardedIp = self::extractValidIp($value);
+			if ($forwardedIp === '') {
+				log::add('network', 'warning', 'Invalid IP found in X-Forwarded-For header: ' . $value);
+				return '';
+			}
+			$forwardedIps[] = $forwardedIp;
+		}
+
+		if (count(array_unique($forwardedIps)) === 1 && $forwardedIps[0] === $remoteIp) {
+			return $remoteIp;
+		}
+		if (!self::hasTrustedProxyConfiguration()) {
+			return $forwardedIps[0];
+		}
+		if (!self::isTrustedProxy($remoteIp)) {
+			return self::returnIfPublicIp($remoteIp);
+		}
+
+		for ($index = count($forwardedIps) - 1; $index >= 0; $index--) {
+			if (!self::isTrustedProxy($forwardedIps[$index])) {
+				return $forwardedIps[$index];
 			}
 		}
+		return '';
+	}
 
-		if (count(array_unique($headerIps)) > 1) {
-			log::add('network', 'warning', __('Les en-têtes d\'adresse IP du proxy ne sont pas cohérents, utilisation de REMOTE_ADDR', __FILE__) . ' : ' . json_encode($headerIps));
-			return $remoteIp;
+	/**
+	 * Resolves the client IP from the X-Real-IP and CF-Connecting-IP headers.
+	 *
+	 * @param string $remoteIp IP address of the direct connection
+	 * @return string|null Client IP, empty string for an invalid header, or null when both headers are absent
+	 */
+	private static function getClientIpFromHeaders(string $remoteIp): ?string {
+		foreach (array('HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP') as $source) {
+			if (!empty($_SERVER[$source])) {
+				$headerIp = self::extractValidIp($_SERVER[$source]);
+				if ($headerIp === '') {
+					log::add('network', 'warning', "Invalid IP found in {$source} header: {$_SERVER[$source]}");
+					return '';
+				}
+				if ($headerIp === $remoteIp) {
+					return $headerIp;
+				}
+				if (!self::hasTrustedProxyConfiguration()) {
+					return $headerIp;
+				}
+				if (!self::isTrustedProxy($remoteIp)) {
+					return self::returnIfPublicIp($remoteIp);
+				}
+				return $headerIp;
+			}
 		}
-		$headerIp = reset($headerIps);
-		if ($headerIp === false) {
-			$headerIp = '';
+		return null;
+	}
+
+	public static function getClientIp(): string {
+		static $ipAddress = null;
+		if ($ipAddress !== null) {
+			return $ipAddress;
+		}
+		$ipAddress = self::extractValidIp($_SERVER['REMOTE_ADDR'] ?? '');
+		if ($ipAddress === '') {
+			return $ipAddress;
 		}
 
-		// users behind jeedom DNS and using openVPN will have the remoteIP == headerIP and that will be the end user IP, so they don't need to configure a proxy.
-		if ($remoteIp === $headerIp || $headerIp === '' || !self::isTrustedProxy($remoteIp)) {
-			return $remoteIp;
+		$headerIp = self::getClientIpFromHeaders($ipAddress);
+		if ($headerIp !== null) {
+			$ipAddress = $headerIp;
+			return $ipAddress;
 		}
-		return $headerIp;
+
+		$forwardedIp = self::getClientIpFromXForwardedFor($ipAddress);
+		if ($forwardedIp !== null) {
+			$ipAddress = $forwardedIp;
+		}
+		return $ipAddress;
 	}
 
 	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {
