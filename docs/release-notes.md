@@ -103,6 +103,7 @@
 ## Developer
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-09-25 13:30:53 | Chore: clean workflow | [#3530](https://github.com/jeedom/core/pull/3530) |
 | 2026-09-07 09:36:53 | Drop bullseye from CI and Docker Hub build matrices | [#3492](https://github.com/jeedom/core/pull/3492) |
 | 2026-09-01 10:51:55 | Refactor draft release notes workflow to remove tag date retrieval and improve PR fetching logic | [#3481](https://github.com/jeedom/core/pull/3481) |
 | 2026-09-01 08:55:47 | Merge back to develop hotfix 4.6.1 | [#3480](https://github.com/jeedom/core/pull/3480) |
