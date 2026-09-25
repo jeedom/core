@@ -1032,8 +1032,17 @@ function sizeFormat($size) {
  * @return boolean
  */
 function netMatch(string $network, string $ip): bool {
+	$network = trim($network);
 	$ip = trim($ip);
-	if ($ip == trim($network)) {
+
+	if ($network === '' || $ip === '') {
+		return false;
+	}
+	if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
+		return false;
+	}
+
+	if ($ip == $network) {
 		return true;
 	}
 	$network = str_replace(' ', '', $network);
@@ -1062,13 +1071,16 @@ function netMatch(string $network, string $ip): bool {
 		}
 	}
 
-	$d = strpos($network, '-');
-	if ($d === false) {
+	$dash = strpos($network, '-');
+	if ($dash === false) {
 		return network::ipMatchesNetwork($ip, $network);
 	} else {
-		$from = trim(ip2long(substr($network, 0, $d)));
-		$to = trim(ip2long(substr($network, $d + 1)));
-		$ip = ip2long($ip);
+		$from = ip2long(trim(substr($network, 0, $dash)));
+		$to = ip2long(trim(substr($network, $dash + 1)));
+		$ipLong = ip2long($ip);
+		if ($from === false || $to === false || $ipLong === false) {
+			return false;
+		}
 		return ($ip >= $from && $ip <= $to);
 	}
 }
