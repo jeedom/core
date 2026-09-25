@@ -177,6 +177,28 @@ class config {
 	}
 
 	/**
+	 * Indicates whether a configuration key holds an encrypted/sensitive value.
+	 *
+	 * Mirrors the decryption conditions applied in byKey()/byKeys(): the core
+	 * encrypted keys, any plugin key declared in the plugin's $_encryptConfigKey,
+	 * and the per-plugin 'api' key. Used to prevent non-admin users from reading
+	 * secrets (API keys, passwords, tokens) through the config ajax endpoint.
+	 *
+	 * @param string $_key Configuration key
+	 * @param string $_plugin Plugin name
+	 * @return bool
+	 */
+	public static function isEncrypted($_key, $_plugin = 'core') {
+		if ($_key == 'api') {
+			return true;
+		}
+		if ($_plugin == 'core') {
+			return in_array($_key, self::$encryptKey);
+		}
+		return (class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key, $_plugin::$_encryptConfigKey));
+	}
+
+	/**
 	 * Gets configuration value by key
 	 *
 	 * @param string $_key Configuration key
