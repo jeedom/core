@@ -21,16 +21,16 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 
 class network {
 
-	public static function getUserLocation() {
+	public static function getUserLocation(): string {
 		$client_ip = self::getClientIp();
 		$jeedom_ip = self::getNetworkAccess('internal', 'ip', '', false);
 		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
 			return 'external';
 		}
 		if (config::byKey('network::localip') != '') {
-			$localIps = explode(';', config::byKey('network::localip'));
-			foreach ($localIps as $localIp) {
-				if (netMatch($localIp, $client_ip)) {
+			$localNetworkIps = explode(';', config::byKey('network::localip'));
+			foreach ($localNetworkIps as $localNetworkIp) {
+				if (netMatch($localNetworkIp, $client_ip)) {
 					return 'internal';
 				}
 			}
@@ -43,17 +43,207 @@ class network {
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
 	}
 
-	public static function getClientIp() {
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			return $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
-			return $_SERVER['HTTP_X_REAL_IP'];
-		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-			return $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
-			return $_SERVER['REMOTE_ADDR'];
+	private static function extractValidIp(string $value): string {
+		if (empty($value)) {
+			return '';
+		}
+
+		$ip = trim($value);
+		return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
+	}
+
+	/**
+	 * Checks whether an IP address belongs to an IP address or CIDR network.
+	 *
+	 * @param string $ip IP address to check
+	 * @param string $network IP address or CIDR network in IPv4 or IPv6 format
+	 * @return bool True when the IP matches the network, false for invalid or non-matching values
+	 *
+	 * @example network::ipMatchesNetwork('192.168.1.10', '192.168.1.10')
+	 * @example network::ipMatchesNetwork('192.168.1.10', '192.168.1.0/24')
+	 * @example network::ipMatchesNetwork('2001:db8::10', '2001:db8::/32')
+	 */
+	public static function ipMatchesNetwork(string $ip, string $network): bool {
+		$ipBinary = inet_pton($ip);
+		if ($ipBinary === false) {
+			return false;
+		}
+
+		$parts = explode('/', $network, 2);
+		$networkBinary = inet_pton($parts[0]);
+		if ($networkBinary === false || strlen($networkBinary) !== strlen($ipBinary)) {
+			return false;
+		}
+		if (count($parts) === 1) {
+			return $ipBinary === $networkBinary;
+		}
+
+		$prefixLength = filter_var($parts[1], FILTER_VALIDATE_INT);
+		$maxPrefixLength = strlen($ipBinary) * 8;
+		if ($prefixLength === false || $prefixLength < 0 || $prefixLength > $maxPrefixLength) {
+			return false;
+		}
+
+		$bytesToCompare = intdiv($prefixLength, 8);
+		$remainingBits = $prefixLength % 8;
+		if ($bytesToCompare > 0 && substr($ipBinary, 0, $bytesToCompare) !== substr($networkBinary, 0, $bytesToCompare)) {
+			return false;
+		}
+		if ($remainingBits > 0) {
+			$mask = chr((0xFF << (8 - $remainingBits)) & 0xFF);
+			return (ord($ipBinary[$bytesToCompare]) & ord($mask)) === (ord($networkBinary[$bytesToCompare]) & ord($mask));
+		}
+		return true;
+	}
+
+	private static function isTrustedProxy(string $ip): bool {
+		if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
+			return false;
+		}
+		$trustedProxiesConfiguration = trim(config::byKey('security::trustedProxies', 'core', ''));
+		if ($trustedProxiesConfiguration === '') {
+			return false;
+		}
+		if (strtolower($trustedProxiesConfiguration) === 'none') {
+			return false;
+		}
+
+		$trustedProxies = explode(';', $trustedProxiesConfiguration);
+		foreach ($trustedProxies as $trustedProxy) {
+			$trustedProxy = trim($trustedProxy);
+			if ($trustedProxy === '') {
+				continue;
+			}
+			if (self::ipMatchesNetwork($ip, $trustedProxy)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Returns the IP if it is a public IP, otherwise returns an empty string.
+	 *
+	 * @param string $ip
+	 * @return string
+	 */
+	private static function returnIfPublicIp(string $ip): string {
+		if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
+			return $ip;
+		}
+		$message = sprintf(__('La configuration de vos proxys de confiance semble incorrecte: requête contenant des headers X-Forwarded-For et/ou X-Real-IP reçue depuis une IP privée (%s).', __FILE__), $ip);
+		$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
+		log::add('network', 'warning', $message);
+		message::add('core', $message, $action);
+		return '';
+	}
+
+	private static function hasTrustedProxyConfiguration(): bool {
+		$trustedProxiesConfiguration = trim(config::byKey('security::trustedProxies', 'core', ''));
+		$logicalId = 'trustedProxiesMigration';
+		if ($trustedProxiesConfiguration !== '') {
+			message::removeByPluginLogicalId('core', $logicalId);
+			return true;
+		}
+
+		if (count(message::byPluginLogicalId('core', $logicalId)) === 0) {
+			log::add('network', 'warning', 'Trusted proxies configuration is missing, your installation may be vulnerable.');
+			$message = __('La configuration des proxys de confiance est absente. Les en-têtes de proxy sont temporairement acceptés. Votre installation est vulnérable.', __FILE__);
+			$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
+			message::add('core', $message, $action, $logicalId);
+		}
+		return false;
+	}
+
+	/**
+	 * Resolves the client IP from the X-Forwarded-For header and trusted proxies.
+	 *
+	 * @param string $remoteIp IP address of the direct connection
+	 * @return string|null Client IP, empty string for an invalid or unresolved header, or null when absent
+	 */
+	private static function getClientIpFromXForwardedFor(string $remoteIp): ?string {
+		if (empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			return null;
+		}
+
+		$forwardedIps = array();
+		foreach (explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']) as $value) {
+			$forwardedIp = self::extractValidIp($value);
+			if ($forwardedIp === '') {
+				log::add('network', 'warning', 'Invalid IP found in X-Forwarded-For header: ' . $value);
+				return '';
+			}
+			$forwardedIps[] = $forwardedIp;
+		}
+
+		if (count(array_unique($forwardedIps)) === 1 && $forwardedIps[0] === $remoteIp) {
+			return $remoteIp;
+		}
+		if (!self::hasTrustedProxyConfiguration()) {
+			return $forwardedIps[0];
+		}
+		if (!self::isTrustedProxy($remoteIp)) {
+			return self::returnIfPublicIp($remoteIp);
+		}
+
+		for ($index = count($forwardedIps) - 1; $index >= 0; $index--) {
+			if (!self::isTrustedProxy($forwardedIps[$index])) {
+				return $forwardedIps[$index];
+			}
 		}
 		return '';
+	}
+
+	/**
+	 * Resolves the client IP from the X-Real-IP and CF-Connecting-IP headers.
+	 *
+	 * @param string $remoteIp IP address of the direct connection
+	 * @return string|null Client IP, empty string for an invalid header, or null when both headers are absent
+	 */
+	private static function getClientIpFromHeaders(string $remoteIp): ?string {
+		foreach (array('HTTP_X_REAL_IP', 'HTTP_CF_CONNECTING_IP') as $source) {
+			if (!empty($_SERVER[$source])) {
+				$headerIp = self::extractValidIp($_SERVER[$source]);
+				if ($headerIp === '') {
+					log::add('network', 'warning', "Invalid IP found in {$source} header: {$_SERVER[$source]}");
+					return '';
+				}
+				if ($headerIp === $remoteIp) {
+					return $headerIp;
+				}
+				if (!self::hasTrustedProxyConfiguration()) {
+					return $headerIp;
+				}
+				if (!self::isTrustedProxy($remoteIp)) {
+					return self::returnIfPublicIp($remoteIp);
+				}
+				return $headerIp;
+			}
+		}
+		return null;
+	}
+
+	public static function getClientIp(): string {
+		static $ipAddress = null;
+		if ($ipAddress !== null) {
+			return $ipAddress;
+		}
+		$ipAddress = self::extractValidIp($_SERVER['REMOTE_ADDR'] ?? '');
+		if ($ipAddress === '') {
+			return $ipAddress;
+		}
+
+		$headerIp = self::getClientIpFromHeaders($ipAddress);
+		if ($headerIp !== null) {
+			$ipAddress = $headerIp;
+			return $ipAddress;
+		}
+
+		$forwardedIp = self::getClientIpFromXForwardedFor($ipAddress);
+		if ($forwardedIp !== null) {
+			$ipAddress = $forwardedIp;
+		}
+		return $ipAddress;
 	}
 
 	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {

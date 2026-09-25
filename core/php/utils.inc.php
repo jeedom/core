@@ -226,23 +226,11 @@ function convertDuration($time) {
 	return $result;
 }
 
+/**
+ * @deprecated Use network::getClientIp() instead.
+ */
 function getClientIp() {
-	$sources = array(
-		'HTTP_CF_CONNECTING_IP',
-		'HTTP_X_REAL_IP',
-		'HTTP_X_FORWARDED_FOR',
-		'HTTP_CLIENT_IP',
-		'REMOTE_ADDR',
-	);
-	foreach ($sources as $source) {
-		if (isset($_SERVER[$source])) {
-			if (strpos($_SERVER[$source], ',') !== false) {
-				return explode(',', $_SERVER[$source])[0];
-			}
-			return str_replace(' ', '', $_SERVER[$source]);
-		}
-	}
-	return '';
+	return network::getClientIp();
 }
 
 function mySqlIsHere() {
@@ -1043,19 +1031,31 @@ function sizeFormat($size) {
  * @param string $ip
  * @return boolean
  */
-function netMatch($network, $ip) {
+function netMatch(string $network, string $ip): bool {
+	$network = trim($network);
 	$ip = trim($ip);
-	if ($ip == trim($network)) {
+
+	if ($network === '' || $ip === '') {
+		return false;
+	}
+	if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
+		return false;
+	}
+
+	if ($ip == $network) {
 		return true;
 	}
 	$network = str_replace(' ', '', $network);
 	if (strpos($network, '*') !== false) {
+		if (strpos($network, '-') !== false) {
+			return false;
+		}
 		if (strpos($network, '/') !== false) {
 			$asParts = explode('/', $network);
 			if ($asParts[0]) {
 				$network = $asParts[0];
 			} else {
-				$network = null;
+				return false;
 			}
 		}
 		$nCount = substr_count($network, '*');
@@ -1071,27 +1071,16 @@ function netMatch($network, $ip) {
 		}
 	}
 
-	$d = strpos($network, '-');
-	if ($d === false) {
-		if (strpos($network, '/') === false) {
-			if ($ip == $network) {
-				return true;
-			}
+	$dash = strpos($network, '-');
+	if ($dash === false) {
+		return network::ipMatchesNetwork($ip, $network);
+	} else {
+		$from = ip2long(trim(substr($network, 0, $dash)));
+		$to = ip2long(trim(substr($network, $dash + 1)));
+		$ipLong = ip2long($ip);
+		if ($from === false || $to === false || $ipLong === false) {
 			return false;
 		}
-		$ip_arr = explode('/', $network);
-		if (!preg_match("@\d*\.\d*\.\d*\.\d*@", $ip_arr[0], $matches)) {
-			$ip_arr[0] .= ".0"; // Alternate form 194.1.4/24
-		}
-		$network_long = ip2long($ip_arr[0]);
-		$x = ip2long($ip_arr[1]);
-		$mask = long2ip($x) == $ip_arr[1] ? $x : (0xffffffff << (32 - $ip_arr[1]));
-		$ip_long = ip2long($ip);
-		return ($ip_long & $mask) == ($network_long & $mask);
-	} else {
-		$from = trim(ip2long(substr($network, 0, $d)));
-		$to = trim(ip2long(substr($network, $d + 1)));
-		$ip = ip2long($ip);
 		return ($ip >= $from && $ip <= $to);
 	}
 }
