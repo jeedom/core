@@ -224,8 +224,8 @@ try {
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
 		foreach (ls($backup_dir, '*') as $file) {
-			if (count(ls($backup_dir, '*')) < 2) {
-				break (2);
+			if ($backup_dir . '/' . $file === $backup_dir . '/' . $backup_name) {
+				continue;
 			}
 			if (is_dir($backup_dir . '/' . $file)) {
 				foreach (ls($backup_dir . '/' . $file, '*') as $file2) {
@@ -252,14 +252,14 @@ try {
 			}
 		}
 		if ($older['file'] === null) {
-			echo 'Error, no file to delete while folder size is: ' . getDirectorySize($backup_dir) . "\n";
+			echo 'Warning: backup size limit cannot be met without deleting today\'s backup. Folder size is: ' . getDirectorySize($backup_dir) . "\n";
+			break;
 		}
 		echo "Delete: " . $older['file'] . "\n";
 		if (!unlink($older['file'])) {
 			$i = 50;
 		}
-		$i++;
-		if ($i > 50) {
+		if (++$i > 50) {
 			echo "More than 50 backups deleted, stopping.\n";
 			break;
 		}
