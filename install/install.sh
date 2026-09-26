@@ -133,6 +133,7 @@ step_5_php() {
   apt install -y php-ldap
   apt install -y php-yaml
   apt install -y php-snmp
+  apt-get install -y php-imagick
   echo "${GREEN}Step 5 - php done${NORMAL}"
 }
 
