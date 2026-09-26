@@ -1139,13 +1139,14 @@ class eqLogic {
 		if ($this->getConfiguration('battery::disable', 0) == 1) {
 			return;
 		}
-		$currentpourcent = null;
+		$currentpourcent = (int)$this->getStatus('battery', 100);
 		if ($_pourcent === '' || !is_numeric($_pourcent)) {
-			$_pourcent = $this->getStatus('battery', 100);
+			$_pourcent = $currentpourcent;
 			$_datetime = $this->getStatus('batteryDatetime', date('Y-m-d H:i:s'));
 		} else {
-			$currentpourcent = $this->getStatus('battery', 100);
+			$_pourcent = (int) $_pourcent;
 		}
+
 		if ($_pourcent > 100) {
 			$_pourcent = 100;
 		}
@@ -1156,15 +1157,15 @@ class eqLogic {
 			$this->setConfiguration('batterytime', date('Y-m-d H:i:s'));
 			$this->save(true);
 		}
-
-		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
-		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
-		if ($_pourcent !== '' && $_pourcent < $danger_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
-			if ($currentpourcent < $danger_threshold) {
+		$warning_threshold = (int)$this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
+		$danger_threshold = (int)$this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
+		if ($_pourcent < $danger_threshold) {
+			if ($currentpourcent < $danger_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
 				return;
 			}
 			$prevStatus = $this->getStatus('batterydanger', 0);
-			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
+			$message = __("L'équipement %s %s a moins de %d%% de batterie (niveau danger avec %d%% de batterie)", __FILE__);
+			$message = sprintf($message, $this->getEqType_name(), $this->getHumanName(), $danger_threshold, $_pourcent);
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
@@ -1188,12 +1189,13 @@ class eqLogic {
 					}
 				}
 			}
-		} else if ($_pourcent !== '' && $_pourcent < $warning_threshold) {
+		} else if ($_pourcent < $warning_threshold) {
 			if ($currentpourcent < $warning_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
 				return;
 			}
 			$prevStatus = $this->getStatus('batterywarning', 0);
-			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
+			$message = __("L'équipement %s %s a moins de %d%% de batterie (niveau warning avec %d%% de batterie)", __FILE__);
+			$message = sprintf($message, $this->getEqType_name(), $this->getHumanName(), $warning_threshold, $_pourcent);
 			if ($this->getConfiguration('battery_type') != '') {
 				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 			}
