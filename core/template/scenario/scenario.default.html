@@ -57,20 +57,22 @@
 
       const input = document.querySelector('.expressionAttr[data-uid="#uid#"][data-l1key="options"][data-l2key="filter"]')
       const allOptions = Array.from(select.options)
+      const optgroups = select.querySelectorAll('optgroup')
 
       function filterOptions() {
         const text = input.value.trim().toLowerCase().stripAccents()
 
-        select.innerHTML = ''
-
-        allOptions
-          .filter(option => {
-            const optionText = option.textContent.toLowerCase().stripAccents()
-            return text === '' || optionText.includes(text)
-          })
-          .forEach(option => {
-            select.add(option.cloneNode(true))
-          })
+        const selectElement = document.querySelector('.expressionAttr[data-l2key="scenario_id"]')
+        if (!selectElement) return
+        allOptions.forEach(option => {
+          const optionText = option.textContent.toLowerCase().stripAccents()
+          option.hidden = text !== '' && !optionText.includes(text)
+        })
+        optgroups.forEach(group => {
+          const childOptions = Array.from(group.querySelectorAll('option'))
+          const hasVisibleOption = childOptions.some(option => !option.hidden)
+          group.hidden = text !== '' && !hasVisibleOption
+        })
       }      
 
       input.addEventListener('input', filterOptions)
