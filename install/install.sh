@@ -50,17 +50,17 @@ version() {
 
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 1 - install${NORMAL}"
+  echo "${YELLOW}Starting step 1 - system upgrade${NORMAL}"
 
   apt-get update
   apt-get -f install
   apt-get -y dist-upgrade
-  echo "${GREEN} Step 1 - Install done ${NORMAL}"
+  echo "${GREEN}Step 1 - system upgrade done${NORMAL}"
 }
 
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 2 - packages${NORMAL}"
+  echo "${YELLOW}Starting step 2 - package installation${NORMAL}"
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
@@ -83,12 +83,12 @@ step_2_mainpackage() {
   apt-get -y install ssl-cert
   apt-get -y install iputils-ping
   apt-get -y remove brltty
-  echo "${GREEN}step 2 - packages done${NORMAL}"
+  echo "${GREEN}Step 2 - package installation done${NORMAL}"
 }
 
 step_3_database() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 3 - database${NORMAL}"
+  echo "${YELLOW}Starting step 3 - MariaDB installation${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
 
   service_action status mariadb
@@ -105,19 +105,19 @@ step_3_database() {
     fi
   fi
 
-  echo "${GREEN}Step 3 - database done${NORMAL}"
+  echo "${GREEN}Step 3 - MariaDB installation done${NORMAL}"
 }
 
 step_4_apache() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 4 - apache${NORMAL}"
+  echo "${YELLOW}Starting step 4 - Apache installation${NORMAL}"
   apt_install apache2 apache2-utils libexpat1 ssl-cert
-  echo "${GREEN}Step 4 - apache done${NORMAL}"
+  echo "${GREEN}Step 4 - Apache installation done${NORMAL}"
 }
 
 step_5_php() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 5 - php${NORMAL}"
+  echo "${YELLOW}Starting step 5 - PHP installation${NORMAL}"
   apt_install php libapache2-mod-php php-json php-mysql
   apt install -y php-curl
   apt install -y php-gd
@@ -133,12 +133,12 @@ step_5_php() {
   apt install -y php-ldap
   apt install -y php-yaml
   apt install -y php-snmp
-  echo "${GREEN}Step 5 - php done${NORMAL}"
+  echo "${GREEN}Step 5 - PHP installation done${NORMAL}"
 }
 
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
+  echo "${YELLOW}Starting step 6 - Jeedom download${NORMAL}"
   wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
   if [ $? -ne 0 ]; then
@@ -166,12 +166,12 @@ step_6_jeedom_download() {
   rm -rf /root/core-* > /dev/null 2>&1
   rm -rf ${WEBSERVER_HOME}/core-* > /dev/null 2>&1
   rm /tmp/jeedom.zip
-  echo "${GREEN}Step 6 - download Jeedom done${NORMAL}"
+  echo "${GREEN}Step 6 - Jeedom download done${NORMAL}"
 }
 
 step_7_jeedom_customization_mariadb() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 7 - mariadb customization${NORMAL}"
+  echo "${YELLOW}Starting step 7 - MariaDB configuration${NORMAL}"
 
   mkdir -p /lib/systemd/system/mariadb.service.d
   echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
@@ -226,12 +226,12 @@ step_7_jeedom_customization_mariadb() {
     fi
   fi
 
-  echo "${GREEN}Step 7 - mariadb customization done${NORMAL}"
+  echo "${GREEN}Step 7 - MariaDB configuration done${NORMAL}"
 }
 
 step_8_jeedom_customization() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 8 - Jeedom customization${NORMAL}"
+  echo "${YELLOW}Starting step 8 - Apache and PHP configuration${NORMAL}"
   cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/security.conf
 
@@ -265,7 +265,7 @@ step_8_jeedom_customization() {
   fi
 
   for file in $(find /etc/ -iname php.ini -type f); do
-    echo "Update php file ${file}"
+    echo "Updating PHP file ${file}"
     sed -i 's/max_execution_time = 30/max_execution_time = 600/g' ${file} > /dev/null 2>&1
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
     sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
@@ -289,7 +289,7 @@ step_8_jeedom_customization() {
 
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
-  echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
+  echo "${GREEN}Step 8 - Apache and PHP configuration done${NORMAL}"
 }
 
 step_9_jeedom_configuration() {
@@ -317,7 +317,7 @@ step_9_jeedom_configuration() {
 
 step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
+  echo "${YELLOW}Starting step 10 - Jeedom installation${NORMAL}"
   chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
   ${WEBSERVER_HOME}/resources/install_composer.sh
   export COMPOSER_ALLOW_SUPERUSER=1
@@ -335,7 +335,7 @@ step_10_jeedom_installation() {
     fi
   fi
 
-  echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
+  echo "${GREEN}Step 10 - Jeedom installation done${NORMAL}"
 }
 
 step_11_jeedom_post() {
@@ -439,17 +439,17 @@ while getopts ":s:v:w:m:i:d:" opt; do
   esac
 done
 
-echo "${YELLOW}Welcome to Jeedom installer${NORMAL}"
-echo "${YELLOW}Jeedom version : ${VERSION}${NORMAL}"
-echo "${YELLOW}Web folder : ${WEBSERVER_HOME}${NORMAL}"
-echo "${YELLOW}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
+echo "${YELLOW}Welcome to the Jeedom installer${NORMAL}"
+echo "${YELLOW}Jeedom version: ${VERSION}${NORMAL}"
+echo "${YELLOW}Web folder: ${WEBSERVER_HOME}${NORMAL}"
+echo "${YELLOW}Installation type: ${INSTALLATION_TYPE}${NORMAL}"
 if [ ${DATABASE} -ne 1 ]; then
   echo "${YELLOW}External database${NORMAL}"
 fi
 
 case ${STEP} in
   0)
-  echo "${YELLOW}Starting installation ...${NORMAL}"
+  echo "${YELLOW}Starting Jeedom installation...${NORMAL}"
   step_1_upgrade
   step_2_mainpackage
   if [ ${DATABASE} -eq 1 ]; then
