@@ -422,7 +422,7 @@ MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
-while getopts ":s:v:w:m:i:d:" opt; do
+while getopts ":s:v:w:i:d:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -435,6 +435,7 @@ while getopts ":s:v:w:m:i:d:" opt; do
     d) DATABASE="$OPTARG"
     ;;
     \?) echo "${RED}Invalid option -$OPTARG${NORMAL}" >&2
+    exit 1
     ;;
   esac
 done
@@ -507,6 +508,7 @@ case ${STEP} in
   12) step_12_jeedom_check
   ;;
   *) echo "${RED}Invalid step: ${STEP}${NORMAL}"
+  exit 1
   ;;
 esac
 
