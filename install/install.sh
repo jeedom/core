@@ -341,6 +341,17 @@ step_10_jeedom_installation() {
 step_11_jeedom_post() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 11 - Jeedom post-install${NORMAL}"
+  if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
+    if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then
+      echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=256M                                       0 0' >>  /etc/fstab
+    fi
+    # fstab is only read at boot, mount it now (before the crons start) so no reboot is needed
+    if [ "${INSTALLATION_TYPE}" != "docker" ] && [ "${INSTALLATION_TYPE}" != "pigen" ] && ! mountpoint -q /tmp/jeedom; then
+      mkdir -p /tmp/jeedom
+      systemctl daemon-reload
+      mount /tmp/jeedom
+    fi
+  fi
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
 
@@ -362,16 +373,15 @@ step_11_jeedom_post() {
     chmod 644 /etc/cron.d/jeedom_watchdog
   fi
   usermod -a -G dialout,tty www-data
+  # Apache only picks up the new groups of www-data on restart
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    service_action restart apache2 > /dev/null 2>&1
+  fi
   if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
     echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
     if [ $? -ne 0 ]; then
       echo "${RED}Cannot allow Sudo for Jeedom - Cancelling${NORMAL}"
       exit 1
-    fi
-  fi
-  if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
-    if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then
-      echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=256M                                       0 0' >>  /etc/fstab
     fi
   fi
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
@@ -460,7 +470,7 @@ case ${STEP} in
   step_11_jeedom_post
   step_12_jeedom_check
   distrib_1_spe
-  echo "Installation done. Reboot required."
+  echo "Installation done. Reboot recommended."
   ;;
   1) step_1_upgrade
   ;;
