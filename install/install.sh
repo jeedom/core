@@ -147,7 +147,7 @@ step_6_jeedom_download() {
       cp /root/jeedom.zip /tmp/jeedom.zip
     fi
   fi
-  if [ ! /tmp/jeedom.zip ]; then
+  if [ ! -s /tmp/jeedom.zip ]; then
     echo "${RED}Cannot get the jeedom.zip archive. Installation aborted.${NORMAL}"
     exit 1
   fi
