@@ -6,14 +6,14 @@ YELLOW="\\033[1;33m"
 
 if [ $(id -u) != 0 ] ; then
   echo "Superuser rights (root) are required to install Jeedom"
-  echo "Please run 'sudo $0' or login as root and then rerun $0"
+  echo "Please run 'sudo $0' or log in as root and then rerun $0"
   exit 1
 fi
 
 apt_install() {
   apt-get -o Dpkg::Options::="--force-confdef" -y install "$@"
   if [ $? -ne 0 ]; then
-    echo "${RED}Cannot install $@ - Cancelling${NORMAL}"
+    echo "${RED}Cannot install $@. Installation aborted.${NORMAL}"
     exit 1
   fi
 }
@@ -21,7 +21,7 @@ apt_install() {
 mariadb_sql() {
   echo "$@" | mariadb -uroot
   if [ $? -ne 0 ]; then
-    echo "${RED}Cannot execute $@ in MySQL - Cancelling${NORMAL}"
+    echo "${RED}Cannot execute $@ in MariaDB. Installation aborted.${NORMAL}"
     exit 1
   fi
 }
@@ -100,7 +100,7 @@ step_3_database() {
   if [ $? -ne 0 ]; then
     service_action status mysql
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
+      echo "${RED}Cannot start MariaDB. Installation aborted.${NORMAL}"
       exit 1
     fi
   fi
@@ -142,13 +142,13 @@ step_6_jeedom_download() {
   wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
   if [ $? -ne 0 ]; then
-    echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
+    echo "${YELLOW}Cannot download Jeedom from GitHub. Using the deployment version if it exists.${NORMAL}"
     if [ -f /root/jeedom.zip ]; then
       cp /root/jeedom.zip /tmp/jeedom.zip
     fi
   fi
   if [ ! /tmp/jeedom.zip ]; then
-    echo "${RED}Cannot get jeedom.zip archive - Cancelling${NORMAL}"
+    echo "${RED}Cannot get the jeedom.zip archive. Installation aborted.${NORMAL}"
     exit 1
   fi
   mkdir -p ${WEBSERVER_HOME}
@@ -156,7 +156,7 @@ step_6_jeedom_download() {
   rm -rf /root/core-*
   unzip -q /tmp/jeedom.zip -d /root/
   if [ $? -ne 0 ]; then
-    echo "${RED}Cannot unpack archive - Cancelling${NORMAL}"
+    echo "${RED}Cannot unpack the archive. Installation aborted.${NORMAL}"
     exit 1
   fi
   cp -R /root/core-*/* ${WEBSERVER_HOME}
@@ -178,7 +178,7 @@ step_7_jeedom_customization_mariadb() {
   echo 'Restart=always' >> /lib/systemd/system/mariadb.service.d/override.conf
   echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
 
-  # do not start oany new service during docker build sequence
+  # do not start any new service during docker build sequence
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
 
@@ -188,7 +188,7 @@ step_7_jeedom_customization_mariadb() {
       service_action stop mysql > /dev/null 2>&1
       if [ $? -ne 0 ]; then
         service_action status mysql
-        echo "${RED}Cannot stop mariadb - Canceling${NORMAL}"
+        echo "${RED}Cannot stop MariaDB. Installation aborted.${NORMAL}"
         exit 1
       fi
     fi
@@ -220,7 +220,7 @@ step_7_jeedom_customization_mariadb() {
       service_action start mysql > /dev/null 2>&1
       if [ $? -ne 0 ]; then
         service_action status mysql
-        echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
+        echo "${RED}Cannot start MariaDB. Installation aborted.${NORMAL}"
         exit 1
       fi
     fi
@@ -330,7 +330,7 @@ step_10_jeedom_installation() {
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     php ${WEBSERVER_HOME}/install/install.php mode=force
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
+      echo "${RED}Cannot install Jeedom. Installation aborted.${NORMAL}"
       exit 1
     fi
   fi
@@ -359,7 +359,7 @@ step_11_jeedom_post() {
   if [ ! -f /etc/cron.d/jeedom ]; then
     echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
+      echo "${RED}Cannot install Jeedom cron. Installation aborted.${NORMAL}"
       exit 1
     fi
     chmod 644 /etc/cron.d/jeedom
@@ -367,7 +367,7 @@ step_11_jeedom_post() {
   if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
     echo "*/5 * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
+      echo "${RED}Cannot install Jeedom watchdog cron. Installation aborted.${NORMAL}"
       exit 1
     fi
     chmod 644 /etc/cron.d/jeedom_watchdog
@@ -380,7 +380,7 @@ step_11_jeedom_post() {
   if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
     echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot allow Sudo for Jeedom - Cancelling${NORMAL}"
+      echo "${RED}Cannot grant sudo rights to Jeedom. Installation aborted.${NORMAL}"
       exit 1
     fi
   fi
@@ -506,7 +506,7 @@ case ${STEP} in
   ;;
   12) step_12_jeedom_check
   ;;
-  *) echo "${RED}Sorry, cannot select step ${STEP}${NORMAL}"
+  *) echo "${RED}Invalid step: ${STEP}${NORMAL}"
   ;;
 esac
 
