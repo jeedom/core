@@ -470,7 +470,14 @@ case ${STEP} in
   step_11_jeedom_post
   step_12_jeedom_check
   distrib_1_spe
-  echo "Installation done. Reboot recommended."
+  echo "${GREEN}Jeedom installation done. Reboot recommended.${NORMAL}"
+  if [ "${INSTALLATION_TYPE}" != "docker" ] && [ "${INSTALLATION_TYPE}" != "pigen" ]; then
+    LOCAL_IP=$(ip -4 route get 1.1.1.1 2>/dev/null | grep -oP 'src \K\S+')
+    if [ -n "${LOCAL_IP}" ]; then
+      echo "Jeedom interface: http://${LOCAL_IP}/"
+      echo "Default login: admin/admin"
+    fi
+  fi
   ;;
   1) step_1_upgrade
   ;;
