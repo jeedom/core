@@ -22,15 +22,15 @@ if (!isConnect()) {
 if (plugin::isInstalled('jeeasy')) {
 	try {
 		$jeeasy = plugin::byId('jeeasy');
-		if (!$jeeasy->isActive()) {
-			$jeeasy->setIsEnable(1);
-		}
 		$update = $jeeasy->getUpdate();
 		if (is_object($update)) {
 			$update->checkUpdate();
 			if ($update->getStatus() == 'update') {
 				$update->doUpdate();
 			}
+		}
+		if (!$jeeasy->isActive()) {
+			$jeeasy->setIsEnable(1);
 		}
 		echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1')</script>";
 		die();
