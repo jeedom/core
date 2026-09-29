@@ -131,9 +131,10 @@ $productName = config::byKey('product_name');
 								level: 'danger'
 							})
 						},
-						success: function(_jeeasy) {
-							jeedom.update.do({
-								id: _jeeasy.id,
+						success: function() {
+							jeedom.plugin.toggle({
+								id: 'jeeasy',
+								state: 1,
 								error: function(_error) {
 									jeedomUtils.showAlert({
 										message: _error.message,
@@ -141,19 +142,7 @@ $productName = config::byKey('product_name');
 									})
 								},
 								success: function() {
-									jeedom.plugin.toggle({
-										id: 'jeeasy',
-										state: 1,
-										error: function(_error) {
-											jeedomUtils.showAlert({
-												message: _error.message,
-												level: 'danger'
-											})
-										},
-										success: function() {
-											jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard')
-										}
-									})
+									jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1')
 								}
 							})
 						}
