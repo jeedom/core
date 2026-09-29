@@ -78,7 +78,7 @@ $productName = config::byKey('product_name');
 	</a>
 	<a class="btn btn-success market_connect hidden" id="bt_validate_market"><i class="fas fa-check"></i> {{Valider les identifiants Market}}</a>
 	<a class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant}}</a>
-	<a class="btn btn-warning first_use" id="bt_restore_save" href="index.php?v=d&amp;p=backup"><i class="fas fa-save"></i> {{Restaurer une sauvegarde}}</a>
+	<a class="btn btn-warning first_use" id="bt_restore_save" href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Restaurer une sauvegarde}}</a>
 
 	<?php
 	if (($docUrl = config::byKey('doc::base_url')) != '') {
