@@ -81,7 +81,7 @@ $productName = config::byKey('product_name');
 	<a class="btn btn-warning first_use" id="bt_restore_save" href="index.php?v=d&amp;p=backup"><i class="fas fa-save"></i> {{Restaurer une sauvegarde}}</a>
 
 	<?php
-	if (($docURl = config::byKey('doc::base_url')) != '') {
+	if (($docUrl = config::byKey('doc::base_url')) != '') {
 		echo '<hr class="hrPrimary">';
 		if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
 			echo '<div class="col-md-12">';
@@ -91,8 +91,10 @@ $productName = config::byKey('product_name');
 			echo ' {{de votre box officielle}} ' . $productName . '.';
 			echo '</div>';
 		}
+		$lang = config::byKey('language');
+		$docLang = in_array($lang, ['fr_FR', 'en_US', 'es_ES', 'de_DE']) ? $lang : 'en_US';
 		echo '<div class="col-md-12">';
-		echo '<a href="' . $docURl . '/' . config::byKey('language') . '/premiers-pas/" target="_blank">';
+		echo '<a href="' . $docUrl . '/premiers-pas/' . $docLang . '/" target="_blank">';
 		echo '<i class="fas fa-book"></i> {{La documentation de démarrage}}';
 		echo '</a>';
 		echo ' {{détaille les étapes de démarrage de votre box}} ' . $productName . '.';
