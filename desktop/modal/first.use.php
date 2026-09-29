@@ -18,19 +18,25 @@
 if (!isConnect()) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-try {
-	$jeeasy = plugin::byId('jeeasy');
-	if (!$jeeasy->isActive()) {
-		$jeeasy->setIsEnable(1);
+
+if (plugin::isInstalled('jeeasy')) {
+	try {
+		$jeeasy = plugin::byId('jeeasy');
+		if (!$jeeasy->isActive()) {
+			$jeeasy->setIsEnable(1);
+		}
+		$update = $jeeasy->getUpdate();
+		if (is_object($update)) {
+			$update->checkUpdate();
+			if ($update->getStatus() == 'update') {
+				$update->doUpdate();
+			}
+		}
+		echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1')</script>";
+		die();
+	} catch (\Throwable $e) {
+		log::add('jeeasy', 'error', log::exception($e));
 	}
-	$jeeasy = $jeeasy->getUpdate();
-	$jeeasy->checkUpdate();
-	if ($jeeasy->getStatus() == 'update') {
-		$jeeasy->doUpdate();
-	}
-	echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1')</script>";
-	die();
-} catch (Exception $e) {
 }
 
 if (config::byKey('jeedom::firstUse') == 1) {
