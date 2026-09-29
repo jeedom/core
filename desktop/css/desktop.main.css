@@ -1073,6 +1073,19 @@ div.eqLogicZone {
     margin-top: 2px;
   }
 
+  /* first use modal */
+  #md_firstUse > div.jeeDialogContent {
+    padding-top: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  #md_firstUse #first_use p {
+    margin-top: 10px;
+  }
+
   /* summary */
   #summaryGlobalMain {
     position: absolute;

@@ -44,64 +44,68 @@ if (config::byKey('jeedom::firstUse') == 1) {
 	echo '<i class="fas fa-eye-slash"></i> {{Ne plus afficher}}';
 	echo '</a>';
 }
-$productName = config::byKey('product_name');
 ?>
 
-<div class="text-center">
-	<h3 class="first_use">{{Bienvenue dans}} <?= $productName ?></h3>
-	<h3 class="market_connect hidden">{{Connexion au Market}}</h3>
-
-	<div class="alert alert-info col-md-10 col-md-offset-1">
-		<p class="first_use">
-			<?= $productName ?> {{est la solution incontournable dans les domaines du bâtiment intelligent et de l'habitat connecté.}}
-			<br><br>
-			{{Cliquez sur le bouton "Installer l'assistant" pour être accompagné de manière ludique et interactive dans la mise en place de votre installation.}}
-			{{Sinon vous pouvez accéder à la page de gestion des sauvegardes pour restaurer une installation précédente.}}
+<div id="first_use">
+	<h3>{{Bienvenue dans}} <?= config::byKey('product_name') ?></h3>
+	{{Comment souhaitez-vous commencer ?}}
+	<br><br>
+	<div class="col-sm-6">
+		<a class="btn btn-success" id="bt_install_jeeasy">
+			<i class="fas fa-hat-wizard"></i> {{Installer l'assistant}}
+		</a>
+		<p>
+			{{Le plugin Jeeasy est l'assistant de configuration officiel. Une fois installé, il vous accompagne pas à pas, de manière ludique et interactive, dans la prise en main de votre habitat connecté.}}
 		</p>
-		<p class="market_connect hidden">{{L'assistant}} <?= $productName ?> {{nécessite de pouvoir accéder au Market, veuillez valider vos identifiants de connexion.}}
-		</p>
-
-		<form class="form-horizontal market_connect hidden">
-			<div class="form-group">
-				<label class="control-label col-md-4">{{Utilisateur}}</label>
-				<input type="text" class="form-control col-md-8 col-xs-12" id="in_username_market" placeholder="{{Nom d'utilisateur Market}}">
-			</div>
-			<div class="form-group">
-				<label class="control-label col-md-4">{{Mot de passe}}</label>
-				<input type="password" class="form-control col-md-8 col-xs-12" autocomplete="new-password" id="in_password_market" placeholder="{{Mot de passe Market}}">
-			</div>
-		</form>
 	</div>
+	<div class="col-sm-6">
+		<a class="btn btn-primary" id="bt_restore_save" href="index.php?v=d&p=backup">
+			<i class="fas fa-save"></i> {{Restaurer une sauvegarde}}
+		</a>
+		<p>
+			{{Vous disposez d'une sauvegarde d'une précédente installation ? La page de gestion des sauvegardes vous permet de la restaurer pour retrouver vos équipements, scénarios et plugins tels que vous les aviez configurés.}}
+		</p>
+	</div>
+</div>
 
-	<a class="btn btn-default market_connect hidden" href="<?= config::byKey('market::address') ?>/index.php?v=d&p=register" target="_blank">
-		<i class="fas fa-sign-out-alt"></i> {{Pas de compte Market? En créer un!}}
+<div class="hidden" id="market_connect">
+	<h3>{{Connexion au Market}}</h3>
+	{{L'installation et l'utilisation de l'assistant de configuration nécessitent un accès au Market.}}
+	<br>
+	{{Veuillez renseigner vos identifiants de connexion.}}
+	<br><br>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-md-5">{{Utilisateur}}</label>
+			<input type="text" class="form-control col-md-4" id="in_username_market" placeholder="{{Nom d'utilisateur Market}}">
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-5">{{Mot de passe}}</label>
+			<input type="password" class="form-control col-md-4" autocomplete="new-password" id="in_password_market" placeholder="{{Mot de passe Market}}">
+		</div>
+	</form>
+
+	<a class="btn btn-success" id="bt_validate_market">
+		<i class="fas fa-check"></i> {{Valider les identifiants Market}}
 	</a>
-	<a class="btn btn-success market_connect hidden" id="bt_validate_market"><i class="fas fa-check"></i> {{Valider les identifiants Market}}</a>
-	<a class="btn btn-success first_use" id="bt_install_jeeasy"><i class="fas fa-sign-in-alt"></i> {{Installer l'assistant}}</a>
-	<a class="btn btn-warning first_use" id="bt_restore_save" href="index.php?v=d&p=backup"><i class="fas fa-save"></i> {{Restaurer une sauvegarde}}</a>
+	<a class="btn btn-sm btn-default" href="<?= config::byKey('market::address') ?>/index.php?v=d&p=register" target="_blank">
+		<i class="fas fa-sign-out-alt"></i> {{Créer un compte Market}}
+	</a>
+</div>
 
+<footer>
 	<?php
 	if (($docUrl = config::byKey('doc::base_url')) != '') {
 		echo '<hr class="hrPrimary">';
-		if (in_array(strtolower(config::byKey('hardware_name')), ['smart', 'atlas', 'luna'])) {
-			echo '<div class="col-md-12">';
-			echo '<a href="https://start.jeedom.com/" target="_blank">';
-			echo '<i class="fas fa-image"></i> {{Retrouvez le guide de mise en service}}';
-			echo '</a>';
-			echo ' {{de votre box officielle}} ' . $productName . '.';
-			echo '</div>';
-		}
 		$lang = config::byKey('language');
 		$docLang = in_array($lang, ['fr_FR', 'en_US', 'es_ES', 'de_DE']) ? $lang : 'en_US';
-		echo '<div class="col-md-12">';
-		echo '<a href="' . $docUrl . '/premiers-pas/' . $docLang . '/" target="_blank">';
-		echo '<i class="fas fa-book"></i> {{La documentation de démarrage}}';
+		echo "{{Besoin d'aide ?}} ";
+		echo '<a href="' . $docUrl . '/premiers-pas/' . $docLang . '/#market" target="_blank">';
+		echo '<i class="fas fa-book"></i> {{Consultez la documentation Premiers pas}}';
 		echo '</a>';
-		echo ' {{détaille les étapes de démarrage de votre box}} ' . $productName . '.';
-		echo '</div>';
 	}
 	?>
-</div>
+</footer>
 
 <script>
 	document.getElementById('md_firstUse').addEventListener('click', function(event) {
@@ -111,8 +115,8 @@ $productName = config::byKey('product_name');
 			jeedom.repo.test({
 				repo: 'market',
 				error: function() {
-					document.querySelectorAll('.first_use').unseen()
-					document.querySelectorAll('.market_connect').seen()
+					document.getElementById('first_use').unseen()
+					document.getElementById('market_connect').seen()
 				},
 				success: function() {
 					jeedom.update.save({
@@ -169,8 +173,8 @@ $productName = config::byKey('product_name');
 						})
 					},
 					success: function() {
-						document.querySelectorAll('.market_connect').unseen()
-						document.querySelectorAll('.first_use').seen()
+						document.getElementById('market_connect').unseen()
+						document.getElementById('first_use').seen()
 						document.getElementById('bt_install_jeeasy').triggerEvent('click')
 					}
 				})
