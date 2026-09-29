@@ -759,6 +759,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       },
       contentUrl: 'index.php?v=d&modal=first.use'
     })
+    document.getElementById('md_firstUse').addClass('jeeDialogNoCloseBackdrop')
   }
 
   window.addEventListener('beforeunload', function(event) {
