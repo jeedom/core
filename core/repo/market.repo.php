@@ -73,41 +73,46 @@ class repo_market {
 			'configuration' => array(
 				'address' => array(
 					'name' => __('Adresse', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'username' => array(
 					'name' => __('Nom d\'utilisateur', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'password' => array(
 					'name' => __('Mot de passe', __FILE__),
-					'type' => 'password_noshow',
+					'type' => 'password_noshow'
 				),
 				'no_ssl_verify' => array(
 					'name' => __('Pas de validation SSL (non recommandé)', __FILE__),
-					'type' => 'checkbox',
+					'type' => 'checkbox'
 				),
 				'cloud::backup::name' => array(
 					'name' => __('[Backup cloud] Nom du dossier de backup', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'cloud::backup::password' => array(
 					'name' => __('[Backup cloud] Mot de passe', __FILE__),
-					'type' => 'password',
+					'type' => 'password'
 				),
 				'cloud::backup::password_confirmation' => array(
 					'name' => __('[Backup cloud] Mot de passe (confirmation)', __FILE__),
-					'type' => 'password',
+					'type' => 'password'
 				),
 				'cloud::monitoring::disable' => array(
 					'name' => __('[Monitoring cloud] Désactiver', __FILE__),
-					'type' => 'checkbox',
+					'type' => 'checkbox'
 				)
 			),
 			'parameters_for_add' => array(
 				'version' => array(
-					'name' => __('Version : beta, stable', __FILE__),
-					'type' => 'input',
+					'name' => __('Version à installer', __FILE__),
+					'type' => 'select',
+					'options' => array(
+						'stable' => __('Stable', __FILE__),
+						'beta' => __('Beta', __FILE__),
+					),
+					'tooltip' => __("Sélectionner la version du plugin à installer", __FILE__)
 				),
 			),
 		);
@@ -202,11 +207,7 @@ class repo_market {
 	public static function deleteObjet($_update) {
 		try {
 			$market = repo_market::byLogicalIdAndType($_update->getLogicalId(), $_update->getType());
-		} catch (Exception $e) {
-			$market = new repo_market();
-			$market->setLogicalId($_update->getLogicalId());
-			$market->setType($_update->getType());
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			$market = new repo_market();
 			$market->setLogicalId($_update->getLogicalId());
 			$market->setType($_update->getType());
@@ -215,8 +216,7 @@ class repo_market {
 			if (is_object($market)) {
 				$market->remove();
 			}
-		} catch (Exception $e) {
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 		}
 	}
 
@@ -376,10 +376,9 @@ class repo_market {
 				'timestamp' => strtotime($file->propstat->prop->getlastmodified)
 			);
 		}
-		function cmp($a, $b) { // $a,$b are reference to first index of array
-			return strcmp($a["timestamp"], $b["timestamp"]);
-		}
-		usort($files, "cmp");
+		usort($files, function ($a, $b) {
+			return $a['timestamp'] <=> $b['timestamp'];
+		});
 		$result = array();
 		foreach ($files as $file) {
 			$result[] = $file['name'];
@@ -521,10 +520,7 @@ class repo_market {
 					} else {
 						$return['status'] = 'ok';
 					}
-				} catch (Exception $e) {
-					log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
-					$return['status'] = 'ok';
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
 					$return['status'] = 'ok';
 				}
@@ -572,10 +568,7 @@ class repo_market {
 					$return['status'] = 'ok';
 				}
 			}
-		} catch (Exception $e) {
-			log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
-			$return['status'] = 'ok';
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add('market', 'debug', __('Erreur repo_market::getinfo :', __FILE__) . ' ' . $e->getMessage());
 			$return['status'] = 'ok';
 		}

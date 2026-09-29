@@ -13,7 +13,7 @@ header('Content-Type: application/json');
   "icons": [
   {
     "src": "<?php echo config::byKey('product_icon'); ?>",
-    "sizes": "25x25",
+    "sizes": "64x64",
     "type": "image/png"
   },
   {

@@ -1,225 +1,225 @@
 # FAQ
-**Settings → Version : FAQ**
+**Settings → Version: FAQ**
 
-### Jeedom does it require a subscription ?
-No, Jeedom is fully usable without any need for any subscription. However, there are services offered for backups or calls / SMS, but which are really optional.
+### Does Jeedom require a subscription?
+No, Jeedom is fully functional without the need for any subscription whatsoever. However, there are services available for backups or calls/text messages, but these are truly optional.
 
-### Does Jeedom use outside servers to run ?
-No, Jeedom does not use "Cloud" type infrastructure". Everything is done locally and you do not need our servers for your installation to work. Only services like Market, online backup or Jeedom DNS require the use of our servers.
+### Does Jeedom use external servers to operate?
+No, Jeedom does not use a “cloud” type of infrastructure. Everything is handled locally, and you do not need our servers for your system to work. Only services such as the Market, online backup, or Jeedom DNS require the use of our servers.
 
-### Is there a dedicated mobile app ?
-Jeedom has a mobile version suitable for use on mobile and tablet. There is also a native app for Android and iOS.
+### Is there a dedicated mobile app?
+Jeedom has a mobile version optimized for use on smartphones and tablets. There is also a native app for Android and iOS.
 
-### What are the credentials to log in the first time ?
-When you log in to Jeedom for the first time (and even afterwards if you haven&#39;t changed them), the default username and password are admin / admin. At the first connection, you are strongly recommended to modify these identifiers for more security.
+### What are the login credentials for my first login?
+When you log in to Jeedom for the first time (and even afterward if you haven’t changed them), the default username and password are admin/admin. Upon your first login, we strongly recommend that you change these credentials for added security.
 
 ### I can no longer connect to my Jeedom
-Since Jeedom 3.2 it is no longer possible to connect with admin / admin remotely for obvious security reasons. Admin / admin credentials only work locally. Attention if you go through the DNS even locally you are necessarily identified as remote. Other default point only IP on 192.168.*.* or 127.0.0.1 are recognized as local. It is configured in the administration of Jeedom security part then IP "white". If, despite everything, you still cannot connect, you must use the password reset procedure, see [here](https://doc.jeedom.com/en_US/howto/reset.password).
+Starting with Jeedom 3.2, it is no longer possible to log in remotely using admin/admin for obvious security reasons. The admin/admin credentials now work only locally. Please note that if you access the system via DNS—even locally—you will automatically be identified as a remote user. Another point: by default, only IP addresses in the 192.168.*.* range or 127.0.0.1 are recognized as local. This can be configured in the Jeedom administration panel under “Security” and then “Whitelist IPs.” If you still can’t log in after trying this, you’ll need to use the password reset procedure; see [here](https://doc.jeedom.com/howto/en_US/reset.password).
 
-### I do not see all my equipment on the Dashboard
-Often this is due to the fact that the equipment is assigned to an object which is not the son or the object itself of the first object selected on the left in the tree (you can configure this one in your profile).
+### I don't see all my devices on the Dashboard
+This is often because the devices are assigned to an object that is not a child or the object itself of the first object selected on the left in the tree (you can configure this in your profile).
 
-### Jeedom interface has shortcuts ?
-Yes, the list of keyboard / mouse shortcuts is [here](shortcuts.md).
+### Does the Jeedom interface have shortcuts?
+Yes, the list of keyboard and mouse shortcuts is [here](shortcuts.md).
 
-### Can we reorder equipment commands ?
-Yes it is possible, just drag and drop the commands of your object on its configuration.
+### Can I reorder the commands for a device?
+Yes, it's possible—just drag and drop the commands for your object onto its configuration.
 
-### Can we edit the style of the widgets ?
-For each command you can choose its display between different Core widgets, or create one with Tools → Widgets.
+### Can I customize the style of the widgets?
+For each command, you can choose how it is displayed using different Core widgets, or create your own using Tools → Widgets.
 
-### Can we put the same equipment more than once on a design ?
-No it&#39;s not possible, but you can duplicate it thanks to the virtual plugin.
+### Can the same device be added multiple times to a layout?
+No, that's not possible, but you can duplicate this one using the virtual plugin.
 
-### How to change wrong historical data ?
-It is enough, on a historical curve of the command, to click on the point in question. If you leave the field blank, then the value will be deleted.
+### How do I correct an incorrect data entry in the history?
+Simply click on the relevant point on the command history graph. If you leave the field blank, the value will be deleted.
 
-### How long does a backup take ?
-There is no standard duration, it depends on the system and the volume of data to be backed up, but it can take more than 5 minutes, this is normal.
+### How long does a backup take?
+There is no standard duration; it depends on the system and the amount of data to be backed up, but it may take more than 5 minutes—this is normal.
 
-### Where are Jeedom&#39;s backups ?
-They are in the / var / www / html / backup folder
+### Where are the Jeedom backups located?
+They are in the /var/www/html/backup folder
 
-### Can we put Jeedom in https ?
-Yes : Either you have a power pack or more, in this case you
-just use the [Jeedom DNS](https://jeedom.github.io/documentation/howto/en_US/mise_en_place_dns_jeedom). Either with a DNS and you know how to set up a valid certificate, in this case it is a standard installation of a certificate.
+### Can Jeedom be set up to use HTTPS?
+Yes: Either you have a Power package or higher, in which case you
+Just use the [Jeedom DNS](https://doc.jeedom.com/howto/en_US/mise_en_place_dns_jeedom). Either you use a DNS and know how to set up a valid certificate—in which case it's a standard certificate installation.
 
-### How to connect in SSH ?
-Here's one [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "Windows : Putty". The &quot;hostname&quot; being the ip of your Jeedom, the identifiers being :
+### How do I connect via SSH?
+Here's a [documentation](https://www.alsacreations.com/tuto/lire/612-Premiere-connexion-SSH.html), "On Windows: PuTTY" section. The "hostname" is your Jeedom's IP address, and the login credentials are:
 
-- Username : "root ", password : "Mjeedom96"
-- Username : "jeedom ", password : "Mjeedom96"
-- Or what you put in the installation if you are in DIY
+- Username: "root", password: "Mjeedom96"
+- Username: "jeedom", password: "Mjeedom96"
+- Or whatever you installed if you're a DIYer
 
-Note that when you write the password you will not see anything written on the screen, this is normal.
+Please note that when you type the password, nothing will appear on the screen—this is normal.
 
-### How to reset rights ?
-In SSH do :
+### How can we overhaul intellectual property rights?
+In SSH, run:
 
-`` `{.bash}
+``` {.bash}
 sudo su -
-chmod -R 775 / var / www / html
-chown -R www-data:www-data / var / www / html
+chmod -R 775 /var/www/html
+chown -R www-data:www-data /var/www/html
 ```
 
-### How to update Jeedom in SSH ?
-In SSH do :
+### How do I update Jeedom via SSH?
+In SSH, run:
 
-`` `{.bash}
+``` {.bash}
 sudo su -
 php /var/www/html/install/update.php
-chmod -R 775 / var / www / html
-chown -R www-data:www-data / var / www / html
+chmod -R 775 /var/www/html
+chown -R www-data:www-data /var/www/html
 ```
 
-### Is the Webapp compatible Symbian ?
-The webapp requires a smartphone supporting HTML5 and CSS3. It is therefore unfortunately not Symbian compatible.
+### Is the web app compatible with Symbian?
+The web app requires a smartphone that supports HTML5 and CSS3. Unfortunately, it is not compatible with Symbian.
 
-### What platforms can Jeedom run on ?
-For Jeedom to work, you need a linux platform with root rights or a docker type system. It therefore does not work on a pure android platform.
+### On which platforms can Jeedom run?
+For Jeedom to work, you need a Linux platform with root privileges or a Docker-type system. It therefore does not work on a pure Android platform.
 
-### I cannot update certain plugin &quot;Failed to download the file. Please try again later (size less than 100 bytes))..." ?
-This can be due to several things, :
+### I can't update a certain plugin. "Failed to download the file. Please try again later (file size less than 100 bytes)..."?
+This could be due to several reasons; you need to:
 
-- Check that your Jeedom is still connected to the market (in the Jeedom administration page, updated part you have a test button).
-- Check that the market account has purchased the plugin in question.
-- Check that you have space on Jeedom (the health page will tell you).
-- Check that your version of Jeedom is compatible with the plugin.
+- Check to make sure your Jeedom is still connected to the market (in the Jeedom administration page, under the "Updates" section, there is a test button).
+- Verify that the Market account has actually purchased the plugin in question.
+- Make sure you have enough space on Jeedom (the health page will show you).
+- Make sure your version of Jeedom is compatible with the plugin.
 
 ### I have a blank page
-It is necessary to connect in SSH to Jeedom and launch the self-diagnostic script :
-`` `{.bash}
-sudo chmod + x / var / www / html / health.sh; sudo /var/www/html/health.sh
+You need to connect to Jeedom via SSH and run the self-diagnostic script:
+``` {.bash}
+sudo chmod +x /var/www/html/health.sh;sudo /var/www/html/health.sh
 ```
-If there is a problem, the script will try to correct it. If it can&#39;t, it will tell you.
+If there's a problem, the script will try to fix it. If it can't, it will let you know.
 
-You can also look at the log /var/www/html/log/http.error. Very often, this indicates the concern.
+You can also check the log file at /var/www/html/log/http.error. Very often, this file indicates the problem.
 
-### I have a BDD identifier problem
-These must be reset :
+### I'm having a problem with my database username
+You need to reset these:
 
-`` `{.bash}
-bdd_password = $ (cat / dev / urandom | tr -cd &#39;a-f0-9' | head -c 15)
-echo "DROP USER &#39;jeedom&#39; @ &#39;localhost'" | mysql -uroot -p
-echo "CREATE USER &#39;jeedom&#39; @ &#39;localhost&#39; IDENTIFIED BY &#39;$ {bdd_password}&#39;;" | mysql -uroot -p
-echo &quot;GRANT ALL PRIVILEGES ON jeedom.* TO &#39;jeedom&#39; @ &#39;localhost&#39;;" | mysql -uroot -p
-cd / usr / share / nginx / www / jeedom
-sudo cp core / config / common.config.sample.php core / config / common.config.php
-sudo sed -i -e "s /#PASSWORD#/ $ {bdd_password} / g "core / config / common.config.php
-sudo chown www-data:www-data core / config / common.config.php
+``` {.bash}
+bdd_password=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
+echo "DROP USER 'jeedom'@'localhost'" | mysql -uroot -p
+echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${bdd_password}';" | mysql -uroot -p
+echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql -uroot -p
+cd /var/www/html
+sudo cp core/config/common.config.sample.php core/config/common.config.php
+sudo sed -i -e "s/#PASSWORD#/${bdd_password}/g" core/config/common.config.php
+sudo chown www-data:www-data core/config/common.config.php
 ```
 
-### I have \ {\ {… \} \} everywhere
-The most frequent cause is the use of a plugin in beta version and Jeedom in stable, or the reverse. To get the details of the error, you have to look at the http log.error (in / var / www / html / log).
+### I have \{\{…​\}\} everywhere
+The most common cause is using a beta version of a plugin with a stable version of Jeedom, or vice versa. To get the details of the error, check the http.error log (in /var/www/html/log).
 
-### On command I have a wheel that turns without stopping
-Again this is often due to a plugin in beta while Jeedom is in stable. To see the error, you must do F12 then console.
+### When I send a command, a wheel spins continuously
+Once again, this is often due to a plugin being in beta while Jeedom is in stable. To view the error, press F12 and then go to the console.
 
-### I no longer have access to Jeedom, neither through the web interface nor in console via SSH
-This error is not due to Jeedom, but to a problem with the system.
-If this persists following a reinstallation, it is advisable to check with the after-sales service for hardware concerns. Here is [documentation](https://doc.jeedom.com/en_US/installation/smart) for Smart
+### I can no longer access Jeedom, either through the web interface or via the SSH console
+This error is not caused by Jeedom, but by a problem with the system.
+If the problem persists after a reinstallation, we recommend contacting customer service to check for a hardware issue. Here is the [documentation](https://doc.jeedom.com/installation/en_US/recovery) for the Smart
 
-### My scenario does not stop any more
-It is advisable to look at the commands executed by the scenario, often it comes from a command that does not end.
+### My scenario won't stop/doesn't stop
+It's a good idea to check the commands executed by the scenario; often, the issue stems from a command that doesn't complete.
 
-### I have instabilities or errors 504
-Check if your file system is not corrupt, in SSH the command is : ```sudo dmesg | grep error```.
+### I'm experiencing instability or 504 errors
+Check to see if your file system is corrupted; via SSH, the command is: ```sudo dmesg | grep error```.
 
-### I have the following error : SQLSTATE \ [HY000 \] \ [2002 \] Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock'
-This is due to MySQL which stopped, it is not normal, the common cases are :
+### I'm getting the following error: SQLSTATE\[HY000\] \[2002\] Can’t connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock'
+This is because MySQL has stopped; this is not normal. Common causes include:
 
-- Lack of space on the file system (can be checked by making the command "df -h", in SSH)
-- File (s) corruption problem, which often happens after an unsafe shutdown of Jeedom (power failure)
-- Memory worries, the system lacks memory and kills the most consuming process (often the database). This can be seen in the OS administration then dmesg, you should see a kill by "oom". If this is the case, reduce Jeedom&#39;s consumption by deactivating plugins.
+- Insufficient disk space on the file system (can be checked by running the "df -h" command via SSH)
+- File corruption issue, which often occurs after an improper shutdown of Jeedom (power outage)
+- Memory issues: The system is running out of memory and terminates the process that is using the most memory (often the database). You can check this in the OS administration panel by running `dmesg`; you should see a process terminated by "oom." If this is the case, you need to reduce Jeedom's memory usage by disabling plugins.
 
-Unfortunately, there is not much solution if it is the second case, the best being to recover a backup (available in / var / www / html / backup by default), reinstall Jeedom and restore the backup. You can also see why MySQL doesn&#39;t want to boot from an SSH console :
-`` `{.bash}
+Unfortunately, there aren’t many solutions if this is the second scenario; the best course of action is to retrieve a backup (located in /var/www/html/backup by default), reinstall Jeedom, and perform the Restoration. You can also check why MySQL won’t start from an SSH console:
+``` {.bash}
 sudo su -
-mysql stop service
+service mysql stop
 mysqld --verbose
 ```
-Or consult the log : /var/log/mysql/error.log
+Or check the log: /var/log/mysql/error.log
 
-### The Shutdown / Restart buttons do not work
-On a DIY installation it&#39;s normal. In SSH, you must make the visudo command and at the end of the file you must add : www-data ALL = (ALL)
+### The "Power Off" and "Restart" buttons aren't working
+This is normal for a DIY setup. In SSH, run the `visudo` command and add the following at the end of the file: `www-data ALL=(ALL)`
 NOPASSWD: ALL.
 
-`` `{.bash}
+``` {.bash}
 sudo service apache2 restart
 ```
 
-### I don&#39;t see some plugins from the Market
-This kind of case happens if your Jeedom is not compatible with the plugin. In general, a Jeedom update fixes the problem.
+### I can't see some of the plugins in the Market
+This kind of issue occurs if your Jeedom isn't compatible with the plugin. Usually, updating Jeedom resolves the problem.
 
-### I have timeout equipment but I don&#39;t see it on the Dashboard
-Alerts are ranked by priority, from the least important to the most important : timeout, battery warning, battery danger, warning alert, danger alert
+### I have a device that's timed out, but I don't see it on the Dashboard
+Alerts are ranked by priority, from least critical to most critical: timeout, battery warning, battery danger, warning alert, danger alert
 
-### My Jeedom permanently displays &quot;Starting up&quot; even after 1 hour ?
-If you are in DIY and under Debian 9 or more, check that there has not been an update of Apache and therefore the return of privateTmp (visible by doing `ls / tmp` and see if there is a private \* Apache folder). If that&#39;s the case, you have to do :
+### My Jeedom keeps displaying "Starting up" even after an hour?
+If you're a DIY enthusiast running Debian 9 or later, check to see if there has been an Apache update that brought back the `privateTmp` directory (visible by running `ls /tmp` and check if there is a "private\*Apache" folder. If so, do the following:
 ```
 mkdir /etc/systemd/system/apache2.service.d
-echo &quot;[Service]&quot;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
-echo &quot;PrivateTmp = no&quot; &gt;&gt; /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo "[Service]" > /etc/systemd/system/apache2.service.d/privatetmp.conf
+echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/privatetmp.conf
 ```
 
-### I have a time concern on my history
-Try to clear the chrome cache, the display of histories is calculated relative to the browser time.
+### I'm having a problem with the time on my history records
+Try clearing Chrome's cache; the history display is based on the browser's time.
 
-### I have the error "Network issues detected, network restart"
-Jeedom can&#39;t find or can&#39;t ping the gateway. In general it happens if the adsl box restarts (in particular liveboxes) and Jeedom has not restarted or has restarted faster than the box. For security he tells you that he has found a problem and relaunches the network connection process. You can deactivate this mechanism by going to the Jeedom configuration and by deactivating the network management by Jeedom.
+### I'm getting the error "Network issue detected, restarting the network."
+Jeedom cannot find or ping the gateway. This usually happens if the ADSL router restarts (especially Livebox models) and Jeedom has not restarted or restarted faster than the router. As a safety measure, it will notify you that it has detected an issue and will restart the network connection process. You can disable this mechanism by going to Jeedom’s settings and turning off Jeedom’s network management.
 
-### I get the message &quot;Failed to back up the database. Check that mysqldump is present."
-It means that Jeedom cannot back up the database which can suggest a problem with database and filesystem corruption. There is unfortunately no miracle command to correct. The best is to launch a backup and analyze the log of it. In known cases of concerns we have:
+### I'm getting the message "Failure while backing up the database. Check that mysqldump is present."
+This means that Jeedom is unable to back up the database, which may indicate a problem with database or filesystem corruption. Unfortunately, there’s no magic command to fix this. The best approach is to run a backup and analyze the backup log. Known issues include:
 
-- a corrupt base table => there is a bad start we must see to try to repair and if it does not start from the last good backup (if you are on SD card it is the right time to change it)
-- not enough space on the filesystem =&gt; look at the health page this can tell you
+- A table in the database is corrupted => This is a bad sign. You'll need to see if you can fix it, and if that doesn't work, restore from the last good backup (if you're using an SD card, now is a good time to replace it).
+- Not enough space on the filesystem => check the health page; it may indicate this
 
-### I have errors of type &quot;Class &#39;eqLogic&#39; not found&quot;, files seem to be missing or I have a blank page
-It is a fairly serious error, the simplest is to make
+### I'm getting errors of the type "Class 'eqLogic' not found"; some files seem to be missing, or I'm getting a blank page
+That's a pretty serious error; the simplest solution is to
 ```
-mkdir -p / root / tmp /
-cd / root / tmp
+mkdir -p /root/tmp/
+cd /root/tmp
 wget https://github.com/jeedom/core/archive/master.zip
 unzip master.zip
-cp -R / root / tmp / core-master / * / var / www / html
-rm -rf / root / tmp / core-master
+cp -R /root/tmp/core-master/* /var/www/html
+rm -rf /root/tmp/core-master
 ```
 
-### I have the error in scenario_execution MYSQL_ATTR_INIT_COMMAND
-In the administration of Jeedom part OS / DB then in the system console it is necessary to make :
+### I'm getting an error in scenario_execution: MYSQL_ATTR_INIT_COMMAND
+In the Jeedom administration interface, under OS/DB, then in the system console, do the following:
 ```
 yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
-### I cannot install the plugin dependencies I have an error of the type : "E: dpkg has been discontinued. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock / var / lib / dpkg / lock"
+### I can't install the dependencies for a plugin; I'm getting an error of the type: "E: dpkg was interrupted. You need to run 'sudo dpkg --configure -a' to fix the problem." or "E: Could not get lock /var/lib/dpkg/lock"
 
-It is necessary :
+You'll need:
 
-- restart Jeedom
-- go to the administration of it (notched wheel button at the top right then configuration in v3 or Setup -> System -> Configuration in v4)
-- go to the OS / DB tab
-- launch system administration
-- click on Dpkg configure
-- wait 10min
-- relaunch the dependencies of the blocking plugins
+- Restart Jeedom
+- Go to its settings (click the gear icon in the top right corner, then select "Configuration" in v3 or "Settings" -> "System" -> "Configuration" in v4)
+- Go to the OS/DB tab
+- Launch System Administration
+- Click on "dpkg configure"
+- wait 10 minutes
+- Restart the dependencies of the plugin that is causing the block
 
-### I have this error when installing plugin dependencies : "from pip._internal import main"
+### I'm getting this error when installing a plugin's dependencies: "from pip._internal import main"
 
-It is necessary in the system console of Jeedom or in ssh to make
+In the Jeedom system console or via SSH, you need to do the following:
 
 ````
 sudo easy_install pip
 sudo easy_install3 pip
 ````
 
-Then relaunch the dependencies
+Then restart the dependencies
 
 
-### From the 4.2, I can no longer display iframe
+### Since version 4.2, I can no longer display iframes
 
-Core 4.2 greatly enhances Jeedom's security. If you really (knowingly) need to revert to an insecure version of your Jeedom :
-Go to **Settings -> System -> Configuration** then in **OS / DB**, launch the system administration console and click **Apache not secure**. A restart of Jeedom is recommended following this change.
+Core 4.2 significantly enhances Jeedom's security. If you truly (knowingly) need to revert to an unsecured version of your Jeedom:
+Go to **Settings -> System -> Configuration**, then to **OS/DB**, launch the system administration console, and click **Unsecured Apache**. It is recommended that you restart Jeedom after making this change.
 
-### From the 4.2, some plugins no longer work and in the browser console (F12 key) I have 403 errors
+### Since version 4.2, some plugins no longer work, and I'm getting 403 errors in the browser console (F12 key).
 
-This is due to the security of Apache which requires plugin developers to put the right files in the right directories to limit Jeedom's attack surface. This security is done in the file .htaccess (overwritten each time the core is updated). You can make a file .htaccess_custom with your own rules which if it exists will be used instead of the file .htaccess from Core.
+This is due to Apache security measures that require plugin developers to place the correct files in the correct directories to limit Jeedom’s attack surface. This security configuration is set up in the .htaccess file (which is overwritten with every Core update). You can create a .htaccess_custom file with your own rules; if it exists, it will be used instead of the Core’s .htaccess file.

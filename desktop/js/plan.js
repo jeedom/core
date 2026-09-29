@@ -168,8 +168,8 @@ if (!jeeFrontEnd.plan) {
         success: function(data) {
           jeedom.cmd.resetUpdateFunction()
           jeeFrontEnd.plan.planContainer.empty().insertAdjacentHTML('beforeend', '<div id="div_grid" class="container-fluid" style="display:none;"></div>')
-          document.querySelectorAll('.style_plan_specific').remove();
-          Object.assign(jeeFrontEnd.plan.planContainer.style, {height:"auto", width:"auto"})
+          document.querySelectorAll('.style_plan_specific').remove()
+          Object.assign(jeeFrontEnd.plan.planContainer.style, { height: "auto", width: "auto" })
           //general design configuration:
           if (isset(data.image)) {
             jeeFrontEnd.plan.planContainer.insertAdjacentHTML('beforeend', data.image)
@@ -250,7 +250,7 @@ if (!jeeFrontEnd.plan) {
               jeeP.initEditOption(jeeFrontEnd.planEditOption.state)
               jeedomUtils.initReportMode()
               jeedomUtils.initTooltips()
-              window.scrollTo({top: 0, behavior: "smooth"})
+              window.scrollTo({ top: 0, behavior: "smooth" })
               jeeFrontEnd.plan.setGraphResizes()
               jeeFrontEnd.modifyWithoutSave = false
             }
@@ -290,7 +290,11 @@ if (!jeeFrontEnd.plan) {
       }
       const node = domUtils.DOMparseHTML(_html)
       node.setAttribute('data-plan_id', _plan.id)
-      node.setAttribute('data-zoom', init(_plan.css.zoom, 1))
+      let zoom = parseFloat(_plan.css.zoom)
+      if (isNaN(zoom)) {
+        zoom = 1
+      }
+      node.setAttribute('data-zoom', zoom)
       node.addClass('jeedomAlreadyPosition', 'noResize')
 
       //set widget style:
@@ -299,8 +303,8 @@ if (!jeeFrontEnd.plan) {
       style['position'] = 'absolute'
       style['top'] = init(_plan.position.top, '10') + 'px'
       style['left'] = init(_plan.position.left, '10') + 'px'
-      if (init(_plan.css.zoom, 1) != 1) {
-        style['scale'] = init(_plan.css.zoom, 1)
+      if (zoom != 1) {
+        style['scale'] = zoom
       }
       style['transform-origin'] = '0 0'
 
@@ -511,19 +515,19 @@ if (!jeeFrontEnd.plan) {
     },
     getElementInfo: function(_element) {
       if (_element.length) _element = _element[0]
-      if (_element.hasClass('eqLogic-widget')) { return {type: 'eqLogic', id: _element.getAttribute('data-eqLogic_id')} }
-      if (_element.hasClass('cmd-widget')) { return {type: 'cmd', id: _element.getAttribute('data-cmd_id')} }
-      if (_element.hasClass('scenario-widget')) { return {type: 'scenario', id: _element.getAttribute('data-scenario_id')} }
-      if (_element.hasClass('plan-link-widget')) { return {type: 'plan', id: _element.getAttribute('data-link_id')} }
-      if (_element.hasClass('view-link-widget')) { return {type: 'view', id: _element.getAttribute('data-link_id')} }
-      if (_element.hasClass('graph-widget')) { return {type: 'graph', id: _element.getAttribute('data-graph_id')} }
-      if (_element.hasClass('text-widget')) { return {type: 'text', id: _element.getAttribute('data-text_id')} }
-      if (_element.hasClass('image-widget')) { return {type: 'image', id: _element.getAttribute('data-image_id')} }
-      if (_element.hasClass('zone-widget')) { return {type: 'zone', id: _element.getAttribute('data-zone_id')} }
-      if (_element.hasClass('summary-widget')) { return {type: 'summary', id: _element.getAttribute('data-summary_id')} }
+      if (_element.hasClass('eqLogic-widget')) { return { type: 'eqLogic', id: _element.getAttribute('data-eqLogic_id') } }
+      if (_element.hasClass('cmd-widget')) { return { type: 'cmd', id: _element.getAttribute('data-cmd_id') } }
+      if (_element.hasClass('scenario-widget')) { return { type: 'scenario', id: _element.getAttribute('data-scenario_id') } }
+      if (_element.hasClass('plan-link-widget')) { return { type: 'plan', id: _element.getAttribute('data-link_id') } }
+      if (_element.hasClass('view-link-widget')) { return { type: 'view', id: _element.getAttribute('data-link_id') } }
+      if (_element.hasClass('graph-widget')) { return { type: 'graph', id: _element.getAttribute('data-graph_id') } }
+      if (_element.hasClass('text-widget')) { return { type: 'text', id: _element.getAttribute('data-text_id') } }
+      if (_element.hasClass('image-widget')) { return { type: 'image', id: _element.getAttribute('data-image_id') } }
+      if (_element.hasClass('zone-widget')) { return { type: 'zone', id: _element.getAttribute('data-zone_id') } }
+      if (_element.hasClass('summary-widget')) { return { type: 'summary', id: _element.getAttribute('data-summary_id') } }
     },
     //Events setter
-    setGraphResizes: function () {
+    setGraphResizes: function() {
       for (const obs of this.resizeObservers) {
         obs.disconnect()
       }
@@ -565,16 +569,11 @@ if (!jeeFrontEnd.plan) {
           jeeFrontEnd.plan.draggables.push(draggie)
 
           draggie.on('dragStart', function(event, pointer) {
-
             //Is locked:
             if (this.element.hasClass('locked')) this.dragEnd()
 
             //Handle zoom:
-            this.containementBrect = document.querySelector('div.div_displayObject').getBoundingClientRect()
             this.zoomScale = parseFloat(this.element.getAttribute('data-zoom'))
-            if (this.zoomScale != 1) {
-              this.options.containment = false
-            }
 
             //Handle grid snap
             if (jeeFrontEnd.planEditOption.grid == 1) {
@@ -591,52 +590,32 @@ if (!jeeFrontEnd.plan) {
           draggie.on('dragMove', function(event, pointer, moveVector) {
             //Handle zoom move / containement:
             if (this.zoomScale != 1) {
-
               //Fix zoomed move:
               this.dragPoint.x = moveVector.x / this.zoomScale
               this.dragPoint.y = moveVector.y / this.zoomScale
 
-              //Check zoomed containement:
-              /*Doesn't work
-              var eRect = this.element.getBoundingClientRect()
-              console.log('eRect:',eRect)
-
-              console.log('position:', this.position)
-              console.log(this.dragPoint)
-
-              if (eRect.left < this.containementBrect.left) {
-                console.log('>>>>>>> OUT LEFT')
-                this.setPosition(this.position.x + this.dragPoint.x, this.position.y + this.dragPoint.y)
-                this.pointerDone()
-                this.dragEnd()
+              //Keep grid snap working when zoomed:
+              if (this.dragStep) {
+                this.dragPoint.x = getNearestMultiple(this.dragPoint.x, this.dragStep)
+                this.dragPoint.y = getNearestMultiple(this.dragPoint.y, this.dragStep)
               }
-              */
-            }
 
-            /*
-            if (this.zoomScale != 1) {
-              var matrix = window.getComputedStyle(this.element).getPropertyValue('transform')
-              var matrixValues = matrix.match(/matrix.*\((.+)\)/)[1].split(', ')
-              var tx = matrixValues[4]
-              var ty = matrixValues[5]
-              var txFactor = tx * this.zoomScale
-              var tyFactor = ty * this.zoomScale
-              var deltaX = this.element.offsetLeft - (tx * this.zoomScale)
-              if ((this.element.offsetLeft + txFactor) < 0) this.dragEnd()
-              if ((this.element.offsetTop + tyFactor) < 0) this.dragEnd()
-
-              var realWidth = this.element.clientWidth * this.zoomScale
-              var realRight = this.element.getBoundingClientRect().left + realWidth
-
-              console.log('dragMove realRight:', realRight, 'realWidth:', realWidth, this.containementBrect)
-
-              //Test ok, not solution--
-              if (realRight >= this.containementBrect.right) {
-                this.dragEnd()
+              //Keep the widget within the design bounds (containSize/relativeStartPosition ignore the zoom, correct for it here):
+              if (this.containSize) {
+                const overflowX = this.element.offsetWidth * (this.zoomScale - 1)
+                const overflowY = this.element.offsetHeight * (this.zoomScale - 1)
+                const minX = -this.relativeStartPosition.x / this.zoomScale
+                const minY = -this.relativeStartPosition.y / this.zoomScale
+                const maxX = (this.containSize.width - overflowX) / this.zoomScale
+                const maxY = (this.containSize.height - overflowY) / this.zoomScale
+                this.dragPoint.x = Math.max(minX, Math.min(maxX, this.dragPoint.x))
+                this.dragPoint.y = Math.max(minY, Math.min(maxY, this.dragPoint.y))
               }
-            }
-            */
 
+              //Final position must match what was shown during the drag, not Draggabilly's own (zoom-unaware) calculation:
+              this.position.x = this.startPosition.x + this.dragPoint.x * this.zoomScale
+              this.position.y = this.startPosition.y + this.dragPoint.y * this.zoomScale
+            }
           })
 
           draggie.on('dragEnd', function(event, pointer) {
@@ -690,23 +669,48 @@ if (!jeeFrontEnd.plan) {
             }
             //Handle snap:
             if (this.dragStep) {
-              element.style.width = getNearestMultiple(element.offsetWidth,  this.dragStep) + 'px'
-              element.style.height = getNearestMultiple(element.offsetHeight,  this.dragStep) + 'px'
-              element.style.top = getNearestMultiple(element.offsetTop,  this.dragStep) + 'px'
-              element.style.left = getNearestMultiple(element.offsetLeft,  this.dragStep) + 'px'
+              element.style.width = getNearestMultiple(element.offsetWidth, this.dragStep) + 'px'
+              element.style.height = getNearestMultiple(element.offsetHeight, this.dragStep) + 'px'
+              element.style.top = getNearestMultiple(element.offsetTop, this.dragStep) + 'px'
+              element.style.left = getNearestMultiple(element.offsetLeft, this.dragStep) + 'px'
             }
 
             element.querySelector('.camera')?.triggerEvent('resize')
           },
-          stop: function(event, ui) {
+          stop: function(event, element) {
             jeeFrontEnd.modifyWithoutSave = true
+
+            //Bring the widget back within the design bounds if the resize left it overflowing (zoom is not accounted for during the live resize):
+            if (this.zoomScale != 1) {
+              const containRect = document.querySelector('.div_displayObject').getBoundingClientRect()
+              const elemRect = element.getBoundingClientRect()
+              const overflowLeft = containRect.left - elemRect.left
+              const overflowTop = containRect.top - elemRect.top
+              const overflowRight = elemRect.right - containRect.right
+              const overflowBottom = elemRect.bottom - containRect.bottom
+
+              if (overflowLeft > 0) {
+                element.style.left = element.offsetLeft + overflowLeft + 'px'
+                element.style.width = element.offsetWidth - overflowLeft / this.zoomScale + 'px'
+              }
+              if (overflowTop > 0) {
+                element.style.top = element.offsetTop + overflowTop + 'px'
+                element.style.height = element.offsetHeight - overflowTop / this.zoomScale + 'px'
+              }
+              if (overflowRight > 0) {
+                element.style.width = element.offsetWidth - overflowRight / this.zoomScale + 'px'
+              }
+              if (overflowBottom > 0) {
+                element.style.height = element.offsetHeight - overflowBottom / this.zoomScale + 'px'
+              }
+            }
             //jeeP.savePlan(false, false)
           },
         })
 
         jeeP.elementContexMenu.enable()
       } else { //Leave Edit mode
-        if(jeeFrontEnd.planEditOption.state === true){
+        if (jeeFrontEnd.planEditOption.state === true) {
           jeeP.savePlan(false, false)
         }
         if (jeeP.elementContexMenu) {
@@ -731,7 +735,7 @@ if (!jeeFrontEnd.plan) {
         jeeFrontEnd.plan.draggables = []
         try {
           jeedomUtils.enableTooltips()
-        } catch (e) {}
+        } catch (e) { }
         document.getElementById('div_grid').unseen()
       }
     },
@@ -827,10 +831,10 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
       }
     },
     items: {
-      title : {
+      title: {
         name: '{{Menu}}',
         icon: 'fas fa-bars',
-        disabled:true
+        disabled: true
       },
       parameter: {
         name: '{{Paramètres d\'affichage}}',
@@ -886,7 +890,7 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
               },
               contentUrl: 'index.php?v=d&modal=cmd.graph.select',
               callback: function() {
-                document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false})
+                document.querySelectorAll('#table_addViewData tbody tr .enable').forEach(_check => { _check.checked = false })
                 const options = json_decode(dom_el.querySelector('.graphOptions').jeeValue())
                 jeeFrontEnd.md_cmdGraphSelect.displayOptions(options)
               }
@@ -975,10 +979,10 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
       }
     },
     items: {
-      title : {
+      title: {
         name: '{{Menu}}',
         icon: 'fas fa-bars',
-        disabled:true
+        disabled: true
       },
       fold1: {
         name: "{{Designs}}",
@@ -1307,15 +1311,15 @@ if (jeedomUtils.userDevice.type == 'desktop' && user_isAdmin == 1) {
           return !getBool(this.getAttribute('data-jeeFrontEnd.planEditOption.state'))
         },
         callback: function(key, opt) {
-          let name = "";
-          for(const i in jeephp2js.planHeader){
-            if(jeephp2js.planHeader[i].id == jeephp2js.planHeader_id){
-              name = jeephp2js.planHeader[i].name+ " copie";
+          let name = ""
+          for (const i in jeephp2js.planHeader) {
+            if (jeephp2js.planHeader[i].id == jeephp2js.planHeader_id) {
+              name = jeephp2js.planHeader[i].name + " copie"
             }
           }
           jeeDialog.prompt({
-            title : "{{Nom de la copie du design ?}}",
-            value : name,
+            title: "{{Nom de la copie du design ?}}",
+            value: name,
           }, function(result) {
             if (result !== null) {
               jeeP.savePlan(false, false)
@@ -1368,7 +1372,7 @@ jeedomUI.setEqSignals()
 jeedomUI.setHistoryModalHandler()
 
 //Handle zones:
-document.body.registerEvent('click', function (event) {
+document.body.registerEvent('click', function(event) {
   if (!jeeFrontEnd.planEditOption.state) {
     if ((!event.target.hasClass('.zone-widget.zoneEqLogic') && event.target.closest('.zone-widget.zoneEqLogic') == null) && (!event.target.hasClass('.zone-widget.zoneEqLogicOnFly') && event.target.closest('.zone-widget.zoneEqLogicOnFly') == null)) {
       document.querySelectorAll('.zone-widget.zoneEqLogic').forEach(function(_zone) {
@@ -1461,7 +1465,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     }
   }
 
-}, {buble: true})
+}, { buble: true })
 
 document.querySelector('.div_displayObject').addEventListener('mouseenter', function(event) {
   if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnFly')) {
@@ -1487,7 +1491,7 @@ document.querySelector('.div_displayObject').addEventListener('mouseenter', func
     }
     return
   }
-}, {capture: true})
+}, { capture: true })
 
 document.querySelector('.div_displayObject').addEventListener('mouseleave', function(event) {
   if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnFly')) {
@@ -1498,13 +1502,13 @@ document.querySelector('.div_displayObject').addEventListener('mouseleave', func
     }
     return
   }
-}, {capture: true})
+}, { capture: true })
 
 //Event for App Mobile:
 document.body.addEventListener('jeeObject::summary::update', function(_event) {
   for (const i in _event.detail) {
-    if(isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
-    if(_event.detail[i].object_id == 'global') {
+    if (isset(_event.detail[i].force) && _event.detail[i].force == 1) continue
+    if (_event.detail[i].object_id == 'global') {
       /* SEND UPDATE SUMMARY TO APP */
       jeedom.appMobile.postToApp('updateSummary', _event.detail[i].keys)
     }
@@ -1513,7 +1517,7 @@ document.body.addEventListener('jeeObject::summary::update', function(_event) {
 
 //back to mobile home with three fingers on mobile:
 if (user_isAdmin == 1 && jeedomUtils.userDevice.type != 'desktop') {
-  document.body.registerEvent('touchstart', function (event) {
+  document.body.registerEvent('touchstart', function(event) {
     if (event.touches.length == 3) {
       event.preventDefault()
       event.stopPropagation()

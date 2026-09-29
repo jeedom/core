@@ -21,6 +21,7 @@ jeedom.display = {}
 jeedom.connect = 0
 jeedom.theme = {}
 jeedom.changes_timeout = null
+jeedom.vanillaEvents = ['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme']
 
 jeeFrontEnd = {
   __description: 'Global object where each Core page register its own functions and variable in its sub-object name.',
@@ -81,14 +82,10 @@ jeedom.changes = function() {
           continue
         }
         if (isset(data.result[i].option)) {
-          if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
+          if (jeedom.vanillaEvents.includes(data.result[i].name) || typeof jQuery !== 'function') {
             document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           } else {
-            if (typeof jQuery === 'function') {
-              $('body').trigger(data.result[i].name, data.result[i].option)
-            } else {
-              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
-            }
+            $('body').trigger(data.result[i].name, data.result[i].option)
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
@@ -107,9 +104,9 @@ jeedom.changes = function() {
     },
     error: function(_error) {
       if (typeof (user_id) != "undefined" && jeedom.connect == 100) {
-        if(_error.message !== 'Unknown error'){
+        if (_error.message !== 'Unknown error') {
           jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message)
-        }      
+        }
       }
       jeedom.connect++
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
@@ -140,14 +137,31 @@ jeedom.init = function() {
     accessibility: {
       enabled: false
     },
+    chart: {
+      style: {
+        fontSize: '15px'
+      }
+    },
     jeedom: {
       opacityHigh: 0.85,
       opacityLow: 0.1
     },
+    xAxis: {
+      dateTimeLabelFormats: {
+        day: '%e %B',
+        week: '%e %B',
+        month: '%B \'%y'
+      },
+      tickLength: 7,
+      labels: {
+        distance: 6,
+        style: {
+          fontSize: '11px'
+        }
+      }
+    },
     lang: {
-      months: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
-      shortMonths: ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}'],
-      weekdays: ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}'],
+      locale: jeeFrontEnd.language.replace('_', '-'),
       downloadCSV: '{{Téléchargement CSV}}',
       downloadJPEG: '{{Téléchargement JPEG}}',
       downloadPDF: '{{Téléchargement PDF}}',
@@ -157,6 +171,11 @@ jeedom.init = function() {
       printChart: '{{Imprimer}}',
       viewFullscreen: '{{Plein écran}}',
       exitFullscreen: '{{Sortir du plein écran}}',
+      rangeSelector: {
+        allTitle: '{{Afficher tout}}',
+        monthTitle: '{{Afficher le mois}}',
+        yearTitle: "{{Afficher l'année}}"
+      }
     },
     colors: [
       cssComputedStyle.getPropertyValue('--al-info-color'),
@@ -175,9 +194,6 @@ jeedom.init = function() {
 
   document.body.addEventListener('cmd::update', function(_event) {
     jeedom.cmd.refreshValue(_event.detail)
-  })
-
-  document.body.addEventListener('cmd::update', function(_event) {
     jeedom.history.graphUpdate(_event.detail)
   })
 
@@ -685,7 +701,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertActionValue"></div>')
   jeeDialog.dialog({
     id: 'mod_insertActionValue',
-    title: '{{Sélectionner la commande}}',
+    title: '{{Sélectionner une action}}',
     height: 310,
     width: 800,
     top: '20vh',

@@ -38,8 +38,9 @@ try {
 	if ($plugin_id == '') {
 		throw new Exception(__('Le plugin ID ne peut être vide', __FILE__));
 	}
-	$plugin = plugin::byId($plugin_id);
-	if (!is_object($plugin)) {
+	try {
+		$plugin = plugin::byId($plugin_id);
+	} catch (Exception $e) {
 		throw new Exception(__('Plugin non trouvé :', __FILE__) . ' ' . init('plugin_id'));
 	}
 	$function = init('function');

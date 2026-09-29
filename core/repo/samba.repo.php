@@ -40,30 +40,31 @@ class repo_samba {
 		return array(
 			'parameters_for_add' => array(
 				'path' => array(
-					'name' => __('Chemin', __FILE__),
+					'name' => __('Chemin du fichier ZIP', __FILE__),
 					'type' => 'input',
+					'tooltip' => __("Renseigner le chemin du plugin compressé", __FILE__) . ' (*.zip)'
 				),
 			),
 			'configuration' => array(
 				'backup::ip' => array(
 					'name' => __('[Backup] IP', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'backup::username' => array(
 					'name' => __('[Backup] Utilisateur', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'backup::password' => array(
 					'name' => __('[Backup] Mot de passe', __FILE__),
-					'type' => 'password',
+					'type' => 'password'
 				),
 				'backup::share' => array(
 					'name' => __('[Backup] Partage', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 				'backup::folder' => array(
 					'name' => __('[Backup] Chemin', __FILE__),
-					'type' => 'input',
+					'type' => 'input'
 				),
 			),
 		);
@@ -130,8 +131,23 @@ class repo_samba {
 		);
 	}
 
-	public static function makeSambaCommand($_cmd, $_type = 'backup') {
-		return system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -U "' . config::byKey('samba::' . $_type . '::username') . '%' . config::byKey('samba::' . $_type . '::password') . '" -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"';
+	private static function makeSambaCommand(string $_cmd, string $_type = 'backup'): string {
+		$authfile = self::createAuthFile($_type);
+		return '(' . system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -A ' . $authfile . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"; ec=$?; ' . system::getCmdSudo() . 'rm -f ' . $authfile . '; exit $ec)';
+	}
+
+	/**
+	 * Write username/password to a private temp file so they never appear in the process command line
+	 * @param string $_type
+	 * @return string path to the authentication file
+	 */
+	private static function createAuthFile(string $_type): string {
+		$authfile = jeedom::getTmpFolder('samba') . '/.smbauth_' . bin2hex(random_bytes(16));
+		$content = 'username = ' . config::byKey('samba::' . $_type . '::username') . "\n"
+			. 'password = ' . config::byKey('samba::' . $_type . '::password') . "\n";
+		file_put_contents($authfile, $content);
+		chmod($authfile, 0600);
+		return $authfile;
 	}
 
 	public static function sortByDatetime($a, $b) {
@@ -236,8 +252,7 @@ class repo_samba {
 			$version = trim(file_get_contents(jeedom::getTmpFolder('samba') . '/version'));
 			com_shell::execute(system::getCmdSudo() . 'rm ' . jeedom::getTmpFolder('samba') . '/version');
 			return $version;
-		} catch (Exception $e) {
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 		}
 		return null;
 	}

@@ -124,7 +124,7 @@ if (!jeeFrontEnd.massedit) {
         var key = edit.querySelector('select.selectEditKey').value
         var value = edit.querySelector('.selectEditValue').value
         var jValue = false
-        if (edit.querySelector('.inputEditJValue').disabled != null) {
+        if (!edit.querySelector('.inputEditJValue').disabled) {
           var jValue = edit.querySelector('.inputEditJValue').value
         }
         edits.push({

@@ -23,7 +23,7 @@ require_once __DIR__ . '/console.php';
 
 require_once __DIR__ . "/core.inc.php";
 
-function jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e) {
+function jeeCron_errorHandler($cron, $class, $function, $datetimeStart, $e) {
 	$cron->setState('error');
 	$cron->setPID('');
 	$cron->setCache('runtime', strtotime('now') - $datetimeStart);
@@ -160,25 +160,23 @@ if (init('cron_id') != '') {
 			$cron->setCache('runtime', strtotime('now') - $datetimeStart);
 		}
 		die();
-	} catch (Exception $e) {
-		jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e);
-	} catch (Error $e) {
-		jeeCron_errorHandler($cron, $class, $function,$datetimeStart, $e);
+	} catch (\Throwable $e) {
+		jeeCron_errorHandler($cron, $class, $function, $datetimeStart, $e);
 	}
 } else {
 	if (cron::jeeCronRun()) {
 		die();
 	}
 	$started = jeedom::isStarted();
-	
+
 	set_time_limit(59);
 	cron::setPidFile();
-	
+
 	if ($started && config::byKey('enableCron', 'core', 1, true) == 0) {
 		die(__('Tous les crons sont actuellement désactivés', __FILE__));
 	}
 	$datetime = date('Y-m-d H:i:s');
-	foreach((cron::all()) as $cron) {
+	foreach ((cron::all()) as $cron) {
 		try {
 			if ($cron->getDeamon() == 1) {
 				$cron->refresh();
@@ -201,15 +199,13 @@ if (init('cron_id') != '') {
 			}
 			switch ($cron->getState()) {
 				case 'starting':
-				$cron->run();
-				break;
+					$cron->run();
+					break;
 				case 'stoping':
-				$cron->halt();
-				break;
+					$cron->halt();
+					break;
 			}
-		} catch (Exception $e) {
-			jeeCronAll_errorHandler($cron, $e);
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			jeeCronAll_errorHandler($cron, $e);
 		}
 	}

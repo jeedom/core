@@ -25,8 +25,8 @@ try {
 	require_once __DIR__ . "/core/php/core.inc.php";
 
 	if ((!isset($_GET['ajax']) || $_GET['ajax'] != 1) && count(system::ps('install/restore.php', 'sudo')) > 0) {
-			require_once __DIR__.'/restoring.php';
-			die();
+		require_once __DIR__ . '/restoring.php';
+		die();
 	}
 
 	//dunno desktop or mobile:
@@ -63,13 +63,7 @@ try {
 					throw new Exception('{{401 - Accès non autorisé}}');
 				}
 				include_file('desktop', init('modal'), 'modal', init('plugin'));
-			} catch (Exception $e) {
-				ob_end_clean();
-				$_div = '<div class="alert alert-danger div_alert">';
-				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				$_div .= '</div>';
-				echo $_div;
-			} catch (Error $e) {
+			} catch (\Throwable $e) {
 				ob_end_clean();
 				$_div = '<div class="alert alert-danger div_alert">';
 				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
@@ -88,19 +82,12 @@ try {
 						if (is_object($plugin)) {
 							$title = $plugin->getName() . ' - ' . config::byKey('product_name');
 						}
-					} catch (Exception $e) {
-					} catch (Error $e) {
+					} catch (\Throwable $e) {
 					}
 				}
 				include_file('core', 'authentification', 'php');
 				include_file('desktop', init('p'), 'php', init('m'));
-			} catch (Exception $e) {
-				ob_end_clean();
-				$_div = '<div class="alert alert-danger div_alert">';
-				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
-				$_div .= '</div>';
-				echo $_div;
-			} catch (Error $e) {
+			} catch (\Throwable $e) {
 				ob_end_clean();
 				$_div = '<div class="alert alert-danger div_alert">';
 				$_div .= translate::exec(displayException($e), 'desktop/' . init('p') . '.php');
@@ -116,7 +103,7 @@ try {
 				$title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
 				echo '<script>document.title = "' . secureXSS($title) . '"</script>';
 			}
-		} catch (Exception $e) {
+		} catch (\Throwable $e) {
 		}
 	} elseif (isset($_GET['v']) && $_GET['v'] == 'm') {
 		$_fn = 'index';

@@ -968,7 +968,7 @@ $productName = config::byKey('product_name');
 									</div>
 								</div>
 								<?php
-								$other_log = array('scenario', 'plugin', 'market', 'api', 'connection', 'interact', 'tts', 'report', 'event');
+								$other_log = array('api', 'audit', 'connection', 'event', 'interact', 'market', 'plugin', 'report', 'scenario', 'tts');
 								$div = '<div id="logsForms"';
 								foreach ($other_log as $name) {
 									$div .= '<form class="form-horizontal">';
@@ -1230,44 +1230,6 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<legend>{{InfluxDB}}</legend>
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{URL du serveur InfluxDB}}</label>
-							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxURL">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-6 col-xs-6 control-label">{{Port du serveur InfluxDB}}</label>
-							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxPort">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Nom de la base}}</label>
-							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxTable">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Utilisateur de la base}}</label>
-							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control" data-l1key="cmdInfluxUser">
-							</div>
-							<label class="col-lg-2 col-md-3 col-sm-6 col-xs-6 control-label">{{Mot de passe de la base}}</label>
-							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-6">
-								<input type="text" class="configKey form-control inputPassword" data-l1key="cmdInfluxPass">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Actions}}</label>
-							<div class="col-xs-6">
-								<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-								<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
-							</div>
-						</div>
-					</fieldset>
-				</form>
 
 
 				<legend>{{Spécial}}</legend>
@@ -1554,7 +1516,16 @@ $productName = config::byKey('product_name');
 								<sub>h</sub>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="session_lifetime">
+								<input type="number" class="configKey form-control ispin" data-l1key="session_lifetime" min="1" max="8760">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des périphériques enregistrés}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'inactivité avant expiration du périphérique enregistré, entre 3 et 90 jours.}}"></i></sup>
+								<sub>j</sub>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::registerDeviceLifetime" min="3" max="90">
 							</div>
 						</div>
 						<div class="form-group">
@@ -1562,17 +1533,17 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Passé ce nombre, l'IP sera bannie.}}"></i></sup>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::maxFailedLogin" min="0">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes.<br> 0 : temps infini}}"></i></sup>
 								<sub>s</sub>
 							</label>
 
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::timeLoginFailed" min="0">
 							</div>
 						</div>
 						<div class="form-group">
@@ -1581,7 +1552,7 @@ $productName = config::byKey('product_name');
 								<sub>s</sub>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::bantime">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::bantime" min="-1">
 							</div>
 						</div>
 						<div class="form-group">

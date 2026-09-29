@@ -1,105 +1,103 @@
-# Historique
+# History
 **Analysis → History**
 
-Important part in software : the historization part, a true memory of it. It is possible in Jeedom to log any information type command (binary or digital). This will allow you, for example, to log a temperature curve, consumption, the openings of a door, etc.
+An important feature of any software is its logging function, which serves as its memory. In Jeedom, you can log any information-type command (binary or numerical). This allows you, for example, to log temperature trends, energy consumption, door openings, and more.
 
-![Historical](./images/history.gif)
+![History](../images/history.gif)
 
-### Principle of historization
+### Principle of Logging
 
-### Archivage
+### Archiving
 
-Data archiving allows Jeedom to reduce the amount of data kept in memory. This allows not to use too much space and does not slow down the system. Indeed, if you keep all the measurements, this makes all the more points to display and therefore it can considerably lengthen the times to render a graph. If there are too many points, it may even cause the graph display to crash.
+Data archiving allows Jeedom to reduce the amount of data stored in memory. This helps avoid using too much space and prevents the system from slowing down. In fact, if you store all measurements, there are that many more data points to display, which can significantly increase the time it takes to render a graph. If there are too many data points, it can even cause the graph to crash.
 
-Archiving is a task that starts at night and compacts the data recovered during the day. By default Jeedom retrieves all older data of 2 hours and makes 1 hour packets of it (either an average, a minimum or a maximum depending on the settings). So here we have two parameters, one for packet size and another to know when to do it (by default, these are 1 hour packets with data that are more than 2 hours old).
+Archiving is a task that runs overnight and compresses the data collected during the day. By default, Jeedom retrieves all data older than 2 hours and organizes it into 1-hour packets (either an average, a minimum, or a maximum, depending on the settings). So there are two settings here: one for the packet size and another to determine when to start creating them (as a reminder, by default these are 1-hour packets containing data that is more than 2 hours old).
 
-> **Advice**
+> **Tip**
 >
-> If you have followed well you should have a high precision on the last 2 hours only. However when I connect at 5 p.m., I have a precision on the last 17 hours. For what ? In fact, to avoid consuming resources unnecessarily, the task of archiving takes place only once a day, in the evening.
+> If you’ve been following along, you should have high accuracy for only the last two hours. However, when I log in at 5:00 p.m., I see accuracy for the last 17 hours. Why is that? Actually, to avoid using resources unnecessarily, the task that handles archiving runs only once a day, in the evening.
 
 > **Important**
 >
-> Of course, this archiving principle only applies to digital orders. On binary type orders, Jeedom only keeps the dates of change of state.
+> Of course, this logging principle applies only to digital commands. For binary commands, Jeedom stores only the dates when the state changed.
 
-### Viewing a graph
+### Displaying a graph
 
-There are several ways to access the history :
+There are several ways to access the history:
 
 - By clicking on the desired command in a widget,
-- By going to the history page which allows you to superimpose different curves and combine styles (area, curve, bar),
-- On mobile while remaining pressed on the widget in question,
-- By putting a graph area in a view (see below),
-- By inserting a graph on a Design.
+- By going to the history page, which allows you to overlay different charts and combine chart types (area, line, bar),
+- On a mobile device, press and hold the widget in question,
+- By placing a graph zone in a view (see below),
+- By inserting a chart into a Design.
 
-From Core v4.2 it is also possible to display a curve at the bottom of the tile of a device.
+Starting with Core v4.2, it is also possible to display a graph in the background of a device tile.
 
-## Historique
+## History
 
-If you display a graph via the history page, you have access to several display options, above the graph :
+If you view a chart on the history page, you’ll see several display options above the chart:
 
-- **Period** : The display period, including historical data between these two dates. By default, depending on the setting *Display period graphics by default* In *Settings → System → Configuration / Equipment*.
-- **Group** : Offers several grouping options (Sum per hour, etc.).
-- **Display type** : Display in *Line*, *Area*, Or *Rod*. Option saved on the order and used from the Dashboard.
-- **Variation** : Displays the difference in value from the previous point. Option saved on the order and used from the Dashboard.
-- **Stairs** : Displays the curve as a staircase or a continuous display. Option saved on the order and used from the Dashboard.
-- **Compare** : Compare the curve between different periods.
+- **Period**: The display period, including historical data between these two dates. By default, this is based on the *Default Chart Display Period* setting in *Settings → System → Configuration / Devices*.
+- **Grouping**: Offers several grouping options (hourly total, etc.).
+- **Display Type**: *Line*, *Area*, or *Bar* display. This option is saved on the command and used from the Dashboard.
+- **Change**: Displays the difference in value compared to the previous point. This option is saved on the command and used from the Dashboard.
+- **Staircase**: Allows you to display the curve as a staircase or a continuous display. This option is saved on the command and accessed from the Dashboard.
+- **Compare**: Allows you to compare the curve across different time periods.
 
-> **Advice**
+> **Tip**
 >
-> To avoid any handling error, these options saved in the commands are only active when a single curve is displayed.
-> 
-In the upper part where the curves are displayed, there are also several options :
+> To prevent any user errors, these options saved in the commands are active only when a single curve is displayed.
+>
+In the upper section where the graphs are displayed, there are also several options:
 
 On the left:
 
-- **Zoom** : A shortcut area allowing you to adjust the horizontal zoom to the desired duration, if the data is loaded.
+- **Zoom**: A shortcut area that allows you to set the horizontal zoom to the desired duration, provided the data has been loaded.
 
 On the right:
 
-- **Visible vertical axes** : Allows you to hide or display all vertical axes.
-- **Vertical axis scale** : Allows you to activate or not the scaling of each vertical axis independently of the others.
-- **Grouping of vertical axes by units** : Allows to group the scale of curves and vertical axes according to their unit. All curves with the same unit will have the same scale.
-- **Opacity of the curves under the mouse** : Allows you to deactivate the highlighting of the curve when a value is displayed at the mouse cursor. For example when two curves do not have their values at the same times.
+- **Visible Vertical Axes**: Hides or shows all vertical axes.
+- **Vertical Axis Scaling**: Allows you to enable or disable scaling for each vertical axis independently of the others.
+- **Grouping Vertical Axes by Units**: Allows you to group the scale of curves and vertical axes based on their units. All curves with the same unit will have the same scale.
+- **Curve opacity on mouseover**: Disables the highlighting of the curve when a value is displayed at the mouse cursor. For example, when two curves do not have values at the same points in time.
 
-Under the curves, you can also use the contextual menu on each legend to isolate a curve, display / hide its axis, change its color, ...
+Below the graphs, you can also use the context menu on each legend to isolate a graph, show or hide its axis, change its color, and more.
 
-### Graphic on views and designs
+### Chart on Views and Designs
 
-You can also display the graphs on the views (we will see here the configuration options and not how to do it, for that you have to go to the documentation of the views or designs in function). Here are the options :
+You can also display graphs on views (here we’ll cover the configuration options rather than how to do it; for that, please refer to the documentation for views or designs, as appropriate). Here are the options:
 
-Once a data is activated, you can choose :
-- **Color** : The color of the curve.
-- **Kind** : The type of graph (area, line or column).
-- **Ladder** : Since you can put several curves (data) on the same graph, it is possible to distinguish the scales (right or left).
-- **Stairs** : Displays the curve as a staircase or a continuous display.
-- **Stack** : Stack the values of the curves (see below for the result).
-- **Variation** : Displays the difference in value from the previous point.
+Once a setting is enabled, you can choose:
+- **Color**: The color of the curve.
+- **Type**: The type of chart (area, line, or column).
+- **Scale**: Since you can plot multiple curves (data points) on the same graph, you can choose between right- and left-hand scales.
+- **Staircase**: Allows you to display the curve as a staircase or as a continuous line.
+- **Stack**: Allows you to stack the values of the curves (see below for the result).
+- **Change**: Displays the difference in value compared to the previous point.
 
 ### Option on the history page
 
-The history page gives access to some additional options
+The history page provides access to a few additional options
 
 #### Calculated history
 
-Allows to display a curve according to a calculation on several commands (you can pretty much do anything, + - / \* absolute value ... see PHP documentation for some functions). For example :
+Allows you to display a graph based on a calculation involving multiple commands (you can do just about anything—+-/\* absolute value… see the PHP documentation for specific functions). For example:
 
-`abs(*\ [Garden \] \ [Hygrometry \] \ [Temperature \]* - *\ [Living space \] \ [Hygrometry \] \ [Temperature \]*)`
+`abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de vie\]\[Hygrométrie\]\[Température\]*)`
 
-You also have access to a management of calculation formulas which allows you to save them to re-display them more easily.
+You also have access to a formula management feature that allows you to save formulas so you can easily view them again.
 
-> **Advice**
+> **Tip**
 >
-> When you have saved calculations, these are available on the left in **My Calculations**.
+> When you have saved calculations, they are available on the left under **My Calculations**.
 
-#### Command history
+#### Command History
 
-In front of each data that can be displayed, you will find two icons :
+- Next to each piece of data that can be displayed, you’ll see a **Trash Can** icon that lets you delete the saved data; when you click it, Jeedom asks whether you want to delete data prior to a certain date or all data.
+- In **Configuration**, to the right of each data point, you'll find an **Arrow** icon that lets you export historical data to a CSV file.
 
-- **Garbage can** : Allows you to delete the recorded data; when clicking, Jeedom asks whether to delete the data before a certain date or all the data.
-- **Arrow** : Enables CSV export of historical data.
+### Removal of Inconsistent Values
 
-### Inconsistent value removal
-
-Sometimes you may have inconsistent values on the graphs. This is often due to a concern with interpreting the value. It is possible to delete or change the value of the point in question, by clicking on it directly on the graph; in addition, you can adjust the minimum and maximum allowed to avoid future problems.
+Sometimes, you may see inconsistent values on the graphs. This is often due to an issue with how the value is interpreted. You can delete or change the value of the data point in question by clicking directly on it on the graph; additionally, you can set the minimum and maximum allowed values to prevent future problems.
 
 

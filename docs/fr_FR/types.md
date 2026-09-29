@@ -11,7 +11,7 @@ La pluspart du temps les types génériques sont mis automatiquement lors la con
 
 Cette page permet de paramétrer ces Types Génériques, de manière plus directe et plus simple, et propose même une assignation automatique une fois les équipements assignés correctement.
 
-![Types d'équipement](./images/coreGenerics.gif)
+![Types d'équipement](../images/coreGenerics.gif)
 
 ## Type d'équipement
 

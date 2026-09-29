@@ -31,12 +31,19 @@ class user {
 	private $options;
 	private $rights;
 	private $enable = 1;
-	private $hash;
+	private ?string $hash = '';
 	private $_changed = false;
 
+	private $_changes_trace = array();
 
 	/*     * ***********************Méthodes statiques*************************** */
 
+	/**
+	 * Return user object if exists
+	 *
+	 * @param int|string $_id user ID
+	 * @return user|null user object if exists, null otherwise
+	 */
 	public static function byId($_id) {
 		$values = array(
 			'id' => $_id,
@@ -48,13 +55,12 @@ class user {
 	}
 
 	/**
-	 * Retourne un object utilisateur (si les information de connection sont valide)
-	 * @param string $_login nom d'utilisateur
-	 * @param string $_mdp motsz de passe en sha512
-	 * @return user object user
+	 * Return user object if login and password are correct, else return false
+	 * @param string $_login login
+	 * @param string $_pswd password in plain text
+	 * @return user|false object user or false if authentication fails
 	 */
-	public static function connect(string $_login, string $_mdp) {
-		$sMdp = (!is_sha512($_mdp)) ? sha512($_mdp) : $_mdp;
+	public static function connect(string $_login, string $_pswd) {
 		if (config::byKey('ldap:enable') == '1' && function_exists('ldap_connect')) {
 			log::add("connection", "info", 'LDAP Authentication');
 			$ad = ldap_connect(config::byKey('ldap:host'), config::byKey('ldap:port'));
@@ -74,12 +80,12 @@ class user {
 				}
 			}
 			if (config::byKey('ldap:samba4')) {
-				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_mdp)) {
+				if (!ldap_bind($ad, $_login . '@' . config::byKey('ldap:domain'), $_pswd)) {
 					log::add("connection", "info", 'LDAP bind user - login/password denied');
 					return false;
 				}
 			} else {
-				if (!ldap_bind($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), $_mdp)) {
+				if (!ldap_bind($ad, config::byKey('ldap::usersearch') . '=' . $_login . ',' . config::byKey('ldap:basedn'), $_pswd)) {
 					log::add("connection", "info", 'LDAP bind user - login/password denied');
 					return false;
 				}
@@ -109,7 +115,7 @@ class user {
 			if ($profile != 'none') {
 				$user = self::byLogin($_login);
 				if (is_object($user)) {
-					$user->setPassword($sMdp)
+					$user->setPassword($_pswd)
 						->setOptions('lastConnection', date('Y-m-d H:i:s'))
 						->setProfils($profile);
 					$user->save();
@@ -117,14 +123,12 @@ class user {
 				}
 				$user = (new user)
 					->setLogin($_login)
-					->setPassword($sMdp)
+					->setPassword($_pswd)
 					->setOptions('lastConnection', date('Y-m-d H:i:s'))
 					->setProfils($profile);
 				$user->save();
 				log::add("connection", "info", 'User created from the LDAP: ' . $_login);
-				jeedom::event('user_connect', false, array('trigger_value' => $_login));
 				// TODO : if username == password => change ldap password
-				log::add('event', 'info', 'User connection accepted: ' . $_login);
 				return $user;
 			} else {
 				$user = self::byLogin($_login);
@@ -134,20 +138,25 @@ class user {
 				log::add("connection", "info", "User not allowed to access to Jeedom according to the LDAP ({$_login})");
 			}
 		}
-		$user = user::byLoginAndPassword($_login, $sMdp);
-		if (!is_object($user)) {
-			$user = user::byLoginAndPassword($_login, sha1($_mdp));
-			if (is_object($user)) {
-				$user->setPassword($sMdp);
-				log::add('event', 'info', 'Local account found for: ' . $_login);
+		$user = self::byLogin($_login);
+		if (is_object($user)) {
+			$storedPassword = $user->getPassword();
+			if (password_verify($_pswd, $storedPassword)) {
+				if (password_needs_rehash($storedPassword, PASSWORD_DEFAULT)) {
+					$user->setPassword($_pswd);
+				}
+			} elseif (hash_equals($storedPassword, sha512($_pswd))) {
+				$user->setPassword($_pswd);
+				log::audit('Password migrated from sha512 to native hash', [
+					'login' => $_login
+				]);
+			} else {
+				$user = false;
 			}
 		}
 		if (is_object($user)) {
 			$user->setOptions('lastConnection', date('Y-m-d H:i:s'));
 			$user->save();
-			jeedom::event('user_connect', false, array('trigger_value' => $_login));
-			log::add('event', 'info', 'Local account found for: ' . $_login);
-			log::add('event', 'info', 'User connection accepted: ' . $_login);
 		}
 		return $user;
 	}
@@ -171,6 +180,11 @@ class user {
 		return false;
 	}
 
+	/**
+	 * Get user by login
+	 *
+	 * @return user
+	 */
 	public static function byLogin($_login) {
 		$values = array(
 			'login' => $_login,
@@ -181,6 +195,11 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Get user by hash
+	 *
+	 * @return user
+	 */
 	public static function byHash($_hash) {
 		$values = array(
 			'hash' => $_hash,
@@ -195,6 +214,11 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Get user by login and hash
+	 *
+	 * @return user
+	 */
 	public static function byLoginAndHash($_login, $_hash) {
 		$values = array(
 			'login' => $_login,
@@ -207,21 +231,10 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byLoginAndPassword(string $_login, string $_password) {
-		$values = array(
-			'login' => $_login,
-			'password' => $_password,
-		);
-		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-		FROM user
-		WHERE login=:login
-		AND password=:password';
-		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-	}
-
 	/**
+	 * Get all users
 	 *
-	 * @return array de tous les utilisateurs
+	 * @return user[] Array of all users
 	 */
 	public static function all() {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -229,6 +242,25 @@ class user {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * Convert user to array, stripping sensitive data (password hash, 2FA secret)
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function toArray() {
+		$return = utils::o2a($this, true);
+		unset($return['password'], $return['options']['twoFactorAuthentificationSecret']);
+		foreach ($return['options']['registerDevice'] ?? array() as &$registerDevice) {
+			unset($registerDevice['session_id']);
+		}
+		return $return;
+	}
+
+	/**
+	 * Search users by right
+	 *
+	 * @return user[] Array of users with the specified right
+	 */
 	public static function searchByRight(string $_rights) {
 		$values = array(
 			'rights' => '%"' . $_rights . '":1%',
@@ -241,7 +273,12 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function searchByOptions($_search) {
+	/**
+	 * Search users by options
+	 *
+	 * @return user[] Array of users with the specified options
+	 */
+	public static function searchByOptions(string $_search) {
 		$value = array(
 			'search' => '%' . $_search . '%'
 		);
@@ -251,7 +288,12 @@ class user {
 		return DB::Prepare($sql, $value, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byProfils($_profils, $_enable = false) {
+	/**
+	 * Search users by profils
+	 *
+	 * @return user[] Array of users with the specified profils
+	 */
+	public static function byProfils(string $_profils, bool $_enable = false) {
 		$values = array(
 			'profils' => $_profils,
 		);
@@ -264,7 +306,12 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function byEnable($_enable) {
+	/**
+	 * Search users by enable status
+	 *
+	 * @return user[] Array of users with the specified enable status
+	 */
+	public static function byEnable(bool $_enable) {
 		$values = array(
 			'enable' => $_enable,
 		);
@@ -274,14 +321,21 @@ class user {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	public static function failedLogin(): void {
+	public static function failedLogin(array $_context = []): void {
 		$current_ip = getClientIp();
 		$failed_login = cache::byKey('security::failed_login::' . $current_ip);
-		cache::set('security::failed_login::' . $current_ip, ($failed_login->getValue(0) + 1), config::byKey('security::timeLoginFailed'));
-		if (($failed_login->getValue(0) + 1) > config::byKey('security::maxFailedLogin')) {
+		$newValue = $failed_login->getValue(0) + 1;
+		$maxValue = config::byKey('security::maxFailedLogin');
+		cache::set('security::failed_login::' . $current_ip, $newValue, config::byKey('security::timeLoginFailed'));
+		$_context['ip'] = $current_ip;
+		log::audit("Login failed ({$newValue}/{$maxValue})", $_context);
+		if ($newValue > $maxValue) {
 			$ban_ips = json_decode(cache::byKey('security::banip')->getValue('[]'), true);
 			$ban_ips[$current_ip] = strtotime('now');
 			cache::set('security::banip', json_encode($ban_ips));
+			log::audit('IP banned', [
+				'ip' => $current_ip,
+			]);
 		}
 	}
 
@@ -335,7 +389,7 @@ class user {
 			$user->setOptions('twoFactorAuthentificationSecret', $google2fa->generateSecretKey());
 			$user->setOptions('twoFactorAuthentification', 1);
 		}
-		$user->setPassword(sha512(config::genKey(255)));
+		$user->setPassword(config::genKey(255));
 		$user->setOptions('localOnly', 1);
 		$user->setProfils('admin');
 		$user->setEnable(1);
@@ -361,14 +415,14 @@ class user {
 		return $user->getHash() . '-' . $key;
 	}
 
-	public static function supportAccess($_enable = true) {
+	public static function supportAccess($_enable = true): void {
 		if ($_enable) {
 			$user = user::byLogin('jeedom_support');
 			if (!is_object($user)) {
 				$user = new user();
 				$user->setLogin('jeedom_support');
 			}
-			$user->setPassword(sha512(config::genKey(255)));
+			$user->setPassword(config::genKey(255));
 			$user->setProfils('admin');
 			$user->setEnable(1);
 			$key = config::genKey();
@@ -391,7 +445,7 @@ class user {
 		}
 	}
 
-	public static function deadCmd() {
+	public static function deadCmd(): array {
 		$return = array();
 		foreach ((user::all()) as $user) {
 			$cmd = $user->getOptions('notification::cmd');
@@ -404,16 +458,33 @@ class user {
 		return $return;
 	}
 
-	public static function regenerateHash() {
+	public static function regenerateHashes() {
 		foreach ((user::all()) as $user) {
-			if ($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash', 0) == 1 || $user->getEnable() == 0) {
-				continue;
+			if ($user->getHash() != '') {
+				if ($user->getProfils() != 'admin' || $user->getOptions('doNotRotateHash', 0) == 1 || $user->getEnable() == 0) {
+					continue;
+				}
+				if (strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')) {
+					continue;
+				}
 			}
-			if (strtotime($user->getOptions('hashGenerated')) > strtotime('now -3 month')) {
-				continue;
-			}
-			$user->setHash('');
-			$user->getHash();
+			$user->regenerateHash()->save();
+		}
+	}
+
+	public static function cleanPasswordAndHashInput(array $_params): array {
+		if (isset($_params['password']) && $_params['password'] == '') {
+			unset($_params['password']);
+		}
+		if (isset($_params['hash']) && $_params['hash'] != '') {
+			unset($_params['hash']); // hash cannot be changed to a chosen value, it is generated by the system; to regenerate a new hash, it must be set to empty string, which will generate a new hash
+		}
+		return $_params;
+	}
+
+	public static function raiseForInvalidLogin(array $_params): void {
+		if (isset($_params['login']) && in_array($_params['login'], ['internal_report', 'jeedom_support'])) {
+			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_params['login']));
 		}
 	}
 
@@ -421,6 +492,12 @@ class user {
 
 	public function preInsert(): void {
 		if (is_object(self::byLogin($this->getLogin()))) {
+			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
+		}
+	}
+
+	public function preUpdate(): void {
+		if (is_object($user = self::byLogin($this->getLogin())) && $user->getId() != $this->getId()) {
 			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
 		}
 	}
@@ -441,6 +518,26 @@ class user {
 				throw new Exception(__('Vous ne pouvez pas changer le profil du dernier administrateur', __FILE__));
 			}
 		}
+		if ($this->getHash() == '') {
+			$this->regenerateHash();
+		}
+	}
+
+	public function postSave(): void {
+		foreach ($this->_changes_trace as $change) {
+			log::audit($change, [
+				'login' => $this->getLogin(),
+				'profils' => $this->getProfils(),
+			]);
+		}
+		$this->_changes_trace = array();
+	}
+
+	public function postInsert(): void {
+		log::audit('User created', [
+			'login' => $this->getLogin(),
+			'profils' => $this->getProfils(),
+		]);
 	}
 
 	public function encrypt(): void {
@@ -451,7 +548,7 @@ class user {
 		$this->getOptions('twoFactorAuthentification', utils::decrypt($this->getOptions('twoFactorAuthentification')));
 	}
 
-	public function save() {
+	public function save(): bool {
 		return DB::save($this);
 	}
 
@@ -461,21 +558,42 @@ class user {
 		}
 	}
 
-	public function remove() {
+	public function remove(): bool {
 		jeedom::addRemoveHistory(array('id' => $this->getId(), 'name' => $this->getLogin(), 'date' => date('Y-m-d H:i:s'), 'type' => 'user'));
 		return DB::remove($this);
+	}
+
+	public function postRemove(): void {
+		log::audit('User removed', [
+			'login' => $this->getLogin(),
+			'profils' => $this->getProfils(),
+		]);
 	}
 
 	public function refresh(): void {
 		DB::refresh($this);
 	}
 
+	private function regenerateHash() {
+		do {
+			$_hash = config::genKey();
+		} while (is_object(self::byHash($_hash)));
+
+		$this->setHash($_hash);
+		$this->setOptions('hashGenerated', date('Y-m-d H:i:s'));
+		return $this;
+	}
+
 	/**
 	 *
-	 * @return boolean vrai si l'utilisateur est valide
+	 * @deprecated Replaced by user::isValidAndEnabled()
 	 */
 	public function is_Connected(): bool {
-		return (is_numeric($this->id) && $this->login != '');
+		return $this->isValidAndEnabled();
+	}
+
+	public function isValidAndEnabled(): bool {
+		return (is_numeric($this->id) && $this->login != '' && $this->enable == 1);
 	}
 
 	public function validateTwoFactorCode($_code) {
@@ -493,8 +611,8 @@ class user {
 		return $this->login;
 	}
 
-	public function getPassword() {
-		return $this->password;
+	public function getPassword(): string {
+		return (string) $this->password;
 	}
 
 	public function setId($_id): self {
@@ -505,23 +623,58 @@ class user {
 
 	public function setLogin($_login): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->login, $_login);
+		$this->traceChange($this->login, $_login, "User login updated (old login: {$this->login}");
 		$this->login = $_login;
 		return $this;
 	}
 
 	public function setPassword(string $_password): self {
 		if ($_password != '') {
-			$_password = (!is_sha512($_password)) ? sha512($_password) : $_password;
+			$_password = password_hash($_password, PASSWORD_DEFAULT);
 		} else {
 			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
 		}
 		$this->_changed = utils::attrChanged($this->_changed, $this->password, $_password);
+		$this->traceChange($this->password, $_password, "User password updated");
 		$this->password = $_password;
 		return $this;
 	}
 
 	public function getOptions($_key = '', $_default = '') {
 		return utils::getJsonAttr($this->options, $_key, $_default);
+	}
+
+	public static function registerDeviceLifetime(): int {
+		$registerDeviceLifetime = (int) config::byKey('security::registerDeviceLifetime', 'core', 30);
+		return $registerDeviceLifetime * 24 * 3600;
+	}
+
+	public static function cleanExpiredRegisterDevices(): void {
+		$expiration = time() - self::registerDeviceLifetime();
+		foreach (self::all() as $user) {
+			$registerDevice = $user->getOptions('registerDevice', array());
+			if (!is_array($registerDevice)) {
+				continue;
+			}
+			$changed = false;
+			foreach ($registerDevice as $key => $value) {
+				if (!is_array($value) || !isset($value['datetime']) || strtotime($value['datetime']) < $expiration) {
+					unset($registerDevice[$key]);
+					$changed = true;
+				}
+			}
+			if ($changed) {
+				$user->setOptions('registerDevice', $registerDevice);
+				$user->save();
+			}
+		}
+	}
+
+	public static function isValidRegisteredDevice(array $registeredDevices, string $key): bool {
+		return isset($registeredDevices[$key])
+			&& is_array($registeredDevices[$key])
+			&& isset($registeredDevices[$key]['datetime'])
+			&& strtotime($registeredDevices[$key]['datetime']) >= time() - self::registerDeviceLifetime();
 	}
 
 	public function setOptions($_key, $_value) {
@@ -544,6 +697,7 @@ class user {
 	public function setRights($_key, $_value): self {
 		$rights = utils::setJsonAttr($this->rights, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->rights, $rights);
+		$this->traceChange($this->rights, $rights, "User rights updated");
 		$this->rights = $rights;
 		return $this;
 	}
@@ -554,25 +708,22 @@ class user {
 
 	public function setEnable($_enable): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->enable, $_enable);
+		$this->traceChange($this->enable, $_enable, $_enable == 1 ? "User enabled" : "User disabled");
 		$this->enable = $_enable;
 		return $this;
 	}
 
-	public function getHash() {
-		if ($this->hash == '' && $this->id != '') {
-			$hash = config::genKey();
-			while (is_object(self::byHash($hash))) {
-				$hash = config::genKey();
-			}
-			$this->setHash($hash);
-			$this->setOptions('hashGenerated', date('Y-m-d H:i:s'));
-			$this->save();
-		}
-		return $this->hash;
+	public function getHash(): string {
+		return (string) $this->hash;
 	}
 
-	public function setHash($_hash) {
-		$this->_changed = utils::attrChanged($this->_changed, $this->hash, $_hash);
+	public function setHash(string $_hash) {
+		if ($_hash == '') {
+			return $this->regenerateHash();
+		}
+		$this->_changed = utils::attrChanged($this->_changed, $this->getHash(), $_hash);
+
+		$this->traceChange($this->getHash(), $_hash, "User hash updated");
 		$this->hash = $_hash;
 		return $this;
 	}
@@ -583,8 +734,15 @@ class user {
 
 	public function setProfils($_profils): self {
 		$this->_changed = utils::attrChanged($this->_changed, $this->profils, $_profils);
+		$this->traceChange($this->profils, $_profils, "User profile updated (old profile: {$this->profils})");
 		$this->profils = $_profils;
 		return $this;
+	}
+
+	private function traceChange($old, $new, string $message): void {
+		if ($old != '' && $old != $new) {
+			$this->_changes_trace[] = $message;
+		}
 	}
 
 	public function getChanged() {

@@ -23,7 +23,7 @@
     cmd#id#.find('.widget-rain-water').css('background', "url('data:image/svg+xml;base64," + waterSvg64#id# + "')")
 
     jeedom.cmd.addUpdateFunction('#id#',function(_options) {
-      cmd#id#.attr('title','{{Date de valeur}} : '+_options.valueDate+'<br/>{{Date de collecte}} : '+_options.collectDate+'<br/>{{Valeur}} : '+_options.display_value+_options.unit)
+      cmd#id#.attr('title','{{Date de valeur}}: '+_options.valueDate+'<br/>{{Date de collecte}}: '+_options.collectDate+'<br/>{{Valeur}}: '+_options.display_value+_options.unit)
       cmd#id#.find('.unit').empty().append(_options.unit);
 
       var value_#id# = parseFloat(_options.value)

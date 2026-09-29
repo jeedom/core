@@ -1,31 +1,31 @@
 # Logs
 **Analysis → Logs**
 
-Logs are log files, allowing you to follow what is happening on your home automation. In most cases the logs will only be used for debugging and solving problems by the support team.
+Logs are files that track what is happening in your home automation system. In most cases, logs are used only for debugging and troubleshooting by the support team.
 
-> **Advice**
+> **Tip**
 >
 > When the page opens, the first available log is displayed.
 
-The Logs page is quite simple :
-On the left, a list of available logs, with a search field to filter the name of the logs.
-Top right 5 buttons :
+The Logs page is pretty simple:
+On the left is a list of available logs, with a search field to filter by log name.
+Top right: 5 buttons:
 
-- **To research** : Allows you to filter the display of the current log.
-- **Pause / Resume** : Pause / resume real-time update of the current log.
-- **Download** : Download the current log.
-- **Empty** : Clear the current log.
-- **DELETE** : Delete the current log. If Jeedom needs it it will recreate it automatically.
-- **Delete all logs** : Delete all logs present.
+- **Search**: Allows you to filter the display of the current log.
+- **Pause/Resume**: Allows you to pause or resume the real-time update of the current log.
+- **Download**: Allows you to download the current log.
+- **Clear**: Clears the current log.
+- **Delete**: Deletes the current log. If Jeedom needs it, it will automatically recreate it.
+- **Delete all logs**: Deletes all existing logs.
 
-> **Advice**
+> **Tip**
 >
-> Note that the http log.error cannot be deleted. It is essential if you delete it (on the command line for example) it will not recreate itself, you must restart the system.
+> Please note that the http.error log cannot be deleted. It is essential; if you delete it (via the command line, for example), it will not be recreated automatically—you must restart the system.
 
-## Real time
+## Real-time
 
-The &quot;Event&quot; log is a bit special. First of all for it to work, it has to be in info or debug level, then it lists all the events or actions that happen on home automation. To access it, you must either go to the log page or in Analysis → Real time.
+The "Event" log is a bit unusual. First, for it to work, it must be set to the "info" or "debug" level; second, it records all events and actions occurring in the home automation system. To access it, go either to the log page or to Analysis → Real-Time.
 
-Once you click on it, you get a window that updates in real time and shows you all the events of your home automation.
+Once you click on it, a window opens that updates in real time and displays all the events in your home automation system.
 
-At the top right you have a search field (only works if you are not on pause) and a button to pause (useful for copying / pasting for example).
+In the top right corner, you'll find a search field (which only works if you're not paused) and a pause button (useful for copying and pasting, for example).

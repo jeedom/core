@@ -12,18 +12,14 @@ switch (system::getArch()) {
 		throw new Exception('{{Cette fonctionnalité est uniquement disponible sur les systèmes à base ARM64}}');
 }
 
-$product = config::byKey('product_name');
-$hardware = strtolower(jeedom::getHardwareName());
-$image = config::byKey('product_connection_image');
-$mbState = config::byKey('mbState');
-sendVarToJS('jeephp2js.hardware', $hardware);
+sendVarToJS('jeephp2js.hardware', strtolower(jeedom::getHardwareName()));
 ?>
 
 <div class="text-center" id="div_recovery">
 	<h3 id="recovery-title">{{Restauration système}}</h3>
-	<img src="<?= $image ?>" alt="Product Image">
+	<img src="<?= config::byKey('product_connection_image') ?>" alt="Product Image">
 	<div class="bold" id="recovery-step" style="min-height:50px">
-		<?= $product . ' ' . ucfirst($hardware) ?> {{intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution}} :
+		<?= config::byKey('product_name') ?> {{intègre une fonctionnalité de restauration système automatique au démarrage, avec deux modes d'exécution}} :
 	</div>
 	<div class="progress" style="display:none">
 		<div id="recovery-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -44,7 +40,7 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 				{{La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite.}}
 			</li>
 		</ul>
-		<?php if ($mbState == 0) { ?>
+		<?php if (config::byKey('mbState') == 0) { ?>
 			<br>
 			<div class="alert alert-info">
 				{{Consulter la documentation dédiée pour plus de détails}} :
@@ -81,7 +77,8 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 	}
 
 	#div_recovery>img {
-		height: 210px;
+		max-width: 80%;
+		max-height: 200px;
 	}
 
 	#recovery-details,

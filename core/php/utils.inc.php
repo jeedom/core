@@ -206,7 +206,8 @@ function redirect($_url, $_forceType = null) {
 		echo "window.location.href='$_url';";
 		echo '</script>';
 	} else {
-		exit(header("Location: $_url"));
+		header("Location: $_url");
+		exit;
 	}
 	return;
 }
@@ -1159,14 +1160,13 @@ function evaluate($_string) {
 		for ($i = 0; $i < $c; $i++) {
 			$string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $string);
 		}
-	} else {
-		$c = 0;
-	}
-	$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
-	if ($c > 0) {
+
+		$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 		for ($i = 0; $i < $c; $i++) {
 			$expr = str_replace('--preparsed' . $i . '--', $matches[0][$i], $expr);
 		}
+	} else {
+		$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 	}
 	try {
 		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
@@ -1267,11 +1267,14 @@ function isConnect($_right = '') {
 	if (!is_object($user)) {
 		return false;
 	}
-	if (!$_SESSION['user']->is_Connected()) {
+	if (!$user->isValidAndEnabled()) {
+		return false;
+	}
+	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
 		return false;
 	}
 	if ($_right != '') {
-		return ($_SESSION['user']->getProfils() == $_right);
+		return ($user->getProfils() == $_right);
 	}
 	return true;
 }
@@ -1807,11 +1810,13 @@ function endsWith($haystack, $needle) {
 }
 
 function getWhiteListFolders($_plugin = 'all') {
-	$pluginsAll = ($_plugin != 'all') ? array($_plugin) : plugin::listPlugin(true,    false,   true,  true);
+	$pluginsAll = ($_plugin != 'all') ? array($_plugin) : plugin::listPlugin(true, false, true, true);
 	$result = array();
 	foreach ($pluginsAll as $pluginId) {
+		if (!plugin::isInstalled($pluginId)) {
+			continue;
+		}
 		$plugin = plugin::byId($pluginId);
-		if (!is_object($plugin)) continue;
 
 		$publicFolders = $plugin->getWhiteListFolders();
 		if (count($publicFolders) == 0) continue;

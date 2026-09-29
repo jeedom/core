@@ -1,104 +1,104 @@
-# Vues
-**Inicio → Ver**
+# Vistas
+**Inicio → Vista**
 
-Las vistas le permiten crear vistas personalizadas.
-No es tan potente como los diseños, pero permite en pocos minutos tener una pantalla más personalizada que el Tablero, con equipos de diferentes objetos, gráficos o controles.
+Las vistas permiten crear pantallas personalizadas.
+No es tan potente como los diseños, pero permite, en tan solo unos minutos, conseguir una visualización más personalizada que el Dashboard, con diferentes objetos, gráficos o controles.
 
-{% include lightbox.html src="images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
-
-> **Consejo**
->
-> Puede elegir la vista predeterminada en su perfil al hacer clic en el menú de vista.
-
-## Principe
-
-También puede colocar mosaicos de equipo, gráficos (que pueden estar compuestos de varios datos) o zonas de tabla (que contienen los widgets de los comandos).
-
-En una vista, encontramos :
-
-- Un botón en la parte superior izquierda para mostrar u ocultar la lista de Vistas, así como el botón para agregar uno.
-- El lápiz a la derecha para editar el orden y el tamaño del equipo, de la misma manera que el Tablero.
-- Un botón *Edición completada* permitiendo editar las zonas y elementos de la Vista.
+{% include lightbox.html src="../images/doc-view_01.jpg" data="View" title="View" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Consejo**
 >
-> Puede, en su perfil, modificar esta opción para que la lista de Vistas sea visible por defecto.
+> En tu perfil puedes elegir la vista predeterminada al hacer clic en el menú de vistas.
 
-## Agregar / Editar una vista
+## Principio
 
-El principio es bastante simple : una vista está compuesta de áreas. Cada zona es de tipo *cuadro*, *widget* O *cuadro *. Dependiendo de este tipo, puede agregarle gráficos, equipos o comandos.
+Se pueden colocar tanto mosaicos de equipos como gráficos (que pueden estar compuestos por varios datos) o áreas de tabla (que contienen los widgets de los controles).
 
-- A la izquierda de la página encontramos la lista de Vistas, así como un botón de creación.
-- Un botón en la parte superior derecha le permite editar la Vista actual (Configuración).
-- Un botón para agregar una zona. Luego se le preguntará el nombre y el tipo de zona.
-- Un botón *Ver el resultado*, para salir del modo de edición completo y mostrar esta Vista.
-- Un botón que permite guardar esta Vista.
-- Un botón que permite eliminar esta Vista.
+En una vista, encontramos:
 
-> **Consejo**
->
-> Puede mover el orden de las zonas arrastrando y soltando.
-
-En cada zona tienes las siguientes opciones generales :
-
-- **Ancho** : Define el ancho del área (solo en modo escritorio). 1 para el ancho de 1/12 del navegador, 12 para el ancho total.
-- Un botón que permite agregar un elemento a esta zona, dependiendo del tipo de zona (ver abajo).
-- **Editar** : Le permite cambiar el nombre de la zona.
-- **BORRAR** : Eliminar la zona.
-
-### Zona de tipo de equipo
-
-Una zona de tipo de equipo le permite agregar equipo :
-
-- **Agregar dispositivo** : Le permite agregar / modificar equipos para mostrar en el área.
+- Un botón en la parte superior izquierda para mostrar u ocultar la lista de vistas, así como el botón para añadir una nueva.
+- El lápiz de la derecha sirve para editar el orden y el tamaño de los dispositivos, igual que en el Dashboard.
+- Un botón *Edición completa* que permite editar las zonas y los elementos de la vista.
 
 > **Consejo**
 >
-> Puede eliminar un elemento del equipo directamente haciendo clic en el bote de basura a la izquierda.
+> En tu perfil, puedes modificar esta opción para que la lista de vistas aparezca por defecto.
+
+## Añadir/Editar una vista
+
+El principio es bastante sencillo: una vista se compone de zonas. Cada zona puede ser de tipo *gráfico*, *widget* o *tabla*. En función de este tipo, podrás añadir gráficos, dispositivos o controles a la misma.
+
+- A la izquierda de la página se encuentra la lista de vistas, así como un botón para crearlas.
+- Un botón situado en la parte superior derecha te permite editar la vista actual (Configuración).
+- Un botón que permite añadir una zona. A continuación, se le pedirá el nombre y el tipo de zona.
+- Un botón «Ver el resultado», que permite salir del modo de edición completa y mostrar esta vista.
+- Un botón que permite guardar esta vista.
+- Un botón que permite eliminar esta vista.
 
 > **Consejo**
 >
-> Es posible cambiar el orden de los mosaicos en el área arrastrando y soltando.
+> Es posible cambiar el orden de las zonas arrastrándolas y soltándolas.
+
+En cada zona dispones de las siguientes opciones generales:
+
+- **Ancho**: Define el ancho del área (solo en modo escritorio). 1 corresponde a un ancho de 1/12 del navegador; 12, al ancho total.
+- Un botón que permite añadir un elemento a esta zona, en función del tipo de zona (véase más abajo).
+- **Editar**: Permite cambiar el nombre de la zona.
+- **Eliminar**: Permite eliminar la zona.
+
+### Zona de tipo «equipamiento»
+
+Una zona de tipo «equipos» permite añadir equipos:
+
+- **Añadir dispositivo**: Permite añadir o modificar los dispositivos que se mostrarán en la zona.
+
+> **Consejo**
+>
+> Puedes eliminar un dispositivo directamente haciendo clic en la papelera situada a la izquierda del mismo.
+
+> **Consejo**
+>
+> Es posible cambiar el orden de los mosaicos en el área arrastrándolos y soltándolos.
 
 
 ### Área de tipo gráfico
 
-Un área de tipo gráfico le permite agregar gráficos a su vista, tiene las siguientes opciones :
+Un área de tipo gráfico permite añadir gráficos a tu vista; cuenta con las siguientes opciones:
 
-- **Período** : Le permite elegir el período de visualización de los gráficos (30 min, 1 día, 1 semana, 1 mes, 1 año o todos).
-- **Agregar curva** : Agregar / editar gráficos.
+- **Período**: Permite seleccionar el período de visualización de los gráficos (30 minutos, 1 día, 1 semana, 1 mes, 1 año o todo).
+- **Añadir curva**: Permite añadir o modificar gráficos.
 
-Cuando presionas el botón **Agregar curva**, Jeedom muestra la lista de pedidos históricos y puede elegir el que desea agregar. Una vez hecho esto, tiene acceso a las siguientes opciones :
+Al pulsar el botón **Añadir curva**, Jeedom muestra la lista de comandos registrados y puedes elegir cuál quieres añadir. Una vez hecho esto, tendrás acceso a las siguientes opciones:
 
-- **Cubo de la basura** : Eliminar comando del gráfico.
-- **Nombre** : Nombre del comando para dibujar.
-- **Color** : Color de la curva.
-- **Amable** : Tipo de curva.
-- **Grupo** : Permite la agrupación de datos (tipo máximo por día).
-- **Escalera** : Escala (derecha o izquierda) de la curva.
-- **Escaleras** : Muestra la curva de la escalera.
-- **Pila** : Apila la curva con las curvas de otro tipo.
-- **Variación** : Solo dibuja variaciones con el valor anterior.
+- **Papelera**: Elimina el comando del gráfico.
+- **Nombre**: Nombre del comando que se va a dibujar.
+- **Color**: Color de la curva.
+- **Tipo**: Tipo de curva.
+- **Agrupación**: Permite agrupar los datos (por ejemplo, el máximo diario).
+- **Escala**: Escala (derecha o izquierda) de la curva.
+- **Escalera**: Muestra la curva en forma de escalera.
+- **Apilar**: Apila la curva con las demás curvas del mismo tipo.
+- **Variación**: Solo dibuja las variaciones con respecto al valor anterior.
 
-{% include lightbox.html src="images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
+{% include lightbox.html src="../images/doc-view_02.jpg" data="View" title="Pie Graph" imgstyle="width:450px;display: block;margin: 0 auto;" %}
 
 > **Consejo**
 >
-> Puede cambiar el orden de los gráficos en el área arrastrando y soltando.
+> Es posible cambiar el orden de los gráficos en el área mediante la función de arrastrar y soltar.
 
-### Área de tipo de matriz
+### Área de tipo tabla
 
-Aqui tienes los botones :
+Aquí tienes los botones:
 
-- **Agregar columna** : Agregar una columna a la tabla.
-- **Agregar línea** : Agregar una fila a la tabla.
+- **Añadir columna**: permite añadir una columna a la tabla.
+- **Añadir fila**: Permite añadir una fila a la tabla.
 
 > **Nota**
 >
 > Es posible reorganizar las filas arrastrando y soltando, pero no las columnas.
 
-Una vez que haya agregado sus filas / columnas, puede agregar información en los cuadros :
+Una vez que hayas añadido tus filas y columnas, puedes introducir información en las casillas:
 
 - Un texto.
-- Código HTML (javascript posible pero desaconsejado)).
-- El widget de una orden : El botón de la derecha le permite elegir el comando para mostrar.
+- Código HTML (se admite JavaScript, aunque se desaconseja encarecidamente).
+- El widget de un comando: el botón de la derecha te permite elegir el comando que quieres mostrar.

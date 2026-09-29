@@ -239,8 +239,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	include_file('3rdparty', 'highstock/highcharts-more', 'js');
 	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+	include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
+	include_file('3rdparty', 'highstock/modules/export-data', 'js');
 
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	include_file('3rdparty', 'nouislider/nouislider', 'css');
@@ -322,7 +322,9 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 			<header id="jeedomMenuBar" class="navbar navbar-fixed-top navbar-default reportModeHidden shadowed">
 				<div class="container-fluid">
 					<div class="navbar-header">
-						<a class="navbar-brand" href="<?php echo $homeLink; ?>"><img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="domUtils.showLoading()" height="30px"></a>
+						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
+							<img id="homeLogoImg" src="<?php echo $homeLogoSrc; ?>" onclick="domUtils.showLoading()" height="35">
+						</a>
 						<button id="mainMenuHamburgerToggle" class="navbar-toggle cursor" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>
 							<span class="icon-bar"></span>

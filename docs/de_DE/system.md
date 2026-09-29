@@ -1,19 +1,19 @@
-# Systeme
+# System
 
-Die für fortgeschrittene Benutzer reservierte Seite ermöglicht es Ihnen, SSH-Befehle direkt von Jeedom aus zu starten
+Diese Seite ist für fortgeschrittene Benutzer gedacht und ermöglicht es, SSH-Befehle direkt aus Jeedom heraus auszuführen.
 
 ## Befehl hinzufügen
 
-Es ist möglich, benutzerdefinierte Befehle hierfür über den Jeedom-Editor hinzuzufügen (Konfiguration -> OS/DB -> Dateieditor). Sie müssen eine „systemCustomCmd“-Datei erstellen.json` in `data`. Die Datei muss das folgende Format haben : 
-„
+Hierfür können im Jeedom-Editor (Konfiguration -> OS/DB -> Datei-Editor) benutzerdefinierte Befehle hinzugefügt werden. Dazu muss eine Datei erstellt werden. `systemCustomCmd.json` in `data`. Die Datei muss folgendes Format haben:
+```
 [
    {
-      "cmd":"meine tolle Bestellung",
-      "name":"Name meiner Bestellung"
+      "cmd":"ma super commande",
+      "name":"nom de ma commande"
    },
    {
-      "cmd":"meine Superbestellung 2",
-      "name":"Name meiner Bestellung 2"
+      "cmd":"ma super commande 2",
+      "name":"nom de ma commande 2"
    }
 ]
-„
+```

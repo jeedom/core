@@ -4,7 +4,7 @@ html {
 
 body {
 	transition: all .5s;
-	background-image: linear-gradient(to bottom right, rgba(147,204,1,0.6), rgba(147,204,1,1));
+	background-image: linear-gradient(to bottom right, rgba(147, 204, 1, 0.6), rgba(147, 204, 1, 1));
 	padding-top: 0;
 	height: 100% !important;
 	overflow: hidden;
@@ -26,19 +26,20 @@ body {
 .veen {
 	width: 70%;
 	margin: 100px auto;
-	background-color: rgb(255,255,255);
+	background-color: rgb(255, 255, 255);
 	display: table;
 	position: relative;
 	transition: all .5s;
 }
-.veen > div {
+
+.veen>div {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
 	color: #fff;
 }
 
-.veen button{
+.veen button {
 	display: inline-block;
 	padding: 10px 30px;
 	border: 3px solid #fff;
@@ -47,25 +48,31 @@ body {
 	color: #FFF;
 	transition: all .25s;
 }
-.veen button.dark{
+
+.veen button.dark {
 	border-color: #93cc01;
 	background: #93cc01;
 }
-.veen .move button.dark{
+
+.veen .move button.dark {
 	border-color: #e0b722;
 	background: #e0b722;
 }
-.veen .splits p{
+
+.veen .splits p {
 	font-size: 15px;
 
 }
-.veen button:active{
+
+.veen button:active {
 	box-shadow: none;
 }
-.veen button:focus{
+
+.veen button:focus {
 	outline: none;
 }
-.veen > .wrapper {
+
+.veen>.wrapper {
 	position: absolute;
 	width: 45%;
 	height: 120%;
@@ -76,50 +83,61 @@ body {
 	transition: all .5s;
 	color: #303030;
 	overflow: hidden;
-	box-shadow: 0 8px 22px 2px rgba(0,0,0,0.2);
+	box-shadow: 0 8px 22px 2px rgba(0, 0, 0, 0.2);
 }
-.veen .wrapper > .form-group{
+
+.veen .wrapper>.form-group {
 	padding: 15px 30px 30px;
 	width: 100%;
 	transition: all .5s;
 	background: #fff;
 }
-.veen .wrapper > .form-group:focus{
+
+.veen .wrapper>.form-group:focus {
 	outline: none;
 }
+
 .veen .wrapper .submit {
 	padding-top: 10px !important;
 }
-.veen .wrapper #login{
+
+.veen .wrapper #login {
 	padding-top: 20%;
 	visibility: visible;
 	text-align: left;
 }
-.veen .wrapper #market{
+
+.veen .wrapper #market {
 	padding-top: 10%;
 }
-.veen .wrapper #register{
+
+.veen .wrapper #register {
 	transform: translateY(-80%) translateX(100%);
 	visibility: hidden;
 
 }
-.veen .wrapper.move #register{
+
+.veen .wrapper.move #register {
 	transform: translateY(-120%) translateX(0%);
 	visibility: visible;
 }
+
 .veen .wrapper.move #login {
 	transform: translateX(-100%);
 	visibility: hidden;
 }
+
 .veen .wrapper .checkbox {
 	width: 100%;
 	height: 10px;
 }
-.veen .wrapper > .form-group > div {
+
+.veen .wrapper>.form-group>div {
 	position: relative;
 	margin-bottom: 15px;
 }
-.veen .wrapper label{
+
+.veen .wrapper label {
 	font-size: 12px;
 	white-space: nowrap;
 	background: #fff;
@@ -128,26 +146,38 @@ body {
 	color: #999;
 	pointer-events: none;
 }
-.veen .wrapper h3{
+
+.veen .wrapper h3 {
 	margin-bottom: 25px;
 }
-.veen .wrapper input:not([type='checkbox']){
+
+.veen .wrapper input:not([type='checkbox']) {
 	height: 40px;
 	padding: 5px 15px;
 	width: 100%;
 	border: solid 1px #999;
 }
-.veen .wrapper input{
+
+.veen .wrapper .bt_showPassConnection {
+	height: 40px;
+	width: 32.5px;
+	line-height: 27px;
+}
+
+.veen .wrapper input {
 	margin-top: -6px;
 }
-.veen .wrapper input:focus{
+
+.veen .wrapper input:focus {
 	outline: none;
 	border-color: #e0b722;
 }
-.veen > .wrapper.move{
+
+.veen>.wrapper.move {
 	left: 45%;
 }
-.veen > .wrapper.move input:focus{
+
+.veen>.wrapper.move input:focus {
 	border-color: #e0b722;
 }
 
@@ -159,27 +189,28 @@ body {
 #in_login_password,
 #in_login_username,
 #cb_storeConnection {
-	background: rgb(240,240,240) !important;
+	background: rgb(240, 240, 240) !important;
 }
 
-.btn_help{
+.btn_help {
 	right: 3%;
 	bottom: 8%;
 	width: 50px;
-	height:50px;
-	color: rgba(147,204,1,1);
-	font-size:20px;
+	height: 50px;
+	color: rgba(147, 204, 1, 1);
+	font-size: 20px;
 	position: fixed;
 	background: #FFFFFF;
 	border: 1px solid #FFFFFF;
-	border-radius:25px !important;
-	text-align:center;
-	line-height:45px;
-	box-shadow: 6px 6px 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+	border-radius: 25px !important;
+	text-align: center;
+	line-height: 45px;
+	box-shadow: 6px 6px 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
 }
-.btn_help:hover{
+
+.btn_help:hover {
 	background: #FFFFFF;
-	border: 1px solid rgba(147,204,1,1);
+	border: 1px solid rgba(147, 204, 1, 1);
 }
 
 input:-webkit-autofill,
@@ -190,61 +221,70 @@ select:-webkit-autofill {
 
 
 
-@media (max-width: 1520px){
-	.veen{
+@media (max-width: 1520px) {
+	.veen {
 		width: 80%;
 	}
 }
 
-@media (max-width: 1000px){
-	.veen .wrapper #login{
+@media (max-width: 1000px) {
+	.veen .wrapper #login {
 		padding-top: 10px;
 	}
 }
 
 @media (max-width: 767px) {
-	.veen{
+	.veen {
 		padding: 5px;
 		margin: 0;
 		width: 100%;
 		display: block;
 	}
-	.veen > .wrapper{
+
+	.veen>.wrapper {
 		position: relative;
 		height: auto;
 		top: 0;
 		left: 0;
 		width: 100%;
 	}
-	.veen > div{
+
+	.veen>div {
 		display: inline-block;
 	}
-	.splits{
+
+	.splits {
 		width: 50%;
 		background: #fff !important;
 		float: left;
 	}
-	.splits button{
+
+	.splits button {
 		width: 100%;
 		border-radius: 0;
 		background: #505050;
 		border: 0;
 		opacity: .7;
 	}
-	.splits button.active{
+
+	.splits button.active {
 		opacity: 1;
 	}
-	.splits button.active{
+
+	.splits button.active {
 		opacity: 1;
 		background: #ff4931;
 	}
-	.splits.rgstr-btn button.active{
+
+	.splits.rgstr-btn button.active {
 		background: #e0b722;
 	}
-	.splits p{
+
+	.splits p {
 		display: none;
 	}
-	.veen > .wrapper.move{
+
+	.veen>.wrapper.move {
 		left: 0%;
 	}
 }

@@ -1016,6 +1016,18 @@ jeedomUtils.initDisplayAsTable = function() {
   }
 }
 
+jeedomUtils.sanitizeHTML = function(_html) {
+  const doc = new DOMParser().parseFromString(_html, 'text/html')
+  doc.querySelectorAll('script, style, iframe, object, embed, link, meta, form, base').forEach(el => el.remove())
+  doc.body.querySelectorAll('*').forEach(el => {
+    for (const attr of [...el.attributes]) {
+      if (attr.name.toLowerCase().startsWith('on')) {
+        el.removeAttribute(attr.name)
+      }
+    }
+  })
+  return doc.body.innerHTML
+}
 
 jeedomUtils.TOOLTIPSOPTIONS = {
   onTrigger: (instance, event) => {
@@ -1023,8 +1035,10 @@ jeedomUtils.TOOLTIPSOPTIONS = {
       instance.reference.setAttribute('data-title', instance.reference.getAttribute('title'))
       instance.reference.removeAttribute('title')
     }
-    if (instance.reference.getAttribute('data-title') == '') return false
-    instance.setContent(instance.reference.getAttribute('data-title'))
+    if (instance.reference.getAttribute('data-title') == '') {
+      return false
+    }
+    instance.setContent(jeedomUtils.sanitizeHTML(instance.reference.getAttribute('data-title')))
     return true
   },
   lazy: false,
@@ -1130,7 +1144,7 @@ jeedomUtils.initTableSorter = function(filter) {
   }).css('width', '')
 }
 
-jeedomUtils.initDataTables = function(_selector, _paging, _searching,_init) {
+jeedomUtils.initDataTables = function(_selector, _paging, _searching, _init) {
   if (!isset(_selector)) _selector = 'body'
   if (!_paging) _paging = false
   if (!_searching) _searching = false
@@ -1148,72 +1162,72 @@ jeedomUtils.initDataTables = function(_selector, _paging, _searching,_init) {
 
 jeedomUtils.resizableTable = function(table) {
   var row = table.getElementsByTagName('tr')[0],
-  cols = row ? row.children : undefined;
-  if (!cols) return;
-  table.style.overflow = 'hidden';
-  var tableHeight = table.offsetHeight;
-  for (var i=0;i<cols.length;i++){
-   var div = createDiv(tableHeight);
-   cols[i].appendChild(div);
-   cols[i].style.position = 'relative';
-   setListeners(div);
+    cols = row ? row.children : undefined
+  if (!cols) return
+  table.style.overflow = 'hidden'
+  var tableHeight = table.offsetHeight
+  for (var i = 0; i < cols.length; i++) {
+    var div = createDiv(tableHeight)
+    cols[i].appendChild(div)
+    cols[i].style.position = 'relative'
+    setListeners(div)
   }
-  function setListeners(div){
-   var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
-   div.addEventListener('mousedown', function (e) {
-    curCol = e.target.parentElement;
-    nxtCol = curCol.nextElementSibling;
-     pageX = e.pageX;
-    var padding = paddingDiff(curCol);
-    curColWidth = curCol.offsetWidth - padding;
-    if (nxtCol)
-     nxtColWidth = nxtCol.offsetWidth - padding;
-   });
-   div.addEventListener('mouseover', function (e) {
-    e.target.style.borderRight = '2px solid var(--logo-primary-color)';
-   })
-   div.addEventListener('mouseout', function (e) {
-    e.target.style.borderRight = '';
-   })
-   document.addEventListener('mousemove', function (e) {
-    if (curCol) {
-     var diffX = e.pageX - pageX;
-     if (nxtCol)
-      nxtCol.style.width = (nxtColWidth - (diffX))+'px';
-     curCol.style.width = (curColWidth + diffX)+'px';
+  function setListeners(div) {
+    var pageX, curCol, nxtCol, curColWidth, nxtColWidth
+    div.addEventListener('mousedown', function(e) {
+      curCol = e.target.parentElement
+      nxtCol = curCol.nextElementSibling
+      pageX = e.pageX
+      var padding = paddingDiff(curCol)
+      curColWidth = curCol.offsetWidth - padding
+      if (nxtCol)
+        nxtColWidth = nxtCol.offsetWidth - padding
+    })
+    div.addEventListener('mouseover', function(e) {
+      e.target.style.borderRight = '2px solid var(--logo-primary-color)'
+    })
+    div.addEventListener('mouseout', function(e) {
+      e.target.style.borderRight = ''
+    })
+    document.addEventListener('mousemove', function(e) {
+      if (curCol) {
+        var diffX = e.pageX - pageX
+        if (nxtCol)
+          nxtCol.style.width = (nxtColWidth - (diffX)) + 'px'
+        curCol.style.width = (curColWidth + diffX) + 'px'
+      }
+    })
+    document.addEventListener('mouseup', function(e) {
+      curCol = undefined
+      nxtCol = undefined
+      pageX = undefined
+      nxtColWidth = undefined
+      curColWidth = undefined
+    })
+  }
+  function createDiv(height) {
+    var div = document.createElement('div')
+    div.style.top = 0
+    div.style.right = 0
+    div.style.width = '5px'
+    div.style.position = 'absolute'
+    div.style.cursor = 'col-resize'
+    div.style.userSelect = 'none'
+    div.style.height = height + 'px'
+    return div
+  }
+  function paddingDiff(col) {
+    if (getStyleVal(col, 'box-sizing') == 'border-box') {
+      return 0
     }
-   });
-    document.addEventListener('mouseup', function (e) {
-    curCol = undefined;
-    nxtCol = undefined;
-    pageX = undefined;
-    nxtColWidth = undefined;
-    curColWidth = undefined
-   });
+    var padLeft = getStyleVal(col, 'padding-left')
+    var padRight = getStyleVal(col, 'padding-right')
+    return (parseInt(padLeft) + parseInt(padRight))
   }
-  function createDiv(height){
-   var div = document.createElement('div');
-   div.style.top = 0;
-   div.style.right = 0;
-   div.style.width = '5px';
-   div.style.position = 'absolute';
-   div.style.cursor = 'col-resize';
-   div.style.userSelect = 'none';
-   div.style.height = height + 'px';
-   return div;
+  function getStyleVal(elm, css) {
+    return (window.getComputedStyle(elm, null).getPropertyValue(css))
   }
-  function paddingDiff(col){
-   if (getStyleVal(col,'box-sizing') == 'border-box'){
-    return 0;
-   }
-   var padLeft = getStyleVal(col,'padding-left');
-   var padRight = getStyleVal(col,'padding-right');
-   return (parseInt(padLeft) + parseInt(padRight));
-  }
-  function getStyleVal(elm,css){
-   return (window.getComputedStyle(elm, null).getPropertyValue(css))
-  }
-};
+}
 
 
 jeedomUtils.initHelp = function() {
@@ -1287,19 +1301,23 @@ jeedomUtils.initSpinners = function() {
     })
   }
 
-  document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
-    var options = {
+  document.querySelectorAll('input[type="number"].ispin:not(.ispinned)').forEach(_spin => {
+    const options = {
       wrapperClass: 'ispin-wrapper',
       buttonsClass: 'ispin-button',
       step: _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1,
       min: _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1,
+      max: _spin.getAttribute('max') != undefined ? parseFloat(_spin.getAttribute('max')) : undefined,
       disabled: false,
       repeatInterval: 200,
       wrapOverflow: true,
-      parse: Number
+      parse: Number,
+      onChange: function() {
+        _spin.triggerEvent('change')
+      }
     }
-    if (_spin.getAttribute('max') != undefined) options.max = parseFloat(_spin.getAttribute('max'))
     new ISpin(_spin, options)
+    _spin.addClass('ispinned')
     if (_spin.hasClass('roundedLeft')) {
       _spin.closest('.ispin-wrapper').addClass('roundedLeft')
     }
@@ -1447,6 +1465,7 @@ jeedomUtils.setJeedomMenu = function() {
     if (_target = event.target.closest('a')) {
       if (_target.hasClass('noOnePageLoad')) return
       if (_target.getAttribute('href') == undefined || _target.getAttribute('href') == '' || _target.getAttribute('href') == '#') return
+      if (_target.hasAttribute('download')) return
       if (_target.getAttribute('href').match("^data:")) return
       if (_target.getAttribute('href').match("^http")) return
       if (_target.getAttribute('href').match("^#")) return
@@ -1681,9 +1700,9 @@ jeedomUtils.chooseIcon = function(_callback, _params) {
             if (icon == undefined) {
               icon = ''
             }
-            if(icon.indexOf('<img') === 0){
+            if (icon.indexOf('<img') === 0) {
               let height = document.getElementById('mod_selectIcon').querySelector('.iconSelected .iconSel img').naturalHeight
-              icon = icon.replace(/\<img/g, "<img style=\"height:"+height+"px\" ")
+              icon = icon.replace(/\<img/g, "<img style=\"height:" + height + "px\" ")
             }
             icon = icon.replace(/"/g, "'")
             _callback(icon)
@@ -1752,26 +1771,17 @@ jeedomUtils.cleanModals = function(_modals = '') {
 }
 
 //Context menu on checkbox
-jeedomUtils.setCheckboxStateByType = function(_type, _state, _callback) {
-  if (!isset(_type)) return false
-  if (!isset(_state)) _state = -1
-  var checkboxes = document.querySelectorAll(_type)
-  if (checkboxes == null) return
-  var isCallback = (isset(_callback) && typeof _callback === 'function') ? true : false
-  var execCallback = false
-  checkboxes.forEach(function(checkbox) {
-    execCallback = false
-    if (_state == -1) {
-      checkbox.checked = !checkbox.checked
-      execCallback = true
-    } else {
-      if (checkbox.checked != _state) {
-        checkbox.checked = _state
-        execCallback = true
-      }
-    }
-    if (isCallback && execCallback) {
-      _callback(checkbox)
+jeedomUtils.setCheckboxStateByType = function(_type, _state) {
+  if (!isset(_type)) {
+    return false
+  }
+  if (!isset(_state)) {
+    _state = -1
+  }
+
+  document.querySelectorAll(_type).forEach(function(checkbox) {
+    if (_state == -1 || checkbox.checked != _state) {
+      checkbox.click()
     }
   })
 }
@@ -1791,7 +1801,7 @@ jeedomUtils.getElementType = function(_el) {
   }
   return thisType
 }
-jeedomUtils.setCheckContextMenu = function(_callback) {
+jeedomUtils.setCheckContextMenu = function() {
   let ctxSelector = 'input[type="checkbox"].checkContext, input[type="radio"].checkContext'
   try {
     document.querySelector('.contextmenu-checkbox')._jeeCtxMenu.destroy()
@@ -1807,22 +1817,19 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
       all: {
         name: "{{Sélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.trigger)
-          jeedomUtils.setCheckboxStateByType(thisType, 1, _callback)
+          jeedomUtils.setCheckboxStateByType(jeedomUtils.getElementType(opt.trigger), 1)
         }
       },
       none: {
         name: "{{Désélectionner tout}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.trigger)
-          jeedomUtils.setCheckboxStateByType(thisType, 0, _callback)
+          jeedomUtils.setCheckboxStateByType(jeedomUtils.getElementType(opt.trigger), 0)
         }
       },
       invert: {
         name: "{{Inverser la sélection}}",
         callback: function(key, opt) {
-          let thisType = jeedomUtils.getElementType(opt.trigger)
-          jeedomUtils.setCheckboxStateByType(thisType, -1, _callback)
+          jeedomUtils.setCheckboxStateByType(jeedomUtils.getElementType(opt.trigger), -1)
         }
       }
     }
@@ -1830,13 +1837,13 @@ jeedomUtils.setCheckContextMenu = function(_callback) {
 }
 
 jeedomUtils.readableFileSize = function(size) {
-  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  let i = 0;
+  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  let i = 0
   while (size >= 1024 && i < units.length - 1) {
-      size /= 1024;
-      ++i;
+    size /= 1024
+    ++i
   }
-  return size.toFixed(1) + ' ' + units[i];
+  return size.toFixed(1) + ' ' + units[i]
 }
 
 //Need jQuery and jQuery UI plugin loaded:

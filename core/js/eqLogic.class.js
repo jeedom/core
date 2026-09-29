@@ -34,7 +34,7 @@ if (!isset(jeedom.eqLogic.cache.byId)) {
   jeedom.eqLogic.cache.byId = Array()
 }
 
-if(!isset(jeedom.eqLogic.cache.byLogical)){
+if (!isset(jeedom.eqLogic.cache.byLogical)) {
   jeedom.eqLogic.cache.byLogical = Array()
 
 }
@@ -173,29 +173,67 @@ jeedom.eqLogic.usedBy = function(_params) {
 
 jeedom.eqLogic.remove = function(_params) {
   const paramsRequired = ['id', 'type']
-  const paramsSpecifics = {
-    pre_success: function(data) {
-      if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
-        delete jeedom.eqLogic.cache.byId[_params.id]
-      }
-      return data
-    }
-  }
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    (_params.error || jeedom.private.default_params.error)(e)
     return
   }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  const paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
-  paramsAJAX.data = {
-    action: 'remove',
-    type: _params.type,
-    id: _params.id
-  }
-  domUtils.ajax(paramsAJAX)
+  jeedom.eqLogic.getUseBeforeRemove({
+    id: _params.id,
+    error: function(error) {
+      jeedomUtils.showAlert({ message: error.message, level: 'danger' })
+    },
+    success: function(data) {
+      let text = "{{Êtes-vous sûr de vouloir supprimer l'équipement}} " + _params.type
+      if (_params.name) {
+        text += ' <b>' + _params.name + '</b>'
+      }
+      text += ' ?'
+      if (Object.keys(data).length > 0) {
+        text += ' </br> {{Il est utilisé par:}}</br>'
+        let complement = null
+        for (const i in data) {
+          complement = ('sourceName' in data[i]) ? ' (' + data[i].sourceName + ')' : ''
+          text += '- <a href="' + data[i].url + '" target="_blank">' + data[i].type + '</a> : <b>' + data[i].name + '</b>' + complement + ' <sup><a href="' + data[i].url + '" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
+        }
+      }
+      jeeDialog.confirm(text, function(result) {
+        if (!result) return
+
+        // Fires only once the actual removal succeeds server-side:
+        const paramsSpecifics = {
+          pre_success: function(data) {
+            if (isset(jeedom.eqLogic.cache.byId[_params.id])) {
+              delete jeedom.eqLogic.cache.byId[_params.id]
+            }
+            return data
+          },
+          success: function() {
+            jeeFrontEnd.modifyWithoutSave = false
+            modifyWithoutSave = false
+            const vars = getUrlVars()
+            let url = 'index.php?'
+            for (const i in vars) {
+              if (i != 'id' && i != 'removeSuccessFull' && i != 'saveSuccessFull') {
+                url += i + '=' + vars[i].replace('#', '') + '&'
+              }
+            }
+            jeedomUtils.loadPage(url + 'removeSuccessFull=1')
+          }
+        }
+        const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+        const paramsAJAX = jeedom.private.getParamsAJAX(params)
+        paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
+        paramsAJAX.data = {
+          action: 'remove',
+          type: _params.type,
+          id: _params.id
+        }
+        domUtils.ajax(paramsAJAX)
+      })
+    }
+  })
 }
 
 jeedom.eqLogic.copy = function(_params) {
@@ -270,7 +308,7 @@ jeedom.eqLogic.toHtml = function(_params) {
     action: 'toHtml',
     id: _params.id,
     version: _params.version,
-    global : _params.global || false
+    global: _params.global || false
   }
   domUtils.ajax(paramsAJAX)
 }
@@ -299,7 +337,7 @@ jeedom.eqLogic.getCmd = function(_params) {
   paramsAJAX.data = {
     action: 'byEqLogic',
     eqLogic_id: _params.id,
-    ...(_params.typeCmd ? { typeCmd: _params.typeCmd } : {}) 
+    ...(_params.typeCmd ? { typeCmd: _params.typeCmd } : {})
   }
   domUtils.ajax(paramsAJAX)
 }
@@ -333,22 +371,22 @@ jeedom.eqLogic.byId = function(_params) {
 }
 
 jeedom.eqLogic.removeImage = function(_params) {
-  const paramsRequired = ['id'];
-  const paramsSpecifics = {};
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
   }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php';
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/eqLogic.ajax.php'
   paramsAJAX.data = {
     action: 'removeImage',
     id: _params.id
-  };
-  domUtils.ajax(paramsAJAX);
+  }
+  domUtils.ajax(paramsAJAX)
 }
 
 jeedom.eqLogic.byLogical = function(_params) {
@@ -425,7 +463,7 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
             args.human = mod_insertEqLogic.getValue()
             args.id = mod_insertEqLogic.getId()
             if (args.human.trim() != '') {
-                callback(args)
+              callback(args)
             }
             document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
           }
@@ -512,7 +550,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
               jeedomUtils.positionEqLogic(result[i].id)
               const packer = Packery.data(object_div)
               if (packer != undefined) packer.destroy()
-              new Packery(object_div, {isLayoutInstant: true, transitionDuration: 0})
+              new Packery(object_div, { isLayoutInstant: true, transitionDuration: 0 })
 
               document.querySelectorAll('div.eqLogic-widget').forEach(function(element, idx) {
                 element.setAttribute('data-order', idx + 1)
@@ -548,7 +586,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
                           jeeFrontEnd.plan.cssStyleString = ''
                         }
                       }
-                      break;
+                      break
                     }
                   }
                 } catch (e) { console.error(e) }
@@ -592,7 +630,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
         } else if (typeof jeedomUI !== 'undefined' && typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
-          jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing,false)
+          jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing, false)
         }
       }
     }

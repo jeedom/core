@@ -105,13 +105,13 @@ sendVarToJS([
     </ul>
   <?php } ?>
   <div class="tab-content" style="overflow-y:scroll;max-height: 100%">
-    <div id="tabicon" role="tabpanel" class="tab-pane active" <?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
+    <div id="tabicon" role="tabpanel" class="tab-pane<?php echo (!$objectId) ? ' active' : '' ?>" <?php if (!init('selectIcon', 1) && init('showimg') != 1) echo ' style="display:none;"' ?>>
       <div class="imgContainer" <?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
         <div id="treeFolder-icon" class="div_treeFolder"></div>
         <div class="div_imageGallery"></div>
       </div>
     </div>
-    <div id="tabobjectbg" role="tabpanel" class="tab-pane active" <?php if (!$objectId) echo ' style="display:none;"' ?>>
+    <div id="tabobjectbg" role="tabpanel" class="tab-pane<?php echo ($objectId) ? ' active' : '' ?>" <?php if (!$objectId) echo ' style="display:none;"' ?>>
       <div class="imgContainer" <?php if (init('showimg') == 1) echo ' style="padding-top:10px;"' ?>>
         <div id="treeFolder-bg" class="div_treeFolder"></div>
         <div class="div_imageGallery"></div>
@@ -264,21 +264,24 @@ include_file('3rdparty', 'tree/tree', 'js');
         this.icon_tree.reload()
       },
       iconTreeOnScroll: function() {
-        var view = document.querySelector('#md_iconSelector .tab-content').getBoundingClientRect();
-        var legends = document.querySelectorAll('#tabicon .imgContainer legend');
-        var i = 0;
+        if (document.querySelector('#md_iconSelector div.tab-pane.active')?.id != 'tabicon') {
+          return;
+        }
+        const view = document.querySelector('#md_iconSelector .tab-content').getBoundingClientRect();
+        const legends = document.querySelectorAll('#tabicon .imgContainer legend');
+        let i = 0;
         while (i < legends.length && legends[i].getBoundingClientRect().bottom < view.top) {
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i].className))?.parentNode.removeClass('selected');
           i += 1;
         }
         if (i < legends.length && legends[i].getBoundingClientRect().bottom < view.bottom) { // In view
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.addClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i].className))?.parentNode.addClass('selected');
           i += 1;
         } else { // Out of view, select last
-          document.querySelector('#treeFolder-icon .' + (legends[i - 1].className)).parentNode.addClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i - 1]?.className))?.parentNode.addClass('selected');
         }
         while (i < legends.length) {
-          document.querySelector('#treeFolder-icon .' + (legends[i].className)).parentNode.removeClass('selected');
+          document.querySelector('#treeFolder-icon .' + (legends[i].className))?.parentNode.removeClass('selected');
           i += 1;
         }
       },

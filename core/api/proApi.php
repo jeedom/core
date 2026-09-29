@@ -728,7 +728,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'update::update') {
-			jeedom::update('');
+			jeedom::update();
 			$jsonrpc->makeSuccess('ok');
 		}
 

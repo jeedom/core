@@ -156,14 +156,40 @@ jeedom.history.generatePlotBand = function(_startTime, _endTime) {
 
 jeedom.history.graphUpdate = function(_params) {
   for (const i in _params) {
-    if(_params[i].cmd_id == ''){
-      continue;
+    const cmd_id = _params[i].cmd_id
+    if (cmd_id == '') {
+      continue
     }
-    for(const chart in jeedom.history.chart){
-      for(const serie in jeedom.history.chart[chart].chart.series){
-        if(jeedom.history.chart[chart].chart.series[serie] && jeedom.history.chart[chart].chart.series[serie].options.id == _params[i].cmd_id){
-          jeedom.history.chart[chart].chart.series[serie].addPoint([Date.now()+(-1*(new Date()).getTimezoneOffset()*60*1000),_params[i].value])
+    for (const chart in jeedom.history.chart) {
+      if (jeedom.history.chart[chart].comparing) {
+        continue
+      }
+      const cmd = jeedom.history.chart[chart].cmd[cmd_id]
+      if (cmd?.option?.groupingType || cmd?.option?.graphDerive) {
+        continue
+      }
+      let value = _params[i].value
+      if (typeof cmd?.calcul === 'function') {
+        value = cmd.calcul(value)
+      }
+      if (jeedom.history.chart[chart].type == 'pie') {
+        const point = jeedom.history.chart[chart].chart.series[0]?.points.find(p => p.id == cmd_id)
+        if (point) {
+          point.update(value)
         }
+        continue
+      }
+      if (cmd?.option?.invertData) {
+        value = -value
+      }
+      const serie = jeedom.history.chart[chart].chart.series.find(s => s?.options.id == cmd_id)
+      if (serie) {
+        if (serie.zones.length) {
+          serie.points[serie.points.length - 1].remove(false)
+          serie.update({ zones: [] }, false)
+        }
+        serie.addPoint([Date.now() + (-new Date().getTimezoneOffset() * 60 * 1000), value])
+        jeedom.history.setAxisScales(chart, { redraw: true })
       }
     }
   }
@@ -408,7 +434,7 @@ jeedom.history.drawChart = function(_params) {
         }
         if (init(_params.option.groupingType) == '' && isset(data.result.cmd.display) && init(data.result.cmd.display.groupingType) != '') {
           let split = data.result.cmd.display.groupingType.split('||')[0]
-		  split = split.split('::')
+          split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -598,13 +624,18 @@ jeedom.history.drawChart = function(_params) {
 
       //pie chart option from views:
       if (_params.option.graphType == 'pie') {
+        let pieValue = data.result.data[data.result.data.length - 1][1]
+        if (typeof _params.calcul === 'function') {
+          pieValue = _params.calcul(pieValue)
+        }
         const series = {
           type: _params.option.graphType,
           id: _params.cmd_id,
           cursor: 'pointer',
           data: [{
-            y: data.result.data[data.result.data.length - 1][1],
-            name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite, 
+            id: _params.cmd_id,
+            y: pieValue,
+            name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
             color: _params.option.graphColor
           }],
         }
@@ -621,9 +652,22 @@ jeedom.history.drawChart = function(_params) {
             exporting: {
               enabled: _params.enableExport || (jeedom.display.version == 'mobile') ? false : true,
               libURL: '3rdparty/highstock/lib/',
+              tableCaption: false,
               csv: {
                 dateFormat: '%Y-%m-%d'
               },
+              buttons: {
+                contextButton: {
+                  menuItems: ['viewFullscreen', 'printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'downloadCSV', 'downloadXLS']
+                }
+              },
+              chartOptions: {
+                chart: {
+                  style: {
+                    fontFamily: 'Roboto'
+                  }
+                }
+              }
             },
             tooltip: {
               pointFormat: '{point.y} {series.userOptions.unite}<br/>{series.userOptions.shortName}',
@@ -663,7 +707,8 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.initChart(_params.el)
         } else {
           jeedom.history.chart[_params.el].chart.series[0].addPoint({
-            y: data.result.data[data.result.data.length - 1][1],
+            id: _params.cmd_id,
+            y: pieValue,
             name: (isset(_params.option.name)) ? _params.option.name + ' ' + data.result.unite : data.result.history_name + ' ' + data.result.unite,
             color: _params.option.graphColor
           })
@@ -677,7 +722,7 @@ jeedom.history.drawChart = function(_params) {
         }
         if (isset(_params.option.groupingType) && typeof _params.option.groupingType === 'string' && _params.option.groupingType != '') {
           let split = _params.option.groupingType.split('||')[0]
-		  split=split.split('::')
+          split = split.split('::')
           _params.option.groupingType = {
             function: split[0],
             time: split[1]
@@ -733,7 +778,7 @@ jeedom.history.drawChart = function(_params) {
           if (_params.option.graphType == 'areaspline') {
             _params.option.graphType = 'area'
           }
-          if (_params.calcul) {
+          if (typeof _params.calcul === 'function') {
             for (const i in data.result.data) {
               data.result.data[i][1] = _params.calcul(data.result.data[i][1])
             }
@@ -760,8 +805,8 @@ jeedom.history.drawChart = function(_params) {
                 y2: 1
               },
               stops: [
-                [0, Highcharts.Color(_params.option.graphColor).setOpacity(Highcharts.getOptions().jeedom.opacityHigh).get('rgba')],
-                [1, Highcharts.Color(_params.option.graphColor).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
+                [0, new Highcharts.Color(_params.option.graphColor).setOpacity(Highcharts.getOptions().jeedom.opacityHigh).get('rgba')],
+                [1, new Highcharts.Color(_params.option.graphColor).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
               ],
             },
             stack: _params.option.graphStack,
@@ -870,7 +915,7 @@ jeedom.history.drawChart = function(_params) {
                         this.visible = true
                       }
                     }
-                    if (!jeedom.history.chart[this.chart._jeeId].zoom) jeedom.history.setAxisScales(this.chart._jeeId, { redraw: true })
+                    jeedom.history.setAxisScales(this.chart._jeeId, { redraw: true })
                     return false
                   }
                 }
@@ -879,9 +924,22 @@ jeedom.history.drawChart = function(_params) {
             exporting: {
               enabled: _params.enableExport || (jeedom.display.version == 'mobile') ? false : true,
               libURL: '3rdparty/highstock/lib/',
+              tableCaption: false,
               csv: {
                 dateFormat: '%Y-%m-%d'
               },
+              buttons: {
+                contextButton: {
+                  menuItems: ['viewFullscreen', 'printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'downloadCSV', 'downloadXLS']
+                }
+              },
+              chartOptions: {
+                chart: {
+                  style: {
+                    fontFamily: 'Roboto'
+                  }
+                }
+              }
             },
             rangeSelector: {
               allButtonsEnabled: true,
@@ -956,8 +1014,6 @@ jeedom.history.drawChart = function(_params) {
               id: _params.cmd_id + '-yAxis',
               showEmpty: false,
               gridLineWidth: 0,
-              minPadding: 0.001,
-              maxPadding: 0.001,
               labels: {
                 format: '{value} ' + data.result.unite,
                 style: {
@@ -972,15 +1028,11 @@ jeedom.history.drawChart = function(_params) {
             xAxis: [{
               type: 'datetime',
               ordinal: false,
-              maxPadding: 0.02,
-              minPadding: 0.02,
               margin: 0
             }, {
               //needed for compare mode
               type: 'datetime',
               ordinal: false,
-              maxPadding: 0.02,
-              minPadding: 0.02,
               margin: 0
             }],
             navigator: {
@@ -990,6 +1042,13 @@ jeedom.history.drawChart = function(_params) {
                 lineWidth: 0,
                 width: 8,
                 height: 40
+              },
+              xAxis: {
+                labels: {
+                  style: {
+                    textOutline: false
+                  }
+                }
               },
               series: {
                 type: _params.option.graphType,
@@ -1008,7 +1067,7 @@ jeedom.history.drawChart = function(_params) {
               trackBorderRadius: 0,
               trackBorderColor: 'var(--txt-color)',
               height: _params.showScrollbar ? 16 : 0,
-              enabled: true
+              enabled: _params.showScrollbar
             },
             series: [series]
           })
@@ -1041,8 +1100,8 @@ jeedom.history.drawChart = function(_params) {
                 y2: 1
               },
               stops: [
-                [0, Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityHigh).get('rgba')],
-                [1, Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
+                [0, new Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityHigh).get('rgba')],
+                [1, new Highcharts.Color(series.color).setOpacity(Highcharts.getOptions().jeedom.opacityLow).get('rgba')]
               ],
             }
 
@@ -1061,8 +1120,6 @@ jeedom.history.drawChart = function(_params) {
               id: _params.cmd_id + '-yAxis',
               showEmpty: false,
               gridLineWidth: 0,
-              minPadding: 0.001,
-              maxPadding: 0.001,
               labels: {
                 format: '{value} ' + data.result.unite,
                 style: {
@@ -1093,10 +1150,11 @@ jeedom.history.drawChart = function(_params) {
           jeedom.history.chart[_params.el].dateEnd = _params.dateEnd
 
         }
-        jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
-          option: _params.option,
-          dateRange: _params.dateRange
-        }
+      }
+      jeedom.history.chart[_params.el].cmd[_params.cmd_id] = {
+        option: _params.option,
+        dateRange: _params.dateRange,
+        calcul: _params.calcul
       }
 
       jeedom.history.chart[_params.el].dateStart = data.result.dateStart
@@ -1187,7 +1245,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   }
 
   //yAxis scaling by unit:
-  jeedom.history.chart[thisId].btToggleyaxisbyunit = jeedom.history.chart[thisId].chart.renderer.button('<i class="icon divers-viral"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
+  jeedom.history.chart[thisId].btToggleyaxisbyunit = jeedom.history.chart[thisId].chart.renderer.button('<i class="fas fa-object-group"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
     .attr({
       id: 'hc_bt_YaxisByUnit',
       height: 10,
@@ -1247,7 +1305,7 @@ jeedom.history.initChart = function(_chartId, _options) {
 
 
   //toggle yAxis visible button:
-  jeedom.history.chart[thisId].btToggleyaxisVisible = jeedom.history.chart[thisId].chart.renderer.button(' <i class="fas fa-ruler-vertical"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
+  jeedom.history.chart[thisId].btToggleyaxisVisible = jeedom.history.chart[thisId].chart.renderer.button(' <i class="fas fa-border-style"></i>', undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, true)
     .attr({
       id: 'hc_bt_toggleYaxis',
       height: 10,
@@ -1397,8 +1455,8 @@ jeedom.history.initLegendContextMenu = function(_chartId) {
               color: newC,
               fillColor: {
                 stops: [
-                  [0, Highcharts.Color(newC).setOpacity(opacityHigh).get('rgba')],
-                  [1, Highcharts.Color(newC).setOpacity(opacityLow).get('rgba')]
+                  [0, new Highcharts.Color(newC).setOpacity(opacityHigh).get('rgba')],
+                  [1, new Highcharts.Color(newC).setOpacity(opacityLow).get('rgba')]
                 ]
               }
             })
@@ -1481,8 +1539,9 @@ jeedom.history.chartDone = function(_chartId) {
 Set each existing yAxis scale according to chart yAxisScaling and yAxisByUnit
 */
 jeedom.history.setAxisScales = function(_chartId, _options) {
-  if (_chartId === undefined) return false
-  if (jeedom.history.chart[_chartId].type == 'pie') return false
+  if (_chartId === undefined || jeedom.history.chart[_chartId].type == 'pie' || jeedom.history.chart[_chartId].zoom) {
+    return false
+  }
   const chart = jeedom.history.chart[_chartId].chart
 
   //All done with render false, redraw at end if in _options

@@ -59,7 +59,11 @@ class log extends AbstractLogger {
 
 	public static function getConfig($_key, $_default = '') {
 		if (self::$config === null) {
-			self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog', 'maxSizeLog')));
+			try {
+				self::$config = array_merge(config::getLogLevelPlugin(), config::byKeys(array('log::engine', 'log::formatter', 'log::level', 'addMessageForErrorLog', 'maxLineLog', 'maxSizeLog')));
+			} catch (\Throwable $e) {
+				self::$config = array();
+			}
 		}
 		if (isset(self::$config[$_key])) {
 			return self::$config[$_key];
@@ -147,7 +151,7 @@ class log extends AbstractLogger {
 		}
 		foreach ($paths as $path) {
 			if (is_file($path)) {
-				if ($_onlyIfSizeExceeded && filesize($path) < (self::getConfig('maxSizeLog') * 1024 * 1024)) {
+				if ($_onlyIfSizeExceeded && filesize($path) < ((int)self::getConfig('maxSizeLog', 5) * 1024 * 1024)) {
 					continue;
 				}
 				self::chunkLog($path);
@@ -165,7 +169,7 @@ class log extends AbstractLogger {
 			$maxLineLog = self::DEFAULT_MAX_LINE;
 		}
 
-		$maxSizeLog = (int)self::getConfig('maxSizeLog', 10);
+		$maxSizeLog = (int)self::getConfig('maxSizeLog', 5);
 		$maxSizeLog = max(1, $maxSizeLog);
 		$maxBytes = $maxSizeLog * 1024 * 1024;
 
@@ -243,7 +247,7 @@ class log extends AbstractLogger {
 	}
 
 	private static function canRemoveLog(string $_log): bool {
-		if (strpos($_log, 'nginx.error') !== false || strpos($_log, 'http.error') !== false) {
+		if (strpos($_log, 'http.error') !== false) {
 			return false;
 		}
 
@@ -255,6 +259,7 @@ class log extends AbstractLogger {
 		static $coreLogNames = [
 			'api',
 			'apipro',
+			'audit',
 			'backup',
 			'cmd',
 			'connection',
@@ -637,7 +642,16 @@ class log extends AbstractLogger {
 		}
 	}
 
-	/*     * *********************Methode d'instance************************* */
-
-	/*     * **********************Getteur Setteur*************************** */
+	public static function audit(string $message, array $context = array()): void {
+		$parts = [];
+		foreach ($context as $key => $value) {
+			if (is_scalar($value)) {
+				$parts[] = $key . '=' . $value;
+			} else {
+				$parts[] = $key . '=' . json_encode($value, JSON_UNESCAPED_UNICODE);
+			}
+		}
+		$suffix = $parts ? ' [' . implode(' | ', $parts) . ']' : '';
+		self::add('audit', 'info', $message . $suffix);
+	}
 }

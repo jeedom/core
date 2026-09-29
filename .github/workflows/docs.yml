@@ -1,0 +1,58 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - develop
+      - release
+    paths:
+      - docs/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      fr_fr: ${{ steps.filter.outputs.fr_fr }}
+      translated: ${{ steps.filter.outputs.translated }}
+      images: ${{ steps.filter.outputs.images }}
+      manual: ${{ github.event_name == 'workflow_dispatch' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: dorny/paths-filter@v4
+        id: filter
+        with:
+          base: ${{ github.ref_name }}
+          filters: |
+            fr_fr:
+              - 'docs/fr_FR/**'
+            translated:
+              - 'docs/en_US/**'
+              - 'docs/es_ES/**'
+              - 'docs/de_DE/**'
+            images:
+              - 'docs/images/**'
+
+  translate:
+    needs: changes
+    if: needs.changes.outputs.fr_fr == 'true' || needs.changes.outputs.manual == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jeedom/jeetranslate-docs@main
+        with:
+          deepl_api_key: ${{ secrets.DEEPL_API_KEY }}
+
+  publish:
+    needs: changes
+    if: |
+      github.ref_name == 'release' &&
+      (needs.changes.outputs.translated == 'true' || needs.changes.outputs.images == 'true' || needs.changes.outputs.manual == 'true')
+    uses: jeedom/workflows/.github/workflows/docs-publish.yml@main
+    with:
+      repo_kind: core
+    secrets:
+      docs_repo_token: ${{ secrets.DOCS_REPO_TOKEN }}

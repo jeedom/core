@@ -36,23 +36,11 @@ try {
 		}
 
 		if (!isConnect()) {
-			if (config::byKey('sso:allowRemoteUser') == 1) {
-				$header = $configs['sso:remoteUserHeader'];
-				$header_value = $_SERVER[$header];
-				$user = user::byLogin($header_value);
-				if (is_object($user) && $user->getEnable() == 1) {
-					@session_start();
-					$_SESSION['user'] = $user;
-					@session_write_close();
-					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $_SESSION['user']->getLogin());
-				}
-			}
 			$user = user::connect(init('username'), init('password'));
 			if (is_object($user) && network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '' && init('twoFactorCode') == '') {
 				throw new Exception(__('Double authentification requise', __FILE__), -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
-				log::add('connection', 'info',network::getClientIp().' - '. __('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 				throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 			}
 		}
@@ -68,18 +56,13 @@ try {
 				'ip' => getClientIp(),
 				'session_id' => session_id(),
 			);
-			if (version_compare(PHP_VERSION, '7.3') >= 0) {
-				setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-			} else {
-				setcookie('registerDevice', sha512($_SESSION['user']->getHash()) . '-' . $rdk, time() + 365 * 24 * 3600, "/; samesite=strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-			}
+			setRegisterDeviceCookie(sha512($_SESSION['user']->getHash()) . '-' . $rdk);
 			@session_start();
 			$_SESSION['user']->refresh();
 			$_SESSION['user']->setOptions('registerDevice', $registerDevice);
 			$_SESSION['user']->save();
 			@session_write_close();
 		}
-		log::add('connection', 'info',network::getClientIp().' - '. __('Connexion réussie pour : ', __FILE__).$_SESSION['user']->getLogin());
 		ajax::success();
 	}
 
@@ -146,8 +129,7 @@ try {
 		unautorizedInDemo();
 		$users = array();
 		foreach ((user::all()) as $user) {
-			$user_info = utils::o2a($user);
-			$users[] = $user_info;
+			$users[] = utils::o2a($user);
 		}
 		ajax::success($users);
 	}
@@ -159,7 +141,7 @@ try {
 		unautorizedInDemo();
 		$users = jeedom::fromHumanReadable(json_decode(init('users'), true));
 		$user = null;
-		foreach ($users as &$user_json) {
+		foreach ($users as $user_json) {
 			if (isset($user_json['id'])) {
 				$user = user::byId($user_json['id']);
 			}
@@ -167,18 +149,44 @@ try {
 				if (config::byKey('ldap::enable') == '1') {
 					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
+
+				user::raiseForInvalidLogin($user_json);
+
 				$user = new user();
+
+				$keyWhitelist = ['login', 'password']; // Only allow login and password to be set when creating a new user
+				$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
+				$user_json['profils'] = 'user'; // Default profile for new users is 'user'
+				$user_json['options']['api::mode'] = 'disable';
+			} else {
+				if ($user->getLogin() == 'internal_report' || $user->getLogin() == 'jeedom_support') {
+					continue; // Do not allow to modify these users
+				}
+
+				user::raiseForInvalidLogin($user_json);
+				$keyWhitelist = ['login', 'password', 'hash', 'profils', 'enable', 'options', 'rights'];
+				$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
+				$user_json = user::cleanPasswordAndHashInput($user_json);
+
+				if ($user->getId() == $_SESSION['user']->getId()) {
+					if (isset($user_json['enable']) && $user_json['enable'] == 0) {
+						throw new RunTimeException(__('Vous ne pouvez pas désactiver le compte avec lequel vous êtes connecté', __FILE__));
+					}
+					if (isset($user_json['profils']) && $user_json['profils'] != 'admin') {
+						throw new RunTimeException(__('Vous ne pouvez pas changer le profil du compte avec lequel vous êtes connecté', __FILE__));
+					}
+				}
 			}
 			utils::a2o($user, $user_json);
 			$user->save();
 			if (isset($user_json['enable']) && $user_json['enable'] == 0) {
-        			$sessions = listSession();
-                		foreach ($sessions as $sessionId => $sessionData) {
+				$sessions = listSession();
+				foreach ($sessions as $sessionId => $sessionData) {
 					if (isset($sessionData['user_id']) && $sessionData['user_id'] == $user->getId()) {
-                        			deleteSession($sessionId);
-                    			}
-                		}
-    			}
+						deleteSession($sessionId);
+					}
+				}
+			}
 		}
 		@session_start();
 		$_SESSION['user']->refresh();
@@ -225,18 +233,14 @@ try {
 	if (init('action') == 'saveProfils') {
 		unautorizedInDemo();
 		$user_json = jeedom::fromHumanReadable(json_decode(init('profils'), true));
-		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
-			throw new Exception(__('401 - Accès non autorisé', __FILE__));
-		}
+
+		$keyWhitelist = ['password', 'hash', 'options'];
+		$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
+		$user_json = user::cleanPasswordAndHashInput($user_json);
+
 		@session_start();
 		$_SESSION['user']->refresh();
-		$login = $_SESSION['user']->getLogin();
-		$rights = $_SESSION['user']->getRights();
 		utils::a2o($_SESSION['user'], $user_json);
-		foreach ($rights as $right => $value) {
-			$_SESSION['user']->setRights($right, $value);
-		}
-		$_SESSION['user']->setLogin($login);
 		$_SESSION['user']->save();
 		@session_write_close();
 		ajax::success();
@@ -260,31 +264,39 @@ try {
 		unautorizedInDemo();
 		if (init('key') == '' && init('user_id') == '') {
 			if (!isConnect('admin')) {
-				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
-			}
-			foreach ((user::all()) as $user) {
-				if ($user->getId() == $_SESSION['user']->getId()) {
-					@session_start();
-					$_SESSION['user']->refresh();
-					$_SESSION['user']->setOptions('registerDevice', array());
-					$_SESSION['user']->save();
-					@session_write_close();
-				} else {
-					$user->setOptions('registerDevice', array());
-					$user->save();
+				// If not admin, only allow to remove all the register devices for the current user
+				@session_start();
+				$_SESSION['user']->refresh();
+				$_SESSION['user']->setOptions('registerDevice', array());
+				$_SESSION['user']->save();
+				@session_write_close();
+			} else {
+				foreach ((user::all()) as $user) {
+					if ($user->getId() == $_SESSION['user']->getId()) {
+						@session_start();
+						$_SESSION['user']->refresh();
+						$_SESSION['user']->setOptions('registerDevice', array());
+						$_SESSION['user']->save();
+						@session_write_close();
+					} else {
+						$user->setOptions('registerDevice', array());
+						$user->save();
+					}
 				}
 			}
 			ajax::success();
 		}
-		if (init('user_id') != '') {
+		$targetUserId = init('user_id');
+		$targetUser = null;
+		if ($targetUserId != '') {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 			}
-			$user = user::byId(init('user_id'));
-			if (!is_object($user)) {
-				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . init('user_id'));
+			$targetUser = user::byId($targetUserId);
+			if (!is_object($targetUser)) {
+				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . $targetUserId);
 			}
-			$registerDevice = $user->getOptions('registerDevice', array());
+			$registerDevice = $targetUser->getOptions('registerDevice', array());
 		} else {
 			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
 		}
@@ -294,9 +306,9 @@ try {
 		} elseif (isset($registerDevice[init('key')])) {
 			unset($registerDevice[init('key')]);
 		}
-		if (init('user_id') != '') {
-			$user->setOptions('registerDevice', $registerDevice);
-			$user->save();
+		if (is_object($targetUser)) {
+			$targetUser->setOptions('registerDevice', $registerDevice);
+			$targetUser->save();
 		} else {
 			@session_start();
 			$_SESSION['user']->refresh();
@@ -345,13 +357,14 @@ try {
 
 	if (init('action') == 'removeBanIp') {
 		unautorizedInDemo();
-        user::removeBanIp();
+		user::removeBanIp();
 		ajax::success();
 	}
 
 	if (init('action') == 'supportAccess') {
 		unautorizedInDemo();
-		ajax::success(user::supportAccess(init('enable')));
+		user::supportAccess(init('enable'));
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));

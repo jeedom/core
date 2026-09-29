@@ -1,34 +1,34 @@
- # Remplacer
+# Replace
 
-## Why such a tool ?
+## Why use such a tool?
 
 ![1](../images/replace1.png)
 
-Jeedom has been offering since version 4.3.2 a new <kbd>Replace</kbd> tool which, in the event of a problem or the need to replace physical or virtual equipment (a temperature or presence sensor, a volume control, a water level, etc.), will ensure copying of all commands, information, advanced parameters and history of this equipment to new equipment.<br>
-It will also be responsible for replacing the ID of the old equipment with the new one in all scenarios, designs, virtual, etc. that referred to it.
+Starting with version 4.3.2, Jeedom offers a new tool <kbd>Replace</kbd> which, in the event of a problem or the need to replace physical or virtual equipment (such as a temperature sensor, a motion sensor, a volume control, a water level sensor, etc.), will ensure that all commands, information, advanced settings, and history for that equipment are transferred to the new equipment.<br>
+It will also replace the ID of the old device with the new one in all scenarios, designs, virtual environments, etc., that referenced it.
 
-Indeed, if the old equipment is deleted, the reference to its original ID number will be permanently erased. It will then be necessary to recreate all the commands and reintegrate them into all the designs, widgets, etc. for the new module, even if it is strictly of the same type as the original, or even the same but with a number different ID.<br>
-Also, before any deletion of equipment, Jeedom will warn of the consequences of this deletion in an alert window :
+In fact, if the old device is removed, the reference to its original ID number will be permanently deleted. You will then need to recreate all the commands and reintegrate them into all designs, widgets, etc., for the new module—even if it is exactly the same type as the original, or even the same module but with a different ID number.<br>
+Also, before any device is removed, Jeedom will warn you of the consequences of this removal in an alert window:
 
 ![2](../images/replace2.png)
 
-Here, removing this vibration sensor will cause :
+Here, removing this vibration sensor will cause:
 
-- Deleting the displays defined in the 'Alarms zones' design',
-- Deletion of vibration information, battery level, and date of last communication, including history,
-- La suppression de l'équipement dans le scénario ‘Alarme détection intru'.
+- Removing the displays defined in the "Zone Alarms" design,
+- The removal of information regarding vibration, battery level, and the date of the last communication, including historical data,
+- Removing the device from the “Intruder Detection Alarm” scenario.
 
-And from the moment this equipment is definitively deleted, it will be replaced in all these entities by its old ID number, or an empty field in place of its original name :
+And once this equipment is permanently decommissioned, it will be replaced in all these entities with its former ID number, or a blank field in place of its original name:
 
 ![3](../images/replace3.png)
 <br><br>
 
-## Operations to carry out before using this tool
+## Steps to Take Before Using This Tool
 
-Even if the <kbd>Replace</kbd> tool will suggest that you make a precautionary backup first, it is strongly recommended to do one before starting this replacement procedure.<br>
-Keep in mind that this tool is indeed really powerful in that it will perform replacements at all levels, including those that you had not thought of or simply forgotten. Additionally, there is no function *undo* to cancel or go back.<br><br>
+Even though the tool <kbd>Replace</kbd> will prompt you to create a backup as a precaution beforehand; it is strongly recommended that you do so before beginning this replacement procedure.<br>
+Keep in mind that this tool is indeed true in terms of its power, as it will make replacements at every level—including those you hadn’t thought of or simply forgot about. Furthermore, there is no *undo* function to cancel or reverse changes.<br><br>
 
-The next phase will be the renaming of the old equipment. To do this, simply change its name, adding the suffix '**_old**' For example.
+The next step will be to rename the old equipment. To do this, simply change its name by adding the suffix '**_old**', for example.
 
 ![4](../images/replace4.png)
 <br>
@@ -36,100 +36,100 @@ The next phase will be the renaming of the old equipment. To do this, simply cha
 Don't forget to save.
 <br>
 
-You must then carry out the inclusion of the new equipment if it is physical equipment, or the creation of the new virtual equipment, following the standard procedure specific to each plugin.
-This equipment will be named with its final name, then the parent object and its category defined before activating it. 
+Next, you must add the new device if it is a physical device, or create the new virtual device, following the standard procedure specific to each plugin.
+This device will be given its final name, and its parent object and category will be defined before it is activated.
 <br>
-We thus obtain two pieces of equipment :
+This gives us two devices:
 
-- Old equipment, which may no longer exist physically, but which nevertheless remains referenced in all Jeedom structures with its histories,
-- And the new equipment, on which it will be necessary to copy the histories and reference it in place of the old one.
+- Old equipment, which may no longer physically exist but is still listed in all Jeedom structures along with its history,
+- And the new equipment, to which we’ll need to transfer the historical data and set it up to replace the old one.
 <br>
 
 ![5](../images/replace5.png)
 <br><br>
 
-## Using the <kbd>Replace</kbd> tool>
+## Using the tool <kbd>Replace</kbd>
 
-Open the <kbd>Replace</kbd> tool, on the <kbd>Tools</kbd> menu>.
+Open the tool <kbd>Replace</kbd>, in the menu <kbd>Tools</kbd>.
 
 ![6](../images/replace6.png)
 <br>
 
-In the field *Object*, select parent object(s).
+In the *Object* field, select the parent object(s).
 
 ![7](../images/replace7.png)
 <br>
 
-In the options, select the desired mode (*Replace* Or *Copy*) in the drop-down list, and depending on the needs, the following options (which are all unchecked by default), or at least :
+In the options, select the desired mode (*Replace* or *Copy*) from the drop-down list, and, as needed, the following options (all of which are unchecked by default), or at least:
 
-- Copy configuration from source device,
-- Copy configuration from source command.
+- Copy the configuration of the source device,
+- Copy the configuration of the source command.
 <br>
 
 ![8](../images/replace8.png)
 <br>
 
-Then click on <kbd>Filter</kbd>>
+Then click on <kbd>Filter</kbd>
 
 ![9](../images/replace9.png)
 <br>
 
-In the field *Replacements*, all entities relating to the parent object appear :
+In the *Replacements* field, all entities related to the parent object appear:
 
 ![10](../images/replace10.png)
 <br>
 
-Check the source device (renamed to '**_old**'), that is to say the one from which we wish to copy the orders, information, history, etc
-Here, the source equipment will therefore be : [Friend's room][T°Chambre_old](767 | z2m).<br>
-Click on the line to display the different related fields.
+Check the source device (renamed to '**_old**'), i.e., the one from which you want to copy commands, information, history, etc.
+Here, the source equipment will be: [Guest Room][Room_Temp_old] (767 | z2m).<br>
+Click on the line to display the various associated fields.
 
 ![11](../images/replace11.png)
 <br>
 
-In the game *Target* on the right, scroll down the list and select the new equipment which will replace it, i.e. [Guest room][Room temperature] in our example.
+In the *Target* section on the right, scroll through the list and select the new device that will replace it—in our example, [Guest Room][Room Temp].
 
 ![12](../images/replace12.png)
 <br>
 
-In the drop-down lists which are then displayed on the right, the information is presented on a blue background, the actions on an orange background (below another example on a luminaire where there are actions and information).
+In the drop-down lists that appear on the right, information is displayed on a blue background, and actions on an orange background (below is another example of a light fixture that includes both actions and information).
 
 ![13](../images/replace13.png)
 <br>
 
-And if there is a direct match (same name in particular), the different parameters will be set automatically.
+And if there is a direct match (specifically, the same name), the various settings will be configured automatically.
 
 ![14](../images/replace14.png)
 <br>
 
-Here everything is automatically recognized.
-Otherwise, the field will be empty, and you will have to manually select the corresponding information/action from the drop-down list if relevant.
+Here, everything is automatically recognized.
+Otherwise, the field will be empty, and you will need to manually select the corresponding information or action from the drop-down list, if applicable.
 
 ![15](../images/replace15.png)
 <br>
 
-Click on <kbd>Replace</kbd>>,
+Click on <kbd>Replace</kbd>,
 
 ![16](../images/replace16.png)
 <br>
 
-Validate the replacement, checking that a backup has been made before (be careful, there is no going back !).
+Confirm the replacement, making sure you've created a backup beforehand (please note: you cannot undo this action!).
 
 ![17](../images/replace17.png)
 <br>
 
-Moreover, the tool will suggest it to you at this stage. But by leaving this function to make this backup at this time, you will also abandon all the settings already made, hence the interest in making this backup from the start of the procedure.<br><br>
+In fact, the tool will prompt you to do so at this stage. However, if you exit this function to perform the backup at this point, you will also lose all the settings you have already configured, which is why it’s best to perform this backup right at the start of the process.<br><br>
 
-After launching the command, after a brief wait, an alert pop-up will appear and indicate the successful completion of the procedure.<br><br>
+After placing the command, after a brief wait, an alert pop-up will appear indicating that the process was successful.<br><br>
 
 ## Checks
 
-Make sure that the new equipment has been taken into account in the designs, scenarios, widgets, virtuals, plug-ins, etc. with its configuration (layout, display, assignment of widgets, etc.), and (if applicable) the associated history.
+Make sure that the new equipment has been properly incorporated into the designs, scenarios, widgets, virtual environments, plug-ins, etc., along with its configuration (layout, display, widget assignments, etc.) and (if applicable) the associated history.
 
 ![18](../images/replace18.png)
 <br>
 
-To properly verify that no additional problems have been generated following this replacement, it is possible to use the orphan command detection function.
-Go to <kbd>Analysis</kbd> , <kbd>Equipment</kbd> , click on the tab *Orphan commands*.
+To ensure that no additional problems have arisen as a result of this replacement, you can use the orphan command detection feature.
+Go to <kbd>Analysis</kbd>, <kbd>Equipment</kbd>, click the *Orphaned Commands* tab.
 
 ![19](../images/replace19.png)
 <br>
@@ -137,35 +137,35 @@ Go to <kbd>Analysis</kbd> , <kbd>Equipment</kbd> , click on the tab *Orphan comm
 ![20](../images/replace20.png)
 <br>
 
-If everything went well, there should be no lines present in this report.
+If everything went well, there should be no lines in this report.
  
 ![21](../images/replace21.png)
 <br>
 
-Otherwise, it will be necessary to carry out a line-by-line analysis for each problem identified to remedy it.
+Otherwise, you'll need to analyze each line individually for every identified issue in order to resolve it.
 
 ![22](../images/replace22.png)
 <br>
 
-But if orphaned commands are not taken into account by the <kbd>Replace</kbd> tool, it is still possible to make replacements with this function <kbd>This command replaces the ID</kbd> found here in the command configuration window :
+But if orphaned commands are not processed by the tool <kbd>Replace</kbd>, it is still possible to perform replacements using this feature <kbd>This command replaces the ID</kbd> which can be found here in the command configuration window:
 
 ![23](../images/replace23.png)
 <br><br>
 
-## Finalisation
+## Finalization
 
-If everything is correct, the old equipment (T°Chambre_old in the example) can then be permanently deleted. No more references should appear in the warning pop-up during deletion, except for commands intrinsic to this equipment.
+If everything is correct, the old device (Room_Temperature_old in the example) can then be permanently deleted. No references should appear in the warning pop-up during deletion, except for commands specific to that device.
 
 ![24](../images/replace24.png)
 <br>
 
-Here, this equipment is only referenced by its belonging object and its own commands, which is normal. We can therefore delete it without regrets.<br><br>
+Here, this device is now identified only by the object it belongs to and its own commands, which is to be expected. We can therefore remove it without hesitation.<br><br>
 
 ## Conclusion
 
-This tool is practical, but it is just as dangerous if misused due to its multi-level implication.<br>
-Also, keep these fundamentals in mind :
+This tool is convenient, but it is just as dangerous if misused due to its multi-layered implications.<br>
+Also, keep these fundamentals in mind:
 
-- Systematically perform a precautionary backup, even before using the <kbd>Replace</kbd> tool>,
-- There is no undo or rollback possible after executing this command,
-- And finally, it is strongly recommended to become at least familiar with the use of this tool.
+- Always make a backup as a precaution, even before using the tool <kbd>Replace</kbd>,
+- Once this command has been executed, it cannot be canceled or undone,
+- And finally, it is strongly recommended that you at least familiarize yourself with how to use this tool.

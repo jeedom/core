@@ -223,7 +223,8 @@ class plan3d {
 		}
 		if ($this->getLink_type() == 'eqLogic') {
 			if ($this->getConfiguration('3d::widget') == 'text') {
-				$return['text'] = scenarioExpression::setTags($this->getConfiguration('3d::widget::text::text'));
+				$text = $this->getConfiguration('3d::widget::text::text');
+				$return['text'] = scenarioExpression::setTags($text);
 				preg_match_all("/#([0-9]*)#/", $this->getConfiguration('3d::widget::text::text'), $matches);
 				$return['cmds'] = $matches[1];
 			}

@@ -46,9 +46,9 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 		<span class="label label-info" id="span_lastUpdateCheck"></span>
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-check"></i> {{Vérifier les mises à jour}}
 				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
+				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-sync-alt"></i> {{Mettre à jour}}
 					</a><?php } ?>
 			</span>
 		</div>
@@ -127,11 +127,17 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 			<form class="form-horizontal">
 				<fieldset>
 					<div class="alert alert-warning">
-						{{Avant toute mise à jour, merci de consulter le}} <span class="bt_changelogCore label cursor alert-info">{{changelog}}</span> {{du Core}}.
+						{{En cas de mise à jour du core, veuillez prendre connaissance du}}
+						<a class="btn btn-xs" id="bt_warnChangelogCore" target="_blank"><i class="fas fa-file-code"></i>
+							{{Changelog}}
+						</a>
+						{{au préalable}}.
 					</div>
-					<?php if (config::byKey('core::branch') == 'beta' || config::byKey('core::branch') == 'alpha') { ?>
+					<?php $branch = config::byKey('core::branch');
+					if (!in_array($branch, ['master', 'release'])) { ?>
 						<div class="alert alert-danger">
-							{{Attention vous n'êtes pas sur la branche stable du core, vous allez donc mettre à jour sur la version : }} <?php echo config::byKey('core::branch'); ?>. {{Cette version ne bénéficie d'aucun support de Jeedom SAS.}}
+							{{Attention vous n'êtes pas sur la version stable du core, la mise à jour se fera donc sur la branche : }} <?= $branch ?>.
+							{{Cette version ne bénéficie pas du support officiel.}}
 						</div>
 					<?php } ?>
 
@@ -139,7 +145,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<label><i class="fas fa-home"></i> Core</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Pré-update}}
-								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Mettre d'abord le script d'update à jour}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="preUpdate" /><i class="fas fa-retweet"></i>
@@ -147,7 +153,7 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Sauvegarder avant}}
-								<sup><i class="fas fa-question-circle" data-title="{{Réalise une sauvegarde avant de lancer la mise à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Réaliser une sauvegarde avant de démarrer la mise à jour}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="backup::before" checked /><i class="fas fa-save"></i>
@@ -155,15 +161,15 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour le Core}}
-								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, le Core sera mis à jour.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Même sans mise à jour signalée, le Core sera mis à jour}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-pen-alt"></i>
+								<input type="checkbox" class="updateOption" data-l1key="core" checked /><i class="fas fa-sync-alt"></i>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mode forcé}}
-								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" data-title="{{Continuer la mise à jour en cas d'erreur}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
 								<input type="checkbox" class="updateOption" data-l1key="force" /><i class="fas fa-user-injured"></i>
@@ -172,10 +178,10 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 						<label><i class="fas fa-tasks"></i> Plugins</label>
 						<div class="form-group">
 							<label class="col-xs-6 control-label"> {{Mettre à jour les plugins}}
-								<sup><i class="fas fa-question-circle" data-title="{{Tous les plugins ayant une mise à jour disponible seront mis à jour après le Core.}}"></i></sup>
+								<sup><i class="fas fa-question-circle warning" data-title="{{Tous les plugins ayant une mise à jour disponible seront mis à jour après le Core}}"></i></sup>
 							</label>
 							<div class="col-xs-4">
-								<input type="checkbox" class="updateOption" data-l1key="plugins" checked /><i class="fas fa-pen-alt"></i>
+								<input type="checkbox" class="updateOption" data-l1key="plugins" /><i class="fas fa-layer-group"></i>
 							</div>
 						</div>
 						<hr class="hrPrimary">

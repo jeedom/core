@@ -1113,50 +1113,6 @@ document.getElementById('summarytab').addEventListener('change', function(event)
 */
 document.getElementById('eqlogictab').addEventListener('click', function(event) {
   var _target = null
-  if (_target = event.target.closest('#bt_influxDelete')) {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer la base d\'InfluxDB}}', function(result) {
-      if (result) {
-        jeedom.cmd.dropDatabaseInflux({
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            jeedomUtils.showAlert({
-              message: '{{Action envoyée avec succés}}',
-              level: 'success'
-            })
-          }
-        })
-      }
-    })
-    return
-  }
-
-  if (_target = event.target.closest('#bt_influxHistory')) {
-    jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de toutes les commandes avec push InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute et pourra être long selon le nombre de commandes.}}', function(result) {
-      if (result) {
-        jeedom.cmd.historyInfluxAll({
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            jeedomUtils.showAlert({
-              message: '{{Programmation envoyée avec succés}}',
-              level: 'success'
-            })
-          }
-        })
-      }
-    })
-    return
-  }
-
   if (_target = event.target.closest('#bt_removeHistoryInFutur')) {
     jeedom.history.removeHistoryInFutur({
       error: function(error) {
@@ -1348,7 +1304,7 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
         })
       },
       success: function(data) {
-        window.location.reload();
+        window.location.reload()
       }
     })
   }

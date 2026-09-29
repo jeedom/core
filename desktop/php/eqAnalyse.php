@@ -186,8 +186,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 							foreach (($eqLogic->getCmd('info')) as $cmd) {
 								$timelineEnable = $cmd->getConfiguration('timeline::enable', false);
 								$pushEnable = $cmd->getConfiguration('jeedomPushUrl', '');
-								$influxEnable = $cmd->getConfiguration('influx::enable', false);
-								if ($timelineEnable || $pushEnable != '' || $influxEnable) {
+								if ($timelineEnable || $pushEnable != '') {
 									$div .= '<tr><td><a href="' . $eqLogic->getLinkToConfiguration() . '">' . $eqLogic->getHumanName(true) . '</a></td><td>' . $cmd->getName() . ' (' . $cmd->getId() . ')</td><td>';
 									if ($timelineEnable) {
 										$folder = '';
@@ -195,17 +194,6 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 											$folder = ' {{sur le folder}} ' . $cmd->getConfiguration('timeline::folder', '');
 										}
 										$div .= '<div>- {{Timeline active}}' . $folder . '</div>';
-									}
-									if ($influxEnable) {
-										$nameCmd = $cmd->getName();
-										$nameEqLogic = $eqLogic->getName();
-										if ($cmd->getConfiguration('influx::namecmd', '') != '') {
-											$nameCmd = $cmd->getConfiguration('influx::namecmd');
-										}
-										if ($cmd->getConfiguration('influx::nameEq', '') != '') {
-											$nameEqLogic = $cmd->getConfiguration('influx::nameEq');
-										}
-										$div .= '<div>- {{Influx actif}} : ' . $nameCmd . '-' . $nameEqLogic . '</div>';
 									}
 									if ($pushEnable != '') {
 										$div .= '<div>- {{Push actif sur}} : ' . $pushEnable . '</div>';

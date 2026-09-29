@@ -1,55 +1,55 @@
-# Task-Engine
-**Einstellungen → System → Task Engine**
+# Aufgaben-Engine
+**Einstellungen → System → Aufgaben-Engine**
 
-Diese Seite informiert über alle Jeedom-Anwendungsaufgaben, die auf dem Server ausgeführt werden.
-Diese Seite ist wissentlich oder auf Anfrage des technischen Supports zu verwenden.
+Auf dieser Seite finden Sie Informationen zu allen Jeedom-Anwendungsprozessen, die auf dem Server laufen.
+Diese Seite sollte nur in voller Kenntnis der Sachlage oder auf Anfrage des technischen Supports genutzt werden.
 
 > **Wichtig**
 >
-> Im Falle eines Missbrauchs auf dieser Seite kann jede Anfrage nach Unterstützung abgelehnt werden.
+> Bei unsachgemäßer Nutzung dieser Seite kann es vorkommen, dass Supportanfragen abgelehnt werden.
 
-## Cron-Registerkarte
+## Registerkarte „Cron“
 
-Oben rechts haben Sie :
+Oben rechts finden Sie:
 
-- **Cron-System deaktivieren** : Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts).
-- **Cool** : Aktualisiert die Aufgabentabelle.
-- **Hinzufügen** : Fügen Sie manuell einen Cron-Job hinzu.
-- **Zum Schutz** : Speichern Sie Ihre Änderungen.
+- **Cron-System deaktivieren**: Eine Schaltfläche zum Deaktivieren oder Reaktivieren aller Aufgaben (wenn Sie alle deaktivieren, funktioniert auf Ihrem Jeedom nichts mehr).
+- **Aktualisieren**: Aktualisiert die Aufgabetabelle.
+- **Hinzufügen**: Ermöglicht das manuelle Hinzufügen einer Cron-Aufgabe.
+- **Speichern**: Speichert Ihre Änderungen.
 
-Unten finden Sie eine Tabelle aller vorhandenen Aufgaben (Achtung, einige Aufgaben können Unteraufgaben starten. Es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
+Unten finden Sie eine Übersicht über alle vorhandenen Aufgaben (Achtung: Einige Aufgaben können Unteraufgaben auslösen; es wird daher dringend empfohlen, die Informationen auf dieser Seite niemals zu ändern).
 
-In dieser Tabelle finden wir :
+In dieser Tabelle finden sich:
 
-- **\.#** : Aufgaben-ID, die nützlich ist, um einen laufenden Prozess mit dem zu verknüpfen, was er wirklich tut.
-- **Aktiv** : Zeigt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
-- **PID** : Zeigt die aktuelle Prozess-ID an.
-- **Dämon** : Wenn dieses Feld &quot;Ja&quot; lautet, muss die Aufgabe immer ausgeführt werden. Außerdem finden Sie die Häufigkeit des Dämons. Es wird empfohlen, diesen Wert niemals zu ändern und insbesondere niemals zu verringern.
-- **Einzigartig** : Wenn es &quot;Ja&quot; ist, wird die Aufgabe einmal gestartet und löscht sich dann von selbst.
-- **Klasse** : PHP-Klasse, die aufgerufen wird, um die Aufgabe auszuführen (kann leer sein).
-- **Funktion** : PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
-- **Programmierung** : Programmierung der Aufgabe im CRON-Format.
-- **Time-out** : Maximale Task-Laufzeit. Wenn es sich bei der Aufgabe um einen Dämon handelt, wird sie am Ende des Zeitlimits automatisch gestoppt und neu gestartet.
-- **Letzter Start** : Datum des letzten Taskstarts.
-- **Letzte Dauer** : Letzte Ausführungszeit der Aufgabe (ein Daemon wird immer bei 0 sein, keine Sorge, andere Aufgaben können bei 0 sein).
-- **Status** : Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe wird immer "ausgeführt"").
+- **\#**: ID der Aufgabe, nützlich, um einen laufenden Prozess mit seiner tatsächlichen Funktion in Verbindung zu bringen.
+- **Aktiv**: Gibt an, ob die Aufgabe aktiv ist (kann von Jeedom gestartet werden) oder nicht.
+- **PID**: Zeigt die aktuelle Prozess-ID an.
+- **Daemon**: Wenn dieses Kontrollkästchen auf „Ja“ gesetzt ist, muss die Aufgabe immer ausgeführt werden. Daneben finden Sie die Ausführungshäufigkeit des Daemons. Es wird empfohlen, diesen Wert niemals zu ändern und vor allem niemals zu verringern.
+- **Einmalig**: Wenn „Ja“ ausgewählt wird, wird die Aufgabe einmal ausgeführt und anschließend gelöscht.
+- **Klasse**: PHP-Klasse, die zum Ausführen der Aufgabe aufgerufen wird (kann leer sein).
+- **Funktion**: PHP-Funktion, die in der aufgerufenen Klasse aufgerufen wird (oder nicht, wenn die Klasse leer ist).
+- **Programmierung**: Programmierung der Aufgabe im CRON-Format.
+- **Timeout**: Maximale Laufzeit der Aufgabe. Handelt es sich bei der Aufgabe um einen Daemon, wird dieser nach Ablauf des Timeouts automatisch beendet und neu gestartet.
+- **Letzter Start**: Datum des letzten Starts der Aufgabe.
+- **Letzte Dauer**: Letzte Ausführungsdauer der Aufgabe (bei einem Daemon beträgt diese immer 0 s; machen Sie sich keine Sorgen, wenn andere Aufgaben ebenfalls 0 s anzeigen).
+- **Status**: Aktueller Status der Aufgabe (zur Erinnerung: Eine Daemon-Aufgabe hat immer den Status „run“).
 
-- **Aktion** :
-    - **Details** : Sehen Sie sich den Cron im Detail an (wie in der Basis gespeichert)).
-    - **Start / Stopp** : Starten oder stoppen Sie die Aufgabe (abhängig von ihrem Status).
-    - **Streichung** : Aufgabe löschen.
+- **Aktion**:
+    - **Details**: Den Cron-Eintrag im Detail anzeigen (wie in der Datenbank gespeichert).
+    - **Starten / Beenden**: Die Aufgabe starten oder beenden (je nach Status).
+    - **Löschen**: Ermöglicht das Löschen der Aufgabe.
 
 
-## Registerkarte &quot;Listener&quot;
+## Registerkarte „Listener“
 
-Die Listener sind nur beim Lesen sichtbar und ermöglichen es Ihnen, die bei einem Ereignis aufgerufenen Funktionen anzuzeigen (Aktualisierung eines Befehls)...).
+Listener sind nur im Lesezugriff sichtbar und ermöglichen es, die bei einem Ereignis aufgerufenen Funktionen (Aktualisierung eines Befehls...) einzusehen.
 
-## Registerkarte Dämon
+## Registerkarte „Daemon“
 
-Tabelle aller Daemons mit ihrem Status, dem Datum des letzten Starts sowie der Möglichkeit, :
-- Starten / Starten Sie einen Daemon neu.
-- Stoppen Sie einen Daemon, wenn die automatische Verwaltung deaktiviert ist.
-- Aktivieren / Deaktivieren der automatischen Verwaltung eines Daemons.
+Übersicht über alle Daemons mit ihrem Status, dem Datum des letzten Starts sowie der Möglichkeit, Folgendes zu tun:
+- Einen Daemon starten / neu starten.
+- Einen Daemon beenden, wenn die automatische Verwaltung deaktiviert ist.
+- Automatische Verwaltung eines Daemons aktivieren/deaktivieren.
 
-> Tip
-> Dämonen deaktivierter Plugins werden auf dieser Seite nicht angezeigt.
+> Tipp
+> Die Dämonen deaktivierter Plugins werden auf dieser Seite nicht angezeigt.

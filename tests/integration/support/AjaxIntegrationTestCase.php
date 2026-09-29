@@ -41,7 +41,7 @@ abstract class AjaxIntegrationTestCase extends TestCase {
 	protected function givenAdminIsLoggedIn(): void {
 		$admin = new user();
 		$admin->setLogin('test_admin_' . bin2hex(random_bytes(4)));
-		$admin->setPassword(sha512('test_password_' . bin2hex(random_bytes(4))));
+		$admin->setPassword('test_password_' . bin2hex(random_bytes(4)));
 		$admin->setProfils('admin');
 		$admin->setEnable(1);
 		$admin->save();

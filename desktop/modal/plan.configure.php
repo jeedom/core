@@ -71,7 +71,6 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
         </label>
         <div class="col-lg-2">
           <input type="text" class="planAttr form-control" data-l1key="css" data-l2key="zoom" placeholder="1.2" />
-          <sup class="danger"><i class="fas fa-exclamation-circle" title="{{Attention : cette option crée des problèmes de placement sur les bords du design et désactive la grille aimantée pour l'équipement en question}}"></i></sup>
         </div>
       </div>
       <legend>{{Spécifique}}</legend>
@@ -95,7 +94,7 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
       <div class="form-group link_type link_image display_mode display_mode_image">
         <div class="col-lg-4"></div>
         <div class="col-lg-4 planImg">
-          <img src="core/img/no_image.gif" width="240px" height="auto"/>
+          <img src="core/img/no_image.gif" width="240px" height="auto" />
         </div>
       </div>
       <div class="form-group link_type link_image display_mode display_mode_camera" style="display:none;">
@@ -451,192 +450,16 @@ sendVarToJS('jeephp2js.md_planConfigure_Id', $plan->getId());
 </div>
 
 <script>
-if (!jeeFrontEnd.md_planConfigure) {
-  jeeFrontEnd.md_planConfigure = {
-    plan_configure_plan: null,
-    editor: [],
-    init: function() {
-    },
-    postInit: function() {
-      //load and set settings (call before any change event set):
-      if (isset(jeephp2js.md_planConfigure_Id) && jeephp2js.md_planConfigure_Id != '') {
-        jeedom.plan.byId({
-          id: jeephp2js.md_planConfigure_Id,
-          error: function(error) {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(plan) {
-            jeeFrontEnd.md_planConfigure.plan_configure_plan = plan
-            document.querySelectorAll('.link_type:not(.link_' + plan.plan.link_type + ')').remove()
-            document.getElementById('fd_planConfigure').setJeeValues(plan.plan, '.planAttr')
-            if (isset(plan.plan.configuration.action_on)) {
-              for (var i in plan.plan.configuration.action_on) {
-                jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_on[i], 'on')
-              }
-            }
-            if (isset(plan.plan.configuration.action_off)) {
-              for (var i in plan.plan.configuration.action_off) {
-                jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_off[i], 'off')
-              }
-            }
-            if (isset(plan.plan.configuration.action_other)) {
-              for (var i in plan.plan.configuration.action_other) {
-                jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_other[i], 'other')
-              }
-            }
-            if (plan.plan.link_type == 'image' && plan.plan.display.path != undefined) {
-              document.querySelector('#fd_planConfigure .planImg img').seen().setAttribute('src', plan.plan.display.path)
-            }
-            if (plan.plan.link_type == 'text') {
-              var code = document.querySelector('.planAttr[data-l1key="display"][data-l2key="text"]')
-              if (code.getAttribute('id') == undefined) {
-                code.uniqueId()
-                var id = code.getAttribute('id')
-                setTimeout(function() {
-                  jeeFrontEnd.md_planConfigure.editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
-                    lineNumbers: true,
-                    mode: 'htmlmixed',
-                    matchBrackets: true
-                  })
-                }, 1)
-              }
-            }
-          }
-        })
-      }
-
-      this.setPlanUI_Events()
-      this.setFileUpload()
-      jeedomUtils.setCheckContextMenu()
-    },
-    setFileUpload: function() {
-      new jeeFileUploader({
-        fileInput: document.getElementById('bt_uploadImagePlan'),
-        replaceFileInput: false,
-        url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + jeephp2js.md_planConfigure_Id,
-        dataType: 'json',
-        done: function(e, data) {
-          if (data.result.state != 'ok') {
-            jeedomUtils.showAlert({
-              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
-              message: data.result.result,
-              level: 'danger'
-            })
-            return
-          }
-          if (isset(data.result.result.filepath)) {
-            var filePath = data.result.result.filepath
-            filePath = '/data/plan/' + filePath.split('/data/plan/')[1]
-            document.querySelector('.planImg img').seen().setAttribute('src', filePath)
-          } else {
-            document.querySelector('.planImg img').unseen()
-          }
-        }
-      })
-    },
-    addActionPlanConfigure: function(_action, _type) {
-      if (!isset(_action)) {
-        _action = {}
-      }
-      if (!isset(_action.options)) {
-        _action.options = {}
-      }
-      var div = '<div class="expression ' + _type + '">'
-      div += '<div class="form-group ">'
-      div += '<label class="col-sm-1 control-label">{{Action}}</label>'
-      div += '<div class="col-sm-4">'
-      div += '<div class="input-group">'
-      div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
-      div += '</span>'
-      div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
-      div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-default btn-sm bt_selectOtherActionExpression" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
-      div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
-      div += '</span>'
-      div += '</div>'
-      div += '</div>'
-      div += '<div class="col-sm-7 actionOptions">'
-      div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
-      div += '</div>'
-      div += '</div>'
-
-      let newDiv = document.createElement('div')
-      newDiv.html(div)
-      newDiv.setJeeValues(_action, '.expressionAttr')
-      document.querySelector('#div_planConfigureAction' + _type).appendChild(newDiv)
-      newDiv.replaceWith(...newDiv.childNodes)
-      jeedomUtils.taAutosize()
-    },
-    setPlanUI_Events: function() {
-      document.getElementById('deferredEvents').addEventListener('change', function(event) {
-        var _target = null
-        //background : not default if transparent:
-        if (_target = event.target.closest('.planAttr[data-l1key="display"][data-l2key="background-transparent"]')) {
-          if (_target.jeeValue() == 1) {
-            document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-defaut"]').checked = false
-          }
-          return
-        }
-        //background: not default/transparent if colored:
-        if (_target = event.target.closest('.planAttr[data-l1key="css"][data-l2key="background-color"]')) {
-          if (_target.jeeValue() != '#000000') {
-            document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-defaut"]').checked = false
-            document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-transparent"]').checked = false
-          }
-          return
-        }
-        //background: not transparent if default:
-        if (_target = event.target.closest('.planAttr[data-l1key="display"][data-l2key="background-defaut"]')) {
-          if (_target.jeeValue() == 1) {
-            document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-transparent"]').checked = false
-          }
-          return
-        }
-        //text: not default if colored:
-        if (_target = event.target.closest('.planAttr[data-l1key="display"][data-l2key="background-defaut"]')) {
-          if (_target.jeeValue() != '#000000') {
-            document.querySelector('.planAttr[data-l1key="display"][data-l2key="color-defaut"]').checked = false
-          }
-          return
-        }
-      })
-    },
-    save: function() {
-      var plans = document.getElementById('fd_planConfigure').getJeeValues('.planAttr')
-      if (plans[0].link_type == 'text') {
-        var id = document.querySelector('.planAttr[data-l1key=display][data-l2key=text]').getAttribute('id')
-        if (id != undefined && isset(jeeFrontEnd.md_planConfigure.editor[id])) {
-          plans[0].display.text = jeeFrontEnd.md_planConfigure.editor[id].getValue()
-        }
-      }
-      if (!isset(plans[0].configuration)) {
-        plans[0].configuration = {}
-      }
-      plans[0].configuration.action_on = document.getElementById('div_planConfigureActionon')?.querySelectorAll('.on').getJeeValues('.expressionAttr')
-      plans[0].configuration.action_off = document.getElementById('div_planConfigureActionoff')?.querySelectorAll('.off').getJeeValues('.expressionAttr')
-      plans[0].configuration.action_other = document.getElementById('div_planConfigureActionother')?.querySelectorAll('.other').getJeeValues('.expressionAttr')
-      jeedom.plan.save({
-        plans: plans,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
-            message: error.message,
-            level: 'danger'
-          })
-        },
-        success: function() {
-          jeedomUtils.showAlert({
-            attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
-            message: '{{Design sauvegardé}}',
-            level: 'success'
-          })
+  if (!jeeFrontEnd.md_planConfigure) {
+    jeeFrontEnd.md_planConfigure = {
+      plan_configure_plan: null,
+      editor: [],
+      init: function() {},
+      postInit: function() {
+        //load and set settings (call before any change event set):
+        if (isset(jeephp2js.md_planConfigure_Id) && jeephp2js.md_planConfigure_Id != '') {
           jeedom.plan.byId({
-            id: plans[0].id,
+            id: jeephp2js.md_planConfigure_Id,
             error: function(error) {
               jeedomUtils.showAlert({
                 attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
@@ -645,139 +468,314 @@ if (!jeeFrontEnd.md_planConfigure) {
               })
             },
             success: function(plan) {
-              if (jeeFrontEnd.md_planConfigure.plan_configure_plan.plan.link_type == 'summary' && jeeFrontEnd.md_planConfigure.plan_configure_plan !== null && jeeFrontEnd.md_planConfigure.plan_configure_plan.plan.link_id) {
-                document.querySelector('.div_displayObject .summary-widget[data-summary_id="' + jeeFrontEnd.md_planConfigure.plan_configure_plan.plan.link_id + '"]').remove()
+              jeeFrontEnd.md_planConfigure.plan_configure_plan = plan
+              document.querySelectorAll('.link_type:not(.link_' + plan.plan.link_type + ')').remove()
+              document.getElementById('fd_planConfigure').setJeeValues(plan.plan, '.planAttr')
+              if (isset(plan.plan.configuration.action_on)) {
+                for (var i in plan.plan.configuration.action_on) {
+                  jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_on[i], 'on')
+                }
               }
-              jeeFrontEnd.plan.displayObject(plan.plan, plan.html, false)
+              if (isset(plan.plan.configuration.action_off)) {
+                for (var i in plan.plan.configuration.action_off) {
+                  jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_off[i], 'off')
+                }
+              }
+              if (isset(plan.plan.configuration.action_other)) {
+                for (var i in plan.plan.configuration.action_other) {
+                  jeeFrontEnd.md_planConfigure.addActionPlanConfigure(plan.plan.configuration.action_other[i], 'other')
+                }
+              }
+              if (plan.plan.link_type == 'image' && plan.plan.display.path != undefined) {
+                document.querySelector('#fd_planConfigure .planImg img').seen().setAttribute('src', plan.plan.display.path)
+              }
+              if (plan.plan.link_type == 'text') {
+                var code = document.querySelector('.planAttr[data-l1key="display"][data-l2key="text"]')
+                if (code.getAttribute('id') == undefined) {
+                  code.uniqueId()
+                  var id = code.getAttribute('id')
+                  setTimeout(function() {
+                    jeeFrontEnd.md_planConfigure.editor[id] = CodeMirror.fromTextArea(document.getElementById(id), {
+                      lineNumbers: true,
+                      mode: 'htmlmixed',
+                      matchBrackets: true
+                    })
+                  }, 1)
+                }
+              }
             }
           })
         }
-      })
-    },
-  }
-}
-(function() {// Self Isolation!
-  var jeeM = jeeFrontEnd.md_planConfigure
-  jeeM.init()
 
-  /*Events delegations
-  */
-  document.getElementById('md_planConfigure').addEventListener('click', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.bt_planConfigurationAction')) {
-      jeeFrontEnd.md_planConfigure.addActionPlanConfigure({}, _target.getAttribute('data-type'))
-      return
-    }
-
-    if (_target = event.target.closest('.bt_removeAction')) {
-      _target.closest('.' + _target.getAttribute('data-type')).remove()
-      return
-    }
-
-    if (_target = event.target.closest('.listCmdAction')) {
-      var type = _target.getAttribute('data-type')
-      var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
-      jeedom.cmd.getSelectModal({
-        cmd: {
-          type: 'action'
-        }
-      }, function(result) {
-        el.jeeValue(result.human)
-        jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          el.closest('.' + type).querySelector('.actionOptions').html(html)
-          jeedomUtils.taAutosize()
+        this.setPlanUI_Events()
+        this.setFileUpload()
+        jeedomUtils.setCheckContextMenu()
+      },
+      setFileUpload: function() {
+        new jeeFileUploader({
+          fileInput: document.getElementById('bt_uploadImagePlan'),
+          replaceFileInput: false,
+          url: 'core/ajax/plan.ajax.php?action=uploadImagePlan&id=' + jeephp2js.md_planConfigure_Id,
+          dataType: 'json',
+          done: function(e, data) {
+            if (data.result.state != 'ok') {
+              jeedomUtils.showAlert({
+                attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
+                message: data.result.result,
+                level: 'danger'
+              })
+              return
+            }
+            if (isset(data.result.result.filepath)) {
+              var filePath = data.result.result.filepath
+              filePath = '/data/plan/' + filePath.split('/data/plan/')[1]
+              document.querySelector('.planImg img').seen().setAttribute('src', filePath)
+            } else {
+              document.querySelector('.planImg img').unseen()
+            }
+          }
         })
-      })
-      return
-    }
-
-    if (_target = event.target.closest('.bt_selectOtherActionExpression')) {
-      var expression = _target.closest('.expression')
-      jeedom.getSelectActionModal({
-        scenario: true
-      }, function(result) {
-        expression.querySelector('.expressionAttr[data-l1key="cmd"]').jeeValue(result.human)
-        jeedom.cmd.displayActionOption(result.human, '', function(html) {
-          expression.querySelector('.actionOptions').html(html)
-          jeedomUtils.taAutosize()
-        })
-      })
-      return
-    }
-
-    if (_target = event.target.closest('#bt_planConfigureAddEqLogic')) {
-      jeedom.eqLogic.getSelectModal({}, function(result) {
-        _target.parentNode.parentNode.querySelector('.planAttr[data-l1key="configuration"][data-l2key="eqLogic"]').jeeValue(result.human)
-      })
-      return
-    }
-
-    if (_target = event.target.closest('#bt_planConfigureSelectCamera')) {
-      jeedom.eqLogic.getSelectModal({
-        eqLogic: {
-          eqType_name: 'camera'
+      },
+      addActionPlanConfigure: function(_action, _type) {
+        if (!isset(_action)) {
+          _action = {}
         }
-      }, function(result) {
-        _target.parentNode.parentNode.querySelector('.planAttr[data-l1key="configuration"][data-l2key="camera"]').jeeValue(result.human)
-      })
-      return
-    }
-
-    if (_target = event.target.closest('#bt_planConfigureSelectBinary')) {
-      jeedom.cmd.getSelectModal({
-        cmd: {
-          type: 'info'
+        if (!isset(_action.options)) {
+          _action.options = {}
         }
-      }, function(result) {
-        _target.parentNode.parentNode.querySelector('.planAttr[data-l1key="configuration"][data-l2key="binary_info"]').jeeValue(result.human)
-      })
-      return
-    }
+        var div = '<div class="expression ' + _type + '">'
+        div += '<div class="form-group ">'
+        div += '<label class="col-sm-1 control-label">{{Action}}</label>'
+        div += '<div class="col-sm-4">'
+        div += '<div class="input-group">'
+        div += '<span class="input-group-btn">'
+        div += '<a class="btn btn-default bt_removeAction btn-sm roundedLeft" data-type="' + _type + '"><i class="fas fa-minus-circle"></i></a>'
+        div += '</span>'
+        div += '<input class="expressionAttr form-control input-sm cmdAction" data-l1key="cmd" data-type="' + _type + '" />'
+        div += '<span class="input-group-btn">'
+        div += '<a class="btn btn-default btn-sm bt_selectOtherActionExpression" data-type="' + _type + '" title="{{Sélectionner un mot-clé}}"><i class="fas fa-tasks"></i></a>'
+        div += '<a class="btn btn-default btn-sm listCmdAction roundedRight" data-type="' + _type + '"><i class="fas fa-list-alt"></i></a>'
+        div += '</span>'
+        div += '</div>'
+        div += '</div>'
+        div += '<div class="col-sm-7 actionOptions">'
+        div += jeedom.cmd.displayActionOption(init(_action.cmd, ''), _action.options)
+        div += '</div>'
+        div += '</div>'
 
-    if (_target = event.target.closest('#bt_chooseIcon')) {
-      jeedomUtils.chooseIcon(function(_icon) {
-        document.querySelector('.planAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = _icon
-      })
-      return
-    }
-
-    if (_target = event.target.closest('#bt_saveConfigurePlan')) {
-      var check = document.querySelector('input[data-l2key="font-size"]')
-      if (check && check.value != '' && !check.value.endsWith('%')) {
-        check.value = check.value + '%'
-      }
-      jeeFrontEnd.md_planConfigure.save()
-      return
-    }
-  })
-
-  document.getElementById('md_planConfigure').addEventListener('focusout', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.expressionAttr[data-l1key="cmd"]')) {
-      var type = _target.getAttribute('data-type')
-      jeedom.cmd.displayActionOption(_target.jeeValue(), '', function(html) {
-        _target.closest('.' + type).querySelector('.actionOptions').html(html)
+        let newDiv = document.createElement('div')
+        newDiv.html(div)
+        newDiv.setJeeValues(_action, '.expressionAttr')
+        document.querySelector('#div_planConfigureAction' + _type).appendChild(newDiv)
+        newDiv.replaceWith(...newDiv.childNodes)
         jeedomUtils.taAutosize()
-      })
-      return
+      },
+      setPlanUI_Events: function() {
+        document.getElementById('deferredEvents').addEventListener('change', function(event) {
+          var _target = null
+          //background : not default if transparent:
+          if (_target = event.target.closest('.planAttr[data-l1key="display"][data-l2key="background-transparent"]')) {
+            if (_target.jeeValue() == 1) {
+              document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-defaut"]').checked = false
+            }
+            return
+          }
+          //background: not default/transparent if colored:
+          if (_target = event.target.closest('.planAttr[data-l1key="css"][data-l2key="background-color"]')) {
+            if (_target.jeeValue() != '#000000') {
+              document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-defaut"]').checked = false
+              document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-transparent"]').checked = false
+            }
+            return
+          }
+          //background: not transparent if default:
+          if (_target = event.target.closest('.planAttr[data-l1key="display"][data-l2key="background-defaut"]')) {
+            if (_target.jeeValue() == 1) {
+              document.querySelector('.planAttr[data-l1key="display"][data-l2key="background-transparent"]').checked = false
+            }
+            return
+          }
+          //text: not default if colored:
+          if (_target = event.target.closest('.planAttr[data-l1key="display"][data-l2key="background-defaut"]')) {
+            if (_target.jeeValue() != '#000000') {
+              document.querySelector('.planAttr[data-l1key="display"][data-l2key="color-defaut"]').checked = false
+            }
+            return
+          }
+        })
+      },
+      save: function() {
+        var plans = document.getElementById('fd_planConfigure').getJeeValues('.planAttr')
+        if (plans[0].link_type == 'text') {
+          var id = document.querySelector('.planAttr[data-l1key=display][data-l2key=text]').getAttribute('id')
+          if (id != undefined && isset(jeeFrontEnd.md_planConfigure.editor[id])) {
+            plans[0].display.text = jeeFrontEnd.md_planConfigure.editor[id].getValue()
+          }
+        }
+        if (!isset(plans[0].configuration)) {
+          plans[0].configuration = {}
+        }
+        plans[0].configuration.action_on = document.getElementById('div_planConfigureActionon')?.querySelectorAll('.on').getJeeValues('.expressionAttr')
+        plans[0].configuration.action_off = document.getElementById('div_planConfigureActionoff')?.querySelectorAll('.off').getJeeValues('.expressionAttr')
+        plans[0].configuration.action_other = document.getElementById('div_planConfigureActionother')?.querySelectorAll('.other').getJeeValues('.expressionAttr')
+        jeedom.plan.save({
+          plans: plans,
+          error: function(error) {
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
+              message: error.message,
+              level: 'danger'
+            })
+          },
+          success: function() {
+            jeedomUtils.showAlert({
+              attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
+              message: '{{Design sauvegardé}}',
+              level: 'success'
+            })
+            jeedom.plan.byId({
+              id: plans[0].id,
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  attachTo: jeeDialog.get('#md_planConfigure', 'dialog'),
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function(plan) {
+                if (jeeFrontEnd.md_planConfigure.plan_configure_plan.plan.link_type == 'summary' && jeeFrontEnd.md_planConfigure.plan_configure_plan !== null && jeeFrontEnd.md_planConfigure.plan_configure_plan.plan.link_id) {
+                  document.querySelector('.div_displayObject .summary-widget[data-summary_id="' + jeeFrontEnd.md_planConfigure.plan_configure_plan.plan.link_id + '"]').remove()
+                }
+                jeeFrontEnd.plan.displayObject(plan.plan, plan.html, false)
+              }
+            })
+          }
+        })
+      },
     }
-  })
+  }
+  (function() { // Self Isolation!
+    var jeeM = jeeFrontEnd.md_planConfigure
+    jeeM.init()
 
-  document.getElementById('md_planConfigure').addEventListener('change', function(event) {
-    var _target = null
-    if (_target = event.target.closest('.planAttr[data-l1key="configuration"][data-l2key="zone_mode"]')) {
-      document.querySelectorAll('.zone_mode').unseen()
-      document.querySelectorAll('.zone_mode.zone_' + _target.jeeValue()).seen()
-      return
-    }
+    /*Events delegations
+     */
+    document.getElementById('md_planConfigure').addEventListener('click', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.bt_planConfigurationAction')) {
+        jeeFrontEnd.md_planConfigure.addActionPlanConfigure({}, _target.getAttribute('data-type'))
+        return
+      }
 
-    if (_target = event.target.closest('.planAttr[data-l1key="configuration"][data-l2key="display_mode"]')) {
-      document.querySelectorAll('.display_mode').unseen()
-      document.querySelectorAll('.display_mode.display_mode_' + _target.jeeValue()).seen()
-      return
-    }
-  })
+      if (_target = event.target.closest('.bt_removeAction')) {
+        _target.closest('.' + _target.getAttribute('data-type')).remove()
+        return
+      }
 
-  jeeM.postInit()
-})()
+      if (_target = event.target.closest('.listCmdAction')) {
+        var type = _target.getAttribute('data-type')
+        var el = _target.closest('.' + type).querySelector('.expressionAttr[data-l1key="cmd"]')
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'action'
+          }
+        }, function(result) {
+          el.jeeValue(result.human)
+          jeedom.cmd.displayActionOption(result.human, '', function(html) {
+            el.closest('.' + type).querySelector('.actionOptions').html(html)
+            jeedomUtils.taAutosize()
+          })
+        })
+        return
+      }
+
+      if (_target = event.target.closest('.bt_selectOtherActionExpression')) {
+        var expression = _target.closest('.expression')
+        jeedom.getSelectActionModal({
+          scenario: true
+        }, function(result) {
+          expression.querySelector('.expressionAttr[data-l1key="cmd"]').jeeValue(result.human)
+          jeedom.cmd.displayActionOption(result.human, '', function(html) {
+            expression.querySelector('.actionOptions').html(html)
+            jeedomUtils.taAutosize()
+          })
+        })
+        return
+      }
+
+      if (_target = event.target.closest('#bt_planConfigureAddEqLogic')) {
+        jeedom.eqLogic.getSelectModal({}, function(result) {
+          _target.parentNode.parentNode.querySelector('.planAttr[data-l1key="configuration"][data-l2key="eqLogic"]').jeeValue(result.human)
+        })
+        return
+      }
+
+      if (_target = event.target.closest('#bt_planConfigureSelectCamera')) {
+        jeedom.eqLogic.getSelectModal({
+          eqLogic: {
+            eqType_name: 'camera'
+          }
+        }, function(result) {
+          _target.parentNode.parentNode.querySelector('.planAttr[data-l1key="configuration"][data-l2key="camera"]').jeeValue(result.human)
+        })
+        return
+      }
+
+      if (_target = event.target.closest('#bt_planConfigureSelectBinary')) {
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'info'
+          }
+        }, function(result) {
+          _target.parentNode.parentNode.querySelector('.planAttr[data-l1key="configuration"][data-l2key="binary_info"]').jeeValue(result.human)
+        })
+        return
+      }
+
+      if (_target = event.target.closest('#bt_chooseIcon')) {
+        jeedomUtils.chooseIcon(function(_icon) {
+          document.querySelector('.planAttr[data-l1key="display"][data-l2key="icon"]').innerHTML = _icon
+        })
+        return
+      }
+
+      if (_target = event.target.closest('#bt_saveConfigurePlan')) {
+        var check = document.querySelector('input[data-l2key="font-size"]')
+        if (check && check.value != '' && !check.value.endsWith('%')) {
+          check.value = check.value + '%'
+        }
+        jeeFrontEnd.md_planConfigure.save()
+        return
+      }
+    })
+
+    document.getElementById('md_planConfigure').addEventListener('focusout', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.expressionAttr[data-l1key="cmd"]')) {
+        var type = _target.getAttribute('data-type')
+        jeedom.cmd.displayActionOption(_target.jeeValue(), '', function(html) {
+          _target.closest('.' + type).querySelector('.actionOptions').html(html)
+          jeedomUtils.taAutosize()
+        })
+        return
+      }
+    })
+
+    document.getElementById('md_planConfigure').addEventListener('change', function(event) {
+      var _target = null
+      if (_target = event.target.closest('.planAttr[data-l1key="configuration"][data-l2key="zone_mode"]')) {
+        document.querySelectorAll('.zone_mode').unseen()
+        document.querySelectorAll('.zone_mode.zone_' + _target.jeeValue()).seen()
+        return
+      }
+
+      if (_target = event.target.closest('.planAttr[data-l1key="configuration"][data-l2key="display_mode"]')) {
+        document.querySelectorAll('.display_mode').unseen()
+        document.querySelectorAll('.display_mode.display_mode_' + _target.jeeValue()).seen()
+        return
+      }
+    })
+
+    jeeM.postInit()
+  })()
 </script>

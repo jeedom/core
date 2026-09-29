@@ -120,7 +120,7 @@ if (!jeeFrontEnd.history) {
                 _serie.yAxis.remove()
                 jeedom.history.chart[this.__el__].chart.get(_serie.options.id).remove(false)
               }
-            } catch (error) {}
+            } catch (error) { }
           })
         }
         jeeP.__lastId__ = null
@@ -285,7 +285,8 @@ if (!jeeFrontEnd.history) {
             callback: {
               click: function(event) {
                 jeedom.history.chart[jeeP.__el__].comparing = true
-                document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach(_check => { _check.checked = true})
+                jeedom.history.chart[jeeP.__el__].zoom = false
+                document.querySelectorAll('#sel_groupingType, #sel_chartType, #cb_derive, #cb_step').forEach(_check => { _check.checked = true })
                 document.getElementById('bt_compare').removeClass('btn-success').addClass('btn-danger')
                 jeedom.history.chart[jeeP.__el__].chart.xAxis[1].update({
                   visible: true
@@ -310,7 +311,7 @@ if (!jeeFrontEnd.history) {
       toEnd = _md.querySelector('#in_compareEnd2').value + ' 23:59:59'
 
       //Existing serie dateRange can vary, remove all series:
-      jeedom.history.setAxisScales(this.__el__, {redraw: true, resetDateRange: true})
+      jeedom.history.setAxisScales(this.__el__, { redraw: true, resetDateRange: true })
       jeedom.history.emptyChart(this.__el__, true)
 
       //add data from both date range:
@@ -322,7 +323,7 @@ if (!jeeFrontEnd.history) {
         dateStart: fromStart,
         dateEnd: fromEnd,
         height: self.__chartHeight__,
-        option: {lastPointToEnd: 1, allowZero: 1},
+        option: { lastPointToEnd: 1, allowZero: 1 },
         success: function(data) {
           jeedom.history.drawChart({
             cmd_id: _cmd_id,
@@ -331,12 +332,12 @@ if (!jeeFrontEnd.history) {
             dateStart: toStart,
             dateEnd: toEnd,
             height: self.__chartHeight__,
-            option: {lastPointToEnd: 1, allowZero: 1, graphScaleVisible: false},
+            option: { lastPointToEnd: 1, allowZero: 1, graphScaleVisible: false },
             compare: 1,
             success: function(data) {
               jeedom.history.chart[self.__el__].chart.xAxis[0].setExtremes(null, null, false)
               jeedom.history.chart[self.__el__].chart.redraw()
-              jeedom.history.setAxisScales(self.__el__, {redraw: true})
+              jeedom.history.setAxisScales(self.__el__, { redraw: true })
             }
           })
         }
@@ -361,9 +362,9 @@ if (!jeeFrontEnd.history) {
       if (elCalculList != null && elCalculList.querySelector('.displayObject i.fas')?.hasClass('fa-arrow-circle-down')) isOpened = true
       jeedom.config.load({
         configuration: 'calculHistory',
-        convertToHumanReadable : true,
+        convertToHumanReadable: true,
         error: function(error) {
-          jeedomUtils.showAlert({message: error.message, level: 'danger'})
+          jeedomUtils.showAlert({ message: error.message, level: 'danger' })
         },
         success: function(data) {
           if (!elCalculList) return
@@ -376,9 +377,9 @@ if (!jeeFrontEnd.history) {
           for (var i in data) {
             if (isset(data[i].calcul) && data[i].calcul != '') {
               var dataName = data[i].name != '' ? data[i].name : data[i].calcul.substring(0, 40)
-              html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">';
-              html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>';
-              html += '</li>';
+              html += '<li class="cursor li_history" data-cmd_id="' + data[i].calcul + '">'
+              html += '<a class="history historycalcul" title="' + data[i].calcul + '" data-calcul="' + data[i].calcul + '" data-graphstep="' + data[i].graphStep + '" data-graphtype="' + data[i].graphType + '" data-groupingtype="' + data[i].groupingType + '">' + dataName + '</a>'
+              html += '</li>'
             }
           }
           html += '</div><br/>'
@@ -612,7 +613,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
     jeeDialog.prompt({
       placeholder: 'yyyy-mm-dd hh:mm:ss or -1',
       message: '{{Veuillez indiquer la date (Y-m-d H:m:s) avant laquelle il faut supprimer l\'historique de}} <span style="font-weight: bold ;"> ' + _target.closest('.li_history').querySelector('.history').textContent + ' ?</span><br>({{Mettez -1 pour tout supprimer}})'
-      }, function(result) {
+    }, function(result) {
       if (result !== null) {
         jeeP.emptyHistory(_target.closest('.li_history').getAttribute('data-cmd_id'), result)
       }
@@ -673,4 +674,3 @@ document.getElementById('sidebar').addEventListener('keyup', function(event) {
     return
   }
 })
-

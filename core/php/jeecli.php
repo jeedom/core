@@ -32,7 +32,7 @@ switch ($argv[1]) {
     case 'plugin':
         switch ($argv[2]) {
             case 'install':
-                if (isset($argv[4])) { 
+                if (isset($argv[4])) {
                     // install by github source
                     // jeecli.php plugin install [id] [user] [repository=id] [branch=master]
                     echo "Install Plugin $argv[4] / $argv[3] from github\n";
@@ -59,16 +59,17 @@ switch ($argv[1]) {
                 }
                 $update->save();
                 $update->doUpdate();
-                $plugin = plugin::byId($argv[3]);
-                if (!is_object($plugin)) {
+                try {
+                    $plugin = plugin::byId($argv[3]);
+                } catch (Exception $e) {
                     echo "Error plugin not found";
                     die();
                 }
-                if ($plugin->setIsEnable(1,true,true)) {
-                   echo "Plugin ".$argv[3]." installed with success";
+                if ($plugin->setIsEnable(1, true, true)) {
+                    echo "Plugin " . $argv[3] . " installed with success";
                 } else {
-                   echo "Error install plugin ".$argv[3];
-                   break;
+                    echo "Error install plugin " . $argv[3];
+                    break;
                 }
                 jeedom::cleanFileSystemRight();
                 break;
@@ -107,7 +108,7 @@ switch ($argv[1]) {
                     echo "User " . $argv[3] . " not found";
                     die();
                 }
-                $user->setPassword(sha512($argv[4]));
+                $user->setPassword($argv[4]);
                 $user->save();
                 break;
             case 'add':
@@ -125,10 +126,10 @@ switch ($argv[1]) {
                     die();
                 }
                 $user = new user();
-        		$user->setLogin($argv[3]);
-        		$user->setPassword(sha512($argv[4]));
-        		$user->setProfils('admin');
-        		$user->save();
+                $user->setLogin($argv[3]);
+                $user->setPassword($argv[4]);
+                $user->setProfils('admin');
+                $user->save();
                 break;
             default:
                 echo "No action provide : list,password";
@@ -161,11 +162,11 @@ switch ($argv[1]) {
                     break;
                 }
 
-                $backupPath = ''; 
+                $backupPath = '';
                 $i = 0;
                 foreach (jeedom::listBackup() as $key => $backup) {
                     $i++;
-                    if($i == $argv[3]) {
+                    if ($i == $argv[3]) {
                         $backupPath = $key;
                         break;
                     }
@@ -176,21 +177,21 @@ switch ($argv[1]) {
                     break;
                 }
                 jeedom::restore($backupPath, true);
-    
+
                 $cheminFichier = log::getPathToLog('restore');
                 if (!file_exists($cheminFichier)) {
                     echo "Le fichier n'existe pas.\n";
                     break;
                 }
-    
+
                 $handle = fopen($cheminFichier, "r");
                 if ($handle === false) {
                     echo "Impossible d'ouvrir le fichier.\n";
                     break;
                 }
-    
+
                 fseek($handle, 0, SEEK_END);
-    
+
                 while (true) {
                     while (($line = fgets($handle)) !== false) {
                         echo $line;
@@ -200,8 +201,8 @@ switch ($argv[1]) {
                     if (ftell($handle) < $fileSize) {
                         fseek($handle, ftell($handle));
                     } else {
-                        sleep(1); 
-                    }            
+                        sleep(1);
+                    }
                 }
                 fclose($handle);
 
@@ -210,7 +211,7 @@ switch ($argv[1]) {
                 $i = 0;
                 foreach (jeedom::listBackup() as $backup) {
                     $i++;
-                    echo "[$i] - ". $backup . "\n";
+                    echo "[$i] - " . $backup . "\n";
                 }
                 break;
             default:

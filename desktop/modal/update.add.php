@@ -22,13 +22,16 @@ $repos = update::listRepo();
 ?>
 
 <div id="md_updateAdd" data-modalType="md_updateAdd">
-  <legend>{{Source}}</legend>
-  <div class="alert alert-danger">{{Attention, il n’y a pas d’assistance de l’équipe}} <?php echo config::byKey('product_name'); ?> {{sur les plugins installés depuis une autre source que le Market}} <?php echo config::byKey('product_name'); ?>. {{De plus, l’installation d’un plugin depuis une autre source que le Market}} <?php echo config::byKey('product_name'); ?> {{entraine la perte globale d’assistance par l’équipe}} <?php echo config::byKey('product_name'); ?>.</div>
+  <div class="alert alert-danger text-center">{{Attention : l'installation d'un plugin depuis une autre source que le Market entraîne la perte globale du support officiel}} (core & plugins)</div>
+
   <form class="form-horizontal">
     <fieldset>
+      <legend><i class="fas fa-search-location"></i> {{Source}}</legend>
       <div class="form-group">
-        <label class="col-lg-4 control-label">{{Type de source}}</label>
-        <div class="col-lg-8">
+        <label class="col-sm-3 control-label">{{Type de source}}
+          <sup><i class="fas fa-question-circle tooltips" title="{{Sélectionner la source d'installation du plugin}}"></i></sup>
+        </label>
+        <div class="col-sm-7">
           <select class="updateAttr form-control" data-l1key="source">
             <option value="nothing">{{Aucun}}</option>
             <?php
@@ -52,11 +55,8 @@ $repos = update::listRepo();
           </select>
         </div>
       </div>
-    </fieldset>
-  </form>
-  <legend>{{Configuration}}</legend>
-  <form class="form-horizontal">
-    <fieldset>
+
+      <legend><i class="fas fa-wrench"></i> {{Configuration}}</legend>
       <?php
       foreach ($repos as $key => $value) {
         if ($value['configuration'] === false) {
@@ -70,31 +70,37 @@ $repos = update::listRepo();
         }
         $div = '<div class="repoSource repo_' . $key . '" style="display:none;">';
         $div .= '<div class="form-group">';
-        $div .= '<label class="col-lg-4 control-label">';
-        $div .= '{{ID logique du plugin}}';
+        $div .= '<label class="col-sm-3 control-label">';
+        $div .= '{{Identifiant du plugin}}';
+        $div .= ' <sup><i class="fas fa-question-circle tooltips" title="{{Renseigner l\'identifiant du plugin}} (info.json > id)"></i></sup>';
         $div .= '</label>';
-        $div .= '<div class="col-lg-8">';
-        $div .= '<input class="updateAttr form-control" data-l1key="logicalId" />';
+        $div .= '<div class="col-sm-7">';
+        $div .= '<input class="updateAttr form-control" data-l1key="logicalId" placeholder="PLUGIN_ID" />';
         $div .= '</div>';
         $div .= '</div>';
         foreach ($value['configuration']['parameters_for_add'] as $pKey => $parameter) {
           $div .= '<div class="form-group">';
-          $div .= '<label class="col-lg-4 control-label">';
+          $div .= '<label class="col-sm-3 control-label">';
           $div .= $parameter['name'];
+          $div .= ' <sup><i class="fas fa-question-circle tooltips" title="' . $parameter['tooltip'] . '"></i></sup>';
           $div .= '</label>';
-          $div .= '<div class="col-lg-8">';
-          $default = (isset($parameter['default'])) ? $parameter['default'] : '';
+          $div .= '<div class="col-sm-7">';
           switch ($parameter['type']) {
             case 'input':
-              $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
+              $placeholder = (isset($parameter['placeholder'])) ? $parameter['placeholder'] : '';
+              $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" placeholder="' . $placeholder . '"/>';
               break;
-            case 'number':
-              $div .= '<input type="number" class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" value="' . $default . '" />';
+            case 'select':
+              $div .= '<select class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '">';
+              foreach ($parameter['options'] as $optValue => $optLabel) {
+                $div .= '<option value="' . $optValue . '">' . $optLabel . '</option>';
+              }
+              $div .= '</select>';
               break;
             case 'file':
               $div .= '<input class="updateAttr form-control" data-l1key="configuration" data-l2key="' . $pKey . '" style="display:none;" />';
               $div .= '<span class="btn btn-default btn-file">';
-              $div .= '<i class="fas fa-cloud-upload-alt"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" style="display : inline-block;">';
+              $div .= '<i class="fas fa-cloud-upload-alt"></i> {{Envoyer un plugin}}<input id="bt_uploadPlugin" data-key="' . $pKey . '" type="file" name="file" accept=".zip" style="display:inline-block;">';
               $div .= '</span>';
               break;
           }
@@ -106,7 +112,7 @@ $repos = update::listRepo();
         echo $div;
       }
       ?>
-      <a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+      <a class="btn btn-success pull-right" id="bt_repoAddSaveUpdate"><i class="fas fa-check-circle"></i> {{Installer le plugin}}</a>
     </fieldset>
   </form>
 </div>
@@ -125,11 +131,8 @@ $repos = update::listRepo();
           level: 'danger'
         })
       },
-      success: function() {
-        jeedomUtils.showAlert({
-          message: '{{Sauvegarde réussie}}',
-          level: 'success'
-        })
+      success: function(data) {
+        jeeFrontEnd.plugin.installSuccess(data.logicalId)
       }
     })
   })

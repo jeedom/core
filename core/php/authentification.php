@@ -37,7 +37,7 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 		ini_set('session.cookie_secure', 1);
 		session_name('__Host-PHPSESSID');
 	}
-}else if(isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
+} else if (isset($_COOKIE['__Host-PHPSESSID']) && session_id() !== $_COOKIE['__Host-PHPSESSID']) {
 	throw new Exception('session does not exist');
 }
 @session_start();
@@ -53,11 +53,7 @@ if (user::isBan()) {
 }
 
 if (!isConnect() && isset($_COOKIE['registerDevice']) && !loginByHash($_COOKIE['registerDevice'])) {
-	if (version_compare(PHP_VERSION, '7.3') >= 0) {
-		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-	} else {
-		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-	}
+	deleteRegisterDeviceCookie();
 }
 
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
@@ -67,7 +63,11 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 		@session_start();
 		$_SESSION['user'] = $user;
 		@session_write_close();
-		log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $user->getLogin());
+		jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
+		log::audit('User login by REMOTE_USER', [
+			'login' => $user->getLogin(),
+			'ip' => getClientIp(),
+		]);
 	}
 }
 
@@ -82,24 +82,34 @@ if (init('logout') == 1) {
 	echo '</script>';
 }
 
+updateRegisterDeviceActivity();
+
 /* * **************************Definition des function************************** */
 
-function login($_login, $_password, $_twoFactor = null) {
+function login(string $_login, string $_password, ?string $_twoFactor = null): bool {
 	$user = user::connect($_login, $_password);
 	if (!is_object($user) || $user->getEnable() == 0) {
-		user::failedLogin();
+		user::failedLogin([
+			'login' => $_login,
+			'reason' => __('Nom d\'utilisateur ou mot de passe invalide ou utilisateur désactivé', __FILE__),
+		]);
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		user::failedLogin();
+		user::failedLogin([
+			'login' => $_login,
+			'reason' => __('Utilisateur local uniquement', __FILE__),
+		]);
 		sleep(5);
 		return false;
 	}
-	$sMdp = (!is_sha512($_password)) ? sha512($_password) : $_password;
 	if (network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '') {
 		if (trim($_twoFactor) == '' || $_twoFactor === null || !$user->validateTwoFactorCode($_twoFactor)) {
-			user::failedLogin();
+			user::failedLogin([
+				'login' => $_login,
+				'reason' => __('Code d\'authentification à deux facteurs invalide ou manquant', __FILE__),
+			]);
 			sleep(5);
 			return false;
 		}
@@ -108,58 +118,129 @@ function login($_login, $_password, $_twoFactor = null) {
 	$_SESSION['user'] = $user;
 	session_regenerate_id(true);
 	@session_write_close();
-	log::add('connection', 'info', __('Connexion de l\'utilisateur :', __FILE__) . ' ' . $_login);
+	jeedom::event('user_connect', false, array('trigger_value' => $_login));
+	log::audit('User login', [
+		'login' => $_login,
+		'ip' => getClientIp(),
+	]);
 	return true;
 }
 
-function loginByHash($_key) {
+function loginByHash(string $_key): bool {
 	$key = explode('-', $_key);
 	$user = user::byHash($key[0]);
 	if (!is_object($user) || $user->getEnable() == 0) {
-		user::failedLogin();
+		user::failedLogin([
+			'login' => $key[0],
+			'reason' => __('Clé API utilisateur invalide ou utilisateur désactivé', __FILE__)
+		]);
 		sleep(5);
 		return false;
 	}
 	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
-		user::failedLogin();
+		user::failedLogin([
+			'login' => $user->getLogin(),
+			'reason' => __('Utilisateur local uniquement', __FILE__),
+		]);
 		sleep(5);
 		return false;
 	}
 	if (!isset($key[1])) {
-		user::failedLogin();
+		user::failedLogin([
+			'login' => $user->getLogin(),
+			'reason' => __('Clé de périphérique enregistrée manquante', __FILE__),
+		]);
 		sleep(5);
 		return false;
 	}
 	$rdk = sha512($key[1]);
-	$registerDevice = $user->getOptions('registerDevice', array());
-	if (!is_array($registerDevice) || !isset($registerDevice[$rdk])) {
-		user::failedLogin();
+	$registeredDevices = $user->getOptions('registerDevice', array());
+	if (!is_array($registeredDevices)) {
+		$registeredDevices = array();
+	}
+	if (!user::isValidRegisteredDevice($registeredDevices, $rdk)) {
+		user::failedLogin([
+			'login' => $user->getLogin(),
+			'reason' => __('Périphérique non enregistré ou clé invalide', __FILE__),
+		]);
 		sleep(5);
 		return false;
 	}
-	$registerDevice[$rdk] = array(
+	$registeredDevices[$rdk] = array(
 		'datetime' => date('Y-m-d H:i:s'),
 		'ip' => getClientIp(),
 		'session_id' => session_id(),
 	);
-	$user->setOptions('registerDevice', $registerDevice);
+	$user->setOptions('registerDevice', $registeredDevices);
 	$user->save();
+	setRegisterDeviceCookie($_key);
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
-	log::add('connection', 'info', __('Connexion de l\'utilisateur par clef :', __FILE__) . ' ' . $user->getLogin());
+	jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
+	log::audit('User login by registered device', [
+		'login' => $user->getLogin(),
+		'ip' => getClientIp(),
+	]);
 	return true;
 }
 
-function logout() {
-	@session_start();
-	if (version_compare(PHP_VERSION, '7.3') >= 0) {
-		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-		setcookie('__Host-PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
-	} else {
-		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
-		setcookie('__Host-PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
+function setRegisterDeviceCookie(string $_value) {
+	setcookie('registerDevice', $_value, registerCookieOptions(time() + user::registerDeviceLifetime()));
+}
+
+function deleteRegisterDeviceCookie() {
+	setcookie('registerDevice', '', registerCookieOptions(time() - 3600));
+}
+
+function deleteSessionCookie() {
+	setcookie('__Host-PHPSESSID', '', registerCookieOptions(time() - 3600));
+}
+
+function registerCookieOptions(int $_expires): array {
+	return ['expires' => $_expires, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')];
+}
+
+function updateRegisterDeviceActivity() {
+	if (!isset($_COOKIE['registerDevice']) || !isset($_SESSION['user']) || !is_object($_SESSION['user'])) {
+		return;
 	}
+	$key = explode('-', $_COOKIE['registerDevice'], 2);
+	if (count($key) != 2 || sha512($_SESSION['user']->getHash()) != $key[0]) {
+		return;
+	}
+	$registerDeviceKey = sha512($key[1]);
+	$registeredDevices = $_SESSION['user']->getOptions('registerDevice', array());
+	if (!is_array($registeredDevices)) {
+		return;
+	}
+
+	if (!user::isValidRegisteredDevice($registeredDevices, $registerDeviceKey)) {
+		return;
+	}
+
+	$now = time();
+	$lastActivity = strtotime($registeredDevices[$registerDeviceKey]['datetime']);
+	if ($lastActivity === false || $lastActivity < $now - 24 * 3600) {
+		$registeredDevices[$registerDeviceKey] = array(
+			'datetime' => date('Y-m-d H:i:s', $now),
+			'ip' => getClientIp(),
+			'session_id' => session_id(),
+		);
+		setRegisterDeviceCookie($_COOKIE['registerDevice']);
+		$_SESSION['user']->setOptions('registerDevice', $registeredDevices);
+		$_SESSION['user']->save();
+	}
+}
+
+function logout() {
+	log::audit('User logout', [
+		'login' => $_SESSION['user']->getLogin(),
+		'ip' => getClientIp(),
+	]);
+	@session_start();
+	deleteRegisterDeviceCookie();
+	deleteSessionCookie();
 	session_unset();
 	session_destroy();
 	return;

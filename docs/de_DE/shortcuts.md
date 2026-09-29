@@ -1,105 +1,105 @@
-# Jeedom V4 - Tastatur- / Mausverknüpfungen
+# Jeedom V4 – Tastatur- und Maus-Tastenkombinationen
 
-### General
+### Allgemeines
 
-Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können daher ohne weitere Aktion direkt eine Suche eingeben.
+Beim Öffnen einer Seite (Dashboard, Szenarien usw.) liegt der Fokus auf dem Suchfeld. Sie können also direkt eine Suche eingeben, ohne weitere Schritte ausführen zu müssen.
 
-- Klicken Sie auf die Uhr (Menüleiste) : Öffnen Sie die Timeline.
-- Klicken Sie auf den Namen des Jeedom (Menüleiste))  : Offen **Einstellungen → System → Konfiguration**.
-- Klicken Sie auf ?  (Menüleiste)  : Öffnen Sie die Hilfe auf der aktuellen Seite.
-- Flucht auf ein Forschungsfeld : Leeren Sie das Suchfeld und brechen Sie es ab.
+- Klick auf die Uhr (Menüleiste): Öffnet die Zeitleiste.
+- Klick auf den Namen von Jeedom (Menüleiste): Öffnet **Einstellungen → System → Konfiguration**.
+- Klick auf das ?  (Menüleiste)  : Öffnet die Hilfe zur aktuellen Seite.
+- Esc-Taste in einem Suchfeld: Leert das Suchfeld und bricht die Suche ab.
 
 ### Dashboard
 Im Bearbeitungsmodus:
-	- Ziehen Sie n Drop auf Kacheln, um sie neu anzuordnen.
-	- Ändern Sie die Größe der Kachelränder, um deren Größe zu ändern.
-	- Kontextmenü (Rechtsklick) auf den Kacheln.
-	- Strg Klicken Sie auf ein Symbol *expandieren* : Passt die Höhe der Objektkacheln nicht relativ zur höchsten, sondern relativ zur niedrigsten an.
+	- Per Drag & Drop auf die Kacheln, um sie neu anzuordnen.
+	- Größe an den Kachelrändern anpassen, um die Kacheln in der Größe zu verändern.
+	- Kontextmenü (Rechtsklick) auf die Kacheln.
+	- Strg-Klick auf ein *Expand*-Symbol: Passt die Höhe der Kacheln des Objekts nicht an die höchste, sondern an die niedrigste Kachel an.
 
-- Strg Klicken Sie auf einen Info-Befehl : Öffnet alle Verlaufsinformationen der Kachel im Verlaufsfenster.
+- Strg-Klick auf eine Info-Schaltfläche: Öffnet alle historischen Informationen zur Kachel im Verlaufsfenster.
 
 ### Einstellungen / System / Konfiguration
-- Strg S : Zum Schutz.
+- Strg+S: Speichern.
 
-### Einstellungen / System / Backups
-- Strg S : Zum Schutz.
+### Einstellungen / System / Sicherungen
+- Strg+S: Speichern.
 
-### Einstellungen / System / Task-Engine
-- Strg S : Zum Schutz.
+### Einstellungen / System / Aufgaben-Engine
+- Strg+S: Speichern.
 
 ### Einstellungen / System / Benutzer
-- Strg S : Zum Schutz.
+- Strg+S: Speichern.
 
-### Einstellungen / Einstellungen
-- Strg S : Zum Schutz.
+### Einstellungen / Voreinstellungen
+- Strg+S: Speichern.
 
 ### Tools / Interaktionen
-- Bei einer Interaktion wird Strg S gedrückt : Zum Schutz.
-- Klicken Sie bei einer Interaktion mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einer anderen Interaktion zu gelangen.
-- Strg Klicken oder Zentrieren Klicken Sie auf eine Interaktion oder im Kontextmenü : Öffnen Sie die Interaktion in einem neuen Browser-Tab.
+- Bei einer Interaktion: Strg+S: Speichern.
+- Bei einer Interaktion: Rechtsklick auf eine Registerkarte: Kontextmenü, um direkt zu einer anderen Interaktion zu wechseln.
+- Strg-Klick oder Mittelklick auf eine Interaktion oder im Kontextmenü: Öffnet die Interaktion in einem neuen Browser-Tab.
 
 ### Werkzeuge / Objekte
-- Auf einem Objekt wird Strg S gedrückt : Zum Schutz.
-- Klicken Sie auf ein Objekt mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Objekt zu gelangen.
-- Strg Klicken oder Zentrieren Klicken Sie auf ein Objekt oder in das Kontextmenü : Öffnen Sie das Objekt in einem neuen Browser-Tab.
+- Bei einem Objekt: Strg+S: Speichern.
+- Rechtsklick auf eine Registerkarte eines Objekts: Kontextmenü, um direkt zu einem anderen Objekt zu wechseln.
+- Strg-Klick oder Klick mit der mittleren Maustaste auf ein Objekt oder im Kontextmenü: Öffnet das Objekt in einem neuen Browser-Tab.
 
 ### Tools / Widgets
-- In einem Widget wird Strg S gedrückt : Zum Schutz.
-- Klicken Sie in einem Widget mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Widget zu gelangen.
-- Strg Klicken oder Klicken Sie in einem Widget oder im Kontextmenü auf Mitte : Öffnen Sie das Widget in einem neuen Browser-Tab.
+- In einem Widget: Strg+S – Speichern.
+- Rechtsklick auf eine Registerkarte eines Widgets: Kontextmenü, um direkt zu einem anderen Widget zu wechseln.
+- Strg+Klick oder Klick mit der mittleren Maustaste auf ein Widget oder im Kontextmenü: Öffnet das Widget in einem neuen Browser-Tab.
 
 ### Tools / Szenarien
-- Strg Klicken oder Mitte Klicken Sie auf ein Szenario oder in das Kontextmenü : Öffnen Sie das Szenario in einem neuen Browser-Tab.
+- Strg-Klick oder mittlerer Mausklick auf ein Szenario oder im Kontextmenü: Öffnet das Szenario in einem neuen Browser-Tab.
 
-In einem Szenario :
-- Strg S : Zum Schutz.
-- Klicken Sie mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Szenario zu gelangen.
-- Strg L : Protokollanzeige.
-- Strg Shift Z : Stornieren.
-- Strg Shift Y : Wiederholen.
+In einem Szenario:
+- Strg+S: Speichern.
+- Rechtsklick auf eine Registerkarte: Kontextmenü, um direkt zu einem anderen Szenario zu wechseln.
+- Strg+L: Protokoll anzeigen.
+- Strg+Umschalt+Z: Rückgängig.
+- Strg+Umschalt+Y: Wiederholen.
 
-- Strg Klicken Sie auf Ausführen : Speichern Sie das Szenario, führen Sie es aus und öffnen Sie das Protokoll.
-- Strg Klicken Sie auf das Symbol *Kopieren Sie diesen Block* : Schneiden Sie diesen Block.
-- Strg Klicken Sie auf das Symbol *Fügen Sie einen Block ein* : Ersetzen Sie diesen Block.
-- Strg Klicken Sie auf das Symbol *Löschen Sie diesen Block* : Block ohne Bestätigung löschen.
-- Strg Klicken Sie auf das Symbol *Verstecke diesen Block* : Alle Blöcke ausblenden oder anzeigen.
+- Strg-Klick auf „Ausführen“: Speichert und führt das Szenario aus und öffnet anschließend das Protokoll.
+- Strg-Klick auf das Symbol *Diesen Block kopieren*: Diesen Block ausschneiden.
+- Strg-Klick auf das Symbol *Block einfügen*: Diesen Block ersetzen.
+- Strg-Klick auf das Symbol *Diesen Block löschen*: Den Block ohne Bestätigung löschen.
+- Strg-Klick auf das Symbol *Diesen Block ausblenden*: Blendet alle Blöcke aus oder blendet sie ein.
 
-In einem Codeblock :
-- Strg F : Suche im Code.
-- Strg G : Nächstes Suchereignis.
+In einem Code-Block:
+- Strg+F: Im Code suchen.
+- Strg+G: Nächstes Suchergebnis.
 
-### Plugins / Plugins-Verwaltung
-- Strg + S bei einer Plugin-Konfiguration : Zum Schutz.
-- Strg Klicken oder Klicken Sie in einem Plugin auf Mitte : Öffnen Sie die Plugin-Verwaltung in einem neuen Browser-Tab.
+### Plugins / Plugin-Verwaltung
+- Strg+S bei einer Plugin-Konfiguration: Speichern.
+- Strg-Klick oder Klick mit der mittleren Maustaste auf ein Plugin: Öffnet die Plugin-Verwaltung in einem neuen Browser-Tab.
 
 ### Plugins / *Plugin*
-- Auf einem Gerät wird Strg S gedrückt  : Zum Schutz.
-- Klicken Sie auf einem Gerät mit der rechten Maustaste auf eine Registerkarte : Kontextmenü, um direkt zu einem anderen Gerät zu gelangen.
-- Strg Klicken oder Mitte Klicken Sie auf ein Gerät: Öffnen Sie das Plugin-Gerät in einem neuen Browser-Tab.
+- Auf einem Gerät: Strg+S: Speichern.
+- Rechtsklick auf eine Registerkarte eines Geräts: Kontextmenü, um direkt zu einem anderen Gerät zu wechseln.
+- Strg-Klick oder Klick mit der mittleren Maustaste auf ein Gerät: Öffnet das Gerät des Plugins in einem neuen Browser-Tab.
 
 ### Startseite / Ansicht
-- Strg + S beim Bearbeiten einer Ansicht : Zum Schutz.
+- Strg+S beim Bearbeiten einer Ansicht: Speichern.
 
-### Zuhause / Design
-- Strg + S auf einem Design : Zum Schutz.
-- Strg-Umschalttaste E für ein Design : Aktivieren oder Verlassen des Bearbeitungsmodus.
+### Startseite / Design
+- Strg+S bei einem Design: Speichern.
+- Strg+Umschalt+E auf einem Design: In den Bearbeitungsmodus wechseln oder diesen verlassen.
 
-### Analyse / Zusammenfassung der Hausautomation
-- Strg Klicken Sie auf das Symbol *Offen* (recherche) : Öffnen Sie alle Gegenstände und Geräte.
-- Strg Klicken Sie auf das Symbol *Schließen* (recherche) : Schließt alle Objekte und Geräte.
+### Analyse / Zusammenfassung zur Hausautomation
+- Strg-Klick auf das Symbol *Öffnen* (Suche): Öffnet alle Objekte und alle Geräte.
+- Strg-Klick auf das Symbol „Schließen“ (Suche): Schließt alle Objekte und alle Geräte.
 
-### Analyse / Geschichte
-Wenn mehrere Kurven angezeigt werden :
-- Strg Klicken Sie auf eine Legende : Nur diese Geschichte anzeigen.
-- Alt Klicken Sie auf eine Legende : Zeige die gesamte Geschichte.
+### Analyse / Verlauf
+Wenn mehrere Kurven angezeigt werden:
+- Strg-Klick auf eine Legende: Nur diesen Verlauf anzeigen.
+- Alt-Klick auf eine Legende: Alle Verlaufsdaten anzeigen.
 
-### Verlaufsfenster
-Wenn mehrere Kurven angezeigt werden :
-- Strg Klicken Sie auf eine Legende : Nur diese Geschichte anzeigen.
-- Alt Klicken Sie auf eine Legende : Zeige die gesamte Geschichte.
+### Fenster „Verlauf“
+Wenn mehrere Kurven angezeigt werden:
+- Strg-Klick auf eine Legende: Nur diesen Verlauf anzeigen.
+- Alt-Klick auf eine Legende: Alle Verlaufsdaten anzeigen.
 
-### Gerätekonfigurationsfenster
-- Strg Klicken Sie auf Speichern : Fenster speichern und schließen.
+### Fenster „Gerätekonfiguration“
+- Strg-Klick auf „Speichern“: Speichert und schließt das Fenster.
 
-### Befehlskonfigurationsfenster
-- Strg Klicken Sie auf Speichern : Fenster speichern und schließen.
+### Fenster „Steuerungskonfiguration“
+- Strg-Klick auf „Speichern“: Speichert und schließt das Fenster.

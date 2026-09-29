@@ -98,8 +98,8 @@ if (!jeeFrontEnd.pluginTemplate) {
           if (isset(data) && isset(data.timeout) && data.timeout == 0) {
             data.timeout = ''
           }
-          if(document.getElementById('img_device') != null && document.querySelector('.eqLogicDisplayCard.active img').getAttribute('src') != ''){
-            document.getElementById('img_device').setAttribute("src",document.querySelector('.eqLogicDisplayCard.active img').getAttribute('src'));
+          if (document.getElementById('img_device') != null && document.querySelector('.eqLogicDisplayCard.active img').getAttribute('src') != '') {
+            document.getElementById('img_device').setAttribute("src", document.querySelector('.eqLogicDisplayCard.active img').getAttribute('src'))
           }
           document.getElementById('div_mainContainer').setJeeValues(data, '.eqLogicAttr')
           if (!isset(data.category.opening)) try { document.querySelector('input[data-l2key="opening"]').checked = false } catch (e) { }
@@ -113,7 +113,7 @@ if (!jeeFrontEnd.pluginTemplate) {
               data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '')
               data.cmd[i]['htmlstate'] = '<span class="cmdTableState"'
               data.cmd[i]['htmlstate'] += 'data-cmd_id="' + data.cmd[i].id + '"'
-              data.cmd[i]['htmlstate'] += 'title="{{Date de valeur}} : ' + data.cmd[i].valueDate + '<br/>{{Date de collecte}} : ' + data.cmd[i].collectDate
+              data.cmd[i]['htmlstate'] += 'title="{{Date de valeur}}: ' + data.cmd[i].valueDate + '<br/>{{Date de collecte}}: ' + data.cmd[i].collectDate
               if (data.cmd[i].state.length > 50) {
                 data.cmd[i]['htmlstate'] += '<br/>' + data.cmd[i].state.replaceAll('"', '&quot;')
               }
@@ -132,17 +132,17 @@ if (!jeeFrontEnd.pluginTemplate) {
           }
           document.querySelectorAll('.cmdTableState').forEach(_cmdState => {
             jeedom.cmd.addUpdateFunction(_cmdState.getAttribute('data-cmd_id'), function(_options) {
-              _options.value = String(_options.value).replace(/<[^>]*>?/gm, '')
+              let displayValue = String(_options.value).replace(/<[^>]*>?/gm, '')
               const cmd = document.querySelector('.cmdTableState[data-cmd_id="' + _options.cmd_id + '"]')
               if (cmd === null) {
                 return
               }
-              let title = '{{Date de collecte}} : ' + _options.collectDate + '<br/>{{Date de valeur}} ' + _options.valueDate
-              if (_options.value.length > 50) {
-                title += ' - ' + _options.value
+              let title = '{{Date de valeur}}: ' + _options.valueDate + '<br>{{Date de collecte}}: ' + _options.collectDate
+              if (displayValue.length > 50) {
+                title += ' - ' + displayValue
               }
               cmd.setAttribute('title', title)
-              cmd.empty().innerHTML = _options.value.substring(0, 50) + ' ' + _options.unit
+              cmd.empty().innerHTML = displayValue.substring(0, 50) + ' ' + _options.raw_unit
               cmd.style.color = 'var(--logo-primary-color)'
               setTimeout(function() {
                 cmd.style.color = null
@@ -398,62 +398,21 @@ if (!jeeFrontEnd.pluginTemplate) {
     removeEqLogic: function() {
       const eqLogicId = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
       if (eqLogicId != undefined) {
-        const thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type')
-        const textEqtype = thisEqType || eqType
-        jeedom.eqLogic.getUseBeforeRemove({
+        const thisEqType = document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + eqLogicId + '"]')?.getAttribute('data-eqLogic_type') || eqType
+        jeedom.eqLogic.remove({
           id: eqLogicId,
+          type: thisEqType,
+          name: document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue(),
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
-          },
-          success: function(data) {
-            let text = '{{Êtes-vous sûr de vouloir supprimer l\'équipement}} ' + textEqtype + ' <b>' + document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue() + '</b> ?'
-            if (Object.keys(data).length > 0) {
-              text += ' </br> {{Il est utilisé par:}}</br>'
-              let complement = null
-              for (const i in data) {
-                complement = ''
-                if ('sourceName' in data[i]) {
-                  complement = ' (' + data[i].sourceName + ')'
-                }
-                text += '- ' + '<a href="' + data[i].url + '" target="_blank">' + data[i].type + '</a> : <b>' + data[i].name + '</b>' + complement + ' <sup><a href="' + data[i].url + '" target="_blank"><i class="fas fa-external-link-alt"></i></a></sup></br>'
-              }
-            }
-            text = text.substring(0, text.length - 2)
-            jeeDialog.confirm(text, function(result) {
-              if (result) {
-                jeedom.eqLogic.remove({
-                  type: thisEqType || eqType,
-                  id: eqLogicId,
-                  error: function(error) {
-                    jeedomUtils.showAlert({
-                      message: error.message,
-                      level: 'danger'
-                    })
-                  },
-                  success: function() {
-                    const vars = getUrlVars()
-                    let url = 'index.php?'
-                    for (const i in vars) {
-                      if (i != 'id' && i != 'removeSuccessFull' && i != 'saveSuccessFull') {
-                        url += i + '=' + vars[i].replace('#', '') + '&'
-                      }
-                    }
-                    jeeFrontEnd.modifyWithoutSave = false
-                    modifyWithoutSave = false
-                    url += 'removeSuccessFull=1'
-                    jeedomUtils.loadPage(url)
-                  }
-                })
-              }
-            })
           }
         })
       } else {
         jeedomUtils.showAlert({
-          message: '{{Veuillez d\'abord sélectionner un}} ' + textEqtype,
+          message: '{{Veuillez d\'abord sélectionner un}} ' + eqType,
           level: 'danger'
         })
       }

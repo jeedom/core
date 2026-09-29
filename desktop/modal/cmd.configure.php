@@ -199,41 +199,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <input class="cmdAttr" data-l1key="configuration" data-l2key="timeline::folder" placeholder="{{Dossier}}" style="display:none;">
                   </div>
                 </div>
-                <?php if ($cmd->getType() == 'info') { ?>
-                  <div class="form-group">
-                    <label class="col-xs-4 control-label">{{Envoyer à InfluxDB}}</label>
-                    <div class="col-xs-1">
-                      <input type="checkbox" class="cmdAttr" data-l1key="configuration" data-l2key="influx::enable" />
-                    </div>
-                    <div class="col-xs-7"></div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Nom personnalisé Commande}}</label>
-                    <div class="col-xs-8">
-                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::namecmd" placeholder="{{Facultatif}}">
-                    </div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Nom personnalisé Équipement}}</label>
-                    <div class="col-xs-8">
-                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameEq" placeholder="{{Facultatif}}">
-                    </div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Nom personnalisé Valeur}}</label>
-                    <div class="col-xs-8">
-                      <input class="cmdAttr" data-l1key="configuration" data-l2key="influx::nameVal" placeholder="{{Facultatif}}">
-                    </div>
-                  </div>
-                  <div class="form-group selInflux" style="display:none;">
-                    <label class="col-xs-4 control-label">{{Actions}}</label>
-                    <div class="col-xs-8">
-                      <a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-                      <a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
-                    </div>
-                    <br /><br />
-                  </div>
-                <?php } ?>
                 <div class="form-group">
                   <label class="col-xs-4 control-label">{{Interdire dans les interactions automatiques}}</label>
                   <div class="col-xs-4">
@@ -365,7 +330,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <sup><i class="fas fa-question-circle" title="{{Nombre de décimales}}"></i></sup>
                   </label>
                   <div class="col-sm-6">
-                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" type="number" min="0" max="9" step="1" maxlength="1" oninput="this.value = this.value.slice(0, 1)"/>
+                    <input class="cmdAttr form-control" data-l1key="configuration" data-l2key="historizeRound" type="number" min="0" max="9" step="1" maxlength="1" oninput="this.value = this.value.slice(0, 1)" />
                   </div>
                 </div>
               <?php }
@@ -507,36 +472,52 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                    <option value="avg">{{Moyenne}}</option>
-                    <option value="min">{{Minimum}}</option>
-                    <option value="max">{{Maximum}}</option>
-                    <option value="none">{{Aucun}}</option>
-                  </select>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de rétention}}
+                    <sup><i class="fas fa-question-circle" title="{{Limite l'historique à la dernière valeur, ou aux première et dernière valeurs, du jour ou du mois}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyRetentionMode">
+                      <option value="none">{{Normal}}</option>
+                      <option value="current_day">{{Dernière valeur du jour}}</option>
+                      <option value="current_day_keep_first">{{Première et dernière valeur du jour}}</option>
+                      <option value="current_month">{{Dernière valeur du mois}}</option>
+                      <option value="current_month_keep_first">{{Première et dernière valeur du mois}}</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
-                <sup><i class="fas fa-question-circle" title="{{Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
-                </label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
-                    <option value="">{{Default}}</option>
-                    <option value="-1">{{Aucun}}</option>
-                    <option value="60">{{1 min}}</option>
-                    <option value="300">{{5 min}}</option>
-                    <option value="600">{{10 min}}</option>
-                  </select>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}
+                    <sup><i class="fas fa-question-circle" title="{{Mode de lissage des historiques (défaut : moyenne). Attention : aucun lissage conserve toutes les données en historique au risque de remplir la base}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                      <option value="avg">{{Moyenne}}</option>
+                      <option value="min">{{Minimum}}</option>
+                      <option value="max">{{Maximum}}</option>
+                      <option value="none">{{Aucun}}</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
+                    <sup><i class="fas fa-question-circle" title="{{Regroupe les valeurs reçues dans une même fenêtre de temps en une seule. Nécessite un mode de lissage pour fonctionner}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
+                      <option value="">{{Default}}</option>
+                      <option value="-1">{{Aucun}}</option>
+                      <option value="60">{{1 min}}</option>
+                      <option value="300">{{5 min}}</option>
+                      <option value="600">{{10 min}}</option>
+                    </select>
+                  </div>
+                </div>
               <?php }
               ?>
               <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">{{Purger historique}}
-                  <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
+                  <sup><i class="fas fa-question-circle" title="{{Purge les historiques si plus anciens que}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
                   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
@@ -554,47 +535,47 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($cmd->getIsHistorized() == 1 && $JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Paramètres d'affichage}}</label>
-                <div class="col-sm-2">
-                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="groupingType">
-                    <option value="">{{Aucun groupement}}</option>
-                    <option value="sum::hour">{{Somme par heure}}</option>
-                    <option value="average::hour">{{Moyenne par heure}}</option>
-                    <option value="low::hour">{{Minimum par heure}}</option>
-                    <option value="high::hour">{{Maximum par heure}}</option>
-                    <option value="sum::day">{{Somme par jour}}</option>
-                    <option value="average::day">{{Moyenne par jour}}</option>
-                    <option value="low::day">{{Minimum par jour}}</option>
-                    <option value="high::day">{{Maximum par jour}}</option>
-                    <option value="sum::week">{{Somme par semaine}}</option>
-                    <option value="average::week">{{Moyenne par semaine}}</option>
-                    <option value="low::week">{{Minimum par semaine}}</option>
-                    <option value="high::week">{{Maximum par semaine}}</option>
-                    <option value="sum::month">{{Somme par mois}}</option>
-                    <option value="average::month">{{Moyenne par mois}}</option>
-                    <option value="low::month">{{Minimum par mois}}</option>
-                    <option value="high::month">{{Maximum par mois}}</option>
-                    <option value="sum::year">{{Somme par année}}</option>
-                    <option value="average::year">{{Moyenne par année}}</option>
-                    <option value="low::year">{{Minimum par année}}</option>
-                    <option value="high::year">{{Maximum par année}}</option>
-                  </select>
-                </div>
-                <div class="col-sm-2">
-                  <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
-                    <option value="line">{{Ligne}}</option>
-                    <option value="area">{{Aire}}</option>
-                    <option value="column">{{Barre}}</option>
-                  </select>
-                </div>
-                <div class="col-sm-2">
-                  {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Paramètres d'affichage}}</label>
+                  <div class="col-sm-2">
+                    <select class="form-control cmdAttr" data-l1key="display" data-l2key="groupingType">
+                      <option value="">{{Aucun groupement}}</option>
+                      <option value="sum::hour">{{Somme par heure}}</option>
+                      <option value="average::hour">{{Moyenne par heure}}</option>
+                      <option value="low::hour">{{Minimum par heure}}</option>
+                      <option value="high::hour">{{Maximum par heure}}</option>
+                      <option value="sum::day">{{Somme par jour}}</option>
+                      <option value="average::day">{{Moyenne par jour}}</option>
+                      <option value="low::day">{{Minimum par jour}}</option>
+                      <option value="high::day">{{Maximum par jour}}</option>
+                      <option value="sum::week">{{Somme par semaine}}</option>
+                      <option value="average::week">{{Moyenne par semaine}}</option>
+                      <option value="low::week">{{Minimum par semaine}}</option>
+                      <option value="high::week">{{Maximum par semaine}}</option>
+                      <option value="sum::month">{{Somme par mois}}</option>
+                      <option value="average::month">{{Moyenne par mois}}</option>
+                      <option value="low::month">{{Minimum par mois}}</option>
+                      <option value="high::month">{{Maximum par mois}}</option>
+                      <option value="sum::year">{{Somme par année}}</option>
+                      <option value="average::year">{{Moyenne par année}}</option>
+                      <option value="low::year">{{Minimum par année}}</option>
+                      <option value="high::year">{{Maximum par année}}</option>
+                    </select>
                   </div>
-                <div class="col-sm-2">
-                  {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
+                  <div class="col-sm-2">
+                    <select class="form-control cmdAttr" data-l1key="display" data-l2key="graphType">
+                      <option value="line">{{Ligne}}</option>
+                      <option value="area">{{Aire}}</option>
+                      <option value="column">{{Barre}}</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-2">
+                    {{Variation}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphDerive" />
+                  </div>
+                  <div class="col-sm-2">
+                    {{Escalier}}&nbsp;<input type="checkbox" class="cmdAttr" data-l1key="display" data-l2key="graphStep" />
+                  </div>
                 </div>
-              </div>
               <?php } ?>
             </fieldset>
           </form>
@@ -845,9 +826,9 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             <table class="table table-condensed" id="table_widgetParametersCmd">
               <thead class="table">
                 <tr>
-                  <th style="width: 20%">Nom</th>
-                  <th style="width: 80%">Valeur</th>
-                  <th style="width: 1px">Action</th>
+                  <th style="width: 20%">{{Nom}}</th>
+                  <th style="width: 80%">{{Valeur}}</th>
+                  <th style="width: 1px">{{Action}}</th>
                 </tr>
               </thead>
               <tbody>
@@ -863,7 +844,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     $tr .= '<input class="form-control value" value="' . htmlspecialchars($value, ENT_QUOTES) . '" />';
                     $tr .= '</td>';
                     $tr .= '<td>';
-                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>';
+                    $tr .= '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> {{Supprimer}}</a>';
                     $tr .= '</td>';
                     $tr .= '</tr>';
                   }
@@ -1023,7 +1004,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             version: 'dashboard',
             widgetName: _widgetName,
             error: function(error) {
-              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
+              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce widget}}'
             },
             success: function(data) {
               document.getElementById('optionalParamHelp').empty().innerHTML = data.html
@@ -1162,7 +1143,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         if (!isset(cmd.display)) cmd.display = {}
         if (!isset(cmd.display.parameters)) cmd.display.parameters = {}
 
-        if (document.querySelector('#cmd_display #table_widgetParametersCmd')) { 
+        if (document.querySelector('#cmd_display #table_widgetParametersCmd')) {
           document.querySelector('#cmd_display #table_widgetParametersCmd')?.tBodies[0].childNodes.forEach(_tr => {
             if (_tr.nodeType != 3) {
               cmd.display.parameters[_tr.querySelector('.key').jeeValue()] = _tr.querySelector('.value').jeeValue()
@@ -1213,7 +1194,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
   (function() { // Self Isolation!
     var jeeM = jeeFrontEnd.md_displayCmdConfigure
-    
+
     //Manage events outside parents delegations:
     document.getElementById('bt_cmdConfigureTest')?.addEventListener('click', function(event) {
       jeedom.cmd.test({
@@ -1249,7 +1230,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
         jeedom.cmd.getSelectModal({
           cmd: {
@@ -1290,7 +1271,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
      */
     //cmd information tab
     document.getElementById('cmd_information')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
         let displayIconParent = _target.closest('.displayIconParent')
         let icon = displayIconParent.querySelector('[data-l2key="icon"] > i')
@@ -1299,56 +1280,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         jeedomUtils.chooseIcon(function(_icon) {
           displayIconParent.querySelector('.cmdAttr[data-l1key="display"][data-l2key="icon"]').empty().innerHTML = _icon
         }, params)
-        return
-      }
-
-      if (_target = event.target.closest('#bt_influxDelete')) {
-        jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer toutes les infos de cette commande d\'InfluxDB}}', function(result) {
-          if (result) {
-            jeedom.cmd.dropInflux({
-              cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: error.message,
-                  level: 'danger'
-                })
-              },
-              success: function(data) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: '{{Action envoyée avec succés}}',
-                  level: 'success'
-                })
-              }
-            })
-          }
-        })
-        return
-      }
-
-      if (_target = event.target.closest('#bt_influxHistory')) {
-        jeeDialog.confirm('{{Êtes-vous sûr de vouloir envoyer tout l\'historique de cette commande à InfluxDB. Cela sera programmé et effectué en tâche de fond dans une minute.}}', function(result) {
-          if (result) {
-            jeedom.cmd.historyInflux({
-              cmd_id: jeephp2js.md_cmdConfigure_cmdInfo.id,
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: error.message,
-                  level: 'danger'
-                })
-              },
-              success: function(data) {
-                jeedomUtils.showAlert({
-                  attachTo: jeeDialog.get('#div_displayCmdConfigure', 'dialog'),
-                  message: '{{Programmation envoyée avec succés}}',
-                  level: 'success'
-                })
-              }
-            })
-          }
-        })
         return
       }
 
@@ -1461,7 +1392,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_information')?.addEventListener('dblclick', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
         _target.innerHTML = ''
         return
@@ -1469,21 +1400,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_information')?.addEventListener('change', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAttr[data-l2key="timeline::enable"]')) {
         if (_target.jeeValue() == 1) {
-          document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').seen()
+          document.querySelector('.cmdAttr[data-l2key="timeline::folder"]').seen()
         } else {
-          document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').unseen()
-        }
-        return
-      }
-
-      if (_target = event.target.closest('.cmdAttr[data-l2key="influx::enable"]')) {
-        if (_target.jeeValue() == 1) {
-          document.querySelectorAll('.selInflux').seen()
-        } else {
-          document.querySelectorAll('.selInflux').unseen()
+          document.querySelector('.cmdAttr[data-l2key="timeline::folder"]').unseen()
         }
         return
       }
@@ -1492,11 +1414,15 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //cmd configuration tab
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
 
       if (_target = event.target.closest('#bt_searchInfoCmdCalculValue')) {
-        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-          document.querySelectorAll('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]')[0].insertAtCursor(result.human)
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'info'
+          }
+        }, function(result) {
+          document.querySelector('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]').insertAtCursor(result.human)
         })
       }
 
@@ -1551,8 +1477,30 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       }
     })
 
+    document.getElementById('cmd_configuration')?.addEventListener('change', function(event) {
+      let _target = null
+      if (_target = event.target.closest('.cmdAttr[data-l2key="historyRetentionMode"]')) {
+        const historizeMode = document.querySelector('.cmdAttr[data-l2key="historizeMode"]')
+        const historizeSmooth = document.querySelector('.cmdAttr[data-l2key="history::smooth"]')
+        if (_target.jeeValue() == 'none') {
+          const previousMode = jeephp2js.md_cmdConfigure_cmdInfo.configuration.historizeMode
+          historizeMode.jeeValue(previousMode && previousMode !== 'none' ? previousMode : 'avg')
+          historizeMode.closest('.form-group').seen()
+          const previousSmooth = jeephp2js.md_cmdConfigure_cmdInfo.configuration['history::smooth']
+          historizeSmooth.jeeValue(previousSmooth && previousSmooth !== '-1' ? previousSmooth : '')
+          historizeSmooth.closest('.form-group').seen()
+        } else {
+          historizeMode.closest('.form-group').unseen()
+          historizeMode.jeeValue('none')
+          historizeSmooth.closest('.form-group').unseen()
+          historizeSmooth.jeeValue('-1')
+        }
+        return
+      }
+    })
+
     document.getElementById('cmd_configuration')?.addEventListener('focusout', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
         var type = _target.getAttribute('data-type')
         var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
@@ -1569,7 +1517,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //cmd display tab
     document.getElementById('cmd_display')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
 
       if (_target = event.target.closest('#bt_addWidgetParametersCmd')) {
         var tr = '<tr>'
@@ -1580,7 +1528,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         tr += '<input class="form-control value" />'
         tr += '</td>'
         tr += '<td>'
-        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> Supprimer</a>'
+        tr += '<a class="btn btn-danger btn-xs removeWidgetParameter pull-right"><i class="fas fa-times"></i> {{Supprimer}}</a>'
         tr += '</td>'
         tr += '</tr>'
         document.getElementById('table_widgetParametersCmd').tBodies[0].insertAdjacentHTML('beforeend', tr)
@@ -1599,7 +1547,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_display')?.addEventListener('change', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('select[data-l1key="template"][data-l2key="dashboard"]')) {
         jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(_target.value)
         return
