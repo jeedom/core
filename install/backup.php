@@ -183,11 +183,12 @@ try {
 	foreach ($excludes as $folder) {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
-	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_dir . '/' . $backup_name . '" ' . $exclude . ' . > /dev/null');
+	$backup_fullname = "{$backup_dir}/{$backup_name}";
+	system('cd ' . $jeedom_dir . ';tar cfz "' . $backup_fullname . '" ' . $exclude . ' . > /dev/null');
 	echo "OK" . "\n";
 
-	if (!file_exists($backup_dir . '/' . $backup_name)) {
-		throw new Exception('Backup failed. Can\'t find: ' . $backup_dir . '/' . $backup_name);
+	if (!file_exists($backup_fullname)) {
+		throw new Exception('Backup failed. Can\'t find: ' . $backup_fullname);
 	}
 
 	echo 'Cleaning old backup...';
@@ -209,7 +210,7 @@ try {
 			$class = 'repo_' . $key;
 			echo 'Send backup ' . $value['name'] . '...';
 			try {
-				$class::backup_send($backup_dir . '/' . $backup_name);
+				$class::backup_send($backup_fullname);
 			} catch (Exception $e) {
 				log::add('backup', 'error', $e->getMessage());
 				echo '/!\ ' . br2nl($e->getMessage()) . ' /!\\';
@@ -224,49 +225,35 @@ try {
 	while (getDirectorySize($backup_dir) > $max_size) {
 		$older = array('file' => null, 'datetime' => null);
 		foreach (ls($backup_dir, '*') as $file) {
-			if (count(ls($backup_dir, '*')) < 2) {
-				break (2);
-			}
-			if (is_dir($backup_dir . '/' . $file)) {
-				foreach (ls($backup_dir . '/' . $file, '*') as $file2) {
-					if ($older['datetime'] === null) {
-						$older['file'] = $backup_dir . '/' . $file . '/' . $file2;
-						$older['datetime'] = filemtime($backup_dir . '/' . $file . '/' . $file2);
-					}
-					if ($older['datetime'] > filemtime($backup_dir . '/' . $file . '/' . $file2)) {
-						$older['file'] = $backup_dir . '/' . $file . '/' . $file2;
-						$older['datetime'] = filemtime($backup_dir . '/' . $file . '/' . $file2);
-					}
-				}
-			}
-			if (!is_file($backup_dir . '/' . $file)) {
+			$candidate_fullname = "{$backup_dir}/{$file}";
+			if ($candidate_fullname === $backup_fullname) {
 				continue;
 			}
-			if ($older['datetime'] === null) {
-				$older['file'] = $backup_dir . '/' . $file;
-				$older['datetime'] = filemtime($backup_dir . '/' . $file);
-			}
-			if ($older['datetime'] > filemtime($backup_dir . '/' . $file)) {
-				$older['file'] = $backup_dir . '/' . $file;
-				$older['datetime'] = filemtime($backup_dir . '/' . $file);
+			if (is_dir($candidate_fullname)) {
+				foreach (ls($candidate_fullname, '*') as $file2) {
+					updateOlderFile($older, "$candidate_fullname/$file2");
+				}
+			} else {
+				updateOlderFile($older, $candidate_fullname);
 			}
 		}
 		if ($older['file'] === null) {
-			echo 'Error, no file to delete while folder size is: ' . getDirectorySize($backup_dir) . "\n";
+			echo 'Warning: backup size limit cannot be met without deleting today\'s backup. Folder size is: ' . getDirectorySize($backup_dir) . "\n";
+			break;
 		}
 		echo "Delete: " . $older['file'] . "\n";
 		if (!unlink($older['file'])) {
-			$i = 50;
+			echo "Unable to delete: " . $older['file'] . "\n";
+			break;
 		}
-		$i++;
-		if ($i > 50) {
+		if (++$i > 50) {
 			echo "More than 50 backups deleted, stopping.\n";
 			break;
 		}
 	}
 	echo "OK" . "\n";
 
-	echo "Backup name: " . $backup_dir . '/' . $backup_name . "\n";
+	echo "Backup name: {$backup_fullname}\n";
 
 	try {
 		echo 'Checking files rights...';
@@ -291,4 +278,16 @@ try {
 	echo 'Details : ' . print_r($e->getTrace(), true);
 	echo "[END BACKUP ERROR]\n";
 	throw $e;
+}
+
+function updateOlderFile(array &$older, string $filePath) {
+	if (!is_file($filePath)) {
+		return;
+	}
+
+	$fileDatetime = filemtime($filePath);
+	if ($older['datetime'] === null || $older['datetime'] > $fileDatetime) {
+		$older['file'] = $filePath;
+		$older['datetime'] = $fileDatetime;
+	}
 }
