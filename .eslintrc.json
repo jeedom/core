@@ -1,0 +1,25 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "script"
+  },
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "es2022": true
+  },
+  "rules": {
+    "no-const-assign": "error",
+    "no-redeclare": "error",
+    "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-dupe-class-members": "error",
+    "no-unreachable": "error",
+    "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-unsafe-negation": "error",
+    "no-unsafe-finally": "error",
+    "no-undef": "off",
+    "no-unused-vars": "off"
+  }
+}
