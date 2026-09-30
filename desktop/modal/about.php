@@ -45,7 +45,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <br><br>
       <a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a>
       <a class="btn btn-xs" id="bt_faq" target="_blank"><i class="fas fa-question-circle"></i> {{FAQ}}</a>
-      <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-image"></i> {{Guide de démarrage}}</a>
+      <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-hat-wizard"></i> {{Assistant de configuration}}</a>
       <br><br>
     </div>
 
