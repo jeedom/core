@@ -125,9 +125,9 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
     document.querySelector('#md_about #bt_firstUse').addEventListener('click', function(event) {
       jeeDialog.dialog({
         id: 'md_firstUse',
-        title: "{{Bienvenue dans Jeedom}}",
+        title: "{{Bienvenue dans}} " + JEEDOM_PRODUCT_NAME,
         width: window.innerWidth > 800 ? 720 : '80vw',
-        height: window.innerHeight > 600 ? 400 : '80vw',
+        height: window.innerHeight > 600 ? 400 : '80vh',
         zIndex: 1040,
         onClose: function() {
           jeeDialog.get('#md_firstUse').destroy()

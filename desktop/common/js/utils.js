@@ -750,9 +750,9 @@ jeedomUtils.setJeedomGlobalUI = function() {
   if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
     jeeDialog.dialog({
       id: 'md_firstUse',
-      title: "{{Bienvenue dans Jeedom}}",
+      title: "{{Bienvenue dans}} " + JEEDOM_PRODUCT_NAME,
       width: window.innerWidth > 800 ? 720 : '80vw',
-      height: window.innerHeight > 600 ? 400 : '80vw',
+      height: window.innerHeight > 600 ? 400 : '80vh',
       zIndex: 1040,
       onClose: function() {
         jeeDialog.get('#md_firstUse').destroy()
@@ -818,7 +818,7 @@ jeedomUtils.setJeedomGlobalUI = function() {
       id: 'jee_modal3',
       title: '{{A propos}}',
       width: window.innerWidth > 850 ? 800 : '80vw',
-      height: window.innerHeight > 750 ? 700 : '80vw',
+      height: window.innerHeight > 750 ? 700 : '80vh',
       contentUrl: 'index.php?v=d&modal=about'
     })
   })
