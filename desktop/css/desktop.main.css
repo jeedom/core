@@ -1082,8 +1082,14 @@ div.eqLogicZone {
     text-align: center;
   }
 
-  #md_firstUse #first_use p {
-    margin-top: 10px;
+  #md_firstUse #bt_doNotDisplayFirstUse {
+    position: absolute;
+    right: 10px;
+  }
+
+  #md_firstUse p,
+  #md_firstUse form   {
+    margin: 10px;
   }
 
   /* summary */
