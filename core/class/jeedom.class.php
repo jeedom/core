@@ -1165,21 +1165,21 @@ class jeedom {
 
 	public static function cron() {
 		if (!self::isStarted()) {
-			echo date('Y-m-d H:i:s') . ' starting Jeedom';
-			log::add('starting', 'debug', __('Démarrage de jeedom', __FILE__));
+			echo 'Starting (' . date('Y-m-d H:i:s') . ")\n";
+			log::add('starting', 'debug', __('Démarrage', __FILE__));
 			try {
-				log::add('starting', 'debug', __('Arrêt des crons', __FILE__));
+				log::add('starting', 'debug', __('Arrêt des tâches cron', __FILE__));
 				foreach ((cron::all()) as $cron) {
 					if ($cron->running() && $cron->getClass() != 'jeedom' && $cron->getFunction() != 'cron') {
 						try {
 							$cron->halt();
 						} catch (\Throwable $e) {
-							log::add('starting', 'error', __('Erreur sur l\'arrêt d\'une tâche cron :', __FILE__) . ' ' . log::exception($e));
+							log::add('starting', 'error', __("Erreur lors de l'arrêt d'une tâche cron :", __FILE__) . ' ' . log::exception($e));
 						}
 					}
 				}
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur l\'arrêt des tâches crons :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __("Erreur lors de l'arrêt des tâches cron :", __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
@@ -1200,50 +1200,50 @@ class jeedom {
 				log::add('starting', 'debug', __('Restauration du cache', __FILE__));
 				cache::restore();
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur la restauration du cache :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors de la restauration du cache :', __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
-				log::add('starting', 'debug', __('Consolidation de l\'historique', __FILE__));
+				log::add('starting', 'debug', __("Consolidation de l'historique", __FILE__));
 				history::checkCurrentValueAndHistory();
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur la consolidation de l\'historique :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __("Erreur lors de la consolidation de l'historique :", __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
-				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques USB', __FILE__));
+				log::add('starting', 'debug', __('Nettoyage du cache des périphériques USB', __FILE__));
 				$cache = cache::byKey('jeedom::usbMapping');
 				$cache->remove();
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques USB :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors du nettoyage du cache des périphériques USB :', __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
-				log::add('starting', 'debug', __('Nettoyage du cache des péripheriques Bluetooth', __FILE__));
+				log::add('starting', 'debug', __('Nettoyage du cache des périphériques Bluetooth', __FILE__));
 				$cache = cache::byKey('jeedom::bluetoothMapping');
 				$cache->remove();
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur le nettoyage du cache des péripheriques Bluetooth :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors du nettoyage du cache des périphériques Bluetooth :', __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
-				log::add('starting', 'debug', __('Démarrage des processus Internet de Jeedom', __FILE__));
+				log::add('starting', 'debug', __('Démarrage des processus internes', __FILE__));
 				self::start();
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage interne de Jeedom :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors du démarrage des processus internes :', __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
-				log::add('starting', 'debug', __('Ecriture du fichier', __FILE__) . ' ' . self::getTmpFolder() . '/started');
+				log::add('starting', 'debug', __('Écriture du fichier', __FILE__) . ' ' . self::getTmpFolder() . '/started');
 				if (file_put_contents(self::getTmpFolder() . '/started', date('Y-m-d H:i:s')) === false) {
-					log::add('starting', 'error', __('Impossible d\'écrire', __FILE__) . ' ' . self::getTmpFolder() . '/started');
+					log::add('starting', 'error', __("Impossible d'écrire", __FILE__) . ' ' . self::getTmpFolder() . '/started');
 				}
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Impossible d\'écrire', __FILE__) . ' ' . self::getTmpFolder() . '/started : ' . log::exception($e));
+				log::add('starting', 'error', __("Impossible d'écrire", __FILE__) . ' ' . self::getTmpFolder() . '/started : ' . log::exception($e));
 			}
 
 			if (!file_exists(self::getTmpFolder() . '/started')) {
-				log::add('starting', 'critical', __('Impossible d\'écrire', __FILE__) . ' ' . self::getTmpFolder() . __('/started pour une raison inconnue. Jeedom ne peut démarrer', __FILE__));
+				log::add('starting', 'critical', __("Impossible d'écrire", __FILE__) . ' ' . self::getTmpFolder() . __('/started pour une raison inconnue, le démarrage est impossible', __FILE__));
 				return;
 			}
 
@@ -1253,32 +1253,32 @@ class jeedom {
 					network::checkConf('internal');
 				}
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur la configuration réseau interne :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors de la vérification de la configuration réseau interne :', __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
-				log::add('starting', 'debug', __('Envoi de l\'événement de démarrage', __FILE__));
+				log::add('starting', 'debug', __("Envoi de l'événement de démarrage", __FILE__));
 				self::event('start');
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur l\'envoi de l\'événement de démarrage :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __("Erreur lors de l'envoi de l'événement de démarrage :", __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
 				log::add('starting', 'debug', __('Démarrage des plugins', __FILE__));
 				plugin::start();
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur le démarrage des plugins :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors du démarrage des plugins :', __FILE__) . ' ' . log::exception($e));
 			}
 
 			try {
 				if (config::byKey('market::enable') == 1) {
-					log::add('starting', 'debug', __('Test de connexion au market', __FILE__));
+					log::add('starting', 'debug', __('Test de connexion au Market', __FILE__));
 					repo_market::test();
 				}
 			} catch (\Throwable $e) {
-				log::add('starting', 'error', __('Erreur sur la connexion au market :', __FILE__) . ' ' . log::exception($e));
+				log::add('starting', 'error', __('Erreur lors du test de connexion au Market :', __FILE__) . ' ' . log::exception($e));
 			}
-			log::add('starting', 'debug', __('Démarrage de jeedom fini avec succès', __FILE__));
+			log::add('starting', 'debug', __('Démarrage terminé avec succès', __FILE__));
 		}
 		self::isDateOk();
 	}
