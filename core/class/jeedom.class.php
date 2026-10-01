@@ -1183,6 +1183,20 @@ class jeedom {
 			}
 
 			try {
+				// Fresh box only: plugins data would not survive a new encryption key
+				if (config::byKey('jeedom::firstUse') == 1 && file_exists('/etc/jeedom_board') && config::byKey('jeedom::imageSecretsRegenerated') == '' && count(plugin::listPlugin(false, false, false, true)) == 0) {
+					echo 'Regenerate secrets : ';
+					utils::regenerateEncryptionPassword();
+					config::save('api', config::genKey());
+					user::byLogin('admin')->setHash('')->save();
+					config::save('jeedom::imageSecretsRegenerated', 1);
+					echo "OK\n";
+				}
+			} catch (\Throwable $e) {
+				log::add('starting', 'error', __('Erreur lors de la régénération des secrets :', __FILE__) . ' ' . log::exception($e));
+			}
+
+			try {
 				log::add('starting', 'debug', __('Restauration du cache', __FILE__));
 				cache::restore();
 			} catch (\Throwable $e) {
