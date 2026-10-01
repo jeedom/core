@@ -34,6 +34,24 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
 
+	if (init('action') == 'getRunState') {
+		ajax::success(update::getRunState());
+	}
+
+	if (init('action') == 'shouldUpdateCoreOnFirstUse') {
+		// Official system images (their build writes /etc/jeedom_board) may ship an older core: it is updated before first use
+		if (config::byKey('jeedom::firstUse') != 1 || !file_exists('/etc/jeedom_board') || config::byKey('core::repo::provider') != 'default' || config::byKey('update::allowCore', 'core', 1) != 1) {
+			ajax::success(false);
+		}
+		$lastVersion = update::getLastAvailableVersion();
+		// A page reload during the update can already read the new version file, so a running update is followed instead of relaunched
+		$running = update::isRunning();
+		if (!$running && !version_compare($lastVersion, jeedom::version(), '>')) {
+			ajax::success(false);
+		}
+		ajax::success(['version' => $lastVersion, 'running' => $running]);
+	}
+
 	if (init('action') == 'all') {
 		$return = array();
 		foreach (update::all(init('filter')) as $update) {

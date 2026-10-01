@@ -185,3 +185,43 @@ jeedom.update.number = function(_params) {
     }
     domUtils.ajax(paramsAJAX)
 }
+
+jeedom.update.getRunState = function(_params) {
+    const paramsRequired = []
+    const paramsSpecifics = {
+        global: false,
+    }
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+        return
+    }
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+    const paramsAJAX = jeedom.private.getParamsAJAX(params)
+    paramsAJAX.url = 'core/ajax/update.ajax.php'
+    paramsAJAX.data = {
+        action: 'getRunState',
+    }
+    domUtils.ajax(paramsAJAX)
+}
+
+jeedom.update.shouldUpdateCoreOnFirstUse = function(_params) {
+    const paramsRequired = []
+    const paramsSpecifics = {
+        global: false,
+    }
+    try {
+        jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+    } catch (e) {
+        (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+        return
+    }
+    const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+    const paramsAJAX = jeedom.private.getParamsAJAX(params)
+    paramsAJAX.url = 'core/ajax/update.ajax.php'
+    paramsAJAX.data = {
+        action: 'shouldUpdateCoreOnFirstUse',
+    }
+    domUtils.ajax(paramsAJAX)
+}

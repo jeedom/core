@@ -746,20 +746,91 @@ jeedomUtils.setButtonCtrlHandler = function(_buttonId, _title, _uri, _modal = 'j
   })
 }
 
-jeedomUtils.setJeedomGlobalUI = function() {
-  if (typeof jeeFrontEnd.jeedom_firstUse != 'undefined' && isset(jeeFrontEnd.jeedom_firstUse) && jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
-    jeeDialog.dialog({
-      id: 'md_firstUse',
-      title: "{{Bienvenue dans}} " + JEEDOM_PRODUCT_NAME,
-      width: window.innerWidth > 800 ? 720 : '80vw',
-      height: window.innerHeight > 600 ? 400 : '80vh',
-      zIndex: 1040,
-      onClose: function() {
-        jeeDialog.get('#md_firstUse').destroy()
-      },
-      contentUrl: 'index.php?v=d&modal=first.use'
-    })
+jeedomUtils.openFirstUse = function(_noCloseBackdrop = false) {
+  jeeDialog.dialog({
+    id: 'md_firstUse',
+    title: "{{Bienvenue dans}} " + JEEDOM_PRODUCT_NAME,
+    width: window.innerWidth > 800 ? 720 : '80vw',
+    height: window.innerHeight > 600 ? 400 : '80vh',
+    zIndex: 1040,
+    onClose: function() {
+      jeeDialog.get('#md_firstUse').destroy()
+    },
+    contentUrl: 'index.php?v=d&modal=first.use'
+  })
+  if (_noCloseBackdrop) {
     document.getElementById('md_firstUse').addClass('jeeDialogNoCloseBackdrop')
+  }
+}
+
+jeedomUtils.updateCoreOnFirstUse = function(_version, _running = false) {
+  domUtils.showLoading()
+  jeedomUtils.showAlert({
+    message: '{{Mise à jour du core en cours, veuillez patienter...}} (' + _version + ')',
+    level: 'warning',
+    timeOut: 0
+  })
+  const checkUpdateEnd = function() {
+    jeedom.update.getRunState({
+      // Requests may fail while core files are being replaced
+      error: function() {
+        setTimeout(checkUpdateEnd, 3000)
+      },
+      success: function(_state) {
+        if (_state == 'running') {
+          setTimeout(checkUpdateEnd, 3000)
+          return
+        }
+        // A page reload is needed after a core update, first use reopens on its own
+        if (_state == 'success') {
+          window.location.reload()
+          return
+        }
+        domUtils.hideLoading()
+        jeedomUtils.showAlert({
+          emptyBefore: true,
+          message: '{{La mise à jour du core a échoué.}} <a href="index.php?v=d&p=log&logfile=update">{{Consulter le log}}</a>',
+          level: 'danger'
+        })
+      }
+    })
+  }
+  if (_running) {
+    checkUpdateEnd()
+    return
+  }
+  jeedom.update.doAll({
+    // Not global, its completion would hide the loading overlay
+    global: false,
+    options: {
+      plugins: 0
+    },
+    error: function(_error) {
+      domUtils.hideLoading()
+      jeedomUtils.showAlert({
+        emptyBefore: true,
+        message: _error.message,
+        level: 'danger'
+      })
+    },
+    success: checkUpdateEnd
+  })
+}
+
+jeedomUtils.setJeedomGlobalUI = function() {
+  if (jeeFrontEnd.jeedom_firstUse == 1 && getUrlVars('noFirstUse') != 1) {
+    jeedom.update.shouldUpdateCoreOnFirstUse({
+      error: function() {
+        jeedomUtils.openFirstUse(true)
+      },
+      success: function(_update) {
+        if (_update) {
+          jeedomUtils.updateCoreOnFirstUse(_update.version, _update.running)
+          return
+        }
+        jeedomUtils.openFirstUse(true)
+      }
+    })
   }
 
   window.addEventListener('beforeunload', function(event) {
