@@ -31,6 +31,8 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-01 10:07:36 | Make install script work without reboot and clean up its messages | [#3544](https://github.com/jeedom/core/pull/3544) |
+| 2026-10-01 10:06:54 | List every icon shipped with Font Awesome 5.15.4 in the icon selector | [#3545](https://github.com/jeedom/core/pull/3545) |
 | 2026-09-29 09:30:35 | fix: prevent deletion of today's backup when exceeding size limit | [#3542](https://github.com/jeedom/core/pull/3542) |
 | 2026-09-22 19:13:52 | Fix Jeedom cron jobs silently ignored due to insecure cron.d permissions | [#3537](https://github.com/jeedom/core/pull/3537) |
 | 2026-09-22 17:59:35 | Fix crash and boot race when the database isn't ready at startup | [#3536](https://github.com/jeedom/core/pull/3536) |
