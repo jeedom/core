@@ -764,9 +764,10 @@ jeedomUtils.openFirstUse = function(_noCloseBackdrop = false) {
 }
 
 jeedomUtils.updateCoreOnFirstUse = function(_version, _running = false) {
-  domUtils.showLoading()
+  // Keeps the loading overlay until the update ends
+  domUtils.DOMloading += 1
   jeedomUtils.showAlert({
-    message: '{{Mise à jour du core en cours, veuillez patienter...}} (' + _version + ')',
+    message: '{{Mise à jour du core vers la version}} ' + _version + '. {{Veuillez patienter...}}',
     level: 'warning',
     timeOut: 0
   })
@@ -786,7 +787,7 @@ jeedomUtils.updateCoreOnFirstUse = function(_version, _running = false) {
           window.location.reload()
           return
         }
-        domUtils.hideLoading()
+        domUtils.DOMloading -= 1
         jeedomUtils.showAlert({
           emptyBefore: true,
           message: '{{La mise à jour du core a échoué.}} <a href="index.php?v=d&p=log&logfile=update">{{Consulter le log}}</a>',
@@ -800,13 +801,11 @@ jeedomUtils.updateCoreOnFirstUse = function(_version, _running = false) {
     return
   }
   jeedom.update.doAll({
-    // Not global, its completion would hide the loading overlay
-    global: false,
     options: {
       plugins: 0
     },
     error: function(_error) {
-      domUtils.hideLoading()
+      domUtils.DOMloading -= 1
       jeedomUtils.showAlert({
         emptyBefore: true,
         message: _error.message,
