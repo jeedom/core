@@ -70,8 +70,6 @@ Vous trouverez dans cet onglet les paramètres de personnalisation de l'affichag
 - **Arrondi** : Affiche les éléments de l'interface avec des angles arrondis. 0 : aucun arrondi, 1 : arrondi maximal.
 - **Désactiver les ombres** : Désactive les ombres des tuiles sur le Dashboard, des menus, et de certains éléments de l'interface.
 
-
-
 ## Onglet Réseaux
 
 Il faut absolument configurer correctement cette partie importante de Jeedom sinon beaucoup de plugins risquent de ne pas fonctionner. Il est possible d’accéder à Jeedom de deux manières différentes : L'**accès interne** (depuis le même réseau local que Jeedom) et l'**accès externe** (depuis un autre réseau notamment depuis Internet).
@@ -110,9 +108,6 @@ Il faut absolument configurer correctement cette partie importante de Jeedom sin
 > **Important**
 >
 > Si vous n’arrivez pas à faire fonctionner le DNS Jeedom, regardez la configuration du pare-feu et du filtre parental de votre box Internet (sur livebox il faut par exemple le pare-feu en niveau moyen).
-
-- **Réseau local** :
-    Vous pouvez aussi y préciser les adresses des réseaux locaux, séparés par `;`. Les IP exactes, masques, plages IPv4 et réseaux CIDR sont acceptés, par exemple `192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24`.
 
 - **Proxy pour Market** :
   - **Activer le proxy** Cocher la case activer le proxy.
@@ -279,10 +274,17 @@ Voici donc les différentes options disponibles :
 - **Nombre d’échecs tolérés** : définit le nombre de tentatives successives autorisées avant de bannir l’IP
 - **Temps maximum entre les échecs (en secondes)** : temps maximum pour que 2 tentatives soient considérées comme successives
 - **Durée du bannissement (en secondes), -1 pour infini** : temps de bannissement de l’IP
-- **IP "blanche"** : liste des IP qui ne peuvent jamais être bannies. Plusieurs valeurs peuvent être séparées par `;`. Les IP exactes, masques, plages IPv4 et réseaux CIDR sont acceptés, par exemple `127.0.0.1;192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24`.
+
+### Adresses IP et proxys inverses de confiance
+
+- **IPs locales** : Liste des adresses IP et réseaux considérés comme locaux, séparés par `;`. Vous pouvez indiquer une adresse IP exacte, un masque avec jokers (`*`) ou une plage IPv4, ainsi qu'un réseau au format CIDR en IPv4 ou IPv6. Exemples : `192.168.1.10;192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24;2001:db8::/32`. Jeedom utilise cette liste pour déterminer si l'utilisateur est connecté depuis le réseau local ou depuis l'extérieur (voir Configuration des utilisateurs).
+- **IP "blanche"** : Liste des adresses IP et réseaux autorisés à contourner certaines restrictions. Séparez les valeurs par `;`. Les adresses exactes, masques avec jokers (`*`) et plages sont pris en charge en IPv4 ; les réseaux CIDR sont pris en charge en IPv4 et IPv6. Exemples : `127.0.0.1;192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24;2001:db8::/32`. Les adresses de cette liste ne sont jamais bannies, et peuvent aussi être autorisées lorsque l'accès à une API est configuré en mode **IP blanche**.
 - **Proxys de confiance** : liste des adresses IP ou réseaux des reverse proxys autorisés à transmettre l’adresse IP du client via les en-têtes HTTP. Plusieurs valeurs peuvent être séparées par `;`. Les adresses IP exactes ainsi que les réseaux CIDR IPv4 et IPv6 sont acceptés, par exemple `127.0.0.1;172.18.0.0/16;2001:db8::/32`.
-  - Les en-têtes `X-Real-IP`, `X-Forwarded-For` et `CF-Connecting-IP` ne sont pris en compte que si l’adresse de la connexion correspond à un proxy de confiance configuré. En cas d’absence ou de conflit entre ces en-têtes, Jeedom utilise `REMOTE_ADDR`.
-  - Si cette configuration est vide, Jeedom conserve temporairement le comportement historique et accepte les en-têtes de proxy. Un message est ajouté au centre des messages afin de vous inviter à configurer cette option.
+  - Jeedom examine d'abord `X-Real-IP`, puis `CF-Connecting-IP`. Si ces deux en-têtes sont absents, il utilise `X-Forwarded-For`.\
+  Lorsque des proxys de confiance sont configurés, Jeedom n'accepte les en-têtes que si le proxy directement connecté (`REMOTE_ADDR`) est déclaré de confiance; pour `X-Forwarded-For`, il parcourt alors la liste de droite à gauche et retient la première adresse qui n'est pas celle d'un proxy de confiance. Si le proxy direct n'est pas déclaré de confiance, l'adresse transmise est ignorée et Jeedom conserve `REMOTE_ADDR` uniquement si elle est publique; si elle est privée ou réservée, le résultat est vide.\
+  Si aucun en-tête de proxy n'est fourni, Jeedom utilise `REMOTE_ADDR`.\
+  Un en-tête présent mais invalide, ou une chaîne `X-Forwarded-For` ne permettant pas d'identifier un client, peut produire une adresse vide.
+  - Si cette configuration est vide, Jeedom conserve le comportement historique et accepte les en-têtes de proxy. Un message est ajouté au centre des messages afin de vous inviter à configurer cette option.
   - Cochez **Aucun** si Jeedom est accessible directement et n’est pas utilisé derrière un reverse proxy.
 
 ### LDAP

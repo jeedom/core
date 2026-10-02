@@ -777,16 +777,6 @@ $productName = config::byKey('product_name');
 						}
 						?>
 
-						<legend>{{Réseau local}}</legend>
-						<div class="form-group">
-							<label class="col-lg-2 col-xs-4 control-label">{{IPs locales}}
-								<sup><i class="fas fa-question-circle" tooltip="{{IPs, masques, plages ou réseaux CIDR séparés par ;<br>ex: 192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24}}"></i></sup>
-							</label>
-							<div class="col-xs-8">
-								<input type="text" class="configKey form-control" data-l1key="network::localip">
-							</div>
-						</div>
-
 						<hr class="hrPrimary">
 					</fieldset>
 				</form>
@@ -1555,6 +1545,16 @@ $productName = config::byKey('product_name');
 								<input type="number" class="configKey form-control ispin" data-l1key="security::bantime" min="-1">
 							</div>
 						</div>
+
+						<legend>{{Adresses IP et proxys inverses de confiance}}</legend>
+						<div class="form-group">
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{IPs locales}}
+								<sup><i class="fas fa-question-circle" tooltip="{{IPs, masques, plages ou réseaux CIDR séparés par ;<br>ex: 192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24}}"></i></sup>
+							</label>
+							<div class="col-md-3 col-sm-4 col-xs-12">
+								<input type="text" class="configKey form-control" data-l1key="network::localip">
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Liste blanche}}
 								<sup><i class="fas fa-question-circle" tooltip="{{IPs, masques, plages ou réseaux CIDR séparés par ;<br>ex: 127.0.0.1;192.168.*.*;192.168.1.10-192.168.1.20;192.168.1.0/24}}"></i></sup>
@@ -1564,7 +1564,7 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Proxys de confiance}}
+							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Proxys inverses de confiance}}
 								<sup><i class="fas fa-question-circle" tooltip="{{IPs ou réseaux CIDR séparés par ;<br>ex: 127.0.0.1;172.18.0.0/16}}"></i></sup>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
