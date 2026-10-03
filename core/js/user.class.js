@@ -14,10 +14,10 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-jeedom.user = function() {};
+jeedom.user = function () { };
 jeedom.user.connectCheck = 0;
 
-jeedom.user.all = function(_params) {
+jeedom.user.all = function (_params) {
   const paramsRequired = [];
   const paramsSpecifics = {};
   try {
@@ -35,7 +35,7 @@ jeedom.user.all = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.remove = function(_params) {
+jeedom.user.remove = function (_params) {
   const paramsRequired = ['id'];
   const paramsSpecifics = {};
   try {
@@ -54,7 +54,7 @@ jeedom.user.remove = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.save = function(_params) {
+jeedom.user.save = function (_params) {
   const paramsRequired = ['users'];
   const paramsSpecifics = {};
   try {
@@ -73,7 +73,7 @@ jeedom.user.save = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.saveProfils = function(_params) {
+jeedom.user.saveProfils = function (_params) {
   const paramsRequired = ['profils'];
   const paramsSpecifics = {};
   try {
@@ -92,7 +92,7 @@ jeedom.user.saveProfils = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.get = function(_params) {
+jeedom.user.get = function (_params) {
   const paramsRequired = [];
   const paramsSpecifics = {};
   try {
@@ -112,11 +112,11 @@ jeedom.user.get = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.isConnect = function(_params) {
+jeedom.user.isConnect = function (_params) {
   if (Math.round(+new Date() / 1000) > (jeedom.user.connectCheck + 300)) {
     const paramsRequired = [];
     const paramsSpecifics = {
-      pre_success: function(data) {
+      pre_success: function (data) {
         if (data.state != 'ok') {
           return {
             state: 'ok',
@@ -146,13 +146,13 @@ jeedom.user.isConnect = function(_params) {
     };
     domUtils.ajax(paramsAJAX);
   } else {
-    if ('function' == typeof(_params.success)) {
+    if ('function' == typeof (_params.success)) {
       _params.success(true);
     }
   }
 }
 
-jeedom.user.validateTwoFactorCode = function(_params) {
+jeedom.user.validateTwoFactorCode = function (_params) {
   const paramsRequired = ['code'];
   const paramsSpecifics = {};
   try {
@@ -172,7 +172,7 @@ jeedom.user.validateTwoFactorCode = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.removeTwoFactorCode = function(_params) {
+jeedom.user.removeTwoFactorCode = function (_params) {
   const paramsRequired = ['id'];
   const paramsSpecifics = {};
   try {
@@ -191,7 +191,7 @@ jeedom.user.removeTwoFactorCode = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.useTwoFactorAuthentification = function(_params) {
+jeedom.user.useTwoFactorAuthentification = function (_params) {
   const paramsRequired = ['login'];
   const paramsSpecifics = {
     global: false,
@@ -212,7 +212,7 @@ jeedom.user.useTwoFactorAuthentification = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.login = function(_params) {
+jeedom.user.login = function (_params) {
   const paramsRequired = ['username', 'password'];
   const paramsSpecifics = {};
   try {
@@ -234,7 +234,46 @@ jeedom.user.login = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.refresh = function(_params) {
+jeedom.user.askPassword = function (_params) {
+  const paramsRequired = ['username'];
+  const paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/user.ajax.php';
+  paramsAJAX.data = {
+    action: 'askPassword',
+    username: _params.username,
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
+jeedom.user.resetPasswordFromToken = function (_params) {
+  const paramsRequired = ['token', 'newPassword'];
+  const paramsSpecifics = {};
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
+    return;
+  }
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/user.ajax.php';
+  paramsAJAX.data = {
+    action: 'resetPasswordFromToken',
+    token: _params.token,
+    newPassword: _params.newPassword,
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
+jeedom.user.refresh = function (_params) {
   const paramsRequired = [];
   const paramsSpecifics = {};
   try {
@@ -252,7 +291,7 @@ jeedom.user.refresh = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.removeBanIp = function(_params) {
+jeedom.user.removeBanIp = function (_params) {
   const paramsRequired = [];
   const paramsSpecifics = {};
   try {
@@ -270,7 +309,7 @@ jeedom.user.removeBanIp = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.removeRegisterDevice = function(_params) {
+jeedom.user.removeRegisterDevice = function (_params) {
   const paramsRequired = [];
   const paramsSpecifics = {};
   try {
@@ -290,7 +329,7 @@ jeedom.user.removeRegisterDevice = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.deleteSession = function(_params) {
+jeedom.user.deleteSession = function (_params) {
   const paramsRequired = ['id'];
   const paramsSpecifics = {};
   try {
@@ -309,7 +348,7 @@ jeedom.user.deleteSession = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.supportAccess = function(_params) {
+jeedom.user.supportAccess = function (_params) {
   const paramsRequired = ['enable'];
   const paramsSpecifics = {};
   try {
@@ -328,8 +367,8 @@ jeedom.user.supportAccess = function(_params) {
   domUtils.ajax(paramsAJAX);
 }
 
-jeedom.user.copyRights = function(_params) {
-  const paramsRequired = ['from','to'];
+jeedom.user.copyRights = function (_params) {
+  const paramsRequired = ['from', 'to'];
   const paramsSpecifics = {};
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired);

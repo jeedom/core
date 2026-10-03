@@ -1,3 +1,6 @@
+<?php
+$mbState = config::byKey('mbState');
+?>
 <div id="wrap">
 	<div class="bodyLogin">
 		<div class="veen animated zoomIn">
@@ -41,15 +44,9 @@
 						<div class="submit center">
 							<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
 						</div>
-						<?php
-						$mbState = config::byKey('mbState');
-						if ($mbState == 0) {
-							if (config::byKey('doc::base_url', 'core') != '') { ?>
-								<div class="resetPassword center">
-									<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-								</div>
-						<?php }
-						} ?>
+						<div class="submit center">
+							<a class="btn" id="bt_go_to_lostpassword">{{J'ai perdu mon mot de passe}}</a>
+						</div>
 					</form>
 				</div>
 				<div id="market" tabindex="502" class="form-group" style="display:none;">
@@ -91,6 +88,54 @@
 					<div class="submit center">
 						<button class="dark btn-lg" id="bt_change_validate">{{C'est parti !}}</button>
 					</div>
+				</div>
+				<div id="lostpassword" tabindex="503" class="form-group" style="display:none;">
+					<form onsubmit="return false;">
+						<h3>{{Connexion}}
+							<?php
+							if (config::byKey('display_name_login') == 1) {
+								echo ' {{à}} ' . config::byKey('name');
+							}
+							?>
+						</h3>
+						<div class="mail">
+							<label>{{Nom d'utilisateur}}</label>
+							<input type="text" id="in_lostpassword_username">
+						</div>
+						<div class="submit center">
+							<button class="dark btn-lg" id="bt_ask_password"><i class="fas fa-unlock-alt"></i> {{Demander un nouveau mot de passe}}</button>
+						</div>
+						<div class="submit center">
+							<a class="btn" id="bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
+						</div>
+						<?php
+						if ($mbState == 0) {
+							if (config::byKey('doc::base_url', 'core') != '') { ?>
+								<div class="resetPassword center">
+									<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{Si cela ne fonctionne pas, suivez cette procédure}}</a>
+								</div>
+						<?php }
+						} ?>
+					</form>
+				</div>
+				<div id="resetpassword" tabindex="503" class="form-group" style="display:none;">
+					<form onsubmit="return false;">
+						<h3>{{Réinitialiser le mot de passe}}</h3>
+						<div class="passwd">
+							<label>{{Nouveau mot de passe}}</label>
+							<input type="password" autocomplete="new-password" id="in_reset_password">
+						</div>
+						<div class="passwd">
+							<label>{{Confirmer le mot de passe}}</label>
+							<input type="password" autocomplete="new-password" id="in_reset_passwordToo">
+						</div>
+						<div class="submit center">
+							<button class="dark btn-lg" id="bt_reset_password"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
+						</div>
+						<div class="submit center">
+							<a class="btn" id="bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
