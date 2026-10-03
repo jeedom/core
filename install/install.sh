@@ -235,12 +235,8 @@ step_8_jeedom_customization() {
   cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/security.conf
 
-  cp ${WEBSERVER_HOME}/install/apache_remoteip /etc/apache2/conf-available/remoteip.conf
-  sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/remoteip.conf
-
   rm /etc/apache2/conf-enabled/security.conf > /dev/null 2>&1
-  ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/
-  ln -s /etc/apache2/conf-available/remoteip.conf /etc/apache2/conf-enabled/
+  a2enconf security
 
   cp ${WEBSERVER_HOME}/install/apache_default /etc/apache2/sites-available/000-default.conf
   rm /etc/apache2/sites-enabled/000-default.conf > /dev/null 2>&1
@@ -279,7 +275,6 @@ step_8_jeedom_customization() {
 
   a2dismod status
   a2enmod headers
-  a2enmod remoteip
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
 

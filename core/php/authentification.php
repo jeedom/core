@@ -41,7 +41,7 @@ if (session_status() == PHP_SESSION_DISABLED || !isset($_SESSION)) {
 	throw new Exception('session does not exist');
 }
 @session_start();
-$_SESSION['ip'] = getClientIp();
+$_SESSION['ip'] = network::getClientIp();
 @session_write_close();
 if (user::isBan()) {
 	header("Statut: 404 Page non trouvée");
@@ -66,7 +66,7 @@ if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
 		jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
 		log::audit('User login by REMOTE_USER', [
 			'login' => $user->getLogin(),
-			'ip' => getClientIp(),
+			'ip' => network::getClientIp(),
 		]);
 	}
 }
@@ -121,7 +121,7 @@ function login(string $_login, string $_password, ?string $_twoFactor = null): b
 	jeedom::event('user_connect', false, array('trigger_value' => $_login));
 	log::audit('User login', [
 		'login' => $_login,
-		'ip' => getClientIp(),
+		'ip' => network::getClientIp(),
 	]);
 	return true;
 }
@@ -168,7 +168,7 @@ function loginByHash(string $_key): bool {
 	}
 	$registeredDevices[$rdk] = array(
 		'datetime' => date('Y-m-d H:i:s'),
-		'ip' => getClientIp(),
+		'ip' => network::getClientIp(),
 		'session_id' => session_id(),
 	);
 	$user->setOptions('registerDevice', $registeredDevices);
@@ -180,7 +180,7 @@ function loginByHash(string $_key): bool {
 	jeedom::event('user_connect', false, array('trigger_value' => $user->getLogin()));
 	log::audit('User login by registered device', [
 		'login' => $user->getLogin(),
-		'ip' => getClientIp(),
+		'ip' => network::getClientIp(),
 	]);
 	return true;
 }
@@ -224,7 +224,7 @@ function updateRegisterDeviceActivity() {
 	if ($lastActivity === false || $lastActivity < $now - 24 * 3600) {
 		$registeredDevices[$registerDeviceKey] = array(
 			'datetime' => date('Y-m-d H:i:s', $now),
-			'ip' => getClientIp(),
+			'ip' => network::getClientIp(),
 			'session_id' => session_id(),
 		);
 		setRegisterDeviceCookie($_COOKIE['registerDevice']);
@@ -236,7 +236,7 @@ function updateRegisterDeviceActivity() {
 function logout() {
 	log::audit('User logout', [
 		'login' => $_SESSION['user']->getLogin(),
-		'ip' => getClientIp(),
+		'ip' => network::getClientIp(),
 	]);
 	@session_start();
 	deleteRegisterDeviceCookie();

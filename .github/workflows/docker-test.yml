@@ -15,7 +15,6 @@ on:
       - 'install/install.sh'
       - 'install/install.php'
       - 'install/apache_default'
-      - 'install/apache_remoteip'
       - 'install/apache_security'
       - 'install/bashrc'
       - 'install/OS_specific/Docker/**'

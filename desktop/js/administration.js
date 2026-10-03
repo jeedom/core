@@ -393,8 +393,7 @@ if (!jeeFrontEnd.administration) {
         },
         success: function(data) {
           document.getElementById('config').setJeeValues(data, '.configKey')
-          //document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.triggerEvent('change')
-          //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
+          jeeP.updateTrustedProxies()
           jeeP.loadActionOnMessage()
 
           if (!jeedom.theme['interface::background::dashboard'].includes('/data/backgrounds/config_dashboard')) document.querySelector('a.bt_removeBackgroundImage[data-page="dashboard"]').addClass('disabled')
@@ -406,11 +405,27 @@ if (!jeeFrontEnd.administration) {
         }
       })
     },
+    updateTrustedProxies: function() {
+      const input = document.getElementById('trustedProxies')
+      const noTrustedProxy = document.getElementById('trustedProxiesNone')
+      if (!input || !noTrustedProxy) return
+      if (input.value.trim().toLowerCase() == 'none') {
+        noTrustedProxy.checked = true
+      }
+      if (noTrustedProxy.checked) {
+        input.value = ''
+        input.setAttribute('disabled', true)
+      } else {
+        input.removeAttribute('disabled')
+      }
+    },
     saveConfig: function() {
       jeedomUtils.hideAlert()
       jeeP.saveConvertColor()
       jeeP.saveObjectSummary()
-      var config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
+      jeeP.updateTrustedProxies()
+      const config = document.querySelectorAll('#config').getJeeValues('.configKey')[0]
+      config['security::trustedProxies'] = document.getElementById('trustedProxiesNone').checked ? 'none' : document.getElementById('trustedProxies').value
       document.querySelectorAll('.bt_addActionOnMessage').forEach(_bt => {
         let channel = _bt.getAttribute('data-channel')
         config['actionOnMessage' + channel] = JSON.stringify(document.querySelectorAll('#div_actionOnMessage' + channel + ' .actionOnMessage').getJeeValues('.expressionAttr'))
@@ -455,6 +470,7 @@ if (!jeeFrontEnd.administration) {
                 window.location.reload(true)
               } else {
                 document.getElementById('config').setJeeValues(data, '.configKey')
+                jeeP.updateTrustedProxies()
                 jeeP.loadActionOnMessage()
                 jeeFrontEnd.modifyWithoutSave = false
                 setTimeout(function() {
@@ -1499,14 +1515,19 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
+  if (_target = event.target.closest('#trustedProxiesNone')) {
+    jeeP.updateTrustedProxies()
+    jeeFrontEnd.modifyWithoutSave = true
+    return
+  }
   if (_target = event.target.closest('.configKey')) {
     if (_target.isVisible()) jeeFrontEnd.modifyWithoutSave = true
     return
   }
 })
 document.getElementById('div_pageContainer').addEventListener('mousedown', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.ispin-wrapper')) {
     jeeFrontEnd.modifyWithoutSave = true
     return
