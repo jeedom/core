@@ -424,6 +424,8 @@
         "Aucun": "None",
         "Equipement": "Equipment",
         "Erreur lors de la migration d\\'équipement": "Error while migrating equipment",
+        "L'équipement %s %s a moins de %d%% de batterie (niveau danger avec %d%% de batterie)": "The %s %s device has less than %d%% battery remaining (critical level at %d%% battery)",
+        "L'équipement %s %s a moins de %d%% de batterie (niveau warning avec %d%% de batterie)": "The %s %s device has less than %d%% battery remaining (warning level at %d%% battery)",
         "L\\'équipement cible n\\'existe pas": "Target equipment does not exist",
         "L\\'équipement n\\'a pas pu être trouvé :": "The equipment could not be found:",
         "L\\'équipement source n\\'existe pas": "Source equipment does not exist",

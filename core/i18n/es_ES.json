@@ -424,6 +424,8 @@
         "Aucun": "Ninguno",
         "Equipement": "Dispositivos",
         "Erreur lors de la migration d\\'équipement": "Error al migrar equipo",
+        "L'équipement %s %s a moins de %d%% de batterie (niveau danger avec %d%% de batterie)": "El dispositivo %s %s tiene menos del %d%% de batería (nivel de peligro con %d%% de batería)",
+        "L'équipement %s %s a moins de %d%% de batterie (niveau warning avec %d%% de batterie)": "El dispositivo %s %s tiene menos del %d%% de batería (nivel de aviso con %d%% de batería)",
         "L\\'équipement cible n\\'existe pas": "El dispositivo de destino no existe",
         "L\\'équipement n\\'a pas pu être trouvé :": "No se pudo encontrar el equipo:",
         "L\\'équipement source n\\'existe pas": "El equipo fuente no existe",
