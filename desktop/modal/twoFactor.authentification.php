@@ -20,7 +20,7 @@ use PragmaRX\Google2FAQRCode\Google2FA;
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$google2fa = new Google2FA();
+$google2fa = new Google2FA(null, new \BaconQrCode\Renderer\Image\SvgImageBackEnd());
 @session_start();
 $_SESSION['user']->refresh();
 if ($_SESSION['user']->getOptions('twoFactorAuthentificationSecret') == '' || $_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 0) {
@@ -33,8 +33,10 @@ $google2fa_url = $google2fa->getQRCodeInline(
   $_SESSION['user']->getLogin(),
   $_SESSION['user']->getOptions('twoFactorAuthentificationSecret')
 );
-//Without the imagick extension, getQRCodeInline() returns raw SVG markup instead of a data URL
 if (strpos($google2fa_url, 'data:') !== 0) {
+  // TODO: remove this fallback once we require PHP 8.2 and google2fa v4.x
+  // on PHP7.4 with google2fa v3.x, getQRCodeInline() returns raw SVG markup instead of a data URL
+  // this is fix with google2fa v4.x, which returns a proper data URL for the QR code but it requires PHP 8.1 or higher
   $google2fa_url = 'data:image/svg+xml;base64,' . base64_encode($google2fa_url);
 }
 ?>

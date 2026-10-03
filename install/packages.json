@@ -91,11 +91,6 @@
         "/php(.*?)-mbstring/"
       ]
     },
-    "php-imagick": {
-      "alternative": [
-        "/php(.*?)-imagick/"
-      ]
-    },
     "php-ldap": {
       "alternative": [
         "/php(.*?)-ldap/"
