@@ -131,7 +131,7 @@ class network {
 		if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false) {
 			return $ip;
 		}
-		$message = sprintf(__('La configuration de vos proxys de confiance semble incorrecte: requête contenant des headers X-Forwarded-For et/ou X-Real-IP reçue depuis une IP privée (%s).', __FILE__), $ip);
+		$message = sprintf(__('La configuration de vos proxys de confiance semble incorrecte: requête contenant des headers X-Forwarded-For et/ou X-Real-IP reçue depuis une IP qui n\'est pas un proxy de confiance (%s).', __FILE__), $ip);
 		$action = '<a href="index.php?v=d&p=administration#securitytab">' . __('Configuration système > Sécurité', __FILE__) . '</a>';
 		log::add('network', 'warning', $message);
 		message::add('core', $message, $action);
@@ -171,6 +171,10 @@ class network {
 			$forwardedIp = self::extractValidIp($value);
 			if ($forwardedIp === '') {
 				log::add('network', 'warning', 'Invalid IP found in X-Forwarded-For header: ' . $value);
+				if (!self::isTrustedProxy($remoteIp)) {
+					// return remoteip if public and not a trusted proxy allow to potentially ban it
+					return self::returnIfPublicIp($remoteIp);
+				}
 				return '';
 			}
 			$forwardedIps[] = $forwardedIp;
@@ -206,6 +210,10 @@ class network {
 				$headerIp = self::extractValidIp($_SERVER[$source]);
 				if ($headerIp === '') {
 					log::add('network', 'warning', "Invalid IP found in {$source} header: {$_SERVER[$source]}");
+					if (!self::isTrustedProxy($remoteIp)) {
+						// return remoteip if public and not a trusted proxy allow to potentially ban it
+						return self::returnIfPublicIp($remoteIp);
+					}
 					return '';
 				}
 				if ($headerIp === $remoteIp) {
