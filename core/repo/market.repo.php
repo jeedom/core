@@ -235,7 +235,7 @@ class repo_market {
 		$request_http->setCURLOPT(array(
 			CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
-		$xml = simplexml_load_string($request_http->exec());
+		$xml = simplexml_load_string($request_http->exec(10));
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$found = false;
@@ -258,7 +258,7 @@ class repo_market {
 			$request_http->setCURLOPT(array(
 				CURLOPT_CUSTOMREQUEST => "MKCOL"
 			));
-			$request_http->exec();
+			$request_http->exec(10);
 		}
 	}
 
@@ -308,7 +308,7 @@ class repo_market {
 		$request_http->setCURLOPT(array(
 			CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
-		$xml = simplexml_load_string($request_http->exec());
+		$xml = simplexml_load_string($request_http->exec(10));
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$total_size = 0;
@@ -345,7 +345,7 @@ class repo_market {
 			$request_http->setCURLOPT(array(
 				CURLOPT_CUSTOMREQUEST => "DELETE"
 			));
-			$request_http->exec();
+			$request_http->exec(10);
 			$total_size -= $file['size'];
 			$nb++;
 			if ($nb > 100) {
@@ -363,7 +363,7 @@ class repo_market {
 		$request_http->setCURLOPT(array(
 			CURLOPT_CUSTOMREQUEST => "PROPFIND"
 		));
-		$xml = simplexml_load_string($request_http->exec());
+		$xml = simplexml_load_string($request_http->exec(10));
 		$ns = $xml->getNamespaces(true);
 		$child = $xml->children($ns['D']);
 		$files = array();
