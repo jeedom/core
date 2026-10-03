@@ -1081,7 +1081,7 @@ function netMatch(string $network, string $ip): bool {
 		if ($from === false || $to === false || $ipLong === false) {
 			return false;
 		}
-		return ($ip >= $from && $ip <= $to);
+		return ($ipLong >= $from && $ipLong <= $to);
 	}
 }
 
