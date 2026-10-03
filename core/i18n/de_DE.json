@@ -424,6 +424,8 @@
         "Aucun": "Nein",
         "Equipement": "Gerät",
         "Erreur lors de la migration d\\'équipement": "Fehler beim Migrieren von Geräten",
+        "L'équipement %s %s a moins de %d%% de batterie (niveau danger avec %d%% de batterie)": "Das Gerät %s %s hat weniger als %d%% Batterie (Gefahrenstufe bei %d%% Batterie)",
+        "L'équipement %s %s a moins de %d%% de batterie (niveau warning avec %d%% de batterie)": "Das Gerät %s %s hat weniger als %d%% Batterie (Warnstufe bei %d%% Batterie)",
         "L\\'équipement cible n\\'existe pas": "Das Zielgerät existiert nicht",
         "L\\'équipement n\\'a pas pu être trouvé :": "Die Ausrüstung konnte nicht gefunden werden:",
         "L\\'équipement source n\\'existe pas": "Quellgeräte sind nicht vorhanden",
