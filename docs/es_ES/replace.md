@@ -4,7 +4,7 @@
 
 ![1](../images/replace1.png)
 
-Jeedom ofrece, desde la versión 4.3.2, una nueva herramienta <kbd>Sustituir</kbd> que, en caso de que surja algún problema o sea necesario sustituir un equipo físico o virtual (un sensor de temperatura, de presencia, un control de volumen, un nivel de agua, etc.), se encargará de transferir todos los comandos, la información, los parámetros avanzados y el historial de dicho equipo a un nuevo equipo.<br>
+Jeedom ofrece, desde la versión 4.3.2, una nueva herramienta <kbd>Remplacer</kbd> que, en caso de que surja algún problema o sea necesario sustituir un equipo físico o virtual (un sensor de temperatura, de presencia, un control de volumen, un nivel de agua, etc.), se encargará de transferir todos los comandos, la información, los parámetros avanzados y el historial de dicho equipo a un nuevo equipo.<br>
 También se encargará de sustituir el ID del equipo antiguo por el nuevo en todos los escenarios, diseños, entornos virtuales, etc., en los que se hiciera referencia a él.
 
 De hecho, si se elimina el equipo antiguo, la referencia a su número de identificación original se borrará definitivamente. En ese caso, habrá que volver a crear todos los controles e integrarlos de nuevo en todos los diseños, widgets, etc., para el nuevo módulo, incluso si este es exactamente del mismo tipo que el original, o incluso el mismo pero con un número de identificación diferente.<br>
@@ -25,7 +25,7 @@ Y, en el momento en que este equipo se elimine definitivamente, se sustituirá e
 
 ## Operaciones que hay que realizar antes de utilizar esta herramienta
 
-Aunque la herramienta <kbd>Sustituir</kbd> te propondrá realizar una copia de seguridad preventiva; se recomienda encarecidamente hacerla antes de iniciar este procedimiento de sustitución.<br>
+Aunque la herramienta <kbd>Remplacer</kbd> te propondrá realizar una copia de seguridad preventiva; se recomienda encarecidamente hacerla antes de iniciar este procedimiento de sustitución.<br>
 Ten en cuenta que esta herramienta es realmente potente, ya que va a realizar las sustituciones a todos los niveles, incluso en aquellos en los que no habías pensado o que simplemente se te habían olvidado. Además, no existe la función *undo* para anular o dar marcha atrás.<br><br>
 
 El siguiente paso será cambiar el nombre del equipo antiguo. Para ello, basta con cambiarle el nombre, añadiéndole, por ejemplo, el sufijo «**_old**».
@@ -48,9 +48,9 @@ De este modo, se obtienen dos equipos:
 ![5](../images/replace5.png)
 <br><br>
 
-## El uso de la herramienta <kbd>Sustituir</kbd>
+## El uso de la herramienta <kbd>Remplacer</kbd>
 
-Abrir la herramienta <kbd>Sustituir</kbd>, en el menú <kbd>Herramientas</kbd>.
+Abrir la herramienta <kbd>Remplacer</kbd>, en el menú <kbd>Outils</kbd>.
 
 ![6](../images/replace6.png)
 <br>
@@ -69,7 +69,7 @@ En las opciones, selecciona el modo deseado (*Reemplazar* o *Copiar*) en el men�
 ![8](../images/replace8.png)
 <br>
 
-A continuación, haz clic en <kbd>Filtrar</kbd>
+A continuación, haz clic en <kbd>Filtrer</kbd>
 
 ![9](../images/replace9.png)
 <br>
@@ -107,7 +107,7 @@ De lo contrario, el campo quedará vacío y habrá que seleccionar manualmente e
 ![15](../images/replace15.png)
 <br>
 
-Haz clic en <kbd>Sustituir</kbd>,
+Haz clic en <kbd>Remplacer</kbd>,
 
 ![16](../images/replace16.png)
 <br>
@@ -129,7 +129,7 @@ Asegúrate de que el nuevo equipo se haya tenido en cuenta en los diseños, esce
 <br>
 
 Para comprobar que no se ha producido ningún problema adicional tras esta sustitución, se puede utilizar la función de detección de comandos huérfanos.
-Ir a <kbd>Análisis</kbd>, <kbd>Equipos</kbd>, haz clic en la pestaña *Comandos huérfanos*.
+Ir a <kbd>Analyse</kbd>, <kbd>Equipements</kbd>, haz clic en la pestaña *Comandos huérfanos*.
 
 ![19](../images/replace19.png)
 <br>
@@ -147,7 +147,7 @@ De lo contrario, habrá que realizar un análisis línea por línea de cada prob
 ![22](../images/replace22.png)
 <br>
 
-Pero si la herramienta no tiene en cuenta los comandos huérfanos <kbd>Sustituir</kbd>, aun así es posible realizar sustituciones con esta función <kbd>Este comando sustituye al ID</kbd> que se encuentra aquí, en la ventana de configuración del mando:
+Pero si la herramienta no tiene en cuenta los comandos huérfanos <kbd>Remplacer</kbd>, aun así es posible realizar sustituciones con esta función <kbd>Cette commande remplace l’ID</kbd> que se encuentra aquí, en la ventana de configuración del mando:
 
 ![23](../images/replace23.png)
 <br><br>
@@ -166,6 +166,6 @@ En este caso, este dispositivo ya solo se identifica por el objeto al que perten
 Esta herramienta es práctica, pero también resulta peligrosa si se utiliza incorrectamente debido a sus implicaciones a varios niveles.<br>
 Además, ten muy en cuenta estos aspectos fundamentales:
 
-- Realiza siempre una copia de seguridad por precaución, incluso antes de utilizar la herramienta. <kbd>Sustituir</kbd>,
+- Realiza siempre una copia de seguridad por precaución, incluso antes de utilizar la herramienta. <kbd>Remplacer</kbd>,
 - Una vez ejecutado este comando, no es posible cancelarlo ni revertirlo,
 - Y, por último, es muy recomendable familiarizarse, al menos en lo básico, con el uso de esta herramienta.

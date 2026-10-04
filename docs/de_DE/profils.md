@@ -27,11 +27,11 @@ Legt bestimmte Verhaltensweisen der Benutzeroberfläche fest
 
 ## Registerkarte „Sicherheit“
 
-- **Zwei-Faktor-Authentifizierung**: Hiermit lässt sich die Zwei-Faktor-Authentifizierung einrichten (zur Erinnerung: Dabei handelt es sich um einen Code, der sich alle X Sekunden ändert und in einer mobilen App wie *Google Authenticator* angezeigt wird). Bitte beachten Sie, dass die Zwei-Faktor-Authentifizierung nur bei externen Verbindungen erforderlich ist. Bei lokalen Verbindungen wird der Code daher nicht abgefragt.
+- **Zwei-Faktor-Authentifizierung**: Ermöglicht die Einrichtung der Zwei-Faktor-Authentifizierung. Ein temporärer Bestätigungscode wird von einer Authentifizierungs-App auf Ihrem Mobilgerät generiert. Die Zwei-Faktor-Authentifizierung wird nur bei externen Verbindungen verlangt; für lokale Verbindungen ist sie nicht erforderlich.
 
-**Wichtig**: Wenn bei der Einrichtung der Zwei-Faktor-Authentifizierung ein Fehler auftritt, überprüfen Sie bitte, ob Jeedom (siehe Seite „Status“) und Ihr Smartphone auf die gleiche Uhrzeit eingestellt sind (schon eine Abweichung von einer Minute reicht aus, damit es nicht funktioniert).
+**Wichtig:** Sollte bei der Konfiguration ein Fehler auftreten, überprüfen Sie bitte, ob die Uhrzeit von Jeedom und die Ihres Smartphones synchronisiert sind. Eine Abweichung von nur einer Minute kann dazu führen, dass der Code nicht bestätigt wird.
 
-- **Passwort**: Hier können Sie Ihr Passwort ändern (vergessen Sie nicht, es unten noch einmal einzugeben).
+- **Passwort**: Hier können Sie Ihr Passwort ändern. Geben Sie es bitte auch in das Bestätigungsfeld ein.
 
 - **Benutzer-Hash**: Ihr Benutzer-API-Schlüssel.
 

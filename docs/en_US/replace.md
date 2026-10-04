@@ -4,7 +4,7 @@
 
 ![1](../images/replace1.png)
 
-Starting with version 4.3.2, Jeedom offers a new tool <kbd>Replace</kbd> which, in the event of a problem or the need to replace physical or virtual equipment (such as a temperature sensor, a motion sensor, a volume control, a water level sensor, etc.), will ensure that all commands, information, advanced settings, and history for that equipment are transferred to the new equipment.<br>
+Starting with version 4.3.2, Jeedom offers a new tool <kbd>Remplacer</kbd> which, in the event of a problem or the need to replace physical or virtual equipment (such as a temperature sensor, a motion sensor, a volume control, a water level sensor, etc.), will ensure that all commands, information, advanced settings, and history for that equipment are transferred to the new equipment.<br>
 It will also replace the ID of the old device with the new one in all scenarios, designs, virtual environments, etc., that referenced it.
 
 In fact, if the old device is removed, the reference to its original ID number will be permanently deleted. You will then need to recreate all the commands and reintegrate them into all designs, widgets, etc., for the new module—even if it is exactly the same type as the original, or even the same module but with a different ID number.<br>
@@ -25,7 +25,7 @@ And once this equipment is permanently decommissioned, it will be replaced in al
 
 ## Steps to Take Before Using This Tool
 
-Even though the tool <kbd>Replace</kbd> will prompt you to create a backup as a precaution beforehand; it is strongly recommended that you do so before beginning this replacement procedure.<br>
+Even though the tool <kbd>Remplacer</kbd> will prompt you to create a backup as a precaution beforehand; it is strongly recommended that you do so before beginning this replacement procedure.<br>
 Keep in mind that this tool is indeed true in terms of its power, as it will make replacements at every level—including those you hadn’t thought of or simply forgot about. Furthermore, there is no *undo* function to cancel or reverse changes.<br><br>
 
 The next step will be to rename the old equipment. To do this, simply change its name by adding the suffix '**_old**', for example.
@@ -48,9 +48,9 @@ This gives us two devices:
 ![5](../images/replace5.png)
 <br><br>
 
-## Using the tool <kbd>Replace</kbd>
+## Using the tool <kbd>Remplacer</kbd>
 
-Open the tool <kbd>Replace</kbd>, in the menu <kbd>Tools</kbd>.
+Open the tool <kbd>Remplacer</kbd>, in the menu <kbd>Outils</kbd>.
 
 ![6](../images/replace6.png)
 <br>
@@ -69,7 +69,7 @@ In the options, select the desired mode (*Replace* or *Copy*) from the drop-down
 ![8](../images/replace8.png)
 <br>
 
-Then click on <kbd>Filter</kbd>
+Then click on <kbd>Filtrer</kbd>
 
 ![9](../images/replace9.png)
 <br>
@@ -107,7 +107,7 @@ Otherwise, the field will be empty, and you will need to manually select the cor
 ![15](../images/replace15.png)
 <br>
 
-Click on <kbd>Replace</kbd>,
+Click on <kbd>Remplacer</kbd>,
 
 ![16](../images/replace16.png)
 <br>
@@ -129,7 +129,7 @@ Make sure that the new equipment has been properly incorporated into the designs
 <br>
 
 To ensure that no additional problems have arisen as a result of this replacement, you can use the orphan command detection feature.
-Go to <kbd>Analysis</kbd>, <kbd>Equipment</kbd>, click the *Orphaned Commands* tab.
+Go to <kbd>Analyse</kbd>, <kbd>Equipements</kbd>, click the *Orphaned Commands* tab.
 
 ![19](../images/replace19.png)
 <br>
@@ -147,7 +147,7 @@ Otherwise, you'll need to analyze each line individually for every identified is
 ![22](../images/replace22.png)
 <br>
 
-But if orphaned commands are not processed by the tool <kbd>Replace</kbd>, it is still possible to perform replacements using this feature <kbd>This command replaces the ID</kbd> which can be found here in the command configuration window:
+But if orphaned commands are not processed by the tool <kbd>Remplacer</kbd>, it is still possible to perform replacements using this feature <kbd>Cette commande remplace l’ID</kbd> which can be found here in the command configuration window:
 
 ![23](../images/replace23.png)
 <br><br>
@@ -166,6 +166,6 @@ Here, this device is now identified only by the object it belongs to and its own
 This tool is convenient, but it is just as dangerous if misused due to its multi-layered implications.<br>
 Also, keep these fundamentals in mind:
 
-- Always make a backup as a precaution, even before using the tool <kbd>Replace</kbd>,
+- Always make a backup as a precaution, even before using the tool <kbd>Remplacer</kbd>,
 - Once this command has been executed, it cannot be canceled or undone,
 - And finally, it is strongly recommended that you at least familiarize yourself with how to use this tool.
