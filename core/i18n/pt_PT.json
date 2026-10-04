@@ -3885,9 +3885,8 @@
         "OK": "Ok",
         "Ouvrez et configurez l'application d'authentification en scannant le code QR ci-dessous.": "Abra e configure a aplicação de autenticação ao digitalizar o código QR abaixo.",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Digite o código fornecido para verificação e ativação da autenticação dupla",
-        "Veuillez installer une application d'authentification sur votre appareil mobile. Si vous n'en avez pas encore installé une,": "Por favor, instale uma aplicação de autenticação no seu dispositivo móvel. Se ainda não tiver instalado nenhuma,",
-        "Vous pouvez aussi entrer manuellement le code suivant :": "Você também pode inserir manualmente o seguinte código:",
-        "prend en charge les applications d'authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "suporta as seguintes aplicações de autenticação: Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone)."
+        "Veuillez installer sur votre appareil mobile une application d'authentification capable de générer des codes de vérification à usage unique.": "Por favor, instale no seu dispositivo móvel uma aplicação de autenticação capaz de gerar códigos de verificação de utilização única.",
+        "Vous pouvez aussi entrer manuellement le code suivant :": "Você também pode inserir manualmente o seguinte código:"
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Acesso não autorizado",
