@@ -16,10 +16,11 @@
 */
 
 use PragmaRX\Google2FAQRCode\Google2FA;
+
 if (!isConnect()) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$google2fa = new Google2FA();
+$google2fa = new Google2FA(null, new \BaconQrCode\Renderer\Image\SvgImageBackEnd());
 @session_start();
 $_SESSION['user']->refresh();
 if ($_SESSION['user']->getOptions('twoFactorAuthentificationSecret') == '' || $_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 0) {
@@ -28,49 +29,61 @@ if ($_SESSION['user']->getOptions('twoFactorAuthentificationSecret') == '' || $_
 }
 @session_write_close();
 $google2fa_url = $google2fa->getQRCodeInline(
-  'Jeedom '.config::byKey('name'),
+  'Jeedom ' . config::byKey('name'),
   $_SESSION['user']->getLogin(),
   $_SESSION['user']->getOptions('twoFactorAuthentificationSecret')
 );
+if (strpos($google2fa_url, 'data:') !== 0) {
+  // TODO: remove this fallback once we require PHP 8.2 and google2fa v4.x
+  // on PHP7.4 with google2fa v3.x, getQRCodeInline() returns raw SVG markup instead of a data URL
+  // this is fix with google2fa v4.x, which returns a proper data URL for the QR code but it requires PHP 8.1 or higher
+  $google2fa_url = 'data:image/svg+xml;base64,' . base64_encode($google2fa_url);
+}
 ?>
 
 <div id="md_twoFactAuth" data-modalType="md_twoFactAuth">
   <div class="panel panel-warning">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 1 : Installation sur le téléphone}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 1 : Installation sur le téléphone}}</h3>
+    </div>
     <div class="panel-body">
-      {{La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte}} <?php echo config::byKey('product_name'); ?>{{. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à}} <?php echo config::byKey('product_name'); ?>{{. Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.}}
-      <hr/>
-      {{Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,}} <?php echo config::byKey('product_name'); ?> {{prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).}}
-      <hr/>
+      {{La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte}} <?php echo config::byKey('product_name'); ?>{{. Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d'un code de vérification unique pour vous connecter à}} <?php echo config::byKey('product_name'); ?>{{. Veuillez noter qu'un appareil mobile sera nécessaire pour générer des codes de vérification.}}
+      <hr />
+      {{Veuillez installer une application d'authentification sur votre appareil mobile. Si vous n'en avez pas encore installé une,}} <?php echo config::byKey('product_name'); ?> {{prend en charge les applications d'authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).}}
+      <hr />
       {{A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.}}
     </div>
 
   </div>
 
   <div class="panel panel-primary">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 2 : Configuration}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 2 : Configuration}}</h3>
+    </div>
     <div class="panel-body">
       <div class="center">
-        {{Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.}}<br/>
-        <img src="<?php echo $google2fa_url; ?>" /><br/>
+        {{Ouvrez et configurez l'application d'authentification en scannant le code QR ci-dessous.}}<br />
+        <img src="<?php echo htmlspecialchars($google2fa_url); ?>" /><br />
         {{Vous pouvez aussi entrer manuellement le code suivant :}} <strong><?php echo $_SESSION['user']->getOptions('twoFactorAuthentificationSecret'); ?></strong>
       </div>
     </div>
   </div>
 
   <div class="panel panel-success">
-    <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : vérification}}</h3></div>
+    <div class="panel-heading">
+      <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Etape 3 : vérification}}</h3>
+    </div>
     <div class="panel-body">
       <form class="form-horizontal">
         <fieldset>
-          <center>{{Veuillez entrer le code fourni pour vérification et activation de la double authentification}}</center><br/>
+          <center>{{Veuillez entrer le code fourni pour vérification et activation de la double authentification}}</center><br />
           <div class="form-group">
             <label class="col-xs-4 control-label">{{Code de test}}</label>
             <div class="col-xs-3">
               <input class="form-control" id="in_testCode" />
             </div>
             <div class="col-xs-2">
-              <a class="btn btn-success" id="bt_validateTestCode" >{{OK}}</a>
+              <a class="btn btn-success" id="bt_validateTestCode">{{OK}}</a>
             </div>
           </div>
         </fieldset>
@@ -80,20 +93,29 @@ $google2fa_url = $google2fa->getQRCodeInline(
 </div>
 
 <script>
-document.getElementById('bt_validateTestCode').addEventListener('click', function() {
-  jeedom.user.validateTwoFactorCode({
-    code: document.getElementById('in_testCode').value,
-    enableTwoFactorAuthentification : 1,
-    error: function(error) {
-      jeedomUtils.showAlert({message: error.message, level: 'danger'})
-    },
-    success: function(data) {
-      if (data) {
-        jeedomUtils.showAlert({message: '{{Configuration réussie}}', level: 'success'})
-      } else {
-        jeedomUtils.showAlert({message: '{{Code invalide}}', level: 'danger'})
+  document.getElementById('bt_validateTestCode').addEventListener('click', function() {
+    jeedom.user.validateTwoFactorCode({
+      code: document.getElementById('in_testCode').value,
+      enableTwoFactorAuthentification: 1,
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        if (data) {
+          jeedomUtils.showAlert({
+            message: '{{Configuration réussie}}',
+            level: 'success'
+          })
+        } else {
+          jeedomUtils.showAlert({
+            message: '{{Code invalide}}',
+            level: 'danger'
+          })
+        }
       }
-    }
+    })
   })
-})
 </script>
