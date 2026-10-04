@@ -32,6 +32,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-04 07:28:49 | Fix 2FA QR code display when imagick is not installed | [#3533](https://github.com/jeedom/core/pull/3533) |
 | 2026-10-01 10:07:36 | Make install script work without reboot and clean up its messages | [#3544](https://github.com/jeedom/core/pull/3544) |
 | 2026-10-01 10:06:54 | List every icon shipped with Font Awesome 5.15.4 in the icon selector | [#3545](https://github.com/jeedom/core/pull/3545) |
 | 2026-09-29 09:30:35 | fix: prevent deletion of today's backup when exceeding size limit | [#3542](https://github.com/jeedom/core/pull/3542) |
