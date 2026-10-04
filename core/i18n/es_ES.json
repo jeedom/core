@@ -3871,8 +3871,8 @@
         "L\\'objet n\\'existe pas :": "El objeto no existe:"
     },
     "desktop\/modal\/twoFactor.authentification.php": {
-        ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d’un code de vérification unique pour vous connecter à": "Una vez que se haya configurado la verificación en dos pasos, se requerirá su contraseña además de un código de verificación único para conectarse",
-        ". Veuillez noter qu’un appareil mobile sera nécessaire pour générer des codes de vérification.": "Tenga en cuenta que se requerirá un dispositivo móvil para generar códigos de verificación",
+        ". Une fois la vérification en 2 étapes configurée, votre mot de passe sera nécessaire en plus d'un code de vérification unique pour vous connecter à": ". Una vez configurada la verificación en dos pasos, necesitarás tu contraseña y un código de verificación único para iniciar sesión en",
+        ". Veuillez noter qu'un appareil mobile sera nécessaire pour générer des codes de vérification.": ". Ten en cuenta que necesitarás un dispositivo móvil para generar los códigos de verificación.",
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
         "A noter que la double authentification n'est nécessaire que pour les connexions externes, elle ne sera donc pas active sur une connexion locale.": "Tenga en cuenta que la autenticación de dos factores solo es necesaria para conexiones externas, por lo que no estará activa en una conexión local",
         "Code de test": "Código de prueba",
@@ -3883,11 +3883,11 @@
         "Etape 3 : vérification": "Paso 3: verificación",
         "La vérification en 2 étapes fournit une couche supplémentaire de protection pour votre compte": "La verificación en dos pasos proporciona una capa adicional de protección para su cuenta",
         "OK": "Bueno",
-        "Ouvrez et configurez l’application d’authentification en scannant le code QR ci-dessous.": "Abra y configure la aplicación de autenticación escaneando el código QR a continuación",
+        "Ouvrez et configurez l'application d'authentification en scannant le code QR ci-dessous.": "Abre y configura la aplicación de autenticación escaneando el código QR que aparece a continuación.",
         "Veuillez entrer le code fourni pour vérification et activation de la double authentification": "Ingrese el código provisto para la verificación y activación de la autenticación doble",
-        "Veuillez installer une application d’authentification sur votre appareil mobile. Si vous n’en avez pas encore installé une,": "Instale una aplicación de autenticación en su dispositivo móvil. Si aún no ha instalado uno,",
+        "Veuillez installer une application d'authentification sur votre appareil mobile. Si vous n'en avez pas encore installé une,": "Instala una aplicación de autenticación en tu dispositivo móvil. Si aún no tienes ninguna instalada,",
         "Vous pouvez aussi entrer manuellement le code suivant :": "También puede ingresar manualmente el siguiente código:",
-        "prend en charge les applications d’authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "admite las siguientes aplicaciones de autenticación: Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone)"
+        "prend en charge les applications d'authentification suivantes : Google Authenticator (Android, iOS, BlackBerry), Microsoft Authenticator (Android, iOS, Windows Phone).": "es compatible con las siguientes aplicaciones de autenticación: Google Authenticator (Android, iOS, BlackBerry) y Microsoft Authenticator (Android, iOS, Windows Phone)."
     },
     "desktop\/modal\/update.add.php": {
         "401 - Accès non autorisé": "401 - Acceso no autorizado",
