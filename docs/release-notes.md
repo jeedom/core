@@ -99,6 +99,7 @@
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-04 09:16:21 | Update instructions for clarity and accuracy | [#3551](https://github.com/jeedom/core/pull/3551) |
 | 2026-09-25 16:15:34 | Harmonize the CI status badge in the READMEs | [#3541](https://github.com/jeedom/core/pull/3541) |
 | 2026-09-14 19:57:17 | Fix broken lightbox image paths in doc pages | [#3523](https://github.com/jeedom/core/pull/3523) |
 | 2026-09-14 18:57:16 | Remove obsolete and mismatched documentation files | [#3522](https://github.com/jeedom/core/pull/3522) |
