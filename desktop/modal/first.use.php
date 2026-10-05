@@ -16,7 +16,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 if (!isConnect()) {
-	throw new Exception('{{401 - Accès non autorisé}}');
+	throw new Exception('401 - {{Accès non autorisé}}');
 }
 
 if (plugin::isInstalled('jeeasy')) {
@@ -32,7 +32,7 @@ if (plugin::isInstalled('jeeasy')) {
 		if (!$jeeasy->isActive()) {
 			$jeeasy->setIsEnable(1);
 		}
-		echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1')</script>";
+		echo "<script>jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1&step=welcome')</script>";
 		die();
 	} catch (\Throwable $e) {
 		log::add('jeeasy', 'error', log::exception($e));
@@ -152,7 +152,7 @@ if (config::byKey('jeedom::firstUse') == 1) {
 							})
 						},
 						success: function() {
-							jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1')
+							jeedomUtils.loadPage('index.php?v=d&m=jeeasy&p=wizard&noFirstUse=1&step=welcome')
 						}
 					})
 				}
