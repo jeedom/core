@@ -66,14 +66,6 @@ On each line, you can use the following functions:
 >
 > When you start an update, a progress bar appears above the table. Avoid performing any other actions while the update is in progress.
 
-## OS/Package tab
-
-> **IMPORTANT**
->
-> This tab is intended for advanced users only—any action here could BRICK your Jeedom (with no option to contact support)
-
-This tab allows you to view available updates for the operating system (apt) and Python packages (pip2 and pip3), as well as update any packages that require updates.
-
 ## "Information" tab
 
 During or after an update, this tab allows you to view the update log in real time.
