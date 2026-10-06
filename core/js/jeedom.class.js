@@ -55,12 +55,12 @@ if (!isset(jeedom.cache.getConfiguration)) {
   jeedom.cache.getConfiguration = null
 }
 
-jeedom.changes = function() {
+jeedom.changes = function () {
   const paramsRequired = []
   const paramsSpecifics = {
     global: false,
     noDisplayError: true,
-    success: function(data) {
+    success: function (data) {
       if (jeedom.connect > 0) {
         jeedom.connect = 0
       }
@@ -102,7 +102,7 @@ jeedom.changes = function() {
       }
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
     },
-    error: function(_error) {
+    error: function (_error) {
       if (typeof (user_id) != "undefined" && jeedom.connect == 100) {
         if (_error.message !== 'Unknown error') {
           jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message)
@@ -128,7 +128,7 @@ jeedom.changes = function() {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.init = function() {
+jeedom.init = function () {
   jeedom.datetime = jeeFrontEnd.serverDatetime
   jeedom.display.version = document.body.dataset.uimode
 
@@ -192,24 +192,24 @@ jeedom.init = function() {
     ]
   })
 
-  document.body.addEventListener('cmd::update', function(_event) {
+  document.body.addEventListener('cmd::update', function (_event) {
     jeedom.cmd.refreshValue(_event.detail)
     jeedom.history.graphUpdate(_event.detail)
   })
 
-  document.body.addEventListener('eqLogic::update', function(_event) {
+  document.body.addEventListener('eqLogic::update', function (_event) {
     jeedom.eqLogic.refreshValue(_event.detail)
   })
 
-  document.body.addEventListener('jeeObject::summary::update', function(_event) {
+  document.body.addEventListener('jeeObject::summary::update', function (_event) {
     jeedom.object.summaryUpdate(_event.detail)
   })
 
-  document.body.addEventListener('scenario::update', function(_event) {
+  document.body.addEventListener('scenario::update', function (_event) {
     jeedom.scenario.refreshValue(_event.detail)
   })
 
-  document.body.addEventListener('ui::update', function(_event) {
+  document.body.addEventListener('ui::update', function (_event) {
     if (isset(_event.detail.page) && _event.detail.page != '') {
       if (jeedom.display.version == 'mobile') {
         if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
@@ -225,7 +225,7 @@ jeedom.init = function() {
     document.querySelectorAll(_event.detail.container).setJeeValues(_event.detail.data, _event.detail.type)
   })
 
-  document.body.addEventListener('jeedom::gotoplan', function(_event) {
+  document.body.addEventListener('jeedom::gotoplan', function (_event) {
     if (getUrlVars('p') == 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
       if (_event.detail != jeephp2js.planHeader_id) {
         jeephp2js.planHeader_id = _event.detail
@@ -234,7 +234,7 @@ jeedom.init = function() {
     }
   })
 
-  document.body.addEventListener('jeedom::alert', function(_event) {
+  document.body.addEventListener('jeedom::alert', function (_event) {
     if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
       if (isset(_event.detail.page) && _event.detail.page != '') {
         if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
@@ -261,27 +261,27 @@ jeedom.init = function() {
     }
   })
 
-  document.body.addEventListener('jeedom::alertPopup', function(_event) {
+  document.body.addEventListener('jeedom::alertPopup', function (_event) {
     alert(_event.detail)
   })
 
-  document.body.addEventListener('jeedom::coloredIcons', function(_event) {
+  document.body.addEventListener('jeedom::coloredIcons', function (_event) {
     document.body.setAttribute('data-coloredIcons', _event.detail)
   })
 
-  document.body.addEventListener('message::refreshMessageNumber', function() {
+  document.body.addEventListener('message::refreshMessageNumber', function () {
     jeedom.refreshMessageNumber()
   })
 
-  document.body.addEventListener('update::refreshUpdateNumber', function() {
+  document.body.addEventListener('update::refreshUpdateNumber', function () {
     jeedom.refreshUpdateNumber()
   })
 
-  document.body.addEventListener('notify', function(_event) {
+  document.body.addEventListener('notify', function (_event) {
     jeedom.notify(_event.detail.title, _event.detail.message, _event.detail.theme)
   })
 
-  document.body.addEventListener('checkThemechange', function(_event) {
+  document.body.addEventListener('checkThemechange', function (_event) {
     document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', 0)
 
     if (isset(_event.detail.theme_start_day_hour)) {
@@ -296,7 +296,7 @@ jeedom.init = function() {
     jeedomUtils.checkThemechange()
   })
 
-  document.body.addEventListener('changeTheme', function(_event) {
+  document.body.addEventListener('changeTheme', function (_event) {
     jeedomUtils.changeTheme(_event.detail)
   })
   if (typeof user_id !== 'undefined') {
@@ -304,7 +304,7 @@ jeedom.init = function() {
   }
 }
 
-jeedom.getPageType = function(_modal) {
+jeedom.getPageType = function (_modal) {
   if (isset(_modal) && _modal == true) {
     let modalType = undefined
     const modals = Array.prototype.slice.call(document.querySelectorAll('.jeeDialogMain')).filter(item => item.isVisible())
@@ -325,15 +325,15 @@ jeedom.getPageType = function(_modal) {
 }
 
 jeedom.MESSAGE_NUMBER
-jeedom.refreshMessageNumber = function() {
+jeedom.refreshMessageNumber = function () {
   jeedom.message.number({
-    error: function(error) {
+    error: function (error) {
       jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
-    success: function(_number) {
+    success: function (_number) {
       jeedom.MESSAGE_NUMBER = _number
       if (_number == 0 || _number == '0') {
         document.getElementById('span_nbMessage').unseen()
@@ -345,17 +345,17 @@ jeedom.refreshMessageNumber = function() {
 }
 
 jeedom.UPDATE_NUMBER
-jeedom.refreshUpdateNumber = function() {
+jeedom.refreshUpdateNumber = function () {
   if (jeedom.update == undefined) return //mobile
   if (document.getElementById('span_nbUpdate') === null) return // for a not admin profil
   jeedom.update.number({
-    error: function(error) {
+    error: function (error) {
       jeedomUtils.showAlert({
         message: error.message,
         level: 'danger'
       })
     },
-    success: function(_number) {
+    success: function (_number) {
       jeedom.UPDATE_NUMBER = _number
       if (_number == 0 || _number == '0') {
         document.getElementById('span_nbUpdate').unseen()
@@ -366,7 +366,7 @@ jeedom.refreshUpdateNumber = function() {
   })
 }
 
-jeedom.notify = function(_title, _text, _class_name) {
+jeedom.notify = function (_title, _text, _class_name) {
   if (_title == '' && _text == '') {
     return true
   }
@@ -374,7 +374,7 @@ jeedom.notify = function(_title, _text, _class_name) {
     const options = {
       title: _title,
       message: _text,
-      onclick: function() {
+      onclick: function () {
         jeeDialog.clearToasts()
         jeeDialog.dialog({
           id: 'jee_modal',
@@ -393,7 +393,7 @@ jeedom.notify = function(_title, _text, _class_name) {
   }
 }
 
-jeedom.getStringUsedBy = function(_params) {
+jeedom.getStringUsedBy = function (_params) {
   const paramsRequired = ['search']
   const paramsSpecifics = {}
   try {
@@ -412,7 +412,7 @@ jeedom.getStringUsedBy = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getIdUsedBy = function(_params) {
+jeedom.getIdUsedBy = function (_params) {
   const paramsRequired = ['search']
   const paramsSpecifics = {}
   try {
@@ -431,10 +431,10 @@ jeedom.getIdUsedBy = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getConfiguration = function(_params) {
+jeedom.getConfiguration = function (_params) {
   const paramsRequired = ['key']
   const paramsSpecifics = {
-    pre_success: function(data) {
+    pre_success: function (data) {
       jeedom.cache.getConfiguration = data.result
       const keys = _params.key.split(':')
       data.result = jeedom.cache.getConfiguration
@@ -473,7 +473,7 @@ jeedom.getConfiguration = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getInfoApplication = function(_params) {
+jeedom.getInfoApplication = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -491,7 +491,7 @@ jeedom.getInfoApplication = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.haltSystem = function(_params) {
+jeedom.haltSystem = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -509,7 +509,7 @@ jeedom.haltSystem = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.ssh = function(_params) {
+jeedom.ssh = function (_params) {
   if (isPlainObject(_params)) {
     command = _params.command
   } else {
@@ -535,7 +535,7 @@ jeedom.ssh = function(_params) {
   return 'Execute command : ' + command
 }
 
-jeedom.db = function(_params) {
+jeedom.db = function (_params) {
   if (isPlainObject(_params)) {
     command = _params.command
   } else {
@@ -561,7 +561,7 @@ jeedom.db = function(_params) {
   return 'Execute command : ' + command
 }
 
-jeedom.dbcorrectTable = function(_params) {
+jeedom.dbcorrectTable = function (_params) {
   const paramsRequired = ['table']
   const paramsSpecifics = {}
   try {
@@ -580,7 +580,7 @@ jeedom.dbcorrectTable = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.rebootSystem = function(_params) {
+jeedom.rebootSystem = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -598,7 +598,7 @@ jeedom.rebootSystem = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.systemCorrectPackage = function(_params) {
+jeedom.systemCorrectPackage = function (_params) {
   const paramsRequired = ['package']
   const paramsSpecifics = {}
   try {
@@ -617,7 +617,7 @@ jeedom.systemCorrectPackage = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.health = function(_params) {
+jeedom.health = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -635,7 +635,7 @@ jeedom.health = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.forceSyncHour = function(_params) {
+jeedom.forceSyncHour = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -653,7 +653,7 @@ jeedom.forceSyncHour = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getCronSelectModal = function(_options, _callback) {
+jeedom.getCronSelectModal = function (_options, _callback) {
   document.getElementById('mod_insertCronValue')?.remove()
   document.body.insertAdjacentHTML('beforeend', '<div id="mod_insertCronValue"></div>')
   jeeDialog.dialog({
@@ -668,7 +668,7 @@ jeedom.getCronSelectModal = function(_options, _callback) {
         label: '{{Valider}}',
         className: 'success',
         callback: {
-          click: function(event) {
+          click: function (event) {
             const args = {}
             args.cron = {}
             args.value = mod_insertCron.getValue()
@@ -683,7 +683,7 @@ jeedom.getCronSelectModal = function(_options, _callback) {
         label: '{{Annuler}}',
         className: 'warning',
         callback: {
-          click: function(event) {
+          click: function (event) {
             document.getElementById('mod_insertCronValue')._jeeDialog.destroy()
           }
         }
@@ -692,7 +692,7 @@ jeedom.getCronSelectModal = function(_options, _callback) {
   })
 }
 
-jeedom.getSelectActionModal = function(_options, _callback) {
+jeedom.getSelectActionModal = function (_options, _callback) {
   if (!isset(_options)) {
     _options = {}
   }
@@ -706,13 +706,13 @@ jeedom.getSelectActionModal = function(_options, _callback) {
     width: 800,
     top: '20vh',
     contentUrl: 'index.php?v=d&modal=action.insert',
-    callback: function() { mod_insertAction.setOptions(_options) },
+    callback: function () { mod_insertAction.setOptions(_options) },
     buttons: {
       confirm: {
         label: '{{Valider}}',
         className: 'success',
         callback: {
-          click: function(event) {
+          click: function (event) {
             const args = {}
             args.human = mod_insertAction.getValue()
             if (args.human.trim() != '' && 'function' === typeof (_callback)) {
@@ -726,7 +726,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
         label: '{{Annuler}}',
         className: 'warning',
         callback: {
-          click: function(event) {
+          click: function (event) {
             document.getElementById('mod_insertActionValue')._jeeDialog.destroy()
           }
         }
@@ -735,7 +735,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
   })
 }
 
-jeedom.getGraphData = function(_params) {
+jeedom.getGraphData = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -755,7 +755,7 @@ jeedom.getGraphData = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getDocumentationUrl = function(_params) {
+jeedom.getDocumentationUrl = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -776,7 +776,7 @@ jeedom.getDocumentationUrl = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.addWarnme = function(_params) {
+jeedom.addWarnme = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -796,7 +796,7 @@ jeedom.addWarnme = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getFileFolder = function(_params) {
+jeedom.getFileFolder = function (_params) {
   const paramsRequired = ['type', 'path']
   const paramsSpecifics = {}
   try {
@@ -816,7 +816,7 @@ jeedom.getFileFolder = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.getFileContent = function(_params) {
+jeedom.getFileContent = function (_params) {
   const paramsRequired = ['path']
   const paramsSpecifics = {}
   try {
@@ -835,7 +835,7 @@ jeedom.getFileContent = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.setFileContent = function(_params) {
+jeedom.setFileContent = function (_params) {
   const paramsRequired = ['path', 'content']
   const paramsSpecifics = {}
   try {
@@ -855,7 +855,7 @@ jeedom.setFileContent = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.deleteFile = function(_params) {
+jeedom.deleteFile = function (_params) {
   const paramsRequired = ['path']
   const paramsSpecifics = {}
   try {
@@ -874,7 +874,7 @@ jeedom.deleteFile = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.createFolder = function(_params) {
+jeedom.createFolder = function (_params) {
   const paramsRequired = ['path', 'name']
   const paramsSpecifics = {}
   try {
@@ -894,7 +894,7 @@ jeedom.createFolder = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.renameFolder = function(_params) {
+jeedom.renameFolder = function (_params) {
   const paramsRequired = ['src', 'dst']
   const paramsSpecifics = {}
   try {
@@ -914,7 +914,7 @@ jeedom.renameFolder = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.deleteFolder = function(_params) {
+jeedom.deleteFolder = function (_params) {
   const paramsRequired = ['path']
   const paramsSpecifics = {}
   try {
@@ -933,7 +933,7 @@ jeedom.deleteFolder = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.createFile = function(_params) {
+jeedom.createFile = function (_params) {
   const paramsRequired = ['path', 'name']
   const paramsSpecifics = {}
   try {
@@ -953,7 +953,7 @@ jeedom.createFile = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.emptyRemoveHistory = function(_params) {
+jeedom.emptyRemoveHistory = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -971,7 +971,7 @@ jeedom.emptyRemoveHistory = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.version = function(_params) {
+jeedom.version = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -989,7 +989,7 @@ jeedom.version = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.removeImageIcon = function(_params) {
+jeedom.removeImageIcon = function (_params) {
   const paramsRequired = ['filepath']
   const paramsSpecifics = {}
   try {
@@ -1008,7 +1008,7 @@ jeedom.removeImageIcon = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.cleanFileSystemRight = function(_params) {
+jeedom.cleanFileSystemRight = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -1026,7 +1026,7 @@ jeedom.cleanFileSystemRight = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.consistency = function(_params) {
+jeedom.consistency = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -1044,7 +1044,7 @@ jeedom.consistency = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.cleanDatabase = function(_params) {
+jeedom.cleanDatabase = function (_params) {
   const paramsRequired = []
   const paramsSpecifics = {}
   try {
@@ -1062,7 +1062,7 @@ jeedom.cleanDatabase = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.massEditSave = function(_params) {
+jeedom.massEditSave = function (_params) {
   const paramsRequired = ['type', 'objects']
   const paramsSpecifics = {}
   try {
@@ -1082,7 +1082,7 @@ jeedom.massEditSave = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.massReplace = function(_params) {
+jeedom.massReplace = function (_params) {
   const paramsRequired = ['options', 'eqlogics', 'cmds']
   const paramsSpecifics = {}
   try {
@@ -1099,45 +1099,6 @@ jeedom.massReplace = function(_params) {
     options: _params.options,
     eqlogics: _params.eqlogics,
     cmds: _params.cmds
-  }
-  domUtils.ajax(paramsAJAX)
-}
-
-jeedom.systemGetUpgradablePackage = function(_params) {
-  const paramsRequired = ['type']
-  const paramsSpecifics = {}
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
-    return
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  const paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
-  paramsAJAX.data = {
-    action: 'systemGetUpgradablePackage',
-    type: _params.type,
-    forceRefresh: _params.forceRefresh || false
-  }
-  domUtils.ajax(paramsAJAX)
-}
-
-jeedom.systemUpgradablePackage = function(_params) {
-  const paramsRequired = ['type']
-  const paramsSpecifics = {}
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
-    return
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
-  const paramsAJAX = jeedom.private.getParamsAJAX(params)
-  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
-  paramsAJAX.data = {
-    action: 'systemUpgradablePackage',
-    type: _params.type,
   }
   domUtils.ajax(paramsAJAX)
 }
