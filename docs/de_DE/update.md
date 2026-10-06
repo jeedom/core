@@ -66,14 +66,6 @@ In jeder Zeile stehen Ihnen folgende Funktionen zur Verfügung:
 >
 > Wenn Sie ein Update starten, erscheint oberhalb der Tabelle ein Fortschrittsbalken. Führen Sie während des Updates keine weiteren Vorgänge durch.
 
-## Registerkarte „Betriebssystem/Paket“
-
-> **WICHTIG**
->
-> Dieser Reiter ist ausschließlich für fortgeschrittene Benutzer bestimmt. Der kleinste Fehler hier kann Ihr Jeedom ZERSTÖREN (ohne die Möglichkeit, den Support in Anspruch zu nehmen).
-
-Auf dieser Registerkarte können Sie verfügbare Updates für das Betriebssystem (apt) und Python-Pakete (pip2 und pip3) einsehen sowie die Pakete aktualisieren, für die dies erforderlich ist.
-
 ## Registerkarte „Informationen“
 
 Während oder nach der Aktualisierung können Sie auf dieser Registerkarte das Protokoll dieser Aktualisierung in Echtzeit einsehen.
