@@ -21,6 +21,7 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-06 15:37:47 | Chore: Remove the OS/package update feature from Jeedom. | [#3514](https://github.com/jeedom/core/pull/3514) |
 | 2026-10-03 08:54:21 | fix: improve battery status handling and messaging | [#3543](https://github.com/jeedom/core/pull/3543) |
 | 2026-09-17 18:22:11 | fix localOnly session and deprecate is_Connected method | [#3520](https://github.com/jeedom/core/pull/3520) |
 | 2026-09-17 16:20:52 | Update Node.js version to 24 and adjust armv6 handling | [#3512](https://github.com/jeedom/core/pull/3512) |
