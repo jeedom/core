@@ -313,7 +313,7 @@ try {
 		if (init('package') != 'all') {
 			$cmd = "set -x\n";
 			$cmd .= system::checkInstallationLog();
-			$cmd .= system::getCmdSudo() . " apt update\n";
+			$cmd .= system::getCmdSudo() . " apt-get update\n";
 			$package = explode('::', init('package'));
 			$cmd .= system::installPackage($package[0], $package[1], $package[3], $package[2]) . "\n";
 			if (file_exists('/tmp/jeedom_fix_package')) {

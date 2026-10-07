@@ -119,20 +119,20 @@ step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 5 - PHP installation${NORMAL}"
   apt_install php libapache2-mod-php php-json php-mysql
-  apt install -y php-curl
-  apt install -y php-gd
-  apt install -y php-xml
-  apt install -y php-opcache
-  apt install -y php-soap
-  apt install -y php-xmlrpc
-  apt install -y php-common
-  apt install -y php-dev
-  apt install -y php-zip
-  apt install -y php-ssh2
-  apt install -y php-mbstring
-  apt install -y php-ldap
-  apt install -y php-yaml
-  apt install -y php-snmp
+  apt-get install -y php-curl
+  apt-get install -y php-gd
+  apt-get install -y php-xml
+  apt-get install -y php-opcache
+  apt-get install -y php-soap
+  apt-get install -y php-xmlrpc
+  apt-get install -y php-common
+  apt-get install -y php-dev
+  apt-get install -y php-zip
+  apt-get install -y php-ssh2
+  apt-get install -y php-mbstring
+  apt-get install -y php-ldap
+  apt-get install -y php-yaml
+  apt-get install -y php-snmp
   echo "${GREEN}Step 5 - PHP installation done${NORMAL}"
 }
 
