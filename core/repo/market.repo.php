@@ -724,6 +724,9 @@ class repo_market {
 			if (isset($_result['username']) && config::byKey('market::username') != $_result['username']) {
 				config::save('market::username', $_result['username']);
 			}
+			if (isset($_result['enedis_prm']) && is_array($_result['enedis_prm']) && config::byKey('market::enedis_prm', 'core', array()) !== $_result['enedis_prm']) {
+				config::save('market::enedis_prm', $_result['enedis_prm']);
+			}
 			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
 				network::dns_start();
 			}
