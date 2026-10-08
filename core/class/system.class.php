@@ -466,7 +466,11 @@ class system {
 			return $return;
 		}
 		$count = 0;
-		$cmd = "set -x\n";
+
+		$logName = $_plugin != '' ? $_plugin : 'packages';
+		$debug = class_exists('log') && log::getLogLevel($logName) <= 100;
+
+		$cmd = $debug ? "set -x\n" : '';
 		$cmd .= "echo '*******************Begin of package installation******************'\n";
 		$progress_file = '/tmp/jeedom_install_in_progress';
 		if ($_plugin != '') {
