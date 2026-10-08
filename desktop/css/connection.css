@@ -93,15 +93,13 @@ body {
 	background: #fff;
 }
 
-.veen .wrapper>.form-group:focus {
-	outline: none;
-}
-
 .veen .wrapper .submit {
 	padding-top: 10px !important;
 }
 
-.veen .wrapper #login {
+.veen .wrapper #login,
+.veen .wrapper #lostpassword,
+.veen .wrapper #resetpassword {
 	padding-top: 20%;
 	visibility: visible;
 	text-align: left;
@@ -231,7 +229,10 @@ select:-webkit-autofill {
 }
 
 @media (max-width: 1000px) {
-	.veen .wrapper #login {
+
+	.veen .wrapper #login,
+	.veen .wrapper #lostpassword,
+	.veen .wrapper #resetpassword {
 		padding-top: 10px;
 	}
 }
