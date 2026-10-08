@@ -5498,5 +5498,8 @@
         "Annuler": "Cancelar",
         "Ok": "OK",
         "Valeur": "Valor"
+    },
+    "mobile\/modal\/widget.modal.html": {
+        "401 - Accès non autorisé": "401 - Acceso no autorizado"
     }
 }
