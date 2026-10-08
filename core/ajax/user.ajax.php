@@ -74,6 +74,7 @@ try {
 	}
 
 	if (init('action') == 'askPassword') {
+		$responseTime = microtime(true) + rand(2, 5);
 		$username = trim(strip_tags(init('username')));
 		$current_ip = getClientIp();
 		$resetPasswordThrottleKey = 'security::resetPassword::' . $current_ip;
@@ -98,8 +99,10 @@ try {
 			}
 			$user->sendResetPasswordLink();
 		} catch (Exception $e) {
-			sleep(rand(2, 5));
 			log::add('audit', 'warning', network::getClientIp() . ' - ' . __('Demande de réinitialisation du mot de passe pour : ', __FILE__) . $username . ' - ' . $e->getMessage());
+		}
+		if (microtime(true) < $responseTime) {
+			time_sleep_until($responseTime);
 		}
 		ajax::success();
 	}

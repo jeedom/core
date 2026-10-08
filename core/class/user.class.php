@@ -762,7 +762,6 @@ class user {
 				'login' => $this->getLogin(),
 				'ip' => network::getClientIp(),
 			]);
-			sleep(rand(2, 5));
 			return;
 		}
 		$cmd = cmd::byId(str_replace('#', '', $cmdOption));
@@ -771,7 +770,6 @@ class user {
 				'login' => $this->getLogin(),
 				'ip' => network::getClientIp(),
 			]);
-			sleep(rand(2, 5));
 			return;
 		}
 		try {
