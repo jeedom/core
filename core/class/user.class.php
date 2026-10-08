@@ -758,13 +758,19 @@ class user {
 		self::raiseForInvalidLogin($this->getLogin());
 		$cmdOption = $this->getOptions('notification::cmd');
 		if ($cmdOption == '') {
-			log::add('audit', 'info', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : aucune commande de notification configurée, aucun envoi');
+			log::audit(__('Demande de réinitialisation de mot de passe : aucune commande de notification configurée, aucun envoi', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+			]);
 			sleep(rand(2, 5));
 			return;
 		}
 		$cmd = cmd::byId(str_replace('#', '', $cmdOption));
 		if (!is_object($cmd)) {
-			log::add('audit', 'info', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : commande de notification introuvable, aucun envoi');
+			log::audit(__('Demande de réinitialisation de mot de passe : commande de notification introuvable, aucun envoi', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+			]);
 			sleep(rand(2, 5));
 			return;
 		}
@@ -776,9 +782,12 @@ class user {
 				'title' => __('Réinitialisation de votre mot de passe', __FILE__),
 				'message' => __('Voici votre lien de réinitialisation de mot de passe (valable 5 minutes) : ', __FILE__) . $link,
 			));
-			log::add('audit', 'info', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : lien envoyé');
+			log::audit(__('Demande de réinitialisation de mot de passe : lien envoyé', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+			]);
 		} catch (\Exception $e) {
-			log::add('audit', 'warning', 'Demande de réinitialisation de mot de passe pour "' . $this->getLogin() . '" : échec de l\'envoi (' . $e->getMessage() . ')');
+			log::add('audit', 'warning', sprintf(__("Demande de réinitialisation de mot de passe pour %s : échec de l'envoi (%s)", __FILE__), $this->getLogin(), $e->getMessage()));
 		}
 	}
 

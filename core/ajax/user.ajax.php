@@ -78,7 +78,10 @@ try {
 		$current_ip = getClientIp();
 		$resetPasswordThrottleKey = 'security::resetPassword::' . $current_ip;
 		if ($current_ip != '' && cache::byKey($resetPasswordThrottleKey)->getValue('') != '') {
-			log::add('audit', 'info', network::getClientIp() . ' - ' . __('Demande de réinitialisation du mot de passe ignorée : trop de demandes', __FILE__) . ' - ' . $username);
+			log::audit(__('Demande de réinitialisation du mot de passe ignorée : trop de demandes', __FILE__), [
+				'login' => $username,
+				'ip' => network::getClientIp(),
+			]);
 			ajax::success();
 		}
 		if ($current_ip != '') {
