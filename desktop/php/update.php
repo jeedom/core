@@ -25,7 +25,7 @@ if ($distrib == 'debian') {
 			$messageAlert = '{{Afin de pouvoir accéder aux futures mises à jour du core, veuillez mettre à niveau l\'environnement Linux de votre box vers}}';
 			$messageAlert .= ' <strong>Debian ' . config::byKey('os::min') . '</strong>.<br><em>';
 			if (config::byKey('doc::base_url', 'core') != '') {
-				$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian}} ' . config::byKey('os::min') . ' {{puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="' . config::byKey('doc::base_url', 'core') . '/fr_FR/installation/#Installation" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}' . '</em>';
+				$messageAlert .= ' {{Il est conseillé de procéder à une nouvelle installation en Debian}} ' . config::byKey('os::min') . ' {{puis de restaurer votre dernière sauvegarde Jeedom plutôt que mettre directement à jour l\'OS en ligne de commande. Consulter}} <a href="' . jeedom::getDocUrl('installation') . '" target="_blank">{{la documentation d\'installation}}</a> {{pour plus d\'informations.}}' . '</em>';
 			}
 		}
 		echo '<div class="col-xs-12 text-center ' . $alertLevel . '"><strong>' . $system . '</strong><br>' . $messageAlert . '</div>';
