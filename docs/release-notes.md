@@ -33,6 +33,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-08 12:26:49 | Open documentation links in the user's language using the new doc site URL format | [#3560](https://github.com/jeedom/core/pull/3560) |
 | 2026-10-08 11:03:30 | Fix: apt usage & add debug level in packages installation | [#3558](https://github.com/jeedom/core/pull/3558) |
 | 2026-10-04 07:28:49 | Fix 2FA QR code display when imagick is not installed | [#3533](https://github.com/jeedom/core/pull/3533) |
 | 2026-10-01 10:07:36 | Make install script work without reboot and clean up its messages | [#3544](https://github.com/jeedom/core/pull/3544) |
