@@ -771,7 +771,7 @@ class user {
 		try {
 			$key = config::genKey();
 			cache::set('user::resetPassword::' . $key, $this->getLogin(), 300);
-			$link = network::getNetworkAccess() . '/index.php?&rpk=' . $key;
+			$link = network::getNetworkAccess() . '/index.php?v=d&rpk=' . $key;
 			$cmd->execCmd(array(
 				'title' => __('Réinitialisation de votre mot de passe', __FILE__),
 				'message' => __('Voici votre lien de réinitialisation de mot de passe (valable 5 minutes) : ', __FILE__) . $link,
