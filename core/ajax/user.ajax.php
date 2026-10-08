@@ -83,7 +83,7 @@ try {
 				'login' => $username,
 				'ip' => network::getClientIp(),
 			]);
-			ajax::success();
+			throw new Exception(__('Trop de demandes, veuillez patienter quelques minutes avant de réessayer', __FILE__));
 		}
 		if ($current_ip != '') {
 			cache::set($resetPasswordThrottleKey, 1, 300);
