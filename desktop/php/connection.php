@@ -62,14 +62,11 @@ $mbState = config::byKey('mbState');
 						<div class="submit center">
 							<a class="btn" id="bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
 						</div>
-						<?php
-						if ($mbState == 0) {
-							if (config::byKey('doc::base_url', 'core') != '') { ?>
-								<div class="resetPassword center">
-									<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{Si cela ne fonctionne pas, suivez cette procédure}}</a>
-								</div>
-						<?php }
-						} ?>
+						<?php if ($mbState == 0 && config::byKey('doc::base_url', 'core') != '') { ?>
+							<div class="resetPassword center">
+								<a href="<?= jeedom::getDocUrl('howto', 'reset.password') ?>" target="_blank">{{Si cela ne fonctionne pas, suivez cette procédure}}</a>
+							</div>
+						<?php } ?>
 					</form>
 				</div>
 				<div class="form-group hidden" id="resetpassword">
@@ -135,7 +132,7 @@ $mbState = config::byKey('mbState');
 		</div>
 	</div>
 	<?php if ($mbState == 0) { ?>
-		<button class="btn_help animated bounceInUp" onclick="window.open('https://doc.jeedom.com/fr_FR/premiers-pas/#tocAnchor-4')">
+		<button class="btn_help animated bounceInUp" onclick="window.open('<?= jeedom::getDocUrl('premiers-pas') ?>')">
 			?
 		</button>
 	<?php } ?>
