@@ -188,7 +188,7 @@ rm -rf /root/tmp/core-master
 ### Ich erhalte den Fehler „MYSQL_ATTR_INIT_COMMAND“ in „scenario_execution“
 In der Jeedom-Verwaltung unter „OS/DB“ und anschließend in der Systemkonsole müssen Sie Folgendes tun:
 ```
-yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sudo apt-get install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
 ### Ich schaffe es nicht, die Abhängigkeiten eines Plugins zu installieren. Ich erhalte eine Fehlermeldung wie: „E: dpkg wurde unterbrochen. Verwenden Sie ‚sudo dpkg --configure -a‘, um das Problem zu beheben.“ oder „E: Could not get lock /var/lib/dpkg/lock“
