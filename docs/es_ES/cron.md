@@ -1,55 +1,55 @@
 # Motor de tareas
-**Configuración → Sistema → Motor de tareas**
+**Ajustes → Sistema → Motor de tareas**
 
-Esta página informa sobre todas las tareas de la aplicación Jeedom que se ejecutan en el servidor.
-Esta página se debe utilizar a sabiendas o a pedido del soporte técnico.
+Esta página ofrece información sobre todas las tareas de la aplicación Jeedom que se ejecutan en el servidor.
+Esta página debe utilizarse con conocimiento de causa o a petición del servicio técnico.
 
 > **Importante**
 >
-> En caso de mal manejo en esta página, cualquier solicitud de soporte puede ser rechazada.
+> En caso de uso incorrecto de esta página, se podrá denegar cualquier solicitud de asistencia.
 
 ## Pestaña Cron
 
-En la parte superior derecha, tienes :
+Arriba, a la derecha, tienes:
 
-- **Deshabilitar sistema cron** : un botón para desactivar o reactivar todas las tareas (si las desactiva todas, nada funcionará en su Jeedom).
-- **Fresco** : Actualiza la tabla de tareas.
-- **Agregar** : Agregar un trabajo cron manualmente.
-- **Para salvaguardar** : Guarda tus cambios.
+- **Desactivar el sistema cron**: un botón para desactivar o reactivar todas las tareas (si las desactivas todas, nada funcionará en tu Jeedom).
+- **Actualizar**: Actualiza la tabla de tareas.
+- **Añadir**: Permite añadir una tarea cron manualmente.
+- **Guardar**: Guarda los cambios realizados.
 
-A continuación, tiene la tabla de todas las tareas existentes (atención, algunas tareas pueden iniciar subtareas, por lo que se recomienda no modificar nunca la información en esta página)).
+A continuación, encontrarás la tabla con todas las tareas existentes (atención: algunas tareas pueden activar subtareas, por lo que se recomienda encarecidamente no modificar nunca la información de esta página).
 
-En esta tabla, encontramos :
+En esta tabla se incluyen:
 
-- **\#** : ID de tarea, útil para vincular un proceso en ejecución con lo que realmente hace.
-- **Activo** : Indica si la tarea está activa (puede ser iniciada por Jeedom) o no.
-- **PID** : Indica la ID del proceso actual.
-- **Demonio** : Si este cuadro es &quot;sí&quot;, la tarea siempre debe estar en progreso. Además, encontrará la frecuencia del demonio, se recomienda no modificar nunca este valor y, especialmente, nunca disminuirlo.
-- **Único** : Si es &quot;sí&quot;, la tarea se iniciará una vez y luego se eliminará.
-- **Clase** : Clase PHP llamada para ejecutar la tarea (puede estar vacía).
-- **Función** : Función PHP llamada en la clase llamada (o no si la clase está vacía).
-- **Programación** : Programación de la tarea en formato CRON.
-- **Se acabó el tiempo** : Máximo tiempo de ejecución de tareas. Si la tarea es un demonio, se detendrá y reiniciará automáticamente al final del tiempo de espera.
-- **Último lanzamiento** : Fecha del último lanzamiento de la tarea.
-- **Última duración** : Último tiempo de ejecución de la tarea (un demonio siempre estará en 0s, no te preocupes porque otras tareas pueden estar en 0s).
-- **Estado** : Estado actual de la tarea (como recordatorio, una tarea daemon siempre se "ejecuta"").
+- **\#**: ID de la tarea, útil para establecer la relación entre un proceso en ejecución y lo que realmente está haciendo.
+- **Activo**: Indica si la tarea está activa (puede ser iniciada por Jeedom) o no.
+- **PID**: Indica el identificador de proceso actual.
+- **Servicio**: Si esta casilla está marcada como «sí», la tarea debe estar siempre en ejecución. Junto a ella aparece la frecuencia del servicio; se recomienda no modificar nunca este valor y, sobre todo, no reducirlo nunca.
+- **Único**: Si se selecciona «Sí», la tarea se ejecutará una vez y luego se eliminará.
+- **Clase**: Clase PHP que se invoca para ejecutar la tarea (puede estar vacía).
+- **Función**: Función de PHP que se invoca en la clase en cuestión (o no, si la clase está vacía).
+- **Programación**: Programación de la tarea en formato CRON.
+- **Tiempo de espera**: tiempo máximo de ejecución de la tarea. Si la tarea es un demonio, se detendrá y se reiniciará automáticamente al finalizar el tiempo de espera.
+- **Última ejecución**: Fecha de la última ejecución de la tarea.
+- **Última duración**: Última duración de la ejecución de la tarea (un demonio siempre tendrá una duración de 0 s; no hay que preocuparse si otras tareas también tienen una duración de 0 s).
+- **Estado**: Estado actual de la tarea (recuerde que una tarea de fondo siempre está en «ejecución»).
 
-- **Acción** :
-    - **Detalles** : Ver el cron en detalle (como se almacena en la base).
-    - **Comenzar / Parar** : Iniciar o detener la tarea (dependiendo de su estado).
-    - **Supresión** : Eliminar tarea.
+- **Acción**:
+    - **Detalles**: Ver el cron en detalle (tal y como está almacenado en la base de datos).
+    - **Iniciar / Detener**: Iniciar o detener la tarea (en función de su estado).
+    - **Eliminar**: Permite eliminar la tarea.
 
 
-## Pestaña Oyente
+## Pestaña «Listener»
 
-Los oyentes solo son visibles en la lectura y le permiten ver las funciones llamadas en un evento (actualización de un comando...).
+Los «listeners» solo son visibles en modo de lectura y permiten ver las funciones que se invocan al producirse un evento (actualización de un comando...).
 
-## Pestaña demonio
+## Pestaña «Demonio»
 
-Tabla de todos los demonios con su estado, la fecha del último lanzamiento así como la posibilidad de :
-- Iniciar / reiniciar un demonio.
-- Detener un demonio si la gestión automática está deshabilitada.
-- Habilitar / deshabilitar la gestión automática de un demonio.
+Tabla con todos los demonios, su estado y la fecha de su último inicio, así como la posibilidad de:
+- Iniciar / Reiniciar un demonio.
+- Detener un demonio si la gestión automática está desactivada.
+- Activar o desactivar la gestión automática de un demonio.
 
-> Tip
-> Los demonios de complementos deshabilitados no aparecen en esta página.
+> Consejo
+> Los demonios de los complementos desactivados no aparecen en esta página.

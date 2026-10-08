@@ -1,75 +1,75 @@
 # Geräteanalyse
-**Analyse → Ausrüstung**
+**Analyse → Geräte**
 
-Auf der Seite Geräteanalyse können Sie viele Informationen zu Geräten zentral anzeigen :
+Auf der Seite „Geräteanalyse“ können Sie zahlreiche Informationen zu den Geräten zentral einsehen:
 
-- Der Zustand Ihrer Batterien
-- Module in Alarmbereitschaft
-- Definierte Aktionen
-- Definierte Warnungen
-- Orphan Orders
+- Der Ladezustand Ihrer Akkus
+- Die Benachrichtigungsmodule
+- Die definierten Aktionen
+- Die definierten Benachrichtigungen
+- Verwaise Befehle
 
-## Registerkarte &quot;Batterien&quot;
+## Registerkarte „Batterien“
 
 
-Auf dieser Registerkarte sehen Sie die Liste Ihrer Batteriemodule, deren verbleibenden Füllstand (die Farbe der Kachel hängt von diesem Füllstand ab), den Typ und die Anzahl der Batterien, die in das Modul eingelegt werden müssen, sowie den Modultyp dass das Datum, an dem die Informationen zum Batteriestand aktualisiert wurden. Sie können auch sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand))
+Auf dieser Registerkarte sehen Sie eine Liste Ihrer batteriebetriebenen Module, deren verbleibenden Ladezustand (die Farbe der Kachel hängt vom Ladezustand ab), die Art und Anzahl der Batterien, die in das Modul eingelegt werden müssen, den Modultyp sowie das Datum, an dem die Informationen zum Ladezustand aktualisiert wurden. Außerdem können Sie sehen, ob für das jeweilige Modul ein bestimmter Schwellenwert festgelegt wurde (dargestellt durch eine Hand).
 
-> **Beratung**
+> **Tipp**
 >
-> Die Alarm- / Warnschwellenwerte für die Batteriestände können global in der Jeedom-Konfiguration (Einstellungen → Systeme → Konfiguration) konfiguriert werden : Ausrüstung) oder nach Ausrüstung auf der Seite für die erweiterte Konfiguration auf der Registerkarte Warnungen.
+> Die Warnschwellenwerte für den Zustand der Batterie können global in der Jeedom-Konfiguration (Einstellungen → Systeme → Konfiguration: Geräte) oder gerätespezifisch auf der Seite „Erweiterte Konfiguration“ des jeweiligen Geräts auf der Registerkarte „Warnungen“ festgelegt werden.
 
-## Module auf der Registerkarte &quot;Warnung&quot;
+## Registerkarte „Module mit Warnmeldungen“
 
-Auf dieser Registerkarte sehen Sie in Echtzeit die Module in Alarmbereitschaft. Die Warnungen können unterschiedlicher Art sein :
+Auf dieser Registerkarte sehen Sie in Echtzeit, welche Module einen Alarm auslösen. Es gibt verschiedene Arten von Alarmen:
 
-- Zeitüberschreitung (konfiguriert auf der Registerkarte "Definierte Warnungen")).
-- Batterie in Warnung oder in Gefahr.
-- Warn- oder Gefahrenbefehl (konfigurierbar in erweiterten Befehlsparametern).
+- Timeout (konfiguriert auf der Registerkarte „Definierte Warnmeldungen“).
+- Batterie im Warnmodus oder in Gefahr.
+- Befehl im Warn- oder Gefahrenmodus (konfigurierbar in den erweiterten Befehlseinstellungen).
 
-Andere Arten von Warnungen finden Sie hier.
-Jede Warnung wird durch die Farbe der Kachel (die Alarmstufe) und ein Logo oben links (die Alarmart) dargestellt).
+Möglicherweise werden hier auch andere Arten von Benachrichtigungen aufgeführt.
+Jeder Alarm wird durch die Farbe der Kachel (Alarmstufe) und ein Logo oben links (Alarmtyp) dargestellt.
 
-> **Beratung**
+> **Tipp**
 >
-> Hier werden alle Module in Alarmbereitschaft angezeigt, auch die unter "nicht sichtbar" konfigurierten". Es ist jedoch interessant festzustellen, dass, wenn das Modul "sichtbar" ist, die Warnung auch auf dem Dashboard (im betreffenden Objekt) sichtbar ist).
+> Hier werden alle Module angezeigt, für die eine Warnmeldung vorliegt, auch diejenigen, die als „nicht sichtbar“ konfiguriert sind. Es ist jedoch zu beachten, dass, wenn das Modul als „sichtbar“ eingestellt ist, die Warnmeldung auch auf dem Dashboard (im entsprechenden Objekt) angezeigt wird.
 
-## Registerkarte &quot;Definierte Aktionen&quot;
+## Registerkarte „Definierte Aktionen“
 
-Auf dieser Registerkarte können Sie die Aktionen anzeigen, die direkt in einem Auftrag definiert sind. In der Tat können wir verschiedene Befehle eingeben und es kann schwierig sein, sich an alle zu erinnern. Diese Registerkarte ist dafür da und fasst verschiedene Dinge zusammen :
+Auf dieser Registerkarte können Sie die direkt für einen Befehl definierten Aktionen anzeigen. Da man diese auf verschiedene Befehle anwenden kann, ist es manchmal schwierig, sich alle zu merken. Genau dafür ist diese Registerkarte da und fasst verschiedene Informationen zusammen:
 
-- Aktionen zum Status (in den erweiterten Parametern von Info-Befehlen enthalten und die Ausführung einer oder mehrerer Aktionen für den Wert einer Bestellung - sofort oder nach einer Verzögerung).
-- Bestätigungen von Aktionen (konfigurierbar an derselben Stelle in einem Info-Befehl und Ermöglichen des Anforderns einer Bestätigung zum Ausführen einer Aktion).
-- Bestätigungen mit Code (wie oben, jedoch mit Eingabe eines Codes).
-- Vor- und Nachaktionen (immer konfigurierbar an derselben Stelle in einem Aktionsbefehl und Ermöglichen der Ausführung einer oder mehrerer anderer Aktionen vor oder nach der betreffenden Aktion).
+- Zustandsabhängige Aktionen (die in den erweiterten Einstellungen der Befehle „Info“ zu finden sind und es ermöglichen, eine oder mehrere Aktionen auf den Wert eines Befehls anzuwenden – entweder sofort oder nach einer bestimmten Verzögerung).
+- Aktionsbestätigungen (an derselben Stelle über einen Info-Befehl konfigurierbar, wodurch eine Bestätigung zur Ausführung einer Aktion angefordert werden kann).
+- Bestätigungen mit Code (wie zuvor, jedoch mit Eingabe eines Codes).
+- Vor- und Nachaktionen (die immer an derselben Stelle über einen Aktionsbefehl konfiguriert werden können und es ermöglichen, vor oder nach der betreffenden Aktion eine oder mehrere weitere Aktionen auszuführen).
 
-> **Beratung**
+> **Tipp**
 >
-> Die Tabelle bietet eine sehr textuelle Ansicht der definierten Aktionen. Andere Arten definierter Aktionen können hinzugefügt werden.
+> Die Tabelle bietet einen sehr anschaulichen Überblick über die definierten Aktionen. Weitere Arten von definierten Aktionen können hinzugefügt werden.
 
-## Registerkarte &quot;Definierte Warnungen&quot;
+## Registerkarte „Definierte Benachrichtigungen“
 
-Auf dieser Registerkarte können Sie alle definierten Warnungen anzeigen. In einer Tabelle finden Sie die folgenden Informationen, falls vorhanden :
+Auf dieser Registerkarte können Sie alle definierten Benachrichtigungen einsehen. Dort finden Sie in einer Tabelle die folgenden Informationen, sofern vorhanden:
 
-- Warnungen zu Kommunikationsverzögerungen.
-- Die spezifischen Batterieschwellenwerte, die auf einem Gerät definiert sind.
-- Die verschiedenen Warn- und Warnbefehle.
+- Warnmeldungen bei Kommunikationsverzögerungen.
+- Die für ein Gerät festgelegten spezifischen Schwellenwerte für den Zustand der Batterie.
+- Die verschiedenen Gefahren- und Warnmeldungen der Steuerungen.
 
-## Registerkarte &quot;Orphan Orders&quot;
+## Registerkarte „Verwaiste Befehle“
 
-Auf dieser Registerkarte können Sie auf einen Blick sehen, ob Sie verwaiste Befehle haben, die über Jeedom verwendet werden. Ein Orphan-Befehl ist ein Befehl, der irgendwo verwendet wird, aber nicht mehr existiert. Wir finden hier alle diese Befehle, wie zum Beispiel :
+Auf dieser Registerkarte können Sie auf einen Blick erkennen, ob Sie in Jeedom verwaiste Befehle verwenden. Ein verwaistes Befehl ist ein Befehl, der an einer Stelle verwendet wird, aber nicht mehr existiert. Hier werden alle diese Befehle aufgelistet, wie zum Beispiel:
 
 - Verwaiste Befehle, die im Hauptteil eines Szenarios verwendet werden.
-- Diejenigen, die zum Auslösen eines Szenarios verwendet werden.
+- Diejenigen, die als Auslöser für ein Szenario verwendet werden.
 
-Und an vielen anderen Orten verwendet wie (nicht erschöpfend) :
+Und an vielen anderen Orten eingesetzt, wie zum Beispiel (ohne Anspruch auf Vollständigkeit):
 - Interaktionen.
-- Jeedom-Konfigurationen.
-- In Vor- oder Nachbearbeitung einer Bestellung.
-- In Aktion zum Bestellstatus.
+- Die Konfigurationen von Jeedom.
+- Als Vor- oder Nachmaßnahme eines Befehls.
+- Aktion basierend auf dem Status einer Bestellung.
 - In einigen Plugins.
 
-Wenn die ID der verwaisten Bestellung noch im Löschverlauf vorhanden ist (verfügbar in der Zusammenfassung Analyse / Heimautomatisierung), werden der alte Name und das Löschdatum angezeigt.
+Wenn die ID des verwaisten Befehls noch im Löschverlauf vorhanden ist (einsehbar unter „Analyse / Hausautomationsübersicht“), werden dessen früherer Name und das Löschdatum angezeigt.
 
-> **Beratung**
+> **Tipp**
 >
-> Die Tabelle bietet eine sehr textuelle Ansicht der verwaisten Befehle. Ziel ist es, alle &quot;Orphan&quot; -Bestellungen über alle Jeedom und Plugins schnell identifizieren zu können. Es kann sein, dass einige Bereiche nicht analysiert werden und die Tabelle mit der Zeit immer umfassender wird.
+> Die Tabelle bietet einen sehr übersichtlichen Überblick über die „verwaisten“ Befehle. Ihr Ziel ist es, alle „verwaisten“ Befehle in Jeedom und den Plugins schnell identifizieren zu können. Es kann sein, dass bestimmte Bereiche noch nicht analysiert wurden; die Tabelle wird jedoch mit der Zeit immer vollständiger werden.

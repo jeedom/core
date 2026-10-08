@@ -55,7 +55,7 @@ try {
 				if (strpos(config::byKey('jeedom_theme_main'), 'Dark') !== false) {
 					$theme = 'dark';
 				}
-				$infos['changelog_url'] = config::byKey('doc::base_url', 'core') . '/' . config::byKey('language', 'core', 'fr_FR') . '/core/' . substr($update->getRemoteVersion(), 0, 3) . '/changelog?theme=' . $theme;
+				$infos['changelog_url'] = jeedom::getDocUrl('core', 'changelog', $update->getRemoteVersion()) . '?theme=' . $theme;
 			}
 			$return[] = $infos;
 		}

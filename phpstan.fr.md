@@ -1,3 +1,7 @@
+<p align="center">
+  🇫🇷 <strong>Français</strong> | 🇬🇧 <a href="phpstan.md">English</a>
+</p>
+
 # Guide PHPStan pour Jeedom
 
 ## Installation locale

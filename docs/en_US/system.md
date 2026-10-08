@@ -1,19 +1,19 @@
-# Systeme
+# System
 
-Page reserved for advanced users, allows you to launch SSH commands directly from Jeedom
+This page is intended for advanced users and allows you to run SSH commands directly from Jeedom
 
-## Adding command
+## Add a command
 
-It is possible to add custom commands for this from the Jeedom editor (Configuration -> OS/DB -> File editor) you must create a `systemCustomCmd file.json` in `data`. The file must have the following form : 
+You can add custom commands for this using the Jeedom editor (Configuration -> OS/DB -> File Editor); you'll need to create a file `systemCustomCmd.json` in `data`. The file must have the following format:
 ```
 [
    {
-      "cmd":"my great order",
-      "name":"name of my order"
+      "cmd":"ma super commande",
+      "name":"nom de ma commande"
    },
    {
-      "cmd":"my super order 2",
-      "name":"name of my order 2"
+      "cmd":"ma super commande 2",
+      "name":"nom de ma commande 2"
    }
 ]
 ```

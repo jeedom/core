@@ -1,71 +1,71 @@
 # Erweiterte Anpassung
 **Einstellungen → System → Erweiterte Anpassung**
 
-Hier können Sie Funktionen verwalten **Javascript** und Regeln **CSS** auf Desktop oder Handy angewendet.
+Hier können Sie **JavaScript**-Funktionen und **CSS**-Regeln verwalten, die auf Desktop- oder Mobilgeräten angewendet werden.
 
-> **Aufmerksamkeit**
+> **Achtung**
 >
-> Die Verwendung unangemessener CSS-Regeln kann die Anzeige Ihres Jeedoms beeinträchtigen. Nicht ordnungsgemäß verwendete JS-Funktionen können zu erheblichen Schäden an verschiedenen Komponenten Ihrer Installation führen. Denken Sie daran, ein Backup zu erstellen und auszulagern, bevor Sie diese Funktionen verwenden.
+> Die Verwendung ungeeigneter CSS-Regeln kann die Darstellung Ihres Jeedom beeinträchtigen. Unsachgemäß verwendete JavaScript-Funktionen können erhebliche Schäden an verschiedenen Komponenten Ihrer Anlage verursachen. Denken Sie daran, vor der Verwendung dieser Funktionen ein Backup zu erstellen und extern zu speichern.
 
-Diese Funktion verwendet einen bestimmten Modus des Core-Dateieditors mit zwei Speicherorten :
+Diese Funktion nutzt einen speziellen Modus des Core-Dateieditors mit zwei Speicherorten:
 
-- Desktop / Benutzerdefiniert : Kann beide Dateien enthalten **custom.js** Und **Benutzerdefinierte CSS** die vom Core in der Desktop-Version geladen wird.
-- mobil / benutzerdefiniert : Kann beide Dateien enthalten **custom.js** Und **Benutzerdefinierte CSS** die vom Core in der mobilen Version geladen werden.
+- Desktop / custom: Kann die beiden Dateien **custom.js** und **custom.css** enthalten, die vom Core in der Desktop-Version geladen werden.
+- Mobil / Benutzerdefiniert: Kann die beiden Dateien **custom.js** und **custom.css** enthalten, die vom Core in der mobilen Version geladen werden.
 
-In der Menüleiste des Core-Dateieditors befindet sich eine Schaltfläche **Ermöglicht** Oder **Deaktiviert** sagt dir, ob der Core sie laden soll oder nicht. Diese Option ist auch verfügbar in **Einstellungen → System → Konfiguration** Registerkarte Schnittstelle.
+In der Menüleiste des Core-Datei-Editors zeigt Ihnen eine Schaltfläche mit der Bezeichnung **Aktiviert** oder **Deaktiviert** an, ob der Core diese laden soll oder nicht. Diese Option ist auch unter **Einstellungen → System → Konfiguration** auf der Registerkarte „Benutzeroberfläche“ verfügbar.
 
-> **Aufgefallen**
+> **Hinweis**
 >
-> Wenn diese Seite gestartet wird, wird der Baum automatisch erstellt, ebenso wie die 4 Dateien mit einem Kommentar in der ersten Zeile, einschließlich der Core-Version, die sie erstellt hat.
+> Beim Aufruf dieser Seite wird die Verzeichnisstruktur automatisch erstellt, ebenso wie die vier Dateien, deren erste Zeile einen Kommentar enthält, der die Version des Core angibt, mit der sie erstellt wurden.
 
-## Ressources
+## Ressourcen
 
-[CSS: Kaskadierende Stylesheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[CSS: Cascading Style Sheets](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
-[Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-[Tipps zum Anpassen der Benutzeroberfläche](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
+[Tipps zur Anpassung der Benutzeroberfläche](https://kiboost.github.io/jeedom_docs/jeedomV4Tips/Interface/)
 
-## Im Falle eines Problems
+## Bei Problemen
 
-Das Injizieren von JS und / oder CSS kann dazu führen, dass Jeedom nicht mehr funktioniert.
+Das Einfügen von JS und/oder CSS kann dazu führen, dass Jeedom nicht mehr funktioniert.
 
-In diesem Fall zwei Lösungen :
+In diesem Fall gibt es zwei Lösungen:
 
-- Öffnen Sie einen Browser im Rettungsmodus : `IP / index.php?rescue=1`
-- Stellen Sie eine Verbindung in SSH her und löschen Sie die Anpassungsdateien : `Desktop/Benutzerdefiniert` und`Mobil/Benutzerdefiniert`
+- Öffnen Sie einen Browser im Rettungsmodus: `IP/index.php?rescue=1`
+- Per SSH verbinden und die Anpassungsdateien löschen: `desktop/custom` und `mobile/custom`
 
-## Beispiel für erweiterte Personalisierung in CSS
+## Beispiel für erweiterte Anpassung im CSS
 
-Alle diese Beispiele müssen in die CSS-Datei eingefügt werden (vergessen Sie nicht, oben die erweiterte Anpassung zu aktivieren))
+Alle diese Beispiele müssen in die CSS-Datei eingefügt werden (vergessen Sie nicht, oben die erweiterte Anpassung zu aktivieren)
 
-### Bildlaufleisten in Widgets entfernen
+### Entfernen der Bildlaufleisten bei Widgets
 
-„
-.eqLogic-widget.cmds{
- overflow-x: versteckt !important;
- overflow-y: versteckt !important;
+```
+.eqLogic-widget .cmds{
+ overflow-x: hidden !important;
+ overflow-y: hidden !important;
 }
-„
+```
 
-### Mindestbreite/-höhe von Widgets entfernen
+### Mindestbreite/-höhe der Widgets entfernen
 
-Dies ermöglicht Ihnen kleinere Widgets (Breite [min-width], Höhe [min-height]), aber seien Sie vorsichtig, da dies die Anzeige weniger attraktiv machen kann.
+Dadurch lassen sich kleinere Widgets erstellen (Breite [min-width], Höhe [min-height]), aber Vorsicht: Das kann die Darstellung weniger ansprechend machen.
 
-„
-div.cmd-widget.content,
+```
+div.cmd-widget .content,
 div.cmd-widget .content-sm,
 div.cmd-widget .content-lg,
-div.cmd-widget.content-xs {
-  min-width: nicht gesetzt !important;
-  min-height: nicht gesetzt !important;
+div.cmd-widget .content-xs {
+  min-width: unset !important;
+  min-height: unset !important;
 }
-„
+```
 
-### Es wurden Abstände zwischen den Namen von Objekten und Geräten im Dashboard hinzugefügt 
+### Hinzufügen von Abständen zwischen den Objektnamen und den Geräten auf dem Dashboard
 
-„
-.div_object-Legende .objectDashLegend {
+```
+.div_object legend .objectDashLegend {
   margin-bottom: 5px;
 }
-„
+```

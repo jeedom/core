@@ -68,12 +68,12 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Sélection de la langue d'affichage}}"></i></sup></label>
 							<div class="col-md-6 col-xs-8">
 								<select class="form-control configKey" data-l1key="language" data-reload="1">
-									<option value="fr_FR">{{Français}}</option>
-									<option value="en_US">{{Anglais}}</option>
-									<option value="de_DE">{{Allemand}}</option>
-									<option value="es_ES">{{Espagnol}}</option>
-									<option value="it_IT">{{Italien (pas de support)}}</option>
-									<option value="pt_PT">{{Portugais (pas de support)}}</option>
+									<option value="fr_FR">Français</option>
+									<option value="en_US">English</option>
+									<option value="de_DE">Deutsch</option>
+									<option value="es_ES">Español</option>
+									<option value="it_IT">Italiano ({{pas de support}})</option>
+									<option value="pt_PT">Português ({{pas de support}})</option>
 								</select>
 							</div>
 						</div>
@@ -1516,16 +1516,16 @@ $productName = config::byKey('product_name');
 								<sub>h</sub>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="session_lifetime">
+								<input type="number" class="configKey form-control ispin" data-l1key="session_lifetime" min="1" max="8760">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des périphériques enregistrés}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'inactivité avant expiration du périphérique enregistré, entre 7 et 90 jours.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Durée d'inactivité avant expiration du périphérique enregistré, entre 3 et 90 jours.}}"></i></sup>
 								<sub>j</sub>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="number" class="configKey form-control ispin" data-l1key="security::registerDeviceLifetime" min="7" max="90">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::registerDeviceLifetime" min="3" max="90">
 							</div>
 						</div>
 						<div class="form-group">
@@ -1533,17 +1533,17 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Passé ce nombre, l'IP sera bannie.}}"></i></sup>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::maxFailedLogin">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::maxFailedLogin" min="0">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Temps maximum entre les échecs}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Temps en secondes.<br> 0 : temps infini}}"></i></sup>
 								<sub>s</sub>
 							</label>
 
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::timeLoginFailed">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::timeLoginFailed" min="0">
 							</div>
 						</div>
 						<div class="form-group">
@@ -1552,7 +1552,7 @@ $productName = config::byKey('product_name');
 								<sub>s</sub>
 							</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
-								<input type="text" class="configKey form-control" data-l1key="security::bantime">
+								<input type="number" class="configKey form-control ispin" data-l1key="security::bantime" min="-1">
 							</div>
 						</div>
 						<div class="form-group">

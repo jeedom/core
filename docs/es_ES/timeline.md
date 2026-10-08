@@ -1,41 +1,41 @@
-# Timeline
-**Análisis → Línea de tiempo**
+# Cronología
+**Análisis → Cronología**
 
-## Timeline
+## Cronología
 
-La página Línea de tiempo le permite mostrar eventos cronológicamente, como cambios de orden *información*, disparadores de comando *acción*, y ejecuciones de escenarios.
+La página «Línea de tiempo» permite visualizar cronológicamente los eventos, como los cambios en los comandos *info*, la activación de los comandos *acción* y la ejecución de escenarios.
 
-Para verlos, primero debe activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados, luego ocurren estos eventos.
+Para verlos, primero debes activar el seguimiento en la línea de tiempo de los comandos o escenarios deseados y, a continuación, esperar a que se produzcan dichos eventos.
 
-- **Guión** : Ya sea directamente en una página de escenario o en *Visión general* escenarios.
-- **Orden** : Ya sea en la configuración avanzada del comando o en la configuración del historial para hacerlo en "masa".
+- **Escenario**: Ya sea directamente en la página de un escenario o en la *Vista general* de los escenarios.
+- **Comando**: Se puede realizar en la configuración avanzada del comando o en la configuración del historial para hacerlo «en bloque».
 
-![Línea de tiempo](images/timeline_intro.jpg)
+![Cronología](../images/timeline_intro.jpg)
 
-La linea de tiempo *Principal* siempre contiene todos los eventos. Sin embargo, puede filtrar la línea de tiempo por *caso*. En cada lugar donde active la línea de tiempo, tendrá un campo para ingresar el nombre de una carpeta, existente o no.
-Luego puede filtrar la línea de tiempo por esta carpeta seleccionándola a la izquierda del botón *Refrescar*.
+La línea de tiempo *Principal* siempre contiene todos los eventos. No obstante, puedes filtrar la línea de tiempo por *carpeta*. Cada vez que actives la línea de tiempo, dispondrás de un campo para introducir el nombre de una carpeta, ya sea existente o no.
+Podrás filtrar la cronología por esta carpeta seleccionándola a la izquierda del botón *Actualizar*.
 
 > **Nota**
 >
-> Si ya no usa una carpeta, aparecerá en la lista mientras existan eventos vinculados a esta carpeta. Desaparecerá de la lista por sí mismo.
+> Si ya no utilizas una carpeta, seguirá apareciendo en la lista mientras existan eventos relacionados con ella. Después, desaparecerá de la lista por sí sola.
 
-Una vez que haya activado el seguimiento en la línea de tiempo de los comandos y escenarios que desee, podrá verlos aparecer en la línea de tiempo.
+Una vez que hayas activado el seguimiento en la línea de tiempo de los comandos y escenarios deseados, podrás verlos aparecer en la línea de tiempo.
 
 > **Importante**
 >
-> Debe esperar nuevos eventos después de activar el seguimiento en la línea de tiempo antes de verlos aparecer.
+> Hay que esperar a que se produzcan nuevos eventos tras activar el seguimiento en la línea de tiempo para que aparezcan.
 
-## Affichage
+## Pantalla
 
-La línea de tiempo muestra los eventos registrados, escalonados día a día verticalmente.
+La línea de tiempo muestra los eventos registrados, ordenados día a día en sentido vertical.
 
-Para cada evento, tienes:
+Para cada evento, dispones de:
 
-- La fecha y hora del evento,
-- El tipo de evento: Un comando de información o acción, o un escenario, con el complemento de comando para comandos.
-- El nombre del objeto principal, el nombre y, según el tipo, el estado o el desencadenante.
+- La fecha y la hora del evento,
+- Tipo de evento: un comando de información o de acción, o un escenario, en el que los comandos utilizan el complemento correspondiente.
+- El nombre del objeto principal, el nombre y, según el tipo, el estado o el disparador.
 
-- Un evento de tipo de comando muestra un icono a la derecha para abrir la configuración del comando.
-- Un evento de tipo de escenario muestra dos iconos a la derecha para ir al escenario o abrir el registro del escenario.
+- Un evento de tipo comando muestra un icono a la derecha para abrir la configuración del comando.
+- Un evento de tipo «escenario» muestra dos iconos a la derecha para acceder al escenario o abrir el registro del escenario.
 
-En la parte superior derecha, puede seleccionar una carpeta de línea de tiempo. Esto debe ser creado antes y debe contener eventos.
+En la esquina superior derecha, puedes seleccionar una carpeta de la línea de tiempo. Esta debe haberse creado previamente y debe contener eventos.

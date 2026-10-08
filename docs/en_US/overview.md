@@ -1,50 +1,50 @@
-# Synthesis
-**Home → Summary**
+# Summary
+**Home → Overview**
 
-The page *Synthesis* offers you a centralized visual synthesis of your objects and their summaries.
+The *Overview* page provides a visual, centralized overview of your objects and their summaries.
 
-![Synthesis](./images/synthesis_intro.gif)
+![Summary](../images/synthesis_intro.gif)
 
-For it to take on its full meaning, it is necessary on each object, to configure the summaries and a background image : [See abstracts documentation.](/en_US/concept/summary)
+To make the most of it, you need to set up the summaries and a background image for each object: [See the documentation on summaries.](https://doc.jeedom.com/concept/en_US/summary)
 
-You can configure it as the default page in **Settings → Preferences**, in desktop and / or mobile.
+You can set it as the default page in **Settings → Preferences**, on desktop and/or mobile.
 
-## Affichage
+## Display
 
-On each object, its background image and its summaries are displayed :
+For each object, its background image and summaries are displayed:
 
-Depending on the type of summary (key), visible in **Settings → System → Configuration / Summaries** :
-- On the top corner left : The name of the object.
-- Top right : Temperature (*temperature*) and humidity (*humidity*).
-- Under the title : Alert (*security*) and Movement (*motion*), colored green or red depending on whether there are any alerts / movements in progress.
-- Below : All other subject summaries.
+Depending on the type of summary (key), visible in **Settings → System → Configuration / Summaries**:
+- Top left: The name of the object.
+- Top right: Temperature (*temperature*) and humidity (*humidity*).
+- Under the headings: Alert (*security*) and Motion (*motion*), colored green or red depending on whether there is one or more alerts or motion events in progress.
+- Below: All other summaries for this object.
 
-The configuration of the display of the object is done in **Tools → Objects** :
-- Her name.
-- If it is visible. You can, however, keep an Object visible even on the Dashboard, but tick *Hide on Synthesis*.
+You can configure the object's display in **Tools → Objects**:
+- Its name.
+- If it is visible. However, you can keep an Object visible—even on the Dashboard—by checking *Hide on summary*.
 - Its background image.
-- If the background image should only be used on the Summary page or also in the background once on the object.
-- The elements of his summaries, in the tab *Summary*.
+- Whether the background image should be used only on the Overview page or also as the background once the object is selected.
+- The items in its summaries, in the *Summary* tab.
 
-> **Advice**
+> **Tip**
 >
-> The display order of objects is that of *Domotic overview*, that you can reorder (Analysis → Home automation summary).
+> The order in which objects are displayed is the same as in the *home automation summary*, which you can reorder (Analysis → Home Automation Summary).
 
 > **Note**
 >
-> If an object does not have a summary defined, a button is displayed at the top right to access the configuration / summaries of the object.
+> If an object does not have a summary defined, a button appears in the upper-right corner to access the object's settings/summaries.
 
-## Fonctions
+## Features
 
-For each object, you can click :
-- On the title of the object to display the Dashboard of this object with its child objects (also accessible from the menu *Home → Dashboard → Object*).
-- On the image, to open the equipment page of this object only.
-- On a summary element to display the elements of this object, of this type. These are displayed in a modal, without changing the page, and allows you to quickly close a shutter, turn on a light, etc. The size of the modal adapts to the equipment it must display, but you can move it. Even with the modal of summaries open, you can click on other summaries.
+For each object, you can click:
+- Click the object's title to view the dashboard for that object and its child objects (also accessible via the *Home → Dashboard → Object* menu).
+- In the image, click here to open the page showing only the devices associated with this object.
+- Click on a summary item to view the items associated with that object or type. These items appear in a modal window without leaving the current page, allowing you to quickly close a shutter, turn on a light, and so on. The size of the modal window adjusts to fit the devices it displays, but you can move it around. Even with the summary modal open, you can click on other summaries.
 
 
-> **Advice**
+> **Tip**
 >
-> Ctrl Click or Center Click on the object or a summary element opens another tab of your browser.
+> Ctrl-click or middle-click on the object or a summary item to open another tab in your browser.
 
-When you click on an object from the synthesis, the button to the left of the search bar is replaced by a button allowing to display a preview of the parts to get there more quickly.
+When you click on an object from the overview, the button to the left of the search bar is replaced by a button that displays a preview of the rooms so you can navigate to them more quickly.
 

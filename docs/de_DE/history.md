@@ -1,105 +1,103 @@
-# Historique
-**Analyse → Geschichte**
+# Geschichte
+**Analyse → Verlauf**
 
-Wichtiger Teil in der Software : der Historisierungsteil, eine wahre Erinnerung daran. In Jeedom ist es möglich, jeden Informationstypbefehl (binär oder digital) zu protokollieren). So können Sie beispielsweise einen Temperaturverlauf, Verbräuche, Türöffnungen etc. protokollieren.
+Ein wichtiger Bestandteil einer Software ist die Protokollierung, die das eigentliche Gedächtnis der Software darstellt. In Jeedom ist es möglich, jeden Befehl vom Typ „Information“ (binär oder numerisch) zu protokollieren. So können Sie beispielsweise eine Temperaturkurve, den Verbrauch oder das Öffnen einer Tür usw. protokollieren.
 
-![Historisch](./images/history.gif)
+![Geschichte](../images/history.gif)
 
-### Prinzip der Historisierung
+### Prinzip der Protokollierung
 
-### Archivage
+### Archivierung
 
-Die Datenarchivierung ermöglicht es Jeedom, die im Speicher gehaltene Datenmenge zu reduzieren. Dies ermöglicht es, nicht zu viel Platz zu beanspruchen und das System nicht zu verlangsamen. Wenn Sie alle Messungen beibehalten, werden umso mehr Punkte angezeigt, und daher kann die Zeit zum Rendern eines Diagramms erheblich verlängert werden. Wenn zu viele Punkte vorhanden sind, kann dies sogar zum Absturz der Diagrammanzeige führen.
+Durch die Datenarchivierung kann Jeedom die Menge der im Speicher gehaltenen Daten reduzieren. Dadurch wird verhindert, dass zu viel Speicherplatz belegt wird und das System verlangsamt wird. Wenn Sie nämlich alle Messwerte speichern, müssen entsprechend mehr Datenpunkte angezeigt werden, was die Ladezeit der Grafik erheblich verlängern kann. Bei einer zu großen Anzahl von Datenpunkten kann dies sogar dazu führen, dass die Anzeige des Diagramms abstürzt.
 
-Die Archivierung beginnt nachts und komprimiert die tagsüber wiederhergestellten Daten. Standardmäßig ruft Jeedom alle älteren Daten von 2 Stunden ab und erstellt 1-Stunden-Pakete daraus (entweder ein Durchschnitt, ein Minimum oder ein Maximum, abhängig von den Einstellungen). Hier haben wir also zwei Parameter, einen für die Paketgröße und einen anderen, um zu wissen, wann dies zu tun ist (standardmäßig sind dies 1-Stunden-Pakete mit Daten, die älter als 2 Stunden sind).
+Die Archivierung ist ein Vorgang, der nachts gestartet wird und die tagsüber erfassten Daten komprimiert. Standardmäßig erfasst Jeedom alle Daten, die älter als 2 Stunden sind, und fasst sie zu 1-Stunden-Paketen zusammen (je nach Einstellung entweder als Durchschnittswert, Mindestwert oder Höchstwert). Es gibt also zwei Parameter: einen für die Größe der Pakete und einen weiteren, der festlegt, ab wann diese erstellt werden sollen (zur Erinnerung: Standardmäßig handelt es sich um 1-Stunden-Pakete mit Daten, die älter als 2 Stunden sind).
 
-> **Beratung**
+> **Tipp**
 >
-> Wenn Sie gut gefolgt sind, sollten Sie nur in den letzten 2 Stunden eine hohe Präzision haben. Wenn ich mich jedoch um 17 Uhr verbinde, habe ich eine Präzision für die letzten 17 Stunden. Wofür ? Um unnötigen Ressourcenverbrauch zu vermeiden, findet die Archivierungsaufgabe nur einmal am Tag abends statt.
+> Wenn Sie alles richtig verstanden haben, sollten Sie nur für die letzten zwei Stunden eine hohe Genauigkeit haben. Wenn ich mich jedoch um 17 Uhr einlogge, habe ich eine Genauigkeit für die letzten 17 Stunden. Warum? Um unnötigen Ressourcenverbrauch zu vermeiden, wird der Archivierungsvorgang tatsächlich nur einmal täglich, und zwar abends, durchgeführt.
 
 > **Wichtig**
 >
-> Dieses Archivierungsprinzip gilt natürlich nur für digitale Bestellungen. Bei binären Bestellungen speichert Jeedom nur die Daten der Zustandsänderung.
+> Natürlich gilt dieses Archivierungsprinzip nur für digitale Befehle. Bei binären Befehlen speichert Jeedom lediglich die Zeitpunkte der Zustandsänderungen.
 
-### Anzeigen eines Diagramms
+### Anzeige eines Diagramms
 
-Es gibt verschiedene Möglichkeiten, auf den Verlauf zuzugreifen :
+Es gibt mehrere Möglichkeiten, auf den Verlauf zuzugreifen:
 
-- Durch Klicken auf den gewünschten Befehl in einem Widget,
-- Auf der Verlaufsseite können Sie verschiedene Kurven überlagern und Stile kombinieren (Fläche, Kurve, Balken)),
-- Auf dem Handy, während Sie auf dem betreffenden Widget gedrückt bleiben,
-- Durch Einfügen eines Diagrammbereichs in eine Ansicht (siehe unten),
-- Durch Einfügen eines Graphen in ein Design.
+- Wenn Sie in einem Widget auf die gewünschte Schaltfläche klicken,
+- Wenn Sie die Seite „Verlauf“ aufrufen, können Sie verschiedene Kurven übereinanderlegen und die Darstellungsarten (Fläche, Kurve, Balken) kombinieren,
+- Auf dem Smartphone durch langes Drücken auf das betreffende Widget,
+- Wenn man ein Grafikfeld in eine Ansicht einfügt (siehe unten),
+- Durch Einfügen eines Diagramms in ein Design.
 
-Ab Core v4.2 ist es auch möglich, eine Kurve am unteren Rand der Kachel eines Geräts anzuzeigen.
+Seit Core v4.2 ist es auch möglich, eine Kurve im Hintergrund einer Gerätekachel anzuzeigen.
 
-## Historique
+## Geschichte
 
-Wenn Sie ein Diagramm über die Verlaufsseite anzeigen, haben Sie über dem Diagramm Zugriff auf mehrere Anzeigeoptionen :
+Wenn Sie über die Verlaufsseite ein Diagramm anzeigen, stehen Ihnen oberhalb des Diagramms verschiedene Anzeigeoptionen zur Verfügung:
 
-- **Zeit** : Der Anzeigezeitraum einschließlich historischer Daten zwischen diesen beiden Daten. Standardmäßig abhängig von der Einstellung *Standard Anzeigezeitraum der Grafiken* In *Einstellungen → System → Konfiguration / Ausstattung*.
-- **Gruppe** : Bietet verschiedene Gruppierungsoptionen (Summe pro Stunde usw.).).
-- **Anzeigetyp** : Anzeige in *Linie*, *Bereich*, Oder *Stange*. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an. Option in der Bestellung gespeichert und über das Dashboard verwendet.
-- **Vergleichen** : Vergleichen Sie die Kurve zwischen verschiedenen Perioden.
+- **Zeitraum**: Der Anzeigzeitraum, der die historischen Daten zwischen diesen beiden Datumsangaben umfasst. Standardmäßig richtet sich dieser nach der Einstellung *Standardzeitraum für die Grafikanzeige* unter *Einstellungen → System → Konfiguration / Geräte*.
+- **Gruppierung**: Bietet verschiedene Gruppierungsoptionen an (Stundensumme usw.).
+- **Anzeigetyp**: Anzeige als *Linie*, *Fläche* oder *Balken*. Die Option wird im Steuerelement gespeichert und über das Dashboard verwendet.
+- **Abweichung**: Zeigt die Wertdifferenz zum vorherigen Messpunkt an. Diese Option wird auf dem Steuergerät gespeichert und über das Dashboard genutzt.
+- **Treppenförmig**: Ermöglicht die Darstellung der Kurve in Form einer Treppe oder als durchgehende Anzeige. Diese Option wird auf dem Bedienelement gespeichert und über das Dashboard aufgerufen.
+- **Vergleichen**: Ermöglicht den Vergleich der Kurve zwischen verschiedenen Zeiträumen.
 
-> **Beratung**
+> **Tipp**
 >
-> Um Handhabungsfehler zu vermeiden, sind diese in den Befehlen gespeicherten Optionen nur aktiv, wenn eine einzelne Kurve angezeigt wird.
-> 
-Im oberen Teil, wo die Kurven angezeigt werden, gibt es auch mehrere Optionen :
+> Um Bedienungsfehler zu vermeiden, sind diese in den Befehlen gespeicherten Optionen nur aktiv, wenn eine einzige Kurve angezeigt wird.
+>
+Im oberen Bereich, in dem die Kurven angezeigt werden, gibt es ebenfalls mehrere Optionen:
 
-Auf der Linken:
+Links:
 
-- **Zoom** : Ein Shortcut-Bereich, mit dem Sie den horizontalen Zoom auf die gewünschte Dauer einstellen können, wenn die Daten geladen sind.
+- **Zoom**: Ein Bereich mit Schaltflächen, mit denen der horizontale Zoom auf die gewünschte Dauer eingestellt werden kann, sofern die Daten geladen sind.
 
-Auf der rechten Seite:
+Rechts:
 
-- **Sichtbare vertikale Achsen** : Ermöglicht das Ausblenden oder Anzeigen aller vertikalen Achsen.
-- **Skalierung der vertikalen Achse** : Ermöglicht Ihnen, die Skalierung jeder vertikalen Achse unabhängig von den anderen zu aktivieren oder nicht.
-- **Gruppierung der vertikalen Achsen nach Einheiten** : Ermöglicht die Gruppierung der Skalierung von Kurven und vertikalen Achsen nach ihrer Einheit. Alle Kurven mit der gleichen Einheit haben den gleichen Maßstab.
-- **Deckkraft der Kurven unter der Maus** : Hiermit können Sie die Hervorhebung der Kurve deaktivieren, wenn ein Wert am Mauszeiger angezeigt wird. Zum Beispiel, wenn zwei Kurven nicht gleichzeitig ihre Werte haben.
+- **Vertikale Achsen anzeigen**: Hiermit können Sie alle vertikalen Achsen ausblenden oder anzeigen.
+- **Skalierung der vertikalen Achsen**: Hiermit können Sie festlegen, ob jede vertikale Achse unabhängig von den anderen skaliert werden soll oder nicht.
+- **Gruppierung der vertikalen Achsen nach Einheiten**: Ermöglicht die Gruppierung der Skalierung der Kurven und vertikalen Achsen nach ihren Einheiten. Alle Kurven mit derselben Einheit erhalten dieselbe Skalierung.
+- **Deckkraft der Kurven unter dem Mauszeiger**: Hiermit können Sie die Hervorhebung der Kurve deaktivieren, wenn ein Wert am Mauszeiger angezeigt wird. Zum Beispiel, wenn zwei Kurven nicht zu denselben Zeitpunkten Werte aufweisen.
 
-Unter den Kurven können Sie auch das Kontextmenü jeder Legende verwenden, um eine Kurve zu isolieren, ihre Achse anzuzeigen / auszublenden, ihre Farbe zu ändern, ...
+Unter den Kurven können Sie auch das Kontextmenü der jeweiligen Legende verwenden, um eine Kurve hervorzuheben, ihre Achse ein- oder auszublenden, ihre Farbe zu ändern usw.
 
 ### Grafik zu Ansichten und Designs
 
-Sie können die Diagramme auch in den Ansichten anzeigen (wir sehen hier die Konfigurationsoptionen und nicht, wie es geht, dafür müssen Sie zur Dokumentation der Ansichten oder Entwürfe in Funktion gehen). Hier sind die Optionen :
+Sie können die Diagramme auch in den Ansichten anzeigen (wir befassen uns hier mit den Konfigurationsoptionen und nicht mit der Vorgehensweise; dazu müssen Sie die Dokumentation zu den jeweiligen Ansichten oder Designs konsultieren). Hier sind die Optionen:
 
-Sobald eine Daten aktiviert sind, können Sie auswählen :
-- **Farbe** : Die Farbe der Kurve.
-- **Art** : Der Diagrammtyp (Bereich, Linie oder Spalte)).
-- **Leiter** : Da Sie mehrere Kurven (Daten) in ein Diagramm einfügen können, können Sie die Skalen (rechts oder links) unterscheiden).
-- **Treppe** : Zeigt die Kurve als Treppe oder kontinuierliche Anzeige an.
-- **Stapel** : Stapeln Sie die Werte der Kurven (siehe unten für das Ergebnis).
-- **Variation** : Zeigt die Wertdifferenz zum vorherigen Punkt an.
+Sobald eine Funktion aktiviert ist, haben Sie folgende Möglichkeiten:
+- **Farbe**: Die Farbe der Kurve.
+- **Typ**: Der Diagrammtyp (Flächen-, Linien- oder Säulendiagramm).
+- **Skala**: Da Sie mehrere Kurven (Daten) in ein und demselben Diagramm darstellen können, ist es möglich, zwischen der rechten und der linken Skala zu unterscheiden.
+- **Treppenförmig**: Ermöglicht die Darstellung der Kurve in Form einer Treppe oder als durchgehende Anzeige.
+- **Stapeln**: Ermöglicht das Stapeln der Kurvenwerte (das Ergebnis siehe unten).
+- **Abweichung**: Zeigt die Wertdifferenz zum vorherigen Messpunkt an.
 
-### Option auf der Verlaufsseite
+### Option auf der Seite „Verlauf“
 
-Auf der Verlaufsseite können Sie auf einige zusätzliche Optionen zugreifen
+Über die Seite „Verlauf“ haben Sie Zugriff auf einige zusätzliche Optionen
 
-#### Berechnete Geschichte
+#### Berechnete Historie
 
-Ermöglicht die Anzeige einer Kurve gemäß einer Berechnung mit mehreren Befehlen (Sie können so ziemlich alles tun, + - / \* absoluter Wert ... siehe PHP-Dokumentation für einige Funktionen). Beispielsweise :
+Ermöglicht die Darstellung einer Kurve basierend auf einer Berechnung über mehrere Befehle hinweg (Sie können so gut wie alles tun: +, -, /, *, Absolutwert … siehe PHP-Dokumentation für bestimmte Funktionen). Zum Beispiel:
 
-`abs(*\ [Garten \] \ [Hygrometrie \] \ [Temperatur \]* - *\ [Wohnraum \] \ [Hygrometrie \] \ [Temperatur \]*)`
+`abs(*\[Jardin\]\[Hygrometrie\]\[Température\]* - *\[Espace de vie\]\[Hygrométrie\]\[Température\]*)`
 
-Sie haben auch Zugriff auf eine Verwaltung von Berechnungsformeln, die es Ihnen ermöglicht, diese zu speichern, um sie einfacher wieder anzuzeigen.
+Außerdem haben Sie Zugriff auf eine Verwaltung von Berechnungsformeln, mit der Sie diese speichern können, um sie später leichter wieder aufzurufen.
 
-> **Beratung**
+> **Tipp**
 >
-> Wenn Sie Berechnungen gespeichert haben, stehen diese links in . zur Verfügung **Meine Berechnungen**.
+> Wenn Sie Berechnungen gespeichert haben, finden Sie diese links unter **Meine Berechnungen**.
 
 #### Bestellhistorie
 
-Vor allen Daten, die angezeigt werden können, finden Sie zwei Symbole :
+- Vor jeder anzeigbaren Datenzeile befindet sich ein **Papierkorb**-Symbol, mit dem Sie die gespeicherten Daten löschen können; wenn Sie darauf klicken, fragt Jeedom, ob Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
+- Unter **Konfiguration** finden Sie rechts neben jedem Datensatz ein **Pfeil**-Symbol, über das Sie einen CSV-Export der historischen Daten erstellen können.
 
-- **Mülleimer** : Ermöglicht das Löschen der aufgezeichneten Daten. Beim Klicken fragt Jeedom, ob die Daten vor einem bestimmten Datum oder alle Daten gelöscht werden sollen.
-- **Pfeil** : Aktiviert den CSV-Export historischer Daten.
+### Entfernung inkonsistenter Werte
 
-### Inkonsistente Wertentfernung
-
-Manchmal haben Sie inkonsistente Werte in den Diagrammen. Dies ist häufig auf Bedenken hinsichtlich der Interpretation des Werts zurückzuführen. Sie können den Wert des betreffenden Punkts löschen oder ändern, indem Sie direkt in der Grafik darauf klicken. Darüber hinaus können Sie das zulässige Minimum und Maximum anpassen, um zukünftige Probleme zu vermeiden.
+Manchmal kann es vorkommen, dass Sie inkonsistente Werte in den Diagrammen sehen. Dies ist oft auf ein Problem bei der Interpretation des Werts zurückzuführen. Sie können den Wert des betreffenden Datenpunkts löschen oder ändern, indem Sie direkt im Diagramm darauf klicken; außerdem können Sie den zulässigen Minimal- und Maximalwert festlegen, um zukünftige Probleme zu vermeiden.
 
 

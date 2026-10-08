@@ -1,31 +1,31 @@
-# Logs
+# Registros
 **Análisis → Registros**
 
-Los registros son archivos de registro, lo que le permite seguir lo que sucede en la automatización de su hogar. En la mayoría de los casos, el equipo de soporte solo utilizará los registros para depurar y resolver problemas.
+Los registros son archivos de log que permiten realizar un seguimiento de lo que ocurre en el sistema de domótica. En la mayoría de los casos, los registros solo servirán para la depuración y para que el equipo de soporte técnico resuelva problemas.
 
 > **Consejo**
 >
-> Cuando se abre la página, se muestra el primer registro disponible.
+> Al abrir la página, se muestra el primer registro disponible.
 
-La página de registros es bastante simple :
-A la izquierda, una lista de registros disponibles, con un campo de búsqueda para filtrar el nombre de los registros.
-Arriba a la derecha 5 botones :
+La página de registros es bastante sencilla:
+A la izquierda, una lista de los registros disponibles, con un campo de búsqueda para filtrar los nombres de los registros.
+En la parte superior derecha hay 5 botones:
 
-- **Investigar** : Le permite filtrar la visualización del registro actual.
-- **Pausa / Reanudar** : Pausa / reanuda la actualización en tiempo real del registro actual.
-- **Descargar** : Descargar el registro actual.
-- **Vacío** : Borrar el registro actual.
-- **BORRAR** : Eliminar el registro actual. Si Jeedom lo necesita, lo recreará automáticamente.
-- **Eliminar todos los registros** : Eliminar todos los registros presentes.
+- **Buscar**: Permite filtrar la visualización del registro actual.
+- **Pausar/Reanudar**: Permite pausar o reanudar la actualización en tiempo real del registro actual.
+- **Descargar**: Permite descargar el registro actual.
+- **Vaciar**: Permite vaciar el registro actual.
+- **Eliminar**: Permite eliminar el registro actual. Si Jeedom lo necesita, lo volverá a crear automáticamente.
+- **Eliminar todos los registros**: Elimina todos los registros existentes.
 
 > **Consejo**
 >
-> Tenga en cuenta que el registro http.el error no se puede eliminar. Es esencial que si lo elimina (en la línea de comando, por ejemplo) no se volverá a crear, debe reiniciar el sistema.
+> Ten en cuenta que el registro http.error no se puede eliminar. Es fundamental que, si lo eliminas (por ejemplo, desde la línea de comandos), no se volverá a crear por sí solo, sino que habrá que reiniciar el sistema.
 
-## Tiempo real
+## En tiempo real
 
-El registro &quot;Evento&quot; es un poco especial. En primer lugar, para que funcione, debe estar en el nivel de información o depuración, luego enumera todos los eventos o acciones que ocurren en la automatización del hogar. Para acceder a él, debe ir a la página de registro o en Análisis → Tiempo real.
+El registro «Event» es un poco especial. En primer lugar, para que funcione, debe estar en el nivel «info» o «debug»; además, recoge todos los eventos o acciones que tienen lugar en el sistema de domótica. Para acceder a él, hay que ir a la página de registros o a Análisis → Tiempo real.
 
-Una vez que hace clic en él, obtiene una ventana que se actualiza en tiempo real y le muestra todos los eventos de su domótica.
+Una vez que hayas hecho clic en él, aparecerá una ventana que se actualiza en tiempo real y te muestra todos los eventos de tu sistema de domótica.
 
-En la parte superior derecha tiene un campo de búsqueda (solo funciona si no está en pausa) y un botón para pausar (útil para hacer una copia / pegar, por ejemplo).
+En la esquina superior derecha hay un campo de búsqueda (solo funciona si no estás en pausa) y un botón para poner en pausa (útil, por ejemplo, para copiar y pegar).

@@ -161,7 +161,7 @@ En dessous vous retrouvez un tableau permettant de gérer finement le niveau de 
 
 ## Onglet Résumés
 
-[Voir documentation sur les résumés.](/fr_FR/concept/summary)
+[Voir documentation sur les résumés.](https://doc.jeedom.com/concept/fr_FR/summary)
 
 ## Onglet Equipements
 
@@ -377,7 +377,7 @@ Dépôt permettant d’envoyer automatiquement une sauvegarde de Jeedom sur un p
 
 Permet de surveiller et d’agir sur le cache de Jeedom :
 
-- **Moteur de cache** : choix du moteur de cache pour jeedom : 
+- **Moteur de cache** : choix du moteur de cache pour jeedom :
   - Système de fichier : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier, utilise une lib tierce. Il sera prochainement remplacé par Fichier (beta)
   - Fichier (beta) : Stockage des informations de cache /tmp/jeedom/cache (en ram donc) en mode fichier. Le plus performant mais sauvegardé toute les 30min
   - MySQL (beta) : Utilisation d'une table de cache en base. Le moins performant mais sauvegardé en temps réel (aucune perte de données possible)

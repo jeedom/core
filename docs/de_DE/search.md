@@ -1,103 +1,103 @@
-# Recherche
-**Analysemenü → Suchen**
+# Suche
+**Menü „Analyse“ → „Suche“**
 
-Jeedom bietet eine interne Suchmaschine.
+Jeedom verfügt über eine interne Suchfunktion.
 
-![Forschung](./images/search_intro.gif)
+![Suche](../images/search_intro.gif)
 
-Sie können verschiedene Arten suchen :
+Sie können verschiedene Arten von Suchanfragen durchführen:
 
 ## Nach Ausrüstung
 
-Wählen Sie ein Gerät mit dem Symbol rechts neben dem Feld aus.
+Wählen Sie ein Gerät über das Symbol rechts neben dem Feld aus.
 
-Der Motor wird in den folgenden Tabellen angezeigt :
+Die Engine zeigt in den folgenden Tabellen Folgendes an:
 
-- DER **Szenarien** mit diesem Gerät.
-- DER **Entwürfe** Anzeige dieser Ausrüstung.
-- DER **Ansichten** Anzeige dieser Ausrüstung.
-- DER **Interaktionen** mit diesem Gerät.
-- Die anderen **Ausrüstung** mit diesem Gerät.
-- DER **Bestellungen** mit diesem Gerät.
+- Die **Szenarien**, in denen diese Geräte zum Einsatz kommen.
+- Die **Designs**, die diese Ausstattung aufweisen.
+- Die **Ansichten**, in denen diese Anlage angezeigt wird.
+- Die **Interaktionen**, bei denen diese Geräte zum Einsatz kommen.
+- Weitere **Geräte**, die dieses Gerät verwenden.
+- Die **Befehle**, die dieses Gerät verwenden.
 
 ## Auf Bestellung
 
-Wählen Sie eine Bestellung mit dem Symbol rechts neben dem Feld.
+Wählen Sie einen Befehl über das Symbol rechts neben dem Feld aus.
 
-Der Motor wird in den folgenden Tabellen angezeigt :
+Die Engine zeigt in den folgenden Tabellen Folgendes an:
 
-- DER **Szenarien** mit diesem Befehl.
-- DER **Entwürfe** Anzeige dieses Befehls.
-- DER **Ansichten** Anzeige dieses Befehls.
-- DER **Interaktionen** mit diesem Befehl.
-- DER **Ausrüstung** mit diesem Befehl.
-- Die anderen **Bestellungen** mit diesem Befehl.
+- Die **Szenarien**, die diesen Befehl verwenden.
+- Die **Designs**, die diesen Befehl enthalten.
+- Die **Ansichten**, in denen dieser Befehl angezeigt wird.
+- Die **Interaktionen**, die diesen Befehl verwenden.
+- Die **Geräte**, die diesen Befehl verwenden.
+- Andere **Befehle**, die diesen Befehl verwenden.
 
-## Nach Variablen
+## Nach Variable
 
-Wählen Sie eine Variable aus der Dropdown-Liste.
+Wählen Sie eine Variable aus der Dropdown-Liste aus.
 
-Der Motor wird in den folgenden Tabellen angezeigt :
+Die Engine zeigt in den folgenden Tabellen Folgendes an:
 
-- DER **Szenarien** mit dieser Variablen.
-- DER **Interaktionen** mit dieser Variablen.
-- DER **Ausrüstung** mit dieser Variablen.
-- DER **Bestellungen** mit dieser Variablen.
+- Die **Szenarien**, die diese Variable verwenden.
+- Die **Interaktionen**, die diese Variable verwenden.
+- Die **Geräte**, die diese Variable verwenden.
+- Die **Befehle**, die diese Variable verwenden.
 
 ## Per Plugin
 
-Wählen Sie ein Plugin aus der Dropdown-Liste.
+Wählen Sie ein Plugin aus der Dropdown-Liste aus.
 
-Der Motor wird in den folgenden Tabellen angezeigt :
+Die Engine zeigt in den folgenden Tabellen Folgendes an:
 
-- DER **Szenarien** mit diesem Plugin.
-- DER **Entwürfe** Anzeige dieses Plugins.
-- DER **Ansichten** Anzeige dieses Plugins.
-- DER **Interaktionen** mit diesem Plugin.
-- DER **Ausrüstung** mit diesem Plugin.
-- DER **Bestellungen** mit diesem Plugin.
+- Die **Szenarien**, die dieses Plugin verwenden.
+- Die **Designs**, die dieses Plugin anzeigen.
+- Die **Ansichten**, in denen dieses Plugin angezeigt wird.
+- Die **Interaktionen**, die dieses Plugin nutzen.
+- Die **Geräte**, die dieses Plugin verwenden.
+- Die **Befehle**, die dieses Plugin verwenden.
 
-## Durch Wort
+## Nach Wort
 
-Geben Sie eine Zeichenfolge in das Suchfeld ein. Validieren mit *eingeben* oder mit der Taste *Zur Recherche*.
+Geben Sie eine Zeichenfolge in das Suchfeld ein. Bestätigen Sie mit *Enter* oder über die Schaltfläche *Suchen*.
 
-Der Motor wird in den folgenden Tabellen angezeigt :
+Die Engine zeigt in den folgenden Tabellen Folgendes an:
 
-- DER **Szenarien** mit dieser Zeichenfolge.
-	Suchen Sie in Ausdrücken, Kommentaren und Codeblöcken.
-- DER **Interaktionen** mit dieser Zeichenfolge.
-	Suche in Feldern *Anfrage*.
-- DER **Ausrüstung** mit dieser Zeichenfolge.
-	Suche in Feldern *Name*, *logischeId*, *eqType*, *Wie*, *Tags*.
-- DER **Bestellungen** mit dieser Zeichenfolge.
-	Suche in Feldern *Name*, *logischeId*, *eqType*, *generischer_typ*, .
-- DER **Notizen** mit dieser Zeichenfolge.
-	Notizen Textsuche.
+- Die **Szenarien**, die diese Kette verwenden.
+Suche in Ausdrücken, Kommentaren und Code-Blöcken.
+- Die **Interaktionen**, die diese Zeichenfolge verwenden.
+Suche in den Feldern *Anfrage*.
+- Die **Geräte**, die diesen Kanal nutzen.
+Suche in den Feldern *name*, *logicalId*, *eqType*, *comment*, *tags*.
+- Die **Befehle**, die diese Zeichenfolge verwenden.
+Suche in den Feldern *name*, *logicalId*, *eqType*, *generic_type*, .
+- Die **Notizen**, die diese Zeichenfolge verwenden.
+Suche im Text der Anmerkungen.
 
 ## Nach ID
 
-Geben Sie im Suchfeld eine Nummer ein, die einer gesuchten ID entspricht. Validieren mit *eingeben* oder mit der Taste *Zur Recherche*.
+Geben Sie im Suchfeld eine Zahl ein, die der gesuchten ID entspricht. Bestätigen Sie mit *Enter* oder mit der Schaltfläche *Suchen*.
 
-Der Motor wird in den folgenden Tabellen angezeigt :
+Die Engine zeigt in den folgenden Tabellen Folgendes an:
 
-- DER **Szenario** mit dieser ID.
-- DER **Design** mit dieser ID.
-- Dort **Sicht** mit dieser ID.
-- L'**Interaktion** mit dieser ID.
-- L'**Ausrüstung** mit dieser ID.
-- Dort **Befehl** mit dieser ID.
-- Dort **Notiz** mit dieser ID.
+- Das **Szenario** mit dieser ID.
+- Das **Design** mit dieser ID.
+- Die **Ansicht** mit dieser ID.
+- Die **Interaktion** mit dieser ID.
+- Das **Gerät** mit dieser ID.
+- Der **Befehl** mit dieser ID.
+- Die **Notiz** mit dieser ID.
 
 ## Ergebnisse
 
-Für jede Art von Ergebnis sind Aktionen zulässig:
-- **Szenarien** : Öffnen Sie das Szenarioprotokoll oder rufen Sie die Szenarioseite mit der aktiven Suche nach dem gesuchten Begriff auf.
-- **Entwürfe** : Showdesign.
-- **Ansichten** : Ansicht anzeigen.
-- **Interaktionen** : Öffnen Sie die Interaktionskonfigurationsseite.
-- **Ausrüstung** : Öffnen Sie die Gerätekonfigurationsseite.
-- **Bestellungen** : Öffnen Sie die Auftragskonfiguration.
-- **Notizen** : Hinweis öffnen.
+Für jede Art von Ergebnis ermöglicht es folgende Aktionen:
+- **Szenarien**: Das Protokoll des Szenarios öffnen oder zur Seite des Szenarios wechseln, wobei die Suche nach dem gesuchten Begriff aktiv bleibt.
+- **Designs**: Design anzeigen.
+- **Ansichten**: Ansicht anzeigen.
+- **Interaktionen**: Öffne die Konfigurationsseite der Interaktion.
+- **Gerät**: Die Konfigurationsseite des Geräts öffnen.
+- **Befehle**: Die Konfiguration des Befehls öffnen.
+- **Notizen**: Notiz öffnen.
 
-Jede dieser Optionen öffnet eine andere Registerkarte in Ihrem Browser, um die aktuelle Suche nicht zu verlieren.
+Jede dieser Optionen öffnet einen neuen Tab in Ihrem Browser, damit Sie die aktuelle Suche nicht verlieren.
 

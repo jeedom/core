@@ -29,9 +29,9 @@ if ($wathdog_in_progress > 1) {
 	echo 'Watchdog in progress, cancel watchdog (' . $wathdog_in_progress . ')';
 	die();
 }
-$update_in_progress = exec('ps -C apt,dpkg |  wc -l');
+$update_in_progress = exec('ps -C apt-get,dpkg |  wc -l');
 if ($update_in_progress > 1) {
-	echo 'Update (apt or dpkg) in progress, cancel watchdog';
+	echo 'Update (apt-get or dpkg) in progress, cancel watchdog';
 	die();
 }
 $output = array();

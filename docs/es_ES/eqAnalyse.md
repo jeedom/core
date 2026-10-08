@@ -1,75 +1,75 @@
 # Análisis de equipos
-**Análisis → Equipo**
+**Análisis → Equipos**
 
-La página de Análisis de equipo le permite ver mucha información relacionada con el equipo de forma centralizada :
+La página «Análisis de equipos» te permite consultar de forma centralizada gran cantidad de información relativa a los equipos:
 
-- El estado de tus baterías
-- Módulos en alerta
-- Acciones definidas
-- Alertas definidas
-- Órdenes huérfanas
+- El estado de tus pilas
+- Módulos de alertas
+- Las acciones definidas
+- Las alertas configuradas
+- Los comandos huérfanos
 
-## Pestaña Baterías
+## Pestaña «Baterías»
 
 
-Puede ver en esta pestaña la lista de sus módulos de batería, su nivel restante (el color del mosaico depende de este nivel), el tipo y la cantidad de baterías que deben colocarse en el módulo, el tipo de módulo también que la fecha en que se actualizó la información del nivel de batería. También puede ver si se ha establecido un umbral específico para el módulo en particular (representado por una mano)
-
-> **Consejo**
->
-> Los umbrales de alerta / advertencia en los niveles de batería se pueden configurar globalmente en la configuración de Jeedom (Configuración → Sistemas → Configuración : Equipo), o por equipo en la página de configuración avanzada de estos en la pestaña de alertas.
-
-## Módulos en la pestaña de alerta
-
-En esta pestaña verá en tiempo real los módulos en alerta. Las alertas pueden ser de diferentes tipos :
-
-- Tiempo de espera (configurado en la pestaña de alertas definidas).
-- Batería en advertencia o en peligro.
-- Comando de advertencia o peligro (configurable en parámetros de comando avanzados).
-
-Otros tipos de alertas se pueden encontrar aquí.
-Cada alerta estará representada por el color del mosaico (el nivel de alerta) y un logotipo en la parte superior izquierda (el tipo de alerta).
+En esta pestaña puedes ver la lista de tus módulos alimentados por batería, su nivel restante (el color de la ficha depende de este nivel), el tipo y el número de pilas que hay que poner en el módulo, el tipo de módulo, así como la fecha en la que se actualizó la información sobre el nivel de batería. También puedes ver si se ha establecido un umbral específico para ese módulo en concreto (representado por una mano).
 
 > **Consejo**
 >
-> Aquí se mostrarán todos los módulos en alerta, incluso aquellos configurados en "no visible". Sin embargo, es interesante observar que si el módulo está "visible", la alerta también estará visible en el tablero (en el objeto en cuestión)).
+> Los umbrales de alerta sobre el nivel de las baterías se pueden configurar de forma global en la configuración de Jeedom (Ajustes → Sistemas → Configuración: Equipos), o por equipo en su página de configuración avanzada, en la pestaña «Alertas».
 
-## Pestaña Acciones definidas
+## Pestaña «Módulos en alerta»
 
-Esta pestaña le permite ver las acciones definidas directamente en un pedido. De hecho, podemos poner diferentes comandos y puede ser difícil recordar todos. Esta pestaña está ahí para eso y sintetiza varias cosas :
+En esta pestaña podrás ver en tiempo real los módulos que están en estado de alerta. Las alertas pueden ser de diferentes tipos:
 
-- Acciones en estado (se encuentran en los parámetros avanzados de los comandos de información y permiten realizar una o más acciones sobre el valor de un pedido, inmediatamente o después de un retraso).
-- Confirmaciones de acciones (configurables en el mismo lugar en un comando de información y permitiendo solicitar una confirmación para ejecutar una acción).
-- Confirmaciones con código (igual que el anterior pero con la introducción de un código).
-- Acciones previas y posteriores (siempre configurables en el mismo lugar en un comando de acción y permitiendo ejecutar una o más acciones antes o después de la acción en cuestión).
+- Tiempo de espera (configurado en la pestaña «Alertas definidas»).
+- La batería está en modo de aviso o en peligro.
+- Comando de advertencia o peligro (configurable en los parámetros avanzados de los comandos).
+
+Es posible que aquí se incluyan otros tipos de alertas.
+Cada alerta se representará mediante el color del mosaico (el nivel de alerta) y un logotipo en la esquina superior izquierda (el tipo de alerta).
 
 > **Consejo**
 >
-> La tabla proporciona una vista muy textual de las acciones definidas. Se pueden agregar otros tipos de acciones definidas.
+> Aquí se mostrarán todos los módulos en estado de alerta, incluso aquellos configurados como «no visibles». No obstante, cabe señalar que, si el módulo está en estado «visible», la alerta también se mostrará en el panel de control (en el objeto correspondiente).
 
-## Pestaña Alertas definidas
+## Pestaña «Acciones definidas»
 
-Esta pestaña le permite ver todas las alertas definidas, encontrará en una tabla la siguiente información si existen :
+Esta pestaña permite visualizar las acciones definidas directamente en un comando. De hecho, se pueden asignar a diferentes comandos y puede resultar difícil recordarlas todas. Esta pestaña sirve precisamente para eso y resume varios aspectos:
 
-- Alertas de retraso de comunicación.
-- Los umbrales de batería específicos definidos en un dispositivo.
-- Las diversas alertas de peligro y comandos de advertencia.
+- Las acciones basadas en el estado (que se encuentran en los parámetros avanzados de los controles de información y que permiten realizar una o varias acciones sobre el valor de un control, ya sea de forma inmediata o tras un tiempo de espera).
+- Las confirmaciones de acciones (configurables en el mismo lugar mediante un comando «info» y que permiten solicitar una confirmación para ejecutar una acción).
+- Confirmaciones con código (lo mismo que antes, pero introduciendo un código).
+- Las acciones previas y posteriores (que siempre se pueden configurar en el mismo lugar, en un comando de acción, y que permiten ejecutar una o varias acciones más antes o después de la acción en cuestión).
 
-## Pestaña Orphan Orders
+> **Consejo**
+>
+> La tabla permite ver de forma muy clara las acciones definidas. Se podrán añadir otros tipos de acciones definidas.
 
-Esta pestaña le permite ver de un vistazo si ha utilizado comandos huérfanos a través de Jeedom. Un comando huérfano es un comando utilizado en algún lugar pero que ya no existe. Encontraremos aquí todos estos comandos, como por ejemplo :
+## Pestaña «Alertas definidas»
 
-- Comandos huérfanos utilizados en el cuerpo de un escenario.
-- Los que se utilizan para desencadenar un escenario.
+Esta pestaña permite ver todas las alertas configuradas; en ella encontrarás, en una tabla, la siguiente información, si está disponible:
 
-Y se usa en muchos otros lugares como (no exhaustivo) :
-- Interacciones.
-- Configuraciones de Jeedom.
-- En pre o post acción de un pedido.
-- En acción sobre el estado del pedido.
+- Alertas sobre retrasos en la comunicación.
+- Los umbrales específicos de batería definidos en un equipo.
+- Las diferentes alertas de peligro y avisos de los controles.
+
+## Pestaña «Comandos huérfanos»
+
+Esta pestaña te permite ver de un vistazo si tienes comandos huérfanos que se utilizan en Jeedom. Un comando huérfano es un comando que se utiliza en algún sitio pero que ya no existe. Aquí encontrarás todos estos comandos, como por ejemplo:
+
+- Los comandos huérfanos utilizados en el cuerpo de un escenario.
+- Las que se utilizan como desencadenantes de un escenario.
+
+Y se utilizan en muchos otros ámbitos, como (entre otros):
+- Las interacciones.
+- Las configuraciones de Jeedom.
+- Como acción previa o posterior a un comando.
+- Acción en función del estado de un pedido.
 - En algunos complementos.
 
-Si la identificación de la orden huérfana todavía está presente en el historial de eliminación (disponible en Análisis / Resumen de automatización del hogar), se mostrará su nombre anterior y la fecha de eliminación.
+Si el ID del comando huérfano sigue estando presente en el historial de eliminaciones (que se puede consultar en Análisis / Resumen de domótica), se mostrarán su nombre anterior y su fecha de eliminación.
 
 > **Consejo**
 >
-> La tabla proporciona una vista muy textual de los comandos huérfanos. Su objetivo es poder identificar rápidamente todos los pedidos &quot;huérfanos&quot; a través de todos los complementos y Jeedom. Puede ser que algunas áreas no se analicen, la tabla será más y más exhaustiva con el tiempo.
+> La tabla permite ver de forma muy clara los comandos huérfanos. Su objetivo es poder identificar rápidamente todos los comandos «huérfanos» en todo Jeedom y en los complementos. Es posible que algunas áreas no se hayan analizado aún, pero la tabla irá siendo cada vez más completa con el tiempo.

@@ -1,105 +1,105 @@
-# Jeedom V4 - Atajos de teclado / mouse
+# Jeedom V4 - Atajos de teclado y ratón
 
 ### General
 
-Al abrir una página (Panel, Escenarios, etc.) el foco está en el campo de búsqueda. Por lo tanto, puede escribir directamente una búsqueda sin más acciones.
+Al abrir una página (Panel de control, Escenarios, etc.), el foco se sitúa en el campo de búsqueda. Así pues, puedes escribir directamente lo que deseas buscar sin necesidad de realizar ninguna otra acción.
 
-- Haga clic en el reloj (barra de menú) : Abre la línea de tiempo.
-- Haga clic en el nombre de Jeedom (barra de menú)  : Abierto **Preferencias → Sistema → Configuración**.
-- Haga clic en ?  (Barra de menú)  : Abrir ayuda en la página actual.
-- Escapar en un campo de investigación : Vaciar el campo de búsqueda y cancelarlo.
+- Haz clic en el reloj (barra de menú): abre la línea de tiempo.
+- Haz clic en el nombre de Jeedom (barra de menú): se abre **Ajustes → Sistema → Configuración**.
+- Haz clic en el signo «?» (barra de menú): abre la ayuda de la página actual.
+- Tecla Esc en un campo de búsqueda: borra el contenido del campo de búsqueda y cancela la búsqueda.
 
-### Dashboard
-En modo edición:
-	- Arrastra y suelta en los mosaicos para reorganizarlos.
-	- Cambiar el tamaño de los bordes del mosaico para cambiar su tamaño.
-	- Menú contextual (clic derecho) en los mosaicos.
-	- Ctrl Haga clic en un ícono *expandir* : Ajusta la altura de los mosaicos del objeto no en relación con el más alto, sino en relación con el más bajo.
+### Panel de control
+En modo de edición:
+	- Arrastra y suelta los mosaicos para reorganizarlos.
+	- Ajusta el tamaño de los mosaicos por los bordes para cambiar su tamaño.
+	- Menú contextual (clic con el botón derecho) sobre los mosaicos.
+	- Ctrl + clic en un icono *expand*: ajusta la altura de los mosaicos del objeto no en función del más alto, sino del más bajo.
 
-- Ctrl Haga clic en un comando de información : Abre toda la información del historial del mosaico en la ventana del historial.
+- Ctrl + clic en un comando de información: abre toda la información histórica del mosaico en la ventana de historial.
 
-### Configuraciones / Sistema / Configuración
-- Ctrl-S : Para salvaguardar.
+### Ajustes / Sistema / Configuración
+- Ctrl+S: Guardar.
 
 ### Configuración / Sistema / Copias de seguridad
-- Ctrl-S : Para salvaguardar.
+- Ctrl+S: Guardar.
 
 ### Configuración / Sistema / Motor de tareas
-- Ctrl-S : Para salvaguardar.
+- Ctrl+S: Guardar.
 
-### Configuraciones / Sistema / Usuarios
-- Ctrl-S : Para salvaguardar.
+### Configuración / Sistema / Usuarios
+- Ctrl+S: Guardar.
 
-### Configuraciones / Preferencias
-- Ctrl-S : Para salvaguardar.
+### Configuración / Preferencias
+- Ctrl+S: Guardar.
 
-### Herramientas / interacciones
-- En una interacción, Ctrl S : Para salvaguardar.
-- En una interacción, haga clic derecho en una pestaña : Menú contextual para ir directamente a otra interacción.
-- Ctrl Click o Center Click en una interacción o en el menú contextual : Abra la interacción en una nueva pestaña del navegador.
+### Herramientas / Interacciones
+- En una interacción, Ctrl+S: Guardar.
+- En una interacción, haz clic con el botón derecho del ratón en una pestaña: menú contextual para ir directamente a otra interacción.
+- Ctrl+clic o clic con el botón central en una interacción o en el menú contextual: abre la interacción en una nueva pestaña del navegador.
 
 ### Herramientas / Objetos
-- En un objeto, Ctrl S : Para salvaguardar.
-- En un objeto, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro objeto.
-- Ctrl Click o Center Click en un objeto o en el menú contextual : Abra el objeto en una nueva pestaña del navegador.
+- En un objeto, Ctrl+S: Guardar.
+- En un objeto, haz clic con el botón derecho del ratón en una pestaña: menú contextual para ir directamente a otro objeto.
+- Ctrl + clic o clic con el botón central sobre un objeto o en el menú contextual: abre el objeto en una nueva pestaña del navegador.
 
-### Herramientas / widgets
-- En un widget, Ctrl S : Para salvaguardar.
-- En un widget, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro widget.
-- Ctrl Click o Click Center en un widget o en el menú contextual : Abra el widget en una nueva pestaña del navegador.
+### Herramientas / Widgets
+- En un widget, Ctrl+S: Guardar.
+- En un widget, haz clic con el botón derecho del ratón en una pestaña: menú contextual para ir directamente a otro widget.
+- Ctrl + clic o clic con el botón central en un widget o en el menú contextual: abre el widget en una nueva pestaña del navegador.
 
-### Herramientas / escenarios
-- Ctrl Click o Center Click en un escenario o en el menú contextual : Abra el escenario en una nueva pestaña del navegador.
+### Herramientas / Escenarios
+- Ctrl + clic o clic con el botón central en un escenario o en el menú contextual: abre el escenario en una nueva pestaña del navegador.
 
-En un escenario :
-- Ctrl-S : Para salvaguardar.
-- Haga clic derecho en una pestaña : Menú contextual para ir directamente a otro escenario.
-- Ctrl-L : Pantalla de registro.
-- Ctrl Mayús Z : Cancelar.
-- Ctrl Mayús Y : Rehacer.
+En un escenario:
+- Ctrl+S: Guardar.
+- Clic con el botón derecho del ratón en una pestaña: menú contextual para ir directamente a otro escenario.
+- Ctrl+L: Mostrar el registro.
+- Ctrl + Mayús + Z: Deshacer.
+- Ctrl + Mayús + Y: Rehacer.
 
-- Ctrl Haga clic en Ejecutar : Guarde y ejecute el escenario, luego abra el registro.
-- Ctrl Haga clic en el icono *Copia este bloque* : Cortar este bloque.
-- Ctrl Haga clic en el icono *Pegar un bloque* : Reemplace este bloque.
-- Ctrl Haga clic en el icono *Eliminar este bloque* : Eliminar bloque sin confirmación.
-- Ctrl Haga clic en el icono *Ocultar este bloque* : Ocultar o mostrar todos los bloques.
+- Ctrl + clic en «Ejecutar»: guarda y ejecuta el escenario y, a continuación, abre el registro.
+- Ctrl + clic en el icono *Copiar este bloque*: Cortar este bloque.
+- Ctrl+clic en el icono *Pegar un bloque*: Reemplazar este bloque.
+- Ctrl + clic en el icono *Eliminar este bloque*: Eliminar el bloque sin confirmación.
+- Ctrl + clic en el icono «Ocultar este bloque»: oculta o muestra todos los bloques.
 
-En un bloque de código :
-- Ctrl-F : Busca en el código.
-- Ctrl-G : Siguiente búsqueda.
+En un bloque de código:
+- Ctrl+F: Buscar en el código.
+- Ctrl+G: Siguiente resultado de la búsqueda.
 
 ### Complementos / Gestión de complementos
-- Ctrl S en una configuración de complemento : Para salvaguardar.
-- Ctrl Click o Click Center en un complemento : Abra la administración de complementos en una nueva pestaña del navegador.
+- Pulsar Ctrl+S en la configuración de un complemento: Guardar.
+- Ctrl+clic o clic con el botón central en un complemento: abre la gestión del complemento en una nueva pestaña del navegador.
 
 ### Complementos / *complemento*
-- En un dispositivo, Ctrl S  : Para salvaguardar.
-- En un dispositivo, haga clic derecho en una pestaña : Menú contextual para ir directamente a otro dispositivo.
-- Ctrl Click o Center Click en un dispositivo: Abra el equipo del complemento en una nueva pestaña del navegador.
+- En un dispositivo, Ctrl+S: Guardar.
+- En un dispositivo, haz clic con el botón derecho del ratón en una pestaña: menú contextual para ir directamente a otro dispositivo.
+- Ctrl + clic o clic con el botón central del ratón sobre un dispositivo: abre el dispositivo del complemento en una nueva pestaña del navegador.
 
-### Inicio / Ver
-- Ctrl S al editar una vista : Para salvaguardar.
+### Inicio / Vista
+- Ctrl+S al editar una vista: Guardar.
 
 ### Inicio / Diseño
-- Ctrl S en un diseño : Para salvaguardar.
-- Ctrl Shift E en un diseño : Entrar o salir del modo de edición.
+- Pulsar Ctrl+S en un diseño: Guardar.
+- Ctrl + Mayús + E en un diseño: activa o desactiva el modo de edición.
 
-### Análisis / resumen de domótica
-- Ctrl Haga clic en el icono *Abierto* (recherche) : Abra todos los objetos y equipos.
-- Ctrl Haga clic en el icono *Cerca* (recherche) : Cierra todos los objetos y equipos.
+### Análisis / Resumen sobre domótica
+- Ctrl + clic en el icono *Abrir* (búsqueda): abre todos los objetos y todos los equipos.
+- Ctrl + clic en el icono *Cerrar* (búsqueda): Cierra todos los objetos y todos los equipos.
 
-### Análisis / Historia
-Si se muestran varias curvas :
-- Ctrl Haga clic en una leyenda : Mostrar solo esta historia.
-- Alt Haga clic en una leyenda : Mostrar toda la historia.
+### Análisis / Historial
+Si se muestran varias curvas:
+- Ctrl + clic en una leyenda: Mostrar solo este historial.
+- Haz clic con el botón derecho del ratón en una leyenda: Mostrar todos los historiales.
 
-### Ventana de historia
-Si se muestran varias curvas :
-- Ctrl Haga clic en una leyenda : Mostrar solo esta historia.
-- Alt Haga clic en una leyenda : Mostrar toda la historia.
+### Ventana «Historial»
+Si se muestran varias curvas:
+- Ctrl + clic en una leyenda: Mostrar solo este historial.
+- Haz clic con el botón derecho del ratón en una leyenda: Mostrar todos los historiales.
 
-### Ventana de configuración del equipo
-- Ctrl Haga clic en Guardar : Guardar y cerrar ventana.
+### Ventana «Configuración del equipo»
+- Ctrl + clic en «Guardar»: guarda y cierra la ventana.
 
-### Ventana de configuración de comandos
-- Ctrl Haga clic en Guardar : Guardar y cerrar ventana.
+### Ventana «Configuración de comandos»
+- Ctrl + clic en «Guardar»: guarda y cierra la ventana.

@@ -27,11 +27,11 @@ Définit certains comportements de l’interface
 
 ## Onglet Sécurité
 
-- **Authentification en 2 étapes** : permet de configurer l’authentification en 2 étapes (pour rappel, c’est un code changeant toutes les X secondes qui s’affiche sur une application mobile, type *google authentificator*). A noter que la double authentification ne sera demandée que pour les connexions externes Pour les connexions locales le code ne sera donc pas demandé.
+- **Authentification en 2 étapes** : permet de configurer l’authentification en deux étapes. Un code de vérification temporaire est généré par une application d’authentification sur votre appareil mobile. La double authentification est demandée uniquement lors des connexions externes ; elle n’est pas requise pour les connexions locales.
 
-  **Important** si lors de la configuration de la double authentification vous avez une erreur, il faut vérifier que Jeedom (voir sur la page santé) et votre téléphone sont bien à la même heure (1 min de différence suffit pour que ça ne marche pas).
+  **Important :** en cas d’erreur lors de la configuration, vérifiez que l’horloge de Jeedom et celle de votre téléphone sont synchronisées. Un décalage d’une minute peut empêcher la validation du code.
 
-- **Mot de passe** : Permet de changer votre mot de passe (ne pas oublier de le retaper en dessous).
+- **Mot de passe** : permet de modifier votre mot de passe. Saisissez-le également dans le champ de confirmation.
 
 - **Hash de l’utilisateur** : Votre clef API d’utilisateur.
 

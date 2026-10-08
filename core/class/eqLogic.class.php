@@ -41,7 +41,7 @@ class eqLogic {
 	protected $_object = null;
 	protected $_needRefreshWidget = false;
 	protected $_timeoutUpdated = false;
-	protected $_batteryUpdated = false;
+	protected $_batteryThresholdChanged = false;
 	protected $_changed = false;
 
 	protected $_cmds = array();
@@ -1063,9 +1063,9 @@ class eqLogic {
 			$this->_needRefreshWidget = false;
 			$this->refreshWidget();
 		}
-		if ($this->_batteryUpdated) {
-			$this->_batteryUpdated = false;
-			$this->batteryStatus();
+		if ($this->_batteryThresholdChanged) {
+			$this->_batteryThresholdChanged = false;
+			$this->checkBatteryThresholds(true);
 		}
 		if ($this->_timeoutUpdated) {
 			$this->_timeoutUpdated = false;
@@ -1135,50 +1135,65 @@ class eqLogic {
 		}
 	}
 
-	public function batteryStatus($_pourcent = '', $_datetime = '') {
+	/**
+	 * Update the battery level and evaluate its alert thresholds.
+	 *
+	 * @param int|float|string $percentage Numeric battery percentage
+	 * @param string|null $datetime Measurement date and time; defaults to the current time when omitted
+	 * @return void
+	 */
+	public function batteryStatus($percentage, ?string $datetime = null): void {
 		if ($this->getConfiguration('battery::disable', 0) == 1) {
 			return;
 		}
-		$currentpourcent = null;
-		if ($_pourcent === '' || !is_numeric($_pourcent)) {
-			$_pourcent = $this->getStatus('battery', 100);
-			$_datetime = $this->getStatus('batteryDatetime', date('Y-m-d H:i:s'));
-		} else {
-			$currentpourcent = $this->getStatus('battery', 100);
+		if (!is_numeric($percentage)) {
+			return;
 		}
-		if ($_pourcent > 100) {
-			$_pourcent = 100;
-		}
-		if ($_pourcent < 0) {
-			$_pourcent = 0;
-		}
-		if ($_pourcent > 90 && $_pourcent > ($this->getStatus('battery', 0) * 1.5)) {
+		$percentage = max(0, min(100, (int)$percentage));
+		$datetimeTimestamp = is_string($datetime) ? strtotime($datetime) : false;
+		$datetime = ($datetimeTimestamp === false) ? date('Y-m-d H:i:s') : date('Y-m-d H:i:s', $datetimeTimestamp);
+
+		if ($percentage > 90 && $percentage > ($this->getStatus('battery', 0) * 1.5)) {
 			$this->setConfiguration('batterytime', date('Y-m-d H:i:s'));
 			$this->save(true);
 		}
+		$this->setStatus(array('battery' => $percentage, 'batteryDatetime' => $datetime));
 
-		$warning_threshold = $this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
-		$danger_threshold = $this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
-		if ($_pourcent !== '' && $_pourcent < $danger_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
-			if ($currentpourcent < $danger_threshold) {
-				return;
-			}
+		$this->checkBatteryThresholds();
+	}
+
+	protected function checkBatteryThresholds(bool $forceNotification = false): void {
+		$batteryLevel = (int)$this->getStatus('battery', 100);
+
+		$warning_threshold = (int)$this->getConfiguration('battery_warning_threshold', config::byKey('battery::warning'));
+		$danger_threshold = (int)$this->getConfiguration('battery_danger_threshold', config::byKey('battery::danger'));
+		$lowBatteryId = 'lowBattery' . $this->getId();
+		$warningBatteryId = 'warningBattery' . $this->getId();
+
+		$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
+
+		if ($batteryLevel < $danger_threshold) {
 			$prevStatus = $this->getStatus('batterydanger', 0);
-			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $danger_threshold . '% de batterie (niveau danger avec ' . $_pourcent . '% de batterie)';
-			if ($this->getConfiguration('battery_type') != '') {
-				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
-			}
-			$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-			$logicalId = 'lowBattery' . $this->getId();
 			$this->setStatus('batterydanger', 1);
-			if ($prevStatus == 0) {
-				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
-					message::add($this->getEqType_name(), $message, $action, $logicalId);
+			$lastDangerNotification = strtotime($this->getStatus('batteryDangerNotificationDatetime', '1970-01-01 00:00:00'));
+			if ($prevStatus == 0 && ($forceNotification || $lastDangerNotification + 24 * 3600 <= time())) {
+				$this->setStatus('batteryDangerNotificationDatetime', date('Y-m-d H:i:s'));
+				$message = __("L'équipement %s %s a moins de %d%% de batterie (niveau danger avec %d%% de batterie)", __FILE__);
+				$message = sprintf($message, $this->getEqType_name(), $this->getHumanName(), $danger_threshold, $batteryLevel);
+				if ($this->getConfiguration('battery_type') != '') {
+					$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 				}
-				$cmds = explode(('&&'), config::byKey('alert::batterydangerCmd'));
-				if (count($cmds) > 0 && trim(config::byKey('alert::batterydangerCmd')) != '') {
+
+				if (config::byKey('alert::addMessageOnBatterydanger') == 1) {
+					message::add($this->getEqType_name(), $message, $action, $lowBatteryId);
+				}
+
+				$cmdConfig = trim(config::byKey('alert::batterydangerCmd'));
+				if ($cmdConfig != '') {
+					$cmds = explode('&&', $cmdConfig);
 					foreach ($cmds as $id) {
-						$cmd = cmd::byId(str_replace('#', '', $id));
+						$id = trim(str_replace('#', '', $id));
+						$cmd = cmd::byId($id);
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
 								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
@@ -1188,27 +1203,29 @@ class eqLogic {
 					}
 				}
 			}
-		} else if ($_pourcent !== '' && $_pourcent < $warning_threshold) {
-			if ($currentpourcent < $warning_threshold && strtotime($this->getStatus('batteryDatetime')) + 7 * 24 * 3600 > strtotime('now')) {
-				return;
-			}
+		} else if ($batteryLevel < $warning_threshold) {
 			$prevStatus = $this->getStatus('batterywarning', 0);
-			$message = 'L\'équipement ' . $this->getEqType_name() . ' ' . $this->getHumanName() . ' a moins de ' . $warning_threshold . '% de batterie (niveau warning avec ' . $_pourcent . '% de batterie)';
-			if ($this->getConfiguration('battery_type') != '') {
-				$message .= ' (' . $this->getConfiguration('battery_type') . ')';
-			}
-			$action = '<a href="/' . $this->getLinkToConfiguration() . '">' . __('Equipement', __FILE__) . '</a>';
-			$logicalId = 'warningBattery' . $this->getId();
 			$this->setStatus('batterywarning', 1);
 			$this->setStatus('batterydanger', 0);
-			if ($prevStatus == 0) {
-				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
-					message::add($this->getEqType_name(), $message, $action, $logicalId);
+			$lastWarningNotification = strtotime($this->getStatus('batteryWarningNotificationDatetime', '1970-01-01 00:00:00'));
+			if ($prevStatus == 0 && ($forceNotification || $lastWarningNotification + 24 * 3600 <= time())) {
+				$this->setStatus('batteryWarningNotificationDatetime', date('Y-m-d H:i:s'));
+				$message = __("L'équipement %s %s a moins de %d%% de batterie (niveau warning avec %d%% de batterie)", __FILE__);
+				$message = sprintf($message, $this->getEqType_name(), $this->getHumanName(), $warning_threshold, $batteryLevel);
+				if ($this->getConfiguration('battery_type') != '') {
+					$message .= ' (' . $this->getConfiguration('battery_type') . ')';
 				}
-				$cmds = explode(('&&'), config::byKey('alert::batterywarningCmd'));
-				if (count($cmds) > 0 && trim(config::byKey('alert::batterywarningCmd')) != '') {
+
+				if (config::byKey('alert::addMessageOnBatterywarning') == 1) {
+					message::add($this->getEqType_name(), $message, $action, $warningBatteryId);
+				}
+
+				$cmdConfig = trim(config::byKey('alert::batterywarningCmd'));
+				if ($cmdConfig != '') {
+					$cmds = explode('&&', $cmdConfig);
 					foreach ($cmds as $id) {
-						$cmd = cmd::byId(str_replace('#', '', $id));
+						$id = trim(str_replace('#', '', $id));
+						$cmd = cmd::byId($id);
 						if (is_object($cmd)) {
 							$cmd->execCmd(array(
 								'title' => '[' . config::byKey('name', 'core', 'JEEDOM') . '] : ' . $message,
@@ -1219,13 +1236,11 @@ class eqLogic {
 				}
 			}
 		} else {
-			message::removeByPluginLogicalId($this->getEqType_name(), 'warningBattery' . $this->getId());
-			message::removeByPluginLogicalId($this->getEqType_name(), 'lowBattery' . $this->getId());
+			message::removeByPluginLogicalId($this->getEqType_name(), $warningBatteryId);
+			message::removeByPluginLogicalId($this->getEqType_name(), $lowBatteryId);
 			$this->setStatus('batterydanger', 0);
 			$this->setStatus('batterywarning', 0);
 		}
-
-		$this->setStatus(array('battery' => $_pourcent, 'batteryDatetime' => ($_datetime != '') ? $_datetime : date('Y-m-d H:i:s')));
 	}
 
 	public function refreshWidget() {
@@ -1919,7 +1934,7 @@ class eqLogic {
 	public function setConfiguration($_key, $_value) {
 		if (in_array($_key, array('battery_warning_threshold', 'battery_danger_threshold'))) {
 			if ($this->getConfiguration($_key, '') !== $_value) {
-				$this->_batteryUpdated = True;
+				$this->_batteryThresholdChanged = True;
 			}
 		}
 		$configuration = utils::setJsonAttr($this->configuration, $_key, $_value);

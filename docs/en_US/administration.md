@@ -1,361 +1,357 @@
-# Configuration
+# Setup
 **Settings → System → Configuration**
 
-This is where most of the configuration parameters are found.
-Although many, a majority of parameters are configured by default.
+Most of the configuration settings can be found on this page.
+Although there are many settings, most of them are configured by default.
 
 
-## General tab
+## General Tab
 
-In this tab we find general information about Jeedom :
+This tab contains general information about Jeedom:
 
-- **Name of your Jeedom** : Identify your Jeedom, especially in the Market. It can be reused in scenarios or to identify a backup.
-- **Language** : Language used in your Jeedom.
-- **System** : Type of hardware on which the system where your Jeedom runs is installed.
-- **Date and time** : Choose your time zone. You can click on **Force Time Synchronization** to restore the wrong time displayed at the top right.
-- **Optional Time Server** : Indicates which time server should be used if you click on **Force Time Synchronization** (to be reserved for experts).
-- **Ignore time checking** : tells Jeedom not to check if the time is consistent between itself and the system it is running on. May be useful for example, if you do not connect Jeedom to the Internet and it does not have a PSTN battery on the equipment used.
-- **System** : Indicates the type of hardware on which Jeedom is installed.
-- **Installation key** : Hardware key of your Jeedom on the Market. If your Jeedom does not appear in the list of your Jeedom on the Market, it is advisable to click on the button **Reset**.
-- **Last known date** : Date recorded by Jeedom, used after a restart for systems without a PSTN battery.
+- **Your Jeedom Name**: Identifies your Jeedom, particularly in the Market. It can be reused in scenarios or used to identify a backup.
+- **Language**: The language used in your Jeedom.
+- **System**: The type of hardware on which the system running your Jeedom is installed.
+- **Date and Time**: Select your time zone. You can click **Force Time Synchronization** to correct an incorrect time displayed in the upper-right corner.
+- **Optional time server**: Specifies which time server should be used if you click **Force time synchronization** (for experts only).
+- **Skip time verification**: Instructs Jeedom not to verify whether the time is consistent between itself and the system on which it is running. This may be useful, for example, if you do not connect Jeedom to the Internet and the hardware being used does not have an RTC battery.
+- **System**: Indicates the type of hardware on which Jeedom is installed.
+- **Installation Key**: Your Jeedom’s hardware key on the Market. If your Jeedom does not appear in the list of Jeedoms on the Market, we recommend clicking the **Reset** button.
+- **Last known date**: Date recorded by Jeedom, used after a reboot for systems without an RTC battery.
 
-Below, several parameters that centralize information that can be used by plugins, avoiding having to enter them in each plugin.
+Below are several settings that centralize information that can be used by the plugins, eliminating the need to enter it in each plugin.
 
-- Contact information : Latitude, Longitude and Altitude of your home / site.
-- Address : Mailing address of your home / site.
-- Miscellaneous : Surface and number of occupants of your home / site.
+- Coordinates: Latitude, Longitude, and Altitude of your home or site.
+- Address: Mailing address of your home or site.
+- Miscellaneous: Floor area and number of occupants in your home/premises.
 
 ## Interface tab
 
-In this tab you will find the display customization parameters.
+In this tab, you'll find the settings for customizing the display.
 
-### Themes
+### Topics
 
-- **Light and dark desktop** : Lets you choose a light and dark theme for the Desktop.
-- **Light and dark mobile** : same as above for the Mobile version.
-- **Clear theme from / to** : Allows you to define a time slot during which the light theme chosen previously will be used. However, check the option **Toggle theme based on time**.
-- **Brightness sensor** : Mobile interface only, requires activating *generic extra sensor* in chrome, chrome page://flags.
+- **Light and Dark Desktop**: Allows you to choose between a light and a dark theme for the desktop.
+- **Mobile (light and dark)**: Same as above for the mobile version.
+- **Light Theme From / To**: Allows you to set a time range during which the previously selected light theme will be used. However, you must check the **Switch theme based on the time** option.
+- **Light Sensor**: Available only on the mobile interface; requires enabling *generic extra sensor* in Chrome on the chrome://flags page.
 
-### Tuiles
+### Tiles
 
-- **Not horizontal** : Constrains the width of the tiles every x pixels.
-- **Not vertical** : Constrains the height of the tiles every x pixels.
-- **Margin** : Vertical and horizontal space between tiles, in pixels.
-- **Vertical centering of tiles** : Vertically centers the content of the tiles.
-- **Colorful widget icons** : Coloring widget icons based on their state. Modifiable by scenario, *setColoredIcon* ('Icon coloring').
-- **Colored categories** : Colorization of the title of the tiles according to the category.
-- **Mobile : a default column** : Full-width display of tiles in mobile
+- **Horizontal**: Forces the tile width every x pixels.
+- **Not vertical**: Forces the tile height every x pixels.
+- **Margin**: Vertical and horizontal space between tiles, in pixels.
+- **Vertical Tile Alignment**: Vertically centers the content of the tiles.
+- **Colored widget icons**: Widget icons change color based on their status. Can be customized per scenario using *setColoredIcon* ("Icon Coloring").
+- **Colored Categories**: Tile titles are colored based on the category.
+- **Mobile: One Column by Default**: Full-width tile display on mobile
 
 
 ### Background images
 
-- **Show background images** : Display the background images found in the scenarios, objects, interactions, etc. pages.
-- **Blur of object backgrounds** : Allows to automatically blur the background images of objects / rooms.
-- **Dashboard Image** : Background image for the Dashboard pages (Depending on the options of the object).
-- **Image Analysis** : Background image for the pages of the Analysis menu.
-- **Image Tools** : Background image for the pages of the Tools menu.
-- **Opacity Theme Light** : Opacity of background images in Light theme. Adjust according to the brightness of the background images for better readability.
-- **Dark theme opacity** : Opacity of background images in Dark theme.  Adjust according to the brightness of the background images for better readability.
+- **Display background images**: Display the background images found on the scenarios, objects, interactions, and other pages.
+- **Blur object backgrounds**: Automatically blurs the backgrounds of objects and rooms.
+- **Dashboard Image**: Background image for the Dashboard pages (depending on the object's options).
+- **Image Analysis**: Background image for the pages in the Analysis menu.
+- **Tools Image**: Background image for the pages in the Tools menu.
+- **Light Theme Opacity**: Opacity of background images in the Light theme. Adjust based on the brightness of the background images for better readability.
+- **Dark Theme Opacity**: Opacity of background images in Dark Theme. Adjust based on the brightness of the background images for better readability.
 
 ### Options
 
-- **Table display** : Displays in table mode the pages of the tools menu and the supported plugins.
-- **Position of notifications** : Position on the page of the appearance of notifications.
-- **Duration of notifications** : Duration of notification display in seconds. 0 so as not to automatically hide them.
+- **Table Mode**: Displays the pages in the Tools menu and the supported plugins in table format.
+- **Notification Position**: The position on the page where notifications appear.
+- **Notification Duration**: How long notifications remain on screen, in seconds. Set to 0 to prevent them from being hidden automatically.
 
-### Personnalisation
+### Customization
 
-- **Enable** : Activate the use of the options below.
-- **Transparency** : Displays Dashboard tiles and some content with transparency. 1 : totally opaque, 0 : totally transparent.
-- **Rounded** : Displays interface elements with rounded angles. 0 : no rounding, 1 : maximum rounding.
-- **Disable shadows** : Disables shadows from tiles on the dashboard, menus, and certain interface elements.
+- **Enable**: Enables the options listed below.
+- **Transparency**: Displays Dashboard tiles and certain content with transparency. 1: completely opaque, 0: completely transparent.
+- **Rounded**: Displays interface elements with rounded corners. 0: no rounding, 1: maximum rounding.
+- **Turn off shadows**: Turns off the shadows on tiles on the Dashboard, in menus, and on certain interface elements.
 
 
 
 ## Networks tab
 
-It is absolutely necessary to correctly configure this important part of Jeedom otherwise a lot of plugins may not work. There are two ways to access Jeedom : L'**Internal access** (from the same local network as Jeedom) and l'**External access** (from another network, especially from the Internet).
+It is essential to configure this important part of Jeedom correctly; otherwise, many plugins may not work. There are two ways to access Jeedom: **internal access** (from the same local network as Jeedom) and **external access** (from another network, such as the Internet).
 
 > **Important**
 >
-> This part is just there to explain to Jeedom its environment :
-> changing the port or IP in this tab will not change Jeedom&#39;s port or IP actually. For that you have to connect in SSH and edit the file / etc / network / interfaces for IP and the files etc / apache2 / sites-available / default and etc / apache2 / sites-available / default\_ssl (for HTTPS).
-> However, in the event of improper handling of your Jeedom, the Jeedom team cannot be held responsible and may refuse any request for support.
+> This section is just here to tell Jeedom about its environment:
+> Changing the port or IP address in this tab will not actually change Jeedom’s port or IP address. To do so, you must connect via SSH and edit the /etc/network/interfaces file for the IP address, and the etc/apache2/sites-available/default and etc/apache2/sites-available/default_ssl files (for HTTPS).
+> However, if you misuse your Jeedom, the Jeedom team cannot be held liable and may refuse any support requests.
 
-- **Internal access** : information for joining Jeedom from equipment on the same network as Jeedom (LAN)
-    - **OK / NOK** : indicates if the internal network configuration is correct.
-    - **Protocol** : the protocol to use, often HTTP.
-    - **URL or IP address** : Jeedom IP to enter.
-    - **Port** : the port of the Jeedom web interface, generally 80.
-        Please note changing the port here does not change the actual Jeedom port which will remain the same.
-    - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
+- **Internal Access**: Information on how to connect to Jeedom from a device on the same network as Jeedom (LAN)
+    - **OK/NOK**: Indicates whether the internal network configuration is correct.
+    - **Protocol**: the protocol to use, often HTTP.
+    - **URL or IP address**: Enter Jeedom's IP address.
+    - **Port**: the port for the Jeedom web interface, typically 80.
+Please note: Changing the port here does not change the actual Jeedom port, which will remain the same.
+    - **Supplement**: the additional URL segment (example: /Jeedom) used to access Jeedom.
 
-- **External access** : information to reach Jeedom from outside the local network. To be completed only if you are not using Jeedom DNS.
-    - **OK / NOK** : indicates whether the external network configuration is correct.
-    - **Protocol** : protocol used for outdoor access.
-    - **URL or IP address** : External IP, if fixed. Otherwise, give the URL pointing to the external IP address of your network.
-    - **Complement** : the fragment of additional URL (example : / jeedom) to access Jeedom.
+- **External Access**: Information on how to access Jeedom from outside the local network. Fill this out only if you are not using Jeedom DNS.
+    - **OK/NOK**: Indicates whether the external network configuration is correct.
+    - **Protocol**: protocol used for external access.
+    - **URL or IP Address**: External IP address, if it is static. Otherwise, provide the URL that points to your network’s external IP address.
+    - **Supplement**: the additional URL segment (example: /Jeedom) used to access Jeedom.
 
-- **Proxy for market** : proxy activation.
-    - Check the enable proxy box.
-    - **Proxy address** : Enter the proxy address,
-    - **Proxy port** : Enter the proxy port,
-    - **Login** : Enter the proxy login,
-    - **Password** : Enter the password.
+- **Proxy for Market**: Proxy enabled.
+    - Check the "Enable proxy" box.
+    - **Proxy Address**: Enter the proxy address,
+    - **Proxy Port**: Enter the proxy port,
+    - **Login**: Enter the proxy login,
+    - **Password**: Enter the password.
 
-> **Advice**
+> **Tip**
 >
-> If you are in HTTPS the port is 443 (default) and in HTTP the port is 80 (default). To use HTTPS from outside, a letsencrypt plugin is now available on the market.
+> If you're using HTTPS, the port is 443 (by default), and if you're using HTTP, the port is 80 (by default). To use HTTPS from outside the network, a Let's Encrypt plugin is now available on the marketplace.
 
-> **Advice**
+> **Tip**
 >
-> To find out if you need to set a value in the field **Complement**, look, when you log into Jeedom in your internet browser, if you need to add / Jeedom (or whatever) after the IP.
+> To determine whether you need to enter a value in the **complement** field, check—when you log in to Jeedom in your web browser—whether you need to add /Jeedom (or something else) after the IP address.
 
-- **Advanced management** : This part may not appear, depending on the compatibility with your hardware.
-    You will find there the list of your network interfaces. You can tell Jeedom not to monitor the network by clicking on **disable Jeedom network management** (check if Jeedom is not connected to any network). You can also specify the local ip range in the form 192.168.1.* (to be used only in docker type installations).
-- **Proxy market** : allows remote access to your Jeedom without the need for a DNS, a fixed IP or to open the ports of your Internet box.
-    - **Using Jeedom DNS** : activates Jeedom DNS (note that this requires at least one service pack).
-    - **DNS status** : DNS HTTP status.
-    - **Management** : allows to stop and restart the Jeedom DNS service.
+- **Advanced Settings**: This section may not appear, depending on your hardware's compatibility.
+Here you will find a list of your network interfaces. You can tell Jeedom not to monitor the network by clicking **Disable Jeedom network management** (check this box if Jeedom is not connected to any network). You can also specify the local IP range in the format 192.168.1.* (to be used only in Docker-type installations).
+- **Proxy Market**: Allows remote access to your Jeedom without needing a DNS, a static IP address, or to open ports on your Internet router.
+    - **Use Jeedom DNS**: Makes Jeedom DNS active (note: this requires at least one service pack).
+    - **DNS Status**: HTTP DNS status.
+    - **Management**: Allows you to stop and restart the Jeedom DNS service.
 
 > **Important**
 >
-> If you cannot get Jeedom DNS to work, look at the configuration of the firewall and parental filter of your Internet box (on livebox you need for example the firewall at medium level).
-- **Lifetime of sessions (hour)** : lifetime of PHP sessions, it is not recommended to touch this parameter.
+> If you're having trouble getting the Jeedom DNS to work, check the firewall and parental control settings on your Internet router (on a Livebox, for example, the firewall should be set to medium).
+- **Session timeout (hours)**: PHP session timeout; it is not recommended to change this setting.
 
 ## Logs tab
 
 ### Timeline
 
-- **Maximum number of events** : Defines the maximum number of events to display in the timeline.
-- **Delete all events** : Empty the timeline of all its recorded events.
+- **Maximum number of events**: Sets the maximum number of events to display in the timeline.
+- **Delete All Events**: Clears the timeline of all recorded events.
 
-### Messages
+### Posts
 
-- **Add a message for each log error** : if a plugin or Jeedom writes an error message in a log, Jeedom automatically adds a message in the message center (at least you are sure not to miss it).
-- **Action on message** : Allows you to take an action when adding a message to the message center. You have 2 tags for these actions :
-        - #subject# : message in question.
-        - #plugin# : plugin that triggered the message.
+- **Add a message for each error in the logs**: If a plugin or Jeedom writes an error message to a log, Jeedom automatically adds a message to the message center (so at least you can be sure you won’t miss it).
+- **Message Action**: Allows you to perform an action when a message is added to the message center. You have 2 tags for these actions:
+        - #subject#: message in question.
+        - #plugin#: the plugin that triggered the message.
 
-### Alertes
+### Alerts
 
-- **Add a message to each Timeout** : Add a message in the message center if a device falls in **timeout**.
-- **Timeout command** : Type command **message** to be used if an equipment is in **timeout**.
-- **Add a message to each Battery in Warning** : Add a message in the message center if a device has its battery level in **warning**.
-- **Battery command in Warning** : Type command **message** to be used if equipment at its battery level **warning**.
-- **Add a message to each Battery in Danger** : Add a message in the message center if a device has its battery level in **hazard**.
-- **Command on Battery in Danger** : Type command **message** to be used if equipment at its battery level **hazard**.
-- **Add a message to each Warning** : Add a message in the message center if a command goes on alert **warning**.
-- **Command on Warning** : Type command **message** to use if a command goes on alert **warning**.
-- **Add a message to each Danger** : Add a message in the message center if a command goes on alert **hazard**.
-- **Command on Danger** : Type command **message** to use if a command goes on alert **hazard**.
+- **Add a message on every timeout**: Adds a message to the message center if a device times out.
+- **Timeout Command**: A **message**-type command to use if a device has timed out.
+- **Add a message for each battery at the "Warning" level**: Adds a message to the message center if a device's battery level is at the **"Warning"** level.
+- **Battery Level at "Warning"**: A **message**-type command to use if a device's battery level is at **"warning"**.
+- **Add a message for each Low Battery**: Adds a message to the message center if a device's battery level is **low**.
+- **Battery Level in Danger**: A **message**-type command to be used if a device's battery level is in **danger**.
+- **Add a message to each Warning**: Adds a message to the message center if a command triggers a **warning** alert.
+- **Warning Command**: A **message**-type command to be used if a command triggers a **warning** alert.
+- **Add a message to each Danger event**: Adds a message to the message center if a command triggers a **danger** alert.
+- **Danger Command**: A **message**-type command to be used if a command triggers a **danger** alert.
 
 ### Logs
 
-- **Log engine** : Allows you to change the log engine to, for example, send them to a syslog daemon (d).
-- **Log format** : Log format to use (Caution : it doesn't affect daemon logs).
-- **Maximum lines per log file** : Defines the maximum number of lines in a log file. It is recommended not to touch this value, as a too large value could fill the file system and / or make Jeedom unable to display the log.
-- **Default log level** : When you select &quot;Default&quot;, for the level of a log in Jeedom, this will be used.
+- **Log engine**: Allows you to change the log engine so that logs are sent to, for example, the syslog(d) daemon.
+- **Log format**: The log format to use (Note: This does not affect daemon logs).
+- **Maximum number of lines in a log file**: Sets the maximum number of lines in a log file. It is recommended that you do not change this value, as setting it too high could fill up the file system and/or prevent Jeedom from displaying the log.
+- **Default log level**: When you select "Default" for a log level in Jeedom, that level will be used.
 
-Below you will find a table for finely managing the log level of essential elements of Jeedom as well as that of plugins.
+Below is a table that allows you to fine-tune the log level for Jeedom's core components as well as for plugins.
 
-## Summaries tab
+## "Summaries" tab
 
-[See abstracts documentation.](/en_US/concept/summary)
+[See the documentation on summaries.](https://doc.jeedom.com/concept/en_US/summary)
 
-## Equipment tab
+## "Equipment" tab
 
-### Equipements
+### Equipment
 
-- **Number of failures before deactivation of the equipment** : Number of communications failures with the equipment before deactivation of the equipment (a message will warn you if this happens).
-- **Battery thresholds** : Allows you to manage the global alert thresholds on the stacks.
+- **Number of failures before the device is disabled**: The number of communication failures with the device before it is disabled (you will receive a message if this happens).
+- **Battery Thresholds**: Allows you to manage global alert thresholds for batteries.
 
-Many command can be logged. Thus, in Analysis → History, you get graphs representing their use. This tab allows you to set global parameters for command logging.
+Many commands can be logged. In Analysis→History, you can view graphs showing their usage. This tab allows you to set global parameters for command logging.
 
->**InfluxDB**
->
->If you want to use InfluxDB for the moment you have to install the InfluxDB library yourself, Jeedom no longer does this because it is no longer maintained (we plan to migrate to the new version but this will not be for now). To do the manual installation, here's how to do it : `cd /var/www/html;composer require influxdb/influxdb-php` from configuration then OS/DB tab then the OS administration console
+### Command History
 
-### Command history
-
-- **Display widget statistics** : View statistics on widgets. The widget must be compatible, which is the case for most. The command must also be of numeric type.
-- **Calculation period for min, max, average (in hours)** : Statistics calculation period (24h by default). It is not possible to take less than an hour.
-- **Calculation period for the trend (in hours)** : Trend calculation period (2h by default). It is not possible to take less than an hour.
-- **Delay before archiving (in hours)** : Indicates the delay before Jeedom archives data (24h by default). That is to say that the historical data must have more than 24 hours to be archived (as a reminder, archiving will either average, or take the maximum or minimum of the data over a period which corresponds to the size of the packets).
-- **Archive by package from (in hours)** : This parameter gives the packet size (1 hour by default). This means for example that Jeedom will take periods of 1 hour, average and store the new calculated value by deleting the averaged values.
-- **Low trend calculation threshold** : This value indicates the value from which Jeedom indicates that the trend is downward. It must be negative (default -0.1).
-- **Upper trend calculation threshold** : Same thing for the rise.
-- **Display period graphics by default** : Period which is used by default when you want to display the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
+- **Display widget statistics**: Allows you to display statistics on widgets. The widget must be compatible, which is the case for most of them. The command must also be of the numeric type.
+- **Calculation period for min, max, and average (in hours)**: The period used to calculate statistics (24 hours by default). You cannot set a period of less than one hour.
+- **Trend calculation period (in hours)**: The period used to calculate trends (default is 2 hours). You cannot set a period shorter than one hour.
+- **Time Before Archiving (in hours)**: Specifies the time before Jeedom archives data (24 hours by default). This means that historical data must be older than 24 hours to be archived (as a reminder, archiving will either calculate an average, or take the maximum or minimum value of the data over a period corresponding to the packet size).
+- **Archive by packet size (in hours)**: This setting specifies the packet size (1 hour by default). This means, for example, that Jeedom will take 1-hour periods, calculate the average, and store the new calculated value while deleting the averaged values.
+- **Downward Trend Threshold**: This value indicates the threshold at which Jeedom determines that the trend is downward. It must be negative (default: -0.1).
+- **Upper trend calculation threshold**: The same applies to upward trends.
+- **Default graph display period**: The period used by default when you want to view the history of a command. The shorter the period, the faster Jeedom will display the requested graph.
 
 > **Note**
 >
-> The first parameter **Display widget statistics** is possible but disabled by default because it significantly extends the display time of the dashboard. If you activate this option, by default, Jeedom relies on data from the past 24 hours to calculate these statistics.
-> The trend calculation method is based on the least squares calculation (see [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) for the detail).
+> The first setting, **Show statistics on widgets**, is available but disabled by default because it significantly increases the dashboard’s loading time. If you enable this option, by default, Jeedom uses data from the last 24 hours to calculate these statistics.
+> The trend calculation method is based on the least squares method (see [here](https://fr.wikipedia.org/wiki/M%C3%A9thode_des_moindres_carr%C3%A9s) (for details).
 
 ### Push
 
-- **Global push URL** : allows you to add a URL to call in the event of acommand update. You can use the following tags :
-**\#value\#** for the command value, **\#cmd\_name\#** for the name of the command,
-**\#cmd\_id\#** for the unique identifier of the command,
-**\#humanname\#** for the full name of the command (ex : \#\[Salle de bain\]\[Hydrometrie\]\[Humidité\]\#),
-**\#eq_name\#** for the name of the equipment
+- **Global push URL**: Allows you to add a URL to be called when a command is updated. You can use the following tags:
+**\#value\#** for the command value, **\#cmd_name\#** for the command name,
+**\#cmd\_id\#** for the command’s unique identifier,
+**\#humanname\#** for the full name of the command (e.g., \#\[Bathroom\]\[Hydrometry\]\[Humidity\]\#),
+**\#eq_name\#** for the device name
 
 ## Reports tab
 
-Configure the generation and management of reports
+Allows you to configure report generation and management
 
-- **Timeout after page generation (in ms)** : Waiting time after loading the report to take the &quot;photo&quot;, to change if your report is incomplete for example.
-- **Clean up older reports from (days)** : Defines the number of days before deleting a report (the reports take up a little space so be careful not to put too much conservation).
+- **Wait time after page generation (in ms)**: The wait time after the report loads to take the "snapshot"; adjust this if your report is incomplete, for example.
+- **Delete older reports (days)**: Sets the number of days before a report is deleted (reports take up some space, so be careful not to set the retention period too long).
 
 ## Links tab
 
-Configure link graphics. These links allow you to see, in the form of a graph, the relationships between objects, equipment, objects, etc.
+Allows you to configure link diagrams. These links let you view, in diagram form, the relationships between objects, devices, and other items.
 
-- **Scenario depth** : Allows to define, when displaying a graph of links of a scenario, the maximum number of elements to display (the more there are elements the slower the graph will be to generate and the more it will be difficult to read).
-- **Objects depth** : Same for objects.
-- **Equipments depth** : Same for the equipment.
-- **Commands depth** : Same for commands.
-- **Variables depth** : Same for variables.
-- **Prerender parameter** : Allows you to act on the layout of the graph.
-- **Render parameter** : Idem.
+- **Depth for Scenarios**: Allows you to set, when viewing a scenario’s link graph, the maximum number of items to display (the more items there are, the longer it will take to generate the graph and the harder it will be to read).
+- **Depth for objects**: Same as for objects.
+- **Depth for equipment**: Same applies to equipment.
+- **Depth for commands**: Same applies to the commands.
+- **Depth for variables**: Same applies to variables.
+- **Prerender setting**: Allows you to adjust the layout of the graph.
+- **Render settings**: Same as above.
 
-## Interactions tab
+## Interactions Tab
 
-This tab allows you to set global parameters concerning the interactions that you will find in Tools → Interactions.
+This tab allows you to set global settings for the interactions found under Tools→Interactions.
 
-> **Advice**
+> **Tip**
 >
-> To activate the interaction log, go to the Settings → System → Configuration tab : Logs, then check **Debug** in the bottom list. Attention : the logs will then be very verbose !
+> To enable interaction logging, go to the Settings tab → System → Configuration: Logs, then check **Debug** in the list at the bottom. Note: The logs will then be very verbose!
 
-### Main
+### General
 
-Here you have three parameters :
+Here are three settings:
 
-- **Sensitivity** : there are 4 levels of correspondence (The sensitivity goes from 1 (corresponds exactly) to 99) for
-    -   1 word : match level for single word interactions.
-    -   2 words : the match level for two-word interactions.
-    -   3 words : the match level for three-word interactions.
-    -   more than 3 words : match level for interactions longer than three words.
-- **Do not answer if the interaction is not understood** : by default Jeedom responds &quot;I did not understand&quot; if no interaction corresponds. It is possible to deactivate this operation so that Jeedom does not respond. Check the box to disable the response.
-- **General exclusion regex for interactions** : allows to define a regexp which, if it corresponds to an interaction, will automatically delete this sentence from the generation (reserved for experts). For more information see explanations in chapter **Regexp exclusion** documentation on interactions.
+- **Sensitivity**: There are 4 levels of match (Sensitivity ranges from 1 (exact match) to 99) for
+    -   1 word: the match level for single-word interactions.
+    -   2 words: the match level for two-word interactions.
+    -   3 words: the matching level for three-word interactions.
+    -   + 3 words: the match level for interactions with more than three words.
+- **Do not respond if the interaction is not understood**: By default, Jeedom responds with "I didn't understand" if no interaction matches. You can disable this behavior so that Jeedom does not respond at all. Check the box to disable the response.
+- **General exclusion regex for interactions**: allows you to define a regex that, if it matches an interaction, will automatically remove that phrase from the generated text (for experts only). For more information, see the explanations in the **Exclusion Regex** section of the interactions documentation.
 
-### Automatic, contextual & warning interaction
+### Automatic, Context-Aware Interaction & Alerts
 
--   THE **automatic interactions** allow Jeedom to try to understand an interaction request even if none is defined. He will then look for an object name and / or equipment and / or command to try to respond as best as possible.
+-   **Automatic interactions** allow Jeedom to attempt to understand an interaction request even if none has been defined. It will then search for the name of an object, device, and/or command to try to respond as best as possible.
 
--   THE **contextual interactions** allow you to chain multiple requests without repeating everything, for example :
-    - *Jeedom keeping the context :*
-        - *YOU* : How much is he in the room ?
-        - *Jeedom* : Temperature 25.2 ° C
-        - *YOU* : and in the living room ?
-        - *Jeedom* : Temperature 27.2 ° C
-    - *Ask two questions in one :*
-        - *YOU* : What is it like in the bedroom and in the living room ?
-        - *Jeedom* : Temperature 23.6 ° C, Temperature 27.2 ° C
--   Type interactions **Warn me** allow to ask Jeedom to warn you if a command exceeds / falls or is worth a certain value.
-    - *YOU* : Notify me if the living room temperature exceeds 25 ° C ?
-    - *Jeedom* : OK (*As soon as the living room temperature exceeds 25 ° C, Jeedom will tell you, once*)
+-   **Contextual interactions** allow you to chain together multiple requests without having to repeat everything, for example:
+    - *Jeedom maintaining context:*
+        - *You*: What's the temperature in the bedroom?
+        - *Jeedom*: Temperature 25.2 °C
+        - *You*: What about the living room?
+        - *Jeedom*: Temperature 27.2 °C
+    - *Asking two questions in one:*
+        - *You*: What's the temperature in the bedroom and the living room?
+        - *Jeedom*: Temperature 23.6 °C, Temperature 27.2 °C
+-   **Notify Me**-type interactions allow you to ask Jeedom to notify you if a command exceeds, falls below, or equals a certain value.
+    - *You*: Let me know if the temperature in the living room goes above 25°C?
+    - *Jeedom*: OK (*As soon as the temperature in the living room exceeds 25°C, Jeedom will notify you—just once*)
 
 > **Note**
 >
-> By default Jeedom will answer you by the same channel as the one you used to ask it to notify you. If it does not find one, it will then use the default command specified in this tab : **Default return command**.
+> By default, Jeedom will respond via the same channel you used to ask it to notify you. If it cannot find one, it will use the default command specified in this tab: **Default Response Command**.
 
-Here are the different options available :
+Here are the various options available:
 
-- **Enable automatic interactions** : Check to enable automatic interactions.
-- **Enable contextual answers** : Check to enable contextual interactions.
-- **Priority contextual answer if sentence begins with** : If the sentence begins with the word you enter here, Jeedom will then prioritize a contextual response (you can put several words separated by **;** ).
-- **Cut an interaction up in 2 if it contains** : Same thing for the division of an interaction containing several questions. Here you give the words that separate the different questions.
-- **Activate "Notify Me" interactions"** : Check to enable type interactions **Warn me**.
-- **&quot;Tell me&quot; response if the sentence starts with** : If the sentence begins with this word (s) then Jeedom will seek to make an interaction of the type **Warn me** (you can put several words separated by **;** ).
-- **Default return command** : Default return command for type interaction **Warn me** (used, in particular, if you have programmed the alert via the mobile interface)
-- **Synonym for objects** : List of synonyms for objects (ex : rdc|ground floor|basement|low; sdb|Bathroom).
-- **Synonym for equipment** : List of synonyms for equipment.
-- **Synonym for commands** : List of synonyms for commands.
-- **Synonym for summaries** : List of synonyms for summaries.
-- **Synonym maximum slider command** : Synonym for placing a slider type command to the maximum (ex opens to opens the bedroom shutter ⇒ bedroom shutter at 100%).
-- **Synonym minimum slider command** : Synonym for setting a slider type command to a minimum (e.g. close to close the chamber shutter ⇒ chamber shutter at 0%).
+- **Enable automatic interactions**: Check this box to enable automatic interactions.
+- **Enable Contextual Responses**: Check this box to enable contextual interactions.
+- **Prioritize contextual response if the sentence begins with**: If the sentence begins with the word you enter here, Jeedom will prioritize a contextual response (you can enter multiple words by separating them with **;**).
+- **Split an interaction into 2 if it contains**: The same applies to splitting an interaction that contains multiple questions. Here, you specify the words that separate the different questions.
+- **Enable "Notify Me" interactions**: Check this box to enable **Notify Me** interactions of the type **Notify Me**.
+- **"Notify Me" response if the sentence begins with**: If the sentence begins with this word or these words, Jeedom will attempt to trigger an **"Notify Me"** type interaction (you can include multiple words by separating them with **;**).
+- **Default command**: Default command for a **Notify Me** type of interaction (used, for example, if you scheduled the alert via the mobile app)
+- **Synonyms for objects**: List of synonyms for objects (e.g., ground floor|basement|lower level; bathroom|bathroom).
+- **Synonyms for equipment**: List of synonyms for equipment.
+- **Synonyms for Commands**: List of synonyms for commands.
+- **Synonyms for summaries**: List of synonyms for summaries.
+- **Synonym for "set slider command to maximum"**: Synonym for setting a slider command to its maximum value (e.g., "open" to open the bedroom shutter ⇒ bedroom shutter at 100%).
+- **Synonym for "set slider command to minimum"**: A synonym for setting a slider command to its minimum value (e.g., move the slider all the way to the right to close the bedroom shutter ⇒ bedroom shutter at 0%).
 
 ## Security tab
 
 ### LDAP
 
-- **Enable LDAP authentication** : enable authentication through an AD (LDAP).
-- **Host** : server hosting the AD.
-- **Domain** : domain of your AD.
-- **DN base** : DN base of your AD.
-- **Username** : username for Jeedom to log into AD.
-- **Password** : password for Jeedom to connect to AD.
-- **User search fields** : user login search fields. Usually uid for LDAP, SamAccountName for Windows AD.
-- **Administrators filter (optional)** : administrators filter on AD (for group management for example)
-- **User filter (optional)** : user filter on the AD (for group management for example)
-- **Limited user filter (optional)** : filter limited users on the AD (for group management for example)
-- **Allow REMOTE\_USER** : Activate REMOTE\_USER (used in SSO for example).
+- **Enable LDAP Authentication**: Enables authentication through an Active Directory (LDAP) server.
+- **Host**: server hosting the AD.
+- **Domain**: Your AD domain.
+- **Base DN**: the base DN of your Active Directory.
+- **Username**: the username Jeedom uses to connect to the AD.
+- **Password**: the password Jeedom uses to connect to the AD.
+- **User search fields**: Search fields for the user login. Typically, `uid` for LDAP and `SamAccountName` for Windows AD.
+- **Administrator filter (optional)**: administrator filter in Active Directory (for managing groups, for example)
+- **User filter (optional)**: user filter on the AD (for managing groups, for example)
+- **Restricted Users Filter (optional)**: filters restricted users on the AD (for managing groups, for example)
+- **Allow REMOTE\_USER**: Makes REMOTE\_USER active (used for SSO, for example).
 
-### Connexion
+### Log In
 
-- **Number of tolerated failures** : defines the number of successive attempts allowed before banning the IP
-- **Maximum time between failures (in seconds)** : maximum time for 2 attempts to be considered successive
-- **Duration of banishment (in seconds), -1 for infinity** : IP ban time
-- **IP "white"** : list of IPs that can never be banned
-- **Remove banned IPs** : Clear the list of currently banned IPs
+- **Number of allowed failures**: specifies the number of consecutive attempts allowed before the IP address is blocked
+- **Maximum time between failures (in seconds)**: the maximum time interval between two attempts for them to be considered consecutive
+- **Ban duration (in seconds), -1 for infinite**: IP ban duration
+- **"White" IP**: list of IP addresses that can never be banned
+- **Delete banned IPs**: Clears the list of currently banned IPs
 
-The list of banned IPs is at the bottom of this page. You will find the IP, the ban date and the scheduled ban end date.
+The list of banned IP addresses is at the bottom of this page. There you will find the IP address, the date the ban was imposed, and the scheduled end date of the ban.
 
-## Update / Market Tab
+## Update/Market tab
 
-### Jeedom update
+### Jeedom Update
 
-- **Update source** : Choose Jeedom core update source.
-- **Core version** : Core version to recover.
-- **Automatically check for updates** : Whether to automatically check for new updates (be careful to avoid overloading the Market, the check time may change)).
+- **Update Source**: Select the update source for the Jeedom core.
+- **Core version**: Core version to download.
+- **Automatically check for updates**: Specifies whether to automatically check for new updates (note: to avoid overloading the Market, the check time may change).
 
-### Deposits
+### Repositories
 
-The repositories are storage (and service) spaces to be able to move backups, recover plugins, recover the core of Jeedom, etc.
+Repositories are storage (and service) spaces where you can move backups, retrieve plugins, retrieve the Jeedom core, etc.
 
-### Fichier
+### File
 
-Deposit used to activate the sending of plugins by files.
+A repository used to enable the delivery of plugins via files.
 
-#### Github
+#### GitHub
 
-Deposit used to connect Jeedom to Github.
+Repository used to connect Jeedom to GitHub.
 
-- **Token** : Token for access to private deposit.
-- **Jeedom core repository user or organization** : User or organization name on github for the core.
-- **Repository name for the Jeedom core** : Repository name for core.
-- **Jeedom core industry** : Core repository branch.
+- **Token**: Token for access to the private repository.
+- **User or organization for the Jeedom core repository**: The name of the user or organization on GitHub for the core.
+- **Jeedom Core Repository Name**: Name of the repository for the core.
+- **Branch for the Jeedom core**: Branch of the repository for the core.
 
 #### Market
 
-Deposit used to connect Jeedom to the market, it is strongly advised to use this deposit. Attention : any request for support may be refused if you use a deposit other than this one.
+This repository is used to connect Jeedom to the Market; we strongly recommend using this repository. Please note: any support request may be denied if you use a repository other than this one.
 
-- **Address** : Address du Market.(https://market.jeedom.com).
-- **Username** : Your Username on the Market.
-- **Password** : Your Market password.
-- **[Backup cloud] Name** : Name of your cloud backup (attention must be unique for each Jeedom under risk of them crashing into each other).
-- **[Backup cloud] Password** : Cloud backup password. IMPORTANT you must not lose it, there is no way to recover it. Without it you will no longer be able to restore your Jeedom.
-- **[Backup cloud] Frequency full backup** : Frequency of full cloud backup. A full backup is longer than an incremental one (which only sends the differences). It is recommended to do 1 per month.
+- **Address**: Market address. (https://market.jeedom.com).
+- **Username**: Your username on the Market.
+- **Password**: Your Market password.
+- **[Cloud Backup] Name**: Name of your cloud backup (note: this must be unique for each Jeedom instance, otherwise they may overwrite each other).
+- **[Cloud Backup] Password**: Cloud backup password. IMPORTANT: You must not lose this password under any circumstances; there is no way to recover it. Without it, you will no longer be able to perform Restoration on your Jeedom.
+- **[Cloud Backup] Full Backup Frequency**: Frequency of full cloud backups. A full backup takes longer than an incremental backup (which only sends the changes). It is recommended to perform one per month.
 
 #### Samba
 
-Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex : Synology NAS).
+A repository that automatically sends a Jeedom backup to a Samba share (e.g., Synology NAS).
 
-- **\ [Backup \] IP** : Samba server IP.
-- **\ [Backup \] User** : Username for connection (anonymous connections are not possible). The user must have read AND write rights on the destination directory.
-- **\ [Backup \] Password** : User password (please note that special characters are not allowed).
-- **\ [Backup \] Sharing** : Path to sharing (be careful to stop at the sharing level).
-- **\ [Backup \] Path** : Path in the sharing (to put in relative), this must exist.
-
-> **Note**
->
-> If the path to your samba backup folder is :
-> \\\\ 192.168.0.1 \\ Backups \\ Home automation \\ Jeedom Then IP = 192.168.0.1, Sharing = //192.168.0.1 / Backups, Path = Home automation / Jeedom
+- **\[Backup\] IP**: IP address of the Samba server.
+- **\[Backup\] User**: Username for logging in (anonymous logins are not allowed). The user must have both read AND write permissions on the destination directory.
+- **\[Backup\] Password**: User password (note: special characters are not allowed).
+- **\[Backup\] Share**: Path to the share (be sure to stop at the share level).
+- **\[Backup\] Path**: Path within the share (must be relative); this path must exist.
 
 > **Note**
 >
-> When validating the Samba share, as described above, a new form of backup appears in the Settings → System → Backups section of Jeedom. By activating it, Jeedom will send it automatically during the next backup. A test is possible by performing a manual backup.
+> If the path to your Samba backup folder is:
+> \\\\192.168.0.1\\Backups\\Home Automation\\Jeedom So IP = 192.168.0.1, Share = //192.168.0.1/Backups, Path = Home Automation/Jeedom
+
+> **Note**
+>
+> When you validate the Samba share, as described above, a new backup option appears in the Settings→System→Backups section of Jeedom. When you enable it, Jeedom will automatically send the backup during the next scheduled backup. You can test this by performing a manual backup.
 
 > **Important**
 >
@@ -363,75 +359,75 @@ Deposit allowing to automatically send a backup of Jeedom on a Samba share (ex :
 
 > **Important**
 >
-> The Samba protocol has several versions, the security level of V1 is compromised and on some NAS you can force the client to use v2 or v3 to connect. So if you have an error *protocol failed: NT_STATUS_INVAID_NETWORK_RESPONSE* there is a good chance that on the NAS side the restriction is in place. You must then modify the / etc / samba / smb file on your Jeedom OS.conf and add these two lines to it :
+> The Samba protocol has several versions; the security of version 1 is compromised, and on some NAS devices, you can force the client to use version 2 or 3 to connect. So if you get an error saying *protocol negotiation failed: NT_STATUS_INVALID_NETWORK_RESPONSE*, there’s a good chance that this restriction is in place on the NAS side. In that case, you’ll need to edit the /etc/samba/smb.conf file on your Jeedom’s OS and add these two lines:
 > client max protocol = SMB3
 > client min protocol = SMB2
-> The Jeedom side smbclient will then use v2 where v3 and by putting SMB3 to both only SMB3. So it&#39;s up to you to adapt according to restrictions on the NAS or other Samba server
+> The smbclient on the Jeedom side will then use v2 or v3, and if you set SMB3 to "2," it will use SMB3 only. It’s up to you to adjust this based on any restrictions on the NAS or other Samba server.
 
 > **Important**
 >
-> Jeedom must be the only one to write in this folder and it must be empty by default (i.e. before the configuration and the sending of the first backup, the folder must not contain any file or folder).
+> Jeedom must be the only program allowed to write to this folder, and it must be empty by default (that is, before configuration and sending the first backup, the folder must not contain any files or folders).
 
 #### URL
 
-- **Jeedom core URL**
-- **Jeedom core version URL**
+- **Jeedom Core URL**
+- **Jeedom Core Version URL**
 
 ## Cache tab
 
-Allows monitoring and acting on the Jeedom cache :
+Allows you to monitor and control the Jeedom cache:
 
-- **Cache engine** : choice of cache engine for jeedom : 
-  - File system : Storage of cache information /tmp/jeedom/cache (in RAM) in file mode, uses a third-party lib. It will soon be replaced by File (beta)
-  - File (beta) : Storage of cache information /tmp/jeedom/cache (in RAM) in file mode. The most efficient but saved every 30 minutes
-  - Mysql (beta)) : Using a basic cache table. The least efficient but saved in real time (no data loss possible)
-  - Redis (beta) : For experts only, relies on redis to manage the cache (so requires you to install redis and php-redis dependencies yourself))
-- **Clean cache** : Force deletion of objects that are no longer useful. Jeedom does this automatically every night.
-- **Clear all cache data** : Empty the cover completely.
-    Please note that this may cause data loss !
-- **Time of pause for long polling** : Frequency at which Jeedom checks if there are pending events for clients (web interface, mobile application, etc.)). The shorter this time, the faster the interface will update, but on the other hand it uses more resources and can therefore slow down Jeedom.
+- **Cache Engine**: Choosing a cache engine for Jeedom:
+  - File system: Cache information is stored in /tmp/jeedom/cache (in RAM) in file mode, using a third-party library. It will soon be replaced by File (beta).
+  - File (beta): Stores cache information in /tmp/jeedom/cache (in RAM) in file mode. This is the most efficient option but is backed up every 30 minutes.
+  - MySQL (beta): Use of a cache table in the database. Least efficient but saved in real time (no data loss possible)
+  - Redis (beta): For experts only; relies on Redis to manage the cache (so you'll need to install Redis and the php-redis dependencies yourself)
+- **Clear the cache**: Forces the removal of objects that are no longer needed. Jeedom does this automatically every night.
+- **Clear all cached data**: Completely clears the cache.
+Warning: This may result in data loss!
+- **Long polling pause time**: The frequency at which Jeedom checks for pending events for clients (web interface, mobile app, etc.). The shorter this time, the faster the interface will update; however, this uses more resources and can therefore slow down Jeedom.
 
->**Important**
+>**IMPORTANT**
 >
-> Any change of cache engine results in a reset of it so you then have to wait for the modules to send back the information to find everything
+> Any change to the cache engine causes it to reset, so you must wait for the modules to resend the information to restore everything.
 
 ## API tab
 
-Here you find the list of the different API keys available in your Jeedom. Core has two API keys :
+Here you'll find a list of the various API keys available in your Jeedom. By default, the core has two API keys:
 
-- a general : as much as possible, avoid using it,
-- and another for professionals : used for fleet management. It can be empty.
-- Then you will find one API key per plugin that needs it.
+- General rule: Avoid using it whenever possible,
+- and another one for professionals: used for fleet management. It may be empty.
+- You'll then find an API key for each plugin as needed.
 
-For each API plugin key, as well as for HTTP, JsonRPC and TTS APIs, you can define their scope :
+For each plugin API key, as well as for the HTTP, JSON-RPC, and TTS APIs, you can define their scope:
 
-- **Disabled** : API key cannot be used,
-- **Whitelist** : only a list of IPs is authorized (see Settings → System → Configuration : Security),
-- **Localhost** : only requests from the system on which Jeedom is installed are allowed,
-- **Enabled** : no restrictions, any system with access to your Jeedom will be able to access this API.
+- **Disabled**: The API key cannot be used,
+- **White-listed IPs**: Only a list of IP addresses is allowed (see Settings→System→Configuration: Security),
+- **Localhost**: Only requests originating from the system on which Jeedom is installed are allowed,
+- **Enabled**: No restrictions; any system with access to your Jeedom will be able to access this API.
 
-For each plugin API key you can prohibit them from core methods (general) to limit them to their only embedded method (be careful some plugins like mobile or jeelink absolutely need core methods)
+For each plugin API key, you can disable the core (general) methods to limit them to their own built-in method only (note that some plugins, such as Mobile or Jeelink, absolutely require the core methods).
 
-## Onglet &gt;\_OS/DB
+## Tab &gt;\_OS/DB
 
 > **Important**
 >
-> This tab is reserved for experts.
-> If you modify Jeedom with one of these two solutions, the support may refuse to help you.
+> This tab is for experts only.
+> If you modify Jeedom using either of these two solutions, support may refuse to assist you.
 
 ### System Checks
 
-- **General verification** : Allows you to run a Jeedom consistency test.
-- **Reinstatement of rights** : Allows you to re-apply the right rights to the directories and files of the Jeedom Core.
-- **Checking system packages** : Allows you to launch a verification of installed packages.
-- **Database verification** : Allows to launch a verification on the Jeedom database and to correct errors if necessary.
-- **Database cleanup** : Runs a database check and cleans up any unused entries.
+- **General Check**: Allows you to run a consistency test on Jeedom.
+- **Restore Permissions**: Restores the correct permissions on the Jeedom Core directories and files.
+- **System Package Check**: Allows you to run a check on the installed packages.
+- **Database Check**: Allows you to run a check on the Jeedom database and correct any errors if necessary.
+- **Database cleanup**: Runs a database check and removes any unused entries.
 
 
 ### System Tools
 
-- **File Editor** : Allows access to various operating system files and to edit or delete or create them.
-- **System Administration** : Provides access to a system administration interface. It is a kind of shell console in which you can launch the most useful commands, in particular to obtain information on the system.
-- **Mass editor** : Mass editing tool for equipment, commands, objects, scenarios.
-- **Database Administration** : Allows access to the Jeedom database. You can then launch commands in the top field.
-- **Username / Password** : Username and password to access the database used by Jeedom.
+- **File Editor**: Allows you to access various operating system files and edit, delete, or create them.
+- **System Administration**: Provides access to a system administration interface. It is a type of shell console where you can run the most useful commands, particularly to retrieve system information.
+- **Bulk Editor**: A tool for bulk editing devices, commands, objects, and scenarios.
+- **Database Administration**: Allows you to access the Jeedom database. You can then enter commands in the top field.
+- **Username / Password**: The username and password used by Jeedom to access the database.

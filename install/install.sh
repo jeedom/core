@@ -6,14 +6,14 @@ YELLOW="\\033[1;33m"
 
 if [ $(id -u) != 0 ] ; then
   echo "Superuser rights (root) are required to install Jeedom"
-  echo "Please run 'sudo $0' or login as root and then rerun $0"
+  echo "Please run 'sudo $0' or log in as root and then rerun $0"
   exit 1
 fi
 
 apt_install() {
   apt-get -o Dpkg::Options::="--force-confdef" -y install "$@"
   if [ $? -ne 0 ]; then
-    echo "${RED}Cannot install $@ - Cancelling${NORMAL}"
+    echo "${RED}Cannot install $@. Installation aborted.${NORMAL}"
     exit 1
   fi
 }
@@ -21,7 +21,7 @@ apt_install() {
 mariadb_sql() {
   echo "$@" | mariadb -uroot
   if [ $? -ne 0 ]; then
-    echo "${RED}Cannot execute $@ in MySQL - Cancelling${NORMAL}"
+    echo "${RED}Cannot execute $@ in MariaDB. Installation aborted.${NORMAL}"
     exit 1
   fi
 }
@@ -50,21 +50,21 @@ version() {
 
 step_1_upgrade() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 1 - install${NORMAL}"
+  echo "${YELLOW}Starting step 1 - system upgrade${NORMAL}"
 
   apt-get update
   apt-get -f install
   apt-get -y dist-upgrade
-  echo "${GREEN} Step 1 - Install done ${NORMAL}"
+  echo "${GREEN}Step 1 - system upgrade done${NORMAL}"
 }
 
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 2 - packages${NORMAL}"
+  echo "${YELLOW}Starting step 2 - package installation${NORMAL}"
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
-  apt-get -y install git python3 python3-pip
+  apt-get -y install git python3 python3-pip python3-venv
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
   apt-get -y install gnupg
@@ -83,12 +83,12 @@ step_2_mainpackage() {
   apt-get -y install ssl-cert
   apt-get -y install iputils-ping
   apt-get -y remove brltty
-  echo "${GREEN}step 2 - packages done${NORMAL}"
+  echo "${GREEN}Step 2 - package installation done${NORMAL}"
 }
 
 step_3_database() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 3 - database${NORMAL}"
+  echo "${YELLOW}Starting step 3 - MariaDB installation${NORMAL}"
   apt_install mariadb-client mariadb-common mariadb-server
 
   service_action status mariadb
@@ -100,55 +100,55 @@ step_3_database() {
   if [ $? -ne 0 ]; then
     service_action status mysql
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
+      echo "${RED}Cannot start MariaDB. Installation aborted.${NORMAL}"
       exit 1
     fi
   fi
 
-  echo "${GREEN}Step 3 - database done${NORMAL}"
+  echo "${GREEN}Step 3 - MariaDB installation done${NORMAL}"
 }
 
 step_4_apache() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 4 - apache${NORMAL}"
+  echo "${YELLOW}Starting step 4 - Apache installation${NORMAL}"
   apt_install apache2 apache2-utils libexpat1 ssl-cert
-  echo "${GREEN}Step 4 - apache done${NORMAL}"
+  echo "${GREEN}Step 4 - Apache installation done${NORMAL}"
 }
 
 step_5_php() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 5 - php${NORMAL}"
+  echo "${YELLOW}Starting step 5 - PHP installation${NORMAL}"
   apt_install php libapache2-mod-php php-json php-mysql
-  apt install -y php-curl
-  apt install -y php-gd
-  apt install -y php-xml
-  apt install -y php-opcache
-  apt install -y php-soap
-  apt install -y php-xmlrpc
-  apt install -y php-common
-  apt install -y php-dev
-  apt install -y php-zip
-  apt install -y php-ssh2
-  apt install -y php-mbstring
-  apt install -y php-ldap
-  apt install -y php-yaml
-  apt install -y php-snmp
-  echo "${GREEN}Step 5 - php done${NORMAL}"
+  apt-get install -y php-curl
+  apt-get install -y php-gd
+  apt-get install -y php-xml
+  apt-get install -y php-opcache
+  apt-get install -y php-soap
+  apt-get install -y php-xmlrpc
+  apt-get install -y php-common
+  apt-get install -y php-dev
+  apt-get install -y php-zip
+  apt-get install -y php-ssh2
+  apt-get install -y php-mbstring
+  apt-get install -y php-ldap
+  apt-get install -y php-yaml
+  apt-get install -y php-snmp
+  echo "${GREEN}Step 5 - PHP installation done${NORMAL}"
 }
 
 step_6_jeedom_download() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 6 - download Jeedom${NORMAL}"
+  echo "${YELLOW}Starting step 6 - Jeedom download${NORMAL}"
   wget https://codeload.github.com/jeedom/core/zip/refs/heads/${VERSION} -O /tmp/jeedom.zip
 
   if [ $? -ne 0 ]; then
-    echo "${YELLOW}Cannot download Jeedom from Github. Use deployment version if exist.${NORMAL}"
+    echo "${YELLOW}Cannot download Jeedom from GitHub. Using the deployment version if it exists.${NORMAL}"
     if [ -f /root/jeedom.zip ]; then
       cp /root/jeedom.zip /tmp/jeedom.zip
     fi
   fi
-  if [ ! /tmp/jeedom.zip ]; then
-    echo "${RED}Cannot get jeedom.zip archive - Cancelling${NORMAL}"
+  if [ ! -s /tmp/jeedom.zip ]; then
+    echo "${RED}Cannot get the jeedom.zip archive. Installation aborted.${NORMAL}"
     exit 1
   fi
   mkdir -p ${WEBSERVER_HOME}
@@ -156,7 +156,7 @@ step_6_jeedom_download() {
   rm -rf /root/core-*
   unzip -q /tmp/jeedom.zip -d /root/
   if [ $? -ne 0 ]; then
-    echo "${RED}Cannot unpack archive - Cancelling${NORMAL}"
+    echo "${RED}Cannot unpack the archive. Installation aborted.${NORMAL}"
     exit 1
   fi
   cp -R /root/core-*/* ${WEBSERVER_HOME}
@@ -166,19 +166,19 @@ step_6_jeedom_download() {
   rm -rf /root/core-* > /dev/null 2>&1
   rm -rf ${WEBSERVER_HOME}/core-* > /dev/null 2>&1
   rm /tmp/jeedom.zip
-  echo "${GREEN}Step 6 - download Jeedom done${NORMAL}"
+  echo "${GREEN}Step 6 - Jeedom download done${NORMAL}"
 }
 
 step_7_jeedom_customization_mariadb() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 7 - mariadb customization${NORMAL}"
+  echo "${YELLOW}Starting step 7 - MariaDB configuration${NORMAL}"
 
   mkdir -p /lib/systemd/system/mariadb.service.d
   echo '[Service]' > /lib/systemd/system/mariadb.service.d/override.conf
   echo 'Restart=always' >> /lib/systemd/system/mariadb.service.d/override.conf
   echo 'RestartSec=10' >> /lib/systemd/system/mariadb.service.d/override.conf
 
-  # do not start oany new service during docker build sequence
+  # do not start any new service during docker build sequence
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     systemctl daemon-reload
 
@@ -188,7 +188,7 @@ step_7_jeedom_customization_mariadb() {
       service_action stop mysql > /dev/null 2>&1
       if [ $? -ne 0 ]; then
         service_action status mysql
-        echo "${RED}Cannot stop mariadb - Canceling${NORMAL}"
+        echo "${RED}Cannot stop MariaDB. Installation aborted.${NORMAL}"
         exit 1
       fi
     fi
@@ -220,18 +220,18 @@ step_7_jeedom_customization_mariadb() {
       service_action start mysql > /dev/null 2>&1
       if [ $? -ne 0 ]; then
         service_action status mysql
-        echo "${RED}Cannot start mariadb - Cancelling${NORMAL}"
+        echo "${RED}Cannot start MariaDB. Installation aborted.${NORMAL}"
         exit 1
       fi
     fi
   fi
 
-  echo "${GREEN}Step 7 - mariadb customization done${NORMAL}"
+  echo "${GREEN}Step 7 - MariaDB configuration done${NORMAL}"
 }
 
 step_8_jeedom_customization() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 8 - Jeedom customization${NORMAL}"
+  echo "${YELLOW}Starting step 8 - Apache and PHP configuration${NORMAL}"
   cp ${WEBSERVER_HOME}/install/apache_security /etc/apache2/conf-available/security.conf
   sed -i -e "s%WEBSERVER_HOME%${WEBSERVER_HOME}%g" /etc/apache2/conf-available/security.conf
 
@@ -252,7 +252,10 @@ step_8_jeedom_customization() {
   echo '' > /etc/apache2/mods-available/alias.conf
 
   mkdir /etc/systemd/system/apache2.service.d
-  echo "[Service]" > /etc/systemd/system/apache2.service.d/override.conf
+  echo "[Unit]" > /etc/systemd/system/apache2.service.d/override.conf
+  echo "After=mariadb.service" >> /etc/systemd/system/apache2.service.d/override.conf
+  echo "Wants=mariadb.service" >> /etc/systemd/system/apache2.service.d/override.conf
+  echo "[Service]" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "PrivateTmp=no" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "Restart=always" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "RestartSec=10" >> /etc/systemd/system/apache2.service.d/override.conf
@@ -262,7 +265,7 @@ step_8_jeedom_customization() {
   fi
 
   for file in $(find /etc/ -iname php.ini -type f); do
-    echo "Update php file ${file}"
+    echo "Updating PHP file ${file}"
     sed -i 's/max_execution_time = 30/max_execution_time = 600/g' ${file} > /dev/null 2>&1
     sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 1G/g' ${file} > /dev/null 2>&1
     sed -i 's/post_max_size = 8M/post_max_size = 1G/g' ${file} > /dev/null 2>&1
@@ -286,7 +289,7 @@ step_8_jeedom_customization() {
 
   echo "vm.swappiness = 10" >>  /etc/sysctl.conf
   sysctl vm.swappiness=10
-  echo "${GREEN}Step 8 - Jeedom customization done${NORMAL}"
+  echo "${GREEN}Step 8 - Apache and PHP configuration done${NORMAL}"
 }
 
 step_9_jeedom_configuration() {
@@ -314,7 +317,7 @@ step_9_jeedom_configuration() {
 
 step_10_jeedom_installation() {
   echo "---------------------------------------------------------------------"
-  echo "${YELLOW}Starting step 10 - Jeedom install${NORMAL}"
+  echo "${YELLOW}Starting step 10 - Jeedom installation${NORMAL}"
   chmod +x ${WEBSERVER_HOME}/resources/install_composer.sh
   ${WEBSERVER_HOME}/resources/install_composer.sh
   export COMPOSER_ALLOW_SUPERUSER=1
@@ -327,17 +330,28 @@ step_10_jeedom_installation() {
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     php ${WEBSERVER_HOME}/install/install.php mode=force
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot install Jeedom - Cancelling${NORMAL}"
+      echo "${RED}Cannot install Jeedom. Installation aborted.${NORMAL}"
       exit 1
     fi
   fi
 
-  echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
+  echo "${GREEN}Step 10 - Jeedom installation done${NORMAL}"
 }
 
 step_11_jeedom_post() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 11 - Jeedom post-install${NORMAL}"
+  if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
+    if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then
+      echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=256M                                       0 0' >>  /etc/fstab
+    fi
+    # fstab is only read at boot, mount it now (before the crons start) so no reboot is needed
+    if [ "${INSTALLATION_TYPE}" != "docker" ] && [ "${INSTALLATION_TYPE}" != "pigen" ] && ! mountpoint -q /tmp/jeedom; then
+      mkdir -p /tmp/jeedom
+      systemctl daemon-reload
+      mount /tmp/jeedom
+    fi
+  fi
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
 
@@ -345,28 +359,29 @@ step_11_jeedom_post() {
   if [ ! -f /etc/cron.d/jeedom ]; then
     echo "* * * * * www-data /usr/bin/php ${WEBSERVER_HOME}/core/php/jeeCron.php >> /dev/null" > /etc/cron.d/jeedom
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
+      echo "${RED}Cannot install Jeedom cron. Installation aborted.${NORMAL}"
       exit 1
     fi
+    chmod 644 /etc/cron.d/jeedom
   fi
   if [ ! -f /etc/cron.d/jeedom_watchdog ]; then
     echo "*/5 * * * * root /usr/bin/php ${WEBSERVER_HOME}/core/php/watchdog.php >> /dev/null" > /etc/cron.d/jeedom_watchdog
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot install Jeedom cron - Canceling${NORMAL}"
+      echo "${RED}Cannot install Jeedom watchdog cron. Installation aborted.${NORMAL}"
       exit 1
     fi
+    chmod 644 /etc/cron.d/jeedom_watchdog
   fi
   usermod -a -G dialout,tty www-data
+  # Apache only picks up the new groups of www-data on restart
+  if [ "${INSTALLATION_TYPE}" != "docker" ];then
+    service_action restart apache2 > /dev/null 2>&1
+  fi
   if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
     echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
     if [ $? -ne 0 ]; then
-      echo "${RED}Cannot allow Sudo for Jeedom - Cancelling${NORMAL}"
+      echo "${RED}Cannot grant sudo rights to Jeedom. Installation aborted.${NORMAL}"
       exit 1
-    fi
-  fi
-  if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
-    if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then
-      echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=256M                                       0 0' >>  /etc/fstab
     fi
   fi
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
@@ -407,7 +422,7 @@ MARIADB_JEEDOM_PASSWD=${MARIADB_JEEDOM_PASSWD:-$(openssl rand -base64 32 | tr -d
 INSTALLATION_TYPE='standard'
 DATABASE=1
 
-while getopts ":s:v:w:m:i:d:" opt; do
+while getopts ":s:v:w:i:d:" opt; do
   case $opt in
     s) STEP="$OPTARG"
     ;;
@@ -420,21 +435,22 @@ while getopts ":s:v:w:m:i:d:" opt; do
     d) DATABASE="$OPTARG"
     ;;
     \?) echo "${RED}Invalid option -$OPTARG${NORMAL}" >&2
+    exit 1
     ;;
   esac
 done
 
-echo "${YELLOW}Welcome to Jeedom installer${NORMAL}"
-echo "${YELLOW}Jeedom version : ${VERSION}${NORMAL}"
-echo "${YELLOW}Web folder : ${WEBSERVER_HOME}${NORMAL}"
-echo "${YELLOW}Installation type : ${INSTALLATION_TYPE}${NORMAL}"
+echo "${YELLOW}Welcome to the Jeedom installer${NORMAL}"
+echo "${YELLOW}Jeedom version: ${VERSION}${NORMAL}"
+echo "${YELLOW}Web folder: ${WEBSERVER_HOME}${NORMAL}"
+echo "${YELLOW}Installation type: ${INSTALLATION_TYPE}${NORMAL}"
 if [ ${DATABASE} -ne 1 ]; then
   echo "${YELLOW}External database${NORMAL}"
 fi
 
 case ${STEP} in
   0)
-  echo "${YELLOW}Starting installation ...${NORMAL}"
+  echo "${YELLOW}Starting Jeedom installation...${NORMAL}"
   step_1_upgrade
   step_2_mainpackage
   if [ ${DATABASE} -eq 1 ]; then
@@ -455,7 +471,14 @@ case ${STEP} in
   step_11_jeedom_post
   step_12_jeedom_check
   distrib_1_spe
-  echo "Installation done. Reboot required."
+  echo "${GREEN}Jeedom installation done. Reboot recommended.${NORMAL}"
+  if [ "${INSTALLATION_TYPE}" != "docker" ] && [ "${INSTALLATION_TYPE}" != "pigen" ]; then
+    LOCAL_IP=$(ip -4 route get 1.1.1.1 2>/dev/null | grep -oP 'src \K\S+')
+    if [ -n "${LOCAL_IP}" ]; then
+      echo "Jeedom interface: http://${LOCAL_IP}/"
+      echo "Default login: admin/admin"
+    fi
+  fi
   ;;
   1) step_1_upgrade
   ;;
@@ -484,7 +507,8 @@ case ${STEP} in
   ;;
   12) step_12_jeedom_check
   ;;
-  *) echo "${RED}Sorry, cannot select step ${STEP}${NORMAL}"
+  *) echo "${RED}Invalid step: ${STEP}${NORMAL}"
+  exit 1
   ;;
 esac
 
