@@ -60,7 +60,7 @@ $mbState = config::byKey('mbState');
 							<button class="dark btn-lg" id="bt_ask_password"><i class="fas fa-unlock-alt"></i> {{Recevoir un lien de réinitialisation}}</button>
 						</div>
 						<div class="submit center">
-							<a class="btn" id="bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
+							<a class="btn bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
 						</div>
 						<?php if ($mbState == 0 && config::byKey('doc::base_url', 'core') != '') { ?>
 							<div class="resetPassword center">
@@ -84,7 +84,7 @@ $mbState = config::byKey('mbState');
 							<button class="dark btn-lg" id="bt_reset_password"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
 						</div>
 						<div class="submit center">
-							<a class="btn" id="bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
+							<a class="btn bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
 						</div>
 					</form>
 				</div>

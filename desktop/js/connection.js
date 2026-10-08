@@ -270,7 +270,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
     return
   }
 
-  if (_target = event.target.closest('#bt_go_to_login')) {
+  if (_target = event.target.closest('.bt_go_to_login')) {
     jeeP.goToLogin()
     return
   }
