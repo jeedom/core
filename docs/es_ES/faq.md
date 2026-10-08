@@ -188,7 +188,7 @@ rm -rf /root/tmp/core-master
 ### Me aparece el error MYSQL_ATTR_INIT_COMMAND en scenario_execution
 En la administración de Jeedom, en la sección OS/DB y, a continuación, en la consola del sistema, hay que hacer lo siguiente:
 ```
-yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sudo apt-get install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
 ### No consigo instalar las dependencias de un complemento; me aparece un error del tipo: «E: dpkg se ha interrumpido. Es necesario utilizar «sudo dpkg --configure -a» para solucionar el problema» o «E: No se ha podido obtener el bloqueo /var/lib/dpkg/lock».
