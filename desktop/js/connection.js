@@ -18,7 +18,7 @@
 
 if (!jeeFrontEnd.connection) {
   jeeFrontEnd.connection = {
-    init: function () {
+    init: function() {
       this.deepUrl = window.location.href
       if (this.deepUrl.includes('logout')) this.deepUrl = ''
       window.jeeP = this
@@ -31,45 +31,45 @@ if (!jeeFrontEnd.connection) {
         this.goToResetPassword()
       }
     },
-    askMarket: function () {
+    askMarket: function() {
       document.querySelectorAll('.veen .wrapper').removeClass('move')
       document.getElementById('login').unseen()
       document.getElementById('market').seen()
       document.querySelector('.img-responsive').setAttribute('src', 'https://market.jeedom.com/core/img/logo-MARKET.svg')
       document.querySelector('.img-responsive').style.width = '100%'
     },
-    clearInputs: function (selector) {
-      document.querySelectorAll(selector + ' input').forEach(function (input) {
+    clearInputs: function(selector) {
+      document.querySelectorAll(selector + ' input').forEach(function(input) {
         input.value = ''
       })
     },
-    goToLogin: function () {
+    goToLogin: function() {
       document.querySelectorAll('.veen .wrapper').removeClass('move')
       this.clearInputs('#lostpassword, #resetpassword')
       document.getElementById('lostpassword').unseen()
       document.getElementById('resetpassword').unseen()
       document.getElementById('login').seen()
     },
-    goToLostPassword: function () {
+    goToLostPassword: function() {
       document.querySelectorAll('.veen .wrapper').removeClass('move')
       this.clearInputs('#lostpassword')
       document.getElementById('login').unseen()
       document.getElementById('lostpassword').seen()
     },
-    goToResetPassword: function () {
+    goToResetPassword: function() {
       document.querySelectorAll('.veen .wrapper').removeClass('move')
       this.clearInputs('#resetpassword')
       document.getElementById('login').unseen()
       document.getElementById('lostpassword').unseen()
       document.getElementById('resetpassword').seen()
     },
-    goToIndex: function () {
-      jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function () {
+    goToIndex: function() {
+      jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
         document.querySelectorAll('.veen').unseen()
         window.location.href = 'index.php?v=d'
       })
     },
-    resetPasswordValidate: function (_event) {
+    resetPasswordValidate: function(_event) {
       const password = document.getElementById('in_reset_password').value
       if (password == '' || password != document.getElementById('in_reset_passwordToo').value) {
         jeedomUtils.showAlert({
@@ -81,14 +81,14 @@ if (!jeeFrontEnd.connection) {
       jeedom.user.resetPasswordFromToken({
         token: this.resetPasswordToken,
         newPassword: password,
-        error: function (error) {
+        error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
           jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
         },
-        success: function (result) {
+        success: function(result) {
           if (result !== true) {
             jeedomUtils.showAlert({
               message: '{{Le lien de réinitialisation est invalide ou a expiré.}}',
@@ -105,7 +105,7 @@ if (!jeeFrontEnd.connection) {
         }
       })
     },
-    askPassword: function (_event) {
+    askPassword: function(_event) {
       const username = document.getElementById('in_lostpassword_username').value.trim()
       if (username == '') {
         jeedomUtils.showAlert({
@@ -116,14 +116,14 @@ if (!jeeFrontEnd.connection) {
       }
       jeedom.user.askPassword({
         username: username,
-        error: function (error) {
+        error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
             level: 'danger'
           })
           jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
         },
-        success: function () {
+        success: function() {
           jeeFrontEnd.connection.goToLogin()
           jeedomUtils.showAlert({
             message: '{{Si votre utilisateur est valide et si vous avez configuré une commande de notification, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.}}',
@@ -132,13 +132,13 @@ if (!jeeFrontEnd.connection) {
         }
       })
     },
-    loginValidate: function (_event) {
+    loginValidate: function(_event) {
       jeedom.user.login({
         username: document.getElementById('in_login_username').value,
         password: document.getElementById('in_login_password').value,
         twoFactorCode: document.getElementById('in_twoFactorCode').value,
         storeConnection: (document.getElementById('cb_storeConnection').checked) ? 1 : 0,
-        error: function (error) {
+        error: function(error) {
           if (error.code == -32012) {
             document.getElementById('div_twoFactorCode').seen()
             return
@@ -149,7 +149,7 @@ if (!jeeFrontEnd.connection) {
           })
           jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
         },
-        success: function () {
+        success: function() {
           if (document.getElementById('in_login_username').value == document.getElementById('in_login_password').value) {
             document.getElementById('phrase_login_btn').innerHTML = '{{Alerte de sécurité}} :<br>{{Votre mot de passe doit être changé.}}'
             document.getElementById('titre_login_btn').innerHTML = '{{Information importante}} :'
@@ -159,7 +159,7 @@ if (!jeeFrontEnd.connection) {
             document.querySelectorAll('.veen .login-btn button').removeClass('active')
             _event.target.addClass('active')
           } else {
-            jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function () {
+            jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
               document.querySelectorAll('.veen').unseen()
               if (isset(jeeP.deepUrl) && jeeP.deepUrl.includes('index.php?v=d')) {
                 window.location.href = jeeP.deepUrl
@@ -171,38 +171,38 @@ if (!jeeFrontEnd.connection) {
         }
       })
     },
-    changeValidate: function (_event) {
+    changeValidate: function(_event) {
       if (document.getElementById('in_change_password').value != '' && document.getElementById('in_change_password').value == document.getElementById('in_change_passwordToo').value) {
         jeedom.user.get({
-          error: function (error) {
+          error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
           },
-          success: function (data) {
+          success: function(data) {
             var user = data
             user.password = document.getElementById('in_change_password').value
             user.hash = ''
             jeedom.user.saveProfils({
               profils: user,
-              error: function (error) {
+              error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
                 jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
               },
-              success: function () {
+              success: function() {
                 jeedom.config.load({
                   configuration: 'market::username',
-                  error: function (error) {
+                  error: function(error) {
                     jeedomUtils.showAlert({
                       message: error.message,
                       level: 'danger'
                     })
                   },
-                  success: function (data) {
+                  success: function(data) {
                     if (data == '' || data == null) {
                       jeeFrontEnd.connection.askMarket()
                     } else {
@@ -221,9 +221,9 @@ if (!jeeFrontEnd.connection) {
         })
       }
     },
-    animateCss: function (element, animationName, callback) {
+    animateCss: function(element, animationName, callback) {
       // console.log('animateCss:', element, animationName, callback)
-      var animationEnd = (function (el) {
+      var animationEnd = (function(el) {
         var animations = {
           animation: 'animationend',
           OAnimation: 'oAnimationEnd',
@@ -253,7 +253,7 @@ if (!jeeFrontEnd.connection) {
 jeeFrontEnd.connection.init()
 
 //events delegation:
-document.getElementById('wrap')?.addEventListener('click', function (event) {
+document.getElementById('wrap')?.addEventListener('click', function(event) {
   var _target = null
   if (_target = event.target.closest('#bt_login_validate')) {
     jeeP.loginValidate(event)
@@ -293,35 +293,35 @@ document.getElementById('wrap')?.addEventListener('click', function (event) {
       configuration: {
         'market::username': username
       },
-      error: function (error) {
+      error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
           level: 'danger'
         })
       },
-      success: function (data) {
+      success: function(data) {
         jeedom.config.save({
           configuration: {
             'market::password': password
           },
-          error: function (error) {
+          error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,
               level: 'danger'
             })
             jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
           },
-          success: function (data) {
+          success: function(data) {
             jeedom.repo.test({
               repo: 'market',
-              error: function (error) {
+              error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
                 jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
               },
-              success: function (data) {
+              success: function(data) {
                 jeeFrontEnd.connection.goToIndex()
               }
             })
@@ -343,29 +343,29 @@ document.getElementById('wrap')?.addEventListener('click', function (event) {
   }
 
   if (_target = event.target.closest('a.bt_showPassConnection')) {
-    event.stopPropagation();
-    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode;
-    var input = _el.closest('.input-group').querySelector('input');
+    event.stopPropagation()
+    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode
+    var input = _el.closest('.input-group').querySelector('input')
 
     if (input.getAttribute('type') === 'password') {
-      input.setAttribute('type', 'text');
+      input.setAttribute('type', 'text')
     } else {
-      input.setAttribute('type', 'password');
+      input.setAttribute('type', 'password')
     }
 
-    var icon = _el.querySelector('.fas');
+    var icon = _el.querySelector('.fas')
     if (icon.classList.contains('fa-eye-slash')) {
-      icon.classList.remove('fa-eye-slash');
-      icon.classList.add('fa-eye');
+      icon.classList.remove('fa-eye-slash')
+      icon.classList.add('fa-eye')
     } else {
-      icon.classList.remove('fa-eye');
-      icon.classList.add('fa-eye-slash');
+      icon.classList.remove('fa-eye')
+      icon.classList.add('fa-eye-slash')
     }
-    return;
+    return
   }
 })
 
-document.getElementById('wrap').addEventListener('keypress', function (event) {
+document.getElementById('wrap').addEventListener('keypress', function(event) {
   if (event.which != 13) return
   var _target = null
   if (_target = event.target.closest('#resetpassword input')) {
@@ -389,15 +389,15 @@ document.getElementById('wrap').addEventListener('keypress', function (event) {
 })
 
 
-window.setTimeout(function () {
+window.setTimeout(function() {
   document.querySelector('.veen').removeClass('zoomIn')
   document.querySelector('.btn_help').removeClass('bounceInUp')
 }, 5000)
 
-window.setTimeout(function () {
-  window.setInterval(function () {
+window.setTimeout(function() {
+  window.setInterval(function() {
     jeeFrontEnd.connection.animateCss(document.querySelector('.btn_help'), 'shake')
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       document.querySelector('.btn_help').removeClass('shake')
     }, 3000)
   }, 5000)
