@@ -366,22 +366,8 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
 })
 
 document.getElementById('wrap').addEventListener('keypress', function(event) {
-  if (event.which != 13) return
+  if (event.key != 'Enter') return
   var _target = null
-  if (_target = event.target.closest('#resetpassword input')) {
-    return
-  }
-
-  if (_target = event.target.closest('input')) {
-    jeeFrontEnd.connection.loginValidate(event)
-    return
-  }
-
-  if (_target = event.target.closest('#in_twoFactorCode')) {
-    jeeFrontEnd.connection.loginValidate(event)
-    return
-  }
-
   if (_target = event.target.closest('#in_change_passwordToo')) {
     jeeFrontEnd.connection.changeValidate(event)
     return
