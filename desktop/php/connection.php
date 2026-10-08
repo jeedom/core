@@ -57,14 +57,14 @@ $mbState = config::byKey('mbState');
 							<input type="text" id="in_lostpassword_username">
 						</div>
 						<div class="submit center">
-							<button class="dark btn-lg" id="bt_ask_password"><i class="fas fa-unlock-alt"></i> {{Demander un nouveau mot de passe}}</button>
+							<button class="dark btn-lg" id="bt_ask_password"><i class="fas fa-unlock-alt"></i> {{Recevoir un lien de réinitialisation}}</button>
 						</div>
 						<div class="submit center">
 							<a class="btn" id="bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
 						</div>
 						<?php if ($mbState == 0 && config::byKey('doc::base_url', 'core') != '') { ?>
 							<div class="resetPassword center">
-								<a href="<?= jeedom::getDocUrl('howto', 'reset.password') ?>" target="_blank">{{Si cela ne fonctionne pas, suivez cette procédure}}</a>
+								{{Autre méthode :}} <a href="<?= jeedom::getDocUrl('howto', 'reset.password') ?>" target="_blank">{{réinitialiser le mot de passe en SSH}}</a>
 							</div>
 						<?php } ?>
 					</form>
