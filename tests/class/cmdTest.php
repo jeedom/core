@@ -17,9 +17,7 @@
 */
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\Group;
 
-#[Group('unit')]
 class cmdTest extends TestCase {
     public function testFormatValueNumericRoundWithNonNumericCalculResult() {
         $cmd = new cmd();

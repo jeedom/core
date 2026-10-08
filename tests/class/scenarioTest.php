@@ -18,9 +18,7 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 
-#[Group('unit')]
 class scenarioTest extends TestCase {
 
 	public static function getGetSets() {

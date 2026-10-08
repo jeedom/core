@@ -18,9 +18,7 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
-use PHPUnit\Framework\Attributes\Group;
 
-#[Group('integration')]
 class scenarioExpressionTest extends TestCase {
 
 	public function testCalculCondition() {
@@ -31,7 +29,7 @@ class scenarioExpressionTest extends TestCase {
 		foreach ($tests as $key => $value) {
 			echo "\n\t " . $key . ' = ' . $value;
 			$result = scenarioExpression::createAndExec('condition', $key);
-			$this->assertEquals(2, $value);
+			$this->assertEquals($value, $result);
 		}
 		echo "\n";
 	}

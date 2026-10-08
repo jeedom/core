@@ -18,9 +18,7 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Depends;
-use PHPUnit\Framework\Attributes\Group;
 
-#[Group('integration')]
 class configTest extends TestCase {
 	public function testSave() {
 		echo "\n" . __CLASS__ . '::' . __FUNCTION__ . ' : ';

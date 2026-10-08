@@ -18,9 +18,7 @@
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
 
-#[Group('integration')]
 class logTest extends TestCase {
 	public static function getEngines() {
 		return array(

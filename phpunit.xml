@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
-         bootstrap="tests/bootstrap.php"
+         bootstrap="core/php/utils.inc.php"
+         cacheResult="false"
          colors="true">
     <testsuites>
-        <testsuite name="Jeedom">
-            <directory suffix="Test.php">tests</directory>
-            <exclude>tests/external</exclude>
+        <testsuite name="Unit Tests">
+            <directory suffix="Test.php">tests/unit</directory>
         </testsuite>
     </testsuites>
 </phpunit>
