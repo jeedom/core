@@ -93,6 +93,9 @@ try {
 			if (!is_object($user)) {
 				throw new Exception(__('Utilisateur inconnu', __FILE__));
 			}
+			if ($user->getEnable() == 0) {
+				throw new Exception(__('Utilisateur désactivé', __FILE__));
+			}
 			$user->sendResetPasswordLink();
 		} catch (Exception $e) {
 			sleep(rand(2, 5));
