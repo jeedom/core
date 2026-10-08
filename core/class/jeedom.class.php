@@ -1037,6 +1037,15 @@ class jeedom {
 		return $version;
 	}
 
+	public static function getDocUrl(string $_section, string $_page = '', ?string $_version = null): string {
+		$url = config::byKey('doc::base_url') . '/' . $_section . '/';
+		if ($_section == 'core') {
+			$version = ($_version != '') ? $_version : self::version();
+			$url .= implode('.', array_slice(explode('.', $version), 0, 2)) . '/';
+		}
+		return $url . config::byKey('language', 'core', 'fr_FR') . '/' . $_page;
+	}
+
 	/**********************START AND DATE MANAGEMENT*************************************************************/
 
 	public static function stop() {

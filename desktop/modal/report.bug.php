@@ -111,7 +111,9 @@ if (!$first) {
         <h3 class="panel-title"><i class="fas fa-pencil-alt"></i> {{Etape 4 : Demande de support}}</h3>
       </div>
       <div class="panel-body">
-        <div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette <a target="_blank" href="https://doc.jeedom.com/fr_FR/howto/remonter_un_bug">documentation}}</a></div>
+        <?php if (config::byKey('doc::base_url', 'core') != '') { ?>
+          <div class="alert alert-info">{{IMPORTANT : pour avoir une réponse rapide et précise merci de lire cette}} <a target="_blank" href="<?php echo jeedom::getDocUrl('howto', 'remonter_un_bug'); ?>">{{documentation}}</a></div>
+        <?php } ?>
         <div class="form-group">
           <label class="col-sm-2 control-label">{{Titre}}</label>
           <div class="col-sm-7">

@@ -114,8 +114,7 @@ try {
 			} else if (init('page') == 'editor' || init('page') == 'system' || init('page') == 'database') {
 				$page = 'administration';
 			}
-			$version = substr(jeedom::version(), 0, 3);
-			ajax::success(config::byKey('doc::base_url', 'core') . '/' . config::byKey('language', 'core', 'fr_FR') . '/core/' . $version . '/' . secureXSS($page) . '?theme=' . $theme);
+			ajax::success(jeedom::getDocUrl('core', secureXSS($page)) . '?theme=' . $theme);
 		}
 		throw new Exception(__('Aucune documentation trouvée', __FILE__), -1234);
 	}
