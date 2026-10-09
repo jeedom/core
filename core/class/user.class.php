@@ -790,7 +790,15 @@ class user {
 				'ip' => network::getClientIp(),
 			]);
 		} catch (\Exception $e) {
-			log::add('audit', 'warning', sprintf(__("Demande de réinitialisation de mot de passe pour %s : échec de l'envoi (%s)", __FILE__), $this->getLogin(), $e->getMessage()));
+			log::audit(
+				__('Demande de réinitialisation de mot de passe : échec de l\'envoi', __FILE__),
+				[
+					'login' => $this->getLogin(),
+					'ip' => network::getClientIp(),
+					'exception' => $e->getMessage()
+				],
+				'warning'
+			);
 		}
 	}
 

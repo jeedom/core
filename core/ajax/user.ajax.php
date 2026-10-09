@@ -95,7 +95,15 @@ try {
 			}
 			$user->sendResetPasswordLink();
 		} catch (Exception $e) {
-			log::add('audit', 'warning', network::getClientIp() . ' - ' . __('Demande de réinitialisation du mot de passe pour : ', __FILE__) . $username . ' - ' . $e->getMessage());
+			log::audit(
+				__('Demande de réinitialisation du mot de passe', __FILE__),
+				[
+					'login' => $username,
+					'ip' => $current_ip,
+					'exception' => $e->getMessage()
+				],
+				'warning'
+			);
 		}
 		if (microtime(true) < $responseTime) {
 			time_sleep_until($responseTime);
@@ -108,7 +116,14 @@ try {
 			$result = user::resetPasswordFromToken(init('token'), init('newPassword'));
 			ajax::success($result);
 		} catch (Exception $e) {
-			log::add('audit', 'warning', network::getClientIp() . ' - ' . __('Erreur lors de la réinitialisation du mot de passe', __FILE__) . $e->getMessage());
+			log::audit(
+				__('Erreur lors de la réinitialisation du mot de passe', __FILE__),
+				[
+					'ip' => network::getClientIp(),
+					'exception' => $e->getMessage()
+				],
+				'warning'
+			);
 			ajax::success(false);
 		}
 	}
