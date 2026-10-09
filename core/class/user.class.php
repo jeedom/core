@@ -322,7 +322,7 @@ class user {
 	}
 
 	public static function failedLogin(array $_context = []): void {
-		$current_ip = getClientIp();
+		$current_ip = network::getClientIp();
 		$failed_login = cache::byKey('security::failed_login::' . $current_ip);
 		$newValue = $failed_login->getValue(0) + 1;
 		$maxValue = config::byKey('security::maxFailedLogin');
@@ -345,7 +345,7 @@ class user {
 	}
 
 	public static function isBan(): bool {
-		$current_ip = getClientIp();
+		$current_ip = network::getClientIp();
 		if ($current_ip == '') {
 			return false;
 		}

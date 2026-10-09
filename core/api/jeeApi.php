@@ -63,17 +63,17 @@ if (init('type') != '') {
 				'reason' => __('API key invalide ou non autorisée dans ce contexte', __FILE__),
 			]);
 			sleep(5);
-			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
+			throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . network::getClientIp());
 		}
 
 		if (config::byKey('api::forbidden::method', 'core', '') !== '' && preg_match(config::byKey('api::forbidden::method', 'core', ''), init('type'))) {
-			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
+			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . network::getClientIp());
 		}
 		if (config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), init('type'))) {
-			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
+			throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . network::getClientIp());
 		}
 		$type = init('type');
-		log::add('api', 'debug', __('Demande sur l\'api http venant de :', __FILE__) . ' ' . getClientIp() . ' => ' . json_encode($_GET));
+		log::add('api', 'debug', __('Demande sur l\'api http venant de :', __FILE__) . ' ' . network::getClientIp() . ' => ' . json_encode($_GET));
 
 		if ($type == 'event' && class_exists($plugin) && method_exists($plugin, 'event')) {
 			log::add('api', 'info', __('Appels de', __FILE__) . ' ' . secureXSS($plugin) . '::event()');
@@ -93,7 +93,7 @@ if (init('type') != '') {
 						throw new Exception(__('Aucune commande correspondant à l\'ID :', __FILE__) . ' ' . secureXSS($id));
 					}
 					if ($plugin != 'core' && $plugin != $cmd->getEqType() && $_RESTRICTED) {
-						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
+						throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . network::getClientIp());
 					}
 					if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
 						continue;
@@ -108,10 +108,10 @@ if (init('type') != '') {
 					throw new Exception(__('Aucune commande correspondant à l\'ID :', __FILE__) . ' ' . secureXSS(init('id')));
 				}
 				if ($plugin != 'core' && $plugin != $cmd->getEqType() && $_RESTRICTED) {
-					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . network::getClientIp());
 				}
 				if ($_USER_GLOBAL != null && !$cmd->hasRight($_USER_GLOBAL)) {
-					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
+					throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . network::getClientIp());
 				}
 				if ($cmd->getType() == 'info' && init('value') != '') {
 					$cmd->event(init('value'));
@@ -269,7 +269,7 @@ try {
 	if (!headers_sent()) {
 		header('Content-Type: application/json');
 	}
-	$IP = getClientIp();
+	$IP = network::getClientIp();
 	$request = init('request');
 	if ($request == '') {
 		$request = file_get_contents("php://input");
@@ -290,7 +290,7 @@ try {
 		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__));
 	}
 	if (config::byKey('api::allow::method', 'core', '') !== '' && !preg_match(config::byKey('api::allow::method', 'core', ''), $jsonrpc->getMethod())) {
-		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . getClientIp());
+		throw new Exception(__('Cette demande n\'est pas autorisée', __FILE__) . ' ' . network::getClientIp());
 	}
 
 	$params = $jsonrpc->getParams();
@@ -1418,7 +1418,7 @@ try {
 			$rdk = config::genKey();
 			$rdkHash = sha512($rdk);
 		}
-		$clientIp = getClientIp();
+		$clientIp = network::getClientIp();
 		if ($requiresRegistration || $registeredDevices[$rdkHash]['ip'] !== $clientIp || strtotime($registeredDevices[$rdkHash]['datetime']) < time() - 24 * 3600) {
 			$registeredDevices[$rdkHash] = array(
 				'datetime' => date('Y-m-d H:i:s'),

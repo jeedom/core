@@ -33,7 +33,7 @@ try {
 		header('Content-Type: application/json');
 	}
 
-	$IP = getClientIp();
+	$IP = network::getClientIp();
 	$request = init('request');
 	if ($request == '') {
 		$request = file_get_contents("php://input");
