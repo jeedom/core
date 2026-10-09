@@ -482,9 +482,9 @@ class user {
 		return $_params;
 	}
 
-	public static function raiseForInvalidLogin(array $_params): void {
-		if (isset($_params['login']) && in_array($_params['login'], ['internal_report', 'jeedom_support'])) {
-			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_params['login']));
+	public static function raiseForInvalidLogin(string $_login): void {
+		if ($_login != '' && in_array($_login, ['internal_report', 'jeedom_support'])) {
+			throw new RunTimeException(sprintf(__('Vous ne pouvez pas utiliser ce login: %s', __FILE__), $_login));
 		}
 	}
 
@@ -492,19 +492,19 @@ class user {
 
 	public function preInsert(): void {
 		if (is_object(self::byLogin($this->getLogin()))) {
-			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
+			throw new Exception(__("Ce nom d'utilisateur existe déjà", __FILE__));
 		}
 	}
 
 	public function preUpdate(): void {
 		if (is_object($user = self::byLogin($this->getLogin())) && $user->getId() != $this->getId()) {
-			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
+			throw new Exception(__("Ce nom d'utilisateur existe déjà", __FILE__));
 		}
 	}
 
 	public function preSave(): void {
 		if ($this->getLogin() == '') {
-			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
+			throw new Exception(__("Le nom d'utilisateur ne peut pas être vide", __FILE__));
 		}
 		if ($this->getPassword() == '') {
 			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
@@ -752,5 +752,74 @@ class user {
 	public function setChanged($_changed): self {
 		$this->_changed = $_changed;
 		return $this;
+	}
+
+	public function sendResetPasswordLink(): void {
+		self::raiseForInvalidLogin($this->getLogin());
+
+		if ($this->getEnable() == 0) {
+			throw new RuntimeException(__('Utilisateur désactivé', __FILE__));
+		}
+
+		$cmdOption = $this->getOptions('notification::cmd');
+		if ($cmdOption == '') {
+			log::audit(__('Demande de réinitialisation du mot de passe : aucune commande de notification configurée, aucun envoi', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+			]);
+			return;
+		}
+		$cmd = cmd::byId(str_replace('#', '', $cmdOption));
+		if (!is_object($cmd)) {
+			log::audit(__('Demande de réinitialisation du mot de passe : commande de notification introuvable, aucun envoi', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+			]);
+			return;
+		}
+		try {
+			$key = config::genKey();
+			cache::set('user::resetPassword::' . $key, $this->getLogin(), 300);
+			$link = network::getNetworkAccess() . '/index.php?v=d&rpk=' . $key;
+			$cmd->execCmd(array(
+				'title' => __('Réinitialisation de votre mot de passe', __FILE__),
+				'message' => __('Voici votre lien de réinitialisation de mot de passe (valable 5 minutes) : ', __FILE__) . $link,
+			));
+			log::audit(__('Demande de réinitialisation du mot de passe : lien envoyé', __FILE__), [
+				'login' => $this->getLogin(),
+				'ip' => network::getClientIp(),
+			]);
+		} catch (\Exception $e) {
+			log::audit(
+				__("Demande de réinitialisation du mot de passe : échec de l'envoi", __FILE__),
+				[
+					'login' => $this->getLogin(),
+					'ip' => network::getClientIp(),
+					'exception' => $e->getMessage()
+				],
+				'warning'
+			);
+		}
+	}
+
+	public static function resetPasswordFromToken(string $_key, string $_newPassword): bool {
+		$cache = cache::byKey('user::resetPassword::' . $_key);
+		$login = $cache->getValue();
+		if ($login == '') {
+			return false;
+		}
+		self::raiseForInvalidLogin($login);
+		if (($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
+			$cache->remove();
+			return false;
+		}
+		$user = self::byLogin($login);
+		if (!is_object($user)) {
+			$cache->remove();
+			return false;
+		}
+		$user->setPassword($_newPassword)->save();
+		$cache->remove();
+		return true;
 	}
 }
