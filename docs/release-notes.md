@@ -34,6 +34,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-09 17:21:56 | Fix OpenVPN and Virtual plugin auto-install failing on boxes where they were never enabled | [#3567](https://github.com/jeedom/core/pull/3567) |
 | 2026-10-08 12:50:13 | Restrict the mobile widget modal to admins, like its desktop counterpart | [#3538](https://github.com/jeedom/core/pull/3538) |
 | 2026-10-08 12:33:38 | Show language names in their own language in the language selector | [#3561](https://github.com/jeedom/core/pull/3561) |
 | 2026-10-08 12:26:49 | Open documentation links in the user's language using the new doc site URL format | [#3560](https://github.com/jeedom/core/pull/3560) |

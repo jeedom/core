@@ -318,14 +318,14 @@ class network {
 		} catch (Exception $e) {
 			$plugin = null;
 		}
-		if (!is_object($plugin) || !class_exists('openvpn')) {
+		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
 		}
 		if (!$plugin->isActive()) {
 			$plugin->setIsEnable(1);
 			$plugin->dependancy_install();
 		}
-		if (!$plugin->isActive()) {
+		if (!$plugin->isActive() || !class_exists('openvpn')) {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
 		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
