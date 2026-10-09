@@ -21,7 +21,7 @@ function initEquipment(_object_id) {
   jeedom.object.all({
     global: false,
     error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({ message: error.message, level: 'danger' })
     },
     success: function(objects) {
       if (_object_id == '') {
@@ -55,11 +55,10 @@ function initEquipment(_object_id) {
           if (isset(objects[i].configuration) && isset(objects[i].configuration.parentNumber)) {
             decay = objects[i].configuration.parentNumber
           }
-          let name = (objects[i].configuration.display_name && objects[i].configuration.display_name != '') ? objects[i].configuration.display_name : objects[i].name;
           li += '<li><a href="#" class="link" data-page="equipment" data-title="' + icon.replace(/\"/g, "\'") + ' ' + objects[i].name + '" data-option="' + objects[i].id + '">'
-          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + name
-          li += ' <span class="summaryMenu"><span class="objectSummaryContainer objectSummary'+objects[i].id+'" data-version="mobile"></span></span></a></li>'
-          summaries.push({object_id : objects[i].id})
+          li += '<span>' + '&nbsp;&nbsp;'.repeat(decay) + icon + '</span> ' + objects[i].name
+          li += ' <span class="summaryMenu"><span class="objectSummaryContainer objectSummary' + objects[i].id + '" data-version="mobile"></span></span></a></li>'
+          summaries.push({ object_id: objects[i].id })
         }
       }
       li += '</ul>'
@@ -71,7 +70,7 @@ function initEquipment(_object_id) {
   if (isset(_object_id)) {
     jeedom.object.getImgPath({
       id: _object_id,
-      success : function(_path) {
+      success: function(_path) {
         jeedomUtils.setBackgroundImage(_path)
       }
     })
@@ -90,11 +89,11 @@ function initEquipment(_object_id) {
     document.querySelectorAll('#div_displayEquipement > .objectHtml, .div_displayEquipement .objectHtml').forEach(_div => { Packery.data(_div).layout() })
   })
 
-  $('#in_searchDashboard').off('keyup').on('keyup',function() {
+  $('#in_searchDashboard').off('keyup').on('keyup', function() {
     window.scrollTo(0, 0)
     $('.div_displayEquipement').show()
     var search = this.value
-    if(search == '') {
+    if (search == '') {
       $('div.eqLogic-widget, div.scenario-widget').show()
       document.querySelectorAll('.objectHtml').forEach(_div => { Packery.data(_div).layout() })
       return
@@ -108,13 +107,13 @@ function initEquipment(_object_id) {
       if (match || ($(this).attr('data-tags') != undefined && jeedomUtils.normTextLower($(this).attr('data-tags')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
+      if (match || ($(this).attr('data-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-category')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-eqType') != undefined && jeedomUtils.normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
+      if (match || ($(this).attr('data-eqType') != undefined && jeedomUtils.normTextLower($(this).attr('data-eqType')).indexOf(search) >= 0)) {
         match = true
       }
-      if (match ||($(this).attr('data-translate-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
+      if (match || ($(this).attr('data-translate-category') != undefined && jeedomUtils.normTextLower($(this).attr('data-translate-category')).indexOf(search) >= 0)) {
         match = true
       }
       if (match) {
@@ -143,7 +142,7 @@ function initEquipment(_object_id) {
     })
   })
 
-  $('#bt_eraseSearchInput').off('click').on('click',function() {
+  $('#bt_eraseSearchInput').off('click').on('click', function() {
     $('#in_searchDashboard').val('').keyup()
   })
 }
@@ -157,7 +156,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
     summary: _summary,
     global: false,
     error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({ message: error.message, level: 'danger' })
     },
     success: function(html) {
       if (_objectId == 'all' || _objectId == '') {
@@ -168,7 +167,7 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
         for (var i in html) {
           id = i.split('::')[1]
           if (!isset(objects_info[id])) continue
-          div += '<div class="div_displayEquipement" data-objectid="'+id+'">'
+          div += '<div class="div_displayEquipement" data-objectid="' + id + '">'
           div += '<legend>'
           icon = ''
           if (isset(objects_info[id].display) && isset(objects_info[id].display.icon)) {
@@ -178,33 +177,33 @@ function displayEqsByObject(objects_info, _objectId, _summary) {
           objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
           div += '<span>' + icon + '</span> ' + objectName
           div += '</legend>'
-          div += '<div class="nd2-card" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+id+'" data-version="mobile"></span></center></div></div>'
+          div += '<div class="nd2-card" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary' + id + '" data-version="mobile"></span></center></div></div>'
           div += '<div class="objectHtml">'
           div += html[i]
           div += '</div></div></div>'
-          summaries.push({object_id : id})
+          summaries.push({ object_id: id })
         }
         try {
           document.getElementById('div_displayEquipement').html(div)
           $('#div_displayEquipement').trigger('create')
           jeedomUtils.setTileSize('.eqLogic, .scenario')
           jeedom.object.summaryUpdate(summaries)
-        } catch(err) {
+        } catch (err) {
           console.log(err)
         }
       } else {
-        let div = '<div class="div_displayEquipement" data-objectid="'+_objectId+'">'
+        let div = '<div class="div_displayEquipement" data-objectid="' + _objectId + '">'
         div += '<div class="nd2-card" style="max-width:100% !important">'
-        div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+_objectId+'" data-version="mobile"></span></center></div></div><div class="objectHtml">'
+        div += '<div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary' + _objectId + '" data-version="mobile"></span></center></div></div><div class="objectHtml">'
         div += html
         div += '</div></div></div>'
         document.getElementById('div_displayEquipement').empty().html(div)
         $('#div_displayEquipement').trigger('create')
         jeedomUtils.setTileSize('.eqLogic, .scenario')
-        jeedom.object.summaryUpdate([{object_id:_objectId}])
+        jeedom.object.summaryUpdate([{ object_id: _objectId }])
       }
       let divObject = document.querySelector('#div_displayEquipement .objectHtml')
-      new Packery(divObject, {gutter :0})
+      new Packery(divObject, { gutter: 0 })
     },
     complete: function() {
       jeedomUtils.hideLoading()
@@ -220,7 +219,7 @@ function displayObjectsBySummary(_objectsAll, _summary) {
   for (let i in _objectsAll) {
     let thisObject = _objectsAll[i]
     let summaries = []
-    let  div = '<div class="div_displayEquipement hidden" data-objectid="' + thisObject.id + '">'
+    let div = '<div class="div_displayEquipement hidden" data-objectid="' + thisObject.id + '">'
     div += '<legend>'
     let icon = ''
     if (isset(thisObject.display) && isset(thisObject.display.icon)) {
@@ -230,13 +229,13 @@ function displayObjectsBySummary(_objectsAll, _summary) {
     objectName = objectName.charAt(0).toUpperCase() + objectName.slice(1)
     div += '<span>' + icon + '</span> ' + objectName
     div += '</legend>'
-    div += '<div class="nd2-card" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary'+thisObject.id+'" data-version="mobile"></span></center></div></div>'
+    div += '<div class="nd2-card" style="max-width:100% !important"><div class="card-title has-supporting-text"><center><span class="objectSummaryContainer objectSummary' + thisObject.id + '" data-version="mobile"></span></center></div></div>'
     div += '<div class="objectHtml">'
     div += '</div>'
     div += '</div>'
     document.getElementById('div_displayEquipement').html(div, true)
     displayEqsBySummary(_objectsAll, thisObject.id, _summary)
-    jeedom.object.summaryUpdate([{object_id: thisObject.id}])
+    jeedom.object.summaryUpdate([{ object_id: thisObject.id }])
   }
   document.getElementById('div_displayEquipement').triggerEvent('create')
   window.triggerEvent('resize')
@@ -252,7 +251,7 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
     onlyEnable: '1',
     onlyVisible: '0',
     error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({ message: error.message, level: 'danger' })
     },
     success: function(eqLogics) {
       if (eqLogics.length == 0) return
@@ -265,18 +264,18 @@ function displayEqsBySummary(_objectsAll, _objectId, _summary) {
           id: eqLogics[j].id,
           version: 'mobile',
           error: function(error) {
-            $.fn.showAlert({message: error.message, level: 'danger'})
+            $.fn.showAlert({ message: error.message, level: 'danger' })
           },
           success: function(html) {
-            document.querySelector('.div_displayEquipement[data-objectid="'+_objectId+'"]').removeClass('hidden')
-            document.querySelectorAll('.div_displayEquipement[data-objectid="'+_objectId+'"] > .objectHtml').forEach(function(element) {
+            document.querySelector('.div_displayEquipement[data-objectid="' + _objectId + '"]').removeClass('hidden')
+            document.querySelectorAll('.div_displayEquipement[data-objectid="' + _objectId + '"] > .objectHtml').forEach(function(element) {
               element.html(html.html, true)
             })
             jeedomUtils.setTileSize('.eqLogic')
 
-            $('.div_displayEquipement[data-objectid="'+_objectId+'"]').trigger('create')
-            let divObject = document.querySelector('.div_displayEquipement[data-objectid="'+_objectId+'"]')
-            new Packery(divObject, {gutter :0})
+            $('.div_displayEquipement[data-objectid="' + _objectId + '"]').trigger('create')
+            let divObject = document.querySelector('.div_displayEquipement[data-objectid="' + _objectId + '"]')
+            new Packery(divObject, { gutter: 0 })
           }
         })
       }
