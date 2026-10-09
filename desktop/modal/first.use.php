@@ -99,12 +99,10 @@ if (config::byKey('jeedom::firstUse') == 1) {
 
 <footer>
 	<?php
-	if (($docUrl = config::byKey('doc::base_url')) != '') {
+	if (config::byKey('mbState') == 0 && config::byKey('doc::base_url') != '') {
 		echo '<hr class="hrPrimary">';
-		$lang = config::byKey('language');
-		$docLang = in_array($lang, ['fr_FR', 'en_US', 'es_ES', 'de_DE']) ? $lang : 'en_US';
 		echo "{{Besoin d'aide ?}} ";
-		echo '<a href="' . $docUrl . '/premiers-pas/' . $docLang . '/#market" target="_blank">';
+		echo '<a href="' . jeedom::getDocUrl('premiers-pas', '#market') . '" target="_blank">';
 		echo '<i class="fas fa-book"></i> {{Consultez la documentation Premiers pas}}';
 		echo '</a>';
 	}
