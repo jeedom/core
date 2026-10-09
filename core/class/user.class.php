@@ -492,19 +492,19 @@ class user {
 
 	public function preInsert(): void {
 		if (is_object(self::byLogin($this->getLogin()))) {
-			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
+			throw new Exception(__("Ce nom d'utilisateur existe déjà", __FILE__));
 		}
 	}
 
 	public function preUpdate(): void {
 		if (is_object($user = self::byLogin($this->getLogin())) && $user->getId() != $this->getId()) {
-			throw new Exception(__('Ce nom d\'utilisateur existe déjà', __FILE__));
+			throw new Exception(__("Ce nom d'utilisateur existe déjà", __FILE__));
 		}
 	}
 
 	public function preSave(): void {
 		if ($this->getLogin() == '') {
-			throw new Exception(__('Le nom d\'utilisateur ne peut pas être vide', __FILE__));
+			throw new Exception(__("Le nom d'utilisateur ne peut pas être vide", __FILE__));
 		}
 		if ($this->getPassword() == '') {
 			throw new Exception(__('Le mot de passe ne peut pas être vide', __FILE__));
@@ -763,7 +763,7 @@ class user {
 
 		$cmdOption = $this->getOptions('notification::cmd');
 		if ($cmdOption == '') {
-			log::audit(__('Demande de réinitialisation de mot de passe : aucune commande de notification configurée, aucun envoi', __FILE__), [
+			log::audit(__('Demande de réinitialisation du mot de passe : aucune commande de notification configurée, aucun envoi', __FILE__), [
 				'login' => $this->getLogin(),
 				'ip' => network::getClientIp(),
 			]);
@@ -771,7 +771,7 @@ class user {
 		}
 		$cmd = cmd::byId(str_replace('#', '', $cmdOption));
 		if (!is_object($cmd)) {
-			log::audit(__('Demande de réinitialisation de mot de passe : commande de notification introuvable, aucun envoi', __FILE__), [
+			log::audit(__('Demande de réinitialisation du mot de passe : commande de notification introuvable, aucun envoi', __FILE__), [
 				'login' => $this->getLogin(),
 				'ip' => network::getClientIp(),
 			]);
@@ -785,13 +785,13 @@ class user {
 				'title' => __('Réinitialisation de votre mot de passe', __FILE__),
 				'message' => __('Voici votre lien de réinitialisation de mot de passe (valable 5 minutes) : ', __FILE__) . $link,
 			));
-			log::audit(__('Demande de réinitialisation de mot de passe : lien envoyé', __FILE__), [
+			log::audit(__('Demande de réinitialisation du mot de passe : lien envoyé', __FILE__), [
 				'login' => $this->getLogin(),
 				'ip' => network::getClientIp(),
 			]);
 		} catch (\Exception $e) {
 			log::audit(
-				__('Demande de réinitialisation de mot de passe : échec de l\'envoi', __FILE__),
+				__("Demande de réinitialisation du mot de passe : échec de l'envoi", __FILE__),
 				[
 					'login' => $this->getLogin(),
 					'ip' => network::getClientIp(),
