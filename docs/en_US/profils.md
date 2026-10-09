@@ -23,7 +23,7 @@ Defines certain behaviors of the interface
 
 ### Notifications
 
-- **User Notification Command**: Default command to contact you (message-type command).
+- **User Notification Command**: The default command used to contact you (message-type command). This command must be specified for the automatic procedure in case of a lost password to succeed.
 
 ## Security tab
 

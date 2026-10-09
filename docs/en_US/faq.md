@@ -14,7 +14,7 @@ Jeedom has a mobile version optimized for use on smartphones and tablets. There 
 When you log in to Jeedom for the first time (and even afterward if you haven’t changed them), the default username and password are admin/admin. Upon your first login, we strongly recommend that you change these credentials for added security.
 
 ### I can no longer connect to my Jeedom
-Starting with Jeedom 3.2, it is no longer possible to log in remotely using admin/admin for obvious security reasons. The admin/admin credentials now work only locally. Please note that if you access the system via DNS—even locally—you will automatically be identified as a remote user. Another point: by default, only IP addresses in the 192.168.*.* range or 127.0.0.1 are recognized as local. This can be configured in the Jeedom administration panel under “Security” and then “Whitelist IPs.” If you still can’t log in after trying this, you’ll need to use the password reset procedure; see [here](https://doc.jeedom.com/howto/en_US/reset.password).
+If you can no longer log in, use the **I forgot my password** link on the login page: you will receive a reset link via the notification command configured in your [Preferences](profils.md). If no commands are configured, follow the [SSH reset procedure](https://doc.jeedom.com/howto/en_US/reset.password).
 
 ### I don't see all my devices on the Dashboard
 This is often because the devices are assigned to an object that is not a child or the object itself of the first object selected on the left in the tree (you can configure this in your profile).

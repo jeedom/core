@@ -23,7 +23,7 @@ Define determinados comportamientos de la interfaz
 
 ### Notificaciones
 
-- **Comando de notificación al usuario**: comando predeterminado para ponerse en contacto contigo (comando de tipo mensaje).
+- **Comando de notificación al usuario**: comando predeterminado para ponerse en contacto contigo (comando de tipo mensaje). Este comando debe rellenarse para que el procedimiento automático en caso de pérdida de contraseña pueda completarse con éxito.
 
 ## Pestaña «Seguridad»
 

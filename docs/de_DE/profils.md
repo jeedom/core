@@ -23,7 +23,7 @@ Legt bestimmte Verhaltensweisen der Benutzeroberfläche fest
 
 ### Benachrichtigungen
 
-- **Benachrichtigungsbefehl**: Standardbefehl, um Sie zu erreichen (Befehl vom Typ „Nachricht“).
+- **Benachrichtigungsbefehl**: Standardbefehl, um Sie zu erreichen (Befehl vom Typ „Nachricht“). Dieser Befehl muss ausgefüllt werden, damit der automatische Vorgang bei einem verlorenen Passwort erfolgreich abgeschlossen werden kann.
 
 ## Registerkarte „Sicherheit“
 
