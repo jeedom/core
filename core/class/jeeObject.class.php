@@ -566,13 +566,13 @@ class jeeObject {
 		} catch (Exception $e) {
 			$plugin = null;
 		}
-		if (!is_object($plugin) || !class_exists('virtual') || !class_exists('virtualCmd')) {
+		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin virtuel doit être installé', __FILE__));
 		}
 		if (!$plugin->isActive()) {
 			$plugin->setIsEnable(1);
 		}
-		if (!$plugin->isActive()) {
+		if (!$plugin->isActive() || !class_exists('virtual') || !class_exists('virtualCmd')) {
 			throw new Exception(__('Le plugin virtuel doit être actif', __FILE__));
 		}
 
