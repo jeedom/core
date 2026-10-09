@@ -20,7 +20,7 @@ $sysCmdsSudo = array(
   array("cmd" => 'sudo ls -la /dev/serial/by-id', "name" => 'ls -la /dev/serial/by-id'),
   array("cmd" => 'sudo ps ax', "name" => 'ps ax'),
   array("cmd" => 'sudo rm -f /var/lib/dpkg/updates/*', "name" => 'Fix dpkg'),
-  array("cmd" => 'echo "yes | sudo apt -f install" | sudo at now', "name" => 'Fix install'),
+  array("cmd" => 'echo "sudo apt-get -y -f install" | sudo at now', "name" => 'Fix install'),
   array("cmd" => 'echo "sudo dpkg --configure -a --force-confdef" | sudo at now', "name" => 'Dpkg configure'),
   array("cmd" => 'sudo ../../health.sh', "name" => 'health.sh'),
   array("cmd" => 'sudo echo "nameserver 8.8.8.8" > /etc/resolv.conf', "name" => 'Set DNS'),
@@ -36,8 +36,8 @@ $sysCmdsSudo = array(
   array("cmd" => 'cd ../../;sudo git commit -a -m "Commit from jeedom";sudo git push', "name" => '[Danger] Git commit push'),
 );
 $sysCmdsCustom = array();
-if(file_exists(__DIR__.'/../../data/systemCustomCmd.json')){
-  $sysCmdsCustom = is_json(file_get_contents(__DIR__.'/../../data/systemCustomCmd.json'),array());
+if (file_exists(__DIR__ . '/../../data/systemCustomCmd.json')) {
+  $sysCmdsCustom = is_json(file_get_contents(__DIR__ . '/../../data/systemCustomCmd.json'), array());
 }
 ?>
 
@@ -65,14 +65,14 @@ if(file_exists(__DIR__.'/../../data/systemCustomCmd.json')){
           }
           echo $list;
         }
-         if (is_array($sysCmdsCustom) && count($sysCmdsCustom) > 0) {
-         $list = '<li class="info list-group-item">-- Commandes custom --</li>';
-           foreach ($sysCmdsCustom as $cmd) {
+        if (is_array($sysCmdsCustom) && count($sysCmdsCustom) > 0) {
+          $list = '<li class="info list-group-item">-- Commandes custom --</li>';
+          foreach ($sysCmdsCustom as $cmd) {
             $list .= '<li class="cursor list-group-item list-group-item-success">';
             $list .= '<a class="bt_systemCommand" data-command=\'' . $cmd["cmd"] . '\'>' . $cmd["name"] . '</a></li>';
           }
           echo $list;
-         }
+        }
         ?>
       </ul>
     </div>

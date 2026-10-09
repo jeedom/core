@@ -68,12 +68,12 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Sélection de la langue d'affichage}}"></i></sup></label>
 							<div class="col-md-6 col-xs-8">
 								<select class="form-control configKey" data-l1key="language" data-reload="1">
-									<option value="fr_FR">{{Français}}</option>
-									<option value="en_US">{{Anglais}}</option>
-									<option value="de_DE">{{Allemand}}</option>
-									<option value="es_ES">{{Espagnol}}</option>
-									<option value="it_IT">{{Italien (pas de support)}}</option>
-									<option value="pt_PT">{{Portugais (pas de support)}}</option>
+									<option value="fr_FR">Français</option>
+									<option value="en_US">English</option>
+									<option value="de_DE">Deutsch</option>
+									<option value="es_ES">Español</option>
+									<option value="it_IT">Italiano ({{pas de support}})</option>
+									<option value="pt_PT">Português ({{pas de support}})</option>
 								</select>
 							</div>
 						</div>

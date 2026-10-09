@@ -40,11 +40,11 @@ sendVarToJS('jeephp2js.hardware', strtolower(jeedom::getHardwareName()));
 				{{La restauration du système aura lieu au démarrage si la clé est branchée dans le port USB situé en haut à droite.}}
 			</li>
 		</ul>
-		<?php if (config::byKey('mbState') == 0) { ?>
+		<?php if (config::byKey('mbState') == 0 && config::byKey('doc::base_url', 'core') != '') { ?>
 			<br>
 			<div class="alert alert-info">
 				{{Consulter la documentation dédiée pour plus de détails}} :
-				<a href="https://doc.jeedom.com/<?= config::byKey('language') ?>/installation/recovery" target="_blank" class="btn btn-default btn-xs" role="button"><i class="fas fa-book"></i> {{Documentation}}</a>
+				<a href="<?= jeedom::getDocUrl('installation', 'recovery') ?>" target="_blank" class="btn btn-default btn-xs" role="button"><i class="fas fa-book"></i> {{Documentation}}</a>
 			</div>
 		<?php } ?>
 	</div>

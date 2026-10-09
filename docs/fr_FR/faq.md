@@ -14,7 +14,7 @@ Jeedom possède une version mobile adaptée à l’utilisation sur mobile et tab
 Lors de votre première connexion à Jeedom (et même après si vous ne les avez pas modifiés), le nom d’utilisateur et le mot de passe par défaut sont admin/admin. A la première connexion, il vous est fortement recommandé de modifier ces identifiants pour plus de sécurité.
 
 ### Je n'arrive plus à me connecter à mon Jeedom
-Depuis Jeedom 3.2 il n'est plus possible de se connecter avec admin/admin à distance pour des raisons évidentes de sécurité. Les identifiants admin/admin ne marchent plus qu'en local. Attention si vous passer par le DNS même en local vous êtes forcement identifié comme à distance. Autre point par défaut seules les IP sur 192.168.*.* ou 127.0.0.1 sont reconnues comme locales. Cela se configure dans l'administration de Jeedom partie sécurité puis IP "blanche". Si malgré tout çà vous n'arrivez toujours pas à vous connecter il faut utiliser la procédure de remise à zéro de mot de passe, voir [ici](https://doc.jeedom.com/howto/fr_FR/reset.password).
+Si vous ne parvenez plus à vous connecter, utilisez le lien **J'ai perdu mon mot de passe** de la page de connexion : vous recevrez un lien de réinitialisation via la commande de notification définie dans vos [Préférences](profils.md). Si aucune commande n'est configurée, suivez la [procédure de réinitialisation en SSH](https://doc.jeedom.com/howto/fr_FR/reset.password).
 
 ### Je ne vois pas tous mes équipements sur le Dashboard
 Souvent cela est dû au fait que les équipements sont affectés à un objet qui n’est pas le fils ou l’objet lui-même du premier objet sélectionné à gauche dans l’arbre (vous pouvez configurer celui-ci dans votre profil).
@@ -188,7 +188,7 @@ rm -rf /root/tmp/core-master
 ### J'ai l’erreur dans scenario_execution MYSQL_ATTR_INIT_COMMAND
 Dans l'administration de Jeedom partie OS/DB puis dans la console système il faut faire :
 ```
-yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sudo apt-get install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
 ### Je n'arrive pas a installer les dépendances d'un plugin j'ai une erreur du type : "E: dpkg a été interrompu. Il est nécessaire d'utiliser « sudo dpkg --configure -a » pour corriger le problème." ou "E: Could not get lock /var/lib/dpkg/lock"

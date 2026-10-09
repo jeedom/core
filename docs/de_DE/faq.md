@@ -14,7 +14,7 @@ Jeedom verfügt über eine mobile Version, die für die Nutzung auf Smartphones 
 Bei Ihrer ersten Anmeldung bei Jeedom (und auch danach, sofern Sie diese nicht geändert haben) lauten der Benutzername und das Passwort standardmäßig „admin/admin“. Es wird dringend empfohlen, diese Anmeldedaten bei der ersten Anmeldung aus Sicherheitsgründen zu ändern.
 
 ### Ich kann mich nicht mehr bei meinem Jeedom anmelden
-Seit Jeedom 3.2 ist es aus offensichtlichen Sicherheitsgründen nicht mehr möglich, sich aus der Ferne mit „admin/admin“ anzumelden. Die Anmeldedaten „admin/admin“ funktionieren nur noch lokal. Achtung: Wenn Sie den DNS nutzen, werden Sie selbst lokal zwangsläufig als Fernzugriff identifiziert. Ein weiterer Punkt: Standardmäßig werden nur IP-Adressen im Bereich 192.168.*.* oder 127.0.0.1 als lokal erkannt. Dies lässt sich in der Jeedom-Verwaltung unter „Sicherheit“ und dann „Whitelist“ konfigurieren. Wenn Sie sich trotz alledem immer noch nicht anmelden können, müssen Sie das Verfahren zum Zurücksetzen des Passworts anwenden, siehe [hier](https://doc.jeedom.com/howto/de_DE/reset.password).
+Wenn Sie sich nicht mehr anmelden können, nutzen Sie den Link **Ich habe mein Passwort vergessen** auf der Anmeldeseite: Sie erhalten dann einen Link zum Zurücksetzen Ihres Passworts über die in Ihren Einstellungen festgelegte Benachrichtigungsmethode. [Einstellungen](profils.md). Wenn kein Befehl konfiguriert ist, befolgen Sie die [Rücksetzvorgang über SSH](https://doc.jeedom.com/howto/de_DE/reset.password).
 
 ### Ich sehe nicht alle meine Geräte auf dem Dashboard
 Häufig liegt dies daran, dass die Geräte einem Objekt zugeordnet sind, das kein Unterelement oder das Objekt selbst des ersten links im Baum ausgewählten Objekts ist (Sie können dies in Ihrem Profil konfigurieren).
@@ -188,7 +188,7 @@ rm -rf /root/tmp/core-master
 ### Ich erhalte den Fehler „MYSQL_ATTR_INIT_COMMAND“ in „scenario_execution“
 In der Jeedom-Verwaltung unter „OS/DB“ und anschließend in der Systemkonsole müssen Sie Folgendes tun:
 ```
-yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sudo apt-get install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
 ### Ich schaffe es nicht, die Abhängigkeiten eines Plugins zu installieren. Ich erhalte eine Fehlermeldung wie: „E: dpkg wurde unterbrochen. Verwenden Sie ‚sudo dpkg --configure -a‘, um das Problem zu beheben.“ oder „E: Could not get lock /var/lib/dpkg/lock“

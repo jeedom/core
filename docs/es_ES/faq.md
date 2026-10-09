@@ -14,7 +14,7 @@ Jeedom cuenta con una versión móvil adaptada para su uso en móviles y tableta
 La primera vez que inicie sesión en Jeedom (y también posteriormente, si no los ha modificado), el nombre de usuario y la contraseña predeterminados son admin/admin. Se recomienda encarecidamente que, en el primer inicio de sesión, modifique estos datos de acceso para mayor seguridad.
 
 ### Ya no consigo conectarme a mi Jeedom
-Desde Jeedom 3.2 ya no es posible conectarse de forma remota con las credenciales «admin/admin» por razones obvias de seguridad. Las credenciales «admin/admin» solo funcionan de forma local. Ten en cuenta que, si accedes a través del DNS, incluso de forma local, se te identificará necesariamente como un usuario remoto. Otro punto a tener en cuenta: por defecto, solo se reconocen como locales las direcciones IP del rango 192.168.*.* o 127.0.0.1. Esto se configura en la administración de Jeedom, en la sección de seguridad y, a continuación, en «IP blancas». Si, a pesar de todo, sigues sin poder conectarte, debes utilizar el procedimiento de restablecimiento de contraseña; consulta [aquí](https://doc.jeedom.com/howto/es_ES/reset.password).
+Si ya no puedes iniciar sesión, utiliza el enlace **He olvidado mi contraseña** de la página de inicio de sesión: recibirás un enlace para restablecerla a través de la configuración de notificaciones que hayas establecido en tu [Preferencias](profils.md). Si no hay ningún comando configurado, sigue las instrucciones de la [Procedimiento de restablecimiento mediante SSH](https://doc.jeedom.com/howto/es_ES/reset.password).
 
 ### No veo todos mis dispositivos en el panel de control
 A menudo, esto se debe a que los dispositivos están asignados a un objeto que no es el hijo ni el propio objeto del primer objeto seleccionado a la izquierda en el árbol (puedes configurarlo en tu perfil).
@@ -188,7 +188,7 @@ rm -rf /root/tmp/core-master
 ### Me aparece el error MYSQL_ATTR_INIT_COMMAND en scenario_execution
 En la administración de Jeedom, en la sección OS/DB y, a continuación, en la consola del sistema, hay que hacer lo siguiente:
 ```
-yes | sudo apt install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
+sudo apt-get install -y php-mysql php-curl php-gd php-imap php-xml php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 php-mbstring php-ldap
 ```
 
 ### No consigo instalar las dependencias de un complemento; me aparece un error del tipo: «E: dpkg se ha interrumpido. Es necesario utilizar «sudo dpkg --configure -a» para solucionar el problema» o «E: No se ha podido obtener el bloqueo /var/lib/dpkg/lock».

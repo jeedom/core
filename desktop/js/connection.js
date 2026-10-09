@@ -25,6 +25,11 @@ if (!jeeFrontEnd.connection) {
 
       document.getElementById('jeedom_theme_currentcss').href = 'core/themes/core2019_Light/desktop/core2019_Light.css?v=' + jeeFrontEnd.jeedomVersion
       document.title = JEEDOM_PRODUCT_NAME + ' - Login'
+      this.resetPasswordToken = new URLSearchParams(window.location.search).get('rpk') || ''
+      if (this.resetPasswordToken != '') {
+        this.deepUrl = ''
+        this.goToResetPassword()
+      }
     },
     askMarket: function() {
       document.querySelectorAll('.veen .wrapper').removeClass('move')
@@ -33,10 +38,98 @@ if (!jeeFrontEnd.connection) {
       document.querySelector('.img-responsive').setAttribute('src', 'https://market.jeedom.com/core/img/logo-MARKET.svg')
       document.querySelector('.img-responsive').style.width = '100%'
     },
+    clearInputs: function(selector) {
+      document.querySelectorAll(selector + ' input').forEach(function(input) {
+        input.value = ''
+      })
+    },
+    goToLogin: function() {
+      document.querySelectorAll('.veen .wrapper').removeClass('move')
+      this.clearInputs('#lostpassword, #resetpassword')
+      document.getElementById('lostpassword').unseen()
+      document.getElementById('resetpassword').unseen()
+      document.getElementById('login').seen()
+    },
+    goToLostPassword: function() {
+      document.querySelectorAll('.veen .wrapper').removeClass('move')
+      this.clearInputs('#lostpassword')
+      document.getElementById('login').unseen()
+      document.getElementById('lostpassword').seen()
+    },
+    goToResetPassword: function() {
+      document.querySelectorAll('.veen .wrapper').removeClass('move')
+      this.clearInputs('#resetpassword')
+      document.getElementById('login').unseen()
+      document.getElementById('lostpassword').unseen()
+      document.getElementById('resetpassword').seen()
+    },
     goToIndex: function() {
       jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
         document.querySelectorAll('.veen').unseen()
         window.location.href = 'index.php?v=d'
+      })
+    },
+    resetPasswordValidate: function(_event) {
+      const password = document.getElementById('in_reset_password').value
+      if (password == '' || password != document.getElementById('in_reset_passwordToo').value) {
+        jeedomUtils.showAlert({
+          message: '{{Le mot de passe est vide ou ne correspond pas à la confirmation.}}',
+          level: 'danger'
+        })
+        return
+      }
+      jeedom.user.resetPasswordFromToken({
+        token: this.resetPasswordToken,
+        newPassword: password,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+          jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
+        },
+        success: function(result) {
+          if (result !== true) {
+            jeedomUtils.showAlert({
+              message: '{{Le lien de réinitialisation est invalide ou a expiré.}}',
+              level: 'danger'
+            })
+            return
+          }
+          jeeFrontEnd.connection.goToLogin()
+          window.history.replaceState({}, document.title, 'index.php?v=d')
+          jeedomUtils.showAlert({
+            message: '{{Votre mot de passe a bien été changé.}}',
+            level: 'success'
+          })
+        }
+      })
+    },
+    askPassword: function(_event) {
+      const username = document.getElementById('in_lostpassword_username').value.trim()
+      if (username == '') {
+        jeedomUtils.showAlert({
+          message: '{{Veuillez saisir un nom d\'utilisateur.}}',
+          level: 'danger'
+        })
+        return
+      }
+      jeedom.user.askPassword({
+        username: username,
+        error: function(error) {
+          jeedomUtils.showAlert({
+            message: error.message,
+            level: 'danger'
+          })
+          jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
+        },
+        success: function() {
+          jeeFrontEnd.connection.goToLogin()
+          jeedomUtils.showAlert({
+            message: '{{Si votre utilisateur est valide et si vous avez configuré une commande de notification, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.}}',
+            level: 'success'
+          })
+        }
       })
     },
     loginValidate: function(_event) {
@@ -167,8 +260,28 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
     return
   }
 
+  if (_target = event.target.closest('#bt_go_to_lostpassword')) {
+    jeeP.goToLostPassword()
+    return
+  }
+
+  if (_target = event.target.closest('#bt_ask_password')) {
+    jeeP.askPassword(event)
+    return
+  }
+
+  if (_target = event.target.closest('.bt_go_to_login')) {
+    jeeP.goToLogin()
+    return
+  }
+
   if (_target = event.target.closest('#bt_change_validate')) {
     jeeP.changeValidate(event)
+    return
+  }
+
+  if (_target = event.target.closest('#bt_reset_password')) {
+    jeeP.resetPasswordValidate(event)
     return
   }
 
@@ -230,41 +343,31 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('a.bt_showPassConnection')) {
-    event.stopPropagation();
-    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode;
-    var input = _el.closest('.input-group').querySelector('input');
+    event.stopPropagation()
+    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode
+    var input = _el.closest('.input-group').querySelector('input')
 
     if (input.getAttribute('type') === 'password') {
-        input.setAttribute('type', 'text');
+      input.setAttribute('type', 'text')
     } else {
-        input.setAttribute('type', 'password');
+      input.setAttribute('type', 'password')
     }
 
-    var icon = _el.querySelector('.fas');
+    var icon = _el.querySelector('.fas')
     if (icon.classList.contains('fa-eye-slash')) {
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
+      icon.classList.remove('fa-eye-slash')
+      icon.classList.add('fa-eye')
     } else {
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
+      icon.classList.remove('fa-eye')
+      icon.classList.add('fa-eye-slash')
     }
-    return;
+    return
   }
 })
 
 document.getElementById('wrap').addEventListener('keypress', function(event) {
-  if (event.which != 13) return
+  if (event.key != 'Enter') return
   var _target = null
-  if (_target = event.target.closest('input')) {
-    jeeFrontEnd.connection.loginValidate(event)
-    return
-  }
-
-  if (_target = event.target.closest('#in_twoFactorCode')) {
-    jeeFrontEnd.connection.loginValidate(event)
-    return
-  }
-
   if (_target = event.target.closest('#in_change_passwordToo')) {
     jeeFrontEnd.connection.changeValidate(event)
     return

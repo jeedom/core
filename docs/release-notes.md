@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-09 10:20:05 | Implement lost password procedure | [#3519](https://github.com/jeedom/core/pull/3519) |
 | 2026-09-17 18:29:07 | Add input validation and update configuration fields in administratin / security | [#3517](https://github.com/jeedom/core/pull/3517) |
 | 2026-09-14 09:15:53 | feat: Enhance register device management with lifetime configuration | [#3511](https://github.com/jeedom/core/pull/3511) |
 | 2026-09-08 08:58:08 | Feature: add audit log | [#3493](https://github.com/jeedom/core/pull/3493) |
@@ -21,6 +22,8 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-06 15:37:47 | Chore: Remove the OS/package update feature from Jeedom. | [#3514](https://github.com/jeedom/core/pull/3514) |
+| 2026-10-03 08:54:21 | fix: improve battery status handling and messaging | [#3543](https://github.com/jeedom/core/pull/3543) |
 | 2026-09-17 18:22:11 | fix localOnly session and deprecate is_Connected method | [#3520](https://github.com/jeedom/core/pull/3520) |
 | 2026-09-17 16:20:52 | Update Node.js version to 24 and adjust armv6 handling | [#3512](https://github.com/jeedom/core/pull/3512) |
 | 2026-09-01 08:12:25 | migrate password sha512 to php native | [#3476](https://github.com/jeedom/core/pull/3476) |
@@ -31,6 +34,13 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-08 12:50:13 | Restrict the mobile widget modal to admins, like its desktop counterpart | [#3538](https://github.com/jeedom/core/pull/3538) |
+| 2026-10-08 12:33:38 | Show language names in their own language in the language selector | [#3561](https://github.com/jeedom/core/pull/3561) |
+| 2026-10-08 12:26:49 | Open documentation links in the user's language using the new doc site URL format | [#3560](https://github.com/jeedom/core/pull/3560) |
+| 2026-10-08 11:03:30 | Fix: apt usage & add debug level in packages installation | [#3558](https://github.com/jeedom/core/pull/3558) |
+| 2026-10-04 07:28:49 | Fix 2FA QR code display when imagick is not installed | [#3533](https://github.com/jeedom/core/pull/3533) |
+| 2026-10-01 10:07:36 | Make install script work without reboot and clean up its messages | [#3544](https://github.com/jeedom/core/pull/3544) |
+| 2026-10-01 10:06:54 | List every icon shipped with Font Awesome 5.15.4 in the icon selector | [#3545](https://github.com/jeedom/core/pull/3545) |
 | 2026-09-29 09:30:35 | fix: prevent deletion of today's backup when exceeding size limit | [#3542](https://github.com/jeedom/core/pull/3542) |
 | 2026-09-22 19:13:52 | Fix Jeedom cron jobs silently ignored due to insecure cron.d permissions | [#3537](https://github.com/jeedom/core/pull/3537) |
 | 2026-09-22 17:59:35 | Fix crash and boot race when the database isn't ready at startup | [#3536](https://github.com/jeedom/core/pull/3536) |
@@ -95,6 +105,7 @@
 ## Documentations
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-04 09:16:21 | Update instructions for clarity and accuracy | [#3551](https://github.com/jeedom/core/pull/3551) |
 | 2026-09-25 16:15:34 | Harmonize the CI status badge in the READMEs | [#3541](https://github.com/jeedom/core/pull/3541) |
 | 2026-09-14 19:57:17 | Fix broken lightbox image paths in doc pages | [#3523](https://github.com/jeedom/core/pull/3523) |
 | 2026-09-14 18:57:16 | Remove obsolete and mismatched documentation files | [#3522](https://github.com/jeedom/core/pull/3522) |

@@ -4,7 +4,7 @@
 
 ![1](../images/replace1.png)
 
-Jeedom bietet seit Version 4.3.2 ein neues Tool an <kbd>Ersetzen</kbd> die im Falle eines Problems oder der Notwendigkeit, ein physisches oder virtuelles Gerät (einen Temperatur- oder Präsenzsensor, einen Lautstärkeregler, einen Wasserstandsmesser usw.) auszutauschen, die Übertragung aller Befehle, Informationen, erweiterten Einstellungen und des Verlaufs dieses Geräts auf ein neues Gerät gewährleistet.<br>
+Jeedom bietet seit Version 4.3.2 ein neues Tool an <kbd>Remplacer</kbd> die im Falle eines Problems oder der Notwendigkeit, ein physisches oder virtuelles Gerät (einen Temperatur- oder Präsenzsensor, einen Lautstärkeregler, einen Wasserstandsmesser usw.) auszutauschen, die Übertragung aller Befehle, Informationen, erweiterten Einstellungen und des Verlaufs dieses Geräts auf ein neues Gerät gewährleistet.<br>
 Außerdem wird das System die ID des alten Geräts in allen Szenarien, Designs, virtuellen Umgebungen usw., in denen darauf verwiesen wurde, durch die des neuen Geräts ersetzen.
 
 Wenn das alte Gerät entfernt wird, wird der Verweis auf seine ursprüngliche ID-Nummer endgültig gelöscht. In diesem Fall müssen alle Befehle neu erstellt und in alle Designs, Widgets usw. für das neue Modul wieder integriert werden – selbst wenn dieses vom Typ her genau dem Original entspricht oder sogar identisch ist, aber eine andere ID-Nummer hat.<br>
@@ -25,7 +25,7 @@ Sobald dieses Gerät endgültig entfernt wird, wird es in allen diesen Einheiten
 
 ## Vorbereitende Schritte vor der Verwendung dieses Tools
 
-Auch wenn das Tool <kbd>Ersetzen</kbd> wird Ihnen vorschlagen, zuvor eine Sicherheitskopie zu erstellen; es wird dringend empfohlen, dies zu tun, bevor Sie mit diesem Austauschvorgang beginnen.<br>
+Auch wenn das Tool <kbd>Remplacer</kbd> wird Ihnen vorschlagen, zuvor eine Sicherheitskopie zu erstellen; es wird dringend empfohlen, dies zu tun, bevor Sie mit diesem Austauschvorgang beginnen.<br>
 Beachten Sie, dass dieses Tool in der Tat sehr leistungsstark ist, da es Ersetzungen auf allen Ebenen vornimmt, auch an Stellen, an die Sie nicht gedacht oder die Sie einfach vergessen haben. Außerdem gibt es keine *Undo*-Funktion, um den Vorgang rückgängig zu machen oder zurückzugehen.<br><br>
 
 Der nächste Schritt besteht darin, die alten Geräte umzubenennen. Dazu muss lediglich ihr Name geändert werden, indem beispielsweise das Suffix „**_old**“ hinzugefügt wird.
@@ -48,9 +48,9 @@ Man erhält somit zwei Geräte:
 ![5](../images/replace5.png)
 <br><br>
 
-## Die Verwendung des Tools <kbd>Ersetzen</kbd>
+## Die Verwendung des Tools <kbd>Remplacer</kbd>
 
-Tool öffnen <kbd>Ersetzen</kbd>, im Menü <kbd>Tools</kbd>.
+Tool öffnen <kbd>Remplacer</kbd>, im Menü <kbd>Outils</kbd>.
 
 ![6](../images/replace6.png)
 <br>
@@ -69,7 +69,7 @@ Wählen Sie in den Optionen den gewünschten Modus (*Ersetzen* oder *Kopieren*) 
 ![8](../images/replace8.png)
 <br>
 
-Klicken Sie anschließend auf <kbd>Filtern</kbd>
+Klicken Sie anschließend auf <kbd>Filtrer</kbd>
 
 ![9](../images/replace9.png)
 <br>
@@ -107,7 +107,7 @@ Andernfalls bleibt das Feld leer, und die entsprechende Information/Aktion muss 
 ![15](../images/replace15.png)
 <br>
 
-Klicken Sie auf <kbd>Ersetzen</kbd>,
+Klicken Sie auf <kbd>Remplacer</kbd>,
 
 ![16](../images/replace16.png)
 <br>
@@ -129,7 +129,7 @@ Stellen Sie sicher, dass die neuen Geräte in den Designs, Szenarien, Widgets, v
 <br>
 
 Um sicherzustellen, dass durch diesen Austausch keine weiteren Probleme entstanden sind, kann die Funktion zur Erkennung von „verwaisten“ Befehlen verwendet werden.
-Weiter zu <kbd>Analyse</kbd>, <kbd>Ausstattung</kbd>, klicken Sie auf die Registerkarte *Waisensteuerbefehle*.
+Weiter zu <kbd>Analyse</kbd>, <kbd>Equipements</kbd>, klicken Sie auf die Registerkarte *Waisensteuerbefehle*.
 
 ![19](../images/replace19.png)
 <br>
@@ -147,7 +147,7 @@ Andernfalls muss für jedes identifizierte Problem eine zeilenweise Analyse durc
 ![22](../images/replace22.png)
 <br>
 
-Wenn jedoch isolierte Befehle vom Tool nicht berücksichtigt werden <kbd>Ersetzen</kbd>, dennoch ist es möglich, mit dieser Funktion Änderungen vorzunehmen <kbd>Dieser Befehl ersetzt die ID</kbd> die hier im Konfigurationsfenster des Befehls zu finden ist:
+Wenn jedoch isolierte Befehle vom Tool nicht berücksichtigt werden <kbd>Remplacer</kbd>, dennoch ist es möglich, mit dieser Funktion Änderungen vorzunehmen <kbd>Cette commande remplace l’ID</kbd> die hier im Konfigurationsfenster des Befehls zu finden ist:
 
 ![23](../images/replace23.png)
 <br><br>
@@ -166,6 +166,6 @@ Hier wird dieses Gerät nur noch über die Zugehörigkeit zu einem Objekt und se
 Dieses Tool ist praktisch, birgt jedoch aufgrund seiner vielschichtigen Auswirkungen ebenso große Gefahren, wenn es falsch eingesetzt wird.<br>
 Behalten Sie daher diese Grundlagen unbedingt im Hinterkopf:
 
-- Führen Sie systematisch eine Sicherheitskopie durch, und zwar noch bevor Sie das Tool verwenden <kbd>Ersetzen</kbd>,
+- Führen Sie systematisch eine Sicherheitskopie durch, und zwar noch bevor Sie das Tool verwenden <kbd>Remplacer</kbd>,
 - Nach Ausführung dieses Befehls ist keine Stornierung oder Rückgängigmachung mehr möglich,
 - Und schließlich wird dringend empfohlen, sich zumindest grundlegend mit der Nutzung dieses Tools vertraut zu machen.

@@ -23,15 +23,15 @@ Define determinados comportamientos de la interfaz
 
 ### Notificaciones
 
-- **Comando de notificación al usuario**: comando predeterminado para ponerse en contacto contigo (comando de tipo mensaje).
+- **Comando de notificación al usuario**: comando predeterminado para ponerse en contacto contigo (comando de tipo mensaje). Este comando debe rellenarse para que el procedimiento automático en caso de pérdida de contraseña pueda completarse con éxito.
 
 ## Pestaña «Seguridad»
 
-- **Autenticación en dos pasos**: permite configurar la autenticación en dos pasos (a modo de recordatorio, se trata de un código que cambia cada X segundos y que aparece en una aplicación móvil, como *Google Authenticator*). Cabe destacar que la autenticación de dos pasos solo se solicitará para las conexiones externas; por lo tanto, para las conexiones locales no se pedirá el código.
+- **Autenticación en dos pasos**: permite configurar la autenticación en dos pasos. Una aplicación de autenticación genera un código de verificación temporal en tu dispositivo móvil. La autenticación de dos pasos solo se solicita en las conexiones externas; no es necesaria para las conexiones locales.
 
-**Importante**: si al configurar la autenticación de dos factores se produce un error, comprueba que Jeedom (consulta la página de estado) y tu teléfono tengan la misma hora (una diferencia de tan solo 1 minuto es suficiente para que no funcione).
+**Importante:** si se produce algún error durante la configuración, comprueba que el reloj de Jeedom y el de tu teléfono estén sincronizados. Una diferencia de un minuto puede impedir que se valide el código.
 
-- **Contraseña**: Te permite cambiar tu contraseña (no olvides volver a escribirla en el campo de abajo).
+- **Contraseña**: te permite cambiar tu contraseña. Introdúcela también en el campo de confirmación.
 
 - **Hash del usuario**: Tu clave API de usuario.
 

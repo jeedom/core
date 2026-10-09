@@ -1,6 +1,6 @@
 VERSION=3.2.0
-apt update
-apt install -y build-essential checkinstall zlib1g-dev
+apt-get update
+apt-get install -y build-essential checkinstall zlib1g-dev
 cd /usr/local/src
 wget https://www.openssl.org/source/openssl-${VERSION}.tar.gz
 tar -xf openssl-${VERSION}.tar.gz
