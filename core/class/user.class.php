@@ -756,6 +756,11 @@ class user {
 
 	public function sendResetPasswordLink(): void {
 		self::raiseForInvalidLogin($this->getLogin());
+
+		if ($this->getEnable() == 0) {
+			throw new RuntimeException(__('Utilisateur désactivé', __FILE__));
+		}
+
 		$cmdOption = $this->getOptions('notification::cmd');
 		if ($cmdOption == '') {
 			log::audit(__('Demande de réinitialisation de mot de passe : aucune commande de notification configurée, aucun envoi', __FILE__), [

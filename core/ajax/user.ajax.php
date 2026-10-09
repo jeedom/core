@@ -89,13 +89,9 @@ try {
 			cache::set($resetPasswordThrottleKey, 1, 300);
 		}
 		try {
-
 			$user = user::byLogin($username);
 			if (!is_object($user)) {
 				throw new Exception(__('Utilisateur inconnu', __FILE__));
-			}
-			if ($user->getEnable() == 0) {
-				throw new Exception(__('Utilisateur désactivé', __FILE__));
 			}
 			$user->sendResetPasswordLink();
 		} catch (Exception $e) {
