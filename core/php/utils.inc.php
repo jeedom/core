@@ -1547,6 +1547,7 @@ function strContain($_string, $_words) {
 	return false;
 }
 
+// Unused in core since aa93d2bbc (2018), kept in case a plugin still calls it
 function makeZipSupport() {
 	$jeedom_folder = __DIR__ . '/../..';
 	$folder = '/tmp/jeedom_support';
