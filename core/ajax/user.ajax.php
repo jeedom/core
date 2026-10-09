@@ -77,11 +77,11 @@ try {
 		$responseTime = microtime(true) + rand(2, 5);
 		$username = trim(strip_tags(init('username')));
 		$current_ip = network::getClientIp();
-		$resetPasswordThrottleKey = 'security::resetPassword::' . $current_ip;
+		$resetPasswordThrottleKey = "security::resetPassword::{$current_ip}";
 		if ($current_ip != '' && cache::byKey($resetPasswordThrottleKey)->getValue('') != '') {
 			log::audit(__('Demande de réinitialisation du mot de passe ignorée : trop de demandes', __FILE__), [
 				'login' => $username,
-				'ip' => network::getClientIp(),
+				'ip' => $current_ip,
 			]);
 			throw new Exception(__('Trop de demandes, veuillez patienter quelques minutes avant de réessayer', __FILE__));
 		}
