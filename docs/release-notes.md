@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-09 10:20:05 | Implement lost password procedure | [#3519](https://github.com/jeedom/core/pull/3519) |
 | 2026-09-17 18:29:07 | Add input validation and update configuration fields in administratin / security | [#3517](https://github.com/jeedom/core/pull/3517) |
 | 2026-09-14 09:15:53 | feat: Enhance register device management with lifetime configuration | [#3511](https://github.com/jeedom/core/pull/3511) |
 | 2026-09-08 08:58:08 | Feature: add audit log | [#3493](https://github.com/jeedom/core/pull/3493) |
@@ -33,7 +34,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
-| 2026-10-08 12:50:13 | Contrôle d'accès de la modale widget mobile (cohérence avec le desktop) | [#3538](https://github.com/jeedom/core/pull/3538) |
+| 2026-10-08 12:50:13 | Restrict the mobile widget modal to admins, like its desktop counterpart | [#3538](https://github.com/jeedom/core/pull/3538) |
 | 2026-10-08 12:33:38 | Show language names in their own language in the language selector | [#3561](https://github.com/jeedom/core/pull/3561) |
 | 2026-10-08 12:26:49 | Open documentation links in the user's language using the new doc site URL format | [#3560](https://github.com/jeedom/core/pull/3560) |
 | 2026-10-08 11:03:30 | Fix: apt usage & add debug level in packages installation | [#3558](https://github.com/jeedom/core/pull/3558) |
