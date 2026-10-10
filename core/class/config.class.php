@@ -540,6 +540,18 @@ class config {
 	}
 
 	/**
+	 * Removes the first start flag once first use is over
+	 *
+	 * @param int $_value First use state
+	 * @return void
+	 */
+	public static function postConfig_jeedom_firstUse($_value) {
+		if ($_value == 0) {
+			self::remove('jeedom::imageSecretsRegenerated');
+		}
+	}
+
+	/**
 	 * Validates history archive package value
 	 *
 	 * @param int $_value Archive package count
