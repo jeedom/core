@@ -431,14 +431,28 @@ class jeedom {
 			'key' => 'python::version'
 		);
 
+		// Kernel log, unreadable in an unprivileged container
+		exec('sudo dmesg 2>/dev/null', $dmesg, $dmesgCode);
+		$dmesgReadable = $dmesgCode == 0;
+
 		// Sufficient memory
-		$killedProcesses = trim(shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l'));
+		$killedProcesses = count(array_filter($dmesg, fn($line) => strpos($line, 'oom-killer') !== false && strpos($line, 'deprecated') === false));
 		$killedState = $killedProcesses == 0;
+		if (!$dmesgReadable) {
+			$killedResult = 'N/A';
+			$killedComment = __('Journal du noyau inaccessible, vérification impossible', __FILE__);
+		} else if ($killedState) {
+			$killedResult = 'OK';
+			$killedComment = __("Mémoire suffisante pour l'ensemble des processus", __FILE__);
+		} else {
+			$killedResult = $killedProcesses;
+			$killedComment = __('Le noyau a dû arrêter des processus par manque de mémoire, revoir les plugins/scénarios si le problème persiste après redémarrage', __FILE__);
+		}
 		$return[] = array(
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => $killedState,
-			'result' => ($killedState) ? 'OK' : $killedProcesses,
-			'comment' => ($killedState) ? __("Mémoire suffisante pour l'ensemble des processus", __FILE__) : __('Le noyau a dû arrêter des processus par manque de mémoire, revoir les plugins/scénarios si le problème persiste après redémarrage', __FILE__),
+			'result' => $killedResult,
+			'comment' => $killedComment,
 			'key' => 'memory::killed'
 		);
 
@@ -465,20 +479,23 @@ class jeedom {
 		);
 
 		// I/O errors
-		$ioCount = trim(shell_exec('sudo dmesg | grep "CRC error" | grep "mmcblk" | grep "card status" | wc -l'));
-		if (!is_numeric($ioCount)) {
-			$ioCount = 0;
-		}
-		$ioCount2 = trim(shell_exec('sudo dmesg | grep "I/O error" | wc -l'));
-		if (is_numeric($ioCount2)) {
-			$ioCount += $ioCount2;
-		}
+		$ioCount = count(array_filter($dmesg, fn($line) => (strpos($line, 'CRC error') !== false && strpos($line, 'mmcblk') !== false && strpos($line, 'card status') !== false) || strpos($line, 'I/O error') !== false));
 		$ioState = $ioCount == 0;
+		if (!$dmesgReadable) {
+			$ioResult = 'N/A';
+			$ioComment = __('Journal du noyau inaccessible, vérification impossible', __FILE__);
+		} else if ($ioState) {
+			$ioResult = 'OK';
+			$ioComment = __('Aucune erreur de lecture/écriture détectée sur le support de stockage', __FILE__);
+		} else {
+			$ioResult = $ioCount;
+			$ioComment = __("Des erreurs de lecture/écriture ont été détectées sur le support de stockage, possiblement un problème matériel (SD/eMMC, disque, câblage) ou d'alimentation", __FILE__);
+		}
 		$return[] = array(
 			'name' => __('Erreurs disque', __FILE__),
-			'state' => ($ioState),
-			'result' => ($ioState) ? 'OK' : $ioCount,
-			'comment' => ($ioState) ? __("Erreurs d'écriture sur le support de stockage", __FILE__) : __("Des erreurs d'écriture ont été détectées sur le support de stockage, possiblement un problème matériel (SD/eMMC, disque, câblage) ou d'alimentation", __FILE__),
+			'state' => $ioState,
+			'result' => $ioResult,
+			'comment' => $ioComment,
 			'key' => 'io_error'
 		);
 
