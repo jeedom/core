@@ -522,6 +522,16 @@ if (!jeeFrontEnd.plan) {
       if (_element.hasClass('zone-widget')) { return {type: 'zone', id: _element.getAttribute('data-zone_id')} }
       if (_element.hasClass('summary-widget')) { return {type: 'summary', id: _element.getAttribute('data-summary_id')} }
     },
+    //Convert stored zone position (ex: 'right:0px;') to display widget outside the zone
+    getZoneWidgetPosition: function(_position) {
+      if (!_position) return ''
+      let css = ''
+      if (_position.includes('top')) css += 'bottom:100%;'
+      if (_position.includes('bottom')) css += 'top:100%;'
+      if (_position.includes('left')) css += 'right:100%;'
+      if (_position.includes('right')) css += 'left:100%;'
+      return css
+    },
     //Events setter
     setGraphResizes: function () {
       for (const obs of this.resizeObservers) {
@@ -1449,9 +1459,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
         global: false,
         success: function(data) {
           if (data.html) {
-            _target.html(data.html, true)
-            const inserted = _target.childNodes[0]
-            inserted.style = inserted.style.cssText + _target.getAttribute('data-position')
+            _target.html(data.html)
+            const inserted = _target.firstElementChild
+            inserted.style = inserted.style.cssText + jeeP.getZoneWidgetPosition(_target.getAttribute('data-position'))
             inserted.style.position = 'absolute'
             jeedomUtils.positionEqLogic(_target.getAttribute('data-eqLogic_id'), false)
             jeedomUtils.initTooltips(inserted)
@@ -1474,10 +1484,12 @@ document.querySelector('.div_displayObject').addEventListener('mouseenter', func
         version: 'dashboard',
         global: false,
         success: function(data) {
+          //Ignore late response if mouse already left the zone
+          if (el.getAttribute('data-flying') != '1') return
           if (data.html) {
-            el.html(data.html, true)
-            const inserted = el.childNodes[0]
-            inserted.style = inserted.style.cssText + el.getAttribute('data-position')
+            el.html(data.html)
+            const inserted = el.firstElementChild
+            inserted.style = inserted.style.cssText + jeeP.getZoneWidgetPosition(el.getAttribute('data-position'))
             inserted.style.position = 'absolute'
             jeedomUtils.positionEqLogic(el.getAttribute('data-eqLogic_id'), false)
             jeedomUtils.initTooltips(inserted)
