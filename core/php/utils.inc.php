@@ -1547,6 +1547,9 @@ function strContain($_string, $_words) {
 	return false;
 }
 
+/**
+ * @deprecated Unused in core since aa93d2bbc (2018), will be removed in a future version
+ */
 function makeZipSupport() {
 	$jeedom_folder = __DIR__ . '/../..';
 	$folder = '/tmp/jeedom_support';
