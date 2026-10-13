@@ -54,11 +54,22 @@ try {
 		if ($keys == '') {
 			throw new Exception(__('Aucune clef demandée', __FILE__));
 		}
+		$plugin = init('plugin', 'core');
 		if (is_json($keys)) {
 			$keys = json_decode($keys, true);
-			$return = config::byKeys(array_keys($keys), init('plugin', 'core'));
+			if (!isConnect('admin')) {
+				foreach (array_keys($keys) as $key) {
+					if (config::isEncrypted($key, $plugin)) {
+						throw new Exception(__('401 - Accès non autorisé', __FILE__));
+					}
+				}
+			}
+			$return = config::byKeys(array_keys($keys), $plugin);
         } else {
-			$return = config::byKey($keys, init('plugin', 'core'));
+			if (!isConnect('admin') && config::isEncrypted($keys, $plugin)) {
+				throw new Exception(__('401 - Accès non autorisé', __FILE__));
+			}
+			$return = config::byKey($keys, $plugin);
         }
         if (init('convertToHumanReadable', 0)) {
             $return = jeedom::toHumanReadable($return);
@@ -79,6 +90,9 @@ try {
 	}
 
 	if (init('action') == 'removeKey') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		$keys = init('key');
 		if ($keys == '') {
