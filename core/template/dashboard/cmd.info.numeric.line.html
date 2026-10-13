@@ -17,17 +17,25 @@
           jeedom.cmd.displayDuration(_options.valueDate, cmd.querySelector('.timeCmd'), '#time#')
         }
 
+        let displayValue = _options.display_value;
         if (is_numeric(_options.value)) {
-          cmd.querySelector('.value').innerHTML = _options.display_value
+          const numericValue = Number(_options.value);
+          if ('#separator#' == '1' && Number.isFinite(numericValue)) {
+                displayValue = new Intl.NumberFormat('fr-FR', {
+                	useGrouping: true,
+                	maximumFractionDigits: 20
+                }).format(numericValue);
+          }
+          cmd.querySelector('.value').innerHTML = displayValue
           cmd.querySelector('.unit').innerHTML = _options.unit
         } else {
           cmd.querySelector('.value').innerHTML = '<span class="label label-danger">' + _options.value + '</span>'
         }
 
         if (_options.alertLevel == 'warning') {
-          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + _options.value + '</span>'
+          cmd.querySelector('.value').innerHTML = '<span class="label label-warning"><i class="fas fa-bell"></i> ' + displayValue + '</span>';
         } else if (_options.alertLevel == 'danger') {
-          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + _options.value + '</span>'
+          cmd.querySelector('.value').innerHTML = '<span class="label label-danger"><i class="fas fa-exclamation"></i> ' + displayValue + '</span>';
         }
       }
     })
