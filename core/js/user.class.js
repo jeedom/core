@@ -234,7 +234,7 @@ jeedom.user.login = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
-jeedom.user.askPassword = function(_params) {
+jeedom.user.sendResetPasswordLink = function(_params) {
   const paramsRequired = ['username']
   const paramsSpecifics = {}
   try {
@@ -247,7 +247,7 @@ jeedom.user.askPassword = function(_params) {
   const paramsAJAX = jeedom.private.getParamsAJAX(params)
   paramsAJAX.url = 'core/ajax/user.ajax.php'
   paramsAJAX.data = {
-    action: 'askPassword',
+    action: 'sendResetPasswordLink',
     username: _params.username,
   }
   domUtils.ajax(paramsAJAX)
