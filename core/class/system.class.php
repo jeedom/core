@@ -209,7 +209,7 @@ class system {
 		if (version_compare(self::getOsVersion(), '12', '<')) {
 			return 'python3 ';
 		} else {
-			return self::getPython3VenvDir($_plugin) . '/bin/python3 ';
+			return escapeshellarg(self::getPython3VenvDir($_plugin) . '/bin/python3') . ' ';
 		}
 	}
 
@@ -345,17 +345,18 @@ class system {
 				$found = 0;
 				$version = '';
 				if (($type == 'npm' || $type == 'yarn') && strpos($package, '/') !== false) {
-					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
-						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
+					$packageDir = __DIR__ . "/../../{$package}";
+					if (file_exists("{$packageDir}/package.json")) {
+						$version = json_decode(file_get_contents("{$packageDir}/package.json"), true)['version'];
 						if ($type == 'npm') {
-							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules') && isset(scandir(__DIR__ . '/../../' . $package . '/node_modules', SCANDIR_SORT_NONE)[2])) {
-								exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var);
+							if (file_exists("{$packageDir}/node_modules") && isset(scandir("{$packageDir}/node_modules", SCANDIR_SORT_NONE)[2])) {
+								exec('cd ' . escapeshellarg($packageDir) . ' && ' . self::getCmdSudo() . ' npm ls', $output, $return_var);
 								if ($return_var == 0) {
 									$found = 1;
 								}
 							}
 						} else {
-							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' yarn check', $output, $return_var);
+							exec('cd ' . escapeshellarg($packageDir) . ' && ' . self::getCmdSudo() . ' yarn check', $output, $return_var);
 							if ($return_var == 0) {
 								$found = 1;
 							}
@@ -552,13 +553,13 @@ class system {
 						} else {
 							if ($_foreground) {
 								echo shell_exec(self::getCmdSudo() . ' apt-get update;' . self::getCmdSudo() . ' apt-get install -y python3 python3-pip python3-dev python3-venv');
-								echo shell_exec(self::getCmdSudo() . ' python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin));
+								echo shell_exec(self::getCmdSudo() . ' python3 -m venv --upgrade-deps ' . escapeshellarg(self::getPython3VenvDir($_plugin)));
 								echo shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --upgrade pip wheel');
 							} else {
 								$cmd .= self::getCmdSudo() . " apt-get update;\n" . self::getCmdSudo() . " apt-get install -y python3 python3-pip python3-dev python3-venv\n";
 								$count++;
 								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
-								$cmd .= self::getCmdSudo() . 'python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin) . "\n";
+								$cmd .= self::getCmdSudo() . 'python3 -m venv --upgrade-deps ' . escapeshellarg(self::getPython3VenvDir($_plugin)) . "\n";
 								$count++;
 								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
 								$cmd .= self::getCmdSudo() . self::getCmdPython3($_plugin) . " -m pip install --upgrade pip wheel\n";
@@ -703,43 +704,46 @@ class system {
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
 				}
-				return self::getCmdSudo() . ' apt-get install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
+				return self::getCmdSudo() . ' apt-get install -o Dpkg::Options::="--force-confdef" -y ' . escapeshellarg($_package);
 			case 'pip3':
 				if ($_version != '') {
 					if (preg_match('/[<>]/', $_version)) {
 						$_package .= $_version;
-						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
+						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . escapeshellarg($_package);
 					}
 					$_package .= '==' . $_version;
-					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
+					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . escapeshellarg($_package);
 				}
-				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . escapeshellarg($_package);
 			case 'npm':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . $_package;
+					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . escapeshellarg($_package);
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+				$packageDir = __DIR__ . "/../../{$_package}";
+				if (!file_exists($packageDir . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' yarn global add ' . $_package;
+					return self::getCmdSudo() . ' yarn global add ' . escapeshellarg($_package);
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+				$packageDir = __DIR__ . "/../../{$_package}";
+				if (!file_exists($packageDir . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'plugin':
-				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
+				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . escapeshellarg($_package);
 			case 'composer':
 				if (strpos($_package, '/') === false) {
-					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . escapeshellarg($_package);
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
+				$packageDir = __DIR__ . "/../../{$_package}";
+				if (!file_exists($packageDir . '/composer.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf vendor;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 		}
 	}
 
