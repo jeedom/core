@@ -708,7 +708,8 @@ class system {
 			if (!file_exists($log)) {
 				touch($log);
 			}
-			exec('echo "/bin/bash /tmp/jeedom_fix_package >> ' . escapeshellarg($log) . ' 2>&1" | ' . system::getCmdSudo() . ' at now');
+			$atCommand = '/bin/bash /tmp/jeedom_fix_package >> ' . escapeshellarg($log) . ' 2>&1';
+			exec('printf "%s\\n" ' . escapeshellarg($atCommand) . ' | ' . system::getCmdSudo() . 'at now');
 		}
 	}
 
