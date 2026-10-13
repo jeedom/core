@@ -390,7 +390,7 @@ class system {
 						if (isset($composer_info['version'])) {
 							$version = $composer_info['version'];
 						}
-						$output = shell_exec('cd ' . escapeshellarg($packageDir) . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
+						$output = shell_exec('cd ' . escapeshellarg($packageDir) . ' && export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
 						if ($output == 0) {
 							$found = 1;
 						}
