@@ -95,10 +95,13 @@ class system {
 
 	public static function fuserk(string $_port, string $_protocol = 'tcp'): void {
 		if (file_exists($_port)) {
-			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
-		} else {
-			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+			exec(system::getCmdSudo() . 'fuser -k ' . escapeshellarg($_port) . ' > /dev/null 2>&1');
+			return;
 		}
+		if (!ctype_digit($_port) || (int) $_port < 1 || (int) $_port > 65535 || !in_array($_protocol, array('tcp', 'udp'), true)) {
+			return;
+		}
+		exec(system::getCmdSudo() . 'fuser -k ' . escapeshellarg($_port . '/' . $_protocol) . ' > /dev/null 2>&1');
 	}
 
 	public static function ps(string $_find, $_without = null) {
