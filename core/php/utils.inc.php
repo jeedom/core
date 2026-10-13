@@ -1699,6 +1699,10 @@ function getTZoffsetMin() {
 
 function pageTitle($_page) {
 	switch ($_page) {
+		case '':
+		case 'connection':
+			$return = __('Connexion', __FILE__);
+			break;
 		case 'overview':
 			$return = __('Synthèse', __FILE__);
 			break;
