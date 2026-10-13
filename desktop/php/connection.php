@@ -1,168 +1,197 @@
 <?php
-$mbState = config::byKey('mbState');
+$productName = config::byKey('product_name');
+// TODO: temporary fallback for white labels missing mbState=1, remove once they all set it
+$isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom') === false);
 ?>
-<div id="wrap">
-	<div class="bodyLogin">
-		<div class="veen animated zoomIn">
-			<div class="login-btn splits">
-				<h3 id="titre_login_btn"></h3>
-				<p id="phrase_login_btn"></p>
+
+<div class="hidden" id="div_connection">
+	<div class="connectionView hidden" id="login">
+		<form onsubmit="return false;">
+			<h3>
+				<?php
+				if (config::byKey('display_name_login') == 1) {
+					$displayName = config::byKey('name', 'core', $productName);
+				} else {
+					$displayName = $productName;
+				}
+				echo sprintf(__('Connexion à %s', __FILE__), htmlspecialchars($displayName));
+				?>
+			</h3>
+			<p>{{Renseignez votre nom d'utilisateur et votre mot de passe pour vous connecter.}}</p>
+			<div>
+				<label>{{Nom d'utilisateur}}</label>
+				<input type="text" id="in_loginUsername">
 			</div>
-			<div class="rgstr-btn splits">
-				<img class="img-responsive" src="<?php echo config::byKey('product_connection_image') ?>" style="display:block; margin: 10% 5% 10% auto; width:45%;">
-			</div>
-			<div class="wrapper">
-				<div class="form-group" id="login">
-					<form onsubmit="return false;">
-						<h3>{{Connexion}}
-							<?php
-							if (config::byKey('display_name_login') == 1) {
-								echo ' {{à}} ' . config::byKey('name');
-							}
-							?>
-						</h3>
-						<div class="mail">
-							<label>{{Nom d'utilisateur}}</label>
-							<input type="text" id="in_login_username">
-						</div>
-						<div class="passwd">
-							<label>{{Mot de passe}}</label>
-							<div class="input-group">
-								<input type="password" class="roundedLeft" id="in_login_password">
-								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
-								</span>
-							</div>
-						</div>
-						<div class="passwd hidden" id="div_twoFactorCode">
-							<label>{{Code à 2 facteurs}}</label>
-							<input type="text" id="in_twoFactorCode" autocomplete="off">
-						</div>
-						<div class="checkbox">
-							<input type="checkbox" id="cb_storeConnection" /><label>{{Enregistrer cet ordinateur}}</label>
-						</div>
-						<div class="submit center">
-							<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
-						</div>
-						<div class="submit center">
-							<a class="btn" id="bt_go_to_lostpassword">{{J'ai perdu mon mot de passe}}</a>
-						</div>
-					</form>
-				</div>
-				<div class="form-group hidden" id="lostpassword">
-					<form onsubmit="return false;">
-						<h3>{{Mot de passe perdu}}</h3>
-						<div class="mail">
-							<label>{{Nom d'utilisateur}}</label>
-							<input type="text" id="in_lostpassword_username">
-						</div>
-						<div class="submit center">
-							<button class="dark btn-lg" id="bt_ask_password"><i class="fas fa-unlock-alt"></i> {{Recevoir un lien de réinitialisation}}</button>
-						</div>
-						<div class="submit center">
-							<a class="btn bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
-						</div>
-						<?php if ($mbState == 0 && config::byKey('doc::base_url', 'core') != '') { ?>
-							<div class="resetPassword center">
-								{{Autre méthode :}} <a href="<?= jeedom::getDocUrl('howto', 'reset.password') ?>" target="_blank">{{réinitialiser le mot de passe en SSH}}</a>
-							</div>
-						<?php } ?>
-					</form>
-				</div>
-				<div class="form-group hidden" id="resetpassword">
-					<form onsubmit="return false;">
-						<h3>{{Réinitialiser le mot de passe}}</h3>
-						<div class="passwd">
-							<label>{{Nouveau mot de passe}}</label>
-							<input type="password" autocomplete="new-password" id="in_reset_password">
-						</div>
-						<div class="passwd">
-							<label>{{Confirmer le mot de passe}}</label>
-							<input type="password" autocomplete="new-password" id="in_reset_passwordToo">
-						</div>
-						<div class="submit center">
-							<button class="dark btn-lg" id="bt_reset_password"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
-						</div>
-						<div class="submit center">
-							<a class="btn bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
-						</div>
-					</form>
-				</div>
-				<div class="form-group hidden" id="market">
-					<h3>Je n'ai pas de compte Market</h3>
-					<button class="dark btn-lg" id="bt_compte_market"><i class="fas fa-sign-in-alt"></i> {{En créer un !}}</button>
-					<hr align=center size=2 width="70%">
-					<h3>J'ai un compte market</h3>
-					<div class="mail">
-						<input type="text" id="in_login_username_market">
-						<label>{{Nom d'utilisateur}}</label>
-					</div>
-					<div class="passwd">
-						<input type="password" autocomplete="new-password" id="in_login_password_market">
-						<label>{{Mot de passe}}</label>
-					</div>
-					<div class="submit">
-						<button class="dark btn-lg" id="bt_login_validate_market"><i class="fas fa-sign-in-alt"></i> {{Connecter}} <?php echo ' ' . config::byKey('product_name') . ' '; ?> {{au Market}}</button>
-					</div>
-					<div class="submit">
-						<button class="dark btn-lg" id="bt_ignore_market"><i class="fas fa-times"></i></i> {{Configurer plus tard}}</button>
-					</div>
-					<?php if ($mbState == 0) { ?>
-						<div class="resetPassword">
-							<a href="https://market.jeedom.com/index.php?v=d&p=connection" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-						</div>
-					<?php } ?>
-					<br />
-				</div>
-				<div class="form-group" id="register">
-					<h3>{{CHANGER VOTRE MOT DE PASSE}}</h3>
-					<div class="passwd">
-						<input type="password" autocomplete="new-password" id="in_change_password">
-						<label>{{Mot de passe}}</label>
-					</div>
-					<div class="passwd">
-						<input type="password" autocomplete="new-password" id="in_change_passwordToo">
-						<label>{{Mot de passe}}</label>
-					</div>
-					<div class="submit center">
-						<button class="dark btn-lg" id="bt_change_validate">{{C'est parti !}}</button>
-					</div>
+			<div>
+				<label>{{Mot de passe}}</label>
+				<div class="input-group">
+					<input type="password" class="roundedLeft" id="in_loginPassword">
+					<span class="input-group-btn">
+						<a class="btn bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+					</span>
 				</div>
 			</div>
-		</div>
+			<div class="hidden" id="div_twoFactorCode">
+				<label>{{Code de double authentification}}</label>
+				<input type="text" id="in_twoFactorCode" autocomplete="off">
+			</div>
+
+			<div class="checkbox center">
+				<label><input type="checkbox" id="cb_storeConnection"> {{Se souvenir de cet appareil}}</label>
+			</div>
+
+			<div class="center">
+				<?php // TODO: rename to bt_loginValidate once white labels stop targeting this id in their custom.css 
+				?>
+				<button id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
+			</div>
+
+			<div class="center">
+				<a class="btn bt_goToLostPassword"><i class="fas fa-key"></i> {{Mot de passe oublié ?}}</a>
+			</div>
+		</form>
 	</div>
-	<?php if ($mbState == 0) { ?>
-		<button class="btn_help animated bounceInUp" onclick="window.open('<?= jeedom::getDocUrl('premiers-pas') ?>')">
-			?
-		</button>
+
+	<div class="connectionView hidden" id="lostPassword">
+		<form onsubmit="return false;">
+			<h3>{{Mot de passe oublié}}</h3>
+			<p>{{Renseignez un nom d'utilisateur pour envoyer un lien de réinitialisation via la commande de notification de son profil.}}</p>
+			<div>
+				<label>{{Nom d'utilisateur}}</label>
+				<input type="text" id="in_lostPasswordUsername">
+			</div>
+			<div class="center">
+				<button id="bt_sendResetLink"><i class="fas fa-paper-plane"></i> {{Envoyer le lien}}</button>
+			</div>
+			<div class="center">
+				<a class="btn bt_goToLogin"><i class="fas fa-arrow-left"></i> {{Retour à la connexion}}</a>
+			</div>
+			<?php if (!$isWhiteLabel) { ?>
+				<div class="center">
+					{{Autre méthode :}} <a href="<?= jeedom::getDocUrl('howto', 'reset.password') ?>" target="_blank">{{réinitialiser le mot de passe en SSH}}</a>
+				</div>
+			<?php } ?>
+		</form>
+	</div>
+
+	<?php $resetLogin = (init('rpk') != '') ? user::loginFromResetToken(init('rpk')) : ''; ?>
+	<div class="connectionView hidden" id="resetPassword">
+		<form onsubmit="return false;">
+			<h3>{{Réinitialisation du mot de passe}}</h3>
+			<?php if ($resetLogin != '') { ?>
+				<p><?= sprintf(__("Choisissez un nouveau mot de passe pour l'utilisateur %s.", __FILE__), '<strong>' . htmlspecialchars($resetLogin) . '</strong>') ?></p>
+				<div>
+					<label>{{Nouveau mot de passe}}</label>
+					<input type="password" autocomplete="new-password" id="in_resetPassword">
+				</div>
+				<div>
+					<label>{{Confirmer le mot de passe}}</label>
+					<input type="password" autocomplete="new-password" id="in_resetPasswordConfirmation">
+				</div>
+				<div class="center">
+					<button id="bt_resetPassword"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
+				</div>
+			<?php } else { ?>
+				<p>{{Ce lien de réinitialisation est invalide ou a expiré.}}</p>
+				<div class="center">
+					<button class="bt_goToLostPassword"><i class="fas fa-paper-plane"></i> {{Demander un nouveau lien}}</button>
+				</div>
+			<?php } ?>
+			<div class="center">
+				<a class="btn bt_goToLogin"><i class="fas fa-arrow-left"></i> {{Retour à la connexion}}</a>
+			</div>
+		</form>
+	</div>
+
+	<div class="connectionView hidden" id="changePassword">
+		<form onsubmit="return false;">
+			<h3>{{Changer votre mot de passe}}</h3>
+			<p>{{Votre mot de passe est identique à votre nom d'utilisateur, veuillez en choisir un nouveau.}}</p>
+			<div>
+				<label>{{Nouveau mot de passe}}</label>
+				<input type="password" autocomplete="new-password" id="in_changePassword">
+			</div>
+			<div>
+				<label>{{Confirmer le mot de passe}}</label>
+				<input type="password" autocomplete="new-password" id="in_changePasswordConfirmation">
+			</div>
+			<div class="center">
+				<button id="bt_changePassword"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
+			</div>
+		</form>
+	</div>
+
+	<?php
+	$marketAddress = config::byKey('market::address');
+	$marketEnable = (config::byKey('market::enable') == 1 && $marketAddress != '');
+	$isJeedomMarket = (parse_url($marketAddress, PHP_URL_HOST) == 'market.jeedom.com');
+	if ($marketEnable) {
+	?>
+		<div class="connectionView hidden" id="market" <?= ($isJeedomMarket) ? ' data-logo="https://market.jeedom.com/core/img/logo-MARKET.svg"' : '' ?>>
+			<form onsubmit="return false;">
+				<h3>{{Compte Market}}</h3>
+				<p>{{Liez votre installation à un compte Market pour installer des plugins et profiter des services associés. Vous pourrez aussi le faire plus tard depuis la configuration.}}</p>
+				<div>
+					<label>{{Nom d'utilisateur}}</label>
+					<input type="text" id="in_marketUsername">
+				</div>
+				<div>
+					<label>{{Mot de passe}}</label>
+					<div class="input-group">
+						<input type="password" class="roundedLeft" id="in_marketPassword">
+						<span class="input-group-btn">
+							<a class="btn bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+						</span>
+					</div>
+				</div>
+				<div class="center">
+					<button id="bt_validateMarket"><i class="fas fa-link"></i> {{Lier au Market}}</button>
+				</div>
+				<div class="center">
+					<?php if ($isJeedomMarket) { ?>
+						<a class="btn" href="https://market.jeedom.com/index.php?v=d&p=connection" target="_blank"><i class="fas fa-key"></i> {{Mot de passe Market oublié ?}}</a>
+						<a class="btn btn-info" href="https://market.jeedom.com/index.php?v=d&p=register" target="_blank"><i class="fas fa-user-plus"></i> {{Créer un compte Market}}</a>
+					<?php } ?>
+					<a class="btn btn-warning" id="bt_ignoreMarket"><i class="fas fa-times"></i> {{Ignorer}}</a>
+				</div>
+			</form>
+		</div>
 	<?php } ?>
+
+	<div id="div_productImg">
+		<img src="<?php echo config::byKey('product_connection_image') ?>" id="img_product">
+	</div>
 </div>
 
+<?php if (!$isWhiteLabel) { ?>
+	<a class="animated bounceInUp" href="<?= jeedom::getDocUrl('premiers-pas') ?>" target="_blank" title="{{Documentation}}" id="bt_help">?</a>
+<?php } ?>
+
 <?php
-if (config::byKey('product_connection_BG')) {
-	echo "<style>";
-	echo "body {";
-	echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
-	echo "background-position: center !important;";
-	echo "background-repeat: no-repeat !important;";
-	echo "background-size: cover !important;";
-	echo "}";
-	echo "</style>";
-} elseif (config::byKey('product_connection_color')) {
-	echo "<style>";
-	echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
-	echo "</style>";
-}
-if (config::byKey('product_btn_login_color')) {
-	echo "<style>";
-	echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
-	echo "</style>";
-}
-if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
-	echo "<style>";
-	echo ".btn_help { display:none; }";
-	echo "</style>";
-}
+// if (config::byKey('product_connection_BG')) {
+// 	echo "<style>";
+// 	echo "body {";
+// 	echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
+// 	echo "background-position: center !important;";
+// 	echo "background-repeat: no-repeat !important;";
+// 	echo "background-size: cover !important;";
+// 	echo "}";
+// 	echo "</style>";
+// } elseif (config::byKey('product_connection_color')) {
+// 	echo "<style>";
+// 	echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
+// 	echo "</style>";
+// }
+// if (config::byKey('product_btn_login_color')) {
+// 	echo "<style>";
+// 	echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
+// 	echo "</style>";
+// }
+// if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
+// 	echo "<style>";
+// 	echo ".btn_help { display:none; }";
+// 	echo "</style>";
+// }
 
 include_file('3rdparty', 'animate/animate', 'css');
 include_file('desktop', 'connection', 'css');
