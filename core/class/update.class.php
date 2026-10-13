@@ -567,6 +567,21 @@ class update {
 		if ($this->getSource() != 'default' && !isset($repo[$this->getSource()])) {
 			throw new Exception(__('Source de mise à jour invalide : ', __FILE__) . $this->getSource());
 		}
+
+		$allSourceKeys = [
+			'market' => ['market'],
+			'github' => ['user', 'repository', 'token'],
+			'url'    => ['url'],
+			'samba'  => ['path'],
+			'file'   => ['path'],
+		];
+		$currentSourceKeys = $allSourceKeys[$this->getSource()] ?? [];
+		$sourceKeys = array_unique(array_merge(...array_values($allSourceKeys)));
+		foreach ($sourceKeys as $key) {
+			if (!in_array($key, $currentSourceKeys, true)) {
+				$this->setConfiguration($key, null);
+			}
+		}
 	}
 
 	public function save() {
