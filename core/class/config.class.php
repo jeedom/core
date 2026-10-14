@@ -33,7 +33,25 @@ class config {
 	private static $cache = array();
 
 	/** @var string[] List of configuration keys to encrypt */
-	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
+	private static $encryptKey = [
+		'api',
+		'apipro',
+		'apitts',
+		'apimarket',
+		'proxyPassword',
+		'dns::token',
+		'github::token',
+		'ldap:password',
+		'ldap:host',
+		'ldap:username',
+		'market::apikey',
+		'market::cloud::backup::password',
+		'market::cloud::backup::password_confirmation',
+		'market::password',
+		'samba::backup::password',
+		'samba::backup::ip',
+		'samba::backup::username'
+	];
 
 	/** @var string[] Configuration keys that should not be cached */
 	private static $nocache = array('enableScenario');
