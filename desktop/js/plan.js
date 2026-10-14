@@ -528,8 +528,9 @@ if (!jeeFrontEnd.plan) {
       let css = ''
       if (_position.includes('top')) css += 'bottom:100%;'
       if (_position.includes('bottom')) css += 'top:100%;'
-      if (_position.includes('left')) css += 'right:100%;'
-      if (_position.includes('right')) css += 'left:100%;'
+      const offset = css ? '50%' : '100%'
+      if (_position.includes('left')) css += 'right:' + offset + ';'
+      if (_position.includes('right')) css += 'left:' + offset + ';'
       return css
     },
     //Events setter
