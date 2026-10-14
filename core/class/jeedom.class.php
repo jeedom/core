@@ -1769,7 +1769,13 @@ class jeedom {
 			return;
 		}
 		$ntpServer = config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org');
-		shell_exec(system::getCmdSudo() . 'chronyc add server ' . $ntpServer . ' iburst');
+		if (
+			filter_var($ntpServer, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false
+			&& filter_var($ntpServer, FILTER_VALIDATE_IP) === false
+		) {
+			$ntpServer = '0.debian.pool.ntp.org';
+		}
+		shell_exec(system::getCmdSudo() . 'chronyc add server ' . escapeshellarg($ntpServer) . ' iburst');
 		shell_exec(system::getCmdSudo() . 'chronyc makestep');
 	}
 
