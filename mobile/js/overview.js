@@ -5,7 +5,7 @@ $('body').attr('data-page', 'overview')
 function initOverview() {
   jeedom.object.all({
     error: function(error) {
-      $.fn.showAlert({message: error.message, level: 'danger'})
+      $.fn.showAlert({ message: error.message, level: 'danger' })
     },
     success: function(objects) {
       $('#objectOverviewContainer').empty()
@@ -23,10 +23,10 @@ function initOverview() {
             jeedom.config.load({
               configuration: 'product_synthese_image',
               success: function(data) {
-                if(data) {
+                if (data) {
                   var elements = document.getElementsByClassName("objectPreview")
                   for (var i = 0; i < elements.length; i++) {
-                    elements[i].style.background='url('+data+')';
+                    elements[i].style.background = 'url(' + data + ')';
                   }
                 }
               }
@@ -35,7 +35,7 @@ function initOverview() {
           }
 
           synthAction = _this.configuration.synthToAction
-          let name = (_this.configuration.display_name && _this.configuration.display_name != '') ? _this.configuration.display_name : _this.name;
+          let name = _this.name;
           if (synthAction != undefined && synthAction != "-1" && synthAction != 'synthToDashboard') {
             if (synthAction == 'synthToView') {
               dataPage = 'view'
@@ -57,19 +57,19 @@ function initOverview() {
             dataOption = _this.id
             dataTitle = icon.replace(/\"/g, "\'") + ' ' + name.replace(/\"/g, "\'")
           }
-          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url('+_backUrl+')" data-object_id="'+dataOption+'" data-page="' + dataPage + '" data-option="'+dataOption+'" data-page="equipment" data-title="' + dataTitle + '">'
-            div += '<div class="topPreview topCorner">'
-              div += '<span class="name">'+icon +' '+name+'</span>'
-            div += '</div>'
-            div += '<div class="bottomPreview bottomCorner">'
-              div += '<div class="resume" style="display:none;">'
-              div += '<span class="objectSummaryContainer objectSummary'+_this.id+'" data-version="mobile"></span>'
-              div += '</div>'
-            div += '</div>'
+          div = '<div class="objectPreview cursor shadowed fullCorner" style="background:url(' + _backUrl + ')" data-object_id="' + dataOption + '" data-page="' + dataPage + '" data-option="' + dataOption + '" data-page="equipment" data-title="' + dataTitle + '">'
+          div += '<div class="topPreview topCorner">'
+          div += '<span class="name">' + icon + ' ' + name + '</span>'
+          div += '</div>'
+          div += '<div class="bottomPreview bottomCorner">'
+          div += '<div class="resume" style="display:none;">'
+          div += '<span class="objectSummaryContainer objectSummary' + _this.id + '" data-version="mobile"></span>'
+          div += '</div>'
+          div += '</div>'
           div += '</div>'
 
           $('#objectOverviewContainer').append(div)
-          summaries.push({object_id : _this.id})
+          summaries.push({ object_id: _this.id })
         }
       }
       jeedom.object.summaryUpdate(summaries)
@@ -123,14 +123,14 @@ function initOverview() {
       if (plugins[i].mobile == '') continue
       if (plugins[i].displayMobilePanel == 0) continue
       panel += '<a href="#" class="link ui-btn ui-btn-inline ui-btn-raised ui-mini" data-page="' + plugins[i].mobile + '" data-plugin="' + plugins[i].id + '" data-title="' + plugins[i].name + '">'
-      if(nb_plugin < 4){
-        panel +=  plugins[i].name
-      }else{
-        panel += '<img src="plugins/'+plugins[i].id +'/plugin_info/'+plugins[i].id +'_icon.png" onerror=\'this.style.display = "none"\' style="height:25px" /> '
+      if (nb_plugin < 4) {
+        panel += plugins[i].name
+      } else {
+        panel += '<img src="plugins/' + plugins[i].id + '/plugin_info/' + plugins[i].id + '_icon.png" onerror=\'this.style.display = "none"\' style="height:25px" /> '
       }
-      panel +=  '</a> '
+      panel += '</a> '
     }
-    panel +=  '</center>'
+    panel += '</center>'
     $('#panelOverviewContainer').empty().html(panel);
   }
 }
@@ -141,7 +141,7 @@ function createSummaryObserver() {
       if (mutation.type == 'childList' && mutation.target.hasClass('objectSummaryContainer')) {
         try {
           updateSummary(mutation.addedNodes[0].className)
-        } catch {}
+        } catch { }
       }
     })
   })
@@ -168,7 +168,7 @@ function updateSummary(_className) {
     parent.querySelector('.topPreview').appendChild(element)
   })
   parent.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
-  if (pResume.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && pResume.querySelector('.objectSummaryParent[data-summary^="temp"]') != null ) {
+  if (pResume.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && pResume.querySelector('.objectSummaryParent[data-summary^="temp"]') != null) {
     parent.find('.topPreview').appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
   }
 }
