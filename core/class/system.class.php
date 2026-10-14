@@ -159,7 +159,7 @@ class system {
 			return;
 		}
 		if (is_numeric($find)) {
-			if ($find === 0) {
+			if ((int) $find <= 0) {
 				return;
 			}
 			$kill = posix_kill($find, 15);
