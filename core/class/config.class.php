@@ -191,7 +191,7 @@ class config {
 	}
 
 	/**
-	 * Indicates whether a configuration key holds an encrypted/sensitive value.
+	 * Determines whether a configuration key should be stored encrypted
 	 */
 	public static function shouldBeEncrypted(string $_key, string $_plugin = 'core'): bool {
 		if ($_key == 'api') {
