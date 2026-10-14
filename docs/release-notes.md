@@ -34,6 +34,8 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-14 18:09:06 | fix (update center): remove stale config keys and fix misleading badge when switching plugin source | [#3575](https://github.com/jeedom/core/pull/3575) |
+| 2026-10-14 18:07:56 | Security fix: packages shell injection | [#3574](https://github.com/jeedom/core/pull/3574) |
 | 2026-10-14 10:38:32 | Security: restrict reading of sensitive config keys to admins (config getKey/removeKey) | [#3576](https://github.com/jeedom/core/pull/3576) |
 | 2026-10-12 18:04:48 | Fix external address showing "http:" after enabling Jeedom DNS on a fresh install | [#3573](https://github.com/jeedom/core/pull/3573) |
 | 2026-10-10 08:30:20 | Stop dmesg errors in logs when the kernel log is unreadable | [#3569](https://github.com/jeedom/core/pull/3569) |
