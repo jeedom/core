@@ -73,7 +73,7 @@ try {
 		ajax::success($_SESSION['user']->getHash());
 	}
 
-	if (init('action') == 'askPassword') {
+	if (init('action') == 'sendResetPasswordLink') {
 		$responseTime = microtime(true) + rand(2, 5);
 		$username = trim(strip_tags(init('username')));
 		$current_ip = network::getClientIp();

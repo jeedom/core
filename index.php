@@ -100,7 +100,7 @@ try {
 		//page title:
 		try {
 			if (init('p') != 'message' && !isset($_GET['configure']) && !isset($_GET['modal'])) {
-				$title = pageTitle(init('p')) . ' - ' . config::byKey('product_name');
+				$title = (isConnect() ? pageTitle(init('p')) : __('Connexion', __FILE__)) . ' - ' . config::byKey('product_name');
 				echo '<script>document.title = "' . secureXSS($title) . '"</script>';
 			}
 		} catch (\Throwable $e) {

@@ -802,24 +802,32 @@ class user {
 		}
 	}
 
-	public static function resetPasswordFromToken(string $_key, string $_newPassword): bool {
+	public static function loginFromResetToken(string $_key): string {
 		$cache = cache::byKey('user::resetPassword::' . $_key);
 		$login = $cache->getValue();
+		if ($login == '') {
+			return '';
+		}
+		if (($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
+			$cache->remove();
+			return '';
+		}
+		return $login;
+	}
+
+	public static function resetPasswordFromToken(string $_key, string $_newPassword): bool {
+		$login = self::loginFromResetToken($_key);
 		if ($login == '') {
 			return false;
 		}
 		self::raiseForInvalidLogin($login);
-		if (($cache->getTimestamp() + $cache->getLifetime()) < strtotime('now')) {
-			$cache->remove();
-			return false;
-		}
 		$user = self::byLogin($login);
 		if (!is_object($user)) {
-			$cache->remove();
+			cache::byKey('user::resetPassword::' . $_key)->remove();
 			return false;
 		}
 		$user->setPassword($_newPassword)->save();
-		$cache->remove();
+		cache::byKey('user::resetPassword::' . $_key)->remove();
 		return true;
 	}
 }

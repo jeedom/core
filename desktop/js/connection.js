@@ -19,372 +19,302 @@
 if (!jeeFrontEnd.connection) {
   jeeFrontEnd.connection = {
     init: function() {
-      this.deepUrl = window.location.href
-      if (this.deepUrl.includes('logout')) this.deepUrl = ''
-      window.jeeP = this
-
       document.getElementById('jeedom_theme_currentcss').href = 'core/themes/core2019_Light/desktop/core2019_Light.css?v=' + jeeFrontEnd.jeedomVersion
-      document.title = JEEDOM_PRODUCT_NAME + ' - Login'
+
+      window.jeeP = this
+      this.container = document.getElementById('div_connection')
       this.resetPasswordToken = new URLSearchParams(window.location.search).get('rpk') || ''
+      const url = window.location.href
+      this.deepUrl = (url.includes('index.php?v=d') && !url.includes('logout') && this.resetPasswordToken == '') ? url : 'index.php?v=d'
       if (this.resetPasswordToken != '') {
-        this.deepUrl = ''
-        this.goToResetPassword()
+        window.history.replaceState({}, document.title, 'index.php?v=d')
       }
+
+      this.animateCss(this.container.seen(), 'zoomIn')
+      this.showView((this.resetPasswordToken == '') ? 'login' : 'resetPassword')
     },
-    askMarket: function() {
-      document.querySelectorAll('.veen .wrapper').removeClass('move')
-      document.getElementById('login').unseen()
-      document.getElementById('market').seen()
-      document.querySelector('.img-responsive').setAttribute('src', 'https://market.jeedom.com/core/img/logo-MARKET.svg')
-      document.querySelector('.img-responsive').style.width = '100%'
+    currentView: function() {
+      return this.container.querySelector('.connectionView:not(.hidden)')
     },
-    clearInputs: function(selector) {
-      document.querySelectorAll(selector + ' input').forEach(function(input) {
-        input.value = ''
+    showView: function(_id) {
+      const previous = this.currentView()
+      const view = document.getElementById(_id)
+      jeedomUtils.hideAlert()
+      if (!previous) {
+        this.animateCss(view.seen(), 'bounceInUp', () => view.querySelector('input')?.focus())
+        return
+      }
+      this.animateCss(previous, 'fadeOutLeft faster', () => {
+        previous.unseen()
+        previous.querySelectorAll('input:not([type=checkbox])').forEach(input => input.value = '')
+        this.animateCss(view.seen(), 'fadeInLeft faster', () => view.querySelector('input')?.focus())
       })
-    },
-    goToLogin: function() {
-      document.querySelectorAll('.veen .wrapper').removeClass('move')
-      this.clearInputs('#lostpassword, #resetpassword')
-      document.getElementById('lostpassword').unseen()
-      document.getElementById('resetpassword').unseen()
-      document.getElementById('login').seen()
-    },
-    goToLostPassword: function() {
-      document.querySelectorAll('.veen .wrapper').removeClass('move')
-      this.clearInputs('#lostpassword')
-      document.getElementById('login').unseen()
-      document.getElementById('lostpassword').seen()
-    },
-    goToResetPassword: function() {
-      document.querySelectorAll('.veen .wrapper').removeClass('move')
-      this.clearInputs('#resetpassword')
-      document.getElementById('login').unseen()
-      document.getElementById('lostpassword').unseen()
-      document.getElementById('resetpassword').seen()
     },
     goToIndex: function() {
-      jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
-        document.querySelectorAll('.veen').unseen()
-        window.location.href = 'index.php?v=d'
+      this.animateCss(this.container, 'bounceOut', () => {
+        this.container.unseen()
+        window.location.href = this.deepUrl
       })
     },
-    resetPasswordValidate: function(_event) {
-      const password = document.getElementById('in_reset_password').value
-      if (password == '' || password != document.getElementById('in_reset_passwordToo').value) {
-        jeedomUtils.showAlert({
-          message: '{{Le mot de passe est vide ou ne correspond pas à la confirmation.}}',
-          level: 'danger'
-        })
+    showError: function(_message) {
+      const current = this.currentView()
+      jeedomUtils.showAlert({
+        message: _message,
+        level: 'danger',
+        emptyBefore: true,
+        attachTo: current
+      })
+      this.animateCss(current, 'shakeX')
+    },
+    checkInputs: function(_ids) {
+      const values = {}
+      if (_ids.username) {
+        values.username = document.getElementById(_ids.username).value
+        if (values.username.trim() == '') {
+          this.showError("{{Veuillez saisir un nom d'utilisateur}}")
+          return false
+        }
+      }
+      if (_ids.password) {
+        values.password = document.getElementById(_ids.password).value
+        if (values.password == '') {
+          this.showError('{{Veuillez saisir un mot de passe}}')
+          return false
+        }
+      }
+      if (_ids.confirmation && values.password != document.getElementById(_ids.confirmation).value) {
+        this.showError('{{Les mots de passe ne correspondent pas}}')
+        return false
+      }
+      if (_ids.twoFactorCode) {
+        values.twoFactorCode = document.getElementById(_ids.twoFactorCode).value.trim()
+        if (values.twoFactorCode == '') {
+          this.showError('{{Veuillez saisir le code de double authentification}}')
+          return false
+        }
+      }
+      return values
+    },
+    loginValidate: function() {
+      const ids = { username: 'in_loginUsername', password: 'in_loginPassword' }
+      if (!document.getElementById('div_twoFactorCode').isHidden()) {
+        ids.twoFactorCode = 'in_twoFactorCode'
+      }
+      const inputs = this.checkInputs(ids)
+      if (!inputs) {
         return
       }
-      jeedom.user.resetPasswordFromToken({
-        token: this.resetPasswordToken,
-        newPassword: password,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-          jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
-        },
-        success: function(result) {
-          if (result !== true) {
-            jeedomUtils.showAlert({
-              message: '{{Le lien de réinitialisation est invalide ou a expiré.}}',
-              level: 'danger'
-            })
-            return
-          }
-          jeeFrontEnd.connection.goToLogin()
-          window.history.replaceState({}, document.title, 'index.php?v=d')
-          jeedomUtils.showAlert({
-            message: '{{Votre mot de passe a bien été changé.}}',
-            level: 'success'
-          })
-        }
-      })
-    },
-    askPassword: function(_event) {
-      const username = document.getElementById('in_lostpassword_username').value.trim()
-      if (username == '') {
-        jeedomUtils.showAlert({
-          message: '{{Veuillez saisir un nom d\'utilisateur.}}',
-          level: 'danger'
-        })
-        return
-      }
-      jeedom.user.askPassword({
-        username: username,
-        error: function(error) {
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-          jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
-        },
-        success: function() {
-          jeeFrontEnd.connection.goToLogin()
-          jeedomUtils.showAlert({
-            message: '{{Si votre utilisateur est valide et si vous avez configuré une commande de notification, un lien vient de vous être envoyé pour réinitialiser votre mot de passe.}}',
-            level: 'success'
-          })
-        }
-      })
-    },
-    loginValidate: function(_event) {
       jeedom.user.login({
-        username: document.getElementById('in_login_username').value,
-        password: document.getElementById('in_login_password').value,
-        twoFactorCode: document.getElementById('in_twoFactorCode').value,
+        username: inputs.username,
+        password: inputs.password,
+        twoFactorCode: inputs.twoFactorCode,
         storeConnection: (document.getElementById('cb_storeConnection').checked) ? 1 : 0,
         error: function(error) {
           if (error.code == -32012) {
             document.getElementById('div_twoFactorCode').seen()
+            jeedomUtils.showAlert({
+              message: "{{Saisissez le code de votre application d'authentification}}",
+              level: 'info',
+              emptyBefore: true,
+              attachTo: jeeP.currentView()
+            })
+            document.getElementById('in_twoFactorCode').focus()
             return
           }
-          jeedomUtils.showAlert({
-            message: error.message,
-            level: 'danger'
-          })
-          jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
+          jeeP.showError(error.message)
         },
         success: function() {
-          if (document.getElementById('in_login_username').value == document.getElementById('in_login_password').value) {
-            document.getElementById('phrase_login_btn').innerHTML = '{{Alerte de sécurité}} :<br>{{Votre mot de passe doit être changé.}}'
-            document.getElementById('titre_login_btn').innerHTML = '{{Information importante}} :'
-            document.querySelectorAll('.veen .wrapper').addClass('move')
-            document.body.style.background = 'linear-gradient(360deg, rgba(147,204,1,0.6), rgba(147,204,1,1))'
-            document.querySelector('.login-btn').style.color = '#000000'
-            document.querySelectorAll('.veen .login-btn button').removeClass('active')
-            _event.target.addClass('active')
+          if (inputs.username == inputs.password) {
+            jeeP.showView('changePassword')
           } else {
-            jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'bounceOut', function() {
-              document.querySelectorAll('.veen').unseen()
-              if (isset(jeeP.deepUrl) && jeeP.deepUrl.includes('index.php?v=d')) {
-                window.location.href = jeeP.deepUrl
-              } else {
-                window.location.href = 'index.php?v=d'
-              }
-            })
+            jeeP.goToIndex()
           }
         }
       })
     },
-    changeValidate: function(_event) {
-      if (document.getElementById('in_change_password').value != '' && document.getElementById('in_change_password').value == document.getElementById('in_change_passwordToo').value) {
-        jeedom.user.get({
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function(data) {
-            var user = data
-            user.password = document.getElementById('in_change_password').value
-            user.hash = ''
-            jeedom.user.saveProfils({
-              profils: user,
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  message: error.message,
-                  level: 'danger'
-                })
-                jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
-              },
-              success: function() {
-                jeedom.config.load({
-                  configuration: 'market::username',
-                  error: function(error) {
-                    jeedomUtils.showAlert({
-                      message: error.message,
-                      level: 'danger'
-                    })
-                  },
-                  success: function(data) {
-                    if (data == '' || data == null) {
-                      jeeFrontEnd.connection.askMarket()
-                    } else {
-                      jeeFrontEnd.connection.goToIndex()
-                    }
-                  }
-                })
-              }
-            })
-          }
-        })
-      } else {
-        jeedomUtils.showAlert({
-          message: '{{Le mot de passe est vide ou ne correspond pas à la confirmation.}}',
-          level: 'danger'
-        })
+    lostPasswordValidate: function() {
+      const inputs = this.checkInputs({ username: 'in_lostPasswordUsername' })
+      if (!inputs) {
+        return
       }
-    },
-    animateCss: function(element, animationName, callback) {
-      // console.log('animateCss:', element, animationName, callback)
-      var animationEnd = (function(el) {
-        var animations = {
-          animation: 'animationend',
-          OAnimation: 'oAnimationEnd',
-          MozAnimation: 'mozAnimationEnd',
-          WebkitAnimation: 'webkitAnimationEnd',
+      jeedom.user.sendResetPasswordLink({
+        username: inputs.username,
+        error: function(error) {
+          jeeP.showError(error.message)
+        },
+        success: function() {
+          jeeP.showView('login')
+          jeedomUtils.showAlert({
+            message: "{{Si l'utilisateur %s existe et dispose d'une commande de notification, un lien de réinitialisation lui a été envoyé}}".replace('%s', '<strong>' + inputs.username + '</strong>'),
+            level: 'success',
+            attachTo: document.getElementById('login')
+          })
         }
-
-        for (var t in animations) {
-          if (el.style[t] !== undefined) {
-            return animations[t]
-          }
-        }
-      })(document.createElement('div'))
-
-      element.addClass('animated ' + animationName)
-      element.addEventListener(animationEnd, () => {
-        element.removeClass('animated ' + animationName)
-        if (typeof callback === 'function') callback()
-      }, {
-        once: true,
       })
-      return element
     },
+    resetPasswordValidate: function() {
+      const inputs = this.checkInputs({ password: 'in_resetPassword', confirmation: 'in_resetPasswordConfirmation' })
+      if (!inputs) {
+        return
+      }
+      jeedom.user.resetPasswordFromToken({
+        token: this.resetPasswordToken,
+        newPassword: inputs.password,
+        error: function(error) {
+          jeeP.showError(error.message)
+        },
+        success: function(result) {
+          if (result !== true) {
+            jeeP.showError('{{Ce lien de réinitialisation est invalide ou a expiré}}')
+            return
+          }
+          jeeP.showView('login')
+          jeedomUtils.showAlert({
+            message: '{{Votre mot de passe a bien été changé}}',
+            level: 'success',
+            attachTo: document.getElementById('login')
+          })
+        }
+      })
+    },
+    changePasswordValidate: function() {
+      const inputs = this.checkInputs({ password: 'in_changePassword', confirmation: 'in_changePasswordConfirmation' })
+      if (!inputs) {
+        return
+      }
+      jeedom.user.get({
+        error: function(error) {
+          jeeP.showError(error.message)
+        },
+        success: function(data) {
+          var user = data
+          user.password = inputs.password
+          user.hash = ''
+          jeedom.user.saveProfils({
+            profils: user,
+            error: function(error) {
+              jeeP.showError(error.message)
+            },
+            success: function() {
+              const market = document.getElementById('market')
+              if (!market) {
+                jeeP.goToIndex()
+                return
+              }
+              jeedom.config.load({
+                configuration: 'market::username',
+                error: function(error) {
+                  jeeP.showError(error.message)
+                },
+                success: function(data) {
+                  if (data == '' || data == null) {
+                    jeeP.showView('market')
+                    if (market.dataset.logo) {
+                      document.getElementById('img_product').setAttribute('src', market.dataset.logo)
+                    }
+                  } else {
+                    jeeP.goToIndex()
+                  }
+                }
+              })
+            }
+          })
+        }
+      })
+    },
+    marketValidate: function() {
+      const inputs = this.checkInputs({ username: 'in_marketUsername', password: 'in_marketPassword' })
+      if (!inputs) {
+        return
+      }
+      jeedom.config.save({
+        configuration: {
+          'market::username': inputs.username,
+          'market::password': inputs.password
+        },
+        error: function(error) {
+          jeeP.showError(error.message)
+        },
+        success: function() {
+          jeedom.repo.test({
+            repo: 'market',
+            error: function(error) {
+              jeeP.showError(error.message)
+            },
+            success: function() {
+              jeeP.goToIndex()
+            }
+          })
+        }
+      })
+    },
+    animateCss: function(_element, _animation, _callback) {
+      _element.addClass('animated ' + _animation)
+      _element.addEventListener('animationend', function onEnd(event) {
+        if (event.target !== _element) {
+          return
+        }
+        _element.removeEventListener('animationend', onEnd)
+        _element.removeClass('animated ' + _animation)
+        if (typeof _callback === 'function') {
+          _callback()
+        }
+      })
+      return _element
+    }
   }
 }
 
 jeeFrontEnd.connection.init()
 
 //events delegation:
-document.getElementById('wrap')?.addEventListener('click', function(event) {
-  var _target = null
-  if (_target = event.target.closest('#bt_login_validate')) {
-    jeeP.loginValidate(event)
+jeeP.container.addEventListener('click', function(event) {
+  if (event.target.closest('#bt_login_validate')) {
+    jeeP.loginValidate()
     return
   }
 
-  if (_target = event.target.closest('#bt_go_to_lostpassword')) {
-    jeeP.goToLostPassword()
+  if (event.target.closest('.bt_goToLostPassword')) {
+    jeeP.showView('lostPassword')
     return
   }
 
-  if (_target = event.target.closest('#bt_ask_password')) {
-    jeeP.askPassword(event)
+  if (event.target.closest('#bt_sendResetLink')) {
+    jeeP.lostPasswordValidate()
     return
   }
 
-  if (_target = event.target.closest('.bt_go_to_login')) {
-    jeeP.goToLogin()
+  if (event.target.closest('.bt_goToLogin')) {
+    jeeP.showView('login')
     return
   }
 
-  if (_target = event.target.closest('#bt_change_validate')) {
-    jeeP.changeValidate(event)
+  if (event.target.closest('#bt_resetPassword')) {
+    jeeP.resetPasswordValidate()
     return
   }
 
-  if (_target = event.target.closest('#bt_reset_password')) {
-    jeeP.resetPasswordValidate(event)
+  if (event.target.closest('#bt_changePassword')) {
+    jeeP.changePasswordValidate()
     return
   }
 
-  if (_target = event.target.closest('#bt_login_validate_market')) {
-    var username = document.getElementById('in_login_username_market').value
-    var password = document.getElementById('in_login_password_market').value
-    var adress = 'https://market.jeedom.com'
-    jeedom.config.save({
-      configuration: {
-        'market::username': username
-      },
-      error: function(error) {
-        jeedomUtils.showAlert({
-          message: error.message,
-          level: 'danger'
-        })
-      },
-      success: function(data) {
-        jeedom.config.save({
-          configuration: {
-            'market::password': password
-          },
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-            jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
-          },
-          success: function(data) {
-            jeedom.repo.test({
-              repo: 'market',
-              error: function(error) {
-                jeedomUtils.showAlert({
-                  message: error.message,
-                  level: 'danger'
-                })
-                jeeFrontEnd.connection.animateCss(document.querySelector('.veen'), 'shake')
-              },
-              success: function(data) {
-                jeeFrontEnd.connection.goToIndex()
-              }
-            })
-          }
-        })
-      }
-    })
+  if (event.target.closest('#bt_validateMarket')) {
+    jeeP.marketValidate()
     return
   }
 
-  if (_target = event.target.closest('#bt_ignore_market')) {
-    window.location.reload()
+  if (event.target.closest('#bt_ignoreMarket')) {
+    jeeP.goToIndex()
     return
   }
 
-  if (_target = event.target.closest('#bt_compte_market')) {
-    window.open('https://market.jeedom.com/index.php?v=d&p=register', '_blank')
-    return
-  }
-
-  if (_target = event.target.closest('a.bt_showPassConnection')) {
-    event.stopPropagation()
-    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode
-    var input = _el.closest('.input-group').querySelector('input')
-
-    if (input.getAttribute('type') === 'password') {
-      input.setAttribute('type', 'text')
-    } else {
-      input.setAttribute('type', 'password')
-    }
-
-    var icon = _el.querySelector('.fas')
-    if (icon.classList.contains('fa-eye-slash')) {
-      icon.classList.remove('fa-eye-slash')
-      icon.classList.add('fa-eye')
-    } else {
-      icon.classList.remove('fa-eye')
-      icon.classList.add('fa-eye-slash')
-    }
+  if (event.target.closest('a.bt_showPassConnection')) {
+    const button = event.target.closest('a.bt_showPassConnection')
+    const input = button.closest('.input-group').querySelector('input')
+    input.type = (input.type == 'password') ? 'text' : 'password'
+    button.querySelector('.fas').classList.toggle('fa-eye')
+    button.querySelector('.fas').classList.toggle('fa-eye-slash')
     return
   }
 })
-
-document.getElementById('wrap').addEventListener('keypress', function(event) {
-  if (event.key != 'Enter') return
-  var _target = null
-  if (_target = event.target.closest('#in_change_passwordToo')) {
-    jeeFrontEnd.connection.changeValidate(event)
-    return
-  }
-})
-
-
-window.setTimeout(function() {
-  document.querySelector('.veen').removeClass('zoomIn')
-  document.querySelector('.btn_help').removeClass('bounceInUp')
-}, 5000)
-
-window.setTimeout(function() {
-  window.setInterval(function() {
-    jeeFrontEnd.connection.animateCss(document.querySelector('.btn_help'), 'shake')
-    window.setTimeout(function() {
-      document.querySelector('.btn_help').removeClass('shake')
-    }, 3000)
-  }, 5000)
-}, 10000)
