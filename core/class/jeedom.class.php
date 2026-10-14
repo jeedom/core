@@ -740,7 +740,7 @@ class jeedom {
 		if (trim($apikey) != '' && $apikey === $_apikey) {
 			/** @var bool $_RESTRICTED */
 			global $_RESTRICTED;
-			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', true);
+			$_RESTRICTED = $_plugin != 'core' && config::byKey('api::' . $_plugin . '::restricted', 'core', true);
 			return true;
 		}
 		return false;
