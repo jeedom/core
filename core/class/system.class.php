@@ -95,21 +95,31 @@ class system {
 
 	public static function fuserk(string $_port, string $_protocol = 'tcp'): void {
 		if (file_exists($_port)) {
-			exec(system::getCmdSudo() . 'fuser -k ' . $_port . ' > /dev/null 2>&1');
-		} else {
-			exec(system::getCmdSudo() . 'fuser -k ' . $_port . '/' . $_protocol . ' > /dev/null 2>&1');
+			exec(system::getCmdSudo() . 'fuser -k ' . escapeshellarg($_port) . ' > /dev/null 2>&1');
+			return;
 		}
+		if (!ctype_digit($_port) || (int) $_port < 1 || (int) $_port > 65535 || !in_array($_protocol, array('tcp', 'udp'), true)) {
+			return;
+		}
+		exec(system::getCmdSudo() . 'fuser -k ' . escapeshellarg($_port . '/' . $_protocol) . ' > /dev/null 2>&1');
 	}
 
-	public static function ps(string $_find, $_without = null) {
+	/**
+	 * Find processes matching a grep-compatible pattern.
+	 *
+	 * @param string $find Pattern used to match process command lines.
+	 * @param string|int|array<string|int>|null $without One or more patterns to exclude.
+	 * @return array<int, array<string, string>> Matching process details, or an empty array.
+	 */
+	public static function ps(string $find, $without = null): array {
 		$return = array();
-		$cmd = '(ps ax || ps w) | grep -ie "' . $_find . '" | grep -v "grep"';
-		if ($_without != null) {
-			if (!is_array($_without)) {
-				$_without = array($_without);
+		$cmd = '(ps ax || ps w) | grep -ie ' . escapeshellarg($find) . ' | grep -v "grep"';
+		if ($without != null) {
+			if (!is_array($without)) {
+				$without = array($without);
 			}
-			foreach ($_without as $value) {
-				$cmd .= ' | grep -v "' . $value . '"';
+			foreach ($without as $value) {
+				$cmd .= ' | grep -v -e ' . escapeshellarg((string) $value);
 			}
 		}
 		$execCmd = shell_exec($cmd);
@@ -144,35 +154,42 @@ class system {
 		return $return;
 	}
 
-	public static function kill($_find = '', $_kill9 = true) {
-		if (trim($_find) == '') {
+	/**
+	 * Kill a process by PID or name.
+	 *
+	 * @param int|string $find PID or name of the process to kill.
+	 * @param boolean $kill9 Whether to force kill with signal 9.
+	 * @return void
+	 */
+	public static function kill($find, bool $kill9 = true): void {
+		if (trim($find) == '') {
 			return;
 		}
-		if (is_numeric($_find)) {
-			if ($_find === 0) {
+		if (is_numeric($find)) {
+			if ((int) $find <= 0) {
 				return;
 			}
-			$kill = posix_kill($_find, 15);
+			$kill = posix_kill($find, 15);
 			if ($kill) {
-				return true;
+				return;
 			}
-			if ($_kill9) {
+			if ($kill9) {
 				usleep(100);
-				$kill = posix_kill($_find, 9);
+				$kill = posix_kill($find, 9);
 				if ($kill) {
-					return true;
+					return;
 				}
 				usleep(100);
-				exec(system::getCmdSudo() . 'kill -9 ' . $_find);
+				exec(system::getCmdSudo() . 'kill -9 ' . escapeshellarg($find));
 			} else {
-				$kill = posix_kill($_find, 15);
+				$kill = posix_kill($find, 15);
 			}
 			return;
 		}
-		if ($_kill9) {
-			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill -9 > /dev/null 2>&1";
+		if ($kill9) {
+			$cmd = "(ps ax || ps w) | grep -ie " . escapeshellarg($find) . " | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill -9 > /dev/null 2>&1";
 		} else {
-			$cmd = "(ps ax || ps w) | grep -ie '" . $_find . "' | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill > /dev/null 2>&1";
+			$cmd = "(ps ax || ps w) | grep -ie " . escapeshellarg($find) . " | grep -v grep | awk '{print $1}' | xargs " . system::getCmdSudo() . "kill > /dev/null 2>&1";
 		}
 		exec($cmd);
 	}
@@ -209,7 +226,7 @@ class system {
 		if (version_compare(self::getOsVersion(), '12', '<')) {
 			return 'python3 ';
 		} else {
-			return self::getPython3VenvDir($_plugin) . '/bin/python3 ';
+			return escapeshellarg(self::getPython3VenvDir($_plugin) . '/bin/python3') . ' ';
 		}
 	}
 
@@ -293,7 +310,7 @@ class system {
 				if (is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
 					foreach ($datas['dependencies'] as $key => $value) {
 						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
-							'version' => json_decode(shell_exec('yarn info ' . $key . ' version --json 2>/dev/null'), true)['data']
+							'version' => json_decode(shell_exec('yarn info ' . escapeshellarg($key) . ' version --json 2>/dev/null'), true)['data']
 						);
 					}
 				}
@@ -345,17 +362,18 @@ class system {
 				$found = 0;
 				$version = '';
 				if (($type == 'npm' || $type == 'yarn') && strpos($package, '/') !== false) {
-					if (file_exists(__DIR__ . '/../../' . $package . '/package.json')) {
-						$version = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/package.json'), true)['version'];
+					$packageDir = __DIR__ . "/../../{$package}";
+					if (file_exists("{$packageDir}/package.json")) {
+						$version = json_decode(file_get_contents("{$packageDir}/package.json"), true)['version'];
 						if ($type == 'npm') {
-							if (file_exists(__DIR__ . '/../../' . $package . '/node_modules') && isset(scandir(__DIR__ . '/../../' . $package . '/node_modules', SCANDIR_SORT_NONE)[2])) {
-								exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' npm ls', $output, $return_var);
+							if (file_exists("{$packageDir}/node_modules") && isset(scandir("{$packageDir}/node_modules", SCANDIR_SORT_NONE)[2])) {
+								exec('cd ' . escapeshellarg($packageDir) . ' && ' . self::getCmdSudo() . ' npm ls', $output, $return_var);
 								if ($return_var == 0) {
 									$found = 1;
 								}
 							}
 						} else {
-							exec('cd ' . __DIR__ . '/../../' . $package . ';' . self::getCmdSudo() . ' yarn check', $output, $return_var);
+							exec('cd ' . escapeshellarg($packageDir) . ' && ' . self::getCmdSudo() . ' yarn check', $output, $return_var);
 							if ($return_var == 0) {
 								$found = 1;
 							}
@@ -380,12 +398,13 @@ class system {
 				}
 				if ($type == 'composer' && strpos($package, '/') !== false) {
 					$version = 'N/A';
-					if (file_exists(__DIR__ . '/../../' . $package . '/composer.json')) {
-						$composer_info = json_decode(file_get_contents(__DIR__ . '/../../' . $package . '/composer.json'), true);
+					$packageDir = __DIR__ . "/../../{$package}";
+					if (file_exists("{$packageDir}/composer.json")) {
+						$composer_info = json_decode(file_get_contents("{$packageDir}/composer.json"), true);
 						if (isset($composer_info['version'])) {
 							$version = $composer_info['version'];
 						}
-						$output = shell_exec('cd ' . __DIR__ . '/../../' . $package . ';export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
+						$output = shell_exec('cd ' . escapeshellarg($packageDir) . ' && export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --dry-run 2>&1 | grep "\- Installing" | wc -l');
 						if ($output == 0) {
 							$found = 1;
 						}
@@ -472,13 +491,14 @@ class system {
 
 		$cmd = $debug ? "set -x\n" : '';
 		$cmd .= "echo '*******************Begin of package installation******************'\n";
-		$progress_file = '/tmp/jeedom_install_in_progress';
+		$progress_file_arg = '/tmp/jeedom_install_in_progress';
 		if ($_plugin != '') {
-			$progress_file .= "_$_plugin";
+			$progress_file_arg .= "_$_plugin";
 		}
-		$cmd .= "touch $progress_file\n";
+		$progress_file_arg = escapeshellarg($progress_file_arg);
+		$cmd .= "touch $progress_file_arg\n";
 		$count++;
-		$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+		$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 		if ($_foreground) {
 			if (self::checkInstallationLog($_plugin) != '') {
 				echo shell_exec(self::checkInstallationLog($_plugin) . ' 2>&1');
@@ -486,18 +506,19 @@ class system {
 		} else {
 			$cmd .= self::checkInstallationLog($_plugin);
 			$count++;
-			$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+			$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 		}
 		if (isset($_packages['pre-install'])) {
 			if (isset($_packages['pre-install']['script'])) {
+				$scriptPath = escapeshellarg(__DIR__ . '/../../' . $_packages['pre-install']['script']);
 				if ($_foreground) {
-					echo shell_exec('sudo chmod +x ' . __DIR__ . '/../../' . $_packages['pre-install']['script'] . ' 2>&1');
-					echo shell_exec('sudo ' . __DIR__ . '/../../' . $_packages['pre-install']['script'] . ' 2>&1');
+					echo shell_exec('sudo chmod +x ' . $scriptPath . ' 2>&1');
+					echo shell_exec('sudo ' . $scriptPath . ' 2>&1');
 				} else {
-					$cmd .= "sudo chmod +x " . __DIR__ . "/../../" . $_packages['pre-install']['script'] . "\n";
-					$cmd .= "sudo " . __DIR__ . "/../../" . $_packages['pre-install']['script'] . "\n";
+					$cmd .= "sudo chmod +x " . $scriptPath . "\n";
+					$cmd .= "sudo " . $scriptPath . "\n";
 					$count++;
-					$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+					$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 				}
 			}
 		}
@@ -527,7 +548,7 @@ class system {
 							$cmd .= self::getCmdSudo() . " sudo dpkg --configure -a --force-confdef\n";
 							$cmd .= self::getCmdSudo() . " apt-get update\n";
 							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 						}
 						break;
 					case 'pip3':
@@ -541,29 +562,29 @@ class system {
 							} else {
 								$cmd .= $cmd_cleaning_pip . "\n";
 								$count++;
-								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 								$cmd .= self::getCmdSudo() . " pip3 cache purge\n";
 								$count++;
-								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 								$cmd .= self::getCmdSudo() . " pip3 install --upgrade pip\n";
 								$count++;
-								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 							}
 						} else {
 							if ($_foreground) {
 								echo shell_exec(self::getCmdSudo() . ' apt-get update;' . self::getCmdSudo() . ' apt-get install -y python3 python3-pip python3-dev python3-venv');
-								echo shell_exec(self::getCmdSudo() . ' python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin));
+								echo shell_exec(self::getCmdSudo() . ' python3 -m venv --upgrade-deps ' . escapeshellarg(self::getPython3VenvDir($_plugin)));
 								echo shell_exec(self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --upgrade pip wheel');
 							} else {
 								$cmd .= self::getCmdSudo() . " apt-get update;\n" . self::getCmdSudo() . " apt-get install -y python3 python3-pip python3-dev python3-venv\n";
 								$count++;
-								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
-								$cmd .= self::getCmdSudo() . 'python3 -m venv --upgrade-deps ' . self::getPython3VenvDir($_plugin) . "\n";
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
+								$cmd .= self::getCmdSudo() . 'python3 -m venv --upgrade-deps ' . escapeshellarg(self::getPython3VenvDir($_plugin)) . "\n";
 								$count++;
-								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 								$cmd .= self::getCmdSudo() . self::getCmdPython3($_plugin) . " -m pip install --upgrade pip wheel\n";
 								$count++;
-								$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+								$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 							}
 						}
 						break;
@@ -573,7 +594,7 @@ class system {
 						} else {
 							$cmd .= self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh' . "\n";
 							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 						}
 					case 'yarn':
 						if ($_foreground) {
@@ -581,7 +602,7 @@ class system {
 						} else {
 							$cmd .= self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh' . "\n";
 							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 						}
 					case 'composer':
 						if ($_foreground) {
@@ -589,7 +610,7 @@ class system {
 						} else {
 							$cmd .= self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_composer.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_composer.sh' . "\n";
 							$count++;
-							$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+							$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 						}
 				}
 			}
@@ -598,7 +619,7 @@ class system {
 			} else {
 				$cmd .= self::installPackage($info['type'], $info['name'], $info['needVersion'], $_plugin) . "\n";
 				$count++;
-				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+				$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 			}
 		}
 		if (isset($_packages['post-install'])) {
@@ -608,35 +629,36 @@ class system {
 				} else {
 					$cmd .= "sudo systemctl restart apache2\n";
 					$count++;
-					$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+					$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 				}
 			}
 			if (isset($_packages['post-install']['script'])) {
 				$has_something_todo = true;
+				$scriptPath = escapeshellarg(__DIR__ . '/../../' . $_packages['post-install']['script']);
 				if ($_foreground) {
-					echo shell_exec('sudo chmod +x ' . __DIR__ . '/../../' . $_packages['post-install']['script'] . ' 2>&1');
-					echo shell_exec('sudo ' . __DIR__ . '/../../' . $_packages['post-install']['script'] . ' 2>&1');
+					echo shell_exec('sudo chmod +x ' . $scriptPath . ' 2>&1');
+					echo shell_exec('sudo ' . $scriptPath . ' 2>&1');
 				} else {
-					$cmd .= "sudo chmod +x " . __DIR__ . "/../../" . $_packages['post-install']['script'] . "\n";
-					$cmd .= "sudo " . __DIR__ . "/../../" . $_packages['post-install']['script'] . "\n";
+					$cmd .= "sudo chmod +x " . $scriptPath . "\n";
+					$cmd .= "sudo " . $scriptPath . "\n";
 					$count++;
-					$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+					$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 				}
 			}
 		}
 		if ($_plugin != '') {
 			if ($_foreground) {
-				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . ' 2>&1');
+				echo shell_exec('php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . escapeshellarg($_plugin) . ' 2>&1');
 			} else {
-				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . $_plugin . "\n";
+				$cmd .= 'php ' . __DIR__ . '/../php/jeecli.php plugin dependancy_end ' . escapeshellarg($_plugin) . "\n";
 				$count++;
-				$cmd .= 'echo ' . $count . ' > ' . $progress_file . "\n";
+				$cmd .= 'echo ' . $count . ' > ' . $progress_file_arg . "\n";
 			}
 		}
 		if ($_foreground || !$has_something_todo) {
 			return;
 		}
-		$cmd .= "rm $progress_file\n";
+		$cmd .= "rm $progress_file_arg\n";
 		$cmd .= "echo '*******************End of package installation******************'\n";
 		if (file_exists('/tmp/jeedom_fix_package')) {
 			shell_exec(system::getCmdSudo() . ' rm /tmp/jeedom_fix_package');
@@ -656,11 +678,11 @@ class system {
 		if (file_exists($progress_file)) {
 			$mtime = filemtime($progress_file);
 			if ($mtime > strtotime('now')) {
-				shell_exec(self::getCmdSudo() . ' rm ' . $progress_file);
+				shell_exec(self::getCmdSudo() . ' rm ' . escapeshellarg($progress_file));
 				return false;
 			}
 			if (strtotime('now') - $mtime > (30 * 60)) {
-				shell_exec(self::getCmdSudo() . ' rm ' . $progress_file);
+				shell_exec(self::getCmdSudo() . ' rm ' . escapeshellarg($progress_file));
 				return false;
 			}
 			return true;
@@ -688,12 +710,13 @@ class system {
 			$log = '/tmp/jeedom_fix_package_log';
 		}
 		if (!self::checkHasExec('at')) {
-			exec(system::getCmdSudo() . '/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1 &');
+			exec(system::getCmdSudo() . '/bin/bash /tmp/jeedom_fix_package >> ' . escapeshellarg($log) . ' 2>&1 &');
 		} else {
 			if (!file_exists($log)) {
 				touch($log);
 			}
-			exec('echo "/bin/bash /tmp/jeedom_fix_package >> ' . $log . ' 2>&1" | ' . system::getCmdSudo() . ' at now');
+			$atCommand = '/bin/bash /tmp/jeedom_fix_package >> ' . escapeshellarg($log) . ' 2>&1';
+			exec('printf "%s\\n" ' . escapeshellarg($atCommand) . ' | ' . system::getCmdSudo() . 'at now');
 		}
 	}
 
@@ -703,43 +726,46 @@ class system {
 				if ($_package == 'node' || $_package == 'nodejs' || $_package == 'npm') {
 					return self::getCmdSudo() . ' chmod +x ' . __DIR__ . '/../../resources/install_nodejs.sh;' . self::getCmdSudo() . ' ' . __DIR__ . '/../../resources/install_nodejs.sh';
 				}
-				return self::getCmdSudo() . ' apt-get install -o Dpkg::Options::="--force-confdef" -y ' . $_package;
+				return self::getCmdSudo() . ' apt-get install -o Dpkg::Options::="--force-confdef" -y ' . escapeshellarg($_package);
 			case 'pip3':
 				if ($_version != '') {
 					if (preg_match('/[<>]/', $_version)) {
 						$_package .= $_version;
-						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . $_package;
+						return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall ' . escapeshellarg($_package);
 					}
 					$_package .= '==' . $_version;
-					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
+					return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . escapeshellarg($_package);
 				}
-				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . $_package;
+				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . escapeshellarg($_package);
 			case 'npm':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . $_package;
+					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . escapeshellarg($_package);
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+				$packageDir = __DIR__ . "/../../{$_package}";
+				if (!file_exists($packageDir . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' yarn global add ' . $_package;
+					return self::getCmdSudo() . ' yarn global add ' . escapeshellarg($_package);
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package . '/package.json')) {
+				$packageDir = __DIR__ . "/../../{$_package}";
+				if (!file_exists($packageDir . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf node_modules;' . self::getCmdSudo() . ' yarn install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'plugin':
-				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . $_package;
+				return 'php ' . __DIR__ . '/../php/jeecli.php plugin install ' . escapeshellarg($_package);
 			case 'composer':
 				if (strpos($_package, '/') === false) {
-					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . $_package;
+					return 'export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer require --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader ' . escapeshellarg($_package);
 				}
-				if (!file_exists(__DIR__ . '/../../' . $_package . '/composer.json')) {
+				$packageDir = __DIR__ . "/../../{$_package}";
+				if (!file_exists($packageDir . '/composer.json')) {
 					return '';
 				}
-				return 'cd ' . __DIR__ . '/../../' . $_package . ';rm -rf vendor;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf vendor;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . self::getCmdSudo() . ' composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 		}
 	}
 
@@ -747,7 +773,7 @@ class system {
 		if (isset(self::$_hasExec[$_exec])) {
 			return self::$_hasExec[$_exec];
 		}
-		self::$_hasExec[$_exec] = (exec('which ' . $_exec . ' | wc -l') != 0);
+		self::$_hasExec[$_exec] = (exec('which ' . escapeshellarg($_exec) . ' | wc -l') != 0);
 		return self::$_hasExec[$_exec];
 	}
 
