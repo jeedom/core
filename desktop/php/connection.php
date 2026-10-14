@@ -74,12 +74,11 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 		</form>
 	</div>
 
-	<?php $resetLogin = (init('rpk') != '') ? user::loginFromResetToken(init('rpk')) : ''; ?>
 	<div class="connectionView hidden" id="resetPassword">
 		<form onsubmit="return false;">
 			<h3>{{Réinitialisation du mot de passe}}</h3>
-			<?php if ($resetLogin != '') { ?>
-				<p><?= sprintf(__("Choisissez un nouveau mot de passe pour l'utilisateur %s.", __FILE__), '<strong>' . htmlspecialchars($resetLogin) . '</strong>') ?></p>
+			<?php if (init('rpk') != '' && user::loginFromResetToken(init('rpk')) != '') { ?>
+				<p>{{Choisissez votre nouveau mot de passe.}}</p>
 				<div>
 					<label>{{Nouveau mot de passe}}</label>
 					<div class="input-group">
