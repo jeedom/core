@@ -65,17 +65,17 @@ try {
 				}
 			}
 			$return = config::byKeys(array_keys($keys), $plugin);
-        } else {
+		} else {
 			if (!isConnect('admin') && config::isEncrypted($keys, $plugin)) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__));
 			}
 			$return = config::byKey($keys, $plugin);
-        }
-        if (init('convertToHumanReadable', 0)) {
-            $return = jeedom::toHumanReadable($return);
-        }
-        ajax::success($return);
-    }
+		}
+		if (init('convertToHumanReadable', 0)) {
+			$return = jeedom::toHumanReadable($return);
+		}
+		ajax::success($return);
+	}
 
 	if (init('action') == 'addKey') {
 		if (!isConnect('admin')) {
