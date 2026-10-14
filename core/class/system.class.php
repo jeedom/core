@@ -154,7 +154,14 @@ class system {
 		return $return;
 	}
 
-	public static function kill(string $find, bool $kill9 = true) {
+	/**
+	 * Kill a process by PID or name.
+	 *
+	 * @param int|string $find PID or name of the process to kill.
+	 * @param boolean $kill9 Whether to force kill with signal 9.
+	 * @return void
+	 */
+	public static function kill($find, bool $kill9 = true): void {
 		if (trim($find) == '') {
 			return;
 		}
@@ -164,13 +171,13 @@ class system {
 			}
 			$kill = posix_kill($find, 15);
 			if ($kill) {
-				return true;
+				return;
 			}
 			if ($kill9) {
 				usleep(100);
 				$kill = posix_kill($find, 9);
 				if ($kill) {
-					return true;
+					return;
 				}
 				usleep(100);
 				exec(system::getCmdSudo() . 'kill -9 ' . escapeshellarg($find));
