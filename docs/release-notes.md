@@ -1,4 +1,4 @@
-# All changes since release 4.6.0
+# All changes since release 4.6.1
 
 ## New core features
 | Merge date | Title | PR |
@@ -23,6 +23,7 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-14 18:55:15 | Fix duplicated widgets and side positioning in design hover/click zones | [#3572](https://github.com/jeedom/core/pull/3572) |
 | 2026-10-14 18:40:17 | chore: remove display_name configuration from object | [#3566](https://github.com/jeedom/core/pull/3566) |
 | 2026-10-06 15:37:47 | Chore: Remove the OS/package update feature from Jeedom. | [#3514](https://github.com/jeedom/core/pull/3514) |
 | 2026-10-03 08:54:21 | fix: improve battery status handling and messaging | [#3543](https://github.com/jeedom/core/pull/3543) |
