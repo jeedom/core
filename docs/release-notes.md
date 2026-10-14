@@ -3,6 +3,7 @@
 ## New core features
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-14 18:19:22 | Redesigned login page | [#3579](https://github.com/jeedom/core/pull/3579) |
 | 2026-10-09 10:20:05 | Implement lost password procedure | [#3519](https://github.com/jeedom/core/pull/3519) |
 | 2026-09-17 18:29:07 | Add input validation and update configuration fields in administratin / security | [#3517](https://github.com/jeedom/core/pull/3517) |
 | 2026-09-14 09:15:53 | feat: Enhance register device management with lifetime configuration | [#3511](https://github.com/jeedom/core/pull/3511) |
@@ -34,7 +35,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
-| 2026-10-14 18:09:06 | fix (update center): remove stale config keys and fix misleading badge when switching plugin source | [#3575](https://github.com/jeedom/core/pull/3575) |
+| 2026-10-14 18:09:06 | Remove stale update source config keys on source change | [#3575](https://github.com/jeedom/core/pull/3575) |
 | 2026-10-14 18:07:56 | Security fix: packages shell injection | [#3574](https://github.com/jeedom/core/pull/3574) |
 | 2026-10-14 10:38:32 | Security: restrict reading of sensitive config keys to admins (config getKey/removeKey) | [#3576](https://github.com/jeedom/core/pull/3576) |
 | 2026-10-12 18:04:48 | Fix external address showing "http:" after enabling Jeedom DNS on a fresh install | [#3573](https://github.com/jeedom/core/pull/3573) |
