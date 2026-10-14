@@ -569,8 +569,8 @@ class update {
 		}
 
 		$allSourceKeys = [
-			'market' => ['market'],
-			'github' => ['user', 'repository', 'token'],
+			'market' => ['market', 'version'],
+			'github' => ['user', 'repository', 'token', 'version'],
 			'url'    => ['url'],
 			'samba'  => ['path'],
 			'file'   => ['path'],
