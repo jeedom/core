@@ -145,7 +145,7 @@ if (!jeeFrontEnd.connection) {
         success: function() {
           jeeP.showView('login')
           jeedomUtils.showAlert({
-            message: "{{Si ce compte existe et dispose d'une commande de notification, un lien de réinitialisation vient de lui être envoyé}}",
+            message: "{{Si l'utilisateur %s existe et dispose d'une commande de notification, un lien de réinitialisation lui a été envoyé}}".replace('%s', '<strong>' + inputs.username + '</strong>'),
             level: 'success',
             attachTo: document.getElementById('login')
           })
