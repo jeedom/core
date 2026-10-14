@@ -117,7 +117,7 @@ class config {
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
-		if (self::isEncrypted($_key, $_plugin)) {
+		if (self::shouldBeEncrypted($_key, $_plugin)) {
 			$_value = utils::encrypt($_value);
 		}
 		$values = array(
@@ -172,14 +172,7 @@ class config {
 		return true;
 	}
 
-	/**
-	 * Indicates whether a configuration key holds an encrypted/sensitive value.
-	 *
-	 * @param string $_key Configuration key
-	 * @param string $_plugin Plugin name
-	 * @return bool
-	 */
-	public static function isEncrypted(string $_key, string $_plugin = 'core'): bool {
+	public static function shouldBeEncrypted(string $_key, string $_plugin = 'core'): bool {
 		if ($_key == 'api') {
 			return true;
 		}
@@ -220,7 +213,7 @@ class config {
 				self::$cache[$_plugin . '::' . $_key] = $_default;
 			}
 		} else {
-			if (self::isEncrypted($_key, $_plugin)) {
+			if (self::shouldBeEncrypted($_key, $_plugin)) {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
@@ -252,7 +245,7 @@ class config {
 		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
-			if (self::isEncrypted($value['key'], $_plugin)) {
+			if (self::shouldBeEncrypted($value['key'], $_plugin)) {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			$return[$value['key']] = $value['value'];
@@ -313,7 +306,7 @@ class config {
 		AND plugin=:plugin';
 		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($results as &$result) {
-			if (self::isEncrypted($result['key'], $_plugin)) {
+			if (self::shouldBeEncrypted($result['key'], $_plugin)) {
 				$result['value'] = utils::decrypt($result['value']);
 			}
 			$result['value'] = is_json($result['value'], $result['value']);

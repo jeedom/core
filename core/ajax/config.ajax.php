@@ -59,14 +59,14 @@ try {
 			$keys = json_decode($keys, true);
 			if (!isConnect('admin')) {
 				foreach (array_keys($keys) as $key) {
-					if (config::isEncrypted($key, $plugin)) {
+					if (config::shouldBeEncrypted($key, $plugin)) {
 						throw new Exception(__('401 - Accès non autorisé', __FILE__));
 					}
 				}
 			}
 			$return = config::byKeys(array_keys($keys), $plugin);
 		} else {
-			if (!isConnect('admin') && config::isEncrypted($keys, $plugin)) {
+			if (!isConnect('admin') && config::shouldBeEncrypted($keys, $plugin)) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__));
 			}
 			$return = config::byKey($keys, $plugin);
