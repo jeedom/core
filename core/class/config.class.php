@@ -117,11 +117,7 @@ class config {
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
-		if ($_plugin == 'core' && in_array($_key, self::$encryptKey)) {
-			$_value = utils::encrypt($_value);
-		} else if ($_plugin != 'core' && class_exists($class) && property_exists($class, '_encryptConfigKey') && in_array($_key, $class::$_encryptConfigKey)) {
-			$_value = utils::encrypt($_value);
-		} else if ($_key == 'api') {
+		if (self::isEncrypted($_key, $_plugin)) {
 			$_value = utils::encrypt($_value);
 		}
 		$values = array(
@@ -179,16 +175,11 @@ class config {
 	/**
 	 * Indicates whether a configuration key holds an encrypted/sensitive value.
 	 *
-	 * Mirrors the decryption conditions applied in byKey()/byKeys(): the core
-	 * encrypted keys, any plugin key declared in the plugin's $_encryptConfigKey,
-	 * and the per-plugin 'api' key. Used to prevent non-admin users from reading
-	 * secrets (API keys, passwords, tokens) through the config ajax endpoint.
-	 *
 	 * @param string $_key Configuration key
 	 * @param string $_plugin Plugin name
 	 * @return bool
 	 */
-	public static function isEncrypted($_key, $_plugin = 'core') {
+	public static function isEncrypted(string $_key, string $_plugin = 'core'): bool {
 		if ($_key == 'api') {
 			return true;
 		}
@@ -229,11 +220,7 @@ class config {
 				self::$cache[$_plugin . '::' . $_key] = $_default;
 			}
 		} else {
-			if ($_plugin == 'core' && in_array($_key, self::$encryptKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key, $_plugin::$_encryptConfigKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else if ($_key == 'api') {
+			if (self::isEncrypted($_key, $_plugin)) {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
@@ -265,11 +252,7 @@ class config {
 		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
-			if ($_plugin == 'core' && in_array($value['key'], self::$encryptKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'], $_plugin::$_encryptConfigKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else if ($value['key'] == 'api') {
+			if (self::isEncrypted($value['key'], $_plugin)) {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			$return[$value['key']] = $value['value'];
@@ -330,11 +313,7 @@ class config {
 		AND plugin=:plugin';
 		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($results as &$result) {
-			if ($_plugin == 'core' && in_array($result['key'], self::$encryptKey)) {
-				$result['value'] = utils::decrypt($result['value']);
-			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($result['key'], $_plugin::$_encryptConfigKey)) {
-				$result['value'] = utils::decrypt($result['value']);
-			} else if ($result['key'] == 'api') {
+			if (self::isEncrypted($result['key'], $_plugin)) {
 				$result['value'] = utils::decrypt($result['value']);
 			}
 			$result['value'] = is_json($result['value'], $result['value']);
