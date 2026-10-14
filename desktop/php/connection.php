@@ -33,7 +33,7 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 			</div>
 			<div class="hidden" id="div_twoFactorCode">
 				<label>{{Code de double authentification}}</label>
-				<input type="text" id="in_twoFactorCode" autocomplete="off">
+				<input type="text" inputmode="numeric" autocomplete="one-time-code" id="in_twoFactorCode">
 			</div>
 
 			<div class="checkbox center">
