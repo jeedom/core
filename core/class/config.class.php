@@ -33,7 +33,25 @@ class config {
 	private static $cache = array();
 
 	/** @var string[] List of configuration keys to encrypt */
-	private static $encryptKey = array('apipro', 'apitts', 'apimarket', 'samba::backup::password', 'samba::backup::ip', 'samba::backup::username', 'ldap:password', 'ldap:host', 'ldap:username', 'dns::token', 'api');
+	private static $encryptKey = [
+		'api',
+		'apipro',
+		'apitts',
+		'apimarket',
+		'proxyPassword',
+		'dns::token',
+		'github::token',
+		'ldap:password',
+		'ldap:host',
+		'ldap:username',
+		'market::apikey',
+		'market::cloud::backup::password',
+		'market::cloud::backup::password_confirmation',
+		'market::password',
+		'samba::backup::password',
+		'samba::backup::ip',
+		'samba::backup::username'
+	];
 
 	/** @var string[] Configuration keys that should not be cached */
 	private static $nocache = array('enableScenario');
@@ -117,11 +135,7 @@ class config {
 		if (method_exists($class, $function)) {
 			$_value = $class::$function($_value);
 		}
-		if ($_plugin == 'core' && in_array($_key, self::$encryptKey)) {
-			$_value = utils::encrypt($_value);
-		} else if ($_plugin != 'core' && class_exists($class) && property_exists($class, '_encryptConfigKey') && in_array($_key, $class::$_encryptConfigKey)) {
-			$_value = utils::encrypt($_value);
-		} else if ($_key == 'api') {
+		if (self::shouldBeEncrypted($_key, $_plugin)) {
 			$_value = utils::encrypt($_value);
 		}
 		$values = array(
@@ -177,6 +191,19 @@ class config {
 	}
 
 	/**
+	 * Determines whether a configuration key should be stored encrypted
+	 */
+	public static function shouldBeEncrypted(string $_key, string $_plugin = 'core'): bool {
+		if ($_key == 'api') {
+			return true;
+		}
+		if ($_plugin == 'core') {
+			return in_array($_key, self::$encryptKey);
+		}
+		return (class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key, $_plugin::$_encryptConfigKey));
+	}
+
+	/**
 	 * Gets configuration value by key
 	 *
 	 * @param string $_key Configuration key
@@ -207,11 +234,7 @@ class config {
 				self::$cache[$_plugin . '::' . $_key] = $_default;
 			}
 		} else {
-			if ($_plugin == 'core' && in_array($_key, self::$encryptKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($_key, $_plugin::$_encryptConfigKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else if ($_key == 'api') {
+			if (self::shouldBeEncrypted($_key, $_plugin)) {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			self::$cache[$_plugin . '::' . $_key] = is_json($value['value'], $value['value']);
@@ -243,11 +266,7 @@ class config {
 		$values = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		$return = array();
 		foreach ($values as $value) {
-			if ($_plugin == 'core' && in_array($value['key'], self::$encryptKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($value['key'], $_plugin::$_encryptConfigKey)) {
-				$value['value'] = utils::decrypt($value['value']);
-			} else if ($value['key'] == 'api') {
+			if (self::shouldBeEncrypted($value['key'], $_plugin)) {
 				$value['value'] = utils::decrypt($value['value']);
 			}
 			$return[$value['key']] = $value['value'];
@@ -308,11 +327,7 @@ class config {
 		AND plugin=:plugin';
 		$results = DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL);
 		foreach ($results as &$result) {
-			if ($_plugin == 'core' && in_array($result['key'], self::$encryptKey)) {
-				$result['value'] = utils::decrypt($result['value']);
-			} else	if ($_plugin != 'core' && class_exists($_plugin) && property_exists($_plugin, '_encryptConfigKey') && in_array($result['key'], $_plugin::$_encryptConfigKey)) {
-				$result['value'] = utils::decrypt($result['value']);
-			} else if ($result['key'] == 'api') {
+			if (self::shouldBeEncrypted($result['key'], $_plugin)) {
 				$result['value'] = utils::decrypt($result['value']);
 			}
 			$result['value'] = is_json($result['value'], $result['value']);
