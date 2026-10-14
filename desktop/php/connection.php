@@ -82,11 +82,21 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 				<p><?= sprintf(__("Choisissez un nouveau mot de passe pour l'utilisateur %s.", __FILE__), '<strong>' . htmlspecialchars($resetLogin) . '</strong>') ?></p>
 				<div>
 					<label>{{Nouveau mot de passe}}</label>
-					<input type="password" autocomplete="new-password" id="in_resetPassword">
+					<div class="input-group">
+						<input type="password" class="roundedLeft" autocomplete="new-password" id="in_resetPassword">
+						<span class="input-group-btn">
+							<a class="btn bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+						</span>
+					</div>
 				</div>
 				<div>
 					<label>{{Confirmer le mot de passe}}</label>
-					<input type="password" autocomplete="new-password" id="in_resetPasswordConfirmation">
+					<div class="input-group">
+						<input type="password" class="roundedLeft" autocomplete="new-password" id="in_resetPasswordConfirmation">
+						<span class="input-group-btn">
+							<a class="btn bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+						</span>
+					</div>
 				</div>
 				<div class="center">
 					<button id="bt_resetPassword"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
@@ -109,11 +119,21 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 			<p>{{Votre mot de passe est identique à votre nom d'utilisateur, veuillez en choisir un nouveau.}}</p>
 			<div>
 				<label>{{Nouveau mot de passe}}</label>
-				<input type="password" autocomplete="new-password" id="in_changePassword">
+				<div class="input-group">
+					<input type="password" class="roundedLeft" autocomplete="new-password" id="in_changePassword">
+					<span class="input-group-btn">
+						<a class="btn bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+					</span>
+				</div>
 			</div>
 			<div>
 				<label>{{Confirmer le mot de passe}}</label>
-				<input type="password" autocomplete="new-password" id="in_changePasswordConfirmation">
+				<div class="input-group">
+					<input type="password" class="roundedLeft" autocomplete="new-password" id="in_changePasswordConfirmation">
+					<span class="input-group-btn">
+						<a class="btn bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+					</span>
+				</div>
 			</div>
 			<div class="center">
 				<button id="bt_changePassword"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
