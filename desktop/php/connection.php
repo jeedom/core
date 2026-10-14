@@ -41,7 +41,7 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 			</div>
 
 			<div class="center">
-				<?php // TODO: rename to bt_loginValidate once white labels stop targeting this id in their custom.css 
+				<?php // TODO: rename to bt_loginValidate once white labels stop targeting this id in their custom.css
 				?>
 				<button id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
 			</div>
@@ -168,32 +168,20 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 <?php } ?>
 
 <?php
-// if (config::byKey('product_connection_BG')) {
-// 	echo "<style>";
-// 	echo "body {";
-// 	echo "background-image: url(" . config::byKey('product_connection_BG') . ") !important;";
-// 	echo "background-position: center !important;";
-// 	echo "background-repeat: no-repeat !important;";
-// 	echo "background-size: cover !important;";
-// 	echo "}";
-// 	echo "</style>";
-// } elseif (config::byKey('product_connection_color')) {
-// 	echo "<style>";
-// 	echo "body { background:" . config::byKey('product_connection_color') . " !important;}";
-// 	echo "</style>";
-// }
-// if (config::byKey('product_btn_login_color')) {
-// 	echo "<style>";
-// 	echo "#bt_login_validate { background:" . config::byKey('product_connection_color') . " !important; border-color:" . config::byKey('product_connection_color') . " !important; }";
-// 	echo "</style>";
-// }
-// if (stristr(config::byKey('product_name'), 'Jeedom') == false) {
-// 	echo "<style>";
-// 	echo ".btn_help { display:none; }";
-// 	echo "</style>";
-// }
-
 include_file('3rdparty', 'animate/animate', 'css');
 include_file('desktop', 'connection', 'css');
 include_file('desktop', 'connection', 'js');
+
+$connectionStyle = '';
+if (config::byKey('product_connection_BG') != '') {
+	$connectionStyle .= 'body { background: url("' . config::byKey('product_connection_BG') . '") center / cover no-repeat !important; }';
+} elseif (config::byKey('product_connection_color') != '') {
+	$connectionStyle .= 'body { background: ' . config::byKey('product_connection_color') . ' !important; }';
+}
+if (config::byKey('product_btn_login_color') != '') {
+	$connectionStyle .= ':root { --connection-color: ' . config::byKey('product_btn_login_color') . '; }';
+}
+if ($connectionStyle != '') {
+	echo '<style>' . $connectionStyle . '</style>';
+}
 ?>
