@@ -55,7 +55,7 @@ $isWhiteLabel = (config::byKey('mbState') == 1 || stripos($productName, 'Jeedom'
 	<div class="connectionView hidden" id="lostPassword">
 		<form onsubmit="return false;">
 			<h3>{{Mot de passe oublié}}</h3>
-			<p>{{Renseignez un nom d'utilisateur pour envoyer un lien de réinitialisation via la commande de notification de son profil.}}</p>
+			<p>{{Renseignez votre nom d'utilisateur pour recevoir un lien de réinitialisation via la commande de notification de votre profil.}}</p>
 			<div>
 				<label>{{Nom d'utilisateur}}</label>
 				<input type="text" id="in_lostPasswordUsername">
