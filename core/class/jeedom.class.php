@@ -950,11 +950,29 @@ class jeedom {
 		}
 	}
 
-	public static function listBackup() {
+	private static function getBackupDir() {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
 		} else {
 			$backup_dir = config::byKey('backup::path');
+		}
+		return realpath($backup_dir);
+	}
+
+	private static function isValidBackup(string $_backup): bool {
+		$backupDir = self::getBackupDir();
+		$backupPath = realpath($_backup);
+
+		if ($backupDir == false || $backupPath === false || dirname($backupPath) !== $backupDir) {
+			return false;
+		}
+		return is_file($_backup) && !is_link($_backup) && substr(basename($_backup), -7) === '.tar.gz';
+	}
+
+	public static function listBackup(): array {
+		$backup_dir = self::getBackupDir();
+		if ($backup_dir == false) {
+			return [];
 		}
 		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
 		$return = array();
@@ -965,17 +983,19 @@ class jeedom {
 	}
 
 	public static function removeBackup(string $_backup) {
-		if (file_exists($_backup)) {
-			unlink($_backup);
-		} else {
-			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . $_backup);
+		if (self::isValidBackup($_backup) === false) {
+			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
+		unlink($_backup);
 	}
 
 	public static function restore(string $_backup = '', bool $_background = false) {
+		if (self::isValidBackup($_backup) === false) {
+			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
+		}
 		if ($_background) {
 			log::clear('restore');
-			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '"';
+			$cmd = __DIR__ . '/../../install/restore.php ' . escapeshellarg('backup=' . $_backup);
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd, true);
 		} else {
