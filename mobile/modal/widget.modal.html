@@ -7,11 +7,25 @@ $data = init('data');
 $type = init('type');
 ?>
 <div class="form-group">
-<?php
-if ($type=='image') {
-	$imageData = base64_encode(file_get_contents($data));
-	$src = 'data: '.mime_content_type($data).';base64,'.$imageData;
-	echo '<img src="' . $src . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
-}
-?>
+	<?php
+	if ($type == 'image') {
+		$maxImageSize = 10 * 1024 * 1024;
+		$jeedomRoot = realpath(__DIR__ . '/../..');
+		$imagePath = realpath($data);
+
+		if ($jeedomRoot !== false && $imagePath !== false && strpos($imagePath, $jeedomRoot . DIRECTORY_SEPARATOR) === 0 && is_file($imagePath) && is_readable($imagePath)) {
+			$imageContents = file_get_contents($imagePath, false, null, 0, $maxImageSize + 1);
+			if ($imageContents !== false && strlen($imageContents) <= $maxImageSize) {
+				$finfo = new finfo(FILEINFO_MIME_TYPE);
+				$mimeType = $finfo->buffer($imageContents);
+
+				if ($mimeType !== false && strpos($mimeType, 'image/') === 0) {
+					$imageData = base64_encode($imageContents);
+					$src = 'data: ' . $mimeType . ';base64,' . $imageData;
+					echo '<img src="' . htmlspecialchars($src, ENT_QUOTES) . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
+				}
+			}
+		}
+	}
+	?>
 </div>
