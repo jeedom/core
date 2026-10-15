@@ -272,6 +272,23 @@ class utils {
 	}
 
     /**
+     * Replaces the encryption key with a new random one
+     *
+     * Values encrypted with the previous key must be decrypted beforehand and encrypted again
+     *
+     * @return void
+     * @throws Exception If key file cannot be written
+     * @see self::getEncryptionPassword() For current key
+     */
+	public static function regenerateEncryptionPassword(): void {
+		$password = config::genKey();
+		if (file_put_contents(__DIR__ . '/../../data/jeedom_encryption.key', $password) === false) {
+			throw new Exception(__('Impossible d\'écrire la clé de chiffrement', __FILE__));
+		}
+		self::$jeedom_encryption = $password;
+	}
+
+    /**
      * Encrypts plaintext using AES-256-CBC
      *
      * @param string $plaintext Text to encrypt
