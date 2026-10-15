@@ -644,44 +644,36 @@ class jeedom {
 	}
 
 	public static function getApiKey(string $_plugin = 'core', string $_mode = 'enable') {
-		if ($_plugin == 'core') {
-			if (config::byKey('api') == '') {
-				config::save('api', config::genKey());
-				config::save('api::api::mode', $_mode, 'core');
+		$map = [
+			'core'      => 'api',
+			'apipro'    => 'apipro',
+			'apitts'    => 'apitts',
+			'apimarket' => 'apimarket',
+		];
+		if (isset($map[$_plugin])) {
+			$configKey = $map[$_plugin];
+
+			if (config::byKey($configKey) == '') {
+				config::save($configKey, config::genKey());
+				config::save("api::{$configKey}::mode", $_mode, 'core');
 			}
-			return config::byKey('api');
+
+			return config::byKey($configKey);
 		}
-		if ($_plugin == 'apipro') {
-			if (config::byKey('apipro') == '') {
-				config::save('apipro', config::genKey());
-				config::save('api::apipro::mode', $_mode, 'core');
-			}
-			return config::byKey('apipro');
-		}
-		if ($_plugin == 'apitts') {
-			if (config::byKey('apitts') == '') {
-				config::save('apitts', config::genKey());
-				config::save('api::apitts::mode', $_mode, 'core');
-			}
-			return config::byKey('apitts');
-		}
-		if ($_plugin == 'apimarket') {
-			if (config::byKey('apimarket') == '') {
-				config::save('apimarket', config::genKey());
-				config::save('api::apimarket::mode', $_mode, 'core');
-			}
-			return config::byKey('apimarket');
-		}
+
 		if (config::byKey('api', $_plugin) == '') {
 			if (!plugin::isInstalled($_plugin)) {
 				return '';
 			}
 			config::save('api', config::genKey(), $_plugin);
-			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+			config::save("api::{$_plugin}::mode", $_mode, 'core');
+			config::save("api::{$_plugin}::restricted", 1, 'core');
 		}
-		if (config::byKey('api::' . $_plugin . '::mode', 'core', 'enable') == 'disable' && $_mode != 'disable') {
-			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+
+		if (config::byKey("api::{$_plugin}::mode", 'core', 'enable') == 'disable' && $_mode != 'disable') {
+			config::save("api::{$_plugin}::mode", $_mode, 'core');
 		}
+
 		return config::byKey('api', $_plugin);
 	}
 

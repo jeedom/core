@@ -2176,7 +2176,7 @@ $productName = config::byKey('product_name');
 								$div .= '<sup> <i class="fas fa-question-circle" tooltip="{{Les appels API seront bloqués pour les méthodes du Core.}}"></i></sup>';
 								$div .= '</label>';
 								$div .= '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">';
-								$div .= '<input type="checkbox" class="form-control configKey checkContext" data-context="api::restricted" data-l1key="api::' . $plugin->getId() . '::restricted">';
+								$div .= '<input type="checkbox" class="form-control configKey" data-l1key="api::' . $plugin->getId() . '::restricted" checked>';
 								$div .= '</select>';
 								$div .= '</div>';
 								$div .= '<div class="visible-xs col-xs-12"><br/></div>';
