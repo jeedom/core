@@ -7,9 +7,16 @@ JEEDOM_SHORT_VERSION="$(echo "$JEEDOM_VERSION" | awk -F. '{print $1"."$2}')"
 # Docker hub repository may be overriden
 REPO=${DOCKER_HUB_REPO:-"jeedom"}
 
+# Images without the embedded database use the http- tag prefix.
+if [[ "${DATABASE}" == "0" ]]; then
+  TAG_SUFFIX="http-${DEBIAN}"
+else
+  TAG_SUFFIX="${DEBIAN}"
+fi
+
 # ${GITHUB_REF_NAME} == master
 # select the only image for 'latest' tag
-if [[ "${DEBIAN}" == "bookworm" && "${DATABASE}" == "0" ]]; then
+if [[ "${DEBIAN}" == "bookworm" && "${DATABASE}" == "1" ]]; then
   JEEDOM_TAGS="${REPO}/jeedom:latest,${REPO}/jeedom:${JEEDOM_SHORT_VERSION}-${TAG_SUFFIX}";
 else
   JEEDOM_TAGS="${REPO}/jeedom:${JEEDOM_SHORT_VERSION}-${TAG_SUFFIX}"

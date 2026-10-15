@@ -36,7 +36,6 @@ jobs:
         id: config_tags
         env:
           DOCKER_HUB_REPO: ${{ secrets.DOCKER_HUB_REPO }}
-          TAG_SUFFIX: ${{ matrix.database && 'http-' || '' }}${{ matrix.debian }}
           DEBIAN: ${{ matrix.debian }}
           DATABASE: ${{ matrix.database }}
         run: |
