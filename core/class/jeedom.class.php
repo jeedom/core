@@ -720,7 +720,8 @@ class jeedom {
 		if (trim($_apikey) == '' || strlen($_apikey) < 16) {
 			return false;
 		}
-		$user = user::byHash($_apikey);
+		// an user apikey can only be used if an explicit apikey (apipro, apitts, apimarket or a plugin api key) was NOT provided
+		$user = $_plugin === 'core' ? user::byHash($_apikey) : null;
 		if (is_object($user)) {
 			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
 				return false;
