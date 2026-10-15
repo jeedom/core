@@ -59,16 +59,6 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'listScenarioHtml') {
-		$return = array();
-		foreach ((scenario::all()) as $scenario) {
-			if ($scenario->getIsVisible() == 1) {
-				$return[] = $scenario->toHtml(init('version'));
-			}
-		}
-		ajax::success($return);
-	}
-
 	if (init('action') == 'setOrder') {
 		unautorizedInDemo();
 		$scenarios = json_decode(init('scenarios'), true);
