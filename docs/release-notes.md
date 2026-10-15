@@ -23,6 +23,7 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-15 18:48:03 | Docker: `latest` and standard tags now include MariaDB, `http-` tags no longer do | [#3586](https://github.com/jeedom/core/pull/3586) |
 | 2026-10-14 18:55:15 | Fix duplicated widgets and side positioning in design hover/click zones | [#3572](https://github.com/jeedom/core/pull/3572) |
 | 2026-10-14 18:40:17 | chore: remove display_name configuration from object | [#3566](https://github.com/jeedom/core/pull/3566) |
 | 2026-10-06 15:37:47 | Chore: Remove the OS/package update feature from Jeedom. | [#3514](https://github.com/jeedom/core/pull/3514) |
@@ -37,6 +38,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-15 18:48:38 | Increase timeout for backup cloud | [#3546](https://github.com/jeedom/core/pull/3546) |
 | 2026-10-14 18:09:06 | Remove stale update source config keys on source change | [#3575](https://github.com/jeedom/core/pull/3575) |
 | 2026-10-14 18:07:56 | Security fix: packages shell injection | [#3574](https://github.com/jeedom/core/pull/3574) |
 | 2026-10-14 10:38:32 | Security: restrict reading of sensitive config keys to admins (config getKey/removeKey) | [#3576](https://github.com/jeedom/core/pull/3576) |
@@ -95,7 +97,6 @@
 | 2026-06-30 11:29:16 | Prevent recording uppercase status in update database | [#3405](https://github.com/jeedom/core/pull/3405) |
 | 2026-06-25 13:40:05 | fix in case pdo hydratation set timeout to null | [#3393](https://github.com/jeedom/core/pull/3393) |
 | 2026-06-25 13:39:19 | fix in case pdo hydratation set timeout to null | [#3395](https://github.com/jeedom/core/pull/3395) |
-| 2026-06-23 11:10:53 | Fix missing translations in cmd.configure modal | [#3384](https://github.com/jeedom/core/pull/3384) |
 
 ## Others
 | Merge date | Title | PR |
