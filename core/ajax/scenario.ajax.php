@@ -20,7 +20,7 @@ try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
-	if (!isConnect()) {
+	if (!isConnect('admin')) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
@@ -39,9 +39,9 @@ try {
 				if (!$scenario->getIsActive()) {
 					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 				}
-				$scenario->addTag('trigger','user');
-				$scenario->addTag('trigger_value',$_SESSION['user']->getLogin());
-				$scenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
+				$scenario->addTag('trigger', 'user');
+				$scenario->addTag('trigger_value', $_SESSION['user']->getLogin());
+				$scenario->addTag('trigger_message', $GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
 				$scenario->launch(0);
 				break;
 			case 'stop':
