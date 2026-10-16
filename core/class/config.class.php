@@ -35,21 +35,21 @@ class config {
 	/** @var string[] List of configuration keys to encrypt */
 	private static $encryptKey = [
 		'api',
+		'apimarket',
 		'apipro',
 		'apitts',
-		'apimarket',
-		'proxyPassword',
 		'dns::token',
 		'github::token',
-		'ldap:password',
 		'ldap:host',
+		'ldap:password',
 		'ldap:username',
 		'market::apikey',
 		'market::cloud::backup::password',
 		'market::cloud::backup::password_confirmation',
 		'market::password',
-		'samba::backup::password',
+		'proxyPassword',
 		'samba::backup::ip',
+		'samba::backup::password',
 		'samba::backup::username'
 	];
 

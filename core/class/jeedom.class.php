@@ -644,44 +644,36 @@ class jeedom {
 	}
 
 	public static function getApiKey(string $_plugin = 'core', string $_mode = 'enable') {
-		if ($_plugin == 'core') {
-			if (config::byKey('api') == '') {
-				config::save('api', config::genKey());
-				config::save('api::api::mode', $_mode, 'core');
+		$map = [
+			'core'      => 'api',
+			'apipro'    => 'apipro',
+			'apitts'    => 'apitts',
+			'apimarket' => 'apimarket',
+		];
+		if (isset($map[$_plugin])) {
+			$configKey = $map[$_plugin];
+
+			if (config::byKey($configKey) == '') {
+				config::save($configKey, config::genKey());
+				config::save("api::{$configKey}::mode", $_mode, 'core');
 			}
-			return config::byKey('api');
+
+			return config::byKey($configKey);
 		}
-		if ($_plugin == 'apipro') {
-			if (config::byKey('apipro') == '') {
-				config::save('apipro', config::genKey());
-				config::save('api::apipro::mode', $_mode, 'core');
-			}
-			return config::byKey('apipro');
-		}
-		if ($_plugin == 'apitts') {
-			if (config::byKey('apitts') == '') {
-				config::save('apitts', config::genKey());
-				config::save('api::apitts::mode', $_mode, 'core');
-			}
-			return config::byKey('apitts');
-		}
-		if ($_plugin == 'apimarket') {
-			if (config::byKey('apimarket') == '') {
-				config::save('apimarket', config::genKey());
-				config::save('api::apimarket::mode', $_mode, 'core');
-			}
-			return config::byKey('apimarket');
-		}
+
 		if (config::byKey('api', $_plugin) == '') {
 			if (!plugin::isInstalled($_plugin)) {
 				return '';
 			}
 			config::save('api', config::genKey(), $_plugin);
-			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+			config::save("api::{$_plugin}::mode", $_mode, 'core');
+			config::save("api::{$_plugin}::restricted", 1, 'core');
 		}
-		if (config::byKey('api::' . $_plugin . '::mode', 'core', 'enable') == 'disable' && $_mode != 'disable') {
-			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+
+		if (config::byKey("api::{$_plugin}::mode", 'core', 'enable') == 'disable' && $_mode != 'disable') {
+			config::save("api::{$_plugin}::mode", $_mode, 'core');
 		}
+
 		return config::byKey('api', $_plugin);
 	}
 
@@ -720,7 +712,8 @@ class jeedom {
 		if (trim($_apikey) == '' || strlen($_apikey) < 16) {
 			return false;
 		}
-		$user = user::byHash($_apikey);
+		// an user apikey can only be used if an explicit apikey (apipro, apitts, apimarket or a plugin api key) was NOT provided
+		$user = $_plugin === 'core' ? user::byHash($_apikey) : null;
 		if (is_object($user)) {
 			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
 				return false;
@@ -740,7 +733,7 @@ class jeedom {
 		if (trim($apikey) != '' && $apikey === $_apikey) {
 			/** @var bool $_RESTRICTED */
 			global $_RESTRICTED;
-			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', false);
+			$_RESTRICTED = $_plugin != 'core' && config::byKey('api::' . $_plugin . '::restricted', 'core', true);
 			return true;
 		}
 		return false;
@@ -949,11 +942,29 @@ class jeedom {
 		}
 	}
 
-	public static function listBackup() {
+	private static function getBackupDir() {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
 		} else {
 			$backup_dir = config::byKey('backup::path');
+		}
+		return realpath($backup_dir);
+	}
+
+	private static function isValidBackup(string $_backup): bool {
+		$backupDir = self::getBackupDir();
+		$backupPath = realpath($_backup);
+
+		if ($backupDir == false || $backupPath === false || dirname($backupPath) !== $backupDir) {
+			return false;
+		}
+		return is_file($_backup) && !is_link($_backup) && substr(basename($_backup), -7) === '.tar.gz';
+	}
+
+	public static function listBackup(): array {
+		$backup_dir = self::getBackupDir();
+		if ($backup_dir == false) {
+			return [];
 		}
 		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
 		$return = array();
@@ -964,17 +975,19 @@ class jeedom {
 	}
 
 	public static function removeBackup(string $_backup) {
-		if (file_exists($_backup)) {
-			unlink($_backup);
-		} else {
-			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . $_backup);
+		if (self::isValidBackup($_backup) === false) {
+			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
+		unlink($_backup);
 	}
 
 	public static function restore(string $_backup = '', bool $_background = false) {
+		if (self::isValidBackup($_backup) === false) {
+			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
+		}
 		if ($_background) {
 			log::clear('restore');
-			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '"';
+			$cmd = __DIR__ . '/../../install/restore.php ' . escapeshellarg('backup=' . $_backup);
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd, true);
 		} else {
@@ -1769,7 +1782,13 @@ class jeedom {
 			return;
 		}
 		$ntpServer = config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org');
-		shell_exec(system::getCmdSudo() . 'chronyc add server ' . $ntpServer . ' iburst');
+		if (
+			filter_var($ntpServer, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME) === false
+			&& filter_var($ntpServer, FILTER_VALIDATE_IP) === false
+		) {
+			$ntpServer = '0.debian.pool.ntp.org';
+		}
+		shell_exec(system::getCmdSudo() . 'chronyc add server ' . escapeshellarg($ntpServer) . ' iburst');
 		shell_exec(system::getCmdSudo() . 'chronyc makestep');
 	}
 
