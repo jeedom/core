@@ -1,3 +1,0 @@
-<IfModule mod_remoteip.c>
-RemoteIPHeader X-Forwarded-For
-</IfModule>

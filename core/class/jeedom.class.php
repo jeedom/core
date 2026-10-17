@@ -693,7 +693,7 @@ class jeedom {
 			case 'disable':
 				return false;
 			case 'whiteip':
-				$ip = getClientIp();
+				$ip = network::getClientIp();
 				$find = false;
 				$whiteIps = explode(';', config::byKey('security::whiteips'));
 				if (config::byKey('security::whiteips') != '' && count($whiteIps) > 0) {
@@ -708,7 +708,7 @@ class jeedom {
 				}
 				break;
 			case 'localhost':
-				if (getClientIp() != '127.0.0.1') {
+				if (network::getClientIp() != '127.0.0.1') {
 					return false;
 				}
 				break;
