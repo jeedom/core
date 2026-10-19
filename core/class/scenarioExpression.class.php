@@ -266,14 +266,16 @@ class scenarioExpression {
 			$values = array();
 			foreach ($args as $arg) {
 				if (is_numeric($arg)) {
-					$values[] = $arg;
+					$values[] = $arg + 0;
 				} else {
 					$value = cmd::cmdToValue($arg);
 					if (is_numeric($value)) {
-						$values[] = $value;
+						$values[] = $value + 0;
 					} else {
 						try {
-							$values[] = evaluate($value);
+							if (is_numeric($tmp = evaluate($value))) {
+								$values[] = $tmp + 0;
+							}
 						} catch (\Throwable $ex) {
 						}
 					}
@@ -534,14 +536,16 @@ class scenarioExpression {
 		$values = array();
 		foreach ($args as $arg) {
 			if (is_numeric($arg)) {
-				$values[] = $arg;
+				$values[] = $arg + 0;
 			} else {
 				$value = cmd::cmdToValue($arg);
 				if (is_numeric($value)) {
-					$values[] = $value;
+					$values[] = $value + 0;
 				} else {
 					try {
-						$values[] = evaluate($value);
+						if (is_numeric($tmp = evaluate($value))) {
+							$values[] = $tmp + 0;
+						}
 					} catch (\Throwable $ex) {
 					}
 				}
