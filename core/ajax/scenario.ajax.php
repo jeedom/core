@@ -39,9 +39,9 @@ try {
 				if (!$scenario->getIsActive()) {
 					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 				}
-				$scenario->addTag('trigger','user');
-				$scenario->addTag('trigger_value',$_SESSION['user']->getLogin());
-				$scenario->addTag('trigger_message',$GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
+				$scenario->addTag('trigger', 'user');
+				$scenario->addTag('trigger_value', $_SESSION['user']->getLogin());
+				$scenario->addTag('trigger_message', $GLOBALS['JEEDOM_SCLOG_TEXT']['startManual']['txt']);
 				$scenario->launch(0);
 				break;
 			case 'stop':
@@ -59,14 +59,29 @@ try {
 		ajax::success();
 	}
 
-	if (init('action') == 'listScenarioHtml') {
-		$return = array();
-		foreach ((scenario::all()) as $scenario) {
-			if ($scenario->getIsVisible() == 1) {
+	if (init('action') == 'toHtml') {
+		if (init('id') == 'all' || is_json(init('id'))) {
+			if (is_json(init('id'))) {
+				$scenario_ajax = json_decode(init('id'), true);
+				$scenarios = array();
+				foreach ($scenario_ajax as $id) {
+					$scenarios[] = scenario::byId($id);
+				}
+			} else {
+				$scenarios = scenario::all();
+			}
+			$return = array();
+			foreach ($scenarios as $scenario) {
 				$return[] = $scenario->toHtml(init('version'));
 			}
+			ajax::success($return);
+		} else {
+			$scenario = scenario::byId(init('id'));
+			if (is_object($scenario)) {
+				ajax::success($scenario->toHtml(init('version')));
+			}
 		}
-		ajax::success($return);
+		ajax::success();
 	}
 
 	if (init('action') == 'setOrder') {
@@ -80,10 +95,22 @@ try {
 			if (!is_object($scenario)) {
 				continue;
 			}
-			utils::a2o($scenario, $scenario_json);
+			if (isset($scenario_json['order'])) {
+				$scenario->setOrder($scenario_json['order']);
+			}
+			if (isset($scenario_json['display']['width'])) {
+				$scenario->setDisplay('width', $scenario_json['display']['width']);
+			}
+			if (isset($scenario_json['display']['height'])) {
+				$scenario->setDisplay('height', $scenario_json['display']['height']);
+			}
 			$scenario->save(true);
 		}
 		ajax::success();
+	}
+
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
 	if (init('action') == 'testExpression') {
@@ -292,31 +319,6 @@ try {
 			$return[] = $group['group'];
 		}
 		ajax::success($return);
-	}
-
-	if (init('action') == 'toHtml') {
-		if (init('id') == 'all' || is_json(init('id'))) {
-			if (is_json(init('id'))) {
-				$scenario_ajax = json_decode(init('id'), true);
-				$scenarios = array();
-				foreach ($scenario_ajax as $id) {
-					$scenarios[] = scenario::byId($id);
-				}
-			} else {
-				$scenarios = scenario::all();
-			}
-			$return = array();
-			foreach ($scenarios as $scenario) {
-				$return[] = $scenario->toHtml(init('version'));
-			}
-			ajax::success($return);
-		} else {
-			$scenario = scenario::byId(init('id'));
-			if (is_object($scenario)) {
-				ajax::success($scenario->toHtml(init('version')));
-			}
-		}
-		ajax::success();
 	}
 
 	if (init('action') == 'remove') {

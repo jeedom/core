@@ -1100,17 +1100,17 @@ class scenario {
 		$this->setPID();
 	}
 
-	public function save() {
+	public function save(bool $direct = false): bool {
 		if ($this->getLastLaunch() == '' && ($this->getMode() == 'schedule' || $this->getMode() == 'all')) {
 			$calculateScheduleDate = $this->calculateScheduleDate();
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
 		}
-		DB::save($this);
+		$result = DB::save($this, $direct);
 		if ($this->_changeState) {
 			$this->_changeState = false;
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'name' => $this->getName(), 'icon' => $this->getIcon()));
 		}
-		return true;
+		return $result;
 	}
 
 	public function refresh() {
@@ -1793,6 +1793,7 @@ class scenario {
 	 * @return $this
 	 */
 	public function setOrder($_order) {
+		$_order = intval($_order);
 		$this->_changed = utils::attrChanged($this->_changed, $this->order, $_order);
 		$this->order = $_order;
 		return $this;
@@ -1945,6 +1946,9 @@ class scenario {
 	 * @return $this
 	 */
 	public function setDisplay($_key, $_value) {
+		if ($_value != '' && in_array($_key, ['width', 'height'])) {
+			$_value = intval($_value) . 'px';
+		}
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->display, $display);
 		$this->display = $display;
