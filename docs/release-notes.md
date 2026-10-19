@@ -38,6 +38,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-19 21:52:38 | Fix: scenario ajax access | [#3584](https://github.com/jeedom/core/pull/3584) |
 | 2026-10-15 18:48:38 | Increase timeout for backup cloud | [#3546](https://github.com/jeedom/core/pull/3546) |
 | 2026-10-14 18:09:06 | Remove stale update source config keys on source change | [#3575](https://github.com/jeedom/core/pull/3575) |
 | 2026-10-14 18:07:56 | Security fix: packages shell injection | [#3574](https://github.com/jeedom/core/pull/3574) |
@@ -97,6 +98,7 @@
 | 2026-06-30 11:29:16 | Prevent recording uppercase status in update database | [#3405](https://github.com/jeedom/core/pull/3405) |
 | 2026-06-25 13:40:05 | fix in case pdo hydratation set timeout to null | [#3393](https://github.com/jeedom/core/pull/3393) |
 | 2026-06-25 13:39:19 | fix in case pdo hydratation set timeout to null | [#3395](https://github.com/jeedom/core/pull/3395) |
+| 2026-06-23 11:10:53 | Fix missing translations in cmd.configure modal | [#3384](https://github.com/jeedom/core/pull/3384) |
 
 ## Others
 | Merge date | Title | PR |
