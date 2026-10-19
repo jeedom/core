@@ -20,7 +20,7 @@ try {
 	require_once __DIR__ . '/../../core/php/core.inc.php';
 	include_file('core', 'authentification', 'php');
 
-	if (!isConnect('admin')) {
+	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
@@ -57,6 +57,35 @@ try {
 				break;
 		}
 		ajax::success();
+	}
+
+	if (init('action') == 'toHtml') {
+		if (init('id') == 'all' || is_json(init('id'))) {
+			if (is_json(init('id'))) {
+				$scenario_ajax = json_decode(init('id'), true);
+				$scenarios = array();
+				foreach ($scenario_ajax as $id) {
+					$scenarios[] = scenario::byId($id);
+				}
+			} else {
+				$scenarios = scenario::all();
+			}
+			$return = array();
+			foreach ($scenarios as $scenario) {
+				$return[] = $scenario->toHtml(init('version'));
+			}
+			ajax::success($return);
+		} else {
+			$scenario = scenario::byId(init('id'));
+			if (is_object($scenario)) {
+				ajax::success($scenario->toHtml(init('version')));
+			}
+		}
+		ajax::success();
+	}
+
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
 	if (init('action') == 'setOrder') {
