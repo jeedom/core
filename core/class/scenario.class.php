@@ -1793,6 +1793,7 @@ class scenario {
 	 * @return $this
 	 */
 	public function setOrder($_order) {
+		$_order = intval($_order);
 		$this->_changed = utils::attrChanged($this->_changed, $this->order, $_order);
 		$this->order = $_order;
 		return $this;
@@ -1945,6 +1946,9 @@ class scenario {
 	 * @return $this
 	 */
 	public function setDisplay($_key, $_value) {
+		if ($_value != '' && in_array($_key, ['width', 'height'])) {
+			$_value = intval($_value) . 'px';
+		}
 		$display = utils::setJsonAttr($this->display, $_key, $_value);
 		$this->_changed = utils::attrChanged($this->_changed, $this->display, $display);
 		$this->display = $display;
