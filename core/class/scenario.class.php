@@ -1100,17 +1100,17 @@ class scenario {
 		$this->setPID();
 	}
 
-	public function save() {
+	public function save(bool $direct = false): bool {
 		if ($this->getLastLaunch() == '' && ($this->getMode() == 'schedule' || $this->getMode() == 'all')) {
 			$calculateScheduleDate = $this->calculateScheduleDate();
 			$this->setLastLaunch($calculateScheduleDate['prevDate']);
 		}
-		DB::save($this);
+		$result = DB::save($this, $direct);
 		if ($this->_changeState) {
 			$this->_changeState = false;
 			event::add('scenario::update', array('scenario_id' => $this->getId(), 'isActive' => $this->getIsActive(), 'state' => $this->getState(), 'lastLaunch' => $this->getLastLaunch(), 'name' => $this->getName(), 'icon' => $this->getIcon()));
 		}
-		return true;
+		return $result;
 	}
 
 	public function refresh() {

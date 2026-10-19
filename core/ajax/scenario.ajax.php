@@ -84,10 +84,6 @@ try {
 		ajax::success();
 	}
 
-	if (!isConnect('admin')) {
-		throw new Exception(__('401 - Accès non autorisé', __FILE__));
-	}
-
 	if (init('action') == 'setOrder') {
 		unautorizedInDemo();
 		$scenarios = json_decode(init('scenarios'), true);
@@ -99,10 +95,22 @@ try {
 			if (!is_object($scenario)) {
 				continue;
 			}
-			utils::a2o($scenario, $scenario_json);
+			if (isset($scenario_json['order'])) {
+				$scenario->setOrder($scenario_json['order']);
+			}
+			if (isset($scenario_json['display']['width'])) {
+				$scenario->setDisplay('width', $scenario_json['display']['width']);
+			}
+			if (isset($scenario_json['display']['height'])) {
+				$scenario->setDisplay('height', $scenario_json['display']['height']);
+			}
 			$scenario->save(true);
 		}
 		ajax::success();
+	}
+
+	if (!isConnect('admin')) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
 	if (init('action') == 'testExpression') {
