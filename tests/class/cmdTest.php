@@ -19,6 +19,20 @@ use PHPUnit\Framework\TestCase;
 
 class cmdTest extends TestCase
 {
+    public function testUnlinkedCommandHasNoAssociatedValue()
+    {
+        $cmd = new cmd();
+        $cmd->setValue(null);
+        set_error_handler(function ($level, $message, $file, $line) {
+            throw new ErrorException($message, 0, $level, $file, $line);
+        });
+        try {
+            self::assertFalse($cmd->getCmdValue());
+        } finally {
+            restore_error_handler();
+        }
+    }
+
     public function testFormatValueNumericRoundWithNonNumericCalculResult()
     {
         $cmd = new cmd();
