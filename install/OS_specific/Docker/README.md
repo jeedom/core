@@ -5,8 +5,10 @@ et le SaaS, jusqu'ici maintenue dans `jeedom/infra-semaphore/images/jeedom`.
 Le Dockerfile, le runtime et leurs tests sont maintenant versionnés avec le core.
 Le build et la publication restent exécutés par Semaphore.
 
-Le Dockerfile historique à la racine, `init.sh`, Compose et les workflows
-existants sont conservés pendant la revue de cette proposition. Le nouveau
+Le workflow GitHub Actions `Docker Test Image` (`docker-test.yml`) est supprimé.
+Les builds et tests de la nouvelle image sont exécutés par Semaphore.
+Le Dockerfile historique à la racine, `init.sh`, Compose et le workflow historique
+de publication sont conservés pendant la revue de cette proposition. Le nouveau
 Dockerfile doit être sélectionné explicitement avec `-f`.
 Cette PR ne modifie ni ne supprime les fichiers d'`infra-semaphore` et ne bascule
 pas le job ou les instances SaaS.
