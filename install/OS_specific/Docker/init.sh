@@ -10,15 +10,17 @@ JAUNE="\\033[1;33m"
 CYAN="\\033[1;36m"
 
 service_mariadb(){
-  service mysql $1
-  if [ $? -ne 0 ]; then
-    service mariadb $1
-    if [ $? -ne 0 ]; then
-      echo "${ROUGE}Cannot start mariadb - Cancelling${NORMAL}"
-      return 1
-    fi
-  fi
-  return 0
+  service mariadb "$1" || {
+    echo "${ROUGE}Cannot perform $1 on MariaDB - Cancelling${NORMAL}"
+    return 1
+  }
+}
+
+mariadb_sql(){
+  mariadb -uroot -e "$1" || {
+    echo "${ROUGE}MariaDB initialization failed - Cancelling${NORMAL}"
+    exit 1
+  }
 }
 
 docker_stop() {
@@ -27,7 +29,7 @@ docker_stop() {
   service apache2 stop
   if [[ 1 -eq ${ISMARIABDBINSTALLED} ]]; then
      echo "${VERT}Stopping Database gracefully${NORMAL}"
-     service mariadb stop
+     service_mariadb stop
   fi
   echo "${VERT}Stopping ATD gracefully${NORMAL}"
   service atd stop
@@ -71,6 +73,11 @@ apache_setup() {
   fi
 }
 
+ISMARIABDBINSTALLED=0
+if command -v mariadbd >/dev/null 2>&1; then
+  ISMARIABDBINSTALLED=1
+fi
+
 echo 'Start init'
 
 # $WEBSERVER_HOME and $VERSION env variables comes from Dockerfile
@@ -93,16 +100,18 @@ else
 		chmod +x ${INSTALL_SCRIPT}
 		${INSTALL_SCRIPT} -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
 	fi
-	if [ $(which mysqld | wc -l) -ne 0 ]; then
+	if [ "$ISMARIABDBINSTALLED" -eq 1 ]; then
 		chown -R mysql:mysql /var/lib/mysql
-		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
-		service_mariadb restart
+		if [ ! -d /var/lib/mysql/mysql ]; then
+			mariadb-install-db --user=mysql --basedir=/usr/ --datadir=/var/lib/mysql/ || exit 1
+		fi
+		service_mariadb restart || exit 1
 		MYSQL_JEEDOM_PASSWD=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 15)
-		echo "DROP USER 'jeedom'@'localhost';" | mysql > /dev/null 2>&1
-		echo "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';" | mysql
-		echo "DROP DATABASE IF EXISTS jeedom;" | mysql
-		echo "CREATE DATABASE jeedom;" | mysql
-		echo "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';" | mysql
+		mariadb_sql "DROP USER IF EXISTS 'jeedom'@'localhost';"
+		mariadb_sql "CREATE USER 'jeedom'@'localhost' IDENTIFIED BY '${MYSQL_JEEDOM_PASSWD}';"
+		mariadb_sql "DROP DATABASE IF EXISTS jeedom;"
+		mariadb_sql "CREATE DATABASE jeedom;"
+		mariadb_sql "GRANT ALL PRIVILEGES ON jeedom.* TO 'jeedom'@'localhost';"
 		cp ${WEBSERVER_HOME}/core/config/common.config.sample.php ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#PASSWORD#/${MYSQL_JEEDOM_PASSWD}/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		sed -i "s/#DBNAME#/jeedom/g" ${WEBSERVER_HOME}/core/config/common.config.php
@@ -123,14 +132,12 @@ set_root_password
 echo 'Start atd'
 service atd restart
 
-if [ $(which mysqld | wc -l) -ne 0 ]; then
+if [ "$ISMARIABDBINSTALLED" -eq 1 ]; then
 	echo 'Starting mariadb'
+	mkdir -p /var/run/mysqld
 	chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
-	service_mariadb restart
-	if [ $? -ne 0 ]; then
-		 rm /var/lib/mysql/ib_logfile*
-		 service_mariadb restart
-	fi
+	service_mariadb restart || exit 1
+
 fi
 
 if [ ${JEEDOM_INSTALL} -eq 0 ] && [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBACKUP}" != 'NO' ]; then
@@ -154,6 +161,9 @@ echo 'Start apache2'
 service apache2 start
 
 echo "Add trap docker_stop"
-trap "docker_stop $$ ;" 15
+trap docker_stop TERM INT
 
-cron -f
+# A foreground external command defers Bash's traps. Waiting for a background
+# cron process lets SIGTERM interrupt wait and stop MariaDB before Docker exits.
+cron -f &
+wait $!

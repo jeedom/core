@@ -61,27 +61,12 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - package installation${NORMAL}"
-  apt-get update
-  apt_install chrony ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
-  apt-get -y install git python3 python3-pip python3-venv
-  apt-get -y install libexpat1 ssl-cert
-  apt-get -y install apt-transport-https
-  apt-get -y install gnupg
-  apt-get -y install xvfb cutycapt xauth
-  apt-get -y install at
-  apt-get -y install mariadb-client
-  apt-get -y install espeak-ng
-  apt-get -y install net-tools
-  apt-get -y install nmap
-  apt-get -y install ffmpeg
-  apt-get -y install usbutils
-  apt-get -y install gettext
-  apt-get -y install libcurl4
-  apt-get -y install chromium
-  apt-get -y install librsync-dev
-  apt-get -y install ssl-cert
-  apt-get -y install iputils-ping
+  apt-get update || exit 1
+  apt_install chrony ca-certificates unzip curl sudo cron plocate tar telnet wget \
+    logrotate dos2unix htop iotop vim iftop smbclient git python3 python3-pip \
+    python3-venv libexpat1 ssl-cert apt-transport-https gnupg xvfb cutycapt xauth \
+    at mariadb-client espeak-ng net-tools nmap ffmpeg usbutils gettext libcurl4 \
+    chromium librsync-dev iputils-ping
   apt-get -y remove brltty
   echo "${GREEN}Step 2 - package installation done${NORMAL}"
 }
@@ -93,8 +78,7 @@ step_3_database() {
 
   service_action status mariadb
   if [ $? -ne 0 ]; then
-    service_action start mariadb
-    service_action start mysql
+    service_action start mariadb || service_action start mysql
   fi
   service_action status mariadb
   if [ $? -ne 0 ]; then
@@ -118,21 +102,9 @@ step_4_apache() {
 step_5_php() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 5 - PHP installation${NORMAL}"
-  apt_install php libapache2-mod-php php-json php-mysql
-  apt-get install -y php-curl
-  apt-get install -y php-gd
-  apt-get install -y php-xml
-  apt-get install -y php-opcache
-  apt-get install -y php-soap
-  apt-get install -y php-xmlrpc
-  apt-get install -y php-common
-  apt-get install -y php-dev
-  apt-get install -y php-zip
-  apt-get install -y php-ssh2
-  apt-get install -y php-mbstring
-  apt-get install -y php-ldap
-  apt-get install -y php-yaml
-  apt-get install -y php-snmp
+  apt_install php libapache2-mod-php php-json php-mysql php-curl php-gd php-xml \
+    php-opcache php-soap php-xmlrpc php-common php-dev php-zip php-ssh2 \
+    php-mbstring php-ldap php-yaml php-snmp
   echo "${GREEN}Step 5 - PHP installation done${NORMAL}"
 }
 
@@ -251,7 +223,7 @@ step_8_jeedom_customization() {
 
   echo '' > /etc/apache2/mods-available/alias.conf
 
-  mkdir /etc/systemd/system/apache2.service.d
+  mkdir -p /etc/systemd/system/apache2.service.d
   echo "[Unit]" > /etc/systemd/system/apache2.service.d/override.conf
   echo "After=mariadb.service" >> /etc/systemd/system/apache2.service.d/override.conf
   echo "Wants=mariadb.service" >> /etc/systemd/system/apache2.service.d/override.conf
@@ -287,8 +259,12 @@ step_8_jeedom_customization() {
     service_action restart apache2 > /dev/null 2>&1
   fi
 
-  echo "vm.swappiness = 10" >>  /etc/sysctl.conf
-  sysctl vm.swappiness=10
+  # systemd-sysctl no longer reads /etc/sysctl.conf on Debian 13.
+  mkdir -p /etc/sysctl.d
+  echo "vm.swappiness = 10" > /etc/sysctl.d/99-jeedom.conf
+  if [ "${INSTALLATION_TYPE}" = "standard" ]; then
+    sysctl -p /etc/sysctl.d/99-jeedom.conf
+  fi
   echo "${GREEN}Step 8 - Apache and PHP configuration done${NORMAL}"
 }
 
@@ -322,7 +298,7 @@ step_10_jeedom_installation() {
   ${WEBSERVER_HOME}/resources/install_composer.sh
   export COMPOSER_ALLOW_SUPERUSER=1
   cd ${WEBSERVER_HOME}
-  composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
+  composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader || exit 1
   mkdir -p /tmp/jeedom
   chmod 777 -R /tmp/jeedom
   chown www-data:www-data -R /tmp/jeedom

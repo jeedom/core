@@ -47,6 +47,49 @@ class DB {
 
 	/*     * **************  Fonctions statiques  ***************** */
 
+	/**
+	 * Resolve a database CLI tool, preferring MariaDB's native command names.
+	 * Some MariaDB installations omit the legacy MySQL aliases.
+	 *
+	 * @return string Shell-escaped executable path
+	 */
+	public static function getClientCommand(string $_tool = 'client'): string {
+		$commands = array(
+			'client' => array('mariadb', 'mysql'),
+			'dump' => array('mariadb-dump', 'mysqldump'),
+			'check' => array('mariadb-check', 'mysqlcheck'),
+		);
+		if (!isset($commands[$_tool])) {
+			throw new InvalidArgumentException('Unknown database client tool: ' . $_tool);
+		}
+		foreach ($commands[$_tool] as $command) {
+			$path = trim((string) shell_exec('command -v ' . escapeshellarg($command) . ' 2>/dev/null'));
+			if ($path !== '' && is_executable($path) && is_file($path)) {
+				return escapeshellarg($path);
+			}
+		}
+		throw new RuntimeException('Database client not found. Install ' . implode(' or ', $commands[$_tool]) . '.');
+	}
+
+	/**
+	 * Build connection arguments shared by database backup and restore.
+	 */
+	public static function getClientConnectionArguments(): string {
+		global $CONFIG;
+		$db = $CONFIG['db'];
+		$arguments = array();
+		if (isset($db['unix_socket'])) {
+			$arguments[] = '--socket=' . escapeshellarg($db['unix_socket']);
+		} elseif ($db['host'] != 'localhost' || $db['port'] != 3306) {
+			$arguments[] = '--host=' . escapeshellarg($db['host']);
+			$arguments[] = '--port=' . escapeshellarg((string) $db['port']);
+		}
+		$arguments[] = '--user=' . escapeshellarg($db['username']);
+		$arguments[] = '--password=' . escapeshellarg($db['password']);
+		$arguments[] = escapeshellarg($db['dbname']);
+		return implode(' ', $arguments);
+	}
+
     /**
      * Initialize database connection
      *

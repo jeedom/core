@@ -76,19 +76,24 @@ if (file_exists('/.dockerinit') || file_exists('/.dockerenv')) {
 /********************************MySQL****************************************/
 echo 'Check MySql => ';
 $rc = 0;
-$enable = false;
-$enable = (shell_exec('ls -l /etc/rc[2-5].d/S0?mysql 2>/dev/null | wc -l') > 0);
+$databaseService = 'mariadb';
+exec('systemctl is-enabled --quiet mariadb 2>/dev/null', $output, $rc);
+if ($rc != 0) {
+	$databaseService = 'mysql';
+	exec('systemctl is-enabled --quiet mysql 2>/dev/null', $output, $rc);
+}
+$enable = ($rc == 0);
 if ($enable) {
 	$rc = 0;
-	exec('systemctl status mysql', $output, $rc);
+	exec('systemctl is-active --quiet ' . $databaseService, $output, $rc);
 	if ($rc == 0) {
 		echo "OK\n";
 	} else {
 		echo "NOK\n";
 		echo "Trying to restart MySql\n";
-		shell_exec('systemctl restart mysql');
+		shell_exec('systemctl restart ' . $databaseService);
 		echo "Recheck MySql => ";
-		exec('systemctl status mysql', $output, $rc);
+		exec('systemctl is-active --quiet ' . $databaseService, $output, $rc);
 		if ($rc != 0) {
 			echo "NOK. Please check manually why...\n";
 			die();
@@ -101,7 +106,8 @@ if ($enable) {
 /********************************Apache****************************************/
 echo 'Check Apache => ';
 $rc = 0;
-$enable = (shell_exec('ls -l /etc/rc[2-5].d/S0?apache2 2>/dev/null | wc -l') > 0);
+exec('systemctl is-enabled --quiet apache2 2>/dev/null', $output, $rc);
+$enable = ($rc == 0);
 if ($enable) {
 	$rc = 0;
 	exec('systemctl status apache2', $output, $rc);

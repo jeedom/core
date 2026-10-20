@@ -1,10 +1,10 @@
 # build docker image based on debian bookworm and trixie
-# start all containers and run sick.php
+# start containers, check the environment, and round-trip a real Jeedom backup
 # stop & clean
 name: Docker Test Image
 
 on:
-  # sick.php only checks that the environment boots (folders, DB), not application code, so this only matters for changes to the install pipeline itself.
+  # Exercise installation and database backup/restore when their implementation changes.
   pull_request:
     branches:
       - 'develop'
@@ -22,6 +22,10 @@ on:
       - 'resources/install_composer.sh'
       - 'resources/install_nodejs.sh'
       - 'sick.php'
+      - 'core/class/DB.class.php'
+      - 'install/backup.php'
+      - 'install/restore.php'
+      - 'tests/compatibility/**'
   # this is to manually trigger the worklow
   workflow_dispatch:
     inputs:
@@ -46,13 +50,17 @@ jobs:
         # run current image for bookworm and check it
         timeout-minutes: 10
         run: |
-          docker run -p 81:80 -d --rm --name jeedom_bookworm jeedom:bookworm
+          docker run -p 81:80 -d --name jeedom_bookworm jeedom:bookworm
           until [ "`docker inspect -f {{.State.Health.Status}} jeedom_bookworm`" == "healthy" ]; do
             echo "waiting container to be healthy..."
             sleep 5;
           done;
           docker logs jeedom_bookworm | grep -vi "password"
           docker exec jeedom_bookworm php sick.php
+          docker exec jeedom_bookworm php tests/compatibility/databaseCliTest.php
+          docker exec jeedom_bookworm bash tests/compatibility/databaseRoundTrip.sh
+          docker stop -t 30 jeedom_bookworm
+          test "$(docker inspect -f '{{.State.ExitCode}}' jeedom_bookworm)" = 0
       - name: dump bookworm logs on failure
         if: failure()
         run: docker logs jeedom_bookworm | grep -vi "password" || true
@@ -65,13 +73,17 @@ jobs:
         # run current image for trixie and check it
         timeout-minutes: 10
         run: |
-          docker run -p 82:80 -d --rm --name jeedom_trixie jeedom:trixie
+          docker run -p 82:80 -d --name jeedom_trixie jeedom:trixie
           until [ "`docker inspect -f {{.State.Health.Status}} jeedom_trixie`" == "healthy" ]; do
             echo "waiting container to be healthy..."
             sleep 5;
           done;
           docker logs jeedom_trixie | grep -vi "password"
           docker exec jeedom_trixie php sick.php
+          docker exec jeedom_trixie php tests/compatibility/databaseCliTest.php
+          docker exec jeedom_trixie bash tests/compatibility/databaseRoundTrip.sh
+          docker stop -t 30 jeedom_trixie
+          test "$(docker inspect -f '{{.State.ExitCode}}' jeedom_trixie)" = 0
       - name: dump trixie logs on failure
         if: failure()
         run: docker logs jeedom_trixie | grep -vi "password" || true

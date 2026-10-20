@@ -78,15 +78,9 @@ try {
 	}
 
 
-	if (isset($CONFIG['db']['unix_socket'])) {
-		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-	} else {
-		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
-			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-		} else {
-			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-		}
-	}
+	$str_db_connexion = DB::getClientConnectionArguments();
+	$check_command = DB::getClientCommand('check');
+	$dump_command = DB::getClientCommand('dump');
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
 	foreach ($tables as $table) {
 		$table = array_values($table)[0];
@@ -94,11 +88,10 @@ try {
 			continue;
 		}
 		echo "Checking  table " . $table . "...";
-		$check_command = 'mariadbcheck';
-		if (!file_exists('/usr/bin/mariadbcheck')) {
-			$check_command = 'mysqlcheck';
+		system($check_command . ' ' . $str_db_connexion . ' --auto-repair --silent --tables ' . escapeshellarg($table), $rc);
+		if ($rc != 0) {
+			throw new Exception('Database table check failed. Code: ' . $rc);
 		}
-		system($check_command . ' ' . $str_db_connexion . ' --auto-repair --silent --tables ' . $table);
 		echo "OK" . "\n";
 	}
 
@@ -112,10 +105,10 @@ try {
 	if (file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('can\'t delete database backup. Check rights');
 	}
-	system("mysqldump " . $str_db_connexion . "  > " . $jeedom_dir . "/DB_backup.sql", $rc);
+	system($dump_command . ' ' . $str_db_connexion . ' > ' . escapeshellarg($jeedom_dir . '/DB_backup.sql'), $rc);
 
 	if ($rc != 0) {
-		throw new Exception('Backing up database failed. Check mysqldump installation. Code: ' . $rc);
+		throw new Exception('Backing up database failed. Check database dump client installation. Code: ' . $rc);
 	}
 	if (filemtime($jeedom_dir . "/DB_backup.sql") < (strtotime('now') - 1200)) {
 		throw new Exception('Backing up database failed. Backup file too old, check rights.');

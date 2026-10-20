@@ -53,3 +53,19 @@ jobs:
 
       - name: Run PHPStan
         run: vendor/bin/phpstan analyse --configuration phpstan.neon --error-format=github
+
+  database-cli-compatibility:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.4, 8.2, 8.4]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+      - name: Test native MariaDB and legacy MySQL clients
+        run: |
+          php tests/compatibility/databaseCliTest.php
+          bash tests/compatibility/dockerServicesTest.sh

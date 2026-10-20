@@ -119,7 +119,10 @@ try {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
 	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
+	system('cd ' . escapeshellarg($jeedom_dir) . '; tar xfz ' . escapeshellarg($backup) . ' ' . $exclude, $rc);
+	if ($rc != 0) {
+		throw new Exception('Cannot unpack backup archive. Code: ' . $rc);
+	}
 	echo "OK\n";
 
 	
@@ -145,6 +148,13 @@ try {
 	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
 		throw new Exception('Cannot find database backup file : DB_backup.sql');
 	}
+	// Resolve the client before deleting any existing tables.
+	$restore_command = DB::getClientCommand();
+	$str_db_connexion = DB::getClientConnectionArguments();
+	system("sed -i '1{/999999.*sandbox/d}' " . escapeshellarg($jeedom_dir . '/DB_backup.sql'), $rc);
+	if ($rc != 0) {
+		throw new Exception('Cannot prepare database backup for import. Code: ' . $rc);
+	}
 	echo "Deleting database...";
 	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
 	echo "Disabling constraints...";
@@ -159,17 +169,10 @@ try {
 	
 	echo "Restoring database from backup...";
 
-	if (isset($CONFIG['db']['unix_socket'])) {
-		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-	} else {
-		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
-			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-		} else {
-			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-		}
+	system($restore_command . ' ' . $str_db_connexion . ' < ' . escapeshellarg($jeedom_dir . '/DB_backup.sql'), $rc);
+	if ($rc != 0) {
+		throw new Exception('Restoring database failed. Code: ' . $rc);
 	}
-	shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
-	shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
 	echo "OK\n";
 	
 	echo "Enable back constraints...";
