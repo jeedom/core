@@ -55,14 +55,12 @@ RUN composer install --no-dev --no-interaction --no-plugins --no-scripts --prefe
 # Le checkout Semaphore hérite d'UMask=0077 ; ces droits ne sont pas ceux de l'image.
 COPY --chmod=u=rwX,go=rX install/OS_specific/Docker/rootfs/ /
 COPY install/OS_specific/Docker/source.json /usr/share/jeedom-image/source.json
-COPY --chmod=644 install/OS_specific/Docker/check-packages.py /usr/local/lib/jeedom/check-packages.py
 RUN chmod 755 /usr/local/bin/jeedom-* /usr/local/bin/systemctl /usr/local/sbin/service \
  && printf '* * * * * www-data /usr/bin/php /var/www/html/core/php/jeeCron.php >> /var/www/html/log/cron_execution 2>&1\n* * * * * www-data /usr/bin/touch /run/jeedom/cron-heartbeat\n' > /etc/cron.d/jeedom \
  && chmod 644 /etc/cron.d/jeedom \
  && mkdir -p /var/www/html/log \
  && apache2ctl configtest \
  && php -l /usr/local/lib/jeedom/database.php \
- && runuser -u www-data -- /usr/bin/python3 /usr/local/lib/jeedom/check-packages.py \
  && runuser -u mysql -- /usr/bin/getent passwd root > /dev/null \
  && runuser -u www-data -- /usr/bin/php -r 'require "/usr/src/jeedom/vendor/autoload.php";' \
  && find /var/www/html -mindepth 1 -delete

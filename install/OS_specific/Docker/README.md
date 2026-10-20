@@ -21,8 +21,7 @@ pas le job ou les instances SaaS.
 | `Dockerfile.dockerignore` | Exclusions propres à ce Dockerfile, avec la racine du dépôt comme contexte. |
 | `prepare.py` | Métadonnées du checkout local ; aucun téléchargement d'un second core. |
 | `rootfs/` | Configuration des services, initialisation, santé et adaptateurs de services. |
-| `check-packages.py` | Contrôle des dépendances du core dans l'image construite. |
-| `tests/` | Tests des paquets, de Supervisor, de la configuration SQL et du conteneur. |
+| `tests/` | Tests de Supervisor, de la configuration SQL et du conteneur. |
 
 ## Construire et tester
 
@@ -137,19 +136,13 @@ Une base externe neuve doit exister, être vide et disposer de son compte SQL.
 Changer les variables sur une base existante ne crée pas de compte et ne change
 pas son mot de passe côté serveur. MariaDB intégrée écoute uniquement par socket.
 
-## Contrôle des dépendances
-
-Le build exécute `check-packages.py` comme `www-data`. Il compare les paquets
-installés aux commandes APT de `install/install.sh` et à `install/packages.json`
-du core embarqué, puis vérifie les commandes et les extensions PHP, notamment
-`mysqlcheck --version`. Une dépendance absente bloque le build.
+## Dépendances embarquées
 
 Les dépendances sont alignées sur celles de `develop`, notamment `chrony`,
 `plocate`, `espeak-ng` et `gnupg`. Le paquet `libcurl4` est fourni sous son nom
 Debian 13 `libcurl4t64`. Les noms historiques MySQL restent fournis par
 `mariadb-client-compat`. Aucun démon de synchronisation de l'horloge n'est lancé.
 
-Les adaptations historiques restent explicites dans `REPLACEMENTS` et
-`EXCEPTIONS` : Python 2, anciens noms de paquets et composants absents de Debian
-13. PHP IMAP n'est pas fourni par cette image. Les exceptions réellement
-rencontrées dans l'installeur sont affichées lors du build.
+La liste des paquets est maintenue directement dans le Dockerfile, sans
+comparaison automatique avec l'installeur du core. Python 2 et PHP IMAP ne sont
+pas fournis par cette image.
