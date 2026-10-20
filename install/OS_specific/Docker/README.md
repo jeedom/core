@@ -17,7 +17,7 @@ pas le job ou les instances SaaS.
 
 | Fichier | Rôle |
 | --- | --- |
-| `Dockerfile` | Debian 13 slim, Apache/PHP 8.4, MariaDB, Node 22 et Composer 2. |
+| `Dockerfile` | Debian 13 slim, Apache/PHP 8.4, MariaDB, Node 22 et Composer 2 ; paquets APT lus depuis `install/packages.json`. |
 | `Dockerfile.dockerignore` | Exclusions propres à ce Dockerfile, avec la racine du dépôt comme contexte. |
 | `prepare.py` | Métadonnées du checkout local ; aucun téléchargement d'un second core. |
 | `rootfs/` | Configuration des services, initialisation, santé et adaptateurs de services. |
@@ -138,11 +138,17 @@ pas son mot de passe côté serveur. MariaDB intégrée écoute uniquement par s
 
 ## Dépendances embarquées
 
-Les dépendances sont alignées sur celles de `develop`, notamment `chrony`,
-`plocate`, `espeak-ng` et `gnupg`. Le paquet `libcurl4` est fourni sous son nom
-Debian 13 `libcurl4t64`. Les noms historiques MySQL restent fournis par
-`mariadb-client-compat`. Aucun démon de synchronisation de l'horloge n'est lancé.
+Le Dockerfile lit les noms de paquets de la section `apt` d'`install/packages.json`
+du checkout construit, y compris les paquets marqués `optional`. Python 3 est
+installé d'abord pour lire ce JSON. Le nom `libcurl4` est traduit en
+`libcurl4t64` pour Debian 13.
 
-La liste des paquets est maintenue directement dans le Dockerfile, sans
-comparaison automatique avec l'installeur du core. Python 2 et PHP IMAP ne sont
-pas fournis par cette image.
+Une liste complémentaire dans le Dockerfile fournit les dépendances absentes
+du catalogue : Apache, Supervisor, cron, outils de l'installateur et
+`mariadb-client-compat` pour les noms historiques MySQL, dont `mysqlcheck`.
+Les paquets présents dans le JSON ne sont pas recopiés dans cette liste.
+Un ajout au catalogue est ainsi installé au prochain build. Une erreur de lecture
+du JSON ou d'installation APT bloque la construction, sans script de comparaison.
+
+Aucun démon de synchronisation de l'horloge n'est lancé. Python 2 et PHP IMAP ne
+sont pas fournis par cette image.

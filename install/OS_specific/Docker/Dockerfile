@@ -13,26 +13,36 @@ ENV TZ=Europe/Paris \
 
 # Les scripts Debian ne doivent lancer aucun service pendant la construction.
 # MBROLA est fourni par le composant Debian officiel contrib.
-RUN printf '#!/bin/sh\nexit 101\n' > /usr/sbin/policy-rc.d \
- && chmod 755 /usr/sbin/policy-rc.d \
- && sed -i 's/^Components: main$/Components: main contrib/' /etc/apt/sources.list.d/debian.sources \
- && apt-get update \
- && apt-get install -y --no-install-recommends \
-      apache2 apache2-utils apt-transport-https apt-utils at build-essential ca-certificates \
-      chromium chrony cron curl cutycapt dos2unix espeak espeak-ng ffmpeg gettext git gnupg htop iftop iotop \
-      iputils-ping libcurl3t64-gnutls libcurl4t64 libexpat1 librsync-dev plocate logrotate lsb-release \
-      mariadb-client mariadb-client-compat mariadb-common mariadb-server mbrola net-tools \
-      nmap ntpsec-ntpdate passwd php php-cli php-common php-curl php-dev php-gd php-json \
-      php-ldap php-mbstring php-mysql php-opcache php-snmp php-soap php-ssh2 \
-      php-xml php-xmlrpc php-yaml php-zip libapache2-mod-php python3 python3-pip \
-      python3-venv smbclient ssl-cert sudo supervisor tar telnet tzdata unzip usbutils \
-      vim wget xauth xvfb \
- && rm -rf /var/lib/apt/lists/* /var/lib/mysql/* \
- && a2enmod headers remoteip \
- && a2dismod status \
- && usermod -a -G dialout,tty www-data \
- && printf 'www-data ALL=(ALL) NOPASSWD: ALL\n' > /etc/sudoers.d/jeedom \
- && chmod 440 /etc/sudoers.d/jeedom
+COPY --chmod=644 install/packages.json /tmp/jeedom-packages.json
+RUN <<'SH'
+set -eu
+printf '#!/bin/sh\nexit 101\n' > /usr/sbin/policy-rc.d
+chmod 755 /usr/sbin/policy-rc.d
+sed -i 's/^Components: main$/Components: main contrib/' /etc/apt/sources.list.d/debian.sources
+apt-get update
+apt-get install -y --no-install-recommends python3
+packages="$(python3 -c '
+import json
+with open("/tmp/jeedom-packages.json") as source:
+    names = json.load(source)["apt"]
+print(" ".join("libcurl4t64" if name == "libcurl4" else name for name in names))
+')"
+# Compléments absents du catalogue : runtime Docker, installateur et outils Jeedom.
+apt-get install -y --no-install-recommends \
+    apache2 apache2-utils apt-utils build-essential ca-certificates cron curl \
+    cutycapt dos2unix espeak espeak-ng git gnupg htop iftop iotop iputils-ping \
+    libcurl3t64-gnutls libexpat1 plocate logrotate lsb-release mariadb-client-compat \
+    mbrola ntpsec-ntpdate passwd php php-cli php-json php-mysql php-opcache \
+    php-snmp php-yaml libapache2-mod-php sudo supervisor telnet tzdata unzip vim \
+    xauth xvfb $packages
+rm -f /tmp/jeedom-packages.json
+rm -rf /var/lib/apt/lists/* /var/lib/mysql/*
+a2enmod headers remoteip
+a2dismod status
+usermod -a -G dialout,tty www-data
+printf 'www-data ALL=(ALL) NOPASSWD: ALL\n' > /etc/sudoers.d/jeedom
+chmod 440 /etc/sudoers.d/jeedom
+SH
 
 COPY --from=node /usr/local/bin/node /usr/local/bin/node
 COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
