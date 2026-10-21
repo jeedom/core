@@ -885,7 +885,7 @@ class scenario {
 			));
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' instance_id=' . $instance_id;
+			$cmd .= ' intance_id=' . $instance_id;
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}
