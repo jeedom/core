@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e58958ecfd08425a9af4481786a65d4d",
+    "content-hash": "183431fdb1ebc06ffa2c6e9ea337f0bc",
     "packages": [
         {
             "name": "abbadon1334/sun-position-spa-php",
@@ -560,16 +560,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v5.4.46",
+            "version": "v5.4.54",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "0fe08ee32cec2748fbfea10c52d3ee02049e0f6b"
+                "reference": "c025df9d14208da976fa84a481f2f2a6e090500a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/0fe08ee32cec2748fbfea10c52d3ee02049e0f6b",
-                "reference": "0fe08ee32cec2748fbfea10c52d3ee02049e0f6b",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/c025df9d14208da976fa84a481f2f2a6e090500a",
+                "reference": "c025df9d14208da976fa84a481f2f2a6e090500a",
                 "shasum": ""
             },
             "require": {
@@ -595,7 +595,7 @@
                 "symfony/cache-implementation": "1.0|2.0"
             },
             "require-dev": {
-                "cache/integration-tests": "dev-master",
+                "cache/integration-tests": "^0.18",
                 "doctrine/cache": "^1.6|^2.0",
                 "doctrine/dbal": "^2.13.1|^3|^4",
                 "predis/predis": "^1.1|^2.0",
@@ -637,7 +637,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v5.4.46"
+                "source": "https://github.com/symfony/cache/tree/v5.4.54"
             },
             "funding": [
                 {
@@ -649,11 +649,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-04T11:43:55+00:00"
+            "time": "2026-08-30T20:10:04+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -803,21 +807,22 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v5.4.45",
+            "version": "v5.4.54",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "a784b66edc4c151eb05076d04707906ee2c209a9"
+                "reference": "f371786ec76ca4bed6a7ec03802ba2525f6714db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/a784b66edc4c151eb05076d04707906ee2c209a9",
-                "reference": "a784b66edc4c151eb05076d04707906ee2c209a9",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/f371786ec76ca4bed6a7ec03802ba2525f6714db",
+                "reference": "f371786ec76ca4bed6a7ec03802ba2525f6714db",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/cache": "^4.4|^5.0|^6.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/service-contracts": "^1.1|^2|^3"
             },
             "type": "library",
@@ -846,7 +851,7 @@
             "description": "Provides an engine that can compile and evaluate expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/expression-language/tree/v5.4.45"
+                "source": "https://github.com/symfony/expression-language/tree/v5.4.54"
             },
             "funding": [
                 {
@@ -858,11 +863,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-04T14:55:40+00:00"
+            "time": "2026-10-09T11:21:43+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -946,16 +955,16 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.37.0",
+            "version": "v1.43.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "dfb55726c3a76ea3b6459fcfda1ec2d80a682411"
+                "reference": "9c6a5d6b01ca51d486c813e9a9c0ed55f208bb74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/dfb55726c3a76ea3b6459fcfda1ec2d80a682411",
-                "reference": "dfb55726c3a76ea3b6459fcfda1ec2d80a682411",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/9c6a5d6b01ca51d486c813e9a9c0ed55f208bb74",
+                "reference": "9c6a5d6b01ca51d486c813e9a9c0ed55f208bb74",
                 "shasum": ""
             },
             "require": {
@@ -1006,7 +1015,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.37.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.43.0"
             },
             "funding": [
                 {
@@ -1026,7 +1035,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-10T16:19:22+00:00"
+            "time": "2026-09-25T15:50:05+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -1188,11 +1197,11 @@
     "packages-dev": [
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.54",
+            "version": "2.3.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8be50c3992107dc837b17da4d140fbbdf9a5c5bd",
-                "reference": "8be50c3992107dc837b17da4d140fbbdf9a5c5bd",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6155239b488e95d26d1ebd95c6b4bb294d7f09db",
+                "reference": "6155239b488e95d26d1ebd95c6b4bb294d7f09db",
                 "shasum": ""
             },
             "require": {
@@ -1214,6 +1223,17 @@
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Mirtes"
+                },
+                {
+                    "name": "Markus Staab"
+                },
+                {
+                    "name": "Vincent Langlet"
+                }
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
             "keywords": [
@@ -1237,7 +1257,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-29T13:31:09+00:00"
+            "time": "2026-10-08T21:09:11+00:00"
         }
     ],
     "aliases": [],
@@ -1246,7 +1266,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4"
+        "php": "^7.4 || ^8.0"
     },
     "platform-dev": {},
     "platform-overrides": {
