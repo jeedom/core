@@ -982,12 +982,15 @@ class jeedom {
 	}
 
 	public static function restore(string $_backup = '', bool $_background = false) {
-		if (self::isValidBackup($_backup) === false) {
+		if ($_backup !== '' && self::isValidBackup($_backup) === false) {
 			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
 		if ($_background) {
 			log::clear('restore');
-			$cmd = __DIR__ . '/../../install/restore.php ' . escapeshellarg('backup=' . $_backup);
+			$cmd = __DIR__ . '/../../install/restore.php';
+			if ($_backup !== '') {
+				$cmd .= ' ' . escapeshellarg('backup=' . $_backup);
+			}
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd, true);
 		} else {
