@@ -19,20 +19,8 @@ parameters:
 			path: core/api/jeeApi.php
 
 		-
-			message: '#^Variable \$jsonrpc in isset\(\) always exists and is not nullable\.$#'
-			identifier: isset.variable
-			count: 1
-			path: core/api/jeeApi.php
-
-		-
 			message: '#^Variable \$object might not be defined\.$#'
 			identifier: variable.undefined
-			count: 1
-			path: core/api/jeeApi.php
-
-		-
-			message: '#^Variable \$request in isset\(\) always exists and is not nullable\.$#'
-			identifier: isset.variable
 			count: 1
 			path: core/api/jeeApi.php
 
