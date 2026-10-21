@@ -22,7 +22,7 @@ try {
 	$isAdmin = isConnect('admin');
 	$onlyPluginId = 'all';
 
-	if (!isConnect() && !jeedom::apiAccess(init('apikey'), init('plugin'))) {
+	if (!isConnect() && !jeedom::apiAccess(init('apikey'), init('plugin', 'core'))) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
