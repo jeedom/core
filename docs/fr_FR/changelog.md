@@ -1,5 +1,10 @@
 # Changelog Jeedom V4.6
 
+## 4.6.2
+
+- Atténuation faille de sécurité PHP
+
+
 ## 4.6.1
 
 - Correction de l’édition d’un scénario dont le timeout est *null* en base de données
