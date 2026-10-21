@@ -1,12 +1,12 @@
 {
   "require": {
+    "php": "^7.4 || ^8.0",
     "abbadon1334/sun-position-spa-php": "^2",
     "dragonmantank/cron-expression": "^3",
-    "symfony/expression-language": "5 - 7",
+    "symfony/expression-language": "^5.4 || ^6 || ^7",
     "pragmarx/google2fa-qrcode": "^3",
-    "bacon/bacon-qr-code": "2 - 3",
-    "psr/log": "^1.1",
-    "php": ">=7.4"
+    "bacon/bacon-qr-code": "^2 || ^3",
+    "psr/log": "^1.1"
   },
   "config": {
     "allow-plugins": {
