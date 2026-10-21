@@ -839,14 +839,21 @@ class scenario {
 		}
 		$state = $this->getState();
 		if ($state == 'starting') {
+			if (($startingTime = (int)$this->getCache('startingTime', 0)) == 0) {
+				$messge = sprintf(__("Le scénario est en état de démarrage mais l'heure de démarrage n'est pas définie. Vérifiez le log scenario_execution, ainsi que le log du scénario '%s'", __FILE__), $this->getName());
+				log::add(__CLASS__, 'error', $messge);
+				$this->setLog($messge);
+				$this->persistLog();
+				return false;
+			}
 			//Scenario stuck into starting state. May be too much sql connections, refused connection, or scenario hangs.
-			if (strtotime('now') - $this->getCache('startingTime', 0) > 5) {
+			if (strtotime('now') - $startingTime > 5) {
 				log::add('scenario', 'error', __('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution, ainsi que le log du scénario', __FILE__) . " \"" . $this->getName() . "\".");
-				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à', __FILE__) . ' ' . date('Y-m-d H:i:s', $this->getCache('startingTime', null)) . ".");
+				$this->setLog(__('La dernière exécution du scénario ne s\'est pas lancée. Vérifiez le log scenario_execution pour l\'exécution à', __FILE__) . ' ' . date('Y-m-d H:i:s', $startingTime) . ".");
 				$this->persistLog();
 			}
 			//Delay scenario start if another instance ever starting.
-			if (($this->getCache('startingTime', 0) + 2) > strtotime('now')) {
+			if (($startingTime + 2) > strtotime('now')) {
 				$i = 0;
 				while ($state == 'starting') {
 					sleep(1);
@@ -878,7 +885,7 @@ class scenario {
 			));
 			$cmd = __DIR__ . '/../../core/php/jeeScenario.php ';
 			$cmd .= ' scenario_id=' . $this->getId();
-			$cmd .= ' intance_id=' . $instance_id;
+			$cmd .= ' instance_id=' . $instance_id;
 			$cmd .= ' >> ' . log::getPathToLog('scenario_execution') . ' 2>&1 &';
 			system::php($cmd);
 		}
@@ -890,7 +897,7 @@ class scenario {
 	 */
 	public function execute($instance_id = '') {
 		if (config::byKey('enableScenario') != 1) {
-			return;
+			return false;
 		}
 		if ($instance_id != '') {
 			$this->setTags(cache::byKey('scenarioInstanceAttr' . $this->getId() . '::' . $instance_id)->getValue()['tags']);
@@ -901,7 +908,7 @@ class scenario {
 			$this->setState('stop');
 			$this->setPID();
 			$this->persistLog();
-			return;
+			return false;
 		}
 		if ($this->getConfiguration('timeDependency', 0) == 1) {
 			if (!jeedom::isDateOk() || (((new DateTime('today midnight +1 day'))->format('I') - (new DateTime('today midnight'))->format('I')) == -1  && date('I') == 1 && date('Gi') > 159)) {
@@ -909,7 +916,7 @@ class scenario {
 				$this->setState('stop');
 				$this->setPID();
 				$this->persistLog();
-				return;
+				return false;
 			}
 		}
 		if ($this->getTag('trigger') == 'scenario') {
@@ -941,7 +948,7 @@ class scenario {
 			}
 		}
 		if ($this->getState() == 'in progress' && $this->getConfiguration('allowMultiInstance', 0) == 0) {
-			return;
+			return false;
 		}
 		if (count($this->getTags()) == 0) {
 			$this->setLog($GLOBALS['JEEDOM_SCLOG_TEXT']['start']['txt'] . ' ' . $this->getTag('message') . '.');
