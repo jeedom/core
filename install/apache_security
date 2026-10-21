@@ -9,10 +9,12 @@ AllowOverride All
 <IfModule mod_php.c>
 php_admin_flag session.upload_progress.enabled Off
 php_admin_value max_input_nesting_level 32
+php_admin_value memory_limit -1
 </IfModule>
 <IfModule mod_php7.c>
 php_admin_flag session.upload_progress.enabled Off
 php_admin_value max_input_nesting_level 32
+php_admin_value memory_limit -1
 </IfModule>
 </Directory>
 

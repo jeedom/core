@@ -30,6 +30,7 @@ mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
 
 <IfModule mod_php.c>
 php_flag session.upload_progress.enabled off
+php_value memory_limit -1
 php_value max_input_nesting_level 32
 php_value post_max_size 1G
 php_value upload_max_filesize 1G
@@ -44,6 +45,7 @@ php_value memory_limit 512M
 
 <IfModule mod_php7.c>
 php_flag session.upload_progress.enabled off
+php_value memory_limit -1
 php_value max_input_nesting_level 32
 php_value post_max_size 1G
 php_value upload_max_filesize 1G
