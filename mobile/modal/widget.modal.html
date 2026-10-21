@@ -16,29 +16,28 @@ $type = init('type');
 <div class="form-group">
 	<?php
 	if ($type == 'image') {
-		$src = null;
+		$imageSource = null;
 		if (filter_var($data, FILTER_VALIDATE_URL) !== false && preg_match('#^https?://#i', $data)) {
-			$src = $data;
+			$imageSource = $data;
 		} else {
-			$maxImageSize = 10 * 1024 * 1024;
 			$imagePath = realpath($data);
-			if ($imagePath !== false) {
-				if (isAllowedPath($imagePath) && is_file($imagePath) && is_readable($imagePath)) {
-					$imageContents = file_get_contents($imagePath, false, null, 0, $maxImageSize + 1);
-					if ($imageContents !== false && strlen($imageContents) <= $maxImageSize) {
-						$finfo = new finfo(FILEINFO_MIME_TYPE);
-						$mimeType = $finfo->buffer($imageContents);
-
-						if ($mimeType !== false && strpos($mimeType, 'image/') === 0) {
-							$imageData = base64_encode($imageContents);
-							$src = 'data: ' . $mimeType . ';base64,' . $imageData;
-						}
-					}
-				}
+			if ($imagePath !== false && isAllowedPath($imagePath) && is_file($imagePath) && is_readable($imagePath)) {
+				$imageSource = $imagePath;
 			}
 		}
-		if ($src !== null) {
-			echo '<img src="' . htmlspecialchars($src, ENT_QUOTES) . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
+		if ($imageSource !== null) {
+			$maxImageSize = 10 * 1024 * 1024;
+			$imageContents = file_get_contents($imageSource, false, null, 0, $maxImageSize + 1);
+			if ($imageContents !== false && strlen($imageContents) <= $maxImageSize) {
+				$finfo = new finfo(FILEINFO_MIME_TYPE);
+				$mimeType = $finfo->buffer($imageContents);
+
+				if ($mimeType !== false && strpos($mimeType, 'image/') === 0) {
+					$imageData = base64_encode($imageContents);
+					$imageSrc = 'data: ' . $mimeType . ';base64,' . $imageData;
+					echo '<img src="' . htmlspecialchars($imageSrc, ENT_QUOTES) . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
+				}
+			}
 		}
 	}
 	?>
