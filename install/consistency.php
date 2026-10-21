@@ -485,13 +485,6 @@ try {
 		echo "OK\n";
 	}
 
-	if (!file_exists('/etc/apache2/conf-enabled/remoteip.conf')) {
-		echo "Configure apache remote ip...";
-		shell_exec('sudo cp ' . __DIR__ . '/apache_remoteip /etc/apache2/conf-enabled/remoteip.conf');
-		echo "Update remoteip config file, you need to restart jeedom";
-		echo "OK\n";
-	}
-
 	echo "Set cache hour...";
 	cache::set('hour', strtotime('UTC'));
 	echo "OK\n";

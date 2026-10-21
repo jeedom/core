@@ -32,7 +32,7 @@ try {
 			'reason' => __('Clé API market invalide ou non autorisée', __FILE__),
 		]);
 		sleep(5);
-		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . getClientIp());
+		throw new Exception(__('Vous n\'êtes pas autorisé à effectuer cette action, IP :', __FILE__) . ' ' . network::getClientIp());
 	}
 	if (init('action') == 'resync') {
 		if (jeedom::isStarted() && config::byKey('enableCron', 'core', 1, true) == 0) {
