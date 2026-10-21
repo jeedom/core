@@ -119,7 +119,7 @@ try {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
 	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
+	system('cd ' . $jeedom_dir . '; tar xfz ' . escapeshellarg($backup) . ' ' . $exclude);
 	echo "OK\n";
 
 
