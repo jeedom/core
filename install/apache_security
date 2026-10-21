@@ -5,6 +5,15 @@ TraceEnable Off
 <Directory /var/www/html>
 Options -Indexes -ExecCGI -FollowSymLinks
 AllowOverride All
+# Apply before PHP parses the request and prevent per-directory overrides.
+<IfModule mod_php.c>
+php_admin_flag session.upload_progress.enabled Off
+php_admin_value max_input_nesting_level 32
+</IfModule>
+<IfModule mod_php7.c>
+php_admin_flag session.upload_progress.enabled Off
+php_admin_value max_input_nesting_level 32
+</IfModule>
 </Directory>
 
 <IfModule mod_headers.c>
