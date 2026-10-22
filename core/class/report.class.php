@@ -27,7 +27,11 @@ class report {
 		if (!file_exists(__DIR__ . '/../../data/report')) {
 			return;
 		}
-		shell_exec('find ' . __DIR__ . '/../../data/report -type f -mtime +' . config::byKey('report::maxdays') . ' -delete');
+		$maxdays = filter_var(config::byKey('report::maxdays', 'core', 30), FILTER_VALIDATE_INT, ['options' => ['min_range' => 0]]);
+		if ($maxdays === false) {
+			return;
+		}
+		shell_exec(sprintf('find %s -type f -mtime +%d -delete', __DIR__ . '/../../data/report', $maxdays));
 	}
 
 	public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {

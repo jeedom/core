@@ -19,7 +19,7 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once dirname(__DIR__).'/core/php/console.php';
+require_once dirname(__DIR__) . '/core/php/console.php';
 
 echo "[START RESTORE]\n";
 $starttime = strtotime('now');
@@ -27,7 +27,7 @@ $starttime = strtotime('now');
 try {
 	require_once __DIR__ . '/../core/php/core.inc.php';
 	echo "***************Begin Jeedom restore " . date('Y-m-d H:i:s') . "***************\n";
-	
+
 	try {
 		echo "Send begin restore event...";
 		jeedom::event('begin_restore', true);
@@ -35,7 +35,7 @@ try {
 	} catch (Exception $e) {
 		echo '***ERROR*** ' . $e->getMessage();
 	}
-	
+
 	global $CONFIG;
 	global $BACKUP_FILE;
 	if (isset($BACKUP_FILE)) {
@@ -71,11 +71,11 @@ try {
 	if (substr($backup, 0, 1) != '/') {
 		$backup = __DIR__ . '/../' . $backup;
 	}
-	
+
 	if (!file_exists($backup)) {
 		throw new Exception('Backup not found.' . $backup);
 	}
-	
+
 	try {
 		echo "Checking rights...";
 		jeedom::cleanFileSystemRight();
@@ -83,25 +83,25 @@ try {
 	} catch (Exception $e) {
 		echo '***ERROR*** ' . $e->getMessage();
 	}
-	
+
 	$jeedom_dir = realpath(__DIR__ . '/../');
-	
+
 	echo "Restore from file : " . $backup . "\n";
-	
+
 	echo "Backup database access configuration...";
-	
+
 	if (!copy(__DIR__ . '/../core/config/common.config.php', '/tmp/common.config.php')) {
 		echo 'Cannot copy ' . __DIR__ . "/../core/config/common.config.php\n";
 	}
-	
+
 	echo "OK\n";
-	
+
 	try {
 		jeedom::stop();
 	} catch (Exception $e) {
 		$e->getMessage();
 	}
-	
+
 	echo "Unpacking backup...";
 	$excludes = array(
 		'tmp',
@@ -119,21 +119,21 @@ try {
 		$exclude .= ' --exclude="' . $folder . '"';
 	}
 	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
+	system('cd ' . $jeedom_dir . '; tar xfz ' . escapeshellarg($backup) . ' ' . $exclude);
 	echo "OK\n";
 
-	
+
 	if (exec('which composer | wc -l') == 0) {
 		echo "\nNeed to install composer...";
-		echo shell_exec(system::getCmdSudo().' ' . __DIR__ . '/../resources/install_composer.sh');
+		echo shell_exec(system::getCmdSudo() . ' ' . __DIR__ . '/../resources/install_composer.sh');
 		echo "OK\n";
 	}
 	echo "Update composer file...\n";
 	if (exec('which composer | wc -l') > 0) {
-		shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
-		shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
-		shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
-		if(method_exists('jeedom','cleanFileSystemRight')){
+		shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;' . system::getCmdSudo() . ' composer self-update > /dev/null 2>&1');
+		shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";' . system::getCmdSudo() . ' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
+		shell_exec(system::getCmdSudo() . ' rm /tmp/composer 2>/dev/null');
+		if (method_exists('jeedom', 'cleanFileSystemRight')) {
 			jeedom::cleanFileSystemRight();
 		}
 		echo "OK\n";
@@ -156,7 +156,7 @@ try {
 		DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
 	}
-	
+
 	echo "Restoring database from backup...";
 
 	if (isset($CONFIG['db']['unix_socket'])) {
@@ -168,32 +168,30 @@ try {
 			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		}
 	}
-	shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
-	shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
+	shell_exec("sed -i '1{/999999.*sandbox/d}' " . $jeedom_dir . "/DB_backup.sql");
+	shell_exec("mysql " . $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
 	echo "OK\n";
-	
+
 	echo "Enable back constraints...";
 	try {
 		DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
 	} catch (Exception $e) {
-		
 	}
 	echo "OK\n";
-	
+
 	if (!file_exists(__DIR__ . '/../core/config/common.config.php')) {
 		echo "Restoring database configuration file...";
 		copy('/tmp/common.config.php', __DIR__ . '/../core/config/common.config.php');
 		echo "OK\n";
 	}
-	
+
 	echo "Restoring cache...";
 	try {
 		cache::restore();
 	} catch (Exception $e) {
-		
 	}
 	echo "OK\n";
-	
+
 	foreach (plugin::listPlugin(true) as $plugin) {
 		$plugin_id = null;
 		try {
@@ -215,7 +213,7 @@ try {
 	config::save('hardware_name', '');
 	$cache = cache::byKey('jeedom::isCapable::sudo');
 	$cache->remove();
-	
+
 	try {
 		echo "Check jeedom consistency...";
 		require_once __DIR__ . '/consistency.php';
@@ -223,13 +221,13 @@ try {
 	} catch (Exception $ex) {
 		echo "***ERROR*** " . $ex->getMessage() . "\n";
 	}
-	
+
 	try {
 		jeedom::start();
 	} catch (Exception $e) {
 		echo $e->getMessage();
 	}
-	
+
 	try {
 		echo "Sending end restore event...";
 		jeedom::event('end_restore');
