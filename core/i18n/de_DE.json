@@ -327,11 +327,10 @@
         "Type incorrect (classe commande inexistante)": "Ungültiger Typ (nicht vorhandene Auftragsklasse)",
         "Utilisateur non défini": "Undefinierter Benutzer",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Sie müssen die LDAP-Authentifizierung deaktivieren, um einen Benutzer hinzuzufügen",
+        "Vous n'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion auszuführen",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "Sie dürfen in diesem Szenario keine Maßnahmen ergreifen",
-        "Vous n\\'avez pas les droits de faire cette action": "Sie haben nicht die Rechte, diese Aktion auszuführen",
         "Vous n\\'avez pas les droits sur ce scénario": "Sie haben keine Rechte an diesem Szenario",
         "Vous n\\'avez pas les droits sur cette commande": "Sie haben keine Rechte an dieser Bestellung",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "Sie sind nicht berechtigt, diese Aktion durchzuführen",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "Sie sind nicht berechtigt, diese Aktion auszuführen, IP:",
         "Vous n\\'êtes pas autorisé à faire cette action": "Sie dürfen diese Aktion nicht ausführen"
     },
