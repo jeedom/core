@@ -909,7 +909,7 @@ class jeeObject {
 		return $eqLogics;
 	}
 
-	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null) {
+	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false) {
 		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
 			return null;
@@ -918,7 +918,6 @@ class jeeObject {
 		if (!isset($summaries[$_summary])) {
 			return array();
 		}
-		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		$return = array();
 		$ids = array();
 		foreach ($summaries[$_summary] as $infos) {
