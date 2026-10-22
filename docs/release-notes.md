@@ -23,6 +23,8 @@
 ## Breaking changes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-22 10:45:02 | Enhance widget button image handling with validation and security checks | [#3583](https://github.com/jeedom/core/pull/3583) |
+| 2026-10-22 09:07:43 | Fix inconsistent profile check in API access | [#3580](https://github.com/jeedom/core/pull/3580) |
 | 2026-10-15 18:48:03 | Docker: `latest` and standard tags now include MariaDB, `http-` tags no longer do | [#3586](https://github.com/jeedom/core/pull/3586) |
 | 2026-10-14 18:55:15 | Fix duplicated widgets and side positioning in design hover/click zones | [#3572](https://github.com/jeedom/core/pull/3572) |
 | 2026-10-14 18:40:17 | chore: remove display_name configuration from object | [#3566](https://github.com/jeedom/core/pull/3566) |
@@ -128,6 +130,10 @@
 ## Developer
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-22 10:45:36 | update release notes workflow to create PR | [#3603](https://github.com/jeedom/core/pull/3603) |
+| 2026-10-22 10:11:39 | chore: bump version to 4.6.3 | [#3601](https://github.com/jeedom/core/pull/3601) |
+| 2026-10-22 09:40:45 | chore: update migration script for Debian 13 to 4.6.3 to avoid confli… | [#3597](https://github.com/jeedom/core/pull/3597) |
+| 2026-10-21 14:59:35 | chore: update PHP and Symfony version constraints in composer.json | [#3591](https://github.com/jeedom/core/pull/3591) |
 | 2026-09-25 13:30:53 | Chore: clean workflow | [#3530](https://github.com/jeedom/core/pull/3530) |
 | 2026-09-07 09:36:53 | Drop bullseye from CI and Docker Hub build matrices | [#3492](https://github.com/jeedom/core/pull/3492) |
 | 2026-09-01 10:51:55 | Refactor draft release notes workflow to remove tag date retrieval and improve PR fetching logic | [#3481](https://github.com/jeedom/core/pull/3481) |
@@ -138,3 +144,8 @@
 | 2026-06-26 16:47:36 | Remove V4-stable-update workflow | [#3397](https://github.com/jeedom/core/pull/3397) |
 | 2026-06-23 14:25:02 | chore: merge back release to develop | [#3386](https://github.com/jeedom/core/pull/3386) |
 
+## Uncategorized
+| Merge date | Title | PR |
+| --- | --- | --- |
+| 2026-10-22 09:49:53 | Merge back Master to develop after hotfix | [#3598](https://github.com/jeedom/core/pull/3598) |
+| 2026-10-21 18:26:19 | [Security] Atténuer partiellement les CVE PHP sans changer PHP | [#3594](https://github.com/jeedom/core/pull/3594) |
