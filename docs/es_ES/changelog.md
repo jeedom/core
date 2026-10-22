@@ -1,5 +1,10 @@
 # Registro de cambios de Jeedom V4.6
 
+## 4.6.2
+
+- Solución a una vulnerabilidad de seguridad de PHP: ATENCIÓN, se ha restablecido la configuración predeterminada de «apache_security» incluyendo las medidas recomendadas; si la habías modificado, comprueba tu configuración.
+
+
 ## 4.6.1
 
 - Corrección de la edición de un escenario cuyo tiempo de espera es *null* en la base de datos
