@@ -240,7 +240,18 @@ try {
 			if (!is_object($eqLogic)) {
 				continue;
 			}
-			utils::a2o($eqLogic, $eqLogic_json);
+			if (!$eqLogic->hasRight('r')) { // this is weird but today we need this to let user change order even if they don't have full rights, shall we allow restricted user to modify this or not?
+				continue;
+			}
+			if (isset($eqLogic_json['order'])) {
+				$eqLogic->setOrder($eqLogic_json['order']);
+			}
+			if (isset($eqLogic_json['display']['width'])) {
+				$eqLogic->setDisplay('width', $eqLogic_json['display']['width']);
+			}
+			if (isset($eqLogic_json['display']['height'])) {
+				$eqLogic->setDisplay('height', $eqLogic_json['display']['height']);
+			}
 			$eqLogic->save(true);
 		}
 		ajax::success();
