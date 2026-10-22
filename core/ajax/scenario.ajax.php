@@ -74,7 +74,11 @@ try {
 				$scenario_ajax = json_decode(init('id'), true);
 				$scenarios = array();
 				foreach ($scenario_ajax as $id) {
-					$scenarios[] = scenario::byId($id);
+					$scenario = scenario::byId($id);
+					if (!is_object($scenario)) {
+						continue;
+					}
+					$scenarios[] = $scenario;
 				}
 			} else {
 				$scenarios = scenario::all();
@@ -86,14 +90,17 @@ try {
 				}
 				$return[] = $scenario->toHtml(init('version'));
 			}
-			ajax::success($return);
 		} else {
 			$scenario = scenario::byId(init('id'));
-			if (is_object($scenario)) {
-				ajax::success($scenario->toHtml(init('version')));
+			if (!is_object($scenario)) {
+				throw new Exception(__('Scénario inconnu. Vérifiez l\'ID', __FILE__));
 			}
+			if (!$scenario->hasRight('r')) {
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+			}
+			$return = $scenario->toHtml(init('version'));
 		}
-		ajax::success();
+		ajax::success($return);
 	}
 
 	if (init('action') == 'setOrder') {
