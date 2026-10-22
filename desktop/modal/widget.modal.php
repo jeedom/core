@@ -19,15 +19,42 @@ if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
 
+function isAllowedPath(string $imagePath): bool {
+  $jeedomRoot = realpath(__DIR__ . '/../..');
+  $tmpRoot = realpath(jeedom::getTmpFolder());
+  return ($jeedomRoot !== false && strpos($imagePath, $jeedomRoot . DIRECTORY_SEPARATOR) === 0)
+    || ($tmpRoot !== false && strpos($imagePath, $tmpRoot . DIRECTORY_SEPARATOR) === 0);
+}
+
 $data = init('data');
 $type = init('type');
 ?>
 <div class="form-group">
-<?php
-if ($type == 'image'){
-  $imageData = base64_encode(file_get_contents($data));
-  $src = 'data: '.mime_content_type($data).';base64,'.$imageData;
-  echo '<img src="' . $src . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
-}
-?>
+  <?php
+  if ($type == 'image') {
+    $imageSource = null;
+    if (filter_var($data, FILTER_VALIDATE_URL) !== false && preg_match('#^https?://#i', $data)) {
+      $imageSource = $data;
+    } else {
+      $imagePath = realpath($data);
+      if ($imagePath !== false && isAllowedPath($imagePath) && is_file($imagePath) && is_readable($imagePath)) {
+        $imageSource = $imagePath;
+      }
+    }
+    if ($imageSource !== null) {
+      $maxImageSize = 10 * 1024 * 1024;
+      $imageContents = file_get_contents($imageSource, false, null, 0, $maxImageSize + 1);
+      if ($imageContents !== false && strlen($imageContents) <= $maxImageSize) {
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimeType = $finfo->buffer($imageContents);
+
+        if ($mimeType !== false && strpos($mimeType, 'image/') === 0) {
+          $imageData = base64_encode($imageContents);
+          $imageSrc = 'data: ' . $mimeType . ';base64,' . $imageData;
+          echo '<img src="' . htmlspecialchars($imageSrc, ENT_QUOTES) . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
+        }
+      }
+    }
+  }
+  ?>
 </div>
