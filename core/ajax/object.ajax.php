@@ -31,6 +31,9 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
+		if (!$object->hasRight('r')) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+		}
 		ajax::success(jeedom::toHumanReadable(utils::o2a($object)));
 	}
 
@@ -54,18 +57,40 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		$return = utils::o2a($object->getChild());
+		if (!$object->hasRight('r')) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+		}
+		$jeeObjects = utils::o2a($object->getChild());
+		$return = [];
+		foreach ($jeeObjects as $jeeObject) {
+			if (!$jeeObject->hasRight('r')) {
+				continue;
+			}
+			$return[] = $jeeObject;
+		}
 		ajax::success($return);
 	}
 
 	if (init('action') == 'getActionSummary') {
-		if (init('object_id') == '') {
+		$objectId = init('object_id');
+		if ($objectId == '') {
 			$virtual = eqLogic::byLogicalId('summaryglobal', 'virtual');
 		} else {
-			$virtual = eqLogic::byLogicalId('summary' . init('object_id'), 'virtual');
+			$jeeObject = jeeObject::byId($objectId);
+			if (!is_object($jeeObject)) {
+				throw new Exception(__('Objet ID inconnu :', __FILE__) . ' ' . $objectId);
+			}
+			if (!$jeeObject->hasRight('r')) {
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+			}
+
+			$virtual = eqLogic::byLogicalId("summary{$objectId}", 'virtual');
 		}
 		if (!is_object($virtual)) {
 			throw new Exception(__('L\'objet n\'existe pas :', __FILE__) . ' ' . init('object_id'));
+		}
+		if (!$virtual->hasRight('r')) {
+			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
 		$removeCmd = array();
 		foreach ($virtual->getCmd() as $cmd) {
