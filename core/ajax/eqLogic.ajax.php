@@ -91,27 +91,6 @@ try {
 		ajax::success(array('filepath' => $eqLogic->getImage()));
 	}
 
-	if (init('action') == 'getEqLogicObject') {
-		$object = jeeObject::byId(init('object_id'));
-
-		if (!is_object($object)) {
-			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
-		}
-		$return = utils::o2a($object);
-		$return['eqLogic'] = array();
-		foreach (($object->getEqLogic()) as $eqLogic) {
-			if ($eqLogic->getIsVisible() == '1') {
-				$info_eqLogic = array();
-				$info_eqLogic['id'] = $eqLogic->getId();
-				$info_eqLogic['type'] = $eqLogic->getEqType_name();
-				$info_eqLogic['object_id'] = $eqLogic->getObject_id();
-				$info_eqLogic['html'] = $eqLogic->toHtml(init('version'));
-				$return['eqLogic'][] = $info_eqLogic;
-			}
-		}
-		ajax::success($return);
-	}
-
 	if (init('action') == 'byId') {
 		$eqLogic = eqLogic::byId(init('id'));
 		if (!is_object($eqLogic)) {
