@@ -69,7 +69,7 @@ class eqLogic {
 
 	/**
 	 * @param int|string $_id
-	 * @return void|eqLogic void if $_id is not valid else the eqLogic
+	 * @return void|static void if $_id is not valid else the eqLogic
 	 */
 	public static function byId($_id) {
 		if ($_id == '') {

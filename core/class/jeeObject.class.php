@@ -36,6 +36,10 @@ class jeeObject {
 
 	/*     * ***********************Méthodes statiques*************************** */
 
+	/**
+	 * @param int|string $_id jeeObject ID
+	 * @return void|static Null if ID not valid, jeeObject otherwise
+	 */
 	public static function byId($_id) {
 		if ($_id == '' || $_id == -1) {
 			return;
