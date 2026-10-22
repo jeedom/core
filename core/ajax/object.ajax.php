@@ -203,8 +203,8 @@ try {
 	}
 
 	if (init('action') == 'getSummaryHtml') {
+		$return = [];
 		if (init('ids') != '') {
-			$return = array();
 			foreach (json_decode(init('ids'), true) as $id => $value) {
 				if ($id == 'global') {
 					$return['global'] = array(
@@ -214,7 +214,7 @@ try {
 					continue;
 				}
 				$object = jeeObject::byId($id);
-				if (!is_object($object)) {
+				if (!is_object($object) || !$object->hasRight('r')) {
 					continue;
 				}
 				$return[$object->getId()] = array(
@@ -222,17 +222,18 @@ try {
 					'id' => $object->getId(),
 				);
 			}
-			ajax::success($return);
 		} else {
 			$object = jeeObject::byId(init('id'));
 			if (!is_object($object)) {
 				throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__));
 			}
-			$info_object = array();
-			$info_object['id'] = $object->getId();
-			$info_object['html'] = $object->getHtmlSummary(init('version'));
-			ajax::success($info_object);
+			if (!$object->hasRight('r')) {
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+			}
+			$return['id'] = $object->getId();
+			$return['html'] = $object->getHtmlSummary(init('version'));
 		}
+		ajax::success($return);
 	}
 
 	if (!isConnect('admin')) {
