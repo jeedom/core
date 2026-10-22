@@ -909,17 +909,23 @@ class jeeObject {
 		return $eqLogics;
 	}
 
-	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false) {
+	/**
+	 * @param string $_summary
+	 * @param bool $_onlyEnable
+	 * @param bool $_onlyVisible
+	 * @return eqLogic[]
+	 */
+	public function getEqLogicsFromSummary($_summary = '', $_onlyEnable = true, $_onlyVisible = false): array {
 		$def = config::byKey('object:summary');
 		if ($_summary == '' || !isset($def[$_summary])) {
-			return null;
+			return [];
 		}
 		$summaries = $this->getConfiguration('summary');
 		if (!isset($summaries[$_summary])) {
-			return array();
+			return [];
 		}
-		$return = array();
-		$ids = array();
+		$return = [];
+		$ids = [];
 		foreach ($summaries[$_summary] as $infos) {
 			if (isset($infos['enable']) && $infos['enable'] != 1) {
 				continue;
@@ -934,7 +940,7 @@ class jeeObject {
 				if (is_object($eqLogic)) {
 					if ($_onlyEnable && $eqLogic->getIsEnable() == 0) continue;
 					if ($_onlyVisible && $eqLogic->getIsVisible() == 0) continue;
-					$return[] = utils::o2a($eqLogic);
+					$return[] = $eqLogic;
 				}
 			}
 		}

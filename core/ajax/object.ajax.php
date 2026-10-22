@@ -110,7 +110,21 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('id'));
 		}
-		$return = $object->getEqLogicsFromSummary(init('summary'), init('onlyEnable'), init('onlyVisible'));
+		if (!$object->hasRight('r')) {
+			$return = [];
+			// FIXME: need to clean frontend before throwing an error
+			//throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+		} else {
+			$eqLogics = $object->getEqLogicsFromSummary(init('summary'), init('onlyEnable'), init('onlyVisible'));
+			$filteredEqLogics = [];
+			foreach ($eqLogics as $eqLogic) {
+				if (!$eqLogic->hasRight('r')) {
+					continue;
+				}
+				$filteredEqLogics[] = $eqLogic;
+			}
+			$return = utils::o2a($filteredEqLogics);
+		}
 		ajax::success($return);
 	}
 
