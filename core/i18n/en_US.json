@@ -327,11 +327,10 @@
         "Type incorrect (classe commande inexistante)": "Invalid type (non-existent command class)",
         "Utilisateur non défini": "Undefined user",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "You must deactivate LDAP authentication to add a user",
+        "Vous n'êtes pas autorisé à effectuer cette action": "You are not authorized to perform this action",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "You are not allowed to take action on this scenario",
-        "Vous n\\'avez pas les droits de faire cette action": "You do not have the rights to do this action",
         "Vous n\\'avez pas les droits sur ce scénario": "You do not have the rights to this scenario",
         "Vous n\\'avez pas les droits sur cette commande": "You do not have the rights on this command",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "You are not allowed to perform this action",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "You are not authorized to perform this action, IP :",
         "Vous n\\'êtes pas autorisé à faire cette action": "You are not allowed to do this action"
     },

@@ -327,11 +327,10 @@
         "Type incorrect (classe commande inexistante)": "Tipo no válido (clase de orden inexistente)",
         "Utilisateur non défini": "Usuario no definido",
         "Vous devez désactiver l\\'authentification LDAP pour pouvoir ajouter un utilisateur": "Debe desactivar la autenticación LDAP para agregar un usuario",
+        "Vous n'êtes pas autorisé à effectuer cette action": "No tienes permiso para realizar esta acción",
         "Vous n\\'avez pas le droit de faire une action sur ce scénario": "No tiene permiso para tomar medidas en este escenario",
-        "Vous n\\'avez pas les droits de faire cette action": "No tienes los derechos para realizar esta acción",
         "Vous n\\'avez pas les droits sur ce scénario": "No tienes los derechos para este escenario",
         "Vous n\\'avez pas les droits sur cette commande": "No tienes los derechos sobre este pedido",
-        "Vous n\\'êtes pas autorisé à effectuer cette action": "No estás autorizado a realizar esta acción",
         "Vous n\\'êtes pas autorisé à effectuer cette action, IP :": "No está autorizado para realizar esta acción, IP:",
         "Vous n\\'êtes pas autorisé à faire cette action": "No tienes permiso para hacer esta acción"
     },
