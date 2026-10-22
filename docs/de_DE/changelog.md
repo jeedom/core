@@ -1,5 +1,10 @@
 # Änderungsprotokoll Jeedom V4.6
 
+## 4.6.2
+
+- Behebung einer PHP-Sicherheitslücke: ACHTUNG, die Standardkonfiguration „apache_security“ wurde unter Einbeziehung der empfohlenen Maßnahmen wiederhergestellt. Falls Sie diese geändert hatten, überprüfen Sie bitte Ihre Konfiguration.
+
+
 ## 4.6.1
 
 - Korrektur beim Bearbeiten eines Szenarios, dessen Timeout in der Datenbank *null* ist

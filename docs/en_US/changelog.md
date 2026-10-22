@@ -1,5 +1,10 @@
 # Jeedom V4.6 Changelog
 
+## 4.6.2
+
+- PHP Security Vulnerability Mitigation: WARNING: The default "apache_security" configuration has been restored to include the recommended measures. If you had modified this setting, please check your configuration.
+
+
 ## 4.6.1
 
 - Fixed an issue with editing a scenario whose timeout is *null* in the database
