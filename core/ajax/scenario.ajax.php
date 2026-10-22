@@ -31,11 +31,11 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu :', __FILE__) . ' ' . init('id'));
 		}
-		if (!$scenario->hasRight('x')) {
-			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
-		}
 		switch (init('state')) {
 			case 'start':
+				if (!$scenario->hasRight('x')) {
+					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+				}
 				if (!$scenario->getIsActive()) {
 					throw new Exception(__('Impossible de lancer le scénario car il est désactivé. Veuillez l\'activer', __FILE__));
 				}
@@ -45,13 +45,22 @@ try {
 				$scenario->launch(0);
 				break;
 			case 'stop':
+				if (!$scenario->hasRight('x')) {
+					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+				}
 				$scenario->stop();
 				break;
 			case 'deactivate':
+				if (!$scenario->hasRight('w')) {
+					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+				}
 				$scenario->setIsActive(0);
 				$scenario->save();
 				break;
 			case 'activate':
+				if (!$scenario->hasRight('w')) {
+					throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+				}
 				$scenario->setIsActive(1);
 				$scenario->save();
 				break;
@@ -72,6 +81,9 @@ try {
 			}
 			$return = array();
 			foreach ($scenarios as $scenario) {
+				if (!$scenario->hasRight('r')) {
+					continue;
+				}
 				$return[] = $scenario->toHtml(init('version'));
 			}
 			ajax::success($return);
@@ -93,6 +105,9 @@ try {
 			}
 			$scenario = scenario::byId($scenario_json['id']);
 			if (!is_object($scenario)) {
+				continue;
+			}
+			if (!$scenario->hasRight('r')) { // this is weird but today we need this to let user change order even if they don't have full rights, shall we allow restricted user to modify this or not?
 				continue;
 			}
 			if (isset($scenario_json['order'])) {

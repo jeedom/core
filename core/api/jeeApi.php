@@ -1010,22 +1010,31 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
 		}
-		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
-			throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
-		}
 		if ($params['state'] == 'stop') {
+			if (is_object($_USER_GLOBAL) && !$scenario->hasRight('x', $_USER_GLOBAL)) {
+				throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
+			}
 			$jsonrpc->makeSuccess($scenario->stop());
 		}
 		if ($params['state'] == 'run') {
+			if (is_object($_USER_GLOBAL) && !$scenario->hasRight('x', $_USER_GLOBAL)) {
+				throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
+			}
 			$scenario->addTag('trigger', 'api');
 			$scenario->addTag('trigger_message', __('Scénario exécuté sur appel API', __FILE__));
 			$jsonrpc->makeSuccess($scenario->launch());
 		}
 		if ($params['state'] == 'enable') {
+			if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
+				throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
+			}
 			$scenario->setIsActive(1);
 			$jsonrpc->makeSuccess($scenario->save());
 		}
 		if ($params['state'] == 'disable') {
+			if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
+				throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
+			}
 			$scenario->setIsActive(0);
 			$jsonrpc->makeSuccess($scenario->save());
 		}
@@ -1037,7 +1046,7 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
 		}
-		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
+		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('r', $_USER_GLOBAL)) {
 			throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(array('humanName' => $scenario->getHumanName(), 'export' => $scenario->export('array')));
@@ -1064,6 +1073,9 @@ try {
 				$scenario->setName($params['import']['group']);
 			}
 		}
+		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
+		}
 		if ($scenario->getName() == '') {
 			$scenario->setName(config::genKey());
 		}
@@ -1086,9 +1098,14 @@ try {
 		unautorizedInDemo();
 		if (isset($params['id'])) {
 			$scenario = scenario::byId($params['id']);
-		}
-		if (!is_object($scenario)) {
+			if (!is_object($scenario)) {
+				throw new Exception(__('Scénario introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
+			}
+		} else {
 			$scenario = new scenario();
+		}
+		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
+			throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
 		}
 		utils::a2o($scenario, jeedom::fromHumanReadable($params));
 		$scenario->save();
