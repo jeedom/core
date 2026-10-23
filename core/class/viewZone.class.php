@@ -38,6 +38,9 @@ class viewZone {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * @return null|static
+	 */
 	public static function byId($_id) {
 		$value = array(
 			'id' => $_id,
@@ -150,6 +153,10 @@ class viewZone {
 		$this->_changed = utils::attrChanged($this->_changed, $this->configuration, $configuration);
 		$this->configuration = $configuration;
 		return $this;
+	}
+
+	public function hasRight(string $_right, ?user $_user = null): bool {
+		return $this->getView()->hasRight($_right, $_user);
 	}
 
 	public function getChanged() {

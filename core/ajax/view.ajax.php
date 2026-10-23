@@ -148,6 +148,9 @@ try {
 		if (!is_object($viewZone)) {
 			throw new Exception(__('Vue non trouvée. Vérifiez l\'ID', __FILE__));
 		}
+		if (!$viewZone->hasRight('r')) {
+			throw new Exception(__('Vous n\'avez pas le droit de voir cette vue', __FILE__));
+		}
 		$return = utils::o2a($viewZone);
 		$return['eqLogic'] = array();
 		foreach (($viewZone->getviewData()) as $viewData) {
