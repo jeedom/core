@@ -244,6 +244,9 @@ try {
 			if (!$eqLogic->hasRight('r')) { // this is weird but today we need this to let user change order even if they don't have full rights, shall we allow restricted user to modify this or not?
 				continue;
 			}
+			if (isConnect('admin') && array_key_exists('object_id', $eqLogic_json)) {
+				$eqLogic->setObject_id($eqLogic_json['object_id']);
+			}
 			if (isset($eqLogic_json['order'])) {
 				$eqLogic->setOrder($eqLogic_json['order']);
 			}
