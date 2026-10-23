@@ -676,6 +676,9 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32601);
 		}
+		if (is_object($_USER_GLOBAL) && !$object->hasRight('r', $_USER_GLOBAL)) {
+			throw new Exception(__("Vous n'êtes pas autorisé à effectuer cette action", __FILE__) . ' ' . $jsonrpc->getMethod(), -32001);
+		}
 		if (!isset($params['key'])) {
 			$params['key'] = '';
 		}
