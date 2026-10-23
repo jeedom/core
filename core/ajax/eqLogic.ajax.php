@@ -155,11 +155,12 @@ try {
 		}
 		$eqLogics = eqLogic::listByObjectAndCmdType($object_id, init('typeCmd'), init('subTypeCmd'));
 		$return = [];
-		foreach ($eqLogics as $eqLogic) {
-			if (!$eqLogic->hasRight('r')) {
+		foreach ($eqLogics as $row) {
+			$eqLogic = eqLogic::byId($row['id']);
+			if (!is_object($eqLogic) || !$eqLogic->hasRight('r')) {
 				continue;
 			}
-			$return[] = $eqLogic;
+			$return[] = $row;
 		}
 		ajax::success($return);
 	}
