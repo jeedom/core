@@ -589,13 +589,23 @@ try {
 
 	/*             * ************************Object*************************** */
 	if ($jsonrpc->getMethod() == 'jeeObject::all' || $jsonrpc->getMethod() == 'object::all') {
-		$jsonrpc->makeSuccess(utils::o2a(jeeObject::all()));
+		$jeeObjects = [];
+		foreach (jeeObject::all() as $jeeObject) {
+			if ($_USER_GLOBAL != null && !$jeeObject->hasRight('r', $_USER_GLOBAL)) {
+				continue;
+			}
+			$jeeObjects[] = $jeeObject;
+		}
+		$jsonrpc->makeSuccess(utils::o2a($jeeObjects));
 	}
 
 	if ($jsonrpc->getMethod() == 'jeeObject::byId' || $jsonrpc->getMethod() == 'object::byId') {
 		$object = jeeObject::byId($params['id']);
 		if (!is_object($object)) {
 			throw new Exception(__('Objet introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32601);
+		}
+		if (is_object($_USER_GLOBAL) && !$object->hasRight('r', $_USER_GLOBAL)) {
+			throw new Exception(__("Vous n'êtes pas autorisé à effectuer cette action", __FILE__) . ' ' . $jsonrpc->getMethod(), -32001);
 		}
 		$jsonrpc->makeSuccess(utils::o2a($object));
 	}
@@ -609,6 +619,9 @@ try {
 		if (!is_object($object)) {
 			throw new Exception(__('Objet introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32601);
 		}
+		if (is_object($_USER_GLOBAL) && !$object->hasRight('r', $_USER_GLOBAL)) {
+			throw new Exception(__("Vous n'êtes pas autorisé à effectuer cette action", __FILE__) . ' ' . $jsonrpc->getMethod(), -32001);
+		}
 		$return = utils::o2a($object);
 		$return['eqLogics'] = array();
 		foreach ($object->getEqLogic() as $eqLogic) {
@@ -618,6 +631,9 @@ try {
 			$eqLogic_return = utils::o2a($eqLogic);
 			$eqLogic_return['cmds'] = array();
 			foreach ($eqLogic->getCmd() as $cmd) {
+				if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+					continue;
+				}
 				$eqLogic_return['cmds'][] = $cmd->exportApi();
 			}
 			$return['eqLogics'][] = $eqLogic_return;
@@ -629,10 +645,13 @@ try {
 		unautorizedInDemo();
 		if (isset($params['id'])) {
 			$object = jeeObject::byId($params['id']);
-		}
-		if (!is_object($object)) {
+			if (!is_object($object)) {
+				throw new Exception(__('Objet introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32601);
+			}
+		} else {
 			$object = new jeeObject();
 		}
+
 		utils::a2o($object, jeedom::fromHumanReadable($params));
 		$object->save();
 		$jsonrpc->makeSuccess(utils::o2a($object));
@@ -1231,12 +1250,16 @@ try {
 		unautorizedInDemo();
 		if (isset($params['plugin_id'])) {
 			$update = update::byId($params['plugin_id']);
-		}
-		if (isset($params['logicalId'])) {
+			if (!is_object($update)) {
+				throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['plugin_id']));
+			}
+		} elseif (isset($params['logicalId'])) {
 			$update = update::byLogicalId($params['logicalId']);
-		}
-		if (!is_object($update)) {
-			throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['plugin_id']));
+			if (!is_object($update)) {
+				throw new Exception(__('Impossible de trouver l\'objet associé :', __FILE__) . ' ' . secureXSS($params['logicalId']));
+			}
+		} else {
+			throw new InvalidArgumentException(__('Paramètre manquant : plugin_id ou logicalId', __FILE__), -32601);
 		}
 		$update->remove();
 		$jsonrpc->makeSuccess('ok');

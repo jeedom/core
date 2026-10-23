@@ -1808,7 +1808,7 @@ class eqLogic {
 	 * @param string $_logicalId
 	 * @param boolean $_visible
 	 * @param boolean $_multiple
-	 * @return cmd|cmd[]
+	 * @return \cmd|\cmd[]
 	 */
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId !== null) {
