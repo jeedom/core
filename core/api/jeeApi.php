@@ -775,6 +775,9 @@ try {
 		$return = utils::o2a($eqLogic);
 		$return['cmds'] = array();
 		foreach ($eqLogic->getCmd() as $cmd) {
+			if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+				continue;
+			}
 			$return['cmds'][] = $cmd->exportApi();
 		}
 		$jsonrpc->makeSuccess($return);
@@ -836,6 +839,9 @@ try {
 				}
 				$info_eqLogic = utils::o2a($eqLogic);
 				foreach ($eqLogic->getCmd() as $cmd) {
+					if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+						continue;
+					}
 					$info_eqLogic['cmds'][] = $cmd->exportApi();
 				}
 				$info_eqLogics[] = $info_eqLogic;
@@ -850,6 +856,9 @@ try {
 			}
 			$info_eqLogic = utils::o2a($eqLogic);
 			foreach ($eqLogic->getCmd() as $cmd) {
+				if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
+					continue;
+				}
 				$info_eqLogic['cmds'][] = $cmd->exportApi();
 			}
 			$return[$id] = $info_eqLogic;
@@ -1001,8 +1010,8 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception('Commande introuvable : ' . secureXSS($params['id']), -32702);
 		}
-		if (is_object($_USER_GLOBAL) && !$cmd->hasRight($_USER_GLOBAL)) {
-			throw new Exception(__('Vous n\'avez pas les droits sur cette commande', __FILE__), -32701);
+		if (is_object($_USER_GLOBAL) && !$cmd->getEqLogic()->hasRight('x', $_USER_GLOBAL)) {
+			throw new Exception(__("Vous n'êtes pas autorisé à effectuer cette action", __FILE__), -32701);
 		}
 		if (!isset($params['datetime'])) {
 			$params['datetime'] = null;
