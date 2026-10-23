@@ -230,8 +230,15 @@ if (init('type') != '') {
 		}
 		if ($type == 'object') {
 			log::add('api', 'debug', __('Demande API pour les objets', __FILE__));
+			$jeeObjects = [];
+			foreach (jeeObject::all() as $jeeObject) {
+				if ($_USER_GLOBAL != null && !$jeeObject->hasRight('r', $_USER_GLOBAL)) {
+					continue;
+				}
+				$jeeObjects[] = $jeeObject;
+			}
 			header('Content-Type: application/json');
-			echo json_encode(utils::o2a(jeeObject::all()), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
+			echo json_encode(utils::o2a($jeeObjects), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE, 1024);
 			die();
 		}
 		if ($type == 'eqLogic') {
