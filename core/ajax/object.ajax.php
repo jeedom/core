@@ -60,7 +60,7 @@ try {
 		if (!$object->hasRight('r')) {
 			throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
 		}
-		$jeeObjects = utils::o2a($object->getChild());
+		$jeeObjects = $object->getChild();
 		$return = [];
 		foreach ($jeeObjects as $jeeObject) {
 			if (!$jeeObject->hasRight('r')) {
@@ -68,7 +68,7 @@ try {
 			}
 			$return[] = $jeeObject;
 		}
-		ajax::success($return);
+		ajax::success(utils::o2a($return));
 	}
 
 	if (init('action') == 'getActionSummary') {
