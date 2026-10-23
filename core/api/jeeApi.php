@@ -1084,7 +1084,7 @@ try {
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario introuvable :', __FILE__) . ' ' . secureXSS($params['id']), -32702);
 		}
-		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('r', $_USER_GLOBAL)) {
+		if (is_object($_USER_GLOBAL) && !$scenario->hasRight('w', $_USER_GLOBAL)) {
 			throw new Exception(__('Vous n\'avez pas les droits sur ce scénario', __FILE__), -32701);
 		}
 		$jsonrpc->makeSuccess(array('humanName' => $scenario->getHumanName(), 'export' => $scenario->export('array')));
