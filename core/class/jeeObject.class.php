@@ -38,7 +38,7 @@ class jeeObject {
 
 	/**
 	 * @param int|string $_id jeeObject ID
-	 * @return void|static Null if ID not valid, jeeObject otherwise
+	 * @return null|static Null if ID not valid, jeeObject otherwise
 	 */
 	public static function byId($_id) {
 		if ($_id == '' || $_id == -1) {
@@ -63,6 +63,11 @@ class jeeObject {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * @param bool $_onlyVisible
+	 * @param bool $_byPosition
+	 * @return null|static[]
+	 */
 	public static function all($_onlyVisible = false, $_byPosition = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object ';
@@ -78,6 +83,12 @@ class jeeObject {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 *
+	 * @param bool $_all
+	 * @param bool $_onlyVisible
+	 * @return null|jeeObject
+	 */
 	public static function rootObject($_all = false, $_onlyVisible = false) {
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
 		FROM object
@@ -198,7 +209,12 @@ class jeeObject {
 		return $text;
 	}
 
-	public static function buildTree($_object = null, $_visible = true) {
+	/**
+	 * @param jeeObject $_object
+	 * @param bool $_visible
+	 * @return jeeObject[]
+	 */
+	public static function buildTree($_object = null, $_visible = true): array {
 		$return = array();
 		if (!is_object($_object)) {
 			$object_list = self::rootObject(true, $_visible);
@@ -234,6 +250,9 @@ class jeeObject {
 	public static function fullData($_restrict = array(), $_user = null) {
 		$return = array();
 		foreach (jeeObject::all(true) as $object) {
+			if (is_object($_user) && !$object->hasRight('r', $_user)) {
+				continue;
+			}
 			if (!isset($_restrict['object']) || !is_array($_restrict['object']) || isset($_restrict['object'][$object->getId()])) {
 				$object_return = utils::o2a($object);
 				$object_return['eqLogics'] = array();
@@ -245,6 +264,9 @@ class jeeObject {
 						$eqLogic_return = utils::o2a($eqLogic);
 						$eqLogic_return['cmds'] = array();
 						foreach (($eqLogic->getCmd()) as $cmd) {
+							if (is_object($_user) && !$cmd->hasRight($_user)) {
+								continue;
+							}
 							if (!isset($_restrict['cmd']) || !is_array($_restrict['cmd']) || isset($_restrict['cmd'][$cmd->getId()])) {
 								$cmd_return = utils::o2a($cmd);
 								if ($cmd->getType() == 'info') {
@@ -865,6 +887,10 @@ class jeeObject {
 		return $return;
 	}
 
+	/**
+	 * @param bool $_visible
+	 * @return static[]
+	 */
 	public function getChild($_visible = true) {
 		if (!isset($this->_child[$_visible])) {
 			$values = array(
@@ -891,6 +917,15 @@ class jeeObject {
 		return $return;
 	}
 
+	/**
+	 * Get eqLogic associated with this object
+	 * @param bool $_onlyEnable
+	 * @param bool $_onlyVisible
+	 * @param mixed $_eqType_name
+	 * @param mixed $_logicalId
+	 * @param bool $_searchOnchild
+	 * @return null|eqLogic[]
+	 */
 	public function getEqLogic($_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_searchOnchild = false) {
 		$eqLogics = eqLogic::byObjectId($this->getId(), $_onlyEnable, $_onlyVisible, $_eqType_name, $_logicalId);
 		if (is_array($eqLogics)) {

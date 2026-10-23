@@ -113,6 +113,9 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * @return null|static[]
+	 */
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false, $_onlyHasCmds = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
