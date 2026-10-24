@@ -40,6 +40,7 @@
 ## Fixes
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-24 10:33:37 | Handle OOM killer detection in cgroup v2 environments | [#3595](https://github.com/jeedom/core/pull/3595) |
 | 2026-10-19 21:52:38 | Fix: scenario ajax access | [#3584](https://github.com/jeedom/core/pull/3584) |
 | 2026-10-15 18:48:38 | Increase timeout for backup cloud | [#3546](https://github.com/jeedom/core/pull/3546) |
 | 2026-10-14 18:09:06 | Remove stale update source config keys on source change | [#3575](https://github.com/jeedom/core/pull/3575) |
