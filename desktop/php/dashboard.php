@@ -202,6 +202,9 @@ $columns = config::byKey('dahsboard::column::size');
 		} else {
 			//show object(s) for summaries:
 			foreach ($allObject as $object) {
+				if (!$object->hasRight('r')) {
+					continue;
+				}
 				formatJeedomObjectDiv($object, true);
 			}
 		}

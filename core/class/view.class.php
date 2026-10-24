@@ -39,6 +39,9 @@ class view {
 		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 
+	/**
+	 * @return null|static
+	 */
 	public static function byId($_id) {
 		$value = array(
 			'id' => $_id,
@@ -112,7 +115,7 @@ class view {
 		}
 	}
 
-	public function refresh():void {
+	public function refresh(): void {
 		DB::refresh($this);
 	}
 

@@ -69,7 +69,7 @@ class eqLogic {
 
 	/**
 	 * @param int|string $_id
-	 * @return void|eqLogic void if $_id is not valid else the eqLogic
+	 * @return void|static void if $_id is not valid else the eqLogic
 	 */
 	public static function byId($_id) {
 		if ($_id == '') {
@@ -113,6 +113,9 @@ class eqLogic {
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
 	}
 
+	/**
+	 * @return null|static[]
+	 */
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false, $_onlyHasCmds = false) {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -1805,7 +1808,7 @@ class eqLogic {
 	 * @param string $_logicalId
 	 * @param boolean $_visible
 	 * @param boolean $_multiple
-	 * @return cmd|cmd[]
+	 * @return \cmd|\cmd[]
 	 */
 	public function getCmd($_type = null, $_logicalId = null, $_visible = null, $_multiple = false) {
 		if ($_logicalId !== null) {
