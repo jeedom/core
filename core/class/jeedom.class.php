@@ -436,8 +436,8 @@ class jeedom {
 		$dmesgReadable = $dmesgCode == 0;
 
 		// Sufficient memory
-        // In an unprivileged container (LXC, Docker non host), on a cgroup v2 host (Debian 10+), let's use cgroup memory events instead; that file doesn't exist on a normal host
-        $killedProcesses = null;
+		$killedProcesses = null;
+		// Only exists in a container, scoped to it unlike dmesg which reports the whole host
 		$memoryEvents = '/sys/fs/cgroup/memory.events';
 		if (is_readable($memoryEvents) && preg_match('/^oom_kill\s+(\d+)/m', (string) file_get_contents($memoryEvents), $oomMatch)) {
 			$killedProcesses = (int) $oomMatch[1];
