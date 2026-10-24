@@ -436,9 +436,16 @@ class jeedom {
 		$dmesgReadable = $dmesgCode == 0;
 
 		// Sufficient memory
-		$killedProcesses = count(array_filter($dmesg, fn($line) => strpos($line, 'oom-killer') !== false && strpos($line, 'deprecated') === false));
-		$killedState = $killedProcesses == 0;
-		if (!$dmesgReadable) {
+		$killedProcesses = null;
+		// Only exists in a container, scoped to it unlike dmesg which reports the whole host
+		$memoryEvents = '/sys/fs/cgroup/memory.events';
+		if (is_readable($memoryEvents) && preg_match('/^oom_kill\s+(\d+)/m', (string) file_get_contents($memoryEvents), $oomMatch)) {
+			$killedProcesses = (int) $oomMatch[1];
+		} else if ($dmesgReadable) {
+			$killedProcesses = count(array_filter($dmesg, fn($line) => strpos($line, 'oom-killer') !== false && strpos($line, 'deprecated') === false));
+		}
+		$killedState = ($killedProcesses ?? 0) == 0;
+		if ($killedProcesses === null) {
 			$killedResult = 'N/A';
 			$killedComment = __('Journal du noyau inaccessible, vérification impossible', __FILE__);
 		} else if ($killedState) {
