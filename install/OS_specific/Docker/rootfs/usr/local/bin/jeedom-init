@@ -1,0 +1,57 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+if [[ ${1:-run} != run ]]; then
+  exec "$@"
+fi
+[[ $(id -u) == 0 ]] || { echo 'Le démarrage des services nécessite root.' >&2; exit 1; }
+
+export TZ=${TZ:-Europe/Paris}
+[[ $TZ != /* && $TZ != *..* && -f /usr/share/zoneinfo/$TZ ]] || { echo 'TZ invalide.' >&2; exit 1; }
+ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime
+printf '%s\n' "$TZ" > /etc/timezone
+printf 'date.timezone = "%s"\n' "$TZ" > /etc/php/8.4/mods-available/jeedom-timezone.ini
+phpenmod jeedom jeedom-timezone
+
+install -d -o www-data -g www-data -m 755 /run/jeedom
+rm -f /run/jeedom/ready /run/jeedom/cron-heartbeat
+# Ce répertoire est exclusivement le cache temporaire du conteneur précédent.
+rm -rf /tmp/jeedom
+install -d -o www-data -g www-data -m 1777 /tmp/jeedom
+mkdir -p /var/www/html
+
+marker=/var/www/html/.jeedom-seeding
+if [[ -f $marker ]] || [[ -z $(find /var/www/html -mindepth 1 -maxdepth 1 ! -name lost+found -print -quit) ]]; then
+  source_id=$(sha256sum /usr/share/jeedom-image/source.json | cut -d' ' -f1)
+  if [[ -f $marker && $(cat "$marker") != "$source_id" ]]; then
+    echo 'Copie initiale interrompue : reprendre avec la même image.' >&2
+    exit 1
+  fi
+  printf '%s\n' "$source_id" > "$marker"
+  echo 'Initialisation du volume HTML depuis le code embarqué.'
+  cp -a /usr/src/jeedom/. /var/www/html/
+  rm "$marker"
+fi
+[[ -f /var/www/html/core/config/version && -f /var/www/html/vendor/autoload.php ]] || {
+  echo 'Le volume HTML non vide ne contient pas une installation Jeedom complète.' >&2; exit 1;
+}
+install -d -o www-data -g www-data -m 755 /var/www/html/log
+
+export JEEDOM_INTERNAL_DB=true
+db_host=$(/usr/bin/php /usr/local/lib/jeedom/database.php host)
+if [[ -n $db_host && $db_host != localhost ]]; then
+  JEEDOM_INTERNAL_DB=false
+else
+  install -d -o mysql -g mysql -m 755 /run/mysqld
+  mkdir -p /var/lib/mysql
+  if [[ $(stat -c %u:%g /var/lib/mysql) != "$(id -u mysql):$(id -g mysql)" ]]; then
+    chown -R mysql:mysql /var/lib/mysql
+  fi
+  if [[ -z $(find /var/lib/mysql -mindepth 1 -maxdepth 1 ! -name lost+found -print -quit) ]]; then
+    echo 'Initialisation du stockage MariaDB vierge.'
+    /usr/bin/php /usr/local/lib/jeedom/database.php initialize-database
+  fi
+  [[ -d /var/lib/mysql/mysql ]] || { echo 'Stockage MariaDB incomplet : restauration nécessaire.' >&2; exit 1; }
+fi
+
+exec /usr/bin/supervisord -c /etc/supervisor/jeedom.conf

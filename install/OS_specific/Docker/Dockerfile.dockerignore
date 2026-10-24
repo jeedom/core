@@ -1,0 +1,7 @@
+.git
+.github
+tests
+**/__pycache__
+.env
+.env.*
+install/OS_specific/Docker/tests

@@ -7,6 +7,8 @@ parameters:
     - mobile
   excludePaths:
     - vendor/*
+    # Runtime et tests propres au conteneur, avec des chemins /var/www/html.
+    - install/OS_specific/Docker/*
   tmpDir: .phpstan.cache
   reportUnmatchedIgnoredErrors: false
   bootstrapFiles:

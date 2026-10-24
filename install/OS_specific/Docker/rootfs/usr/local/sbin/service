@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+[[ $# == 2 ]] || { echo 'Usage : service SERVICE ACTION' >&2; exit 1; }
+exec /usr/local/bin/systemctl "$2" "$1"
