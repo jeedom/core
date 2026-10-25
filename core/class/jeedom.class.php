@@ -839,6 +839,12 @@ class jeedom {
 			foreach (ls('/dev/', 'ttyACM*') as $value) {
 				$usbMapping = self::getUsbDetails($value, $usbMapping);
 			}
+			// By-id paths without a ttyUSB/ttyACM node, e.g. a device passed to a container
+			foreach (ls('/dev/serial/by-id/', '*') as $value) {
+				if (!in_array('/dev/serial/by-id/' . $value, $usbMapping)) {
+					$usbMapping['/dev/serial/by-id/' . $value] = '/dev/serial/by-id/' . $value;
+				}
+			}
 			$usbMapping = self::getUsbLegacy($usbMapping);
 			if ($_getGPIO) {
 				if (file_exists('/dev/ttyLuna-Zigbee')) {
