@@ -17,5 +17,5 @@
       trustedCaFile: $ca, insecureSkipVerify: false
     }
   },
-  proxies: [{name: "web", type: "http", localIP: $localIp, localPort: $localPort, customDomains: [.domain]}]
+  proxies: [{name: "web", type: "http", localIP: "127.0.0.1", localPort: 80, customDomains: [.domain]}]
 }

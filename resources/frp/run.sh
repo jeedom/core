@@ -28,5 +28,5 @@ exec 6< "$task_dir/password"
 rm -f -- "$task_dir/password"
 export FRP_BINARY="$task_dir/bin/frpc"
 export FRP_STATUS_FILE="$task_dir/status.json"
-exec bash "$task_scripts/client.sh" --username "$task_username" --password-stdin \
-  --relay "$task_relays" --ca-file "$task_scripts/../ca_frp.crt" --retry --state-dir "$task_dir" <&6 6<&-
+exec bash "$task_scripts/client.sh" "$task_username" "$task_relays" \
+  "$task_scripts/../ca_frp.crt" "$task_dir" <&6 6<&-

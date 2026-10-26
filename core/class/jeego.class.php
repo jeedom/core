@@ -2,7 +2,7 @@
 
 class jeego {
 	public static function isDetected(): bool {
-		return (getenv('JEEGO_API_URL') !== false && getenv('JEEGO_API_URL') !== '') || (getenv('JEEGO_API_KEY') !== false && getenv('JEEGO_API_KEY') !== '');
+		return (string) getenv('JEEGO_API_URL') !== '' || (string) getenv('JEEGO_API_KEY') !== '';
 	}
 
 	public static function checkConfiguration(): void {
@@ -12,24 +12,29 @@ class jeego {
 	private static function credentials(): array {
 		$url = rtrim((string) getenv('JEEGO_API_URL'), '/');
 		$key = (string) getenv('JEEGO_API_KEY');
-		$parts = parse_url($url);
-		if (!is_array($parts) || ($parts['scheme'] ?? '') != 'http' || !in_array($parts['host'] ?? '', array('127.0.0.1', '[::1]', '::1'), true) || ($parts['path'] ?? '') != '/api/v1' || isset($parts['user']) || isset($parts['pass']) || isset($parts['query']) || isset($parts['fragment']) || !preg_match('/^[a-f0-9]{64}$/D', $key)) {
+		$parts = parse_url($url) ?: array();
+		$localApi = ($parts['scheme'] ?? '') === 'http'
+			&& in_array($parts['host'] ?? '', array('127.0.0.1', '[::1]'), true)
+			&& ($parts['path'] ?? '') === '/api/v1';
+
+		if (!$localApi || $key === '') {
 			throw new Exception(__('Configuration de l’API locale Jeego absente ou invalide', __FILE__));
 		}
 		return array('url' => $url, 'key' => $key);
 	}
 
 	public static function request(string $path, ?array $body = null, int $timeout = 8): array {
-		$parts = parse_url($path);
-		$route = is_array($parts) ? rawurldecode($parts['path'] ?? '') : '';
-		if ($timeout < 1 || !is_array($parts) || $path === '' || $path[0] !== '/' || substr($path, 0, 2) === '//' || isset($parts['scheme']) || isset($parts['host']) || isset($parts['fragment']) || preg_match('/[\x00-\x20\x7f]/', $path) || strpos($route, "\\") !== false || preg_match('~(?:^|/)\.{1,2}(?:/|$)~', $route)) {
+		if ($timeout < 1 || $path === '' || $path[0] !== '/') {
 			throw new InvalidArgumentException(__('Requête API Jeego invalide', __FILE__));
 		}
 		$credentials = self::credentials();
 		$http = new com_http($credentials['url'] . $path);
 		$http->setHeader(array('Authorization: Bearer ' . $credentials['key'], 'Content-Type: application/json'));
-		$http->setCURLOPT(array(CURLOPT_CONNECTTIMEOUT => min(2, $timeout), CURLOPT_FOLLOWLOCATION => false, CURLOPT_PROXY => ''));
-		$http->setNoSslCheck(false);
+		$http->setCURLOPT(array(
+			CURLOPT_CONNECTTIMEOUT => min(2, $timeout),
+			CURLOPT_FOLLOWLOCATION => false,
+			CURLOPT_PROXY => '',
+		));
 		$http->setNoReportError(true);
 		if ($body !== null) {
 			$http->setPost(json_encode((object) $body, JSON_THROW_ON_ERROR));
@@ -55,22 +60,15 @@ class jeego {
 	}
 
 	public static function serviceAction(string $service, string $action, array $request = array()): array {
-		$task = self::request('/services/' . self::identifier($service) . '/actions/' . self::identifier($action), $request);
-		return self::taskResponse($task);
-	}
-
-	private static function taskResponse(array $task, ?string $expectedId = null): array {
-		if (!isset($task['id']) || !is_string($task['id']) || !preg_match('/^[a-f0-9]{32}$/D', $task['id']) || ($expectedId !== null && $task['id'] !== $expectedId) || !in_array($task['status'] ?? '', array('running', 'succeeded', 'failed', 'interrupted'), true)) {
-			throw new Exception(__('Réponse de tâche Jeego invalide', __FILE__));
-		}
-		return $task;
+		$path = '/services/' . self::identifier($service) . '/actions/' . self::identifier($action);
+		return self::request($path, $request);
 	}
 
 	public static function getTask(string $id, int $timeout = 8): array {
 		if (!preg_match('/^[a-f0-9]{32}$/D', $id)) {
 			throw new InvalidArgumentException(__('Identifiant de tâche Jeego invalide', __FILE__));
 		}
-		return self::taskResponse(self::request('/tasks/' . $id, null, $timeout), $id);
+		return self::request('/tasks/' . $id, null, $timeout);
 	}
 
 	public static function waitTask(string $id, int $timeout = 20): array {
@@ -78,18 +76,14 @@ class jeego {
 			throw new InvalidArgumentException(__('Délai d’attente Jeego invalide', __FILE__));
 		}
 		$deadline = microtime(true) + $timeout;
-		do {
-			$remaining = max(1, (int) ceil($deadline - microtime(true)));
-			$task = self::getTask($id, min(8, $remaining));
+		while (($remaining = $deadline - microtime(true)) > 0) {
+			$task = self::getTask($id, min(8, (int) ceil($remaining)));
 			if ($task['status'] !== 'running') {
 				return $task;
 			}
-			$remaining = $deadline - microtime(true);
-			if ($remaining <= 0) {
-				break;
-			}
+			$remaining = max(0, $deadline - microtime(true));
 			usleep((int) min(250000, $remaining * 1000000));
-		} while (microtime(true) < $deadline);
+		}
 		throw new Exception(__('Une opération est encore en cours dans Jeego', __FILE__));
 	}
 }

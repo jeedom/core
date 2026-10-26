@@ -73,13 +73,29 @@ class frp {
 
 	private static function settings() {
 		$servers = self::servers();
-		if (count($servers) == 0 || config::byKey('dns::token') == '') {
+		$token = config::byKey('dns::token');
+		if (count($servers) == 0 || $token == '') {
 			throw new Exception(__('Aucun relais ou identifiant FRP fourni par le Market', __FILE__));
 		}
-		if (preg_match('/[\r\n]/', config::byKey('dns::token'))) {
+		if (preg_match('/[\r\n]/', $token)) {
 			throw new Exception(__('Identifiants FRP invalides', __FILE__));
 		}
-		return array('username' => jeedom::getHardwareKey(), 'password' => config::byKey('dns::token'), 'relay' => implode(',', $servers), 'local-ip' => '127.0.0.1', 'local-port' => '80');
+		return array(
+			'username' => jeedom::getHardwareKey(),
+			'password' => $token,
+			'relay' => implode(',', $servers),
+			'local-ip' => '127.0.0.1',
+			'local-port' => '80',
+		);
+	}
+
+	private static function nativeSource() {
+		$arch = system::getArch();
+		$supported = isset(self::BINARIES[$arch]) && ($arch != 'arm' || php_uname('m') == 'armv7l');
+		if (PHP_OS_FAMILY != 'Linux' || !$supported) {
+			throw new Exception(__('Architecture FRP non prise en charge', __FILE__));
+		}
+		return array('version' => self::VERSION, 'arch' => $arch, 'sha256' => self::BINARIES[$arch]['sha256']);
 	}
 
 	public static function availability() {
@@ -87,9 +103,9 @@ class frp {
 			if (self::manager() == 'jeego') {
 				jeego::checkConfiguration();
 			} else {
-				$arch = system::getArch();
-				if (PHP_OS_FAMILY != 'Linux' || !isset(self::BINARIES[$arch]) || ($arch == 'arm' && php_uname('m') != 'armv7l') || !function_exists('posix_kill')) {
-					throw new Exception(__('FRP nécessite Linux amd64, arm64 ou armv7 et l’extension PHP POSIX', __FILE__));
+				self::nativeSource();
+				if (!function_exists('posix_kill')) {
+					throw new Exception(__('FRP nécessite l’extension PHP POSIX', __FILE__));
 				}
 			}
 			return '';
@@ -98,16 +114,41 @@ class frp {
 		}
 	}
 
-	public static function install() {
-		$arch = system::getArch();
-		if (PHP_OS_FAMILY != 'Linux' || !isset(self::BINARIES[$arch]) || ($arch == 'arm' && php_uname('m') != 'armv7l')) {
-			throw new Exception(__('Architecture FRP non prise en charge', __FILE__));
+	private static function download($name, $destination, $sha256) {
+		$stream = fopen($destination, 'wb');
+		if ($stream === false) {
+			throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
 		}
-		$source = array('version' => self::VERSION, 'arch' => $arch, 'sha256' => self::BINARIES[$arch]['sha256']);
+		$http = new com_http('https://github.com/fatedier/frp/releases/download/v' . self::VERSION . '/' . $name . '.tar.gz');
+		$http->setNoSslCheck(false);
+		$http->setNoReportError(true);
+		$http->setCURLOPT(array(
+			CURLOPT_FILE => $stream,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_MAXREDIRS => 5,
+			CURLOPT_PROTOCOLS => CURLPROTO_HTTPS,
+			CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
+			CURLOPT_CONNECTTIMEOUT => 10,
+		));
+		try {
+			$response = $http->exec(180, 1);
+		} finally {
+			fclose($stream);
+		}
+		if ($response === false || $http->getHttpCode() != 200 || !hash_equals($sha256, hash_file('sha256', $destination))) {
+			throw new Exception(__('Téléchargement FRP impossible ou empreinte incorrecte', __FILE__));
+		}
+	}
+
+	public static function install() {
+		$source = self::nativeSource();
 		$installed = self::read('binary');
 		$directory = self::directory() . '/bin';
 		$binary = $directory . '/frpc';
-		if (is_executable($binary) && ($installed['source'] ?? array()) == $source && isset($installed['sha256']) && hash_equals($installed['sha256'], hash_file('sha256', $binary))) {
+		if (is_executable($binary)
+			&& ($installed['source'] ?? array()) == $source
+			&& isset($installed['sha256'])
+			&& hash_equals($installed['sha256'], hash_file('sha256', $binary))) {
 			return;
 		}
 		if (is_link($directory) || (!is_dir($directory) && !mkdir($directory, 0700))) {
@@ -119,23 +160,8 @@ class frp {
 			if ($archive === false || $candidate === false) {
 				throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
 			}
-			$stream = fopen($archive, 'wb');
-			if ($stream === false) {
-				throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
-			}
-			$name = 'frp_' . self::VERSION . '_linux_' . self::BINARIES[$arch]['archive'];
-			$http = new com_http('https://github.com/fatedier/frp/releases/download/v' . self::VERSION . '/' . $name . '.tar.gz');
-			$http->setNoSslCheck(false);
-			$http->setNoReportError(true);
-			$http->setCURLOPT(array(CURLOPT_FILE => $stream, CURLOPT_FOLLOWLOCATION => true, CURLOPT_MAXREDIRS => 5, CURLOPT_PROTOCOLS => CURLPROTO_HTTPS, CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS, CURLOPT_CONNECTTIMEOUT => 10));
-			try {
-				$response = $http->exec(180, 1);
-			} finally {
-				fclose($stream);
-			}
-			if ($response === false || $http->getHttpCode() != 200 || !hash_equals($source['sha256'], hash_file('sha256', $archive))) {
-				throw new Exception(__('Téléchargement FRP impossible ou empreinte incorrecte', __FILE__));
-			}
+			$name = 'frp_' . self::VERSION . '_linux_' . self::BINARIES[$source['arch']]['archive'];
+			self::download($name, $archive, $source['sha256']);
 			com_shell::execute('tar --no-same-owner -xOzf ' . escapeshellarg($archive) . ' ' . escapeshellarg($name . '/frpc') . ' > ' . escapeshellarg($candidate));
 			if (!chmod($candidate, 0700) || !rename($candidate, $binary)) {
 				throw new Exception(__('Impossible d’installer le binaire FRP', __FILE__));
@@ -175,30 +201,46 @@ class frp {
 		return $state;
 	}
 
-	private static function process($state) {
+	private static function processInfo($pid) {
+		$stat = @file_get_contents('/proc/' . $pid . '/stat');
+		if (!is_string($stat)) {
+			return array();
+		}
+		$fields = explode(' ', substr($stat, strrpos($stat, ')') + 2));
+		return array('state' => $fields[0], 'birth' => $fields[19] ?? null);
+	}
+
+	private static function isNativeProcess($state) {
 		$pid = (int) ($state['pid'] ?? 0);
 		if ($pid <= 1 || !isset($state['birth'])) {
 			return false;
 		}
-		$stat = @file_get_contents('/proc/' . $pid . '/stat');
-		$command = @file_get_contents('/proc/' . $pid . '/cmdline');
-		if (!is_string($stat) || !is_string($command)) {
+		$info = self::processInfo($pid);
+		if (($info['state'] ?? 'Z') == 'Z' || ($info['birth'] ?? null) !== $state['birth']) {
 			return false;
 		}
-		$fields = explode(' ', substr($stat, strrpos($stat, ')') + 2));
+		$command = @file_get_contents('/proc/' . $pid . '/cmdline');
+		if (!is_string($command)) {
+			return false;
+		}
 		$arguments = explode("\0", $command);
-		return ($fields[0] ?? '') != 'Z' && ($fields[19] ?? '') === $state['birth'] && (in_array(realpath(__DIR__ . '/../../resources/frp/run.sh'), $arguments, true) || in_array(realpath(__DIR__ . '/../../resources/frp/client.sh'), $arguments, true));
+		foreach (array('run.sh', 'client.sh') as $script) {
+			if (in_array(realpath(__DIR__ . '/../../resources/frp/' . $script), $arguments, true)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private static function stopNative() {
 		$state = self::read('native');
-		if (self::process($state)) {
+		if (self::isNativeProcess($state)) {
 			system::kill((int) $state['pid'], false);
 			$deadline = microtime(true) + 22;
-			while (self::process($state) && microtime(true) < $deadline) {
+			while (self::isNativeProcess($state) && microtime(true) < $deadline) {
 				usleep(100000);
 			}
-			if (self::process($state)) {
+			if (self::isNativeProcess($state)) {
 				throw new Exception(__('Le client FRP ne s’est pas arrêté ; bascule annulée', __FILE__));
 			}
 		}
@@ -211,68 +253,92 @@ class frp {
 			throw new Exception($error);
 		}
 		$settings = self::settings();
-		$fingerprint = hash('sha256', json_encode($settings) . self::manager() . self::VERSION . hash_file('sha256', __DIR__ . '/../../resources/ca_frp.crt') . hash_file('sha256', __DIR__ . '/../../resources/frp/client.sh'));
+		$manager = self::manager();
+		$fingerprint = hash('sha256',
+			json_encode($settings) . $manager . self::VERSION
+			. hash_file('sha256', __DIR__ . '/../../resources/ca_frp.crt')
+			. hash_file('sha256', __DIR__ . '/../../resources/frp/client.sh')
+		);
+		if ($manager == 'jeego') {
+			self::startJeego($settings, $fingerprint, $manual);
+			return;
+		}
+		self::startNative($settings, $fingerprint, $manual);
+	}
+
+	private static function startJeego($settings, $fingerprint, $manual) {
 		$state = self::read('control');
+		$changed = ($state['fingerprint'] ?? '') != $fingerprint;
 		if (($state['manager'] ?? '') == 'jeego') {
-			$state = self::task($state, $manual && ($state['fingerprint'] ?? '') != $fingerprint);
+			$state = self::task($state, $manual && $changed);
 			if (!empty($state['task'])) {
 				return;
 			}
 		}
-		if (self::manager() == 'jeego') {
-			self::stopNative();
-			$status = jeego::getService('frp-client');
-			if (($state['fingerprint'] ?? '') == $fingerprint && !empty($state['error']) && !$manual) {
-				return;
-			}
-			if (empty($status['installed']) || !empty($status['removed'])) {
-				self::jeegoAction('install', $settings, $fingerprint);
-			} elseif (($state['fingerprint'] ?? '') != $fingerprint || !empty($state['error'])) {
-				self::jeegoAction('configure', $settings, $fingerprint);
-			} elseif (($status['status'] ?? '') != 'running' && empty($status['pending'])) {
-				if ($manual) {
-					self::jeegoAction('recreate', null, $fingerprint);
-				}
-			}
+		self::stopNative();
+		$status = jeego::getService('frp-client');
+		$failed = !empty($state['error']);
+		if (!$manual && !$changed && $failed) {
 			return;
 		}
-		if (($state['manager'] ?? '') == 'jeego') {
-			throw new Exception(__('Arrêter le service FRP Jeego avant de retirer sa configuration API', __FILE__));
+		if (empty($status['installed']) || !empty($status['removed'])) {
+			self::jeegoAction('install', $settings, $fingerprint);
+			return;
 		}
-		$native = self::read('native');
-		if (self::process($native) && ($state['fingerprint'] ?? '') == $fingerprint) {
+		if ($changed || $failed) {
+			self::jeegoAction('configure', $settings, $fingerprint);
+			return;
+		}
+		if ($manual && ($status['status'] ?? '') != 'running' && empty($status['pending'])) {
+			self::jeegoAction('recreate', null, $fingerprint);
+		}
+	}
+
+	private static function startNative($settings, $fingerprint, $manual) {
+		$state = self::read('control');
+		$sameConfig = ($state['fingerprint'] ?? '') == $fingerprint;
+		if ($sameConfig && self::isNativeProcess(self::read('native'))) {
 			return;
 		}
 		self::stopNative();
-		$path = self::directory();
-		if (!$manual && ($state['fingerprint'] ?? '') == $fingerprint && (!empty($state['error']) || (self::read('status')['state'] ?? '') == 'blocked')) {
-			return;
+		if (!$manual && $sameConfig) {
+			if (!empty($state['error']) || (self::read('status')['state'] ?? '') == 'blocked') {
+				return;
+			}
 		}
+		$path = self::directory();
 		$identity = hash('sha256', $settings['username'] . "\0" . $settings['password']);
-		if ($manual && is_file($path . '/' . $identity . '.state') && strpos(file_get_contents($path . '/' . $identity . '.state'), 'blocked ') === 0) {
-			unlink($path . '/' . $identity . '.state');
+		$stateFile = $path . '/' . $identity . '.state';
+		if ($manual && is_file($stateFile) && strpos(file_get_contents($stateFile), 'blocked ') === 0) {
+			unlink($stateFile);
 		}
 		$temp = tempnam($path, 'password-');
 		if ($temp === false || file_put_contents($temp, $settings['password']) === false || !chmod($temp, 0600) || !rename($temp, $path . '/password')) {
 			throw new Exception(__('Impossible de préparer les identifiants FRP', __FILE__));
 		}
-		$script = realpath(__DIR__ . '/../../resources/frp/run.sh');
-		$command = 'nohup bash ' . escapeshellarg($script) . ' ' . escapeshellarg($path) . ' ' . escapeshellarg($settings['username']) . ' ' . escapeshellarg($settings['relay']) . ' ' . escapeshellarg(log::getPathToLog('frp')) . ' < /dev/null > /dev/null 2>&1 & echo $!';
+		$arguments = array(
+			realpath(__DIR__ . '/../../resources/frp/run.sh'),
+			$path,
+			$settings['username'],
+			$settings['relay'],
+			log::getPathToLog('frp'),
+		);
+		$command = 'nohup bash ' . implode(' ', array_map('escapeshellarg', $arguments));
+		$command .= ' < /dev/null > /dev/null 2>&1 & echo $!';
 		self::write('control', array('manager' => 'core', 'fingerprint' => $fingerprint));
 		$pid = (int) trim(com_shell::execute($command));
 		usleep(100000);
-		$stat = @file_get_contents('/proc/' . $pid . '/stat');
-		$fields = is_string($stat) ? explode(' ', substr($stat, strrpos($stat, ')') + 2)) : array();
-		if ($pid <= 1 || !isset($fields[19])) {
+		$info = self::processInfo($pid);
+		if ($pid <= 1 || !isset($info['birth'])) {
 			self::write('control', array('manager' => 'core', 'fingerprint' => $fingerprint, 'error' => __('Impossible de démarrer le client FRP', __FILE__)));
 			throw new Exception(__('Impossible de démarrer le client FRP', __FILE__));
 		}
-		self::write('native', array('pid' => $pid, 'birth' => $fields[19]));
+		self::write('native', array('pid' => $pid, 'birth' => $info['birth']));
 	}
 
 	public static function stop() {
 		$state = self::read('control');
-		if (empty($state) && !self::process(self::read('native')) && !file_exists(__DIR__ . '/../../data/frp/password')) {
+		if (empty($state) && !self::isNativeProcess(self::read('native')) && !file_exists(__DIR__ . '/../../data/frp/password')) {
 			return;
 		}
 		self::stopNative();
@@ -280,7 +346,8 @@ class frp {
 			$state = self::task($state, true);
 			$status = jeego::getService('frp-client');
 			$stopped = in_array($status['status'] ?? '', array('stopped', 'exited', 'dead', 'created', 'missing', 'not-installed'), true);
-			if (!empty($status['installed']) && empty($status['removed']) && (!empty($status['pending']) || !$stopped)) {
+			$installed = !empty($status['installed']) && empty($status['removed']);
+			if ($installed && (!empty($status['pending']) || !$stopped)) {
 				$state = self::jeegoAction('stop', null, '');
 				$state = self::task($state, true);
 				if (!empty($state['error'])) {
@@ -300,7 +367,10 @@ class frp {
 			}
 			$status = self::read('status');
 			$native = self::read('native');
-			$status['running'] = self::process($native) && ($status['pid'] ?? 0) == ($native['pid'] ?? -1) && !empty($status['registered']) && !empty($status['published']) && time() - ($status['updated'] ?? 0) < 25;
+			$status['running'] = self::isNativeProcess($native)
+				&& ($status['pid'] ?? 0) == ($native['pid'] ?? -1)
+				&& !empty($status['registered']) && !empty($status['published'])
+				&& time() - ($status['updated'] ?? 0) < 25;
 			if (!$status['running'] && !empty($state['error'])) {
 				$status['state'] = 'blocked';
 				$status['error'] = $state['error'];

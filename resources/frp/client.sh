@@ -3,53 +3,22 @@ set +x
 set -euo pipefail
 umask 077
 die() { { declare -F report >/dev/null && report blocked; } || true; printf '%s\n' "$*" >&2; exit 1; }
-usage() { printf '%s\n' 'Usage: bash scripts/start-client.sh --username IDENTITE [--password SECRET | --password-stdin] [--relay FQDN[,FQDN...]] [--dns DOMAINE_BOX] [--local-ip IP] [--local-port PORT] [--ca-file CA] [--retry] [--state-dir DOSSIER]'; }
-username='' password='' password_given=false password_stdin=false relay='' dns='' local_ip=127.0.0.1 local_port=80 ca=${FRP_CA_FILE:-/etc/ssl/certs/ca-certificates.crt}
-task_retry=false task_state_dir=''
-while (( $# )); do
-  case "$1" in
-    --username|--password|--relay|--dns|--local-ip|--local-port|--ca-file|--state-dir)
-      (( $# >= 2 )) || die 'Valeur de paramètre manquante.'
-      case "$1" in
-        --username) username=$2 ;; --password) password=$2; password_given=true ;;
-        --relay) relay=${relay:+$relay,}$2 ;; --dns) dns=$2 ;; --local-ip) local_ip=$2 ;;
-        --local-port) local_port=$2 ;; --ca-file) ca=$2 ;; --state-dir) task_state_dir=$2 ;;
-      esac
-      shift 2 ;;
-    --retry) task_retry=true; shift ;;
-    --password-stdin) password_stdin=true; shift ;;
-    --help|-h) usage; exit 0 ;;
-    *) usage >&2; die 'Paramètre inconnu.' ;;
-  esac
+[[ $# == 4 ]] || die 'Paramètres du client FRP incomplets.'
+username=$1
+ca=$3
+task_state_dir=$4
+IFS=, read -r -a task_relays <<< "$2"
+relay=${task_relays[0]}
+for task_bin in curl jq flock sha256sum setpriv; do
+  command -v "$task_bin" >/dev/null || die "Commande requise : $task_bin."
 done
-for task_bin in curl jq flock sha256sum setpriv; do command -v "$task_bin" >/dev/null || die "Commande requise : $task_bin (installation FRP incomplète)."; done
-[[ -n $username && ${#username} -le 255 ]] || die '--username requis.'
-[[ ! ( $password_given == true && $password_stdin == true ) ]] || die 'Choisir un seul mode de saisie du mot de passe.'
-if [[ $password_stdin == true ]]; then IFS= read -r password || [[ -n $password ]];
-elif [[ $password_given == false ]]; then IFS= read -r -s -p 'Mot de passe DNS : ' password </dev/tty; printf '\n' >&2; fi
-[[ -n $password && ${#password} -le 512 ]] || die 'Mot de passe DNS requis.'
-if [[ -z $relay && -r /etc/jeedom-frp/relay ]]; then relay=$(cat /etc/jeedom-frp/relay); fi
+[[ -n $username && ${#username} -le 255 ]] || die 'Identité DNS invalide.'
+IFS= read -r password || [[ -n $password ]]
+[[ -n $password && ${#password} -le 512 ]] || die 'Mot de passe DNS invalide.'
+[[ -r $ca && -x ${FRP_BINARY:?} ]] || die 'CA non lisible ou frpc non installé.'
 valid_relay() {
   [[ ${#1} -le 253 && $1 =~ ^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$ ]]
 }
-[[ -n $relay && $relay != *, && $relay != ,* && $relay != *$'\n'* && ${#relay} -le 4096 ]] || die 'Fournir --relay FQDN[,FQDN...] ou le configurer avec install-client.sh.'
-IFS=, read -r -a task_inputs <<< "$relay"
-task_relays=()
-for task_item in "${task_inputs[@]}"; do
-  task_item=${task_item#"${task_item%%[![:space:]]*}"}
-  task_item=${task_item%"${task_item##*[![:space:]]}"}
-  valid_relay "$task_item" || die 'Adresse de relais invalide : fournir des FQDN séparés par des virgules.'
-  task_duplicate=false
-  for task_existing in "${task_relays[@]}"; do [[ $task_existing != "$task_item" ]] || task_duplicate=true; done
-  [[ $task_duplicate == true ]] || task_relays+=("$task_item")
-done
-(( ${#task_relays[@]} >= 1 && ${#task_relays[@]} <= 16 )) || die 'Fournir entre 1 et 16 relais distincts.'
-(( ${#task_relays[@]} <= 1 )) || task_retry=true
-relay=${task_relays[0]}
-[[ $local_port =~ ^[0-9]{1,5}$ ]] || die 'Port local invalide.'
-local_port=$((10#$local_port))
-[[ $local_port -gt 0 && $local_port -le 65535 ]] || die 'Port local invalide.'
-[[ -r $ca && -x ${FRP_BINARY:?} ]] || die 'CA non lisible ou frpc non installé.'
 report() {
   local state=$1 registered=${2:-false} published=${3:-false}
   jq -n --arg state "$state" --arg relay "${relay:-}" --argjson pid "$$" --argjson updated "$(date +%s)" --argjson registered "$registered" --argjson published "$published" \
@@ -64,42 +33,22 @@ chmod 0700 -- "$task_lock_dir"
 task_identity_hash=$(printf '%s' "$username" | sha256sum | cut -d' ' -f1)
 exec 9>"$task_lock_dir/$task_identity_hash.lock"
 flock -n 9 || die 'Un client tourne déjà pour cette identité sous ce compte.'
-task_state=initial task_previous='' task_state_file='' task_last_relay=$relay task_owner=$relay
-if [[ $task_retry == true ]]; then
-  task_state_dir=${task_state_dir:-$task_lock_dir}
-  if [[ ! -e $task_state_dir ]]; then mkdir -m 0700 -- "$task_state_dir" || die 'Création du dossier de reprise impossible.'; fi
-  [[ -d $task_state_dir && ! -L $task_state_dir && -O $task_state_dir ]] || die 'Dossier de reprise non sûr.'
-  chmod 0700 -- "$task_state_dir"
-  # Bind state to credentials, not list order: editing a list must not rearm a
-  # refusal or turn an established client's next boot into a fresh takeover.
-  task_state_hash=$(printf '%s\0%s' "$username" "$password" | sha256sum | cut -d' ' -f1)
-  task_state_file=$task_state_dir/$task_state_hash.state
-  if [[ ! -e $task_state_file && ! -L $task_state_file ]]; then
-    task_legacy=''
-    for task_item in "${task_relays[@]}"; do
-      task_hash=$(printf '%s\0%s\0%s' "$username" "$task_item" "$password" | sha256sum | cut -d' ' -f1)
-      task_candidate=$task_state_dir/$task_hash.state
-      if [[ -e $task_candidate || -L $task_candidate ]]; then
-        [[ -z $task_legacy ]] || die 'Plusieurs anciens états de connexion : intervention requise.'
-        task_legacy=$task_candidate task_last_relay=$task_item task_owner=$task_item
-      fi
-    done
-    [[ -z $task_legacy ]] || mv -- "$task_legacy" "$task_state_file"
-  fi
-  if [[ -e $task_state_file || -L $task_state_file ]]; then
-    [[ -f $task_state_file && ! -L $task_state_file && -O $task_state_file ]] || die 'État de reprise non sûr.'
-    task_legacy_relay=$task_last_relay
-    IFS=' ' read -r task_state task_previous task_last_relay task_owner task_extra < "$task_state_file" || die 'État de reprise illisible.'
-    task_last_relay=${task_last_relay:-$task_legacy_relay}
-    task_owner=${task_owner:-$task_legacy_relay}
-    [[ $task_state =~ ^(pending|owned|closed|blocked)$ && ( $task_previous =~ ^[a-f0-9]{48}$ || ( $task_state == blocked && $task_previous == - ) ) && -z $task_extra ]] || die 'État de reprise invalide.'
-    valid_relay "$task_last_relay" && { [[ $task_owner == - ]] || valid_relay "$task_owner"; } || die 'Relais de reprise invalide.'
-    if [[ $task_state == blocked ]]; then
-      report blocked
-      unset password
-      printf '%s\n' 'Connexion bloquée après un refus permanent. Corriger la cause puis utiliser (Re)démarrer dans la configuration réseau.' >&2
-      exit 0
-    fi
+task_state=initial task_previous='' task_last_relay=$relay task_owner=$relay
+[[ -d $task_state_dir && ! -L $task_state_dir && -O $task_state_dir ]] || die 'Dossier de reprise non sûr.'
+chmod 0700 -- "$task_state_dir"
+task_state_hash=$(printf '%s\0%s' "$username" "$password" | sha256sum | cut -d' ' -f1)
+task_state_file=$task_state_dir/$task_state_hash.state
+if [[ -e $task_state_file || -L $task_state_file ]]; then
+  [[ -f $task_state_file && ! -L $task_state_file && -O $task_state_file ]] || die 'État de reprise non sûr.'
+  IFS=' ' read -r task_state task_previous task_last_relay task_owner task_extra < "$task_state_file" || die 'État de reprise illisible.'
+  [[ $task_state =~ ^(pending|owned|closed|blocked)$ && -z $task_extra ]] || die 'État de reprise invalide.'
+  [[ $task_previous =~ ^[a-f0-9]{48}$ || ( $task_state == blocked && $task_previous == - ) ]] || die 'Session de reprise invalide.'
+  valid_relay "$task_last_relay" && { [[ $task_owner == - ]] || valid_relay "$task_owner"; } || die 'Relais de reprise invalide.'
+  if [[ $task_state == blocked ]]; then
+    report blocked
+    unset password
+    printf '%s\n' 'Connexion bloquée après un refus permanent. Corriger la cause puis utiliser (Re)démarrer dans la configuration réseau.' >&2
+    exit 0
   fi
 fi
 task_relay_index=0
@@ -112,11 +61,14 @@ task_pid='' task_sleep_pid='' task_stopping=false
 save_state() {
   task_state=$1
   [[ $task_state != blocked ]] || report blocked
-  [[ $task_retry == true ]] || return 0
   printf '%s %s %s %s\n' "$task_state" "${task_previous:--}" "$task_last_relay" "$task_owner" > "$task_state_file.tmp" && mv -f -- "$task_state_file.tmp" "$task_state_file"
 }
 stop_frpc() {
-  if [[ -n $task_pid ]]; then kill "$task_pid" 2>/dev/null || true; wait "$task_pid" 2>/dev/null || true; task_pid=''; fi
+  if [[ -n $task_pid ]]; then
+    kill "$task_pid" 2>/dev/null || true
+    wait "$task_pid" 2>/dev/null || true
+    task_pid=''
+  fi
 }
 cleanup() {
   trap - EXIT INT TERM
@@ -134,7 +86,7 @@ cleanup() {
 trap cleanup EXIT
 trap 'task_stopping=true; exit 130' INT
 trap 'task_stopping=true; exit 143' TERM
-printf '%s' "$password" | jq -Rs --arg username "$username" --arg dns "$dns" '{username: $username, password: ., dns: $dns}' > "$task_work/request.json"
+printf '%s' "$password" | jq -Rs --arg username "$username" --arg dns '' '{username: $username, password: ., dns: $dns}' > "$task_work/request.json"
 unset password
 pause_client() {
   sleep "$1" & task_sleep_pid=$!
@@ -157,7 +109,7 @@ request() {
   return 0
 }
 connect_once() {
-  local task_rc=0 task_reason task_attempt task_failures=0 task_deadline task_admission task_recovery=76
+  local task_rc=0 task_reason task_attempt task_failures=0 task_deadline task_recovery=76
   if [[ $task_state == initial ]]; then
     cp -- "$task_work/request.json" "$task_work/retry-request.json" || return 78
   else
@@ -165,16 +117,8 @@ connect_once() {
       --argjson unassigned "$([[ $task_state == closed || $task_owner == - ]] && printf true || printf false)" \
       '. + {reconnect: true, allowUnassigned: $unassigned, previousSessionId: $previous} + (if $owner != "-" and $owner != $relay then {previousRelay: $owner} else {} end)' "$task_work/request.json" > "$task_work/retry-request.json" || return 78
   fi
-  for (( task_admission=0; task_admission<8; task_admission++ )); do
-    task_rc=0
-    request bootstrap "$task_work/retry-request.json" "$task_work/reply.json" || task_rc=$?
-    if [[ $task_retry != true ]] && (( task_rc == 75 && task_admission < 7 )); then
-      pause_client "$((1 + RANDOM % 5))" || return 78
-    else
-      (( task_rc == 0 )) || return "$task_rc"
-      break
-    fi
-  done
+  request bootstrap "$task_work/retry-request.json" "$task_work/reply.json" || task_rc=$?
+  (( task_rc == 0 )) || return "$task_rc"
   if [[ $task_status != 200 ]]; then
     task_reason=$(jq -r '.error // "BOOTSTRAP_FAILED"' "$task_work/reply.json" 2>/dev/null) || task_reason=BOOTSTRAP_FAILED
     [[ $task_reason =~ ^[A-Z_]+$ ]] || task_reason=BOOTSTRAP_FAILED
@@ -195,7 +139,7 @@ connect_once() {
   task_last_relay=$relay
   # After receiving a generation, never fall back to an unconditional bootstrap.
   if [[ $task_state == initial || $task_state == closed ]]; then save_state pending || return 78; else save_state "$task_state" || return 78; fi
-  jq --arg relay "$relay" --arg ca "$ca" --arg localIp "$local_ip" --argjson localPort "$local_port" -f "$task_scripts/client-config.jq" "$task_work/bootstrap.json" > "$task_work/frpc.json" || return 78
+  jq --arg relay "$relay" --arg ca "$ca" -f "$task_scripts/client-config.jq" "$task_work/bootstrap.json" > "$task_work/frpc.json" || return 78
   env -u http_proxy -u HTTP_PROXY -u https_proxy -u HTTPS_PROXY -u all_proxy -u ALL_PROXY \
     setpriv --pdeathsig TERM -- "$FRP_BINARY" -c "$task_work/frpc.json" 9>&- &
   task_pid=$!
@@ -217,14 +161,16 @@ connect_once() {
   done
   [[ $task_ready == true ]] || { printf '%s\n' 'Tunnel non confirmé.' >&2; return 75; }
   report connected true true
-  printf '%s\n' 'Proxy enregistré et route publiée. Accès web externe à vérifier ; Ctrl+C pour arrêter.'
+  printf '%s\n' 'Proxy enregistré et route publiée.'
   task_connected_at=$SECONDS
   while kill -0 "$task_pid" 2>/dev/null; do
     pause_client 5 || return 78
     task_rc=0
     request status "$task_work/bootstrap.json" "$task_work/status.json" || task_rc=$?
     (( task_rc != 78 )) || return 78
-    if (( task_rc == 0 )) && [[ $task_status == 200 ]] && jq -e '.registered == true and .published == true' "$task_work/status.json" >/dev/null 2>&1; then task_failures=0; report connected true true;
+    if (( task_rc == 0 )) && [[ $task_status == 200 ]] && jq -e '.registered == true and .published == true' "$task_work/status.json" >/dev/null 2>&1; then
+      task_failures=0
+      report connected true true
     else
       report reconnecting
       task_failures=$((task_failures + 1))
@@ -244,10 +190,8 @@ while true; do
   connect_once || task_result=$?
   stop_frpc
   report reconnecting
-  if [[ $task_retry != true ]]; then exit 1; fi
   if (( task_result != 75 && task_result != 76 )); then
-    # Persist refusals before exiting: unless-stopped may restart this process,
-    # but a Docker restart or host reboot must never rearm a revoked connection.
+    # A process or host restart must never rearm a revoked connection.
     save_state blocked || die 'Enregistrement du refus permanent impossible.'
     printf '%s\n' 'Reconnexion automatique arrêtée. Corriger la cause puis utiliser (Re)démarrer dans la configuration réseau.' >&2
     exit 0

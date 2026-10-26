@@ -441,8 +441,9 @@ class network {
 					self::dns_openvpn_stop();
 					throw new Exception(__('Aucun relais FRP fourni par le Market', __FILE__));
 				}
-				if (frp::availability() != '') {
-					throw new Exception(frp::availability());
+				$error = frp::availability();
+				if ($error != '') {
+					throw new Exception($error);
 				}
 				self::dns_openvpn_stop();
 				frp::start($manual);
