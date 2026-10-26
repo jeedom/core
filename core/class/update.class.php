@@ -216,10 +216,6 @@ class update {
 		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
 	}
 
-	/**
-	 *
-	 * @return array de tous les utilisateurs
-	 */
 	public static function all($_filter = '') {
 		$values = array();
 		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
@@ -242,6 +238,29 @@ class update {
 		AND `configuration` NOT LIKE :configuration';
 		$result = DB::Prepare($sql, $value, DB::FETCH_TYPE_ROW);
 		return $result['count(*)'];
+	}
+
+	public static function isRunning(): bool {
+		if (strpos(log::getLastLine('update'), 'END UPDATE') !== false) {
+			return false;
+		}
+		return count(system::ps('install/update.php', 'sudo')) > 0;
+	}
+
+	public static function getRunState(): string {
+		if (self::isRunning()) {
+			return 'running';
+		}
+		// The update log is cleared on each launch, so any end marker found belongs to the last update
+		$log = log::getPathToLog('update');
+		$content = file_exists($log) ? file_get_contents($log) : '';
+		if (strpos($content, '[END UPDATE SUCCESS]') !== false) {
+			return 'success';
+		}
+		if (strpos($content, '[END UPDATE ERROR]') !== false) {
+			return 'error';
+		}
+		return 'unknown';
 	}
 
 	public static function findNewUpdateObject() {
@@ -505,15 +524,21 @@ class update {
 		log::add(__CLASS__, 'alert', __("END UPDATE SUCCESS", __FILE__) . "\n");
 	}
 
-	public static function getLastAvailableVersion() {
+	public static function getLastAvailableVersion(): string {
+		$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
 		try {
-			$url = 'https://raw.githubusercontent.com/jeedom/core/' . config::byKey('core::branch', 'core', 'master') . '/core/config/version';
 			$request_http = new com_http($url);
-			return trim($request_http->exec(30));
+			$version = trim($request_http->exec(30));
+			// An HTTP error returns its body (e.g. "404: Not Found") instead of throwing
+			if (!preg_match('/^\d+(\.\d+)+$/', $version)) {
+				throw new Exception(__('Version invalide :', __FILE__) . ' ' . $version);
+			}
+			return $version;
 		} catch (\Throwable $e) {
-			log::add(__CLASS__, 'error', __('Erreur lors de la récuperation de la derniere version de Jeedom, url :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
+			log::add(__CLASS__, 'error', __('Erreur lors de la récupération de la dernière version du core. URL :', __FILE__) . ' ' . $url . ' => ' . log::exception($e));
 		}
-		return null;
+		// Fall back to the local version so a failed check never reports an update
+		return jeedom::version();
 	}
 
 	public function checkUpdate() {
