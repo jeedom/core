@@ -2,7 +2,7 @@
   serverAddr: $relay, serverPort: .port,
   user: .sessionId, clientID: .sessionId,
   loginFailExit: true,
-  log: {to: $log, level: "warn", disablePrintColor: true},
+  log: {to: "console", level: "warn", disablePrintColor: true},
   transport: {
     protocol: "tcp", poolCount: 1,
     dialServerTimeout: 5,

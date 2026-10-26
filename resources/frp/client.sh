@@ -195,9 +195,9 @@ connect_once() {
   task_last_relay=$relay
   # After receiving a generation, never fall back to an unconditional bootstrap.
   if [[ $task_state == initial || $task_state == closed ]]; then save_state pending || return 78; else save_state "$task_state" || return 78; fi
-  jq --arg relay "$relay" --arg ca "$ca" --arg log "$task_work/frpc.log" --arg localIp "$local_ip" --argjson localPort "$local_port" -f "$task_scripts/client-config.jq" "$task_work/bootstrap.json" > "$task_work/frpc.json" || return 78
+  jq --arg relay "$relay" --arg ca "$ca" --arg localIp "$local_ip" --argjson localPort "$local_port" -f "$task_scripts/client-config.jq" "$task_work/bootstrap.json" > "$task_work/frpc.json" || return 78
   env -u http_proxy -u HTTP_PROXY -u https_proxy -u HTTPS_PROXY -u all_proxy -u ALL_PROXY \
-    setpriv --pdeathsig TERM -- "$FRP_BINARY" -c "$task_work/frpc.json" 7>&- 9>&- > "$task_work/frpc.log" 2>&1 &
+    setpriv --pdeathsig TERM -- "$FRP_BINARY" -c "$task_work/frpc.json" 9>&- &
   task_pid=$!
   task_ready=false
   task_deadline=$((SECONDS+60))

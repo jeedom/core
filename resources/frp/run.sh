@@ -7,8 +7,6 @@ task_username=$2
 task_relays=$3
 task_scripts=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 task_install_pid=''
-exec 7>"$task_dir/service.lock"
-flock -n 7 || exit 0
 stop_install() {
   [[ -z $task_install_pid ]] || kill "$task_install_pid" 2>/dev/null || true
   exit 143
@@ -17,7 +15,7 @@ trap stop_install TERM INT
 exec >>"$4" 2>&1
 printf '{"state":"installing","updated":%s}\n' "$(date +%s)" > "$task_dir/status.json.tmp"
 mv -f -- "$task_dir/status.json.tmp" "$task_dir/status.json"
-bash "$task_scripts/install.sh" "$task_dir" 7>&- &
+php "$task_scripts/../../core/php/jeeFrp.php" &
 task_install_pid=$!
 if ! wait "$task_install_pid"; then
   printf '{"state":"blocked","updated":%s}\n' "$(date +%s)" > "$task_dir/status.json.tmp"
