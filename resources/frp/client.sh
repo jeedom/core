@@ -8,7 +8,8 @@ username=$1
 ca=$3
 task_state_dir=$4
 IFS=, read -r -a task_relays <<< "$2"
-relay=${task_relays[0]}
+# Spread first connections; recovery state below keeps the last relay on restart.
+relay=${task_relays[$((RANDOM % ${#task_relays[@]}))]}
 for task_bin in curl jq flock sha256sum setpriv; do
   command -v "$task_bin" >/dev/null || die "Commande requise : $task_bin."
 done
