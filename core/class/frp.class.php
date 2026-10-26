@@ -287,6 +287,12 @@ class frp {
 				return;
 			}
 		}
+		try {
+			self::install();
+		} catch (Throwable $e) {
+			self::write('control', array('manager' => 'core', 'fingerprint' => $fingerprint, 'error' => $e->getMessage()));
+			throw $e;
+		}
 		$path = self::directory();
 		$identity = hash('sha256', $settings['username'] . "\0" . $settings['password']);
 		$stateFile = $path . '/' . $identity . '.state';
