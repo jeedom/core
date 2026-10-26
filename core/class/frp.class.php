@@ -1,13 +1,6 @@
 <?php
 
 class frp {
-	private const VERSION = '0.71.1';
-	private const BINARIES = array(
-		'amd64' => array('archive' => 'amd64', 'sha256' => '1d9875210972a5d1a62b2dc4c48df45ab0af05d3ca1b5e494a014428259df803'),
-		'arm64' => array('archive' => 'arm64', 'sha256' => '8edf590b0c396fa42f9c147121a76af83cfc2002b08f5aef0ea1008c43482019'),
-		'arm' => array('archive' => 'arm_hf', 'sha256' => 'a40116f15f2a05b7001f985f1f1ccb2570e2aa41329b06de76a82e71495786db'),
-	);
-
 	private static function directory() {
 		$path = __DIR__ . '/../../data/frp';
 		if (is_link($path) || (!is_dir($path) && !mkdir($path, 0700, true))) {
@@ -91,11 +84,13 @@ class frp {
 
 	private static function nativeSource() {
 		$arch = system::getArch();
-		$supported = isset(self::BINARIES[$arch]) && ($arch != 'arm' || php_uname('m') == 'armv7l');
-		if (PHP_OS_FAMILY != 'Linux' || !$supported) {
+		if ($arch == 'arm' && php_uname('m') == 'armv7l') {
+			$arch = 'armhf';
+		}
+		if (PHP_OS_FAMILY != 'Linux' || !in_array($arch, array('amd64', 'arm64', 'armhf'), true)) {
 			throw new Exception(__('Architecture FRP non prise en charge', __FILE__));
 		}
-		return array('version' => self::VERSION, 'arch' => $arch, 'sha256' => self::BINARIES[$arch]['sha256']);
+		return 'https://images.jeedom.com/resources/frp/frpc_' . $arch;
 	}
 
 	public static function availability() {
@@ -114,12 +109,12 @@ class frp {
 		}
 	}
 
-	private static function download($name, $destination, $sha256) {
+	private static function download($url, $destination) {
 		$stream = fopen($destination, 'wb');
 		if ($stream === false) {
 			throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
 		}
-		$http = new com_http('https://github.com/fatedier/frp/releases/download/v' . self::VERSION . '/' . $name . '.tar.gz');
+		$http = new com_http($url);
 		$http->setNoSslCheck(false);
 		$http->setNoReportError(true);
 		$http->setCURLOPT(array(
@@ -135,42 +130,28 @@ class frp {
 		} finally {
 			fclose($stream);
 		}
-		if ($response === false || $http->getHttpCode() != 200 || !hash_equals($sha256, hash_file('sha256', $destination))) {
-			throw new Exception(__('Téléchargement FRP impossible ou empreinte incorrecte', __FILE__));
+		if ($response === false || $http->getHttpCode() != 200 || filesize($destination) == 0) {
+			throw new Exception(__('Téléchargement FRP impossible', __FILE__));
 		}
 	}
 
 	public static function install() {
 		$source = self::nativeSource();
-		$installed = self::read('binary');
 		$directory = self::directory() . '/bin';
 		$binary = $directory . '/frpc';
-		if (is_executable($binary)
-			&& ($installed['source'] ?? array()) == $source
-			&& isset($installed['sha256'])
-			&& hash_equals($installed['sha256'], hash_file('sha256', $binary))) {
-			return;
-		}
 		if (is_link($directory) || (!is_dir($directory) && !mkdir($directory, 0700))) {
 			throw new Exception(__('Impossible de créer le dossier du binaire FRP', __FILE__));
 		}
-		$archive = tempnam(self::directory(), 'download-');
-		$candidate = tempnam(self::directory(), 'frpc-');
+		$candidate = tempnam($directory, 'frpc-');
 		try {
-			if ($archive === false || $candidate === false) {
+			if ($candidate === false) {
 				throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
 			}
-			$name = 'frp_' . self::VERSION . '_linux_' . self::BINARIES[$source['arch']]['archive'];
-			self::download($name, $archive, $source['sha256']);
-			com_shell::execute('tar --no-same-owner -xOzf ' . escapeshellarg($archive) . ' ' . escapeshellarg($name . '/frpc') . ' > ' . escapeshellarg($candidate));
+			self::download($source, $candidate);
 			if (!chmod($candidate, 0700) || !rename($candidate, $binary)) {
 				throw new Exception(__('Impossible d’installer le binaire FRP', __FILE__));
 			}
-			self::write('binary', array('source' => $source, 'sha256' => hash_file('sha256', $binary)));
 		} finally {
-			if ($archive !== false) {
-				@unlink($archive);
-			}
 			if ($candidate !== false) {
 				@unlink($candidate);
 			}
@@ -255,7 +236,7 @@ class frp {
 		$settings = self::settings();
 		$manager = self::manager();
 		$fingerprint = hash('sha256',
-			json_encode($settings) . $manager . self::VERSION
+			json_encode($settings) . $manager
 			. hash_file('sha256', __DIR__ . '/../../resources/ca_frp.crt')
 			. hash_file('sha256', __DIR__ . '/../../resources/frp/client.sh')
 		);
