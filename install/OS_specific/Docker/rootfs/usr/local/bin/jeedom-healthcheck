@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+[[ -f /run/jeedom/ready && -f /run/jeedom/cron-heartbeat ]]
+[[ $(( $(date +%s) - $(stat -c %Y /run/jeedom/cron-heartbeat) )) -lt 180 ]]
+/usr/bin/php /usr/local/lib/jeedom/database.php check
+curl --fail --silent --show-error --max-time 3 http://127.0.0.1/ > /dev/null

@@ -1,0 +1,20 @@
+#!/bin/bash
+# Adaptateur explicite pour les appels du core ; aucun systemd dans le conteneur.
+set -euo pipefail
+action=${1:-}
+[[ $action != daemon-reload ]] || exit 0
+unit=${2:-}
+unit=${unit%.service}
+case "$unit" in
+  apache2) process=runtime:apache ;;
+  mariadb|mysql) process=mariadb ;;
+  cron) process=runtime:cron ;;
+  atd) process=runtime:atd ;;
+  *) echo "Service non géré dans cette image : $unit" >&2; exit 1 ;;
+esac
+case "$action" in
+  start|stop|restart|status) exec supervisorctl -c /etc/supervisor/jeedom.conf "$action" "$process" ;;
+  reload) [[ $unit == apache2 ]] && exec /usr/local/bin/jeedom-apache -k graceful ;;
+  is-active|is-enabled) supervisorctl -c /etc/supervisor/jeedom.conf status "$process" | grep -q RUNNING ;;
+  *) echo "Action non gérée dans cette image : $action" >&2; exit 1 ;;
+esac
