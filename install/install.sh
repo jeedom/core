@@ -323,9 +323,6 @@ step_10_jeedom_installation() {
   export COMPOSER_ALLOW_SUPERUSER=1
   cd ${WEBSERVER_HOME}
   composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader
-  mkdir -p /tmp/jeedom
-  chmod 777 -R /tmp/jeedom
-  chown www-data:www-data -R /tmp/jeedom
 
   if [ "${INSTALLATION_TYPE}" != "docker" ];then
     php ${WEBSERVER_HOME}/install/install.php mode=force
@@ -352,6 +349,9 @@ step_11_jeedom_post() {
       mount /tmp/jeedom
     fi
   fi
+  mkdir -p /tmp/jeedom
+  chmod 777 -R /tmp/jeedom
+  chown www-data:www-data -R /tmp/jeedom
   if [ $(crontab -l | grep jeedom | wc -l) -ne 0 ];then
     (echo crontab -l | grep -v "jeedom") | crontab -
 
