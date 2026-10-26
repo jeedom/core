@@ -2,6 +2,11 @@
   "apt": {
     "ffmpeg": {},
     "tar": {},
+    "curl": {},
+    "jq": {},
+    "ca-certificates": {},
+    "util-linux": {},
+    "coreutils": {},
     "wget": {},
     "chrony": {},
     "smbclient": {},

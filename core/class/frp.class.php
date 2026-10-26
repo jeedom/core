@@ -98,51 +98,11 @@ class frp {
 		}
 	}
 
-	private static function installDependencies() {
-		$commands = array('curl' => 'curl', 'jq' => 'jq', 'flock' => 'util-linux', 'setpriv' => 'util-linux', 'tar' => 'tar', 'sha256sum' => 'coreutils');
-		$packages = array('apt' => array('ca-certificates' => array()));
-		$deadline = time() + 900;
-		while (system::installPackageInProgress()) {
-			if (time() >= $deadline) {
-				throw new Exception(__('Une installation de paquets est toujours en cours', __FILE__));
-			}
-			sleep(2);
-		}
-		foreach ($commands as $command => $package) {
-			$packages['apt'][$package] = $packages['apt'][$package] ?? array();
-			if (!com_shell::commandExists($command)) {
-				$packages['apt'][$package]['reinstall'] = true;
-			}
-		}
-		$install = false;
-		foreach (system::checkAndInstall($packages) as $package) {
-			$install = $install || $package['status'] == 0 || $package['reinstall'];
-		}
-		if (!$install) {
-			return;
-		}
-		system::checkAndInstall($packages, true);
-		$started = time();
-		do {
-			sleep(2);
-			if (!system::installPackageInProgress() && time() - $started >= 10) {
-				foreach ($commands as $command => $package) {
-					if (!com_shell::commandExists($command)) {
-						throw new Exception(__('Installation FRP incomplète ; vérifier le journal packages', __FILE__));
-					}
-				}
-				return;
-			}
-		} while (time() < $deadline);
-		throw new Exception(__('Installation des dépendances FRP trop longue ; vérifier le journal packages', __FILE__));
-	}
-
 	public static function install() {
 		$arch = system::getArch();
 		if (PHP_OS_FAMILY != 'Linux' || !isset(self::BINARIES[$arch]) || ($arch == 'arm' && php_uname('m') != 'armv7l')) {
 			throw new Exception(__('Architecture FRP non prise en charge', __FILE__));
 		}
-		self::installDependencies();
 		$source = array('version' => self::VERSION, 'arch' => $arch, 'sha256' => self::BINARIES[$arch]['sha256']);
 		$installed = self::read('binary');
 		$directory = self::directory() . '/bin';
