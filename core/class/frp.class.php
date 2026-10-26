@@ -51,7 +51,7 @@ class frp {
 	}
 
 	public static function manager() {
-		return (getenv('JEEGO_API_URL') !== false && getenv('JEEGO_API_URL') !== '') || (getenv('JEEGO_API_KEY') !== false && getenv('JEEGO_API_KEY') !== '') || (self::read('control')['manager'] ?? '') == 'jeego' ? 'jeego' : 'core';
+		return jeego::isDetected() || (self::read('control')['manager'] ?? '') == 'jeego' ? 'jeego' : 'core';
 	}
 
 	public static function servers($servers = null) {
@@ -85,7 +85,7 @@ class frp {
 	public static function availability() {
 		try {
 			if (self::manager() == 'jeego') {
-				self::jeegoCredentials();
+				jeego::checkConfiguration();
 			} else {
 				$arch = system::getArch();
 				if (PHP_OS_FAMILY != 'Linux' || !isset(self::BINARIES[$arch]) || ($arch == 'arm' && php_uname('m') != 'armv7l') || !function_exists('posix_kill')) {
@@ -151,55 +151,17 @@ class frp {
 		}
 	}
 
-	private static function jeegoCredentials() {
-		$url = (string) getenv('JEEGO_API_URL');
-		$key = (string) getenv('JEEGO_API_KEY');
-		$credentials = array('url' => rtrim($url, '/'), 'key' => $key);
-		$parts = parse_url($credentials['url']);
-		if (!is_array($parts) || ($parts['scheme'] ?? '') != 'http' || !in_array($parts['host'] ?? '', array('127.0.0.1', '[::1]', '::1')) || ($parts['path'] ?? '') != '/api/v1' || isset($parts['user']) || isset($parts['pass']) || isset($parts['query']) || isset($parts['fragment']) || !preg_match('/^[a-f0-9]{64}$/D', ($credentials['key'] ?? ''))) {
-			throw new Exception(__('Configuration de l’API locale Jeego absente ou invalide', __FILE__));
-		}
-		return $credentials;
-	}
-
-	private static function jeegoRequest($path, $body = null) {
-		$credentials = self::jeegoCredentials();
-		$http = new com_http($credentials['url'] . $path);
-		$http->setHeader(array('Authorization: Bearer ' . $credentials['key'], 'Content-Type: application/json'));
-		$http->setCURLOPT(array(CURLOPT_CONNECTTIMEOUT => 2, CURLOPT_FOLLOWLOCATION => false, CURLOPT_PROXY => ''));
-		$http->setNoSslCheck(false);
-		$http->setNoReportError(true);
-		if ($body !== null) {
-			$http->setPost(json_encode($body));
-		}
-		$response = $http->exec(8, 1);
-		$code = $http->getHttpCode();
-		$result = is_string($response) ? json_decode($response, true) : null;
-		if ($code < 200 || $code >= 300 || !is_array($result)) {
-			throw new Exception(__('API Jeego indisponible ou requête FRP refusée', __FILE__) . ' (HTTP ' . $code . ')');
-		}
-		return $result;
-	}
-
 	private static function task($state, $wait = false) {
 		if (empty($state['task'])) {
 			return $state;
 		}
-		$deadline = microtime(true) + ($wait ? 20 : 0);
-		do {
-			$task = self::jeegoRequest('/tasks/' . rawurlencode($state['task']));
-			if (($task['status'] ?? '') != 'running') {
-				unset($state['task']);
-				$state['error'] = ($task['status'] ?? '') == 'succeeded' ? '' : __('L’opération FRP a échoué dans Jeego', __FILE__);
-				self::write('control', $state);
-				return $state;
-			}
-			if (!$wait) {
-				return $state;
-			}
-			usleep(250000);
-		} while (microtime(true) < $deadline);
-		throw new Exception(__('Une opération FRP est encore en cours dans Jeego', __FILE__));
+		$task = $wait ? jeego::waitTask($state['task']) : jeego::getTask($state['task']);
+		if ($task['status'] != 'running') {
+			unset($state['task']);
+			$state['error'] = $task['status'] == 'succeeded' ? '' : __('L’opération FRP a échoué dans Jeego', __FILE__);
+			self::write('control', $state);
+		}
+		return $state;
 	}
 
 	private static function jeegoAction($action, $parameters, $fingerprint) {
@@ -207,10 +169,7 @@ class frp {
 		if ($parameters !== null) {
 			$body['parameters'] = $parameters;
 		}
-		$task = self::jeegoRequest('/services/frp-client/actions/' . $action, $body);
-		if (!isset($task['id']) || !preg_match('/^[a-f0-9]{32}$/D', $task['id'])) {
-			throw new Exception(__('Identifiant de tâche Jeego invalide', __FILE__));
-		}
+		$task = jeego::serviceAction('frp-client', $action, $body);
 		$state = array('manager' => 'jeego', 'fingerprint' => $fingerprint, 'task' => $task['id'], 'error' => '');
 		self::write('control', $state);
 		return $state;
@@ -262,7 +221,7 @@ class frp {
 		}
 		if (self::manager() == 'jeego') {
 			self::stopNative();
-			$status = self::jeegoRequest('/services/frp-client');
+			$status = jeego::getService('frp-client');
 			if (($state['fingerprint'] ?? '') == $fingerprint && !empty($state['error']) && !$manual) {
 				return;
 			}
@@ -316,7 +275,7 @@ class frp {
 		$state = self::read('control');
 		if (($state['manager'] ?? '') == 'jeego') {
 			self::task($state, true);
-			$status = self::jeegoRequest('/services/frp-client');
+			$status = jeego::getService('frp-client');
 			if (!empty($status['installed']) && empty($status['removed'])) {
 				$state = self::jeegoAction('stop', null, '');
 				$state = self::task($state, true);
@@ -332,7 +291,7 @@ class frp {
 		try {
 			$state = self::read('control');
 			if (($state['manager'] ?? '') == 'jeego') {
-				$status = self::jeegoRequest('/services/frp-client');
+				$status = jeego::getService('frp-client');
 				return array('running' => ($status['status'] ?? '') == 'running' && empty($status['pending']), 'manager' => 'jeego', 'state' => $status['status'] ?? 'unknown');
 			}
 			$status = self::read('status');
