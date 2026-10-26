@@ -414,12 +414,16 @@ class network {
 		if (!is_object($vpn)) {
 			return;
 		}
+		if ($vpn->getConfiguration('enable', 0) != 1 && !$vpn->getState()) {
+			return;
+		}
 		$cmd = $vpn->getCmd('action', 'stop');
-		if (is_object($cmd)) {
-			$cmd->execCmd();
-			if ($vpn->getState()) {
-				throw new Exception(__('Le DNS OpenVPN ne s’est pas arrêté ; bascule annulée', __FILE__));
-			}
+		if (!is_object($cmd)) {
+			throw new Exception(__('La commande d’arrêt du DNS est introuvable', __FILE__));
+		}
+		$cmd->execCmd();
+		if ($vpn->getState()) {
+			throw new Exception(__('Le DNS OpenVPN ne s’est pas arrêté ; bascule annulée', __FILE__));
 		}
 	}
 

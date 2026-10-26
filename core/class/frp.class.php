@@ -271,12 +271,16 @@ class frp {
 	}
 
 	public static function stop() {
-		self::stopNative();
 		$state = self::read('control');
+		if (empty($state) && !self::process(self::read('native')) && !file_exists(__DIR__ . '/../../data/frp/password')) {
+			return;
+		}
+		self::stopNative();
 		if (($state['manager'] ?? '') == 'jeego') {
-			self::task($state, true);
+			$state = self::task($state, true);
 			$status = jeego::getService('frp-client');
-			if (!empty($status['installed']) && empty($status['removed'])) {
+			$stopped = in_array($status['status'] ?? '', array('stopped', 'exited', 'dead', 'created', 'missing', 'not-installed'), true);
+			if (!empty($status['installed']) && empty($status['removed']) && (!empty($status['pending']) || !$stopped)) {
 				$state = self::jeegoAction('stop', null, '');
 				$state = self::task($state, true);
 				if (!empty($state['error'])) {
