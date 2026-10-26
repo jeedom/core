@@ -372,7 +372,7 @@ class network {
 	}
 
 
-	public static function dns_start() {
+	private static function dns_openvpn_start() {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
@@ -387,7 +387,7 @@ class network {
 		$cmd->execCmd();
 	}
 
-	public static function dns_run() {
+	private static function dns_openvpn_run() {
 		if (config::byKey('dns::token') == '') {
 			return false;
 		}
@@ -406,16 +406,66 @@ class network {
 		return $cmd->execCmd();
 	}
 
-	public static function dns_stop() {
-		if (config::byKey('dns::token') == '') {
+	private static function dns_openvpn_stop() {
+		if (!class_exists('openvpn')) {
 			return;
 		}
-		$vpn = self::dns_create();
-		$cmd = $vpn->getCmd('action', 'stop');
-		if (!is_object($cmd)) {
-			throw new Exception(__('La commande d\'arrêt du DNS est introuvable', __FILE__));
+		$vpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');
+		if (!is_object($vpn)) {
+			return;
 		}
-		$cmd->execCmd();
+		$cmd = $vpn->getCmd('action', 'stop');
+		if (is_object($cmd)) {
+			$cmd->execCmd();
+			if ($vpn->getState()) {
+				throw new Exception(__('Le DNS OpenVPN ne s’est pas arrêté ; bascule annulée', __FILE__));
+			}
+		}
+	}
+
+	public static function dns_start($manual = true) {
+		return frp::synchronize(function () use ($manual) {
+			if (config::byKey('market::allowDNS') != 1 || config::byKey('dns::token') == '') {
+				self::dns_openvpn_stop();
+				frp::stop();
+				return;
+			}
+			$mode = config::byKey('dns::mode', 'core', 'openvpn');
+			if ($mode == 'frp') {
+				if (count(frp::servers()) == 0) {
+					frp::stop();
+					self::dns_openvpn_stop();
+					throw new Exception(__('Aucun relais FRP fourni par le Market', __FILE__));
+				}
+				if (frp::availability() != '') {
+					throw new Exception(frp::availability());
+				}
+				self::dns_openvpn_stop();
+				frp::start($manual);
+			} elseif ($mode == 'openvpn') {
+				frp::stop();
+				self::dns_openvpn_start();
+			} else {
+				throw new Exception(__('Mode DNS inconnu', __FILE__));
+			}
+		});
+	}
+
+	public static function dns_run() {
+		if (config::byKey('market::allowDNS') != 1 || config::byKey('dns::token') == '') {
+			return false;
+		}
+		if (config::byKey('dns::mode', 'core', 'openvpn') == 'frp') {
+			return !empty(frp::status()['running']);
+		}
+		return self::dns_openvpn_run();
+	}
+
+	public static function dns_stop() {
+		return frp::synchronize(function () {
+			frp::stop();
+			self::dns_openvpn_stop();
+		});
 	}
 
 	/*     * *********************Network management************************* */
@@ -434,7 +484,7 @@ class network {
 	}
 
 	public static function cron10() {
-		if (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1) {
+		if (config::byKey('dns::mode', 'core', 'openvpn') != 'frp' && config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1) {
 			sleep(rand(0, 240));
 			if (!network::test('external')) {
 				sleep(rand(20, 60));
