@@ -1321,11 +1321,6 @@ class jeedom {
 			}
 			log::add('starting', 'debug', __('Démarrage de jeedom fini avec succès', __FILE__));
 		}
-		try {
-			frp::supervise();
-		} catch (\Throwable $e) {
-			log::add('network', 'error', $e->getMessage());
-		}
 		self::isDateOk();
 	}
 

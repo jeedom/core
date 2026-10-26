@@ -368,11 +368,4 @@ class frp {
 			return array('running' => false, 'state' => 'error', 'error' => $e->getMessage());
 		}
 	}
-
-	public static function supervise() {
-		if (config::byKey('dns::mode', 'core', 'openvpn') != 'frp') {
-			return;
-		}
-		network::dns_start(false);
-	}
 }

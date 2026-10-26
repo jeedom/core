@@ -489,7 +489,13 @@ class network {
 	}
 
 	public static function cron10() {
-		if (config::byKey('dns::mode', 'core', 'openvpn') != 'frp' && config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1) {
+		if (config::byKey('dns::mode', 'core', 'openvpn') == 'frp') {
+			try {
+				self::dns_start(false);
+			} catch (\Throwable $e) {
+				log::add('network', 'error', $e->getMessage());
+			}
+		} elseif (config::byKey('dns::token') != '' && config::byKey('market::allowDNS') == 1) {
 			sleep(rand(0, 240));
 			if (!network::test('external')) {
 				sleep(rand(20, 60));
