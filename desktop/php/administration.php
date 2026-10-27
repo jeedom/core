@@ -764,7 +764,7 @@ $productName = config::byKey('product_name');
 							if ($frpError == '' && count(frp::servers()) == 0) {
 								$frpError = __('Aucun relais FRP fourni par le Market', __FILE__);
 							}
-							$div .= '<option value="frp"' . ($frpError != '' ? ' disabled' : '') . '>{{FRP}}</option>';
+							$div .= '<option value="frp"' . ($frpError != '' ? ' disabled' : '') . '>{{FRP (beta)}}</option>';
 							$div .= '</select>';
 							$div .= '</div>';
 							if ($frpError != '') {
