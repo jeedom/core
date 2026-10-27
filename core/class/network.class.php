@@ -427,8 +427,24 @@ class network {
 		}
 	}
 
+	private static function dns_synchronize($callback) {
+		$lock = fopen(jeedom::getTmpFolder() . '/dns-control.lock', 'c');
+		if ($lock === false) {
+			throw new Exception(__('Verrou DNS indisponible', __FILE__));
+		}
+		try {
+			if (!flock($lock, LOCK_EX)) {
+				throw new Exception(__('Verrou DNS indisponible', __FILE__));
+			}
+			return $callback();
+		} finally {
+			flock($lock, LOCK_UN);
+			fclose($lock);
+		}
+	}
+
 	public static function dns_start($manual = true) {
-		return frp::synchronize(function () use ($manual) {
+		return self::dns_synchronize(function () use ($manual) {
 			if (config::byKey('market::allowDNS') != 1 || config::byKey('dns::token') == '') {
 				self::dns_openvpn_stop();
 				frp::stop();
@@ -467,7 +483,7 @@ class network {
 	}
 
 	public static function dns_stop() {
-		return frp::synchronize(function () {
+		return self::dns_synchronize(function () {
 			frp::stop();
 			self::dns_openvpn_stop();
 		});

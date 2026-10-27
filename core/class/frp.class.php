@@ -1,10 +1,13 @@
 <?php
 
 class frp {
+	private const VERSION = '0.71.1';
+
 	private static function directory() {
+		// Persistent state and binary only; credentials are passed on stdin.
 		$path = __DIR__ . '/../../data/frp';
 		if (is_link($path) || (!is_dir($path) && !mkdir($path, 0700, true))) {
-			throw new Exception(__('Impossible de créer le dossier privé FRP', __FILE__));
+			throw new Exception(__('Impossible de créer le dossier FRP', __FILE__));
 		}
 		chmod($path, 0700);
 		return $path;
@@ -30,19 +33,6 @@ class frp {
 		config::save('dns::frp::' . $name, $value);
 	}
 
-	public static function synchronize($callback) {
-		$lock = fopen(self::directory() . '/control.lock', 'c');
-		if ($lock === false || !flock($lock, LOCK_EX)) {
-			throw new Exception(__('Verrou FRP indisponible', __FILE__));
-		}
-		try {
-			return $callback();
-		} finally {
-			flock($lock, LOCK_UN);
-			fclose($lock);
-		}
-	}
-
 	public static function manager() {
 		return jeego::isDetected() || (self::read('control')['manager'] ?? '') == 'jeego' ? 'jeego' : 'core';
 	}
@@ -56,10 +46,13 @@ class frp {
 		}
 		$result = array();
 		foreach ($servers as $server) {
-			if (!is_string($server) || strlen($server) > 253 || !preg_match('/^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/D', $server)) {
+			$validHostname = is_string($server) && strpos($server, '.') !== false
+				&& substr($server, -1) != '.'
+				&& filter_var($server, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME);
+			if (!$validHostname) {
 				throw new Exception(__('Adresse de relais FRP invalide', __FILE__));
 			}
-			$result[] = $server;
+			$result[] = strtolower($server);
 		}
 		return array_values(array_unique($result));
 	}
@@ -87,10 +80,37 @@ class frp {
 		if ($arch == 'arm' && php_uname('m') == 'armv7l') {
 			$arch = 'armhf';
 		}
-		if (PHP_OS_FAMILY != 'Linux' || !in_array($arch, array('amd64', 'arm64', 'armhf'), true)) {
+		// Binary hashes are derived from the official release archives, themselves
+		// checked against https://github.com/fatedier/frp/releases/tag/v0.71.1.
+		$releases = array(
+			'amd64' => array(
+				'archive' => 'amd64',
+				'sha256' => '35c6054d4549bbcf2f02875543895fd9e44c2aae2925f61cd8ff5a693703c28b',
+				'archive_sha256' => '1d9875210972a5d1a62b2dc4c48df45ab0af05d3ca1b5e494a014428259df803',
+			),
+			'arm64' => array(
+				'archive' => 'arm64',
+				'sha256' => '651de3428bdc7f37b4bad76ed3236b221939a989c433cd7daee79d2817519f8b',
+				'archive_sha256' => '8edf590b0c396fa42f9c147121a76af83cfc2002b08f5aef0ea1008c43482019',
+			),
+			'armhf' => array(
+				'archive' => 'arm_hf',
+				'sha256' => 'b022fabaf90362c2d105f5622a729208307d9140d497383fc85856d77b58ebc4',
+				'archive_sha256' => 'a40116f15f2a05b7001f985f1f1ccb2570e2aa41329b06de76a82e71495786db',
+			),
+		);
+		if (PHP_OS_FAMILY != 'Linux' || !isset($releases[$arch])) {
 			throw new Exception(__('Architecture FRP non prise en charge', __FILE__));
 		}
-		return 'https://images.jeedom.com/resources/frp/frpc_' . $arch;
+		$release = $releases[$arch];
+		$member = 'frp_' . self::VERSION . '_linux_' . $release['archive'];
+		return array(
+			'url' => 'https://images.jeedom.com/resources/frp/frpc_' . $arch,
+			'sha256' => $release['sha256'],
+			'archive_sha256' => $release['archive_sha256'],
+			'archive_url' => 'https://github.com/fatedier/frp/releases/download/v' . self::VERSION . '/' . $member . '.tar.gz',
+			'member' => $member . '/frpc',
+		);
 	}
 
 	public static function availability() {
@@ -99,9 +119,6 @@ class frp {
 				jeego::checkConfiguration();
 			} else {
 				self::nativeSource();
-				if (!function_exists('posix_kill')) {
-					throw new Exception(__('FRP nécessite l’extension PHP POSIX', __FILE__));
-				}
 			}
 			return '';
 		} catch (Exception $e) {
@@ -142,12 +159,15 @@ class frp {
 		if (is_link($directory) || (!is_dir($directory) && !mkdir($directory, 0700))) {
 			throw new Exception(__('Impossible de créer le dossier du binaire FRP', __FILE__));
 		}
+		if (!is_link($binary) && is_file($binary) && is_executable($binary) && hash_equals($source['sha256'], hash_file('sha256', $binary))) {
+			return;
+		}
 		$candidate = tempnam($directory, 'frpc-');
 		try {
 			if ($candidate === false) {
 				throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
 			}
-			self::download($source, $candidate);
+			self::downloadNative($source, $candidate);
 			if (!chmod($candidate, 0700) || !rename($candidate, $binary)) {
 				throw new Exception(__('Impossible d’installer le binaire FRP', __FILE__));
 			}
@@ -155,6 +175,42 @@ class frp {
 			if ($candidate !== false) {
 				@unlink($candidate);
 			}
+		}
+	}
+
+	private static function downloadNative($source, $destination) {
+		try {
+			self::download($source['url'], $destination);
+			if (hash_equals($source['sha256'], hash_file('sha256', $destination))) {
+				return;
+			}
+		} catch (Exception $e) {
+			// The official archive also covers a temporary mirror outage.
+		}
+		log::add('frp', 'warning', __('Miroir FRP indisponible ou empreinte différente ; récupération de la version officielle attendue', __FILE__));
+		$archive = tempnam(dirname($destination), 'frp-');
+		if ($archive === false) {
+			throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
+		}
+		try {
+			self::download($source['archive_url'], $archive);
+			if (!hash_equals($source['archive_sha256'], hash_file('sha256', $archive))) {
+				throw new Exception(__('Empreinte de l’archive FRP invalide', __FILE__));
+			}
+			// Extract only the expected binary to stdout, never archive paths.
+			$process = proc_open(array('tar', '-xOzf', $archive, '--', $source['member']), array(
+				0 => array('file', '/dev/null', 'r'),
+				1 => array('file', $destination, 'w'),
+				2 => array('file', '/dev/null', 'a'),
+			), $pipes);
+			if (!is_resource($process) || proc_close($process) != 0) {
+				throw new Exception(__('Impossible d’extraire le client FRP', __FILE__));
+			}
+			if (!hash_equals($source['sha256'], hash_file('sha256', $destination))) {
+				throw new Exception(__('Empreinte du binaire FRP invalide', __FILE__));
+			}
+		} finally {
+			@unlink($archive);
 		}
 	}
 
@@ -321,10 +377,6 @@ class frp {
 		if ($manual && is_file($stateFile) && strpos(file_get_contents($stateFile), 'blocked ') === 0) {
 			unlink($stateFile);
 		}
-		$temp = tempnam($path, 'password-');
-		if ($temp === false || file_put_contents($temp, $settings['password']) === false || !chmod($temp, 0600) || !rename($temp, $path . '/password')) {
-			throw new Exception(__('Impossible de préparer les identifiants FRP', __FILE__));
-		}
 		$arguments = array(
 			realpath(__DIR__ . '/../../resources/frp/run.sh'),
 			$path,
@@ -332,10 +384,8 @@ class frp {
 			$settings['relay'],
 			log::getPathToLog('frp'),
 		);
-		$command = 'nohup bash ' . implode(' ', array_map('escapeshellarg', $arguments));
-		$command .= ' < /dev/null > /dev/null 2>&1 & echo $!';
 		self::write('control', array('manager' => 'core', 'fingerprint' => $fingerprint));
-		$pid = (int) trim(com_shell::execute($command));
+		$pid = self::launchNative($arguments, $settings['password']);
 		usleep(100000);
 		$info = self::processInfo($pid);
 		if ($pid <= 1 || !isset($info['birth'])) {
@@ -343,6 +393,35 @@ class frp {
 			throw new Exception(__('Impossible de démarrer le client FRP', __FILE__));
 		}
 		self::write('native', array('pid' => $pid, 'birth' => $info['birth']));
+	}
+
+	private static function launchNative($arguments, $password) {
+		$command = 'nohup bash ' . implode(' ', array_map('escapeshellarg', $arguments));
+		$command .= ' <&3 3<&- > /dev/null 2>&1 & echo $!';
+		$process = proc_open($command, array(
+			0 => array('file', '/dev/null', 'r'),
+			1 => array('pipe', 'w'),
+			2 => array('file', '/dev/null', 'a'),
+			3 => array('pipe', 'r'),
+		), $pipes);
+		if (!is_resource($process)) {
+			throw new Exception(__('Impossible de démarrer le client FRP', __FILE__));
+		}
+		try {
+			// Keep the DNS token out of the command line and the web directory.
+			if (fwrite($pipes[3], $password . "\n") !== strlen($password) + 1) {
+				throw new Exception(__('Impossible de transmettre les identifiants FRP', __FILE__));
+			}
+			fclose($pipes[3]);
+			return (int) trim(stream_get_contents($pipes[1]));
+		} finally {
+			foreach ($pipes as $pipe) {
+				if (is_resource($pipe)) {
+					fclose($pipe);
+				}
+			}
+			proc_close($process);
+		}
 	}
 
 	public static function stop() {

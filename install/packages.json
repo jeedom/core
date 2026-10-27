@@ -5,7 +5,9 @@
     "curl": {},
     "jq": {},
     "ca-certificates": {},
-    "util-linux": {},
+    "util-linux": {
+      "remark": "{{FRP : flock (verrou du client) et setpriv (arrêt du binaire avec son superviseur)}}"
+    },
     "coreutils": {},
     "wget": {},
     "chrony": {},
