@@ -171,15 +171,37 @@ class frp {
 		return $state;
 	}
 
-	private static function jeegoAction($action, $parameters, $fingerprint) {
+	private static function jeegoAction($action, $parameters, $fingerprint, $wait = false) {
 		$body = array('confirm' => true);
 		if ($parameters !== null) {
 			$body['parameters'] = $parameters;
 		}
 		$task = jeego::serviceAction('frp-client', $action, $body);
-		$state = array('manager' => 'jeego', 'fingerprint' => $fingerprint, 'task' => $task['id'], 'error' => '');
+		$state = array('manager' => 'jeego', 'fingerprint' => $fingerprint, 'task' => $task['id'], 'action' => $action, 'error' => '');
 		self::write('control', $state);
+		if ($wait) {
+			$state = self::task($state, true);
+			if (!empty($state['error'])) {
+				throw new Exception($state['error']);
+			}
+		}
 		return $state;
+	}
+
+	private static function jeegoService($wait = false) {
+		for ($attempt = 0; $attempt < 3; $attempt++) {
+			$status = jeego::getService('frp-client');
+			if (empty($status['observation_busy']) && ($status['status'] ?? '') != 'busy') {
+				if (empty($status['installed']) && empty($status['removed']) && ($status['status'] ?? '') != 'not-installed') {
+					throw new Exception(__('État du service FRP indisponible dans Jeego', __FILE__));
+				}
+				return $status;
+			}
+			if (!$wait || $attempt == 2) {
+				throw new Exception(__('Une opération est encore en cours dans Jeego', __FILE__));
+			}
+			sleep(2);
+		}
 	}
 
 	private static function processInfo($pid) {
@@ -251,27 +273,27 @@ class frp {
 		$state = self::read('control');
 		$changed = ($state['fingerprint'] ?? '') != $fingerprint;
 		if (($state['manager'] ?? '') == 'jeego') {
-			$state = self::task($state, $manual && $changed);
+			$state = self::task($state, $manual);
 			if (!empty($state['task'])) {
 				return;
 			}
 		}
 		self::stopNative();
-		$status = jeego::getService('frp-client');
+		$status = self::jeegoService($manual);
 		$failed = !empty($state['error']);
 		if (!$manual && !$changed && $failed) {
 			return;
 		}
 		if (empty($status['installed']) || !empty($status['removed'])) {
-			self::jeegoAction('install', $settings, $fingerprint);
+			self::jeegoAction('install', $settings, $fingerprint, $manual);
 			return;
 		}
 		if ($changed || $failed) {
-			self::jeegoAction('configure', $settings, $fingerprint);
+			self::jeegoAction('configure', $settings, $fingerprint, $manual);
 			return;
 		}
 		if ($manual && ($status['status'] ?? '') != 'running' && empty($status['pending'])) {
-			self::jeegoAction('recreate', null, $fingerprint);
+			self::jeegoAction('recreate', null, $fingerprint, true);
 		}
 	}
 
@@ -331,15 +353,11 @@ class frp {
 		self::stopNative();
 		if (($state['manager'] ?? '') == 'jeego') {
 			$state = self::task($state, true);
-			$status = jeego::getService('frp-client');
+			$status = self::jeegoService(true);
 			$stopped = in_array($status['status'] ?? '', array('stopped', 'exited', 'dead', 'created', 'missing', 'not-installed'), true);
 			$installed = !empty($status['installed']) && empty($status['removed']);
 			if ($installed && (!empty($status['pending']) || !$stopped)) {
-				$state = self::jeegoAction('stop', null, '');
-				$state = self::task($state, true);
-				if (!empty($state['error'])) {
-					throw new Exception($state['error']);
-				}
+				self::jeegoAction('stop', null, '', true);
 			}
 		}
 		self::write('control', array());
@@ -349,8 +367,21 @@ class frp {
 		try {
 			$state = self::read('control');
 			if (($state['manager'] ?? '') == 'jeego') {
+				$error = $state['error'] ?? '';
+				if (!empty($state['task'])) {
+					$task = jeego::getTask($state['task']);
+					if ($task['status'] == 'running') {
+						$action = $state['action'] ?? substr($task['kind'] ?? '', strlen('frp-client-'));
+						return array('running' => false, 'manager' => 'jeego', 'state' => $action == 'install' ? 'installing' : 'connecting');
+					}
+					$error = $task['status'] == 'succeeded' ? '' : __('L’opération FRP a échoué dans Jeego', __FILE__);
+				}
+				if ($error != '') {
+					return array('running' => false, 'manager' => 'jeego', 'state' => 'error', 'error' => $error);
+				}
 				$status = jeego::getService('frp-client');
-				return array('running' => ($status['status'] ?? '') == 'running' && empty($status['pending']), 'manager' => 'jeego', 'state' => $status['status'] ?? 'unknown');
+				$busy = !empty($status['observation_busy']) || ($status['status'] ?? '') == 'busy';
+				return array('running' => !$busy && ($status['status'] ?? '') == 'running' && empty($status['pending']), 'manager' => 'jeego', 'state' => $busy || !empty($status['pending']) ? 'connecting' : ($status['status'] ?? 'unknown'));
 			}
 			$status = self::read('status');
 			$native = self::read('native');
