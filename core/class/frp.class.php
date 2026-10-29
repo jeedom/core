@@ -1,8 +1,6 @@
 <?php
 
 class frp {
-	private const VERSION = '0.71.1';
-
 	private static function directory() {
 		// Persistent state and binary only; credentials are passed on stdin.
 		$path = __DIR__ . '/../../data/frp';
@@ -75,42 +73,14 @@ class frp {
 		);
 	}
 
-	private static function nativeSource() {
+	private static function checkNativePlatform() {
 		$arch = system::getArch();
 		if ($arch == 'arm' && php_uname('m') == 'armv7l') {
 			$arch = 'armhf';
 		}
-		// Binary hashes are derived from the official release archives, themselves
-		// checked against https://github.com/fatedier/frp/releases/tag/v0.71.1.
-		$releases = array(
-			'amd64' => array(
-				'archive' => 'amd64',
-				'sha256' => '35c6054d4549bbcf2f02875543895fd9e44c2aae2925f61cd8ff5a693703c28b',
-				'archive_sha256' => '1d9875210972a5d1a62b2dc4c48df45ab0af05d3ca1b5e494a014428259df803',
-			),
-			'arm64' => array(
-				'archive' => 'arm64',
-				'sha256' => '651de3428bdc7f37b4bad76ed3236b221939a989c433cd7daee79d2817519f8b',
-				'archive_sha256' => '8edf590b0c396fa42f9c147121a76af83cfc2002b08f5aef0ea1008c43482019',
-			),
-			'armhf' => array(
-				'archive' => 'arm_hf',
-				'sha256' => 'b022fabaf90362c2d105f5622a729208307d9140d497383fc85856d77b58ebc4',
-				'archive_sha256' => 'a40116f15f2a05b7001f985f1f1ccb2570e2aa41329b06de76a82e71495786db',
-			),
-		);
-		if (PHP_OS_FAMILY != 'Linux' || !isset($releases[$arch])) {
+		if (PHP_OS_FAMILY != 'Linux' || !in_array($arch, array('amd64', 'arm64', 'armhf'), true)) {
 			throw new Exception(__('Architecture FRP non prise en charge', __FILE__));
 		}
-		$release = $releases[$arch];
-		$member = 'frp_' . self::VERSION . '_linux_' . $release['archive'];
-		return array(
-			'url' => 'https://images.jeedom.com/resources/frp/frpc_' . $arch,
-			'sha256' => $release['sha256'],
-			'archive_sha256' => $release['archive_sha256'],
-			'archive_url' => 'https://github.com/fatedier/frp/releases/download/v' . self::VERSION . '/' . $member . '.tar.gz',
-			'member' => $member . '/frpc',
-		);
 	}
 
 	public static function availability() {
@@ -118,99 +88,11 @@ class frp {
 			if (self::manager() == 'jeego') {
 				jeego::checkConfiguration();
 			} else {
-				self::nativeSource();
+				self::checkNativePlatform();
 			}
 			return '';
 		} catch (Exception $e) {
 			return $e->getMessage();
-		}
-	}
-
-	private static function download($url, $destination) {
-		$stream = fopen($destination, 'wb');
-		if ($stream === false) {
-			throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
-		}
-		$http = new com_http($url);
-		$http->setNoSslCheck(false);
-		$http->setNoReportError(true);
-		$http->setCURLOPT(array(
-			CURLOPT_FILE => $stream,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_MAXREDIRS => 5,
-			CURLOPT_PROTOCOLS => CURLPROTO_HTTPS,
-			CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS,
-			CURLOPT_CONNECTTIMEOUT => 10,
-		));
-		try {
-			$response = $http->exec(180, 1);
-		} finally {
-			fclose($stream);
-		}
-		if ($response === false || $http->getHttpCode() != 200 || filesize($destination) == 0) {
-			throw new Exception(__('Téléchargement FRP impossible', __FILE__));
-		}
-	}
-
-	public static function install() {
-		$source = self::nativeSource();
-		$directory = self::directory() . '/bin';
-		$binary = $directory . '/frpc';
-		if (is_link($directory) || (!is_dir($directory) && !mkdir($directory, 0700))) {
-			throw new Exception(__('Impossible de créer le dossier du binaire FRP', __FILE__));
-		}
-		if (!is_link($binary) && is_file($binary) && is_executable($binary) && hash_equals($source['sha256'], hash_file('sha256', $binary))) {
-			return;
-		}
-		$candidate = tempnam($directory, 'frpc-');
-		try {
-			if ($candidate === false) {
-				throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
-			}
-			self::downloadNative($source, $candidate);
-			if (!chmod($candidate, 0700) || !rename($candidate, $binary)) {
-				throw new Exception(__('Impossible d’installer le binaire FRP', __FILE__));
-			}
-		} finally {
-			if ($candidate !== false) {
-				@unlink($candidate);
-			}
-		}
-	}
-
-	private static function downloadNative($source, $destination) {
-		try {
-			self::download($source['url'], $destination);
-			if (hash_equals($source['sha256'], hash_file('sha256', $destination))) {
-				return;
-			}
-		} catch (Exception $e) {
-			// The official archive also covers a temporary mirror outage.
-		}
-		log::add('frp', 'warning', __('Miroir FRP indisponible ou empreinte différente ; récupération de la version officielle attendue', __FILE__));
-		$archive = tempnam(dirname($destination), 'frp-');
-		if ($archive === false) {
-			throw new Exception(__('Impossible de préparer le téléchargement FRP', __FILE__));
-		}
-		try {
-			self::download($source['archive_url'], $archive);
-			if (!hash_equals($source['archive_sha256'], hash_file('sha256', $archive))) {
-				throw new Exception(__('Empreinte de l’archive FRP invalide', __FILE__));
-			}
-			// Extract only the expected binary to stdout, never archive paths.
-			$process = proc_open(array('tar', '-xOzf', $archive, '--', $source['member']), array(
-				0 => array('file', '/dev/null', 'r'),
-				1 => array('file', $destination, 'w'),
-				2 => array('file', '/dev/null', 'a'),
-			), $pipes);
-			if (!is_resource($process) || proc_close($process) != 0) {
-				throw new Exception(__('Impossible d’extraire le client FRP', __FILE__));
-			}
-			if (!hash_equals($source['sha256'], hash_file('sha256', $destination))) {
-				throw new Exception(__('Empreinte du binaire FRP invalide', __FILE__));
-			}
-		} finally {
-			@unlink($archive);
 		}
 	}
 
@@ -365,12 +247,6 @@ class frp {
 			if (!empty($state['error']) || (self::read('status')['state'] ?? '') == 'blocked') {
 				return;
 			}
-		}
-		try {
-			self::install();
-		} catch (Throwable $e) {
-			self::write('control', array('manager' => 'core', 'fingerprint' => $fingerprint, 'error' => $e->getMessage()));
-			throw $e;
 		}
 		$path = self::directory();
 		$identity = hash('sha256', $settings['username'] . "\0" . $settings['password']);

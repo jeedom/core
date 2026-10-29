@@ -4,7 +4,7 @@ set -euo pipefail
 umask 077
 
 # Superviseur natif : obtenir une session, lancer frpc et surveiller le tunnel.
-# Mot de passe lu sur stdin ; FRP_BINARY et FRP_STATUS_FILE fournis par run.sh.
+# Mot de passe lu sur stdin ; FRP_STATUS_FILE fourni par run.sh.
 readonly EXIT_RELAY_UNAVAILABLE=75
 readonly EXIT_RETRY_CURRENT_RELAY=76
 readonly EXIT_PERMANENT_FAILURE=78
@@ -272,7 +272,7 @@ monitor_tunnel() {
 
 prepare_client_binary() {
   local update_result=0
-  client_binary "$work_directory/bootstrap.json" "$state_directory/client-bin" "$FRP_BINARY" "$ca_file" \
+  client_binary "$work_directory/bootstrap.json" "$state_directory/client-bin" "$ca_file" \
     > "$work_directory/client-path" &
   update_pid=$!
   wait "$update_pid" || update_result=$?
@@ -323,7 +323,7 @@ read_configuration() {
   [[ -n $username && ${#username} -le 255 ]] || die 'Identité DNS invalide.'
   IFS= read -r password || [[ -n $password ]]
   [[ -n $password && ${#password} -le 512 ]] || die 'Mot de passe DNS invalide.'
-  [[ -r $ca_file && -x ${FRP_BINARY:?} ]] || die 'CA non lisible ou frpc non installé.'
+  [[ -r $ca_file ]] || die 'CA non lisible.'
 }
 
 acquire_client_lock() {
