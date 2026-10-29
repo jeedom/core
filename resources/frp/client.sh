@@ -59,6 +59,10 @@ cleanup() {
   if [[ -n $sleep_pid ]]; then
     kill "$sleep_pid" 2>/dev/null || true
   fi
+  if [[ -n $update_pid ]]; then
+    kill "$update_pid" 2>/dev/null || true
+    wait "$update_pid" 2>/dev/null || true
+  fi
   stop_frpc
   if [[ $session_state != blocked ]]; then
     write_status stopped || true
@@ -196,7 +200,7 @@ start_frpc() {
   jq --arg relay "$relay" --arg ca "$ca_file" -f "$script_directory/client-config.jq" \
     "$work_directory/bootstrap.json" > "$work_directory/frpc.json" || return "$EXIT_PERMANENT_FAILURE"
   env -u http_proxy -u HTTP_PROXY -u https_proxy -u HTTPS_PROXY -u all_proxy -u ALL_PROXY \
-    setpriv --pdeathsig TERM -- "$FRP_BINARY" -c "$work_directory/frpc.json" 9>&- &
+    setpriv --pdeathsig TERM -- "$active_binary" -c "$work_directory/frpc.json" 9>&- &
   frpc_pid=$!
 }
 
@@ -266,9 +270,39 @@ monitor_tunnel() {
   return "$recovery_result"
 }
 
+prepare_client_binary() {
+  local update_result=0
+  client_binary "$work_directory/bootstrap.json" "$state_directory/client-bin" "$FRP_BINARY" "$ca_file" \
+    > "$work_directory/client-path" &
+  update_pid=$!
+  wait "$update_pid" || update_result=$?
+  update_pid=''
+  (( update_result == 0 )) || return "$update_result"
+  IFS= read -r active_binary < "$work_directory/client-path" || return "$EXIT_PERMANENT_FAILURE"
+}
+
 connect_once() {
-  prepare_session_request || return "$EXIT_PERMANENT_FAILURE"
-  open_session || return $?
+  local refresh_attempt
+  local ticket_received_at
+  local ticket_age
+  for refresh_attempt in 0 1; do
+    prepare_session_request || return "$EXIT_PERMANENT_FAILURE"
+    open_session || return $?
+    ticket_received_at=$SECONDS
+    prepare_client_binary || return $?
+    ticket_age=$((SECONDS-ticket_received_at))
+    # Le bootstrap peut prendre 15 s : conserver une marge avant le Login.
+    (( ticket_age >= 40 )) || break
+    if (( refresh_attempt != 0 )); then
+      printf '%s\n' 'Renouvellement de session trop lent ; reprise arrêtée.' >&2
+      return "$EXIT_PERMANENT_FAILURE"
+    fi
+    printf '%s\n' 'Client prêt ; demande d’une nouvelle session sans retéléchargement.' >&2
+    # Attendre l'expiration certaine, puis conserver la reprise conditionnelle.
+    if (( ticket_age < 61 )); then
+      pause_client "$((61-ticket_age))" || return "$EXIT_PERMANENT_FAILURE"
+    fi
+  done
   start_frpc || return "$EXIT_PERMANENT_FAILURE"
   wait_for_tunnel || return $?
   monitor_tunnel
@@ -283,7 +317,7 @@ read_configuration() {
   IFS=, read -r -a relays <<< "$2"
   # Premier départ aléatoire ; la reprise privilégie ensuite le relais mémorisé.
   relay=${relays[$((RANDOM % ${#relays[@]}))]}
-  for command_name in curl jq flock sha256sum setpriv; do
+  for command_name in curl jq flock sha256sum setpriv tar timeout uname; do
     command -v "$command_name" >/dev/null || die "Commande requise : $command_name."
   done
   [[ -n $username && ${#username} -le 255 ]] || die 'Identité DNS invalide.'
@@ -350,6 +384,7 @@ prepare_runtime() {
   work_directory=$(mktemp -d /tmp/jeedom-frp.XXXXXX)
   frpc_pid=''
   sleep_pid=''
+  update_pid=''
   stop_requested=false
 
   trap cleanup EXIT
@@ -402,6 +437,7 @@ main() {
   read_configuration "$@"
   write_status connecting
   script_directory=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+  source "$script_directory/client-update.sh"
   acquire_client_lock
   load_recovery_state
   prepare_runtime

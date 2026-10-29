@@ -322,6 +322,7 @@ class frp {
 			self::startJeego($settings, $fingerprint, $manual);
 			return;
 		}
+		$fingerprint = hash('sha256', $fingerprint . hash_file('sha256', __DIR__ . '/../../resources/frp/client-update.sh'));
 		self::startNative($settings, $fingerprint, $manual);
 	}
 
@@ -375,6 +376,16 @@ class frp {
 		$identity = hash('sha256', $settings['username'] . "\0" . $settings['password']);
 		$stateFile = $path . '/' . $identity . '.state';
 		if ($manual && is_file($stateFile) && strpos(file_get_contents($stateFile), 'blocked ') === 0) {
+			// Only an explicit restart rearms exhausted downloads; keep the highest binary.
+			$clientDirectory = $path . '/client-bin';
+			if (!is_link($clientDirectory) && is_dir($clientDirectory)) {
+				foreach (glob($clientDirectory . '/attempts-*') ?: array() as $attemptFile) {
+					if (!is_link($attemptFile) && is_file($attemptFile)
+						&& preg_match('/^attempts-[0-9]+\.[0-9]+\.[0-9]+-(amd64|arm64|armhf)$/D', basename($attemptFile))) {
+						unlink($attemptFile);
+					}
+				}
+			}
 			unlink($stateFile);
 		}
 		$arguments = array(
