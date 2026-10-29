@@ -233,11 +233,11 @@ wait_for_tunnel() {
     pause_client 1 || return "$EXIT_PERMANENT_FAILURE"
   done
   if [[ $ready != true ]]; then
-    printf '%s\n' 'Tunnel non confirmé.' >&2
+    printf 'Tunnel non confirmé sur le relais %s.\n' "$relay" >&2
     return "$EXIT_RELAY_UNAVAILABLE"
   fi
   write_status connected true true
-  printf '%s\n' 'Proxy enregistré et route publiée.'
+  printf 'Proxy enregistré et route publiée via le relais %s.\n' "$relay"
   connected_since=$SECONDS
 }
 
@@ -266,7 +266,7 @@ monitor_tunnel() {
     fi
     (( consecutive_failures < 3 )) || break
   done
-  printf '%s\n' 'Tunnel perdu ; vérification de l’affectation avant reconnexion.' >&2
+  printf 'Tunnel perdu sur le relais %s ; vérification de l’affectation avant reconnexion.\n' "$relay" >&2
   return "$recovery_result"
 }
 
@@ -285,6 +285,7 @@ connect_once() {
   local refresh_attempt
   local ticket_received_at
   local ticket_age
+  printf 'Connexion au relais %s.\n' "$relay" >&2
   for refresh_attempt in 0 1; do
     prepare_session_request || return "$EXIT_PERMANENT_FAILURE"
     open_session || return $?
