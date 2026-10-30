@@ -252,7 +252,7 @@ class message {
 
 	public function getMessage($display = false) {
 		if ($display === true) {
-			$display = html_entity_decode($this->message);
+			$display = html_entity_decode($this->message, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 			return strip_tags($display, '<i><a>');
 		}
 		return $this->message;
@@ -260,7 +260,7 @@ class message {
 
 	public function getAction($display = false) {
 		if ($display === true) {
-			$display = html_entity_decode($this->action);
+			$display = html_entity_decode($this->action, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 			return strip_tags($display, '<i><a>');
 		}
 		return $this->action;
