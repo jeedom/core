@@ -149,5 +149,10 @@
 ## Uncategorized
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-10-30 17:09:43 | Fix variable notifications across scopes and command name prefixes | [#3619](https://github.com/jeedom/core/pull/3619) |
+| 2026-10-30 17:07:24 | Fix stale global summary values after saving an object | [#3618](https://github.com/jeedom/core/pull/3618) |
+| 2026-10-30 17:07:08 | Preserve resolved command references in JSON action options | [#3620](https://github.com/jeedom/core/pull/3620) |
+| 2026-10-30 16:05:22 | Fix fractional deferred delays and missing scenario cancellation targets | [#3617](https://github.com/jeedom/core/pull/3617) |
+| 2026-10-30 15:41:25 | Fix event option reads and emptied listener subscriptions | [#3615](https://github.com/jeedom/core/pull/3615) |
 | 2026-10-22 09:49:53 | Merge back Master to develop after hotfix | [#3598](https://github.com/jeedom/core/pull/3598) |
 | 2026-10-21 18:26:19 | [Security] Atténuer partiellement les CVE PHP sans changer PHP | [#3594](https://github.com/jeedom/core/pull/3594) |
