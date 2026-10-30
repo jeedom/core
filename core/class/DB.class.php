@@ -1006,8 +1006,8 @@ class DB {
 		} else {
 			$return .= ' NULL';
 		}
-		if ($_field['default'] != '') {
-			$return .= ' DEFAULT "' . $_field['default'] . '"';
+		if ($_field['default'] !== null) {
+			$return .= ' DEFAULT ' . static::getConnection()->quote((string) $_field['default']);
 		}
 		if ($_field['extra'] == 'auto_increment') {
 			$return .= ' AUTO_INCREMENT';
