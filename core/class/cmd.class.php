@@ -1642,7 +1642,7 @@ class cmd {
 			if ($_options !== null && $_options !== '') {
 				$options = self::cmdToValue($_options);
 				if (is_json($_options)) {
-					$options = json_decode($_options, true);
+					$options = json_decode($options, true);
 				}
 			} else {
 				$options = null;
@@ -1688,7 +1688,7 @@ class cmd {
 			}
 			$this->postExecCmd($options);
 			$usage = $this->getCache(array('usage::automation', 'usage::ui'));
-			if (isset($_options['user_login'])) {
+			if (isset($options['user_login'])) {
 				$usage['usage::ui'] = ($usage['usage::ui'] === '') ? 0 : $usage['usage::ui'];
 				$this->setCache('usage::ui', $usage['usage::ui'] + 1);
 			} else {
