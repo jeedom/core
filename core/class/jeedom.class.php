@@ -662,7 +662,7 @@ class jeedom {
 
 			if (config::byKey($configKey) == '') {
 				config::save($configKey, config::genKey());
-				config::save("api::{$configKey}::mode", $_mode, 'core');
+				config::save("api::{$_plugin}::mode", $_mode, 'core');
 			}
 
 			return config::byKey($configKey);
