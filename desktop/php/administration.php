@@ -758,14 +758,29 @@ $productName = config::byKey('product_name');
 							$div .= '<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="' . $key . '::allowDNS">{{Activer DNS}} ' . $productName . '</label>';
 							$div .= '<div class="input-group">';
 							$div .= '<span class="input-group-addon roundedLeft">{{Mode}}</span>';
-							$div .= '<select class="configKey form-control roundedRight" data-l1key="dns::mode">';
-							$div .= '<option value="openvpn">{{Openvpn (standard)}}</option>';
+							$div .= '<select class="configKey form-control roundedRight" data-l1key="dns::mode" data-reload="1">';
+							$div .= '<option value="openvpn">{{OpenVPN (standard)}}</option>';
+							$frpError = frp::availability();
+							if ($frpError == '' && count(frp::servers()) == 0) {
+								$frpError = __('Aucun relais FRP fourni par le Market', __FILE__);
+							}
+							$div .= '<option value="frp"' . ($frpError != '' ? ' disabled' : '') . '>{{FRP (beta)}}</option>';
 							$div .= '</select>';
 							$div .= '</div>';
-							if ($configs['market::allowDNS'] == 1 && network::dns_run()) {
+							if ($frpError != '') {
+								$div .= '<div class="alert alert-warning">' . htmlspecialchars($frpError, ENT_QUOTES, 'UTF-8') . '</div>';
+							}
+							if (config::byKey('dns::mode') == 'frp') {
+								$div .= '<span class="label label-info">' . (frp::manager() == 'jeego' ? '{{Géré par Jeego}}' : '{{Géré par le core}}') . '</span> ';
+							}
+							$frpStatus = config::byKey('dns::mode') == 'frp' ? frp::status() : array();
+							$dnsRunning = count($frpStatus) > 0 ? !empty($frpStatus['running']) : network::dns_run();
+							if ($configs['market::allowDNS'] == 1 && $dnsRunning) {
 								$div .= '<span class="label label-success">{{Démarré :}} <a href="' . network::getNetworkAccess('external') . '" target="_blank" style="text-decoration: underline;">' . network::getNetworkAccess('external') . '</a></span> ';
 							} else {
-								$div .= '<span class="label label-warning">{{Arrêté}}</span> ';
+								$dnsStates = array('installing' => __('Installation', __FILE__), 'connecting' => __('Connexion en cours', __FILE__), 'reconnecting' => __('Reconnexion en cours', __FILE__), 'blocked' => __('Bloqué : vérifier le journal FRP', __FILE__), 'error' => __('Erreur FRP', __FILE__));
+								$dnsState = $configs['market::allowDNS'] == 1 ? ($dnsStates[$frpStatus['state'] ?? ''] ?? __('Arrêté', __FILE__)) : __('Arrêté', __FILE__);
+								$div .= '<span class="label label-warning">' . htmlspecialchars($dnsState, ENT_QUOTES, 'UTF-8') . '</span> ';
 							}
 							$div .= '<span>';
 							$div .= '<a class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fas fa-play\'></i> {{(Re)démarrer}}</a> ';
