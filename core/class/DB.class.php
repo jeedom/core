@@ -862,7 +862,38 @@ class DB {
 				);
 			}
 		}
-		$showIndexes = static::prepareIndexCompare(DB::Prepare('show index from `' . $_table['name'] . '`', array(), DB::FETCH_TYPE_ALL));
+		$rawIndexes = DB::Prepare('show index from `' . $_table['name'] . '`', array(), DB::FETCH_TYPE_ALL);
+		$expectedPrimary = array();
+		foreach ($_table['fields'] as $field) {
+			if (isset($field['key']) && $field['key'] == 'PRI') {
+				$expectedPrimary[] = array('column' => $field['name'], 'Sub_part' => null);
+			}
+		}
+		$actualPrimary = array();
+		foreach ($rawIndexes as $index) {
+			if ($index['Key_name'] == 'PRIMARY') {
+				$actualPrimary[$index['Seq_in_index']] = array('column' => $index['Column_name'], 'Sub_part' => $index['Sub_part']);
+			}
+		}
+		ksort($actualPrimary);
+		if ($expectedPrimary != array_values($actualPrimary)) {
+			$changes = array();
+			if (count($actualPrimary) > 0) {
+				$changes[] = 'DROP PRIMARY KEY';
+			}
+			if (count($expectedPrimary) > 0) {
+				$columns = array();
+				foreach ($expectedPrimary as $column) {
+					$columns[] = '`' . $column['column'] . '`';
+				}
+				$changes[] = 'ADD PRIMARY KEY (' . implode(', ', $columns) . ')';
+			}
+			$return[$_table['name']]['indexes']['PRIMARY'] = array(
+				'status' => 'nok', 'message' => 'Primary key mismatch', 'presql' => '',
+				'sql' => 'ALTER TABLE `' . $_table['name'] . '` ' . implode(', ', $changes)
+			);
+		}
+		$showIndexes = static::prepareIndexCompare($rawIndexes);
 		foreach ($_table['indexes'] as $index) {
 			$found = false;
 			foreach ($showIndexes as $showIndex) {
