@@ -57,18 +57,18 @@ class timeline {
 
   public static function getLength($_folder = 'main') {
     if ($_folder == 'main') {
-      $sql = 'SELECT COUNT(`id`) FROM `timeline`';
+      $sql = 'SELECT COUNT(`id`) AS number FROM `timeline`';
       $count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-      return $count['COUNT(`id`)'];
+      return $count['number'];
     }
     $values = array(
-      'folder' => '(^|,)'.$_folder.'($|,)',
+      'folder' => $_folder,
     );
-    $sql = 'SELECT count(`id`) ' . '
+    $sql = 'SELECT COUNT(`id`) AS number ' . '
     FROM `timeline`
-    WHERE folder REGEXP :folder';
+    WHERE FIND_IN_SET(:folder, folder) > 0';
     $count = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    return $count['COUNT(`id`)'];
+    return $count['number'];
   }
 
   public static function byFolder($_folder = 'main', $_start=0, $_offset=0) {
@@ -85,11 +85,11 @@ class timeline {
       return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
     $values = array(
-      'folder' => '(^|,)'.$_folder.'($|,)',
+      'folder' => $_folder,
     );
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline
-    WHERE folder REGEXP :folder';
+    WHERE FIND_IN_SET(:folder, folder) > 0';
     $sql .= ' ORDER BY datetime DESC';
     if ($_start != 0 || $_offset != 0) {
       $sql .= ' LIMIT '. $_start . ',' . $_offset;
