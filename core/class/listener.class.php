@@ -300,8 +300,7 @@ class listener {
 	}
 
 	public function emptyEvent() {
-		$this->event = array();
-		return $this;
+		return $this->setEvent(array());
 	}
 
 	public function addEvent($_id) {

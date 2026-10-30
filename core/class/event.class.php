@@ -183,7 +183,7 @@ class event {
 	}
 
 	public function getOption($_key = '', $_default = '') {
-		if(!is_json($this->option)){
+		if(!is_array($this->option) && !is_json($this->option)){
 			return $this->option;
 		}
 		return utils::getJsonAttr($this->option, $_key, $_default);
