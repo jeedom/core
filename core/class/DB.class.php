@@ -341,7 +341,7 @@ class DB {
 		if (method_exists($object, 'setChanged')) {
 			$object->setChanged(false);
 		}
-		return (null !== $res && false !== $res);
+		return true;
 	}
 
     /**
@@ -412,7 +412,7 @@ class DB {
 						'length' => 0,
 					);
 					foreach ($operators as $operator) {
-						if (($index = strpos($value, $operator)) !== false) {
+						if (($index = strpos($value, $operator)) === 0) {
 							$thereIsOperator = true;
 							$operatorInformation['index'] = $index;
 							$operatorInformation['value'] = $operator;
@@ -422,7 +422,7 @@ class DB {
 					}
 					if ($thereIsOperator) {
 						// extract operator from value
-						$value = substr($value, $operatorInformation['length'] + 1); // +1 because of space
+						$value = ltrim(substr($value, $operatorInformation['length']));
 						// add % % to LIKE operator
 						if (in_array($operatorInformation['value'], array('LIKE', 'NOT LIKE'))) {
 							$value = '%' . $value . '%';
@@ -478,7 +478,7 @@ class DB {
 		if (method_exists($object, 'postRemove')) {
 			$object->postRemove();
 		}
-		return null !== $res && false !== $res;
+		return true;
 	}
 
     /**
@@ -862,7 +862,38 @@ class DB {
 				);
 			}
 		}
-		$showIndexes = static::prepareIndexCompare(DB::Prepare('show index from `' . $_table['name'] . '`', array(), DB::FETCH_TYPE_ALL));
+		$rawIndexes = DB::Prepare('show index from `' . $_table['name'] . '`', array(), DB::FETCH_TYPE_ALL);
+		$expectedPrimary = array();
+		foreach ($_table['fields'] as $field) {
+			if (isset($field['key']) && $field['key'] == 'PRI') {
+				$expectedPrimary[] = array('column' => $field['name'], 'Sub_part' => null);
+			}
+		}
+		$actualPrimary = array();
+		foreach ($rawIndexes as $index) {
+			if ($index['Key_name'] == 'PRIMARY') {
+				$actualPrimary[$index['Seq_in_index']] = array('column' => $index['Column_name'], 'Sub_part' => $index['Sub_part']);
+			}
+		}
+		ksort($actualPrimary);
+		if ($expectedPrimary != array_values($actualPrimary)) {
+			$changes = array();
+			if (count($actualPrimary) > 0) {
+				$changes[] = 'DROP PRIMARY KEY';
+			}
+			if (count($expectedPrimary) > 0) {
+				$columns = array();
+				foreach ($expectedPrimary as $column) {
+					$columns[] = '`' . $column['column'] . '`';
+				}
+				$changes[] = 'ADD PRIMARY KEY (' . implode(', ', $columns) . ')';
+			}
+			$return[$_table['name']]['indexes']['PRIMARY'] = array(
+				'status' => 'nok', 'message' => 'Primary key mismatch', 'presql' => '',
+				'sql' => 'ALTER TABLE `' . $_table['name'] . '` ' . implode(', ', $changes)
+			);
+		}
+		$showIndexes = static::prepareIndexCompare($rawIndexes);
 		foreach ($_table['indexes'] as $index) {
 			$found = false;
 			foreach ($showIndexes as $showIndex) {
@@ -1006,8 +1037,8 @@ class DB {
 		} else {
 			$return .= ' NULL';
 		}
-		if ($_field['default'] != '') {
-			$return .= ' DEFAULT "' . $_field['default'] . '"';
+		if ($_field['default'] !== null) {
+			$return .= ' DEFAULT ' . static::getConnection()->quote((string) $_field['default']);
 		}
 		if ($_field['extra'] == 'auto_increment') {
 			$return .= ' AUTO_INCREMENT';
