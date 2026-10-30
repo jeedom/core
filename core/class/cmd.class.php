@@ -1641,7 +1641,7 @@ class cmd {
 		try {
 			if ($_options !== null && $_options !== '') {
 				$options = self::cmdToValue($_options);
-				if (is_json($_options)) {
+				if (is_json($options)) {
 					$options = json_decode($options, true);
 				}
 			} else {
