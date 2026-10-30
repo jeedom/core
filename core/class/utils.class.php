@@ -233,6 +233,7 @@ class utils {
 			}
 			if (empty($_attr)) {
 				if (is_array($_key)) {
+					$return = array();
 					foreach ($_key as $key) {
 						$return[$key] = $_default;
 					}
