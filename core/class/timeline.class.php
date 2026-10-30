@@ -57,18 +57,18 @@ class timeline {
 
   public static function getLength($_folder = 'main') {
     if ($_folder == 'main') {
-      $sql = 'SELECT COUNT(`id`) FROM `timeline`';
+      $sql = 'SELECT COUNT(`id`) AS number FROM `timeline`';
       $count = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-      return $count['COUNT(`id`)'];
+      return $count['number'];
     }
     $values = array(
-      'folder' => '(^|,)'.$_folder.'($|,)',
+      'folder' => $_folder,
     );
-    $sql = 'SELECT count(`id`) ' . '
+    $sql = 'SELECT COUNT(`id`) AS number ' . '
     FROM `timeline`
-    WHERE folder REGEXP :folder';
+    WHERE FIND_IN_SET(:folder, folder) > 0';
     $count = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
-    return $count['COUNT(`id`)'];
+    return $count['number'];
   }
 
   public static function byFolder($_folder = 'main', $_start=0, $_offset=0) {
@@ -85,11 +85,11 @@ class timeline {
       return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
     $values = array(
-      'folder' => '(^|,)'.$_folder.'($|,)',
+      'folder' => $_folder,
     );
     $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
     FROM timeline
-    WHERE folder REGEXP :folder';
+    WHERE FIND_IN_SET(:folder, folder) > 0';
     $sql .= ' ORDER BY datetime DESC';
     if ($_start != 0 || $_offset != 0) {
       $sql .= ' LIMIT '. $_start . ',' . $_offset;
@@ -115,6 +115,17 @@ class timeline {
       return;
     }
 
+    // Remove duplicate rows before applying retention, including nullable fields.
+    $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
+    $sql .= 't1.id < t2.id AND ';
+    $sql .= 't1.type <=> t2.type AND ';
+    $sql .= 't1.subtype <=> t2.subtype AND ';
+    $sql .= 't1.datetime <=> t2.datetime AND ';
+    $sql .= 't1.options <=> t2.options AND ';
+    $sql .= 't1.folder <=> t2.folder AND ';
+    $sql .= 't1.link_id <=> t2.link_id';
+    DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+
      //clean:
      $sql = 'SELECT count(id) as number FROM timeline';
      $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -124,17 +135,6 @@ class timeline {
      }
      $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
      DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-
-    //ensure no duplicates:
-    $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
-    $sql .= 't1.id < t2.id AND ';
-    $sql .= 't1.type = t2.type AND ';
-    $sql .= 't1.subtype = t2.subtype AND ';
-    $sql .= 't1.datetime = t2.datetime AND ';
-    $sql .= 't1.options = t2.options AND ';
-    $sql .= 't1.folder = t2.folder AND ';
-    $sql .= 't1.link_id = t2.link_id';
-    DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
   }
 
   public static function listFolder(){
