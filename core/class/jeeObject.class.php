@@ -809,6 +809,16 @@ class jeeObject {
 	}
 
 	public function save($_direct = false) {
+		// Global summary calculations reload objects from the database.
+		// Persist this object's new configuration before publishing their values.
+		if ($this->_changed) {
+			cache::set('globalSummaryHtmldashboard', '');
+			cache::set('globalSummaryHtmlmobile', '');
+			$this->setCache('summaryHtmldashboard', '');
+			$this->setCache('summaryHtmlmobile', '');
+		}
+		$return = DB::save($this, $_direct);
+
 		//force refresh all summaries:
 		$events = array();
 		try {
@@ -840,14 +850,6 @@ class jeeObject {
 			}
 		} catch (\Exception $e) {
 		}
-
-		if ($this->_changed) {
-			cache::set('globalSummaryHtmldashboard', '');
-			cache::set('globalSummaryHtmlmobile', '');
-			$this->setCache('summaryHtmldashboard', '');
-			$this->setCache('summaryHtmlmobile', '');
-		}
-		$return = DB::save($this, $_direct);
 
 		//check childs parentNumber consistency:
 		foreach (($this->getChild(false)) as $child) {
