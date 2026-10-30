@@ -772,7 +772,7 @@ class plugin {
 	 */
 	public function dependancy_install($_force = false, $_foreground  = false) {
 		$plugin_id = $this->getId();
-		if (!$_force && config::byKey('dontProtectTooFastLaunchDependancy') == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
+		if (!$_force && config::byKey('dontProtectTooFastLaunchDependancy', 'core', 0) == 0 && abs(strtotime('now') - strtotime(config::byKey('lastDependancyInstallTime', $plugin_id))) <= 60) {
 			$cache = cache::byKey('dependancy' . $this->getId());
 			$cache->remove();
 			throw new Exception(__('Vous devez attendre au moins 60 secondes entre deux lancements d\'installation de dépendances', __FILE__));
@@ -914,7 +914,7 @@ class plugin {
 						if ($_auto) {
 							return;
 						}
-						if (config::byKey('dontProtectTooFastLaunchDeamony') == 0) {
+						if (config::byKey('dontProtectTooFastLaunchDeamony', 'core', 0) == 0) {
 							throw new Exception(__('Vous devez attendre au moins 45 secondes entre deux lancements du démon. Dernier lancement :', __FILE__) . ' ' . date("Y-m-d H:i:s", $info['datetime']));
 						}
 					}
@@ -975,8 +975,10 @@ class plugin {
 			if (is_array($eqLogics)) {
 				foreach ($eqLogics as $eqLogic) {
 					try {
-						$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
-						$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+						if ($alreadyActive == 1) {
+							$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
+							$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+						}
 						$eqLogic->setIsEnable(0);
 						$eqLogic->setIsVisible(0);
 						$eqLogic->save();
