@@ -28,7 +28,7 @@ foreach (['mobile_theme_color', 'mobile_theme_color_night'] as $mobileTheme) {
 }
 
 //Previous bug alpha:
-$negScenarios = scenario::byObjectId(-1);
+$negScenarios = scenario::byObjectId(-1, false);
 foreach ($negScenarios as &$sc) {
     $sc->setObject_id(null);
     $sc->save();
