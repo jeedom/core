@@ -117,9 +117,9 @@ class utils {
 				$method = 'set' . ucfirst($key);
 				if (method_exists($_object, $method)) {
 					$function = new ReflectionMethod($_object, $method);
-					$value = is_json($value, $value);
+					$value = ($value === null) ? null : is_json($value, $value);
 					if (is_array($value)) {
-						if ($function->getNumberOfRequiredParameters() == 2) {
+						if (in_array($function->getNumberOfRequiredParameters(), array(2, 3), true)) {
 							foreach ($value as $arrayKey => $arrayValue) {
 								if (is_array($arrayValue)) {
 									if ($function->getNumberOfRequiredParameters() == 3) {
