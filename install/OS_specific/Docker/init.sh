@@ -81,18 +81,16 @@ if [ -f ${WEBSERVER_HOME}/core/config/common.config.php ]; then
 else
 	echo 'Start jeedom installation'
 	JEEDOM_INSTALL=0
-	if [ -f ${WEBSERVER_HOME}/initialisation ]; then
-		echo 'Jeedom code already present from image build, skipping download'
-		INSTALL_SCRIPT=${WEBSERVER_HOME}/install/install.sh
-		chmod +x ${INSTALL_SCRIPT}
-		rm -f ${WEBSERVER_HOME}/initialisation
-	else
-		rm -rf /root/install.sh
-		wget https://raw.githubusercontent.com/jeedom/core/${VERSION}/install/install.sh -O /root/install.sh
-		INSTALL_SCRIPT=/root/install.sh
-		chmod +x ${INSTALL_SCRIPT}
-		${INSTALL_SCRIPT} -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}
-	fi
+
+	# do not re-install jeedom
+	if [ ! -f ${WEBSERVER_HOME}/core/php/core.inc.php ]; then
+		echo 'download again Jeedom'
+		if ! /root/install.sh -s 6 -v ${VERSION} -w ${WEBSERVER_HOME}; then
+			echo "ERROR: step 6 failed, aborting"
+			exit 1
+		fi
+ 	fi
+
 	if [ $(which mysqld | wc -l) -ne 0 ]; then
 		chown -R mysql:mysql /var/lib/mysql
 		mysql_install_db --user=mysql --basedir=/usr/ --ldata=/var/lib/mysql/
@@ -111,6 +109,15 @@ else
 		sed -i "s/#HOST#/localhost/g" ${WEBSERVER_HOME}/core/config/common.config.php
 		${INSTALL_SCRIPT} -s 10 -v ${VERSION} -w ${WEBSERVER_HOME}
 		${INSTALL_SCRIPT} -s 11 -v ${VERSION} -w ${WEBSERVER_HOME}
+	fi
+fi
+
+# check that vendor directory exists
+if [ ! -d ${WEBSERVER_HOME}/vendor ]; then
+	# jeedom installation : install composer
+	if ! /root/install.sh -s 10 -v ${VERSION} -w ${WEBSERVER_HOME} -i docker; then
+		echo "ERROR: step 10 failed, aborting"
+		exit 1
 	fi
 fi
 
