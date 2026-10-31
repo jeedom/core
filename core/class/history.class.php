@@ -368,7 +368,7 @@ class history {
 		}
 		$sql = '';
 		if ($_groupingType == null || strpos($_groupingType, '::') === false) {
-			$sql .= 'SELECT ' . DB::buildField(__CLASS__);
+			$sql .= 'SELECT ' . DB::buildField(__CLASS__) . ', a._tableName';
 		} else {
 			$goupingTypeDelta = explode('||', $_groupingType);
 			if (count($goupingTypeDelta) > 1) {
@@ -414,7 +414,7 @@ class history {
 			}
 			$sql .= ' FROM (';
 		}
-		$sql .= ' (SELECT * from history WHERE value is not null AND cmd_id=:cmd_id ';
+		$sql .= ' (SELECT *, \'history\' as _tableName from history WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND datetime>=:startTime';
 		}
@@ -423,7 +423,7 @@ class history {
 		}
 		$sql .= ') ';
 		$sql .= ' UNION ALL ';
-		$sql .= ' (SELECT * from historyArch WHERE value is not null AND cmd_id=:cmd_id ';
+		$sql .= ' (SELECT *, \'historyArch\' as _tableName from historyArch WHERE value is not null AND cmd_id=:cmd_id ';
 		if ($_startTime !== null) {
 			$sql .= ' AND `datetime`>=:startTime';
 		}
@@ -477,13 +477,13 @@ class history {
 				'cmd_id' => $_cmd_id,
 				'startTime' => $_startTime
 			);
-			$sql = 'SELECT ' . DB::buildField(__CLASS__);
+			$sql = 'SELECT ' . DB::buildField(__CLASS__) . ', a._tableName';
 			$sql .= ' FROM (';
-			$sql .= ' (SELECT * from history WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
+			$sql .= ' (SELECT *, \'history\' as _tableName from history WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
 			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$sql .= ') ';
 			$sql .= ' UNION ALL ';
-			$sql .= ' (SELECT * from historyArch WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
+			$sql .= ' (SELECT *, \'historyArch\' as _tableName from historyArch WHERE value is not null AND cmd_id=:cmd_id AND `datetime`<=:startTime';
 			$sql .= ' ORDER BY datetime DESC LIMIT 1';
 			$sql .= ') ';
 			$sql .= ')a ';
