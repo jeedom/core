@@ -45,7 +45,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <br><br>
       <a class="btn btn-xs" id="bt_changelogCore" target="_blank"><i class="fas fa-book"></i> {{Changelog}}</a>
       <a class="btn btn-xs" id="bt_faq" target="_blank"><i class="fas fa-question-circle"></i> {{FAQ}}</a>
-      <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-image"></i> {{Guide de démarrage}}</a>
+      <a class="btn btn-xs" id="bt_firstUse" target="_blank"><i class="fas fa-hat-wizard"></i> {{Assistant de configuration}}</a>
       <br><br>
     </div>
 
@@ -123,17 +123,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
     })
 
     document.querySelector('#md_about #bt_firstUse').addEventListener('click', function(event) {
-      jeeDialog.dialog({
-        id: 'md_firstUse',
-        title: "{{Bienvenue dans Jeedom}}",
-        width: window.innerWidth > 800 ? 720 : '80vw',
-        height: window.innerHeight > 600 ? 400 : '80vw',
-        zIndex: 1040,
-        onClose: function() {
-          jeeDialog.get('#md_firstUse').destroy()
-        },
-        contentUrl: 'index.php?v=d&modal=first.use'
-      })
+      jeedomUtils.openFirstUse()
     })
   })()
 </script>
