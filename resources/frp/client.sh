@@ -87,6 +87,12 @@ pause_client() {
   sleep_pid=''
 }
 
+random_retry_wait() {
+  # Même répartition à la milliseconde que le client Docker géré par Jeego.
+  local retry_millis=$((5000 + ((RANDOM << 15) | RANDOM) % ($1*1000 - 4999)))
+  printf -v retry_wait '%d.%03d' "$((retry_millis/1000))" "$((retry_millis%1000))"
+}
+
 # Seule une indisponibilité du relais autorise la bascule vers un autre relais.
 # Les refus d'authentification et erreurs TLS ne déclenchent pas de bascule.
 request_relay() {
@@ -400,7 +406,7 @@ wait_before_retry() {
   local result=$1
   local retry_wait
   if (( connected_since >= 0 && SECONDS-connected_since >= 60 )); then
-    retry_delay=5
+    retry_delay=60
   fi
   connected_since=-1
   if (( result == EXIT_RELAY_UNAVAILABLE && ${#relays[@]} > 1 )); then
@@ -408,16 +414,20 @@ wait_before_retry() {
     relay=${relays[$relay_index]}
     printf 'Bascule vers le relais %s.\n' "$relay" >&2
   fi
-  retry_wait=$((retry_delay + RANDOM % (retry_delay/5 + 1)))
+  random_retry_wait "$retry_delay"
   printf 'Nouvelle tentative dans %s s.\n' "$retry_wait" >&2
   pause_client "$retry_wait"
-  retry_delay=$((retry_delay < 25 ? retry_delay*2 : 50))
+  retry_delay=$((retry_delay < 150 ? retry_delay*2 : 300))
 }
 
 supervise_client() {
   local result
-  retry_delay=5
+  local retry_wait
+  retry_delay=60
   connected_since=-1
+  random_retry_wait "$retry_delay"
+  printf 'Connexion dans %s s.\n' "$retry_wait" >&2
+  pause_client "$retry_wait"
   while true; do
     write_status connecting
     result=0
