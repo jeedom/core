@@ -975,8 +975,10 @@ class plugin {
 			if (is_array($eqLogics)) {
 				foreach ($eqLogics as $eqLogic) {
 					try {
-						$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
-						$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+						if ($alreadyActive == 1) {
+							$eqLogic->setConfiguration('previousIsEnable', $eqLogic->getIsEnable());
+							$eqLogic->setConfiguration('previousIsVisible', $eqLogic->getIsVisible());
+						}
 						$eqLogic->setIsEnable(0);
 						$eqLogic->setIsVisible(0);
 						$eqLogic->save();
