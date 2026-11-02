@@ -115,6 +115,17 @@ class timeline {
       return;
     }
 
+    // Remove duplicate rows before applying retention, including nullable fields.
+    $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
+    $sql .= 't1.id < t2.id AND ';
+    $sql .= 't1.type <=> t2.type AND ';
+    $sql .= 't1.subtype <=> t2.subtype AND ';
+    $sql .= 't1.datetime <=> t2.datetime AND ';
+    $sql .= 't1.options <=> t2.options AND ';
+    $sql .= 't1.folder <=> t2.folder AND ';
+    $sql .= 't1.link_id <=> t2.link_id';
+    DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+
      //clean:
      $sql = 'SELECT count(id) as number FROM timeline';
      $result = DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
@@ -124,17 +135,6 @@ class timeline {
      }
      $sql = 'DELETE FROM timeline ORDER BY `datetime` ASC LIMIT '.$delete_number;
      DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
-
-    //ensure no duplicates:
-    $sql = 'DELETE t1 FROM timeline t1 INNER JOIN timeline t2 WHERE ';
-    $sql .= 't1.id < t2.id AND ';
-    $sql .= 't1.type = t2.type AND ';
-    $sql .= 't1.subtype = t2.subtype AND ';
-    $sql .= 't1.datetime = t2.datetime AND ';
-    $sql .= 't1.options = t2.options AND ';
-    $sql .= 't1.folder = t2.folder AND ';
-    $sql .= 't1.link_id = t2.link_id';
-    DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
   }
 
   public static function listFolder(){
