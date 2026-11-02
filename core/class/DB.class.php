@@ -341,7 +341,7 @@ class DB {
 		if (method_exists($object, 'setChanged')) {
 			$object->setChanged(false);
 		}
-		return (null !== $res && false !== $res);
+		return true;
 	}
 
     /**
@@ -478,7 +478,7 @@ class DB {
 		if (method_exists($object, 'postRemove')) {
 			$object->postRemove();
 		}
-		return null !== $res && false !== $res;
+		return true;
 	}
 
     /**
