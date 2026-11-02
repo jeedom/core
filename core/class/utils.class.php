@@ -287,7 +287,7 @@ class utils {
 		if ($plaintext == '') {
 			return $plaintext;
 		}
-		if (strpos($plaintext, 'crypt:') !== false) {
+		if (strpos($plaintext, 'crypt:') === 0) {
 			return $plaintext;
 		}
 		if ($password == null) {
@@ -315,10 +315,10 @@ class utils {
 		if ($password == null) {
 			$password = self::getEncryptionPassword();
 		}
-		if (strpos($ciphertext, 'crypt:') === false) {
+		if (strpos($ciphertext, 'crypt:') !== 0) {
 			return $ciphertext;
 		}
-		$ciphertext = base64_decode(str_replace('crypt:', '', $ciphertext));
+		$ciphertext = base64_decode(substr($ciphertext, 6));
 		if (!hash_equals(hash_hmac('sha256', substr($ciphertext, 48) . substr($ciphertext, 0, 16), hash('sha256', $password, true), true), substr($ciphertext, 16, 32))) return null;
 		return openssl_decrypt(substr($ciphertext, 48), "AES-256-CBC", hash('sha256', $password, true), OPENSSL_RAW_DATA, substr($ciphertext, 0, 16));
 	}
