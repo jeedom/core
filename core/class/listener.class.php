@@ -359,6 +359,9 @@ class listener {
 	}
 
 	public function setEvent($_event) {
+		if (is_json($_event)) {
+			$_event = json_decode($_event, true);
+		}
 		$event = json_encode($_event, JSON_UNESCAPED_UNICODE);
 		$this->_changed = utils::attrChanged($this->_changed, $this->event, $event);
 		$this->event = $event;
