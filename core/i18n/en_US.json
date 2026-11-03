@@ -408,6 +408,9 @@
         "pendant plus de": "for more than",
         "valeur :": "value:"
     },
+    "core\/class\/config.class.php": {
+        "Mode DNS inconnu": "Unknown DNS mode"
+    },
     "core\/class\/cron.class.php": {
         "() : Impossible d\\'arrêter la tâche": "(): Unable to stop the task",
         "Arrêt de": "Stop",
@@ -445,6 +448,21 @@
         "jours": "days",
         "min": "min",
         "n\\'a pas envoyé de message depuis plus de": "has not sent a message for more than"
+    },
+    "core\/class\/frp.class.php": {
+        "Adresse de relais FRP invalide": "Invalid FRP relay address",
+        "Architecture FRP non prise en charge": "FRP architecture not supported",
+        "Aucun relais ou identifiant FRP fourni par le Market": "No relays or FRP identifiers provided by the Market",
+        "Identifiants FRP invalides": "Invalid FRP credentials",
+        "Impossible de créer le dossier FRP": "Unable to create the FRP folder",
+        "Impossible de démarrer le client FRP": "Unable to start the FRP client",
+        "Impossible de transmettre les identifiants FRP": "Unable to transmit FRP credentials",
+        "Le client FRP ne s’est pas arrêté ; bascule annulée": "The FRP client did not stop; switchback canceled",
+        "Liste des relais FRP invalide": "Invalid FRP relay list",
+        "L’opération FRP a échoué dans Jeego": "The FRP operation failed in Jeego",
+        "Une opération est encore en cours dans Jeego": "An operation is still underway at Jeego",
+        "État FRP illisible": "Unreadable FRP status",
+        "État du service FRP indisponible dans Jeego": "FRP service status unavailable in Jeego"
     },
     "core\/class\/history.class.php": {
         "Commande": "Command",
@@ -631,6 +649,15 @@
         "Vérification de la configuration réseau interne": "Checking the internal network configuration",
         "Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)": "Check the external network access settings (Settings > System > Configuration, Networks tab)"
     },
+    "core\/class\/jeego.class.php": {
+        "API locale Jeego indisponible ou requête refusée": "Jeego local API unavailable or request denied",
+        "Configuration de l’API locale Jeego absente ou invalide": "Jeego local API configuration is missing or invalid",
+        "Délai d’attente Jeego invalide": "Invalid Jeego timeout",
+        "Identifiant de service ou d’action Jeego invalide": "Invalid Jeego service or action ID",
+        "Identifiant de tâche Jeego invalide": "Invalid Jeego task ID",
+        "Requête API Jeego invalide": "Invalid Jeego API request",
+        "Une opération est encore en cours dans Jeego": "An operation is still underway at Jeego"
+    },
     "core\/class\/listener.class.php": {
         "La fonction ne peut pas être vide": "The function cannot be empty",
         "[Erreur] Classe ou fonction non trouvée": "[Error] Class or function not found",
@@ -644,14 +671,18 @@
     },
     "core\/class\/network.class.php": {
         "Accès externe non ok, redémarrage du dns Jeedom": "External access not ok, Jeedom dns restart",
+        "Aucun relais FRP fourni par le Market": "No FRP relays are available on the Market",
         "Impossible de créer le fichier  :": "Unable to create file:",
-        "La commande d\\'arrêt du DNS est introuvable": "DNS stop command not found",
         "La commande de démarrage du DNS est introuvable": "DNS start command not found",
         "La commande de statut du DNS est introuvable": "DNS status command not found",
+        "La commande d’arrêt du DNS est introuvable": "The DNS stop command cannot be found",
+        "Le DNS OpenVPN ne s’est pas arrêté ; bascule annulée": "The OpenVPN DNS service has not stopped; failover canceled",
         "Le plugin OpenVPN doit être actif": "OpenVPN plugin must be active",
         "Le plugin OpenVPN doit être installé": "OpenVPN plugin must be installed",
+        "Mode DNS inconnu": "Unknown DNS mode",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Network issue detected, network restart. No gateway found",
-        "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Network issue detected, network restart. The gateway does not respond to ping:"
+        "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Network issue detected, network restart. The gateway does not respond to ping:",
+        "Verrou DNS indisponible": "DNS lock unavailable"
     },
     "core\/class\/note.class.php": {
         "Le nom de la note ne peut être vide": "Note name cannot be empty"
@@ -4057,6 +4088,7 @@
         "Arrêté": "Stopped",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeur des commandes et toute autre information en cache le temps que tout soit renvoyé.": "Warning: Any changes to the cache engine require a reboot and will cause you to temporarily lose order value information and any other cached information while everything is resent",
         "Aucun": "None",
+        "Aucun relais FRP fourni par le Market": "No FRP relays are available on the Market",
         "Autorise l'affichage d'historique avec des dates dans le futur.": "Allows history display with dates in the future",
         "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle": "Allow the installation of dependencies of the same plugin less than 45s apart",
         "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle": "Allow launching the daemon of the same plugin less than 45s apart",
@@ -4068,6 +4100,7 @@
         "Base DN correspondant à l'emplacement des utilisateurs (e.g cn=users,dc=ldap,dc=local)": "Base DN corresponding to the users location (e.g cn=users,dc=ldap,dc=local)",
         "Base DN des utilisateurs": "DN user base",
         "Basique": "Basic",
+        "Bloqué : vérifier le journal FRP": "Stuck: Check the FRP log",
         "Branches (Pas de support)": "Branches (No support)",
         "CP": "CP",
         "Cache": "Hidden",
@@ -4097,6 +4130,7 @@
         "Configuration des dépôts": "Configuration of repositories",
         "Configurer Entête HTTP": "Configure HTTP Header",
         "Connexion": "Connection",
+        "Connexion en cours": "Logging in...",
         "Consultation historique": "Historical consultation",
         "Contraint la hauteur et la largeur des tuiles tous les x pixels": "Constrains the height and width of tiles every x pixels",
         "Coordonnées": "Contact information",
@@ -4147,10 +4181,12 @@
         "Envoyer": "Send",
         "Equipements": "Equipments",
         "Erreur": "Error",
+        "Erreur FRP": "FRP error",
         "Espace entre les tuiles en pixels": "Space between tiles in pixels",
         "Evènements actuels": "Current events",
         "Exécuté automatiquement toutes les nuits.": "Run automatically every night",
         "FQDN de la base": "Base FQDN",
+        "FRP (beta)": "FRP (beta)",
         "Fichier": "File",
         "Filtre administrateurs (optionnel)": "Administrators filer (optional)",
         "Filtre permettant d'identifier les administrateurs dans la base. Si vide, tous les utilisateurs en base seront administrateurs par défaut": "Filter to identify administrators in the database. If empty, all users in the database will be administrators by default",
@@ -4171,6 +4207,8 @@
         "Guillemets automatiques": "Automatic quotes",
         "Général": "Main",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Automatically manage quotation marks for strings in expressions (enabled by default)",
+        "Géré par Jeego": "Powered by Jeego",
+        "Géré par le core": "Managed by the core",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Hauteur": "Height",
@@ -4194,6 +4232,7 @@
         "Info": "Info",
         "Informations diverses": "Various information",
         "Inférieur à": "Less than",
+        "Installation": "Facility",
         "Interaction automatique, contextuelle & avertissement": "Automatic, contextual & warning interaction",
         "Interactions": "Interactions",
         "Interdire les méthodes api (regexp)": "Disallow api methods (regexp)",
@@ -4273,7 +4312,7 @@
         "OS\/DB": "OS \/ DB",
         "Opacité des images de fond en fonction du thème": "Opacity of background images depending on the theme",
         "Opacité thème": "Theme Opacity",
-        "Openvpn (standard)": "Openvpn (regular)",
+        "OpenVPN (standard)": "OpenVPN (standard)",
         "Options": "Options",
         "Outils": "Tools",
         "Outils Système": "System Tools",
@@ -4323,6 +4362,7 @@
         "Rapports": "Reports",
         "Rechercher": "Search",
         "Rechercher une commande": "Search for an order",
+        "Reconnexion en cours": "Reconnecting...",
         "Redis": "Redis",
         "Regex générale d'exclusion pour les interactions": "General regex exclusion for interactions",
         "Remise à zéro": "Reset",

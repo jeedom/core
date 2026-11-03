@@ -408,6 +408,9 @@
         "pendant plus de": "por mais que",
         "valeur :": "valor:"
     },
+    "core\/class\/config.class.php": {
+        "Mode DNS inconnu": "Modo DNS desconhecido"
+    },
     "core\/class\/cron.class.php": {
         "() : Impossible d\\'arrêter la tâche": "(): Não foi possível parar a tarefa",
         "Arrêt de": "Paragem",
@@ -445,6 +448,21 @@
         "jours": "dias",
         "min": "min",
         "n\\'a pas envoyé de message depuis plus de": "não enviou uma mensagem por mais de"
+    },
+    "core\/class\/frp.class.php": {
+        "Adresse de relais FRP invalide": "Endereço de relé FRP inválido",
+        "Architecture FRP non prise en charge": "Arquitetura FRP não suportada",
+        "Aucun relais ou identifiant FRP fourni par le Market": "O Market não fornece nenhum relé nem identificador FRP",
+        "Identifiants FRP invalides": "Identificadores FRP inválidos",
+        "Impossible de créer le dossier FRP": "Não é possível criar a pasta FRP",
+        "Impossible de démarrer le client FRP": "Não é possível iniciar o cliente FRP",
+        "Impossible de transmettre les identifiants FRP": "Não é possível transmitir os dados de identificação FRP",
+        "Le client FRP ne s’est pas arrêté ; bascule annulée": "O cliente FRP não parou; a transição foi cancelada",
+        "Liste des relais FRP invalide": "Lista de relés FRP inválida",
+        "L’opération FRP a échoué dans Jeego": "A operação FRP falhou no Jeego",
+        "Une opération est encore en cours dans Jeego": "Ainda está em curso uma operação na Jeego",
+        "État FRP illisible": "Estado do FRP ilegível",
+        "État du service FRP indisponible dans Jeego": "O serviço FRP está indisponível no Jeego"
     },
     "core\/class\/history.class.php": {
         "Commande": "Ordenado",
@@ -631,6 +649,15 @@
         "Vérification de la configuration réseau interne": "Verificação da configuração da rede interna",
         "Vérifier la configuration de l'accès réseau externe (Réglages > Système > Configuration, onglet Réseaux)": "Verifique a configuração do acesso à rede externa (Definições > Sistema > Configuração, separador Redes)"
     },
+    "core\/class\/jeego.class.php": {
+        "API locale Jeego indisponible ou requête refusée": "API local da Jeego indisponível ou pedido recusado",
+        "Configuration de l’API locale Jeego absente ou invalide": "A configuração da API local do Jeego está ausente ou inválida",
+        "Délai d’attente Jeego invalide": "Tempo de espera do Jeego inválido",
+        "Identifiant de service ou d’action Jeego invalide": "Identificador de serviço ou ação Jeego inválido",
+        "Identifiant de tâche Jeego invalide": "Identificador de tarefa Jeego inválido",
+        "Requête API Jeego invalide": "Pedido de API Jeego inválido",
+        "Une opération est encore en cours dans Jeego": "Ainda está em curso uma operação na Jeego"
+    },
     "core\/class\/listener.class.php": {
         "La fonction ne peut pas être vide": "A função não pode estar vazia",
         "[Erreur] Classe ou fonction non trouvée": "[Erro] Classe ou função não encontrada",
@@ -644,14 +671,18 @@
     },
     "core\/class\/network.class.php": {
         "Accès externe non ok, redémarrage du dns Jeedom": "Acesso externo não ok, reinicialização do dns Jeedom",
+        "Aucun relais FRP fourni par le Market": "O Market não fornece nenhum relé FRP",
         "Impossible de créer le fichier  :": "Não foi possível criar o arquivo:",
-        "La commande d\\'arrêt du DNS est introuvable": "Comando de paragem do DNS não encontrado",
         "La commande de démarrage du DNS est introuvable": "Comando de inicialização do DNS não encontrado",
         "La commande de statut du DNS est introuvable": "Comando de estado do  DNS não encontrado",
+        "La commande d’arrêt du DNS est introuvable": "Não foi possível encontrar o comando de paragem do DNS",
+        "Le DNS OpenVPN ne s’est pas arrêté ; bascule annulée": "O DNS OpenVPN não parou; a comutação foi cancelada",
         "Le plugin OpenVPN doit être actif": "O plugin OpenVPN deve estar ativo",
         "Le plugin OpenVPN doit être installé": "O plugin OpenVPN deve estar instalado",
+        "Mode DNS inconnu": "Modo DNS desconhecido",
         "Souci réseau détecté, redémarrage du réseau. Aucune gateway de trouvée": "Problema de rede detectado, reinicialização da rede. Nenhum gateway encontrado",
-        "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Problema de rede detectado, reinicialização da rede. O gateway não responde ao ping:"
+        "Souci réseau détecté, redémarrage du réseau. La gateway ne répond pas au ping :": "Problema de rede detectado, reinicialização da rede. O gateway não responde ao ping:",
+        "Verrou DNS indisponible": "O bloqueio DNS não está disponível"
     },
     "core\/class\/note.class.php": {
         "Le nom de la note ne peut être vide": "O nome da nota não pode estar vazio"
@@ -4057,6 +4088,7 @@
         "Arrêté": "Parado",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeur des commandes et toute autre information en cache le temps que tout soit renvoyé.": "Aviso: qualquer modificação no mecanismo de cache requer uma reinicialização e fará com que você perca temporariamente as informações do valor do comando e quaisquer outras informações armazenadas em cache enquanto tudo é retornado",
         "Aucun": "Nenhum",
+        "Aucun relais FRP fourni par le Market": "O Market não fornece nenhum relé FRP",
         "Autorise l'affichage d'historique avec des dates dans le futur.": "Permite a exibição do histórico com datas no futuro",
         "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle": "Permitir a instalação de dependências do mesmo plugin com menos de 45s de diferença",
         "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle": "Permitir o lançamento do daemon de um mesmo plugin com um intervalo inferior a 45 segundos",
@@ -4068,6 +4100,7 @@
         "Base DN correspondant à l'emplacement des utilisateurs (e.g cn=users,dc=ldap,dc=local)": "DN base correspondente à localização dos utilizadores (por exemplo, cn=utilizadores,dc=ldap,dc=local)",
         "Base DN des utilisateurs": "Base DN dos utilizadores",
         "Basique": "Básico",
+        "Bloqué : vérifier le journal FRP": "Bloqueado: verificar o registo FRP",
         "Branches (Pas de support)": "Filiais (sem suporte)",
         "CP": "CP",
         "Cache": "Escondido",
@@ -4097,6 +4130,7 @@
         "Configuration des dépôts": "Configuração de repositórios",
         "Configurer Entête HTTP": "Configurar cabeçalho HTTP",
         "Connexion": "Entrar",
+        "Connexion en cours": "A ligar...",
         "Consultation historique": "Consulta histórica",
         "Contraint la hauteur et la largeur des tuiles tous les x pixels": "Restringe a altura e a largura dos blocos a cada x pixels",
         "Coordonnées": "Coordenadas",
@@ -4147,10 +4181,12 @@
         "Envoyer": "Enviar",
         "Equipements": "Equipamentos",
         "Erreur": "Erro",
+        "Erreur FRP": "Erro FRP",
         "Espace entre les tuiles en pixels": "Espaço entre blocos em pixels",
         "Evènements actuels": "Eventos atuais",
         "Exécuté automatiquement toutes les nuits.": "Execute automaticamente todas as noites",
         "FQDN de la base": "FQDN da base",
+        "FRP (beta)": "FRP (beta)",
         "Fichier": "Ficheiro",
         "Filtre administrateurs (optionnel)": "Filtro administrador (opcional)",
         "Filtre permettant d'identifier les administrateurs dans la base. Si vide, tous les utilisateurs en base seront administrateurs par défaut": "Filtro para identificar administradores na base de dados. Se estiver vazio, todos os utilizadores da base de dados serão administradores por padrão",
@@ -4171,6 +4207,8 @@
         "Guillemets automatiques": "Cotações automáticas",
         "Général": "Geral",
         "Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)": "Gerenciar automaticamente aspas para strings em expressões (habilitado por padrão)",
+        "Géré par Jeego": "Gerido pela Jeego",
+        "Géré par le core": "Gerido pelo núcleo",
         "HTTP": "HTTP",
         "HTTPS": "HTTPS",
         "Hauteur": "Altura",
@@ -4194,6 +4232,7 @@
         "Info": "Informações",
         "Informations diverses": "Várias informações",
         "Inférieur à": "Menos que",
+        "Installation": "Instalação",
         "Interaction automatique, contextuelle & avertissement": "Interação automática, contextual e avisos",
         "Interactions": "Interações",
         "Interdire les méthodes api (regexp)": "Proibir métodos de API (regexp)",
@@ -4273,7 +4312,7 @@
         "OS\/DB": "SO\/BD",
         "Opacité des images de fond en fonction du thème": "Opacidade das imagens de fundo dependendo do tema",
         "Opacité thème": "Opacidade do tema",
-        "Openvpn (standard)": "Openvpn (padrão)",
+        "OpenVPN (standard)": "OpenVPN (padrão)",
         "Options": "Opções",
         "Outils": "Ferramentas",
         "Outils Système": "Ferramentas do sistema",
@@ -4323,6 +4362,7 @@
         "Rapports": "Relatórios",
         "Rechercher": "Pesquisar",
         "Rechercher une commande": "Procure um pedido",
+        "Reconnexion en cours": "A reconexão está em curso",
         "Redis": "Redis",
         "Regex générale d'exclusion pour les interactions": "Regex de exclusão geral para interações",
         "Remise à zéro": "Repor a zero",
