@@ -693,6 +693,13 @@ class repo_market {
 				config::save('dns::number', $_result['register::dnsNumber']);
 				$restart_dns = true;
 			}
+			if (array_key_exists('dns::frp::servers', $_result)) {
+				$servers = frp::servers($_result['dns::frp::servers']);
+				if (config::byKey('dns::frp::servers', 'core', array()) != $servers) {
+					config::save('dns::frp::servers', $servers);
+					$restart_dns = $restart_dns || config::byKey('dns::mode') == 'frp';
+				}
+			}
 			if (isset($_result['register::vpnurl']) && config::byKey('dns::vpnurl') != $_result['register::vpnurl']) {
 				config::save('dns::vpnurl', $_result['register::vpnurl']);
 				$restart_dns = true;
@@ -723,11 +730,11 @@ class repo_market {
 			if (isset($_result['username']) && config::byKey('market::username') != $_result['username']) {
 				config::save('market::username', $_result['username']);
 			}
-			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
-				network::dns_start();
-			}
 			if (config::byKey('market::allowDNS') == 1 && isset($_result['jeedom::url']) && config::byKey('jeedom::url') != $_result['jeedom::url']) {
 				config::save('jeedom::url', $_result['jeedom::url']);
+			}
+			if ($restart_dns && config::byKey('market::allowDNS') == 1) {
+				network::dns_start();
 			}
 			if (isset($_result['register::hwkey_nok']) && $_result['register::hwkey_nok'] == 1) {
 				config::save('jeedom::installKey', '');

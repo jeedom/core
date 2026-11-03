@@ -2,6 +2,13 @@
   "apt": {
     "ffmpeg": {},
     "tar": {},
+    "curl": {},
+    "jq": {},
+    "ca-certificates": {},
+    "util-linux": {
+      "remark": "{{FRP : flock (verrou du client) et setpriv (arrêt du binaire avec son superviseur)}}"
+    },
+    "coreutils": {},
     "wget": {},
     "chrony": {},
     "smbclient": {},

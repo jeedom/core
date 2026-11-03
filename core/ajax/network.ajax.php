@@ -28,6 +28,7 @@ try {
 	
 	if (init('action') == 'restartDns') {
 		unautorizedInDemo();
+		network::dns_stop();
 		config::save('market::allowDNS', 1);
 		network::dns_start();
 		ajax::success();
