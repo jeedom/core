@@ -4088,7 +4088,7 @@
         "Arrêté": "Gestoppt",
         "Attention : toute modification du moteur de cache nécessite un redémarrage et vous fera perdre temporairement les informations sur la valeur des commandes et toute autre information en cache le temps que tout soit renvoyé.": "Warnung: Jede Änderung an der Cache-Engine erfordert einen Neustart und führt dazu, dass Sie vorübergehend Befehlswertinformationen und alle anderen zwischengespeicherten Informationen verlieren, während alles zurückgegeben wird",
         "Aucun": "Nein",
-        "Aucun relais FRP fourni par le Market": "Im Market wird kein FRP-Relais angeboten",
+        "Aucun relais FRP fourni par le Market": "Im Market werden keine FRP-Relais angeboten",
         "Autorise l'affichage d'historique avec des dates dans le futur.": "Ermöglicht die Verlaufsanzeige mit Daten in der Zukunft",
         "Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle": "Ermöglichen Sie die Installation von Abhängigkeiten desselben Plugins im Abstand von weniger als 45 Sekunden",
         "Autoriser le lancement du démon d'un même plugin à moins de 45s d'intervalle": "Den Start des Daemons desselben Plugins im Abstand von weniger als 45 Sekunden zulassen",
