@@ -73,12 +73,6 @@ parameters:
 			path: core/class/update.class.php
 
 		-
-			message: '#^Variable \$return might not be defined\.$#'
-			identifier: variable.undefined
-			count: 1
-			path: core/class/utils.class.php
-
-		-
 			message: '#^Access to an undefined property widgets\:\:\$_needRefreshWidget\.$#'
 			identifier: property.notFound
 			count: 1
