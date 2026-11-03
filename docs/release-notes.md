@@ -149,5 +149,27 @@
 ## Uncategorized
 | Merge date | Title | PR |
 | --- | --- | --- |
+| 2026-11-03 13:56:32 | Intégration DNS FRP : Jeego et client natif | [#3611](https://github.com/jeedom/core/pull/3611) |
+| 2026-11-02 14:31:24 | Corrige le décodage des apostrophes dans les messages | [#3621](https://github.com/jeedom/core/pull/3621) |
+| 2026-11-02 10:54:18 | fix: renvoyer le succès des écritures et suppressions DB | [#3633](https://github.com/jeedom/core/pull/3633) |
+| 2026-11-02 10:47:10 | fix: respecter le mode de la clé API core | [#3623](https://github.com/jeedom/core/pull/3623) |
+| 2026-11-02 10:46:39 | fix: reconnaître les opérateurs de filtre DB uniquement en préfixe | [#3634](https://github.com/jeedom/core/pull/3634) |
+| 2026-11-02 10:46:16 | fix: préserver et échapper les valeurs par défaut du schéma DB | [#3635](https://github.com/jeedom/core/pull/3635) |
+| 2026-11-02 10:45:45 | fix: dédupliquer la timeline avant d’appliquer la rétention | [#3632](https://github.com/jeedom/core/pull/3632) |
+| 2026-11-02 10:45:30 | fix: migrer les liens d’objet invalides des scénarios désactivés | [#3637](https://github.com/jeedom/core/pull/3637) |
+| 2026-11-02 10:45:18 | fix: détecter et réparer les différences de clés primaires | [#3636](https://github.com/jeedom/core/pull/3636) |
+| 2026-11-02 10:43:57 | fix: renvoyer un tableau vide pour une sélection JSON vide | [#3629](https://github.com/jeedom/core/pull/3629) |
+| 2026-11-02 10:43:45 | fix: reconnaître le marqueur de chiffrement uniquement en préfixe | [#3630](https://github.com/jeedom/core/pull/3630) |
+| 2026-11-02 10:43:14 | fix: sélectionner les dossiers timeline littéralement et fiabiliser leur compteur | [#3631](https://github.com/jeedom/core/pull/3631) |
+| 2026-11-02 10:42:53 | fix: conserver la version des dépendances alternatives | [#3622](https://github.com/jeedom/core/pull/3622) |
+| 2026-11-02 10:42:39 | fix: préserver les événements des listeners lors des conversions JSON | [#3624](https://github.com/jeedom/core/pull/3624) |
+| 2026-11-02 10:42:26 | fix: conserver l’état des équipements après des désactivations répétées | [#3625](https://github.com/jeedom/core/pull/3625) |
+| 2026-11-02 10:41:42 | fix: préserver les valeurs nulles et les setters imbriqués dans a2o | [#3628](https://github.com/jeedom/core/pull/3628) |
+| 2026-11-02 10:41:27 | fix: activer les protections de relance des plugins par défaut | [#3626](https://github.com/jeedom/core/pull/3626) |
+| 2026-10-30 17:09:43 | Fix variable notifications across scopes and command name prefixes | [#3619](https://github.com/jeedom/core/pull/3619) |
+| 2026-10-30 17:07:24 | Fix stale global summary values after saving an object | [#3618](https://github.com/jeedom/core/pull/3618) |
+| 2026-10-30 17:07:08 | Preserve resolved command references in JSON action options | [#3620](https://github.com/jeedom/core/pull/3620) |
+| 2026-10-30 16:05:22 | Fix fractional deferred delays and missing scenario cancellation targets | [#3617](https://github.com/jeedom/core/pull/3617) |
+| 2026-10-30 15:41:25 | Fix event option reads and emptied listener subscriptions | [#3615](https://github.com/jeedom/core/pull/3615) |
 | 2026-10-22 09:49:53 | Merge back Master to develop after hotfix | [#3598](https://github.com/jeedom/core/pull/3598) |
 | 2026-10-21 18:26:19 | [Security] Atténuer partiellement les CVE PHP sans changer PHP | [#3594](https://github.com/jeedom/core/pull/3594) |
