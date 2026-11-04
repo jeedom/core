@@ -1,0 +1,583 @@
+openapi: 3.1.0
+info:
+  title: API REST Jeedom
+  version: 1.0.0-draft
+  license:
+    name: GPL-3.0-or-later
+    identifier: GPL-3.0-or-later
+  description: |
+    Brouillon de l'API REST du core Jeedom. Cette première version ne couvre que
+    la ressource pilote `/objects` (les objets : pièces, étages, zones…).
+
+    Elle reprend les actions de `core/ajax/object.ajax.php` et les méthodes
+    JSON-RPC `jeeObject::*` / `summary::*` de `core/api/jeeApi.php`
+    (voir `docs/inventaire-api.md`). Les actions qui produisent du HTML
+    (`toHtml`, `getSummaryHtml`, `getActionSummary`) ou des listes pour
+    l'ancienne interface (`getUISelectList`) ne sont pas reprises : la nouvelle
+    UI construit son affichage à partir des données.
+
+    ## Conventions communes
+    - Toutes les routes sont préfixées par `/api/v1`.
+    - Corps et réponses en JSON. Les champs gardent les noms du core
+      (`father_id`, `isVisible`…) pour faciliter la migration.
+    - Les listes renvoient `{ "items": [...], "total": n }`.
+    - Toutes les erreurs renvoient le schéma `Error`, avec un code HTTP
+      significatif (400, 401, 403, 404, 409, 422).
+    - Une création renvoie `201` et la ressource créée, une suppression `204`.
+    - Les références à des commandes dans `configuration` sont renvoyées au
+      format lisible `#[Objet][Équipement][Commande]#` et acceptées sous les deux
+      formes (`#[…]#` ou `#123#`), comme le font `jeedom::toHumanReadable` et
+      `jeedom::fromHumanReadable` aujourd'hui.
+
+    ## Authentification
+    Jeton lié à un utilisateur dans l'en-tête `Authorization: Bearer …`, ou
+    session de la nouvelle UI. Les droits sont ceux de l'utilisateur :
+    lecture pour tout utilisateur connecté, écriture réservée aux
+    administrateurs, équipements filtrés selon les droits par élément.
+
+servers:
+  - url: /api/v1
+
+security:
+  - bearerAuth: []
+  - sessionCookie: []
+
+tags:
+  - name: Objets
+    description: Pièces et zones qui regroupent les équipements, organisées en arbre.
+  - name: Résumés
+    description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
+
+paths:
+  /objects:
+    get:
+      tags: [Objets]
+      operationId: listObjects
+      summary: Lister les objets
+      description: |
+        Remplace l'ajax `all` et le JSON-RPC `jeeObject::all`. Les objets sont
+        renvoyés dans l'ordre de l'arbre (parents puis enfants, selon `position`).
+      parameters:
+        - name: visible
+          in: query
+          description: Ne renvoyer que les objets visibles (`isVisible`).
+          schema: { type: boolean, default: true }
+        - name: withEqLogicType
+          in: query
+          description: |
+            Ne garder que les objets contenant au moins un équipement de ce type
+            (identifiant de plugin, ex. `virtual`). Remplace `onlyHasEqLogic`.
+          schema: { type: string, example: virtual }
+        - name: searchChildren
+          in: query
+          description: Avec `withEqLogicType`, chercher aussi dans les objets enfants.
+          schema: { type: boolean, default: true }
+      responses:
+        '200':
+          description: Liste des objets.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ObjectList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Objets]
+      operationId: createObject
+      summary: Créer un objet
+      description: Remplace l'ajax `save` et le JSON-RPC `jeeObject::save` sans `id`. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ObjectCreate' }
+      responses:
+        '201':
+          description: Objet créé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Object' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /objects/order:
+    put:
+      tags: [Objets]
+      operationId: reorderObjects
+      summary: Réordonner les objets
+      description: |
+        Remplace l'ajax `setOrder`. Les objets prennent les positions 1, 2, 3…
+        dans l'ordre donné ; les identifiants inconnus sont ignorés. Réservé aux
+        administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids:
+                  type: array
+                  items: { type: integer }
+                  example: [3, 1, 2]
+      responses:
+        '204': { description: Ordre enregistré. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /objects/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+    get:
+      tags: [Objets]
+      operationId: getObject
+      summary: Lire un objet
+      description: |
+        Remplace l'ajax `byId` et les JSON-RPC `jeeObject::byId` /
+        `jeeObject::fullById`. Avec `include=eqLogics`, ajoute les équipements
+        de l'objet et leurs commandes, filtrés selon les droits de l'utilisateur.
+      parameters:
+        - name: include
+          in: query
+          description: Données liées à inclure.
+          schema:
+            type: array
+            items: { type: string, enum: [eqLogics] }
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: L'objet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Object' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    patch:
+      tags: [Objets]
+      operationId: updateObject
+      summary: Modifier un objet
+      description: |
+        Remplace l'ajax `save` et le JSON-RPC `jeeObject::save` avec `id`. Seuls
+        les champs envoyés sont modifiés ; `configuration` et `display` sont
+        fusionnés clé par clé, comme `utils::a2o` aujourd'hui. Réservé aux
+        administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ObjectUpdate' }
+      responses:
+        '200':
+          description: Objet modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Object' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '409': { $ref: '#/components/responses/Conflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Objets]
+      operationId: deleteObject
+      summary: Supprimer un objet
+      description: |
+        Remplace l'ajax `remove`. La suppression est inscrite dans l'historique
+        des suppressions. Rien d'autre n'est supprimé : les équipements et
+        scénarios de l'objet n'ont plus d'objet, ses enfants sont rattachés à
+        son propre parent, et ses variables et son image sont effacées.
+        Réservé aux administrateurs.
+      responses:
+        '204': { description: Objet supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /objects/{id}/children:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+    get:
+      tags: [Objets]
+      operationId: listObjectChildren
+      summary: Lister les enfants directs d'un objet
+      description: Remplace l'ajax `getChild`.
+      responses:
+        '200':
+          description: Enfants directs.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ObjectList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /objects/{id}/eqLogics/order-by-usage:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+    post:
+      tags: [Objets]
+      operationId: orderObjectEqLogicsByUsage
+      summary: Trier les équipements de l'objet par usage
+      description: Remplace l'ajax `orderEqLogicByUsage`. Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Objet après le tri.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Object' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /objects/{id}/image:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+    put:
+      tags: [Objets]
+      operationId: uploadObjectImage
+      summary: Remplacer l'image d'un objet
+      description: |
+        Remplace l'ajax `uploadImage`, en mode envoi de fichier uniquement :
+        formats jpg, jpeg, png, gif, svg, webp, 5 Mo au plus. Le mode actuel où
+        l'ajax lit un chemin de fichier sur le serveur (`file`) n'est pas repris.
+        Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        '200':
+          description: Objet avec sa nouvelle image.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Object' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '413':
+          description: Fichier trop volumineux (plus de 5 Mo).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Objets]
+      operationId: deleteObjectImage
+      summary: Supprimer l'image d'un objet
+      description: Remplace l'ajax `removeImage`. Réservé aux administrateurs.
+      responses:
+        '204': { description: Image supprimée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /objects/summary:
+    get:
+      tags: [Résumés]
+      operationId: getGlobalSummary
+      summary: Lire le résumé global
+      description: |
+        Remplace le JSON-RPC `summary::global`. Sans `key`, renvoie toutes les
+        clés de résumé définies avec leur valeur ; avec `key`, la valeur seule.
+      parameters:
+        - $ref: '#/components/parameters/SummaryKeyQuery'
+      responses:
+        '200':
+          description: Résumé global.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SummaryResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /objects/summary/{key}/virtual:
+    parameters:
+      - $ref: '#/components/parameters/SummaryKey'
+    post:
+      tags: [Résumés]
+      operationId: createSummaryVirtual
+      summary: Créer les équipements virtuels d'un résumé
+      description: |
+        Remplace l'ajax `createSummaryVirtual` : crée ou met à jour les
+        équipements Virtuel qui exposent ce résumé (nécessite le plugin
+        Virtuel). Réservé aux administrateurs.
+      responses:
+        '204': { description: Équipements virtuels créés ou mis à jour. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /objects/{id}/summary:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+    get:
+      tags: [Résumés]
+      operationId: getObjectSummary
+      summary: Lire le résumé d'un objet
+      description: Remplace le JSON-RPC `summary::byId`.
+      parameters:
+        - $ref: '#/components/parameters/SummaryKeyQuery'
+        - name: raw
+          in: query
+          description: Renvoyer les valeurs brutes, sans arrondi ni mise en forme.
+          schema: { type: boolean, default: false }
+      responses:
+        '200':
+          description: Résumé de l'objet.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SummaryResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /objects/{id}/summary/{key}/eqLogics:
+    parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      - $ref: '#/components/parameters/SummaryKey'
+    get:
+      tags: [Résumés]
+      operationId: listSummaryEqLogics
+      summary: Lister les équipements qui alimentent un résumé
+      description: Remplace l'ajax `getEqLogicsFromSummary`.
+      parameters:
+        - name: enabled
+          in: query
+          description: Ne garder que les équipements activés.
+          schema: { type: boolean, default: false }
+        - name: visible
+          in: query
+          description: Ne garder que les équipements visibles.
+          schema: { type: boolean, default: false }
+      responses:
+        '200':
+          description: Équipements concernés.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/EqLogicRef' }
+                  total: { type: integer }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Jeton lié à un utilisateur (ou à un utilisateur technique pour un démon de plugin).
+    sessionCookie:
+      type: apiKey
+      in: cookie
+      name: PHPSESSID
+      description: Session de la nouvelle UI, avec protection CSRF sur les requêtes d'écriture.
+
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant de l'objet.
+      schema: { type: integer, minimum: 1 }
+    SummaryKey:
+      name: key
+      in: path
+      required: true
+      description: Clé de résumé définie dans la configuration (ex. `temperature`, `light`).
+      schema: { type: string, example: temperature }
+    SummaryKeyQuery:
+      name: key
+      in: query
+      description: Limiter le résultat à une clé de résumé.
+      schema: { type: string, example: temperature }
+
+  schemas:
+    Object:
+      type: object
+      required: [id, name, father_id, isVisible, position]
+      properties:
+        id: { type: integer, example: 3 }
+        name: { type: string, maxLength: 127, example: Salon }
+        father_id:
+          type: [integer, 'null']
+          description: Objet parent, `null` pour un objet racine.
+          example: 1
+        isVisible: { type: boolean, example: true }
+        position:
+          type: [integer, 'null']
+          description: Rang parmi les objets, utilisé pour l'ordre d'affichage.
+          example: 2
+        configuration: { $ref: '#/components/schemas/ObjectConfiguration' }
+        display: { $ref: '#/components/schemas/ObjectDisplay' }
+        image: { $ref: '#/components/schemas/ObjectImage' }
+        eqLogics:
+          type: array
+          description: Présent seulement avec `include=eqLogics`.
+          items: { $ref: '#/components/schemas/EqLogicWithCmds' }
+
+    ObjectCreate:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        father_id: { type: [integer, 'null'] }
+        isVisible: { type: boolean, default: true }
+        position: { type: [integer, 'null'] }
+        configuration: { $ref: '#/components/schemas/ObjectConfiguration' }
+        display: { $ref: '#/components/schemas/ObjectDisplay' }
+
+    ObjectUpdate:
+      type: object
+      minProperties: 1
+      description: |
+        Les mêmes champs qu'à la création, tous facultatifs. Un `father_id`
+        égal à l'objet lui-même, ou créant un cycle, est refusé (422).
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        father_id: { type: [integer, 'null'] }
+        isVisible: { type: boolean }
+        position: { type: [integer, 'null'] }
+        configuration: { $ref: '#/components/schemas/ObjectConfiguration' }
+        display: { $ref: '#/components/schemas/ObjectDisplay' }
+
+    ObjectList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Object' }
+        total: { type: integer, example: 8 }
+
+    ObjectConfiguration:
+      type: object
+      description: |
+        Réglages libres de l'objet. Clés connues du core : résumés (`summary`,
+        `summary::hide::*`, `summary::global::*`), couleurs (`useCustomColor`,
+        `tagColor`, `tagTextColor`, `mobile::summaryTextColor`),
+        `hideOnDashboard`, `orderEqLogicByUsage::auto`, `parentNumber`
+        (calculé). Les plugins peuvent ajouter leurs propres clés.
+      additionalProperties: true
+      properties:
+        hideOnDashboard: { type: [integer, string] }
+        useCustomColor: { type: [integer, string] }
+        tagColor: { type: string, example: '#4a90e2' }
+        tagTextColor: { type: string, example: '#ffffff' }
+        summary:
+          type: object
+          description: Commandes qui alimentent chaque clé de résumé.
+          additionalProperties: true
+        parentNumber:
+          type: integer
+          readOnly: true
+          description: Profondeur dans l'arbre, calculée par le core.
+
+    ObjectDisplay:
+      type: object
+      additionalProperties: true
+      properties:
+        icon:
+          type: string
+          description: Icône au format HTML du core (ex. `<i class="icon jeedom-salon"></i>`).
+        tagColor: { type: string }
+        tagTextColor: { type: string }
+
+    ObjectImage:
+      type: object
+      readOnly: true
+      description: Métadonnées de l'image ; le fichier se gère via `/objects/{id}/image`.
+      properties:
+        type: { type: string, example: png }
+        sha512: { type: string }
+
+    EqLogicRef:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: integer }
+        name: { type: string }
+        eqType_name: { type: string, description: Plugin de l'équipement, example: virtual }
+        isEnable: { type: boolean }
+        isVisible: { type: boolean }
+
+    EqLogicWithCmds:
+      allOf:
+        - $ref: '#/components/schemas/EqLogicRef'
+        - type: object
+          properties:
+            cmds:
+              type: array
+              description: Commandes au format de `cmd::exportApi`, détaillé avec la ressource `/cmds`.
+              items:
+                type: object
+                additionalProperties: true
+
+    SummaryResult:
+      description: Une valeur seule (avec `key`) ou un dictionnaire clé de résumé → valeur.
+      oneOf:
+        - type: [number, string, 'null']
+        - type: object
+          additionalProperties: true
+
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              type: string
+              description: Code stable, utilisable par les clients.
+              example: object_not_found
+            message:
+              type: string
+              description: Message lisible, dans la langue de l'utilisateur.
+              example: Objet inconnu.
+            details:
+              type: array
+              description: Erreurs par champ, pour les erreurs de validation.
+              items:
+                type: object
+                required: [field, message]
+                properties:
+                  field: { type: string, example: father_id }
+                  message: { type: string, example: L'objet ne peut pas être son propre parent. }
+
+  responses:
+    Unauthorized:
+      description: Jeton absent, invalide ou révoqué, ou session expirée.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Forbidden:
+      description: Droits insuffisants (écriture réservée aux administrateurs).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: Objet ou clé de résumé inconnus.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Conflict:
+      description: Un objet porte déjà ce nom (le nom est unique).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ValidationError:
+      description: Données invalides (nom vide, parent inconnu ou cycle, fichier refusé…).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
