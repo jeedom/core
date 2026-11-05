@@ -48,6 +48,22 @@ final class App
             $api->get('/eqLogics/{id}/usages', $eqLogics->usages(...));
             $api->put('/eqLogics/{id}/image', self::notImplemented(...));
             $api->delete('/eqLogics/{id}/image', self::notImplemented(...));
+
+            $cmds = new CmdsController();
+            $api->get('/cmds', $cmds->list(...));
+            $api->post('/cmds', $cmds->create(...));
+            $api->patch('/cmds', $cmds->updateMany(...));
+            $api->put('/cmds/order', $cmds->reorder(...));
+            $api->get('/cmds/{id}', $cmds->get(...));
+            $api->patch('/cmds/{id}', $cmds->update(...));
+            $api->delete('/cmds/{id}', $cmds->delete(...));
+            $api->post('/cmds/{id}/exec', $cmds->exec(...));
+            $api->get('/cmds/{id}/value', $cmds->value(...));
+            $api->get('/cmds/{id}/history', $cmds->history(...));
+            $api->get('/cmds/{id}/statistics', $cmds->statistics(...));
+            $api->get('/cmds/{id}/usages', $cmds->usages(...));
+
+            $api->get('/me', self::me(...));
         })->add(new Auth());
 
         // Toutes les erreurs sortent au format `Error` de la spec, y compris 404/405 de routage.
@@ -65,6 +81,17 @@ final class App
             return Json::error($app->getResponseFactory()->createResponse(), $error);
         });
         return $app;
+    }
+
+    /** Utilisateur du jeton, pour que l'UI adapte l'affichage (équivalent d'isConnect('admin')). */
+    private static function me(Request $request, Response $response): Response
+    {
+        $user = $request->getAttribute('user');
+        return Json::respond($response, [
+            'id' => (int) $user->getId(),
+            'login' => (string) $user->getLogin(),
+            'isAdmin' => $user->getProfils() === 'admin',
+        ]);
     }
 
     private static function notImplemented(): never

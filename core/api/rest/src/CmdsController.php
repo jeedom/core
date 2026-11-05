@@ -1,0 +1,428 @@
+<?php
+declare(strict_types=1);
+
+namespace Jeedom\Api\Rest;
+
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
+/**
+ * Ressource /cmds (core/api/rest/openapi.yaml). Chaque route appelle les méthodes
+ * existantes de cmd, comme core/ajax/cmd.ajax.php, sans dupliquer leur logique.
+ * Une commande est lisible si l'utilisateur peut lire (info) ou exécuter (action) son
+ * équipement (`cmd::hasRight`) ; l'écriture demande un administrateur ayant le droit
+ * d'écriture sur l'équipement.
+ */
+final class CmdsController
+{
+    private const SUB_TYPES = [
+        'info' => ['numeric', 'binary', 'string'],
+        'action' => ['other', 'slider', 'message', 'color', 'select'],
+    ];
+    private const FIELDS = ['eqLogic_id', 'name', 'type', 'subType', 'logicalId', 'generic_type', 'order', 'isVisible', 'isHistorized', 'unite', 'value', 'configuration', 'display', 'template', 'alert'];
+    private const BULK_CHANGES = ['isVisible', 'isHistorized', 'generic_type'];
+    private const EXEC_OPTIONS = ['slider', 'color', 'select', 'title', 'message'];
+    private const MAX_BULK = 1000;
+    private const DATE = 'Y-m-d H:i:s';
+
+    public function list(Request $request, Response $response): Response
+    {
+        $query = $request->getQueryParams();
+        $user = $request->getAttribute('user');
+        if (isset($query['eqLogicId'])) {
+            if (!ctype_digit((string) $query['eqLogicId']) || (int) $query['eqLogicId'] < 1) {
+                throw ApiError::field(422, 'validation_error', 'eqLogicId', 'Un entier positif est attendu.');
+            }
+            $cmds = \cmd::byEqLogicId((int) $query['eqLogicId']);
+        } else {
+            $cmds = \cmd::all();
+        }
+        $type = (string) ($query['type'] ?? '');
+        $subType = (string) ($query['subType'] ?? '');
+        $genericType = (string) ($query['generic_type'] ?? '');
+        $historized = isset($query['isHistorized']) ? filter_var($query['isHistorized'], FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE) : null;
+        $cmds = array_values(array_filter((array) $cmds, static fn ($cmd) => is_object($cmd)
+            && ($type === '' || $cmd->getType() === $type)
+            && ($subType === '' || $cmd->getSubType() === $subType)
+            && ($genericType === '' || (string) $cmd->getGeneric_type() === $genericType)
+            && ($historized === null || (bool) (int) $cmd->getIsHistorized() === $historized)
+            && self::canRead($cmd, $user)));
+        usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName()] <=> [(int) $b->getOrder(), $b->getName()]);
+        $items = array_map(self::toArray(...), $cmds);
+        return Json::respond($response, ['items' => $items, 'total' => count($items)]);
+    }
+
+    public function get(Request $request, Response $response, array $args): Response
+    {
+        return Json::respond($response, self::toArray(self::findReadable($args['id'], $request->getAttribute('user'))));
+    }
+
+    public function create(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $body = Json::body($request);
+        foreach (['eqLogic_id', 'name', 'type', 'subType'] as $required) {
+            if (!array_key_exists($required, $body)) {
+                throw ApiError::field(422, 'validation_error', $required, 'Ce champ est obligatoire.');
+            }
+        }
+        $eqLogic = is_int($body['eqLogic_id']) ? \eqLogic::byId($body['eqLogic_id']) : null;
+        if (!is_object($eqLogic)) {
+            throw ApiError::field(422, 'validation_error', 'eqLogic_id', 'Équipement inconnu.');
+        }
+        if (!$eqLogic->hasRight('w', $request->getAttribute('user'))) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur cet équipement.');
+        }
+        if (!is_string($body['type']) || !isset(self::SUB_TYPES[$body['type']])) {
+            throw ApiError::field(422, 'validation_error', 'type', 'Type attendu : info ou action.');
+        }
+        // Même classe que celle du plugin quand il en a une, comme cmd::byId.
+        $class = $eqLogic->getEqType_name() . 'Cmd';
+        $cmd = class_exists($class) && is_subclass_of($class, \cmd::class) ? new $class() : new \cmd();
+        $cmd->setEqLogic_id($eqLogic->getId());
+        $cmd->setEqType($eqLogic->getEqType_name());
+        $cmd->setType($body['type']);
+        unset($body['eqLogic_id'], $body['type']);
+        self::apply($cmd, $body + ['isVisible' => true]);
+        return Json::respond($response, self::toArray(self::reload($cmd)), 201);
+    }
+
+    public function update(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        $cmd = self::findWritable($args['id'], $request->getAttribute('user'));
+        $body = Json::body($request);
+        if ($body === []) {
+            throw new ApiError(422, 'validation_error', 'Aucun champ à modifier.');
+        }
+        foreach (['eqLogic_id', 'type'] as $locked) {
+            if (array_key_exists($locked, $body)) {
+                throw ApiError::field(422, 'validation_error', $locked, 'Ce champ ne peut pas changer.');
+            }
+        }
+        self::apply($cmd, $body);
+        return Json::respond($response, self::toArray(self::reload($cmd)));
+    }
+
+    public function delete(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        self::findWritable($args['id'], $request->getAttribute('user'))->remove();
+        return $response->withStatus(204);
+    }
+
+    public function updateMany(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $body = Json::body($request);
+        $ids = $body['ids'] ?? null;
+        if (!is_array($ids) || !array_is_list($ids) || $ids === [] || count($ids) > self::MAX_BULK
+            || array_filter($ids, static fn ($id) => !is_int($id) || $id < 1) !== [] || count(array_unique($ids)) !== count($ids)) {
+            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste de 1 à ' . self::MAX_BULK . ' identifiants entiers distincts est attendue.');
+        }
+        $changes = $body['changes'] ?? null;
+        if (!is_array($changes) || $changes === [] || array_is_list($changes)) {
+            throw ApiError::field(422, 'validation_error', 'changes', 'Un objet JSON avec au moins un changement est attendu.');
+        }
+        if ($unknown = array_diff(array_keys($changes), self::BULK_CHANGES)) {
+            throw ApiError::field(422, 'validation_error', 'changes.' . reset($unknown), 'Seuls isVisible, isHistorized et generic_type peuvent être modifiés en groupe.');
+        }
+        $user = $request->getAttribute('user');
+        $done = [];
+        $failed = [];
+        foreach ($ids as $id) {
+            try {
+                self::apply(self::findWritable((string) $id, $user), $changes);
+                $done[] = $id;
+            } catch (ApiError $e) {
+                $failed[] = ['id' => $id, 'error' => ['code' => $e->errorCode, 'message' => $e->getMessage()]];
+            } catch (\Throwable $e) {
+                \log::add('api', 'error', $e->getMessage());
+                $failed[] = ['id' => $id, 'error' => ['code' => 'internal_error', 'message' => 'Erreur interne.']];
+            }
+        }
+        return Json::respond($response, ['done' => $done, 'failed' => $failed]);
+    }
+
+    public function reorder(Request $request, Response $response): Response
+    {
+        Auth::requireAdmin($request);
+        $ids = Json::body($request)['ids'] ?? null;
+        if (!is_array($ids) || !array_is_list($ids) || array_filter($ids, static fn ($id) => !is_int($id)) !== []) {
+            throw ApiError::field(422, 'validation_error', 'ids', 'Une liste d\'identifiants entiers est attendue.');
+        }
+        // Seul l'ordre change, contrairement à l'ajax setOrder qui touche aussi la disposition.
+        $position = 1;
+        foreach ($ids as $id) {
+            $cmd = \cmd::byId($id);
+            if (is_object($cmd)) {
+                $cmd->setOrder($position++);
+                $cmd->save(true);
+            }
+        }
+        return $response->withStatus(204);
+    }
+
+    public function exec(Request $request, Response $response, array $args): Response
+    {
+        $user = $request->getAttribute('user');
+        $cmd = self::find($args['id']);
+        if ($cmd->getType() !== 'action') {
+            throw new ApiError(422, 'validation_error', 'Seule une commande action s\'exécute ; la valeur d\'une info se lit avec /cmds/{id}/value.');
+        }
+        if (!self::canRead($cmd, $user)) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur cet équipement.');
+        }
+        $raw = (string) $request->getBody();
+        $body = $raw === '' ? [] : Json::body($request);
+        if ($unknown = array_diff(array_keys($body), ['options', 'codeAccess', 'confirm'])) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu.');
+        }
+        $options = $body['options'] ?? [];
+        if (!is_array($options) || array_is_list($options) && $options !== []) {
+            throw ApiError::field(422, 'validation_error', 'options', 'Un objet JSON est attendu.');
+        }
+        if ($unknown = array_diff(array_keys($options), self::EXEC_OPTIONS)) {
+            throw ApiError::field(422, 'validation_error', 'options.' . reset($unknown), 'Option inconnue.');
+        }
+        if (!$cmd->checkAccessCode((string) ($body['codeAccess'] ?? ''))) {
+            throw new ApiError(403, 'access_code_required', 'Cette action nécessite un code d\'accès.');
+        }
+        if ((int) $cmd->getConfiguration('actionConfirm') === 1 && ($body['confirm'] ?? false) !== true) {
+            throw new ApiError(403, 'confirmation_required', 'Cette action nécessite une confirmation.');
+        }
+        // L'utilisateur vient du jeton, jamais du client (l'ajax accepte user_login/user_id du navigateur).
+        $options['user_login'] = $user->getLogin();
+        $options['user_id'] = $user->getId();
+        try {
+            $result = $cmd->execCmd($options);
+        } catch (\Exception $e) {
+            throw new ApiError(409, 'cmd_exec_failed', $e->getMessage());
+        }
+        return Json::respond($response, ['result' => is_scalar($result) ? $result : null]);
+    }
+
+    public function value(Request $request, Response $response, array $args): Response
+    {
+        $cmd = self::findReadable($args['id'], $request->getAttribute('user'));
+        if ($cmd->getType() !== 'info') {
+            return Json::respond($response, ['value' => self::scalar($cmd->getConfiguration('lastCmdValue', null)), 'collectDate' => null, 'valueDate' => null]);
+        }
+        $value = $cmd->execCmd();
+        return Json::respond($response, [
+            'value' => self::scalar($value),
+            'collectDate' => self::nullableString($cmd->getCollectDate()),
+            'valueDate' => self::nullableString($cmd->getValueDate()),
+        ]);
+    }
+
+    public function history(Request $request, Response $response, array $args): Response
+    {
+        $cmd = self::findReadableInfo($args['id'], $request->getAttribute('user'));
+        [$start, $end] = self::period($request);
+        $grouping = $request->getQueryParams()['grouping'] ?? null;
+        if ($grouping !== null && !preg_match('/^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$/', (string) $grouping)) {
+            throw ApiError::field(422, 'validation_error', 'grouping', 'Format attendu : fonction::période (ex. avg::hour).');
+        }
+        $items = [];
+        foreach ((array) \history::all($cmd->getId(), $start, $end, $grouping) as $point) {
+            $value = $point->getValue();
+            $items[] = ['datetime' => (string) $point->getDatetime(), 'value' => is_numeric($value) ? $value + 0 : self::nullableString($value)];
+        }
+        return Json::respond($response, ['items' => $items]);
+    }
+
+    public function statistics(Request $request, Response $response, array $args): Response
+    {
+        $cmd = self::findReadableInfo($args['id'], $request->getAttribute('user'));
+        [$start, $end] = self::period($request);
+        $stats = (array) $cmd->getStatistique($start, $end);
+        $result = [];
+        foreach (['avg', 'min', 'max', 'sum', 'std', 'variance'] as $key) {
+            $result[$key] = is_numeric($stats[$key] ?? null) ? (float) $stats[$key] : null;
+        }
+        $result['count'] = (int) ($stats['count'] ?? 0);
+        $last = $stats['last'] ?? null;
+        $result['last'] = is_numeric($last) ? $last + 0 : self::nullableString($last);
+        $result['trend'] = (float) $cmd->getTendance($start, $end);
+        return Json::respond($response, $result);
+    }
+
+    public function usages(Request $request, Response $response, array $args): Response
+    {
+        Auth::requireAdmin($request);
+        return Json::respond($response, Usages::format((array) self::findReadable($args['id'], $request->getAttribute('user'))->getUsedBy()));
+    }
+
+    private static function find(string $id): \cmd
+    {
+        $cmd = ctype_digit($id) ? \cmd::byId((int) $id) : null;
+        if (!is_object($cmd)) {
+            throw new ApiError(404, 'cmd_not_found', 'Commande inconnue.');
+        }
+        return $cmd;
+    }
+
+    private static function canRead(\cmd $cmd, \user $user): bool
+    {
+        return is_object($cmd->getEqLogic()) && $cmd->hasRight($user);
+    }
+
+    private static function findReadable(string $id, \user $user): \cmd
+    {
+        $cmd = self::find($id);
+        if (!self::canRead($cmd, $user)) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur cet équipement.');
+        }
+        return $cmd;
+    }
+
+    private static function findReadableInfo(string $id, \user $user): \cmd
+    {
+        $cmd = self::findReadable($id, $user);
+        if ($cmd->getType() !== 'info') {
+            throw new ApiError(422, 'validation_error', 'Disponible seulement pour une commande info.');
+        }
+        return $cmd;
+    }
+
+    private static function findWritable(string $id, \user $user): \cmd
+    {
+        $cmd = self::find($id);
+        $eqLogic = $cmd->getEqLogic();
+        if (!is_object($eqLogic) || !$eqLogic->hasRight('w', $user)) {
+            throw new ApiError(403, 'forbidden', 'Droits insuffisants sur cet équipement.');
+        }
+        return $cmd;
+    }
+
+    private static function reload(\cmd $cmd): \cmd
+    {
+        $fresh = \cmd::byId($cmd->getId());
+        return is_object($fresh) ? $fresh : $cmd;
+    }
+
+    /** @return array{0: string, 1: string} début et fin au format du core */
+    private static function period(Request $request): array
+    {
+        $query = $request->getQueryParams();
+        $end = self::date($query['end'] ?? null, 'end') ?? new \DateTimeImmutable();
+        $start = self::date($query['start'] ?? null, 'start') ?? $end->modify('-1 day');
+        if ($start > $end) {
+            throw ApiError::field(422, 'validation_error', 'start', 'Le début doit précéder la fin.');
+        }
+        return [$start->format(self::DATE), $end->format(self::DATE)];
+    }
+
+    private static function date(mixed $value, string $field): ?\DateTimeImmutable
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+        $date = is_string($value) ? \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC3339, $value) : false;
+        if ($date === false) {
+            throw ApiError::field(422, 'validation_error', $field, 'Une date ISO 8601 est attendue (ex. 2026-11-05T10:00:00+01:00).');
+        }
+        return $date->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+    }
+
+    /** Valide puis enregistre les champs modifiables, comme l'ajax save via utils::a2o. */
+    private static function apply(\cmd $cmd, array $body): void
+    {
+        if ($unknown = array_diff(array_keys($body), self::FIELDS)) {
+            throw ApiError::field(422, 'validation_error', (string) reset($unknown), 'Champ inconnu ou non modifiable.');
+        }
+        if (array_key_exists('subType', $body) && !in_array($body['subType'], self::SUB_TYPES[$cmd->getType()] ?? [], true)) {
+            throw ApiError::field(422, 'validation_error', 'subType', 'Sous-type attendu pour une ' . $cmd->getType() . ' : ' . implode(', ', self::SUB_TYPES[$cmd->getType()] ?? []) . '.');
+        }
+        if (array_key_exists('name', $body)) {
+            $name = is_string($body['name']) ? trim($body['name']) : '';
+            if ($name === '' || mb_strlen($name) > 127) {
+                throw ApiError::field(422, 'validation_error', 'name', 'Le nom est obligatoire (127 caractères au plus).');
+            }
+            $body['name'] = $name;
+            self::checkNameFree($name, (int) $cmd->getEqLogic_id(), $cmd->getId());
+        }
+        foreach (['isVisible', 'isHistorized'] as $field) {
+            if (array_key_exists($field, $body)) {
+                if (!is_bool($body[$field])) {
+                    throw ApiError::field(422, 'validation_error', $field, 'Un booléen est attendu.');
+                }
+                $body[$field] = (int) $body[$field];
+            }
+        }
+        if (array_key_exists('order', $body) && !is_int($body['order'])) {
+            throw ApiError::field(422, 'validation_error', 'order', 'Un entier est attendu.');
+        }
+        foreach (['logicalId' => 1023, 'generic_type' => 255, 'unite' => 45, 'value' => null] as $field => $max) {
+            if (array_key_exists($field, $body) && $body[$field] !== null
+                && (!is_string($body[$field]) || $max !== null && mb_strlen($body[$field]) > $max)) {
+                throw ApiError::field(422, 'validation_error', $field, 'Un texte' . ($max !== null ? " de {$max} caractères au plus" : '') . ' ou null est attendu.');
+            }
+        }
+        foreach (['configuration', 'display', 'template', 'alert'] as $field) {
+            if (array_key_exists($field, $body) && (!is_array($body[$field]) || array_is_list($body[$field]) && $body[$field] !== [])) {
+                throw ApiError::field(422, 'validation_error', $field, 'Un objet JSON est attendu.');
+            }
+        }
+        // Le code d'accès est stocké haché ; il ne se règle pas par l'API (question ouverte).
+        if (isset($body['configuration']) && array_key_exists('actionCodeAccess', $body['configuration'])) {
+            throw ApiError::field(422, 'validation_error', 'configuration.actionCodeAccess', 'Le code d\'accès ne se modifie pas par l\'API.');
+        }
+        \utils::a2o($cmd, \jeedom::fromHumanReadable($body));
+        try {
+            $cmd->save();
+        } catch (\Exception $e) {
+            throw new ApiError(422, 'validation_error', $e->getMessage());
+        }
+    }
+
+    /** Le nom est unique par équipement (index unique eqLogic_id + name de la table cmd). */
+    private static function checkNameFree(string $name, int $eqLogicId, mixed $selfId): void
+    {
+        foreach ((array) \cmd::byEqLogicId($eqLogicId) as $other) {
+            if (is_object($other) && mb_strtolower((string) $other->getName()) === mb_strtolower($name) && (int) $other->getId() !== (int) $selfId) {
+                throw ApiError::field(409, 'cmd_name_taken', 'name', 'Une commande porte déjà ce nom dans cet équipement.');
+            }
+        }
+    }
+
+    /** Convertit une commande du core au schéma `Cmd` (types JSON, références lisibles). */
+    private static function toArray(\cmd $cmd): array
+    {
+        $raw = \jeedom::toHumanReadable(\utils::o2a($cmd));
+        $configuration = is_array($raw['configuration'] ?? null) ? $raw['configuration'] : [];
+        unset($configuration['actionCodeAccess']);
+        $current = $cmd->getType() === 'action' ? $cmd->getConfiguration('lastCmdValue', null) : $cmd->execCmd();
+        return [
+            'id' => (int) $raw['id'],
+            'eqLogic_id' => (int) $raw['eqLogic_id'],
+            'eqType' => (string) ($raw['eqType'] ?? ''),
+            'logicalId' => self::nullableString($raw['logicalId'] ?? null),
+            'name' => (string) $raw['name'],
+            'type' => (string) $raw['type'],
+            'subType' => (string) $raw['subType'],
+            'generic_type' => self::nullableString($raw['generic_type'] ?? null),
+            'order' => (int) ($raw['order'] ?? 0),
+            'isVisible' => (bool) (int) ($raw['isVisible'] ?? 0),
+            'isHistorized' => (bool) (int) ($raw['isHistorized'] ?? 0),
+            'unite' => self::nullableString($raw['unite'] ?? null),
+            'value' => self::nullableString($raw['value'] ?? null),
+            'configuration' => (object) $configuration,
+            'display' => (object) (is_array($raw['display'] ?? null) ? $raw['display'] : []),
+            'template' => (object) (is_array($raw['template'] ?? null) ? $raw['template'] : []),
+            'alert' => (object) (is_array($raw['alert'] ?? null) ? $raw['alert'] : []),
+            'currentValue' => self::scalar($current),
+        ];
+    }
+
+    private static function scalar(mixed $value): string|int|float|bool|null
+    {
+        return is_scalar($value) ? $value : null;
+    }
+
+    private static function nullableString(mixed $value): ?string
+    {
+        return $value === null || $value === '' ? null : (string) $value;
+    }
+}
