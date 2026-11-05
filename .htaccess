@@ -13,12 +13,6 @@ LimitRequestBody 1073741824
     ServerSignature Off
 </IfModule>
 
-# API REST v1 : toutes les routes /api/v1/… sont servies par core/api/rest/index.php.
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^api/v1(/.*)?$ core/api/rest/index.php [QSA,L]
-</IfModule>
-
 <FilesMatch "apple-app-site-association">
     ForceType application/json
 </FilesMatch>

@@ -16,8 +16,8 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Point d'entrée de l'API REST v1 (/api/v1/…, voir la règle de réécriture du .htaccess
-// à la racine). Contrat : core/api/rest/openapi.yaml.
+// Point d'entrée de l'API REST v1 (/api/v1/…, voir l'AliasMatch du site Apache).
+// Contrat : core/api/rest/openapi.yaml.
 require_once __DIR__ . '/../../php/core.inc.php';
 
 Jeedom\Api\Rest\App::create()->run();
