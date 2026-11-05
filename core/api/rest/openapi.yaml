@@ -6,8 +6,9 @@ info:
     name: GPL-3.0-or-later
     identifier: GPL-3.0-or-later
   description: |
-    Brouillon de l'API REST du core Jeedom. Cette première version ne couvre que
-    la ressource pilote `/objects` (les objets : pièces, étages, zones…).
+    Brouillon de l'API REST du core Jeedom. Elle couvre la ressource pilote
+    `/objects` (les objets : pièces, étages, zones…) et `/eqLogics` (les
+    équipements).
 
     Elle reprend les actions de `core/ajax/object.ajax.php` et les méthodes
     JSON-RPC `jeeObject::*` / `summary::*` de `core/api/jeeApi.php`
@@ -34,6 +35,8 @@ info:
     session de la nouvelle UI. Les droits sont ceux de l'utilisateur :
     lecture pour tout utilisateur connecté, écriture réservée aux
     administrateurs, équipements filtrés selon les droits par élément.
+    Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
+    simplement absent ; demandé directement, il renvoie 403.
 
 servers:
   - url: /api/v1
@@ -45,6 +48,8 @@ security:
 tags:
   - name: Objets
     description: Pièces et zones qui regroupent les équipements, organisées en arbre.
+  - name: Équipements
+    description: Équipements des plugins (modules, appareils, services), rangés dans les objets.
   - name: Résumés
     description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
 
@@ -369,6 +374,343 @@ paths:
                   total: { type: integer }
         '401': { $ref: '#/components/responses/Unauthorized' }
         '404': { $ref: '#/components/responses/NotFound' }
+  /eqLogics:
+    get:
+      tags: [Équipements]
+      operationId: listEqLogics
+      summary: Lister les équipements
+      description: |
+        Remplace les ajax `listByObject`, `listByType`, `byLogical` et les
+        JSON-RPC `eqLogic::all`, `eqLogic::byType`, `eqLogic::byObjectId`.
+        Les équipements que l'utilisateur n'a pas le droit de lire sont
+        retirés de la liste. Triés par `order`, puis par nom.
+      parameters:
+        - name: objectId
+          in: query
+          description: Ne garder que les équipements de cet objet. `0` pour les équipements sans objet.
+          schema: { type: integer, minimum: 0 }
+        - name: eqType
+          in: query
+          description: Ne garder que les équipements de ce plugin (ex. `virtual`).
+          schema: { type: string, example: virtual }
+        - name: logicalId
+          in: query
+          description: Ne garder que les équipements de cet identifiant logique (à combiner avec `eqType`).
+          schema: { type: string }
+        - name: enabled
+          in: query
+          description: Filtrer sur l'état activé. Sans ce paramètre, tous les équipements sont renvoyés.
+          schema: { type: boolean }
+        - name: visible
+          in: query
+          description: Filtrer sur la visibilité. Sans ce paramètre, tous les équipements sont renvoyés.
+          schema: { type: boolean }
+        - $ref: '#/components/parameters/EqLogicInclude'
+      responses:
+        '200':
+          description: Liste des équipements.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogicList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Équipements]
+      operationId: createEqLogic
+      summary: Créer un équipement
+      description: |
+        Remplace l'ajax `save` et le JSON-RPC `eqLogic::save` sans `id`. Le
+        plugin (`eqType_name`) doit être installé : ses règles de création
+        s'appliquent et peuvent refuser l'équipement (422) ou lui créer des
+        commandes. Les commandes se gèrent avec la ressource `/cmds`.
+        Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EqLogicCreate' }
+      responses:
+        '201':
+          description: Équipement créé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogic' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/EqLogicConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+    patch:
+      tags: [Équipements]
+      operationId: updateEqLogics
+      summary: Modifier plusieurs équipements
+      description: |
+        Remplace les ajax `setIsEnables`, `setIsVisibles` et `setGenericType`.
+        Applique les mêmes changements à chaque équipement de la liste. Un
+        équipement qui échoue (inconnu, pas le droit d'écriture, refusé par
+        son plugin) n'arrête pas les autres : la réponse dit lesquels ont été
+        traités et lesquels ont échoué. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids, changes]
+              properties:
+                ids: { $ref: '#/components/schemas/EqLogicIds' }
+                changes:
+                  type: object
+                  minProperties: 1
+                  properties:
+                    isEnable: { type: boolean }
+                    isVisible: { type: boolean }
+                    generic_type: { type: [string, 'null'], maxLength: 255 }
+            example: { ids: [12, 4, 7], changes: { isEnable: false } }
+      responses:
+        '200':
+          description: Résultat pour chaque équipement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BulkResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /eqLogics/delete:
+    post:
+      tags: [Équipements]
+      operationId: deleteEqLogics
+      summary: Supprimer plusieurs équipements
+      description: |
+        Remplace l'ajax `removes`. Chaque équipement est supprimé comme avec
+        `DELETE /eqLogics/{id}`. Un équipement qui échoue n'arrête pas les
+        autres : la réponse dit lesquels ont été supprimés et lesquels ont
+        échoué. Route en `POST` car un corps de requête sur `DELETE` est mal
+        pris en charge par certains outils. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids: { $ref: '#/components/schemas/EqLogicIds' }
+            example: { ids: [12, 4, 7] }
+      responses:
+        '200':
+          description: Résultat pour chaque équipement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BulkResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /eqLogics/order:
+    put:
+      tags: [Équipements]
+      operationId: reorderEqLogics
+      summary: Réordonner des équipements
+      description: |
+        Remplace l'ajax `setOrder`, en ne changeant que l'ordre (l'ajax
+        actuel accepte n'importe quel champ et ne vérifie aucun droit). Les
+        équipements prennent les positions 1, 2, 3… dans l'ordre donné ; les
+        identifiants inconnus sont ignorés. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids:
+                  type: array
+                  items: { type: integer }
+                  example: [12, 4, 7]
+      responses:
+        '204': { description: Ordre enregistré. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /eqLogics/{id}:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+    get:
+      tags: [Équipements]
+      operationId: getEqLogic
+      summary: Lire un équipement
+      description: |
+        Remplace les ajax `byId` et `get`, et les JSON-RPC `eqLogic::byId` /
+        `eqLogic::fullById`. Avec `include=cmds`, ajoute les commandes de
+        l'équipement. Un équipement que l'utilisateur n'a pas le droit de
+        lire renvoie 403.
+      parameters:
+        - $ref: '#/components/parameters/EqLogicInclude'
+      responses:
+        '200':
+          description: L'équipement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogic' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+    patch:
+      tags: [Équipements]
+      operationId: updateEqLogic
+      summary: Modifier un équipement
+      description: |
+        Remplace les ajax `save` et `simpleSave` avec `id`, `setIsEnable`,
+        `setIsVisibles`, `setIsEnables`, `setGenericType`, et le JSON-RPC
+        `eqLogic::save` avec `id`. Seuls les champs envoyés sont modifiés ;
+        `configuration`, `display` et `category` sont fusionnés clé par clé.
+        Les règles du plugin s'appliquent. Réservé aux administrateurs ayant
+        le droit d'écriture sur l'équipement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EqLogicUpdate' }
+      responses:
+        '200':
+          description: Équipement modifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogic' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+        '409': { $ref: '#/components/responses/EqLogicConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Équipements]
+      operationId: deleteEqLogic
+      summary: Supprimer un équipement
+      description: |
+        Remplace les ajax `remove` et `removes`. Supprime aussi ses commandes,
+        ses données de vues et ses variables, et inscrit la suppression dans
+        l'historique des suppressions. Le plugin peut refuser la suppression
+        (409). Réservé aux administrateurs ayant le droit d'écriture sur
+        l'équipement.
+      responses:
+        '204': { description: Équipement supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+        '409':
+          description: Le plugin a refusé la suppression.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /eqLogics/{id}/copy:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+    post:
+      tags: [Équipements]
+      operationId: copyEqLogic
+      summary: Dupliquer un équipement
+      description: |
+        Remplace l'ajax `copy`. La copie reprend la configuration et les
+        commandes de l'original, dans le même objet, sous le nom donné.
+        Réservé aux administrateurs ayant le droit de lecture sur l'original.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string, minLength: 1, maxLength: 127, example: Lampe salon (copie) }
+      responses:
+        '201':
+          description: Copie créée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogic' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+        '409': { $ref: '#/components/responses/EqLogicConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /eqLogics/{id}/usages:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+    get:
+      tags: [Équipements]
+      operationId: listEqLogicUsages
+      summary: Lister ce qui utilise un équipement
+      description: |
+        Remplace les ajax `usedBy` et `getUseBeforeRemove` : commandes,
+        équipements, scénarios, designs, vues, interactions et plugins qui
+        font référence à l'équipement ou à ses commandes. À consulter avant
+        une suppression. Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Utilisations, par type d'élément.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogicUsages' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+
+  /eqLogics/{id}/image:
+    parameters:
+      - $ref: '#/components/parameters/EqLogicId'
+    put:
+      tags: [Équipements]
+      operationId: uploadEqLogicImage
+      summary: Remplacer l'image d'un équipement
+      description: |
+        Remplace l'ajax `uploadImage`, en mode envoi de fichier uniquement :
+        formats jpg, jpeg, png, gif, svg, webp, 5 Mo au plus. Le mode actuel
+        où l'ajax lit un chemin de fichier sur le serveur (`file`) n'est pas
+        repris. Réservé aux administrateurs ayant le droit d'écriture sur
+        l'équipement.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file: { type: string, format: binary }
+      responses:
+        '200':
+          description: Équipement avec sa nouvelle image.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogic' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
+        '413':
+          description: Fichier trop volumineux (plus de 5 Mo).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Équipements]
+      operationId: deleteEqLogicImage
+      summary: Supprimer l'image d'un équipement
+      description: |
+        Remplace l'ajax `removeImage` : supprime le fichier et efface
+        `image` de l'équipement (l'ajax actuel oublie cette seconde étape).
+        Réservé aux administrateurs ayant le droit d'écriture sur
+        l'équipement.
+      responses:
+        '204': { description: Image supprimée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/EqLogicNotFound' }
 
 components:
   securitySchemes:
@@ -400,6 +742,22 @@ components:
       in: query
       description: Limiter le résultat à une clé de résumé.
       schema: { type: string, example: temperature }
+
+    EqLogicId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant de l'équipement.
+      schema: { type: integer, minimum: 1 }
+    EqLogicInclude:
+      name: include
+      in: query
+      description: Données liées à inclure.
+      schema:
+        type: array
+        items: { type: string, enum: [cmds] }
+      style: form
+      explode: false
 
   schemas:
     Object:
@@ -529,6 +887,200 @@ components:
         - type: object
           additionalProperties: true
 
+    EqLogic:
+      type: object
+      required: [id, name, eqType_name, object_id, isEnable, isVisible, order]
+      properties:
+        id: { type: integer, example: 12 }
+        name: { type: string, maxLength: 127, example: Lampe salon }
+        eqType_name: { type: string, description: Plugin de l'équipement., example: virtual }
+        logicalId:
+          type: [string, 'null']
+          description: Identifiant propre au plugin (adresse du module, etc.).
+        object_id:
+          type: [integer, 'null']
+          description: Objet de l'équipement, `null` s'il n'en a pas.
+          example: 3
+        isEnable: { type: boolean, example: true }
+        isVisible: { type: boolean, example: true }
+        order: { type: integer, description: Rang d'affichage dans l'objet., example: 2 }
+        timeout:
+          type: [integer, 'null']
+          description: Délai en minutes sans communication avant alerte, `null` si aucun.
+        generic_type: { type: [string, 'null'], maxLength: 255 }
+        tags:
+          type: array
+          description: Étiquettes libres (stockées dans le core séparées par des virgules).
+          items: { type: string }
+        comment: { type: [string, 'null'] }
+        category: { $ref: '#/components/schemas/EqLogicCategory' }
+        configuration: { $ref: '#/components/schemas/EqLogicConfiguration' }
+        display:
+          type: object
+          description: Réglages d'affichage du widget, propres au core et aux plugins.
+          additionalProperties: true
+        status: { $ref: '#/components/schemas/EqLogicStatus' }
+        image:
+          type: [object, 'null']
+          readOnly: true
+          description: Métadonnées de l'image ; le fichier se gère via `/eqLogics/{id}/image`.
+          properties:
+            type: { type: string, example: png }
+            sha512: { type: string }
+        cmds:
+          type: array
+          description: Présent seulement avec `include=cmds`. Format détaillé avec la ressource `/cmds`.
+          items:
+            type: object
+            additionalProperties: true
+
+    EqLogicCreate:
+      type: object
+      required: [name, eqType_name]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        eqType_name: { type: string, minLength: 1, maxLength: 127 }
+        logicalId: { type: [string, 'null'], maxLength: 127 }
+        object_id: { type: [integer, 'null'] }
+        isEnable: { type: boolean, default: false }
+        isVisible: { type: boolean, default: false }
+        order: { type: integer }
+        timeout: { type: [integer, 'null'], minimum: 1 }
+        generic_type: { type: [string, 'null'], maxLength: 255 }
+        tags: { type: array, items: { type: string } }
+        comment: { type: [string, 'null'] }
+        category: { $ref: '#/components/schemas/EqLogicCategory' }
+        configuration: { $ref: '#/components/schemas/EqLogicConfiguration' }
+        display: { type: object, additionalProperties: true }
+
+    EqLogicUpdate:
+      type: object
+      minProperties: 1
+      description: |
+        Les mêmes champs qu'à la création, tous facultatifs, sauf
+        `eqType_name` qui ne peut pas changer.
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        logicalId: { type: [string, 'null'], maxLength: 127 }
+        object_id: { type: [integer, 'null'] }
+        isEnable: { type: boolean }
+        isVisible: { type: boolean }
+        order: { type: integer }
+        timeout: { type: [integer, 'null'], minimum: 1 }
+        generic_type: { type: [string, 'null'], maxLength: 255 }
+        tags: { type: array, items: { type: string } }
+        comment: { type: [string, 'null'] }
+        category: { $ref: '#/components/schemas/EqLogicCategory' }
+        configuration: { $ref: '#/components/schemas/EqLogicConfiguration' }
+        display: { type: object, additionalProperties: true }
+
+    EqLogicList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/EqLogic' }
+        total: { type: integer, example: 24 }
+
+    EqLogicCategory:
+      type: object
+      description: Catégories cochées. Aucune cochée équivaut à « autre ».
+      properties:
+        heating: { type: boolean }
+        security: { type: boolean }
+        energy: { type: boolean }
+        light: { type: boolean }
+        opening: { type: boolean }
+        automatism: { type: boolean }
+        multimedia: { type: boolean }
+        default: { type: boolean }
+
+    EqLogicConfiguration:
+      type: object
+      description: |
+        Réglages de l'équipement, en grande partie propres au plugin.
+        Renvoyés seulement aux administrateurs : les plugins y rangent
+        parfois des identifiants ou des mots de passe. Clés connues du core :
+        batterie (`battery_type`, `battery::disable`,
+        `battery_warning_threshold`, `battery_danger_threshold`), `panelLink`,
+        et les dates calculées `createtime`, `updatetime`, `batterytime`.
+      additionalProperties: true
+      properties:
+        createtime: { type: string, readOnly: true, example: '2026-11-05 10:12:00' }
+        updatetime: { type: string, readOnly: true }
+        batterytime: { type: string, readOnly: true }
+
+    EqLogicStatus:
+      type: object
+      readOnly: true
+      description: |
+        État d'exécution calculé par le core (en cache, pas en base) :
+        dernière communication, batterie, alertes.
+      additionalProperties: true
+      properties:
+        lastCommunication: { type: string, example: '2026-11-05 10:40:12' }
+        battery: { type: [integer, 'null'], minimum: 0, maximum: 100 }
+        timeout: { type: [integer, boolean] }
+        warning: { type: [integer, boolean] }
+        danger: { type: [integer, boolean] }
+
+    EqLogicUsages:
+      type: object
+      required: [cmds, eqLogics, scenarios, plans, views, interactions, plugins]
+      properties:
+        cmds: { type: array, items: { $ref: '#/components/schemas/UsageRef' } }
+        eqLogics: { type: array, items: { $ref: '#/components/schemas/UsageRef' } }
+        scenarios: { type: array, items: { $ref: '#/components/schemas/UsageRef' } }
+        plans: { type: array, items: { $ref: '#/components/schemas/UsageRef' } }
+        views: { type: array, items: { $ref: '#/components/schemas/UsageRef' } }
+        interactions: { type: array, items: { $ref: '#/components/schemas/UsageRef' } }
+        plugins:
+          type: object
+          description: Par plugin, les éléments qui utilisent l'équipement.
+          additionalProperties:
+            type: array
+            items: { $ref: '#/components/schemas/UsageRef' }
+
+    UsageRef:
+      type: object
+      required: [id, name]
+      properties:
+        id: { type: integer }
+        name:
+          type: string
+          description: 'Nom lisible (ex. `[Salon][Lampe][On]`).'
+
+    EqLogicIds:
+      type: array
+      minItems: 1
+      maxItems: 1000
+      uniqueItems: true
+      items: { type: integer, minimum: 1 }
+
+    BulkResult:
+      type: object
+      required: [done, failed]
+      description: Les équipements traités, et ceux qui ont échoué avec la raison.
+      properties:
+        done:
+          type: array
+          items: { type: integer }
+          example: [12, 7]
+        failed:
+          type: array
+          items:
+            type: object
+            required: [id, error]
+            properties:
+              id: { type: integer, example: 4 }
+              error:
+                type: object
+                required: [code, message]
+                properties:
+                  code: { type: string, description: 'Même code que la route unitaire (ex. `eqlogic_not_found`, `forbidden`).', example: forbidden }
+                  message: { type: string, example: Droits insuffisants. }
+
     Error:
       type: object
       required: [error]
@@ -562,7 +1114,7 @@ components:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
     Forbidden:
-      description: Droits insuffisants (écriture réservée aux administrateurs).
+      description: Droits insuffisants (écriture réservée aux administrateurs, ou élément que l'utilisateur n'a pas le droit de lire).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
@@ -578,6 +1130,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     ValidationError:
       description: Données invalides (nom vide, parent inconnu ou cycle, fichier refusé…).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    EqLogicNotFound:
+      description: Équipement inconnu.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    EqLogicConflict:
+      description: Un équipement porte déjà ce nom dans cet objet (le nom est unique par objet).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
