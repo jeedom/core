@@ -34,6 +34,20 @@ final class App
             $api->get('/objects/{id}/summary/{key}/eqLogics', $objects->summaryEqLogics(...));
             $api->put('/objects/{id}/image', self::notImplemented(...));
             $api->delete('/objects/{id}/image', self::notImplemented(...));
+
+            $eqLogics = new EqLogicsController();
+            $api->get('/eqLogics', $eqLogics->list(...));
+            $api->post('/eqLogics', $eqLogics->create(...));
+            $api->patch('/eqLogics', $eqLogics->updateMany(...));
+            $api->post('/eqLogics/delete', $eqLogics->deleteMany(...));
+            $api->put('/eqLogics/order', $eqLogics->reorder(...));
+            $api->get('/eqLogics/{id}', $eqLogics->get(...));
+            $api->patch('/eqLogics/{id}', $eqLogics->update(...));
+            $api->delete('/eqLogics/{id}', $eqLogics->delete(...));
+            $api->post('/eqLogics/{id}/copy', $eqLogics->copy(...));
+            $api->get('/eqLogics/{id}/usages', $eqLogics->usages(...));
+            $api->put('/eqLogics/{id}/image', self::notImplemented(...));
+            $api->delete('/eqLogics/{id}/image', self::notImplemented(...));
         })->add(new Auth());
 
         // Toutes les erreurs sortent au format `Error` de la spec, y compris 404/405 de routage.
