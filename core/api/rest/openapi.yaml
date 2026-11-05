@@ -1462,10 +1462,8 @@ components:
           properties:
             cmds:
               type: array
-              description: Commandes au format de `cmd::exportApi`, détaillé avec la ressource `/cmds`.
-              items:
-                type: object
-                additionalProperties: true
+              description: Commandes de l'équipement que l'utilisateur peut lire, comme `GET /cmds?eqLogicId=`.
+              items: { $ref: '#/components/schemas/Cmd' }
 
     SummaryResult:
       description: Une valeur seule (avec `key`) ou un dictionnaire clé de résumé → valeur.
@@ -1516,10 +1514,10 @@ components:
             sha512: { type: string }
         cmds:
           type: array
-          description: Présent seulement avec `include=cmds`. Format détaillé avec la ressource `/cmds`.
-          items:
-            type: object
-            additionalProperties: true
+          description: |
+            Présent seulement avec `include=cmds` : les commandes que
+            l'utilisateur peut lire, comme `GET /cmds?eqLogicId=`.
+          items: { $ref: '#/components/schemas/Cmd' }
 
     EqLogicCreate:
       type: object

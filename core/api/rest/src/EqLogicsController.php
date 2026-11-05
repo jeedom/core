@@ -343,7 +343,7 @@ final class EqLogicsController
             $data['configuration'] = (object) $configuration;
         }
         if ($withCmds) {
-            $data['cmds'] = array_map(static fn ($cmd) => (object) $cmd->exportApi(), $eqLogic->getCmd());
+            $data['cmds'] = CmdsController::forEqLogic($eqLogic, $user);
         }
         return $data;
     }

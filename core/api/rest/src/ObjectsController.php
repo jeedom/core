@@ -243,7 +243,7 @@ final class ObjectsController
                 continue;
             }
             $item = self::eqLogicRef($eqLogic);
-            $item['cmds'] = array_map(static fn ($cmd) => (object) $cmd->exportApi(), $eqLogic->getCmd());
+            $item['cmds'] = CmdsController::forEqLogic($eqLogic, $user);
             $result[] = $item;
         }
         return $result;

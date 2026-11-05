@@ -254,6 +254,18 @@ final class CmdsController
         return Json::respond($response, Usages::format((array) self::findReadable($args['id'], $request->getAttribute('user'))->getUsedBy()));
     }
 
+    /**
+     * Commandes d'un équipement lisibles par l'utilisateur, au schéma `Cmd` (sans code
+     * d'accès), triées comme /cmds. Utilisé par `include=cmds` des autres ressources.
+     * @return list<array<string, mixed>>
+     */
+    public static function forEqLogic(\eqLogic $eqLogic, \user $user): array
+    {
+        $cmds = array_values(array_filter((array) $eqLogic->getCmd(), static fn ($cmd) => is_object($cmd) && self::canRead($cmd, $user)));
+        usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName()] <=> [(int) $b->getOrder(), $b->getName()]);
+        return array_map(self::toArray(...), $cmds);
+    }
+
     private static function find(string $id): \cmd
     {
         $cmd = ctype_digit($id) ? \cmd::byId((int) $id) : null;
