@@ -7,8 +7,8 @@ info:
     identifier: GPL-3.0-or-later
   description: |
     Brouillon de l'API REST du core Jeedom. Elle couvre la ressource pilote
-    `/objects` (les objets : pièces, étages, zones…) et `/eqLogics` (les
-    équipements).
+    `/objects` (les objets : pièces, étages, zones…), `/eqLogics` (les
+    équipements) et `/cmds` (leurs commandes).
 
     Elle reprend les actions de `core/ajax/object.ajax.php` et les méthodes
     JSON-RPC `jeeObject::*` / `summary::*` de `core/api/jeeApi.php`
@@ -52,8 +52,30 @@ tags:
     description: Équipements des plugins (modules, appareils, services), rangés dans les objets.
   - name: Résumés
     description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
+  - name: Session
+    description: Utilisateur connecté.
+  - name: Commandes
+    description: Commandes des équipements, infos (états) et actions.
 
 paths:
+  /me:
+    get:
+      tags: [Session]
+      operationId: getMe
+      summary: Utilisateur connecté
+      description: |
+        Renvoie l'utilisateur du jeton ou de la session, pour que l'UI
+        adapte l'affichage (ex. masquer les actions d'administration).
+        Équivaut à `isConnect('admin')` pour `isAdmin`. Les droits restent
+        vérifiés par chaque route.
+      responses:
+        '200':
+          description: L'utilisateur connecté.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Me' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
   /objects:
     get:
       tags: [Objets]
@@ -601,7 +623,9 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/EqLogicNotFound' }
         '409':
-          description: Le plugin a refusé la suppression.
+          description: |
+            Le plugin a refusé la suppression (`code: eqlogic_remove_refused`,
+            avec le message du plugin s'il en donne un).
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
@@ -712,6 +736,334 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/EqLogicNotFound' }
 
+  /cmds:
+    get:
+      tags: [Commandes]
+      operationId: listCmds
+      summary: Lister les commandes
+      description: |
+        Remplace les ajax `byEqLogic` et les JSON-RPC `cmd::all`,
+        `cmd::byEqLogicId`. Une commande est lisible si l'utilisateur a le
+        droit de lecture (info) ou d'exécution (action) sur son équipement ;
+        les autres sont retirées de la liste. Triées par `order`, puis par nom.
+      parameters:
+        - name: eqLogicId
+          in: query
+          description: Ne garder que les commandes de cet équipement.
+          schema: { type: integer, minimum: 1 }
+        - name: type
+          in: query
+          schema: { $ref: '#/components/schemas/CmdType' }
+        - name: subType
+          in: query
+          schema: { $ref: '#/components/schemas/CmdSubType' }
+        - name: generic_type
+          in: query
+          description: Ne garder que les commandes de ce type générique (ex. `LIGHT_STATE`).
+          schema: { type: string }
+        - name: isHistorized
+          in: query
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Liste des commandes.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CmdList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      tags: [Commandes]
+      operationId: createCmd
+      summary: Créer une commande
+      description: |
+        Remplace l'ajax `save` et le JSON-RPC `cmd::save` sans `id`.
+        Réservé aux administrateurs ayant le droit d'écriture sur
+        l'équipement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CmdCreate' }
+      responses:
+        '201':
+          description: Commande créée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cmd' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '409': { $ref: '#/components/responses/CmdConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    patch:
+      tags: [Commandes]
+      operationId: updateCmds
+      summary: Modifier plusieurs commandes
+      description: |
+        Remplace les ajax `setIsVisibles` et `multiSave` (l'ajax
+        `setIsVisibles` actuel ne vérifie aucun droit). Applique les mêmes
+        changements à chaque commande ; une commande qui échoue n'arrête pas
+        les autres. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids, changes]
+              properties:
+                ids: { $ref: '#/components/schemas/EqLogicIds' }
+                changes:
+                  type: object
+                  minProperties: 1
+                  properties:
+                    isVisible: { type: boolean }
+                    isHistorized: { type: boolean }
+                    generic_type: { type: [string, 'null'], maxLength: 255 }
+            example: { ids: [101, 102], changes: { isVisible: false } }
+      responses:
+        '200':
+          description: Résultat pour chaque commande.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BulkResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/order:
+    put:
+      tags: [Commandes]
+      operationId: reorderCmds
+      summary: Réordonner des commandes
+      description: |
+        Remplace l'ajax `setOrder`, en ne changeant que l'ordre (l'ajax
+        actuel ne vérifie aucun droit et modifie aussi la disposition de
+        l'équipement). Les commandes prennent les positions 1, 2, 3… dans
+        l'ordre donné ; les identifiants inconnus sont ignorés. Réservé aux
+        administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids:
+                  type: array
+                  items: { type: integer }
+                  example: [101, 103, 102]
+      responses:
+        '204': { description: Ordre enregistré. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    get:
+      tags: [Commandes]
+      operationId: getCmd
+      summary: Lire une commande
+      description: |
+        Remplace les ajax `byId`, `getCmd` et le JSON-RPC `cmd::byId`.
+        Une commande non lisible renvoie 403.
+      responses:
+        '200':
+          description: La commande.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cmd' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+    patch:
+      tags: [Commandes]
+      operationId: updateCmd
+      summary: Modifier une commande
+      description: |
+        Remplace les ajax `save` et le JSON-RPC `cmd::save` avec `id`. Seuls
+        les champs envoyés sont modifiés ; `configuration`, `display`,
+        `template` et `alert` sont fusionnés clé par clé. Réservé aux
+        administrateurs ayant le droit d'écriture sur l'équipement.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CmdUpdate' }
+      responses:
+        '200':
+          description: Commande modifiée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Cmd' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+        '409': { $ref: '#/components/responses/CmdConflict' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Commandes]
+      operationId: deleteCmd
+      summary: Supprimer une commande
+      description: |
+        Supprime la commande, son historique et ses caches (`cmd::remove`).
+        Les scénarios qui la référencent ne sont pas modifiés : consulter
+        `/cmds/{id}/usages` avant. Réservé aux administrateurs ayant le droit
+        d'écriture sur l'équipement.
+      responses:
+        '204': { description: Commande supprimée. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+
+  /cmds/{id}/exec:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    post:
+      tags: [Commandes]
+      operationId: execCmd
+      summary: Exécuter une commande action
+      description: |
+        Remplace l'ajax `execCmd` et le JSON-RPC `cmd::execCmd` pour une
+        commande action. Demande le droit d'exécution sur l'équipement.
+        L'utilisateur inscrit dans les journaux est celui du jeton ou de la
+        session, jamais une valeur envoyée par le client. Une commande info
+        renvoie 422 : sa valeur se lit avec `/cmds/{id}/value`.
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CmdExecRequest' }
+            example: { options: { slider: 40 } }
+      responses:
+        '200':
+          description: Commande exécutée.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    description: Valeur renvoyée par le plugin, souvent `null`.
+                    type: [string, number, boolean, 'null']
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: |
+            Droit d'exécution manquant (`code: forbidden`), code d'accès absent ou faux
+            (`code: access_code_required`), ou confirmation absente
+            (`code: confirmation_required`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+        '409':
+          description: 'Équipement désactivé, ou échec renvoyé par le plugin (`code: cmd_exec_failed`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}/value:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    get:
+      tags: [Commandes]
+      operationId: getCmdValue
+      summary: Lire la valeur d'une commande
+      description: |
+        Remplace l'ajax `execCmd` et le JSON-RPC `cmd::execCmd` sur une
+        commande info (valeur du cache, sans interroger l'appareil). Pour
+        une commande action, renvoie la dernière valeur envoyée
+        (`lastCmdValue`). Demande le droit de lecture.
+      responses:
+        '200':
+          description: Valeur courante.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CmdValue' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+
+  /cmds/{id}/history:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    get:
+      tags: [Commandes]
+      operationId: getCmdHistory
+      summary: Lire l'historique d'une commande info
+      description: |
+        Remplace l'ajax `getHistory` (identifiant numérique seulement) et le
+        JSON-RPC `cmd::getHistory`. Les courbes calculées à partir d'une
+        formule ne sont pas reprises ici. Demande le droit de lecture.
+      parameters:
+        - $ref: '#/components/parameters/HistoryStart'
+        - $ref: '#/components/parameters/HistoryEnd'
+        - name: grouping
+          in: query
+          description: |
+            Regroupement `fonction::période` du core (`history::all`), ex.
+            `avg::hour`, `max::day`.
+          schema:
+            type: string
+            pattern: '^(avg|max|high|min|low|sum)::(minute|hour|day|week|month|year)$'
+            example: avg::hour
+      responses:
+        '200':
+          description: Points d'historique, du plus ancien au plus récent.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CmdHistory' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}/statistics:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    get:
+      tags: [Commandes]
+      operationId: getCmdStatistics
+      summary: Statistiques d'une commande info
+      description: |
+        Remplace les JSON-RPC `cmd::getStatistique` et `cmd::getTendance`.
+        Demande le droit de lecture. Une commande action renvoie 422.
+      parameters:
+        - $ref: '#/components/parameters/HistoryStart'
+        - $ref: '#/components/parameters/HistoryEnd'
+      responses:
+        '200':
+          description: Statistiques sur la période.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CmdStatistics' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /cmds/{id}/usages:
+    parameters:
+      - $ref: '#/components/parameters/CmdId'
+    get:
+      tags: [Commandes]
+      operationId: listCmdUsages
+      summary: Lister ce qui utilise une commande
+      description: |
+        Remplace l'ajax `usedBy`. À consulter avant une suppression.
+        Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Utilisations, par type d'élément.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogicUsages' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/CmdNotFound' }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -759,7 +1111,183 @@ components:
       style: form
       explode: false
 
+    CmdId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant de la commande.
+      schema: { type: integer, minimum: 1 }
+    HistoryStart:
+      name: start
+      in: query
+      description: Début de la période (ISO 8601). Par défaut, 24 heures avant `end`.
+      schema: { type: string, format: date-time, example: '2026-11-04T00:00:00+01:00' }
+    HistoryEnd:
+      name: end
+      in: query
+      description: Fin de la période (ISO 8601). Par défaut, maintenant.
+      schema: { type: string, format: date-time }
+
   schemas:
+    Me:
+      type: object
+      required: [id, login, isAdmin]
+      properties:
+        id: { type: integer, example: 1 }
+        login: { type: string, example: admin }
+        isAdmin: { type: boolean, description: Profil administrateur., example: true }
+
+    CmdType:
+      type: string
+      enum: [info, action]
+    CmdSubType:
+      type: string
+      description: 'info : numeric, binary, string. action : other, slider, message, color, select.'
+      enum: [numeric, binary, string, other, slider, message, color, select]
+
+    Cmd:
+      type: object
+      required: [id, eqLogic_id, name, type, subType, isVisible, isHistorized, order]
+      properties:
+        id: { type: integer, example: 101 }
+        eqLogic_id: { type: integer, example: 12 }
+        eqType: { type: string, description: Plugin de l'équipement., example: virtual }
+        logicalId: { type: [string, 'null'] }
+        name: { type: string, maxLength: 127, example: Etat }
+        type: { $ref: '#/components/schemas/CmdType' }
+        subType: { $ref: '#/components/schemas/CmdSubType' }
+        generic_type: { type: [string, 'null'], example: LIGHT_STATE }
+        order: { type: integer }
+        isVisible: { type: boolean }
+        isHistorized: { type: boolean, description: Toujours `false` pour une action. }
+        unite: { type: [string, 'null'], maxLength: 45, example: '°C' }
+        value:
+          type: [string, 'null']
+          description: Pour une action, la commande info liée (`#[Objet][Équipement][Commande]#`).
+        configuration:
+          type: object
+          description: |
+            Réglages de la commande (`minValue`, `maxValue`,
+            `calculValueOffset`, `actionConfirm`, `actionCodeAccess`…) et clés
+            propres au plugin. Le code d'accès (`actionCodeAccess`) n'est
+            jamais renvoyé et ne se modifie pas par l'API (422).
+          additionalProperties: true
+        display: { type: object, additionalProperties: true }
+        template:
+          type: object
+          additionalProperties: true
+          example: { dashboard: 'core::default', mobile: 'core::default' }
+        alert: { type: object, additionalProperties: true }
+        currentValue:
+          readOnly: true
+          description: Valeur courante (info) ou dernière valeur envoyée (action), comme `cmd::exportApi`.
+          type: [string, number, boolean, 'null']
+
+    CmdCreate:
+      type: object
+      required: [eqLogic_id, name, type, subType]
+      properties:
+        eqLogic_id: { type: integer, minimum: 1 }
+        name: { type: string, minLength: 1, maxLength: 127 }
+        type: { $ref: '#/components/schemas/CmdType' }
+        subType: { $ref: '#/components/schemas/CmdSubType' }
+        logicalId: { type: [string, 'null'], maxLength: 1023 }
+        generic_type: { type: [string, 'null'], maxLength: 255 }
+        order: { type: integer }
+        isVisible: { type: boolean, default: true }
+        isHistorized: { type: boolean, default: false }
+        unite: { type: [string, 'null'], maxLength: 45 }
+        value: { type: [string, 'null'] }
+        configuration: { type: object, additionalProperties: true }
+        display: { type: object, additionalProperties: true }
+        template: { type: object, additionalProperties: true }
+        alert: { type: object, additionalProperties: true }
+
+    CmdUpdate:
+      type: object
+      minProperties: 1
+      description: |
+        Les mêmes champs qu'à la création, tous facultatifs, sauf
+        `eqLogic_id` et `type` qui ne peuvent pas changer.
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        subType: { $ref: '#/components/schemas/CmdSubType' }
+        logicalId: { type: [string, 'null'], maxLength: 1023 }
+        generic_type: { type: [string, 'null'], maxLength: 255 }
+        order: { type: integer }
+        isVisible: { type: boolean }
+        isHistorized: { type: boolean }
+        unite: { type: [string, 'null'], maxLength: 45 }
+        value: { type: [string, 'null'] }
+        configuration: { type: object, additionalProperties: true }
+        display: { type: object, additionalProperties: true }
+        template: { type: object, additionalProperties: true }
+        alert: { type: object, additionalProperties: true }
+
+    CmdList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Cmd' }
+        total: { type: integer, example: 6 }
+
+    CmdExecRequest:
+      type: object
+      properties:
+        options:
+          type: object
+          description: Options selon le sous-type.
+          properties:
+            slider: { type: number, description: Sous-type `slider`. }
+            color: { type: string, description: 'Sous-type `color` (ex. `#ff0000`).' }
+            select: { type: string, description: Sous-type `select`. }
+            title: { type: string, description: Sous-type `message`. }
+            message: { type: string, description: Sous-type `message`. }
+        codeAccess:
+          type: string
+          description: Code d'accès, si la commande en demande un.
+        confirm:
+          type: boolean
+          description: À `true` si la commande demande une confirmation.
+
+    CmdValue:
+      type: object
+      required: [value]
+      properties:
+        value: { type: [string, number, boolean, 'null'], example: 21.5 }
+        collectDate: { type: [string, 'null'], description: Dernière remontée., example: '2026-11-05 10:40:12' }
+        valueDate: { type: [string, 'null'], description: Dernier changement de valeur. }
+
+    CmdHistory:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required: [datetime, value]
+            properties:
+              datetime: { type: string, example: '2026-11-05 10:00:00' }
+              value: { type: [number, string, 'null'], example: 21.5 }
+
+    CmdStatistics:
+      type: object
+      properties:
+        avg: { type: [number, 'null'] }
+        min: { type: [number, 'null'] }
+        max: { type: [number, 'null'] }
+        sum: { type: [number, 'null'] }
+        count: { type: integer }
+        std: { type: [number, 'null'] }
+        variance: { type: [number, 'null'] }
+        last: { type: [number, string, 'null'] }
+        trend:
+          type: number
+          description: Pente de la tendance (`cmd::getTendance`), positive si la valeur monte.
+
     Object:
       type: object
       required: [id, name, father_id, isVisible, position]
@@ -1061,7 +1589,7 @@ components:
     BulkResult:
       type: object
       required: [done, failed]
-      description: Les équipements traités, et ceux qui ont échoué avec la raison.
+      description: Les éléments traités, et ceux qui ont échoué avec la raison.
       properties:
         done:
           type: array
@@ -1078,7 +1606,14 @@ components:
                 type: object
                 required: [code, message]
                 properties:
-                  code: { type: string, description: 'Même code que la route unitaire (ex. `eqlogic_not_found`, `forbidden`).', example: forbidden }
+                  code:
+                    type: string
+                    description: |
+                      Même code que la route unitaire : `eqlogic_not_found`,
+                      `forbidden`, `validation_error` (refus du plugin à
+                      l'enregistrement, avec son message) ou
+                      `eqlogic_remove_refused` (refus du plugin à la suppression).
+                    example: forbidden
                   message: { type: string, example: Droits insuffisants. }
 
     Error:
@@ -1129,7 +1664,10 @@ components:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
     ValidationError:
-      description: Données invalides (nom vide, parent inconnu ou cycle, fichier refusé…).
+      description: |
+        Données invalides (nom vide, parent inconnu ou cycle, fichier
+        refusé…), ou enregistrement refusé par le plugin : `code:
+        validation_error`, avec le message du plugin.
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
@@ -1140,6 +1678,16 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     EqLogicConflict:
       description: Un équipement porte déjà ce nom dans cet objet (le nom est unique par objet).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    CmdNotFound:
+      description: 'Commande inconnue (`code: cmd_not_found`).'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    CmdConflict:
+      description: 'Une commande porte déjà ce nom dans cet équipement (`code: cmd_name_taken`, le nom est unique par équipement).'
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
