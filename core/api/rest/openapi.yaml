@@ -52,12 +52,37 @@ tags:
     description: Équipements des plugins (modules, appareils, services), rangés dans les objets.
   - name: Résumés
     description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
+  - name: Plugins
+    description: Plugins installés.
   - name: Session
     description: Utilisateur connecté.
   - name: Commandes
     description: Commandes des équipements, infos (états) et actions.
 
 paths:
+  /plugins:
+    get:
+      tags: [Plugins]
+      operationId: listPlugins
+      summary: Lister les plugins installés
+      description: |
+        Remplace `plugin::listPlugin` (ajax et JSON-RPC `plugin::listPlugin`).
+        Lisible par tout utilisateur connecté : la nouvelle UI s'en sert pour
+        son menu et pour charger le module d'interface des plugins actifs.
+        Triés par nom.
+      parameters:
+        - name: enabled
+          in: query
+          description: Filtrer sur l'état activé. Sans ce paramètre, tous les plugins installés sont renvoyés.
+          schema: { type: boolean }
+      responses:
+        '200':
+          description: Liste des plugins.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PluginList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
   /me:
     get:
       tags: [Session]
@@ -1130,6 +1155,39 @@ components:
       schema: { type: string, format: date-time }
 
   schemas:
+    Plugin:
+      type: object
+      required: [id, name, category, isEnable, hasEqLogic, icon, uiModule]
+      properties:
+        id: { type: string, description: Identifiant du plugin (aussi `eqType_name` de ses équipements)., example: zwavejs }
+        name: { type: string, description: Nom traduit dans la langue de l'utilisateur., example: Z-Wave JS }
+        category: { type: string, description: 'Catégorie du market (ex. `automation protocol`).', example: automation protocol }
+        isEnable: { type: boolean, example: true }
+        hasEqLogic:
+          type: boolean
+          description: Le plugin gère des équipements (sa classe hérite d'`eqLogic`).
+        icon:
+          type: [string, 'null']
+          description: URL relative de l'icône du plugin.
+          example: plugins/zwavejs/plugin_info/zwavejs_icon.png
+        uiModule:
+          type: [string, 'null']
+          description: |
+            URL relative du module de la nouvelle UI fourni par le plugin,
+            (`plugins/<id>/ui/ui.js`, à part des pages desktop et mobile), `null`
+            s'il n'en a pas. Toujours `null` pour un plugin désactivé.
+          example: plugins/zwavejs/ui/ui.js
+        version: { type: [string, 'null'], description: Version installée. }
+
+    PluginList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Plugin' }
+        total: { type: integer, example: 12 }
+
     Me:
       type: object
       required: [id, login, isAdmin]
