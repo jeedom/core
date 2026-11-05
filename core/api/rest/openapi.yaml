@@ -771,6 +771,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/CmdList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
     post:
       tags: [Commandes]
       operationId: createCmd
