@@ -16,7 +16,7 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// Point d'entrée de l'API REST v1 (/api/v1/…, voir l'AliasMatch du site Apache).
+// Point d'entrée de l'API REST v1 (/api/v1/…, voir api/v1/.htaccess).
 // Contrat : core/api/rest/openapi.yaml.
 require_once __DIR__ . '/../../php/core.inc.php';
 

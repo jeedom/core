@@ -492,13 +492,6 @@ try {
 		echo "OK\n";
 	}
 
-	if (is_file('/etc/apache2/sites-enabled/000-default.conf')) {
-		passthru(system::getCmdSudo() . '/bin/sh ' . escapeshellarg(__DIR__ . '/configure_apache_rest_api.sh'), $apacheRestStatus);
-		if ($apacheRestStatus !== 0) {
-			echo "***ERROR*** Unable to configure Apache for the REST API.\n";
-		}
-	}
-
 	echo "Set cache hour...";
 	cache::set('hour', strtotime('UTC'));
 	echo "OK\n";

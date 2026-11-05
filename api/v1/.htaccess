@@ -1,0 +1,3 @@
+Order Deny,Allow
+Allow from all
+FallbackResource /core/api/rest/index.php
