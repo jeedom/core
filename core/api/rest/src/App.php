@@ -63,6 +63,7 @@ final class App
             $api->get('/cmds/{id}/statistics', $cmds->statistics(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
+            $api->get('/plugins', (new PluginsController())->list(...));
             $api->get('/me', self::me(...));
         })->add(new Auth());
 
