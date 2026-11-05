@@ -168,21 +168,7 @@ final class EqLogicsController
     public function usages(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
-        $used = self::find($args['id'], $request->getAttribute('user'), 'r')->getUsedBy();
-        $refs = static fn (array $items): array => array_values(array_filter(array_map(self::usageRef(...), $items)));
-        $plugins = [];
-        foreach ((array) ($used['plugin'] ?? []) as $plugin => $items) {
-            $plugins[(string) $plugin] = $refs((array) $items);
-        }
-        return Json::respond($response, [
-            'cmds' => $refs((array) ($used['cmd'] ?? [])),
-            'eqLogics' => $refs((array) ($used['eqLogic'] ?? [])),
-            'scenarios' => $refs((array) ($used['scenario'] ?? [])),
-            'plans' => $refs([...(array) ($used['plan'] ?? []), ...(array) ($used['plan3d'] ?? [])]),
-            'views' => $refs((array) ($used['view'] ?? [])),
-            'interactions' => $refs((array) ($used['interactDef'] ?? [])),
-            'plugins' => (object) $plugins,
-        ]);
+        return Json::respond($response, Usages::format((array) self::find($args['id'], $request->getAttribute('user'), 'r')->getUsedBy()));
     }
 
     /** Exécute l'action pour chaque identifiant ; un échec n'arrête pas les autres. */
@@ -374,18 +360,6 @@ final class EqLogicsController
             $result[$key] = in_array($key, ['battery', 'timeout', 'warning', 'danger'], true) && is_numeric($value) ? (int) $value : $value;
         }
         return $result;
-    }
-
-    private static function usageRef(mixed $item): ?array
-    {
-        if (is_object($item) && method_exists($item, 'getId')) {
-            $name = method_exists($item, 'getHumanName') ? $item->getHumanName() : (method_exists($item, 'getName') ? $item->getName() : '');
-            return ['id' => (int) $item->getId(), 'name' => (string) $name];
-        }
-        if (is_array($item) && isset($item['id'])) {
-            return ['id' => (int) $item['id'], 'name' => (string) ($item['humanName'] ?? $item['name'] ?? '')];
-        }
-        return null;
     }
 
     private static function includes(Request $request, string $what): bool
