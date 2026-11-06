@@ -275,6 +275,9 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		$eqLogics = json_decode(init('eqLogics'), true);
 		foreach ($eqLogics as $eqLogic_json) {
