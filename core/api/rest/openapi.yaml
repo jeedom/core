@@ -500,8 +500,21 @@ paths:
         Remplace les ajax `listByObject`, `listByType`, `byLogical` et les
         JSON-RPC `eqLogic::all`, `eqLogic::byType`, `eqLogic::byObjectId`.
         Les équipements que l'utilisateur n'a pas le droit de lire sont
-        retirés de la liste. Triés par `order`, puis par nom.
+        retirés de la liste, et de `total`. Triés par `order`, puis par nom,
+        puis par `id` (ordre stable, les pages ne se chevauchent pas).
+        `total` compte les équipements qui correspondent aux filtres et à
+        `q`, avant `limit` et `offset`.
       parameters:
+        - name: q
+          in: query
+          description: |
+            Recherche libre. Chaque mot doit se retrouver dans au moins un de
+            ces champs : nom, nom de l'objet, plugin (`eqType_name`),
+            étiquettes, commentaire. Sans tenir compte des majuscules ni des
+            accents.
+          schema: { type: string, maxLength: 200, example: lampe salon }
+        - $ref: '#/components/parameters/ListLimit'
+        - $ref: '#/components/parameters/ListOffset'
         - name: objectId
           in: query
           description: Ne garder que les équipements de cet objet. `0` pour les équipements sans objet.
@@ -840,7 +853,9 @@ paths:
         Remplace les ajax `byEqLogic` et les JSON-RPC `cmd::all`,
         `cmd::byEqLogicId`. Une commande est lisible si l'utilisateur a le
         droit de lecture (info) ou d'exécution (action) sur son équipement ;
-        les autres sont retirées de la liste. Triées par `order`, puis par nom.
+        les autres sont retirées de la liste, et de `total`. Triées par
+        `order`, puis par nom, puis par `id`. `total` compte les commandes
+        qui correspondent aux filtres et à `q`, avant `limit` et `offset`.
       parameters:
         - name: eqLogicId
           in: query
@@ -859,6 +874,15 @@ paths:
         - name: isHistorized
           in: query
           schema: { type: boolean }
+        - name: q
+          in: query
+          description: |
+            Recherche libre. Chaque mot doit se retrouver dans au moins un de
+            ces champs : nom de la commande, nom de l'équipement, type
+            générique. Sans tenir compte des majuscules ni des accents.
+          schema: { type: string, maxLength: 200, example: temperature }
+        - $ref: '#/components/parameters/ListLimit'
+        - $ref: '#/components/parameters/ListOffset'
       responses:
         '200':
           description: Liste des commandes.
@@ -1193,6 +1217,17 @@ components:
       in: query
       description: Limiter le résultat à une clé de résumé.
       schema: { type: string, example: temperature }
+
+    ListLimit:
+      name: limit
+      in: query
+      description: Nombre maximal d'éléments renvoyés. Sans ce paramètre, tous les éléments sont renvoyés.
+      schema: { type: integer, minimum: 1, maximum: 500, example: 50 }
+    ListOffset:
+      name: offset
+      in: query
+      description: Nombre d'éléments à sauter, à combiner avec `limit`.
+      schema: { type: integer, minimum: 0, default: 0 }
 
     EqLogicId:
       name: id
