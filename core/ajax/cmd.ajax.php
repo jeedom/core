@@ -64,6 +64,9 @@ try {
 	}
 
 	if (init('action') == 'setIsVisibles') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		$cmds = json_decode(init('cmds'), true);
 		foreach ($cmds as $id) {
@@ -472,6 +475,9 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		$cmds = json_decode(init('cmds'), true);
 		$eqLogics = array();
