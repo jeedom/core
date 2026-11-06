@@ -85,6 +85,9 @@ try {
 	}
 
 	if (init('action') == 'setOrder') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
 		unautorizedInDemo();
 		$scenarios = json_decode(init('scenarios'), true);
 		foreach ($scenarios as $scenario_json) {
