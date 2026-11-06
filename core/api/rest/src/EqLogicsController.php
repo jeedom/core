@@ -22,6 +22,7 @@ final class EqLogicsController
     {
         $query = $request->getQueryParams();
         $user = $request->getAttribute('user');
+        $search = ListQuery::from($request);
         $type = (string) ($query['eqType'] ?? '');
         $logicalId = (string) ($query['logicalId'] ?? '');
         if (isset($query['objectId'])) {
@@ -41,11 +42,13 @@ final class EqLogicsController
             && ($logicalId === '' || (string) $eqLogic->getLogicalId() === $logicalId)
             && ($enabled === null || (bool) (int) $eqLogic->getIsEnable() === $enabled)
             && ($visible === null || (bool) (int) $eqLogic->getIsVisible() === $visible)
-            && $eqLogic->hasRight('r', $user)));
-        usort($eqLogics, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName()] <=> [(int) $b->getOrder(), $b->getName()]);
+            && $eqLogic->hasRight('r', $user)
+            && $search->matches(self::searchFields($eqLogic))));
+        usort($eqLogics, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName(), (int) $a->getId()] <=> [(int) $b->getOrder(), $b->getName(), (int) $b->getId()]);
+        $page = $search->page($eqLogics);
         $withCmds = self::includes($request, 'cmds');
-        $items = array_map(static fn ($eqLogic) => self::toArray($eqLogic, $user, $withCmds), $eqLogics);
-        return Json::respond($response, ['items' => $items, 'total' => count($items)]);
+        $page['items'] = array_map(static fn ($eqLogic) => self::toArray($eqLogic, $user, $withCmds), $page['items']);
+        return Json::respond($response, $page);
     }
 
     public function get(Request $request, Response $response, array $args): Response
@@ -360,6 +363,13 @@ final class EqLogicsController
             $result[$key] = in_array($key, ['battery', 'timeout', 'warning', 'danger'], true) && is_numeric($value) ? (int) $value : $value;
         }
         return $result;
+    }
+
+    /** Champs de la recherche libre : nom, objet, plugin, étiquettes, commentaire. */
+    private static function searchFields(\eqLogic $eqLogic): array
+    {
+        $object = $eqLogic->getObject();
+        return [$eqLogic->getName(), is_object($object) ? $object->getName() : '', $eqLogic->getEqType_name(), $eqLogic->getTags(), $eqLogic->getComment()];
     }
 
     private static function includes(Request $request, string $what): bool
