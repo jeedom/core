@@ -970,6 +970,7 @@ class repo_market {
 		}
 		$request = new com_http($url);
 		$request->setNoSslCheck(false);
+		$request->setHeader(array_merge($request->getHeader(), array('Accept: application/octet-stream, application/json')));
 		$request->setPost(http_build_query(array(
 			'id' => $this->getId(),
 			'version' => $_version,
@@ -981,7 +982,7 @@ class repo_market {
 			'password_type' => 'sha1',
 		), '', '&', PHP_QUERY_RFC3986));
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
-		$file = fopen($tmp, 'wb');
+		$file = fopen($tmp, 'w+b');
 		if ($file === false) {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp_dir);
 		}
@@ -996,7 +997,18 @@ class repo_market {
 			));
 			$request->exec(0, 1);
 			$response = $request->getInfos();
-			if ($response['http_code'] !== 200 || !in_array($response['content_type'], array('application/octet-stream', 'application/zip'), true)) {
+			$contentType = strtolower(trim(explode(';', $response['content_type'] ?? '', 2)[0]));
+			if ($response['http_code'] >= 400 && $contentType === 'application/json') {
+				rewind($file);
+				$error = json_decode(stream_get_contents($file, 4096), true);
+				if (isset($error['error']) && is_string($error['error'])) {
+					$message = trim(preg_replace('/[\x00-\x1F\x7F]+/', ' ', $error['error']));
+					if ($message !== '') {
+						throw new Exception(htmlspecialchars($message, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8'), $response['http_code']);
+					}
+				}
+			}
+			if ($response['http_code'] !== 200 || !in_array($contentType, array('application/octet-stream', 'application/zip'), true)) {
 				throw new Exception(__('Le Market n\'a pas renvoyé de fichier à installer.', __FILE__));
 			}
 			$downloaded = true;
