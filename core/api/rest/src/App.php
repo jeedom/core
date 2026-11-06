@@ -63,6 +63,8 @@ final class App
             $api->get('/cmds/{id}/statistics', $cmds->statistics(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
+            $api->get('/events', (new EventsController())->stream(...));
+
             $api->get('/plugins', (new PluginsController())->list(...));
             $api->get('/me', self::getMe(...));
             $api->delete('/session', (new SessionController())->close(...));
