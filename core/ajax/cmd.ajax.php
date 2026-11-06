@@ -96,12 +96,9 @@ try {
 			throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
 		}
 		$options = is_json(init('value'), array());
-		if (init('user_login') != '') {
-			$options['user_login'] = init('user_login');
-		}
-		if (init('user_id') != '') {
-			$options['user_id'] = init('user_id');
-		}
+		// L'utilisateur vient de la session, jamais du navigateur (user_login / user_id envoyés sont ignorés).
+		$options['user_login'] = $_SESSION['user']->getLogin();
+		$options['user_id'] = $_SESSION['user']->getId();
 		ajax::success($cmd->execCmd($options));
 	}
 
