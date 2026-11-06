@@ -64,8 +64,11 @@ final class App
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
             $api->get('/plugins', (new PluginsController())->list(...));
-            $api->get('/me', self::me(...));
+            $api->get('/me', self::getMe(...));
+            $api->delete('/session', (new SessionController())->close(...));
         })->add(new Auth());
+        // Seule route sans authentification : l'ouverture de session.
+        $app->post('/api/v1/session', (new SessionController())->open(...));
 
         // Toutes les erreurs sortent au format `Error` de la spec, y compris 404/405 de routage.
         $errors = $app->addErrorMiddleware(false, false, false);
@@ -84,15 +87,21 @@ final class App
         return $app;
     }
 
-    /** Utilisateur du jeton, pour que l'UI adapte l'affichage (équivalent d'isConnect('admin')). */
-    private static function me(Request $request, Response $response): Response
+    /** Utilisateur connecté, pour que l'UI adapte l'affichage (équivalent d'isConnect('admin')). */
+    private static function getMe(Request $request, Response $response): Response
     {
-        $user = $request->getAttribute('user');
-        return Json::respond($response, [
+        return Json::respond($response, self::me($request->getAttribute('user'), $request->getAttribute('csrfToken')));
+    }
+
+    /** Schéma `Me` de la spec. */
+    public static function me(\user $user, ?string $csrfToken): array
+    {
+        return [
             'id' => (int) $user->getId(),
             'login' => (string) $user->getLogin(),
             'isAdmin' => $user->getProfils() === 'admin',
-        ]);
+            'csrfToken' => $csrfToken,
+        ];
     }
 
     private static function notImplemented(): never
