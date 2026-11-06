@@ -35,22 +35,18 @@ try {
 		if (!is_object($eqLogic)) {
 			throw new Exception(__('EqLogic inconnu. Vérifiez l\'ID', __FILE__));
 		}
-		if (init('file') == '') {
-			if (!isset($_FILES['file'])) {
-				throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
-			}
-			$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
-			if (!in_array($extension, array('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp'))) {
-				throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :', __FILE__) . ' ' . $extension);
-			}
-			if (filesize($_FILES['file']['tmp_name']) > 5000000) {
-				throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
-			}
-			$upfilepath = $_FILES['file']['tmp_name'];
-		} else {
-			$extension = strtolower(strrchr(init('file'), '.'));
-			$upfilepath = init('file');
+		// Seul l'envoi de fichier est accepté : l'ancien mode `file` copiait n'importe quel fichier du serveur.
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifiez le paramètre PHP (post size limit)', __FILE__));
 		}
+		$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp'))) {
+			throw new Exception(__('Extension du fichier non valide (autorisé .jpg .png .gif .svg .webp) :', __FILE__) . ' ' . $extension);
+		}
+		if (filesize($_FILES['file']['tmp_name']) > 5000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 5Mo)', __FILE__));
+		}
+		$upfilepath = $_FILES['file']['tmp_name'];
 		$files = ls(__DIR__ . '/../../data/eqLogic/', 'eqLogic' . $eqLogic->getId() . '-*');
 
 		if (count($files)  > 0) {
