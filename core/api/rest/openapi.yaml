@@ -2590,7 +2590,7 @@ components:
       required: [scenario_id]
       properties:
         scenario_id: { type: integer }
-        state: { type: string, example: in progress }
+        state: { type: string, enum: [stop, in progress, starting, error], example: in progress }
         lastLaunch: { type: [string, 'null'] }
         isActive: { type: integer, enum: [0, 1] }
         name: { type: string }
