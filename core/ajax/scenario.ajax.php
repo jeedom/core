@@ -135,6 +135,9 @@ try {
 	}
 
 	if (init('action') == 'convertToTemplate') {
+		if (init('template') !== basename(init('template')) || strpos(init('template'), '.') === 0) {
+			throw new Exception(__('Nom de template invalide', __FILE__));
+		}
 		$scenario = scenario::byId(init('id'));
 		if (!is_object($scenario)) {
 			throw new Exception(__('Scénario ID inconnu :', __FILE__) . ' ' . init('id'));
@@ -155,6 +158,9 @@ try {
 	}
 
 	if (init('action') == 'removeTemplate') {
+		if (init('template') !== basename(init('template')) || strpos(init('template'), '.') === 0) {
+			throw new Exception(__('Nom de template invalide', __FILE__));
+		}
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
 		if (file_exists($path . '/' . init('template'))) {
@@ -164,6 +170,9 @@ try {
 	}
 
 	if (init('action') == 'loadTemplateDiff') {
+		if (init('template') !== basename(init('template')) || strpos(init('template'), '.') === 0) {
+			throw new Exception(__('Nom de template invalide', __FILE__));
+		}
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
 			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . init('template'));
@@ -212,6 +221,9 @@ try {
 	}
 
 	if (init('action') == 'applyTemplate') {
+		if (init('template') !== basename(init('template')) || strpos(init('template'), '.') === 0) {
+			throw new Exception(__('Nom de template invalide', __FILE__));
+		}
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
 		if (!file_exists($path . '/' . init('template'))) {
@@ -554,10 +566,10 @@ try {
 		if (filesize($_FILES['file']['tmp_name']) > 10000000) {
 			throw new Exception(__('Le fichier est trop gros (maximum 10Mo)', __FILE__));
 		}
-		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $_FILES['file']['name'])) {
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . basename($_FILES['file']['name']))) {
 			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
 		}
-		if (!file_exists($uploaddir . '/' . $_FILES['file']['name'])) {
+		if (!file_exists($uploaddir . '/' . basename($_FILES['file']['name']))) {
 			throw new Exception(__('Impossible de téléverser le fichier (limite du serveur web ?)', __FILE__));
 		}
 		ajax::success();
