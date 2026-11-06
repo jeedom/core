@@ -1276,8 +1276,8 @@ paths:
                 data: {"type":"cmd::update","data":{"cmd_id":12,"value":"21.5","display_value":"21.5","unit":"°C","raw_unit":"°C","valueDate":"2026-11-06 14:00:00","collectDate":"2026-11-06 14:00:00"}}
 
                 : ping
-        '400': { $ref: '#/components/responses/ValidationError' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
         '429':
           description: Trop de connexions ouvertes pour cet utilisateur (`too_many_streams`).
           headers:
@@ -1316,6 +1316,8 @@ paths:
             la fin du journal (`tail`). Si le fichier a été vidé ou recréé
             (offset plus grand que sa taille), la lecture repart du début et
             `reset` vaut `true`.
+            Au plus 1 Mo est lu par appel, et seulement des lignes complètes :
+            la suite vient à l'appel suivant.
           schema: { type: integer, minimum: 0 }
         - name: tail
           in: query
@@ -1330,6 +1332,7 @@ paths:
         '401': { $ref: '#/components/responses/Unauthorized' }
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/NotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
 
 components:
   securitySchemes:
@@ -2000,7 +2003,8 @@ components:
       properties:
         type: { $ref: '#/components/schemas/EventType' }
         data:
-          oneOf:
+          description: Le schéma dépend de `type` (ex. `CmdUpdateEvent` pour `cmd::update`).
+          anyOf:
             - $ref: '#/components/schemas/CmdUpdateEvent'
             - $ref: '#/components/schemas/EqLogicUpdateEvent'
             - $ref: '#/components/schemas/ScenarioUpdateEvent'
