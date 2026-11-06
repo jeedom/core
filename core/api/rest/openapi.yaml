@@ -66,6 +66,10 @@ tags:
     description: Utilisateur connecté.
   - name: Commandes
     description: Commandes des équipements, infos (états) et actions.
+  - name: Scénarios
+    description: Scénarios et leur journal.
+  - name: Temps réel
+    description: Flux d'événements en direct (SSE).
 
 paths:
   /plugins:
@@ -1160,6 +1164,173 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/CmdNotFound' }
 
+  /events:
+    get:
+      tags: [Temps réel]
+      operationId: streamEvents
+      summary: Suivre les événements en direct (SSE)
+      description: |
+        Flux `text/event-stream` qui remplace le polling de l'ajax
+        `event.ajax.php` (`event::changes`, 59 s d'attente). Lu par
+        `EventSource` côté navigateur, qui envoie le cookie de session (même
+        domaine) et se reconnecte seul. Un client hors navigateur passe
+        `Authorization: Bearer`. Le jeton n'est jamais accepté dans l'URL.
+
+        **Format.** Chaque message porte `id` (curseur, le `datetime` de la
+        table `event` du core), `event` (type, ex. `cmd::update`) et `data`
+        (JSON, schéma `Event`). Un commentaire `: ping` est envoyé toutes les
+        15 s pour garder la connexion ouverte à travers les proxys.
+
+        **Droits.** Chaque événement est filtré avant envoi selon
+        l'utilisateur : un événement sur un élément qu'il ne peut pas lire
+        n'est jamais envoyé. Les compteurs d'administration (`message::*`,
+        `update::*`) sont réservés aux administrateurs.
+
+        **Reprise.** À la reconnexion, `EventSource` renvoie l'en-tête
+        `Last-Event-ID` : le flux reprend juste après. Le core ne garde que
+        les 250 derniers événements et seulement le dernier état par
+        commande ou équipement ; si le curseur est trop ancien, le flux
+        commence par un événement `resync` et l'UI recharge l'état par les
+        routes REST.
+
+        **Durée.** Le serveur ferme la connexion au bout de `maxDuration`
+        secondes (55 s par défaut) en ayant envoyé `retry: 1000` ;
+        le client se reconnecte sans perte grâce au curseur. Un processus
+        PHP reste occupé pendant la connexion, comme aujourd'hui avec le long
+        polling.
+
+        **Limites.** Pour économiser les processus Apache : la nouvelle UI
+        ouvre une seule connexion par navigateur, partagée entre ses onglets,
+        et la ferme quand l'onglet est caché (reprise au retour par le
+        curseur). Le serveur accepte au plus 3 connexions simultanées par
+        utilisateur ; au-delà, 429 `too_many_streams`.
+      parameters:
+        - name: Last-Event-ID
+          in: header
+          description: Curseur du dernier événement reçu, envoyé automatiquement par `EventSource` à la reconnexion.
+          schema: { type: string, example: '1730899200.1234' }
+        - name: since
+          in: query
+          description: |
+            Curseur de départ pour la première connexion (`EventSource` ne
+            permet pas d'en-tête). Ignoré si `Last-Event-ID` est présent. Sans
+            les deux, le flux commence à l'instant de la connexion.
+          schema: { type: string, example: '1730899200.1234' }
+        - name: types
+          in: query
+          description: Types d'événements à recevoir (tous par défaut).
+          style: form
+          explode: false
+          schema:
+            type: array
+            items: { $ref: '#/components/schemas/EventType' }
+        - name: objectId
+          in: query
+          description: Ne garder que les événements des objets indiqués (et de leurs équipements et commandes).
+          style: form
+          explode: false
+          schema: { type: array, items: { type: integer } }
+        - name: eqLogicId
+          in: query
+          description: Ne garder que les événements des équipements indiqués (et de leurs commandes).
+          style: form
+          explode: false
+          schema: { type: array, items: { type: integer } }
+        - name: cmdId
+          in: query
+          description: Ne garder que les événements des commandes indiquées.
+          style: form
+          explode: false
+          schema: { type: array, items: { type: integer } }
+        - name: scenarioId
+          in: query
+          description: Ne garder que les événements des scénarios indiqués.
+          style: form
+          explode: false
+          schema: { type: array, items: { type: integer } }
+        - name: maxDuration
+          in: query
+          description: Durée maximale de la connexion, en secondes.
+          schema: { type: integer, minimum: 5, maximum: 55, default: 55 }
+      responses:
+        '200':
+          description: |
+            Flux d'événements, envoyé au fil de l'eau (`Cache-Control: no-cache`,
+            pas de compression).
+            Les filtres se cumulent (ET entre familles, OU dans une liste) ;
+            les événements globaux (`jeedom::alert`, `notify`…) ne sont pas
+            filtrés par `objectId`/`eqLogicId`/`cmdId`/`scenarioId`.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+                description: |
+                  Messages SSE dont le champ `data` suit le schéma `Event`
+                  (`itemSchema` d'OpenAPI 3.2, non disponible en 3.1).
+                contentSchema: { $ref: '#/components/schemas/Event' }
+              example: |
+                retry: 1000
+
+                id: 1730899200.1234
+                event: cmd::update
+                data: {"type":"cmd::update","data":{"cmd_id":12,"value":"21.5","display_value":"21.5","unit":"°C","raw_unit":"°C","valueDate":"2026-11-06 14:00:00","collectDate":"2026-11-06 14:00:00"}}
+
+                : ping
+        '400': { $ref: '#/components/responses/ValidationError' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429':
+          description: Trop de connexions ouvertes pour cet utilisateur (`too_many_streams`).
+          headers:
+            Retry-After:
+              description: Délai conseillé avant de réessayer, en secondes.
+              schema: { type: integer, example: 10 }
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+  /scenarios/{id}/log:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    get:
+      tags: [Scénarios]
+      operationId: getScenarioLog
+      summary: Lire le journal d'un scénario
+      description: |
+        Lit `log/scenarioLog/scenario{id}.log`. Pour suivre le journal en
+        direct, l'écran rappelle la route toutes les 1 à 2 s tant qu'il est
+        ouvert, avec l'`offset` reçu à l'appel précédent. Ce n'est pas lié à
+        l'état du scénario : on lit le fichier même si le scénario n'est pas
+        vu comme actif.
+
+        Le core n'écrit le journal au fil de l'eau qu'en mode `realtime`
+        (`logmode`) ; en mode `default`, les lignes arrivent à la fin de
+        l'exécution.
+      parameters:
+        - name: offset
+          in: query
+          description: |
+            Position en octets d'où reprendre la lecture. Sans elle, renvoie
+            la fin du journal (`tail`). Si le fichier a été vidé ou recréé
+            (offset plus grand que sa taille), la lecture repart du début et
+            `reset` vaut `true`.
+          schema: { type: integer, minimum: 0 }
+        - name: tail
+          in: query
+          description: Sans `offset`, nombre de dernières lignes à renvoyer.
+          schema: { type: integer, minimum: 1, maximum: 5000, default: 200 }
+      responses:
+        '200':
+          description: Lignes lues et position où reprendre.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScenarioLog' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1799,6 +1970,110 @@ components:
                 properties:
                   field: { type: string, example: father_id }
                   message: { type: string, example: L'objet ne peut pas être son propre parent. }
+
+    EventType:
+      type: string
+      description: |
+        Types émis aujourd'hui par le core (`event::add`), tous exposés pour
+        rester compatibles : `checkThemechange`, `changeTheme`,
+        `jeedom::gotoplan` et `jeedom::coloredIcons` servent à l'ancienne UI
+        et sont ignorés par la nouvelle.
+      enum:
+        - cmd::update
+        - eqLogic::update
+        - scenario::update
+        - jeeObject::summary::update
+        - message::refreshMessageNumber
+        - update::refreshUpdateNumber
+        - notify
+        - jeedom::alert
+        - jeedom::alertPopup
+        - jeedom::gotoplan
+        - jeedom::coloredIcons
+        - checkThemechange
+        - changeTheme
+        - resync
+    Event:
+      type: object
+      required: [type, data]
+      description: Contenu du champ `data` d'un message SSE. `data` reprend tel quel le `option` de l'événement du core.
+      properties:
+        type: { $ref: '#/components/schemas/EventType' }
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/CmdUpdateEvent'
+            - $ref: '#/components/schemas/EqLogicUpdateEvent'
+            - $ref: '#/components/schemas/ScenarioUpdateEvent'
+            - $ref: '#/components/schemas/SummaryUpdateEvent'
+            - $ref: '#/components/schemas/NotifyEvent'
+            - $ref: '#/components/schemas/ResyncEvent'
+            - type: 'null'
+              description: Événement sans contenu (compteurs à recharger).
+            - type: [string, integer, object]
+              description: Contenu libre des événements de l'ancienne UI (thème, plan, message d'alerte).
+    CmdUpdateEvent:
+      type: object
+      required: [cmd_id, value]
+      properties:
+        cmd_id: { type: integer }
+        value: { type: [string, number, 'null'], description: Tronquée à 3096 caractères. }
+        display_value: { type: [string, number, 'null'] }
+        unit: { type: string }
+        raw_unit: { type: string }
+        valueDate: { type: string }
+        collectDate: { type: string }
+    EqLogicUpdateEvent:
+      type: object
+      required: [eqLogic_id]
+      properties:
+        eqLogic_id: { type: integer }
+        visible: { type: integer, enum: [0, 1] }
+        enable: { type: integer, enum: [0, 1] }
+    ScenarioUpdateEvent:
+      type: object
+      required: [scenario_id]
+      properties:
+        scenario_id: { type: integer }
+        state: { type: string, example: in progress }
+        lastLaunch: { type: [string, 'null'] }
+        isActive: { type: integer, enum: [0, 1] }
+        name: { type: string }
+    SummaryUpdateEvent:
+      type: object
+      required: [object_id]
+      properties:
+        object_id: { type: [integer, string], description: "`global` pour le résumé général." }
+        keys:
+          type: object
+          additionalProperties: true
+    NotifyEvent:
+      type: object
+      properties:
+        title: { type: string }
+        message: { type: string }
+        category: { type: string }
+    ScenarioLog:
+      type: object
+      required: [lines, offset, reset]
+      properties:
+        lines:
+          type: array
+          items: { type: string }
+          example: ['[2026-11-06 12:09:00][SCENARIO] Start : Scenario lance manuellement.']
+        offset:
+          type: integer
+          description: Position à passer au prochain appel.
+        reset:
+          type: boolean
+          description: Le fichier a été vidé ou recréé depuis l'offset demandé.
+    ResyncEvent:
+      type: object
+      required: [reason]
+      properties:
+        reason:
+          type: string
+          enum: [cursor_too_old]
+          description: Des événements ont pu être perdus ; recharger l'état par les routes REST.
 
   responses:
     Unauthorized:
