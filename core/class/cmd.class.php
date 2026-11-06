@@ -3231,6 +3231,8 @@ class cmd {
 	 */
 	public function exportApi() {
 		$return = utils::o2a($this);
+		// Le hash du code d'accès ne doit jamais sortir de Jeedom.
+		unset($return['configuration']['actionCodeAccess']);
 		$return['currentValue'] = ($this->getType() !== 'action') ? $this->execCmd() : $this->getConfiguration('lastCmdValue', null);
 		return $return;
 	}
