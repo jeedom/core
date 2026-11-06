@@ -63,7 +63,23 @@ final class App
             $api->get('/cmds/{id}/statistics', $cmds->statistics(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
-            $api->get('/scenarios/{id}/log', (new ScenariosController())->log(...));
+            $scenarios = new ScenariosController();
+            $api->get('/scenarios', $scenarios->list(...));
+            $api->post('/scenarios', $scenarios->create(...));
+            $api->patch('/scenarios', $scenarios->updateMany(...));
+            $api->post('/scenarios/delete', $scenarios->deleteMany(...));
+            $api->put('/scenarios/order', $scenarios->reorder(...));
+            $api->get('/scenarios/groups', $scenarios->groups(...));
+            $api->get('/scenarios/{id}', $scenarios->get(...));
+            $api->patch('/scenarios/{id}', $scenarios->update(...));
+            $api->delete('/scenarios/{id}', $scenarios->delete(...));
+            $api->post('/scenarios/{id}/copy', $scenarios->copy(...));
+            $api->post('/scenarios/{id}/start', $scenarios->start(...));
+            $api->post('/scenarios/{id}/stop', $scenarios->stop(...));
+            $api->get('/scenarios/{id}/log', $scenarios->log(...));
+            $api->delete('/scenarios/{id}/log', $scenarios->emptyLog(...));
+            $api->get('/scenarios/{id}/usages', $scenarios->usages(...));
+
             $api->get('/events', (new EventsController())->stream(...));
 
             $api->get('/plugins', (new PluginsController())->list(...));

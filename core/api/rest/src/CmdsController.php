@@ -29,6 +29,7 @@ final class CmdsController
     {
         $query = $request->getQueryParams();
         $user = $request->getAttribute('user');
+        $search = ListQuery::from($request);
         if (isset($query['eqLogicId'])) {
             if (!ctype_digit((string) $query['eqLogicId']) || (int) $query['eqLogicId'] < 1) {
                 throw ApiError::field(422, 'validation_error', 'eqLogicId', 'Un entier positif est attendu.');
@@ -46,10 +47,12 @@ final class CmdsController
             && ($subType === '' || $cmd->getSubType() === $subType)
             && ($genericType === '' || (string) $cmd->getGeneric_type() === $genericType)
             && ($historized === null || (bool) (int) $cmd->getIsHistorized() === $historized)
-            && self::canRead($cmd, $user)));
-        usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName()] <=> [(int) $b->getOrder(), $b->getName()]);
-        $items = array_map(self::toArray(...), $cmds);
-        return Json::respond($response, ['items' => $items, 'total' => count($items)]);
+            && self::canRead($cmd, $user)
+            && $search->matches([$cmd->getName(), $cmd->getEqLogic()->getName(), $cmd->getGeneric_type()])));
+        usort($cmds, static fn ($a, $b) => [(int) $a->getOrder(), $a->getName(), (int) $a->getId()] <=> [(int) $b->getOrder(), $b->getName(), (int) $b->getId()]);
+        $page = $search->page($cmds);
+        $page['items'] = array_map(self::toArray(...), $page['items']);
+        return Json::respond($response, $page);
     }
 
     public function get(Request $request, Response $response, array $args): Response
