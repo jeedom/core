@@ -1494,7 +1494,11 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/ScenarioNotFound' }
         '409':
-          description: 'Scénario désactivé (`code: scenario_disabled`) ou déjà en cours sans exécutions multiples (`code: scenario_running`).'
+          description: |
+            Lancement impossible : scénario désactivé (`code: scenario_disabled`),
+            moteur de scénarios désactivé dans la configuration
+            (`code: scenario_engine_disabled`), ou scénario déjà en cours sans
+            exécutions multiples (`code: scenario_running`).
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
