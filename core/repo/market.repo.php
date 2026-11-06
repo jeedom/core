@@ -964,17 +964,48 @@ class repo_market {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
 
-		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId();
-		$url .= '&version=' . $_version;
-		$url .= '&jeedomversion=' . jeedom::version();
-		$url .= '&osversion=' . system::getOsVersion();
-		$url .= '&hwkey=' . jeedom::getHardwareKey();
-		$url .= '&username=' . urlencode(config::byKey('market::username'));
-		$url .= '&password=' . self::getPassword();
-		$url .= '&password_type=sha1';
+		$url = rtrim(config::byKey('market::address'), '/') . '/core/php/downloadFile.php';
+		if (stripos($url, 'https://') !== 0) {
+			throw new Exception(__('Le téléchargement depuis le Market nécessite une adresse HTTPS.', __FILE__));
+		}
+		$request = new com_http($url);
+		$request->setNoSslCheck(false);
+		$request->setPost(http_build_query(array(
+			'id' => $this->getId(),
+			'version' => $_version,
+			'jeedomversion' => jeedom::version(),
+			'osversion' => system::getOsVersion(),
+			'hwkey' => jeedom::getHardwareKey(),
+			'username' => config::byKey('market::username'),
+			'password' => self::getPassword(),
+			'password_type' => 'sha1',
+		), '', '&', PHP_QUERY_RFC3986));
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
-		log::add('update', 'alert', __('URL', __FILE__) . ' ' . $url);
-		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update') . ' 2>&1');
+		$file = fopen($tmp, 'wb');
+		if ($file === false) {
+			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp_dir);
+		}
+		$downloaded = false;
+		try {
+			$request->setCURLOPT(array(
+				CURLOPT_FILE => $file,
+				CURLOPT_FOLLOWLOCATION => false,
+				CURLOPT_CONNECTTIMEOUT => 30,
+				CURLOPT_LOW_SPEED_LIMIT => 1,
+				CURLOPT_LOW_SPEED_TIME => 120,
+			));
+			$request->exec(0, 1);
+			$response = $request->getInfos();
+			if ($response['http_code'] !== 200 || !in_array($response['content_type'], array('application/octet-stream', 'application/zip'), true)) {
+				throw new Exception(__('Le Market n\'a pas renvoyé de fichier à installer.', __FILE__));
+			}
+			$downloaded = true;
+		} finally {
+			fclose($file);
+			if (!$downloaded) {
+				unlink($tmp);
+			}
+		}
 		switch ($this->getType()) {
 			case 'plugin':
 				return $tmp;
