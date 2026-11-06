@@ -422,6 +422,10 @@ try {
 				$data[] = $info_history;
 			}
 		} else {
+			// Une formule peut lire n'importe quelle commande : réservée aux profils sans restriction.
+			if (!isConnect('admin') && !isConnect('user')) {
+				throw new Exception(__('Vous n\'êtes pas autorisé à faire cette action', __FILE__));
+			}
 			$histories = history::getHistoryFromCalcul(jeedom::fromHumanReadable(init('id')), $dateStart, $dateEnd, init('allowZero', false), init('groupingType'));
 			if (is_array($histories)) {
 				foreach ($histories as $datetime => $value) {
