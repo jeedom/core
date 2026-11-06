@@ -264,6 +264,14 @@ class system {
 						'version' => $infos[2]
 					);
 				}
+				if (!isset(self::$_installPackage[$type_key]['nodejs'])) {
+					$node = trim((string) shell_exec('node --version 2>/dev/null'));
+					if (preg_match('/^v([0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?)$/D', $node, $matches)) {
+						self::$_installPackage[$type_key]['nodejs'] = array(
+							'version' => $matches[1]
+						);
+					}
+				}
 				$npm = shell_exec('npm -v 2>/dev/null');
 				if ($npm != '') {
 					self::$_installPackage[$type_key]['npm'] = array(
@@ -356,7 +364,7 @@ class system {
 			if ($type == 'post-install' || $type == 'pre-install') {
 				continue;
 			}
-			$installPackage = self::getInstallPackage($type, $_plugin);
+			$installPackage = null;
 
 			foreach ($_packages[$type] as $package => $info) {
 				$found = 0;
@@ -441,6 +449,9 @@ class system {
 						'remark' => '',
 					);
 					continue;
+				}
+				if ($installPackage === null) {
+					$installPackage = self::getInstallPackage($type, $_plugin);
 				}
 				$alternative_found = '';
 				if (isset($installPackage[mb_strtolower($package)])) {
