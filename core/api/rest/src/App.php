@@ -80,6 +80,8 @@ final class App
             $api->delete('/scenarios/{id}/log', $scenarios->emptyLog(...));
             $api->get('/scenarios/{id}/usages', $scenarios->usages(...));
 
+            $api->get('/events', (new EventsController())->stream(...));
+
             $api->get('/plugins', (new PluginsController())->list(...));
             $api->get('/me', self::getMe(...));
             $api->delete('/session', (new SessionController())->close(...));

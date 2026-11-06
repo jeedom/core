@@ -19,6 +19,8 @@ final class ScenariosController
     private const MODES = ['provoke', 'schedule', 'all'];
     private const STATES = ['stop', 'in progress', 'starting', 'error'];
     private const MAX_BULK = 1000;
+    /** Lecture maximale du journal par appel ; la suite vient à l'appel suivant. */
+    private const MAX_LOG_READ = 1_048_576;
     /** Mots qui rendent un scénario dépendant de l'heure, comme l'ajax save. */
     private const TIME_KEYWORDS = ['#time#', '#seconde#', '#heure#', '#minute#', '#jour#', '#mois#', '#annee#', '#timestamp#', '#date#', '#semaine#', '#sjour#', '#njour#', '#smois#'];
 
@@ -215,17 +217,52 @@ final class ScenariosController
         return Json::respond($response, self::runState(self::reload($scenario)));
     }
 
+    /**
+     * Lignes complètes du journal. Sans `offset`, les `lines` dernières ; avec, la suite
+     * depuis cette position, pour suivre le journal en direct tant que l'écran est ouvert.
+     */
     public function log(Request $request, Response $response, array $args): Response
     {
         Auth::requireAdmin($request);
         $scenario = self::find($args['id'], $request->getAttribute('user'), 'r');
-        $lines = $request->getQueryParams()['lines'] ?? '500';
+        $query = $request->getQueryParams();
+        $lines = $query['lines'] ?? '500';
         if (!ctype_digit((string) $lines) || (int) $lines < 1 || (int) $lines > 5000) {
             throw ApiError::field(422, 'validation_error', 'lines', 'Un entier de 1 à 5000 est attendu.');
         }
+        $offset = null;
+        if (isset($query['offset'])) {
+            if (!ctype_digit((string) $query['offset'])) {
+                throw ApiError::field(422, 'validation_error', 'offset', 'Un entier positif ou nul est attendu.');
+            }
+            $offset = (int) $query['offset'];
+        }
         $file = self::logFile($scenario);
-        $content = is_file($file) ? file($file, FILE_IGNORE_NEW_LINES) : [];
-        return Json::respond($response, ['lines' => array_values(array_slice($content === false ? [] : $content, -(int) $lines))]);
+        clearstatcache(true, $file);
+        $size = is_file($file) ? (int) filesize($file) : 0;
+        $reset = false;
+        if ($offset !== null && $offset > $size) {
+            // Journal vidé ou recréé depuis le dernier appel : on repart du début.
+            $offset = 0;
+            $reset = true;
+        }
+        $start = $offset ?? max(0, $size - self::MAX_LOG_READ);
+        $content = $size > $start ? (string) file_get_contents($file, false, null, $start, self::MAX_LOG_READ) : '';
+        // Seules les lignes complètes ; une ligne en cours d'écriture viendra au prochain appel.
+        $end = strrpos($content, "\n");
+        $next = $start + ($end === false ? 0 : $end + 1);
+        $read = $end === false ? [] : explode("\n", substr($content, 0, $end));
+        if ($offset === null) {
+            if ($start > 0) {
+                array_shift($read); // première ligne probablement coupée
+            }
+            $read = array_slice($read, -(int) $lines);
+        }
+        return Json::respond($response, [
+            'lines' => array_values(array_map(static fn (string $line) => mb_convert_encoding($line, 'UTF-8', 'UTF-8'), $read)),
+            'offset' => $next,
+            'reset' => $reset,
+        ]);
     }
 
     public function emptyLog(Request $request, Response $response, array $args): Response
