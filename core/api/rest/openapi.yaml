@@ -543,6 +543,7 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/EqLogicList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
     post:
       tags: [Équipements]
       operationId: createEqLogic
