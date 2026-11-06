@@ -38,6 +38,14 @@ info:
     Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
     simplement absent ; demandé directement, il renvoie 403.
 
+    La nouvelle UI ouvre une session avec `POST /session` (cookie de session
+    du core, `SameSite=Strict`, même domaine que le core, pas de CORS). En
+    session, toute requête d'écriture (`POST`, `PUT`, `PATCH`, `DELETE`) doit
+    porter l'en-tête `X-CSRF-Token` avec le jeton reçu à l'ouverture ou lu
+    sur `/me` ; sans lui, 403 `csrf_invalid`. Le jeton n'est pas demandé avec
+    `Authorization: Bearer`. Une session expirée renvoie 401
+    `session_expired`, pour que l'UI revienne à l'écran de connexion.
+
 servers:
   - url: /api/v1
 
@@ -82,6 +90,68 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/PluginList' }
         '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /session:
+    post:
+      tags: [Session]
+      operationId: openSession
+      summary: Ouvrir une session (connexion)
+      description: |
+        Remplace l'ajax `user::login`, avec la même logique que `login()` de
+        `core/php/authentification.php` : compte actif, utilisateur « local
+        uniquement », double authentification hors du réseau local,
+        enregistrement de l'appareil, journal et bannissement après trop
+        d'échecs. Pose le cookie de session et renvoie l'utilisateur avec le
+        jeton CSRF. Seule route accessible sans être connecté.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          description: Session ouverte (en-tête `Set-Cookie`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+        '401':
+          description: |
+            Connexion refusée, avec un code stable :
+            `invalid_credentials` (identifiant ou mot de passe faux, compte
+            désactivé, ou utilisateur local connecté de l'extérieur),
+            `two_factor_required` (renvoyer la demande avec `twoFactorCode`),
+            `two_factor_invalid` (code faux).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '403':
+          description: 'Adresse IP bannie après trop d''échecs (`code: ip_banned`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Session]
+      operationId: closeSession
+      summary: Fermer la session (déconnexion)
+      description: |
+        Remplace `logout()`. Avec `forgetDevice=true`, oublie aussi cet
+        appareil (cookie `registerDevice`). Demande l'en-tête `X-CSRF-Token`.
+      security:
+        - sessionCookie: []
+      parameters:
+        - name: forgetDevice
+          in: query
+          schema: { type: boolean, default: false }
+      responses:
+        '204': { description: 'Session fermée, cookie effacé.' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Jeton CSRF absent ou faux (`code: csrf_invalid`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
 
   /me:
     get:
@@ -1100,7 +1170,10 @@ components:
       type: apiKey
       in: cookie
       name: PHPSESSID
-      description: Session de la nouvelle UI, avec protection CSRF sur les requêtes d'écriture.
+      description: |
+        Session de la nouvelle UI, ouverte par `POST /session` (cookie
+        `__Host-PHPSESSID` en HTTPS). Les requêtes d'écriture exigent
+        l'en-tête `X-CSRF-Token`.
 
   parameters:
     ObjectId:
@@ -1195,6 +1268,34 @@ components:
         id: { type: integer, example: 1 }
         login: { type: string, example: admin }
         isAdmin: { type: boolean, description: Profil administrateur., example: true }
+        csrfToken:
+          type: [string, 'null']
+          description: |
+            Jeton à renvoyer dans l'en-tête `X-CSRF-Token` des écritures en
+            session (relu ici au rechargement de la page). `null` avec un
+            jeton `Bearer`.
+
+    LoginRequest:
+      type: object
+      required: [login, password]
+      properties:
+        login: { type: string, minLength: 1, example: admin }
+        password: { type: string, format: password, minLength: 1 }
+        twoFactorCode:
+          type: string
+          description: Code de la double authentification, demandé hors du réseau local si l'utilisateur l'a activée.
+          example: '123456'
+        rememberDevice:
+          type: boolean
+          default: false
+          description: Rester connecté sur cet appareil (cookie `registerDevice` du core).
+
+    Session:
+      type: object
+      required: [user, csrfToken]
+      properties:
+        user: { $ref: '#/components/schemas/Me' }
+        csrfToken: { type: string, description: Jeton à renvoyer dans l'en-tête `X-CSRF-Token` des écritures. }
 
     CmdType:
       type: string
@@ -1701,7 +1802,9 @@ components:
 
   responses:
     Unauthorized:
-      description: Jeton absent, invalide ou révoqué, ou session expirée.
+      description: |
+        Non connecté : `unauthorized` (jeton absent, invalide ou révoqué)
+        ou `session_expired` (session fermée ou expirée).
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
