@@ -122,7 +122,9 @@ final class EventStream implements StreamInterface
             return null;
         }
         try {
-            return json_decode((string) $option, true, 64, JSON_THROW_ON_ERROR);
+            $data = json_decode((string) $option, true, 64, JSON_THROW_ON_ERROR);
+            // event::add sans option enregistre `[]` : la spec annonce null pour un événement sans contenu.
+            return $data === [] ? null : $data;
         } catch (\JsonException) {
             return (string) $option;
         }
