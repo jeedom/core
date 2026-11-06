@@ -190,6 +190,10 @@ final class ScenariosController
         if ((int) $scenario->getIsActive() !== 1) {
             throw new ApiError(409, 'scenario_disabled', 'Le scénario est désactivé.');
         }
+        // Sinon scenario::launch() ne lance rien, sans le dire.
+        if ((int) \config::byKey('enableScenario') !== 1) {
+            throw new ApiError(409, 'scenario_engine_disabled', 'Le moteur de scénarios est désactivé dans la configuration.');
+        }
         if ($scenario->getState() === 'in progress' && $scenario->running() && (int) $scenario->getConfiguration('allowMultiInstance', 0) !== 1) {
             throw new ApiError(409, 'scenario_running', 'Le scénario est déjà en cours.');
         }
