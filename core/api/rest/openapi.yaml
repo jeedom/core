@@ -8,7 +8,7 @@ info:
   description: |
     Brouillon de l'API REST du core Jeedom. Elle couvre la ressource pilote
     `/objects` (les objets : pièces, étages, zones…), `/eqLogics` (les
-    équipements) et `/cmds` (leurs commandes).
+    équipements), `/cmds` (leurs commandes) et `/scenarios`.
 
     Elle reprend les actions de `core/ajax/object.ajax.php` et les méthodes
     JSON-RPC `jeeObject::*` / `summary::*` de `core/api/jeeApi.php`
@@ -60,6 +60,8 @@ tags:
     description: Équipements des plugins (modules, appareils, services), rangés dans les objets.
   - name: Résumés
     description: Valeurs agrégées par objet (température moyenne, lumières allumées…).
+  - name: Scénarios
+    description: Scénarios d'automatisation, leur contenu, leur lancement et leur journal.
   - name: Plugins
     description: Plugins installés.
   - name: Session
@@ -1185,6 +1187,396 @@ paths:
         '403': { $ref: '#/components/responses/Forbidden' }
         '404': { $ref: '#/components/responses/CmdNotFound' }
 
+  /scenarios:
+    get:
+      tags: [Scénarios]
+      operationId: listScenarios
+      summary: Lister les scénarios
+      description: |
+        Remplace les ajax `all` et `allOrderedByGroupObjectName`, et le
+        JSON-RPC `scenario::all`. Les scénarios que l'utilisateur n'a pas le
+        droit de lire sont retirés. Sans le contenu (blocs) : il se lit avec
+        `GET /scenarios/{id}?include=elements`. Triés par groupe, `order`,
+        nom, puis `id` (ordre stable). `total` compte les scénarios qui
+        correspondent aux filtres et à `q`, avant `limit` et `offset`.
+      parameters:
+        - name: group
+          in: query
+          description: Ne garder que ce groupe. Chaîne vide pour les scénarios sans groupe.
+          schema: { type: string }
+        - name: objectId
+          in: query
+          schema: { type: integer, minimum: 1 }
+        - name: active
+          in: query
+          schema: { type: boolean }
+        - name: visible
+          in: query
+          schema: { type: boolean }
+        - name: q
+          in: query
+          description: |
+            Recherche libre. Chaque mot doit se retrouver dans au moins un de
+            ces champs : nom, groupe, nom de l'objet, description. Sans tenir
+            compte des majuscules ni des accents.
+          schema: { type: string, maxLength: 200, example: chauffage nuit }
+        - $ref: '#/components/parameters/ListLimit'
+        - $ref: '#/components/parameters/ListOffset'
+      responses:
+        '200':
+          description: Liste des scénarios.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScenarioList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    post:
+      tags: [Scénarios]
+      operationId: createScenario
+      summary: Créer un scénario
+      description: |
+        Remplace l'ajax `save` et le JSON-RPC `scenario::save` sans `id`.
+        Réservé aux administrateurs : un scénario peut contenir des blocs
+        `code` (PHP exécuté par le serveur).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScenarioCreate' }
+      responses:
+        '201':
+          description: Scénario créé, avec son contenu.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Scenario' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    patch:
+      tags: [Scénarios]
+      operationId: updateScenarios
+      summary: Modifier plusieurs scénarios
+      description: |
+        Active, désactive, montre, cache ou regroupe plusieurs scénarios.
+        Un scénario qui échoue n'arrête pas les autres. Réservé aux
+        administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids, changes]
+              properties:
+                ids: { $ref: '#/components/schemas/EqLogicIds' }
+                changes:
+                  type: object
+                  minProperties: 1
+                  properties:
+                    isActive: { type: boolean }
+                    isVisible: { type: boolean }
+                    group: { type: [string, 'null'], maxLength: 127 }
+            example: { ids: [3, 8], changes: { isActive: false } }
+      responses:
+        '200':
+          description: Résultat pour chaque scénario.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BulkResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /scenarios/delete:
+    post:
+      tags: [Scénarios]
+      operationId: deleteScenarios
+      summary: Supprimer plusieurs scénarios
+      description: |
+        Chaque scénario est supprimé comme avec `DELETE /scenarios/{id}`.
+        Route en `POST`, comme `/eqLogics/delete`. Réservé aux
+        administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids: { $ref: '#/components/schemas/EqLogicIds' }
+      responses:
+        '200':
+          description: Résultat pour chaque scénario.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/BulkResult' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /scenarios/order:
+    put:
+      tags: [Scénarios]
+      operationId: reorderScenarios
+      summary: Réordonner des scénarios
+      description: |
+        Remplace l'ajax `setOrder`, en ne changeant que l'ordre (l'ajax
+        actuel ne vérifie aucun droit et modifie aussi l'affichage).
+        Positions 1, 2, 3… dans l'ordre donné ; identifiants inconnus
+        ignorés. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ids]
+              properties:
+                ids: { type: array, items: { type: integer }, example: [8, 3] }
+      responses:
+        '204': { description: Ordre enregistré. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /scenarios/groups:
+    get:
+      tags: [Scénarios]
+      operationId: listScenarioGroups
+      summary: Lister les groupes de scénarios
+      description: |
+        Remplace l'ajax `autoCompleteGroup` : noms de groupes existants parmi
+        les scénarios lisibles, triés.
+      responses:
+        '200':
+          description: Groupes.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items: { type: array, items: { type: string }, example: [Chauffage, Lumières] }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+
+  /scenarios/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    get:
+      tags: [Scénarios]
+      operationId: getScenario
+      summary: Lire un scénario
+      description: |
+        Remplace les ajax `byId`, `get` et le JSON-RPC `scenario::byId`.
+        Les modèles (templates), l'export/import et le test d'expression
+        viendront dans une version suivante.
+        Avec `include=elements`, ajoute son contenu (blocs), réservé aux
+        administrateurs (403 sinon). Un scénario non lisible renvoie 403.
+      parameters:
+        - name: include
+          in: query
+          schema:
+            type: array
+            items: { type: string, enum: [elements] }
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: Le scénario.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Scenario' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+    patch:
+      tags: [Scénarios]
+      operationId: updateScenario
+      summary: Modifier un scénario
+      description: |
+        Remplace l'ajax `save` avec `id`. Seuls les champs envoyés sont
+        modifiés ; `configuration` et `display` sont fusionnés clé par clé.
+        `elements`, s'il est envoyé, remplace tout le contenu du scénario
+        (les blocs absents sont supprimés). Si le scénario est en cours
+        d'exécution, il est d'abord arrêté, puis mis à jour. Réservé aux
+        administrateurs ayant le droit d'écriture.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScenarioUpdate' }
+      responses:
+        '200':
+          description: Scénario modifié, avec son contenu.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Scenario' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+    delete:
+      tags: [Scénarios]
+      operationId: deleteScenario
+      summary: Supprimer un scénario
+      description: |
+        Remplace l'ajax `remove`. Supprime aussi son contenu, son journal et
+        ses données de vues, et l'inscrit dans l'historique des
+        suppressions. Les éléments qui l'appellent ne sont pas modifiés :
+        consulter `/scenarios/{id}/usages` avant. Réservé aux administrateurs
+        ayant le droit d'écriture.
+      responses:
+        '204': { description: Scénario supprimé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+
+  /scenarios/{id}/copy:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    post:
+      tags: [Scénarios]
+      operationId: copyScenario
+      summary: Dupliquer un scénario
+      description: Remplace l'ajax `copy`. La copie reprend tout le contenu, sous le nom donné. Réservé aux administrateurs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string, minLength: 1, maxLength: 127 }
+      responses:
+        '201':
+          description: Copie créée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Scenario' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /scenarios/{id}/start:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    post:
+      tags: [Scénarios]
+      operationId: startScenario
+      summary: Lancer un scénario
+      description: |
+        Remplace `changeState` (start), le JSON-RPC `scenario::changeState` et
+        l'API HTTP `type=scenario`. Demande le droit d'exécution. Les tags
+        sont transmis au scénario (`#nom#`) ; `trigger` vaut toujours `user`
+        et `user_login` l'utilisateur du jeton. Lancement en arrière-plan :
+        la réponse n'attend pas la fin. Un scénario désactivé renvoie 409.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: object
+                  description: Tags du scénario, sans les dièses.
+                  additionalProperties: { type: string }
+                  example: { piece: salon }
+      responses:
+        '202':
+          description: Lancement demandé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScenarioRunState' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+        '409':
+          description: 'Scénario désactivé (`code: scenario_disabled`) ou déjà en cours sans exécutions multiples (`code: scenario_running`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /scenarios/{id}/stop:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    post:
+      tags: [Scénarios]
+      operationId: stopScenario
+      summary: Arrêter un scénario
+      description: Remplace `changeState` (stop). Arrête l'exécution en cours et les blocs « dans » / « à » programmés. Demande le droit d'exécution.
+      responses:
+        '200':
+          description: Scénario arrêté.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScenarioRunState' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+
+  /scenarios/{id}/log:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    get:
+      tags: [Scénarios]
+      operationId: getScenarioLog
+      summary: Lire le journal d'exécution
+      description: |
+        Remplace la lecture de `scenarioLog/scenario<id>` par l'ajax `log`.
+        Les dernières lignes, de la plus ancienne à la plus récente. Le
+        suivi en direct viendra avec le flux d'événements (SSE), prochaine
+        étape de l'API. Réservé aux administrateurs : le journal contient
+        les valeurs et le résultat des blocs `code`.
+      parameters:
+        - name: lines
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 5000, default: 500 }
+      responses:
+        '200':
+          description: Lignes du journal.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [lines]
+                properties:
+                  lines: { type: array, items: { type: string }, example: ['[2026-11-06 08:00:00][SCENARIO] Start : Lancement manuel.'] }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+    delete:
+      tags: [Scénarios]
+      operationId: emptyScenarioLog
+      summary: Vider le journal d'exécution
+      description: Remplace l'ajax `emptyLog`. Réservé aux administrateurs.
+      responses:
+        '204': { description: Journal vidé. }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+
+  /scenarios/{id}/usages:
+    parameters:
+      - $ref: '#/components/parameters/ScenarioId'
+    get:
+      tags: [Scénarios]
+      operationId: listScenarioUsages
+      summary: Lister ce qui utilise un scénario
+      description: Remplace `getUsedBy` (ajax `get`). À consulter avant une suppression. Réservé aux administrateurs.
+      responses:
+        '200':
+          description: Utilisations, par type d'élément.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EqLogicUsages' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/ScenarioNotFound' }
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1263,7 +1655,162 @@ components:
       description: Fin de la période (ISO 8601). Par défaut, maintenant.
       schema: { type: string, format: date-time }
 
+    ScenarioId:
+      name: id
+      in: path
+      required: true
+      description: Identifiant du scénario.
+      schema: { type: integer, minimum: 1 }
+
   schemas:
+    Scenario:
+      type: object
+      required: [id, name, group, isActive, isVisible, mode, order, state]
+      properties:
+        id: { type: integer, example: 3 }
+        name: { type: string, maxLength: 127, example: Réveil }
+        group: { type: [string, 'null'], maxLength: 127, example: Chauffage }
+        isActive: { type: boolean }
+        isVisible: { type: boolean }
+        mode:
+          type: string
+          enum: [provoke, schedule, all]
+          description: '`provoke` : sur événement, `schedule` : programmé, `all` : les deux.'
+        schedule:
+          type: array
+          description: Programmations au format cron.
+          items: { type: string, example: '0 7 * * 1-5' }
+        trigger:
+          type: array
+          description: 'Déclencheurs, au format lisible (`#[Salon][Porte][Etat]#`, `#start#`…).'
+          items: { type: string }
+        timeout: { type: [integer, 'null'], description: Délai maximal d'exécution en secondes. }
+        object_id: { type: [integer, 'null'] }
+        order: { type: integer }
+        description: { type: [string, 'null'] }
+        display: { type: object, additionalProperties: true }
+        configuration:
+          type: object
+          description: |
+            Réglages (`allowMultiInstance`, `syncmode`, `logmode`,
+            `timeDependency`, `has_return`…).
+          additionalProperties: true
+        state:
+          readOnly: true
+          type: string
+          enum: [stop, in progress, starting, error]
+        lastLaunch: { type: [string, 'null'], readOnly: true, example: '2026-11-06 07:00:00' }
+        elements:
+          type: array
+          description: Présent seulement avec `include=elements` (administrateurs), et après une création ou une modification.
+          items: { $ref: '#/components/schemas/ScenarioElement' }
+
+    ScenarioCreate:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        group: { type: [string, 'null'], maxLength: 127 }
+        isActive: { type: boolean, default: true }
+        isVisible: { type: boolean, default: true }
+        mode: { type: string, enum: [provoke, schedule, all], default: provoke }
+        schedule: { type: array, items: { type: string } }
+        trigger: { type: array, items: { type: string } }
+        timeout: { type: [integer, 'null'], minimum: 0 }
+        object_id: { type: [integer, 'null'] }
+        order: { type: integer }
+        description: { type: [string, 'null'] }
+        display: { type: object, additionalProperties: true }
+        configuration: { type: object, additionalProperties: true }
+        elements: { type: array, items: { $ref: '#/components/schemas/ScenarioElement' } }
+
+    ScenarioUpdate:
+      type: object
+      minProperties: 1
+      description: Les mêmes champs qu'à la création, tous facultatifs.
+      properties:
+        name: { type: string, minLength: 1, maxLength: 127 }
+        group: { type: [string, 'null'], maxLength: 127 }
+        isActive: { type: boolean }
+        isVisible: { type: boolean }
+        mode: { type: string, enum: [provoke, schedule, all] }
+        schedule: { type: array, items: { type: string } }
+        trigger: { type: array, items: { type: string } }
+        timeout: { type: [integer, 'null'], minimum: 0 }
+        object_id: { type: [integer, 'null'] }
+        order: { type: integer }
+        description: { type: [string, 'null'] }
+        display: { type: object, additionalProperties: true }
+        configuration: { type: object, additionalProperties: true }
+        elements: { type: array, items: { $ref: '#/components/schemas/ScenarioElement' } }
+
+    ScenarioList:
+      type: object
+      required: [items, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Scenario' }
+        total: { type: integer, example: 14 }
+
+    ScenarioRunState:
+      type: object
+      required: [state]
+      properties:
+        state: { type: string, enum: [stop, in progress, starting, error] }
+        lastLaunch: { type: [string, 'null'] }
+
+    ScenarioElement:
+      type: object
+      description: |
+        Bloc du scénario (si, action, code, pour, dans, à…), au format de
+        `scenarioElement::getAjaxElement`. `id` est absent à la création
+        d'un bloc.
+      required: [type, subElements]
+      properties:
+        id: { type: integer }
+        type:
+          type: string
+          description: 'Type de bloc connu du core : `if`, `action`, `code`, `for`, `while`, `in`, `at`, `comment`.'
+          example: if
+        name: { type: [string, 'null'] }
+        options: { type: object, additionalProperties: true }
+        subElements:
+          type: array
+          items: { $ref: '#/components/schemas/ScenarioSubElement' }
+
+    ScenarioSubElement:
+      type: object
+      required: [type, subtype, expressions]
+      properties:
+        id: { type: integer }
+        type:
+          type: string
+          description: 'Partie du bloc : `if`, `then`, `else`, `action`, `code`, `for`, `do`, `in`, `at`, `comment`.'
+          example: then
+        subtype: { type: string, enum: [condition, action] }
+        name: { type: [string, 'null'] }
+        options: { type: object, additionalProperties: true }
+        expressions:
+          type: array
+          items: { $ref: '#/components/schemas/ScenarioExpression' }
+
+    ScenarioExpression:
+      type: object
+      required: [type, expression]
+      properties:
+        id: { type: integer }
+        type:
+          type: string
+          enum: [condition, action, code, element]
+          description: '`code` : PHP exécuté par le serveur. `element` : bloc imbriqué, dans `element`.'
+        subtype: { type: [string, 'null'] }
+        expression:
+          type: string
+          description: Condition, commande ou action au format lisible (`#[Salon][Lampe][On]#`).
+        options: { type: object, additionalProperties: true }
+        element: { $ref: '#/components/schemas/ScenarioElement' }
+
     Plugin:
       type: object
       required: [id, name, category, isEnable, hasEqLogic, icon, uiModule]
@@ -1884,6 +2431,11 @@ components:
           schema: { $ref: '#/components/schemas/Error' }
     CmdConflict:
       description: 'Une commande porte déjà ce nom dans cet équipement (`code: cmd_name_taken`, le nom est unique par équipement).'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ScenarioNotFound:
+      description: 'Scénario inconnu (`code: scenario_not_found`).'
       content:
         application/json:
           schema: { $ref: '#/components/schemas/Error' }
