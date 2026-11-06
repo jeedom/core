@@ -63,6 +63,7 @@ final class App
             $api->get('/cmds/{id}/statistics', $cmds->statistics(...));
             $api->get('/cmds/{id}/usages', $cmds->usages(...));
 
+            $api->get('/scenarios/{id}/log', (new ScenariosController())->log(...));
             $api->get('/events', (new EventsController())->stream(...));
 
             $api->get('/plugins', (new PluginsController())->list(...));
