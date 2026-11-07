@@ -98,7 +98,32 @@ final class App
             $api->get('/events', (new EventsController())->stream(...));
 
             $api->get('/plugins', (new PluginsController())->list(...));
-            $api->get('/me', self::getMe(...));
+            $users = new UsersController();
+            $api->get('/users', $users->list(...));
+            $api->post('/users', $users->create(...));
+            $api->get('/users/{id}', $users->get(...));
+            $api->patch('/users/{id}', $users->update(...));
+            $api->delete('/users/{id}', $users->delete(...));
+            $api->get('/users/{id}/devices', $users->devices(...));
+            $api->delete('/users/{id}/devices', $users->forgetDevices(...));
+            $api->delete('/users/{id}/devices/{key}', $users->forgetDevice(...));
+            // La liste et la fermeture d'une session attendent la table `session` de la spec.
+            $api->get('/users/{id}/sessions', self::notImplemented(...));
+            $api->delete('/users/{id}/sessions', $users->closeSessions(...));
+            $api->delete('/users/{id}/sessions/{sessionId}', self::notImplemented(...));
+            $api->get('/users/{id}/rights', $users->rights(...));
+            $api->put('/users/{id}/rights', $users->replaceRights(...));
+            $api->post('/users/{id}/rights/copy', $users->copyRights(...));
+
+            $api->get('/me', $users->me(...));
+            $api->patch('/me', $users->updateMe(...));
+            $api->get('/me/token', $users->myToken(...));
+            $api->post('/me/token', $users->regenerateMyToken(...));
+            $api->get('/me/devices', $users->myDevices(...));
+            $api->delete('/me/devices', $users->forgetMyDevices(...));
+            $api->delete('/me/devices/{key}', $users->forgetMyDevice(...));
+            $api->get('/me/sessions', self::notImplemented(...));
+            $api->delete('/me/sessions/{sessionId}', self::notImplemented(...));
             $api->delete('/session', (new SessionController())->close(...));
         })->add(new Auth());
         // Seule route sans authentification : l'ouverture de session.
@@ -119,23 +144,6 @@ final class App
             return Json::error($app->getResponseFactory()->createResponse(), $error);
         });
         return $app;
-    }
-
-    /** Utilisateur connecté, pour que l'UI adapte l'affichage (équivalent d'isConnect('admin')). */
-    private static function getMe(Request $request, Response $response): Response
-    {
-        return Json::respond($response, self::me($request->getAttribute('user'), $request->getAttribute('csrfToken')));
-    }
-
-    /** Schéma `Me` de la spec. */
-    public static function me(\user $user, ?string $csrfToken): array
-    {
-        return [
-            'id' => (int) $user->getId(),
-            'login' => (string) $user->getLogin(),
-            'isAdmin' => $user->getProfils() === 'admin',
-            'csrfToken' => $csrfToken,
-        ];
     }
 
     private static function notImplemented(): never
