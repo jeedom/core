@@ -36,6 +36,33 @@ if (!jeeFrontEnd.administration) {
         jeeFrontEnd.modifyWithoutSave = false
       }, 500)
     },
+    updateMarketConnection: function(state) {
+      const container = document.getElementById('div_marketConnection')
+      if (!container) return
+      const connected = state.connected === true
+      container.dataset.connected = connected ? '1' : '0'
+      const label = container.querySelector('[data-market-state]')
+      label.textContent = connected ? '{{Connecté}}' : '{{Déconnecté}}'
+      label.classList.toggle('label-success', connected)
+      label.classList.toggle('label-default', !connected)
+      container.querySelector('[data-market-login]').textContent = state.login || ''
+      container.querySelectorAll('[data-market-action]').forEach(button => {
+        if (button.dataset.marketAction === 'connect' ? connected : !connected) {
+          button.unseen()
+        } else {
+          button.seen()
+        }
+        button.disabled = false
+      })
+      document.querySelector('.testRepoConnection[data-repo="market"]')?.classList.toggle('disabled', !connected)
+    },
+    refreshMarketConnection: function() {
+      if (!document.getElementById('div_marketConnection')) return
+      jeedom.repo.marketStatus({
+        global: false,
+        success: state => this.updateMarketConnection(state)
+      })
+    },
     initSearchLinks: function() {
       document.querySelectorAll('#searchResult a[role="searchTabLink"]').forEach(_search => {
         _search.addEventListener('click', function(event) {
@@ -393,6 +420,7 @@ if (!jeeFrontEnd.administration) {
         },
         success: function(data) {
           document.getElementById('config').setJeeValues(data, '.configKey')
+          jeeP.refreshMarketConnection()
           //document.querySelector('.configKey[data-l1key="market::allowDNS"]')?.triggerEvent('change')
           //document.querySelector('.configKey[data-l1key="ldap:enable"]').triggerEvent('change')
           jeeP.loadActionOnMessage()
@@ -455,6 +483,7 @@ if (!jeeFrontEnd.administration) {
                 window.location.reload(true)
               } else {
                 document.getElementById('config').setJeeValues(data, '.configKey')
+                jeeP.refreshMarketConnection()
                 jeeP.loadActionOnMessage()
                 jeeFrontEnd.modifyWithoutSave = false
                 setTimeout(function() {
@@ -1248,10 +1277,57 @@ document.getElementById('securitytab').addEventListener('change', function(event
 /**************************UPDATES / MARKET***********************************/
 /*Events delegations
 */
+document.getElementById('div_marketConnection')?.addEventListener('marketConnectionChanged', event => {
+  jeeFrontEnd.administration.updateMarketConnection(event.detail)
+})
 document.getElementById('updatetab').addEventListener('click', function(event) {
   var _target = null
+  if (_target = event.target.closest('[data-market-action]')) {
+    if (_target.disabled) return
+    const container = document.getElementById('div_marketConnection')
+    container.querySelectorAll('button').forEach(button => { button.disabled = true })
+    const failed = function(error) {
+      container.querySelectorAll('button').forEach(button => { button.disabled = false })
+      jeedomUtils.showAlert({ message: error.message, level: 'danger' })
+    }
+    if (_target.dataset.marketAction === 'disconnect') {
+      jeedom.repo.disconnectMarket({
+        error: failed,
+        success: function(state) {
+          jeeFrontEnd.administration.updateMarketConnection(state)
+          jeedomUtils.showAlert({
+            message: state.revoked ? '{{Compte Market déconnecté}}' : '{{Compte déconnecté de ce Jeedom. La révocation de la session sur le Market n’a pas pu être confirmée.}}',
+            level: state.revoked ? 'success' : 'warning'
+          })
+        }
+      })
+      return
+    }
+    jeedom.config.save({
+      configuration: {
+        'market::address': document.querySelector('.configKey[data-l1key="market::address"]').jeeValue(),
+        'market::no_ssl_verify': document.querySelector('.configKey[data-l1key="market::no_ssl_verify"]').jeeValue()
+      },
+      error: failed,
+      success: function() {
+        container.querySelectorAll('button').forEach(button => { button.disabled = false })
+        jeeFrontEnd.administration.refreshMarketConnection()
+        jeeDialog.dialog({
+          id: 'md_marketConnection',
+          title: '{{Connexion au Market}}',
+          width: Math.min(520, window.innerWidth * 0.94),
+          height: Math.min(440, window.innerHeight * 0.9),
+          contentUrl: 'index.php?v=d&modal=market.connection',
+          onClose: function() { jeeDialog.get('#md_marketConnection').destroy() }
+        })
+      }
+    })
+    return
+  }
+
   if (_target = event.target.closest('.testRepoConnection')) {
     var repo = _target.getAttribute('data-repo')
+    if (_target.classList.contains('disabled')) return
     jeedom.config.save({
       configuration: document.getElementById('config').getJeeValues('.configKey')[0],
       error: function(error) {
@@ -1275,12 +1351,16 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
             jeedom.repo.test({
               repo: repo,
               error: function(error) {
+                if (repo == 'market') jeeFrontEnd.administration.refreshMarketConnection()
                 jeedomUtils.showAlert({
                   message: error.message,
                   level: 'danger'
                 })
               },
               success: function(data) {
+                if (repo == 'market') {
+                  jeeFrontEnd.administration.refreshMarketConnection()
+                }
                 jeedomUtils.showAlert({
                   message: '{{Test réussi}}',
                   level: 'success'
