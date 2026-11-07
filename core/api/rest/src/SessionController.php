@@ -59,7 +59,7 @@ final class SessionController
         Session::close();
         \jeedom::event('user_connect', false, ['trigger_value' => $login]);
         \log::audit('User login', ['login' => $login, 'ip' => getClientIp()]);
-        return Json::respond($response, ['user' => App::me($user, $token), 'csrfToken' => $token]);
+        return Json::respond($response, ['user' => UsersController::meArray($user, $token), 'csrfToken' => $token]);
     }
 
     public function close(Request $request, Response $response): Response
