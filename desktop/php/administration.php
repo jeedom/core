@@ -1921,9 +1921,17 @@ $productName = config::byKey('product_name');
 											$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 											switch ($parameter['type']) {
 												case 'market_connection':
-													ob_start();
-													include __DIR__ . '/market.connection.php';
-													$div .= ob_get_clean();
+													$marketConnection = marketClient::status();
+													$connected = $marketConnection['connected'];
+													$div .= '<div id="div_marketConnection" data-connected="' . ($connected ? '1' : '0') . '">';
+													$div .= '<div class="marketConnectionStatus" role="status" aria-live="polite">';
+													$div .= '<span data-market-state class="label ' . ($connected ? 'label-success' : 'label-default') . '">' . ($connected ? '{{Connecté}}' : '{{Déconnecté}}') . '</span>';
+													$div .= '<span data-market-login>' . htmlspecialchars($marketConnection['login'], ENT_QUOTES, 'UTF-8') . '</span></div>';
+													$div .= '<div class="marketConnectionControls">';
+													$div .= '<button type="button" class="btn btn-success' . ($connected ? ' hidden' : '') . '" data-market-action="connect"><i class="fas fa-link"></i> {{Se connecter au Market}}</button>';
+													$div .= '<button type="button" class="btn btn-default' . ($connected ? '' : ' hidden') . '" data-market-action="reconnect"><i class="fas fa-sync"></i> {{Reconnecter}}</button>';
+													$div .= '<button type="button" class="btn btn-danger' . ($connected ? '' : ' hidden') . '" data-market-action="disconnect"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</button>';
+													$div .= '</div></div>';
 													break;
 												case 'checkbox':
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '">';

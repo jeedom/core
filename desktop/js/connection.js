@@ -230,13 +230,13 @@ if (!jeeFrontEnd.connection) {
       jeedom.repo.connectMarket({
         login: inputs.username,
         password: inputs.password,
-        twoFactorCode: document.getElementById('in_marketTwoFactorCode').value.trim(),
+        twoFactorCode: document.getElementById('in_marketTwoFactorCode').jeeValue().trim(),
         error: function(error) {
           jeeP.showError(error.message)
         },
         success: function() {
-          document.getElementById('in_marketPassword').value = ''
-          document.getElementById('in_marketTwoFactorCode').value = ''
+          document.getElementById('in_marketPassword').jeeValue('')
+          document.getElementById('in_marketTwoFactorCode').jeeValue('')
           jeeP.goToIndex()
         }
       })

@@ -47,7 +47,11 @@ if (!jeeFrontEnd.administration) {
       label.classList.toggle('label-default', !connected)
       container.querySelector('[data-market-login]').textContent = state.login || ''
       container.querySelectorAll('[data-market-action]').forEach(button => {
-        button.classList.toggle('hidden', button.dataset.marketAction === 'connect' ? connected : !connected)
+        if (button.dataset.marketAction === 'connect' ? connected : !connected) {
+          button.unseen()
+        } else {
+          button.seen()
+        }
         button.disabled = false
       })
       document.querySelector('.testRepoConnection[data-repo="market"]')?.classList.toggle('disabled', !connected)

@@ -160,19 +160,19 @@ class marketClient {
 	}
 
 	private static function send($method, $path, $data = null, $token = null, $timeout = 30, $destination = null, $headers = array()) {
-		$curl = curl_init(self::baseUrl() . '/api/v1' . $path);
+		$http = new com_http(self::baseUrl() . '/api/v1' . $path);
+		$http->setNoSslCheck(config::byKey('market::no_ssl_verify') == 1);
+		$http->setNoReportError(true);
 		$headers[] = 'Accept: ' . ($destination === null ? 'application/json' : 'application/zip, application/json');
 		if ($token !== null) {
 			$headers[] = 'Authorization: Bearer ' . $token;
 		}
-		$options = array(CURLOPT_CUSTOMREQUEST => $method, CURLOPT_RETURNTRANSFER => true, CURLOPT_FOLLOWLOCATION => false,
-			CURLOPT_CONNECTTIMEOUT => 15, CURLOPT_TIMEOUT => $timeout, CURLOPT_SSL_VERIFYPEER => config::byKey('market::no_ssl_verify') != 1,
-			CURLOPT_SSL_VERIFYHOST => config::byKey('market::no_ssl_verify') == 1 ? 0 : 2);
+		$options = array(CURLOPT_CUSTOMREQUEST => $method, CURLOPT_FOLLOWLOCATION => false, CURLOPT_CONNECTTIMEOUT => 15);
 		if ($data !== null) {
 			$headers[] = 'Content-Type: application/json';
 			$options[CURLOPT_POSTFIELDS] = json_encode($data, JSON_THROW_ON_ERROR);
 		}
-		$options[CURLOPT_HTTPHEADER] = $headers;
+		$http->setHeader($headers);
 		if (config::byKey('proxyEnabled') == 1) {
 			$options[CURLOPT_PROXY] = config::byKey('proxyAddress');
 			$options[CURLOPT_PROXYPORT] = config::byKey('proxyPort');
@@ -182,22 +182,21 @@ class marketClient {
 		if ($destination !== null) {
 			$file = fopen($destination, 'wb');
 			if ($file === false) {
-				curl_close($curl);
 				throw new Exception(__('Impossible d’écrire le téléchargement Market.', __FILE__));
 			}
 			$options[CURLOPT_FILE] = $file;
 		}
 		try {
-			curl_setopt_array($curl, $options);
-			$body = curl_exec($curl);
-			$status = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
-			$error = curl_error($curl);
+			$http->setCURLOPT($options);
+			// Session rotation and non-idempotent actions must not be retried by the transport.
+			$body = $http->exec($timeout, 1);
+			$status = (int) $http->getHttpCode();
 			if (is_resource($file)) {
 				fclose($file);
 				$file = null;
 			}
 			if ($body === false) {
-				throw new Exception(__('Le Market n’a pas répondu :', __FILE__) . ' ' . $error);
+				throw new Exception(__('Le Market n’a pas répondu.', __FILE__));
 			}
 			if ($destination !== null && $status >= 200 && $status < 300) {
 				$zip = new ZipArchive();
@@ -231,7 +230,6 @@ class marketClient {
 			if (is_resource($file)) {
 				fclose($file);
 			}
-			curl_close($curl);
 		}
 	}
 }

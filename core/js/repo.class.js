@@ -83,10 +83,17 @@ jeedom.repo.test = function(_params) {
 }
 
 jeedom.repo.connectMarket = function(_params) {
+  const params = _params || {};
+  try {
+    jeedom.private.checkParamsRequired(params, ['login', 'password']);
+  } catch (e) {
+    (params.error || jeedom.private.default_params.error)(e);
+    return;
+  }
   jeedom.repo.marketRequest('connectMarket', _params, {
-    login: _params.login,
-    password: _params.password,
-    twoFactorCode: _params.twoFactorCode || ''
+    login: params.login,
+    password: params.password,
+    twoFactorCode: params.twoFactorCode || ''
   });
 }
 
