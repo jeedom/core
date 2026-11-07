@@ -1921,7 +1921,7 @@ $productName = config::byKey('product_name');
 											$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 											switch ($parameter['type']) {
 												case 'market_connection':
-													$marketConnection = marketClient::status();
+													$marketConnection = repo_market::connectionStatus();
 													$connected = $marketConnection['connected'];
 													$div .= '<div id="div_marketConnection" data-connected="' . ($connected ? '1' : '0') . '">';
 													$div .= '<div class="marketConnectionStatus" role="status" aria-live="polite">';
@@ -1968,7 +1968,7 @@ $productName = config::byKey('product_name');
 											$div .= '<div class="form-group">';
 											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester/Synchroniser}}') . '</label>';
 											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
-											$div .= '<a class="btn btn-default testRepoConnection' . ($key === 'market' && !marketClient::connected() ? ' disabled' : '') . '" data-repo="' . $key . '"><i class="fas fa-' . ($key === 'market' ? 'sync' : 'check') . '"></i> ' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester}}') . '</a>';
+											$div .= '<a class="btn btn-default testRepoConnection' . ($key === 'market' && !repo_market::connectionStatus()['connected'] ? ' disabled' : '') . '" data-repo="' . $key . '"><i class="fas fa-' . ($key === 'market' ? 'sync' : 'check') . '"></i> ' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester}}') . '</a>';
 											$div .= '</div>';
 											$div .= '</div>';
 										}

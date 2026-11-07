@@ -32,12 +32,12 @@ try {
 	}
 
 	if (init('action') == 'marketStatus') {
-		ajax::success(marketClient::status());
+		ajax::success(repo_market::connectionStatus());
 	}
 
 	if (init('action') == 'disconnectMarket') {
 		unautorizedInDemo();
-		ajax::success(marketClient::disconnect());
+		ajax::success(repo_market::disconnect());
 	}
 
 	if (init('action') == 'uploadCloud') {
