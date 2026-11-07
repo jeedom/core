@@ -78,6 +78,21 @@ jeedom.repo.test = function(_params) {
   paramsAJAX.data = {
     action: 'test',
     repo: _params.repo,
+    password: _params.password || '',
+    twoFactorCode: _params.twoFactorCode || '',
+  };
+  domUtils.ajax(paramsAJAX);
+}
+
+jeedom.repo.connectMarket = function(_params) {
+  const params = domUtils.extend({}, jeedom.private.default_params, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/repo.ajax.php';
+  paramsAJAX.data = {
+    action: 'connectMarket',
+    login: _params.login,
+    password: _params.password,
+    twoFactorCode: _params.twoFactorCode || ''
   };
   domUtils.ajax(paramsAJAX);
 }

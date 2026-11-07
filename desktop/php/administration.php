@@ -1920,6 +1920,12 @@ $productName = config::byKey('product_name');
 											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
 											$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 											switch ($parameter['type']) {
+												case 'market_password':
+													$div .= '<input type="password" class="form-control" data-market-credential="password" autocomplete="new-password">';
+													break;
+												case 'market_two_factor':
+													$div .= '<input type="text" class="form-control" data-market-credential="twoFactorCode" inputmode="numeric" autocomplete="one-time-code">';
+													break;
 												case 'checkbox':
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '">';
 													break;

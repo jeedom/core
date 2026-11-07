@@ -26,6 +26,12 @@ try {
 
 	ajax::init();
 
+	if (init('action') == 'connectMarket') {
+		unautorizedInDemo();
+		repo_market::connect(init('login'), init('password'), init('twoFactorCode'));
+		ajax::success();
+	}
+
 	if (init('action') == 'uploadCloud') {
 		unautorizedInDemo();
 		repo_market::backup_send(init('backup'));
@@ -86,7 +92,12 @@ try {
 
 	if (init('action') == 'test') {
 		$class = 'repo_' . init('repo');
-		$class::test();
+		if (init('repo') === 'market' && init('password') !== '') {
+			unautorizedInDemo();
+			repo_market::connect(config::byKey('market::username'), init('password'), init('twoFactorCode'));
+		} else {
+			$class::test();
+		}
 		ajax::success();
 	}
 

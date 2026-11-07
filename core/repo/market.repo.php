@@ -80,8 +80,12 @@ class repo_market {
 					'type' => 'input'
 				),
 				'password' => array(
-					'name' => __('Mot de passe', __FILE__),
-					'type' => 'password_noshow'
+					'name' => __('Mot de passe (connexion ou reconnexion)', __FILE__),
+					'type' => 'market_password'
+				),
+				'twoFactorCode' => array(
+					'name' => __('Code de double authentification (si activée)', __FILE__),
+					'type' => 'market_two_factor'
 				),
 				'no_ssl_verify' => array(
 					'name' => __('Pas de validation SSL (non recommandé)', __FILE__),
@@ -119,11 +123,7 @@ class repo_market {
 	}
 
 	public static function pullInstall() {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('register::pluginToInstall')) {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
-		$results = $market->getResult();
+		$results = marketClient::request('GET', '/boxes/{boxId}/plugin-installations');
 		if (!is_array($results) || count($results) == 0 || !is_array($results['plugins']) || count($results['plugins']) == 0) {
 			return array('number' => 0);
 		}
@@ -415,7 +415,7 @@ class repo_market {
 	/*     * ***********************CRON*************************** */
 
 	public static function cronHourly() {
-		if (empty(config::byKey('market::username')) || empty(config::byKey('market::password'))) {
+		if (!marketClient::connected()) {
 			return;
 		}
 		if (strtotime(config::byKey('market::lastCommunication', 'core', 0)) > (strtotime('now') - (24 * 3600))) {
@@ -577,37 +577,25 @@ class repo_market {
 	/*     * ***********************UTILS*************************** */
 
 	public static function saveTicket($_ticket) {
-		$jsonrpc = self::getJsonRpc();
-		$_ticket['user_plugin'] = '';
-		foreach (plugin::listPlugin() as $plugin) {
-			$_ticket['user_plugin'] .= $plugin->getId();
-			$update = $plugin->getUpdate();
-			if (is_object($update)) {
-				$_ticket['user_plugin'] .= '[' . $update->getConfiguration('version', 'stable') . ',' . $update->getSource() . ',' . $update->getLocalVersion() . ']';
-			}
-			$_ticket['user_plugin'] .= ',';
-		}
-		trim($_ticket['user_plugin'], ',');
-		if (isset($_ticket['options']['page'])) {
-			$_ticket['options']['page'] = substr($_ticket['options']['page'], strpos($_ticket['options']['page'], 'index.php'));
-		}
-		$_ticket['options']['jeedom_version'] = jeedom::version();
-		$_ticket['options']['uname'] = shell_exec('uname -a');
-		if (!$jsonrpc->sendRequest('ticket::save', array('ticket' => $_ticket), 300)) {
-			throw new Exception($jsonrpc->getErrorMessage());
-		}
-		if ($_ticket['openSupport'] == 1) {
+		if (!empty($_ticket['openSupport'])) {
 			user::supportAccess(true);
 		}
-		return $jsonrpc->getResult();
+		$messages = array_column($_ticket['messages'] ?? array(), 'message');
+		marketClient::request('POST', '/support/tickets', array(
+			'type' => ($_ticket['type'] ?? 'support') === 'support' ? 'technical' : ($_ticket['type'] ?? ''),
+			'subject' => (string) ($_ticket['title'] ?? ''),
+			'message' => implode("\n\n", $messages) ?: (string) ($_ticket['message'] ?? ''),
+			'category' => (string) ($_ticket['category'] ?? 'core')
+		), 300);
+		return 'ok';
 	}
 
 	public static function supportAccess($_enable = true, $_key = '') {
-		$jsonrpc = self::getJsonRpc();
-		$url = network::getNetworkAccess('external') . '/index.php?auth=' . $_key;
-		if (!$jsonrpc->sendRequest('register::supportAccess', array('enable' => $_enable, 'urlSupport' => $url))) {
-			throw new Exception($jsonrpc->getErrorMessage());
+		$data = array('enabled' => (bool) $_enable);
+		if ($_enable) {
+			$data['url'] = network::getNetworkAccess('external') . '/index.php?auth=' . $_key;
 		}
+		marketClient::request('PUT', '/boxes/{boxId}/support-access', $data);
 	}
 
 	public static function getPassword() {
@@ -619,30 +607,50 @@ class repo_market {
 	}
 
 	public static function test() {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::test')) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
+		$internalIp = '';
+		try {
+			$internalIp = network::getNetworkAccess('internal', 'ip');
+		} catch (Exception $exception) {
 		}
+		$data = array(
+			'version' => jeedom::version(), 'name' => config::byKey('name'), 'localIp' => $internalIp,
+			'apiKey' => jeedom::getApiKey('apimarket'),
+			'information' => array('nbMessage' => message::nbMessage(), 'nbUpdate' => update::nbNeedUpdate(),
+				'hardware' => jeedom::getHardwareName(), 'uname' => (string) shell_exec('uname -a'), 'language' => config::byKey('language')),
+			'plugins' => array_values(plugin::listPlugin(false, false, false, true))
+		);
+		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
+			$data['url'] = network::getNetworkAccess('external');
+		}
+		$result = marketClient::request('PUT', '/boxes/{boxId}/telemetry', $data);
+		$legacy = ($result['dns'] ?? array()) + ($result['services'] ?? array());
+		$legacy['register::id'] = $result['boxId'];
+		$legacy['jeedom::url'] = $result['url'];
+		if (!empty($result['broadcast'])) {
+			$legacy['broadcast::id'] = $result['broadcast']['id'];
+			$legacy['broadcast::message'] = $result['broadcast']['message'];
+		}
+		config::save('market::allowBeta', !empty($result['allowBeta']) ? 1 : 0);
+		self::postJsonRpc($legacy);
+		return 'ok';
+	}
+
+	public static function connect($login, $password, $twoFactorCode = '') {
+		marketClient::connect($login, $password, $twoFactorCode);
+		return self::test();
 	}
 
 	public static function getPurchaseInfo() {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('purchase::getInfo')) {
-			return $market->getResult();
-		}
+		$account = marketClient::request('GET', '/me');
+		return array('user_id' => $account['id']);
 	}
 
 	public static function distinctCategorie($_type) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::distinctCategorie', array('type' => $_type))) {
-			return $market->getResult();
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
+		$result = marketClient::request('GET', '/catalog/categories?' . http_build_query(array('type' => $_type)));
+		return $result['items'];
 	}
 
+	/** Legacy entry point retained for plugins. Core requests use marketClient. */
 	public static function getJsonRpc() {
 		$internalIp = '';
 		try {
@@ -813,134 +821,115 @@ class repo_market {
 	}
 
 	public static function byId($_id) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::byId', array('id' => $_id))) {
-			return self::construct($market->getResult());
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
+		try {
+			return self::fromRest(marketClient::request('GET', '/catalog/items/' . rawurlencode((string) $_id)));
+		} catch (Exception $exception) {
+			if ($exception->getCode() === 404) {
+				return null;
+			}
+			throw $exception;
 		}
 	}
 
 	public static function byLogicalId($_logicalId) {
-		$market = self::getJsonRpc();
-
-		if (is_array($_logicalId)) {
-			$options = $_logicalId;
-			$timeout = 240;
-		} else {
-			$options = array('logicalId' => $_logicalId);
-			$timeout = 10;
-		}
-		if ($market->sendRequest('market::byLogicalId', $options, $timeout, null, 1)) {
-			if (is_array($_logicalId)) {
-				$return = array();
-				foreach ($market->getResult() as $logicalId => $result) {
-					if (isset($result['id'])) {
-						$return[$logicalId] = self::construct($result);
-					}
-				}
-				return $return;
-			}
-			return self::construct($market->getResult());
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
+		$multiple = is_array($_logicalId);
+		$references = $multiple ? array_values($_logicalId) : array($_logicalId);
+		$items = self::lookup($references, false);
+		return $multiple ? $items : ($items[$_logicalId] ?? null);
 	}
 
 	public static function byLogicalIdAndType($_logicalId, $_type = '') {
-		$market = self::getJsonRpc();
-		if (is_array($_logicalId)) {
-			$options = $_logicalId;
-			$timeout = 240;
-		} else {
-			$options = array('logicalId' => $_logicalId, 'type' => $_type);
-			$timeout = 10;
-		}
-		if ($market->sendRequest('market::byLogicalIdAndType', $options, $timeout, null, 1)) {
-			if (is_array($_logicalId)) {
-				$return = array();
-				foreach ($market->getResult() as $logicalId => $result) {
-					if (isset($result['id'])) {
-						$return[$logicalId] = self::construct($result);
-					}
-				}
-				return $return;
-			}
-			return self::construct($market->getResult());
-		} else {
-			log::add('market', 'debug', print_r($market, true));
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
+		$multiple = is_array($_logicalId);
+		$references = $multiple ? array_values($_logicalId) : array(array('logicalId' => $_logicalId, 'type' => $_type));
+		$items = self::lookup($references, true);
+		return $multiple ? $items : ($items[$_type . $_logicalId] ?? null);
 	}
 
 	public static function byMe() {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::byAuthor', array())) {
-			$return = array();
-			foreach ($market->getResult() as $result) {
-				if (isset($result['id'])) {
-					$return[] = self::construct($result);
-				}
-			}
-			return $return;
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
+		return self::catalogList('/me/catalog/items');
 	}
 
 	public static function byStatusAndType($_status, $_type) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::byStatusAndType', array('status' => $_status, 'type' => $_type))) {
-			$return = array();
-			foreach ($market->getResult() as $result) {
-				if (isset($result['id'])) {
-					$return[] = self::construct($result);
-				}
-			}
-			return $return;
-		} else {
-			log::add('market', 'debug', print_r($market, true));
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
+		return self::byFilter(array('status' => $_status, 'type' => $_type));
 	}
 
 	public static function byStatus($_status) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::byStatus', array('status' => $_status))) {
-			$return = array();
-			foreach ($market->getResult() as $result) {
-				if (isset($result['id'])) {
-					$return[] = self::construct($result);
-				}
-			}
-			return $return;
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
-		}
+		return self::byFilter(array('status' => $_status));
 	}
 
 	public static function byFilter($_filter) {
-		$market = self::getJsonRpc();
-		if ($market->sendRequest('market::byFilter', $_filter)) {
-			$return = array();
-			foreach ($market->getResult() as $result) {
-				if (isset($result['id'])) {
-					$return[] = self::construct($result);
-				}
-			}
-			return $return;
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
+		$query = array_intersect_key($_filter, array_flip(array('name', 'type', 'categorie', 'certification', 'compatibility', 'cost', 'logicalId', 'author', 'timeState')));
+		$query = array_filter($query, static function ($value) { return $value !== null && $value !== ''; });
+		$query['branch'] = $_filter['status'] ?? 'stable';
+		if ($query['branch'] === 'pro') {
+			$query['branch'] = 'stable';
 		}
+		$limit = !empty($query['timeState']) ? 20 : null;
+		return self::catalogList('/catalog/items', $query, $limit);
+	}
+
+	private static function catalogList($path, $query = array(), $maximum = null) {
+		$items = array();
+		$query['limit'] = $maximum === null ? 100 : min(100, $maximum);
+		$query['offset'] = 0;
+		do {
+			$page = marketClient::request('GET', $path . '?' . http_build_query($query));
+			foreach ($page['items'] as $item) {
+				$items[] = self::fromRest($item);
+			}
+			$next = $page['nextOffset'] ?? null;
+			if ($next !== null && (!is_int($next) || $next <= $query['offset'])) {
+				throw new Exception(__('Pagination Market invalide.', __FILE__));
+			}
+			$query['offset'] = $next;
+		} while ($next !== null && ($maximum === null || count($items) < $maximum));
+		return $items;
+	}
+
+	private static function lookup($references, $typed) {
+		$items = array();
+		foreach (array_chunk($references, 100) as $batch) {
+			$page = marketClient::request('POST', '/catalog/items/lookup', array('references' => $batch));
+			foreach ($page['items'] as $match) {
+				$reference = $batch[$match['index']];
+				$key = is_array($reference) ? (($typed ? $reference['type'] : '') . $reference['logicalId']) : $reference;
+				$items[$key] = self::fromRest($match['item']);
+			}
+		}
+		return $items;
+	}
+
+	private static function fromRest($item) {
+		$dates = $status = $parameters = array();
+		foreach ($item['versions'] ?? array() as $branch => $version) {
+			$dates[$branch] = $version['publishedAt'];
+			$status[$branch] = !empty($version['published']) ? 1 : 0;
+			$parameters['os' . ucfirst($branch) . 'Min'] = $version['minOsVersion'];
+			$parameters['os' . ucfirst($branch) . 'Max'] = $version['maxOsVersion'];
+		}
+		$parameters['minJeedomVersion'] = $item['minJeedomVersion'] ?? '';
+		$parameters['size'] = $item['size'] ?? '';
+		return self::construct(array(
+			'id' => $item['id'], 'name' => $item['name'], 'type' => $item['type'], 'logicalId' => $item['logicalId'],
+			'description' => $item['description'], 'categorie' => $item['categorie'], 'author' => $item['author'],
+			'cost' => $item['cost'], 'realCost' => $item['realCost'], 'purchase' => $item['purchase'],
+			'certification' => $item['certification'], 'utilization' => $item['utilization'],
+			'doc' => $item['documentation'], 'changelog' => $item['changelog'], 'datetime' => $dates, 'status' => $status,
+			'allowVersion' => array_keys($item['versions'] ?? array()),
+			'rating' => array('average' => $item['rating'], 'total' => $item['ratingCount'], 'user' => $item['userRating']),
+			'img' => array('icon' => ltrim($item['iconUrl'] ?? '', '/'), 'screenshot' => array_map(static function ($path) { return ltrim($path, '/'); }, $item['screenshots'] ?? array())),
+			'parameters' => $parameters, 'user_id' => $item['userId'] ?? 0, 'version' => $item['version'] ?? '',
+			'downloaded' => $item['downloaded'] ?? 0, 'buyer' => 0, 'updateBy' => 'market', 'private' => $item['private'] ?? false,
+			'isAuthor' => $item['isAuthor'] ?? false, 'nbInstall' => $item['nbInstall'] ?? 0,
+			'link' => $item['links'] ?? array(), 'language' => $item['languages'] ?? array(),
+			'hardwareCompatibility' => $item['hardwareCompatibility'] ?? array()
+		));
 	}
 
 	/*     * *********************Methode d'instance************************* */
 
 	public function setRating($_rating) {
-		$market = self::getJsonRpc();
-		if (!$market->sendRequest('market::setRating', array('rating' => $_rating, 'id' => $this->getId()))) {
-			throw new Exception($market->getError());
-		}
+		marketClient::request('PUT', '/catalog/items/' . rawurlencode((string) $this->getId()) . '/rating', array('rating' => (float) $_rating));
 	}
 
 	public function getRating($_key = 'average') {
@@ -964,17 +953,12 @@ class repo_market {
 			throw new Exception(__('Impossible d\'écrire dans le répertoire :', __FILE__) . ' ' . $tmp . __('. Exécuter la commande suivante en SSH : sudo chmod 777 -R', __FILE__) . ' ' . $tmp_dir);
 		}
 
-		$url = config::byKey('market::address') . "/core/php/downloadFile.php?id=" . $this->getId();
-		$url .= '&version=' . $_version;
-		$url .= '&jeedomversion=' . jeedom::version();
-		$url .= '&osversion=' . system::getOsVersion();
-		$url .= '&hwkey=' . jeedom::getHardwareKey();
-		$url .= '&username=' . urlencode(config::byKey('market::username'));
-		$url .= '&password=' . self::getPassword();
-		$url .= '&password_type=sha1';
+		$path = '/catalog/items/' . rawurlencode((string) $this->getId()) . '/download?' . http_build_query(array(
+			'branch' => $_version === 'pro' ? 'stable' : $_version,
+			'jeedomVersion' => jeedom::version(), 'osVersion' => system::getOsVersion()
+		));
 		log::add('update', 'alert', __('Téléchargement de', __FILE__) . ' ' . $this->getLogicalId() . '...');
-		log::add('update', 'alert', __('URL', __FILE__) . ' ' . $url);
-		exec('wget "' . $url . '" -O ' . $tmp . ' >> ' . log::getPathToLog('update') . ' 2>&1');
+		marketClient::request('GET', $path, null, 1200, $tmp);
 		switch ($this->getType()) {
 			case 'plugin':
 				return $tmp;
@@ -1010,73 +994,7 @@ class repo_market {
 	}
 
 	public function save() {
-		$cache = cache::byKey('market::info::' . $this->getLogicalId());
-		if (is_object($cache)) {
-			$cache->remove();
-		}
-		$market = self::getJsonRpc();
-		$params = utils::o2a($this);
-		if (isset($params['changelog'])) {
-			unset($params['changelog']);
-		}
-		switch ($this->getType()) {
-			case 'plugin':
-				$plugin_id = $this->getLogicalId();
-				$cibDir = jeedom::getTmpFolder('market') . '/' . $plugin_id;
-				if (file_exists($cibDir)) {
-					rrmdir($cibDir);
-				}
-				mkdir($cibDir);
-				$exclude = array('tmp', '.git', '.DStore');
-				if (property_exists($plugin_id, '_excludeOnSendPlugin')) {
-					$exclude = array_merge($plugin_id::$_excludeOnSendPlugin);
-				}
-				exec('find ' . realpath(__DIR__ . '/../../plugins/' . $plugin_id) . ' -name "*.sh" -type f -exec dos2unix {} \;');
-				rcopy(realpath(__DIR__ . '/../../plugins/' . $plugin_id), $cibDir, true, $exclude, true);
-				if (file_exists($cibDir . '/data')) {
-					rrmdir($cibDir . '/data');
-				}
-				$tmp = jeedom::getTmpFolder('market') . '/' . $plugin_id . '.zip';
-				if (file_exists($tmp)) {
-					if (!unlink($tmp)) {
-						throw new Exception(__('Impossible de supprimer :', __FILE__) . ' ' . $tmp . __('. Vérifiez les droits', __FILE__));
-					}
-				}
-				if (!create_zip($cibDir, $tmp)) {
-					throw new Exception(__('Echec de création de l\'archive zip', __FILE__));
-				}
-				rrmdir($cibDir);
-				break;
-			default:
-				$type = $this->getType();
-				if (!class_exists($type) || !method_exists($type, 'shareOnMarket')) {
-					throw new Exception(__('Aucune fonction correspondante à :', __FILE__) . ' ' . $type . '::shareOnMarket');
-				}
-				$tmp = $type::shareOnMarket($this);
-				break;
-		}
-		if (!file_exists($tmp)) {
-			throw new Exception(__('Impossible de trouver le fichier à envoyer :', __FILE__) . ' ' . $tmp);
-		}
-		$file = array(
-			'file' => '@' . realpath($tmp),
-		);
-		if (!$market->sendRequest('market::save', $params, 30, $file)) {
-			throw new Exception($market->getError());
-		}
-		unlink($tmp);
-		$update = update::byTypeAndLogicalId($this->getType(), $this->getLogicalId());
-		if (!is_object($update)) {
-			$update = new update();
-			$update->setLogicalId($this->getLogicalId());
-			$update->setType($this->getType());
-		}
-		if ($update->getSource() == 'market') {
-			$update->setConfiguration('version', 'beta');
-			$update->setLocalVersion(date('Y-m-d H:i:s', (int) strtotime('+10 minute' . date('Y-m-d H:i:s'))));
-			$update->save();
-		}
-		$update->checkUpdate();
+		throw new Exception(__('La publication depuis une archive locale n’est plus disponible. Publiez votre plugin depuis son dépôt GitHub sur le Market.', __FILE__));
 	}
 
 	/*     * **********************Getteur Setteur*************************** */
@@ -1094,6 +1012,7 @@ class repo_market {
 	}
 
 	public function getDatetime($_key = '', $_default = '') {
+		$_key = $_key === 'pro' ? 'stable' : $_key;
 		return utils::getJsonAttr($this->datetime, $_key, $_default);
 	}
 
@@ -1163,6 +1082,7 @@ class repo_market {
 	}
 
 	public function getStatus($_key = '', $_default = '') {
+		$_key = $_key === 'pro' ? 'stable' : $_key;
 		return utils::getJsonAttr($this->status, $_key, $_default);
 	}
 

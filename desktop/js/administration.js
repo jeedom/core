@@ -1252,6 +1252,8 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
   var _target = null
   if (_target = event.target.closest('.testRepoConnection')) {
     var repo = _target.getAttribute('data-repo')
+    const marketPassword = repo == 'market' ? document.querySelector('[data-market-credential="password"]').value : ''
+    const marketTwoFactor = repo == 'market' ? document.querySelector('[data-market-credential="twoFactorCode"]').value : ''
     jeedom.config.save({
       configuration: document.getElementById('config').getJeeValues('.configKey')[0],
       error: function(error) {
@@ -1274,6 +1276,8 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
             jeeFrontEnd.modifyWithoutSave = false
             jeedom.repo.test({
               repo: repo,
+              password: marketPassword,
+              twoFactorCode: marketTwoFactor,
               error: function(error) {
                 jeedomUtils.showAlert({
                   message: error.message,
@@ -1281,6 +1285,9 @@ document.getElementById('updatetab').addEventListener('click', function(event) {
                 })
               },
               success: function(data) {
+                if (repo == 'market') {
+                  document.querySelectorAll('[data-market-credential]').forEach(input => { input.value = '' })
+                }
                 jeedomUtils.showAlert({
                   message: '{{Test réussi}}',
                   level: 'success'
