@@ -5,8 +5,40 @@ class marketClient {
 
 	public static function connected() {
 		$session = config::byKey('market::restSession', 'core', array(), true);
-		return is_array($session) && isset($session['context'], $session['refreshToken'])
-			&& hash_equals($session['context'], self::context());
+		if (!is_array($session) || !is_string($session['context'] ?? null) || !is_string($session['refreshToken'] ?? null)
+			|| $session['refreshToken'] === '') {
+			return false;
+		}
+		try {
+			return hash_equals($session['context'], self::context());
+		} catch (Exception $exception) {
+			return false;
+		}
+	}
+
+	public static function status() {
+		return array('connected' => self::connected(), 'login' => (string) config::byKey('market::username', 'core', '', true));
+	}
+
+	public static function disconnect() {
+		return self::locked(function () {
+			$stored = config::byKey('market::restSession', 'core', array(), true);
+			$revoked = !is_array($stored) || empty($stored['refreshToken']);
+			try {
+				if (self::connected()) {
+					$session = self::activeSession(null, 10);
+					self::send('DELETE', '/boxes/' . $session['boxId'] . '/session', null, $session['accessToken'], 10);
+					$revoked = true;
+				}
+			} catch (Exception $exception) {
+				$revoked = $exception->getCode() === 401 || $exception->getCode() === 404;
+			} finally {
+				config::remove('market::restSession');
+				config::remove('market::password');
+				config::remove('market::allowBeta');
+			}
+			return self::status() + array('revoked' => $revoked);
+		});
 	}
 
 	public static function connect($login, $password, $twoFactorCode = '') {
@@ -46,34 +78,36 @@ class marketClient {
 	}
 
 	private static function session($rejectedToken = null) {
-		return self::locked(function () use ($rejectedToken) {
-			// Another PHP worker may have renewed the pair while this one waited for the lock.
-			$session = config::byKey('market::restSession', 'core', array(), true);
-			if (!is_array($session) || !isset($session['context'], $session['refreshToken'], $session['accessToken'], $session['boxId'])
-				|| !hash_equals($session['context'], self::context())) {
+		return self::locked(function () use ($rejectedToken) { return self::activeSession($rejectedToken); });
+	}
+
+	private static function activeSession($rejectedToken = null, $timeout = 30) {
+		// Another PHP worker may have renewed the pair while this one waited for the lock.
+		$session = config::byKey('market::restSession', 'core', array(), true);
+		if (!is_array($session) || !isset($session['context'], $session['refreshToken'], $session['accessToken'], $session['boxId'])
+			|| !hash_equals($session['context'], self::context())) {
+			throw self::reconnect();
+		}
+		if (($session['expiresAt'] ?? 0) > time() + 60
+			&& ($rejectedToken === null || !hash_equals($session['accessToken'], $rejectedToken))) {
+			return $session;
+		}
+		if (empty($session['refreshAttempt'])) {
+			$session['refreshAttempt'] = bin2hex(random_bytes(16));
+			config::save('market::restSession', $session);
+		}
+		try {
+			$tokens = self::send('POST', '/box-sessions/refresh', array('refreshToken' => $session['refreshToken']),
+				null, $timeout, null, array('Idempotency-Key: ' . $session['refreshAttempt']));
+		} catch (Exception $exception) {
+			if ($exception->getCode() === 401) {
+				config::remove('market::restSession');
 				throw self::reconnect();
 			}
-			if (($session['expiresAt'] ?? 0) > time() + 60
-				&& ($rejectedToken === null || !hash_equals($session['accessToken'], $rejectedToken))) {
-				return $session;
-			}
-			if (empty($session['refreshAttempt'])) {
-				$session['refreshAttempt'] = bin2hex(random_bytes(16));
-				config::save('market::restSession', $session);
-			}
-			try {
-				$tokens = self::send('POST', '/box-sessions/refresh', array('refreshToken' => $session['refreshToken']),
-					null, 30, null, array('Idempotency-Key: ' . $session['refreshAttempt']));
-			} catch (Exception $exception) {
-				if ($exception->getCode() === 401) {
-					config::remove('market::restSession');
-					throw self::reconnect();
-				}
-				// Keep the same refresh token and attempt key if the response was lost.
-				throw $exception;
-			}
-			return self::store($tokens);
-		});
+			// Keep the same refresh token and attempt key if the response was lost.
+			throw $exception;
+		}
+		return self::store($tokens);
 	}
 
 	private static function store($tokens) {

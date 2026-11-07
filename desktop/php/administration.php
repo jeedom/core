@@ -1917,14 +1917,13 @@ $productName = config::byKey('product_name');
 											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">';
 											$div .= $parameter['name'];
 											$div .= '</label>';
-											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
+											$div .= '<div class="' . ($parameter['type'] === 'market_connection' ? 'col-lg-6 col-md-8 col-xs-12' : 'col-lg-3 col-md-4 col-xs-5') . '">';
 											$default = (isset($parameter['default'])) ? $parameter['default'] : '';
 											switch ($parameter['type']) {
-												case 'market_password':
-													$div .= '<input type="password" class="form-control" data-market-credential="password" autocomplete="new-password">';
-													break;
-												case 'market_two_factor':
-													$div .= '<input type="text" class="form-control" data-market-credential="twoFactorCode" inputmode="numeric" autocomplete="one-time-code">';
+												case 'market_connection':
+													ob_start();
+													include __DIR__ . '/market.connection.php';
+													$div .= ob_get_clean();
 													break;
 												case 'checkbox':
 													$div .= '<input type="checkbox" class="configKey" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '">';
@@ -1959,9 +1958,9 @@ $productName = config::byKey('product_name');
 										}
 										if (isset($value['scope']['test']) && $value['scope']['test']) {
 											$div .= '<div class="form-group">';
-											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
+											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester/Synchroniser}}') . '</label>';
 											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
-											$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
+											$div .= '<a class="btn btn-default testRepoConnection' . ($key === 'market' && !marketClient::connected() ? ' disabled' : '') . '" data-repo="' . $key . '"><i class="fas fa-' . ($key === 'market' ? 'sync' : 'check') . '"></i> ' . ($key === 'market' ? '{{Synchroniser}}' : '{{Tester}}') . '</a>';
 											$div .= '</div>';
 											$div .= '</div>';
 										}

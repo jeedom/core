@@ -75,17 +75,9 @@ class repo_market {
 					'name' => __('Adresse', __FILE__),
 					'type' => 'input'
 				),
-				'username' => array(
-					'name' => __('Nom d\'utilisateur', __FILE__),
-					'type' => 'input'
-				),
-				'password' => array(
-					'name' => __('Mot de passe (connexion ou reconnexion)', __FILE__),
-					'type' => 'market_password'
-				),
-				'twoFactorCode' => array(
-					'name' => __('Code de double authentification (si activée)', __FILE__),
-					'type' => 'market_two_factor'
+				'account' => array(
+					'name' => __('Compte Market', __FILE__),
+					'type' => 'market_connection'
 				),
 				'no_ssl_verify' => array(
 					'name' => __('Pas de validation SSL (non recommandé)', __FILE__),
@@ -620,7 +612,11 @@ class repo_market {
 			'plugins' => array_values(plugin::listPlugin(false, false, false, true))
 		);
 		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
-			$data['url'] = network::getNetworkAccess('external');
+			$url = network::getNetworkAccess('external');
+			$data['url'] = is_string($url) && strlen($url) <= 511 && filter_var($url, FILTER_VALIDATE_URL)
+				&& in_array(strtolower(parse_url($url, PHP_URL_SCHEME)), array('http', 'https'), true)
+				&& parse_url($url, PHP_URL_USER) === null && parse_url($url, PHP_URL_PASS) === null
+				&& strpbrk($url, '<>"\\') === false ? $url : '';
 		}
 		$result = marketClient::request('PUT', '/boxes/{boxId}/telemetry', $data);
 		$legacy = ($result['dns'] ?? array()) + ($result['services'] ?? array());
@@ -637,7 +633,15 @@ class repo_market {
 
 	public static function connect($login, $password, $twoFactorCode = '') {
 		marketClient::connect($login, $password, $twoFactorCode);
-		return self::test();
+		try {
+			self::test();
+		} catch (Exception $exception) {
+			if (!marketClient::connected()) {
+				throw $exception;
+			}
+			return marketClient::status() + array('warning' => __('Compte connecté. La synchronisation avec le Market a échoué :', __FILE__) . ' ' . $exception->getMessage());
+		}
+		return marketClient::status();
 	}
 
 	public static function getPurchaseInfo() {
@@ -652,6 +656,9 @@ class repo_market {
 
 	/** Legacy entry point retained for plugins. Core requests use marketClient. */
 	public static function getJsonRpc() {
+		if (config::byKey('market::username') === '' || config::byKey('market::password') === '') {
+			throw new Exception(__('Connectez votre compte Market depuis la configuration de Jeedom.', __FILE__), 401);
+		}
 		$internalIp = '';
 		try {
 			$internalIp = network::getNetworkAccess('internal', 'ip');

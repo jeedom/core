@@ -28,8 +28,16 @@ try {
 
 	if (init('action') == 'connectMarket') {
 		unautorizedInDemo();
-		repo_market::connect(init('login'), init('password'), init('twoFactorCode'));
-		ajax::success();
+		ajax::success(repo_market::connect(init('login'), init('password'), init('twoFactorCode')));
+	}
+
+	if (init('action') == 'marketStatus') {
+		ajax::success(marketClient::status());
+	}
+
+	if (init('action') == 'disconnectMarket') {
+		unautorizedInDemo();
+		ajax::success(marketClient::disconnect());
 	}
 
 	if (init('action') == 'uploadCloud') {
@@ -92,12 +100,7 @@ try {
 
 	if (init('action') == 'test') {
 		$class = 'repo_' . init('repo');
-		if (init('repo') === 'market' && init('password') !== '') {
-			unautorizedInDemo();
-			repo_market::connect(config::byKey('market::username'), init('password'), init('twoFactorCode'));
-		} else {
-			$class::test();
-		}
+		$class::test();
 		ajax::success();
 	}
 

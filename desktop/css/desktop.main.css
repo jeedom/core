@@ -2036,6 +2036,35 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   /* administration */
+  .marketConnectionStatus,
+  .marketConnectionControls,
+  .marketConnectionFormActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .marketConnectionStatus {
+    margin-bottom: 8px;
+  }
+  .marketConnectionStatus [data-market-login],
+  .marketConnectionForm strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .marketConnectionForm {
+    display: grid;
+    gap: 16px;
+    padding: 12px;
+  }
+  .marketConnectionForm label {
+    display: block;
+    margin-bottom: 6px;
+  }
+  .marketConnectionFormActions {
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
   #div_commandResult > table > thead {
     position: sticky;
     top: 0;

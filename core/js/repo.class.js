@@ -78,22 +78,31 @@ jeedom.repo.test = function(_params) {
   paramsAJAX.data = {
     action: 'test',
     repo: _params.repo,
-    password: _params.password || '',
-    twoFactorCode: _params.twoFactorCode || '',
   };
   domUtils.ajax(paramsAJAX);
 }
 
 jeedom.repo.connectMarket = function(_params) {
-  const params = domUtils.extend({}, jeedom.private.default_params, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/repo.ajax.php';
-  paramsAJAX.data = {
-    action: 'connectMarket',
+  jeedom.repo.marketRequest('connectMarket', _params, {
     login: _params.login,
     password: _params.password,
     twoFactorCode: _params.twoFactorCode || ''
-  };
+  });
+}
+
+jeedom.repo.marketStatus = function(_params) {
+  jeedom.repo.marketRequest('marketStatus', _params);
+}
+
+jeedom.repo.disconnectMarket = function(_params) {
+  jeedom.repo.marketRequest('disconnectMarket', _params);
+}
+
+jeedom.repo.marketRequest = function(_action, _params, _data = {}) {
+  const params = domUtils.extend({}, jeedom.private.default_params, _params || {});
+  const paramsAJAX = jeedom.private.getParamsAJAX(params);
+  paramsAJAX.url = 'core/ajax/repo.ajax.php';
+  paramsAJAX.data = domUtils.extend({ action: _action }, _data);
   domUtils.ajax(paramsAJAX);
 }
 
