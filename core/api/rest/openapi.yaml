@@ -3153,7 +3153,7 @@ components:
         kind: human
         twoFactorEnabled: false
         lastConnection: '2026-11-06T18:42:00+01:00'
-        options: { localOnly: 0, api::mode: disable, doNotRotateHash: 0 }
+        options: { localOnly: 0, 'api::mode': disable, doNotRotateHash: 0 }
 
     UserAdminOptions:
       type: object
