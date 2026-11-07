@@ -605,12 +605,17 @@ class repo_market {
 		} catch (Exception $exception) {
 		}
 		$data = array(
-			'version' => jeedom::version(), 'name' => config::byKey('name'), 'localIp' => $internalIp,
+			'version' => jeedom::version(), 'localIp' => $internalIp,
 			'apiKey' => jeedom::getApiKey('apimarket'),
 			'information' => array('nbMessage' => message::nbMessage(), 'nbUpdate' => update::nbNeedUpdate(),
 				'hardware' => jeedom::getHardwareName(), 'uname' => (string) shell_exec('uname -a'), 'language' => config::byKey('language')),
 			'plugins' => array_values(plugin::listPlugin(false, false, false, true))
 		);
+		$name = trim((string) config::byKey('name'));
+		// Leave the Market name unchanged when the local name cannot be synchronized.
+		if ($name !== '' && mb_strlen($name) <= 127 && preg_match('/[\p{Cc}<>"\x{10000}-\x{10FFFF}]/u', $name) === 0) {
+			$data['name'] = $name;
+		}
 		if (config::byKey('market::allowDNS') != 1 || config::byKey('network::disableMangement') == 1) {
 			$url = network::getNetworkAccess('external');
 			$data['url'] = is_string($url) && strlen($url) <= 511 && filter_var($url, FILTER_VALIDATE_URL)
