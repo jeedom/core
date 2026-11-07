@@ -38,13 +38,32 @@ info:
     Dans une liste, un élément que l'utilisateur n'a pas le droit de lire est
     simplement absent ; demandé directement, il renvoie 403.
 
-    La nouvelle UI ouvre une session avec `POST /session` (cookie de session
-    du core, `SameSite=Strict`, même domaine que le core, pas de CORS). En
+    La nouvelle UI ouvre une session avec `POST /session` (cookie
+    `SameSite=Strict`, même domaine que le core, pas de CORS). En
     session, toute requête d'écriture (`POST`, `PUT`, `PATCH`, `DELETE`) doit
     porter l'en-tête `X-CSRF-Token` avec le jeton reçu à l'ouverture ou lu
     sur `/me` ; sans lui, 403 `csrf_invalid`. Le jeton n'est pas demandé avec
     `Authorization: Bearer`. Une session expirée renvoie 401
     `session_expired`, pour que l'UI revienne à l'écran de connexion.
+
+    ### Sessions de l'API
+    L'API n'utilise pas la session PHP du core (`$_SESSION`) ; l'ancienne
+    interface garde la sienne, inchangée. Chaque session de la nouvelle UI
+    est une ligne de la table `session` (moteur en mémoire) :
+
+    | Colonne | Rôle |
+    |---|---|
+    | `id` | Identifiant de la session, exposé par `/me/sessions` |
+    | `user_id` | Utilisateur |
+    | `token_hash` | Empreinte du jeton porté par le cookie (index unique) ; le jeton lui-même n'est jamais stocké |
+    | `csrf_token` | Jeton CSRF aléatoire, indépendant du jeton de session |
+    | `ip` | Adresse de connexion |
+    | `created_at` | Ouverture |
+    | `last_seen_at` | Dernière requête |
+    | `expires_at` | Expiration |
+
+    La table étant en mémoire, un redémarrage de MySQL ferme toutes les
+    sessions : chacun doit se reconnecter (choix de sécurité assumé).
 
 servers:
   - url: /api/v1
@@ -452,8 +471,9 @@ paths:
         `core/php/authentification.php` : compte actif, utilisateur « local
         uniquement », double authentification hors du réseau local,
         enregistrement de l'appareil, journal et bannissement après trop
-        d'échecs. Pose le cookie de session et renvoie l'utilisateur avec le
-        jeton CSRF. Seule route accessible sans être connecté.
+        d'échecs. Crée une ligne dans la table `session`, pose le cookie
+        (qui porte le jeton, dont seule l'empreinte est stockée) et renvoie
+        l'utilisateur avec le jeton CSRF. Seule route accessible sans être connecté.
       security: []
       requestBody:
         required: true
@@ -487,7 +507,7 @@ paths:
       operationId: closeSession
       summary: Fermer la session (déconnexion)
       description: |
-        Remplace `logout()`. Avec `forgetDevice=true`, oublie aussi cet
+        Remplace `logout()` : supprime la ligne de la table `session`. Avec `forgetDevice=true`, oublie aussi cet
         appareil (cookie `registerDevice`). Demande l'en-tête `X-CSRF-Token`.
       security:
         - sessionCookie: []
@@ -640,8 +660,9 @@ paths:
       operationId: listMySessions
       summary: Lister ses sessions ouvertes
       description: |
-        Sessions du core ouvertes avec son compte. L'identifiant renvoyé est
-        opaque (dérivé de l'identifiant de session, jamais celui-ci).
+        Sessions de la nouvelle UI ouvertes avec son compte (table
+        `session`). Les connexions à l'ancienne interface n'y figurent pas.
+        Le jeton de session n'est jamais renvoyé, seulement l'`id` de la ligne.
       responses:
         '200':
           description: Les sessions.
@@ -3255,7 +3276,9 @@ components:
       type: object
       required: [id, ip, datetime]
       properties:
-        id: { type: string, description: Identifiant opaque. }
+        id: { type: string, description: Colonne `id` de la table `session`. }
+        createdAt: { type: string, format: date-time, description: Ouverture. }
+        expiresAt: { type: string, format: date-time, description: Expiration. }
         ip: { type: string }
         datetime: { type: string, format: date-time, description: Dernière activité. }
         current: { type: boolean, description: Session de la requête en cours. }
