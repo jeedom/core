@@ -664,6 +664,94 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Error' }
 
+  /users/{id}/rights:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    get:
+      tags: [Utilisateurs]
+      operationId: getUserRights
+      summary: Lire les droits par élément (administrateur)
+      description: |
+        Droits d'un utilisateur au profil `restrict` sur chaque élément
+        (champ `rights` du core). Une clé absente vaut `n` (aucun accès). Les
+        droits n'ont d'effet que pour le profil `restrict`.
+      responses:
+        '200':
+          description: Les droits.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserRights' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+    put:
+      tags: [Utilisateurs]
+      operationId: replaceUserRights
+      summary: Remplacer les droits par élément (administrateur)
+      description: |
+        Remplace l'enregistrement de la fenêtre « Droits » (`user::save` avec
+        `rights`). Le corps devient l'ensemble des droits : une clé omise
+        repasse à `n`. Comptes système refusés (403 `user_system`).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserRights' }
+      responses:
+        '200':
+          description: Droits enregistrés.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserRights' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Droits insuffisants, ou compte système (`code: user_system`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422': { $ref: '#/components/responses/ValidationError' }
+
+  /users/{id}/rights/copy:
+    parameters:
+      - $ref: '#/components/parameters/UserId'
+    post:
+      tags: [Utilisateurs]
+      operationId: copyUserRights
+      summary: Copier les droits vers un autre utilisateur (administrateur)
+      description: |
+        Remplace l'ajax `user::copyRights`. Les droits de `{id}` sont écrits
+        sur l'utilisateur `to`, clé par clé : les clés que `{id}` n'a pas
+        restent inchangées chez `to`, comme aujourd'hui.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [to]
+              properties:
+                to: { type: integer, minimum: 1, description: Utilisateur qui reçoit les droits., example: 4 }
+      responses:
+        '200':
+          description: Droits de l'utilisateur cible après copie.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UserRights' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '403':
+          description: 'Droits insuffisants, ou cible compte système (`code: user_system`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        '404': { $ref: '#/components/responses/UserNotFound' }
+        '422':
+          description: '`to` inconnu ou égal à `{id}` (`validation_error`).'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
   /objects:
     get:
       tags: [Objets]
@@ -2819,6 +2907,22 @@ components:
           type: array
           items: { $ref: '#/components/schemas/User' }
         total: { type: integer, example: 3 }
+
+    UserRightValue:
+      type: string
+      enum: [n, r, rx]
+      description: '`n` aucun accès, `r` lecture, `rx` lecture et exécution (commandes, lancement).'
+
+    UserRights:
+      type: object
+      description: |
+        Droits par élément. Clé = type d'élément suivi de son identifiant
+        (`eqLogic12`, `jeeObject3`, `scenario5`, `view1`, `plan2`,
+        `plan3d1`) ou `menu::<page>` pour les pages de l'interface.
+      propertyNames:
+        pattern: '^((eqLogic|jeeObject|scenario|view|plan|plan3d)[0-9]+|menu::[A-Za-z0-9_]+)$'
+      additionalProperties: { $ref: '#/components/schemas/UserRightValue' }
+      example: { eqLogic12: rx, jeeObject3: r, scenario5: n }
 
     LoginRequest:
       type: object
