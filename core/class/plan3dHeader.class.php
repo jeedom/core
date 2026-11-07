@@ -59,7 +59,7 @@ class plan3dHeader {
 		$search = '#' . str_replace('cmd', '', $_type . $_id) . '#';
 		$plan3ds = array_merge(plan3d::byLinkTypeLinkId($_type, $_id), plan3d::searchByConfiguration($search, 'eqLogic'));
 		foreach ($plan3ds as $plan3d) {
-			$plan3dHeader = $plan3d->get3dHeader();
+			$plan3dHeader = $plan3d->getPlan3dHeader();
 			if (!is_object($plan3dHeader)) {
 				continue;
 			}
