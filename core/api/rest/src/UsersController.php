@@ -472,13 +472,10 @@ final class UsersController
         }
     }
 
-    /**
-     * L'ajax teste `ldap::enable`, user::connect() teste `ldap:enable` : on refuse si
-     * l'une ou l'autre est active, pour ne jamais créer un compte local à côté de l'annuaire.
-     */
+    /** Même clé que l'ajax user (`ldap::enable`). */
     private static function requireNoLdap(string $message): void
     {
-        if (\config::byKey('ldap::enable') == '1' || \config::byKey('ldap:enable') == '1') {
+        if (\config::byKey('ldap::enable') == '1') {
             throw new ApiError(422, 'ldap_enabled', $message);
         }
     }
